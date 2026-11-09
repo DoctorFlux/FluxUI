@@ -1,0 +1,82 @@
+{
+  "date": "2026-11-07",
+  "requirement": "BANK-NATIVE-04: no-Baganator restock must remain inside and follow native bank opening/closing/movement/scale",
+  "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\07\\01a1b56a-52d3-7b42-9f20-a029dcfe3bde\\bank-native-attachment\\checkpoint.json",
+  "sources": {
+    "Inventory/Restock/Bank/FluxBankRestockButton.lua": {
+      "baseline": "1a66c27b856cd17553e42f561819ae87946a8f745c9b61d5e95f775d064090bc",
+      "candidate": "e3dea98284fdebadbf376deff454f221ef789f0642f3cf5f728dcf2363895a5d"
+    }
+  },
+  "comparison": [
+    {
+      "variant": "baseline",
+      "exit": 1,
+      "output": "lua: tests/bank_restock_icon.lua:4: cancelled delayed open retries cannot resurrect button after close\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/bank_restock_icon.lua:4: in local 'check'\n\ttests/bank_restock_icon.lua:192: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "variant": "candidate",
+      "exit": 0,
+      "output": "bank restock icon: 828 checks passed (five clients; native/Baganator; cold/warm merchant)\n"
+    }
+  ],
+  "native": "User reports detached no-Baganator control below bank. Candidate actual-client screenshots/open-close/purchase/taint/combat/FPS pending. No connected native tool, game/desktop input, WTF/profiler write or manual sync.",
+  "nativeReference": {
+    "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+    "version": "1.60.1.70862",
+    "target": "Forever",
+    "contract": "Mainline BankFrameTemplate supplies BankItemSearchBox; Camelot BankFrame inherits template. Own control now uses native parent, retaining RIGHT-to-LEFT search point with4px gap; no native frame scripts, purchase APIs, mover or item decorations changed. This intentionally supersedes prior UIParent-child exclusion at user request. Native taint safety is not certified.",
+    "captures": {
+      "upstream-Blizzard_UIPanels_Game-Blizzard_UIPanels_Game.toc": "c4f57e9b6df5597c134f8434391e71f8019d9bd7a2f7682d87f3b893449ba7b1",
+      "upstream-Camelot-BankFrame.xml": "03dccc0850ed41d199d8d8c02cc07ba64f24d78101f18b146ef87b8077bab87f",
+      "upstream-Mainline-BankFrameTemplates.xml": "2e4f68260d12ad2bdac2c66d692c82be1d0b081a5d6c99093bdd63af942aa528"
+    }
+  },
+  "finalFocusedRecheck": {
+    "exit": 0,
+    "syntaxExit": 0,
+    "output": "bank restock icon: 828 checks passed (five clients; native/Baganator; cold/warm merchant)\n",
+    "sourceHash": "f100578c229b925d108358ad17d4767c67e6c28c7932b1651ede409bbb39ec73",
+    "scope": "Final hidden-ancestor test extension rechecked separately after whole runner; production bank owner unchanged during full run."
+  },
+  "fullValidation": {
+    "pass": 219,
+    "fail": 1,
+    "syntaxFiles": 883,
+    "syntaxFailures": [],
+    "failedScripts": [
+      "tests/raid_party_frames.lua"
+    ],
+    "currentCorpusDrift": [
+      "tests/raid_party_frames.lua",
+      "UnitFrames/FluxUnitFrames_Party.lua"
+    ]
+  },
+  "installedCopies": [
+    {
+      "client": "_retail_",
+      "matches": true
+    },
+    {
+      "client": "_forever_",
+      "matches": true
+    },
+    {
+      "client": "_classic_",
+      "matches": true
+    },
+    {
+      "client": "_classic_era_",
+      "matches": true
+    },
+    {
+      "client": "_anniversary_",
+      "matches": true
+    }
+  ],
+  "documentationValidation": {
+    "exit": 1,
+    "issues": 4,
+    "scope": "Only unrelated concurrent party-frame inventory/interfaces/verification drift; no bank owner issues. Targeted whitespace PASS."
+  }
+}

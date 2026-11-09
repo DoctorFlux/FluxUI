@@ -1,0 +1,138 @@
+DoInitialize = function(parentFrame)
+    -- Get Blizzard's battlefield map frame (loads addon if needed)
+    state.mapFrame = GetBlizzardBattlefieldMap()
+
+    -- If frame not available, try loading addon
+    if not state.mapFrame then
+        -- Try loading the addon synchronously
+        local success = false
+        if C_AddOns and C_AddOns.LoadAddOn then
+            success = C_AddOns.LoadAddOn("Blizzard_BattlefieldMap")
+        elseif LoadAddOn then
+            success = LoadAddOn("Blizzard_BattlefieldMap")
+        end
+
+        if success then
+            -- Try to get frame immediately after loading
+            state.mapFrame = _G["BattlefieldMapFrame"]
+        end
+
+        -- If still not available, return false (caller can retry or use watcher)
+        -- Note: FluxWindowFrame pre-loads this addon in PLAYER_LOGIN, so it should be available
+        if not state.mapFrame then
+            return false
+        end
+    end
+
+    -- IMMEDIATELY reset scale to 1.0 to ensure clean state from the very beginning
+    -- This is critical when switching to Map tab after login on a different tab
+    -- The Blizzard map frame may have cached an incorrect scale from its initialization
+    state.mapFrame:SetScale(1.0)
+    InvalidateLayoutCache()
+
+    -- Initialize BattlefieldMapOptions if it doesn't exist
+    if not BattlefieldMapOptions then
+        BattlefieldMapOptions = {
+            opacity = 0,
+            locked = true,
+            showPlayers = true,
+        }
+    end
+
+    -- Configure for embedded use (disable interactions for older clients)
+    if IsOlderClient() then
+        if state.mapFrame.SetShouldZoomInOnClick then
+            state.mapFrame:SetShouldZoomInOnClick(false)
+        end
+        if state.mapFrame.SetShouldPanOnClick then
+            state.mapFrame:SetShouldPanOnClick(false)
+        end
+        if state.mapFrame.SetShouldNavigateOnClick then
+            state.mapFrame:SetShouldNavigateOnClick(false)
+        end
+    end
+
+    HideBattlefieldMapTabInstantly()
+
+    InstallMapLayoutHooks(state.mapFrame)
+
+    -- Refresh alpha and units visibility
+    if state.mapFrame.RefreshAlpha then
+        state.mapFrame:RefreshAlpha()
+    end
+    if state.mapFrame.UpdateUnitsVisibility then
+        state.mapFrame:UpdateUnitsVisibility()
+    end
+
+    -- Set up parenting and positioning
+    SetupMapParenting(state.mapFrame, parentFrame)
+
+    -- Apply initial scaling
+    ApplyMapScaling(state.mapFrame, CONFIG.SCALE_X, CONFIG.SCALE_Y, true)
+
+    -- Use watcher pattern instead of delays for instant setup
+    -- This ensures proper scaling during initial login/reload when Map tab is active
+    local scalingWatcher = CreateFrame("Frame")
+    local scalingCheckCount = 0
+    local MAX_SCALING_CHECKS = 10
+
+    scalingWatcher:SetScript("OnUpdate", function(self, elapsed)
+        scalingCheckCount = scalingCheckCount + 1
+
+        -- Check if map frame is ready and apply scaling
+        if state.mapFrame and state.parentFrame then
+            -- Reapply scaling to handle any Blizzard resets
+            ApplyMapScaling(state.mapFrame, CONFIG.SCALE_X, CONFIG.SCALE_Y, false)
+            if RefreshMapOnZoneChange then
+                RefreshMapOnZoneChange()
+            end
+
+            self:SetScript("OnUpdate", nil)
+        elseif scalingCheckCount >= MAX_SCALING_CHECKS then
+            -- Stop watching after max checks
+            self:SetScript("OnUpdate", nil)
+        end
+    end)
+
+    -- Initialize the map with current zone
+    -- Use compatible API for getting current map
+    local mapID = nil
+    if MapUtil and MapUtil.GetDisplayableMapForPlayer then
+        -- Post-Dragonflight API
+        mapID = MapUtil.GetDisplayableMapForPlayer()
+    elseif C_Map and C_Map.GetBestMapForUnit then
+        -- Modern API available on some older clients
+        mapID = C_Map.GetBestMapForUnit("player")
+    elseif GetCurrentMapAreaID then
+        -- Legacy API for very old clients
+        mapID = GetCurrentMapAreaID()
+    end
+
+    if mapID then
+        ApplyMapSetMapIDSilent(state.mapFrame, mapID)
+
+        -- For older clients, ensure proper zoom level (use watcher instead of delay)
+        if IsOlderClient() then
+            local zoomWatcher = CreateFrame("Frame")
+            local zoomCheckCount = 0
+            zoomWatcher:SetScript("OnUpdate", function(self, elapsed)
+                zoomCheckCount = zoomCheckCount + 1
+                if state.mapFrame then
+                    if state.mapFrame.SetMapZoom then
+                        state.mapFrame:SetMapZoom(0) -- Fully zoomed out
+                    elseif state.mapFrame.ZoomOut then
+                        for i = 1, 10 do
+                            state.mapFrame:ZoomOut()
+                        end
+                    end
+                    self:SetScript("OnUpdate", nil)
+                elseif zoomCheckCount >= 5 then
+                    self:SetScript("OnUpdate", nil)
+                end
+            end)
+        end
+    end
+
+    InstallLightweightMapUpdate(state.mapFrame)
+    return true
+end

@@ -1,0 +1,1106 @@
+{
+  "capturedUTC": "2026-11-07T19:08:27.386308+00:00",
+  "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\07\\01a1b5b8-1789-7050-b49c-88d0a742e874\\roadmap-fixes-20261107T184559Z\\source.zip",
+  "baseline": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\07\\01a1b5b8-1789-7050-b49c-88d0a742e874\\roadmap-fixes-ebs-respec-baseline",
+  "sourceBefore": {
+    "Bars/BadgeHost.lua": "c4fc487f45cda62e8a93932777f5478d08a9543658c456a5c6a67fb76bcf4616",
+    "Core/API/Secrets.lua": "471a54aeb783e922ed7dccbe64d3a10c679a27e27a15bdaf3db4697400afccce",
+    "Core/ButtonFX/Cast.lua": "5e8a085c46c23e5ac297095188ad816fac5052118e392f5cab5add4ad51319e2",
+    "Core/ButtonFX/Charges.lua": "004502522b4e4d1c692dff1293ee0a77daae5778446e047867565455e2ace134",
+    "Core/ButtonFX/Click.lua": "b7e774a04297d86905eaf20a72b5be5a14eb9cbe87b4f8fc8a415debb0c8017d",
+    "Core/ButtonFX/Click2.lua": "7ca891b3b7be25d0d1a92c50f2784518dcb3a9612a95a1890201dd17875124e0",
+    "Core/ButtonFX/Flash.lua": "6f8a64cddc732c0b7a4459744c8ee507dcf0b2b15c6b4ad7bf8624abe9c277a4",
+    "Core/ButtonFX/Glow.lua": "d4be8ec4e8fc1ae26236dc58dfa4a53b87599e1ffbb4fbb77c145b7e7c5b4a57",
+    "Core/ButtonFX/Overlay.lua": "50dc114bcd3fbd0a2ff51eef289ea9d599df331f55caf453a0c57f49a2f5eeab",
+    "Core/ButtonFX/ThreatGlow.lua": "a4eee7a9b4b397ebc6a2b8555110f619fac3fd86e9a264b3525f751cac0d00e2",
+    "Core/Engine/Modifier.lua": "f546dd7e98f541af680722b5ea54da2762445ac03f30d6ef7f6059c776cbad1b",
+    "ExtraButtonSystem/Combat/Kind.lua": "98126d19012cb05fd393a21aea855b57dcd40ac3f96d71035b1b4309cd9d6b2f",
+    "ExtraButtonSystem/CombatGrid/Buttons/Ammo.lua": "287ca33a6a04730891aa01409714abf03d17e4fe0d8f5129c50b5fef6202c3be",
+    "ExtraButtonSystem/CombatGrid/Buttons/Bandage.lua": "c1a60b84320f9caa2ec444e52ae42f54b5c0018c050d0682ab630bbff0b95597",
+    "ExtraButtonSystem/CombatGrid/Buttons/HealPotion.lua": "9fce2630be5cc5a16e30cb73d0eeb1bbf18ea792d3deebf1a1932b538b019639",
+    "ExtraButtonSystem/CombatGrid/Buttons/Healthstone.lua": "3b8e33adebdcda476de7ea4426daa46ceaecb39076c248c1c8eee202bcc2f003",
+    "ExtraButtonSystem/CombatGrid/Buttons/ManaGem.lua": "cf9c94790c6d70615ea279ffd59993de82d7d61b2192ba43e7fb39a18acd15fd",
+    "ExtraButtonSystem/CombatGrid/Buttons/ManaPotion.lua": "fc47f8deefd8e030a8948f09d146045b7276cc6e96f2a2e71085c943b001dfb3",
+    "ExtraButtonSystem/CombatGrid/Buttons/_tmp_ammosmoke.lua": "0e28f4b3c74bbd698aa307d938abcf7afd03524ffff6f7067a4b9504e180c741",
+    "ExtraButtonSystem/CombatGrid/Grid.lua": "5b06b4f65545f08c455f2a828d5d85509a7c73b707c6596d9a532274b89510bd",
+    "ExtraButtonSystem/CombatGrid/GridManager.lua": "b72c5438e91d8883cf2ff05c29811ba66edd4bd9f231f794c5aa21f0947795b9",
+    "ExtraButtonSystem/Engine/Action.lua": "05f4db93f2d81ee8cbfaf0aee772218c49a96cdd6b6268b10532db4118b9fffc",
+    "ExtraButtonSystem/Engine/Badge.lua": "713c2d1b6e27664d0a56a0a76bdde6e6d07bce4fbbcff461a3e9d207d236a58c",
+    "ExtraButtonSystem/Engine/Button.lua": "e209f9794ce1e48cd2841bd7b5eed3e0cb679c08646004dc3e37771083c4cc27",
+    "ExtraButtonSystem/Engine/ConsumableBind.lua": "bafe27593a9c17fb601b160b07607a77c530e3cbc450c5d6d559ac9f80e33522",
+    "ExtraButtonSystem/Engine/Core.lua": "7f34d573ccebed949fb977f2a5f1d0fe6fba2211ca6a9fb63c879dd8875363b5",
+    "ExtraButtonSystem/Engine/Events.lua": "f8b962b310a0bb2eefc693ab85af1d720049bb1040b3f2660067496733905d9d",
+    "ExtraButtonSystem/Engine/FluxBtn.lua": "c1a29f89a26dd8afd4041e16e2e48b5998f8688b63f98c98dddd817984e56c2d",
+    "ExtraButtonSystem/Engine/FluxBtn_Compat.lua": "97df2314a2f557ec92bf7c7e9e1ce8ccb71b4e389062ba6da821bef054f780fe",
+    "ExtraButtonSystem/Engine/FluxBtn_Flyout.lua": "41a8e764dd12329953b26c1623c3c657a8eeabdd66adaa0b55df4b3d22b0454f",
+    "ExtraButtonSystem/Engine/Paint.lua": "2ef6bd73eccf813dc4cdc11d0e34f2a8f3154007b63414d1d10c9582e681eda6",
+    "ExtraButtonSystem/Engine/Range.lua": "7d498b3e56616dc4e6189f518d401fdc14bbd4706700abb4504253e8ea3a4e4b",
+    "ExtraButtonSystem/Engine/Style.lua": "0cc2decc08090e6fbbeb32cf2b299ab4752ae27235832423ccd6aa8f55602e66",
+    "ExtraButtonSystem/Engine/Usability.lua": "3fce31bc520e3ed24af59e3e26271c4a55c0d557db1d72996f886b3becc696f0",
+    "ExtraButtonSystem/Engine/Util.lua": "3cd7fa1d08137074aca1450990a195d7f5839a1272caefb86ebf05ccd7b7ef54",
+    "ExtraButtonSystem/Engine/VFX.lua": "8a820d83d5c06abe289455779612ad2dc9047d3fd5e5347ba7af8f0627bd56c9",
+    "ExtraButtonSystem/Engine/Watch.lua": "4e22b2fde9ff08ff2fb62f96e595921fef508fbfcd16bb96997daa2e1257a04f",
+    "ExtraButtonSystem/Engine/Widget.lua": "5458e613ae80fa7e750db36432cfb929f52fe3cf1aba642b870e77b046cd99a0",
+    "ExtraButtonSystem/Engine/_tmp_consumablesmoke.lua": "7cc4586c17a71c8c5ab7b9559b0f7a08c10f57120df4a11dd1b55cf8cdb4d6a0",
+    "ExtraButtonSystem/ExtraButtons/Buttons.lua": "7e35133aad83a52c2bd17ed403b23fa275966f65b478cf0dcbf1523b53358179",
+    "ExtraButtonSystem/ExtraButtons/Categories.lua": "1e6053c5bfd7350628747cbbec1a735ed37d72d7cf66f654bc2bf8ddfb7f34e2",
+    "ExtraButtonSystem/ExtraButtons/Core.lua": "de23b44cbfe351430395cdc79e61b5f3b27f328badf5b4d4a916d24532e83234",
+    "ExtraButtonSystem/ExtraButtons/UI.lua": "839e769dfec007dcb0594637a9c3614134345bd6d8df1d127d0ed067781b5073",
+    "ExtraButtonSystem/Flyout/FluxFlyoutCore.lua": "97872fd6a2980c49bcf1427dbe7f236a6ebe32858e7433b608fe601a2178ced4",
+    "ExtraButtonSystem/Flyout/FluxFlyoutData.lua": "593232684d46635aca920cf29c3b531b93b280f23cad8b7c8ca5fecd28751b55",
+    "ExtraButtonSystem/Flyout/FluxFlyoutFavorites.lua": "d6691f83881ba81af3e7ef8d2700cb7ecc7021d4244ba52eef744b03a49cfc64",
+    "ExtraButtonSystem/Flyout/FluxFlyoutFrame.lua": "fc777bafbbdb2660d2dca69fa30ab2c9f276cc9de2887b6f4907b5ba67b6d3e7",
+    "ExtraButtonSystem/Flyout/FluxFlyoutGenerators.lua": "6f26325b1dd0d6497a5c828cc8318f45d6d1a3ee431c77107e6e30979295f5d0",
+    "ExtraButtonSystem/Flyout/FluxFlyoutParser.lua": "67bb8ad809f1e702461017d6d0f1bc0819ad34da68a242934628b39c3d9fe0bb",
+    "ExtraButtonSystem/Flyout/FluxGridFlyoutBind.lua": "737ef30cba5af7ff7069f319c8225df033718be53be3759363b611ce4d5c3148",
+    "ExtraButtonSystem/FlyoutEngine/Arrow.lua": "b08a0bd955f0d207190517fbbc5c233d9ea5d41471f051c096ff6c7e04896d45",
+    "ExtraButtonSystem/FlyoutEngine/Attach.lua": "8304c1a87fd3501a08f2d2cfffe82ddde779ad1b237a2c6a70ada298ef39161a",
+    "ExtraButtonSystem/FlyoutEngine/Chrome.lua": "fb7b757ce0a421daa0fdeff22ddc7bb162c0ddc84c127693949df240f0cb91d7",
+    "ExtraButtonSystem/FlyoutEngine/Def.lua": "8e3d1b5594f168db63ff14b48b840a1a79d68a83f5ddabecdb5170eb204d9c24",
+    "ExtraButtonSystem/FlyoutEngine/Favorites.lua": "b0da8901468065abeae2fb203fb65de243af460a17119293435a81dc4646618b",
+    "ExtraButtonSystem/FlyoutEngine/HostCompat.lua": "8840bdf6d3b92180de641cedbe4d1722c48da64722dd0daa3cda81ddfe26c122",
+    "ExtraButtonSystem/FlyoutEngine/Init.lua": "de82ae67050ea4c83b8dea0d9ce8545f87b79999128c507405ecdb62294f74cd",
+    "ExtraButtonSystem/FlyoutEngine/Popup.lua": "0d79e1a96cc62c3f446052978ba9735fadd123760a443f3801aff965e7cdf49c",
+    "ExtraButtonSystem/FlyoutEngine/Secure.lua": "f3310026cb806e223d85bdeca93e09e44789166d3eaeb8dc352a565e0dd63f3d",
+    "ExtraButtonSystem/Init.lua": "fa7e2334fa9d0595d4c9db208c66d4fa792781a0f3ac42e74249a52f621f3dc6",
+    "ExtraButtonSystem/Layout.lua": "06ea068ba997a81cef3bf68cdda51b498dfb45f7b7b527a88b301926d0524f9d",
+    "ExtraButtonSystem/NonCombat/Food.lua": "c65a91ca12d6b6f390800b62490e499bac063cd97484d3fef0a92c18df98e1f3",
+    "ExtraButtonSystem/NonCombat/Mount/Init.lua": "c1d6034fe468ea13e54fb78b7db15ccb77c12a8aa07190f7d480a8b96c181a13",
+    "ExtraButtonSystem/NonCombat/Roles.lua": "ee939ac2866cb4ac5c66de865b81c6098c530fea5b49d5b238fa6d92938413fe",
+    "ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua": "a4cc7223bf109ffe29bda67ba330a98066eada17370bcc24297a82d2f559d0a9",
+    "ExtraButtonSystem/NonCombatGrid/Buttons/ConsumablesConfig.lua": "694a0badbb554bc637f2eea3fb752f1e76965a99e8f4644adef49112134d160b",
+    "ExtraButtonSystem/NonCombatGrid/Buttons/Food.lua": "842edde076d64f5a96f73ebfa48327ac614d91695d98ca550fc5070489c4872b",
+    "ExtraButtonSystem/NonCombatGrid/Buttons/Hearthstone.lua": "f57aaecade0460a9f3ce9ac5889035d217e2375fefbd0ff9f01eaed72925bd22",
+    "ExtraButtonSystem/NonCombatGrid/Buttons/Mount.lua": "3baccb916f2ef49330508d3715a8777cd1a3792613747ebabd2c14be44f61f46",
+    "ExtraButtonSystem/NonCombatGrid/Buttons/MountCollection.lua": "f4e945c4499f3d134775273acd78a61d55ab8ab79c0a302f02426ede4a61cac2",
+    "ExtraButtonSystem/NonCombatGrid/Buttons/MountItems.lua": "769cd51db2c54fad2b97b9d7e744720d56d02e13712aa52f6352499f26120a2e",
+    "ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua": "0b05706c352a4b608b80e6cfb8376d1e600f78259e999e84ac4a6defb83e73a1",
+    "ExtraButtonSystem/NonCombatGrid/Buttons/Water.lua": "36537724d48a94b2c14543087937d9985d240b2a45537fcd37675eb6f84bfa9b",
+    "ExtraButtonSystem/NonCombatGrid/Buttons/_tmp_mountitemsmoke.lua": "f3a956ea76ae28527fd9a64e4145756b96f6e42e823646a2b9b3fd1d337991a4",
+    "ExtraButtonSystem/NonCombatGrid/FluxSmartHearthConfig.lua": "f00f16ff9428b78ef9e57056c12047d6fcb948718471d34d4035f21f30e9582c",
+    "ExtraButtonSystem/NonCombatGrid/FluxSmartMountConfig.lua": "c9c599746034074657e1cfaeda24ddcf87959cd924be91c2000a8156651cf6a4",
+    "ExtraButtonSystem/NonCombatGrid/Grid.lua": "c77a19abbe02794c95b644c0ab83dfc8906f77910c59e50a39700fe2cc385676",
+    "ExtraButtonSystem/NonCombatGrid/GridInit.lua": "f6ed9d293f4aad3c9bf9d8767c6e708679101bf73b1e1529a7cb00f931186af4",
+    "ExtraButtonSystem/NonCombatGrid/UtilitySlots/Assign.lua": "a1a706068cb335050e314e092fa8ff07d7ae0dd9e88f4e6dbcf6a51dbe3f1a12",
+    "ExtraButtonSystem/NonCombatGrid/UtilitySlots/Manager.lua": "46d841979af9c6a7210734b7c55ee4fe80ead39c392a1666025083bfdff2e6b4",
+    "ExtraButtonSystem/Shared/FluxConsumablesGridUI.lua": "a444bc60318885cdd833f72f39dab26a56c561e475839e1692e4b37c4ea9c28f",
+    "ExtraButtonSystem/Shared/FluxEBSButtonRefresh.lua": "c459c840fd01c85ab2448c9072a65be60be9430cde8318d0f01b5c67ba5dba92",
+    "ExtraButtonSystem/Shared/FluxEBSConsumableBridge.lua": "9cf26af2d56f28508558e8279ce4e6ff552ac4d0594e030f91ae90acf8012f71",
+    "ExtraButtonSystem/Shared/FluxExtraButtonVisibility.lua": "3d8ce758fa7567db7780c74b1a2210ac080de1dde95ae3ccdfde8a09ab8926dc",
+    "ExtraButtonSystem/Shared/FluxMacroClickProxies.lua": "09378df03d1ecdafc2aeead0384d7f958a17d6132f817d5d78175b3e5c139a4f",
+    "ExtraButtonSystem/Shared/FluxModifierTracker.lua": "1371d7817c2f03c2a9a3ff600d1b6bdfe908bc162e0fc997c79630fdad6bd98b",
+    "ExtraButtonSystem/Shared/FluxMouseoverRefresh.lua": "804c5e887e4d87ef95c8958ab3ba11d48f7aae7faee708bb450a17c70f63ec4f",
+    "ExtraButtonSystem/Shared/FluxNCFlyoutOptions.lua": "c392c3942fd69ec1ffde64632b5afb2012bd047b996aeba46d5177bce1d4b9cd",
+    "ExtraButtonSystem/Shared/FluxRange.lua": "78d783cab717bf473ca58abafa5e79d733bb92766470261dc2540f7fc9973a85",
+    "ExtraButtonSystem/Shared/FluxTooltipGuard.lua": "9c02edb3ffe10e689c926e16d1e340708c48b09de63a243b8168a904b340d9aa",
+    "ExtraButtonSystem/Shared/HotkeyUtil.lua": "cd00b19b51c9411fa27f2e06805c45d5dae28e2d2b614b88a2e374c1237e210c",
+    "ExtraButtonSystem/Shared/QtyPopover.lua": "4ba76898b77a60f488cc255396432df5652cea0b60a27be1b4922bfdbc2bf432",
+    "ExtraButtonSystem/TrinketMenu/FluxTrinketMenu.lua": "3ab177e4885568df30d2a1a813e4412194e73af4344ba42be29468e53e21d355",
+    "ExtraButtonSystem/TrinketMenu/FluxTrinketMenuManager.lua": "61bf359abbf0cdd9ae4bca9389344e903466adf47d09753a82c8f1f1833cf7f0",
+    "Respec/FluxRespec_ActionBars.lua": "7a91d7944f9710ab51ce150ab44fb5414c62f3269de84d3119aae54a10506162",
+    "Respec/FluxRespec_Apply.lua": "3e983fd91063aa14f9bdf1d85c86efd8853e0bfd083e9b536265d20087b236b2",
+    "Respec/FluxRespec_AtieshDualSpecFix.lua": "bc9a5796deb066cceaa1645bb9dd61259d60e06c7a1723a96367995d44b37f1d",
+    "Respec/FluxRespec_Compat.lua": "e6596e41c5b9541125bc5d38cf6321e6d57ce8a3dfad02737e60f3787da9db32",
+    "Respec/FluxRespec_Consumables.lua": "a24b11f2ddddf372a61d715e9ee8676f4a697ab68cd76adc27d4bfdfd2f2c5d8",
+    "Respec/FluxRespec_Core.lua": "f951f6c4879dd40355f75f58165ee4a21d6904734feb00dd92d98b6350b8454e",
+    "Respec/FluxRespec_Equipment.lua": "a23ff25de69275db2895b72453f763ff9705bf8bb00d2f92ff2a42dbf7cd4d45",
+    "Respec/FluxRespec_EquipmentPresets.lua": "b0828d5f20fdba53641b0ac04f777b7a045563bc758f866df92ecc9e6d567704",
+    "Respec/FluxRespec_EquipmentSets.lua": "63ebd97206a3d65eb2352558df2f0f2430ab2ac7c4359d85e9253714cd067831",
+    "Respec/FluxRespec_GearPicker.lua": "44754847e664b0e79c10817f82608b87abbcd0a33d48c572f0dd773f3372b9e6",
+    "Respec/FluxRespec_GearSetEquipGuard.lua": "2dbfc03f1c94b4f804c9fcd90fdb038ea25371993d9ce5032a87f00cedf3b293",
+    "Respec/FluxRespec_GearSetIndex.lua": "c72e83d004cfa07b589c00d2fd848dcd009c839fe5beb24b2a5c2e9a2558e68a",
+    "Respec/FluxRespec_GearSetLock.lua": "1f6ce762250c57d004f11c5b58da20ef943da50b4118ef89a4ec05ef321f0b2b",
+    "Respec/FluxRespec_GearSetOverlay.lua": "b16a9393548419e81e3cd5da56fb94a7b9ae2516af55116d5e3ae8001a23f0b3",
+    "Respec/FluxRespec_GearSetTooltip.lua": "a156f176cc7ed84d418a83fb8758698cc9b33aed2bf34b9a0684e51fa0fdc197",
+    "Respec/FluxRespec_IconPicker.lua": "12bc437e99daec2e2aceccac2ad0685130cb0185823c44067cbb001a191044d6",
+    "Respec/FluxRespec_Includes.lua": "338b79a197f90952fbb7aab5a466d45d56e21d892cb6674471044b7195307a0e",
+    "Respec/FluxRespec_Inv.lua": "e503b361a46b6aaed71eba763e20db228ece4f6a85801ee126e81438962bcac1",
+    "Respec/FluxRespec_PresetBundle.lua": "9e7f4b94f46c56cd76f82e5368dddecffbf1307a14b31b7aac15db6b42d39e13",
+    "Respec/FluxRespec_Register.lua": "51ef835c4343570c1f90df9d4ee440f68b9109ecaa9997f55cf557a0b010fc16",
+    "Respec/FluxRespec_RunePicker.lua": "6f79b8d95c6cefb3c170ac4bcdb515c43ebdd42870031276be276766d346c7a9",
+    "Respec/FluxRespec_RunePresets.lua": "b41be2d1ed73d03fce5789f086936d6971c03497a364eed2124f992deea6c160",
+    "Respec/FluxRespec_Runes.lua": "382779e5a85ab8f3ff6807a5196b6e28743177b32223eafa54ed47213ddf3017",
+    "Respec/FluxRespec_Talents.lua": "583f273e61218492d9844b850ed4b9545ed1c4fa0dd51f27aede889b096eacaa",
+    "Respec/FluxRespec_TalentsRetail.lua": "90709bdbfe2d215de88ccb82c264120734245920e6f21fbb0a0e2a9e57bf67b6",
+    "Respec/FluxRespec_UI.lua": "535bffd25b69b8637d3b4d09cd35b29ba06788a2c02b5901f3e387ad8756abe4",
+    "Respec/FluxRespec_UI_Gear.lua": "e91125a64e3b63822e73f81bc6b3bb42c2372dc091e01fee6a73e3ea317af318",
+    "Respec/FluxRespec_UI_Rows.lua": "1b0a01e8a71a5f476cd4b7094fa73690ed6d99ee7f80cc6d8466b48980ed0604",
+    "Respec/FluxRespec_UI_Runes.lua": "9fbd26437d98975ce3ff7454402dc1358437092e6c61a019af554e00ac4a73cb",
+    "Respec/FluxRespec_UI_Shared.lua": "ba08a1876cee93f2e51a8ead27f2334dccb10e90ee7f08ac8790760b7893be83",
+    "_FluxUI.toc": "f0bcf5503e7d09f3aadf2a351755747a2bdc47f95a1c4fc6ca72a9258996f54e",
+    "tests/alpha_reader_safety.lua": "189148244b4195e267b0c553a437a17e800827d6b90968196c04cce0f5258b52",
+    "tests/badge_cooldown_secrets.lua": "ba9e4f22be6f22940b9922c4abf4ba3e3fa43e0616d38ee199960f84e0b031b2",
+    "tests/buttonfx_paint_recovery.lua": "e733ba91ae67cc7d242dbcac5b6ab414ac410ea6608e1c9304e7c58d0b002fd7",
+    "tests/consumable_aura_advance.lua": "fb3366dfeed3852875751a78aad8f5fdb7e7d06297047374bd3805efeebaecba",
+    "tests/consumable_refresh_timer.lua": "c47cf1b9cc29c5722a7e2ca9810cbecfb7356d8683e352aacb05febc1afbc540",
+    "tests/consumable_usability.lua": "8146f2188e88801276db31a94b0100f255bab5bd645819bbcab5dc8b6772d990",
+    "tests/consumable_zero_reset.lua": "b4fdee9947d3d7f78fcf780802159f579807563b461f8f57aa443d6a0aa001a9",
+    "tests/idle_bars.lua": "6f69569822142d5deeb73f0fedb4f049636036d3a830e4a22ab6f374f507cb5e",
+    "tests/mount_vendor_cache.lua": "39a7b9c20c116de5c98c95a642b58d16c40db89d23f8e85c819b18c9d142268f",
+    "tests/respec_actionbar_completion.lua": "ed2f82d8c38ec577a68db2ee569e76260d814b0a6ae06f28d8fe11c52bb44246",
+    "tests/respec_equipment_completion.lua": "2f033d3139ac907ef891e747b9c5f6332f8d703e4083b27259397848b036dd5b",
+    "tests/respec_section_results.lua": "5486bd2245fb7e4ea388e99cf746ecaa368fb982be917a3c57f70b5d211dc158",
+    "tests/respec_timer_ownership.lua": "e87adb6cbe957497c22f7b367a03b322aff7da5e51d449f0675577faa3b66479",
+    "tests/teleport_cast_work.lua": "7842024ac5441f7f3298f77d8dc32c6820b45c074946ff30147a0248f5c02e8e",
+    "tests/utility_mixed_faces.lua": "d7362e6c96584deed8754e80d910a02feae4e61719844592a363c9b23f3ad8bb",
+    "tests/utility_modifier_vfx.lua": "08bd90ffc3c1dd1459171b840b6fdd429f667015ee789243d1a37c121ec6d9f5",
+    "tests/utility_pet_faces.lua": "d63b90a8322d0d9830ffe73338003fb96ddf8fddde443ff7581a887f6e8d97c7",
+    "tests/utility_secure_input.lua": "1272d4a17df8acaad9858ce76ab071544e233b61b19d42db25275e136b6ff103"
+  },
+  "sourceAfter": {
+    "Bars/BadgeHost.lua": "c4fc487f45cda62e8a93932777f5478d08a9543658c456a5c6a67fb76bcf4616",
+    "Core/API/Secrets.lua": "471a54aeb783e922ed7dccbe64d3a10c679a27e27a15bdaf3db4697400afccce",
+    "Core/ButtonFX/Cast.lua": "5e8a085c46c23e5ac297095188ad816fac5052118e392f5cab5add4ad51319e2",
+    "Core/ButtonFX/Charges.lua": "004502522b4e4d1c692dff1293ee0a77daae5778446e047867565455e2ace134",
+    "Core/ButtonFX/Click.lua": "b7e774a04297d86905eaf20a72b5be5a14eb9cbe87b4f8fc8a415debb0c8017d",
+    "Core/ButtonFX/Click2.lua": "7ca891b3b7be25d0d1a92c50f2784518dcb3a9612a95a1890201dd17875124e0",
+    "Core/ButtonFX/Flash.lua": "6f8a64cddc732c0b7a4459744c8ee507dcf0b2b15c6b4ad7bf8624abe9c277a4",
+    "Core/ButtonFX/Glow.lua": "d4be8ec4e8fc1ae26236dc58dfa4a53b87599e1ffbb4fbb77c145b7e7c5b4a57",
+    "Core/ButtonFX/Overlay.lua": "50dc114bcd3fbd0a2ff51eef289ea9d599df331f55caf453a0c57f49a2f5eeab",
+    "Core/ButtonFX/ThreatGlow.lua": "a4eee7a9b4b397ebc6a2b8555110f619fac3fd86e9a264b3525f751cac0d00e2",
+    "Core/Engine/Modifier.lua": "f546dd7e98f541af680722b5ea54da2762445ac03f30d6ef7f6059c776cbad1b",
+    "ExtraButtonSystem/Combat/Kind.lua": "98126d19012cb05fd393a21aea855b57dcd40ac3f96d71035b1b4309cd9d6b2f",
+    "ExtraButtonSystem/CombatGrid/Buttons/Ammo.lua": "287ca33a6a04730891aa01409714abf03d17e4fe0d8f5129c50b5fef6202c3be",
+    "ExtraButtonSystem/CombatGrid/Buttons/Bandage.lua": "c1a60b84320f9caa2ec444e52ae42f54b5c0018c050d0682ab630bbff0b95597",
+    "ExtraButtonSystem/CombatGrid/Buttons/HealPotion.lua": "9fce2630be5cc5a16e30cb73d0eeb1bbf18ea792d3deebf1a1932b538b019639",
+    "ExtraButtonSystem/CombatGrid/Buttons/Healthstone.lua": "3b8e33adebdcda476de7ea4426daa46ceaecb39076c248c1c8eee202bcc2f003",
+    "ExtraButtonSystem/CombatGrid/Buttons/ManaGem.lua": "cf9c94790c6d70615ea279ffd59993de82d7d61b2192ba43e7fb39a18acd15fd",
+    "ExtraButtonSystem/CombatGrid/Buttons/ManaPotion.lua": "fc47f8deefd8e030a8948f09d146045b7276cc6e96f2a2e71085c943b001dfb3",
+    "ExtraButtonSystem/CombatGrid/Buttons/_tmp_ammosmoke.lua": "0e28f4b3c74bbd698aa307d938abcf7afd03524ffff6f7067a4b9504e180c741",
+    "ExtraButtonSystem/CombatGrid/Grid.lua": "5b06b4f65545f08c455f2a828d5d85509a7c73b707c6596d9a532274b89510bd",
+    "ExtraButtonSystem/CombatGrid/GridManager.lua": "b72c5438e91d8883cf2ff05c29811ba66edd4bd9f231f794c5aa21f0947795b9",
+    "ExtraButtonSystem/Engine/Action.lua": "05f4db93f2d81ee8cbfaf0aee772218c49a96cdd6b6268b10532db4118b9fffc",
+    "ExtraButtonSystem/Engine/Badge.lua": "713c2d1b6e27664d0a56a0a76bdde6e6d07bce4fbbcff461a3e9d207d236a58c",
+    "ExtraButtonSystem/Engine/Button.lua": "e209f9794ce1e48cd2841bd7b5eed3e0cb679c08646004dc3e37771083c4cc27",
+    "ExtraButtonSystem/Engine/ConsumableBind.lua": "bafe27593a9c17fb601b160b07607a77c530e3cbc450c5d6d559ac9f80e33522",
+    "ExtraButtonSystem/Engine/Core.lua": "7f34d573ccebed949fb977f2a5f1d0fe6fba2211ca6a9fb63c879dd8875363b5",
+    "ExtraButtonSystem/Engine/Events.lua": "f8b962b310a0bb2eefc693ab85af1d720049bb1040b3f2660067496733905d9d",
+    "ExtraButtonSystem/Engine/FluxBtn.lua": "c1a29f89a26dd8afd4041e16e2e48b5998f8688b63f98c98dddd817984e56c2d",
+    "ExtraButtonSystem/Engine/FluxBtn_Compat.lua": "97df2314a2f557ec92bf7c7e9e1ce8ccb71b4e389062ba6da821bef054f780fe",
+    "ExtraButtonSystem/Engine/FluxBtn_Flyout.lua": "41a8e764dd12329953b26c1623c3c657a8eeabdd66adaa0b55df4b3d22b0454f",
+    "ExtraButtonSystem/Engine/Paint.lua": "2ef6bd73eccf813dc4cdc11d0e34f2a8f3154007b63414d1d10c9582e681eda6",
+    "ExtraButtonSystem/Engine/Range.lua": "7d498b3e56616dc4e6189f518d401fdc14bbd4706700abb4504253e8ea3a4e4b",
+    "ExtraButtonSystem/Engine/Style.lua": "0cc2decc08090e6fbbeb32cf2b299ab4752ae27235832423ccd6aa8f55602e66",
+    "ExtraButtonSystem/Engine/Usability.lua": "3fce31bc520e3ed24af59e3e26271c4a55c0d557db1d72996f886b3becc696f0",
+    "ExtraButtonSystem/Engine/Util.lua": "3cd7fa1d08137074aca1450990a195d7f5839a1272caefb86ebf05ccd7b7ef54",
+    "ExtraButtonSystem/Engine/VFX.lua": "8a820d83d5c06abe289455779612ad2dc9047d3fd5e5347ba7af8f0627bd56c9",
+    "ExtraButtonSystem/Engine/Watch.lua": "4e22b2fde9ff08ff2fb62f96e595921fef508fbfcd16bb96997daa2e1257a04f",
+    "ExtraButtonSystem/Engine/Widget.lua": "5458e613ae80fa7e750db36432cfb929f52fe3cf1aba642b870e77b046cd99a0",
+    "ExtraButtonSystem/Engine/_tmp_consumablesmoke.lua": "7cc4586c17a71c8c5ab7b9559b0f7a08c10f57120df4a11dd1b55cf8cdb4d6a0",
+    "ExtraButtonSystem/ExtraButtons/Buttons.lua": "7e35133aad83a52c2bd17ed403b23fa275966f65b478cf0dcbf1523b53358179",
+    "ExtraButtonSystem/ExtraButtons/Categories.lua": "1e6053c5bfd7350628747cbbec1a735ed37d72d7cf66f654bc2bf8ddfb7f34e2",
+    "ExtraButtonSystem/ExtraButtons/Core.lua": "de23b44cbfe351430395cdc79e61b5f3b27f328badf5b4d4a916d24532e83234",
+    "ExtraButtonSystem/ExtraButtons/UI.lua": "839e769dfec007dcb0594637a9c3614134345bd6d8df1d127d0ed067781b5073",
+    "ExtraButtonSystem/Flyout/FluxFlyoutCore.lua": "97872fd6a2980c49bcf1427dbe7f236a6ebe32858e7433b608fe601a2178ced4",
+    "ExtraButtonSystem/Flyout/FluxFlyoutData.lua": "593232684d46635aca920cf29c3b531b93b280f23cad8b7c8ca5fecd28751b55",
+    "ExtraButtonSystem/Flyout/FluxFlyoutFavorites.lua": "d6691f83881ba81af3e7ef8d2700cb7ecc7021d4244ba52eef744b03a49cfc64",
+    "ExtraButtonSystem/Flyout/FluxFlyoutFrame.lua": "fc777bafbbdb2660d2dca69fa30ab2c9f276cc9de2887b6f4907b5ba67b6d3e7",
+    "ExtraButtonSystem/Flyout/FluxFlyoutGenerators.lua": "6f26325b1dd0d6497a5c828cc8318f45d6d1a3ee431c77107e6e30979295f5d0",
+    "ExtraButtonSystem/Flyout/FluxFlyoutParser.lua": "67bb8ad809f1e702461017d6d0f1bc0819ad34da68a242934628b39c3d9fe0bb",
+    "ExtraButtonSystem/Flyout/FluxGridFlyoutBind.lua": "737ef30cba5af7ff7069f319c8225df033718be53be3759363b611ce4d5c3148",
+    "ExtraButtonSystem/FlyoutEngine/Arrow.lua": "b08a0bd955f0d207190517fbbc5c233d9ea5d41471f051c096ff6c7e04896d45",
+    "ExtraButtonSystem/FlyoutEngine/Attach.lua": "8304c1a87fd3501a08f2d2cfffe82ddde779ad1b237a2c6a70ada298ef39161a",
+    "ExtraButtonSystem/FlyoutEngine/Chrome.lua": "fb7b757ce0a421daa0fdeff22ddc7bb162c0ddc84c127693949df240f0cb91d7",
+    "ExtraButtonSystem/FlyoutEngine/Def.lua": "8e3d1b5594f168db63ff14b48b840a1a79d68a83f5ddabecdb5170eb204d9c24",
+    "ExtraButtonSystem/FlyoutEngine/Favorites.lua": "b0da8901468065abeae2fb203fb65de243af460a17119293435a81dc4646618b",
+    "ExtraButtonSystem/FlyoutEngine/HostCompat.lua": "8840bdf6d3b92180de641cedbe4d1722c48da64722dd0daa3cda81ddfe26c122",
+    "ExtraButtonSystem/FlyoutEngine/Init.lua": "de82ae67050ea4c83b8dea0d9ce8545f87b79999128c507405ecdb62294f74cd",
+    "ExtraButtonSystem/FlyoutEngine/Popup.lua": "0d79e1a96cc62c3f446052978ba9735fadd123760a443f3801aff965e7cdf49c",
+    "ExtraButtonSystem/FlyoutEngine/Secure.lua": "f3310026cb806e223d85bdeca93e09e44789166d3eaeb8dc352a565e0dd63f3d",
+    "ExtraButtonSystem/Init.lua": "fa7e2334fa9d0595d4c9db208c66d4fa792781a0f3ac42e74249a52f621f3dc6",
+    "ExtraButtonSystem/Layout.lua": "06ea068ba997a81cef3bf68cdda51b498dfb45f7b7b527a88b301926d0524f9d",
+    "ExtraButtonSystem/NonCombat/Food.lua": "c65a91ca12d6b6f390800b62490e499bac063cd97484d3fef0a92c18df98e1f3",
+    "ExtraButtonSystem/NonCombat/Mount/Init.lua": "c1d6034fe468ea13e54fb78b7db15ccb77c12a8aa07190f7d480a8b96c181a13",
+    "ExtraButtonSystem/NonCombat/Roles.lua": "ee939ac2866cb4ac5c66de865b81c6098c530fea5b49d5b238fa6d92938413fe",
+    "ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua": "a4cc7223bf109ffe29bda67ba330a98066eada17370bcc24297a82d2f559d0a9",
+    "ExtraButtonSystem/NonCombatGrid/Buttons/ConsumablesConfig.lua": "694a0badbb554bc637f2eea3fb752f1e76965a99e8f4644adef49112134d160b",
+    "ExtraButtonSystem/NonCombatGrid/Buttons/Food.lua": "842edde076d64f5a96f73ebfa48327ac614d91695d98ca550fc5070489c4872b",
+    "ExtraButtonSystem/NonCombatGrid/Buttons/Hearthstone.lua": "f57aaecade0460a9f3ce9ac5889035d217e2375fefbd0ff9f01eaed72925bd22",
+    "ExtraButtonSystem/NonCombatGrid/Buttons/Mount.lua": "3baccb916f2ef49330508d3715a8777cd1a3792613747ebabd2c14be44f61f46",
+    "ExtraButtonSystem/NonCombatGrid/Buttons/MountCollection.lua": "f4e945c4499f3d134775273acd78a61d55ab8ab79c0a302f02426ede4a61cac2",
+    "ExtraButtonSystem/NonCombatGrid/Buttons/MountItems.lua": "769cd51db2c54fad2b97b9d7e744720d56d02e13712aa52f6352499f26120a2e",
+    "ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua": "0b05706c352a4b608b80e6cfb8376d1e600f78259e999e84ac4a6defb83e73a1",
+    "ExtraButtonSystem/NonCombatGrid/Buttons/Water.lua": "36537724d48a94b2c14543087937d9985d240b2a45537fcd37675eb6f84bfa9b",
+    "ExtraButtonSystem/NonCombatGrid/Buttons/_tmp_mountitemsmoke.lua": "f3a956ea76ae28527fd9a64e4145756b96f6e42e823646a2b9b3fd1d337991a4",
+    "ExtraButtonSystem/NonCombatGrid/FluxSmartHearthConfig.lua": "f00f16ff9428b78ef9e57056c12047d6fcb948718471d34d4035f21f30e9582c",
+    "ExtraButtonSystem/NonCombatGrid/FluxSmartMountConfig.lua": "c9c599746034074657e1cfaeda24ddcf87959cd924be91c2000a8156651cf6a4",
+    "ExtraButtonSystem/NonCombatGrid/Grid.lua": "c77a19abbe02794c95b644c0ab83dfc8906f77910c59e50a39700fe2cc385676",
+    "ExtraButtonSystem/NonCombatGrid/GridInit.lua": "f6ed9d293f4aad3c9bf9d8767c6e708679101bf73b1e1529a7cb00f931186af4",
+    "ExtraButtonSystem/NonCombatGrid/UtilitySlots/Assign.lua": "a1a706068cb335050e314e092fa8ff07d7ae0dd9e88f4e6dbcf6a51dbe3f1a12",
+    "ExtraButtonSystem/NonCombatGrid/UtilitySlots/Manager.lua": "46d841979af9c6a7210734b7c55ee4fe80ead39c392a1666025083bfdff2e6b4",
+    "ExtraButtonSystem/Shared/FluxConsumablesGridUI.lua": "a444bc60318885cdd833f72f39dab26a56c561e475839e1692e4b37c4ea9c28f",
+    "ExtraButtonSystem/Shared/FluxEBSButtonRefresh.lua": "c459c840fd01c85ab2448c9072a65be60be9430cde8318d0f01b5c67ba5dba92",
+    "ExtraButtonSystem/Shared/FluxEBSConsumableBridge.lua": "9cf26af2d56f28508558e8279ce4e6ff552ac4d0594e030f91ae90acf8012f71",
+    "ExtraButtonSystem/Shared/FluxExtraButtonVisibility.lua": "3d8ce758fa7567db7780c74b1a2210ac080de1dde95ae3ccdfde8a09ab8926dc",
+    "ExtraButtonSystem/Shared/FluxMacroClickProxies.lua": "09378df03d1ecdafc2aeead0384d7f958a17d6132f817d5d78175b3e5c139a4f",
+    "ExtraButtonSystem/Shared/FluxModifierTracker.lua": "1371d7817c2f03c2a9a3ff600d1b6bdfe908bc162e0fc997c79630fdad6bd98b",
+    "ExtraButtonSystem/Shared/FluxMouseoverRefresh.lua": "804c5e887e4d87ef95c8958ab3ba11d48f7aae7faee708bb450a17c70f63ec4f",
+    "ExtraButtonSystem/Shared/FluxNCFlyoutOptions.lua": "c392c3942fd69ec1ffde64632b5afb2012bd047b996aeba46d5177bce1d4b9cd",
+    "ExtraButtonSystem/Shared/FluxRange.lua": "78d783cab717bf473ca58abafa5e79d733bb92766470261dc2540f7fc9973a85",
+    "ExtraButtonSystem/Shared/FluxTooltipGuard.lua": "9c02edb3ffe10e689c926e16d1e340708c48b09de63a243b8168a904b340d9aa",
+    "ExtraButtonSystem/Shared/HotkeyUtil.lua": "cd00b19b51c9411fa27f2e06805c45d5dae28e2d2b614b88a2e374c1237e210c",
+    "ExtraButtonSystem/Shared/QtyPopover.lua": "4ba76898b77a60f488cc255396432df5652cea0b60a27be1b4922bfdbc2bf432",
+    "ExtraButtonSystem/TrinketMenu/FluxTrinketMenu.lua": "3ab177e4885568df30d2a1a813e4412194e73af4344ba42be29468e53e21d355",
+    "ExtraButtonSystem/TrinketMenu/FluxTrinketMenuManager.lua": "61bf359abbf0cdd9ae4bca9389344e903466adf47d09753a82c8f1f1833cf7f0",
+    "Respec/FluxRespec_ActionBars.lua": "7a91d7944f9710ab51ce150ab44fb5414c62f3269de84d3119aae54a10506162",
+    "Respec/FluxRespec_Apply.lua": "3e983fd91063aa14f9bdf1d85c86efd8853e0bfd083e9b536265d20087b236b2",
+    "Respec/FluxRespec_AtieshDualSpecFix.lua": "bc9a5796deb066cceaa1645bb9dd61259d60e06c7a1723a96367995d44b37f1d",
+    "Respec/FluxRespec_Compat.lua": "e6596e41c5b9541125bc5d38cf6321e6d57ce8a3dfad02737e60f3787da9db32",
+    "Respec/FluxRespec_Consumables.lua": "a24b11f2ddddf372a61d715e9ee8676f4a697ab68cd76adc27d4bfdfd2f2c5d8",
+    "Respec/FluxRespec_Core.lua": "f951f6c4879dd40355f75f58165ee4a21d6904734feb00dd92d98b6350b8454e",
+    "Respec/FluxRespec_Equipment.lua": "a23ff25de69275db2895b72453f763ff9705bf8bb00d2f92ff2a42dbf7cd4d45",
+    "Respec/FluxRespec_EquipmentPresets.lua": "b0828d5f20fdba53641b0ac04f777b7a045563bc758f866df92ecc9e6d567704",
+    "Respec/FluxRespec_EquipmentSets.lua": "63ebd97206a3d65eb2352558df2f0f2430ab2ac7c4359d85e9253714cd067831",
+    "Respec/FluxRespec_GearPicker.lua": "44754847e664b0e79c10817f82608b87abbcd0a33d48c572f0dd773f3372b9e6",
+    "Respec/FluxRespec_GearSetEquipGuard.lua": "2dbfc03f1c94b4f804c9fcd90fdb038ea25371993d9ce5032a87f00cedf3b293",
+    "Respec/FluxRespec_GearSetIndex.lua": "c72e83d004cfa07b589c00d2fd848dcd009c839fe5beb24b2a5c2e9a2558e68a",
+    "Respec/FluxRespec_GearSetLock.lua": "1f6ce762250c57d004f11c5b58da20ef943da50b4118ef89a4ec05ef321f0b2b",
+    "Respec/FluxRespec_GearSetOverlay.lua": "b16a9393548419e81e3cd5da56fb94a7b9ae2516af55116d5e3ae8001a23f0b3",
+    "Respec/FluxRespec_GearSetTooltip.lua": "a156f176cc7ed84d418a83fb8758698cc9b33aed2bf34b9a0684e51fa0fdc197",
+    "Respec/FluxRespec_IconPicker.lua": "12bc437e99daec2e2aceccac2ad0685130cb0185823c44067cbb001a191044d6",
+    "Respec/FluxRespec_Includes.lua": "338b79a197f90952fbb7aab5a466d45d56e21d892cb6674471044b7195307a0e",
+    "Respec/FluxRespec_Inv.lua": "e503b361a46b6aaed71eba763e20db228ece4f6a85801ee126e81438962bcac1",
+    "Respec/FluxRespec_PresetBundle.lua": "9e7f4b94f46c56cd76f82e5368dddecffbf1307a14b31b7aac15db6b42d39e13",
+    "Respec/FluxRespec_Register.lua": "51ef835c4343570c1f90df9d4ee440f68b9109ecaa9997f55cf557a0b010fc16",
+    "Respec/FluxRespec_RunePicker.lua": "6f79b8d95c6cefb3c170ac4bcdb515c43ebdd42870031276be276766d346c7a9",
+    "Respec/FluxRespec_RunePresets.lua": "b41be2d1ed73d03fce5789f086936d6971c03497a364eed2124f992deea6c160",
+    "Respec/FluxRespec_Runes.lua": "382779e5a85ab8f3ff6807a5196b6e28743177b32223eafa54ed47213ddf3017",
+    "Respec/FluxRespec_Talents.lua": "583f273e61218492d9844b850ed4b9545ed1c4fa0dd51f27aede889b096eacaa",
+    "Respec/FluxRespec_TalentsRetail.lua": "90709bdbfe2d215de88ccb82c264120734245920e6f21fbb0a0e2a9e57bf67b6",
+    "Respec/FluxRespec_UI.lua": "535bffd25b69b8637d3b4d09cd35b29ba06788a2c02b5901f3e387ad8756abe4",
+    "Respec/FluxRespec_UI_Gear.lua": "e91125a64e3b63822e73f81bc6b3bb42c2372dc091e01fee6a73e3ea317af318",
+    "Respec/FluxRespec_UI_Rows.lua": "1b0a01e8a71a5f476cd4b7094fa73690ed6d99ee7f80cc6d8466b48980ed0604",
+    "Respec/FluxRespec_UI_Runes.lua": "9fbd26437d98975ce3ff7454402dc1358437092e6c61a019af554e00ac4a73cb",
+    "Respec/FluxRespec_UI_Shared.lua": "ba08a1876cee93f2e51a8ead27f2334dccb10e90ee7f08ac8790760b7893be83",
+    "_FluxUI.toc": "f0bcf5503e7d09f3aadf2a351755747a2bdc47f95a1c4fc6ca72a9258996f54e",
+    "tests/alpha_reader_safety.lua": "189148244b4195e267b0c553a437a17e800827d6b90968196c04cce0f5258b52",
+    "tests/badge_cooldown_secrets.lua": "ba9e4f22be6f22940b9922c4abf4ba3e3fa43e0616d38ee199960f84e0b031b2",
+    "tests/buttonfx_paint_recovery.lua": "e733ba91ae67cc7d242dbcac5b6ab414ac410ea6608e1c9304e7c58d0b002fd7",
+    "tests/consumable_aura_advance.lua": "fb3366dfeed3852875751a78aad8f5fdb7e7d06297047374bd3805efeebaecba",
+    "tests/consumable_refresh_timer.lua": "c47cf1b9cc29c5722a7e2ca9810cbecfb7356d8683e352aacb05febc1afbc540",
+    "tests/consumable_usability.lua": "8146f2188e88801276db31a94b0100f255bab5bd645819bbcab5dc8b6772d990",
+    "tests/consumable_zero_reset.lua": "b4fdee9947d3d7f78fcf780802159f579807563b461f8f57aa443d6a0aa001a9",
+    "tests/idle_bars.lua": "6f69569822142d5deeb73f0fedb4f049636036d3a830e4a22ab6f374f507cb5e",
+    "tests/mount_vendor_cache.lua": "39a7b9c20c116de5c98c95a642b58d16c40db89d23f8e85c819b18c9d142268f",
+    "tests/respec_actionbar_completion.lua": "ed2f82d8c38ec577a68db2ee569e76260d814b0a6ae06f28d8fe11c52bb44246",
+    "tests/respec_equipment_completion.lua": "2f033d3139ac907ef891e747b9c5f6332f8d703e4083b27259397848b036dd5b",
+    "tests/respec_section_results.lua": "5486bd2245fb7e4ea388e99cf746ecaa368fb982be917a3c57f70b5d211dc158",
+    "tests/respec_timer_ownership.lua": "e87adb6cbe957497c22f7b367a03b322aff7da5e51d449f0675577faa3b66479",
+    "tests/teleport_cast_work.lua": "7842024ac5441f7f3298f77d8dc32c6820b45c074946ff30147a0248f5c02e8e",
+    "tests/utility_mixed_faces.lua": "d7362e6c96584deed8754e80d910a02feae4e61719844592a363c9b23f3ad8bb",
+    "tests/utility_modifier_vfx.lua": "08bd90ffc3c1dd1459171b840b6fdd429f667015ee789243d1a37c121ec6d9f5",
+    "tests/utility_pet_faces.lua": "d63b90a8322d0d9830ffe73338003fb96ddf8fddde443ff7581a887f6e8d97c7",
+    "tests/utility_secure_input.lua": "1272d4a17df8acaad9858ce76ab071544e233b61b19d42db25275e136b6ff103"
+  },
+  "drift": {},
+  "rejections": [
+    {
+      "finding": "R2-CORE-04",
+      "oldRejectedNewAccepted": true,
+      "baseline": {
+        "test": "tests/respec_equipment_completion.lua",
+        "args": [
+          "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\07\\01a1b5b8-1789-7050-b49c-88d0a742e874\\roadmap-fixes-ebs-respec-baseline",
+          "missing"
+        ],
+        "exit": 1,
+        "seconds": 0.101207,
+        "stdout": "",
+        "stderr": "lua: ...ace\\AddOns\\_FluxUI\\tests\\respec_equipment_completion.lua:7: missing requested gear must never report full success\nstack traceback:\n\t[C]: in function 'assert'\n\t...ace\\AddOns\\_FluxUI\\tests\\respec_equipment_completion.lua:7: in local 'check'\n\t...ace\\AddOns\\_FluxUI\\tests\\respec_equipment_completion.lua:85: in main chunk\n\t[C]: in ?\n"
+      },
+      "current": {
+        "test": "tests/respec_equipment_completion.lua",
+        "args": [
+          "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI",
+          "missing"
+        ],
+        "exit": 0,
+        "seconds": 0.335121,
+        "stdout": "Respec equipment completion: 410 checks; five clients; missing/partial/retry/combat/locks/bank/replacement ownership PASS\n",
+        "stderr": ""
+      }
+    },
+    {
+      "finding": "R2-CORE-05",
+      "oldRejectedNewAccepted": true,
+      "baseline": {
+        "test": "tests/respec_equipment_completion.lua",
+        "args": [
+          "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\07\\01a1b5b8-1789-7050-b49c-88d0a742e874\\roadmap-fixes-ebs-respec-baseline",
+          "cancel"
+        ],
+        "exit": 1,
+        "seconds": 0.02461,
+        "stdout": "",
+        "stderr": "lua: ...ace\\AddOns\\_FluxUI\\tests\\respec_equipment_completion.lua:7: pipeline cancellation clears its gear request\nstack traceback:\n\t[C]: in function 'assert'\n\t...ace\\AddOns\\_FluxUI\\tests\\respec_equipment_completion.lua:7: in local 'check'\n\t...ace\\AddOns\\_FluxUI\\tests\\respec_equipment_completion.lua:100: in main chunk\n\t[C]: in ?\n"
+      },
+      "current": {
+        "test": "tests/respec_equipment_completion.lua",
+        "args": [
+          "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI",
+          "cancel"
+        ],
+        "exit": 0,
+        "seconds": 0.309229,
+        "stdout": "Respec equipment completion: 385 checks; five clients; missing/partial/retry/combat/locks/bank/replacement ownership PASS\n",
+        "stderr": ""
+      }
+    },
+    {
+      "finding": "R2-CORE-01",
+      "oldRejectedNewAccepted": true,
+      "baseline": {
+        "test": "tests/respec_timer_ownership.lua",
+        "args": [
+          "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\07\\01a1b5b8-1789-7050-b49c-88d0a742e874\\roadmap-fixes-ebs-respec-baseline",
+          "picker"
+        ],
+        "exit": 1,
+        "seconds": 0.027094,
+        "stdout": "",
+        "stderr": "lua: ...nterface\\AddOns\\_FluxUI\\tests\\respec_timer_ownership.lua:6: Gear leave must reject stale show\nstack traceback:\n\t[C]: in function 'assert'\n\t...nterface\\AddOns\\_FluxUI\\tests\\respec_timer_ownership.lua:6: in local 'check'\n\t...nterface\\AddOns\\_FluxUI\\tests\\respec_timer_ownership.lua:47: in main chunk\n\t[C]: in ?\n"
+      },
+      "current": {
+        "test": "tests/respec_timer_ownership.lua",
+        "args": [
+          "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI",
+          "picker"
+        ],
+        "exit": 0,
+        "seconds": 0.017668,
+        "stdout": "Respec timer ownership: 48 checks; native NewTimer and void-After fallback; picker/spec/learn cadence PASS\n",
+        "stderr": ""
+      }
+    },
+    {
+      "finding": "R2-CORE-03-spec",
+      "oldRejectedNewAccepted": true,
+      "baseline": {
+        "test": "tests/respec_timer_ownership.lua",
+        "args": [
+          "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\07\\01a1b5b8-1789-7050-b49c-88d0a742e874\\roadmap-fixes-ebs-respec-baseline",
+          "spec"
+        ],
+        "exit": 1,
+        "seconds": 0.027216,
+        "stdout": "",
+        "stderr": "lua: ...nterface\\AddOns\\_FluxUI\\tests\\respec_timer_ownership.lua:6: old spec timeout cannot detach newer watcher or complete stale owner\nstack traceback:\n\t[C]: in function 'assert'\n\t...nterface\\AddOns\\_FluxUI\\tests\\respec_timer_ownership.lua:6: in local 'check'\n\t...nterface\\AddOns\\_FluxUI\\tests\\respec_timer_ownership.lua:82: in main chunk\n\t[C]: in ?\n"
+      },
+      "current": {
+        "test": "tests/respec_timer_ownership.lua",
+        "args": [
+          "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI",
+          "spec"
+        ],
+        "exit": 0,
+        "seconds": 0.016421,
+        "stdout": "Respec timer ownership: 6 checks; native NewTimer and void-After fallback; picker/spec/learn cadence PASS\n",
+        "stderr": ""
+      }
+    },
+    {
+      "finding": "R2-CORE-03-learn",
+      "oldRejectedNewAccepted": true,
+      "baseline": {
+        "test": "tests/respec_timer_ownership.lua",
+        "args": [
+          "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\07\\01a1b5b8-1789-7050-b49c-88d0a742e874\\roadmap-fixes-ebs-respec-baseline",
+          "learn"
+        ],
+        "exit": 1,
+        "seconds": 0.016389,
+        "stdout": "",
+        "stderr": "lua: ...nterface\\AddOns\\_FluxUI\\tests\\respec_timer_ownership.lua:6: same-state obsolete callbacks cannot burst LearnTalent\nstack traceback:\n\t[C]: in function 'assert'\n\t...nterface\\AddOns\\_FluxUI\\tests\\respec_timer_ownership.lua:6: in local 'check'\n\t...nterface\\AddOns\\_FluxUI\\tests\\respec_timer_ownership.lua:97: in main chunk\n\t[C]: in ?\n"
+      },
+      "current": {
+        "test": "tests/respec_timer_ownership.lua",
+        "args": [
+          "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI",
+          "learn"
+        ],
+        "exit": 0,
+        "seconds": 0.019687,
+        "stdout": "Respec timer ownership: 14 checks; native NewTimer and void-After fallback; picker/spec/learn cadence PASS\n",
+        "stderr": ""
+      }
+    },
+    {
+      "finding": "R2-EBS-02",
+      "oldRejectedNewAccepted": true,
+      "baseline": {
+        "test": "tests/mount_vendor_cache.lua",
+        "args": [
+          "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\07\\01a1b5b8-1789-7050-b49c-88d0a742e874\\roadmap-fixes-ebs-respec-baseline",
+          "locale"
+        ],
+        "exit": 1,
+        "seconds": 0.042817,
+        "stdout": "METRIC vendor locale=deDE spell=465235 detected=false firstQueries=3000\n",
+        "stderr": "lua: ...l_\\Interface\\AddOns\\_FluxUI\\tests\\mount_vendor_cache.lua:5: stable spell identity detects native localized vendor name\nstack traceback:\n\t[C]: in function 'assert'\n\t...l_\\Interface\\AddOns\\_FluxUI\\tests\\mount_vendor_cache.lua:5: in local 'check'\n\t...l_\\Interface\\AddOns\\_FluxUI\\tests\\mount_vendor_cache.lua:40: in main chunk\n\t[C]: in ?\n"
+      },
+      "current": {
+        "test": "tests/mount_vendor_cache.lua",
+        "args": [
+          "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI",
+          "locale"
+        ],
+        "exit": 0,
+        "seconds": 0.043928,
+        "stdout": "METRIC vendor locale=deDE spell=465235 detected=true firstQueries=1000\nMETRIC vendor_cached locale=deDE spell=465235 lookups=1000 totalQueries=1000\nMETRIC vendor locale=deDE spell=122708 detected=true firstQueries=1000\nMETRIC vendor_cached locale=deDE spell=122708 lookups=1000 totalQueries=1000\nMETRIC vendor locale=deDE spell=61425 detected=true firstQueries=1000\nMETRIC vendor_cached locale=deDE spell=61425 lookups=1000 totalQueries=1000\nMETRIC vendor locale=deDE spell=61447 detected=true firstQueries=1000\nMETRIC vendor_cached locale=deDE spell=61447 lookups=1000 totalQueries=1000\nMETRIC vendor locale=deDE spell=0 detected=false firstQueries=1000\nMETRIC vendor_cached locale=deDE spell=0 lookups=1000 totalQueries=1000\nMETRIC mount_timer client=era combat=false requests=1000 bagCallbacks=1 halfSecondCallbacks=1\nMETRIC mount_timer client=era combat=true requests=1000 bagCallbacks=1 halfSecondCallbacks=0\nMETRIC mount_timer client=anniversary combat=false requests=1000 bagCallbacks=1 halfSecondCallbacks=1\nMETRIC mount_timer client=anniversary combat=true requests=1000 bagCallbacks=1 halfSecondCallbacks=0\nMETRIC mount_timer client=live combat=false requests=1000 bagCallbacks=0 halfSecondCallbacks=1\nMETRIC mount_timer client=live combat=true requests=1000 bagCallbacks=0 halfSecondCallbacks=0\nMETRIC mount_timer client=forever combat=false requests=1000 bagCallbacks=1 halfSecondCallbacks=1\nMETRIC mount_timer client=forever combat=true requests=1000 bagCallbacks=1 halfSecondCallbacks=0\nMETRIC mount_timer client=progression combat=false requests=1000 bagCallbacks=0 halfSecondCallbacks=1\nMETRIC mount_timer client=progression combat=true requests=1000 bagCallbacks=0 halfSecondCallbacks=0\nMount vendor/cache/timer: 5135 checks; 4 locales, vendor factions, absent/readiness, 5 client gates PASS\n",
+        "stderr": ""
+      }
+    },
+    {
+      "finding": "R2-EBS-03",
+      "oldRejectedNewAccepted": true,
+      "baseline": {
+        "test": "tests/mount_vendor_cache.lua",
+        "args": [
+          "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\07\\01a1b5b8-1789-7050-b49c-88d0a742e874\\roadmap-fixes-ebs-respec-baseline",
+          "cache"
+        ],
+        "exit": 1,
+        "seconds": 0.358523,
+        "stdout": "METRIC vendor locale=enUS spell=465235 detected=true firstQueries=1000\nMETRIC vendor_cached locale=enUS spell=465235 lookups=1000 totalQueries=1001000\n",
+        "stderr": "lua: ...l_\\Interface\\AddOns\\_FluxUI\\tests\\mount_vendor_cache.lua:5: positive and negative vendor lookups add zero journal queries\nstack traceback:\n\t[C]: in function 'assert'\n\t...l_\\Interface\\AddOns\\_FluxUI\\tests\\mount_vendor_cache.lua:5: in local 'check'\n\t...l_\\Interface\\AddOns\\_FluxUI\\tests\\mount_vendor_cache.lua:44: in main chunk\n\t[C]: in ?\n"
+      },
+      "current": {
+        "test": "tests/mount_vendor_cache.lua",
+        "args": [
+          "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI",
+          "cache"
+        ],
+        "exit": 0,
+        "seconds": 0.120912,
+        "stdout": "METRIC vendor locale=enUS spell=465235 detected=true firstQueries=1000\nMETRIC vendor_cached locale=enUS spell=465235 lookups=1000 totalQueries=1000\nMETRIC vendor locale=enUS spell=122708 detected=true firstQueries=1000\nMETRIC vendor_cached locale=enUS spell=122708 lookups=1000 totalQueries=1000\nMETRIC vendor locale=enUS spell=61425 detected=true firstQueries=1000\nMETRIC vendor_cached locale=enUS spell=61425 lookups=1000 totalQueries=1000\nMETRIC vendor locale=enUS spell=61447 detected=true firstQueries=1000\nMETRIC vendor_cached locale=enUS spell=61447 lookups=1000 totalQueries=1000\nMETRIC vendor locale=enUS spell=0 detected=false firstQueries=1000\nMETRIC vendor_cached locale=enUS spell=0 lookups=1000 totalQueries=1000\nMETRIC vendor locale=deDE spell=465235 detected=true firstQueries=1000\nMETRIC vendor_cached locale=deDE spell=465235 lookups=1000 totalQueries=1000\nMETRIC vendor locale=deDE spell=122708 detected=true firstQueries=1000\nMETRIC vendor_cached locale=deDE spell=122708 lookups=1000 totalQueries=1000\nMETRIC vendor locale=deDE spell=61425 detected=true firstQueries=1000\nMETRIC vendor_cached locale=deDE spell=61425 lookups=1000 totalQueries=1000\nMETRIC vendor locale=deDE spell=61447 detected=true firstQueries=1000\nMETRIC vendor_cached locale=deDE spell=61447 lookups=1000 totalQueries=1000\nMETRIC vendor locale=deDE spell=0 detected=false firstQueries=1000\nMETRIC vendor_cached locale=deDE spell=0 lookups=1000 totalQueries=1000\nMETRIC vendor locale=frFR spell=465235 detected=true firstQueries=1000\nMETRIC vendor_cached locale=frFR spell=465235 lookups=1000 totalQueries=1000\nMETRIC vendor locale=frFR spell=122708 detected=true firstQueries=1000\nMETRIC vendor_cached locale=frFR spell=122708 lookups=1000 totalQueries=1000\nMETRIC vendor locale=frFR spell=61425 detected=true firstQueries=1000\nMETRIC vendor_cached locale=frFR spell=61425 lookups=1000 totalQueries=1000\nMETRIC vendor locale=frFR spell=61447 detected=true firstQueries=1000\nMETRIC vendor_cached locale=frFR spell=61447 lookups=1000 totalQueries=1000\nMETRIC vendor locale=frFR spell=0 detected=false firstQueries=1000\nMETRIC vendor_cached locale=frFR spell=0 lookups=1000 totalQueries=1000\nMETRIC vendor locale=zhTW spell=465235 detected=true firstQueries=1000\nMETRIC vendor_cached locale=zhTW spell=465235 lookups=1000 totalQueries=1000\nMETRIC vendor locale=zhTW spell=122708 detected=true firstQueries=1000\nMETRIC vendor_cached locale=zhTW spell=122708 lookups=1000 totalQueries=1000\nMETRIC vendor locale=zhTW spell=61425 detected=true firstQueries=1000\nMETRIC vendor_cached locale=zhTW spell=61425 lookups=1000 totalQueries=1000\nMETRIC vendor locale=zhTW spell=61447 detected=true firstQueries=1000\nMETRIC vendor_cached locale=zhTW spell=61447 lookups=1000 totalQueries=1000\nMETRIC vendor locale=zhTW spell=0 detected=false firstQueries=1000\nMETRIC vendor_cached locale=zhTW spell=0 lookups=1000 totalQueries=1000\nMETRIC mount_timer client=era combat=false requests=1000 bagCallbacks=1 halfSecondCallbacks=1\nMETRIC mount_timer client=era combat=true requests=1000 bagCallbacks=1 halfSecondCallbacks=0\nMETRIC mount_timer client=anniversary combat=false requests=1000 bagCallbacks=1 halfSecondCallbacks=1\nMETRIC mount_timer client=anniversary combat=true requests=1000 bagCallbacks=1 halfSecondCallbacks=0\nMETRIC mount_timer client=live combat=false requests=1000 bagCallbacks=0 halfSecondCallbacks=1\nMETRIC mount_timer client=live combat=true requests=1000 bagCallbacks=0 halfSecondCallbacks=0\nMETRIC mount_timer client=forever combat=false requests=1000 bagCallbacks=1 halfSecondCallbacks=1\nMETRIC mount_timer client=forever combat=true requests=1000 bagCallbacks=1 halfSecondCallbacks=0\nMETRIC mount_timer client=progression combat=false requests=1000 bagCallbacks=0 halfSecondCallbacks=1\nMETRIC mount_timer client=progression combat=true requests=1000 bagCallbacks=0 halfSecondCallbacks=0\nMount vendor/cache/timer: 20270 checks; 4 locales, vendor factions, absent/readiness, 5 client gates PASS\n",
+        "stderr": ""
+      }
+    },
+    {
+      "finding": "R2-EBS-05",
+      "oldRejectedNewAccepted": true,
+      "baseline": {
+        "test": "tests/mount_vendor_cache.lua",
+        "args": [
+          "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\07\\01a1b5b8-1789-7050-b49c-88d0a742e874\\roadmap-fixes-ebs-respec-baseline",
+          "timers"
+        ],
+        "exit": 1,
+        "seconds": 0.029413,
+        "stdout": "METRIC mount_timer client=era combat=false requests=1000 bagCallbacks=1000 halfSecondCallbacks=1000\n",
+        "stderr": "lua: ...l_\\Interface\\AddOns\\_FluxUI\\tests\\mount_vendor_cache.lua:5: burst owns one callback per existing mount deadline\nstack traceback:\n\t[C]: in function 'assert'\n\t...l_\\Interface\\AddOns\\_FluxUI\\tests\\mount_vendor_cache.lua:5: in local 'check'\n\t...l_\\Interface\\AddOns\\_FluxUI\\tests\\mount_vendor_cache.lua:120: in main chunk\n\t[C]: in ?\n"
+      },
+      "current": {
+        "test": "tests/mount_vendor_cache.lua",
+        "args": [
+          "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI",
+          "timers"
+        ],
+        "exit": 0,
+        "seconds": 0.028881,
+        "stdout": "METRIC mount_timer client=era combat=false requests=1000 bagCallbacks=1 halfSecondCallbacks=1\nMETRIC mount_timer client=era combat=true requests=1000 bagCallbacks=1 halfSecondCallbacks=0\nMETRIC mount_timer client=anniversary combat=false requests=1000 bagCallbacks=1 halfSecondCallbacks=1\nMETRIC mount_timer client=anniversary combat=true requests=1000 bagCallbacks=1 halfSecondCallbacks=0\nMETRIC mount_timer client=live combat=false requests=1000 bagCallbacks=0 halfSecondCallbacks=1\nMETRIC mount_timer client=live combat=true requests=1000 bagCallbacks=0 halfSecondCallbacks=0\nMETRIC mount_timer client=forever combat=false requests=1000 bagCallbacks=1 halfSecondCallbacks=1\nMETRIC mount_timer client=forever combat=true requests=1000 bagCallbacks=1 halfSecondCallbacks=0\nMETRIC mount_timer client=progression combat=false requests=1000 bagCallbacks=0 halfSecondCallbacks=1\nMETRIC mount_timer client=progression combat=true requests=1000 bagCallbacks=0 halfSecondCallbacks=0\nMount vendor/cache/timer: 83 checks; 4 locales, vendor factions, absent/readiness, 5 client gates PASS\n",
+        "stderr": ""
+      }
+    },
+    {
+      "finding": "R2-EBS-01",
+      "oldRejectedNewAccepted": true,
+      "baseline": {
+        "test": "tests/buttonfx_paint_recovery.lua",
+        "args": [
+          "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\07\\01a1b5b8-1789-7050-b49c-88d0a742e874\\roadmap-fixes-ebs-respec-baseline",
+          "legacy"
+        ],
+        "exit": 1,
+        "seconds": 0.03196,
+        "stdout": "",
+        "stderr": "lua: ...terface\\AddOns\\_FluxUI\\tests\\buttonfx_paint_recovery.lua:6: literal bracket selects actual public active clause\nstack traceback:\n\t[C]: in function 'assert'\n\t...terface\\AddOns\\_FluxUI\\tests\\buttonfx_paint_recovery.lua:6: in local 'check'\n\t...terface\\AddOns\\_FluxUI\\tests\\buttonfx_paint_recovery.lua:77: in main chunk\n\t[C]: in ?\n"
+      },
+      "current": {
+        "test": "tests/buttonfx_paint_recovery.lua",
+        "args": [
+          "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI",
+          "legacy"
+        ],
+        "exit": 0,
+        "seconds": 0.027318,
+        "stdout": "ButtonFX paint recovery / dormant macro: 1002 checks; no native taint/pixel/timing claim PASS\n",
+        "stderr": ""
+      }
+    },
+    {
+      "finding": "R2-EBS-04",
+      "oldRejectedNewAccepted": true,
+      "baseline": {
+        "test": "tests/buttonfx_paint_recovery.lua",
+        "args": [
+          "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\07\\01a1b5b8-1789-7050-b49c-88d0a742e874\\roadmap-fixes-ebs-respec-baseline",
+          "charges"
+        ],
+        "exit": 1,
+        "seconds": 0.032972,
+        "stdout": "METRIC setter classic=false attempts=1 failedSignature=true shows=1\n",
+        "stderr": "lua: ...terface\\AddOns\\_FluxUI\\tests\\buttonfx_paint_recovery.lua:6: failed native setter cannot commit timer signature or shown state\nstack traceback:\n\t[C]: in function 'assert'\n\t...terface\\AddOns\\_FluxUI\\tests\\buttonfx_paint_recovery.lua:6: in local 'check'\n\t...terface\\AddOns\\_FluxUI\\tests\\buttonfx_paint_recovery.lua:36: in main chunk\n\t[C]: in ?\n"
+      },
+      "current": {
+        "test": "tests/buttonfx_paint_recovery.lua",
+        "args": [
+          "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI",
+          "charges"
+        ],
+        "exit": 0,
+        "seconds": 0.025851,
+        "stdout": "METRIC setter classic=false attempts=1 failedSignature=false shows=0\nMETRIC setter classic=true attempts=1 failedSignature=false shows=0\nButtonFX paint recovery / dormant macro: 30 checks; no native taint/pixel/timing claim PASS\n",
+        "stderr": ""
+      }
+    },
+    {
+      "finding": "R2-EBS-06",
+      "oldRejectedNewAccepted": true,
+      "baseline": {
+        "test": "tests/buttonfx_paint_recovery.lua",
+        "args": [
+          "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\07\\01a1b5b8-1789-7050-b49c-88d0a742e874\\roadmap-fixes-ebs-respec-baseline",
+          "reticle"
+        ],
+        "exit": 1,
+        "seconds": 0.165118,
+        "stdout": "METRIC reticle client=classic ticks=600 extraFaces=60 spellReads=36000 alphaReads=36000\n",
+        "stderr": "lua: production-reticle-option-regression:5: disabled reticle performs zero face/alpha resolution across 600 ticks\nstack traceback:\n\t[C]: in function 'assert'\n\tproduction-reticle-option-regression:5: in local 'check'\n\tproduction-reticle-option-regression:150: in main chunk\n\t...terface\\AddOns\\_FluxUI\\tests\\buttonfx_paint_recovery.lua:112: in main chunk\n\t[C]: in ?\n"
+      },
+      "current": {
+        "test": "tests/buttonfx_paint_recovery.lua",
+        "args": [
+          "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI",
+          "reticle"
+        ],
+        "exit": 0,
+        "seconds": 0.063143,
+        "stdout": "METRIC reticle client=classic ticks=600 extraFaces=60 spellReads=0 alphaReads=0\nMETRIC reticle client=classic_era ticks=600 extraFaces=60 spellReads=0 alphaReads=0\nMETRIC reticle client=classic_anniversary ticks=600 extraFaces=60 spellReads=0 alphaReads=0\nReticle option budget: 805 complete-fixture checks; Classic optional rendering, modern policy PASS\nButtonFX paint recovery / dormant macro: 0 checks; no native taint/pixel/timing claim PASS\n",
+        "stderr": ""
+      }
+    }
+  ],
+  "records": [
+    {
+      "test": "tests/respec_equipment_completion.lua",
+      "args": [],
+      "exit": 0,
+      "seconds": 0.350346,
+      "stdout": "Respec equipment completion: 470 checks; five clients; missing/partial/retry/combat/locks/bank/replacement ownership PASS\n",
+      "stderr": "",
+      "repeat": 1
+    },
+    {
+      "test": "tests/respec_timer_ownership.lua",
+      "args": [],
+      "exit": 0,
+      "seconds": 0.023001,
+      "stdout": "Respec timer ownership: 68 checks; native NewTimer and void-After fallback; picker/spec/learn cadence PASS\n",
+      "stderr": "",
+      "repeat": 1
+    },
+    {
+      "test": "tests/mount_vendor_cache.lua",
+      "args": [],
+      "exit": 0,
+      "seconds": 0.110387,
+      "stdout": "METRIC vendor locale=enUS spell=465235 detected=true firstQueries=1000\nMETRIC vendor_cached locale=enUS spell=465235 lookups=1000 totalQueries=1000\nMETRIC vendor locale=enUS spell=122708 detected=true firstQueries=1000\nMETRIC vendor_cached locale=enUS spell=122708 lookups=1000 totalQueries=1000\nMETRIC vendor locale=enUS spell=61425 detected=true firstQueries=1000\nMETRIC vendor_cached locale=enUS spell=61425 lookups=1000 totalQueries=1000\nMETRIC vendor locale=enUS spell=61447 detected=true firstQueries=1000\nMETRIC vendor_cached locale=enUS spell=61447 lookups=1000 totalQueries=1000\nMETRIC vendor locale=enUS spell=0 detected=false firstQueries=1000\nMETRIC vendor_cached locale=enUS spell=0 lookups=1000 totalQueries=1000\nMETRIC vendor locale=deDE spell=465235 detected=true firstQueries=1000\nMETRIC vendor_cached locale=deDE spell=465235 lookups=1000 totalQueries=1000\nMETRIC vendor locale=deDE spell=122708 detected=true firstQueries=1000\nMETRIC vendor_cached locale=deDE spell=122708 lookups=1000 totalQueries=1000\nMETRIC vendor locale=deDE spell=61425 detected=true firstQueries=1000\nMETRIC vendor_cached locale=deDE spell=61425 lookups=1000 totalQueries=1000\nMETRIC vendor locale=deDE spell=61447 detected=true firstQueries=1000\nMETRIC vendor_cached locale=deDE spell=61447 lookups=1000 totalQueries=1000\nMETRIC vendor locale=deDE spell=0 detected=false firstQueries=1000\nMETRIC vendor_cached locale=deDE spell=0 lookups=1000 totalQueries=1000\nMETRIC vendor locale=frFR spell=465235 detected=true firstQueries=1000\nMETRIC vendor_cached locale=frFR spell=465235 lookups=1000 totalQueries=1000\nMETRIC vendor locale=frFR spell=122708 detected=true firstQueries=1000\nMETRIC vendor_cached locale=frFR spell=122708 lookups=1000 totalQueries=1000\nMETRIC vendor locale=frFR spell=61425 detected=true firstQueries=1000\nMETRIC vendor_cached locale=frFR spell=61425 lookups=1000 totalQueries=1000\nMETRIC vendor locale=frFR spell=61447 detected=true firstQueries=1000\nMETRIC vendor_cached locale=frFR spell=61447 lookups=1000 totalQueries=1000\nMETRIC vendor locale=frFR spell=0 detected=false firstQueries=1000\nMETRIC vendor_cached locale=frFR spell=0 lookups=1000 totalQueries=1000\nMETRIC vendor locale=zhTW spell=465235 detected=true firstQueries=1000\nMETRIC vendor_cached locale=zhTW spell=465235 lookups=1000 totalQueries=1000\nMETRIC vendor locale=zhTW spell=122708 detected=true firstQueries=1000\nMETRIC vendor_cached locale=zhTW spell=122708 lookups=1000 totalQueries=1000\nMETRIC vendor locale=zhTW spell=61425 detected=true firstQueries=1000\nMETRIC vendor_cached locale=zhTW spell=61425 lookups=1000 totalQueries=1000\nMETRIC vendor locale=zhTW spell=61447 detected=true firstQueries=1000\nMETRIC vendor_cached locale=zhTW spell=61447 lookups=1000 totalQueries=1000\nMETRIC vendor locale=zhTW spell=0 detected=false firstQueries=1000\nMETRIC vendor_cached locale=zhTW spell=0 lookups=1000 totalQueries=1000\nMETRIC mount_timer client=era combat=false requests=1000 bagCallbacks=1 halfSecondCallbacks=1\nMETRIC mount_timer client=era combat=true requests=1000 bagCallbacks=1 halfSecondCallbacks=0\nMETRIC mount_timer client=anniversary combat=false requests=1000 bagCallbacks=1 halfSecondCallbacks=1\nMETRIC mount_timer client=anniversary combat=true requests=1000 bagCallbacks=1 halfSecondCallbacks=0\nMETRIC mount_timer client=live combat=false requests=1000 bagCallbacks=0 halfSecondCallbacks=1\nMETRIC mount_timer client=live combat=true requests=1000 bagCallbacks=0 halfSecondCallbacks=0\nMETRIC mount_timer client=forever combat=false requests=1000 bagCallbacks=1 halfSecondCallbacks=1\nMETRIC mount_timer client=forever combat=true requests=1000 bagCallbacks=1 halfSecondCallbacks=0\nMETRIC mount_timer client=progression combat=false requests=1000 bagCallbacks=0 halfSecondCallbacks=1\nMETRIC mount_timer client=progression combat=true requests=1000 bagCallbacks=0 halfSecondCallbacks=0\nMount vendor/cache/timer: 20270 checks; 4 locales, vendor factions, absent/readiness, 5 client gates PASS\n",
+      "stderr": "",
+      "repeat": 1
+    },
+    {
+      "test": "tests/buttonfx_paint_recovery.lua",
+      "args": [],
+      "exit": 0,
+      "seconds": 0.070139,
+      "stdout": "METRIC setter classic=false attempts=1 failedSignature=false shows=0\nMETRIC setter classic=true attempts=1 failedSignature=false shows=0\nMETRIC reticle client=classic ticks=600 extraFaces=60 spellReads=0 alphaReads=0\nMETRIC reticle client=classic_era ticks=600 extraFaces=60 spellReads=0 alphaReads=0\nMETRIC reticle client=classic_anniversary ticks=600 extraFaces=60 spellReads=0 alphaReads=0\nReticle option budget: 805 complete-fixture checks; Classic optional rendering, modern policy PASS\nButtonFX paint recovery / dormant macro: 1032 checks; no native taint/pixel/timing claim PASS\n",
+      "stderr": "",
+      "repeat": 1
+    },
+    {
+      "test": "tests/respec_actionbar_completion.lua",
+      "args": [],
+      "exit": 0,
+      "seconds": 0.164663,
+      "stdout": "respec action-bar completion: 320 checks passed (all cases; five client models; native pending)\n",
+      "stderr": "",
+      "repeat": 1
+    },
+    {
+      "test": "tests/respec_section_results.lua",
+      "args": [],
+      "exit": 0,
+      "seconds": 0.391002,
+      "stdout": "respec section results: 200 checks passed; five clients; production owners, native pending\n",
+      "stderr": "",
+      "repeat": 1
+    },
+    {
+      "test": "tests/alpha_reader_safety.lua",
+      "args": [],
+      "exit": 0,
+      "seconds": 1.858205,
+      "stdout": "REJECTION ALPHA-01 baseline=false candidate=true\nREJECTION ALPHA-03 baseline=false candidate=true\nREJECTION ALPHA-04-cast baseline=false candidate=true\nREJECTION ALPHA-04-badge baseline=false candidate=true\nREJECTION ALPHA-05-numeric baseline=false candidate=true\nREJECTION ALPHA-05-duration baseline=false candidate=true\nHANDLED getter_call_denied=grid\nHANDLED getter_call_denied=bling\nHANDLED getter_call_denied=extra-numeric\nHANDLED getter_call_denied=extra-duration\nMETRIC grid rounds=100 requests_per_round=1000 public_zero_reads=3600 public_zero_writes=0 opaque_reads=3600 opaque_writes=3600 excluded_stance_alpha=1\nMETRIC glow cycles=10 snapshots=80 baseline_public_reads=120 candidate_reads=0 frames_created=1 pool_releases=20 owned_ledger_tables=1 ledger_entries=6\nSUMMARY checks=655 failures=0 baseline_rejections=8\n",
+      "stderr": "",
+      "repeat": 1
+    },
+    {
+      "test": "tests/badge_cooldown_secrets.lua",
+      "args": [],
+      "exit": 0,
+      "seconds": 0.191271,
+      "stdout": "Badge cooldown secrets: 80 checks passed (desktop boundary only)\n",
+      "stderr": "",
+      "repeat": 1
+    },
+    {
+      "test": "tests/utility_secure_input.lua",
+      "args": [],
+      "exit": 0,
+      "seconds": 0.540055,
+      "stdout": "Utility secure input: 41255 checks; five Blizzard dispatchers; mouse + both keys; all chords; combat; both CVar edges PASS\n",
+      "stderr": "",
+      "repeat": 1
+    },
+    {
+      "test": "tests/utility_mixed_faces.lua",
+      "args": [],
+      "exit": 0,
+      "seconds": 0.082381,
+      "stdout": "Utility mixed faces: 12634 checks, 0 failures\nModifier work: transitions=320 icon=120 count=120 usable=140 checked=120 duplicate=0\nUtility consumable aura queries: 0\n",
+      "stderr": "",
+      "repeat": 1
+    },
+    {
+      "test": "tests/utility_pet_faces.lua",
+      "args": [],
+      "exit": 0,
+      "seconds": 0.052315,
+      "stdout": "Utility pet faces: 2584 checks, 0 failures\n",
+      "stderr": "",
+      "repeat": 1
+    },
+    {
+      "test": "tests/utility_modifier_vfx.lua",
+      "args": [],
+      "exit": 0,
+      "seconds": 0.085474,
+      "stdout": "Utility modifier VFX: 1473 checks; five clients; cast/channel/empower/reticle/burst/interrupt/proc lifecycle PASS\n",
+      "stderr": "",
+      "repeat": 1
+    },
+    {
+      "test": "tests/consumable_usability.lua",
+      "args": [],
+      "exit": 0,
+      "seconds": 0.063943,
+      "stdout": "Consumable usability: 75 checks, 0 failures\n",
+      "stderr": "",
+      "repeat": 1
+    },
+    {
+      "test": "tests/consumable_zero_reset.lua",
+      "args": [],
+      "exit": 0,
+      "seconds": 0.482299,
+      "stdout": "Consumable zero reset: 375 checks, 0 failures\n",
+      "stderr": "",
+      "repeat": 1
+    },
+    {
+      "test": "tests/consumable_refresh_timer.lua",
+      "args": [],
+      "exit": 0,
+      "seconds": 0.029937,
+      "stdout": "Consumable refresh timer: 35 checks passed\n",
+      "stderr": "",
+      "repeat": 1
+    },
+    {
+      "test": "tests/consumable_aura_advance.lua",
+      "args": [],
+      "exit": 0,
+      "seconds": 0.044133,
+      "stdout": "Consumable aura advance: 66 checks passed\n",
+      "stderr": "",
+      "repeat": 1
+    },
+    {
+      "test": "tests/idle_bars.lua",
+      "args": [],
+      "exit": 0,
+      "seconds": 0.368337,
+      "stdout": "Forever fallback: 14400 frame callbacks, 900 parses, 0 unit queries\nidle bars: 153 checks passed; 7 production mutations rejected\n",
+      "stderr": "",
+      "repeat": 1
+    },
+    {
+      "test": "tests/teleport_cast_work.lua",
+      "args": [],
+      "exit": 0,
+      "seconds": 0.03352,
+      "stdout": "modern scans=0 popup_rebuilds=0\nlegacy scans=4 popup_rebuilds=0\nintegrated scans=0 popup_rebuilds=0\nteleport cast: 527 checks, 0 failures\n",
+      "stderr": "",
+      "repeat": 1
+    },
+    {
+      "test": "ExtraButtonSystem/NonCombatGrid/Buttons/_tmp_mountitemsmoke.lua",
+      "args": [],
+      "exit": 0,
+      "seconds": 0.023027,
+      "stdout": "Mount item smoke passed: 30 checks\n",
+      "stderr": "",
+      "repeat": 1
+    },
+    {
+      "test": "tests/respec_equipment_completion.lua",
+      "args": [],
+      "exit": 0,
+      "seconds": 0.405908,
+      "stdout": "Respec equipment completion: 470 checks; five clients; missing/partial/retry/combat/locks/bank/replacement ownership PASS\n",
+      "stderr": "",
+      "repeat": 2
+    },
+    {
+      "test": "tests/respec_timer_ownership.lua",
+      "args": [],
+      "exit": 0,
+      "seconds": 0.023246,
+      "stdout": "Respec timer ownership: 68 checks; native NewTimer and void-After fallback; picker/spec/learn cadence PASS\n",
+      "stderr": "",
+      "repeat": 2
+    },
+    {
+      "test": "tests/mount_vendor_cache.lua",
+      "args": [],
+      "exit": 0,
+      "seconds": 0.125006,
+      "stdout": "METRIC vendor locale=enUS spell=465235 detected=true firstQueries=1000\nMETRIC vendor_cached locale=enUS spell=465235 lookups=1000 totalQueries=1000\nMETRIC vendor locale=enUS spell=122708 detected=true firstQueries=1000\nMETRIC vendor_cached locale=enUS spell=122708 lookups=1000 totalQueries=1000\nMETRIC vendor locale=enUS spell=61425 detected=true firstQueries=1000\nMETRIC vendor_cached locale=enUS spell=61425 lookups=1000 totalQueries=1000\nMETRIC vendor locale=enUS spell=61447 detected=true firstQueries=1000\nMETRIC vendor_cached locale=enUS spell=61447 lookups=1000 totalQueries=1000\nMETRIC vendor locale=enUS spell=0 detected=false firstQueries=1000\nMETRIC vendor_cached locale=enUS spell=0 lookups=1000 totalQueries=1000\nMETRIC vendor locale=deDE spell=465235 detected=true firstQueries=1000\nMETRIC vendor_cached locale=deDE spell=465235 lookups=1000 totalQueries=1000\nMETRIC vendor locale=deDE spell=122708 detected=true firstQueries=1000\nMETRIC vendor_cached locale=deDE spell=122708 lookups=1000 totalQueries=1000\nMETRIC vendor locale=deDE spell=61425 detected=true firstQueries=1000\nMETRIC vendor_cached locale=deDE spell=61425 lookups=1000 totalQueries=1000\nMETRIC vendor locale=deDE spell=61447 detected=true firstQueries=1000\nMETRIC vendor_cached locale=deDE spell=61447 lookups=1000 totalQueries=1000\nMETRIC vendor locale=deDE spell=0 detected=false firstQueries=1000\nMETRIC vendor_cached locale=deDE spell=0 lookups=1000 totalQueries=1000\nMETRIC vendor locale=frFR spell=465235 detected=true firstQueries=1000\nMETRIC vendor_cached locale=frFR spell=465235 lookups=1000 totalQueries=1000\nMETRIC vendor locale=frFR spell=122708 detected=true firstQueries=1000\nMETRIC vendor_cached locale=frFR spell=122708 lookups=1000 totalQueries=1000\nMETRIC vendor locale=frFR spell=61425 detected=true firstQueries=1000\nMETRIC vendor_cached locale=frFR spell=61425 lookups=1000 totalQueries=1000\nMETRIC vendor locale=frFR spell=61447 detected=true firstQueries=1000\nMETRIC vendor_cached locale=frFR spell=61447 lookups=1000 totalQueries=1000\nMETRIC vendor locale=frFR spell=0 detected=false firstQueries=1000\nMETRIC vendor_cached locale=frFR spell=0 lookups=1000 totalQueries=1000\nMETRIC vendor locale=zhTW spell=465235 detected=true firstQueries=1000\nMETRIC vendor_cached locale=zhTW spell=465235 lookups=1000 totalQueries=1000\nMETRIC vendor locale=zhTW spell=122708 detected=true firstQueries=1000\nMETRIC vendor_cached locale=zhTW spell=122708 lookups=1000 totalQueries=1000\nMETRIC vendor locale=zhTW spell=61425 detected=true firstQueries=1000\nMETRIC vendor_cached locale=zhTW spell=61425 lookups=1000 totalQueries=1000\nMETRIC vendor locale=zhTW spell=61447 detected=true firstQueries=1000\nMETRIC vendor_cached locale=zhTW spell=61447 lookups=1000 totalQueries=1000\nMETRIC vendor locale=zhTW spell=0 detected=false firstQueries=1000\nMETRIC vendor_cached locale=zhTW spell=0 lookups=1000 totalQueries=1000\nMETRIC mount_timer client=era combat=false requests=1000 bagCallbacks=1 halfSecondCallbacks=1\nMETRIC mount_timer client=era combat=true requests=1000 bagCallbacks=1 halfSecondCallbacks=0\nMETRIC mount_timer client=anniversary combat=false requests=1000 bagCallbacks=1 halfSecondCallbacks=1\nMETRIC mount_timer client=anniversary combat=true requests=1000 bagCallbacks=1 halfSecondCallbacks=0\nMETRIC mount_timer client=live combat=false requests=1000 bagCallbacks=0 halfSecondCallbacks=1\nMETRIC mount_timer client=live combat=true requests=1000 bagCallbacks=0 halfSecondCallbacks=0\nMETRIC mount_timer client=forever combat=false requests=1000 bagCallbacks=1 halfSecondCallbacks=1\nMETRIC mount_timer client=forever combat=true requests=1000 bagCallbacks=1 halfSecondCallbacks=0\nMETRIC mount_timer client=progression combat=false requests=1000 bagCallbacks=0 halfSecondCallbacks=1\nMETRIC mount_timer client=progression combat=true requests=1000 bagCallbacks=0 halfSecondCallbacks=0\nMount vendor/cache/timer: 20270 checks; 4 locales, vendor factions, absent/readiness, 5 client gates PASS\n",
+      "stderr": "",
+      "repeat": 2
+    },
+    {
+      "test": "tests/buttonfx_paint_recovery.lua",
+      "args": [],
+      "exit": 0,
+      "seconds": 0.083301,
+      "stdout": "METRIC setter classic=false attempts=1 failedSignature=false shows=0\nMETRIC setter classic=true attempts=1 failedSignature=false shows=0\nMETRIC reticle client=classic ticks=600 extraFaces=60 spellReads=0 alphaReads=0\nMETRIC reticle client=classic_era ticks=600 extraFaces=60 spellReads=0 alphaReads=0\nMETRIC reticle client=classic_anniversary ticks=600 extraFaces=60 spellReads=0 alphaReads=0\nReticle option budget: 805 complete-fixture checks; Classic optional rendering, modern policy PASS\nButtonFX paint recovery / dormant macro: 1032 checks; no native taint/pixel/timing claim PASS\n",
+      "stderr": "",
+      "repeat": 2
+    },
+    {
+      "test": "tests/respec_actionbar_completion.lua",
+      "args": [],
+      "exit": 0,
+      "seconds": 0.182585,
+      "stdout": "respec action-bar completion: 320 checks passed (all cases; five client models; native pending)\n",
+      "stderr": "",
+      "repeat": 2
+    },
+    {
+      "test": "tests/respec_section_results.lua",
+      "args": [],
+      "exit": 0,
+      "seconds": 0.439215,
+      "stdout": "respec section results: 200 checks passed; five clients; production owners, native pending\n",
+      "stderr": "",
+      "repeat": 2
+    },
+    {
+      "test": "tests/alpha_reader_safety.lua",
+      "args": [],
+      "exit": 0,
+      "seconds": 1.99668,
+      "stdout": "REJECTION ALPHA-01 baseline=false candidate=true\nREJECTION ALPHA-03 baseline=false candidate=true\nREJECTION ALPHA-04-cast baseline=false candidate=true\nREJECTION ALPHA-04-badge baseline=false candidate=true\nREJECTION ALPHA-05-numeric baseline=false candidate=true\nREJECTION ALPHA-05-duration baseline=false candidate=true\nHANDLED getter_call_denied=grid\nHANDLED getter_call_denied=bling\nHANDLED getter_call_denied=extra-numeric\nHANDLED getter_call_denied=extra-duration\nMETRIC grid rounds=100 requests_per_round=1000 public_zero_reads=3600 public_zero_writes=0 opaque_reads=3600 opaque_writes=3600 excluded_stance_alpha=1\nMETRIC glow cycles=10 snapshots=80 baseline_public_reads=120 candidate_reads=0 frames_created=1 pool_releases=20 owned_ledger_tables=1 ledger_entries=6\nSUMMARY checks=655 failures=0 baseline_rejections=8\n",
+      "stderr": "",
+      "repeat": 2
+    },
+    {
+      "test": "tests/badge_cooldown_secrets.lua",
+      "args": [],
+      "exit": 0,
+      "seconds": 0.173021,
+      "stdout": "Badge cooldown secrets: 80 checks passed (desktop boundary only)\n",
+      "stderr": "",
+      "repeat": 2
+    },
+    {
+      "test": "tests/utility_secure_input.lua",
+      "args": [],
+      "exit": 0,
+      "seconds": 0.523552,
+      "stdout": "Utility secure input: 41255 checks; five Blizzard dispatchers; mouse + both keys; all chords; combat; both CVar edges PASS\n",
+      "stderr": "",
+      "repeat": 2
+    },
+    {
+      "test": "tests/utility_mixed_faces.lua",
+      "args": [],
+      "exit": 0,
+      "seconds": 0.071829,
+      "stdout": "Utility mixed faces: 12634 checks, 0 failures\nModifier work: transitions=320 icon=120 count=120 usable=140 checked=120 duplicate=0\nUtility consumable aura queries: 0\n",
+      "stderr": "",
+      "repeat": 2
+    },
+    {
+      "test": "tests/utility_pet_faces.lua",
+      "args": [],
+      "exit": 0,
+      "seconds": 0.043179,
+      "stdout": "Utility pet faces: 2584 checks, 0 failures\n",
+      "stderr": "",
+      "repeat": 2
+    },
+    {
+      "test": "tests/utility_modifier_vfx.lua",
+      "args": [],
+      "exit": 0,
+      "seconds": 0.071337,
+      "stdout": "Utility modifier VFX: 1473 checks; five clients; cast/channel/empower/reticle/burst/interrupt/proc lifecycle PASS\n",
+      "stderr": "",
+      "repeat": 2
+    },
+    {
+      "test": "tests/consumable_usability.lua",
+      "args": [],
+      "exit": 0,
+      "seconds": 0.058908,
+      "stdout": "Consumable usability: 75 checks, 0 failures\n",
+      "stderr": "",
+      "repeat": 2
+    },
+    {
+      "test": "tests/consumable_zero_reset.lua",
+      "args": [],
+      "exit": 0,
+      "seconds": 0.450667,
+      "stdout": "Consumable zero reset: 375 checks, 0 failures\n",
+      "stderr": "",
+      "repeat": 2
+    },
+    {
+      "test": "tests/consumable_refresh_timer.lua",
+      "args": [],
+      "exit": 0,
+      "seconds": 0.024381,
+      "stdout": "Consumable refresh timer: 35 checks passed\n",
+      "stderr": "",
+      "repeat": 2
+    },
+    {
+      "test": "tests/consumable_aura_advance.lua",
+      "args": [],
+      "exit": 0,
+      "seconds": 0.051391,
+      "stdout": "Consumable aura advance: 66 checks passed\n",
+      "stderr": "",
+      "repeat": 2
+    },
+    {
+      "test": "tests/idle_bars.lua",
+      "args": [],
+      "exit": 0,
+      "seconds": 0.392388,
+      "stdout": "Forever fallback: 14400 frame callbacks, 900 parses, 0 unit queries\nidle bars: 153 checks passed; 7 production mutations rejected\n",
+      "stderr": "",
+      "repeat": 2
+    },
+    {
+      "test": "tests/teleport_cast_work.lua",
+      "args": [],
+      "exit": 0,
+      "seconds": 0.033584,
+      "stdout": "modern scans=0 popup_rebuilds=0\nlegacy scans=4 popup_rebuilds=0\nintegrated scans=0 popup_rebuilds=0\nteleport cast: 527 checks, 0 failures\n",
+      "stderr": "",
+      "repeat": 2
+    },
+    {
+      "test": "ExtraButtonSystem/NonCombatGrid/Buttons/_tmp_mountitemsmoke.lua",
+      "args": [],
+      "exit": 0,
+      "seconds": 0.020236,
+      "stdout": "Mount item smoke passed: 30 checks\n",
+      "stderr": "",
+      "repeat": 2
+    },
+    {
+      "test": "tests/respec_equipment_completion.lua",
+      "args": [],
+      "exit": 0,
+      "seconds": 0.362642,
+      "stdout": "Respec equipment completion: 470 checks; five clients; missing/partial/retry/combat/locks/bank/replacement ownership PASS\n",
+      "stderr": "",
+      "repeat": 3
+    },
+    {
+      "test": "tests/respec_timer_ownership.lua",
+      "args": [],
+      "exit": 0,
+      "seconds": 0.025337,
+      "stdout": "Respec timer ownership: 68 checks; native NewTimer and void-After fallback; picker/spec/learn cadence PASS\n",
+      "stderr": "",
+      "repeat": 3
+    },
+    {
+      "test": "tests/mount_vendor_cache.lua",
+      "args": [],
+      "exit": 0,
+      "seconds": 0.114834,
+      "stdout": "METRIC vendor locale=enUS spell=465235 detected=true firstQueries=1000\nMETRIC vendor_cached locale=enUS spell=465235 lookups=1000 totalQueries=1000\nMETRIC vendor locale=enUS spell=122708 detected=true firstQueries=1000\nMETRIC vendor_cached locale=enUS spell=122708 lookups=1000 totalQueries=1000\nMETRIC vendor locale=enUS spell=61425 detected=true firstQueries=1000\nMETRIC vendor_cached locale=enUS spell=61425 lookups=1000 totalQueries=1000\nMETRIC vendor locale=enUS spell=61447 detected=true firstQueries=1000\nMETRIC vendor_cached locale=enUS spell=61447 lookups=1000 totalQueries=1000\nMETRIC vendor locale=enUS spell=0 detected=false firstQueries=1000\nMETRIC vendor_cached locale=enUS spell=0 lookups=1000 totalQueries=1000\nMETRIC vendor locale=deDE spell=465235 detected=true firstQueries=1000\nMETRIC vendor_cached locale=deDE spell=465235 lookups=1000 totalQueries=1000\nMETRIC vendor locale=deDE spell=122708 detected=true firstQueries=1000\nMETRIC vendor_cached locale=deDE spell=122708 lookups=1000 totalQueries=1000\nMETRIC vendor locale=deDE spell=61425 detected=true firstQueries=1000\nMETRIC vendor_cached locale=deDE spell=61425 lookups=1000 totalQueries=1000\nMETRIC vendor locale=deDE spell=61447 detected=true firstQueries=1000\nMETRIC vendor_cached locale=deDE spell=61447 lookups=1000 totalQueries=1000\nMETRIC vendor locale=deDE spell=0 detected=false firstQueries=1000\nMETRIC vendor_cached locale=deDE spell=0 lookups=1000 totalQueries=1000\nMETRIC vendor locale=frFR spell=465235 detected=true firstQueries=1000\nMETRIC vendor_cached locale=frFR spell=465235 lookups=1000 totalQueries=1000\nMETRIC vendor locale=frFR spell=122708 detected=true firstQueries=1000\nMETRIC vendor_cached locale=frFR spell=122708 lookups=1000 totalQueries=1000\nMETRIC vendor locale=frFR spell=61425 detected=true firstQueries=1000\nMETRIC vendor_cached locale=frFR spell=61425 lookups=1000 totalQueries=1000\nMETRIC vendor locale=frFR spell=61447 detected=true firstQueries=1000\nMETRIC vendor_cached locale=frFR spell=61447 lookups=1000 totalQueries=1000\nMETRIC vendor locale=frFR spell=0 detected=false firstQueries=1000\nMETRIC vendor_cached locale=frFR spell=0 lookups=1000 totalQueries=1000\nMETRIC vendor locale=zhTW spell=465235 detected=true firstQueries=1000\nMETRIC vendor_cached locale=zhTW spell=465235 lookups=1000 totalQueries=1000\nMETRIC vendor locale=zhTW spell=122708 detected=true firstQueries=1000\nMETRIC vendor_cached locale=zhTW spell=122708 lookups=1000 totalQueries=1000\nMETRIC vendor locale=zhTW spell=61425 detected=true firstQueries=1000\nMETRIC vendor_cached locale=zhTW spell=61425 lookups=1000 totalQueries=1000\nMETRIC vendor locale=zhTW spell=61447 detected=true firstQueries=1000\nMETRIC vendor_cached locale=zhTW spell=61447 lookups=1000 totalQueries=1000\nMETRIC vendor locale=zhTW spell=0 detected=false firstQueries=1000\nMETRIC vendor_cached locale=zhTW spell=0 lookups=1000 totalQueries=1000\nMETRIC mount_timer client=era combat=false requests=1000 bagCallbacks=1 halfSecondCallbacks=1\nMETRIC mount_timer client=era combat=true requests=1000 bagCallbacks=1 halfSecondCallbacks=0\nMETRIC mount_timer client=anniversary combat=false requests=1000 bagCallbacks=1 halfSecondCallbacks=1\nMETRIC mount_timer client=anniversary combat=true requests=1000 bagCallbacks=1 halfSecondCallbacks=0\nMETRIC mount_timer client=live combat=false requests=1000 bagCallbacks=0 halfSecondCallbacks=1\nMETRIC mount_timer client=live combat=true requests=1000 bagCallbacks=0 halfSecondCallbacks=0\nMETRIC mount_timer client=forever combat=false requests=1000 bagCallbacks=1 halfSecondCallbacks=1\nMETRIC mount_timer client=forever combat=true requests=1000 bagCallbacks=1 halfSecondCallbacks=0\nMETRIC mount_timer client=progression combat=false requests=1000 bagCallbacks=0 halfSecondCallbacks=1\nMETRIC mount_timer client=progression combat=true requests=1000 bagCallbacks=0 halfSecondCallbacks=0\nMount vendor/cache/timer: 20270 checks; 4 locales, vendor factions, absent/readiness, 5 client gates PASS\n",
+      "stderr": "",
+      "repeat": 3
+    },
+    {
+      "test": "tests/buttonfx_paint_recovery.lua",
+      "args": [],
+      "exit": 0,
+      "seconds": 0.070702,
+      "stdout": "METRIC setter classic=false attempts=1 failedSignature=false shows=0\nMETRIC setter classic=true attempts=1 failedSignature=false shows=0\nMETRIC reticle client=classic ticks=600 extraFaces=60 spellReads=0 alphaReads=0\nMETRIC reticle client=classic_era ticks=600 extraFaces=60 spellReads=0 alphaReads=0\nMETRIC reticle client=classic_anniversary ticks=600 extraFaces=60 spellReads=0 alphaReads=0\nReticle option budget: 805 complete-fixture checks; Classic optional rendering, modern policy PASS\nButtonFX paint recovery / dormant macro: 1032 checks; no native taint/pixel/timing claim PASS\n",
+      "stderr": "",
+      "repeat": 3
+    },
+    {
+      "test": "tests/respec_actionbar_completion.lua",
+      "args": [],
+      "exit": 0,
+      "seconds": 0.151699,
+      "stdout": "respec action-bar completion: 320 checks passed (all cases; five client models; native pending)\n",
+      "stderr": "",
+      "repeat": 3
+    },
+    {
+      "test": "tests/respec_section_results.lua",
+      "args": [],
+      "exit": 0,
+      "seconds": 0.384643,
+      "stdout": "respec section results: 200 checks passed; five clients; production owners, native pending\n",
+      "stderr": "",
+      "repeat": 3
+    },
+    {
+      "test": "tests/alpha_reader_safety.lua",
+      "args": [],
+      "exit": 0,
+      "seconds": 1.930308,
+      "stdout": "REJECTION ALPHA-01 baseline=false candidate=true\nREJECTION ALPHA-03 baseline=false candidate=true\nREJECTION ALPHA-04-cast baseline=false candidate=true\nREJECTION ALPHA-04-badge baseline=false candidate=true\nREJECTION ALPHA-05-numeric baseline=false candidate=true\nREJECTION ALPHA-05-duration baseline=false candidate=true\nHANDLED getter_call_denied=grid\nHANDLED getter_call_denied=bling\nHANDLED getter_call_denied=extra-numeric\nHANDLED getter_call_denied=extra-duration\nMETRIC grid rounds=100 requests_per_round=1000 public_zero_reads=3600 public_zero_writes=0 opaque_reads=3600 opaque_writes=3600 excluded_stance_alpha=1\nMETRIC glow cycles=10 snapshots=80 baseline_public_reads=120 candidate_reads=0 frames_created=1 pool_releases=20 owned_ledger_tables=1 ledger_entries=6\nSUMMARY checks=655 failures=0 baseline_rejections=8\n",
+      "stderr": "",
+      "repeat": 3
+    },
+    {
+      "test": "tests/badge_cooldown_secrets.lua",
+      "args": [],
+      "exit": 0,
+      "seconds": 0.186541,
+      "stdout": "Badge cooldown secrets: 80 checks passed (desktop boundary only)\n",
+      "stderr": "",
+      "repeat": 3
+    },
+    {
+      "test": "tests/utility_secure_input.lua",
+      "args": [],
+      "exit": 0,
+      "seconds": 0.490049,
+      "stdout": "Utility secure input: 41255 checks; five Blizzard dispatchers; mouse + both keys; all chords; combat; both CVar edges PASS\n",
+      "stderr": "",
+      "repeat": 3
+    },
+    {
+      "test": "tests/utility_mixed_faces.lua",
+      "args": [],
+      "exit": 0,
+      "seconds": 0.068331,
+      "stdout": "Utility mixed faces: 12634 checks, 0 failures\nModifier work: transitions=320 icon=120 count=120 usable=140 checked=120 duplicate=0\nUtility consumable aura queries: 0\n",
+      "stderr": "",
+      "repeat": 3
+    },
+    {
+      "test": "tests/utility_pet_faces.lua",
+      "args": [],
+      "exit": 0,
+      "seconds": 0.04394,
+      "stdout": "Utility pet faces: 2584 checks, 0 failures\n",
+      "stderr": "",
+      "repeat": 3
+    },
+    {
+      "test": "tests/utility_modifier_vfx.lua",
+      "args": [],
+      "exit": 0,
+      "seconds": 0.080074,
+      "stdout": "Utility modifier VFX: 1473 checks; five clients; cast/channel/empower/reticle/burst/interrupt/proc lifecycle PASS\n",
+      "stderr": "",
+      "repeat": 3
+    },
+    {
+      "test": "tests/consumable_usability.lua",
+      "args": [],
+      "exit": 0,
+      "seconds": 0.057489,
+      "stdout": "Consumable usability: 75 checks, 0 failures\n",
+      "stderr": "",
+      "repeat": 3
+    },
+    {
+      "test": "tests/consumable_zero_reset.lua",
+      "args": [],
+      "exit": 0,
+      "seconds": 0.43401,
+      "stdout": "Consumable zero reset: 375 checks, 0 failures\n",
+      "stderr": "",
+      "repeat": 3
+    },
+    {
+      "test": "tests/consumable_refresh_timer.lua",
+      "args": [],
+      "exit": 0,
+      "seconds": 0.023783,
+      "stdout": "Consumable refresh timer: 35 checks passed\n",
+      "stderr": "",
+      "repeat": 3
+    },
+    {
+      "test": "tests/consumable_aura_advance.lua",
+      "args": [],
+      "exit": 0,
+      "seconds": 0.042485,
+      "stdout": "Consumable aura advance: 66 checks passed\n",
+      "stderr": "",
+      "repeat": 3
+    },
+    {
+      "test": "tests/idle_bars.lua",
+      "args": [],
+      "exit": 0,
+      "seconds": 0.415231,
+      "stdout": "Forever fallback: 14400 frame callbacks, 900 parses, 0 unit queries\nidle bars: 153 checks passed; 7 production mutations rejected\n",
+      "stderr": "",
+      "repeat": 3
+    },
+    {
+      "test": "tests/teleport_cast_work.lua",
+      "args": [],
+      "exit": 0,
+      "seconds": 0.029789,
+      "stdout": "modern scans=0 popup_rebuilds=0\nlegacy scans=4 popup_rebuilds=0\nintegrated scans=0 popup_rebuilds=0\nteleport cast: 527 checks, 0 failures\n",
+      "stderr": "",
+      "repeat": 3
+    },
+    {
+      "test": "ExtraButtonSystem/NonCombatGrid/Buttons/_tmp_mountitemsmoke.lua",
+      "args": [],
+      "exit": 0,
+      "seconds": 0.018637,
+      "stdout": "Mount item smoke passed: 30 checks\n",
+      "stderr": "",
+      "repeat": 3
+    }
+  ],
+  "uniqueScripts": 19,
+  "repeats": 3,
+  "executionCount": 57,
+  "pass": 57,
+  "fail": 0,
+  "varyingStdout": [],
+  "scope": "Desktop Lua API models; no native taint, secure permission, pixels, FPS, or frame time claim."
+}

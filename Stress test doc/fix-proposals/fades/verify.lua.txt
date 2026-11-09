@@ -1,0 +1,194 @@
+-- External proposal verification. Actual baseline/candidate function bodies and
+-- pinned native fade manager; frames/timers/opaque-number access are models.
+local baseline,candidate,reference=assert(arg[1]),assert(arg[2]),assert(arg[3])
+local mutation=arg[4]
+local checks,rejections=0,0
+local function check(v,label)checks=checks+1;assert(v,label)end
+local function near(a,b)return math.abs(a-b)<1e-11 end
+local function read(path)local f=assert(io.open(path,"rb"),path);local s=f:read("*a"):gsub("\r\n","\n");f:close();return s end
+local function part(text,a,b)local x=assert(text:find(a,1,true),a);local y=assert(text:find(b,x+#a,true),b);return text:sub(x,y-1)end
+local native=part(read(reference), 'local frameFadeManager = CreateFrame("FRAME");','local frameFlashManager = CreateFrame("FRAME");')
+local opaque=setmetatable({}, {__sub=function()error("OPAQUE_ALPHA_ARITHMETIC",2)end,__le=function()error("OPAQUE_ALPHA_ORDER",2)end})
+local noop=function()end
+local function baseFixture(secret)
+ local s={now=0,timers={},writes=0,reads=0,frames={}}
+ local e=setmetatable({}, {__index=_G});e._G=e;e.FADEFRAMES={};e.tinsert=table.insert
+ e.securecallfunction=function(fn,...)return fn(...)end
+ e.tDeleteItem=function(t,v)for i=#t,1,-1 do if t[i]==v then table.remove(t,i)end end end
+ e.CreateFrame=function()local f={SetScript=function(self,k,v)self[k]=v end};s.frames[#s.frames+1]=f;return f end
+ e.C_Timer={NewTimer=function(delay,fn)local t={delay=delay,at=s.now+delay,fn=fn};function t:Cancel()self.cancelled=true end;s.timers[#s.timers+1]=t;return t end}
+ assert(load(native,"@pinned-native-FrameUtil","t",e))()
+ local frame={alpha=0,shown=false}
+ function frame:GetAlpha()s.reads=s.reads+1;return secret and opaque or self.alpha end
+ function frame:SetAlpha(v)s.writes=s.writes+1;self.alpha=v end
+ function frame:Show()self.shown=true end
+ function frame:Hide()self.shown=false end
+ function frame:IsShown()return self.shown end
+ s.e,s.f,s.m=e,frame,s.frames[1]
+ function s:native(dt)self.now=self.now+dt;e.UIFrameFade_OnUpdate(self.m,dt)end
+ function s:fireTimers()
+  for _,timer in ipairs(self.timers)do
+   if not timer.cancelled and not timer.fired and timer.at<=self.now+1e-10 then timer.fired=true;timer.fn()end
+  end
+ end
+ function s:snapshot()
+  local active=0;for _,t in ipairs(self.timers)do if not t.cancelled and not t.fired then active=active+1 end end
+  return {alpha=self.f.alpha,shown=self.f.shown,queue=#e.FADEFRAMES,timers=active,writes=self.writes}
+ end
+ return s
+end
+local function swingFixture(root,secret)
+ local text=read(root.."/UnitFrames/FluxSwingTimer.lua");local s=baseFixture(secret);local e=s.e
+ if root==candidate and mutation=="swing-force-one"then text=text:gsub("local startAlpha = CurrentSwingAlpha%(%)","local startAlpha = 1")end
+ if root==candidate and mutation=="swing-drop-record"then text=text:gsub("swingFadeInfo = fadeInfo","swingFadeInfo = nil")end
+ if root==candidate and mutation=="swing-stale-timer"then text=text:gsub("if swingFadeOut and swingFadeInfo == fadeInfo then","if swingFadeOut then")end
+ e.fixture=s;e.ST={};e.ns={};e.UseNativePlayerSwing=function()return true end
+ e.EnsureSwingFrameAttached=function()return true end;e.SyncSwingFrameLevel=noop;e.ClearRangedSwingLinger=noop
+ e.HasActiveTimer=function()return s.active end;e.SwingTimerClientSupported=function()return true end
+ e.ParkBlizzardSwingTimerHud=noop;e.UpdateNativeRangeCheckRegistration=noop;e.NativePlayerSwingTypes=function()return{}end;e.SetNativeRangeCheck=noop
+ local helpers=""
+ if text:find("local function SetSwingAlpha(alpha)",1,true)then
+  helpers=part(text,"-- Public alpha belongs to this private overlay.","-- After STOP_AUTOREPEAT:")
+ end
+ local prefix=[[local swingFrame=fixture.f
+ local castBar=fixture.castBar
+ local swingFadeOut=false
+ local swingFadeTimer
+ local swingVisible=false
+ local swingHoldRemain,meleeReadyLingerRemain
+ local swingText,swingTime
+ local SWING_FADE_DURATION=1.0
+ local NATIVE_SWING_OOR_ALPHA=.4
+ local nativeShownTypeOutOfRange=false
+ ]]
+ local busy=part(text,"local function CastBarIsBusy()","local function SwingTimerFeatureWanted()")
+ local range=part(text,"local function NativeOORTextColor()","local function NativeIsTargetWithinSwingRange(swingType)")
+ local life=part(text,"local function CancelSwingFade()","local function RefreshWandTheme()")
+ local enabled=part(text,"function ST.SetPlayerSwingTimerEnabled(enabled)","BootstrapSwingTimerEvents()")
+ local write=helpers~="" and "SetSwingAlpha(a)" or "swingFrame:SetAlpha(a)"
+ local tail="\nreturn {start=StartSwingFadeOut,cancel=CancelSwingFade,finish=FinishSwingFade,show=ShowSwing,hide=HideSwingImmediate,range=SetNativeShownOutOfRange,enabled=ST.SetPlayerSwingTimerEnabled,write=function(a)"..write.." end}"
+ s.api=assert(load(prefix..helpers..busy..range..life..enabled..tail,"@production-swing-lifecycle","t",e))()
+ return s
+end
+local function castFixture(root,secret,interrupted)
+ local text=read(root.."/UnitFrames/FluxCastBar.lua");local s=baseFixture(secret);local e=s.e;s.hidden=0
+ if root==candidate and mutation=="cast-restore-getter"then text=text:gsub("UIFrameFadeOut%(self, fadeDur, 1, 0%)","UIFrameFadeOut(self, fadeDur, self:GetAlpha(), 0)")end
+ e.FLUX_CASTBAR_FADE_DURATION=.75;e.FLUX_CASTBAR_FADE_INTERRUPT=.30
+ e.HideCastBarInstant=function(f,wasInterrupted)s.hidden=s.hidden+1;s.wasInterrupted=wasInterrupted;f:Hide();f:SetAlpha(1)end
+ local source=part(text,"local function FinishCastBarFade(self)","local function CastStop(self, failed)")
+ s.start=assert(load(source.."\nreturn StartCastBarFadeOut","@production-cast-lifecycle","t",e))()
+ s.f.interrupted=interrupted
+ return s
+end
+
+-- Public trajectories and resource counts match step-for-step, including
+-- restart midpoint and explicit owner writes between native fade paints.
+for _,oor in ipairs({false,true})do
+ local a,b=swingFixture(baseline,false),swingFixture(candidate,false)
+ local function both(label,fn)
+  fn(a);fn(b);local x,y=a:snapshot(),b:snapshot()
+  check(near(x.alpha,y.alpha),label.." alpha parity")
+  check(x.shown==y.shown and x.queue==y.queue and x.timers==y.timers and x.writes==y.writes,label.." lifecycle/resource parity")
+ end
+ both("show",function(s)s.api.show();s.api.range(oor)end)
+ check(near(b.f.alpha,oor and .4 or 1),"OOR .4 and ordinary1 preserved")
+ both("start",function(s)s.api.start()end)
+ both("native paint",function(s)s:native(.37)end)
+ both("zero elapsed native paint",function(s)s:native(0)end)
+ both("restart exact lastpaint",function(s)local before=s.f.alpha;s.api.start();check(near(before,s.f.alpha),"restart has no alpha jump")end)
+ both("restart progress",function(s)s:native(.13)end)
+ both("explicit write before next paint",function(s)s.api.write(.18);s.api.start();check(near(s.f.fadeInfo.startAlpha,.18),"explicit owner alpha is restart endpoint")end)
+ both("cancel",function(s)s.api.cancel();check(s.f.alpha==1 and #s.e.FADEFRAMES==0,"cancel resets alpha1 and removes own fade")end)
+ both("range restored after cancel",function(s)s.api.show();s.api.range(oor)end)
+ both("hide during fade",function(s)s.api.start();s:native(.21);s.api.hide();check(s.f.alpha==0 and not s.f.shown,"hide clears fade")end)
+ both("reopen",function(s)s.api.show();s.api.start()end)
+ both("enable reset immediate restart",function(s)s.api.enabled(true);s.api.start();check(s.f.fadeInfo.startAlpha==0,"option-owned alpha0 before paint retained")end)
+ for index=1,100 do
+  both("repeated restart"..index,function(s)
+   s:native(.007)
+   if index%7==0 then s.api.write(index%14==0 and .4 or 1)end
+   local before=s.f.alpha;s.api.start();check(near(before,s.f.alpha),"stress restart preserves midpoint")
+  end)
+ end
+ both("finish native-first",function(s)s:native(1.1);s:fireTimers();check(not s.f.shown and s.f.alpha==0 and #s.e.FADEFRAMES==0,"completed swing hides and releases nativequeue")end)
+ check(b.reads==0,"candidate never reads native swing alpha")
+ -- Timer first at the deadline, before that frame's native paint.
+ both("finish timer-first",function(s)s.api.show();s.api.start();s.now=s.now+1;s:fireTimers();s.e.UIFrameFade_OnUpdate(s.m,1);check(not s.f.shown and s.f.alpha==0,"timer-first finish retains hide")end)
+ both("independent native fade",function(s)
+  local other={alpha=.7,SetAlpha=function(f,v)f.alpha=v end,Show=noop}
+  s.e.UIFrameFadeOut(other,2,.7,0);s.api.show();s.api.start();s:native(.1);s.api.hide()
+  check(#s.e.FADEFRAMES==1 and s.e.FADEFRAMES[1]==other,"own hide never clears another native owner")
+ end)
+end
+-- Intentional ownership fixes. Historical native repaint/stale callback wins
+-- are reproduced separately, rather than mislabeled as baseline parity.
+do
+ local a,b=swingFixture(baseline,false),swingFixture(candidate,false)
+ for _,s in ipairs({a,b})do s.api.show();s.api.range(true);s.api.start();s:native(.37)end
+ local oldA,oldB=a.timers[1],b.timers[1]
+ a.api.write(.4);b.api.write(.4);a:native(0);b:native(0)
+ check(near(a.f.alpha,.252) and near(b.f.alpha,.4),"zero elapsed historical repaint reproduced; candidate owner write retained")
+ check(#b.e.FADEFRAMES==0 and oldB.cancelled,"explicit owner write retires own queue and timer")
+ a.api.start();b.api.start()
+ oldA.fn();oldB.fn()
+ check(not a.f.shown and b.f.shown and #b.e.FADEFRAMES==1,"stale historical timer hides replacement; candidate fade identity rejects it")
+ local a,b=swingFixture(baseline,false),swingFixture(candidate,false)
+ for _,s in ipairs({a,b})do s.api.show();s.api.range(true);s.api.start();s:native(.15);s.api.enabled(false)end
+ check(not a.f.shown and #a.e.FADEFRAMES==1,"historical disable retains queued hidden fade")
+ check(not b.f.shown and b.f.alpha==0 and #b.e.FADEFRAMES==0 and b.timers[1].cancelled,"candidate disable clears own fade and timer")
+ for _,s in ipairs({a,b})do s.api.enabled(true);s.api.show();s.api.range(true);s:native(0)end
+ check(near(b.f.alpha,.4) and b.f.shown and #b.e.FADEFRAMES==0,"re-enable/show restores OOR state without old zero-delta repaint")
+ a.timers[1].fn();b.timers[1].fn()
+ check(not a.f.shown and b.f.shown,"old hidden-fade completion cannot hide re-enabled candidate")
+ local a,b=swingFixture(baseline,false),swingFixture(candidate,false)
+ for _,s in ipairs({a,b})do s.api.show();s.api.range(true);s.api.start();s:native(.15);s.api.show();s:native(0)end
+ check(near(a.f.alpha,.34) and near(b.f.alpha,.4) and #b.e.FADEFRAMES==0,"repeat show intentionally takes ownership from old fade")
+end
+for _,interrupted in ipairs({false,true})do
+ local a,b=castFixture(baseline,false,interrupted),castFixture(candidate,false,interrupted)
+ local duration=interrupted and .3 or .75
+ for _,s in ipairs({a,b})do
+  s.start(s.f);check(s.f.fadeInfo.startAlpha==1 and s.timers[1].delay==duration,"cast forcedfull endpoint and duration")
+  s.start(s.f);check(#s.timers==1 and #s.e.FADEFRAMES==1,"repeated castfade start idempotent")
+ end
+ for i=1,3 do a:native(duration/4);b:native(duration/4);check(near(a.f.alpha,b.f.alpha),"castfade trajectory parity")end
+ a:native(duration/4);b:native(duration/4);a:fireTimers();b:fireTimers()
+ check(a.hidden==1 and b.hidden==1 and a.wasInterrupted==b.wasInterrupted,"cast completion calls existing release path once")
+ check(b.reads==0,"candidate cast fade never reads native alpha")
+ local active=castFixture(candidate,false,interrupted);active.start(active.f);active.f.casting=true;active:native(duration);active:fireTimers()
+ check(active.hidden==0 and active.f.casting and #active.e.FADEFRAMES==0,"old fade completion timer does not hide an active cast")
+ for _,root in ipairs({baseline,candidate})do
+  local s=castFixture(root,true,interrupted);s.start(s.f)
+  local ok,err=pcall(s.native,s,.01)
+  if root==baseline then check(not ok and err:find("OPAQUE_ALPHA",1,true),"baseline cast rejects opaque alpha");rejections=rejections+1
+  else check(ok and s.reads==0,"candidate cast opaque getter never used")end
+ end
+end
+for _,root in ipairs({baseline,candidate})do
+ local s=swingFixture(root,true);s.api.show();s.api.range(true);s.api.start()
+ local ok,err=pcall(s.native,s,.25)
+ if root==baseline then check(not ok and err:find("OPAQUE_ALPHA",1,true),"baseline swing rejects opaque alpha");rejections=rejections+1
+ else check(ok and s.reads==0 and near(s.f.alpha,.3),"candidate OOR opaque getter keeps .4-to0 fade")end
+end
+-- Full priority helper: 84 public controls plus opaque getter rejection/pass.
+local function busy(root,bar)
+ local text=read(root.."/UnitFrames/FluxSwingTimer.lua");local e=setmetatable({castBar=bar},{__index=_G})
+ if root==candidate and mutation=="busy-restore-getter"then
+  local a=assert(text:find("local function CastBarIsBusy()",1,true));local b=assert(text:find("local function SwingTimerFeatureWanted()",a,true))
+  local body=text:sub(a,b-1);local n
+  body,n=body:gsub("    return false\nend","    if castBar:GetAlpha() <= 0.01 then return false end\n    return false\nend",1)
+  check(n==1,"busy mutation applied")
+  text=text:sub(1,a-1)..body..text:sub(b)
+ end
+ return assert(load(part(text,"local function CastBarIsBusy()","local function SwingTimerFeatureWanted()").."\nreturn CastBarIsBusy","@production-busy","t",e))()
+end
+for _,shown in ipairs({false,true})do for _,alpha in ipairs({0,.005,.01,.4,.75,1})do for flag=0,6 do
+ local f={IsShown=function()return shown end,GetAlpha=function()return alpha end}
+ local field=({"casting","channeling","customTimer","preInterrupt","holdTime","fadeOut"})[flag];if field then f[field]=field=="holdTime"and .2 or true end
+ check(busy(baseline,f)()==busy(candidate,f)(),"priority public return parity")
+end end end
+local f={IsShown=function()return true end,GetAlpha=function()error("OPAQUE_ALPHA_GETTER",0)end}
+local ok,err=pcall(busy(baseline,f));check(not ok and err:find("OPAQUE_ALPHA",1,true),"baseline redundant priority getter rejects");rejections=rejections+1
+check(busy(candidate,f)()==false,"candidate priority retains result without forbidden getter")
+check(rejections==4,"four baseline rejection controls completed")
+print("FADE PROPOSAL checks="..checks.." baseline_rejections="..rejections.." candidate/native-model trajectory and lifecycle controls PASS; native attribution/pixels/taint pending")

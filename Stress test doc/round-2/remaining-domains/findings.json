@@ -1,0 +1,59 @@
+{
+  "scope": "Six new finding groups from round-2. Desktop evidence only; native errors observed:0. Existing prior fixes are baseline, not new findings.",
+  "findings": [
+    {
+      "id": "R2-DOM-01", "priority": "P2", "classification": "Reproduced stale asynchronous tooltip ownership; native presentation and taint provenance pending",
+      "sources": ["MicroMenu/FluxMinimapToMicro.lua:1302", "MicroMenu/FluxMinimapToMicro.lua:1365", "MicroMenu/FluxMinimapToMicro.lua:1389", "MicroMenu/FluxMinimapToMicro.lua:1559"],
+      "trigger": "Enter proxy, leave before delayed positioning/capture callback, then let the callback run.",
+      "evidence": "Both LibDBIcon and standard-handler production paths show the departed proxy tooltip after OnLeave. Ordinary standard capture also temporarily replaces shared GameTooltip.Show and restores it on the callback; no native taint is inferred.",
+      "futureFix": "Give each proxy hover operation an identity; invalidate on leave/hide/disable/rebuild/rebind and verify current hover/owner before any delayed tooltip write. Reuse a bounded owned driver. Prefer broker tooltip APIs; evaluate standard-handler capture without shared method replacement against representative addons before claiming parity.",
+      "acceptance": "Rapid A-to-B-to-none hover, leave-before-position/capture, hidden/disabled/rebound proxy, synchronous/asynchronous third-party tooltip handlers, native tooltip owner preservation; no old operation may hide or show a newer owner's tooltip. Preserve lines/colors/click forwarding and tooltip anchors. Native secure provenance pending.",
+      "probe": "micro_proxy.lua.txt"
+    },
+    {
+      "id": "R2-DOM-02", "priority": "P2", "classification": "Reproduced monotonic hook and frame-creation-request growth; native bytes/CPU/FPS unmeasured",
+      "sources": ["MicroMenu/FluxMinimapToMicro.lua:1069", "MicroMenu/FluxMinimapToMicro.lua:1094", "MicroMenu/FluxMinimapToMicro.lua:1168", "MicroMenu/FluxMinimapToMicro.lua:1272", "MicroMenu/FluxMinimapToMicro.lua:1280"],
+      "trigger": "Repeatedly disable/re-enable the same minimap-to-micro conversion and rebuild.",
+      "evidence": "500 cycles plus one final enable request501 proxy creations and1002 icon hooks; one original SetTexture invokes501 current-proxy update callbacks.500 unchanged-enabled rebuilds reuse the existing proxy.1501 one-shot rebuild-frame requests occur in the full stress sequence.",
+      "futureFix": "Retain a private proxy pool keyed to original button identity; hide/remove discovery aliases while disabled, then reuse. Install one SetTexture/SetAtlas hook per original icon and dispatch to its current enabled proxy. Reuse/coalesce the existing rebuild work on one owned frame.",
+      "acceptance": "10000 enable/disable/reorder cycles must keep proxy resources and hooks bounded, with one update per native icon change. Preserve discovery exclusion while disabled, button order, account/character settings, original replacement handling, icon changes, tooltips and click forwarding.",
+      "probe": "micro_proxy.lua.txt"
+    },
+    {
+      "id": "R2-DOM-03", "priority": "P1 review", "classification": "Conditional protected-write denial reproduced in existing strict full-module mock; real combat overlay visibility/denial unobserved",
+      "sources": ["Salvage/FluxSalvage_Overlay.lua:134", "Salvage/FluxSalvage_Overlay.lua:149", "Salvage/FluxSalvage_Overlay.lua:200", "Salvage/FluxSalvage_Overlay.lua:419", "Salvage/FluxSalvage_Overlay.lua:453", "Salvage/FluxSalvage_Overlay.lua:841"],
+      "trigger": "Arm the real secure salvage overlay out of combat, keep it shown, enter combat, then tick its driver or send MODIFIER_STATE_CHANGED.",
+      "evidence": "All five existing client-policy fixtures attempt protected ClearAllPoints through the real AnchorOverlayToOwner path.1000 ticks cause1000 denied attempts per model. Hidden-in-combat, visible out-of-combat and postcombat cleanup controls pass. Existing permanent salvage tests start their combat scenario hidden and do not cover this transition.",
+      "futureFix": "Prevent every insecure protected geometry/attribute mutation while locked. Where supported, prepare combat visibility in the native secure driver before combat. On fallback clients, retain legal public intent and coalesce deferred reconciliation until combat ends; skip protected anchor refresh while locked. Avoid a broad pcall or new per-frame recovery loop.",
+      "acceptance": "Visible-before-combat, modifier release/repress, native secure show/hide, protected gear locks and tooltip-owner changes during combat; zero protected writes from insecure update/event callbacks. Verify one reconciliation after combat, unchanged salvage action payloads/owner dimensions/colors, and hidden idle work zero. Test each real client's driver capabilities before acceptance.",
+      "probe": "salvage_combat.lua.txt"
+    },
+    {
+      "id": "R2-DOM-04", "priority": "P2 conditional", "classification": "Conditional secret FrameLevel getter contract failure; the audited native frames' aspect provenance is unknown",
+      "sources": ["UnitFrames/FluxUnitFrames_Shared.lua:5391", "UnitFrames/FluxUnitFrames_Shared.lua:5396", "UnitFrames/FluxUnitFrames_Shared.lua:7369", "UnitFrames/FluxUnitFrames_Shared.lua:7375", "UnitFrames/FluxUnitFrames_Shared.lua:7377"],
+      "trigger": "A portrait/root/border GetFrameLevel returns an inaccessible value permitted by the modern/Forever FrameLevel aspect declaration.",
+      "evidence": "Complete production portrait combat/normal and private threat-raise consumers hit five explicit opaque arithmetic traps. Public levels preserve normal ordering; the previously guarded SetFrameLevelIfChanged itself performs zero opaque operations but callers calculate before reaching it.",
+      "futureFix": "Capture intended public levels at actual owned constructors and parent-level writers, then derive the existing offsets. Guard any native getter before arithmetic. Extend the existing narrow ledger where ownership is proven; do not invent0, assume every native level is secret, or change foreign renderer levels.",
+      "acceptance": "Public/missing/inaccessible getter cases, parent40-to70 reparent transitions, normal/combat tint toggles, private threat glow start/stop/raise and label priority. Preserve exact border/glow/text levels and native child propagation. Establish native secret-aspect reachability before describing this as a client error.",
+      "probe": "frame_level_reads.lua.txt"
+    },
+    {
+      "id": "R2-DOM-05", "priority": "P2", "classification": "Reproduced concurrent metadata retry-chain amplification; desktop work counts only",
+      "sources": ["Inventory/Restock/Junk/FluxVendorJunkPanel.lua:404", "Inventory/Restock/Junk/FluxVendorJunkPanel.lua:422", "Inventory/Restock/Junk/FluxVendorJunkPanel.lua:439", "Inventory/Restock/Vendor/FluxVendorRestockPanel.lua:869", "Inventory/Restock/Vendor/FluxVendorRestockPanel.lua:918", "Inventory/Restock/Vendor/FluxVendorRestockPanel.lua:922"],
+      "trigger": "Repeated tab/query entrypoints while a listed item's metadata remains unavailable.",
+      "evidence": "Per panel,1/50/250 entries retain1/50/250 independent callbacks. Six query passes yield6/300/1500 list refreshes and metadata request entries. Hidden-panel guards stop work and metadata completion drains all chains correctly.",
+      "futureFix": "Maintain one pending metadata retry per panel, with an operation identity for hide/tab/list replacement. Reuse item-data completion events and bounded retry/backoff if needed; allow late valid metadata to recover without losing entries or relying on permanent polling.",
+      "acceptance": "Repeated tab/edit/drop/query triggers, pending and permanently unavailable metadata, cached completion, hide/show and merchant reopen, item removal/re-addition, provider changes. Pending callbacks and requests per item must remain bounded independently of trigger count; preserve list selection, spinner state and eventual complete rendering.",
+      "probe": "vendor_metadata.lua.txt"
+    },
+    {
+      "id": "R2-DOM-06", "priority": "P2", "classification": "Reproduced native timer-return contract misuse at four active owners; UI presentation/native performance unverified",
+      "sources": ["StatusBars/FluxStatusBar.lua:2516", "StatusBars/FluxInfoFrame.lua:4760", "Battlezonemap/FluxDetails.lua:1394", "Other/FluxEquipSlotFlyout.lua:284", "Other/FluxEquipSlotFlyout.lua:509"],
+      "trigger": "A pending flag/cancellation handle is assigned from native C_Timer.After, whose generated contract has no return value.",
+      "evidence": "1000 Status requests yield1000 callbacks/3000 border-PVP dependency entries; Info yields1000 deferred layout entries; Details1000 resize events yield1000 grid+1000 configure passes. Equip enter/leave still invokes Show for the departed anchor, and1000 rapid enters invoke every pending Show. Cancellation cannot invalidate the callbacks. Existing combat/detached guards remain effective.",
+      "futureFix": "Use existing NewTimer cancellation handles, or a separate boolean plus operation generation with After. Preserve each owner's current delays, immediate-first-pass behavior and combat/placement/embedding gates; stale callbacks must never clear a replacement operation's token or alter a newer hover owner.",
+      "acceptance": "Run native no-return After controls for all four target contracts,1000-request bursts, cancel/replace and nested requests, placement switch/force refresh, embed-detach-reembed, hover A-to-B-to-none, hidden character panel and combat transition. Assert bounded callbacks/work and original0.32/0.2/0.05/0.06/0.25-second cadence. Third-party and native rendering still require separate checks.",
+      "probe": "layout_after_token.lua.txt"
+    }
+  ]
+}

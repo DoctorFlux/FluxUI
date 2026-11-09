@@ -1,0 +1,228 @@
+{
+  "changeID": "FRIENDLY-DEBUFF-TINT-20261108",
+  "requirement": "REQ-RF-92",
+  "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\06\\01a1b0ac-547f-7972-8df9-fa26882e0e03\\friendly-debuff-tint-20261108T102035Z\\checkpoint.json",
+  "before": {
+    "UnitFrames/FluxUnitFrames_Shared.lua": "814fec866fa4157991234c94e1703d771ed6fc571483b13c7ebecf2c0da67d9d",
+    "RaidFrame/FluxRaidPreview.lua": "5a55b3c8554ada938f56a7fb507a672ae67b4c037139722f566f69aa0e5f1955",
+    "_FluxUI.toc": "f0bcf5503e7d09f3aadf2a351755747a2bdc47f95a1c4fc6ca72a9258996f54e",
+    "UnitFrames/FluxUnitFrames_OptionsBridge.lua": "da202b847314e9122114c4b2eb97e5d6cc81288cb07c3dfeb825288875ec268a",
+    "UnitFrames/FluxUnitFrames_Party.lua": "cf4329e19d2f80876118e30612abef72f0000d5c5765e1b174f45f1d0b91fa35",
+    "UnitFrames/FluxUnitFrames_DebuffTint.lua": "new",
+    "tests/friendly_debuff_tint.lua": "new"
+  },
+  "after": {
+    "UnitFrames/FluxUnitFrames_DebuffTint.lua": "abc5c2e858778bf1f1afe86234d056b2826ac61715a6a7f71e553838c49d87dd",
+    "UnitFrames/FluxUnitFrames_Shared.lua": "78c8bb770b8ea9b53ed7dbd512379d7a0f328fe6e2a5a1fe067690c70d63a1ca",
+    "UnitFrames/FluxUnitFrames_Party.lua": "2da9ce5f51248dcb47c85f5126ed2e1ec8697b77f0f6f1f3a2c6e54863fdbcad",
+    "UnitFrames/FluxUnitFrames_OptionsBridge.lua": "5c5696623f85949ad297da5bce932793682ead1b21bcf2a8eadbf17c60176484",
+    "RaidFrame/FluxRaidPreview.lua": "55c44402f64cfc13e0a84eb8632165d0e0b096b0f65be74ac8b5970d5c2f6467",
+    "_FluxUI.toc": "f9a16dfba05a848069a99e315a36d987433d14179b0b08e876b93c04cf3873ff",
+    "tests/friendly_debuff_tint.lua": "fdfaf98984d8fcb698a34885b4b127567ef0a6c01b6755862131d421a838fd32"
+  },
+  "nativeSources": [
+    {
+      "client": "live",
+      "ref": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_FrameXMLUtil/AuraUtil.lua",
+      "blob": "bd730b33237b8467164bde252474ad6c6516b7cf",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_FrameXMLUtil/AuraUtil.lua"
+    },
+    {
+      "client": "forever",
+      "ref": "eac30af597e5aaa43a60f6675ef5fdcea100375f",
+      "path": "Interface/AddOns/Blizzard_FrameXMLUtil/AuraUtil.lua",
+      "blob": "bd730b33237b8467164bde252474ad6c6516b7cf",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/eac30af597e5aaa43a60f6675ef5fdcea100375f/Interface/AddOns/Blizzard_FrameXMLUtil/AuraUtil.lua"
+    },
+    {
+      "client": "classic",
+      "ref": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_FrameXMLUtil/AuraUtil.lua",
+      "blob": "309c7111c48129687c6001dd8707582569582bfb",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_FrameXMLUtil/AuraUtil.lua"
+    },
+    {
+      "client": "classic_era",
+      "ref": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "path": "Interface/AddOns/Blizzard_FrameXMLUtil/AuraUtil.lua",
+      "blob": "309c7111c48129687c6001dd8707582569582bfb",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_FrameXMLUtil/AuraUtil.lua"
+    },
+    {
+      "client": "classic_anniversary",
+      "ref": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "path": "Interface/AddOns/Blizzard_FrameXMLUtil/AuraUtil.lua",
+      "blob": "36b3d8f6c184713e996e0a9a973baf83acb5255d",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_FrameXMLUtil/AuraUtil.lua"
+    },
+    {
+      "client": "live",
+      "ref": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_UnitFrame/Shared/PartyMemberFrame.lua",
+      "blob": "774b865f41d35655ac1ba5499b7674aec9ce71bf",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_UnitFrame/Shared/PartyMemberFrame.lua"
+    },
+    {
+      "client": "forever",
+      "ref": "eac30af597e5aaa43a60f6675ef5fdcea100375f",
+      "path": "Interface/AddOns/Blizzard_UnitFrame/Shared/PartyMemberFrame.lua",
+      "blob": "774b865f41d35655ac1ba5499b7674aec9ce71bf",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/eac30af597e5aaa43a60f6675ef5fdcea100375f/Interface/AddOns/Blizzard_UnitFrame/Shared/PartyMemberFrame.lua"
+    },
+    {
+      "client": "classic",
+      "ref": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_UnitFrame/Shared/PartyMemberFrame.lua",
+      "blob": "774b865f41d35655ac1ba5499b7674aec9ce71bf",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_UnitFrame/Shared/PartyMemberFrame.lua"
+    },
+    {
+      "client": "classic_era",
+      "ref": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "path": "Interface/AddOns/Blizzard_UnitFrame/Shared/PartyMemberFrame.lua",
+      "blob": "774b865f41d35655ac1ba5499b7674aec9ce71bf",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_UnitFrame/Shared/PartyMemberFrame.lua"
+    },
+    {
+      "client": "classic_anniversary",
+      "ref": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "path": "Interface/AddOns/Blizzard_UnitFrame/Shared/PartyMemberFrame.lua",
+      "blob": "16d25a34ba006518ae32d50a79247d4dd2932653",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_UnitFrame/Shared/PartyMemberFrame.lua"
+    },
+    {
+      "client": "live",
+      "ref": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_AuraContainer/Blizzard_CustomAuraButton.lua",
+      "blob": "9e373b9e44e352e77771eef30f058217151dbdb7",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_AuraContainer/Blizzard_CustomAuraButton.lua"
+    },
+    {
+      "client": "live",
+      "ref": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_AuraContainer/Blizzard_AuraContainerUtil.lua",
+      "blob": "23acba9cee7f6917df343dd4ccfef3a8a9c9729d",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_AuraContainer/Blizzard_AuraContainerUtil.lua"
+    },
+    {
+      "client": "forever",
+      "ref": "eac30af597e5aaa43a60f6675ef5fdcea100375f",
+      "path": "Interface/AddOns/Blizzard_AuraContainer/Blizzard_CustomAuraButton.lua",
+      "blob": "9e373b9e44e352e77771eef30f058217151dbdb7",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/eac30af597e5aaa43a60f6675ef5fdcea100375f/Interface/AddOns/Blizzard_AuraContainer/Blizzard_CustomAuraButton.lua"
+    },
+    {
+      "client": "forever",
+      "ref": "eac30af597e5aaa43a60f6675ef5fdcea100375f",
+      "path": "Interface/AddOns/Blizzard_AuraContainer/Blizzard_AuraContainerUtil.lua",
+      "blob": "23acba9cee7f6917df343dd4ccfef3a8a9c9729d",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/eac30af597e5aaa43a60f6675ef5fdcea100375f/Interface/AddOns/Blizzard_AuraContainer/Blizzard_AuraContainerUtil.lua"
+    }
+  ],
+  "tests": {
+    "focused": {
+      "path": "tests/friendly_debuff_tint.lua",
+      "exit": 0,
+      "wallSeconds": 0.0787,
+      "output": "Friendly debuff tint: 8632 checks PASS across five clients/current and legacy aura providers; native game checks pending\n"
+    },
+    "negativeControls": [
+      {
+        "mutation": "skip-priority",
+        "rejected": true,
+        "output": "lua: tests/friendly_debuff_tint.lua:7: HP/resource values and percent match client type\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/friendly_debuff_tint.lua:7: in upvalue 'check'\n\ttests/friendly_debuff_tint.lua:149: in local 'paintMatches'\n\ttests/friendly_debuff_tint.lua:156: in main chunk\n\t[C]: in ?\n"
+      },
+      {
+        "mutation": "read-restricted",
+        "rejected": true,
+        "output": "lua: tests/friendly_debuff_tint.lua:7: restricted data not queried\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/friendly_debuff_tint.lua:7: in local 'check'\n\ttests/friendly_debuff_tint.lua:182: in main chunk\n\t[C]: in ?\n"
+      },
+      {
+        "mutation": "classic-no-color-table",
+        "rejected": true,
+        "output": "lua: tests/friendly_debuff_tint.lua:7: HP/resource values and percent match client type\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/friendly_debuff_tint.lua:7: in upvalue 'check'\n\ttests/friendly_debuff_tint.lua:149: in local 'paintMatches'\n\ttests/friendly_debuff_tint.lua:156: in main chunk\n\t[C]: in ?\n"
+      },
+      {
+        "mutation": "backdrop-leak",
+        "rejected": true,
+        "output": "lua: tests/friendly_debuff_tint.lua:7: background never cloned\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/friendly_debuff_tint.lua:7: in local 'check'\n\ttests/friendly_debuff_tint.lua:164: in main chunk\n\t[C]: in ?\n"
+      },
+      {
+        "mutation": "allow-untyped",
+        "rejected": true,
+        "output": "lua: tests/friendly_debuff_tint.lua:7: two native slots per chrome part\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/friendly_debuff_tint.lua:7: in local 'check'\n\ttests/friendly_debuff_tint.lua:158: in main chunk\n\t[C]: in ?\n"
+      },
+      {
+        "mutation": "ignore-blizzard-filter",
+        "rejected": true,
+        "output": "lua: tests/friendly_debuff_tint.lua:7: exact normal text restored\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/friendly_debuff_tint.lua:7: in upvalue 'check'\n\ttests/friendly_debuff_tint.lua:152: in local 'restored'\n\ttests/friendly_debuff_tint.lua:170: in main chunk\n\t[C]: in ?\n"
+      }
+    ],
+    "full": {
+      "pass": 255,
+      "fail": 0,
+      "syntaxFiles": 920,
+      "syntaxFailures": []
+    },
+    "testedSourceGuard": "Owned LF-normalized Lua hashes equal full manifest; raw byte hashes in after",
+    "rawFullReport": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\06\\01a1b0ac-547f-7972-8df9-fa26882e0e03\\friendly-debuff-tint-20261108T102035Z\\full.json",
+    "documentation": "PASS: 953 classified sources; 600 TOC/XML reachable; 415 setting definitions; 24 SavedVariables; 15439 local links. Source inventory/evidence current."
+  },
+  "behavior": [
+    "Friendly player, player-style party1-4, friendly target/focus only",
+    "Known Magic/Curse/Disease/Poison/Bleed; missing/unknown type keeps normal colors",
+    "Dispellable slot overlays ordinary slot; strict if Blizzard showDispelDebuffs or raidFramesDisplayOnlyDispellableDebuffs or party strict option",
+    "CVAR_UPDATE immediately refreshes either Blizzard preference without settings writes",
+    "Only cloned portrait/bar edge textures and HP/resource value/percent labels; backdrop and fills untouched",
+    "Hidden/hostile/disabled/cleared effects restore normal text and unbind native units",
+    "Classic uses client display table; guarded current/legacy aura data; setup deferred OOC"
+  ],
+  "restriction": "Native CustomAuraButton supports private dispel colors only on descendant Textures. Existing numeric HP/resource FontStrings cannot receive native private type-color bindings. Restricted aura types leave native borders active but restore normal numeric text. No secret reads or private child inspection; no fabricated fallback type.",
+  "nativeSourceScope": "Pinned contracts and exact public helper/predicate replay only. Anniversary local full AuraUtil blob differs, but display table and all replayed helpers exactly match fetched 68e0a2e source. Classic progression/Era/Anniversary lack local AuraContainer widget and use readable overlays; runtime capabilities still checked.",
+  "resources": {
+    "eventFrames": 1,
+    "registeredEvents": 12,
+    "addonOnUpdate": 0,
+    "addonTickers": 0,
+    "timer": "At most one coalesced After0 batch pending; setup timer per eligible constructed frame",
+    "nativeOwners": "Up to six AuraContainers per eligible frame; two slots per nonempty root/portrait/divider part. Blizzard internal update cost not measured. No aura/settings-event allocations.",
+    "readableOwners": "Up to three plain overlay hosts per frame; clones only selected edge textures",
+    "disabled": "Unbind native units; no aura scans for hidden/disabled/hostile frames; registry retained for reappearance"
+  },
+  "nativePending": [
+    "Actual in-game pixels/color restoration",
+    "Combat group/friendly transitions/protected VM/taint",
+    "Real secret data and native slot drawing",
+    "CPU/memory/FPS measurements"
+  ],
+  "recovery": {
+    "historyVerified": true,
+    "settingsMetadataEntries": 47,
+    "partyPreimage": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\06\\01a1b0ac-547f-7972-8df9-fa26882e0e03\\friendly-debuff-tint-20261108T102035Z\\party-before.lua",
+    "settings": "Read-only metadata; no game input/settings/profiler writes",
+    "publication": "No branch, commit, push or manual client sync"
+  },
+  "copies": [
+    {
+      "client": "_retail_",
+      "mismatches": []
+    },
+    {
+      "client": "_forever_",
+      "mismatches": []
+    },
+    {
+      "client": "_classic_",
+      "mismatches": []
+    },
+    {
+      "client": "_classic_era_",
+      "mismatches": []
+    },
+    {
+      "client": "_anniversary_",
+      "mismatches": []
+    }
+  ]
+}

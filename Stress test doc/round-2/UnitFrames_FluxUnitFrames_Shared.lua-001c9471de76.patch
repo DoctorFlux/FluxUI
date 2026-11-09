@@ -1,0 +1,429 @@
+--- baseline/UnitFrames/FluxUnitFrames_Shared.lua
++++ current/UnitFrames/FluxUnitFrames_Shared.lua
+@@ -608,7 +608,7 @@
+             SetWatchedFrameAlpha(frame, want and 1 or 0)
+             ApplyWatchedUnitChrome(frame, want)
+         else
+-            -- Hidden before this combat. Do not Show — that is ADDON_ACTION_BLOCKED.
++            -- Hidden before this combat. Do not Show â€” that is ADDON_ACTION_BLOCKED.
+             SetWatchedFrameAlpha(frame, 1)
+             ApplyWatchedUnitChrome(frame, false)
+         end
+@@ -1933,7 +1933,7 @@
+     return tonumber(value) or 0
+ end
+ 
+--- UnitHealthMax is 0–100 scaled on live Midnight when UnitHealthPercent exists.
++-- UnitHealthMax is 0â€“100 scaled on live Midnight when UnitHealthPercent exists.
+ -- Forever/camelot still has real Classic HP; UnitHealthPercent can exist there too,
+ -- so max <= 100 must not hide current/max (a level-1 with 67 HP was showing only "100%").
+ -- Never treat a *secret* max as percent-scaled: that hides current HP. Ellesmere
+@@ -2063,7 +2063,7 @@
+     return { r = 0.6, g = 0.6, b = 0.6 } -- Neutral gray
+ end
+ 
+--- Separator / chrome tint: atlas → white; custom → custom accent; class → unit class RGB.
++-- Separator / chrome tint: atlas â†’ white; custom â†’ custom accent; class â†’ unit class RGB.
+ -- Target / target-of-target: always that unit's class color (ignores global border accent).
+ local function GetChromeSeparatorRGB(unit)
+     unit = unit or "player"
+@@ -2670,7 +2670,7 @@
+         -- Total absorb: split into forward bar (empty space) and overflow bar
+         -- (over health). The overflow bar lives inside absorbClipFrame which is
+         -- anchored to the health fill texture, so SetClipsChildren clips it at
+-        -- the health boundary automatically — no secret-value comparisons needed.
++        -- the health boundary automatically â€” no secret-value comparisons needed.
+         if frame.totalAbsorbBar and frame.Health.healCalc then
+             local healCalc = frame.Health.healCalc
+             local dead = UnitIsDeadOrGhost(frame.unit)
+@@ -3625,7 +3625,7 @@
+ end
+ 
+ -- SetPortraitZoom is the real face crop. If the .m2 has no portrait
+--- camera, zoom is a no-op and GetCameraDistance stays far — then pull in along
++-- camera, zoom is a no-op and GetCameraDistance stays far â€” then pull in along
+ -- this model's own look axis, lifting to the top of that frustum (not a race Z).
+ local function ApplyPortraitHeadCamera(portrait)
+     if portrait.MakeCurrentCameraCustom then
+@@ -3943,7 +3943,7 @@
+     end)
+ 
+     -- Re-apply face framing when the model is shown (alt-Z / reload / strata changes).
+-    -- Skip when the unit is missing/out of range — question-mark fallback owns that camera.
++    -- Skip when the unit is missing/out of range â€” question-mark fallback owns that camera.
+     model:SetScript("OnShow", function(self)
+         local u = self._fluxPortraitUnit or frame.unit
+         BindPortraitUnit(self, u)
+@@ -3988,7 +3988,7 @@
+ 
+     SchedulePortraitCameraRefresh(model)
+ 
+-    -- Flat portrait (2D) — same geometry as the PlayerModel; toggled in Unit frames → General → Features.
++    -- Flat portrait (2D) â€” same geometry as the PlayerModel; toggled in Unit frames â†’ General â†’ Features.
+     -- Classic: CreateTexture(name, layer, subLevel) is not supported; the 3rd arg is a template name ("7" errors).
+     local tex2d = portraitFrame:CreateTexture(nil, "ARTWORK")
+     if tex2d.SetIgnoreParentAlpha then tex2d:SetIgnoreParentAlpha(false) end
+@@ -4228,7 +4228,7 @@
+     self.Portrait:Show()
+ end
+ 
+---- Resize the PlayerModel to match PortraitFrame (CreatePortrait uses frameHeight − 4 for content).
++--- Resize the PlayerModel to match PortraitFrame (CreatePortrait uses frameHeight âˆ’ 4 for content).
+ --- Call after layout / UI scale so 3D portraits do not stay at stale pixel size.
+ function UF.SyncPortraitModelGeometry(self)
+     if not self or not self.Portrait or not self.PortraitFrame then return end
+@@ -4770,7 +4770,7 @@
+ 
+ -- ---------------------------------------------------------------------------
+ -- Mouseover highlight: ButtonHilight-Square + ADD (same asset as spec click).
+--- Unit frames are large vs the tiny spec hit — higher default alpha so the glow reads clearly.
++-- Unit frames are large vs the tiny spec hit â€” higher default alpha so the glow reads clearly.
+ -- Optional: inset.alpha, r/g/b, vertexColor, blendMode, texture.
+ -- ---------------------------------------------------------------------------
+ local MOUSEOVER_HILITE_TEXTURE = "Interface\\Buttons\\ButtonHilight-Square"
+@@ -4799,7 +4799,7 @@
+     end
+ end
+ 
+---- @param hostFrame Region — outer border shell or full unit button
++--- @param hostFrame Region â€” outer border shell or full unit button
+ --- @param inset number|table|nil uniform padding, or { left, top, right, bottom, outH?, outV?, texture?, blendMode?, alpha?, r?, g?, b? } or { vertexColor = {r,g,b} }
+ --- @param frameLevelOffset number|nil added to host:GetFrameLevel() (default 3; use 1 inside outerBorderFrame)
+ --- @return Frame clip root (hidden until mouseover); texture fills clip (stretches with frame)
+@@ -4896,6 +4896,70 @@
+     return false
+ end
+ 
++local function PvpValueIsSecret(value)
++    return ns.API and ns.API.IsSecretValue and ns.API.IsSecretValue(value)
++        or issecretvalue and issecretvalue(value)
++end
++
++-- Full native player badge, shared by player/target/focus and normal party.
++-- Keep it out of the compact role/leader chain; level text draws above it.
++function UF.CreatePvpBadge(frame)
++    local outer = frame.outerBorderFrame
++    local icon = outer:CreateTexture(nil, "ARTWORK", nil, 2)
++    icon:SetSize(64, 64); icon:Hide()
++    local portrait = outer:CreateTexture(nil, "ARTWORK", nil, 2)
++    portrait:SetSize(50, 52); portrait:Hide()
++    local badge = outer:CreateTexture(nil, "ARTWORK", nil, 3)
++    badge:SetSize(30, 30); badge:Hide()
++    frame.pvpIcon = icon
++    frame._fluxPvpPrestigePortrait, frame._fluxPvpPrestigeBadge = portrait, badge
++    frame._fluxPvpElements = {pvpIcon=icon, prestigePortrait=portrait, prestigeBadge=badge}
++end
++
++function UF.UpdatePvpBadge(frame, layoutOnly)
++    local icon, level = frame.pvpIcon, frame.levelText
++    if not icon or not level then return end
++    -- Native-size art stays behind the level; text remains on the raised layer.
++    icon:ClearAllPoints(); icon:SetPoint("TOP", level, "TOP", 0, 4)
++    icon:SetDrawLayer("ARTWORK", 2)
++    local portrait, badge = frame._fluxPvpPrestigePortrait, frame._fluxPvpPrestigeBadge
++    if portrait then portrait:ClearAllPoints(); portrait:SetPoint("TOP", level, "TOP", 0, 4) end
++    if badge then badge:ClearAllPoints(); badge:SetPoint("CENTER", portrait, "CENTER", 0, 0) end
++    if frame.pvpTimer then
++        frame.pvpTimer:ClearAllPoints(); frame.pvpTimer:SetPoint("TOP", level, "BOTTOM", 0, -2)
++        -- Only the existing player driver can supply a real countdown.
++        if frame.unit ~= "player" then frame.pvpTimer:Hide() end
++    end
++    if layoutOnly then return end
++    local function hide()
++        icon:Hide(); if portrait then portrait:Hide() end; if badge then badge:Hide() end
++    end
++    if frame.unit == "targettarget" or frame.unit == "focustarget" or frame.unit == "pet"
++        or (FluxUnitFrames_ShouldShowPvp and not FluxUnitFrames_ShouldShowPvp(frame.unit)) then
++        hide(); if frame.pvpTimer then frame.pvpTimer:Hide() end; return
++    end
++    if UnitFrameUtil and UnitFrameUtil.UpdateUnitPvPIndicator and frame._fluxPvpElements then
++        UnitFrameUtil.UpdateUnitPvPIndicator(frame._fluxPvpElements, frame.unit, frame.unit == "player")
++        return
++    end
++    if portrait then portrait:Hide() end; if badge then badge:Hide() end
++    local ffa = UnitIsPVPFreeForAll and UnitIsPVPFreeForAll(frame.unit)
++    local pvp = UnitIsPVP and UnitIsPVP(frame.unit)
++    local faction = UnitFactionGroup and UnitFactionGroup(frame.unit)
++    if PvpValueIsSecret(ffa) or PvpValueIsSecret(pvp) or PvpValueIsSecret(faction) then hide(); return end
++    local kind = ffa and "FFA" or pvp and (faction == "Alliance" or faction == "Horde") and faction
++    if not kind then hide(); return end
++    local client = ns.Flux and ns.Flux.Client
++    local modern = client and (client.isRetail or client.isLiveMidnight or client.isForever)
++    local atlas = "UI-HUD-UnitFrame-Player-PVP-" .. kind .. "Icon"
++    local info = modern and C_Texture and C_Texture.GetAtlasInfo and C_Texture.GetAtlasInfo(atlas)
++    icon:SetTexCoord(0, 1, 0, 1)
++    if info and icon.SetAtlas then icon:SetAtlas(atlas, true)
++    else icon:SetTexture("Interface\\TargetingFrame\\UI-PVP-" .. kind); icon:SetSize(64, 64) end
++    icon:Show()
++end
++
++
+ function UF.CreateOuterBorder(frame)
+     -- Create the most outer border frame with background backdrop (needs to be SecureUnitButton for click handling)
+     local preview = frame._fluxPartyPreview
+@@ -5022,14 +5086,9 @@
+     raidIcon:Hide() -- Hidden by default
+     frame.raidIcon = raidIcon
+ 
+-    -- Create PvP/WarMode indicator (below name-strip text so labels stay readable)
+-    local pvpIcon = outerBorderFrame:CreateTexture(nil, "ARTWORK", nil, 2)
+-    pvpIcon:SetSize(20, 20) -- Initial size, will be updated to outerBorderPadding
+-    pvpIcon:SetAlpha(0.9)
+-    pvpIcon:Hide() -- Hidden by default
+-    frame.pvpIcon = pvpIcon
+-
+-    -- Group status icons (leader / assistant / MT / MA / master looter) — opposite metadata corner
++    UF.CreatePvpBadge(frame)
++
++    -- Group status icons (leader / assistant / MT / MA / master looter) â€” opposite metadata corner
+     local function CreateStatusIcon(texturePath, atlas)
+         local tex = outerBorderFrame:CreateTexture(nil, "ARTWORK", nil, 2)
+         tex:SetSize(16, 16)
+@@ -5550,8 +5609,8 @@
+     return nil
+ end
+ 
+---- Progressive NPC metadata: level+rarity+type → level+rarity → level only.
+---- Players: level only. Returns variants, isPlayer, level — or nil.
++--- Progressive NPC metadata: level+rarity+type â†’ level+rarity â†’ level only.
++--- Players: level only. Returns variants, isPlayer, level â€” or nil.
+ local function GetNpcLevelMetaVariants(self)
+     if not self or not self.unit then return nil end
+     if self.unit == "pet" or self.unit == "targettarget" or self.unit == "focustarget" then
+@@ -5992,8 +6051,7 @@
+     pushStatus(self.mainAssistIcon)
+     pushStatus(self.masterLooterIcon)
+ 
+-    local hasPvp = self.pvpIcon and self.pvpIcon:IsShown()
+-    if not hasPvp and #statusChain == 0 then
++    if #statusChain == 0 then
+         self._fluxStatusClusterWidth = nil
+         self._fluxStatusIconsOnRight = nil
+         self._fluxStatusIconChainEnd = nil
+@@ -6009,7 +6067,6 @@
+     local width = SN(outer:GetWidth(), 0)
+     if width < 40 then width = GetOuterBorderContentWidth(self) end
+     local chain = {}
+-    if hasPvp then chain[#chain + 1] = self.pvpIcon end
+     for i = 1, #statusChain do chain[#chain + 1] = statusChain[i] end
+     local count = #chain
+     local rows = count > 2 and 2 or 1
+@@ -6113,9 +6170,7 @@
+             sidePad = sidePad + SN(self.specIcon:GetWidth(), 0)
+         end
+     end
+-    if self.pvpIcon and self.pvpIcon:IsShown() then
+-        sidePad = sidePad + SN(self.pvpIcon:GetWidth(), 0) + 8
+-    end
++
+     local maxWidth = math.max(24, w - sidePad)
+     local maxSize, minSize = 12, 8
+     -- Placement-2 ToT line shares the target strip; keep it smaller than the unit name.
+@@ -6688,37 +6743,11 @@
+         end
+     end
+ 
+-    -- Update PvP/WarMode icon + group status icons (leader / assist / MT / MA / ML)
+-    -- Laid out opposite the level/type corner so they never cover mob metadata.
+-    if self.pvpIcon then
+-        if self.unit == "targettarget" or self.unit == "focustarget" or self.unit == "pet"
+-            or (FluxUnitFrames_ShouldShowPvp and not FluxUnitFrames_ShouldShowPvp(self.unit)) then
+-            self.pvpIcon:Hide()
+-            if self.pvpTimer then self.pvpTimer:Hide() end
+-            HideNameStripStatusIcons(self)
+-        else
+-            local faction = UnitFactionGroup(self.unit)
+-            if UnitIsPVPFreeForAll(self.unit) then
+-                UF.SetIndicatorArt(self.pvpIcon, "UI-HUD-UnitFrame-Player-PVP-FFAIcon", "Interface\\TargetingFrame\\UI-PVP-FFA")
+-                self.pvpIcon:Show()
+-                if self.pvpTimer then self.pvpTimer:Hide() end
+-            elseif faction and faction ~= "Neutral" and UnitIsPVP(self.unit) then
+-                UF.SetIndicatorArt(self.pvpIcon, "UI-HUD-UnitFrame-Player-PVP-" .. faction .. "Icon", "Interface\\TargetingFrame\\UI-PVP-" .. faction)
+-                self.pvpIcon:Show()
+-                if self.pvpTimer then
+-                    self.pvpTimer:ClearAllPoints()
+-                    self.pvpTimer:SetPoint("CENTER", self.pvpIcon, "CENTER", 0, 0)
+-                end
+-            else
+-                self.pvpIcon:Hide()
+-            end
+-            LayoutNameStripStatusAndPvpIcons(self, outerBorderPadding)
+-        end
+-    elseif self.leaderIcon then
+-        LayoutNameStripStatusAndPvpIcons(self, outerBorderPadding)
+-    end
+-
+-    -- Update group text for players (raid group number) — after status icons so anchors stay clear
++    -- Native badge is behind the level; only group roles use the compact chain.
++    if self.pvpIcon then UF.UpdatePvpBadge(self) end
++    if self.leaderIcon then LayoutNameStripStatusAndPvpIcons(self, outerBorderPadding) end
++
++    -- Update group text for players (raid group number) â€” after status icons so anchors stay clear
+     if self.groupText then
+         local isPlayerUnit = UnitIsPlayer(self.unit)
+         local isPlayerSelf = UnitIsUnit(self.unit, "player")
+@@ -6851,7 +6880,7 @@
+             -- Blizzard paired a non-mana secondary for this primary (e.g. Traveler)
+             return false
+         end
+-        -- nil: fall through — do not hide Druid cat/bear mana
++        -- nil: fall through â€” do not hide Druid cat/bear mana
+     end
+ 
+     local maxMana = API.SafeUnitPowerMax(unit, 0)
+@@ -7118,17 +7147,17 @@
+ end
+ 
+ -- ---------------------------------------------------------------------------
+--- Threat Bar (target / focus) — portrait overlay or strip between chrome & auras
++-- Threat Bar (target / focus) â€” portrait overlay or strip between chrome & auras
+ -- ---------------------------------------------------------------------------
+ -- Between / vertical strip height.
+ local THREAT_BAR_HEIGHT = 32
+ -- Portrait overlay: thinner meter (no Flux border chrome).
+ local THREAT_BAR_PORTRAIT_HEIGHT = 16
+--- Match cast-bar flush: ns.Border pad 2 on both sides → 4px overlap so chrome meets with no visual gap.
++-- Match cast-bar flush: ns.Border pad 2 on both sides â†’ 4px overlap so chrome meets with no visual gap.
+ local THREAT_OUTER_OVERLAP = 4
+ local THREAT_EMPTY_R, THREAT_EMPTY_G, THREAT_EMPTY_B = 0.25, 0.25, 0.25
+ 
+--- Helper function to get threat color based on percentage (green→yellow→red)
++-- Helper function to get threat color based on percentage (greenâ†’yellowâ†’red)
+ local function GetThreatColor(percent)
+     local ThreatAPI = ns.Flux and ns.Flux.Threat
+     if ThreatAPI and ThreatAPI.GetPercentColor then
+@@ -7143,13 +7172,13 @@
+     local r, g, b
+     
+     if percent <= 50 then
+-        -- 0-50%: Green (0,1,0) → Yellow (1,1,0)
++        -- 0-50%: Green (0,1,0) â†’ Yellow (1,1,0)
+         local factor = percent / 50
+         r = factor
+         g = 1
+         b = 0
+     else
+-        -- 50-100%: Yellow (1,1,0) → Red (1,0,0)
++        -- 50-100%: Yellow (1,1,0) â†’ Red (1,0,0)
+         local factor = (percent - 50) / 50
+         r = 1
+         g = 1 - factor
+@@ -7266,7 +7295,7 @@
+ end
+ 
+ --- Portrait + vertical side strips respect visibility (always / group / never).
+---- Legacy: threatBarGroupOnly false → always; unset/true → group.
++--- Legacy: threatBarGroupOnly false â†’ always; unset/true â†’ group.
+ local function GetThreatBarVisibilityMode()
+     local db = FluxOptions and FluxOptions.GetUnitFrameDB and FluxOptions:GetUnitFrameDB()
+     local v = db and db.threatBarVisibility
+@@ -7336,7 +7365,7 @@
+     return true
+ end
+ 
+---- Yellow→red glow color from threat %; nil below start threshold. Tanking / rank #1 → full red.
++--- Yellowâ†’red glow color from threat %; nil below start threshold. Tanking / rank #1 â†’ full red.
+ local function ThreatBarGlowColor(percent, isTanking, rank)
+     if isTanking or rank == 1 then
+         return { 1, 0, 0, 1 }
+@@ -7351,7 +7380,7 @@
+     local t = (percent - THREAT_GLOW_START_PCT) / (100 - THREAT_GLOW_START_PCT)
+     if t < 0 then t = 0 end
+     if t > 1 then t = 1 end
+-    -- Yellow (1,1,0) → Red (1,0,0)
++    -- Yellow (1,1,0) â†’ Red (1,0,0)
+     return { 1, 1 - t, 0, 1 }
+ end
+ 
+@@ -7359,7 +7388,7 @@
+     if not color then
+         return 0
+     end
+-    -- Encode quantized g-channel (yellow→red) so small % jitter does not restart glow.
++    -- Encode quantized g-channel (yellowâ†’red) so small % jitter does not restart glow.
+     local g = color[2] or 0
+     return 1 + math.floor((1 - g) * 100 / THREAT_GLOW_BAND + 0.5)
+ end
+@@ -7440,7 +7469,7 @@
+     ThreatBarRaiseGlowAboveBorder(shell)
+ end
+ 
+---- Same side as auras (focus / side-by-side target → above; classic target → below).
++--- Same side as auras (focus / side-by-side target â†’ above; classic target â†’ below).
+ local function ThreatBarAurasAboveUnit(frame)
+     if not frame then
+         return false
+@@ -7922,7 +7951,7 @@
+     if not reserved then
+         UF.SyncBigDebuffsFrameLevelForUnitFrame(frame)
+     end
+-    -- Portrait / between / vertical: yellow→red glow when high threat on enemy NPCs.
++    -- Portrait / between / vertical: yellowâ†’red glow when high threat on enemy NPCs.
+     -- Glow colors compare percents; skip when the value is secret.
+     if enemyNpc and type(fill) == "number" then
+         ThreatBarUpdateGlow(shell, ThreatBarGlowColor(fill, tankingNow, position))
+@@ -8082,7 +8111,7 @@
+     UF.UpdateHealthColor(self)
+ end
+ 
+--- HP / power / mana splitter textures (hosted on UIParent SeparatorContainer — combat-safe)
++-- HP / power / mana splitter textures (hosted on UIParent SeparatorContainer â€” combat-safe)
+ function UF.UpdateFramePartitionSeparators(self, hHeight, rHeight, padding, showAdditional, showMainPower)
+     if not self.HealthPowerSeparator and not self.PowerAdditionalSeparator then return end
+ 
+@@ -8114,8 +8143,8 @@
+     end
+ end
+ 
+--- Health bar height (pixels) for HP/power split — matches UpdateFramePartition when no additional power.
+--- unitForPartition: which unit’s saved split to use (e.g. "focus" for focus target-of-target metrics).
++-- Health bar height (pixels) for HP/power split â€” matches UpdateFramePartition when no additional power.
++-- unitForPartition: which unitâ€™s saved split to use (e.g. "focus" for focus target-of-target metrics).
+ function UF.GetFluxStylePartitionHealthHeight(totalFrameHeight, unitForPartition)
+     totalFrameHeight = totalFrameHeight or 50
+     unitForPartition = unitForPartition or "player"
+@@ -8310,7 +8339,7 @@
+ 
+     self.needsPartitionRelayout = false
+ 
+-    -- Position portrait if it exists (full layout — not allowed during combat lockdown)
++    -- Position portrait if it exists (full layout â€” not allowed during combat lockdown)
+     if hasPortrait then
+         self.PortraitFrame:ClearAllPoints()
+         UF.RecordFrameDimensions(self.PortraitFrame, portraitSize, portraitSize)
+@@ -8342,7 +8371,7 @@
+         self.Power:Hide()
+     end
+ 
+-    -- Apply Additional Power (UIParent child — full anchor refresh out of combat)
++    -- Apply Additional Power (UIParent child â€” full anchor refresh out of combat)
+     if self.AdditionalPower then
+         if showAdditional then
+             self.AdditionalPower:SetFrameStrata(self:GetFrameStrata())
+@@ -8370,7 +8399,7 @@
+ -- ---------------------------------------------------------------------------
+ -- Event Handling
+ -- ---------------------------------------------------------------------------
+--- UpdateOuterBorder does name fit, class/spec/PvP chrome — too expensive on every
++-- UpdateOuterBorder does name fit, class/spec/PvP chrome â€” too expensive on every
+ -- UNIT_POWER_* tick (energy, fragmenting mana, etc.). Rarer events still call it directly.
+ local OUTER_BORDER_POWER_HEALTH_THROTTLE = 0.25
+ 
+@@ -8519,7 +8548,7 @@
+         UF.UpdateHealth(self, self.unit)
+         TryThrottledUpdateOuterBorder(self)
+     elseif event == "UNIT_POWER_UPDATE" or event == "UNIT_MAXPOWER" or event == "UNIT_DISPLAYPOWER" then
+-        -- Druid form: DISPLAYPOWER + form both rebuild additional mana — coalesce partition.
++        -- Druid form: DISPLAYPOWER + form both rebuild additional mana â€” coalesce partition.
+         self._fluxPowerSpentEvent = (event == "UNIT_POWER_UPDATE")
+         if event == "UNIT_DISPLAYPOWER" and self.unit == "player" then
+             UF.UpdatePower(self, self.unit)
+@@ -8772,7 +8801,7 @@
+     if InCombatLockdown() then
+         return
+     end
+-    -- Side-by-side player+target (placement 2): keep focus at configured width — squeeze reads like the frame
++    -- Side-by-side player+target (placement 2): keep focus at configured width â€” squeeze reads like the frame
+     -- "shrinks" as its right edge meets the player stack; emulated bar squeeze still applies to other frames.
+     local mult = 1
+     local skipFocusSqueeze = frame.unit == "focus"

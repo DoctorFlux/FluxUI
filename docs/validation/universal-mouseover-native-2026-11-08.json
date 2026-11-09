@@ -1,0 +1,18 @@
+{
+  "utc": "2026-11-08T19:37:19.1104858Z",
+  "client": "Forever",
+  "executable": "F:\\World of Warcraft\\_forever_\\Wow.exe",
+  "fileVersion": "1.60.1.70862",
+  "loadedGetBuildInfo": "Not captured",
+  "running": true,
+  "exactProcessAndWindowVerified": true,
+  "foreground": true,
+  "captureOnly": true,
+  "inputSent": false,
+  "reload": false,
+  "foregroundOrClipboardControl": false,
+  "profilerOrSettingsWrites": false,
+  "scope": "Screenshot is prior loaded UI observation only, not candidate parity or secure-casting acceptance.",
+  "pending": "Real manual casts, protected execution, combat, taint/errors, badge/pixel parity and all client acceptance",
+  "blocker": "Background-only input guard; verified game window was foreground."
+}

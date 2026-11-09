@@ -1,0 +1,304 @@
+{
+  "changeID": "GROUP-VISIBILITY-FOCUS-ROW-RESTORE-20261107",
+  "requirements": [
+    "REQ-RF-82",
+    "REQ-RF-83",
+    "REQ-RF-84"
+  ],
+  "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\06\\01a1b0ac-547f-7972-8df9-fa26882e0e03\\focus-row-aura-live-20261107T171956Z\\checkpoint.json",
+  "after": {
+    "UnitFrames/FluxUnitFrames_Auras.lua": "2f29f8b96ed8774ab290e3d1450cbee92cd9a66265b82f475c0f144b4329b500",
+    "UnitFrames/FluxUnitFrames_AurasEngine.lua": "0ca0562f7260a265e62f5ade0250eb6cceb382f488ac1c637f0f3b31c58df6c4",
+    "UnitFrames/FluxUnitFrames_Shared.lua": "57300a94442154365bde9c40dd18d108c8b645ce94266871a6e3136d6807861a",
+    "RaidFrame/FluxRaidSecure.lua": "84dc259c2030d1cbefe87ea44b152ad87cda40856f0694fde650866e3c3d846d",
+    "tests/focus_aura_geometry.lua": "d96b26e2abfe69c463f882cef142b03499afd52bfb01006739642fb6dba2cef9",
+    "tests/raid_healer_secure.lua": "dbdcfd8dc31d18a0a35aac266655c053f316adb89ffb7ca289183d7c2c0174ef",
+    "tests/raid_party_frames.lua": "12925d10fd3cf68384798e746b7a9c3cc5e5c8c97fef2c6b548d79dbc1634e22",
+    "tests/unit_portrait_combat_restore.lua": "b21f12f9b885c43e6d19bc6401cd329e864cd157d73f84c8482b92f84dcc4339"
+  },
+  "sources": [
+    {
+      "client": "live",
+      "ref": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureStateDriver.lua",
+      "sha": "4861b5fd4a3249c97f1a2fea45a4c13833d5117c",
+      "contracts": [
+        "function RegisterStateDriver(frame, state, values)",
+        "function RegisterUnitWatch(frame, asState)",
+        "SecureStateDriverManager:RegisterEvent(\"GROUP_ROSTER_UPDATE\");"
+      ]
+    },
+    {
+      "client": "live",
+      "ref": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureGroupHeaders.lua",
+      "sha": "191bd3de98c6f68af2ec1c4e48c2cc6c88459381",
+      "contracts": [
+        "\tself:RegisterEvent(\"GROUP_ROSTER_UPDATE\");",
+        "\tif ( (event == \"GROUP_ROSTER_UPDATE\" or event == \"UNIT_NAME_UPDATE\") and self:IsVisible() ) then",
+        "\tif ( self:IsVisible() ) then",
+        "\tself:RegisterEvent(\"GROUP_ROSTER_UPDATE\");",
+        "\tif ( (event == \"GROUP_ROSTER_UPDATE\" or event == \"UNIT_NAME_UPDATE\" or event == \"UNIT_PET\") and self:IsVisible() ) then"
+      ]
+    },
+    {
+      "client": "forever",
+      "ref": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "path": "Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureStateDriver.lua",
+      "sha": "4861b5fd4a3249c97f1a2fea45a4c13833d5117c",
+      "contracts": [
+        "function RegisterStateDriver(frame, state, values)",
+        "function RegisterUnitWatch(frame, asState)",
+        "SecureStateDriverManager:RegisterEvent(\"GROUP_ROSTER_UPDATE\");"
+      ]
+    },
+    {
+      "client": "forever",
+      "ref": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "path": "Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureGroupHeaders.lua",
+      "sha": "191bd3de98c6f68af2ec1c4e48c2cc6c88459381",
+      "contracts": [
+        "\tself:RegisterEvent(\"GROUP_ROSTER_UPDATE\");",
+        "\tif ( (event == \"GROUP_ROSTER_UPDATE\" or event == \"UNIT_NAME_UPDATE\") and self:IsVisible() ) then",
+        "\tif ( self:IsVisible() ) then",
+        "\tself:RegisterEvent(\"GROUP_ROSTER_UPDATE\");",
+        "\tif ( (event == \"GROUP_ROSTER_UPDATE\" or event == \"UNIT_NAME_UPDATE\" or event == \"UNIT_PET\") and self:IsVisible() ) then"
+      ]
+    },
+    {
+      "client": "classic",
+      "ref": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureStateDriver.lua",
+      "sha": "4861b5fd4a3249c97f1a2fea45a4c13833d5117c",
+      "contracts": [
+        "function RegisterStateDriver(frame, state, values)",
+        "function RegisterUnitWatch(frame, asState)",
+        "SecureStateDriverManager:RegisterEvent(\"GROUP_ROSTER_UPDATE\");"
+      ]
+    },
+    {
+      "client": "classic",
+      "ref": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureGroupHeaders.lua",
+      "sha": "c753e1b06e1d42ef271cbb880ff19174e2904061",
+      "contracts": [
+        "\tself:RegisterEvent(\"GROUP_ROSTER_UPDATE\");",
+        "\tif ( (event == \"GROUP_ROSTER_UPDATE\" or event == \"UNIT_NAME_UPDATE\") and self:IsVisible() ) then",
+        "\tif ( self:IsVisible() ) then",
+        "\tself:RegisterEvent(\"GROUP_ROSTER_UPDATE\");",
+        "\tif ( (event == \"GROUP_ROSTER_UPDATE\" or event == \"UNIT_NAME_UPDATE\" or event == \"UNIT_PET\") and self:IsVisible() ) then"
+      ]
+    },
+    {
+      "client": "classic_era",
+      "ref": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "path": "Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureStateDriver.lua",
+      "sha": "4861b5fd4a3249c97f1a2fea45a4c13833d5117c",
+      "contracts": [
+        "function RegisterStateDriver(frame, state, values)",
+        "function RegisterUnitWatch(frame, asState)",
+        "SecureStateDriverManager:RegisterEvent(\"GROUP_ROSTER_UPDATE\");"
+      ]
+    },
+    {
+      "client": "classic_era",
+      "ref": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "path": "Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureGroupHeaders.lua",
+      "sha": "c753e1b06e1d42ef271cbb880ff19174e2904061",
+      "contracts": [
+        "\tself:RegisterEvent(\"GROUP_ROSTER_UPDATE\");",
+        "\tif ( (event == \"GROUP_ROSTER_UPDATE\" or event == \"UNIT_NAME_UPDATE\") and self:IsVisible() ) then",
+        "\tif ( self:IsVisible() ) then",
+        "\tself:RegisterEvent(\"GROUP_ROSTER_UPDATE\");",
+        "\tif ( (event == \"GROUP_ROSTER_UPDATE\" or event == \"UNIT_NAME_UPDATE\" or event == \"UNIT_PET\") and self:IsVisible() ) then"
+      ]
+    },
+    {
+      "client": "classic_anniversary",
+      "ref": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "path": "Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureStateDriver.lua",
+      "sha": "8e210c10fe046a264cba54e04f7458d995f8ad6a",
+      "contracts": [
+        "function RegisterStateDriver(frame, state, values)\r",
+        "function RegisterUnitWatch(frame, asState)\r",
+        "SecureStateDriverManager:RegisterEvent(\"GROUP_ROSTER_UPDATE\");\r"
+      ]
+    },
+    {
+      "client": "classic_anniversary",
+      "ref": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "path": "Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureGroupHeaders.lua",
+      "sha": "607ecda673094bfc303535564e54cfcfb34706fe",
+      "contracts": [
+        "\tself:RegisterEvent(\"GROUP_ROSTER_UPDATE\");\r",
+        "\tif ( (event == \"GROUP_ROSTER_UPDATE\" or event == \"UNIT_NAME_UPDATE\") and self:IsVisible() ) then\r",
+        "\tif ( self:IsVisible() ) then\r",
+        "\tself:RegisterEvent(\"GROUP_ROSTER_UPDATE\");\r",
+        "\tif ( (event == \"GROUP_ROSTER_UPDATE\" or event == \"UNIT_NAME_UPDATE\" or event == \"UNIT_PET\") and self:IsVisible() ) then\r"
+      ]
+    },
+    {
+      "client": "live",
+      "ref": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_UnitFrame/Shared/PartyMemberFrame.lua",
+      "sha": "774b865f41d35655ac1ba5499b7674aec9ce71bf",
+      "contracts": []
+    },
+    {
+      "client": "live",
+      "ref": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_UnitFrame/Shared/PartyFrame.lua",
+      "sha": "a65eec85863ddec18ef5ec77a09220e644ff2df3",
+      "contracts": [
+        "\tself:RegisterEvent(\"GROUP_ROSTER_UPDATE\");",
+        "\tif event == \"GROUP_ROSTER_UPDATE\" then"
+      ]
+    },
+    {
+      "client": "live",
+      "ref": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_UnitFrame/Mainline/TargetFrame.lua",
+      "sha": "206fb36c4b91f2e29f7a64c2e7b2caf05f3e2897",
+      "contracts": [
+        "\tself:RegisterEvent(\"GROUP_ROSTER_UPDATE\");",
+        "\tSecureUnitButton_OnLoad(self, self.unit, menuFunc);",
+        "\telseif (event == \"GROUP_ROSTER_UPDATE\") then",
+        "\tSecureUnitButton_OnLoad(frame, unit);"
+      ]
+    },
+    {
+      "client": "forever",
+      "ref": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "path": "Interface/AddOns/Blizzard_UnitFrame/Shared/PartyMemberFrame.lua",
+      "sha": "774b865f41d35655ac1ba5499b7674aec9ce71bf",
+      "contracts": []
+    },
+    {
+      "client": "forever",
+      "ref": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "path": "Interface/AddOns/Blizzard_UnitFrame/Shared/PartyFrame.lua",
+      "sha": "b078671ad21c5bd4d4c6991ba1b4021f41c6df87",
+      "contracts": [
+        "\tself:RegisterEvent(\"GROUP_ROSTER_UPDATE\");",
+        "\tif event == \"GROUP_ROSTER_UPDATE\" then"
+      ]
+    },
+    {
+      "client": "forever",
+      "ref": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "path": "Interface/AddOns/Blizzard_UnitFrame/Mainline/TargetFrame.lua",
+      "sha": "9132e790f0e354a9bec81093bf3b20c434c0f6eb",
+      "contracts": [
+        "\tself:RegisterEvent(\"GROUP_ROSTER_UPDATE\");",
+        "\tSecureUnitButton_OnLoad(self, self.unit, menuFunc);",
+        "\telseif (event == \"GROUP_ROSTER_UPDATE\") then",
+        "\tSecureUnitButton_OnLoad(frame, unit);"
+      ]
+    },
+    {
+      "client": "classic",
+      "ref": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_UnitFrame/Shared/PartyMemberFrame.lua",
+      "sha": "774b865f41d35655ac1ba5499b7674aec9ce71bf",
+      "contracts": []
+    },
+    {
+      "client": "classic",
+      "ref": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_UnitFrame/Shared/PartyFrame.lua",
+      "sha": "a65eec85863ddec18ef5ec77a09220e644ff2df3",
+      "contracts": [
+        "\tself:RegisterEvent(\"GROUP_ROSTER_UPDATE\");",
+        "\tif event == \"GROUP_ROSTER_UPDATE\" then"
+      ]
+    },
+    {
+      "client": "forever",
+      "ref": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "path": "Interface/AddOns/Blizzard_UnitFrame/Mainline/PartyMemberFrame.lua",
+      "sha": "c72c0ccfa839dc2df4fb761649dc2f93e0b7a2cf",
+      "contracts": [
+        "\tself:RegisterEvent(\"GROUP_ROSTER_UPDATE\");",
+        "\tSecureUnitButton_OnLoad(self, self.unitToken, OpenContextMenu);",
+        "\tUnitPowerBarAlt_Initialize(self.PowerBarAlt, self.unitToken, 0.5, \"GROUP_ROSTER_UPDATE\");",
+        "\telseif event == \"GROUP_ROSTER_UPDATE\" or event == \"UPDATE_ACTIVE_BATTLEFIELD\" then",
+        "\tSecureUnitButton_OnLoad(self, self.unitToken);"
+      ]
+    },
+    {
+      "client": "classic",
+      "ref": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_UnitFrame/Classic/TargetFrame.lua",
+      "sha": "54796314e5c9835f057a9d6928f988970df18a1f",
+      "contracts": [
+        "\tself:RegisterEvent(\"GROUP_ROSTER_UPDATE\");",
+        "\tSecureUnitButton_OnLoad(self, self.unit, menuFunc);",
+        "\telseif ( event == \"GROUP_ROSTER_UPDATE\" ) then",
+        "\tSecureUnitButton_OnLoad(frame, unit);"
+      ]
+    },
+    {
+      "client": "forever",
+      "ref": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "path": "Interface/AddOns/Blizzard_UnitFrame/Shared/UnitFrame.lua",
+      "sha": "5aa326d93c532d866558226e50da9e583a873e21",
+      "contracts": []
+    }
+  ],
+  "userEvidence": "User screenshot retained externally as user-before.png; loaded source version is not established by that image. User explicitly selects whole focus row including right target strip and requests more auras per row.",
+  "implementation": [
+    "Focus aura halves include configured vertical focustarget slot width; right half extends to target edge; no UnitExists/secret visibility input selects width",
+    "Shared anchor helper attaches compact focus panels directly to header in both initial/re-enable and relayout paths; legacy target/threat placement preserved",
+    "Compact focus packing uses full panel width and compensates cursor origin; native AuraContainer zero horizontal padding/full maximum line size agrees with Lua wrap/fit",
+    "Existing independent target-equivalent icon/caption offsets preserved; native placement updates when offsets change, cached and deferred during combat",
+    "Native secure group headers/state manager queried at21 exact source identities across5 pins; their group event/header visibility and trusted Show/Hide behavior traced",
+    "Existing preallocation and native unit visibility retained; secure header show also reveals prepared parent; normal party gets one enabled-lifetime native group state driver on existing hub to reveal its prepared parent",
+    "Normal portrait branch hides red solid plate before Party.PaintChrome restores class/accent backdrop; applies to party and compact focus, including unit combat ending while player remains locked"
+  ],
+  "sourceBoundary": "Blizzard trusted PartyFrame/TargetFrame callbacks can Show/Hide protected native frames directly. Addon behavior uses exposed secure state/group mechanisms prepared OOC; no ordinary addon combat Show/Hide or pool allocation. SecureGroupHeader_OnEvent requires effectively visible header, so an unrevealed ancestor blocks it.",
+  "tests": {
+    "focusAuraGeometry": 1011,
+    "partyFocus": 995,
+    "nativeSecureModels": 255908,
+    "precreation": 1160,
+    "portraitRestore": 66,
+    "binding": 310,
+    "restrictedContracts": 78,
+    "wholeScale": 47,
+    "timerPolicy": 36,
+    "scriptsPass": 235,
+    "scriptsFail": 0,
+    "syntaxFiles": 899,
+    "syntaxFailures": [],
+    "ownedManifestDrift": [],
+    "negativeControls": [
+      "Checkpoint secure party implementation rejects hidden-parent reveal assertion",
+      "Checkpoint portrait code rejects removal of red plate after unit leaves combat"
+    ]
+  },
+  "preservedIndependentChanges": "Current GetAuraContentOffsets/caption translations and first-create/re-enable/native engine tests were retained and extended; unrelated ExtraButtonSystem/consumable/source changes left intact.",
+  "resources": "Existing frames/textures reused. One additional native partygroup driver on existing secure hub; removed when party style disabled. No new addon timer/ticker/global hook. Native aura offset/corner/scale writes cached; no FPS/CPU claim.",
+  "nativePending": "Actual current in-game aura spacing/whole-row width, real group joins/leaves/regrouping during combat, native taint/input/secret execution and CPU/FPS. No foreground/game input/WTF/profiler writes.",
+  "copies": [
+    {
+      "client": "_retail_",
+      "mismatches": []
+    },
+    {
+      "client": "_forever_",
+      "mismatches": []
+    },
+    {
+      "client": "_classic_",
+      "mismatches": []
+    },
+    {
+      "client": "_classic_era_",
+      "mismatches": []
+    },
+    {
+      "client": "_anniversary_",
+      "mismatches": []
+    }
+  ]
+}

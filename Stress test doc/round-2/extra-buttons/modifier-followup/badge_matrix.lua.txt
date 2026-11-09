@@ -1,0 +1,115 @@
+-- Complete current BadgeHost/Action/Paint + Modifier with the existing native
+-- mixed-face parser/frame fixture. Badge creation/rendering are boundary models.
+local function read(p)local f=assert(io.open(p,"rb"));local s=f:read("*a"):gsub("\r\n","\n");f:close();return s end
+local fixture=read("tests/utility_mixed_faces.lua")
+fixture=fixture:sub(1,assert(fixture:find("    local function verify(map, expected)",1,true))-1)
+local extra=[=[
+    local priorCheck=check;check=function(v,msg)priorCheck(v,msg);assert(v,msg)end
+    local noop=function()end
+    env.HasAction=function()return true end
+    local rows={main={slot=1,row="main",widget={}},sec={slot=61,row="sec",widget={}},tert={slot=25,row="tert",widget={}}}
+    for _,h in pairs(rows)do h.widget._fluxHost=h end
+    local bars={NUM_COLUMNS=1,GetHost=function()return rows end,Hosts={LiveSlot=function(h)return h.slot end},
+        State={GetSecondarySlot=function()return 61 end,GetTertiarySlot=function()return 25 end,
+            GetMainSlot=function(_,p)return(p==0 or p==1)and 1 or p*12+1 end},
+        ForEachHost=function(fn)for _,h in pairs(rows)do fn(h)end end}
+    flux.Bars=bars
+    local created,sets,iconPaints,countPaints,cooldownPaints=0,0,0,0,0
+    local factory={}
+    function factory.New()
+        created=created+1
+        local widget={alpha=0,attrs={}}
+        function widget:SetAlpha(v)self.alpha=v end
+        function widget:GetAlpha()return self.alpha end
+        function widget:IsShown()return true end
+        local badge={Widget=widget,kind="badge",_fluxIsActionBarBadge=true}
+        widget.FluxButton=badge
+        badge.WIcon={SetTexture=function(_,v)badge.icon=v end,GetTexture=function()return badge.icon end,SetTexCoord=noop,Show=noop,Hide=noop,SetDesaturated=noop,SetVertexColor=noop}
+        badge.WCount={SetText=function(_,v)badge.count=v end,Show=noop,Hide=noop}
+        badge.WCooldown={ClearAllPoints=noop,SetPoint=noop}
+        function badge:SetAction(kind,id)
+            check(not s.combat,"badge SetAction must stay outside combat")
+            sets=sets+1;self.ActionType,self.ActionValue,self.MacroBody=kind,id,kind=="macrotext"and id or nil
+            self.MacroMode,self.MacroAction=nil,nil
+            if kind=="spell"then self.SpellId=id;self.ItemId=nil elseif kind=="item"then self.ItemId=id;self.SpellId=nil end
+        end
+        function badge:TranslateMacro()action.TranslateMacro(self)end
+        function badge:UpdateCooldown()paint.UpdateCooldown(self)end
+        function badge:UpdateUsable()paint.UpdateUsable(self)end
+        return badge
+    end
+    factory.Layout=function(badge,host)badge.Widget._fluxBadgeHost=host end
+    factory.ShowVisual=function(badge)badge.Widget._fluxBadgeCombatVisHidden=nil;badge.Widget:SetAlpha(.75)end
+    factory.HideVisual=function(badge)badge.Widget._fluxBadgeCombatVisHidden=true;badge.Widget:SetAlpha(0)end
+    factory.ApplyVisualSpellTexture=function(badge,id)badge.WIcon:SetTexture(1000+id)end
+    flux.EBS.Badge=factory;flux.EBS.badges={}
+    flux.ButtonFX.Charges.Apply=function(widget,data)widget._lastBadgeCD=data;cooldownPaints=cooldownPaints+1 end
+    local originalIcon,originalCount=paint.UpdateIcon,paint.UpdateCount
+    paint.UpdateIcon=function(...)iconPaints=iconPaints+1;return originalIcon(...)end
+    paint.UpdateCount=function(...)countPaints=countPaints+1;return originalCount(...)end
+    assert(loadfile("Bars/BadgeHost.lua","t",env))("_FluxUI",ns)
+    local host=bars.BadgeHost
+    flux.Timer={Defer=function(fn)s.timers[#s.timers+1]=fn end}
+    local order={"","SHIFT","CTRL","ALT","SHIFT-CTRL","SHIFT-ALT","CTRL-ALT","SHIFT-CTRL-ALT"}
+    local choices={{type="spell",id=101},{type="item",id=201},{type="spell",id=102},{type="item",id=202},
+        {type="item",id=201},{type="spell",id=102},{type="spell",id=101},{type="item",id=202}}
+    local body="#showtooltip\n/use [mod:shift,mod:ctrl,mod:alt] item:202; [mod:shift,mod:ctrl,nomod:alt] item:201; [mod:shift,mod:alt,nomod:ctrl] Spell102; [mod:ctrl,mod:alt,nomod:shift] Spell101; [mod:shift,nomod:ctrl,nomod:alt] item:201; [mod:ctrl,nomod:shift,nomod:alt] Spell102; [mod:alt,nomod:shift,nomod:ctrl] item:202; Spell101"
+    local want={key="all-chord-reverse",conditionalMacro=true,macrotext=body,spellId=101}
+    host.SetSlotBadges(1,{want})
+    check(created==9,"three row stacks precreated outside combat")
+    env.FluxModifierTracker.Register("audit.badges",function()
+        local shift=env.IsShiftKeyDown()
+        rows.main.slot,rows.sec.slot=shift and 61 or 1,shift and 1 or 61
+        host.NotifyModifierPaging();host.RefreshDisplays()
+    end)
+    local frameBase=#s.frames;local edges,deliveries=0,0
+    local function edge(chord)s.mod=chord;edges=edges+1;bus.scripts.OnEvent(bus,"MODIFIER_STATE_CHANGED")end
+    local function settle(chord)
+        if bus.scripts.OnUpdate then bus.scripts.OnUpdate(bus,0)end
+        for step=1,4 do if #s.timers==0 then break end;runTimers()end
+        deliveries=deliveries+1
+        local index=1;for i,c in ipairs(order)do if chord==c then index=i end end
+        local expected=choices[index]
+        local live=env.IsShiftKeyDown()and rows.sec or rows.main
+        local dead=live==rows.main and rows.sec or rows.main
+        local list=host.GetVisibleBadgesForButton(live.widget)
+        check(list and #list==1,"one reverse badge follows final modifier row")
+        local b=list[1]
+        check(b.MacroMode==expected.type and(expected.type=="spell"and b.SpellId or b.ItemId)==expected.id,"badge conditional parse exact final face "..chord)
+        check(b.icon==(expected.type=="spell"and 1000 or 2000)+expected.id,"badge icon follows parsed spell/item")
+        local expectedCount=expected.id==101 and"12"or expected.id==102 and"2"or expected.id==201 and"8"or"3"
+        check(b.count==expectedCount,"badge count leaves no previous spell/item digit")
+        check(b.Widget._lastBadgeCD and b.Widget._lastBadgeCD.duration==(expected.type=="spell"and 30 or 60),"badge cooldown follows current face")
+        check(not b.Widget._fluxBadgeCombatVisHidden and b.Widget.alpha==.75,"active corner has no stale parked visibility")
+        check(host.GetVisibleBadgesForButton(dead.widget)==nil,"old row has no stale visible badge")
+        check(created==9 and #s.frames==frameBase,"modifier changes allocate no badge/frame")
+        check(bus.scripts.OnUpdate==nil and #s.timers==0,"all badge visibility/face work settles")
+    end
+    local sequences={{"SHIFT",""},{"CTRL",""},{"ALT",""},{"SHIFT","SHIFT-CTRL","CTRL",""},{"CTRL","SHIFT-CTRL","SHIFT",""},
+        {"SHIFT","SHIFT-ALT","ALT",""},{"ALT","SHIFT-ALT","SHIFT",""},{"CTRL","CTRL-ALT","ALT",""},{"ALT","CTRL-ALT","CTRL",""},
+        {"SHIFT","SHIFT-CTRL","SHIFT-CTRL-ALT","CTRL-ALT","ALT",""},{"ALT","CTRL-ALT","SHIFT-CTRL-ALT","SHIFT-CTRL","SHIFT",""}}
+    -- First activate the dormant secondary row while locked: only its visual
+    -- face may be published, with no protected SetAction.
+    local coldSets=sets;s.combat=true;edge("SHIFT");settle("SHIFT");edge("");settle("")
+    check(sets==coldSets,"first dormant-row activation in combat does not prepare a native action")
+    s.combat=false
+    -- Give each already-created row its first public action preparation OOC;
+    -- subsequent modifier work must not rebuild that unchanged macro body.
+    for _,chord in ipairs(order)do edge(chord);settle(chord)end;edge("");settle("")
+    local initialSets=sets
+    for _,combat in ipairs({false,true})do s.combat=combat
+        for cycle=1,20 do
+            for _,seq in ipairs(sequences)do for _,chord in ipairs(seq)do edge(chord);settle(chord);edge(chord);settle(chord)end end
+            for _,seq in ipairs(sequences)do for _,chord in ipairs(seq)do edge(chord)end end;settle("")
+        end
+    end
+    s.combat=false;host.ClearSlot(1)
+    check(not host.HasAny()and host.GetVisibleBadgesForButton(rows.main.widget)==nil,"clearing assignment hides old corners")
+    host.SetSlotBadges(1,{want});edge("");settle("")
+    check(created==9,"re-enable reuses every precreated badge")
+    check(sets==initialSets,"stable conditional macro never rebuilds native badge actions")
+    print(string.format("METRIC badge %s edges=%d deliveredFrames=%d badgesCreatedAtSetup=%d runtimeBadgesCreated=0 runtimeFramesCreated=0 setActionCallsAfterSetup=%d iconPaints=%d countPaints=%d cooldownPaints=%d pendingTimers=%d",family,edges,deliveries,created,sets-initialSets,iconPaints,countPaints,cooldownPaints,#s.timers))
+end
+print(string.format("SUMMARY badge checks=%d failures=%d clients=5",checks,failures));assert(failures==0)
+]=]
+assert(load(fixture..extra,"@current-badge-fixture-matrix","t",_G))()

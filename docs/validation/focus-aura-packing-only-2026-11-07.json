@@ -1,0 +1,54 @@
+{
+  "changeID": "FOCUS-AURA-PACKING-ONLY-20261107",
+  "requirement": "REQ-RF-85",
+  "supersedes": "REQ-RF-82 target-inclusive aura width only; latest explicit user instruction says keep original panel width and fit more per row.",
+  "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\06\\01a1b0ac-547f-7972-8df9-fa26882e0e03\\focus-aura-packing-only-20261107T174337Z\\checkpoint.json",
+  "after": {
+    "UnitFrames/FluxUnitFrames_Auras.lua": "d03b919981a07726e32d2577d8fd172d9ab6d4dafe16fbd6f816eaf613278d6a",
+    "tests/focus_aura_geometry.lua": "60721866e95e6afffc3a90a5694eefe90677faada5d416233203e93164a3fd9a"
+  },
+  "sourceIdentityRecord": "docs/validation/group-visibility-focus-row-restore-2026-11-07.json (same pinned API contracts; no new API)",
+  "implementation": [
+    "Remove target-strip width addition and right anchor extension; delete now-unused GetCompactFocusTargetWidth helper",
+    "Keep native/Lua full-width packing, existing icon size/spacing/timer/filter controls and header anchor",
+    "Aura panels cover focus body/portrait only; focus-target option does not alter their width",
+    "Secure group combat reveal and portrait backdrop restore remain intact"
+  ],
+  "tests": {
+    "focusAuraGeometry": 1011,
+    "partyFocus": 995,
+    "portraitRestore": 66,
+    "scaleAnchor": 47,
+    "timerPolicy": 36,
+    "scriptsPass": 235,
+    "scriptsFail": 0,
+    "syntaxFiles": 899,
+    "syntaxFailures": [],
+    "ownedManifestDrift": []
+  },
+  "resources": "No new frames/textures/events/hooks/timers/tickers or settings writes. Target geometry lookup/helper removed; no performance claim.",
+  "nativePending": "Current in-game visual acceptance unverified; desktop source/layout checks only.",
+  "recovery": "Fresh external source/history checkpoint and45 settings metadata entries verified read-only; prior complete recovery retained; no foreground/game/WTF/profiler actions.",
+  "copies": [
+    {
+      "client": "_retail_",
+      "mismatches": []
+    },
+    {
+      "client": "_forever_",
+      "mismatches": []
+    },
+    {
+      "client": "_classic_",
+      "mismatches": []
+    },
+    {
+      "client": "_classic_era_",
+      "mismatches": []
+    },
+    {
+      "client": "_anniversary_",
+      "mismatches": []
+    }
+  ]
+}

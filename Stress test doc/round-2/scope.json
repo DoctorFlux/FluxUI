@@ -1,0 +1,136 @@
+{
+  "classifiedSources": 929,
+  "reachableSources": 599,
+  "missingLoadReferences": [],
+  "moduleGroups": 30,
+  "classificationCounts": {
+    "development harness": 30,
+    "active": 501,
+    "inactive source": 268,
+    "active compatibility": 33,
+    "bundled library": 97
+  },
+  "scope": "Whole source/load screening plus explicit domain review; not whole-client or branch emulation",
+  "savedVariables": [
+    {
+      "name": "FluxUI_DB",
+      "scope": "account",
+      "line": 7
+    },
+    {
+      "name": "FluxUI_Options",
+      "scope": "account",
+      "line": 7
+    },
+    {
+      "name": "FluxNonCombatGridDB",
+      "scope": "account",
+      "line": 7
+    },
+    {
+      "name": "FluxFlyoutFavorites_Data",
+      "scope": "account",
+      "line": 7
+    },
+    {
+      "name": "FluxUIGoldLedger",
+      "scope": "account",
+      "line": 7
+    },
+    {
+      "name": "FluxSalvageDB",
+      "scope": "account",
+      "line": 7
+    },
+    {
+      "name": "FluxInvDB",
+      "scope": "account",
+      "line": 7
+    },
+    {
+      "name": "FluxUIInventoryDB",
+      "scope": "account",
+      "line": 7
+    },
+    {
+      "name": "FluxPerfCaptureDB",
+      "scope": "account",
+      "line": 7
+    },
+    {
+      "name": "FluxMailDB",
+      "scope": "account",
+      "line": 7
+    },
+    {
+      "name": "_FluxUI_CharSavedVars",
+      "scope": "character",
+      "line": 8
+    },
+    {
+      "name": "FluxSpellBookSlotsDB",
+      "scope": "character",
+      "line": 8
+    },
+    {
+      "name": "FluxNCUtilitySlotsDB",
+      "scope": "character",
+      "line": 8
+    },
+    {
+      "name": "FluxSpellBindingProfilesDB",
+      "scope": "character",
+      "line": 8
+    },
+    {
+      "name": "FluxSpellDirectBindDB",
+      "scope": "character",
+      "line": 8
+    },
+    {
+      "name": "FluxSpellProfileBindingsDB",
+      "scope": "character",
+      "line": 8
+    },
+    {
+      "name": "FluxBindingProfilesPerStateDB",
+      "scope": "character",
+      "line": 8
+    },
+    {
+      "name": "FluxBindingDBv2",
+      "scope": "character",
+      "line": 8
+    },
+    {
+      "name": "FluxBindingDB3",
+      "scope": "character",
+      "line": 8
+    },
+    {
+      "name": "FluxTradeSkillScannerDB",
+      "scope": "character",
+      "line": 8
+    },
+    {
+      "name": "TrinketMenuOptions",
+      "scope": "character",
+      "line": 8
+    },
+    {
+      "name": "TrinketMenuPerOptions",
+      "scope": "character",
+      "line": 8
+    },
+    {
+      "name": "TrinketMenuQueue",
+      "scope": "character",
+      "line": 8
+    },
+    {
+      "name": "FluxNCFlyoutCharDB",
+      "scope": "character",
+      "line": 8
+    }
+  ]
+}

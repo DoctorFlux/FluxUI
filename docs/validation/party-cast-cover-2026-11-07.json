@@ -1,0 +1,113 @@
+{
+  "changeID": "PARTY-CAST-COVER-20261107",
+  "requirement": "REQ-RF-71",
+  "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\06\\01a1b0ac-547f-7972-8df9-fa26882e0e03\\party-cast-overlay-20261107T103523Z\\checkpoint.json",
+  "existingRecovery": "Raid-rewrite-20261107T082357Z external source/history/settings retained; no live writes",
+  "after": {
+    "UnitFrames/FluxUnitFrames_Party.lua": "1a1addeffe52779beec32739e32036686fb0dec6cb78496b9be493ae468cd2d4",
+    "AddonOptions/FluxOptionsRaidFrame.lua": "e35c9f3547b4953095a091bd509b8dea2586ff6a56ef95bea7212d7cf8a7f622",
+    "tests/raid_party_frames.lua": "09df4081456d8e6679742b56de377e0961ce21d39e2b6a97aaa768a9aabb35d1"
+  },
+  "implementation": [
+    "Player cast art/icon/height retained; shared layout followed by prepared party-header anchors; shell raised to owner+110 above name+70/indicators+80",
+    "Visible cast conceals name/level alpha; prior public alpha restored on hide/disable; metadata repaint reasserts coverage",
+    "OnShow/OnHide adjust text alpha only; no new show/hide geometry changes; existing OOC option/size layout positions overlay",
+    "Existing partyShowCastBar key retained; full-width Show party cast bars toggle; disable hides active bar; enable refreshes current cast using existing RefreshCastForUnit"
+  ],
+  "tests": {
+    "party": 840,
+    "bindings": 310,
+    "timer": 379,
+    "markers": 2730,
+    "whole": "220/220 scripts PASS; 883 syntax files/0 failures.",
+    "corpusDrift": [],
+    "failures": [],
+    "fivePairs": [
+      {
+        "before": {
+          "exit": 1,
+          "wallSeconds": 0.07013349999760976,
+          "output": "lua: ...party-cast-overlay-20261107T103523Z\\baseline_harness.lua:16: party raises shared cast art over name70/metadata80 layers\nstack traceback:\n\t[C]: in function 'assert'\n\t...party-cast-overlay-20261107T103523Z\\baseline_harness.lua:16: in local 'check'\n\t...party-cast-overlay-20261107T103523Z\\baseline_harness.lua:185: in main chunk\n\t[C]: in ?\n"
+        },
+        "after": {
+          "exit": 0,
+          "wallSeconds": 0.15300150000257418,
+          "output": "Party player-style frames: 840 checks; five pinned secure handler models, combat roster/pet/anchor transitions; native visuals/input pending\n"
+        }
+      },
+      {
+        "after": {
+          "exit": 0,
+          "wallSeconds": 0.1427116000049864,
+          "output": "Party player-style frames: 840 checks; five pinned secure handler models, combat roster/pet/anchor transitions; native visuals/input pending\n"
+        },
+        "before": {
+          "exit": 1,
+          "wallSeconds": 0.031220400000165682,
+          "output": "lua: ...party-cast-overlay-20261107T103523Z\\baseline_harness.lua:16: party raises shared cast art over name70/metadata80 layers\nstack traceback:\n\t[C]: in function 'assert'\n\t...party-cast-overlay-20261107T103523Z\\baseline_harness.lua:16: in local 'check'\n\t...party-cast-overlay-20261107T103523Z\\baseline_harness.lua:185: in main chunk\n\t[C]: in ?\n"
+        }
+      },
+      {
+        "before": {
+          "exit": 1,
+          "wallSeconds": 0.030604400002630427,
+          "output": "lua: ...party-cast-overlay-20261107T103523Z\\baseline_harness.lua:16: party raises shared cast art over name70/metadata80 layers\nstack traceback:\n\t[C]: in function 'assert'\n\t...party-cast-overlay-20261107T103523Z\\baseline_harness.lua:16: in local 'check'\n\t...party-cast-overlay-20261107T103523Z\\baseline_harness.lua:185: in main chunk\n\t[C]: in ?\n"
+        },
+        "after": {
+          "exit": 0,
+          "wallSeconds": 0.14094959999783896,
+          "output": "Party player-style frames: 840 checks; five pinned secure handler models, combat roster/pet/anchor transitions; native visuals/input pending\n"
+        }
+      },
+      {
+        "after": {
+          "exit": 0,
+          "wallSeconds": 0.12941959999443498,
+          "output": "Party player-style frames: 840 checks; five pinned secure handler models, combat roster/pet/anchor transitions; native visuals/input pending\n"
+        },
+        "before": {
+          "exit": 1,
+          "wallSeconds": 0.02540469999803463,
+          "output": "lua: ...party-cast-overlay-20261107T103523Z\\baseline_harness.lua:16: party raises shared cast art over name70/metadata80 layers\nstack traceback:\n\t[C]: in function 'assert'\n\t...party-cast-overlay-20261107T103523Z\\baseline_harness.lua:16: in local 'check'\n\t...party-cast-overlay-20261107T103523Z\\baseline_harness.lua:185: in main chunk\n\t[C]: in ?\n"
+        }
+      },
+      {
+        "before": {
+          "exit": 1,
+          "wallSeconds": 0.02499379999790108,
+          "output": "lua: ...party-cast-overlay-20261107T103523Z\\baseline_harness.lua:16: party raises shared cast art over name70/metadata80 layers\nstack traceback:\n\t[C]: in function 'assert'\n\t...party-cast-overlay-20261107T103523Z\\baseline_harness.lua:16: in local 'check'\n\t...party-cast-overlay-20261107T103523Z\\baseline_harness.lua:185: in main chunk\n\t[C]: in ?\n"
+        },
+        "after": {
+          "exit": 0,
+          "wallSeconds": 0.12092940000002272,
+          "output": "Party player-style frames: 840 checks; five pinned secure handler models, combat roster/pet/anchor transitions; native visuals/input pending\n"
+        }
+      }
+    ]
+  },
+  "resources": "Four shared cast layout wrappers and Show/Hide coverage hooks; two cached label alphas/member; no new frame/event/timer/ticker/secure state condition; no native performance claim",
+  "nativePending": "In-game small-frame pixels, active cast toggle, combat/secret/taint/input/FPS on every client; desktop mocks do not certify native safety",
+  "relatedMarkerFix": "docs/validation/raid-marker-render-2026-11-07.json",
+  "copies": [
+    {
+      "client": "_retail_",
+      "mismatches": []
+    },
+    {
+      "client": "_forever_",
+      "mismatches": []
+    },
+    {
+      "client": "_classic_",
+      "mismatches": []
+    },
+    {
+      "client": "_classic_era_",
+      "mismatches": []
+    },
+    {
+      "client": "_anniversary_",
+      "mismatches": []
+    }
+  ]
+}

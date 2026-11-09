@@ -1,0 +1,6 @@
+METRIC live retained_snapshots=0 retained_frame_rows=0 timer_callbacks=40
+METRIC forever retained_snapshots=0 retained_frame_rows=0 timer_callbacks=40
+METRIC classic_era retained_snapshots=0 retained_frame_rows=0 timer_callbacks=40
+METRIC classic_anniversary retained_snapshots=0 retained_frame_rows=0 timer_callbacks=40
+METRIC classic retained_snapshots=0 retained_frame_rows=0 timer_callbacks=40
+Capture retention: 400 checks, 0 failures

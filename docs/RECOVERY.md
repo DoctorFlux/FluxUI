@@ -1,0 +1,324 @@
+# Recovery checkpoint 2026-10-29
+
+## Teleport checkpoint — 29 October 2026, 18:53 UTC / 19:53 Copenhagen
+
+External `Flyout-recovery-20261029T185326Z` in the current visualization workspace
+preserves HEAD `b45eb5ecd52472b54eefe0249707c972c45c8d2d`, tree
+`1325e1301dfe2b11f49fd4057ef75bee6fa344d1`. All 1,297 actual non-Git source files
+and 180 Retail on-disk WTF files have verified ZIP entries. Full Git refs/history
+bundle passes verification. Source SHA-256:
+`318b34efcdc39a82c1fce7df512c0b745cd701583b730831e477717bc8d4fd99`;
+settings `5a02c2abfd59c78c1db740f8e6983a283ba7cde5679b54796429fc0dbf808463`;
+history `e3063e0f3065ade5cd4f4f1ac210bb785ad6783971d5e00ffdadbf707eae2640`.
+On-disk state only; client closure/unsaved-state backup not claimed. Earlier
+checkpoints intact. No settings restored or modified.
+
+Before repository edits, the checkout was `main` at
+`7436820453d2248c84c99fff71507553efc47c19`, tree
+`6e3af8d646a09ce2182ffd6d2cc287890584825a`. Remote:
+`https://github.com/DoctorFlux/FluxUI.git`. There were no tracked modifications.
+`FluxUI_Sync_Log.txt` and the entire `new docs/` package were untracked.
+No repository contribution guidelines existed at the original checkpoint.
+
+Private recovery directory, outside every active addon folder:
+
+```text
+FluxUI-recovery-20261029T0910Z
+```
+
+| Artifact | Coverage | SHA-256 |
+|---|---|---|
+| `source.zip` | 1,177 actual files, 32,278,732 uncompressed bytes; includes all untracked/ignored files and assets, excludes only `.git` | `a8c275bad5d165833d4fe55ba00223aab200b8930ada0029539a706251a19f4c` |
+| `history.bundle` | All Git refs/history before branching; `git bundle verify` passed | `73631632a11ba0bdae516a5167c6330f9d925646820a38ecdd73c1886809587e` |
+| `settings-private.zip` | 403 accessible WTF files, 6,333,743 bytes across installed client directories | `19c36051db161b05c680e155a24e1738aad8d6bf5a1d18ce4403beec07fbad64` |
+
+Every ZIP entry was read back and compared to its SHA-256 manifest; source files
+were reread during capture to detect concurrent writes. Capture completed at
+2026-10-29 09:10:49 UTC. WoW process count was zero immediately before capture.
+Settings selection includes Flux, TrinketMenu, Baganator and Syndicator saved data,
+their backups, bindings/config caches and Config.wtf. It is not a whole-WTF backup.
+Private manifests and `checkpoint.json` remain beside the archives, outside Git.
+
+For recovery, close WoW, first archive any newer work, verify the hashes above,
+and inspect the per-file manifest. Restore selected files into this same `_FluxUI`
+folder. Restore settings to their recorded client-relative paths only if needed.
+Do not restore old WTF over newer settings without reviewing the change. Use the
+history bundle to recover Git history if necessary; ordinary rollback should use
+the change branch and the verified source archive. Do not extract a second active
+addon or overwrite the checkpoint. No recovery or settings reset was performed.
+
+`main` remains at the original SHA; development uses the current change branch.
+
+## Continuation checkpoint 09:32 UTC
+
+Before the second runtime batch, a new checkpoint preserved branch commit
+`201bc8382f9fa6b5d9906200e3331a4ad90c2f13`, tree
+`6976189ef0843924e081d89cd47c83001f8d150f`. The only untracked file was the original
+`FluxUI_Sync_Log.txt`. The first checkpoint remains intact.
+
+```text
+FluxUI-recovery-20261029T0932Z
+```
+
+| Artifact | Coverage | SHA-256 |
+|---|---|---|
+| `source.zip` | 1,202 actual files; 33,815,972 uncompressed bytes, including untracked/ignored files | `a04a1143ed95e27d5db1a99f70ea2cde9cc496af6ad1c1110154c431bf7cfef1` |
+| `history.bundle` | All current Git refs/history; bundle verification passed | `d40afdd3df99dfd2c950459087d8d3ae59fcb5268f77ac04a20b88fc3d39e954` |
+| `settings-private.zip` | 403 relevant WTF files; 6,333,742 uncompressed bytes | `e4edce07740b65a59a6077513a94a95f454559595043e56bd7a4053f61bb8e48` |
+
+Capture completed 2026-10-29 09:32:07 UTC after confirming zero WoW processes.
+Every ZIP entry and its original file were hash-verified again. The settings archive
+is a fresh snapshot; no private data was changed by this work or committed to Git.
+Use the same recovery precautions above and preserve newer work before any restore.
+
+## Mail completion checkpoint 09:41 UTC
+
+Before the separate outgoing-mail correction, checkpoint
+`FluxUI-recovery-20261029T094131Z` was created beside the earlier archives. It preserves
+commit `05e9f79160ac641f842f5aba8eabd21f1fe0c1fe`, tree
+`6e612fa6b27282f5e535b361f5cf93ac17d250ba`, and the actual uncommitted audit/evidence
+files and original sync log. No WoW process was running.
+
+| Artifact | Coverage | SHA-256 |
+|---|---|---|
+| `source.zip` | 1,212 files; 34,104,932 uncompressed bytes | `33964c2ec52c2d06a75e129b07368c73e57fcab1c60e110eda2c13a3eabb9c4d` |
+| `history.bundle` | All refs/history; verified | `62162606f8519ac6b2972e269db6641c043a14cb514e9ea0c1fe26419bd91765` |
+| `settings-private.zip` | 403 WTF files; 6,333,742 uncompressed bytes | `3414146ddf5e7849d5e0c149c323ee7353a7187a8c74ba576daa653ed882728d` |
+
+Capture and ZIP/hash verification completed 2026-10-29 09:41:35 UTC. ZIP archive
+hashes can differ across captures because entry timestamps differ; per-entry hash
+manifests identify file contents. Private archives/manifests remain outside Git.
+
+## Windows lifecycle checkpoint 10:07 UTC
+
+Before the current runtime batch, verified external checkpoint:
+
+```text
+FluxUI-recovery-20261029T100747Z
+```
+
+It preserves baseline commit `f1a3bc7488a904e075264794e080a00c8fceba23`, tree
+`8dbef40c11d122a47d238c0445e936d1894d28a8`, all actual ignored/untracked files and
+all Git history/refs. No WoW process was running. Capture completed 10:07:52 UTC.
+
+| Artifact | Coverage | SHA-256 |
+|---|---|---|
+| `source.zip` | 1,219 files; 34,412,547 uncompressed bytes | `0c31e5bed7902f2299cc4cb4dfd0f901e62220bc1c8b85254b7162224f67d9ff` |
+| `history.bundle` | All refs/history; verified | `5d83c0c28dc66191be8b99f1a2601d5ca0189f01be4a4fcf4cc4307e14338ab7` |
+| `settings-private.zip` | 403 WTF files; 6,333,742 uncompressed bytes | `17ef1b66c266895d92d6d2660aff50544d7b9e886ebc0cc1dffef29c9f95e8ba` |
+
+Every ZIP entry was reread and hash-verified against its source manifest. Private
+settings/manifests remain outside Git. All earlier archives remain intact. No
+restore/reset was performed; preserve newer work before any future recovery.
+
+## Editorial cleanup checkpoint 10:19 UTC
+
+External archive: `FluxUI-recovery-20261029T101942Z`. Absolute private paths are
+stored in its checkpoint metadata outside the addon. Baseline commit:
+`f57fc79b536d23a87666d751135304865571d738`, tree
+`9876bb52f688dba175d2b867be038aea0e5cfcb1`. WoW was closed.
+
+| Artifact | Coverage | SHA-256 |
+|---|---|---|
+| source.zip | 1,228 actual files; 34,672,776 bytes | `876d8a2fa9d71a37958b836e67f2ceec50925e52e4c696103bf3591cafb4d0c9` |
+| history.bundle | All refs/history; verified | `3cfc06ae442e2affe28e2e2edc881cb7b5c380ea41e7c650bb3ca029e53d8652` |
+| settings-private.zip | 403 files; 6,335,941 bytes | `8759f2dc598d33bf8df1b4fb2a5d4af93d9603b713f396c462635f1ed6c9d75b` |
+
+ZIP entries were reread and hash-verified. The checkpoint also retains the retired
+editor plans, prompts/templates, original Word plan, former handoff files, local
+backup trees and sync log as ordinary files under `retired/`. The current Markdown
+plan, specifications, tests and factual validation evidence remain in the repository.
+No addon identity, settings or Git history was reset or rewritten.
+
+## Merchant identity checkpoint 10:40 UTC
+
+External archive: `FluxUI-recovery-20261029T104042Z`. Capture completed 10:40:48 UTC
+with no WoW process running. Baseline commit `07b11ce66c1b9efd70752f70f15a8e3f88fa63eb`,
+tree `ddd388fb8c69d8650efb485f1d9b95d0512f7e3e`; working tree was clean.
+
+| Artifact | Coverage | SHA-256 |
+|---|---|---|
+| source.zip | 1,195 actual files; 33,267,050 bytes | `23811bd6d972ed30af758503190f81486769b344a39b3426f253fffae9a0f0b8` |
+| history.bundle | All refs/history; verified | `9d8928ddbf01a71868c89c2610647f1d30ddf367950506659811cb7489960d76` |
+| settings-private.zip | 403 files; 6,336,469 bytes | `1478525b853dafcb8a534653792e4ba79b04d1f1ee5bfcf95db39b6dd8a4f6ec` |
+
+All archive entries were reread and hash-verified against their source manifests.
+Absolute recovery locations/private manifests stay outside Git. Earlier checkpoints
+and their retired original files remain intact. No restore/settings reset occurred.
+
+## Merchant stock checkpoint 10:54 UTC
+
+External archive: `FluxUI-recovery-20261029T105442Z`. Capture completed 10:54:48 UTC
+with no WoW process running. Baseline `0d05acc3f56235d34dfa8dd699155a9e9f40147e`, tree
+`d482d14b17a63345ceaeea8ea2b5e6be1bed9f19`; working tree was clean.
+
+| Artifact | Coverage | SHA-256 |
+|---|---|---|
+| source.zip | 1,203 actual files; 33,648,387 bytes | `07a5407e755f8bbd217882f85cf4e146fc42b68a292db64aa1e6d53618ba7bba` |
+| history.bundle | All refs/history; verified | `378060052850cfbcc3cac75b62011e92ee28af4be7a2838b98d81a40c2297b39` |
+| settings-private.zip | 403 files; 6,336,469 bytes | `174647aa601a528f434b07938eb2c71c7a1cdf33b7451d7b51f2bd1ad912e85d` |
+
+All archive entries were reread and verified against source hashes. Private absolute
+locations/manifests remain outside Git; previous checkpoints/retired originals stay
+intact. No restore/settings reset was performed.
+
+## Vendor-open checkpoint 11:14 UTC
+
+External archive: `FluxUI-recovery-20261029T111401Z`. Capture completed 11:14:06 UTC
+with no WoW process running. Baseline `9e17e28310e14f571208c8ecddfa0e36ae616a13`, tree
+`69c039054c7d522a741ca6bb3a72682f1ca04b43`; working tree was clean.
+
+| Artifact | Coverage | SHA-256 |
+|---|---|---|
+| source.zip | 1,210 actual files; 34,039,922 bytes | `36d80551bc3df8b379f01bf62a06d25fc8d5a0b60368a2bb626fad867e48c62e` |
+| history.bundle | All refs/history; verified | `f48725c06b33d1875164ad4beb2bba539c4c93a44e07c691b58076cfc37b50bc` |
+| settings-private.zip | 403 files; 6,336,455 bytes | `717ccea2c1a4703f85bb07166c3ffbc3f3474b0dcd6ff958163dafc7ae7111bd` |
+
+Every archive entry was reread and verified against source hashes. Private absolute
+locations/manifests stay outside Git; earlier checkpoints/retired originals remain.
+No restore/settings reset occurred.
+
+## Chat anchor checkpoint 11:47 UTC / 12:47 Copenhagen
+
+External archive: `FluxUI-recovery-20261029T114702Z`. Capture completed 11:47:07 UTC
+with no WoW process running. Baseline `7465e36653a279e7276568eb2b90e147a6c38e93`, tree
+`1fadea2a65a083142392a018dedc0060673fee1d`; working tree was clean.
+
+| Artifact | Coverage | SHA-256 |
+|---|---|---|
+| source.zip | 1,218 actual files; 34,322,656 bytes | `8e9357aeb42208e01350752516dcc7fa910223b7675040339cb8657f5e00fde3` |
+| history.bundle | All refs/history; verified | `7b8a75eb390c845d47aa420d0fb85a2b6f67fda8073466f418ec18de832edae6` |
+| settings-private.zip | 403 files; 6,337,461 bytes | `a5d52b0b014717f320da57924f21eeb17bbb4af8884bea44114988aa17a78b5c` |
+
+Every ZIP entry was reread and verified against its source manifest; Git bundle
+verification passed. Private absolute paths/manifests remain outside Git. Earlier
+checkpoints/retired originals remain intact; no restore/settings reset occurred.
+
+## Vendor tier checkpoint 12:04 UTC / 13:04 Copenhagen
+
+External archive: `FluxUI-recovery-20261029T120439Z`. Capture completed 12:04:44 UTC
+with no WoW process running. Baseline `af5eee0d7a4c4693bf30124855a40a4c5e50981f`, tree
+`f5ab638b4c42a67f4b3f73e5e3fa4428b56022bc`; working tree was clean.
+
+| Artifact | Coverage | SHA-256 |
+|---|---|---|
+| source.zip | 1,225 actual files; 34,880,935 bytes | `12c58a1bd61c2079b8983073b1dd53b973ed012fa7f0bd6367a1b11109c00105` |
+| history.bundle | All refs/history; verified | `a72dd979e0d5088e697535c6d8b80f3783b3609d14f64319abbcf0f52a36ce28` |
+| settings-private.zip | 403 files; 6,337,116 bytes | `8ac77cbf363537cbad948f03c3f802f1b34019f597dcc54ac9252008c0f88446` |
+
+ZIP entries were reread and hash-verified against source manifests; bundle
+verification passed. Private manifests/absolute paths stay outside Git. Earlier
+checkpoints remain; no restore or settings/profiling reset was performed.
+
+## Tier count checkpoint 12:35 UTC / 13:35 Copenhagen
+
+External archive: `FluxUI-recovery-20261029T123516Z`. Capture completed
+12:35:23.862522 UTC. Baseline `d3bce5baa01d8dff2aa6372de27afe1680da7b31`, tree
+`c9a97bf07e7b267925d3b63bc8a827ea8ad99ebc`; working tree was clean.
+
+| Artifact | Coverage | SHA-256 |
+|---|---|---|
+| source.zip | 1,234 actual files; 35,187,983 bytes | `f1b5c179f4917429fa656c784ffc085064388ae171951cc420b5779de253898d` |
+| history.bundle | All refs/history; verified | `34f6785cf40bcc7b39da483c2ad673a9c9f3d85eac8a7dbe11105c219783a47f` |
+| settings-private.zip | 403 files; 6,337,145 bytes | `f03306c21cd77715d9223a98955a002abde173459b3b22fb5aae0aca5fe58f15` |
+
+All ZIP entries were reread/hash-verified and bundle verification passed. Both Era
+and Retail were running: the settings snapshot preserves on-disk WTF only, not
+unsaved in-memory state. This limitation supersedes the initial sandbox process
+visibility observation for this checkpoint; it is not a closed-client backup.
+Original automation/profiler values were recorded separately in the native test.
+Private settings, raw exports, account paths and chat screenshots stay outside Git.
+All prior checkpoints/retired originals remain intact. No restore or reset occurred.
+
+
+## Objective tracker checkpoint 14:15 UTC / 15:15 Copenhagen
+
+Before tracker edits, `tracker-checkpoint-20261029T141542Z` in the current external
+visualization workspace preserves baseline e1132d0948906acef72be9e4c28dff60a5736931.
+All 1,244 non-Git source files were archived and every ZIP entry SHA-256 verified;
+all refs/history were bundled and git bundle verify passed. The private manifest
+records each source hash and baseline identity. No settings changes or fresh WTF
+snapshot were needed for this source-only correction. Existing checkpoints remain.
+
+## Retail audit checkpoint 14:39 UTC / 15:39 Copenhagen
+
+External `Retail-audit-recovery-20261029T143824Z` completed 14:39:06.047547 UTC.
+HEAD e1132d0948906acef72be9e4c28dff60a5736931, tree
+f0950ad82840e76ba076d791ae53d78393666e5e, plus the existing uncommitted tracker
+source/test/docs. All actual files and private settings are included.
+
+| Artifact | Coverage | SHA-256 |
+|---|---|---|
+| source.zip | 1,246 files; 35,820,060 bytes | `fcc345a42d493ad607d69f2df8b6efd956c118664c3e7c2f7d04fd1454c21bad` |
+| history.bundle | all refs/history; verified | `93ef1f2f35a94e0b77d12f5d7c95e73ae337136dfdc003bd1e9a6913902dd7a5` |
+| settings-private.zip | 403 files; 6,337,808 bytes | `430e23ec4df6599a75a51fa0a656b11fcb39fc74139b080bf92d178d9288e3e0` |
+
+Every ZIP entry/hash and bundle verified. Retail was running; Era was not found.
+WTF is an on-disk snapshot, not unsaved in-memory state. Private account settings,
+raw exports and chat screenshots remain outside Git. Existing tracker changes are
+preserved; no restore or reset occurred.
+
+## Chat alignment checkpoint15:32 UTC /16:32 Copenhagen
+
+External `Chat-alignment-recovery-20261029T153201Z`, completed15:32:10.729819 UTC,
+covers HEAD30464782f39a435c3b402048387a1a47ac0acb0c/tree
+df72b2c48996012c89257a42352271738d2a981c plus all pending tracker/audit work.
+
+| Artifact | Coverage | SHA-256 |
+|---|---|---|
+| source.zip | 1,263 actual files;36,965,016 bytes | `1990f076ce8c8fcc6dfacfac14e2ae137ea57db0e49d39b342870b94213eed13` |
+| history.bundle | all refs; verified | `5faeaaa25a811f712cda922c8e868b25dfb649849890a8e292ab294b41c58e76` |
+| settings-private.zip |403 files;6,509,629 bytes | `4b285e2b1c5d09b26debb31c3294bd7d466b042c6cda1f245e4b49b6db6f4d7a` |
+
+ZIP contents/hashes and bundle verified. Retail remained running: on-disk WTF only,
+not unsaved state. Private account data/reference/screenshots stay outside Git.
+Tracker source/test preserved; no settings/profile reset or restore.
+
+## 29 October 2026, 16:20 UTC / 17:20 Copenhagen - nameplate batch
+
+External `Nameplate-audit-recovery-20261029T162035Z` captures HEAD `38ea267`
+(tree `ba965afc85d31707b8db6ef5a0b9328e30dbeac1`) plus all pending/untracked files.
+1,271 source files /37,298,235 bytes,403 relevant on-disk WTF files /6,337,870 bytes;
+all entries and the full Git history bundle verify. Source ZIP SHA-256
+`b6e106842ba7af4c364252e05128c310ffb2d444630ce6470fd447a13167e5a6`;
+settings ZIP `37205433f158455429fb36790a58313ce4c7a72eda73cacedf45ba938652c27a`;
+history `488f0274d690dcebfd04e94ccff64709726b694e688f2dd7ac6cb00b5fcd4d36`.
+Game process state was not independently checked at checkpoint creation; Retail
+was confirmed running for subsequent tests. On-disk settings exclude unsaved
+in-memory changes. No archives/private settings are placed in the repository.
+
+## 29 October 2026,17:01 UTC /18:01 Copenhagen - action/aura batch
+
+External `Bars-auras-recovery-20261029T170131Z` captures HEAD `bda2d8a` /tree
+`4bace2ae6aacfdeba5e40332ebd7e7aa57658f26` plus every pending/untracked actual file.
+1,284 source files /37,888,979 bytes;404 on-disk settings files /6,339,879 bytes.
+All entries and history verify. Source SHA-256
+`df6c395848fa00138f222985207864a2183f4cd5bad90d0e19dda15f76b2780f`;
+settings `21aeec558c0e564909322985ea5a6107bbb393fe0ed73eade0a6c82ecefc4959`;
+history `38fa9ae2c8f6dc0f4bad7db113f3cbe4f976ca2693c6ec167de38d42dda3c2d0`.
+Retail/Era and user sync were running; this is on-disk state, not unsaved in-memory
+settings. No private exports/archives enter Git. Era's pre-existing diagnostic root
+is separately retained and restored exactly after native tests.
+
+## 29 October2026,18:39 UTC /19:39 Copenhagen - publication
+
+Verified external `Publish-recovery-20261029T183933Z` covers HEAD `da8d836`, all
+1,295 actual files including pending tracker work, full history and404 on-disk
+settings files. Source38,830,792 bytes;settings6,336,124 bytes. Source ZIP SHA-256
+`aa5a5c570bd72bae11adcd0e5a2dc536935598fda0bed5968bf7ac1e2a8d11ac`;
+settings `c594fd581478400f2005840f73423ea4e5c2cac4bfa3a276106ae8e4bc54501c`;
+history `3344c2fc28b8aad8221ad6be7c95c34617af06a29018b00482ebcb121403ae19`.
+Entries/bundle verify. Clients/sync left untouched; unsaved native state excluded.
+No private archive or account export is committed. Main publication now authorized.
+
+## 29 October2026,19:14 UTC /20:14 Copenhagen - main-only cleanup
+
+External `Main-only-recovery-20261029T191346Z` captures main at b45eb5e and every
+current local change, including teleport source/test/docs. Verified1,302 actual
+files /39,310,869 bytes;404 on-disk settings files /6,336,174 bytes and full history.
+Source ZIP SHA `cd0efe60d25291476223af5f022a230ef08ced34e199863831984a64f716b26a`;
+settings `f929b478203a2c4bac5e79149471e35baa40082184272dcde24eddce7fc5d72d`;
+history `46e5661f881b085d48b2509257ca02d93276430e9ad636a359b7a1fd2b1791f6`.
+Private archives remain outside AddOns/Git; live unsaved settings not captured.
+No client or sync interaction. User authorizes publishing the complete local
+snapshot to main only; the removed branch had no unique commits.

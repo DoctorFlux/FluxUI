@@ -1,0 +1,50 @@
+{
+  "scope": "Fresh primary generated contracts; native runtime operation not exercised",
+  "contracts": [
+    {
+      "target": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "version": "12.1.5.70783",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/UITimerDocumentation.lua",
+      "blob": "8aff5217b9b1e4c97cfad2489e669ce561f05123",
+      "source": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_APIDocumentationGenerated/UITimerDocumentation.lua",
+      "afterReturns": "No Returns declaration",
+      "afterHandle": "No cancellation handle; returning nil must not serve as pending flag",
+      "newTimer": "Returns a timer/callback object"
+    },
+    {
+      "target": "forever",
+      "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "version": "1.60.1.70862",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/UITimerDocumentation.lua",
+      "blob": "8aff5217b9b1e4c97cfad2489e669ce561f05123",
+      "source": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_APIDocumentationGenerated/UITimerDocumentation.lua",
+      "afterReturns": "No Returns declaration",
+      "afterHandle": "No cancellation handle; returning nil must not serve as pending flag",
+      "newTimer": "Returns a timer/callback object"
+    },
+    {
+      "target": "classic_era",
+      "commit": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "version": "1.15.9.70576",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/UITimerDocumentation.lua",
+      "blob": "f0eaae39f4cb6c87046bfb022feb1005fd9a8ae2",
+      "source": "https://github.com/Gethe/wow-ui-source/blob/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_APIDocumentationGenerated/UITimerDocumentation.lua",
+      "afterReturns": "No Returns declaration",
+      "afterHandle": "No cancellation handle; returning nil must not serve as pending flag",
+      "newTimer": "Returns a timer/callback object"
+    },
+    {
+      "target": "classic_anniversary",
+      "commit": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "version": "2.5.6.70577",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/UITimerDocumentation.lua",
+      "blob": "f0eaae39f4cb6c87046bfb022feb1005fd9a8ae2",
+      "source": "https://github.com/Gethe/wow-ui-source/blob/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_APIDocumentationGenerated/UITimerDocumentation.lua",
+      "afterReturns": "No Returns declaration",
+      "afterHandle": "No cancellation handle; returning nil must not serve as pending flag",
+      "newTimer": "Returns a timer/callback object"
+    }
+  ]
+}
+

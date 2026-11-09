@@ -1,0 +1,58 @@
+-- Exact current helpers + complete portrait/threat layering consumers. Opaque
+-- arithmetic traps establish a conditional contract failure, not native reach.
+local file=assert(io.open("UnitFrames/FluxUnitFrames_Shared.lua","rb"));local source=file:read("*a"):gsub("\r\n","\n");file:close()
+local function cut(a,b)local p=assert(source:find(a,1,true),a);return source:sub(p,assert(source:find(b,p+#a,true),b)-1)end
+local checks=0;local function check(v,why)checks=checks+1;assert(v,why)end
+local function boot()
+    local s={traps=0,unitCombat=false,sets=0};local function denied()s.traps=s.traps+1;error("OPAQUE_FRAME_LEVEL_ARITHMETIC")end
+    s.opaque=setmetatable({},{__add=denied,__sub=denied,__lt=denied,__le=denied})
+    local uf={};local api={IsSecretValue=function(v)return v==s.opaque end,CanAccessValue=function()return true end,
+        SafeBooleanTest=function(v,d)return type(v)=="boolean"and v or d end}
+    local e=setmetatable({},{__index=_G});e._G=e
+    e.InCombatLockdown=function()return false end;e.UnitExists=function()return true end;e.UnitAffectingCombat=function()return s.unitCombat end
+    local function noop()end
+    local ns={UnitFrames=uf,API=api,Border={SetBorderColor=noop,SetBackdropColor=noop,SetClassColor=noop}}
+    local chunk="local _,ns=...;local UF,API=ns.UnitFrames,ns.API\n"
+        ..cut("local function ValueIsSecret(value)","local function PlayerDeadOrGhost(unit)")
+        ..cut("local function SafeBooleanTest(value, default)","local function SafeCompareGUID(guid1, guid2)")
+        ..cut("local PORTRAIT_COMBAT_BORDER_R","function UF.UpdateBorderColors(self)")
+        ..cut("local function ThreatBarRaiseGlowAboveBorder(shell)","local function RetireLegacyThreatOverlay(overlay)")
+        .."\nreturn ThreatBarRaiseGlowAboveBorder"
+    local raise=assert(load(chunk,"@production-frame-level-consumers","t",e))("_FluxUI",ns)
+    local function region(level)
+        return {level=level,GetFrameLevel=function(self)return self.level end,SetFrameLevel=function(self,v)self.level=v;s.sets=s.sets+1 end,
+            Hide=noop,Show=noop,SetVertexColor=noop}
+    end
+    local pf=region(41);pf.FluxBorderFrame=region(51);pf.bg=region(0)
+    local root=region(40);root.unit="player";root.PortraitFrame=pf;root.outerBorderFrame={FluxBorderFrame=region(60)}
+    local shell=region(40);shell.FluxBorderFrame=region(50);shell._fluxThreatButtonGlow=region(0);shell.TextFrame=region(0)
+    s.uf,s.raise,s.root,s.shell,s.region=uf,raise,root,shell,region;return s
+end
+do
+    local s=boot();s.unitCombat=true;s.uf.UpdatePortraitCombatTint(s.root)
+    check(s.root.PortraitFrame.FluxBorderFrame.level==62,"public combat portrait layering preserves original outer+2")
+    s.unitCombat=false;s.uf.UpdatePortraitCombatTint(s.root)
+    check(s.root.PortraitFrame.FluxBorderFrame.level==51,"public normal portrait restores portrait+10")
+    s.root.PortraitFrame.level=s.opaque
+    local ok,err=pcall(s.uf.UpdatePortraitCombatTint,s.root)
+    check(not ok and tostring(err):find("OPAQUE_FRAME_LEVEL_ARITHMETIC",1,true),"normal portrait inspects conditional secret native frame level")
+    local before=s.traps;s.uf.SetFrameLevelIfChanged(s.root.PortraitFrame.FluxBorderFrame,s.opaque)
+    check(s.traps==before,"already-fixed setter cannot guard arithmetic in its callers")
+    s.unitCombat=true;s.root.outerBorderFrame.FluxBorderFrame.level=s.opaque
+    check(not pcall(s.uf.UpdatePortraitCombatTint,s.root),"combat tint outer-border reader has same conditional failure")
+    s.root.outerBorderFrame=nil;s.root.level=s.opaque
+    check(not pcall(s.uf.UpdatePortraitCombatTint,s.root),"combat tint root fallback reader also inspects opaque level")
+    check(s.traps==3,"three distinct active portrait reader cases hit opaque arithmetic")
+    print("OBSERVATION|R2-DOM-04|portrait_public_controls=PASS|normal_opaque_denial=1|combat_outer_opaque_denial=1|combat_root_opaque_denial=1|guarded_setter_opaque_operations=0")
+end
+do
+    local s=boot();s.raise(s.shell)
+    check(s.shell._fluxThreatButtonGlow.level==55 and s.shell.TextFrame.level==60,"public private threat glow layering remains border+5/text+10")
+    s.shell.FluxBorderFrame.level=s.opaque
+    check(not pcall(s.raise,s.shell),"private threat glow raising inspects conditional secret border level")
+    s.shell.FluxBorderFrame=nil;s.shell.level=s.opaque
+    check(not pcall(s.raise,s.shell),"private threat root fallback also inspects conditional secret level")
+    check(s.traps==2,"two active threat native-reader cases hit opaque arithmetic")
+    print("OBSERVATION|R2-DOM-04|threat_public_control=PASS|border_opaque_denial=1|root_opaque_denial=1|native_reachability=NOT_OBSERVED")
+end
+print("CHECKS|"..checks)

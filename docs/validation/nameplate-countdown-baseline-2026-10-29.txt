@@ -1,0 +1,41 @@
+METRIC era_lifecycle font_reads=400 region_reads=200 level_reads=900 label_writes=300 anchors=300 frames=5
+METRIC era_modern_startup font_reads=200 region_reads=0 level_reads=300 label_writes=100 anchors=100 frames=102
+FAIL era modern one font-region lookup per visible aura per poll
+FAIL era no per-aura temporary frame-level tables
+METRIC era_modern font_reads=20000 region_reads=0 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=1016.062500 cpu_seconds=0.042000
+METRIC era_legacy_startup font_reads=0 region_reads=200 level_reads=300 label_writes=100 anchors=100 frames=102
+FAIL era legacy one font-region lookup per visible aura per poll
+METRIC era_legacy font_reads=0 region_reads=20000 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=3046.937500 cpu_seconds=0.037000
+METRIC anniversary_lifecycle font_reads=400 region_reads=200 level_reads=900 label_writes=300 anchors=300 frames=5
+METRIC anniversary_modern_startup font_reads=200 region_reads=0 level_reads=300 label_writes=100 anchors=100 frames=102
+FAIL anniversary modern one font-region lookup per visible aura per poll
+FAIL anniversary no per-aura temporary frame-level tables
+METRIC anniversary_modern font_reads=20000 region_reads=0 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=1015.687500 cpu_seconds=0.036000
+METRIC anniversary_legacy_startup font_reads=0 region_reads=200 level_reads=300 label_writes=100 anchors=100 frames=102
+FAIL anniversary legacy one font-region lookup per visible aura per poll
+METRIC anniversary_legacy font_reads=0 region_reads=20000 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=3046.937500 cpu_seconds=0.041000
+METRIC progression_lifecycle font_reads=400 region_reads=200 level_reads=900 label_writes=300 anchors=300 frames=5
+METRIC progression_modern_startup font_reads=200 region_reads=0 level_reads=300 label_writes=100 anchors=100 frames=102
+FAIL progression modern one font-region lookup per visible aura per poll
+FAIL progression no per-aura temporary frame-level tables
+METRIC progression_modern font_reads=20000 region_reads=0 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=1015.687500 cpu_seconds=0.034000
+METRIC progression_legacy_startup font_reads=0 region_reads=200 level_reads=300 label_writes=100 anchors=100 frames=102
+FAIL progression legacy one font-region lookup per visible aura per poll
+METRIC progression_legacy font_reads=0 region_reads=20000 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=3046.937500 cpu_seconds=0.036000
+METRIC live_lifecycle font_reads=400 region_reads=200 level_reads=900 label_writes=300 anchors=300 frames=5
+METRIC live_modern_startup font_reads=200 region_reads=0 level_reads=300 label_writes=100 anchors=100 frames=102
+FAIL live modern one font-region lookup per visible aura per poll
+FAIL live no per-aura temporary frame-level tables
+METRIC live_modern font_reads=20000 region_reads=0 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=1015.687500 cpu_seconds=0.032000
+METRIC live_legacy_startup font_reads=0 region_reads=200 level_reads=300 label_writes=100 anchors=100 frames=102
+FAIL live legacy one font-region lookup per visible aura per poll
+METRIC live_legacy font_reads=0 region_reads=20000 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=3046.937500 cpu_seconds=0.037000
+METRIC forever_lifecycle font_reads=400 region_reads=200 level_reads=900 label_writes=300 anchors=300 frames=5
+METRIC forever_modern_startup font_reads=200 region_reads=0 level_reads=300 label_writes=100 anchors=100 frames=102
+FAIL forever modern one font-region lookup per visible aura per poll
+FAIL forever no per-aura temporary frame-level tables
+METRIC forever_modern font_reads=20000 region_reads=0 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=1015.687500 cpu_seconds=0.031000
+METRIC forever_legacy_startup font_reads=0 region_reads=200 level_reads=300 label_writes=100 anchors=100 frames=102
+FAIL forever legacy one font-region lookup per visible aura per poll
+METRIC forever_legacy font_reads=0 region_reads=20000 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=3046.937500 cpu_seconds=0.042000
+Nameplate countdown work: 1160 checks, 15 failures

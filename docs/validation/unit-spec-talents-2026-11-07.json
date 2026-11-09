@@ -1,0 +1,95 @@
+{
+  "change": "UF-SPEC-02-20261107",
+  "bug": "Resolver used nonexistent ns.Client; Core/Client.lua exports ns.Flux.Client. Tests previously supplied an invented namespace.",
+  "baselineSHA256": "0a09c1b625722d1b8a461678ba1ce0b354ef6d5c7cf9e78d25ddef7198aad154",
+  "candidateSHA256": "313fea4a372a7960f8d1d9f3d366f5e2f272b3670a669147f3aeeb9860ede847",
+  "checkpoint": "docs/validation/raid-mt-target-2026-11-07.json checkpoint archives rehashed: all three match; git bundle verify PASS",
+  "externalEvidence": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\07\\01a1b4be-c7d4-7bc0-947c-623d7ec53e3d\\unit-spec-talents",
+  "trials": [
+    {
+      "pair": 1,
+      "source": "baseline",
+      "exit": 1,
+      "wallSeconds": 0.02147450000484241,
+      "output": "lua: tests/unit_spec_icon.lua:4: current classic uses committed points and icon fields\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/unit_spec_icon.lua:4: in local 'check'\n\ttests/unit_spec_icon.lua:30: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "pair": 1,
+      "source": "candidate",
+      "exit": 0,
+      "wallSeconds": 0.02012549999926705,
+      "output": "PASS 38 player spec selection checks\n"
+    },
+    {
+      "pair": 2,
+      "source": "baseline",
+      "exit": 1,
+      "wallSeconds": 0.016291499996441416,
+      "output": "lua: tests/unit_spec_icon.lua:4: current classic uses committed points and icon fields\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/unit_spec_icon.lua:4: in local 'check'\n\ttests/unit_spec_icon.lua:30: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "pair": 2,
+      "source": "candidate",
+      "exit": 0,
+      "wallSeconds": 0.01999259999865899,
+      "output": "PASS 38 player spec selection checks\n"
+    },
+    {
+      "pair": 3,
+      "source": "baseline",
+      "exit": 1,
+      "wallSeconds": 0.016722000000299886,
+      "output": "lua: tests/unit_spec_icon.lua:4: current classic uses committed points and icon fields\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/unit_spec_icon.lua:4: in local 'check'\n\ttests/unit_spec_icon.lua:30: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "pair": 3,
+      "source": "candidate",
+      "exit": 0,
+      "wallSeconds": 0.019692699999723118,
+      "output": "PASS 38 player spec selection checks\n"
+    },
+    {
+      "pair": 4,
+      "source": "baseline",
+      "exit": 1,
+      "wallSeconds": 0.017413999994460028,
+      "output": "lua: tests/unit_spec_icon.lua:4: current classic uses committed points and icon fields\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/unit_spec_icon.lua:4: in local 'check'\n\ttests/unit_spec_icon.lua:30: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "pair": 4,
+      "source": "candidate",
+      "exit": 0,
+      "wallSeconds": 0.01870000000053551,
+      "output": "PASS 38 player spec selection checks\n"
+    },
+    {
+      "pair": 5,
+      "source": "baseline",
+      "exit": 1,
+      "wallSeconds": 0.01912099999753991,
+      "output": "lua: tests/unit_spec_icon.lua:4: current classic uses committed points and icon fields\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/unit_spec_icon.lua:4: in local 'check'\n\ttests/unit_spec_icon.lua:30: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "pair": 5,
+      "source": "candidate",
+      "exit": 0,
+      "wallSeconds": 0.019086499996774364,
+      "output": "PASS 38 player spec selection checks\n"
+    }
+  ],
+  "scope": "Desktop regression replay only. No native rendering/FPS/taint claim; timers/events/layout/profile matching unchanged.",
+  "fullValidation": {
+    "pass": 208,
+    "fail": 0,
+    "syntaxFiles": 870,
+    "syntaxFailures": []
+  },
+  "installedCopies": {
+    "_retail_": true,
+    "_forever_": true,
+    "_classic_": true,
+    "_classic_era_": true,
+    "_anniversary_": true
+  },
+  "availableOnDiskSettingsFiles": 2
+}

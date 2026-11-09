@@ -1,0 +1,399 @@
+{
+  "capturedUTC": "2026-11-07T00:34:40.330787+00:00",
+  "checkpoint": "Teleport-reagent-20261106T234644Z",
+  "scope": "Actual travel and popup module replay. Desktop callback/widgets/cost metadata fixtures; native secure VM/rendering/taint/FPS unverified. No profiler/settings changes.",
+  "sourceSHA256": {
+    "ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua": {
+      "baseline": "1722862a1b1417df699382172d8b13a37f86f387ef0bd06050c43004efdae8fb",
+      "candidate": "0b05706c352a4b608b80e6cfb8376d1e600f78259e999e84ac4a6defb83e73a1"
+    },
+    "ExtraButtonSystem/FlyoutEngine/Popup.lua": {
+      "baseline": "4260879a1fd6d57542b9522dbbd4548c97151ea6d656e705e2301850205a581e",
+      "candidate": "0d79e1a96cc62c3f446052978ba9735fadd123760a443f3801aff965e7cdf49c"
+    },
+    "Inventory/SpellReagents.lua": {
+      "baseline": "ab3cf8eb19638f93e653d7fb1ffc2aca30b46fd941f80de4f515de51992dc144",
+      "candidate": "fb55c4468968b62304a98e53bc85d20587e48667761872574112ade19d7ce653"
+    },
+    "Core/API/Spell.lua": {
+      "baseline": "ee5c59aa2082aa5a66caf5215c859dcddce739958a5668853db4e791f4f0edb8",
+      "candidate": "b87837da401e500f3252c00042ef8523def044f42c015b1817c6ae5deee692b5"
+    }
+  },
+  "testSHA256": {
+    "tests/teleport_restock.lua": "e0e8f85d0e11e2ca73822699ff182672a2d67073a9b6b62671c170d452a6087d",
+    "tests/spell_reagent_presets.lua": "4bfedd38d3d299ede34633751331af0a687d38fef30ae7803840af652c24e7b9"
+  },
+  "regression": {
+    "baseline": {
+      "exit": 1,
+      "wallMs": 16.173,
+      "output": "FAIL Forever cold-cache teleport rune\nFAIL Forever excludes uncached Soul Shard\nFAIL Forever right click consumes both phases\nFAIL Forever opens existing item target\nFAIL Forever portal selects portal target\nFAIL Forever warmed spell map enables right click\nFAIL Forever warm result defers protected setup in combat\nlua: tests/teleport_restock.lua:77: attempt to call a nil value (field 'GetRightClickReagentItemID')\nstack traceback:\n\ttests/teleport_restock.lua:77: in main chunk\n\t[C]: in ?\n"
+    },
+    "candidate": {
+      "exit": 0,
+      "wallMs": 28.045,
+      "output": "teleport restock: 130 checks, 0 failures\n"
+    }
+  },
+  "samples": [
+    {
+      "pair": 1,
+      "variant": "baseline",
+      "exit": 0,
+      "wallMs": 59.542,
+      "output": "MEASURE Forever 5.000 1000 0 1000 4\nMEASURE Era 6.000 1000 0 1000 4\nMEASURE Anniversary 6.000 1000 0 1000 4\nMEASURE Classic 4.000 1000 0 1000 4\nMEASURE Retail 5.000 1000 0 1000 4\n"
+    },
+    {
+      "pair": 1,
+      "variant": "candidate",
+      "exit": 0,
+      "wallMs": 41.473,
+      "output": "MEASURE Forever 2.000 0 0 1000 3\nMEASURE Era 2.000 0 0 1000 3\nMEASURE Anniversary 2.000 0 0 1000 3\nMEASURE Classic 2.000 0 0 1000 3\nMEASURE Retail 2.000 0 0 1000 3\n"
+    },
+    {
+      "pair": 2,
+      "variant": "baseline",
+      "exit": 0,
+      "wallMs": 55.589,
+      "output": "MEASURE Forever 6.000 1000 0 1000 4\nMEASURE Era 5.000 1000 0 1000 4\nMEASURE Anniversary 5.000 1000 0 1000 4\nMEASURE Classic 5.000 1000 0 1000 4\nMEASURE Retail 6.000 1000 0 1000 4\n"
+    },
+    {
+      "pair": 2,
+      "variant": "candidate",
+      "exit": 0,
+      "wallMs": 42.954,
+      "output": "MEASURE Forever 3.000 0 0 1000 3\nMEASURE Era 2.000 0 0 1000 3\nMEASURE Anniversary 3.000 0 0 1000 3\nMEASURE Classic 2.000 0 0 1000 3\nMEASURE Retail 3.000 0 0 1000 3\n"
+    },
+    {
+      "pair": 3,
+      "variant": "baseline",
+      "exit": 0,
+      "wallMs": 58.023,
+      "output": "MEASURE Forever 5.000 1000 0 1000 4\nMEASURE Era 7.000 1000 0 1000 4\nMEASURE Anniversary 6.000 1000 0 1000 4\nMEASURE Classic 5.000 1000 0 1000 4\nMEASURE Retail 5.000 1000 0 1000 4\n"
+    },
+    {
+      "pair": 3,
+      "variant": "candidate",
+      "exit": 0,
+      "wallMs": 47.384,
+      "output": "MEASURE Forever 4.000 0 0 1000 3\nMEASURE Era 3.000 0 0 1000 3\nMEASURE Anniversary 4.000 0 0 1000 3\nMEASURE Classic 2.000 0 0 1000 3\nMEASURE Retail 3.000 0 0 1000 3\n"
+    },
+    {
+      "pair": 4,
+      "variant": "baseline",
+      "exit": 0,
+      "wallMs": 64.415,
+      "output": "MEASURE Forever 5.000 1000 0 1000 4\nMEASURE Era 6.000 1000 0 1000 4\nMEASURE Anniversary 6.000 1000 0 1000 4\nMEASURE Classic 6.000 1000 0 1000 4\nMEASURE Retail 6.000 1000 0 1000 4\n"
+    },
+    {
+      "pair": 4,
+      "variant": "candidate",
+      "exit": 0,
+      "wallMs": 41.917,
+      "output": "MEASURE Forever 3.000 0 0 1000 3\nMEASURE Era 3.000 0 0 1000 3\nMEASURE Anniversary 2.000 0 0 1000 3\nMEASURE Classic 3.000 0 0 1000 3\nMEASURE Retail 3.000 0 0 1000 3\n"
+    },
+    {
+      "pair": 5,
+      "variant": "baseline",
+      "exit": 0,
+      "wallMs": 59.493,
+      "output": "MEASURE Forever 6.000 1000 0 1000 4\nMEASURE Era 6.000 1000 0 1000 4\nMEASURE Anniversary 5.000 1000 0 1000 4\nMEASURE Classic 5.000 1000 0 1000 4\nMEASURE Retail 5.000 1000 0 1000 4\n"
+    },
+    {
+      "pair": 5,
+      "variant": "candidate",
+      "exit": 0,
+      "wallMs": 41.672,
+      "output": "MEASURE Forever 3.000 0 0 1000 3\nMEASURE Era 3.000 0 0 1000 3\nMEASURE Anniversary 2.000 0 0 1000 3\nMEASURE Classic 2.000 0 0 1000 3\nMEASURE Retail 3.000 0 0 1000 3\n"
+    }
+  ],
+  "scenario": "100warmup then1000BuildReagentActions calls per5client models perprocess;5alternatingbaseline/candidate pairs. Warmed per-spell provider withone rune, cold name resolver, same count/target/output. Host os.clock and process wall intervals; no native latency or FPS. No forced GC.",
+  "mutants": [
+    {
+      "name": "soul-shard",
+      "exit": 1,
+      "wallMs": 43.138,
+      "output": "FAIL Forever excludes uncached Soul Shard\nFAIL Forever Soul Shard has no restock gesture\nFAIL Forever other required reagent retained without Soul Shard\nFAIL Era excludes uncached Soul Shard\nFAIL Era Soul Shard has no restock gesture\nFAIL Era other required reagent retained without Soul Shard\nFAIL Anniversary excludes uncached Soul Shard\nFAIL Anniversary Soul Shard has no restock gesture\nFAIL Anniversary other required reagent retained without Soul Shard\nFAIL Classic excludes uncached Soul Shard\nFAIL Classic Soul Shard has no restock gesture\nFAIL Classic other required reagent retained without Soul Shard\nFAIL Retail excludes uncached Soul Shard\nFAIL Retail Soul Shard has no restock gesture\nFAIL Retail other required reagent retained without Soul Shard\nteleport restock: 130 checks, 15 failures\nlua: tests/teleport_restock.lua:85: assertion failed!\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/teleport_restock.lua:85: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "spell-provider",
+      "exit": 1,
+      "wallMs": 44.019,
+      "output": "FAIL Forever existing spell reagent service\nFAIL Forever right click consumes both phases\nFAIL Forever opens existing item target\nFAIL Forever portal selects portal target\nFAIL Forever warmed spell map enables right click\nFAIL Forever rune target preferred when multiple costs exist\nFAIL Forever other required reagent retained without Soul Shard\nFAIL Era existing spell reagent service\nFAIL Era right click consumes both phases\nFAIL Era opens existing item target\nFAIL Era portal selects portal target\nFAIL Era warmed spell map enables right click\nFAIL Era rune target preferred when multiple costs exist\nFAIL Era other required reagent retained without Soul Shard\nFAIL Anniversary existing spell reagent service\nFAIL Anniversary right click consumes both phases\nFAIL Anniversary opens existing item target\nFAIL Anniversary portal selects portal target\nFAIL Anniversary warmed spell map enables right click\nFAIL Anniversary rune target preferred when multiple costs exist\nFAIL Anniversary other required reagent retained without Soul Shard\nFAIL Classic existing spell reagent service\nFAIL Classic right click consumes both phases\nFAIL Classic opens existing item target\nFAIL Classic portal selects portal target\nFAIL Classic warmed spell map enables right click\nFAIL Classic rune target preferred when multiple costs exist\nFAIL Classic other required reagent retained without Soul Shard\nFAIL Retail existing spell reagent service\nFAIL Retail right click consumes both phases\nFAIL Retail opens existing item target\nFAIL Retail portal selects portal target\nFAIL Retail warmed spell map enables right click\nFAIL Retail rune target preferred when multiple costs exist\nFAIL Retail other required reagent retained without Soul Shard\nteleport restock: 110 checks, 35 failures\nlua: tests/teleport_restock.lua:85: assertion failed!\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/teleport_restock.lua:85: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "release-action",
+      "exit": 1,
+      "wallMs": 42.107,
+      "output": "FAIL Forever right click consumes both phases\nFAIL Era right click consumes both phases\nFAIL Anniversary right click consumes both phases\nFAIL Classic right click consumes both phases\nFAIL Retail right click consumes both phases\nteleport restock: 130 checks, 5 failures\nlua: tests/teleport_restock.lua:85: assertion failed!\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/teleport_restock.lua:85: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "right-editor",
+      "exit": 1,
+      "wallMs": 42.271,
+      "output": "FAIL Forever opens existing item target\nFAIL Forever portal selects portal target\nFAIL Era opens existing item target\nFAIL Era portal selects portal target\nFAIL Anniversary opens existing item target\nFAIL Anniversary portal selects portal target\nFAIL Classic opens existing item target\nFAIL Classic portal selects portal target\nFAIL Retail opens existing item target\nFAIL Retail portal selects portal target\nteleport restock: 110 checks, 10 failures\nlua: tests/teleport_restock.lua:85: assertion failed!\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/teleport_restock.lua:85: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "escape-save",
+      "exit": 1,
+      "wallMs": 42.737,
+      "output": "FAIL Forever Escape cancels\nFAIL Forever focus-loss zero clears target\nFAIL Era Escape cancels\nFAIL Era focus-loss zero clears target\nFAIL Anniversary Escape cancels\nFAIL Anniversary focus-loss zero clears target\nFAIL Classic Escape cancels\nFAIL Classic focus-loss zero clears target\nFAIL Retail Escape cancels\nFAIL Retail focus-loss zero clears target\nteleport restock: 130 checks, 10 failures\nlua: tests/teleport_restock.lua:85: assertion failed!\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/teleport_restock.lua:85: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "count-owner",
+      "exit": 1,
+      "wallMs": 47.043,
+      "output": "FAIL Forever restores native count\nFAIL Era restores native count\nFAIL Anniversary restores native count\nFAIL Classic restores native count\nFAIL Retail restores native count\nteleport restock: 130 checks, 5 failures\nlua: tests/teleport_restock.lua:85: assertion failed!\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/teleport_restock.lua:85: in main chunk\n\t[C]: in ?\n"
+    }
+  ],
+  "checkpointDetails": {
+    "utc": "20261106T234644Z",
+    "baseline": "75cf2bcba83adfea0501934f4eeb2a980c46fdf8",
+    "sourceFiles": 1691,
+    "settingsFiles": 179,
+    "sha256": {
+      "source.zip": "e0140fdee56c56c8447886d0e6df97e601e552cbd236273852f3427c11259131",
+      "settings.zip": "8591ca4e401ff829dafbdecb023937b4ea4a0b39b58c7dfb44eca89bc05fba6c",
+      "history.bundle": "0a1476fa58dc8f999628c733d5f4b3563412afbdff27362cd94f1f67926fa58c"
+    },
+    "zipIntegrity": "PASS",
+    "bundleVerification": "PASS",
+    "gameMemory": "Unsaved game memory excluded; no game input, settings mutation or foreground control"
+  },
+  "clientModelDifferences": "Retail/Forever use modern C_Item item-name path; Era/Anniversary/progression use legacy globals. All share the existing per-spell cache and persistent target facade. Existing teleport_cast_work separately checks modern display-count sinks versus legacy count scans.",
+  "native": "Pending: baseline transport completed but no FX marker visible with commerce/crafting panels open; no further input there. Desktop tests do not certify native editing/secure execution/appearance.",
+  "presetRestock": {
+    "scope": "Actual spell scanner +actual unified list +travel target facade. Existing options widget routes spellReagent to Preset; no target storage migration. Two API shapes, five alternating pairs; 1000forced list builds/model after normal warm. Measurement mode retains and prints baseline classification differences; assertions run separately. Known flyout children use existing Core.Spell compatibility; unlearned children and inactive override costs excluded, duplicate free spells scanned once; modern spec metadata preserved.",
+    "regression": {
+      "baseline": {
+        "exit": 1,
+        "wallMs": 31.386,
+        "output": "lua: tests/spell_reagent_presets.lua:8: cold-cache teleport rune indexed\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/spell_reagent_presets.lua:8: in local 'check'\n\ttests/spell_reagent_presets.lua:35: in main chunk\n\t[C]: in ?\n"
+      },
+      "candidate": {
+        "exit": 0,
+        "wallMs": 26.29,
+        "output": "Spell reagent presets: 47 checks passed; native pending\n"
+      },
+      "oldAdapterOnly": {
+        "exit": 1,
+        "wallMs": 21.746,
+        "output": "lua: tests/spell_reagent_presets.lua:8: cold-cache teleport rune indexed\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/spell_reagent_presets.lua:8: in local 'check'\n\ttests/spell_reagent_presets.lua:35: in main chunk\n\t[C]: in ?\n"
+      }
+    },
+    "samples": [
+      {
+        "pair": 1,
+        "variant": "baseline",
+        "exit": 0,
+        "wallMs": 125.943,
+        "output": "PRESET legacy 50.000 6000 16583:manual:6,17020:spellReagent:7,17031:manual:25,17032:manual:8,6265:spellReagent:0,999:manual:3\nPRESET modern 52.000 6000 16583:manual:6,17020:spellReagent:7,17031:manual:25,17032:manual:8,6265:spellReagent:0,999:manual:3\nSpell reagent presets: 47 workload checks (classification differences retained); native pending\n"
+      },
+      {
+        "pair": 1,
+        "variant": "candidate",
+        "exit": 0,
+        "wallMs": 96.109,
+        "output": "PRESET legacy 35.000 5000 16583:spellReagent:6,17020:spellReagent:7,17031:spellReagent:25,17032:spellReagent:8,999:manual:3\nPRESET modern 37.000 5000 16583:spellReagent:6,17020:spellReagent:7,17031:spellReagent:25,17032:spellReagent:8,999:manual:3\nSpell reagent presets: 47 workload checks (classification differences retained); native pending\n"
+      },
+      {
+        "pair": 2,
+        "variant": "baseline",
+        "exit": 0,
+        "wallMs": 131.905,
+        "output": "PRESET legacy 49.000 6000 16583:manual:6,17020:spellReagent:7,17031:manual:25,17032:manual:8,6265:spellReagent:0,999:manual:3\nPRESET modern 58.000 6000 16583:manual:6,17020:spellReagent:7,17031:manual:25,17032:manual:8,6265:spellReagent:0,999:manual:3\nSpell reagent presets: 47 workload checks (classification differences retained); native pending\n"
+      },
+      {
+        "pair": 2,
+        "variant": "candidate",
+        "exit": 0,
+        "wallMs": 111.273,
+        "output": "PRESET legacy 43.000 5000 16583:spellReagent:6,17020:spellReagent:7,17031:spellReagent:25,17032:spellReagent:8,999:manual:3\nPRESET modern 41.000 5000 16583:spellReagent:6,17020:spellReagent:7,17031:spellReagent:25,17032:spellReagent:8,999:manual:3\nSpell reagent presets: 47 workload checks (classification differences retained); native pending\n"
+      },
+      {
+        "pair": 3,
+        "variant": "baseline",
+        "exit": 0,
+        "wallMs": 148.969,
+        "output": "PRESET legacy 52.000 6000 16583:manual:6,17020:spellReagent:7,17031:manual:25,17032:manual:8,6265:spellReagent:0,999:manual:3\nPRESET modern 64.000 6000 16583:manual:6,17020:spellReagent:7,17031:manual:25,17032:manual:8,6265:spellReagent:0,999:manual:3\nSpell reagent presets: 47 workload checks (classification differences retained); native pending\n"
+      },
+      {
+        "pair": 3,
+        "variant": "candidate",
+        "exit": 0,
+        "wallMs": 111.318,
+        "output": "PRESET legacy 38.000 5000 16583:spellReagent:6,17020:spellReagent:7,17031:spellReagent:25,17032:spellReagent:8,999:manual:3\nPRESET modern 43.000 5000 16583:spellReagent:6,17020:spellReagent:7,17031:spellReagent:25,17032:spellReagent:8,999:manual:3\nSpell reagent presets: 47 workload checks (classification differences retained); native pending\n"
+      },
+      {
+        "pair": 4,
+        "variant": "baseline",
+        "exit": 0,
+        "wallMs": 139.921,
+        "output": "PRESET legacy 53.000 6000 16583:manual:6,17020:spellReagent:7,17031:manual:25,17032:manual:8,6265:spellReagent:0,999:manual:3\nPRESET modern 58.000 6000 16583:manual:6,17020:spellReagent:7,17031:manual:25,17032:manual:8,6265:spellReagent:0,999:manual:3\nSpell reagent presets: 47 workload checks (classification differences retained); native pending\n"
+      },
+      {
+        "pair": 4,
+        "variant": "candidate",
+        "exit": 0,
+        "wallMs": 98.361,
+        "output": "PRESET legacy 37.000 5000 16583:spellReagent:6,17020:spellReagent:7,17031:spellReagent:25,17032:spellReagent:8,999:manual:3\nPRESET modern 35.000 5000 16583:spellReagent:6,17020:spellReagent:7,17031:spellReagent:25,17032:spellReagent:8,999:manual:3\nSpell reagent presets: 47 workload checks (classification differences retained); native pending\n"
+      },
+      {
+        "pair": 5,
+        "variant": "baseline",
+        "exit": 0,
+        "wallMs": 124.308,
+        "output": "PRESET legacy 47.000 6000 16583:manual:6,17020:spellReagent:7,17031:manual:25,17032:manual:8,6265:spellReagent:0,999:manual:3\nPRESET modern 54.000 6000 16583:manual:6,17020:spellReagent:7,17031:manual:25,17032:manual:8,6265:spellReagent:0,999:manual:3\nSpell reagent presets: 47 workload checks (classification differences retained); native pending\n"
+      },
+      {
+        "pair": 5,
+        "variant": "candidate",
+        "exit": 0,
+        "wallMs": 99.891,
+        "output": "PRESET legacy 36.000 5000 16583:spellReagent:6,17020:spellReagent:7,17031:spellReagent:25,17032:spellReagent:8,999:manual:3\nPRESET modern 40.000 5000 16583:spellReagent:6,17020:spellReagent:7,17031:spellReagent:25,17032:spellReagent:8,999:manual:3\nSpell reagent presets: 47 workload checks (classification differences retained); native pending\n"
+      }
+    ],
+    "mutants": [
+      {
+        "name": "cold-rune",
+        "exit": 1,
+        "wallMs": 30.65,
+        "output": "lua: tests/spell_reagent_presets.lua:8: cold-cache teleport rune indexed\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/spell_reagent_presets.lua:8: in local 'check'\n\ttests/spell_reagent_presets.lua:35: in main chunk\n\t[C]: in ?\n"
+      },
+      {
+        "name": "shard-id",
+        "exit": 1,
+        "wallMs": 30.82,
+        "output": "lua: tests/spell_reagent_presets.lua:8: Soul Shard excluded before item name loads\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/spell_reagent_presets.lua:8: in local 'check'\n\ttests/spell_reagent_presets.lua:43: in main chunk\n\t[C]: in ?\n"
+      },
+      {
+        "name": "summon-guess",
+        "exit": 1,
+        "wallMs": 28.034,
+        "output": "lua: tests/spell_reagent_presets.lua:8: non-shard summoning reagent is not guessed to be Soul Shard\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/spell_reagent_presets.lua:8: in local 'check'\n\ttests/spell_reagent_presets.lua:42: in main chunk\n\t[C]: in ?\n"
+      },
+      {
+        "name": "book-flyout",
+        "exit": 1,
+        "wallMs": 34.765,
+        "output": "lua: tests/spell_reagent_presets.lua:8: cold-cache teleport rune indexed\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/spell_reagent_presets.lua:8: in local 'check'\n\ttests/spell_reagent_presets.lua:35: in main chunk\n\t[C]: in ?\n"
+      },
+      {
+        "name": "unlearned-child",
+        "exit": 1,
+        "wallMs": 37.823,
+        "output": "lua: tests/spell_reagent_presets.lua:8: unknown and overridden-base flyout costs excluded\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/spell_reagent_presets.lua:8: in local 'check'\n\ttests/spell_reagent_presets.lua:37: in main chunk\n\t[C]: in ?\n"
+      },
+      {
+        "name": "override-cost",
+        "exit": 1,
+        "wallMs": 36.626,
+        "output": "lua: tests/spell_reagent_presets.lua:8: unknown and overridden-base flyout costs excluded\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/spell_reagent_presets.lua:8: in local 'check'\n\ttests/spell_reagent_presets.lua:37: in main chunk\n\t[C]: in ?\n"
+      },
+      {
+        "name": "duplicate-scan",
+        "exit": 1,
+        "wallMs": 31.781,
+        "output": "lua: tests/spell_reagent_presets.lua:8: duplicate free override scanned once through available tooltip paths\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/spell_reagent_presets.lua:8: in local 'check'\n\ttests/spell_reagent_presets.lua:39: in main chunk\n\t[C]: in ?\n"
+      },
+      {
+        "name": "modern-flyout",
+        "exit": 1,
+        "wallMs": 33.018,
+        "output": "lua: tests/spell_reagent_presets.lua:8: cold-cache teleport rune indexed\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/spell_reagent_presets.lua:8: in local 'check'\n\ttests/spell_reagent_presets.lua:35: in main chunk\n\t[C]: in ?\n"
+      },
+      {
+        "name": "modern-slot",
+        "exit": 1,
+        "wallMs": 35.534,
+        "output": "lua: tests/spell_reagent_presets.lua:8: cold-cache teleport rune indexed\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/spell_reagent_presets.lua:8: in local 'check'\n\ttests/spell_reagent_presets.lua:35: in main chunk\n\t[C]: in ?\n"
+      },
+      {
+        "name": "slot-spec",
+        "exit": 1,
+        "wallMs": 33.615,
+        "output": "lua: tests/spell_reagent_presets.lua:8: modern slot specialization metadata preserved\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/spell_reagent_presets.lua:8: in local 'check'\n\ttests/spell_reagent_presets.lua:40: in main chunk\n\t[C]: in ?\n"
+      }
+    ]
+  },
+  "requirements": [
+    "Actual spell reagent evidence drives Preset restock category, including runes and non-shard summoning costs",
+    "Shared saved quantities, bank flags and ordinary Manual rows remain intact",
+    "No Soul Shard auto restock; no assumed rune cost from spell IDs or inaccessible text",
+    "Single destination right click edits target; flyout/modifier/primary cast semantics retained"
+  ],
+  "presetCheckpoint": {
+    "utc": "20261107T000909Z",
+    "baseline": "75cf2bcba83adfea0501934f4eeb2a980c46fdf8",
+    "sourceFiles": 1697,
+    "settingsFiles": 179,
+    "sha256": {
+      "source.zip": "e4dfafdec9856fddea34fbf55ea3b2729f867d0daf9c562fbfc534e5b80c7bac",
+      "settings.zip": "1f2712dec97479175792e903f5a7aa8d957b377df32cb5a4d43a6d8b93407aa5",
+      "history.bundle": "dd5db0ba0f051ebb8aff06d7efcb857c285d3797fc182260867523648d6f50fc"
+    },
+    "zipIntegrity": "PASS",
+    "bundleVerification": "PASS",
+    "gameMemory": "Unsaved game memory excluded; no game input, settings mutation or foreground control"
+  },
+  "flyoutCheckpoint": {
+    "utc": "20261107T002634Z",
+    "baseline": "75cf2bcba83adfea0501934f4eeb2a980c46fdf8",
+    "sourceFiles": 1700,
+    "settingsFiles": 179,
+    "sha256": {
+      "source.zip": "01ef397996a5b84882c5db85e18946dafde78d552206cf51f7eec5944aaeeb59",
+      "settings.zip": "2c38059fbc183b9156cba1fcc2a43563cacbe5ee6894b5fed7243d156a321dc9",
+      "history.bundle": "2687c39888154de4e75d5c2c2e5741fd356bbe0b0577917d2a14d10bda440d12"
+    },
+    "zipIntegrity": "PASS",
+    "bundleVerification": "PASS",
+    "gameMemory": "Unsaved game memory excluded; no game input, settings mutation or foreground control"
+  },
+  "flyoutAPIContracts": {
+    "commit": "eac30af597e5aaa43a60f6675ef5fdcea100375f",
+    "build": "1.60.1.70790",
+    "source": "Blizzard_APIDocumentationGenerated/FlyoutDocumentation.lua",
+    "route": "existing globals then C_Spell then C_Flyout table fallback; no global replacement",
+    "lookup": "Packaged source-pinned generated contracts inspected; direct upstream fetch unavailable; native availability unverified"
+  },
+  "previousValidatedSHA256": {
+    "ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua": [
+      "0b05706c352a4b608b80e6cfb8376d1e600f78259e999e84ac4a6defb83e73a1"
+    ],
+    "ExtraButtonSystem/FlyoutEngine/Popup.lua": [
+      "0d79e1a96cc62c3f446052978ba9735fadd123760a443f3801aff965e7cdf49c"
+    ],
+    "Inventory/SpellReagents.lua": [
+      "921ac02231ccf910831e6017d76aabd67cefd78156a2a194fa9e2905a4058b6d"
+    ]
+  },
+  "finalValidation": {
+    "capturedUTC": "2026-11-07T00:43:50.245159+00:00",
+    "focusedChecks": 177,
+    "rejectedMutants": 16,
+    "requiredScripts": 6,
+    "scopedSourceStable": true,
+    "clientCopiesVerified": 16,
+    "wholeAddon": {
+      "pass": 200,
+      "fail": 4,
+      "syntaxFiles": 866,
+      "syntaxFailures": 0,
+      "sourceStable": false,
+      "interpretation": "Four raid-test failures and unrelated source drift; not a clean whole-addon run. Original run and failed outputs retained in safety report."
+    },
+    "documentation": {
+      "exit": 1,
+      "issues": [
+        "Stale source inventory: tests/raid_aura_options.lua",
+        "Recorded verification predates current source: AddonOptions/FluxOptionsRaidFrame.lua",
+        "Recorded verification predates current source: RaidFrame/FluxRaidPreview.lua",
+        "Recorded verification predates current source: tests/raid_aura_live_options.lua"
+      ],
+      "interpretation": "Concurrent raid edits after collection; no stale hashes relabeled as validated."
+    },
+    "native": "Pending; baseline input transport had no visible FX marker. Reload and manual feature acceptance required."
+  }
+}

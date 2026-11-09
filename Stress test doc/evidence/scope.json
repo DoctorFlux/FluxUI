@@ -1,0 +1,167 @@
+{
+  "scope": "Current TOC/XML union selected paths; implementation phase recorded separately in applied-fixes",
+  "head": "75cf2bcba83adfea0501934f4eeb2a980c46fdf8",
+  "suiteEvidence": "full-suite.json",
+  "reachable": 599,
+  "missingLoadReferences": [],
+  "sourceFilesByTopLevel": {
+    "AddonOptions": 38,
+    "BaganatorCompat": 12,
+    "Bars": 31,
+    "Battlezonemap": 14,
+    "Binding": 38,
+    "Blizzard": 1,
+    "BlizzardSettings": 3,
+    "CharacterInfo": 24,
+    "ConsoleportCompat": 4,
+    "Core": 63,
+    "ExtraButtonSystem": 53,
+    "FluxBorder.lua": 1,
+    "FluxDefaultSettings.lua": 1,
+    "Inventory": 84,
+    "Layout": 1,
+    "Mail": 9,
+    "MicroMenu": 13,
+    "Minimap": 5,
+    "NamePlates": 6,
+    "Other": 19,
+    "RaidFrame": 13,
+    "Respec": 30,
+    "Salvage": 16,
+    "StatusBars": 6,
+    "UnitFrames": 44,
+    "WindowMover": 4,
+    "libs": 66
+  },
+  "selectedFilesByTarget": {
+    "Era": 584,
+    "Anniversary": 584,
+    "Retail live": 585,
+    "Forever": 583
+  },
+  "reachableWithLiteralTestReference": 326,
+  "reachableWithoutLiteralTestReference": 273,
+  "note": "No literal match may still be indirectly exercised. A literal match may only be a static assertion. This is not line or branch coverage.",
+  "savedVariableDeclarations": [
+    {
+      "name": "FluxUI_DB",
+      "scope": "account",
+      "line": 7
+    },
+    {
+      "name": "FluxUI_Options",
+      "scope": "account",
+      "line": 7
+    },
+    {
+      "name": "FluxNonCombatGridDB",
+      "scope": "account",
+      "line": 7
+    },
+    {
+      "name": "FluxFlyoutFavorites_Data",
+      "scope": "account",
+      "line": 7
+    },
+    {
+      "name": "FluxUIGoldLedger",
+      "scope": "account",
+      "line": 7
+    },
+    {
+      "name": "FluxSalvageDB",
+      "scope": "account",
+      "line": 7
+    },
+    {
+      "name": "FluxInvDB",
+      "scope": "account",
+      "line": 7
+    },
+    {
+      "name": "FluxUIInventoryDB",
+      "scope": "account",
+      "line": 7
+    },
+    {
+      "name": "FluxPerfCaptureDB",
+      "scope": "account",
+      "line": 7
+    },
+    {
+      "name": "FluxMailDB",
+      "scope": "account",
+      "line": 7
+    },
+    {
+      "name": "_FluxUI_CharSavedVars",
+      "scope": "character",
+      "line": 8
+    },
+    {
+      "name": "FluxSpellBookSlotsDB",
+      "scope": "character",
+      "line": 8
+    },
+    {
+      "name": "FluxNCUtilitySlotsDB",
+      "scope": "character",
+      "line": 8
+    },
+    {
+      "name": "FluxSpellBindingProfilesDB",
+      "scope": "character",
+      "line": 8
+    },
+    {
+      "name": "FluxSpellDirectBindDB",
+      "scope": "character",
+      "line": 8
+    },
+    {
+      "name": "FluxSpellProfileBindingsDB",
+      "scope": "character",
+      "line": 8
+    },
+    {
+      "name": "FluxBindingProfilesPerStateDB",
+      "scope": "character",
+      "line": 8
+    },
+    {
+      "name": "FluxBindingDBv2",
+      "scope": "character",
+      "line": 8
+    },
+    {
+      "name": "FluxBindingDB3",
+      "scope": "character",
+      "line": 8
+    },
+    {
+      "name": "FluxTradeSkillScannerDB",
+      "scope": "character",
+      "line": 8
+    },
+    {
+      "name": "TrinketMenuOptions",
+      "scope": "character",
+      "line": 8
+    },
+    {
+      "name": "TrinketMenuPerOptions",
+      "scope": "character",
+      "line": 8
+    },
+    {
+      "name": "TrinketMenuQueue",
+      "scope": "character",
+      "line": 8
+    },
+    {
+      "name": "FluxNCFlyoutCharDB",
+      "scope": "character",
+      "line": 8
+    }
+  ]
+}

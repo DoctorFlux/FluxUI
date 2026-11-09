@@ -1,0 +1,31 @@
+{
+  "utc": "2026-11-08T22:32:40.117064+00:00",
+  "copies": [
+    {
+      "client": "_retail_",
+      "path": "Minimap/FluxObjectiveTrackerScroll.lua",
+      "match": true
+    },
+    {
+      "client": "_forever_",
+      "path": "Minimap/FluxObjectiveTrackerScroll.lua",
+      "match": true
+    },
+    {
+      "client": "_classic_",
+      "path": "Minimap/FluxObjectiveTrackerScroll.lua",
+      "match": true
+    },
+    {
+      "client": "_classic_era_",
+      "path": "Minimap/FluxObjectiveTrackerScroll.lua",
+      "match": true
+    },
+    {
+      "client": "_anniversary_",
+      "path": "Minimap/FluxObjectiveTrackerScroll.lua",
+      "match": true
+    }
+  ],
+  "scope": "User-sync source check only; native acceptance separate"
+}

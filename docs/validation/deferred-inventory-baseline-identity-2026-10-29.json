@@ -1,0 +1,11 @@
+{
+  "verifiedUtc": "2026-10-29T09:34:02.004456+00:00",
+  "commit": "201bc8382f9fa6b5d9906200e3331a4ad90c2f13",
+  "tree": "6976189ef0843924e081d89cd47c83001f8d150f",
+  "reusedFullSuite": "modernization-candidate-2026-10-29.json",
+  "reason": "All 723 previously tested Lua bytes remain identical under the existing runner CRLF-to-LF normalization; only documentation commits since that full run. New regression is measured separately before runtime edits.",
+  "syntaxFiles": 723,
+  "pass": 82,
+  "fail": 0,
+  "luaCorpusSha256": "e904d08aa492459e4b2b2807dbde197f2528ad3c230ac68079d8dc6efacf8141"
+}

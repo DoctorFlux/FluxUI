@@ -1,0 +1,132 @@
+{
+  "captured_at_utc": "2026-11-07T13:14:59.765918+00:00",
+  "runtime": "Lua 5.4.6  Copyright (C) 1994-2023 Lua.org, PUC-Rio",
+  "scope": "Applied production alpha readers/private threat renderer in desktop Lua models only. No game control, settings/profiler writes, native taint/secureVM/pixel/FPS certification.",
+  "per_repetition": {
+    "assertions": 647,
+    "failures": 0,
+    "baseline_rejections": 8,
+    "public_parity_pairs": 240,
+    "glow_snapshots": 80
+  },
+  "three_repetition_totals": {
+    "assertions": 1941,
+    "baseline_rejections": 24
+  },
+  "same_scenarios_repeated": true,
+  "runs": [
+    {
+      "repeat": 1,
+      "exit": 0,
+      "output": "REJECTION ALPHA-01 baseline=false candidate=true\nREJECTION ALPHA-03 baseline=false candidate=true\nREJECTION ALPHA-04-cast baseline=false candidate=true\nREJECTION ALPHA-04-badge baseline=false candidate=true\nREJECTION ALPHA-05-numeric baseline=false candidate=true\nREJECTION ALPHA-05-duration baseline=false candidate=true\nHANDLED getter_call_denied=grid\nHANDLED getter_call_denied=bling\nHANDLED getter_call_denied=extra-numeric\nHANDLED getter_call_denied=extra-duration\nMETRIC grid rounds=100 requests_per_round=1000 public_zero_reads=3600 public_zero_writes=0 opaque_reads=3600 opaque_writes=3600 excluded_stance_alpha=1\nMETRIC glow cycles=10 snapshots=80 baseline_public_reads=120 candidate_reads=0 frames_created=1 pool_releases=20 owned_ledger_tables=1 ledger_entries=6\nSUMMARY checks=647 failures=0 baseline_rejections=8\n",
+      "log": "run-1.txt",
+      "sha256": "5950939d04dbdad9b606ba9700203f5a75667801cf3352479007d8112fa133d0"
+    },
+    {
+      "repeat": 2,
+      "exit": 0,
+      "output": "REJECTION ALPHA-01 baseline=false candidate=true\nREJECTION ALPHA-03 baseline=false candidate=true\nREJECTION ALPHA-04-cast baseline=false candidate=true\nREJECTION ALPHA-04-badge baseline=false candidate=true\nREJECTION ALPHA-05-numeric baseline=false candidate=true\nREJECTION ALPHA-05-duration baseline=false candidate=true\nHANDLED getter_call_denied=grid\nHANDLED getter_call_denied=bling\nHANDLED getter_call_denied=extra-numeric\nHANDLED getter_call_denied=extra-duration\nMETRIC grid rounds=100 requests_per_round=1000 public_zero_reads=3600 public_zero_writes=0 opaque_reads=3600 opaque_writes=3600 excluded_stance_alpha=1\nMETRIC glow cycles=10 snapshots=80 baseline_public_reads=120 candidate_reads=0 frames_created=1 pool_releases=20 owned_ledger_tables=1 ledger_entries=6\nSUMMARY checks=647 failures=0 baseline_rejections=8\n",
+      "log": "run-2.txt",
+      "sha256": "5950939d04dbdad9b606ba9700203f5a75667801cf3352479007d8112fa133d0"
+    },
+    {
+      "repeat": 3,
+      "exit": 0,
+      "output": "REJECTION ALPHA-01 baseline=false candidate=true\nREJECTION ALPHA-03 baseline=false candidate=true\nREJECTION ALPHA-04-cast baseline=false candidate=true\nREJECTION ALPHA-04-badge baseline=false candidate=true\nREJECTION ALPHA-05-numeric baseline=false candidate=true\nREJECTION ALPHA-05-duration baseline=false candidate=true\nHANDLED getter_call_denied=grid\nHANDLED getter_call_denied=bling\nHANDLED getter_call_denied=extra-numeric\nHANDLED getter_call_denied=extra-duration\nMETRIC grid rounds=100 requests_per_round=1000 public_zero_reads=3600 public_zero_writes=0 opaque_reads=3600 opaque_writes=3600 excluded_stance_alpha=1\nMETRIC glow cycles=10 snapshots=80 baseline_public_reads=120 candidate_reads=0 frames_created=1 pool_releases=20 owned_ledger_tables=1 ledger_entries=6\nSUMMARY checks=647 failures=0 baseline_rejections=8\n",
+      "log": "run-3.txt",
+      "sha256": "5950939d04dbdad9b606ba9700203f5a75667801cf3352479007d8112fa133d0"
+    }
+  ],
+  "all_pass": true,
+  "deterministic_output": true,
+  "consumed_sha256_before": {
+    "Bars/Blizzard.lua": "9b2209f02654001750f85a9ccf3c935ff4b58ef7cf8d42d0b81dfc77b785925f",
+    "Bars/BadgeHost.lua": "c4fc487f45cda62e8a93932777f5478d08a9543658c456a5c6a67fb76bcf4616",
+    "Core/ButtonFX/Cast.lua": "ea8f5cc521d734e2010ea807c7ac1abc002a8938e4dcf00d0dae8f05c75d819b",
+    "Core/ButtonFX/Charges.lua": "7911a8cde0f2e8855a0f22a3a6bc791f4f5cf391354e978405774bed974e1df3",
+    "ExtraButtonSystem/Engine/Button.lua": "e209f9794ce1e48cd2841bd7b5eed3e0cb679c08646004dc3e37771083c4cc27",
+    "ExtraButtonSystem/Engine/Style.lua": "0cc2decc08090e6fbbeb32cf2b299ab4752ae27235832423ccd6aa8f55602e66",
+    "Core/ButtonFX/ThreatGlow.lua": "9e08ba85e8eaf5868bbf14b2403097d4aedf3bbef6181369b64d9eb47a5ec4e1",
+    "tests/alpha_reader_safety.lua": "8ea11a384e3d587881f739f6b7a76f368d5f4d1e9f9d0fe92b76db9d3d3723a3",
+    "tests/fixtures/alpha_reader_before.txt": "d96a31e00981f337303da5937359a5043925614f999fa897e4f4b62303009489",
+    "libs/LibStub/LibStub.lua": "a59b4c745c1fdb1b5ad22a86394814afecf8549516c18f6a16353960646b47f8",
+    "Core/API/Secrets.lua": "471a54aeb783e922ed7dccbe64d3a10c679a27e27a15bdaf3db4697400afccce",
+    "Bars/Init.lua": "169e18d2f7b946ed41c1890828ede7ce0cec8a8d3041fccf23e11f5dc85dba38",
+    "libs/LibCustomGlow-1.0/LibCustomGlow-1.0.lua": "e5ed4d1f3b5ab4bda75772cda846562cde0b929c8a3f302e91e4c5c47db91bb6",
+    "Core/ButtonFX/Glow.lua": "d4be8ec4e8fc1ae26236dc58dfa4a53b87599e1ffbb4fbb77c145b7e7c5b4a57"
+  },
+  "consumed_sha256_after": {
+    "Bars/Blizzard.lua": "9b2209f02654001750f85a9ccf3c935ff4b58ef7cf8d42d0b81dfc77b785925f",
+    "Bars/BadgeHost.lua": "c4fc487f45cda62e8a93932777f5478d08a9543658c456a5c6a67fb76bcf4616",
+    "Core/ButtonFX/Cast.lua": "ea8f5cc521d734e2010ea807c7ac1abc002a8938e4dcf00d0dae8f05c75d819b",
+    "Core/ButtonFX/Charges.lua": "7911a8cde0f2e8855a0f22a3a6bc791f4f5cf391354e978405774bed974e1df3",
+    "ExtraButtonSystem/Engine/Button.lua": "e209f9794ce1e48cd2841bd7b5eed3e0cb679c08646004dc3e37771083c4cc27",
+    "ExtraButtonSystem/Engine/Style.lua": "0cc2decc08090e6fbbeb32cf2b299ab4752ae27235832423ccd6aa8f55602e66",
+    "Core/ButtonFX/ThreatGlow.lua": "9e08ba85e8eaf5868bbf14b2403097d4aedf3bbef6181369b64d9eb47a5ec4e1",
+    "tests/alpha_reader_safety.lua": "8ea11a384e3d587881f739f6b7a76f368d5f4d1e9f9d0fe92b76db9d3d3723a3",
+    "tests/fixtures/alpha_reader_before.txt": "d96a31e00981f337303da5937359a5043925614f999fa897e4f4b62303009489",
+    "libs/LibStub/LibStub.lua": "a59b4c745c1fdb1b5ad22a86394814afecf8549516c18f6a16353960646b47f8",
+    "Core/API/Secrets.lua": "471a54aeb783e922ed7dccbe64d3a10c679a27e27a15bdaf3db4697400afccce",
+    "Bars/Init.lua": "169e18d2f7b946ed41c1890828ede7ce0cec8a8d3041fccf23e11f5dc85dba38",
+    "libs/LibCustomGlow-1.0/LibCustomGlow-1.0.lua": "e5ed4d1f3b5ab4bda75772cda846562cde0b929c8a3f302e91e4c5c47db91bb6",
+    "Core/ButtonFX/Glow.lua": "d4be8ec4e8fc1ae26236dc58dfa4a53b87599e1ffbb4fbb77c145b7e7c5b4a57"
+  },
+  "consumed_drift": [],
+  "syntax": [
+    {
+      "path": "Bars/Blizzard.lua",
+      "exit": 0
+    },
+    {
+      "path": "Bars/BadgeHost.lua",
+      "exit": 0
+    },
+    {
+      "path": "Core/ButtonFX/Cast.lua",
+      "exit": 0
+    },
+    {
+      "path": "Core/ButtonFX/Charges.lua",
+      "exit": 0
+    },
+    {
+      "path": "ExtraButtonSystem/Engine/Button.lua",
+      "exit": 0
+    },
+    {
+      "path": "ExtraButtonSystem/Engine/Style.lua",
+      "exit": 0
+    },
+    {
+      "path": "Core/ButtonFX/ThreatGlow.lua",
+      "exit": 0
+    },
+    {
+      "path": "tests/alpha_reader_safety.lua",
+      "exit": 0
+    },
+    {
+      "path": "libs/LibStub/LibStub.lua",
+      "exit": 0
+    },
+    {
+      "path": "Core/API/Secrets.lua",
+      "exit": 0
+    },
+    {
+      "path": "Bars/Init.lua",
+      "exit": 0
+    },
+    {
+      "path": "libs/LibCustomGlow-1.0/LibCustomGlow-1.0.lua",
+      "exit": 0
+    },
+    {
+      "path": "Core/ButtonFX/Glow.lua",
+      "exit": 0
+    }
+  ],
+  "shared_library_untouched": true,
+  "getter_denial_policy": "Narrow getter guards return unknown; timer/clear/owned suppression path proceeds, retaining previous optional appearance until next public paint; no declassification or invented effectivealpha.",
+  "winning_library_gate_resolved": "Own threat service/pool/key independent of shared LibStub; real version20-to25 and preloaded25 scenarios preserve shared owner/functions and never adopt foreign overlay."
+}

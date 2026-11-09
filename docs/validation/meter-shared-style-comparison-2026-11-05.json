@@ -1,0 +1,325 @@
+{
+  "scope": "Production presentation modules under explicit widget/threat mocks; native text secrets, rendering, taint, CPU/memory/FPS not emulated. Wall times include process/fixture setup and are not a game performance benchmark. Native build1.60.1.70790 is separate background acceptance.",
+  "baselineCheckpoint": "Mail-auction-publication-20261105T215820Z",
+  "hardware": {
+    "cpu": "Intel Core i7-12700F;12 cores20 logical",
+    "ramBytes": 34164105216,
+    "gpu": "NVIDIA GeForce RTX3060;driver32.0.16.2114",
+    "os": "Windows10.0.26200",
+    "otherDisplay": "ParsecVirtualDisplayAdapter0.45.0.0"
+  },
+  "configuration": "Lua5.4.6 fresh processes; no optional profiler; warmup=fresh deterministic fixture setup per process; five alternating matched pairs; fixture includes500 unchanged entry/window restyles,500 event coalescing and reveal/resize loops,80 raid/player-pet facts. No game settings or addon load state changed by desktop tests.",
+  "identities": {
+    "baseline": [
+      {
+        "path": "Battlezonemap/FluxMeterSkin.lua",
+        "sha256": "e14d1ad89caaac2e988f14b093210f8fbd5a7570e6596323ca1ab18a7551a5f7"
+      },
+      {
+        "path": "Battlezonemap/FluxThreatMeter.lua",
+        "sha256": "478d82e865a9b49ccf720e60b50b7aa66154c9eabd44c2f0ab41a4be268f7cc7"
+      }
+    ],
+    "candidate": [
+      {
+        "path": "Battlezonemap/FluxMeterSkin.lua",
+        "sha256": "f8bbb7a0e690ca100c6f6bd3842fa30570191d7aba68edf73bed6db4f7f3f9da"
+      },
+      {
+        "path": "Battlezonemap/FluxThreatMeter.lua",
+        "sha256": "798afff478257b71e276c0e70a87d5fdca5fc16f1ef91f5c6b0c32382cd997c1"
+      }
+    ]
+  },
+  "tests": [
+    {
+      "path": "tests/native_meter_skin.lua",
+      "sha256": "ec8912269a93e82208a559c429118031363782cfd49ed20a38fd580a581baa0e"
+    },
+    {
+      "path": "tests/standalone_threat_meter.lua",
+      "sha256": "922b418d8908ae5738914128cd7e58acc7b15adf3fa72be1082e2b716aabae00"
+    }
+  ],
+  "samples": [
+    {
+      "pair": 1,
+      "variant": "baseline",
+      "script": "tests/native_meter_skin.lua",
+      "exit": 1,
+      "wallSeconds": 0.03827690001344308,
+      "output": "FAIL row background shares the existing FluxDetails fill without multiplying native alpha\nFAIL multiword names stay on one line without inspecting or changing native text\nFAIL pooled native name wrap resets are repaired without reading its contents\nFAIL native titles use the same stock Friz Quadrata font as FluxDetails\nFAIL actual nested native background receives the common panel fill\nFAIL native background alpha reset is normalized on style reapplication\nFAIL native window font reset is repaired on reapplication\nFAIL source-window shape skins without a fabricated header\nFAIL owned and native panes share the actual title font and panel fill\nFAIL owned pane without header/background gets bounded shared chrome\nFAIL owned header follows scale without new textures\nnative meter skin: 54 checks, 11 failures; no native secrets/rendering/taint emulated\nlua: ...il_\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_skin.lua:266: native meter skin regressions\nstack traceback:\n\t[C]: in function 'assert'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_skin.lua:266: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "pair": 1,
+      "variant": "baseline",
+      "script": "tests/standalone_threat_meter.lua",
+      "exit": 1,
+      "wallSeconds": 0.04050090000964701,
+      "output": "lua: ...terface\\AddOns\\_FluxUI\\tests\\standalone_threat_meter.lua:5: owned title centers in the native-height header and body starts below it\nstack traceback:\n\t[C]: in function 'assert'\n\t...terface\\AddOns\\_FluxUI\\tests\\standalone_threat_meter.lua:5: in local 'check'\n\t...terface\\AddOns\\_FluxUI\\tests\\standalone_threat_meter.lua:181: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "pair": 1,
+      "variant": "candidate",
+      "script": "tests/native_meter_skin.lua",
+      "exit": 0,
+      "wallSeconds": 0.019375899981241673,
+      "output": "native meter skin: 54 checks, 0 failures; no native secrets/rendering/taint emulated\n"
+    },
+    {
+      "pair": 1,
+      "variant": "candidate",
+      "script": "tests/standalone_threat_meter.lua",
+      "exit": 0,
+      "wallSeconds": 2.3938385999936145,
+      "output": "standalone threat meter: 69 checks passed; 500-event scans=1; raid facts=80; retained rows=80\n"
+    },
+    {
+      "pair": 2,
+      "variant": "candidate",
+      "script": "tests/native_meter_skin.lua",
+      "exit": 0,
+      "wallSeconds": 0.021596700011286885,
+      "output": "native meter skin: 54 checks, 0 failures; no native secrets/rendering/taint emulated\n"
+    },
+    {
+      "pair": 2,
+      "variant": "candidate",
+      "script": "tests/standalone_threat_meter.lua",
+      "exit": 0,
+      "wallSeconds": 2.216337999998359,
+      "output": "standalone threat meter: 69 checks passed; 500-event scans=1; raid facts=80; retained rows=80\n"
+    },
+    {
+      "pair": 2,
+      "variant": "baseline",
+      "script": "tests/native_meter_skin.lua",
+      "exit": 1,
+      "wallSeconds": 0.09086379999644123,
+      "output": "FAIL row background shares the existing FluxDetails fill without multiplying native alpha\nFAIL multiword names stay on one line without inspecting or changing native text\nFAIL pooled native name wrap resets are repaired without reading its contents\nFAIL native titles use the same stock Friz Quadrata font as FluxDetails\nFAIL actual nested native background receives the common panel fill\nFAIL native background alpha reset is normalized on style reapplication\nFAIL native window font reset is repaired on reapplication\nFAIL source-window shape skins without a fabricated header\nFAIL owned and native panes share the actual title font and panel fill\nFAIL owned pane without header/background gets bounded shared chrome\nFAIL owned header follows scale without new textures\nnative meter skin: 54 checks, 11 failures; no native secrets/rendering/taint emulated\nlua: ...il_\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_skin.lua:266: native meter skin regressions\nstack traceback:\n\t[C]: in function 'assert'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_skin.lua:266: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "pair": 2,
+      "variant": "baseline",
+      "script": "tests/standalone_threat_meter.lua",
+      "exit": 1,
+      "wallSeconds": 0.03999600000679493,
+      "output": "lua: ...terface\\AddOns\\_FluxUI\\tests\\standalone_threat_meter.lua:5: owned title centers in the native-height header and body starts below it\nstack traceback:\n\t[C]: in function 'assert'\n\t...terface\\AddOns\\_FluxUI\\tests\\standalone_threat_meter.lua:5: in local 'check'\n\t...terface\\AddOns\\_FluxUI\\tests\\standalone_threat_meter.lua:181: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "pair": 3,
+      "variant": "baseline",
+      "script": "tests/native_meter_skin.lua",
+      "exit": 1,
+      "wallSeconds": 0.04198270000051707,
+      "output": "FAIL row background shares the existing FluxDetails fill without multiplying native alpha\nFAIL multiword names stay on one line without inspecting or changing native text\nFAIL pooled native name wrap resets are repaired without reading its contents\nFAIL native titles use the same stock Friz Quadrata font as FluxDetails\nFAIL actual nested native background receives the common panel fill\nFAIL native background alpha reset is normalized on style reapplication\nFAIL native window font reset is repaired on reapplication\nFAIL source-window shape skins without a fabricated header\nFAIL owned and native panes share the actual title font and panel fill\nFAIL owned pane without header/background gets bounded shared chrome\nFAIL owned header follows scale without new textures\nnative meter skin: 54 checks, 11 failures; no native secrets/rendering/taint emulated\nlua: ...il_\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_skin.lua:266: native meter skin regressions\nstack traceback:\n\t[C]: in function 'assert'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_skin.lua:266: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "pair": 3,
+      "variant": "baseline",
+      "script": "tests/standalone_threat_meter.lua",
+      "exit": 1,
+      "wallSeconds": 0.034640500001842156,
+      "output": "lua: ...terface\\AddOns\\_FluxUI\\tests\\standalone_threat_meter.lua:5: owned title centers in the native-height header and body starts below it\nstack traceback:\n\t[C]: in function 'assert'\n\t...terface\\AddOns\\_FluxUI\\tests\\standalone_threat_meter.lua:5: in local 'check'\n\t...terface\\AddOns\\_FluxUI\\tests\\standalone_threat_meter.lua:181: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "pair": 3,
+      "variant": "candidate",
+      "script": "tests/native_meter_skin.lua",
+      "exit": 0,
+      "wallSeconds": 0.03341720000025816,
+      "output": "native meter skin: 54 checks, 0 failures; no native secrets/rendering/taint emulated\n"
+    },
+    {
+      "pair": 3,
+      "variant": "candidate",
+      "script": "tests/standalone_threat_meter.lua",
+      "exit": 0,
+      "wallSeconds": 2.2370090000040364,
+      "output": "standalone threat meter: 69 checks passed; 500-event scans=1; raid facts=80; retained rows=80\n"
+    },
+    {
+      "pair": 4,
+      "variant": "candidate",
+      "script": "tests/native_meter_skin.lua",
+      "exit": 0,
+      "wallSeconds": 0.06754580000415444,
+      "output": "native meter skin: 54 checks, 0 failures; no native secrets/rendering/taint emulated\n"
+    },
+    {
+      "pair": 4,
+      "variant": "candidate",
+      "script": "tests/standalone_threat_meter.lua",
+      "exit": 0,
+      "wallSeconds": 2.9032298999954946,
+      "output": "standalone threat meter: 69 checks passed; 500-event scans=1; raid facts=80; retained rows=80\n"
+    },
+    {
+      "pair": 4,
+      "variant": "baseline",
+      "script": "tests/native_meter_skin.lua",
+      "exit": 1,
+      "wallSeconds": 0.02496490001794882,
+      "output": "FAIL row background shares the existing FluxDetails fill without multiplying native alpha\nFAIL multiword names stay on one line without inspecting or changing native text\nFAIL pooled native name wrap resets are repaired without reading its contents\nFAIL native titles use the same stock Friz Quadrata font as FluxDetails\nFAIL actual nested native background receives the common panel fill\nFAIL native background alpha reset is normalized on style reapplication\nFAIL native window font reset is repaired on reapplication\nFAIL source-window shape skins without a fabricated header\nFAIL owned and native panes share the actual title font and panel fill\nFAIL owned pane without header/background gets bounded shared chrome\nFAIL owned header follows scale without new textures\nnative meter skin: 54 checks, 11 failures; no native secrets/rendering/taint emulated\nlua: ...il_\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_skin.lua:266: native meter skin regressions\nstack traceback:\n\t[C]: in function 'assert'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_skin.lua:266: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "pair": 4,
+      "variant": "baseline",
+      "script": "tests/standalone_threat_meter.lua",
+      "exit": 1,
+      "wallSeconds": 0.01823980000335723,
+      "output": "lua: ...terface\\AddOns\\_FluxUI\\tests\\standalone_threat_meter.lua:5: owned title centers in the native-height header and body starts below it\nstack traceback:\n\t[C]: in function 'assert'\n\t...terface\\AddOns\\_FluxUI\\tests\\standalone_threat_meter.lua:5: in local 'check'\n\t...terface\\AddOns\\_FluxUI\\tests\\standalone_threat_meter.lua:181: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "pair": 5,
+      "variant": "baseline",
+      "script": "tests/native_meter_skin.lua",
+      "exit": 1,
+      "wallSeconds": 0.023666199995204806,
+      "output": "FAIL row background shares the existing FluxDetails fill without multiplying native alpha\nFAIL multiword names stay on one line without inspecting or changing native text\nFAIL pooled native name wrap resets are repaired without reading its contents\nFAIL native titles use the same stock Friz Quadrata font as FluxDetails\nFAIL actual nested native background receives the common panel fill\nFAIL native background alpha reset is normalized on style reapplication\nFAIL native window font reset is repaired on reapplication\nFAIL source-window shape skins without a fabricated header\nFAIL owned and native panes share the actual title font and panel fill\nFAIL owned pane without header/background gets bounded shared chrome\nFAIL owned header follows scale without new textures\nnative meter skin: 54 checks, 11 failures; no native secrets/rendering/taint emulated\nlua: ...il_\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_skin.lua:266: native meter skin regressions\nstack traceback:\n\t[C]: in function 'assert'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_skin.lua:266: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "pair": 5,
+      "variant": "baseline",
+      "script": "tests/standalone_threat_meter.lua",
+      "exit": 1,
+      "wallSeconds": 0.019683899998199195,
+      "output": "lua: ...terface\\AddOns\\_FluxUI\\tests\\standalone_threat_meter.lua:5: owned title centers in the native-height header and body starts below it\nstack traceback:\n\t[C]: in function 'assert'\n\t...terface\\AddOns\\_FluxUI\\tests\\standalone_threat_meter.lua:5: in local 'check'\n\t...terface\\AddOns\\_FluxUI\\tests\\standalone_threat_meter.lua:181: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "pair": 5,
+      "variant": "candidate",
+      "script": "tests/native_meter_skin.lua",
+      "exit": 0,
+      "wallSeconds": 0.023086100001819432,
+      "output": "native meter skin: 54 checks, 0 failures; no native secrets/rendering/taint emulated\n"
+    },
+    {
+      "pair": 5,
+      "variant": "candidate",
+      "script": "tests/standalone_threat_meter.lua",
+      "exit": 0,
+      "wallSeconds": 2.3861984999966808,
+      "output": "standalone threat meter: 69 checks passed; 500-event scans=1; raid facts=80; retained rows=80\n"
+    }
+  ],
+  "variation": {
+    "baseline/tests/native_meter_skin.lua": {
+      "exits": [
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "wallRange": [
+        0.023666199995204806,
+        0.09086379999644123
+      ],
+      "wallMedian": 0.03827690001344308
+    },
+    "baseline/tests/standalone_threat_meter.lua": {
+      "exits": [
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "wallRange": [
+        0.01823980000335723,
+        0.04050090000964701
+      ],
+      "wallMedian": 0.034640500001842156
+    },
+    "candidate/tests/native_meter_skin.lua": {
+      "exits": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "wallRange": [
+        0.019375899981241673,
+        0.06754580000415444
+      ],
+      "wallMedian": 0.023086100001819432
+    },
+    "candidate/tests/standalone_threat_meter.lua": {
+      "exits": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "wallRange": [
+        2.216337999998359,
+        2.9032298999954946
+      ],
+      "wallMedian": 2.3861984999966808
+    }
+  },
+  "mutants": [
+    {
+      "name": "title-font",
+      "script": "tests/native_meter_skin.lua",
+      "rejected": true,
+      "exit": 1,
+      "output": "FAIL native titles use the same stock Friz Quadrata font as FluxDetails\nFAIL native window font reset is repaired on reapplication\nnative meter skin: 54 checks, 2 failures; no native secrets/rendering/taint emulated\nlua: ...il_\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_skin.lua:266: native meter skin regressions\nstack traceback:\n\t[C]: in function 'assert'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_skin.lua:266: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "native-name-wrap",
+      "script": "tests/native_meter_skin.lua",
+      "rejected": true,
+      "exit": 1,
+      "output": "FAIL multiword names stay on one line without inspecting or changing native text\nFAIL pooled native name wrap resets are repaired without reading its contents\nnative meter skin: 54 checks, 2 failures; no native secrets/rendering/taint emulated\nlua: ...il_\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_skin.lua:266: native meter skin regressions\nstack traceback:\n\t[C]: in function 'assert'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_skin.lua:266: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "panel-color",
+      "script": "tests/native_meter_skin.lua",
+      "rejected": true,
+      "exit": 1,
+      "output": "FAIL actual nested native background receives the common panel fill\nFAIL source-window shape skins without a fabricated header\nnative meter skin: 54 checks, 2 failures; no native secrets/rendering/taint emulated\nlua: ...il_\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_skin.lua:266: native meter skin regressions\nstack traceback:\n\t[C]: in function 'assert'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_skin.lua:266: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "row-fill",
+      "script": "tests/native_meter_skin.lua",
+      "rejected": true,
+      "exit": 1,
+      "output": "FAIL row background shares the existing FluxDetails fill without multiplying native alpha\nnative meter skin: 54 checks, 1 failures; no native secrets/rendering/taint emulated\nlua: ...il_\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_skin.lua:266: native meter skin regressions\nstack traceback:\n\t[C]: in function 'assert'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_skin.lua:266: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "native-alpha",
+      "script": "tests/native_meter_skin.lua",
+      "rejected": true,
+      "exit": 1,
+      "output": "FAIL actual nested native background receives the common panel fill\nFAIL native background alpha reset is normalized on style reapplication\nFAIL source-window shape skins without a fabricated header\nFAIL owned and native panes share the actual title font and panel fill\nnative meter skin: 54 checks, 4 failures; no native secrets/rendering/taint emulated\nlua: ...il_\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_skin.lua:266: native meter skin regressions\nstack traceback:\n\t[C]: in function 'assert'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_skin.lua:266: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "header-height",
+      "script": "tests/native_meter_skin.lua",
+      "rejected": true,
+      "exit": 1,
+      "output": "FAIL owned pane without header/background gets bounded shared chrome\nFAIL owned header follows scale without new textures\nnative meter skin: 54 checks, 2 failures; no native secrets/rendering/taint emulated\nlua: ...il_\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_skin.lua:266: native meter skin regressions\nstack traceback:\n\t[C]: in function 'assert'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_skin.lua:266: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "owned-name-wrap",
+      "script": "tests/standalone_threat_meter.lua",
+      "rejected": true,
+      "exit": 1,
+      "output": "lua: ...terface\\AddOns\\_FluxUI\\tests\\standalone_threat_meter.lua:5: multiword threat names retain one line without rewriting or measuring their text\nstack traceback:\n\t[C]: in function 'assert'\n\t...terface\\AddOns\\_FluxUI\\tests\\standalone_threat_meter.lua:5: in local 'check'\n\t...terface\\AddOns\\_FluxUI\\tests\\standalone_threat_meter.lua:194: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "body-header-overlap",
+      "script": "tests/standalone_threat_meter.lua",
+      "rejected": true,
+      "exit": 1,
+      "output": "lua: ...terface\\AddOns\\_FluxUI\\tests\\standalone_threat_meter.lua:5: owned title centers in the native-height header and body starts below it\nstack traceback:\n\t[C]: in function 'assert'\n\t...terface\\AddOns\\_FluxUI\\tests\\standalone_threat_meter.lua:5: in local 'check'\n\t...terface\\AddOns\\_FluxUI\\tests\\standalone_threat_meter.lua:181: in main chunk\n\t[C]: in ?\n"
+    }
+  ],
+  "candidatePass": true,
+  "baselineRejected": true,
+  "allMutantsRejected": true
+}

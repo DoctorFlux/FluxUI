@@ -1,0 +1,81 @@
+{
+  "scope": "Desktop Lua fixture only; process wall time is not addon CPU or FPS.",
+  "baselineMain": "437fda79136582282dde0f3989f3cb70c4411bad",
+  "sourceSha256": {
+    "baseline": "751ef9e986d3a4d363dac4e539054d27ca42a6c4f1251ab40626e34e959ee63e",
+    "candidate": "6a5620341e7794e454b64dc317a7680d03cdd336cdafc02d47e4d5fb8806ea98",
+    "fixture": "52dc1dfd67aa1bb283c982d5846503beadf183ad76fb83cbb5c2ec8fc34e14b9"
+  },
+  "rows": [
+    {
+      "trial": 1,
+      "kind": "baseline",
+      "exit": 0,
+      "output": "Consumable config visibility: 8 checks passed",
+      "wallSeconds": 0.0196
+    },
+    {
+      "trial": 1,
+      "kind": "candidate",
+      "exit": 0,
+      "output": "Consumable config visibility: 8 checks passed",
+      "wallSeconds": 0.0175
+    },
+    {
+      "trial": 2,
+      "kind": "baseline",
+      "exit": 0,
+      "output": "Consumable config visibility: 8 checks passed",
+      "wallSeconds": 0.0246
+    },
+    {
+      "trial": 2,
+      "kind": "candidate",
+      "exit": 0,
+      "output": "Consumable config visibility: 8 checks passed",
+      "wallSeconds": 0.0158
+    },
+    {
+      "trial": 3,
+      "kind": "baseline",
+      "exit": 0,
+      "output": "Consumable config visibility: 8 checks passed",
+      "wallSeconds": 0.0185
+    },
+    {
+      "trial": 3,
+      "kind": "candidate",
+      "exit": 0,
+      "output": "Consumable config visibility: 8 checks passed",
+      "wallSeconds": 0.0162
+    },
+    {
+      "trial": 4,
+      "kind": "baseline",
+      "exit": 0,
+      "output": "Consumable config visibility: 8 checks passed",
+      "wallSeconds": 0.0162
+    },
+    {
+      "trial": 4,
+      "kind": "candidate",
+      "exit": 0,
+      "output": "Consumable config visibility: 8 checks passed",
+      "wallSeconds": 0.0182
+    },
+    {
+      "trial": 5,
+      "kind": "baseline",
+      "exit": 0,
+      "output": "Consumable config visibility: 8 checks passed",
+      "wallSeconds": 0.0204
+    },
+    {
+      "trial": 5,
+      "kind": "candidate",
+      "exit": 0,
+      "output": "Consumable config visibility: 8 checks passed",
+      "wallSeconds": 0.0165
+    }
+  ]
+}

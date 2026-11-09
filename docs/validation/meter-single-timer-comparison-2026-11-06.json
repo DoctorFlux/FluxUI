@@ -1,0 +1,179 @@
+{
+  "utc": "2026-11-06T07:42:00.233821+00:00",
+  "baselineCommit": "a07c449b1783a7bc876943e5909c3573cfec267a",
+  "baselineTree": "actual dirty source checkpoint Meter-timer-and-taint-checkpoint-20261106T072904Z; native-header-layer skin before timer change",
+  "baselineSHA256": "e647ca4aaf010dd524184d4181f00ae95fce12ae7bb12375c939dcd43e209e06",
+  "candidateSHA256": "cb43ca5f7988f32d335090aadc4353421d78023806e7ce1430b17bafef93a650",
+  "fixtureSHA256": "25197257562f4d2a6ceea790abc7c76b6ac253be21bc0d949ee1d5c9d1b991fc",
+  "scope": "Desktop presentation/geometry/lifecycle regression only. No WoW secret VM, render, frame time, CPU allocation, FPS or native taint acceptance.",
+  "scenario": "3 session panes with different physical tops/lefts/effective scales; visibility and combat changes; zero/opaque/original alpha; fixed header reservation/control dependency; 500 stable repeats; release/reacquire.",
+  "warmup": "Lua module and widget mocks constructed once per run; stable-resource check warms current pane geometry before 500 repeats.",
+  "captureDuration": "test-defined bounded operations; elapsedSeconds includes desktop Lua process startup and is not a native performance metric",
+  "profiler": "WoW not running; no profiling or user settings changed",
+  "native": "PENDING; no WoW process at 07:31 UTC. Native appearance, input, combat and secret/taint tests require fresh reload.",
+  "newResources": "No new frames/events/timers/textures for arbitration; three permanent guarded script posthooks per session window (Show,Hide,Size), inactive after release. Source panes have no timer.",
+  "pairs": [
+    {
+      "repetition": 1,
+      "order": [
+        "baseline",
+        "candidate"
+      ],
+      "baseline": {
+        "exitCode": 1,
+        "elapsedSeconds": 0.05006969999521971,
+        "stdout": "FAIL native size changes reconcile title width and timer election without replacing scripts\nFAIL single-timer presentation has an explicit layout reconciliation entry point\nFAIL highest screen-space top wins before screen-space left, preserving the winner's original alpha\nFAIL fixed timer reservation preserves left title position and positive title space\nFAIL timer and title share the compact header baseline without inspecting text metrics\nFAIL moving the timer does not drag its dependent native type-menu hitbox or replace its handler\nFAIL a physically higher pane wins across different effective scales\nFAIL hiding the winner elects the next highest visible pane\nFAIL revealing the higher-priority pane restores its timer\nFAIL column reordering elects the leftmost pane on the same row\nFAIL top priority precedes left priority even for a small top difference\nFAIL an invisible host has no displayed timer\n",
+        "stderr": "lua: ...il_\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_skin.lua:519: attempt to get length of a nil value (field 'OnShow')\nstack traceback:\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_skin.lua:519: in main chunk\n\t[C]: in ?\n"
+      },
+      "candidate": {
+        "exitCode": 0,
+        "elapsedSeconds": 0.06288029998540878,
+        "stdout": "native meter skin: 113 checks, 0 failures; no native secrets/rendering/taint emulated\n",
+        "stderr": ""
+      }
+    },
+    {
+      "repetition": 2,
+      "order": [
+        "candidate",
+        "baseline"
+      ],
+      "candidate": {
+        "exitCode": 0,
+        "elapsedSeconds": 0.056823200022336096,
+        "stdout": "native meter skin: 113 checks, 0 failures; no native secrets/rendering/taint emulated\n",
+        "stderr": ""
+      },
+      "baseline": {
+        "exitCode": 1,
+        "elapsedSeconds": 0.05063700000755489,
+        "stdout": "FAIL native size changes reconcile title width and timer election without replacing scripts\nFAIL single-timer presentation has an explicit layout reconciliation entry point\nFAIL highest screen-space top wins before screen-space left, preserving the winner's original alpha\nFAIL fixed timer reservation preserves left title position and positive title space\nFAIL timer and title share the compact header baseline without inspecting text metrics\nFAIL moving the timer does not drag its dependent native type-menu hitbox or replace its handler\nFAIL a physically higher pane wins across different effective scales\nFAIL hiding the winner elects the next highest visible pane\nFAIL revealing the higher-priority pane restores its timer\nFAIL column reordering elects the leftmost pane on the same row\nFAIL top priority precedes left priority even for a small top difference\nFAIL an invisible host has no displayed timer\n",
+        "stderr": "lua: ...il_\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_skin.lua:519: attempt to get length of a nil value (field 'OnShow')\nstack traceback:\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_skin.lua:519: in main chunk\n\t[C]: in ?\n"
+      }
+    },
+    {
+      "repetition": 3,
+      "order": [
+        "baseline",
+        "candidate"
+      ],
+      "baseline": {
+        "exitCode": 1,
+        "elapsedSeconds": 0.052891200000885874,
+        "stdout": "FAIL native size changes reconcile title width and timer election without replacing scripts\nFAIL single-timer presentation has an explicit layout reconciliation entry point\nFAIL highest screen-space top wins before screen-space left, preserving the winner's original alpha\nFAIL fixed timer reservation preserves left title position and positive title space\nFAIL timer and title share the compact header baseline without inspecting text metrics\nFAIL moving the timer does not drag its dependent native type-menu hitbox or replace its handler\nFAIL a physically higher pane wins across different effective scales\nFAIL hiding the winner elects the next highest visible pane\nFAIL revealing the higher-priority pane restores its timer\nFAIL column reordering elects the leftmost pane on the same row\nFAIL top priority precedes left priority even for a small top difference\nFAIL an invisible host has no displayed timer\n",
+        "stderr": "lua: ...il_\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_skin.lua:519: attempt to get length of a nil value (field 'OnShow')\nstack traceback:\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_skin.lua:519: in main chunk\n\t[C]: in ?\n"
+      },
+      "candidate": {
+        "exitCode": 0,
+        "elapsedSeconds": 0.05635229998733848,
+        "stdout": "native meter skin: 113 checks, 0 failures; no native secrets/rendering/taint emulated\n",
+        "stderr": ""
+      }
+    },
+    {
+      "repetition": 4,
+      "order": [
+        "candidate",
+        "baseline"
+      ],
+      "candidate": {
+        "exitCode": 0,
+        "elapsedSeconds": 0.05503519999911077,
+        "stdout": "native meter skin: 113 checks, 0 failures; no native secrets/rendering/taint emulated\n",
+        "stderr": ""
+      },
+      "baseline": {
+        "exitCode": 1,
+        "elapsedSeconds": 0.05034320001141168,
+        "stdout": "FAIL native size changes reconcile title width and timer election without replacing scripts\nFAIL single-timer presentation has an explicit layout reconciliation entry point\nFAIL highest screen-space top wins before screen-space left, preserving the winner's original alpha\nFAIL fixed timer reservation preserves left title position and positive title space\nFAIL timer and title share the compact header baseline without inspecting text metrics\nFAIL moving the timer does not drag its dependent native type-menu hitbox or replace its handler\nFAIL a physically higher pane wins across different effective scales\nFAIL hiding the winner elects the next highest visible pane\nFAIL revealing the higher-priority pane restores its timer\nFAIL column reordering elects the leftmost pane on the same row\nFAIL top priority precedes left priority even for a small top difference\nFAIL an invisible host has no displayed timer\n",
+        "stderr": "lua: ...il_\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_skin.lua:519: attempt to get length of a nil value (field 'OnShow')\nstack traceback:\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_skin.lua:519: in main chunk\n\t[C]: in ?\n"
+      }
+    },
+    {
+      "repetition": 5,
+      "order": [
+        "baseline",
+        "candidate"
+      ],
+      "baseline": {
+        "exitCode": 1,
+        "elapsedSeconds": 0.04880509999929927,
+        "stdout": "FAIL native size changes reconcile title width and timer election without replacing scripts\nFAIL single-timer presentation has an explicit layout reconciliation entry point\nFAIL highest screen-space top wins before screen-space left, preserving the winner's original alpha\nFAIL fixed timer reservation preserves left title position and positive title space\nFAIL timer and title share the compact header baseline without inspecting text metrics\nFAIL moving the timer does not drag its dependent native type-menu hitbox or replace its handler\nFAIL a physically higher pane wins across different effective scales\nFAIL hiding the winner elects the next highest visible pane\nFAIL revealing the higher-priority pane restores its timer\nFAIL column reordering elects the leftmost pane on the same row\nFAIL top priority precedes left priority even for a small top difference\nFAIL an invisible host has no displayed timer\n",
+        "stderr": "lua: ...il_\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_skin.lua:519: attempt to get length of a nil value (field 'OnShow')\nstack traceback:\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_skin.lua:519: in main chunk\n\t[C]: in ?\n"
+      },
+      "candidate": {
+        "exitCode": 0,
+        "elapsedSeconds": 0.057492799998726696,
+        "stdout": "native meter skin: 113 checks, 0 failures; no native secrets/rendering/taint emulated\n",
+        "stderr": ""
+      }
+    }
+  ],
+  "mutants": [
+    {
+      "name": "bottom-before-top",
+      "exitCode": 1,
+      "elapsedSeconds": 0.08009709999896586,
+      "stdout": "FAIL highest screen-space top wins before screen-space left, preserving the winner's original alpha\nFAIL a physically higher pane wins across different effective scales\nFAIL hiding the winner elects the next highest visible pane\nFAIL revealing the higher-priority pane restores its timer\nFAIL column reordering elects the leftmost pane on the same row\nFAIL top priority precedes left priority even for a small top difference\nFAIL combat winner changes touch presentation alpha only\nFAIL readable screen geometry takes precedence over an unreadable fallback\nnative meter skin: 113 checks, 8 failures; no native secrets/rendering/taint emulated\n",
+      "stderr": "lua: ...il_\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_skin.lua:560: native meter skin regressions\nstack traceback:\n\t[C]: in function 'assert'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_skin.lua:560: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "right-before-left",
+      "exitCode": 1,
+      "elapsedSeconds": 0.07506770000327379,
+      "stdout": "FAIL highest screen-space top wins before screen-space left, preserving the winner's original alpha\nFAIL revealing the higher-priority pane restores its timer\nFAIL column reordering elects the leftmost pane on the same row\nnative meter skin: 113 checks, 3 failures; no native secrets/rendering/taint emulated\n",
+      "stderr": "lua: ...il_\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_skin.lua:560: native meter skin regressions\nstack traceback:\n\t[C]: in function 'assert'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_skin.lua:560: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "force-winner-alpha-one",
+      "exitCode": 1,
+      "elapsedSeconds": 0.07880839999415912,
+      "stdout": "FAIL highest screen-space top wins before screen-space left, preserving the winner's original alpha\nFAIL a physically higher pane wins across different effective scales\nFAIL hiding the winner elects the next highest visible pane\nFAIL revealing the higher-priority pane restores its timer\nFAIL column reordering elects the leftmost pane on the same row\nFAIL top priority precedes left priority even for a small top difference\nFAIL combat winner changes touch presentation alpha only\nFAIL a winner whose native alpha was zero stays zero\nFAIL unreadable geometry gets a stable fallback without comparison or arithmetic\nFAIL readable screen geometry takes precedence over an unreadable fallback\nnative meter skin: 113 checks, 10 failures; no native secrets/rendering/taint emulated\n",
+      "stderr": "lua: ...il_\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_skin.lua:560: native meter skin regressions\nstack traceback:\n\t[C]: in function 'assert'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_skin.lua:560: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "show-every-timer",
+      "exitCode": 1,
+      "elapsedSeconds": 0.07412109998404048,
+      "stdout": "FAIL highest screen-space top wins before screen-space left, preserving the winner's original alpha\nFAIL a physically higher pane wins across different effective scales\nFAIL hiding the winner elects the next highest visible pane\nFAIL revealing the higher-priority pane restores its timer\nFAIL column reordering elects the leftmost pane on the same row\nFAIL top priority precedes left priority even for a small top difference\nFAIL an invisible host has no displayed timer\nFAIL readable screen geometry takes precedence over an unreadable fallback\nnative meter skin: 113 checks, 8 failures; no native secrets/rendering/taint emulated\n",
+      "stderr": "lua: ...il_\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_skin.lua:560: native meter skin regressions\nstack traceback:\n\t[C]: in function 'assert'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_skin.lua:560: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "ignore-effective-scale",
+      "exitCode": 1,
+      "elapsedSeconds": 0.07829410000704229,
+      "stdout": "FAIL highest screen-space top wins before screen-space left, preserving the winner's original alpha\nFAIL hiding the winner elects the next highest visible pane\nFAIL revealing the higher-priority pane restores its timer\nFAIL column reordering elects the leftmost pane on the same row\nFAIL top priority precedes left priority even for a small top difference\nFAIL combat winner changes touch presentation alpha only\nnative meter skin: 113 checks, 6 failures; no native secrets/rendering/taint emulated\n",
+      "stderr": "lua: ...il_\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_skin.lua:560: native meter skin regressions\nstack traceback:\n\t[C]: in function 'assert'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_skin.lua:560: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "ignore-hide-wakeup",
+      "exitCode": 1,
+      "elapsedSeconds": 0.0674421000003349,
+      "stdout": "FAIL hiding the winner elects the next highest visible pane\nFAIL an invisible host has no displayed timer\n",
+      "stderr": "lua: ...il_\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_skin.lua:519: attempt to get length of a nil value (field 'OnHide')\nstack traceback:\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_skin.lua:519: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "move-native-menu-with-timer",
+      "exitCode": 1,
+      "elapsedSeconds": 0.07274340000003576,
+      "stdout": "FAIL moving the timer does not drag its dependent native type-menu hitbox or replace its handler\nnative meter skin: 113 checks, 1 failures; no native secrets/rendering/taint emulated\n",
+      "stderr": "lua: ...il_\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_skin.lua:560: native meter skin regressions\nstack traceback:\n\t[C]: in function 'assert'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_skin.lua:560: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "retain-stale-alpha-snapshot",
+      "exitCode": 1,
+      "elapsedSeconds": 0.07003149998490699,
+      "stdout": "FAIL reactivation snapshots the latest native alpha without duplicating permanent hooks\nFAIL repeated cleanup leaves a retired timer's newer native alpha untouched\nnative meter skin: 113 checks, 2 failures; no native secrets/rendering/taint emulated\n",
+      "stderr": "lua: ...il_\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_skin.lua:560: native meter skin regressions\nstack traceback:\n\t[C]: in function 'assert'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_skin.lua:560: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "no-timer-alpha-restore",
+      "exitCode": 1,
+      "elapsedSeconds": 0.07534879999002442,
+      "stdout": "FAIL combat cleanup restores all native alpha snapshots immediately\nnative meter skin: 113 checks, 1 failures; no native secrets/rendering/taint emulated\n",
+      "stderr": "lua: ...il_\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_skin.lua:560: native meter skin regressions\nstack traceback:\n\t[C]: in function 'assert'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_skin.lua:560: in main chunk\n\t[C]: in ?\n"
+    }
+  ],
+  "result": "PASS",
+  "sourceDriftGuard": true
+}

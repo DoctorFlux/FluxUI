@@ -1,0 +1,206 @@
+{
+  "capturedUTC": "2026-11-07T14:16:25.360346+00:00",
+  "approval": "User explicitly approved the prepared author-only correction and one force-with-lease exception on7November2026. The standing no-force-push rule remains for future work.",
+  "oldMain": "d3db4c5850dd77347b930e7e95abf1de7a037a6d",
+  "correctedMain": "e0bcdc26b5e4145571a4a4f5051033e2ddd091b3",
+  "rewrittenCommitIDs": 30,
+  "targetIdentityCorrections": 1,
+  "fileTreesMessagesDatesUnchanged": true,
+  "recovery": {
+    "checkpoint": "GitHub-publication-20261107T135245Z",
+    "bundleSHA256": "b52f7ca3a6c3dcfa12b7e5b7ca3bc01dd681cbef2b8e56e7aca4799a6bbdd52a",
+    "verified": true,
+    "location": "External to AddOns; private paths omitted"
+  },
+  "remote": {
+    "mainVerified": true,
+    "remainingOldAuthorCommits": 0,
+    "contributorsList": "Still cached at capture: owner113 and old tool identity1, predating the latest normal uploads and correction. Not claimed removed from the visible graph yet.",
+    "cacheGuidance": "GitHub documents about24hours after rewriting history; contact support if still incorrect after that period.",
+    "source": "https://docs.github.com/en/repositories/viewing-activity-and-data-for-your-repository/viewing-a-projects-contributors"
+  },
+  "changes": [
+    {
+      "old": "aa253cc605d3ecf43ee42f22cd79ff9d6d480d64",
+      "corrected": "99168f76353a2dc7123cd62122ebb144aab022f3",
+      "tree": "6a029ca06fdb1f6e79b91cb2dbcb5d238367070a",
+      "identityChanged": true
+    },
+    {
+      "old": "8681672ef364677477b48ce8c255d68ee9c9e326",
+      "corrected": "62baf7bf643c6e88b25367d8a2b4d58db94dc5ac",
+      "tree": "01c7c37e46f411565eca27827bbb114eedd94661",
+      "identityChanged": false
+    },
+    {
+      "old": "b664bb0b93ac566a34744aec5895e927a7a1ffff",
+      "corrected": "0a2b77a5d49c680d878df44059aef3cf84836085",
+      "tree": "fa0f31b06f1a11f3787bcc04a91d82900875f008",
+      "identityChanged": false
+    },
+    {
+      "old": "e860ce6de499a7702b91e8a8d74f115fbc9e0293",
+      "corrected": "96c5c5fabd3e4cb05796dd5cb7c3477dd39f2b43",
+      "tree": "e9c5b8d8d1103361f6e740bfb1b2036460846b81",
+      "identityChanged": false
+    },
+    {
+      "old": "7a06b85f633d1945b7d6bf615636f486f3d7e627",
+      "corrected": "8dec693e749bde053118e23d8cfd72fcca5d4be8",
+      "tree": "4e31f10131923c3d002faffe8036e631d1537402",
+      "identityChanged": false
+    },
+    {
+      "old": "437fda79136582282dde0f3989f3cb70c4411bad",
+      "corrected": "d143eddf8efc7b47b1d48bab5194b54afcb79f64",
+      "tree": "ecc4b50bf70842ceb077f75e39109438a2b74632",
+      "identityChanged": false
+    },
+    {
+      "old": "e631d2d72e5375f4c56f3b887e25d9d76f0ecbd9",
+      "corrected": "3839cb828ca3d86e89334405f99f748c119848de",
+      "tree": "20e32ad81452617ce209f85b4bc919bc1d586ce8",
+      "identityChanged": false
+    },
+    {
+      "old": "d71f2b9ef0d6675870ab3f12f3d0d0c79bd91b68",
+      "corrected": "a034f37f03624013f5e5f2cf45e671543685e7e5",
+      "tree": "0cb41a86b94271af5527c3b6a4785db8187879fc",
+      "identityChanged": false
+    },
+    {
+      "old": "ad7e02e3c00458b3c86c7680784bbc3a5cdbdcfb",
+      "corrected": "dd37020617475f834d124a0819804b6b48b1cb93",
+      "tree": "9df07a1712962ac2a0648ea388908818c34c9a1d",
+      "identityChanged": false
+    },
+    {
+      "old": "2c0e7b89e3faa5b6d551a0130c5d499ed665fc2a",
+      "corrected": "873fd3730329c9c65a4a8a4c40be98565f1bb01f",
+      "tree": "8d30033e9712066872242e3f2b04846bb104fefb",
+      "identityChanged": false
+    },
+    {
+      "old": "7f47a566e573a132dcac4a0e67f8b590cee8d08a",
+      "corrected": "ffeed876dd8eb3a0cdc8e1155cdd178bc5edfbf9",
+      "tree": "e6f588106d5a760dacbe98c8734a86a35876e7be",
+      "identityChanged": false
+    },
+    {
+      "old": "e2c6464ae889395a52376ad15047a31b1a7b5eba",
+      "corrected": "a3fe2331dbfd3d2e6d942c01bd3f552cf49b96ca",
+      "tree": "edd27b3d9b71dacae35ee7722083e44f3d6a13a1",
+      "identityChanged": false
+    },
+    {
+      "old": "c1a5f901467ff5015938442c74580d6d4781cbaa",
+      "corrected": "e5ff9a622e89379538b5756f8a67e6dc6c552ba3",
+      "tree": "7022c108bdfb95a5fd0141c647ed967dda67040b",
+      "identityChanged": false
+    },
+    {
+      "old": "72704d19cec2190495acb51d0ab82659e945d71a",
+      "corrected": "eb344874b8f3c67801a85406262259f0e61742a6",
+      "tree": "e51eaa6ed6984bacb0678cff0b87ca1e483665ca",
+      "identityChanged": false
+    },
+    {
+      "old": "8006494fd5f10b54818471933467b9bb867c6543",
+      "corrected": "611a88a4aedc48b8e4f853ff7f85bac195d4a328",
+      "tree": "f331eb6f1a41979f0e0b37b6a31c763947ee115d",
+      "identityChanged": false
+    },
+    {
+      "old": "92dfb49013df11da9a5986e1a252317e71ab3f32",
+      "corrected": "5c54663cb202dfd0986d87c5430f441a747cca27",
+      "tree": "a086e0f06087fa65a379211fa1e51a0ea3e0927d",
+      "identityChanged": false
+    },
+    {
+      "old": "db42efb10efb0d39cf991dacc27db606000ad7b3",
+      "corrected": "4d5819669afb98cdf295d98723e4bbc333be6a95",
+      "tree": "8964cc4ec906843bd568205f1f00083968077d3e",
+      "identityChanged": false
+    },
+    {
+      "old": "a07c449b1783a7bc876943e5909c3573cfec267a",
+      "corrected": "a755c8dd70f29e0171784334b05bf590f596be4a",
+      "tree": "a93401f52d5baa0f06b563919713794b11188e7d",
+      "identityChanged": false
+    },
+    {
+      "old": "b6cb2c7bdff70e88b3bdca4bc2de7d753352eac9",
+      "corrected": "44a5848d42cdea98340e6e16e0a4215a22d4fc22",
+      "tree": "6ec7da90da89f86ae1f853745cb640f04f58b289",
+      "identityChanged": false
+    },
+    {
+      "old": "3ba0ebf81fac4fe0f2d9bb78f5ec44135b5b06bc",
+      "corrected": "0ed78f7f3ded7b5b80e9ff4e408cf16220dbdf25",
+      "tree": "1137f47d08405586baadbb558e9565dbec4a5ea3",
+      "identityChanged": false
+    },
+    {
+      "old": "d4a45fbdc63229074af97853d7ec871cbb857162",
+      "corrected": "cd764c05b8978783a8b9d6fc66c8c5198de3a510",
+      "tree": "6748ab11a3cce498ea0639ac9c02f2f6fb47bddc",
+      "identityChanged": false
+    },
+    {
+      "old": "0f2e3fdaddb2105eea6afdd1058b96e85308180a",
+      "corrected": "b4394caaef74c39edad50c4f30e25c3e95dd1bbe",
+      "tree": "c66e5e072ad2c67fc1704104531d2b38250ada9d",
+      "identityChanged": false
+    },
+    {
+      "old": "582d868e23c2513ef63251dd0b294df073cfd5c5",
+      "corrected": "86256fa3cea91c3b7c9362772db91aa32144d14b",
+      "tree": "fc7b740665dff32d6f714cc8f32a7ede377943c5",
+      "identityChanged": false
+    },
+    {
+      "old": "7c8147a65121fd9bda6f7fbb623a1e494b6c59f4",
+      "corrected": "62714798482e8c21781007331cf424022bdce5cf",
+      "tree": "2fda81afdbc4bc12923936967310bc2496b6256d",
+      "identityChanged": false
+    },
+    {
+      "old": "ef813e0738fa69927bc4694123aea59c8dc2add6",
+      "corrected": "ff96f0a2dbc5aaf02fb0df5805be1bf9db043cec",
+      "tree": "eea75e1989111aadd7ceedc25c013c5e4c0bc22d",
+      "identityChanged": false
+    },
+    {
+      "old": "71a296516a357e0b41643e83928f57c0e95d55be",
+      "corrected": "29f10ab066a2a9631a734fdc23977721fe6c3cc2",
+      "tree": "7ba2c4e7f4b6ff2332d9ccc13b10686f55610e2b",
+      "identityChanged": false
+    },
+    {
+      "old": "48ea994e37ec527e5b1d7808d3357767067b3ddd",
+      "corrected": "f78fc75f51a3144f940b57e7bf1cb5185955cf79",
+      "tree": "e414d18de70823e6a3a6c0508d53ba69299d1cc2",
+      "identityChanged": false
+    },
+    {
+      "old": "75cf2bcba83adfea0501934f4eeb2a980c46fdf8",
+      "corrected": "b62ca38bd2510a50d1015038bd97b3416273b30e",
+      "tree": "9b6afeb4136960a9fe0ffcfb8293cf6a26411b0e",
+      "identityChanged": false
+    },
+    {
+      "old": "7d35d330ebaf76070bf2f84506432997e3da5d10",
+      "corrected": "ba61a964f0230361ff51c6da3d3b938a5d47aa00",
+      "tree": "a3e3f23d64dbde53cbe0550211257511b126f7c1",
+      "identityChanged": false
+    },
+    {
+      "old": "d3db4c5850dd77347b930e7e95abf1de7a037a6d",
+      "corrected": "e0bcdc26b5e4145571a4a4f5051033e2ddd091b3",
+      "tree": "cae0373bdf6ab2f9376f0661e88e338de3eddec5",
+      "identityChanged": false
+    }
+  ],
+  "validation": "All30 corrected trees and messages match originals, all dates retained; GitHub author query empty. Existing232-script/896-Lua validation remains applicable because runtime bytes did not change. No WoW input/settings/profiler changes.",
+  "gitTree": "cae0373bdf6ab2f9376f0661e88e338de3eddec5"
+}

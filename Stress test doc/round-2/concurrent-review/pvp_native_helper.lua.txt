@@ -1,0 +1,84 @@
+-- Current addon PvP factory/update + complete pinned native UnitFrameUtil and
+-- its actual client style tables. Secure delegation/secrets/textures are mocks.
+local function read(path)local f=assert(io.open(path,"rb"));local s=f:read("*a"):gsub("\r\n","\n");f:close();return s end
+local source=read("UnitFrames/FluxUnitFrames_Shared.lua")
+local begin=assert(source:find("local function PvpValueIsSecret(value)",1,true))
+local finish=assert(source:find("function UF.CreateOuterBorder(frame)",begin,true))
+local fragment=source:sub(begin,finish-1)
+local ref="../__AddonsForRef/wow-ui-source-forever/Interface/AddOns/Blizzard_UnitFrame/"
+local native=read(ref.."Shared/UnitFrameUtil.lua")
+local checks,scenarios=0,0;local function check(v,why)checks=checks+1;assert(v,why)end
+local function fixture(client)
+    local s={secret=false,pvp=true,ffa=false,prestige=false,mercenary=false,disabled=false,native=false,delegates=0,queries=0,created=0,reads=0,enabled=true}
+    local e=setmetatable({},{__index=_G});e._G=e
+    local wrapped={};local function decode(v)if wrapped[v]~=nil then return wrapped[v]end;return v end
+    e.secretwrap=function(v)local t={};wrapped[t]=v;return t end
+    e.issecretvalue=function(v)return wrapped[v]~=nil end
+    e.securecallfunction=function(fn,...)return fn(...)end
+    e.CopyTable=function(t)local r={};for k,v in pairs(t)do r[k]=v end;return r end
+    e.CreateSecureDelegate=function(fn)return function(...)
+        s.delegates=s.delegates+1;s.native=true;local out=table.pack(pcall(fn,...));s.native=false
+        if not out[1]then error(out[2])end;return table.unpack(out,2,out.n)
+    end end
+    local methods={}
+    local function texture()s.created=s.created+1;return setmetatable({isTexture=true,shown=false},{__index=methods})end
+    function methods:IsObjectType(kind)return self.isTexture and kind=="Texture"end
+    function methods:SetShown(v)self.shown=decode(v);self.secretVisibility=e.issecretvalue(v)end
+    function methods:SetAtlas(v,size)self.atlas=decode(v);self.atlasSize=size;self.secretArt=e.issecretvalue(v)end
+    function methods:SetTexture(v)self.texture=decode(v);self.atlas=nil;self.secretArt=e.issecretvalue(v)end
+    function methods:Show()self.shown=true end;function methods:Hide()self.shown=false end
+    function methods:SetSize(w,h)self.width,self.height=w,h end;function methods:SetTexCoord()end
+    function methods:ClearAllPoints()end;function methods:SetPoint(...)self.point={...}end;function methods:SetDrawLayer()end
+    function methods:IsShown()s.reads=s.reads+1;error("addon must not inspect native PvP visibility")end
+    e.GetTextureMetatable=function()return{__index=methods}end;e.GetFontStringMetatable=function()return{__index={}}end
+    e.TextureKitConstants={IgnoreAtlasSize=false,UseAtlasSize=true}
+    e.Enum={GameRule={UnitFramePvPContextualDisabled=1}}
+    e.C_GameRules={IsGameRuleActive=function()return s.disabled end};e.C_Secrets={ShouldUnitIdentityBeSecret=function()return s.secret end}
+    local function value(v)s.queries=s.queries+1;return s.secret and not s.native and e.secretwrap(v)or v end
+    e.UnitFactionGroup=function()return value("Horde")end;e.UnitIsPVPFreeForAll=function()return value(s.ffa)end
+    e.UnitIsPVP=function()return value(s.pvp)end;e.UnitIsMercenary=function()return s.mercenary end;e.UnitHonorLevel=function()return 3 end
+    e.C_PvP={GetHonorRewardInfo=function()return s.prestige and{badgeFileDataID=777}or nil end}
+    e.C_Texture={GetAtlasInfo=function()return{}end}
+    e.CVarCallbackRegistry={SetCVarCachable=function()end}
+    local addonTable={}
+    assert(load(read(ref..(client=="forever"and"Camelot"or"Mainline").."/UnitFramePvPIndicatorStyle.lua"),"@pinned-native-pvp-style","t",e))("native",addonTable)
+    assert(load(native,"@pinned-native-unit-frame-util","t",e))("native",addonTable)
+    local ns={API={IsSecretValue=e.issecretvalue},Flux={Client={isRetail=client=="live",isForever=client=="forever"}}}
+    local uf={};e.FluxUnitFrames_ShouldShowPvp=function()return s.enabled end
+    assert(load("local ns,UF=...\n"..fragment,"@current-addon-pvp-helper","t",e))(ns,uf)
+    function s.frame(unit)
+        local frame={unit=unit,outerBorderFrame={CreateTexture=function()return texture()end},levelText={}}
+        frame.pvpTimer=texture();uf.CreatePvpBadge(frame);return frame
+    end
+    s.uf,s.e,s.style,s.methods=uf,e,addonTable.PvPIndicatorStyle,methods;return s
+end
+for _,client in ipairs({"live","forever"})do
+    local s=fixture(client)
+    for _,unit in ipairs({"player","target","focus","party1"})do
+        local f=s.frame(unit);local creation=s.created
+        for _,secret in ipairs({false,true})do for _,flag in ipairs({"normal","ffa","none"})do
+            for _,prestige in ipairs({false,true})do for _,mercenary in ipairs({false,true})do
+                s.secret,s.prestige,s.mercenary=secret,prestige,mercenary;s.pvp=flag=="normal";s.ffa=flag=="ffa"
+                s.uf.UpdatePvpBadge(f);scenarios=scenarios+1
+                local active=flag~="none";local showPrestige=active and prestige and client=="live"
+                check(f._fluxPvpPrestigePortrait.shown==showPrestige and f._fluxPvpPrestigeBadge.shown==showPrestige,"real native helper controls prestige layers")
+                check(f.pvpIcon.shown==(active and not showPrestige),"real native helper controls faction/FFA icon")
+                check(f.pvpIcon.secretVisibility==secret and f._fluxPvpPrestigeBadge.secretVisibility==secret,"native helper wraps visibility before native sinks")
+                if active and not showPrestige then
+                    local faction=unit=="player"and mercenary and"Alliance"or"Horde"
+                    local expected=flag=="ffa"and s.style.ffaIconAtlas or(faction=="Horde"and s.style.hordeIconAtlas or s.style.allianceIconAtlas)
+                    check(f.pvpIcon.atlas==expected and f.pvpIcon.atlasSize==true,"actual client style/mercenary/native atlas size honored")
+                end
+                check(s.created==creation and s.reads==0,"updates allocate no textures or read secret native visibility")
+            end end
+        end end
+        s.disabled=true;s.uf.UpdatePvpBadge(f)
+        check(not f.pvpIcon.shown and not f._fluxPvpPrestigeBadge.shown,"native contextual game rule hides badge")
+        s.disabled=false;local delegated=s.delegates;local queried=s.queries;s.uf.UpdatePvpBadge(f,true)
+        check(s.delegates==delegated and s.queries==queried,"layout-only pass makes no state query/delegate call")
+        s.enabled=false;s.uf.UpdatePvpBadge(f);check(not f.pvpIcon.shown and not f._fluxPvpPrestigeBadge.shown and not f.pvpTimer.shown,"option off hides owned art and timer")
+        s.enabled=true
+    end
+    print("NATIVE_HELPER_MODEL|"..client.."|native_style_and_prestige=PASS|mercenary_player_only=PASS|secret_sink_wrapping=PASS|visible_state_reads=0")
+end
+print("TOTAL|checks="..checks.."|native_helper_scenarios="..scenarios.."|native_secure_VM=NOT_EMULATED")

@@ -1,0 +1,19 @@
+send existing-mail handoff success providerLookups=1 providerRowsDelta=1 providerAddedCount=3 savedRowsDelta=0 savedPending=nil retainedEvents=0
+send existing-mail handoff failure providerLookups=0 providerRowsDelta=0 providerAddedCount=0 savedRowsDelta=0 savedPending=nil retainedEvents=0
+send missing-mail handoff success providerLookups=1 providerRowsDelta=1 providerAddedCount=3 savedRowsDelta=0 savedPending=nil retainedEvents=0
+send missing-mail handoff failure providerLookups=0 providerRowsDelta=0 providerAddedCount=0 savedRowsDelta=0 savedPending=nil retainedEvents=0
+send standalone cycles=100 frames=1 retainedEvents=0 successfulCredits=50
+return existing-mail handoff success providerLookups=1 providerRowsDelta=1 providerAddedCount=3 savedRowsDelta=0 savedPending=nil retainedEvents=0
+return existing-mail handoff failure providerLookups=0 providerRowsDelta=0 providerAddedCount=0 savedRowsDelta=0 savedPending=nil retainedEvents=0
+return missing-mail handoff success providerLookups=1 providerRowsDelta=1 providerAddedCount=3 savedRowsDelta=0 savedPending=nil retainedEvents=0
+return missing-mail handoff failure providerLookups=0 providerRowsDelta=0 providerAddedCount=0 savedRowsDelta=0 savedPending=nil retainedEvents=0
+return standalone cycles=100 frames=1 retainedEvents=0 successfulCredits=50
+pending mail provider handoff: 410 checks, 8 failures; desktop operation counts only
+FAIL send existing-mail handoff success stale completion never resolves provider destination
+FAIL send existing-mail handoff success stale completion does not mutate/create provider mail
+FAIL send missing-mail handoff success stale completion never resolves provider destination
+FAIL send missing-mail handoff success stale completion does not mutate/create provider mail
+FAIL return existing-mail handoff success stale completion never resolves provider destination
+FAIL return existing-mail handoff success stale completion does not mutate/create provider mail
+FAIL return missing-mail handoff success stale completion never resolves provider destination
+FAIL return missing-mail handoff success stale completion does not mutate/create provider mail

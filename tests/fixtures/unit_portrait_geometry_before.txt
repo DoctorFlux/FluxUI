@@ -1,0 +1,23 @@
+function UF.SyncPortraitModelGeometry(self)
+    if not self or not self.Portrait or not self.PortraitFrame then return end
+    local pf = self.PortraitFrame
+    local portraitSize = pf.GetWidth and pf:GetWidth()
+    if not portraitSize or portraitSize <= 0 then
+        portraitSize = self.GetHeight and self:GetHeight()
+    end
+    if not portraitSize or portraitSize <= 0 then return end
+    local contentSize = portraitSize - 4
+    if contentSize < 1 then contentSize = 1 end
+    pcall(function()
+        self.Portrait:ClearAllPoints()
+        self.Portrait:SetSize(contentSize, contentSize)
+        self.Portrait:SetPoint("CENTER", pf, "CENTER", 0, 0)
+    end)
+    if self.Portrait2D then
+        pcall(function()
+            self.Portrait2D:ClearAllPoints()
+            self.Portrait2D:SetSize(contentSize, contentSize)
+            self.Portrait2D:SetPoint("CENTER", pf, "CENTER", 0, 0)
+        end)
+    end
+end

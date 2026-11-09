@@ -1,0 +1,17 @@
+{
+  "reportedAtUTC": "2026-11-06T17:40:23.527470+00:00",
+  "scope": "User-reported actual Forever native check, with Flux Map tab visible after candidate reload. No direct agent observation of this output; no FPS, all-client or complete combat certification.",
+  "client": "Forever1.60.1.70790",
+  "sourceSHA256": "3aac4df59ece5b96dde666c2a6f03fa34b211c44eea97ecdbda948ea2bf63578",
+  "command": "/run print(\"FXMAP\",issecurevariable(MapCanvasPinMixin,\"CheckMouseButtonPassthrough\"),issecurevariable(BattlefieldMapFrame,\"AcquirePin\"),(BugTabs.GetSessionCounts()))",
+  "userOutput": "FXMAP true true 0",
+  "observedBy": "User; pasted into chat",
+  "result": {
+    "MapCanvasPinMixin.CheckMouseButtonPassthroughSecure": true,
+    "BattlefieldMapFrame.AcquirePinSecure": true,
+    "currentSessionBugTabsErrors": 0
+  },
+  "baseline": "docs/validation/map-provider-native-baseline-2026-11-06.json",
+  "acceptance": "PASS two tested method-provenance fields after Map activation and current sampled error count. Other native interaction/combat/visual/performance checks remain pending.",
+  "profiler": "No profiler preference changes made. Last independently read profile0; command does not read or change profiler."
+}

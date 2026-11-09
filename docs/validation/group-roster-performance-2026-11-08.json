@@ -1,0 +1,970 @@
+{
+  "changeID": "GROUP-ROSTER-PERFORMANCE-20261108",
+  "requirement": "REQ-RF-95",
+  "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\06\\01a1b0ac-547f-7972-8df9-fa26882e0e03\\group-roster-performance-20261108T115039Z\\checkpoint.json",
+  "before": {
+    "RaidFrame/FluxRaidLayout.lua": "3ef884cc02da8798cd8475d7978d0e7dee59e2c449c2ceac29fd90ba8e37b4d8",
+    "RaidFrame/FluxRaidUnit.lua": "dd35f786e34f1da4f820f1bbf5254ed70d21ee5fc906f2e4ff0a5e17b106ac01",
+    "RaidFrame/FluxRaidHealerExtras.lua": "a2c7c68e9c7cfff5f6f707adb629dd9891978e1ec1c1bbb1eee3eb860457e9c0",
+    "UnitFrames/FluxUnitFrames_Party.lua": "2da9ce5f51248dcb47c85f5126ed2e1ec8697b77f0f6f1f3a2c6e54863fdbcad",
+    "UnitFrames/FluxUnitFrames_DebuffTint.lua": "543d8e989d53310bddd3d846d4ea75d9f526d6cc6c13091bda51b4e383d650f7",
+    "Binding/Input/FluxMouseoverKeybind.lua": "cba37032fa6ce6dbd97e6533dceda584338e37707a3b45f9b7b72bff97082092",
+    "tests/group_roster_performance.lua": "new",
+    "tests/raid_party_frames.lua": "LF-normalized preimage verified against preceding full manifest; external party-test-before.lua"
+  },
+  "after": {
+    "RaidFrame/FluxRaidLayout.lua": "7a0c9e845f0943bd7c98f0c2257dc5e576183487c55fd2de540c1c3fce50357e",
+    "RaidFrame/FluxRaidUnit.lua": "9e53a6408b10a457fabab605b836a1a8b0386cd80e67e01569b7e31245224b72",
+    "RaidFrame/FluxRaidHealerExtras.lua": "d1253f8f0012af5b7aa9408b6e2f2949a442ebcd0fc7458f7bfba413a335d6bd",
+    "UnitFrames/FluxUnitFrames_Party.lua": "0733dd73ff6daf71ae48df78a432e37634f34c4cbf3bb9302d50709ecf303b47",
+    "UnitFrames/FluxUnitFrames_DebuffTint.lua": "e302df314b366274f33c016ad6f86c6fc42e8269e46dcf986b924870592c76c0",
+    "Binding/Input/FluxMouseoverKeybind.lua": "c4568f1c907b50236a97f52f0029d7247b6d1ae916d986ed786295038f2b6f97",
+    "tests/raid_party_frames.lua": "178da96a948f98f53c39d6fb222b039d93c378d606fa69a49b7d9562bdc0f064",
+    "tests/group_roster_performance.lua": "c8f672d3926e875dc31f71c8dd7ab1cde7e1fa09a24047e6b7c648d78d5802b8"
+  },
+  "nativeSources": [
+    {
+      "client": "live",
+      "ref": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureGroupHeaders.lua",
+      "blob": "191bd3de98c6f68af2ec1c4e48c2cc6c88459381",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureGroupHeaders.lua"
+    },
+    {
+      "client": "forever",
+      "ref": "eac30af597e5aaa43a60f6675ef5fdcea100375f",
+      "path": "Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureGroupHeaders.lua",
+      "blob": "191bd3de98c6f68af2ec1c4e48c2cc6c88459381",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/eac30af597e5aaa43a60f6675ef5fdcea100375f/Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureGroupHeaders.lua"
+    },
+    {
+      "client": "classic",
+      "ref": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureGroupHeaders.lua",
+      "blob": "c753e1b06e1d42ef271cbb880ff19174e2904061",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureGroupHeaders.lua"
+    },
+    {
+      "client": "classic_era",
+      "ref": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "path": "Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureGroupHeaders.lua",
+      "blob": "c753e1b06e1d42ef271cbb880ff19174e2904061",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureGroupHeaders.lua"
+    },
+    {
+      "client": "classic_anniversary",
+      "ref": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "path": "Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureGroupHeaders.lua",
+      "blob": "607ecda673094bfc303535564e54cfcfb34706fe",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureGroupHeaders.lua"
+    },
+    {
+      "client": "live",
+      "ref": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureHandlers.lua",
+      "blob": "b32476a72027855fda546118e513fa44770a3a94",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureHandlers.lua"
+    },
+    {
+      "client": "live",
+      "ref": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureStateDriver.lua",
+      "blob": "4861b5fd4a3249c97f1a2fea45a4c13833d5117c",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureStateDriver.lua"
+    },
+    {
+      "client": "live",
+      "ref": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_FrameXML/SecureTemplates.lua",
+      "blob": "0b7ba234696b5f1c551e7d84375900e50c824cbb",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_FrameXML/SecureTemplates.lua"
+    },
+    {
+      "client": "forever",
+      "ref": "eac30af597e5aaa43a60f6675ef5fdcea100375f",
+      "path": "Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureHandlers.lua",
+      "blob": "b32476a72027855fda546118e513fa44770a3a94",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/eac30af597e5aaa43a60f6675ef5fdcea100375f/Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureHandlers.lua"
+    },
+    {
+      "client": "forever",
+      "ref": "eac30af597e5aaa43a60f6675ef5fdcea100375f",
+      "path": "Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureStateDriver.lua",
+      "blob": "4861b5fd4a3249c97f1a2fea45a4c13833d5117c",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/eac30af597e5aaa43a60f6675ef5fdcea100375f/Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureStateDriver.lua"
+    },
+    {
+      "client": "forever",
+      "ref": "eac30af597e5aaa43a60f6675ef5fdcea100375f",
+      "path": "Interface/AddOns/Blizzard_FrameXML/SecureTemplates.lua",
+      "blob": "66f203e31a819f383ea3c6920be8d4f6556848eb",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/eac30af597e5aaa43a60f6675ef5fdcea100375f/Interface/AddOns/Blizzard_FrameXML/SecureTemplates.lua"
+    },
+    {
+      "client": "classic",
+      "ref": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureHandlers.lua",
+      "blob": "51d283b3f13303723ef2eed20ae416118e63fbd7",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureHandlers.lua"
+    },
+    {
+      "client": "classic",
+      "ref": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureStateDriver.lua",
+      "blob": "4861b5fd4a3249c97f1a2fea45a4c13833d5117c",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureStateDriver.lua"
+    },
+    {
+      "client": "classic",
+      "ref": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_FrameXML/SecureTemplates.lua",
+      "blob": "e35a52fa79f9cbc38452b6b529d8734ded0938ea",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_FrameXML/SecureTemplates.lua"
+    },
+    {
+      "client": "classic_era",
+      "ref": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "path": "Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureHandlers.lua",
+      "blob": "51d283b3f13303723ef2eed20ae416118e63fbd7",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureHandlers.lua"
+    },
+    {
+      "client": "classic_era",
+      "ref": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "path": "Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureStateDriver.lua",
+      "blob": "4861b5fd4a3249c97f1a2fea45a4c13833d5117c",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureStateDriver.lua"
+    },
+    {
+      "client": "classic_era",
+      "ref": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "path": "Interface/AddOns/Blizzard_FrameXML/SecureTemplates.lua",
+      "blob": "31ea34c7dc3995bac10adcd2ce57b02f06db13e2",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_FrameXML/SecureTemplates.lua"
+    },
+    {
+      "client": "classic_anniversary",
+      "ref": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "path": "Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureHandlers.lua",
+      "blob": "b5928ed7de5e5b0eea1852cb0d2b1edab66e281a",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureHandlers.lua"
+    },
+    {
+      "client": "classic_anniversary",
+      "ref": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "path": "Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureStateDriver.lua",
+      "blob": "8e210c10fe046a264cba54e04f7458d995f8ad6a",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureStateDriver.lua"
+    },
+    {
+      "client": "classic_anniversary",
+      "ref": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "path": "Interface/AddOns/Blizzard_FrameXML/SecureTemplates.lua",
+      "blob": "ba180de8cf11512e45d0f184d8e060efdf3471f4",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_FrameXML/SecureTemplates.lua"
+    },
+    {
+      "client": "live",
+      "ref": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_CompactRaidFrames/Blizzard_CompactRaidFrameContainer.lua",
+      "blob": "ef28657f59bad3c198e17169ceb4cb29125c44ad",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_CompactRaidFrames/Blizzard_CompactRaidFrameContainer.lua"
+    },
+    {
+      "client": "live",
+      "ref": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_UnitFrame/Shared/CompactRaidGroup.lua",
+      "blob": "960ff9515671278528860f0964d11669aa007392",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_UnitFrame/Shared/CompactRaidGroup.lua"
+    },
+    {
+      "client": "live",
+      "ref": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_UnitFrame/Shared/CompactPartyFrame.lua",
+      "blob": "b1f0980d022d9db6a913df39d8b45c0d94112532",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_UnitFrame/Shared/CompactPartyFrame.lua"
+    },
+    {
+      "client": "forever",
+      "ref": "eac30af597e5aaa43a60f6675ef5fdcea100375f",
+      "path": "Interface/AddOns/Blizzard_CompactRaidFrames/Blizzard_CompactRaidFrameContainer.lua",
+      "blob": "dd849627d054441fe0f4990599bc7d9b3fe59a16",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/eac30af597e5aaa43a60f6675ef5fdcea100375f/Interface/AddOns/Blizzard_CompactRaidFrames/Blizzard_CompactRaidFrameContainer.lua"
+    },
+    {
+      "client": "forever",
+      "ref": "eac30af597e5aaa43a60f6675ef5fdcea100375f",
+      "path": "Interface/AddOns/Blizzard_UnitFrame/Shared/CompactRaidGroup.lua",
+      "blob": "960ff9515671278528860f0964d11669aa007392",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/eac30af597e5aaa43a60f6675ef5fdcea100375f/Interface/AddOns/Blizzard_UnitFrame/Shared/CompactRaidGroup.lua"
+    },
+    {
+      "client": "forever",
+      "ref": "eac30af597e5aaa43a60f6675ef5fdcea100375f",
+      "path": "Interface/AddOns/Blizzard_UnitFrame/Shared/CompactPartyFrame.lua",
+      "blob": "b9774c560235c5e30325076c10ed015b865bd44d",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/eac30af597e5aaa43a60f6675ef5fdcea100375f/Interface/AddOns/Blizzard_UnitFrame/Shared/CompactPartyFrame.lua"
+    },
+    {
+      "client": "classic",
+      "ref": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_CompactRaidFrames/Blizzard_CompactRaidFrameContainer.lua",
+      "blob": "bcf9ae66c9cb0775ee5be8bfda6ba012b1af2b33",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_CompactRaidFrames/Blizzard_CompactRaidFrameContainer.lua"
+    },
+    {
+      "client": "classic",
+      "ref": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_UnitFrame/Shared/CompactRaidGroup.lua",
+      "blob": "960ff9515671278528860f0964d11669aa007392",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_UnitFrame/Shared/CompactRaidGroup.lua"
+    },
+    {
+      "client": "classic",
+      "ref": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_UnitFrame/Shared/CompactPartyFrame.lua",
+      "blob": "b1f0980d022d9db6a913df39d8b45c0d94112532",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_UnitFrame/Shared/CompactPartyFrame.lua"
+    },
+    {
+      "client": "classic_era",
+      "ref": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "path": "Interface/AddOns/Blizzard_CompactRaidFrames/Blizzard_CompactRaidFrameContainer.lua",
+      "blob": "bcf9ae66c9cb0775ee5be8bfda6ba012b1af2b33",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_CompactRaidFrames/Blizzard_CompactRaidFrameContainer.lua"
+    },
+    {
+      "client": "classic_era",
+      "ref": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "path": "Interface/AddOns/Blizzard_UnitFrame/Shared/CompactRaidGroup.lua",
+      "blob": "960ff9515671278528860f0964d11669aa007392",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_UnitFrame/Shared/CompactRaidGroup.lua"
+    },
+    {
+      "client": "classic_era",
+      "ref": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "path": "Interface/AddOns/Blizzard_UnitFrame/Shared/CompactPartyFrame.lua",
+      "blob": "b1f0980d022d9db6a913df39d8b45c0d94112532",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_UnitFrame/Shared/CompactPartyFrame.lua"
+    },
+    {
+      "client": "classic_anniversary",
+      "ref": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "path": "Interface/AddOns/Blizzard_CompactRaidFrames/Blizzard_CompactRaidFrameContainer.lua",
+      "blob": "8b6eb05303e124f14ad04f4e51ab9d4b95891e06",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_CompactRaidFrames/Blizzard_CompactRaidFrameContainer.lua"
+    },
+    {
+      "client": "classic_anniversary",
+      "ref": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "path": "Interface/AddOns/Blizzard_UnitFrame/Shared/CompactRaidGroup.lua",
+      "blob": "643a973266d43b8c590118831ef0137c2352cef7",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_UnitFrame/Shared/CompactRaidGroup.lua"
+    },
+    {
+      "client": "classic_anniversary",
+      "ref": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "path": "Interface/AddOns/Blizzard_UnitFrame/Shared/CompactPartyFrame.lua",
+      "blob": "6be367d3707eb816b1d3d01b889b672c8952d7ee",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_UnitFrame/Shared/CompactPartyFrame.lua"
+    }
+  ],
+  "implementation": [
+    "Prepared secure rosters use membership/layout reconciliation without reinstalling header attributes/drivers or Party.ApplyOptions. Startup/unavailable readiness retains full configuration/native fallback. Combat defers ordinary reconciliation; prepared native drivers remain authoritative.",
+    "Group unit paints reuse existing next-frame paint driver instead of synchronous repeated full paints. Changed unit attributes still bind immediately.",
+    "Normal party/pet OnShow and roster events share one batch; preserve current cast reset/resample, indicators and range wake. Ready-check and other immediate events retain behavior.",
+    "Optional45pet/friendly-target cells retain drivers/layout/units and coalesce roster paints; deferred option changes still apply at regen.",
+    "Hover discovery coalesced per existing0.3second timer; one discovery, no stable roster routing rebuild. Edit Mode, routing invalidation, UPDATE_BINDINGS and combat deferred registration retain full refresh. Known registered frames bypass repeated classification.",
+    "Friendly debuff tint refreshes party native owners for roster identity changes, only reevaluates target/focus friendliness and leaves player aura work to UNIT_AURA. Known/unknown and strict-checkbox rules preserved.",
+    "Prepared readiness also checks player-style party initialization. Optional adjunct pending/error state retains setup retry on group updates."
+  ],
+  "tests": {
+    "focused": {
+      "path": "tests/group_roster_performance.lua",
+      "exit": 0,
+      "wallSeconds": 0.1207,
+      "output": "ROSTER|live|party|attributes=0|unitSyncs=1|partyLayouts=0|allocations=0|timers=3|extraLayouts=0|headerShows=0\nROSTER|live|raid|attributes=0|unitSyncs=1|partyLayouts=0|allocations=0|timers=4|extraLayouts=0|headerShows=0\nROSTER|live|binding|protectedWrites=0|discoveries=1|timers=1|keyQueries=0\nROSTER|live|extras|allocations=0|rebinds=0|protectedWrites=0|timers=1|paints=46\nROSTER|forever|party|attributes=0|unitSyncs=1|partyLayouts=0|allocations=0|timers=3|extraLayouts=0|headerShows=0\nROSTER|forever|raid|attributes=0|unitSyncs=1|partyLayouts=0|allocations=0|timers=4|extraLayouts=0|headerShows=0\nROSTER|forever|binding|protectedWrites=0|discoveries=1|timers=1|keyQueries=0\nROSTER|forever|extras|allocations=0|rebinds=0|protectedWrites=0|timers=1|paints=46\nROSTER|classic|party|attributes=0|unitSyncs=1|partyLayouts=0|allocations=0|timers=3|extraLayouts=0|headerShows=0\nROSTER|classic|raid|attributes=0|unitSyncs=1|partyLayouts=0|allocations=0|timers=4|extraLayouts=0|headerShows=0\nROSTER|classic|binding|protectedWrites=0|discoveries=1|timers=1|keyQueries=0\nROSTER|classic|extras|allocations=0|rebinds=0|protectedWrites=0|timers=1|paints=46\nROSTER|classic_era|party|attributes=0|unitSyncs=1|partyLayouts=0|allocations=0|timers=3|extraLayouts=0|headerShows=0\nROSTER|classic_era|raid|attributes=0|unitSyncs=1|partyLayouts=0|allocations=0|timers=4|extraLayouts=0|headerShows=0\nROSTER|classic_era|binding|protectedWrites=0|discoveries=1|timers=1|keyQueries=0\nROSTER|classic_era|extras|allocations=0|rebinds=0|protectedWrites=0|timers=1|paints=46\nROSTER|classic_anniversary|party|attributes=0|unitSyncs=1|partyLayouts=0|allocations=0|timers=3|extraLayouts=0|headerShows=0\nROSTER|classic_anniversary|raid|attributes=0|unitSyncs=1|partyLayouts=0|allocations=0|timers=4|extraLayouts=0|headerShows=0\nROSTER|classic_anniversary|binding|protectedWrites=0|discoveries=1|timers=1|keyQueries=0\nROSTER|classic_anniversary|extras|allocations=0|rebinds=0|protectedWrites=0|timers=1|paints=46\nROSTER|all|paint|synchronous=0|total=40\nROSTER|all|partyPaint|castResets=4|timers=1|rangeChecks=1|castRefreshes=4|paints=8\nGroup roster performance: 163 checks PASS; operation counts only; native performance/taint pending\n"
+    },
+    "full": {
+      "pass": 257,
+      "fail": 0,
+      "syntaxFiles": 922,
+      "syntaxFailures": []
+    },
+    "sourceGuard": "All owned raw hashes stable; LF-normalized hashes match full manifest",
+    "matchedPairs": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\06\\01a1b0ac-547f-7972-8df9-fa26882e0e03\\group-roster-performance-20261108T115039Z\\matched-roster-operations.json",
+    "summary": [
+      {
+        "client": "live",
+        "area": "party",
+        "before": {
+          "client": "live",
+          "area": "party",
+          "extraLayouts": 1,
+          "unitSyncs": 3,
+          "allocations": 0,
+          "headerShows": 1,
+          "timers": 4,
+          "partyLayouts": 1,
+          "attributes": 213
+        },
+        "after": {
+          "client": "live",
+          "area": "party",
+          "timers": 3,
+          "headerShows": 0,
+          "partyLayouts": 0,
+          "allocations": 0,
+          "unitSyncs": 1,
+          "extraLayouts": 0,
+          "attributes": 0
+        },
+        "counterVariationAcrossFivePairs": 0
+      },
+      {
+        "client": "live",
+        "area": "raid",
+        "before": {
+          "client": "live",
+          "area": "raid",
+          "extraLayouts": 1,
+          "unitSyncs": 3,
+          "allocations": 0,
+          "headerShows": 9,
+          "timers": 6,
+          "partyLayouts": 1,
+          "attributes": 213
+        },
+        "after": {
+          "client": "live",
+          "area": "raid",
+          "timers": 4,
+          "headerShows": 0,
+          "partyLayouts": 0,
+          "allocations": 0,
+          "unitSyncs": 1,
+          "extraLayouts": 0,
+          "attributes": 0
+        },
+        "counterVariationAcrossFivePairs": 0
+      },
+      {
+        "client": "live",
+        "area": "binding",
+        "before": {
+          "client": "live",
+          "area": "binding",
+          "protectedWrites": 0,
+          "timers": 20,
+          "keyQueries": 340,
+          "discoveries": 60
+        },
+        "after": {
+          "client": "live",
+          "area": "binding",
+          "protectedWrites": 0,
+          "timers": 1,
+          "keyQueries": 0,
+          "discoveries": 1
+        },
+        "counterVariationAcrossFivePairs": 0
+      },
+      {
+        "client": "live",
+        "area": "extras",
+        "before": {
+          "client": "live",
+          "area": "extras",
+          "paints": 920,
+          "timers": 0,
+          "protectedWrites": 5520,
+          "rebinds": 920,
+          "allocations": 0
+        },
+        "after": {
+          "client": "live",
+          "area": "extras",
+          "rebinds": 0,
+          "protectedWrites": 0,
+          "timers": 1,
+          "allocations": 0,
+          "paints": 46
+        },
+        "counterVariationAcrossFivePairs": 0
+      },
+      {
+        "client": "forever",
+        "area": "party",
+        "before": {
+          "client": "forever",
+          "area": "party",
+          "extraLayouts": 1,
+          "unitSyncs": 3,
+          "allocations": 0,
+          "headerShows": 1,
+          "timers": 4,
+          "partyLayouts": 1,
+          "attributes": 213
+        },
+        "after": {
+          "client": "forever",
+          "area": "party",
+          "timers": 3,
+          "headerShows": 0,
+          "partyLayouts": 0,
+          "allocations": 0,
+          "unitSyncs": 1,
+          "extraLayouts": 0,
+          "attributes": 0
+        },
+        "counterVariationAcrossFivePairs": 0
+      },
+      {
+        "client": "forever",
+        "area": "raid",
+        "before": {
+          "client": "forever",
+          "area": "raid",
+          "extraLayouts": 1,
+          "unitSyncs": 3,
+          "allocations": 0,
+          "headerShows": 9,
+          "timers": 6,
+          "partyLayouts": 1,
+          "attributes": 213
+        },
+        "after": {
+          "client": "forever",
+          "area": "raid",
+          "timers": 4,
+          "headerShows": 0,
+          "partyLayouts": 0,
+          "allocations": 0,
+          "unitSyncs": 1,
+          "extraLayouts": 0,
+          "attributes": 0
+        },
+        "counterVariationAcrossFivePairs": 0
+      },
+      {
+        "client": "forever",
+        "area": "binding",
+        "before": {
+          "client": "forever",
+          "area": "binding",
+          "protectedWrites": 0,
+          "timers": 20,
+          "keyQueries": 340,
+          "discoveries": 60
+        },
+        "after": {
+          "client": "forever",
+          "area": "binding",
+          "protectedWrites": 0,
+          "timers": 1,
+          "keyQueries": 0,
+          "discoveries": 1
+        },
+        "counterVariationAcrossFivePairs": 0
+      },
+      {
+        "client": "forever",
+        "area": "extras",
+        "before": {
+          "client": "forever",
+          "area": "extras",
+          "paints": 920,
+          "timers": 0,
+          "protectedWrites": 5520,
+          "rebinds": 920,
+          "allocations": 0
+        },
+        "after": {
+          "client": "forever",
+          "area": "extras",
+          "rebinds": 0,
+          "protectedWrites": 0,
+          "timers": 1,
+          "allocations": 0,
+          "paints": 46
+        },
+        "counterVariationAcrossFivePairs": 0
+      },
+      {
+        "client": "classic",
+        "area": "party",
+        "before": {
+          "client": "classic",
+          "area": "party",
+          "extraLayouts": 1,
+          "unitSyncs": 3,
+          "allocations": 0,
+          "headerShows": 1,
+          "timers": 4,
+          "partyLayouts": 1,
+          "attributes": 213
+        },
+        "after": {
+          "client": "classic",
+          "area": "party",
+          "timers": 3,
+          "headerShows": 0,
+          "partyLayouts": 0,
+          "allocations": 0,
+          "unitSyncs": 1,
+          "extraLayouts": 0,
+          "attributes": 0
+        },
+        "counterVariationAcrossFivePairs": 0
+      },
+      {
+        "client": "classic",
+        "area": "raid",
+        "before": {
+          "client": "classic",
+          "area": "raid",
+          "extraLayouts": 1,
+          "unitSyncs": 3,
+          "allocations": 0,
+          "headerShows": 9,
+          "timers": 6,
+          "partyLayouts": 1,
+          "attributes": 213
+        },
+        "after": {
+          "client": "classic",
+          "area": "raid",
+          "timers": 4,
+          "headerShows": 0,
+          "partyLayouts": 0,
+          "allocations": 0,
+          "unitSyncs": 1,
+          "extraLayouts": 0,
+          "attributes": 0
+        },
+        "counterVariationAcrossFivePairs": 0
+      },
+      {
+        "client": "classic",
+        "area": "binding",
+        "before": {
+          "client": "classic",
+          "area": "binding",
+          "protectedWrites": 0,
+          "timers": 20,
+          "keyQueries": 340,
+          "discoveries": 60
+        },
+        "after": {
+          "client": "classic",
+          "area": "binding",
+          "protectedWrites": 0,
+          "timers": 1,
+          "keyQueries": 0,
+          "discoveries": 1
+        },
+        "counterVariationAcrossFivePairs": 0
+      },
+      {
+        "client": "classic",
+        "area": "extras",
+        "before": {
+          "client": "classic",
+          "area": "extras",
+          "paints": 920,
+          "timers": 0,
+          "protectedWrites": 5520,
+          "rebinds": 920,
+          "allocations": 0
+        },
+        "after": {
+          "client": "classic",
+          "area": "extras",
+          "rebinds": 0,
+          "protectedWrites": 0,
+          "timers": 1,
+          "allocations": 0,
+          "paints": 46
+        },
+        "counterVariationAcrossFivePairs": 0
+      },
+      {
+        "client": "classic_era",
+        "area": "party",
+        "before": {
+          "client": "classic_era",
+          "area": "party",
+          "extraLayouts": 1,
+          "unitSyncs": 3,
+          "allocations": 0,
+          "headerShows": 1,
+          "timers": 4,
+          "partyLayouts": 1,
+          "attributes": 213
+        },
+        "after": {
+          "client": "classic_era",
+          "area": "party",
+          "timers": 3,
+          "headerShows": 0,
+          "partyLayouts": 0,
+          "allocations": 0,
+          "unitSyncs": 1,
+          "extraLayouts": 0,
+          "attributes": 0
+        },
+        "counterVariationAcrossFivePairs": 0
+      },
+      {
+        "client": "classic_era",
+        "area": "raid",
+        "before": {
+          "client": "classic_era",
+          "area": "raid",
+          "extraLayouts": 1,
+          "unitSyncs": 3,
+          "allocations": 0,
+          "headerShows": 9,
+          "timers": 6,
+          "partyLayouts": 1,
+          "attributes": 213
+        },
+        "after": {
+          "client": "classic_era",
+          "area": "raid",
+          "timers": 4,
+          "headerShows": 0,
+          "partyLayouts": 0,
+          "allocations": 0,
+          "unitSyncs": 1,
+          "extraLayouts": 0,
+          "attributes": 0
+        },
+        "counterVariationAcrossFivePairs": 0
+      },
+      {
+        "client": "classic_era",
+        "area": "binding",
+        "before": {
+          "client": "classic_era",
+          "area": "binding",
+          "protectedWrites": 0,
+          "timers": 20,
+          "keyQueries": 40,
+          "discoveries": 60
+        },
+        "after": {
+          "client": "classic_era",
+          "area": "binding",
+          "protectedWrites": 0,
+          "timers": 1,
+          "keyQueries": 0,
+          "discoveries": 1
+        },
+        "counterVariationAcrossFivePairs": 0
+      },
+      {
+        "client": "classic_era",
+        "area": "extras",
+        "before": {
+          "client": "classic_era",
+          "area": "extras",
+          "paints": 920,
+          "timers": 0,
+          "protectedWrites": 5520,
+          "rebinds": 920,
+          "allocations": 0
+        },
+        "after": {
+          "client": "classic_era",
+          "area": "extras",
+          "rebinds": 0,
+          "protectedWrites": 0,
+          "timers": 1,
+          "allocations": 0,
+          "paints": 46
+        },
+        "counterVariationAcrossFivePairs": 0
+      },
+      {
+        "client": "classic_anniversary",
+        "area": "party",
+        "before": {
+          "client": "classic_anniversary",
+          "area": "party",
+          "extraLayouts": 1,
+          "unitSyncs": 3,
+          "allocations": 0,
+          "headerShows": 1,
+          "timers": 4,
+          "partyLayouts": 1,
+          "attributes": 213
+        },
+        "after": {
+          "client": "classic_anniversary",
+          "area": "party",
+          "timers": 3,
+          "headerShows": 0,
+          "partyLayouts": 0,
+          "allocations": 0,
+          "unitSyncs": 1,
+          "extraLayouts": 0,
+          "attributes": 0
+        },
+        "counterVariationAcrossFivePairs": 0
+      },
+      {
+        "client": "classic_anniversary",
+        "area": "raid",
+        "before": {
+          "client": "classic_anniversary",
+          "area": "raid",
+          "extraLayouts": 1,
+          "unitSyncs": 3,
+          "allocations": 0,
+          "headerShows": 9,
+          "timers": 6,
+          "partyLayouts": 1,
+          "attributes": 213
+        },
+        "after": {
+          "client": "classic_anniversary",
+          "area": "raid",
+          "timers": 4,
+          "headerShows": 0,
+          "partyLayouts": 0,
+          "allocations": 0,
+          "unitSyncs": 1,
+          "extraLayouts": 0,
+          "attributes": 0
+        },
+        "counterVariationAcrossFivePairs": 0
+      },
+      {
+        "client": "classic_anniversary",
+        "area": "binding",
+        "before": {
+          "client": "classic_anniversary",
+          "area": "binding",
+          "protectedWrites": 0,
+          "timers": 20,
+          "keyQueries": 340,
+          "discoveries": 60
+        },
+        "after": {
+          "client": "classic_anniversary",
+          "area": "binding",
+          "protectedWrites": 0,
+          "timers": 1,
+          "keyQueries": 0,
+          "discoveries": 1
+        },
+        "counterVariationAcrossFivePairs": 0
+      },
+      {
+        "client": "classic_anniversary",
+        "area": "extras",
+        "before": {
+          "client": "classic_anniversary",
+          "area": "extras",
+          "paints": 920,
+          "timers": 0,
+          "protectedWrites": 5520,
+          "rebinds": 920,
+          "allocations": 0
+        },
+        "after": {
+          "client": "classic_anniversary",
+          "area": "extras",
+          "rebinds": 0,
+          "protectedWrites": 0,
+          "timers": 1,
+          "allocations": 0,
+          "paints": 46
+        },
+        "counterVariationAcrossFivePairs": 0
+      },
+      {
+        "client": "all",
+        "area": "paint",
+        "before": {
+          "client": "all",
+          "area": "paint",
+          "total": 800,
+          "synchronous": 800
+        },
+        "after": {
+          "client": "all",
+          "area": "paint",
+          "synchronous": 0,
+          "total": 40
+        },
+        "counterVariationAcrossFivePairs": 0
+      },
+      {
+        "client": "all",
+        "area": "partyPaint",
+        "before": {
+          "client": "all",
+          "area": "partyPaint",
+          "paints": 168,
+          "castResets": 80,
+          "timers": 8,
+          "rangeChecks": 8,
+          "castRefreshes": 84
+        },
+        "after": {
+          "client": "all",
+          "area": "partyPaint",
+          "rangeChecks": 1,
+          "castRefreshes": 4,
+          "timers": 1,
+          "castResets": 4,
+          "paints": 8
+        },
+        "counterVariationAcrossFivePairs": 0
+      }
+    ],
+    "negativeControls": [
+      {
+        "variant": "full-layout",
+        "expectedReject": true,
+        "rejected": true,
+        "output": "ROSTER|live|party|attributes=213|extraLayouts=1|timers=4|unitSyncs=3|headerShows=1|partyLayouts=1|allocations=0\nlua: tests/group_roster_performance.lua:7: invite burst does not reset prepared header attributes/visibility\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/group_roster_performance.lua:7: in upvalue 'check'\n\ttests/group_roster_performance.lua:8: in local 'improved'\n\ttests/group_roster_performance.lua:57: in main chunk\n\t[C]: in ?\n"
+      },
+      {
+        "variant": "redundant-outer-guard",
+        "expectedReject": false,
+        "rejected": false,
+        "output": "ROSTER|live|party|headerShows=0|partyLayouts=0|allocations=0|timers=3|attributes=0|extraLayouts=0|unitSyncs=1\nROSTER|live|raid|headerShows=0|partyLayouts=0|allocations=0|timers=4|attributes=0|extraLayouts=0|unitSyncs=1\nROSTER|live|binding|discoveries=1|keyQueries=0|protectedWrites=0|timers=1\nROSTER|live|extras|rebinds=0|allocations=0|paints=46|protectedWrites=0|timers=1\nROSTER|forever|party|headerShows=0|partyLayouts=0|allocations=0|timers=3|attributes=0|extraLayouts=0|unitSyncs=1\nROSTER|forever|raid|headerShows=0|partyLayouts=0|allocations=0|timers=4|attributes=0|extraLayouts=0|unitSyncs=1\nROSTER|forever|binding|discoveries=1|keyQueries=0|protectedWrites=0|timers=1\nROSTER|forever|extras|rebinds=0|allocations=0|paints=46|protectedWrites=0|timers=1\nROSTER|classic|party|headerShows=0|partyLayouts=0|allocations=0|timers=3|attributes=0|extraLayouts=0|unitSyncs=1\nROSTER|classic|raid|headerShows=0|partyLayouts=0|allocations=0|timers=4|attributes=0|extraLayouts=0|unitSyncs=1\nROSTER|classic|binding|discoveries=1|keyQueries=0|protectedWrites=0|timers=1\nROSTER|classic|extras|rebinds=0|allocations=0|paints=46|protectedWrites=0|timers=1\nROSTER|classic_era|party|headerShows=0|partyLayouts=0|allocations=0|timers=3|attributes=0|extraLayouts=0|unitSyncs=1\nROSTER|classic_era|raid|headerShows=0|partyLayouts=0|allocations=0|timers=4|attributes=0|extraLayouts=0|unitSyncs=1\nROSTER|classic_era|binding|discoveries=1|keyQueries=0|protectedWrites=0|timers=1\nROSTER|classic_era|extras|rebinds=0|allocations=0|paints=46|protectedWrites=0|timers=1\nROSTER|classic_anniversary|party|headerShows=0|partyLayouts=0|allocations=0|timers=3|attributes=0|extraLayouts=0|unitSyncs=1\nROSTER|classic_anniversary|raid|headerShows=0|partyLayouts=0|allocations=0|timers=4|attributes=0|extraLayouts=0|unitSyncs=1\nROSTER|classic_anniversary|binding|discoveries=1|keyQueries=0|protectedWrites=0|timers=1\nROSTER|classic_anniversary|extras|rebinds=0|allocations=0|paints=46|protectedWrites=0|timers=1\nROSTER|all|paint|synchronous=0|total=40\nROSTER|all|partyPaint|castRefreshes=4|rangeChecks=1|paints=8|castResets=4|timers=1\nGroup roster performance: 163 checks PASS; operation counts only; native performance/taint pending\n"
+      },
+      {
+        "variant": "missing-readiness",
+        "expectedReject": true,
+        "rejected": true,
+        "output": "lua: tests/group_roster_performance.lua:7: lost preparation/capability keeps native fallback\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/group_roster_performance.lua:7: in local 'check'\n\ttests/group_roster_performance.lua:41: in main chunk\n\t[C]: in ?\n"
+      },
+      {
+        "variant": "missed-party-recovery",
+        "expectedReject": true,
+        "rejected": true,
+        "output": "ROSTER|live|party|extraLayouts=0|partyLayouts=0|allocations=0|unitSyncs=1|timers=3|headerShows=0|attributes=0\nlua: tests/group_roster_performance.lua:7: incomplete player-style party setup retries despite prepared raid headers\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/group_roster_performance.lua:7: in local 'check'\n\ttests/group_roster_performance.lua:70: in main chunk\n\t[C]: in ?\n"
+      },
+      {
+        "variant": "direct-cell-paint",
+        "expectedReject": true,
+        "rejected": true,
+        "output": "ROSTER|live|party|headerShows=0|allocations=0|timers=3|attributes=0|partyLayouts=0|extraLayouts=0|unitSyncs=1\nROSTER|live|raid|headerShows=0|allocations=0|timers=4|attributes=0|partyLayouts=0|extraLayouts=0|unitSyncs=1\nROSTER|live|binding|timers=1|discoveries=1|protectedWrites=0|keyQueries=0\nROSTER|live|extras|timers=1|rebinds=0|protectedWrites=0|allocations=0|paints=46\nROSTER|forever|party|headerShows=0|allocations=0|timers=3|attributes=0|partyLayouts=0|extraLayouts=0|unitSyncs=1\nROSTER|forever|raid|headerShows=0|allocations=0|timers=4|attributes=0|partyLayouts=0|extraLayouts=0|unitSyncs=1\nROSTER|forever|binding|timers=1|discoveries=1|protectedWrites=0|keyQueries=0\nROSTER|forever|extras|timers=1|rebinds=0|protectedWrites=0|allocations=0|paints=46\nROSTER|classic|party|headerShows=0|allocations=0|timers=3|attributes=0|partyLayouts=0|extraLayouts=0|unitSyncs=1\nROSTER|classic|raid|headerShows=0|allocations=0|timers=4|attributes=0|partyLayouts=0|extraLayouts=0|unitSyncs=1\nROSTER|classic|binding|timers=1|discoveries=1|protectedWrites=0|keyQueries=0\nROSTER|classic|extras|timers=1|rebinds=0|protectedWrites=0|allocations=0|paints=46\nROSTER|classic_era|party|headerShows=0|allocations=0|timers=3|attributes=0|partyLayouts=0|extraLayouts=0|unitSyncs=1\nROSTER|classic_era|raid|headerShows=0|allocations=0|timers=4|attributes=0|partyLayouts=0|extraLayouts=0|unitSyncs=1\nROSTER|classic_era|binding|timers=1|discoveries=1|protectedWrites=0|keyQueries=0\nROSTER|classic_era|extras|timers=1|rebinds=0|protectedWrites=0|allocations=0|paints=46\nROSTER|classic_anniversary|party|headerShows=0|allocations=0|timers=3|attributes=0|partyLayouts=0|extraLayouts=0|unitSyncs=1\nROSTER|classic_anniversary|raid|headerShows=0|allocations=0|timers=4|attributes=0|partyLayouts=0|extraLayouts=0|unitSyncs=1\nROSTER|classic_anniversary|binding|timers=1|discoveries=1|protectedWrites=0|keyQueries=0\nROSTER|classic_anniversary|extras|timers=1|rebinds=0|protectedWrites=0|allocations=0|paints=46\nROSTER|all|paint|total=800|synchronous=800\nlua: tests/group_roster_performance.lua:7: forty active cells paint once after repeated syncs\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/group_roster_performance.lua:7: in upvalue 'check'\n\ttests/group_roster_performance.lua:8: in local 'improved'\n\ttests/group_roster_performance.lua:140: in main chunk\n\t[C]: in ?\n"
+      },
+      {
+        "variant": "extra-driver-rebuild",
+        "expectedReject": true,
+        "rejected": true,
+        "output": "ROSTER|live|party|unitSyncs=1|allocations=0|timers=3|extraLayouts=0|headerShows=0|attributes=0|partyLayouts=0\nROSTER|live|raid|unitSyncs=1|allocations=0|timers=4|extraLayouts=0|headerShows=0|attributes=0|partyLayouts=0\nROSTER|live|binding|keyQueries=0|timers=1|protectedWrites=0|discoveries=1\nROSTER|live|extras|protectedWrites=276|timers=1|rebinds=46|paints=46|allocations=0\nlua: tests/group_roster_performance.lua:7: extra slots retain drivers/geometry/bindings during roster bursts\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/group_roster_performance.lua:7: in upvalue 'check'\n\ttests/group_roster_performance.lua:8: in local 'improved'\n\ttests/group_roster_performance.lua:116: in main chunk\n\t[C]: in ?\n"
+      },
+      {
+        "variant": "missed-extra-recovery",
+        "expectedReject": true,
+        "rejected": true,
+        "output": "ROSTER|live|party|attributes=0|unitSyncs=1|partyLayouts=0|extraLayouts=0|timers=3|headerShows=0|allocations=0\nROSTER|live|raid|attributes=0|unitSyncs=1|partyLayouts=0|extraLayouts=0|timers=4|headerShows=0|allocations=0\nROSTER|live|binding|protectedWrites=0|keyQueries=0|timers=1|discoveries=1\nROSTER|live|extras|protectedWrites=0|paints=46|rebinds=0|timers=1|allocations=0\nlua: tests/group_roster_performance.lua:7: roster event retries a previously unavailable optional driver\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/group_roster_performance.lua:7: in local 'check'\n\ttests/group_roster_performance.lua:123: in main chunk\n\t[C]: in ?\n"
+      },
+      {
+        "variant": "party-sync-paint",
+        "expectedReject": true,
+        "rejected": true,
+        "output": "ROSTER|live|party|extraLayouts=0|headerShows=0|attributes=0|allocations=0|timers=3|unitSyncs=1|partyLayouts=0\nROSTER|live|raid|extraLayouts=0|headerShows=0|attributes=0|allocations=0|timers=4|unitSyncs=1|partyLayouts=0\nROSTER|live|binding|keyQueries=0|discoveries=1|protectedWrites=0|timers=1\nROSTER|live|extras|protectedWrites=0|timers=1|allocations=0|paints=46|rebinds=0\nROSTER|forever|party|extraLayouts=0|headerShows=0|attributes=0|allocations=0|timers=3|unitSyncs=1|partyLayouts=0\nROSTER|forever|raid|extraLayouts=0|headerShows=0|attributes=0|allocations=0|timers=4|unitSyncs=1|partyLayouts=0\nROSTER|forever|binding|keyQueries=0|discoveries=1|protectedWrites=0|timers=1\nROSTER|forever|extras|protectedWrites=0|timers=1|allocations=0|paints=46|rebinds=0\nROSTER|classic|party|extraLayouts=0|headerShows=0|attributes=0|allocations=0|timers=3|unitSyncs=1|partyLayouts=0\nROSTER|classic|raid|extraLayouts=0|headerShows=0|attributes=0|allocations=0|timers=4|unitSyncs=1|partyLayouts=0\nROSTER|classic|binding|keyQueries=0|discoveries=1|protectedWrites=0|timers=1\nROSTER|classic|extras|protectedWrites=0|timers=1|allocations=0|paints=46|rebinds=0\nROSTER|classic_era|party|extraLayouts=0|headerShows=0|attributes=0|allocations=0|timers=3|unitSyncs=1|partyLayouts=0\nROSTER|classic_era|raid|extraLayouts=0|headerShows=0|attributes=0|allocations=0|timers=4|unitSyncs=1|partyLayouts=0\nROSTER|classic_era|binding|keyQueries=0|discoveries=1|protectedWrites=0|timers=1\nROSTER|classic_era|extras|protectedWrites=0|timers=1|allocations=0|paints=46|rebinds=0\nROSTER|classic_anniversary|party|extraLayouts=0|headerShows=0|attributes=0|allocations=0|timers=3|unitSyncs=1|partyLayouts=0\nROSTER|classic_anniversary|raid|extraLayouts=0|headerShows=0|attributes=0|allocations=0|timers=4|unitSyncs=1|partyLayouts=0\nROSTER|classic_anniversary|binding|keyQueries=0|discoveries=1|protectedWrites=0|timers=1\nROSTER|classic_anniversary|extras|protectedWrites=0|timers=1|allocations=0|paints=46|rebinds=0\nROSTER|all|paint|total=40|synchronous=0\nROSTER|all|partyPaint|paints=88|timers=1|rangeChecks=1|castRefreshes=4|castResets=4\nlua: tests/group_roster_performance.lua:7: party/pet show and roster paints coalesce with cast reset and range wake\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/group_roster_performance.lua:7: in upvalue 'check'\n\ttests/group_roster_performance.lua:8: in local 'improved'\n\ttests/group_roster_performance.lua:171: in main chunk\n\t[C]: in ?\n"
+      },
+      {
+        "variant": "missing-cast-reset",
+        "expectedReject": true,
+        "rejected": true,
+        "output": "ROSTER|live|party|attributes=0|headerShows=0|allocations=0|unitSyncs=1|partyLayouts=0|timers=3|extraLayouts=0\nROSTER|live|raid|attributes=0|headerShows=0|allocations=0|unitSyncs=1|partyLayouts=0|timers=4|extraLayouts=0\nROSTER|live|binding|discoveries=1|protectedWrites=0|timers=1|keyQueries=0\nROSTER|live|extras|protectedWrites=0|allocations=0|paints=46|timers=1|rebinds=0\nROSTER|forever|party|attributes=0|headerShows=0|allocations=0|unitSyncs=1|partyLayouts=0|timers=3|extraLayouts=0\nROSTER|forever|raid|attributes=0|headerShows=0|allocations=0|unitSyncs=1|partyLayouts=0|timers=4|extraLayouts=0\nROSTER|forever|binding|discoveries=1|protectedWrites=0|timers=1|keyQueries=0\nROSTER|forever|extras|protectedWrites=0|allocations=0|paints=46|timers=1|rebinds=0\nROSTER|classic|party|attributes=0|headerShows=0|allocations=0|unitSyncs=1|partyLayouts=0|timers=3|extraLayouts=0\nROSTER|classic|raid|attributes=0|headerShows=0|allocations=0|unitSyncs=1|partyLayouts=0|timers=4|extraLayouts=0\nROSTER|classic|binding|discoveries=1|protectedWrites=0|timers=1|keyQueries=0\nROSTER|classic|extras|protectedWrites=0|allocations=0|paints=46|timers=1|rebinds=0\nROSTER|classic_era|party|attributes=0|headerShows=0|allocations=0|unitSyncs=1|partyLayouts=0|timers=3|extraLayouts=0\nROSTER|classic_era|raid|attributes=0|headerShows=0|allocations=0|unitSyncs=1|partyLayouts=0|timers=4|extraLayouts=0\nROSTER|classic_era|binding|discoveries=1|protectedWrites=0|timers=1|keyQueries=0\nROSTER|classic_era|extras|protectedWrites=0|allocations=0|paints=46|timers=1|rebinds=0\nROSTER|classic_anniversary|party|attributes=0|headerShows=0|allocations=0|unitSyncs=1|partyLayouts=0|timers=3|extraLayouts=0\nROSTER|classic_anniversary|raid|attributes=0|headerShows=0|allocations=0|unitSyncs=1|partyLayouts=0|timers=4|extraLayouts=0\nROSTER|classic_anniversary|binding|discoveries=1|protectedWrites=0|timers=1|keyQueries=0\nROSTER|classic_anniversary|extras|protectedWrites=0|allocations=0|paints=46|timers=1|rebinds=0\nROSTER|all|paint|total=40|synchronous=0\nROSTER|all|partyPaint|castRefreshes=4|rangeChecks=1|paints=8|timers=1|castResets=0\nlua: tests/group_roster_performance.lua:7: party/pet show and roster paints coalesce with cast reset and range wake\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/group_roster_performance.lua:7: in upvalue 'check'\n\ttests/group_roster_performance.lua:8: in local 'improved'\n\ttests/group_roster_performance.lua:171: in main chunk\n\t[C]: in ?\n"
+      },
+      {
+        "variant": "extra-binding-timers",
+        "expectedReject": true,
+        "rejected": true,
+        "output": "ROSTER|live|party|allocations=0|attributes=0|unitSyncs=1|partyLayouts=0|timers=3|extraLayouts=0|headerShows=0\nROSTER|live|raid|allocations=0|attributes=0|unitSyncs=1|partyLayouts=0|timers=4|extraLayouts=0|headerShows=0\nROSTER|live|binding|keyQueries=0|timers=20|discoveries=1|protectedWrites=0\nlua: tests/group_roster_performance.lua:7: roster discovery is single/coalesced and does not rebuild stable binding data\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/group_roster_performance.lua:7: in upvalue 'check'\n\ttests/group_roster_performance.lua:8: in local 'improved'\n\ttests/group_roster_performance.lua:92: in main chunk\n\t[C]: in ?\n"
+      },
+      {
+        "variant": "stable-routing-rebuild",
+        "expectedReject": true,
+        "rejected": true,
+        "output": "ROSTER|live|party|extraLayouts=0|headerShows=0|attributes=0|partyLayouts=0|unitSyncs=1|allocations=0|timers=3\nROSTER|live|raid|extraLayouts=0|headerShows=0|attributes=0|partyLayouts=0|unitSyncs=1|allocations=0|timers=4\nROSTER|live|binding|timers=1|discoveries=1|protectedWrites=0|keyQueries=17\nlua: tests/group_roster_performance.lua:7: roster discovery is single/coalesced and does not rebuild stable binding data\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/group_roster_performance.lua:7: in upvalue 'check'\n\ttests/group_roster_performance.lua:8: in local 'improved'\n\ttests/group_roster_performance.lua:92: in main chunk\n\t[C]: in ?\n"
+      },
+      {
+        "variant": "missed-deferred-discovery",
+        "expectedReject": true,
+        "rejected": true,
+        "output": "ROSTER|live|party|timers=3|attributes=0|allocations=0|unitSyncs=1|partyLayouts=0|extraLayouts=0|headerShows=0\nROSTER|live|raid|timers=4|attributes=0|allocations=0|unitSyncs=1|partyLayouts=0|extraLayouts=0|headerShows=0\nROSTER|live|binding|discoveries=1|protectedWrites=0|timers=1|keyQueries=0\nlua: tests/group_roster_performance.lua:7: frames discovered during combat register on the deferred flush\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/group_roster_performance.lua:7: in local 'check'\n\ttests/group_roster_performance.lua:104: in main chunk\n\t[C]: in ?\n"
+      },
+      {
+        "variant": "missed-edit-refresh",
+        "expectedReject": true,
+        "rejected": true,
+        "output": "ROSTER|live|party|headerShows=0|attributes=0|allocations=0|unitSyncs=1|timers=3|partyLayouts=0|extraLayouts=0\nROSTER|live|raid|headerShows=0|attributes=0|allocations=0|unitSyncs=1|timers=4|partyLayouts=0|extraLayouts=0\nROSTER|live|binding|keyQueries=0|timers=1|discoveries=1|protectedWrites=0\nlua: tests/group_roster_performance.lua:7: Edit Mode still refreshes secure routing when its layout changes\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/group_roster_performance.lua:7: in local 'check'\n\ttests/group_roster_performance.lua:94: in main chunk\n\t[C]: in ?\n"
+      }
+    ],
+    "pinnedNativeReplay": [
+      {
+        "test": "raid_healer_secure",
+        "exit": 0,
+        "output": "Raid healer secure: 255908 checks; five native wrap/state/roster/click source implementations; desktop only\n"
+      },
+      {
+        "test": "raid_native_member_order",
+        "exit": 0,
+        "output": "Raid native member order: 58 checks; five native discrete/party ordering implementations, alphabetical negative control; desktop source execution only\n"
+      }
+    ],
+    "nativeBlobGuard": "All35downloaded cache files verified against exact Git blob SHA; original line endings restored outside AddOns",
+    "fullReport": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\06\\01a1b0ac-547f-7972-8df9-fa26882e0e03\\group-roster-performance-20261108T115039Z\\full.json",
+    "scenarios": "20same-turn roster events; prepared party/raid; initial readiness failure/recovery; optional45pet+target; new/deferred hover frame; combat no ordinary protected writes; Edit Mode routing refresh; 40cell repeated sync;8normal party/pet shows+roster; immediate ready check",
+    "documentation": "PASS:955classified sources;600TOC/XML reachable;415setting definitions;24SavedVariables;15477links; current inventory/evidence"
+  },
+  "resources": {
+    "newOnUpdate": 0,
+    "newTickers": 0,
+    "newEventFrames": 0,
+    "newCoalescedAfterQueues": "Normal party paint and optional adjunct paint; at most one pending each. Binding retains existing0.3second cadence with one pending timer. Raid unit paint reuses existing one-frame dispatcher.",
+    "nativeDriverOwnership": "Prepared drivers/child pools unchanged; membership and combat visibility remain native",
+    "eventWork": "No full header/party/extra layout for ordinary prepared roster changes; settings/full recovery still initialize as needed",
+    "preparedCellAllocationsDuringReplay": 0
+  },
+  "recovery": {
+    "head": "1fd463f4de4bbff659f4e402c6f31138c49765b4",
+    "historyVerified": true,
+    "runtimeSourcesBackedUp": 98,
+    "settingsMetadataEntries": 47,
+    "testPreimage": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\06\\01a1b0ac-547f-7972-8df9-fa26882e0e03\\group-roster-performance-20261108T115039Z\\party-test-before.lua",
+    "sideEffects": "No game foreground/input, WTF/profiler writes, manual sync, branch, commit or push"
+  },
+  "copies": [
+    {
+      "client": "_retail_",
+      "mismatches": []
+    },
+    {
+      "client": "_forever_",
+      "mismatches": []
+    },
+    {
+      "client": "_classic_",
+      "mismatches": []
+    },
+    {
+      "client": "_classic_era_",
+      "mismatches": []
+    },
+    {
+      "client": "_anniversary_",
+      "mismatches": []
+    }
+  ],
+  "nativePending": [
+    "Actual client invite/join/leave/regroup latency and addon CPU/memory/FPS",
+    "Native protected VM/taint, secret-value behavior and hardware hover casting",
+    "Visual parity through pet/target/focus/ready-check and combat transitions"
+  ],
+  "limitations": "Counters are scoped to these replayed operations, not total WoW/native work.20-event burst represents a controlled stress scenario, not a claim that every invitation emits20events. Secure callbacks executed under a desktop model; not native certification. Host wall intervals are uncontrolled and not interpreted as native speedups. Zero allocation counts refer to the modeled prepared/extra cell constructors; native internal aura allocation and unmodeled lazy regions are not measured."
+}

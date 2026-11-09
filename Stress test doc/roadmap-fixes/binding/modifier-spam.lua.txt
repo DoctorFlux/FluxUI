@@ -1,0 +1,177 @@
+-- Fixed-source acceptance: complete current binding consumers; native execution pending.
+local function read(path)local f=assert(io.open(path,'rb'));local s=f:read('*a');f:close();return s:gsub('\r\n','\n')end
+local base=read('Stress test doc/round-2/action-binding/replay.lua.txt')
+local cut=assert(base:find("for _,client in ipairs(",1,true))
+local make=assert(load(base:sub(1,cut-1)..'\nreturn pushFixture','@round2-reused-push-fixture','t',_G))()
+local assertions=0
+local total={scenarios=0,physicalUpdates=0,modifierMessages=0,consumerCalls=0,keyDowns=0,keyUps=0,ticks=0,mouseoverEvents=0,regenEvents=0,
+ protectedWrites=0,overrideWrites=0,blockedWriteAttempts=0,orphanCases=0,noOrphanCases=0,timersScheduled=0,maxPendingTimers=0,maxDeferredJobs=0,routeChecks=0}
+local function check(ok,why)assertions=assertions+1;assert(ok,why)end
+local orders={{1,2,3},{1,3,2},{2,1,3},{2,3,1},{3,1,2},{3,2,1}}
+local modNames={'LSHIFT','LCTRL','LALT'}
+local bitValues={1,2,4}
+local seed=20261107
+local function random(n)seed=(seed*48271)%2147483647;return seed%n+1 end
+local clients={'classic_era','classic_anniversary','classic','live','forever'}
+if arg[1]=='--quick' then clients={'forever'} end
+for _,client in ipairs(clients)do
+ for _,useDown in ipairs({false,true})do
+  local s,e,ns,hosts=make(client)
+  s.locked=false;s.hover=false;s.useDown=useDown
+  e.InCombatLockdown=function()return s.locked end
+  e.GetCVarBool=function()return s.useDown end
+  local function physical(key)
+   if key=='LSHIFT'or key=='RSHIFT'or key=='SHIFT'then return s.shift end
+   if key=='LCTRL'or key=='RCTRL'or key=='CTRL'then return s.ctrl end
+   if key=='LALT'or key=='RALT'or key=='ALT'then return s.alt end
+   return s.down[key]or false
+  end
+  e.IsKeyDown=physical
+  e.IsShiftKeyDown=function()return physical('LSHIFT')or physical('RSHIFT')end
+  e.IsControlKeyDown=function()return physical('LCTRL')or physical('RCTRL')end
+  e.IsAltKeyDown=function()return physical('LALT')or physical('RALT')end
+  e.FluxMouseoverKeybindModule={IsHovercastPeekMouseContext=function()return s.hover end}
+  local function legal()
+   if s.locked then total.blockedWriteAttempts=total.blockedWriteAttempts+1;error('protected writer in modeled lockdown')end
+  end
+  local function instrument(f,protected)
+   if f._auditInstrumented then return f end;f._auditInstrumented=true
+   local attr,parent,clicks=f.SetAttribute,f.SetParent,f.RegisterForClicks
+   f.GetScript=function(self,name)return self.scripts[name]end
+   f.SetAttribute=function(self,...)legal();total.protectedWrites=total.protectedWrites+1;return attr(self,...)end
+   f.SetParent=function(self,...)if protected then legal()end;return parent(self,...)end
+   f.RegisterForClicks=function(self,...)if protected then legal()end;return clicks(self,...)end
+   f.EnableMouse=function(self,v)if protected then legal()end;self.mouse=v end
+   return f
+  end
+  for _,f in ipairs(s.frames)do instrument(f,f.name and f.name:find('FluxActionStrip',1,true))end
+  local create=e.CreateFrame
+  e.CreateFrame=function(kind,name,parent,template)return instrument(create(kind,name,parent,template),kind=='Button')end
+  local timer=e.C_Timer.After
+  e.C_Timer.After=function(delay,fn)
+   total.timersScheduled=total.timersScheduled+1;timer(delay,fn)
+   total.maxPendingTimers=math.max(total.maxPendingTimers,#s.timers)
+  end
+  local overrides={}
+  e.ClearOverrideBindings=function()legal();total.overrideWrites=total.overrideWrites+1;overrides={}end
+  e.SetOverrideBindingClick=function(_,_,key,name,button)
+   legal();total.overrideWrites=total.overrideWrites+1;overrides[key]={name,button}
+  end
+  ns.Flux.Safecall=function(fn,...)local ok,why=pcall(fn,...);check(ok,'deferred callback failed: '..tostring(why));return ok end
+  local function module(path)return assert(load(read(path),'@'..path,'t',e))('_FluxUI',ns)end
+  module('Core/Engine/Combat.lua');module('Bars/SlotMath.lua')
+  local bars=ns.Flux.Bars;bars.NUM_COLUMNS=2;bars.hosts={};bars.Strip={frame=e.CreateFrame('Frame','FluxAuditStripOwner')}
+  bars.GetHost=function(col)return bars.hosts[col]end
+  bars.ForEachHost=function(fn)for i=1,2 do fn(hosts[i])end end
+  for i=1,2 do
+   local h=hosts[i];h.column=i;h.row='main';h.slot=i;h.bindingCommand='ACTIONBUTTON'..i;bars.hosts[i]={main=h}
+   h.widget:SetAttribute('action',i);h.widget:SetAttribute('flux-has-sec',1);h.widget:SetAttribute('flux-has-tert',1)
+  end
+  ns.Flux.ButtonFX={Click={UsesWrap=function()return client~='forever'end}}
+  module('Bars/Clicks.lua')
+  check(bars.Clicks.ApplyRegistration()and bars.Clicks.RefreshKeys(),'initial actual bar registration succeeds')
+  local pp=ns.FluxBindingPushPress
+  for _,key in ipairs({'Q','E'})do
+   for mask=0,7 do
+    local chord=(mask&4~=0 and'ALT-'or'')..(mask&2~=0 and'CTRL-'or'')..(mask&1~=0 and'SHIFT-'or'')..key
+    pp.RegisterUfHover('FluxAuditHover_'..key..mask..'_HC',chord)
+   end
+  end
+  local stableFrames=#s.frames
+  local function hookCount()local n=0;for _,f in ipairs(s.frames)do for _,list in pairs(f.hooks)do n=n+#list end end;return n end
+  local stableHooks=hookCount()
+  local function tick(dt)total.ticks=total.ticks+1;s.tick(dt)end
+  local function event(name,...)
+   for _,f in ipairs(s.frames)do
+    if f.events[name]and f.scripts.OnEvent then total.consumerCalls=total.consumerCalls+1;f.scripts.OnEvent(f,name,...)end
+   end
+  end
+  local function verifyRoutes()
+   for i,key in ipairs({'Q','E'})do
+    local shift,ctrl,alt=physical('LSHIFT'),physical('LCTRL'),physical('LALT')
+    local chord=(alt and'ALT-'or'')..(ctrl and'CTRL-'or'')..(shift and'SHIFT-'or'')..key
+    local baseKey,mods=ns.FluxBindingChordMap.Parse(chord)
+    check(baseKey==key and mods.shift==shift and mods.ctrl==ctrl and mods.alt==alt,'all eight modifier masks preserve actual physical truth')
+    local route=ns.FluxBindingChordMap.Route(chord)
+    if alt or(shift and ctrl)then check(route.kind=='free','combined/Alt chord retains free override route')
+    else
+     local slot=shift and 60+i or ctrl and 24+i or i
+     check(route.kind=='slot'and route.col==i and route.slotsByForm.noform==slot,'bar/mini chord retains actual SlotMath route')
+    end
+    total.routeChecks=total.routeChecks+1
+   end
+  end
+  local across=false
+  local function modifier(index,down)
+   if index==1 then s.shift=down elseif index==2 then s.ctrl=down else s.alt=down end
+   total.physicalUpdates=total.physicalUpdates+1
+   -- Duplicate and contradictory/reordered payloads cannot replace physical truth.
+   local payloads={{modNames[index],down and 1 or 0},{modNames[index],down and 1 or 0},{modNames[index%3+1],down and 0 or 1}}
+   for _,p in ipairs(payloads)do
+    total.modifierMessages=total.modifierMessages+1;event('MODIFIER_STATE_CHANGED',p[1],p[2])
+    if across then tick(.001)end
+   end
+   verifyRoutes()
+  end
+  local function mask(value,order)
+   for _,index in ipairs(order)do modifier(index,(value&bitValues[index])~=0)end
+  end
+  local function key(col,down)
+   s.down[col==1 and'Q'or'E']=down
+   if down then total.keyDowns=total.keyDowns+1 else total.keyUps=total.keyUps+1 end
+   local target=assert(overrides[col==1 and'Q'or'E'],'registered bar override missing')
+   local f=assert(e[target[1]])
+   for _,fn in ipairs(f.hooks.PreClick or{})do fn(f,target[2],down)end
+   if across then tick(.001)end
+  end
+  local function regen()
+   s.locked=false;total.regenEvents=total.regenEvents+1;event('PLAYER_REGEN_ENABLED')
+  end
+  local orphanStart=total.orphanCases
+  for initial=0,7 do
+   for _,release in ipairs(orders)do
+    for keyOrder=1,3 do
+     for _,timeMode in ipairs({false,true})do
+      for _,combatMode in ipairs({'ooc','combat','regen'})do
+       total.scenarios=total.scenarios+1;across=timeMode;s.down={};s.shift,s.ctrl,s.alt=false,false,false
+       s.hover=total.scenarios%2==0
+       s.locked=combatMode~='ooc'
+       local attrBefore,overrideBefore=total.protectedWrites,total.overrideWrites
+       if s.locked then
+        bars.Clicks.ApplyRegistration();bars.Clicks.RefreshKeys();bars.Clicks.ReassertEmpower()
+        total.maxDeferredJobs=math.max(total.maxDeferredJobs,ns.Flux.Combat.PendingCount())
+       end
+       mask(initial,{1,2,3});key(1,true);key(2,true)
+       if combatMode=='regen'then regen()end
+       -- Very fast transitions cover every held combination repeatedly while both keys overlap.
+       for cycle=1,2 do for held=0,7 do mask(held,orders[random(#orders)])end end
+       s.hover=not s.hover;total.mouseoverEvents=total.mouseoverEvents+1;event('UPDATE_MOUSEOVER_UNIT')
+       local first=keyOrder==1 and 1 or keyOrder==2 and 2 or random(2)
+       key(first,false);key(3-first,false)
+       mask(0,release)
+       s.hover=false;pp.ParkUfHoverFromUnitFrame();tick(.1);tick(2);tick(.1)
+       local orphans=0
+       for i=1,2 do if hosts[i].widget.state=='PUSHED'or hosts[i].widget._fluxKeybindPushDimmed then orphans=orphans+1 end end
+       if orphans>0 then total.orphanCases=total.orphanCases+1 else total.noOrphanCases=total.noOrphanCases+1 end
+       if s.locked then
+        check(total.protectedWrites==attrBefore and total.overrideWrites==overrideBefore,'modifier storm makes no modeled protected attribute/override writes in combat')
+        regen()
+       end
+       tick(.1);pp.ClearAll();tick(.1)
+       for i=1,2 do check(hosts[i].widget.state=='NORMAL'and hosts[i].widget.rgb()==1,'explicit owner cleanup restores public visuals after stress')end
+       check(not ns.Flux.Combat.HasPending(),'regen clears coalesced bar registration work')
+       check(#s.frames==stableFrames and hookCount()==stableHooks,'all scenarios reuse existing drivers/keyers and hooks')
+       check(#s.timers==0,'zero-delay press reassert queue drains after release/cleanup')
+       check(total.blockedWriteAttempts==0,'no hidden protected writer attempted combat mutation')
+      end
+     end
+    end
+   end
+  end
+  check(total.orphanCases==orphanStart,'every modifier/overlap case releases all visual owners without manual recovery')
+  print(('CLIENT|%s|useOnKeyDown=%s|frames=%d|hooks=%d|orphan_cases=%d'):format(client,tostring(useDown),stableFrames,stableHooks,total.orphanCases-orphanStart))
+ end
+end
+print('ASSERTIONS|'..assertions)
+for name,value in pairs(total)do print('COUNT|'..name..'|'..value)end
+print('FIXED MODIFIER ACCEPTANCE COMPLETE; owner logic only, native hardware/secure VM not executed')

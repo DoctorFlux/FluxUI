@@ -1,0 +1,149 @@
+{
+  "changeID": "FRIENDLY-AURA-POLICY-20261108",
+  "requirement": "REQ-RF-94",
+  "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\06\\01a1b0ac-547f-7972-8df9-fa26882e0e03\\friendly-aura-policy-20261108T113137Z\\checkpoint.json",
+  "before": {
+    "UnitFrames/FluxUnitFrames_DebuffTint.lua": "2b08b4bf99e009d6bc292833fc4cd42dccda7848e79e753c7d447b22f9b7c8db",
+    "tests/friendly_debuff_tint.lua": "57564104adec972bb0a189c5be81660729d11b4fca7e57fc728e87ccf8d8d704"
+  },
+  "after": {
+    "UnitFrames/FluxUnitFrames_DebuffTint.lua": "543d8e989d53310bddd3d846d4ea75d9f526d6cc6c13091bda51b4e383d650f7",
+    "tests/friendly_debuff_tint.lua": "9b1b917135d3a32eab9e550ef6b017b497a5750da57885beace1ae0432458042"
+  },
+  "nativeSources": [
+    {
+      "client": "live",
+      "ref": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_AuraContainer/Blizzard_CustomAuraContainer.lua",
+      "blob": "a8ce187d23916a466e6a2df9a84d4a8da6baa070",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_AuraContainer/Blizzard_CustomAuraContainer.lua",
+      "supportsKnownTypeCandidates": true
+    },
+    {
+      "client": "forever",
+      "ref": "eac30af597e5aaa43a60f6675ef5fdcea100375f",
+      "path": "Interface/AddOns/Blizzard_AuraContainer/Blizzard_CustomAuraContainer.lua",
+      "blob": "a8ce187d23916a466e6a2df9a84d4a8da6baa070",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/eac30af597e5aaa43a60f6675ef5fdcea100375f/Interface/AddOns/Blizzard_AuraContainer/Blizzard_CustomAuraContainer.lua",
+      "supportsKnownTypeCandidates": true
+    }
+  ],
+  "sourceScope": "Native public SetAuraSlotFilterString and includeDispelTypes verified at live297d7a/forever eac30a pins. Fixture replays actual native setter and unchanged-token SetUnit. Five-client colors/providers retained from prior evidence. No native runtime certification.",
+  "behavior": [
+    "Only-dispellable ON selects HARMFUL|RAID; OFF selects HARMFUL",
+    "One public native owner per border part switches its slot filter in place; no event-driven frame allocation",
+    "Per-frame option boolean takes precedence, then explicit Flux RaidFrame DB boolean, then relevant Blizzard preference if no Flux override. Explicit false stays false; no OR of unrelated settings",
+    "Native includeDispelTypes whitelist skips untyped/unknown candidates before selection. Readable bounded scan likewise skips to next known type, stopping at40",
+    "Keep friendly-only state, own-unit source/labels and target/focus/roster alias invalidation. Portrait backdrop/fills unchanged",
+    "Restricted aura type colors remain native Texture-only; numeric text stays normal until type is public"
+  ],
+  "tests": {
+    "focused": {
+      "path": "tests/friendly_debuff_tint.lua",
+      "exit": 0,
+      "wallSeconds": 0.0817,
+      "output": "Friendly debuff tint: 13270 checks PASS across five clients/current and legacy aura providers; native game checks pending\n"
+    },
+    "full": {
+      "pass": 256,
+      "fail": 0,
+      "syntaxFiles": 921,
+      "syntaxFailures": []
+    },
+    "sourceGuard": "Owned raw hashes stable and LF-normalized hashes match full report",
+    "controls": [
+      {
+        "variant": "baseline",
+        "rejected": true,
+        "output": "lua: tests/friendly_debuff_tint.lua:7: one native dispellable slot per chrome part\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/friendly_debuff_tint.lua:7: in local 'check'\n\ttests/friendly_debuff_tint.lua:217: in main chunk\n\t[C]: in ?\n"
+      },
+      {
+        "variant": "always-strict",
+        "rejected": true,
+        "output": "lua: tests/friendly_debuff_tint.lua:7: off uses all known harmful candidates\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/friendly_debuff_tint.lua:7: in local 'check'\n\ttests/friendly_debuff_tint.lua:221: in main chunk\n\t[C]: in ?\n"
+      },
+      {
+        "variant": "always-all",
+        "rejected": true,
+        "output": "lua: tests/friendly_debuff_tint.lua:7: exact normal text restored\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/friendly_debuff_tint.lua:7: in upvalue 'check'\n\ttests/friendly_debuff_tint.lua:211: in local 'restored'\n\ttests/friendly_debuff_tint.lua:233: in main chunk\n\t[C]: in ?\n"
+      },
+      {
+        "variant": "false-is-missing",
+        "rejected": true,
+        "output": "lua: tests/friendly_debuff_tint.lua:7: HP/resource values and percent match client type\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/friendly_debuff_tint.lua:7: in upvalue 'check'\n\ttests/friendly_debuff_tint.lua:208: in local 'paintMatches'\n\ttests/friendly_debuff_tint.lua:241: in main chunk\n\t[C]: in ?\n"
+      },
+      {
+        "variant": "native-filter-stuck",
+        "rejected": true,
+        "output": "lua: tests/friendly_debuff_tint.lua:7: off uses all known harmful candidates\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/friendly_debuff_tint.lua:7: in local 'check'\n\ttests/friendly_debuff_tint.lua:221: in main chunk\n\t[C]: in ?\n"
+      },
+      {
+        "variant": "stop-at-unknown",
+        "rejected": true,
+        "output": "lua: tests/friendly_debuff_tint.lua:7: HP/resource values and percent match client type\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/friendly_debuff_tint.lua:7: in upvalue 'check'\n\ttests/friendly_debuff_tint.lua:208: in local 'paintMatches'\n\ttests/friendly_debuff_tint.lua:348: in main chunk\n\t[C]: in ?\n"
+      },
+      {
+        "variant": "skip-native-refresh",
+        "rejected": true,
+        "output": "lua: tests/friendly_debuff_tint.lua:7: each native overlay uses only its current unit\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/friendly_debuff_tint.lua:7: in upvalue 'check'\n\ttests/friendly_debuff_tint.lua:296: in local 'nativeMatches'\n\ttests/friendly_debuff_tint.lua:326: in main chunk\n\t[C]: in ?\n"
+      },
+      {
+        "variant": "share-player-text",
+        "rejected": true,
+        "output": "lua: tests/friendly_debuff_tint.lua:7: HP/resource values and percent match client type\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/friendly_debuff_tint.lua:7: in upvalue 'check'\n\ttests/friendly_debuff_tint.lua:208: in local 'paintMatches'\n\ttests/friendly_debuff_tint.lua:308: in main chunk\n\t[C]: in ?\n"
+      },
+      {
+        "variant": "wrong-blizzard-scope",
+        "rejected": true,
+        "output": "lua: tests/friendly_debuff_tint.lua:7: HP/resource values and percent match client type\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/friendly_debuff_tint.lua:7: in upvalue 'check'\n\ttests/friendly_debuff_tint.lua:208: in local 'paintMatches'\n\ttests/friendly_debuff_tint.lua:234: in main chunk\n\t[C]: in ?\n"
+      }
+    ],
+    "matchedPairs": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\06\\01a1b0ac-547f-7972-8df9-fa26882e0e03\\friendly-aura-policy-20261108T113137Z\\matched-correctness.json",
+    "fullReport": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\06\\01a1b0ac-547f-7972-8df9-fa26882e0e03\\friendly-aura-policy-20261108T113137Z\\full.json",
+    "cases": "Both checkbox directions; all known/strict modes; explicit false versus both Blizzard true; per-frame false versus Flux DB true; legacy/current CVar APIs; unknown entries before known type; independent concurrent unit palettes; alias/hostile/combat transitions; native setters replayed",
+    "documentation": "PASS:954sources;600TOC/XML reachable;415setting definitions;24SavedVariables;15465links; inventory/evidence current"
+  },
+  "resources": {
+    "nativeOwnersPerEligibleFrame": 3,
+    "addonEventFrames": 1,
+    "addonOnUpdate": 0,
+    "addonTickers": 0,
+    "timer": "Existing coalesced After0 batch and OOC setup deferral",
+    "eventFrameTextureAllocations": 0,
+    "readableScan": "At most40entries; stop at first known candidate; never query restricted data",
+    "nativeUpdate": "Filter setter rebuilds native parse only when changed. Preserve explicit identity refresh. Actual native internal cost not measured"
+  },
+  "recovery": {
+    "head": "1fd463f4de4bbff659f4e402c6f31138c49765b4",
+    "historyVerified": true,
+    "settingsMetadataEntries": 47,
+    "settings": "Selected saved flags and native config inspected read-only; disk may lag live session. No game input/settings/profiler writes, manual sync or publication"
+  },
+  "nativePending": [
+    "Actual both-mode appearance and palette restoration",
+    "Real private data/protected VM/taint through combat and alias changes",
+    "Native CPU/memory/FPS"
+  ],
+  "copies": [
+    {
+      "client": "_retail_",
+      "mismatches": []
+    },
+    {
+      "client": "_forever_",
+      "mismatches": []
+    },
+    {
+      "client": "_classic_",
+      "mismatches": []
+    },
+    {
+      "client": "_classic_era_",
+      "mismatches": []
+    },
+    {
+      "client": "_anniversary_",
+      "mismatches": []
+    }
+  ]
+}

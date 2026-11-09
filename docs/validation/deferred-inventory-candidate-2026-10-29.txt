@@ -1,0 +1,13 @@
+mail queued provider nativeReads=0 notifications=0 generationDelta=0 activeAfterFirst=0 providerCount=99 builtinCount=nil
+mail queued empty-provider nativeReads=0 notifications=0 generationDelta=0 activeAfterFirst=0 providerCount=nil builtinCount=nil
+mail partial provider nativeReads=0 notifications=0 generationDelta=0 activeAfterFirst=0 providerCount=99 builtinCount=nil
+mail partial empty-provider nativeReads=0 notifications=0 generationDelta=0 activeAfterFirst=0 providerCount=nil builtinCount=nil
+auctions-legacy queued provider nativeReads=0 notifications=0 generationDelta=0 activeAfterFirst=0 providerCount=99 builtinCount=nil
+auctions-legacy queued empty-provider nativeReads=0 notifications=0 generationDelta=0 activeAfterFirst=0 providerCount=nil builtinCount=nil
+auctions-legacy partial provider nativeReads=0 notifications=0 generationDelta=0 activeAfterFirst=0 providerCount=99 builtinCount=nil
+auctions-legacy partial empty-provider nativeReads=0 notifications=0 generationDelta=0 activeAfterFirst=0 providerCount=nil builtinCount=nil
+auctions-modern queued provider nativeReads=0 notifications=0 generationDelta=0 activeAfterFirst=0 providerCount=99 builtinCount=nil
+auctions-modern queued empty-provider nativeReads=0 notifications=0 generationDelta=0 activeAfterFirst=0 providerCount=nil builtinCount=nil
+auctions-modern partial provider nativeReads=0 notifications=0 generationDelta=0 activeAfterFirst=0 providerCount=99 builtinCount=nil
+auctions-modern partial empty-provider nativeReads=0 notifications=0 generationDelta=0 activeAfterFirst=0 providerCount=nil builtinCount=nil
+deferred inventory handoff: 210 checks, 0 failures; desktop operation counts only

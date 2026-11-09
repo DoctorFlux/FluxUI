@@ -1,0 +1,1598 @@
+{
+  "change": "BUG-003",
+  "recordedUtc": "2026-10-29T09:47:06.860825+00:00",
+  "baselineCommit": "05e9f79160ac641f842f5aba8eabd21f1fe0c1fe",
+  "baselineTree": "6e612fa6b27282f5e535b361f5cf93ac17d250ba",
+  "candidateIdentity": "Committed mail-completion ownership fix; final full suite byte-verified",
+  "sourceHashes": {
+    "Inventory/Builtin/Mail.lua": "e43f73fbdc78a6865d940f08bab64d1058ba5664461ae170515e31e6e3f3dfc8",
+    "Inventory/Store.lua": "2e6cb7e3e5235287dd7de590882a333866c0ddcce09c44f0755e5fc344ba35a2",
+    "Inventory/Syndicator/Adapter.lua": "6484933439a0830fb1c652054bc1384b9e66a824e58f684427ba31cc91f3d078",
+    "tests/pending_mail_provider_handoff.lua": "c10aa6a4e8597eb23dd25ae2378652cf87758409835f1862e4e1d9dea146038d",
+    "tests/fixtures/pending_mail_provider_before.txt": "e6e6600489d5c762859a465e66573c48a2555e13d0fa99ff448c7cebb7ee113a"
+  },
+  "providerContractEvidence": {
+    "path": "F:\\World of Warcraft\\_classic_era_\\Interface\\AddOns\\Syndicator\\API\\Main.lua",
+    "version": "288",
+    "sha256": "892f6607d05953dc22504b33fd8294b2908ca45f77157d3ef24767d8e76de393",
+    "finding": "GetCharacter aliases GetByCharacterFullName, which returns the mutable stored character table. Inspected read-only; portable regression models this contract."
+  },
+  "environment": {
+    "os": "Windows-10-10.0.26200-SP0",
+    "cpu": "Intel Core i7-12700F",
+    "logicalProcessors": 20,
+    "ramGpu": "unavailable through sandbox CIM",
+    "lua": "5.4.6",
+    "python": "3.10.6",
+    "clientBuild": "none; modeled completion events/hooks and provider table ownership",
+    "addons": "real Store/Mail/Adapter with mocked native API and provider tables",
+    "settings": "fixed known alt and3item payload; private saved data unused",
+    "profiler": "off; operation and resource counters",
+    "warmup": "fresh harness starts builtin provider, post-hook captures attachments, Ready transfers ownership; reset counters before completion",
+    "duration": "8handoff outcome cases plus200standalone cycles per invocation; no timed native window",
+    "repetitions": "5 alternating baseline/candidate process pairs",
+    "unmeasured": [
+      "native CPU",
+      "attributed allocations",
+      "native operation latency",
+      "frame times/FPS",
+      "screenshots"
+    ],
+    "timingCaution": "whole-process elapsed is advisory only"
+  },
+  "status": "PASS modeled ownership and cleanup; native acceptance pending",
+  "samples": [
+    {
+      "pair": 1,
+      "variant": "baseline",
+      "command": [
+        "lua",
+        "tests/pending_mail_provider_handoff.lua",
+        "--source",
+        "tests/fixtures/pending_mail_provider_before.txt",
+        "--measure"
+      ],
+      "exit": 0,
+      "processWallSeconds": 0.05701249999401625,
+      "measurements": [
+        {
+          "scenario": "send existing-mail handoff success",
+          "providerLookups": 1,
+          "providerRowsDelta": 1,
+          "providerAddedCount": 3,
+          "savedRowsDelta": 0,
+          "savedPending": null,
+          "retainedEvents": 0
+        },
+        {
+          "scenario": "send existing-mail handoff failure",
+          "providerLookups": 0,
+          "providerRowsDelta": 0,
+          "providerAddedCount": 0,
+          "savedRowsDelta": 0,
+          "savedPending": null,
+          "retainedEvents": 0
+        },
+        {
+          "scenario": "send missing-mail handoff success",
+          "providerLookups": 1,
+          "providerRowsDelta": 1,
+          "providerAddedCount": 3,
+          "savedRowsDelta": 0,
+          "savedPending": null,
+          "retainedEvents": 0
+        },
+        {
+          "scenario": "send missing-mail handoff failure",
+          "providerLookups": 0,
+          "providerRowsDelta": 0,
+          "providerAddedCount": 0,
+          "savedRowsDelta": 0,
+          "savedPending": null,
+          "retainedEvents": 0
+        },
+        {
+          "scenario": "return existing-mail handoff success",
+          "providerLookups": 1,
+          "providerRowsDelta": 1,
+          "providerAddedCount": 3,
+          "savedRowsDelta": 0,
+          "savedPending": null,
+          "retainedEvents": 0
+        },
+        {
+          "scenario": "return existing-mail handoff failure",
+          "providerLookups": 0,
+          "providerRowsDelta": 0,
+          "providerAddedCount": 0,
+          "savedRowsDelta": 0,
+          "savedPending": null,
+          "retainedEvents": 0
+        },
+        {
+          "scenario": "return missing-mail handoff success",
+          "providerLookups": 1,
+          "providerRowsDelta": 1,
+          "providerAddedCount": 3,
+          "savedRowsDelta": 0,
+          "savedPending": null,
+          "retainedEvents": 0
+        },
+        {
+          "scenario": "return missing-mail handoff failure",
+          "providerLookups": 0,
+          "providerRowsDelta": 0,
+          "providerAddedCount": 0,
+          "savedRowsDelta": 0,
+          "savedPending": null,
+          "retainedEvents": 0
+        }
+      ],
+      "reuse": [
+        {
+          "action": "send",
+          "cycles": 100,
+          "frames": 1,
+          "retainedEvents": 0,
+          "successfulCredits": 50
+        },
+        {
+          "action": "return",
+          "cycles": 100,
+          "frames": 1,
+          "retainedEvents": 0,
+          "successfulCredits": 50
+        }
+      ],
+      "stdout": "send existing-mail handoff success providerLookups=1 providerRowsDelta=1 providerAddedCount=3 savedRowsDelta=0 savedPending=nil retainedEvents=0\nsend existing-mail handoff failure providerLookups=0 providerRowsDelta=0 providerAddedCount=0 savedRowsDelta=0 savedPending=nil retainedEvents=0\nsend missing-mail handoff success providerLookups=1 providerRowsDelta=1 providerAddedCount=3 savedRowsDelta=0 savedPending=nil retainedEvents=0\nsend missing-mail handoff failure providerLookups=0 providerRowsDelta=0 providerAddedCount=0 savedRowsDelta=0 savedPending=nil retainedEvents=0\nsend standalone cycles=100 frames=1 retainedEvents=0 successfulCredits=50\nreturn existing-mail handoff success providerLookups=1 providerRowsDelta=1 providerAddedCount=3 savedRowsDelta=0 savedPending=nil retainedEvents=0\nreturn existing-mail handoff failure providerLookups=0 providerRowsDelta=0 providerAddedCount=0 savedRowsDelta=0 savedPending=nil retainedEvents=0\nreturn missing-mail handoff success providerLookups=1 providerRowsDelta=1 providerAddedCount=3 savedRowsDelta=0 savedPending=nil retainedEvents=0\nreturn missing-mail handoff failure providerLookups=0 providerRowsDelta=0 providerAddedCount=0 savedRowsDelta=0 savedPending=nil retainedEvents=0\nreturn standalone cycles=100 frames=1 retainedEvents=0 successfulCredits=50\npending mail provider handoff: 410 checks, 8 failures; desktop operation counts only\nFAIL send existing-mail handoff success stale completion never resolves provider destination\nFAIL send existing-mail handoff success stale completion does not mutate/create provider mail\nFAIL send missing-mail handoff success stale completion never resolves provider destination\nFAIL send missing-mail handoff success stale completion does not mutate/create provider mail\nFAIL return existing-mail handoff success stale completion never resolves provider destination\nFAIL return existing-mail handoff success stale completion does not mutate/create provider mail\nFAIL return missing-mail handoff success stale completion never resolves provider destination\nFAIL return missing-mail handoff success stale completion does not mutate/create provider mail\n",
+      "stderr": ""
+    },
+    {
+      "pair": 1,
+      "variant": "candidate",
+      "command": [
+        "lua",
+        "tests/pending_mail_provider_handoff.lua"
+      ],
+      "exit": 0,
+      "processWallSeconds": 0.05875910000031581,
+      "measurements": [
+        {
+          "scenario": "send existing-mail handoff success",
+          "providerLookups": 0,
+          "providerRowsDelta": 0,
+          "providerAddedCount": 0,
+          "savedRowsDelta": 0,
+          "savedPending": null,
+          "retainedEvents": 0
+        },
+        {
+          "scenario": "send existing-mail handoff failure",
+          "providerLookups": 0,
+          "providerRowsDelta": 0,
+          "providerAddedCount": 0,
+          "savedRowsDelta": 0,
+          "savedPending": null,
+          "retainedEvents": 0
+        },
+        {
+          "scenario": "send missing-mail handoff success",
+          "providerLookups": 0,
+          "providerRowsDelta": 0,
+          "providerAddedCount": 0,
+          "savedRowsDelta": 0,
+          "savedPending": null,
+          "retainedEvents": 0
+        },
+        {
+          "scenario": "send missing-mail handoff failure",
+          "providerLookups": 0,
+          "providerRowsDelta": 0,
+          "providerAddedCount": 0,
+          "savedRowsDelta": 0,
+          "savedPending": null,
+          "retainedEvents": 0
+        },
+        {
+          "scenario": "return existing-mail handoff success",
+          "providerLookups": 0,
+          "providerRowsDelta": 0,
+          "providerAddedCount": 0,
+          "savedRowsDelta": 0,
+          "savedPending": null,
+          "retainedEvents": 0
+        },
+        {
+          "scenario": "return existing-mail handoff failure",
+          "providerLookups": 0,
+          "providerRowsDelta": 0,
+          "providerAddedCount": 0,
+          "savedRowsDelta": 0,
+          "savedPending": null,
+          "retainedEvents": 0
+        },
+        {
+          "scenario": "return missing-mail handoff success",
+          "providerLookups": 0,
+          "providerRowsDelta": 0,
+          "providerAddedCount": 0,
+          "savedRowsDelta": 0,
+          "savedPending": null,
+          "retainedEvents": 0
+        },
+        {
+          "scenario": "return missing-mail handoff failure",
+          "providerLookups": 0,
+          "providerRowsDelta": 0,
+          "providerAddedCount": 0,
+          "savedRowsDelta": 0,
+          "savedPending": null,
+          "retainedEvents": 0
+        }
+      ],
+      "reuse": [
+        {
+          "action": "send",
+          "cycles": 100,
+          "frames": 1,
+          "retainedEvents": 0,
+          "successfulCredits": 50
+        },
+        {
+          "action": "return",
+          "cycles": 100,
+          "frames": 1,
+          "retainedEvents": 0,
+          "successfulCredits": 50
+        }
+      ],
+      "stdout": "send existing-mail handoff success providerLookups=0 providerRowsDelta=0 providerAddedCount=0 savedRowsDelta=0 savedPending=nil retainedEvents=0\nsend existing-mail handoff failure providerLookups=0 providerRowsDelta=0 providerAddedCount=0 savedRowsDelta=0 savedPending=nil retainedEvents=0\nsend missing-mail handoff success providerLookups=0 providerRowsDelta=0 providerAddedCount=0 savedRowsDelta=0 savedPending=nil retainedEvents=0\nsend missing-mail handoff failure providerLookups=0 providerRowsDelta=0 providerAddedCount=0 savedRowsDelta=0 savedPending=nil retainedEvents=0\nsend standalone cycles=100 frames=1 retainedEvents=0 successfulCredits=50\nreturn existing-mail handoff success providerLookups=0 providerRowsDelta=0 providerAddedCount=0 savedRowsDelta=0 savedPending=nil retainedEvents=0\nreturn existing-mail handoff failure providerLookups=0 providerRowsDelta=0 providerAddedCount=0 savedRowsDelta=0 savedPending=nil retainedEvents=0\nreturn missing-mail handoff success providerLookups=0 providerRowsDelta=0 providerAddedCount=0 savedRowsDelta=0 savedPending=nil retainedEvents=0\nreturn missing-mail handoff failure providerLookups=0 providerRowsDelta=0 providerAddedCount=0 savedRowsDelta=0 savedPending=nil retainedEvents=0\nreturn standalone cycles=100 frames=1 retainedEvents=0 successfulCredits=50\npending mail provider handoff: 410 checks, 0 failures; desktop operation counts only\n",
+      "stderr": ""
+    },
+    {
+      "pair": 2,
+      "variant": "baseline",
+      "command": [
+        "lua",
+        "tests/pending_mail_provider_handoff.lua",
+        "--source",
+        "tests/fixtures/pending_mail_provider_before.txt",
+        "--measure"
+      ],
+      "exit": 0,
+      "processWallSeconds": 0.060018500000296626,
+      "measurements": [
+        {
+          "scenario": "send existing-mail handoff success",
+          "providerLookups": 1,
+          "providerRowsDelta": 1,
+          "providerAddedCount": 3,
+          "savedRowsDelta": 0,
+          "savedPending": null,
+          "retainedEvents": 0
+        },
+        {
+          "scenario": "send existing-mail handoff failure",
+          "providerLookups": 0,
+          "providerRowsDelta": 0,
+          "providerAddedCount": 0,
+          "savedRowsDelta": 0,
+          "savedPending": null,
+          "retainedEvents": 0
+        },
+        {
+          "scenario": "send missing-mail handoff success",
+          "providerLookups": 1,
+          "providerRowsDelta": 1,
+          "providerAddedCount": 3,
+          "savedRowsDelta": 0,
+          "savedPending": null,
+          "retainedEvents": 0
+        },
+        {
+          "scenario": "send missing-mail handoff failure",
+          "providerLookups": 0,
+          "providerRowsDelta": 0,
+          "providerAddedCount": 0,
+          "savedRowsDelta": 0,
+          "savedPending": null,
+          "retainedEvents": 0
+        },
+        {
+          "scenario": "return existing-mail handoff success",
+          "providerLookups": 1,
+          "providerRowsDelta": 1,
+          "providerAddedCount": 3,
+          "savedRowsDelta": 0,
+          "savedPending": null,
+          "retainedEvents": 0
+        },
+        {
+          "scenario": "return existing-mail handoff failure",
+          "providerLookups": 0,
+          "providerRowsDelta": 0,
+          "providerAddedCount": 0,
+          "savedRowsDelta": 0,
+          "savedPending": null,
+          "retainedEvents": 0
+        },
+        {
+          "scenario": "return missing-mail handoff success",
+          "providerLookups": 1,
+          "providerRowsDelta": 1,
+          "providerAddedCount": 3,
+          "savedRowsDelta": 0,
+          "savedPending": null,
+          "retainedEvents": 0
+        },
+        {
+          "scenario": "return missing-mail handoff failure",
+          "providerLookups": 0,
+          "providerRowsDelta": 0,
+          "providerAddedCount": 0,
+          "savedRowsDelta": 0,
+          "savedPending": null,
+          "retainedEvents": 0
+        }
+      ],
+      "reuse": [
+        {
+          "action": "send",
+          "cycles": 100,
+          "frames": 1,
+          "retainedEvents": 0,
+          "successfulCredits": 50
+        },
+        {
+          "action": "return",
+          "cycles": 100,
+          "frames": 1,
+          "retainedEvents": 0,
+          "successfulCredits": 50
+        }
+      ],
+      "stdout": "send existing-mail handoff success providerLookups=1 providerRowsDelta=1 providerAddedCount=3 savedRowsDelta=0 savedPending=nil retainedEvents=0\nsend existing-mail handoff failure providerLookups=0 providerRowsDelta=0 providerAddedCount=0 savedRowsDelta=0 savedPending=nil retainedEvents=0\nsend missing-mail handoff success providerLookups=1 providerRowsDelta=1 providerAddedCount=3 savedRowsDelta=0 savedPending=nil retainedEvents=0\nsend missing-mail handoff failure providerLookups=0 providerRowsDelta=0 providerAddedCount=0 savedRowsDelta=0 savedPending=nil retainedEvents=0\nsend standalone cycles=100 frames=1 retainedEvents=0 successfulCredits=50\nreturn existing-mail handoff success providerLookups=1 providerRowsDelta=1 providerAddedCount=3 savedRowsDelta=0 savedPending=nil retainedEvents=0\nreturn existing-mail handoff failure providerLookups=0 providerRowsDelta=0 providerAddedCount=0 savedRowsDelta=0 savedPending=nil retainedEvents=0\nreturn missing-mail handoff success providerLookups=1 providerRowsDelta=1 providerAddedCount=3 savedRowsDelta=0 savedPending=nil retainedEvents=0\nreturn missing-mail handoff failure providerLookups=0 providerRowsDelta=0 providerAddedCount=0 savedRowsDelta=0 savedPending=nil retainedEvents=0\nreturn standalone cycles=100 frames=1 retainedEvents=0 successfulCredits=50\npending mail provider handoff: 410 checks, 8 failures; desktop operation counts only\nFAIL send existing-mail handoff success stale completion never resolves provider destination\nFAIL send existing-mail handoff success stale completion does not mutate/create provider mail\nFAIL send missing-mail handoff success stale completion never resolves provider destination\nFAIL send missing-mail handoff success stale completion does not mutate/create provider mail\nFAIL return existing-mail handoff success stale completion never resolves provider destination\nFAIL return existing-mail handoff success stale completion does not mutate/create provider mail\nFAIL return missing-mail handoff success stale completion never resolves provider destination\nFAIL return missing-mail handoff success stale completion does not mutate/create provider mail\n",
+      "stderr": ""
+    },
+    {
+      "pair": 2,
+      "variant": "candidate",
+      "command": [
+        "lua",
+        "tests/pending_mail_provider_handoff.lua"
+      ],
+      "exit": 0,
+      "processWallSeconds": 0.05917110000154935,
+      "measurements": [
+        {
+          "scenario": "send existing-mail handoff success",
+          "providerLookups": 0,
+          "providerRowsDelta": 0,
+          "providerAddedCount": 0,
+          "savedRowsDelta": 0,
+          "savedPending": null,
+          "retainedEvents": 0
+        },
+        {
+          "scenario": "send existing-mail handoff failure",
+          "providerLookups": 0,
+          "providerRowsDelta": 0,
+          "providerAddedCount": 0,
+          "savedRowsDelta": 0,
+          "savedPending": null,
+          "retainedEvents": 0
+        },
+        {
+          "scenario": "send missing-mail handoff success",
+          "providerLookups": 0,
+          "providerRowsDelta": 0,
+          "providerAddedCount": 0,
+          "savedRowsDelta": 0,
+          "savedPending": null,
+          "retainedEvents": 0
+        },
+        {
+          "scenario": "send missing-mail handoff failure",
+          "providerLookups": 0,
+          "providerRowsDelta": 0,
+          "providerAddedCount": 0,
+          "savedRowsDelta": 0,
+          "savedPending": null,
+          "retainedEvents": 0
+        },
+        {
+          "scenario": "return existing-mail handoff success",
+          "providerLookups": 0,
+          "providerRowsDelta": 0,
+          "providerAddedCount": 0,
+          "savedRowsDelta": 0,
+          "savedPending": null,
+          "retainedEvents": 0
+        },
+        {
+          "scenario": "return existing-mail handoff failure",
+          "providerLookups": 0,
+          "providerRowsDelta": 0,
+          "providerAddedCount": 0,
+          "savedRowsDelta": 0,
+          "savedPending": null,
+          "retainedEvents": 0
+        },
+        {
+          "scenario": "return missing-mail handoff success",
+          "providerLookups": 0,
+          "providerRowsDelta": 0,
+          "providerAddedCount": 0,
+          "savedRowsDelta": 0,
+          "savedPending": null,
+          "retainedEvents": 0
+        },
+        {
+          "scenario": "return missing-mail handoff failure",
+          "providerLookups": 0,
+          "providerRowsDelta": 0,
+          "providerAddedCount": 0,
+          "savedRowsDelta": 0,
+          "savedPending": null,
+          "retainedEvents": 0
+        }
+      ],
+      "reuse": [
+        {
+          "action": "send",
+          "cycles": 100,
+          "frames": 1,
+          "retainedEvents": 0,
+          "successfulCredits": 50
+        },
+        {
+          "action": "return",
+          "cycles": 100,
+          "frames": 1,
+          "retainedEvents": 0,
+          "successfulCredits": 50
+        }
+      ],
+      "stdout": "send existing-mail handoff success providerLookups=0 providerRowsDelta=0 providerAddedCount=0 savedRowsDelta=0 savedPending=nil retainedEvents=0\nsend existing-mail handoff failure providerLookups=0 providerRowsDelta=0 providerAddedCount=0 savedRowsDelta=0 savedPending=nil retainedEvents=0\nsend missing-mail handoff success providerLookups=0 providerRowsDelta=0 providerAddedCount=0 savedRowsDelta=0 savedPending=nil retainedEvents=0\nsend missing-mail handoff failure providerLookups=0 providerRowsDelta=0 providerAddedCount=0 savedRowsDelta=0 savedPending=nil retainedEvents=0\nsend standalone cycles=100 frames=1 retainedEvents=0 successfulCredits=50\nreturn existing-mail handoff success providerLookups=0 providerRowsDelta=0 providerAddedCount=0 savedRowsDelta=0 savedPending=nil retainedEvents=0\nreturn existing-mail handoff failure providerLookups=0 providerRowsDelta=0 providerAddedCount=0 savedRowsDelta=0 savedPending=nil retainedEvents=0\nreturn missing-mail handoff success providerLookups=0 providerRowsDelta=0 providerAddedCount=0 savedRowsDelta=0 savedPending=nil retainedEvents=0\nreturn missing-mail handoff failure providerLookups=0 providerRowsDelta=0 providerAddedCount=0 savedRowsDelta=0 savedPending=nil retainedEvents=0\nreturn standalone cycles=100 frames=1 retainedEvents=0 successfulCredits=50\npending mail provider handoff: 410 checks, 0 failures; desktop operation counts only\n",
+      "stderr": ""
+    },
+    {
+      "pair": 3,
+      "variant": "baseline",
+      "command": [
+        "lua",
+        "tests/pending_mail_provider_handoff.lua",
+        "--source",
+        "tests/fixtures/pending_mail_provider_before.txt",
+        "--measure"
+      ],
+      "exit": 0,
+      "processWallSeconds": 0.05639009999867994,
+      "measurements": [
+        {
+          "scenario": "send existing-mail handoff success",
+          "providerLookups": 1,
+          "providerRowsDelta": 1,
+          "providerAddedCount": 3,
+          "savedRowsDelta": 0,
+          "savedPending": null,
+          "retainedEvents": 0
+        },
+        {
+          "scenario": "send existing-mail handoff failure",
+          "providerLookups": 0,
+          "providerRowsDelta": 0,
+          "providerAddedCount": 0,
+          "savedRowsDelta": 0,
+          "savedPending": null,
+          "retainedEvents": 0
+        },
+        {
+          "scenario": "send missing-mail handoff success",
+          "providerLookups": 1,
+          "providerRowsDelta": 1,
+          "providerAddedCount": 3,
+          "savedRowsDelta": 0,
+          "savedPending": null,
+          "retainedEvents": 0
+        },
+        {
+          "scenario": "send missing-mail handoff failure",
+          "providerLookups": 0,
+          "providerRowsDelta": 0,
+          "providerAddedCount": 0,
+          "savedRowsDelta": 0,
+          "savedPending": null,
+          "retainedEvents": 0
+        },
+        {
+          "scenario": "return existing-mail handoff success",
+          "providerLookups": 1,
+          "providerRowsDelta": 1,
+          "providerAddedCount": 3,
+          "savedRowsDelta": 0,
+          "savedPending": null,
+          "retainedEvents": 0
+        },
+        {
+          "scenario": "return existing-mail handoff failure",
+          "providerLookups": 0,
+          "providerRowsDelta": 0,
+          "providerAddedCount": 0,
+          "savedRowsDelta": 0,
+          "savedPending": null,
+          "retainedEvents": 0
+        },
+        {
+          "scenario": "return missing-mail handoff success",
+          "providerLookups": 1,
+          "providerRowsDelta": 1,
+          "providerAddedCount": 3,
+          "savedRowsDelta": 0,
+          "savedPending": null,
+          "retainedEvents": 0
+        },
+        {
+          "scenario": "return missing-mail handoff failure",
+          "providerLookups": 0,
+          "providerRowsDelta": 0,
+          "providerAddedCount": 0,
+          "savedRowsDelta": 0,
+          "savedPending": null,
+          "retainedEvents": 0
+        }
+      ],
+      "reuse": [
+        {
+          "action": "send",
+          "cycles": 100,
+          "frames": 1,
+          "retainedEvents": 0,
+          "successfulCredits": 50
+        },
+        {
+          "action": "return",
+          "cycles": 100,
+          "frames": 1,
+          "retainedEvents": 0,
+          "successfulCredits": 50
+        }
+      ],
+      "stdout": "send existing-mail handoff success providerLookups=1 providerRowsDelta=1 providerAddedCount=3 savedRowsDelta=0 savedPending=nil retainedEvents=0\nsend existing-mail handoff failure providerLookups=0 providerRowsDelta=0 providerAddedCount=0 savedRowsDelta=0 savedPending=nil retainedEvents=0\nsend missing-mail handoff success providerLookups=1 providerRowsDelta=1 providerAddedCount=3 savedRowsDelta=0 savedPending=nil retainedEvents=0\nsend missing-mail handoff failure providerLookups=0 providerRowsDelta=0 providerAddedCount=0 savedRowsDelta=0 savedPending=nil retainedEvents=0\nsend standalone cycles=100 frames=1 retainedEvents=0 successfulCredits=50\nreturn existing-mail handoff success providerLookups=1 providerRowsDelta=1 providerAddedCount=3 savedRowsDelta=0 savedPending=nil retainedEvents=0\nreturn existing-mail handoff failure providerLookups=0 providerRowsDelta=0 providerAddedCount=0 savedRowsDelta=0 savedPending=nil retainedEvents=0\nreturn missing-mail handoff success providerLookups=1 providerRowsDelta=1 providerAddedCount=3 savedRowsDelta=0 savedPending=nil retainedEvents=0\nreturn missing-mail handoff failure providerLookups=0 providerRowsDelta=0 providerAddedCount=0 savedRowsDelta=0 savedPending=nil retainedEvents=0\nreturn standalone cycles=100 frames=1 retainedEvents=0 successfulCredits=50\npending mail provider handoff: 410 checks, 8 failures; desktop operation counts only\nFAIL send existing-mail handoff success stale completion never resolves provider destination\nFAIL send existing-mail handoff success stale completion does not mutate/create provider mail\nFAIL send missing-mail handoff success stale completion never resolves provider destination\nFAIL send missing-mail handoff success stale completion does not mutate/create provider mail\nFAIL return existing-mail handoff success stale completion never resolves provider destination\nFAIL return existing-mail handoff success stale completion does not mutate/create provider mail\nFAIL return missing-mail handoff success stale completion never resolves provider destination\nFAIL return missing-mail handoff success stale completion does not mutate/create provider mail\n",
+      "stderr": ""
+    },
+    {
+      "pair": 3,
+      "variant": "candidate",
+      "command": [
+        "lua",
+        "tests/pending_mail_provider_handoff.lua"
+      ],
+      "exit": 0,
+      "processWallSeconds": 0.05674899999576155,
+      "measurements": [
+        {
+          "scenario": "send existing-mail handoff success",
+          "providerLookups": 0,
+          "providerRowsDelta": 0,
+          "providerAddedCount": 0,
+          "savedRowsDelta": 0,
+          "savedPending": null,
+          "retainedEvents": 0
+        },
+        {
+          "scenario": "send existing-mail handoff failure",
+          "providerLookups": 0,
+          "providerRowsDelta": 0,
+          "providerAddedCount": 0,
+          "savedRowsDelta": 0,
+          "savedPending": null,
+          "retainedEvents": 0
+        },
+        {
+          "scenario": "send missing-mail handoff success",
+          "providerLookups": 0,
+          "providerRowsDelta": 0,
+          "providerAddedCount": 0,
+          "savedRowsDelta": 0,
+          "savedPending": null,
+          "retainedEvents": 0
+        },
+        {
+          "scenario": "send missing-mail handoff failure",
+          "providerLookups": 0,
+          "providerRowsDelta": 0,
+          "providerAddedCount": 0,
+          "savedRowsDelta": 0,
+          "savedPending": null,
+          "retainedEvents": 0
+        },
+        {
+          "scenario": "return existing-mail handoff success",
+          "providerLookups": 0,
+          "providerRowsDelta": 0,
+          "providerAddedCount": 0,
+          "savedRowsDelta": 0,
+          "savedPending": null,
+          "retainedEvents": 0
+        },
+        {
+          "scenario": "return existing-mail handoff failure",
+          "providerLookups": 0,
+          "providerRowsDelta": 0,
+          "providerAddedCount": 0,
+          "savedRowsDelta": 0,
+          "savedPending": null,
+          "retainedEvents": 0
+        },
+        {
+          "scenario": "return missing-mail handoff success",
+          "providerLookups": 0,
+          "providerRowsDelta": 0,
+          "providerAddedCount": 0,
+          "savedRowsDelta": 0,
+          "savedPending": null,
+          "retainedEvents": 0
+        },
+        {
+          "scenario": "return missing-mail handoff failure",
+          "providerLookups": 0,
+          "providerRowsDelta": 0,
+          "providerAddedCount": 0,
+          "savedRowsDelta": 0,
+          "savedPending": null,
+          "retainedEvents": 0
+        }
+      ],
+      "reuse": [
+        {
+          "action": "send",
+          "cycles": 100,
+          "frames": 1,
+          "retainedEvents": 0,
+          "successfulCredits": 50
+        },
+        {
+          "action": "return",
+          "cycles": 100,
+          "frames": 1,
+          "retainedEvents": 0,
+          "successfulCredits": 50
+        }
+      ],
+      "stdout": "send existing-mail handoff success providerLookups=0 providerRowsDelta=0 providerAddedCount=0 savedRowsDelta=0 savedPending=nil retainedEvents=0\nsend existing-mail handoff failure providerLookups=0 providerRowsDelta=0 providerAddedCount=0 savedRowsDelta=0 savedPending=nil retainedEvents=0\nsend missing-mail handoff success providerLookups=0 providerRowsDelta=0 providerAddedCount=0 savedRowsDelta=0 savedPending=nil retainedEvents=0\nsend missing-mail handoff failure providerLookups=0 providerRowsDelta=0 providerAddedCount=0 savedRowsDelta=0 savedPending=nil retainedEvents=0\nsend standalone cycles=100 frames=1 retainedEvents=0 successfulCredits=50\nreturn existing-mail handoff success providerLookups=0 providerRowsDelta=0 providerAddedCount=0 savedRowsDelta=0 savedPending=nil retainedEvents=0\nreturn existing-mail handoff failure providerLookups=0 providerRowsDelta=0 providerAddedCount=0 savedRowsDelta=0 savedPending=nil retainedEvents=0\nreturn missing-mail handoff success providerLookups=0 providerRowsDelta=0 providerAddedCount=0 savedRowsDelta=0 savedPending=nil retainedEvents=0\nreturn missing-mail handoff failure providerLookups=0 providerRowsDelta=0 providerAddedCount=0 savedRowsDelta=0 savedPending=nil retainedEvents=0\nreturn standalone cycles=100 frames=1 retainedEvents=0 successfulCredits=50\npending mail provider handoff: 410 checks, 0 failures; desktop operation counts only\n",
+      "stderr": ""
+    },
+    {
+      "pair": 4,
+      "variant": "baseline",
+      "command": [
+        "lua",
+        "tests/pending_mail_provider_handoff.lua",
+        "--source",
+        "tests/fixtures/pending_mail_provider_before.txt",
+        "--measure"
+      ],
+      "exit": 0,
+      "processWallSeconds": 0.054834099995787255,
+      "measurements": [
+        {
+          "scenario": "send existing-mail handoff success",
+          "providerLookups": 1,
+          "providerRowsDelta": 1,
+          "providerAddedCount": 3,
+          "savedRowsDelta": 0,
+          "savedPending": null,
+          "retainedEvents": 0
+        },
+        {
+          "scenario": "send existing-mail handoff failure",
+          "providerLookups": 0,
+          "providerRowsDelta": 0,
+          "providerAddedCount": 0,
+          "savedRowsDelta": 0,
+          "savedPending": null,
+          "retainedEvents": 0
+        },
+        {
+          "scenario": "send missing-mail handoff success",
+          "providerLookups": 1,
+          "providerRowsDelta": 1,
+          "providerAddedCount": 3,
+          "savedRowsDelta": 0,
+          "savedPending": null,
+          "retainedEvents": 0
+        },
+        {
+          "scenario": "send missing-mail handoff failure",
+          "providerLookups": 0,
+          "providerRowsDelta": 0,
+          "providerAddedCount": 0,
+          "savedRowsDelta": 0,
+          "savedPending": null,
+          "retainedEvents": 0
+        },
+        {
+          "scenario": "return existing-mail handoff success",
+          "providerLookups": 1,
+          "providerRowsDelta": 1,
+          "providerAddedCount": 3,
+          "savedRowsDelta": 0,
+          "savedPending": null,
+          "retainedEvents": 0
+        },
+        {
+          "scenario": "return existing-mail handoff failure",
+          "providerLookups": 0,
+          "providerRowsDelta": 0,
+          "providerAddedCount": 0,
+          "savedRowsDelta": 0,
+          "savedPending": null,
+          "retainedEvents": 0
+        },
+        {
+          "scenario": "return missing-mail handoff success",
+          "providerLookups": 1,
+          "providerRowsDelta": 1,
+          "providerAddedCount": 3,
+          "savedRowsDelta": 0,
+          "savedPending": null,
+          "retainedEvents": 0
+        },
+        {
+          "scenario": "return missing-mail handoff failure",
+          "providerLookups": 0,
+          "providerRowsDelta": 0,
+          "providerAddedCount": 0,
+          "savedRowsDelta": 0,
+          "savedPending": null,
+          "retainedEvents": 0
+        }
+      ],
+      "reuse": [
+        {
+          "action": "send",
+          "cycles": 100,
+          "frames": 1,
+          "retainedEvents": 0,
+          "successfulCredits": 50
+        },
+        {
+          "action": "return",
+          "cycles": 100,
+          "frames": 1,
+          "retainedEvents": 0,
+          "successfulCredits": 50
+        }
+      ],
+      "stdout": "send existing-mail handoff success providerLookups=1 providerRowsDelta=1 providerAddedCount=3 savedRowsDelta=0 savedPending=nil retainedEvents=0\nsend existing-mail handoff failure providerLookups=0 providerRowsDelta=0 providerAddedCount=0 savedRowsDelta=0 savedPending=nil retainedEvents=0\nsend missing-mail handoff success providerLookups=1 providerRowsDelta=1 providerAddedCount=3 savedRowsDelta=0 savedPending=nil retainedEvents=0\nsend missing-mail handoff failure providerLookups=0 providerRowsDelta=0 providerAddedCount=0 savedRowsDelta=0 savedPending=nil retainedEvents=0\nsend standalone cycles=100 frames=1 retainedEvents=0 successfulCredits=50\nreturn existing-mail handoff success providerLookups=1 providerRowsDelta=1 providerAddedCount=3 savedRowsDelta=0 savedPending=nil retainedEvents=0\nreturn existing-mail handoff failure providerLookups=0 providerRowsDelta=0 providerAddedCount=0 savedRowsDelta=0 savedPending=nil retainedEvents=0\nreturn missing-mail handoff success providerLookups=1 providerRowsDelta=1 providerAddedCount=3 savedRowsDelta=0 savedPending=nil retainedEvents=0\nreturn missing-mail handoff failure providerLookups=0 providerRowsDelta=0 providerAddedCount=0 savedRowsDelta=0 savedPending=nil retainedEvents=0\nreturn standalone cycles=100 frames=1 retainedEvents=0 successfulCredits=50\npending mail provider handoff: 410 checks, 8 failures; desktop operation counts only\nFAIL send existing-mail handoff success stale completion never resolves provider destination\nFAIL send existing-mail handoff success stale completion does not mutate/create provider mail\nFAIL send missing-mail handoff success stale completion never resolves provider destination\nFAIL send missing-mail handoff success stale completion does not mutate/create provider mail\nFAIL return existing-mail handoff success stale completion never resolves provider destination\nFAIL return existing-mail handoff success stale completion does not mutate/create provider mail\nFAIL return missing-mail handoff success stale completion never resolves provider destination\nFAIL return missing-mail handoff success stale completion does not mutate/create provider mail\n",
+      "stderr": ""
+    },
+    {
+      "pair": 4,
+      "variant": "candidate",
+      "command": [
+        "lua",
+        "tests/pending_mail_provider_handoff.lua"
+      ],
+      "exit": 0,
+      "processWallSeconds": 0.05559050000010757,
+      "measurements": [
+        {
+          "scenario": "send existing-mail handoff success",
+          "providerLookups": 0,
+          "providerRowsDelta": 0,
+          "providerAddedCount": 0,
+          "savedRowsDelta": 0,
+          "savedPending": null,
+          "retainedEvents": 0
+        },
+        {
+          "scenario": "send existing-mail handoff failure",
+          "providerLookups": 0,
+          "providerRowsDelta": 0,
+          "providerAddedCount": 0,
+          "savedRowsDelta": 0,
+          "savedPending": null,
+          "retainedEvents": 0
+        },
+        {
+          "scenario": "send missing-mail handoff success",
+          "providerLookups": 0,
+          "providerRowsDelta": 0,
+          "providerAddedCount": 0,
+          "savedRowsDelta": 0,
+          "savedPending": null,
+          "retainedEvents": 0
+        },
+        {
+          "scenario": "send missing-mail handoff failure",
+          "providerLookups": 0,
+          "providerRowsDelta": 0,
+          "providerAddedCount": 0,
+          "savedRowsDelta": 0,
+          "savedPending": null,
+          "retainedEvents": 0
+        },
+        {
+          "scenario": "return existing-mail handoff success",
+          "providerLookups": 0,
+          "providerRowsDelta": 0,
+          "providerAddedCount": 0,
+          "savedRowsDelta": 0,
+          "savedPending": null,
+          "retainedEvents": 0
+        },
+        {
+          "scenario": "return existing-mail handoff failure",
+          "providerLookups": 0,
+          "providerRowsDelta": 0,
+          "providerAddedCount": 0,
+          "savedRowsDelta": 0,
+          "savedPending": null,
+          "retainedEvents": 0
+        },
+        {
+          "scenario": "return missing-mail handoff success",
+          "providerLookups": 0,
+          "providerRowsDelta": 0,
+          "providerAddedCount": 0,
+          "savedRowsDelta": 0,
+          "savedPending": null,
+          "retainedEvents": 0
+        },
+        {
+          "scenario": "return missing-mail handoff failure",
+          "providerLookups": 0,
+          "providerRowsDelta": 0,
+          "providerAddedCount": 0,
+          "savedRowsDelta": 0,
+          "savedPending": null,
+          "retainedEvents": 0
+        }
+      ],
+      "reuse": [
+        {
+          "action": "send",
+          "cycles": 100,
+          "frames": 1,
+          "retainedEvents": 0,
+          "successfulCredits": 50
+        },
+        {
+          "action": "return",
+          "cycles": 100,
+          "frames": 1,
+          "retainedEvents": 0,
+          "successfulCredits": 50
+        }
+      ],
+      "stdout": "send existing-mail handoff success providerLookups=0 providerRowsDelta=0 providerAddedCount=0 savedRowsDelta=0 savedPending=nil retainedEvents=0\nsend existing-mail handoff failure providerLookups=0 providerRowsDelta=0 providerAddedCount=0 savedRowsDelta=0 savedPending=nil retainedEvents=0\nsend missing-mail handoff success providerLookups=0 providerRowsDelta=0 providerAddedCount=0 savedRowsDelta=0 savedPending=nil retainedEvents=0\nsend missing-mail handoff failure providerLookups=0 providerRowsDelta=0 providerAddedCount=0 savedRowsDelta=0 savedPending=nil retainedEvents=0\nsend standalone cycles=100 frames=1 retainedEvents=0 successfulCredits=50\nreturn existing-mail handoff success providerLookups=0 providerRowsDelta=0 providerAddedCount=0 savedRowsDelta=0 savedPending=nil retainedEvents=0\nreturn existing-mail handoff failure providerLookups=0 providerRowsDelta=0 providerAddedCount=0 savedRowsDelta=0 savedPending=nil retainedEvents=0\nreturn missing-mail handoff success providerLookups=0 providerRowsDelta=0 providerAddedCount=0 savedRowsDelta=0 savedPending=nil retainedEvents=0\nreturn missing-mail handoff failure providerLookups=0 providerRowsDelta=0 providerAddedCount=0 savedRowsDelta=0 savedPending=nil retainedEvents=0\nreturn standalone cycles=100 frames=1 retainedEvents=0 successfulCredits=50\npending mail provider handoff: 410 checks, 0 failures; desktop operation counts only\n",
+      "stderr": ""
+    },
+    {
+      "pair": 5,
+      "variant": "baseline",
+      "command": [
+        "lua",
+        "tests/pending_mail_provider_handoff.lua",
+        "--source",
+        "tests/fixtures/pending_mail_provider_before.txt",
+        "--measure"
+      ],
+      "exit": 0,
+      "processWallSeconds": 0.05568539999512723,
+      "measurements": [
+        {
+          "scenario": "send existing-mail handoff success",
+          "providerLookups": 1,
+          "providerRowsDelta": 1,
+          "providerAddedCount": 3,
+          "savedRowsDelta": 0,
+          "savedPending": null,
+          "retainedEvents": 0
+        },
+        {
+          "scenario": "send existing-mail handoff failure",
+          "providerLookups": 0,
+          "providerRowsDelta": 0,
+          "providerAddedCount": 0,
+          "savedRowsDelta": 0,
+          "savedPending": null,
+          "retainedEvents": 0
+        },
+        {
+          "scenario": "send missing-mail handoff success",
+          "providerLookups": 1,
+          "providerRowsDelta": 1,
+          "providerAddedCount": 3,
+          "savedRowsDelta": 0,
+          "savedPending": null,
+          "retainedEvents": 0
+        },
+        {
+          "scenario": "send missing-mail handoff failure",
+          "providerLookups": 0,
+          "providerRowsDelta": 0,
+          "providerAddedCount": 0,
+          "savedRowsDelta": 0,
+          "savedPending": null,
+          "retainedEvents": 0
+        },
+        {
+          "scenario": "return existing-mail handoff success",
+          "providerLookups": 1,
+          "providerRowsDelta": 1,
+          "providerAddedCount": 3,
+          "savedRowsDelta": 0,
+          "savedPending": null,
+          "retainedEvents": 0
+        },
+        {
+          "scenario": "return existing-mail handoff failure",
+          "providerLookups": 0,
+          "providerRowsDelta": 0,
+          "providerAddedCount": 0,
+          "savedRowsDelta": 0,
+          "savedPending": null,
+          "retainedEvents": 0
+        },
+        {
+          "scenario": "return missing-mail handoff success",
+          "providerLookups": 1,
+          "providerRowsDelta": 1,
+          "providerAddedCount": 3,
+          "savedRowsDelta": 0,
+          "savedPending": null,
+          "retainedEvents": 0
+        },
+        {
+          "scenario": "return missing-mail handoff failure",
+          "providerLookups": 0,
+          "providerRowsDelta": 0,
+          "providerAddedCount": 0,
+          "savedRowsDelta": 0,
+          "savedPending": null,
+          "retainedEvents": 0
+        }
+      ],
+      "reuse": [
+        {
+          "action": "send",
+          "cycles": 100,
+          "frames": 1,
+          "retainedEvents": 0,
+          "successfulCredits": 50
+        },
+        {
+          "action": "return",
+          "cycles": 100,
+          "frames": 1,
+          "retainedEvents": 0,
+          "successfulCredits": 50
+        }
+      ],
+      "stdout": "send existing-mail handoff success providerLookups=1 providerRowsDelta=1 providerAddedCount=3 savedRowsDelta=0 savedPending=nil retainedEvents=0\nsend existing-mail handoff failure providerLookups=0 providerRowsDelta=0 providerAddedCount=0 savedRowsDelta=0 savedPending=nil retainedEvents=0\nsend missing-mail handoff success providerLookups=1 providerRowsDelta=1 providerAddedCount=3 savedRowsDelta=0 savedPending=nil retainedEvents=0\nsend missing-mail handoff failure providerLookups=0 providerRowsDelta=0 providerAddedCount=0 savedRowsDelta=0 savedPending=nil retainedEvents=0\nsend standalone cycles=100 frames=1 retainedEvents=0 successfulCredits=50\nreturn existing-mail handoff success providerLookups=1 providerRowsDelta=1 providerAddedCount=3 savedRowsDelta=0 savedPending=nil retainedEvents=0\nreturn existing-mail handoff failure providerLookups=0 providerRowsDelta=0 providerAddedCount=0 savedRowsDelta=0 savedPending=nil retainedEvents=0\nreturn missing-mail handoff success providerLookups=1 providerRowsDelta=1 providerAddedCount=3 savedRowsDelta=0 savedPending=nil retainedEvents=0\nreturn missing-mail handoff failure providerLookups=0 providerRowsDelta=0 providerAddedCount=0 savedRowsDelta=0 savedPending=nil retainedEvents=0\nreturn standalone cycles=100 frames=1 retainedEvents=0 successfulCredits=50\npending mail provider handoff: 410 checks, 8 failures; desktop operation counts only\nFAIL send existing-mail handoff success stale completion never resolves provider destination\nFAIL send existing-mail handoff success stale completion does not mutate/create provider mail\nFAIL send missing-mail handoff success stale completion never resolves provider destination\nFAIL send missing-mail handoff success stale completion does not mutate/create provider mail\nFAIL return existing-mail handoff success stale completion never resolves provider destination\nFAIL return existing-mail handoff success stale completion does not mutate/create provider mail\nFAIL return missing-mail handoff success stale completion never resolves provider destination\nFAIL return missing-mail handoff success stale completion does not mutate/create provider mail\n",
+      "stderr": ""
+    },
+    {
+      "pair": 5,
+      "variant": "candidate",
+      "command": [
+        "lua",
+        "tests/pending_mail_provider_handoff.lua"
+      ],
+      "exit": 0,
+      "processWallSeconds": 0.054074300001957454,
+      "measurements": [
+        {
+          "scenario": "send existing-mail handoff success",
+          "providerLookups": 0,
+          "providerRowsDelta": 0,
+          "providerAddedCount": 0,
+          "savedRowsDelta": 0,
+          "savedPending": null,
+          "retainedEvents": 0
+        },
+        {
+          "scenario": "send existing-mail handoff failure",
+          "providerLookups": 0,
+          "providerRowsDelta": 0,
+          "providerAddedCount": 0,
+          "savedRowsDelta": 0,
+          "savedPending": null,
+          "retainedEvents": 0
+        },
+        {
+          "scenario": "send missing-mail handoff success",
+          "providerLookups": 0,
+          "providerRowsDelta": 0,
+          "providerAddedCount": 0,
+          "savedRowsDelta": 0,
+          "savedPending": null,
+          "retainedEvents": 0
+        },
+        {
+          "scenario": "send missing-mail handoff failure",
+          "providerLookups": 0,
+          "providerRowsDelta": 0,
+          "providerAddedCount": 0,
+          "savedRowsDelta": 0,
+          "savedPending": null,
+          "retainedEvents": 0
+        },
+        {
+          "scenario": "return existing-mail handoff success",
+          "providerLookups": 0,
+          "providerRowsDelta": 0,
+          "providerAddedCount": 0,
+          "savedRowsDelta": 0,
+          "savedPending": null,
+          "retainedEvents": 0
+        },
+        {
+          "scenario": "return existing-mail handoff failure",
+          "providerLookups": 0,
+          "providerRowsDelta": 0,
+          "providerAddedCount": 0,
+          "savedRowsDelta": 0,
+          "savedPending": null,
+          "retainedEvents": 0
+        },
+        {
+          "scenario": "return missing-mail handoff success",
+          "providerLookups": 0,
+          "providerRowsDelta": 0,
+          "providerAddedCount": 0,
+          "savedRowsDelta": 0,
+          "savedPending": null,
+          "retainedEvents": 0
+        },
+        {
+          "scenario": "return missing-mail handoff failure",
+          "providerLookups": 0,
+          "providerRowsDelta": 0,
+          "providerAddedCount": 0,
+          "savedRowsDelta": 0,
+          "savedPending": null,
+          "retainedEvents": 0
+        }
+      ],
+      "reuse": [
+        {
+          "action": "send",
+          "cycles": 100,
+          "frames": 1,
+          "retainedEvents": 0,
+          "successfulCredits": 50
+        },
+        {
+          "action": "return",
+          "cycles": 100,
+          "frames": 1,
+          "retainedEvents": 0,
+          "successfulCredits": 50
+        }
+      ],
+      "stdout": "send existing-mail handoff success providerLookups=0 providerRowsDelta=0 providerAddedCount=0 savedRowsDelta=0 savedPending=nil retainedEvents=0\nsend existing-mail handoff failure providerLookups=0 providerRowsDelta=0 providerAddedCount=0 savedRowsDelta=0 savedPending=nil retainedEvents=0\nsend missing-mail handoff success providerLookups=0 providerRowsDelta=0 providerAddedCount=0 savedRowsDelta=0 savedPending=nil retainedEvents=0\nsend missing-mail handoff failure providerLookups=0 providerRowsDelta=0 providerAddedCount=0 savedRowsDelta=0 savedPending=nil retainedEvents=0\nsend standalone cycles=100 frames=1 retainedEvents=0 successfulCredits=50\nreturn existing-mail handoff success providerLookups=0 providerRowsDelta=0 providerAddedCount=0 savedRowsDelta=0 savedPending=nil retainedEvents=0\nreturn existing-mail handoff failure providerLookups=0 providerRowsDelta=0 providerAddedCount=0 savedRowsDelta=0 savedPending=nil retainedEvents=0\nreturn missing-mail handoff success providerLookups=0 providerRowsDelta=0 providerAddedCount=0 savedRowsDelta=0 savedPending=nil retainedEvents=0\nreturn missing-mail handoff failure providerLookups=0 providerRowsDelta=0 providerAddedCount=0 savedRowsDelta=0 savedPending=nil retainedEvents=0\nreturn standalone cycles=100 frames=1 retainedEvents=0 successfulCredits=50\npending mail provider handoff: 410 checks, 0 failures; desktop operation counts only\n",
+      "stderr": ""
+    }
+  ],
+  "summary": [
+    {
+      "scenario": "return existing-mail handoff failure",
+      "variant": "baseline",
+      "repetitions": 5,
+      "metrics": {
+        "providerLookups": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "providerRowsDelta": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "providerAddedCount": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "savedRowsDelta": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "retainedEvents": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        }
+      }
+    },
+    {
+      "scenario": "return existing-mail handoff failure",
+      "variant": "candidate",
+      "repetitions": 5,
+      "metrics": {
+        "providerLookups": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "providerRowsDelta": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "providerAddedCount": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "savedRowsDelta": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "retainedEvents": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        }
+      }
+    },
+    {
+      "scenario": "return existing-mail handoff success",
+      "variant": "baseline",
+      "repetitions": 5,
+      "metrics": {
+        "providerLookups": {
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "providerRowsDelta": {
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "providerAddedCount": {
+          "median": 3,
+          "min": 3,
+          "max": 3
+        },
+        "savedRowsDelta": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "retainedEvents": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        }
+      }
+    },
+    {
+      "scenario": "return existing-mail handoff success",
+      "variant": "candidate",
+      "repetitions": 5,
+      "metrics": {
+        "providerLookups": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "providerRowsDelta": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "providerAddedCount": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "savedRowsDelta": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "retainedEvents": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        }
+      }
+    },
+    {
+      "scenario": "return missing-mail handoff failure",
+      "variant": "baseline",
+      "repetitions": 5,
+      "metrics": {
+        "providerLookups": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "providerRowsDelta": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "providerAddedCount": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "savedRowsDelta": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "retainedEvents": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        }
+      }
+    },
+    {
+      "scenario": "return missing-mail handoff failure",
+      "variant": "candidate",
+      "repetitions": 5,
+      "metrics": {
+        "providerLookups": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "providerRowsDelta": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "providerAddedCount": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "savedRowsDelta": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "retainedEvents": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        }
+      }
+    },
+    {
+      "scenario": "return missing-mail handoff success",
+      "variant": "baseline",
+      "repetitions": 5,
+      "metrics": {
+        "providerLookups": {
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "providerRowsDelta": {
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "providerAddedCount": {
+          "median": 3,
+          "min": 3,
+          "max": 3
+        },
+        "savedRowsDelta": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "retainedEvents": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        }
+      }
+    },
+    {
+      "scenario": "return missing-mail handoff success",
+      "variant": "candidate",
+      "repetitions": 5,
+      "metrics": {
+        "providerLookups": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "providerRowsDelta": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "providerAddedCount": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "savedRowsDelta": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "retainedEvents": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        }
+      }
+    },
+    {
+      "scenario": "send existing-mail handoff failure",
+      "variant": "baseline",
+      "repetitions": 5,
+      "metrics": {
+        "providerLookups": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "providerRowsDelta": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "providerAddedCount": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "savedRowsDelta": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "retainedEvents": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        }
+      }
+    },
+    {
+      "scenario": "send existing-mail handoff failure",
+      "variant": "candidate",
+      "repetitions": 5,
+      "metrics": {
+        "providerLookups": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "providerRowsDelta": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "providerAddedCount": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "savedRowsDelta": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "retainedEvents": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        }
+      }
+    },
+    {
+      "scenario": "send existing-mail handoff success",
+      "variant": "baseline",
+      "repetitions": 5,
+      "metrics": {
+        "providerLookups": {
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "providerRowsDelta": {
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "providerAddedCount": {
+          "median": 3,
+          "min": 3,
+          "max": 3
+        },
+        "savedRowsDelta": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "retainedEvents": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        }
+      }
+    },
+    {
+      "scenario": "send existing-mail handoff success",
+      "variant": "candidate",
+      "repetitions": 5,
+      "metrics": {
+        "providerLookups": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "providerRowsDelta": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "providerAddedCount": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "savedRowsDelta": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "retainedEvents": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        }
+      }
+    },
+    {
+      "scenario": "send missing-mail handoff failure",
+      "variant": "baseline",
+      "repetitions": 5,
+      "metrics": {
+        "providerLookups": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "providerRowsDelta": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "providerAddedCount": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "savedRowsDelta": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "retainedEvents": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        }
+      }
+    },
+    {
+      "scenario": "send missing-mail handoff failure",
+      "variant": "candidate",
+      "repetitions": 5,
+      "metrics": {
+        "providerLookups": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "providerRowsDelta": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "providerAddedCount": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "savedRowsDelta": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "retainedEvents": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        }
+      }
+    },
+    {
+      "scenario": "send missing-mail handoff success",
+      "variant": "baseline",
+      "repetitions": 5,
+      "metrics": {
+        "providerLookups": {
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "providerRowsDelta": {
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "providerAddedCount": {
+          "median": 3,
+          "min": 3,
+          "max": 3
+        },
+        "savedRowsDelta": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "retainedEvents": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        }
+      }
+    },
+    {
+      "scenario": "send missing-mail handoff success",
+      "variant": "candidate",
+      "repetitions": 5,
+      "metrics": {
+        "providerLookups": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "providerRowsDelta": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "providerAddedCount": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "savedRowsDelta": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "retainedEvents": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        }
+      }
+    }
+  ],
+  "candidateCommit": "ab4e658a98a7ce3ee6688ac6170e7e0991325af0",
+  "candidateTree": "67b4890083fe13e242ffbc47c36ff6037a172f82",
+  "candidateLuaCorpusSha256": "c95cb10e9ca72b74bbc1a11dc82af305744faa98a4c305b746df37ebadc4e51e"
+}

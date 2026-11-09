@@ -1,0 +1,11 @@
+{
+  "baselineCommit": "b68f2545fa53e83a7eb8482b73e2c0569ecdcc38",
+  "scope": "Exact local runtime candidate file hashes; no native measurement",
+  "files": {
+    "_FluxUI.toc": "08299a8a385a61fa8d51696ac07fa29a1d074a22f55daf7e1532e8c88841682a",
+    "AddonOptions/FluxOptionsCatalog.lua": "9e56439a847d640292d53e57bd0a5ac0d5846a5d845bc56dc179c0e6b57f4f03",
+    "AddonOptions/FluxOptionsDefaults.lua": "82b10418183b8eb42d7272fe04e0e32b70768d84e8efda1ad586aaa88ec34a15",
+    "AddonOptions/FluxOptionsLoot.lua": "65c89b01d5272c0719767f49c36053583f767a0725a0e8170f039856ea9a65c1",
+    "Other/FluxLoot.lua": "5391da339b2ddda3781367be29e7bbeeebc13f0993e07b4fdb12e55267df2c2a"
+  }
+}

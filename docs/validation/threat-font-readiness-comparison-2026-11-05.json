@@ -1,0 +1,372 @@
+{
+  "dateUtc": "2026-11-05T21:42:31.389371+00:00",
+  "baselineCommit": "db42efb10efb0d39cf991dacc27db606000ad7b3",
+  "baselineRuntimeRawSHA256": "e43f742010c6398998cf8390bda055563e92e7634496bbff98f045d3f87a3488",
+  "sourceHashes": {
+    "Battlezonemap\\FluxThreatMeter.lua": "478d82e865a9b49ccf720e60b50b7aa66154c9eabd44c2f0ab41a4be268f7cc7",
+    "tests\\standalone_threat_meter.lua": "8254fa92c49c6535995d482e047ce8876fe0e0991ac5007a86011442da52e009",
+    "Battlezonemap\\FluxMeterSkin.lua": "e14d1ad89caaac2e988f14b093210f8fbd5a7570e6596323ca1ab18a7551a5f7"
+  },
+  "method": "Actual production standalone threat module with strict font-before-text widget contract. Complete 65-check regression and three-flavor startup/combat/end/reveal resource replay. Five fresh-process alternating baseline/candidate pairs; baseline aborts first initialization, candidate completes. Additional five alternating font-initialized reference/candidate lifecycle pairs isolate quiet-work reduction without comparing against aborted construction. Process wall time includes startup/assertions and differing completed work; not native latency/FPS. No game input, profiling or settings changes.",
+  "host": {
+    "platform": "Windows-10-10.0.26200-SP0",
+    "lua": "Lua 5.4.6  Copyright (C) 1994-2023 Lua.org, PUC-Rio"
+  },
+  "pairs": [
+    {
+      "repetition": 1,
+      "order": [
+        "baseline",
+        "candidate"
+      ],
+      "baseline": {
+        "regression": {
+          "exitCode": 1,
+          "processSeconds": 0.02420949999941513,
+          "stdout": "",
+          "stderr": "lua: ...terface\\AddOns\\_FluxUI\\tests\\standalone_threat_meter.lua:46: FontString:SetText(): Font not set\nstack traceback:\n\t[C]: in function 'error'\n\t...terface\\AddOns\\_FluxUI\\tests\\standalone_threat_meter.lua:36: in upvalue 'requireFont'\n\t...terface\\AddOns\\_FluxUI\\tests\\standalone_threat_meter.lua:46: in method 'SetText'\n\t...eat-font-readiness-20261105\\FluxThreatMeter-baseline.lua:271: in upvalue 'CreatePane'\n\t...eat-font-readiness-20261105\\FluxThreatMeter-baseline.lua:309: in method 'Embed'\n\t...terface\\AddOns\\_FluxUI\\tests\\standalone_threat_meter.lua:168: in main chunk\n\t[C]: in ?\n"
+        },
+        "resources": {
+          "exitCode": 0,
+          "processSeconds": 0.04166739998618141,
+          "stdout": "THREAT flavor=bare stage=startup-abort status=font-error frames=2 textures=0 fontStrings=1 fontSets=0 fontErrors=1 queries=0 visibleRows=0 activeEvents=0 updateDriver=false\n...0df7e22b\\threat-font-readiness-20261105\\font_measure.lua:46: FontString:SetText(): Font not set\nTHREAT flavor=skin stage=startup-abort status=font-error frames=2 textures=0 fontStrings=1 fontSets=0 fontErrors=1 queries=0 visibleRows=0 activeEvents=0 updateDriver=false\n...0df7e22b\\threat-font-readiness-20261105\\font_measure.lua:46: FontString:SetText(): Font not set\nTHREAT flavor=skin-fallback stage=startup-abort status=font-error frames=2 textures=0 fontStrings=1 fontSets=0 fontErrors=1 queries=0 visibleRows=0 activeEvents=0 updateDriver=false\n...0df7e22b\\threat-font-readiness-20261105\\font_measure.lua:46: FontString:SetText(): Font not set\n",
+          "stderr": ""
+        }
+      },
+      "candidate": {
+        "regression": {
+          "exitCode": 0,
+          "processSeconds": 2.2676929000008386,
+          "stdout": "standalone threat meter: 65 checks passed; 500-event scans=1; raid facts=80; retained rows=80\n",
+          "stderr": ""
+        },
+        "resources": {
+          "exitCode": 0,
+          "processSeconds": 0.03627420001430437,
+          "stdout": "THREAT flavor=bare stage=quiet-startup status=complete frames=3 textures=0 fontStrings=1 fontSets=3 fontErrors=0 queries=0 visibleRows=0 activeEvents=7 updateDriver=false\nTHREAT flavor=bare stage=combat-start status=complete frames=4 textures=2 fontStrings=3 fontSets=5 fontErrors=0 queries=1 visibleRows=1 activeEvents=7 updateDriver=true\nTHREAT flavor=bare stage=combat-500-event-burst status=complete frames=4 textures=2 fontStrings=3 fontSets=5 fontErrors=0 queries=2 visibleRows=1 activeEvents=7 updateDriver=true\nTHREAT flavor=bare stage=combat-end status=complete frames=4 textures=2 fontStrings=3 fontSets=5 fontErrors=0 queries=2 visibleRows=0 activeEvents=7 updateDriver=false\nTHREAT flavor=bare stage=out-of-combat-500-events status=complete frames=4 textures=2 fontStrings=3 fontSets=5 fontErrors=0 queries=2 visibleRows=0 activeEvents=7 updateDriver=false\nTHREAT flavor=bare stage=out-of-combat-500-reveals status=complete frames=4 textures=2 fontStrings=3 fontSets=505 fontErrors=0 queries=2 visibleRows=0 activeEvents=7 updateDriver=false\nTHREAT flavor=skin stage=quiet-startup status=complete frames=3 textures=6 fontStrings=1 fontSets=1 fontErrors=0 queries=0 visibleRows=0 activeEvents=7 updateDriver=false\nTHREAT flavor=skin stage=combat-start status=complete frames=4 textures=8 fontStrings=3 fontSets=3 fontErrors=0 queries=1 visibleRows=1 activeEvents=7 updateDriver=true\nTHREAT flavor=skin stage=combat-500-event-burst status=complete frames=4 textures=8 fontStrings=3 fontSets=3 fontErrors=0 queries=2 visibleRows=1 activeEvents=7 updateDriver=true\nTHREAT flavor=skin stage=combat-end status=complete frames=4 textures=8 fontStrings=3 fontSets=3 fontErrors=0 queries=2 visibleRows=0 activeEvents=7 updateDriver=false\nTHREAT flavor=skin stage=out-of-combat-500-events status=complete frames=4 textures=8 fontStrings=3 fontSets=3 fontErrors=0 queries=2 visibleRows=0 activeEvents=7 updateDriver=false\nTHREAT flavor=skin stage=out-of-combat-500-reveals status=complete frames=4 textures=8 fontStrings=3 fontSets=3 fontErrors=0 queries=2 visibleRows=0 activeEvents=7 updateDriver=false\nTHREAT flavor=skin-fallback stage=quiet-startup status=complete frames=3 textures=6 fontStrings=1 fontSets=2 fontErrors=0 queries=0 visibleRows=0 activeEvents=7 updateDriver=false\nTHREAT flavor=skin-fallback stage=combat-start status=complete frames=4 textures=8 fontStrings=3 fontSets=6 fontErrors=0 queries=1 visibleRows=1 activeEvents=7 updateDriver=true\nTHREAT flavor=skin-fallback stage=combat-500-event-burst status=complete frames=4 textures=8 fontStrings=3 fontSets=6 fontErrors=0 queries=2 visibleRows=1 activeEvents=7 updateDriver=true\nTHREAT flavor=skin-fallback stage=combat-end status=complete frames=4 textures=8 fontStrings=3 fontSets=6 fontErrors=0 queries=2 visibleRows=0 activeEvents=7 updateDriver=false\nTHREAT flavor=skin-fallback stage=out-of-combat-500-events status=complete frames=4 textures=8 fontStrings=3 fontSets=6 fontErrors=0 queries=2 visibleRows=0 activeEvents=7 updateDriver=false\nTHREAT flavor=skin-fallback stage=out-of-combat-500-reveals status=complete frames=4 textures=8 fontStrings=3 fontSets=6 fontErrors=0 queries=2 visibleRows=0 activeEvents=7 updateDriver=false\n",
+          "stderr": ""
+        }
+      }
+    },
+    {
+      "repetition": 2,
+      "order": [
+        "candidate",
+        "baseline"
+      ],
+      "candidate": {
+        "regression": {
+          "exitCode": 0,
+          "processSeconds": 2.186272699997062,
+          "stdout": "standalone threat meter: 65 checks passed; 500-event scans=1; raid facts=80; retained rows=80\n",
+          "stderr": ""
+        },
+        "resources": {
+          "exitCode": 0,
+          "processSeconds": 0.051373700000112876,
+          "stdout": "THREAT flavor=bare stage=quiet-startup status=complete frames=3 textures=0 fontStrings=1 fontSets=3 fontErrors=0 queries=0 visibleRows=0 activeEvents=7 updateDriver=false\nTHREAT flavor=bare stage=combat-start status=complete frames=4 textures=2 fontStrings=3 fontSets=5 fontErrors=0 queries=1 visibleRows=1 activeEvents=7 updateDriver=true\nTHREAT flavor=bare stage=combat-500-event-burst status=complete frames=4 textures=2 fontStrings=3 fontSets=5 fontErrors=0 queries=2 visibleRows=1 activeEvents=7 updateDriver=true\nTHREAT flavor=bare stage=combat-end status=complete frames=4 textures=2 fontStrings=3 fontSets=5 fontErrors=0 queries=2 visibleRows=0 activeEvents=7 updateDriver=false\nTHREAT flavor=bare stage=out-of-combat-500-events status=complete frames=4 textures=2 fontStrings=3 fontSets=5 fontErrors=0 queries=2 visibleRows=0 activeEvents=7 updateDriver=false\nTHREAT flavor=bare stage=out-of-combat-500-reveals status=complete frames=4 textures=2 fontStrings=3 fontSets=505 fontErrors=0 queries=2 visibleRows=0 activeEvents=7 updateDriver=false\nTHREAT flavor=skin stage=quiet-startup status=complete frames=3 textures=6 fontStrings=1 fontSets=1 fontErrors=0 queries=0 visibleRows=0 activeEvents=7 updateDriver=false\nTHREAT flavor=skin stage=combat-start status=complete frames=4 textures=8 fontStrings=3 fontSets=3 fontErrors=0 queries=1 visibleRows=1 activeEvents=7 updateDriver=true\nTHREAT flavor=skin stage=combat-500-event-burst status=complete frames=4 textures=8 fontStrings=3 fontSets=3 fontErrors=0 queries=2 visibleRows=1 activeEvents=7 updateDriver=true\nTHREAT flavor=skin stage=combat-end status=complete frames=4 textures=8 fontStrings=3 fontSets=3 fontErrors=0 queries=2 visibleRows=0 activeEvents=7 updateDriver=false\nTHREAT flavor=skin stage=out-of-combat-500-events status=complete frames=4 textures=8 fontStrings=3 fontSets=3 fontErrors=0 queries=2 visibleRows=0 activeEvents=7 updateDriver=false\nTHREAT flavor=skin stage=out-of-combat-500-reveals status=complete frames=4 textures=8 fontStrings=3 fontSets=3 fontErrors=0 queries=2 visibleRows=0 activeEvents=7 updateDriver=false\nTHREAT flavor=skin-fallback stage=quiet-startup status=complete frames=3 textures=6 fontStrings=1 fontSets=2 fontErrors=0 queries=0 visibleRows=0 activeEvents=7 updateDriver=false\nTHREAT flavor=skin-fallback stage=combat-start status=complete frames=4 textures=8 fontStrings=3 fontSets=6 fontErrors=0 queries=1 visibleRows=1 activeEvents=7 updateDriver=true\nTHREAT flavor=skin-fallback stage=combat-500-event-burst status=complete frames=4 textures=8 fontStrings=3 fontSets=6 fontErrors=0 queries=2 visibleRows=1 activeEvents=7 updateDriver=true\nTHREAT flavor=skin-fallback stage=combat-end status=complete frames=4 textures=8 fontStrings=3 fontSets=6 fontErrors=0 queries=2 visibleRows=0 activeEvents=7 updateDriver=false\nTHREAT flavor=skin-fallback stage=out-of-combat-500-events status=complete frames=4 textures=8 fontStrings=3 fontSets=6 fontErrors=0 queries=2 visibleRows=0 activeEvents=7 updateDriver=false\nTHREAT flavor=skin-fallback stage=out-of-combat-500-reveals status=complete frames=4 textures=8 fontStrings=3 fontSets=6 fontErrors=0 queries=2 visibleRows=0 activeEvents=7 updateDriver=false\n",
+          "stderr": ""
+        }
+      },
+      "baseline": {
+        "regression": {
+          "exitCode": 1,
+          "processSeconds": 0.03073460000450723,
+          "stdout": "",
+          "stderr": "lua: ...terface\\AddOns\\_FluxUI\\tests\\standalone_threat_meter.lua:46: FontString:SetText(): Font not set\nstack traceback:\n\t[C]: in function 'error'\n\t...terface\\AddOns\\_FluxUI\\tests\\standalone_threat_meter.lua:36: in upvalue 'requireFont'\n\t...terface\\AddOns\\_FluxUI\\tests\\standalone_threat_meter.lua:46: in method 'SetText'\n\t...eat-font-readiness-20261105\\FluxThreatMeter-baseline.lua:271: in upvalue 'CreatePane'\n\t...eat-font-readiness-20261105\\FluxThreatMeter-baseline.lua:309: in method 'Embed'\n\t...terface\\AddOns\\_FluxUI\\tests\\standalone_threat_meter.lua:168: in main chunk\n\t[C]: in ?\n"
+        },
+        "resources": {
+          "exitCode": 0,
+          "processSeconds": 0.049201699992408976,
+          "stdout": "THREAT flavor=bare stage=startup-abort status=font-error frames=2 textures=0 fontStrings=1 fontSets=0 fontErrors=1 queries=0 visibleRows=0 activeEvents=0 updateDriver=false\n...0df7e22b\\threat-font-readiness-20261105\\font_measure.lua:46: FontString:SetText(): Font not set\nTHREAT flavor=skin stage=startup-abort status=font-error frames=2 textures=0 fontStrings=1 fontSets=0 fontErrors=1 queries=0 visibleRows=0 activeEvents=0 updateDriver=false\n...0df7e22b\\threat-font-readiness-20261105\\font_measure.lua:46: FontString:SetText(): Font not set\nTHREAT flavor=skin-fallback stage=startup-abort status=font-error frames=2 textures=0 fontStrings=1 fontSets=0 fontErrors=1 queries=0 visibleRows=0 activeEvents=0 updateDriver=false\n...0df7e22b\\threat-font-readiness-20261105\\font_measure.lua:46: FontString:SetText(): Font not set\n",
+          "stderr": ""
+        }
+      }
+    },
+    {
+      "repetition": 3,
+      "order": [
+        "baseline",
+        "candidate"
+      ],
+      "baseline": {
+        "regression": {
+          "exitCode": 1,
+          "processSeconds": 0.0372847999969963,
+          "stdout": "",
+          "stderr": "lua: ...terface\\AddOns\\_FluxUI\\tests\\standalone_threat_meter.lua:46: FontString:SetText(): Font not set\nstack traceback:\n\t[C]: in function 'error'\n\t...terface\\AddOns\\_FluxUI\\tests\\standalone_threat_meter.lua:36: in upvalue 'requireFont'\n\t...terface\\AddOns\\_FluxUI\\tests\\standalone_threat_meter.lua:46: in method 'SetText'\n\t...eat-font-readiness-20261105\\FluxThreatMeter-baseline.lua:271: in upvalue 'CreatePane'\n\t...eat-font-readiness-20261105\\FluxThreatMeter-baseline.lua:309: in method 'Embed'\n\t...terface\\AddOns\\_FluxUI\\tests\\standalone_threat_meter.lua:168: in main chunk\n\t[C]: in ?\n"
+        },
+        "resources": {
+          "exitCode": 0,
+          "processSeconds": 0.03723299998091534,
+          "stdout": "THREAT flavor=bare stage=startup-abort status=font-error frames=2 textures=0 fontStrings=1 fontSets=0 fontErrors=1 queries=0 visibleRows=0 activeEvents=0 updateDriver=false\n...0df7e22b\\threat-font-readiness-20261105\\font_measure.lua:46: FontString:SetText(): Font not set\nTHREAT flavor=skin stage=startup-abort status=font-error frames=2 textures=0 fontStrings=1 fontSets=0 fontErrors=1 queries=0 visibleRows=0 activeEvents=0 updateDriver=false\n...0df7e22b\\threat-font-readiness-20261105\\font_measure.lua:46: FontString:SetText(): Font not set\nTHREAT flavor=skin-fallback stage=startup-abort status=font-error frames=2 textures=0 fontStrings=1 fontSets=0 fontErrors=1 queries=0 visibleRows=0 activeEvents=0 updateDriver=false\n...0df7e22b\\threat-font-readiness-20261105\\font_measure.lua:46: FontString:SetText(): Font not set\n",
+          "stderr": ""
+        }
+      },
+      "candidate": {
+        "regression": {
+          "exitCode": 0,
+          "processSeconds": 2.1887470000074245,
+          "stdout": "standalone threat meter: 65 checks passed; 500-event scans=1; raid facts=80; retained rows=80\n",
+          "stderr": ""
+        },
+        "resources": {
+          "exitCode": 0,
+          "processSeconds": 0.1266153999895323,
+          "stdout": "THREAT flavor=bare stage=quiet-startup status=complete frames=3 textures=0 fontStrings=1 fontSets=3 fontErrors=0 queries=0 visibleRows=0 activeEvents=7 updateDriver=false\nTHREAT flavor=bare stage=combat-start status=complete frames=4 textures=2 fontStrings=3 fontSets=5 fontErrors=0 queries=1 visibleRows=1 activeEvents=7 updateDriver=true\nTHREAT flavor=bare stage=combat-500-event-burst status=complete frames=4 textures=2 fontStrings=3 fontSets=5 fontErrors=0 queries=2 visibleRows=1 activeEvents=7 updateDriver=true\nTHREAT flavor=bare stage=combat-end status=complete frames=4 textures=2 fontStrings=3 fontSets=5 fontErrors=0 queries=2 visibleRows=0 activeEvents=7 updateDriver=false\nTHREAT flavor=bare stage=out-of-combat-500-events status=complete frames=4 textures=2 fontStrings=3 fontSets=5 fontErrors=0 queries=2 visibleRows=0 activeEvents=7 updateDriver=false\nTHREAT flavor=bare stage=out-of-combat-500-reveals status=complete frames=4 textures=2 fontStrings=3 fontSets=505 fontErrors=0 queries=2 visibleRows=0 activeEvents=7 updateDriver=false\nTHREAT flavor=skin stage=quiet-startup status=complete frames=3 textures=6 fontStrings=1 fontSets=1 fontErrors=0 queries=0 visibleRows=0 activeEvents=7 updateDriver=false\nTHREAT flavor=skin stage=combat-start status=complete frames=4 textures=8 fontStrings=3 fontSets=3 fontErrors=0 queries=1 visibleRows=1 activeEvents=7 updateDriver=true\nTHREAT flavor=skin stage=combat-500-event-burst status=complete frames=4 textures=8 fontStrings=3 fontSets=3 fontErrors=0 queries=2 visibleRows=1 activeEvents=7 updateDriver=true\nTHREAT flavor=skin stage=combat-end status=complete frames=4 textures=8 fontStrings=3 fontSets=3 fontErrors=0 queries=2 visibleRows=0 activeEvents=7 updateDriver=false\nTHREAT flavor=skin stage=out-of-combat-500-events status=complete frames=4 textures=8 fontStrings=3 fontSets=3 fontErrors=0 queries=2 visibleRows=0 activeEvents=7 updateDriver=false\nTHREAT flavor=skin stage=out-of-combat-500-reveals status=complete frames=4 textures=8 fontStrings=3 fontSets=3 fontErrors=0 queries=2 visibleRows=0 activeEvents=7 updateDriver=false\nTHREAT flavor=skin-fallback stage=quiet-startup status=complete frames=3 textures=6 fontStrings=1 fontSets=2 fontErrors=0 queries=0 visibleRows=0 activeEvents=7 updateDriver=false\nTHREAT flavor=skin-fallback stage=combat-start status=complete frames=4 textures=8 fontStrings=3 fontSets=6 fontErrors=0 queries=1 visibleRows=1 activeEvents=7 updateDriver=true\nTHREAT flavor=skin-fallback stage=combat-500-event-burst status=complete frames=4 textures=8 fontStrings=3 fontSets=6 fontErrors=0 queries=2 visibleRows=1 activeEvents=7 updateDriver=true\nTHREAT flavor=skin-fallback stage=combat-end status=complete frames=4 textures=8 fontStrings=3 fontSets=6 fontErrors=0 queries=2 visibleRows=0 activeEvents=7 updateDriver=false\nTHREAT flavor=skin-fallback stage=out-of-combat-500-events status=complete frames=4 textures=8 fontStrings=3 fontSets=6 fontErrors=0 queries=2 visibleRows=0 activeEvents=7 updateDriver=false\nTHREAT flavor=skin-fallback stage=out-of-combat-500-reveals status=complete frames=4 textures=8 fontStrings=3 fontSets=6 fontErrors=0 queries=2 visibleRows=0 activeEvents=7 updateDriver=false\n",
+          "stderr": ""
+        }
+      }
+    },
+    {
+      "repetition": 4,
+      "order": [
+        "candidate",
+        "baseline"
+      ],
+      "candidate": {
+        "regression": {
+          "exitCode": 0,
+          "processSeconds": 2.1896925999899395,
+          "stdout": "standalone threat meter: 65 checks passed; 500-event scans=1; raid facts=80; retained rows=80\n",
+          "stderr": ""
+        },
+        "resources": {
+          "exitCode": 0,
+          "processSeconds": 0.05515669999294914,
+          "stdout": "THREAT flavor=bare stage=quiet-startup status=complete frames=3 textures=0 fontStrings=1 fontSets=3 fontErrors=0 queries=0 visibleRows=0 activeEvents=7 updateDriver=false\nTHREAT flavor=bare stage=combat-start status=complete frames=4 textures=2 fontStrings=3 fontSets=5 fontErrors=0 queries=1 visibleRows=1 activeEvents=7 updateDriver=true\nTHREAT flavor=bare stage=combat-500-event-burst status=complete frames=4 textures=2 fontStrings=3 fontSets=5 fontErrors=0 queries=2 visibleRows=1 activeEvents=7 updateDriver=true\nTHREAT flavor=bare stage=combat-end status=complete frames=4 textures=2 fontStrings=3 fontSets=5 fontErrors=0 queries=2 visibleRows=0 activeEvents=7 updateDriver=false\nTHREAT flavor=bare stage=out-of-combat-500-events status=complete frames=4 textures=2 fontStrings=3 fontSets=5 fontErrors=0 queries=2 visibleRows=0 activeEvents=7 updateDriver=false\nTHREAT flavor=bare stage=out-of-combat-500-reveals status=complete frames=4 textures=2 fontStrings=3 fontSets=505 fontErrors=0 queries=2 visibleRows=0 activeEvents=7 updateDriver=false\nTHREAT flavor=skin stage=quiet-startup status=complete frames=3 textures=6 fontStrings=1 fontSets=1 fontErrors=0 queries=0 visibleRows=0 activeEvents=7 updateDriver=false\nTHREAT flavor=skin stage=combat-start status=complete frames=4 textures=8 fontStrings=3 fontSets=3 fontErrors=0 queries=1 visibleRows=1 activeEvents=7 updateDriver=true\nTHREAT flavor=skin stage=combat-500-event-burst status=complete frames=4 textures=8 fontStrings=3 fontSets=3 fontErrors=0 queries=2 visibleRows=1 activeEvents=7 updateDriver=true\nTHREAT flavor=skin stage=combat-end status=complete frames=4 textures=8 fontStrings=3 fontSets=3 fontErrors=0 queries=2 visibleRows=0 activeEvents=7 updateDriver=false\nTHREAT flavor=skin stage=out-of-combat-500-events status=complete frames=4 textures=8 fontStrings=3 fontSets=3 fontErrors=0 queries=2 visibleRows=0 activeEvents=7 updateDriver=false\nTHREAT flavor=skin stage=out-of-combat-500-reveals status=complete frames=4 textures=8 fontStrings=3 fontSets=3 fontErrors=0 queries=2 visibleRows=0 activeEvents=7 updateDriver=false\nTHREAT flavor=skin-fallback stage=quiet-startup status=complete frames=3 textures=6 fontStrings=1 fontSets=2 fontErrors=0 queries=0 visibleRows=0 activeEvents=7 updateDriver=false\nTHREAT flavor=skin-fallback stage=combat-start status=complete frames=4 textures=8 fontStrings=3 fontSets=6 fontErrors=0 queries=1 visibleRows=1 activeEvents=7 updateDriver=true\nTHREAT flavor=skin-fallback stage=combat-500-event-burst status=complete frames=4 textures=8 fontStrings=3 fontSets=6 fontErrors=0 queries=2 visibleRows=1 activeEvents=7 updateDriver=true\nTHREAT flavor=skin-fallback stage=combat-end status=complete frames=4 textures=8 fontStrings=3 fontSets=6 fontErrors=0 queries=2 visibleRows=0 activeEvents=7 updateDriver=false\nTHREAT flavor=skin-fallback stage=out-of-combat-500-events status=complete frames=4 textures=8 fontStrings=3 fontSets=6 fontErrors=0 queries=2 visibleRows=0 activeEvents=7 updateDriver=false\nTHREAT flavor=skin-fallback stage=out-of-combat-500-reveals status=complete frames=4 textures=8 fontStrings=3 fontSets=6 fontErrors=0 queries=2 visibleRows=0 activeEvents=7 updateDriver=false\n",
+          "stderr": ""
+        }
+      },
+      "baseline": {
+        "regression": {
+          "exitCode": 1,
+          "processSeconds": 0.03283490001922473,
+          "stdout": "",
+          "stderr": "lua: ...terface\\AddOns\\_FluxUI\\tests\\standalone_threat_meter.lua:46: FontString:SetText(): Font not set\nstack traceback:\n\t[C]: in function 'error'\n\t...terface\\AddOns\\_FluxUI\\tests\\standalone_threat_meter.lua:36: in upvalue 'requireFont'\n\t...terface\\AddOns\\_FluxUI\\tests\\standalone_threat_meter.lua:46: in method 'SetText'\n\t...eat-font-readiness-20261105\\FluxThreatMeter-baseline.lua:271: in upvalue 'CreatePane'\n\t...eat-font-readiness-20261105\\FluxThreatMeter-baseline.lua:309: in method 'Embed'\n\t...terface\\AddOns\\_FluxUI\\tests\\standalone_threat_meter.lua:168: in main chunk\n\t[C]: in ?\n"
+        },
+        "resources": {
+          "exitCode": 0,
+          "processSeconds": 0.034517799998866394,
+          "stdout": "THREAT flavor=bare stage=startup-abort status=font-error frames=2 textures=0 fontStrings=1 fontSets=0 fontErrors=1 queries=0 visibleRows=0 activeEvents=0 updateDriver=false\n...0df7e22b\\threat-font-readiness-20261105\\font_measure.lua:46: FontString:SetText(): Font not set\nTHREAT flavor=skin stage=startup-abort status=font-error frames=2 textures=0 fontStrings=1 fontSets=0 fontErrors=1 queries=0 visibleRows=0 activeEvents=0 updateDriver=false\n...0df7e22b\\threat-font-readiness-20261105\\font_measure.lua:46: FontString:SetText(): Font not set\nTHREAT flavor=skin-fallback stage=startup-abort status=font-error frames=2 textures=0 fontStrings=1 fontSets=0 fontErrors=1 queries=0 visibleRows=0 activeEvents=0 updateDriver=false\n...0df7e22b\\threat-font-readiness-20261105\\font_measure.lua:46: FontString:SetText(): Font not set\n",
+          "stderr": ""
+        }
+      }
+    },
+    {
+      "repetition": 5,
+      "order": [
+        "baseline",
+        "candidate"
+      ],
+      "baseline": {
+        "regression": {
+          "exitCode": 1,
+          "processSeconds": 0.036356399999931455,
+          "stdout": "",
+          "stderr": "lua: ...terface\\AddOns\\_FluxUI\\tests\\standalone_threat_meter.lua:46: FontString:SetText(): Font not set\nstack traceback:\n\t[C]: in function 'error'\n\t...terface\\AddOns\\_FluxUI\\tests\\standalone_threat_meter.lua:36: in upvalue 'requireFont'\n\t...terface\\AddOns\\_FluxUI\\tests\\standalone_threat_meter.lua:46: in method 'SetText'\n\t...eat-font-readiness-20261105\\FluxThreatMeter-baseline.lua:271: in upvalue 'CreatePane'\n\t...eat-font-readiness-20261105\\FluxThreatMeter-baseline.lua:309: in method 'Embed'\n\t...terface\\AddOns\\_FluxUI\\tests\\standalone_threat_meter.lua:168: in main chunk\n\t[C]: in ?\n"
+        },
+        "resources": {
+          "exitCode": 0,
+          "processSeconds": 0.03609330000472255,
+          "stdout": "THREAT flavor=bare stage=startup-abort status=font-error frames=2 textures=0 fontStrings=1 fontSets=0 fontErrors=1 queries=0 visibleRows=0 activeEvents=0 updateDriver=false\n...0df7e22b\\threat-font-readiness-20261105\\font_measure.lua:46: FontString:SetText(): Font not set\nTHREAT flavor=skin stage=startup-abort status=font-error frames=2 textures=0 fontStrings=1 fontSets=0 fontErrors=1 queries=0 visibleRows=0 activeEvents=0 updateDriver=false\n...0df7e22b\\threat-font-readiness-20261105\\font_measure.lua:46: FontString:SetText(): Font not set\nTHREAT flavor=skin-fallback stage=startup-abort status=font-error frames=2 textures=0 fontStrings=1 fontSets=0 fontErrors=1 queries=0 visibleRows=0 activeEvents=0 updateDriver=false\n...0df7e22b\\threat-font-readiness-20261105\\font_measure.lua:46: FontString:SetText(): Font not set\n",
+          "stderr": ""
+        }
+      },
+      "candidate": {
+        "regression": {
+          "exitCode": 0,
+          "processSeconds": 2.3519385999825317,
+          "stdout": "standalone threat meter: 65 checks passed; 500-event scans=1; raid facts=80; retained rows=80\n",
+          "stderr": ""
+        },
+        "resources": {
+          "exitCode": 0,
+          "processSeconds": 0.08162350000930019,
+          "stdout": "THREAT flavor=bare stage=quiet-startup status=complete frames=3 textures=0 fontStrings=1 fontSets=3 fontErrors=0 queries=0 visibleRows=0 activeEvents=7 updateDriver=false\nTHREAT flavor=bare stage=combat-start status=complete frames=4 textures=2 fontStrings=3 fontSets=5 fontErrors=0 queries=1 visibleRows=1 activeEvents=7 updateDriver=true\nTHREAT flavor=bare stage=combat-500-event-burst status=complete frames=4 textures=2 fontStrings=3 fontSets=5 fontErrors=0 queries=2 visibleRows=1 activeEvents=7 updateDriver=true\nTHREAT flavor=bare stage=combat-end status=complete frames=4 textures=2 fontStrings=3 fontSets=5 fontErrors=0 queries=2 visibleRows=0 activeEvents=7 updateDriver=false\nTHREAT flavor=bare stage=out-of-combat-500-events status=complete frames=4 textures=2 fontStrings=3 fontSets=5 fontErrors=0 queries=2 visibleRows=0 activeEvents=7 updateDriver=false\nTHREAT flavor=bare stage=out-of-combat-500-reveals status=complete frames=4 textures=2 fontStrings=3 fontSets=505 fontErrors=0 queries=2 visibleRows=0 activeEvents=7 updateDriver=false\nTHREAT flavor=skin stage=quiet-startup status=complete frames=3 textures=6 fontStrings=1 fontSets=1 fontErrors=0 queries=0 visibleRows=0 activeEvents=7 updateDriver=false\nTHREAT flavor=skin stage=combat-start status=complete frames=4 textures=8 fontStrings=3 fontSets=3 fontErrors=0 queries=1 visibleRows=1 activeEvents=7 updateDriver=true\nTHREAT flavor=skin stage=combat-500-event-burst status=complete frames=4 textures=8 fontStrings=3 fontSets=3 fontErrors=0 queries=2 visibleRows=1 activeEvents=7 updateDriver=true\nTHREAT flavor=skin stage=combat-end status=complete frames=4 textures=8 fontStrings=3 fontSets=3 fontErrors=0 queries=2 visibleRows=0 activeEvents=7 updateDriver=false\nTHREAT flavor=skin stage=out-of-combat-500-events status=complete frames=4 textures=8 fontStrings=3 fontSets=3 fontErrors=0 queries=2 visibleRows=0 activeEvents=7 updateDriver=false\nTHREAT flavor=skin stage=out-of-combat-500-reveals status=complete frames=4 textures=8 fontStrings=3 fontSets=3 fontErrors=0 queries=2 visibleRows=0 activeEvents=7 updateDriver=false\nTHREAT flavor=skin-fallback stage=quiet-startup status=complete frames=3 textures=6 fontStrings=1 fontSets=2 fontErrors=0 queries=0 visibleRows=0 activeEvents=7 updateDriver=false\nTHREAT flavor=skin-fallback stage=combat-start status=complete frames=4 textures=8 fontStrings=3 fontSets=6 fontErrors=0 queries=1 visibleRows=1 activeEvents=7 updateDriver=true\nTHREAT flavor=skin-fallback stage=combat-500-event-burst status=complete frames=4 textures=8 fontStrings=3 fontSets=6 fontErrors=0 queries=2 visibleRows=1 activeEvents=7 updateDriver=true\nTHREAT flavor=skin-fallback stage=combat-end status=complete frames=4 textures=8 fontStrings=3 fontSets=6 fontErrors=0 queries=2 visibleRows=0 activeEvents=7 updateDriver=false\nTHREAT flavor=skin-fallback stage=out-of-combat-500-events status=complete frames=4 textures=8 fontStrings=3 fontSets=6 fontErrors=0 queries=2 visibleRows=0 activeEvents=7 updateDriver=false\nTHREAT flavor=skin-fallback stage=out-of-combat-500-reveals status=complete frames=4 textures=8 fontStrings=3 fontSets=6 fontErrors=0 queries=2 visibleRows=0 activeEvents=7 updateDriver=false\n",
+          "stderr": ""
+        }
+      }
+    }
+  ],
+  "lifecyclePairs": [
+    {
+      "repetition": 1,
+      "order": [
+        "font-initialized-reference",
+        "candidate"
+      ],
+      "font-initialized-reference": {
+        "exitCode": 0,
+        "processSeconds": 0.10463020001770929,
+        "stdout": "THREAT flavor=bare stage=quiet-startup status=complete frames=4 textures=2 fontStrings=3 fontSets=5 fontErrors=0 queries=1 visibleRows=1 activeEvents=7 updateDriver=false\nTHREAT flavor=bare stage=combat-start status=complete frames=4 textures=2 fontStrings=3 fontSets=5 fontErrors=0 queries=2 visibleRows=1 activeEvents=7 updateDriver=true\nTHREAT flavor=bare stage=combat-500-event-burst status=complete frames=4 textures=2 fontStrings=3 fontSets=5 fontErrors=0 queries=3 visibleRows=1 activeEvents=7 updateDriver=true\nTHREAT flavor=bare stage=combat-end status=complete frames=4 textures=2 fontStrings=3 fontSets=5 fontErrors=0 queries=4 visibleRows=1 activeEvents=7 updateDriver=false\nTHREAT flavor=bare stage=out-of-combat-500-events status=complete frames=4 textures=2 fontStrings=3 fontSets=5 fontErrors=0 queries=504 visibleRows=1 activeEvents=7 updateDriver=false\nTHREAT flavor=bare stage=out-of-combat-500-reveals status=complete frames=4 textures=2 fontStrings=3 fontSets=505 fontErrors=0 queries=1004 visibleRows=1 activeEvents=7 updateDriver=false\nTHREAT flavor=skin stage=quiet-startup status=complete frames=4 textures=8 fontStrings=3 fontSets=3 fontErrors=0 queries=1 visibleRows=1 activeEvents=7 updateDriver=false\nTHREAT flavor=skin stage=combat-start status=complete frames=4 textures=8 fontStrings=3 fontSets=3 fontErrors=0 queries=2 visibleRows=1 activeEvents=7 updateDriver=true\nTHREAT flavor=skin stage=combat-500-event-burst status=complete frames=4 textures=8 fontStrings=3 fontSets=3 fontErrors=0 queries=3 visibleRows=1 activeEvents=7 updateDriver=true\nTHREAT flavor=skin stage=combat-end status=complete frames=4 textures=8 fontStrings=3 fontSets=3 fontErrors=0 queries=4 visibleRows=1 activeEvents=7 updateDriver=false\nTHREAT flavor=skin stage=out-of-combat-500-events status=complete frames=4 textures=8 fontStrings=3 fontSets=3 fontErrors=0 queries=504 visibleRows=1 activeEvents=7 updateDriver=false\nTHREAT flavor=skin stage=out-of-combat-500-reveals status=complete frames=4 textures=8 fontStrings=3 fontSets=3 fontErrors=0 queries=1004 visibleRows=1 activeEvents=7 updateDriver=false\nTHREAT flavor=skin-fallback stage=quiet-startup status=complete frames=4 textures=8 fontStrings=3 fontSets=6 fontErrors=0 queries=1 visibleRows=1 activeEvents=7 updateDriver=false\nTHREAT flavor=skin-fallback stage=combat-start status=complete frames=4 textures=8 fontStrings=3 fontSets=6 fontErrors=0 queries=2 visibleRows=1 activeEvents=7 updateDriver=true\nTHREAT flavor=skin-fallback stage=combat-500-event-burst status=complete frames=4 textures=8 fontStrings=3 fontSets=6 fontErrors=0 queries=3 visibleRows=1 activeEvents=7 updateDriver=true\nTHREAT flavor=skin-fallback stage=combat-end status=complete frames=4 textures=8 fontStrings=3 fontSets=6 fontErrors=0 queries=4 visibleRows=1 activeEvents=7 updateDriver=false\nTHREAT flavor=skin-fallback stage=out-of-combat-500-events status=complete frames=4 textures=8 fontStrings=3 fontSets=6 fontErrors=0 queries=504 visibleRows=1 activeEvents=7 updateDriver=false\nTHREAT flavor=skin-fallback stage=out-of-combat-500-reveals status=complete frames=4 textures=8 fontStrings=3 fontSets=6 fontErrors=0 queries=1004 visibleRows=1 activeEvents=7 updateDriver=false\n",
+        "stderr": ""
+      },
+      "candidate": {
+        "exitCode": 0,
+        "processSeconds": 0.057441000011749566,
+        "stdout": "THREAT flavor=bare stage=quiet-startup status=complete frames=3 textures=0 fontStrings=1 fontSets=3 fontErrors=0 queries=0 visibleRows=0 activeEvents=7 updateDriver=false\nTHREAT flavor=bare stage=combat-start status=complete frames=4 textures=2 fontStrings=3 fontSets=5 fontErrors=0 queries=1 visibleRows=1 activeEvents=7 updateDriver=true\nTHREAT flavor=bare stage=combat-500-event-burst status=complete frames=4 textures=2 fontStrings=3 fontSets=5 fontErrors=0 queries=2 visibleRows=1 activeEvents=7 updateDriver=true\nTHREAT flavor=bare stage=combat-end status=complete frames=4 textures=2 fontStrings=3 fontSets=5 fontErrors=0 queries=2 visibleRows=0 activeEvents=7 updateDriver=false\nTHREAT flavor=bare stage=out-of-combat-500-events status=complete frames=4 textures=2 fontStrings=3 fontSets=5 fontErrors=0 queries=2 visibleRows=0 activeEvents=7 updateDriver=false\nTHREAT flavor=bare stage=out-of-combat-500-reveals status=complete frames=4 textures=2 fontStrings=3 fontSets=505 fontErrors=0 queries=2 visibleRows=0 activeEvents=7 updateDriver=false\nTHREAT flavor=skin stage=quiet-startup status=complete frames=3 textures=6 fontStrings=1 fontSets=1 fontErrors=0 queries=0 visibleRows=0 activeEvents=7 updateDriver=false\nTHREAT flavor=skin stage=combat-start status=complete frames=4 textures=8 fontStrings=3 fontSets=3 fontErrors=0 queries=1 visibleRows=1 activeEvents=7 updateDriver=true\nTHREAT flavor=skin stage=combat-500-event-burst status=complete frames=4 textures=8 fontStrings=3 fontSets=3 fontErrors=0 queries=2 visibleRows=1 activeEvents=7 updateDriver=true\nTHREAT flavor=skin stage=combat-end status=complete frames=4 textures=8 fontStrings=3 fontSets=3 fontErrors=0 queries=2 visibleRows=0 activeEvents=7 updateDriver=false\nTHREAT flavor=skin stage=out-of-combat-500-events status=complete frames=4 textures=8 fontStrings=3 fontSets=3 fontErrors=0 queries=2 visibleRows=0 activeEvents=7 updateDriver=false\nTHREAT flavor=skin stage=out-of-combat-500-reveals status=complete frames=4 textures=8 fontStrings=3 fontSets=3 fontErrors=0 queries=2 visibleRows=0 activeEvents=7 updateDriver=false\nTHREAT flavor=skin-fallback stage=quiet-startup status=complete frames=3 textures=6 fontStrings=1 fontSets=2 fontErrors=0 queries=0 visibleRows=0 activeEvents=7 updateDriver=false\nTHREAT flavor=skin-fallback stage=combat-start status=complete frames=4 textures=8 fontStrings=3 fontSets=6 fontErrors=0 queries=1 visibleRows=1 activeEvents=7 updateDriver=true\nTHREAT flavor=skin-fallback stage=combat-500-event-burst status=complete frames=4 textures=8 fontStrings=3 fontSets=6 fontErrors=0 queries=2 visibleRows=1 activeEvents=7 updateDriver=true\nTHREAT flavor=skin-fallback stage=combat-end status=complete frames=4 textures=8 fontStrings=3 fontSets=6 fontErrors=0 queries=2 visibleRows=0 activeEvents=7 updateDriver=false\nTHREAT flavor=skin-fallback stage=out-of-combat-500-events status=complete frames=4 textures=8 fontStrings=3 fontSets=6 fontErrors=0 queries=2 visibleRows=0 activeEvents=7 updateDriver=false\nTHREAT flavor=skin-fallback stage=out-of-combat-500-reveals status=complete frames=4 textures=8 fontStrings=3 fontSets=6 fontErrors=0 queries=2 visibleRows=0 activeEvents=7 updateDriver=false\n",
+        "stderr": ""
+      }
+    },
+    {
+      "repetition": 2,
+      "order": [
+        "candidate",
+        "font-initialized-reference"
+      ],
+      "candidate": {
+        "exitCode": 0,
+        "processSeconds": 0.08184450000408106,
+        "stdout": "THREAT flavor=bare stage=quiet-startup status=complete frames=3 textures=0 fontStrings=1 fontSets=3 fontErrors=0 queries=0 visibleRows=0 activeEvents=7 updateDriver=false\nTHREAT flavor=bare stage=combat-start status=complete frames=4 textures=2 fontStrings=3 fontSets=5 fontErrors=0 queries=1 visibleRows=1 activeEvents=7 updateDriver=true\nTHREAT flavor=bare stage=combat-500-event-burst status=complete frames=4 textures=2 fontStrings=3 fontSets=5 fontErrors=0 queries=2 visibleRows=1 activeEvents=7 updateDriver=true\nTHREAT flavor=bare stage=combat-end status=complete frames=4 textures=2 fontStrings=3 fontSets=5 fontErrors=0 queries=2 visibleRows=0 activeEvents=7 updateDriver=false\nTHREAT flavor=bare stage=out-of-combat-500-events status=complete frames=4 textures=2 fontStrings=3 fontSets=5 fontErrors=0 queries=2 visibleRows=0 activeEvents=7 updateDriver=false\nTHREAT flavor=bare stage=out-of-combat-500-reveals status=complete frames=4 textures=2 fontStrings=3 fontSets=505 fontErrors=0 queries=2 visibleRows=0 activeEvents=7 updateDriver=false\nTHREAT flavor=skin stage=quiet-startup status=complete frames=3 textures=6 fontStrings=1 fontSets=1 fontErrors=0 queries=0 visibleRows=0 activeEvents=7 updateDriver=false\nTHREAT flavor=skin stage=combat-start status=complete frames=4 textures=8 fontStrings=3 fontSets=3 fontErrors=0 queries=1 visibleRows=1 activeEvents=7 updateDriver=true\nTHREAT flavor=skin stage=combat-500-event-burst status=complete frames=4 textures=8 fontStrings=3 fontSets=3 fontErrors=0 queries=2 visibleRows=1 activeEvents=7 updateDriver=true\nTHREAT flavor=skin stage=combat-end status=complete frames=4 textures=8 fontStrings=3 fontSets=3 fontErrors=0 queries=2 visibleRows=0 activeEvents=7 updateDriver=false\nTHREAT flavor=skin stage=out-of-combat-500-events status=complete frames=4 textures=8 fontStrings=3 fontSets=3 fontErrors=0 queries=2 visibleRows=0 activeEvents=7 updateDriver=false\nTHREAT flavor=skin stage=out-of-combat-500-reveals status=complete frames=4 textures=8 fontStrings=3 fontSets=3 fontErrors=0 queries=2 visibleRows=0 activeEvents=7 updateDriver=false\nTHREAT flavor=skin-fallback stage=quiet-startup status=complete frames=3 textures=6 fontStrings=1 fontSets=2 fontErrors=0 queries=0 visibleRows=0 activeEvents=7 updateDriver=false\nTHREAT flavor=skin-fallback stage=combat-start status=complete frames=4 textures=8 fontStrings=3 fontSets=6 fontErrors=0 queries=1 visibleRows=1 activeEvents=7 updateDriver=true\nTHREAT flavor=skin-fallback stage=combat-500-event-burst status=complete frames=4 textures=8 fontStrings=3 fontSets=6 fontErrors=0 queries=2 visibleRows=1 activeEvents=7 updateDriver=true\nTHREAT flavor=skin-fallback stage=combat-end status=complete frames=4 textures=8 fontStrings=3 fontSets=6 fontErrors=0 queries=2 visibleRows=0 activeEvents=7 updateDriver=false\nTHREAT flavor=skin-fallback stage=out-of-combat-500-events status=complete frames=4 textures=8 fontStrings=3 fontSets=6 fontErrors=0 queries=2 visibleRows=0 activeEvents=7 updateDriver=false\nTHREAT flavor=skin-fallback stage=out-of-combat-500-reveals status=complete frames=4 textures=8 fontStrings=3 fontSets=6 fontErrors=0 queries=2 visibleRows=0 activeEvents=7 updateDriver=false\n",
+        "stderr": ""
+      },
+      "font-initialized-reference": {
+        "exitCode": 0,
+        "processSeconds": 0.10967410000739619,
+        "stdout": "THREAT flavor=bare stage=quiet-startup status=complete frames=4 textures=2 fontStrings=3 fontSets=5 fontErrors=0 queries=1 visibleRows=1 activeEvents=7 updateDriver=false\nTHREAT flavor=bare stage=combat-start status=complete frames=4 textures=2 fontStrings=3 fontSets=5 fontErrors=0 queries=2 visibleRows=1 activeEvents=7 updateDriver=true\nTHREAT flavor=bare stage=combat-500-event-burst status=complete frames=4 textures=2 fontStrings=3 fontSets=5 fontErrors=0 queries=3 visibleRows=1 activeEvents=7 updateDriver=true\nTHREAT flavor=bare stage=combat-end status=complete frames=4 textures=2 fontStrings=3 fontSets=5 fontErrors=0 queries=4 visibleRows=1 activeEvents=7 updateDriver=false\nTHREAT flavor=bare stage=out-of-combat-500-events status=complete frames=4 textures=2 fontStrings=3 fontSets=5 fontErrors=0 queries=504 visibleRows=1 activeEvents=7 updateDriver=false\nTHREAT flavor=bare stage=out-of-combat-500-reveals status=complete frames=4 textures=2 fontStrings=3 fontSets=505 fontErrors=0 queries=1004 visibleRows=1 activeEvents=7 updateDriver=false\nTHREAT flavor=skin stage=quiet-startup status=complete frames=4 textures=8 fontStrings=3 fontSets=3 fontErrors=0 queries=1 visibleRows=1 activeEvents=7 updateDriver=false\nTHREAT flavor=skin stage=combat-start status=complete frames=4 textures=8 fontStrings=3 fontSets=3 fontErrors=0 queries=2 visibleRows=1 activeEvents=7 updateDriver=true\nTHREAT flavor=skin stage=combat-500-event-burst status=complete frames=4 textures=8 fontStrings=3 fontSets=3 fontErrors=0 queries=3 visibleRows=1 activeEvents=7 updateDriver=true\nTHREAT flavor=skin stage=combat-end status=complete frames=4 textures=8 fontStrings=3 fontSets=3 fontErrors=0 queries=4 visibleRows=1 activeEvents=7 updateDriver=false\nTHREAT flavor=skin stage=out-of-combat-500-events status=complete frames=4 textures=8 fontStrings=3 fontSets=3 fontErrors=0 queries=504 visibleRows=1 activeEvents=7 updateDriver=false\nTHREAT flavor=skin stage=out-of-combat-500-reveals status=complete frames=4 textures=8 fontStrings=3 fontSets=3 fontErrors=0 queries=1004 visibleRows=1 activeEvents=7 updateDriver=false\nTHREAT flavor=skin-fallback stage=quiet-startup status=complete frames=4 textures=8 fontStrings=3 fontSets=6 fontErrors=0 queries=1 visibleRows=1 activeEvents=7 updateDriver=false\nTHREAT flavor=skin-fallback stage=combat-start status=complete frames=4 textures=8 fontStrings=3 fontSets=6 fontErrors=0 queries=2 visibleRows=1 activeEvents=7 updateDriver=true\nTHREAT flavor=skin-fallback stage=combat-500-event-burst status=complete frames=4 textures=8 fontStrings=3 fontSets=6 fontErrors=0 queries=3 visibleRows=1 activeEvents=7 updateDriver=true\nTHREAT flavor=skin-fallback stage=combat-end status=complete frames=4 textures=8 fontStrings=3 fontSets=6 fontErrors=0 queries=4 visibleRows=1 activeEvents=7 updateDriver=false\nTHREAT flavor=skin-fallback stage=out-of-combat-500-events status=complete frames=4 textures=8 fontStrings=3 fontSets=6 fontErrors=0 queries=504 visibleRows=1 activeEvents=7 updateDriver=false\nTHREAT flavor=skin-fallback stage=out-of-combat-500-reveals status=complete frames=4 textures=8 fontStrings=3 fontSets=6 fontErrors=0 queries=1004 visibleRows=1 activeEvents=7 updateDriver=false\n",
+        "stderr": ""
+      }
+    },
+    {
+      "repetition": 3,
+      "order": [
+        "font-initialized-reference",
+        "candidate"
+      ],
+      "font-initialized-reference": {
+        "exitCode": 0,
+        "processSeconds": 0.0881931999756489,
+        "stdout": "THREAT flavor=bare stage=quiet-startup status=complete frames=4 textures=2 fontStrings=3 fontSets=5 fontErrors=0 queries=1 visibleRows=1 activeEvents=7 updateDriver=false\nTHREAT flavor=bare stage=combat-start status=complete frames=4 textures=2 fontStrings=3 fontSets=5 fontErrors=0 queries=2 visibleRows=1 activeEvents=7 updateDriver=true\nTHREAT flavor=bare stage=combat-500-event-burst status=complete frames=4 textures=2 fontStrings=3 fontSets=5 fontErrors=0 queries=3 visibleRows=1 activeEvents=7 updateDriver=true\nTHREAT flavor=bare stage=combat-end status=complete frames=4 textures=2 fontStrings=3 fontSets=5 fontErrors=0 queries=4 visibleRows=1 activeEvents=7 updateDriver=false\nTHREAT flavor=bare stage=out-of-combat-500-events status=complete frames=4 textures=2 fontStrings=3 fontSets=5 fontErrors=0 queries=504 visibleRows=1 activeEvents=7 updateDriver=false\nTHREAT flavor=bare stage=out-of-combat-500-reveals status=complete frames=4 textures=2 fontStrings=3 fontSets=505 fontErrors=0 queries=1004 visibleRows=1 activeEvents=7 updateDriver=false\nTHREAT flavor=skin stage=quiet-startup status=complete frames=4 textures=8 fontStrings=3 fontSets=3 fontErrors=0 queries=1 visibleRows=1 activeEvents=7 updateDriver=false\nTHREAT flavor=skin stage=combat-start status=complete frames=4 textures=8 fontStrings=3 fontSets=3 fontErrors=0 queries=2 visibleRows=1 activeEvents=7 updateDriver=true\nTHREAT flavor=skin stage=combat-500-event-burst status=complete frames=4 textures=8 fontStrings=3 fontSets=3 fontErrors=0 queries=3 visibleRows=1 activeEvents=7 updateDriver=true\nTHREAT flavor=skin stage=combat-end status=complete frames=4 textures=8 fontStrings=3 fontSets=3 fontErrors=0 queries=4 visibleRows=1 activeEvents=7 updateDriver=false\nTHREAT flavor=skin stage=out-of-combat-500-events status=complete frames=4 textures=8 fontStrings=3 fontSets=3 fontErrors=0 queries=504 visibleRows=1 activeEvents=7 updateDriver=false\nTHREAT flavor=skin stage=out-of-combat-500-reveals status=complete frames=4 textures=8 fontStrings=3 fontSets=3 fontErrors=0 queries=1004 visibleRows=1 activeEvents=7 updateDriver=false\nTHREAT flavor=skin-fallback stage=quiet-startup status=complete frames=4 textures=8 fontStrings=3 fontSets=6 fontErrors=0 queries=1 visibleRows=1 activeEvents=7 updateDriver=false\nTHREAT flavor=skin-fallback stage=combat-start status=complete frames=4 textures=8 fontStrings=3 fontSets=6 fontErrors=0 queries=2 visibleRows=1 activeEvents=7 updateDriver=true\nTHREAT flavor=skin-fallback stage=combat-500-event-burst status=complete frames=4 textures=8 fontStrings=3 fontSets=6 fontErrors=0 queries=3 visibleRows=1 activeEvents=7 updateDriver=true\nTHREAT flavor=skin-fallback stage=combat-end status=complete frames=4 textures=8 fontStrings=3 fontSets=6 fontErrors=0 queries=4 visibleRows=1 activeEvents=7 updateDriver=false\nTHREAT flavor=skin-fallback stage=out-of-combat-500-events status=complete frames=4 textures=8 fontStrings=3 fontSets=6 fontErrors=0 queries=504 visibleRows=1 activeEvents=7 updateDriver=false\nTHREAT flavor=skin-fallback stage=out-of-combat-500-reveals status=complete frames=4 textures=8 fontStrings=3 fontSets=6 fontErrors=0 queries=1004 visibleRows=1 activeEvents=7 updateDriver=false\n",
+        "stderr": ""
+      },
+      "candidate": {
+        "exitCode": 0,
+        "processSeconds": 0.056452599994372576,
+        "stdout": "THREAT flavor=bare stage=quiet-startup status=complete frames=3 textures=0 fontStrings=1 fontSets=3 fontErrors=0 queries=0 visibleRows=0 activeEvents=7 updateDriver=false\nTHREAT flavor=bare stage=combat-start status=complete frames=4 textures=2 fontStrings=3 fontSets=5 fontErrors=0 queries=1 visibleRows=1 activeEvents=7 updateDriver=true\nTHREAT flavor=bare stage=combat-500-event-burst status=complete frames=4 textures=2 fontStrings=3 fontSets=5 fontErrors=0 queries=2 visibleRows=1 activeEvents=7 updateDriver=true\nTHREAT flavor=bare stage=combat-end status=complete frames=4 textures=2 fontStrings=3 fontSets=5 fontErrors=0 queries=2 visibleRows=0 activeEvents=7 updateDriver=false\nTHREAT flavor=bare stage=out-of-combat-500-events status=complete frames=4 textures=2 fontStrings=3 fontSets=5 fontErrors=0 queries=2 visibleRows=0 activeEvents=7 updateDriver=false\nTHREAT flavor=bare stage=out-of-combat-500-reveals status=complete frames=4 textures=2 fontStrings=3 fontSets=505 fontErrors=0 queries=2 visibleRows=0 activeEvents=7 updateDriver=false\nTHREAT flavor=skin stage=quiet-startup status=complete frames=3 textures=6 fontStrings=1 fontSets=1 fontErrors=0 queries=0 visibleRows=0 activeEvents=7 updateDriver=false\nTHREAT flavor=skin stage=combat-start status=complete frames=4 textures=8 fontStrings=3 fontSets=3 fontErrors=0 queries=1 visibleRows=1 activeEvents=7 updateDriver=true\nTHREAT flavor=skin stage=combat-500-event-burst status=complete frames=4 textures=8 fontStrings=3 fontSets=3 fontErrors=0 queries=2 visibleRows=1 activeEvents=7 updateDriver=true\nTHREAT flavor=skin stage=combat-end status=complete frames=4 textures=8 fontStrings=3 fontSets=3 fontErrors=0 queries=2 visibleRows=0 activeEvents=7 updateDriver=false\nTHREAT flavor=skin stage=out-of-combat-500-events status=complete frames=4 textures=8 fontStrings=3 fontSets=3 fontErrors=0 queries=2 visibleRows=0 activeEvents=7 updateDriver=false\nTHREAT flavor=skin stage=out-of-combat-500-reveals status=complete frames=4 textures=8 fontStrings=3 fontSets=3 fontErrors=0 queries=2 visibleRows=0 activeEvents=7 updateDriver=false\nTHREAT flavor=skin-fallback stage=quiet-startup status=complete frames=3 textures=6 fontStrings=1 fontSets=2 fontErrors=0 queries=0 visibleRows=0 activeEvents=7 updateDriver=false\nTHREAT flavor=skin-fallback stage=combat-start status=complete frames=4 textures=8 fontStrings=3 fontSets=6 fontErrors=0 queries=1 visibleRows=1 activeEvents=7 updateDriver=true\nTHREAT flavor=skin-fallback stage=combat-500-event-burst status=complete frames=4 textures=8 fontStrings=3 fontSets=6 fontErrors=0 queries=2 visibleRows=1 activeEvents=7 updateDriver=true\nTHREAT flavor=skin-fallback stage=combat-end status=complete frames=4 textures=8 fontStrings=3 fontSets=6 fontErrors=0 queries=2 visibleRows=0 activeEvents=7 updateDriver=false\nTHREAT flavor=skin-fallback stage=out-of-combat-500-events status=complete frames=4 textures=8 fontStrings=3 fontSets=6 fontErrors=0 queries=2 visibleRows=0 activeEvents=7 updateDriver=false\nTHREAT flavor=skin-fallback stage=out-of-combat-500-reveals status=complete frames=4 textures=8 fontStrings=3 fontSets=6 fontErrors=0 queries=2 visibleRows=0 activeEvents=7 updateDriver=false\n",
+        "stderr": ""
+      }
+    },
+    {
+      "repetition": 4,
+      "order": [
+        "candidate",
+        "font-initialized-reference"
+      ],
+      "candidate": {
+        "exitCode": 0,
+        "processSeconds": 0.049259699997492135,
+        "stdout": "THREAT flavor=bare stage=quiet-startup status=complete frames=3 textures=0 fontStrings=1 fontSets=3 fontErrors=0 queries=0 visibleRows=0 activeEvents=7 updateDriver=false\nTHREAT flavor=bare stage=combat-start status=complete frames=4 textures=2 fontStrings=3 fontSets=5 fontErrors=0 queries=1 visibleRows=1 activeEvents=7 updateDriver=true\nTHREAT flavor=bare stage=combat-500-event-burst status=complete frames=4 textures=2 fontStrings=3 fontSets=5 fontErrors=0 queries=2 visibleRows=1 activeEvents=7 updateDriver=true\nTHREAT flavor=bare stage=combat-end status=complete frames=4 textures=2 fontStrings=3 fontSets=5 fontErrors=0 queries=2 visibleRows=0 activeEvents=7 updateDriver=false\nTHREAT flavor=bare stage=out-of-combat-500-events status=complete frames=4 textures=2 fontStrings=3 fontSets=5 fontErrors=0 queries=2 visibleRows=0 activeEvents=7 updateDriver=false\nTHREAT flavor=bare stage=out-of-combat-500-reveals status=complete frames=4 textures=2 fontStrings=3 fontSets=505 fontErrors=0 queries=2 visibleRows=0 activeEvents=7 updateDriver=false\nTHREAT flavor=skin stage=quiet-startup status=complete frames=3 textures=6 fontStrings=1 fontSets=1 fontErrors=0 queries=0 visibleRows=0 activeEvents=7 updateDriver=false\nTHREAT flavor=skin stage=combat-start status=complete frames=4 textures=8 fontStrings=3 fontSets=3 fontErrors=0 queries=1 visibleRows=1 activeEvents=7 updateDriver=true\nTHREAT flavor=skin stage=combat-500-event-burst status=complete frames=4 textures=8 fontStrings=3 fontSets=3 fontErrors=0 queries=2 visibleRows=1 activeEvents=7 updateDriver=true\nTHREAT flavor=skin stage=combat-end status=complete frames=4 textures=8 fontStrings=3 fontSets=3 fontErrors=0 queries=2 visibleRows=0 activeEvents=7 updateDriver=false\nTHREAT flavor=skin stage=out-of-combat-500-events status=complete frames=4 textures=8 fontStrings=3 fontSets=3 fontErrors=0 queries=2 visibleRows=0 activeEvents=7 updateDriver=false\nTHREAT flavor=skin stage=out-of-combat-500-reveals status=complete frames=4 textures=8 fontStrings=3 fontSets=3 fontErrors=0 queries=2 visibleRows=0 activeEvents=7 updateDriver=false\nTHREAT flavor=skin-fallback stage=quiet-startup status=complete frames=3 textures=6 fontStrings=1 fontSets=2 fontErrors=0 queries=0 visibleRows=0 activeEvents=7 updateDriver=false\nTHREAT flavor=skin-fallback stage=combat-start status=complete frames=4 textures=8 fontStrings=3 fontSets=6 fontErrors=0 queries=1 visibleRows=1 activeEvents=7 updateDriver=true\nTHREAT flavor=skin-fallback stage=combat-500-event-burst status=complete frames=4 textures=8 fontStrings=3 fontSets=6 fontErrors=0 queries=2 visibleRows=1 activeEvents=7 updateDriver=true\nTHREAT flavor=skin-fallback stage=combat-end status=complete frames=4 textures=8 fontStrings=3 fontSets=6 fontErrors=0 queries=2 visibleRows=0 activeEvents=7 updateDriver=false\nTHREAT flavor=skin-fallback stage=out-of-combat-500-events status=complete frames=4 textures=8 fontStrings=3 fontSets=6 fontErrors=0 queries=2 visibleRows=0 activeEvents=7 updateDriver=false\nTHREAT flavor=skin-fallback stage=out-of-combat-500-reveals status=complete frames=4 textures=8 fontStrings=3 fontSets=6 fontErrors=0 queries=2 visibleRows=0 activeEvents=7 updateDriver=false\n",
+        "stderr": ""
+      },
+      "font-initialized-reference": {
+        "exitCode": 0,
+        "processSeconds": 0.08012030000099912,
+        "stdout": "THREAT flavor=bare stage=quiet-startup status=complete frames=4 textures=2 fontStrings=3 fontSets=5 fontErrors=0 queries=1 visibleRows=1 activeEvents=7 updateDriver=false\nTHREAT flavor=bare stage=combat-start status=complete frames=4 textures=2 fontStrings=3 fontSets=5 fontErrors=0 queries=2 visibleRows=1 activeEvents=7 updateDriver=true\nTHREAT flavor=bare stage=combat-500-event-burst status=complete frames=4 textures=2 fontStrings=3 fontSets=5 fontErrors=0 queries=3 visibleRows=1 activeEvents=7 updateDriver=true\nTHREAT flavor=bare stage=combat-end status=complete frames=4 textures=2 fontStrings=3 fontSets=5 fontErrors=0 queries=4 visibleRows=1 activeEvents=7 updateDriver=false\nTHREAT flavor=bare stage=out-of-combat-500-events status=complete frames=4 textures=2 fontStrings=3 fontSets=5 fontErrors=0 queries=504 visibleRows=1 activeEvents=7 updateDriver=false\nTHREAT flavor=bare stage=out-of-combat-500-reveals status=complete frames=4 textures=2 fontStrings=3 fontSets=505 fontErrors=0 queries=1004 visibleRows=1 activeEvents=7 updateDriver=false\nTHREAT flavor=skin stage=quiet-startup status=complete frames=4 textures=8 fontStrings=3 fontSets=3 fontErrors=0 queries=1 visibleRows=1 activeEvents=7 updateDriver=false\nTHREAT flavor=skin stage=combat-start status=complete frames=4 textures=8 fontStrings=3 fontSets=3 fontErrors=0 queries=2 visibleRows=1 activeEvents=7 updateDriver=true\nTHREAT flavor=skin stage=combat-500-event-burst status=complete frames=4 textures=8 fontStrings=3 fontSets=3 fontErrors=0 queries=3 visibleRows=1 activeEvents=7 updateDriver=true\nTHREAT flavor=skin stage=combat-end status=complete frames=4 textures=8 fontStrings=3 fontSets=3 fontErrors=0 queries=4 visibleRows=1 activeEvents=7 updateDriver=false\nTHREAT flavor=skin stage=out-of-combat-500-events status=complete frames=4 textures=8 fontStrings=3 fontSets=3 fontErrors=0 queries=504 visibleRows=1 activeEvents=7 updateDriver=false\nTHREAT flavor=skin stage=out-of-combat-500-reveals status=complete frames=4 textures=8 fontStrings=3 fontSets=3 fontErrors=0 queries=1004 visibleRows=1 activeEvents=7 updateDriver=false\nTHREAT flavor=skin-fallback stage=quiet-startup status=complete frames=4 textures=8 fontStrings=3 fontSets=6 fontErrors=0 queries=1 visibleRows=1 activeEvents=7 updateDriver=false\nTHREAT flavor=skin-fallback stage=combat-start status=complete frames=4 textures=8 fontStrings=3 fontSets=6 fontErrors=0 queries=2 visibleRows=1 activeEvents=7 updateDriver=true\nTHREAT flavor=skin-fallback stage=combat-500-event-burst status=complete frames=4 textures=8 fontStrings=3 fontSets=6 fontErrors=0 queries=3 visibleRows=1 activeEvents=7 updateDriver=true\nTHREAT flavor=skin-fallback stage=combat-end status=complete frames=4 textures=8 fontStrings=3 fontSets=6 fontErrors=0 queries=4 visibleRows=1 activeEvents=7 updateDriver=false\nTHREAT flavor=skin-fallback stage=out-of-combat-500-events status=complete frames=4 textures=8 fontStrings=3 fontSets=6 fontErrors=0 queries=504 visibleRows=1 activeEvents=7 updateDriver=false\nTHREAT flavor=skin-fallback stage=out-of-combat-500-reveals status=complete frames=4 textures=8 fontStrings=3 fontSets=6 fontErrors=0 queries=1004 visibleRows=1 activeEvents=7 updateDriver=false\n",
+        "stderr": ""
+      }
+    },
+    {
+      "repetition": 5,
+      "order": [
+        "font-initialized-reference",
+        "candidate"
+      ],
+      "font-initialized-reference": {
+        "exitCode": 0,
+        "processSeconds": 0.08826789999147877,
+        "stdout": "THREAT flavor=bare stage=quiet-startup status=complete frames=4 textures=2 fontStrings=3 fontSets=5 fontErrors=0 queries=1 visibleRows=1 activeEvents=7 updateDriver=false\nTHREAT flavor=bare stage=combat-start status=complete frames=4 textures=2 fontStrings=3 fontSets=5 fontErrors=0 queries=2 visibleRows=1 activeEvents=7 updateDriver=true\nTHREAT flavor=bare stage=combat-500-event-burst status=complete frames=4 textures=2 fontStrings=3 fontSets=5 fontErrors=0 queries=3 visibleRows=1 activeEvents=7 updateDriver=true\nTHREAT flavor=bare stage=combat-end status=complete frames=4 textures=2 fontStrings=3 fontSets=5 fontErrors=0 queries=4 visibleRows=1 activeEvents=7 updateDriver=false\nTHREAT flavor=bare stage=out-of-combat-500-events status=complete frames=4 textures=2 fontStrings=3 fontSets=5 fontErrors=0 queries=504 visibleRows=1 activeEvents=7 updateDriver=false\nTHREAT flavor=bare stage=out-of-combat-500-reveals status=complete frames=4 textures=2 fontStrings=3 fontSets=505 fontErrors=0 queries=1004 visibleRows=1 activeEvents=7 updateDriver=false\nTHREAT flavor=skin stage=quiet-startup status=complete frames=4 textures=8 fontStrings=3 fontSets=3 fontErrors=0 queries=1 visibleRows=1 activeEvents=7 updateDriver=false\nTHREAT flavor=skin stage=combat-start status=complete frames=4 textures=8 fontStrings=3 fontSets=3 fontErrors=0 queries=2 visibleRows=1 activeEvents=7 updateDriver=true\nTHREAT flavor=skin stage=combat-500-event-burst status=complete frames=4 textures=8 fontStrings=3 fontSets=3 fontErrors=0 queries=3 visibleRows=1 activeEvents=7 updateDriver=true\nTHREAT flavor=skin stage=combat-end status=complete frames=4 textures=8 fontStrings=3 fontSets=3 fontErrors=0 queries=4 visibleRows=1 activeEvents=7 updateDriver=false\nTHREAT flavor=skin stage=out-of-combat-500-events status=complete frames=4 textures=8 fontStrings=3 fontSets=3 fontErrors=0 queries=504 visibleRows=1 activeEvents=7 updateDriver=false\nTHREAT flavor=skin stage=out-of-combat-500-reveals status=complete frames=4 textures=8 fontStrings=3 fontSets=3 fontErrors=0 queries=1004 visibleRows=1 activeEvents=7 updateDriver=false\nTHREAT flavor=skin-fallback stage=quiet-startup status=complete frames=4 textures=8 fontStrings=3 fontSets=6 fontErrors=0 queries=1 visibleRows=1 activeEvents=7 updateDriver=false\nTHREAT flavor=skin-fallback stage=combat-start status=complete frames=4 textures=8 fontStrings=3 fontSets=6 fontErrors=0 queries=2 visibleRows=1 activeEvents=7 updateDriver=true\nTHREAT flavor=skin-fallback stage=combat-500-event-burst status=complete frames=4 textures=8 fontStrings=3 fontSets=6 fontErrors=0 queries=3 visibleRows=1 activeEvents=7 updateDriver=true\nTHREAT flavor=skin-fallback stage=combat-end status=complete frames=4 textures=8 fontStrings=3 fontSets=6 fontErrors=0 queries=4 visibleRows=1 activeEvents=7 updateDriver=false\nTHREAT flavor=skin-fallback stage=out-of-combat-500-events status=complete frames=4 textures=8 fontStrings=3 fontSets=6 fontErrors=0 queries=504 visibleRows=1 activeEvents=7 updateDriver=false\nTHREAT flavor=skin-fallback stage=out-of-combat-500-reveals status=complete frames=4 textures=8 fontStrings=3 fontSets=6 fontErrors=0 queries=1004 visibleRows=1 activeEvents=7 updateDriver=false\n",
+        "stderr": ""
+      },
+      "candidate": {
+        "exitCode": 0,
+        "processSeconds": 0.04590440000174567,
+        "stdout": "THREAT flavor=bare stage=quiet-startup status=complete frames=3 textures=0 fontStrings=1 fontSets=3 fontErrors=0 queries=0 visibleRows=0 activeEvents=7 updateDriver=false\nTHREAT flavor=bare stage=combat-start status=complete frames=4 textures=2 fontStrings=3 fontSets=5 fontErrors=0 queries=1 visibleRows=1 activeEvents=7 updateDriver=true\nTHREAT flavor=bare stage=combat-500-event-burst status=complete frames=4 textures=2 fontStrings=3 fontSets=5 fontErrors=0 queries=2 visibleRows=1 activeEvents=7 updateDriver=true\nTHREAT flavor=bare stage=combat-end status=complete frames=4 textures=2 fontStrings=3 fontSets=5 fontErrors=0 queries=2 visibleRows=0 activeEvents=7 updateDriver=false\nTHREAT flavor=bare stage=out-of-combat-500-events status=complete frames=4 textures=2 fontStrings=3 fontSets=5 fontErrors=0 queries=2 visibleRows=0 activeEvents=7 updateDriver=false\nTHREAT flavor=bare stage=out-of-combat-500-reveals status=complete frames=4 textures=2 fontStrings=3 fontSets=505 fontErrors=0 queries=2 visibleRows=0 activeEvents=7 updateDriver=false\nTHREAT flavor=skin stage=quiet-startup status=complete frames=3 textures=6 fontStrings=1 fontSets=1 fontErrors=0 queries=0 visibleRows=0 activeEvents=7 updateDriver=false\nTHREAT flavor=skin stage=combat-start status=complete frames=4 textures=8 fontStrings=3 fontSets=3 fontErrors=0 queries=1 visibleRows=1 activeEvents=7 updateDriver=true\nTHREAT flavor=skin stage=combat-500-event-burst status=complete frames=4 textures=8 fontStrings=3 fontSets=3 fontErrors=0 queries=2 visibleRows=1 activeEvents=7 updateDriver=true\nTHREAT flavor=skin stage=combat-end status=complete frames=4 textures=8 fontStrings=3 fontSets=3 fontErrors=0 queries=2 visibleRows=0 activeEvents=7 updateDriver=false\nTHREAT flavor=skin stage=out-of-combat-500-events status=complete frames=4 textures=8 fontStrings=3 fontSets=3 fontErrors=0 queries=2 visibleRows=0 activeEvents=7 updateDriver=false\nTHREAT flavor=skin stage=out-of-combat-500-reveals status=complete frames=4 textures=8 fontStrings=3 fontSets=3 fontErrors=0 queries=2 visibleRows=0 activeEvents=7 updateDriver=false\nTHREAT flavor=skin-fallback stage=quiet-startup status=complete frames=3 textures=6 fontStrings=1 fontSets=2 fontErrors=0 queries=0 visibleRows=0 activeEvents=7 updateDriver=false\nTHREAT flavor=skin-fallback stage=combat-start status=complete frames=4 textures=8 fontStrings=3 fontSets=6 fontErrors=0 queries=1 visibleRows=1 activeEvents=7 updateDriver=true\nTHREAT flavor=skin-fallback stage=combat-500-event-burst status=complete frames=4 textures=8 fontStrings=3 fontSets=6 fontErrors=0 queries=2 visibleRows=1 activeEvents=7 updateDriver=true\nTHREAT flavor=skin-fallback stage=combat-end status=complete frames=4 textures=8 fontStrings=3 fontSets=6 fontErrors=0 queries=2 visibleRows=0 activeEvents=7 updateDriver=false\nTHREAT flavor=skin-fallback stage=out-of-combat-500-events status=complete frames=4 textures=8 fontStrings=3 fontSets=6 fontErrors=0 queries=2 visibleRows=0 activeEvents=7 updateDriver=false\nTHREAT flavor=skin-fallback stage=out-of-combat-500-reveals status=complete frames=4 textures=8 fontStrings=3 fontSets=6 fontErrors=0 queries=2 visibleRows=0 activeEvents=7 updateDriver=false\n",
+        "stderr": ""
+      }
+    }
+  ],
+  "fontInitializedReferenceRawSHA256": "40a3fd8adc8177c177ed5689865d494630405d6b8185b777a679d17675fbf548",
+  "mutants": [
+    {
+      "name": "absolute_threat_before_percentage",
+      "sourceRawSHA256": "c6d979ad1572504238e9a2471503a2253b3a951769f54061ac7b40eac116e9b1",
+      "exitCode": 1,
+      "processSeconds": 3.2656226999824867,
+      "stdout": "",
+      "stderr": "lua: ...terface\\AddOns\\_FluxUI\\tests\\standalone_threat_meter.lua:5: readable percentage wins over a divergent absolute threat amount\nstack traceback:\n\t[C]: in function 'assert'\n\t...terface\\AddOns\\_FluxUI\\tests\\standalone_threat_meter.lua:5: in local 'check'\n\t...terface\\AddOns\\_FluxUI\\tests\\standalone_threat_meter.lua:300: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "retain_rows_after_combat",
+      "sourceRawSHA256": "e3c26a94f7fbcecd80bde80f2995c9d84775d4a3d567e683f96a8c4f12b9c607",
+      "exitCode": 1,
+      "processSeconds": 0.04437820002203807,
+      "stdout": "",
+      "stderr": "lua: ...terface\\AddOns\\_FluxUI\\tests\\standalone_threat_meter.lua:5: combat end clears rows and stops polling without an out-of-combat scan\nstack traceback:\n\t[C]: in function 'assert'\n\t...terface\\AddOns\\_FluxUI\\tests\\standalone_threat_meter.lua:5: in local 'check'\n\t...terface\\AddOns\\_FluxUI\\tests\\standalone_threat_meter.lua:199: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "scan_on_combat_end",
+      "sourceRawSHA256": "a08efe015362eb8f64301a0fcdeda5bd853919641f7e8752b5a75f898a0128c8",
+      "exitCode": 1,
+      "processSeconds": 0.04291799999191426,
+      "stdout": "",
+      "stderr": "lua: ...terface\\AddOns\\_FluxUI\\tests\\standalone_threat_meter.lua:5: combat end clears rows and stops polling without an out-of-combat scan\nstack traceback:\n\t[C]: in function 'assert'\n\t...terface\\AddOns\\_FluxUI\\tests\\standalone_threat_meter.lua:5: in local 'check'\n\t...terface\\AddOns\\_FluxUI\\tests\\standalone_threat_meter.lua:199: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "missing_title_font",
+      "sourceRawSHA256": "b16c6bfe460c7910182d973ef97d097766c485c9138463dc7156d0d1c0a0c7f0",
+      "exitCode": 1,
+      "processSeconds": 0.040113900002324954,
+      "stdout": "",
+      "stderr": "lua: ...terface\\AddOns\\_FluxUI\\tests\\standalone_threat_meter.lua:46: FontString:SetText(): Font not set\nstack traceback:\n\t[C]: in function 'error'\n\t...terface\\AddOns\\_FluxUI\\tests\\standalone_threat_meter.lua:36: in upvalue 'requireFont'\n\t...terface\\AddOns\\_FluxUI\\tests\\standalone_threat_meter.lua:46: in method 'SetText'\n\t...at-font-readiness-20261105\\mutant-missing_title_font.lua:283: in upvalue 'CreatePane'\n\t...at-font-readiness-20261105\\mutant-missing_title_font.lua:325: in method 'Embed'\n\t...terface\\AddOns\\_FluxUI\\tests\\standalone_threat_meter.lua:168: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "late_title_font",
+      "sourceRawSHA256": "73d4fce23622054f78779c83a6dcb8fba47e232ab35e5d48e3666b9bd7f81169",
+      "exitCode": 1,
+      "processSeconds": 0.03802429998177104,
+      "stdout": "",
+      "stderr": "lua: ...terface\\AddOns\\_FluxUI\\tests\\standalone_threat_meter.lua:46: FontString:SetText(): Font not set\nstack traceback:\n\t[C]: in function 'error'\n\t...terface\\AddOns\\_FluxUI\\tests\\standalone_threat_meter.lua:36: in upvalue 'requireFont'\n\t...terface\\AddOns\\_FluxUI\\tests\\standalone_threat_meter.lua:46: in method 'SetText'\n\t...hreat-font-readiness-20261105\\mutant-late_title_font.lua:283: in upvalue 'CreatePane'\n\t...hreat-font-readiness-20261105\\mutant-late_title_font.lua:326: in method 'Embed'\n\t...terface\\AddOns\\_FluxUI\\tests\\standalone_threat_meter.lua:168: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "wrong_visible_title_scale",
+      "sourceRawSHA256": "fe9ac1cad1daedfe7b1bf86cba0f99c65540a4416dec5f617fdfa7ca57cc8234",
+      "exitCode": 1,
+      "processSeconds": 0.059479799994733185,
+      "stdout": "",
+      "stderr": "lua: ...terface\\AddOns\\_FluxUI\\tests\\standalone_threat_meter.lua:5: first title text has its presentation font before native SetText\nstack traceback:\n\t[C]: in function 'assert'\n\t...terface\\AddOns\\_FluxUI\\tests\\standalone_threat_meter.lua:5: in local 'check'\n\t...terface\\AddOns\\_FluxUI\\tests\\standalone_threat_meter.lua:170: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "bypass_shared_skin",
+      "sourceRawSHA256": "0e19bd6f9739d2879e4b72bf4386cd11f96f35a4ba138ed951944a4c58146e31",
+      "exitCode": 1,
+      "processSeconds": 2.455069600022398,
+      "stdout": "",
+      "stderr": "lua: ...terface\\AddOns\\_FluxUI\\tests\\standalone_threat_meter.lua:5: real skin keeps its preferred font on the title and rows\nstack traceback:\n\t[C]: in function 'assert'\n\t...terface\\AddOns\\_FluxUI\\tests\\standalone_threat_meter.lua:5: in local 'check'\n\t...terface\\AddOns\\_FluxUI\\tests\\standalone_threat_meter.lua:309: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "missing_row_name_font",
+      "sourceRawSHA256": "b6d28e0417d524365df15b0a4ae40d1b9cb8d2f3fe8484c03ec359e7dabda032",
+      "exitCode": 1,
+      "processSeconds": 0.03707229997962713,
+      "stdout": "",
+      "stderr": "lua: ...terface\\AddOns\\_FluxUI\\tests\\standalone_threat_meter.lua:47: FontString:SetFormattedText(): Font not set\nstack traceback:\n\t[C]: in function 'error'\n\t...terface\\AddOns\\_FluxUI\\tests\\standalone_threat_meter.lua:36: in upvalue 'requireFont'\n\t...terface\\AddOns\\_FluxUI\\tests\\standalone_threat_meter.lua:47: in method 'SetFormattedText'\n\t...font-readiness-20261105\\mutant-missing_row_name_font.lua:197: in upvalue 'PaintRow'\n\t...font-readiness-20261105\\mutant-missing_row_name_font.lua:224: in upvalue 'Paint'\n\t...font-readiness-20261105\\mutant-missing_row_name_font.lua:238: in upvalue 'Refresh'\n\t...font-readiness-20261105\\mutant-missing_row_name_font.lua:251: in field 'OnUpdate'\n\t...terface\\AddOns\\_FluxUI\\tests\\standalone_threat_meter.lua:145: in field 'tick'\n\t...terface\\AddOns\\_FluxUI\\tests\\standalone_threat_meter.lua:174: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "missing_row_value_font",
+      "sourceRawSHA256": "6588d4d7f1113a44c9532f49d3a1226624b7cdb384c5605377bdadf7c33d5d17",
+      "exitCode": 1,
+      "processSeconds": 0.03598399998736568,
+      "stdout": "",
+      "stderr": "lua: ...terface\\AddOns\\_FluxUI\\tests\\standalone_threat_meter.lua:46: FontString:SetText(): Font not set\nstack traceback:\n\t[C]: in function 'error'\n\t...terface\\AddOns\\_FluxUI\\tests\\standalone_threat_meter.lua:36: in upvalue 'requireFont'\n\t...terface\\AddOns\\_FluxUI\\tests\\standalone_threat_meter.lua:46: in method 'SetText'\n\t...ont-readiness-20261105\\mutant-missing_row_value_font.lua:194: in upvalue 'PaintRow'\n\t...ont-readiness-20261105\\mutant-missing_row_value_font.lua:224: in upvalue 'Paint'\n\t...ont-readiness-20261105\\mutant-missing_row_value_font.lua:238: in upvalue 'Refresh'\n\t...ont-readiness-20261105\\mutant-missing_row_value_font.lua:251: in field 'OnUpdate'\n\t...terface\\AddOns\\_FluxUI\\tests\\standalone_threat_meter.lua:145: in field 'tick'\n\t...terface\\AddOns\\_FluxUI\\tests\\standalone_threat_meter.lua:174: in main chunk\n\t[C]: in ?\n"
+    }
+  ],
+  "scope": "Desktop contract replay only; no native rendering/secure VM/secret-value/client performance acceptance. Baseline cannot run reveal sequences after failed construction; resource differences are completed feature work, not performance improvement.",
+  "sourceHashesAfter": {
+    "Battlezonemap\\FluxThreatMeter.lua": "478d82e865a9b49ccf720e60b50b7aa66154c9eabd44c2f0ab41a4be268f7cc7",
+    "tests\\standalone_threat_meter.lua": "8254fa92c49c6535995d482e047ce8876fe0e0991ac5007a86011442da52e009",
+    "Battlezonemap\\FluxMeterSkin.lua": "e14d1ad89caaac2e988f14b093210f8fbd5a7570e6596323ca1ab18a7551a5f7"
+  },
+  "sourceUnchanged": true,
+  "result": "PASS: 65 checks in every candidate; five original baseline/candidate pairs, five font-initialized reference/candidate lifecycle pairs, and nine rejected mutants; original baseline reproduces first title font error"
+}

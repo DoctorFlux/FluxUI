@@ -1,0 +1,385 @@
+{
+  "utc": "2026-11-06T08:17:15.434825+00:00",
+  "baselineCommit": "b6cb2c7bdff70e88b3bdca4bc2de7d753352eac9",
+  "candidateSHA256": {
+    "Battlezonemap/FluxMeterSkin.lua": "da422ca4401705259de7e3b3b08e21fbc4b42f4c804d100e92387bd0a9bd80c1",
+    "Battlezonemap/FluxThreatMeter.lua": "31d93fb67304f6315331705ba06df3fc8b217099ca0ea2ff2b63d1b5d0c8d6c1",
+    "tests/native_meter_skin.lua": "cc062a578dcf485dee280e5375776973b52802ffa21881006d6862b036c423a5",
+    "tests/standalone_threat_meter.lua": "0e061554ad62ba8c699137bb72c4fcd5ce45559e597cee50cf2ea9ee2dff4afe"
+  },
+  "baselineSHA256": {
+    "Battlezonemap/FluxMeterSkin.lua": "cb43ca5f7988f32d335090aadc4353421d78023806e7ce1430b17bafef93a650",
+    "Battlezonemap/FluxThreatMeter.lua": "406c1380eb7950860ad24e3df0a29c809e3e0af1ca8df02a8d1fcd7f98231cbc",
+    "tests/native_meter_skin.lua": "25197257562f4d2a6ceea790abc7c76b6ac253be21bc0d949ee1d5c9d1b991fc",
+    "tests/standalone_threat_meter.lua": "417648644d191e2c51c21852113fab4d553d7b1760f15981d767bf1dd3ddd29c"
+  },
+  "sourceDriftGuard": true,
+  "scope": "Desktop widget/opaque-display/lifecycle regression, not native secure VM, in-game taint, pixels, latency, CPU, memory/allocation or FPS acceptance. Baseline lacks the feature and its new regressions fail, so process times are not comparable performance evidence.",
+  "scenario": "Highest screen top then left across native and explicitly enabled owned Threat; native opaque SetText forwarding; native alpha/cache retirement; Threat-only observed-combat fallback with target, fight, hide and cleanup lifecycle; 500 reuse cycles.",
+  "configuration": "Lua 5.4.6 fresh fixture process per sample. Five alternating baseline/candidate pairs. Ordinary clock polls reuse the existing Threat 0.2s driver; no new ticker or native configuration calls.",
+  "warmup": "Each bounded script initializes module/widgets before its repeated loop; no additional warmup. Raw process wall time includes startup.",
+  "resourceCost": "One owned Threat FontString and at most one permanent guarded SetText posthook per native session timer; bounded cache per native window. Owned visibility hooks reuse the timer hook set. No new frames, events or tickers. Inactive hooks return without text forwarding.",
+  "nativeStatus": "Pending controlled fresh reload, actual actor/secret/taint/menu/appearance/combat tests. No game input, profiler or SavedVariables changes by this worker.",
+  "fallbackLimits": "Threat-only timer is ordinary elapsed time for observed player-combat intervals, cleared on combat exit/hide. Revealing mid-combat starts at first observation; no unseen start or native historical duration is invented. Native mirrors become current on their next natural SetText; no GetText/manual Refresh bootstrap.",
+  "pairs": [
+    {
+      "pair": 1,
+      "order": [
+        "baseline",
+        "candidate"
+      ],
+      "baseline": {
+        "skin": {
+          "command": [
+            "lua",
+            "tests/native_meter_skin.lua",
+            "C:\\Users\\mario\\.codex\\visualizations\\2026\\10\\29\\01a186ea-e332-79a1-9cdc-8e340df7e22b\\meter-threat-timer-bridge-20261106\\baseline\\FluxMeterSkin.lua"
+          ],
+          "exit": 1,
+          "wallSeconds": 0.08379970001988113,
+          "output": "FAIL explicitly enabled Threat clock initializes its header font before text\nFAIL Threat clock creation is required\nnative meter skin: 115 checks, 2 failures; no native secrets/rendering/taint emulated\nlua: tests/native_meter_skin.lua:647: native meter skin regressions\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/native_meter_skin.lua:647: in main chunk\n\t[C]: in ?\n"
+        },
+        "threat": {
+          "command": [
+            "lua",
+            "tests/standalone_threat_meter.lua",
+            "C:\\Users\\mario\\.codex\\visualizations\\2026\\10\\29\\01a186ea-e332-79a1-9cdc-8e340df7e22b\\meter-threat-timer-bridge-20261106\\baseline\\FluxThreatMeter.lua",
+            "C:\\Users\\mario\\.codex\\visualizations\\2026\\10\\29\\01a186ea-e332-79a1-9cdc-8e340df7e22b\\meter-threat-timer-bridge-20261106\\baseline\\FluxMeterSkin.lua"
+          ],
+          "exit": 1,
+          "wallSeconds": 2.465606099984143,
+          "output": "lua: tests/standalone_threat_meter.lua:6: Threat-only clock is font-ready and quiet before combat\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/standalone_threat_meter.lua:6: in local 'check'\n\ttests/standalone_threat_meter.lua:408: in main chunk\n\t[C]: in ?\n"
+        }
+      },
+      "candidate": {
+        "skin": {
+          "command": [
+            "lua",
+            "tests/native_meter_skin.lua",
+            "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\Battlezonemap\\FluxMeterSkin.lua"
+          ],
+          "exit": 0,
+          "wallSeconds": 0.08009519998449832,
+          "output": "native meter skin: 134 checks, 0 failures; no native secrets/rendering/taint emulated\n"
+        },
+        "threat": {
+          "command": [
+            "lua",
+            "tests/standalone_threat_meter.lua",
+            "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\Battlezonemap\\FluxThreatMeter.lua",
+            "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\Battlezonemap\\FluxMeterSkin.lua"
+          ],
+          "exit": 0,
+          "wallSeconds": 2.7274689999758266,
+          "output": "standalone threat meter: 85 checks passed; 500-event scans=1; raid facts=80; retained rows=80\n"
+        }
+      }
+    },
+    {
+      "pair": 2,
+      "order": [
+        "candidate",
+        "baseline"
+      ],
+      "candidate": {
+        "skin": {
+          "command": [
+            "lua",
+            "tests/native_meter_skin.lua",
+            "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\Battlezonemap\\FluxMeterSkin.lua"
+          ],
+          "exit": 0,
+          "wallSeconds": 0.0760219999938272,
+          "output": "native meter skin: 134 checks, 0 failures; no native secrets/rendering/taint emulated\n"
+        },
+        "threat": {
+          "command": [
+            "lua",
+            "tests/standalone_threat_meter.lua",
+            "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\Battlezonemap\\FluxThreatMeter.lua",
+            "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\Battlezonemap\\FluxMeterSkin.lua"
+          ],
+          "exit": 0,
+          "wallSeconds": 2.8406767999986187,
+          "output": "standalone threat meter: 85 checks passed; 500-event scans=1; raid facts=80; retained rows=80\n"
+        }
+      },
+      "baseline": {
+        "skin": {
+          "command": [
+            "lua",
+            "tests/native_meter_skin.lua",
+            "C:\\Users\\mario\\.codex\\visualizations\\2026\\10\\29\\01a186ea-e332-79a1-9cdc-8e340df7e22b\\meter-threat-timer-bridge-20261106\\baseline\\FluxMeterSkin.lua"
+          ],
+          "exit": 1,
+          "wallSeconds": 0.06300089997239411,
+          "output": "FAIL explicitly enabled Threat clock initializes its header font before text\nFAIL Threat clock creation is required\nnative meter skin: 115 checks, 2 failures; no native secrets/rendering/taint emulated\nlua: tests/native_meter_skin.lua:647: native meter skin regressions\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/native_meter_skin.lua:647: in main chunk\n\t[C]: in ?\n"
+        },
+        "threat": {
+          "command": [
+            "lua",
+            "tests/standalone_threat_meter.lua",
+            "C:\\Users\\mario\\.codex\\visualizations\\2026\\10\\29\\01a186ea-e332-79a1-9cdc-8e340df7e22b\\meter-threat-timer-bridge-20261106\\baseline\\FluxThreatMeter.lua",
+            "C:\\Users\\mario\\.codex\\visualizations\\2026\\10\\29\\01a186ea-e332-79a1-9cdc-8e340df7e22b\\meter-threat-timer-bridge-20261106\\baseline\\FluxMeterSkin.lua"
+          ],
+          "exit": 1,
+          "wallSeconds": 2.5393738000129815,
+          "output": "lua: tests/standalone_threat_meter.lua:6: Threat-only clock is font-ready and quiet before combat\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/standalone_threat_meter.lua:6: in local 'check'\n\ttests/standalone_threat_meter.lua:408: in main chunk\n\t[C]: in ?\n"
+        }
+      }
+    },
+    {
+      "pair": 3,
+      "order": [
+        "baseline",
+        "candidate"
+      ],
+      "baseline": {
+        "skin": {
+          "command": [
+            "lua",
+            "tests/native_meter_skin.lua",
+            "C:\\Users\\mario\\.codex\\visualizations\\2026\\10\\29\\01a186ea-e332-79a1-9cdc-8e340df7e22b\\meter-threat-timer-bridge-20261106\\baseline\\FluxMeterSkin.lua"
+          ],
+          "exit": 1,
+          "wallSeconds": 0.06122780000441708,
+          "output": "FAIL explicitly enabled Threat clock initializes its header font before text\nFAIL Threat clock creation is required\nnative meter skin: 115 checks, 2 failures; no native secrets/rendering/taint emulated\nlua: tests/native_meter_skin.lua:647: native meter skin regressions\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/native_meter_skin.lua:647: in main chunk\n\t[C]: in ?\n"
+        },
+        "threat": {
+          "command": [
+            "lua",
+            "tests/standalone_threat_meter.lua",
+            "C:\\Users\\mario\\.codex\\visualizations\\2026\\10\\29\\01a186ea-e332-79a1-9cdc-8e340df7e22b\\meter-threat-timer-bridge-20261106\\baseline\\FluxThreatMeter.lua",
+            "C:\\Users\\mario\\.codex\\visualizations\\2026\\10\\29\\01a186ea-e332-79a1-9cdc-8e340df7e22b\\meter-threat-timer-bridge-20261106\\baseline\\FluxMeterSkin.lua"
+          ],
+          "exit": 1,
+          "wallSeconds": 2.4822680999932345,
+          "output": "lua: tests/standalone_threat_meter.lua:6: Threat-only clock is font-ready and quiet before combat\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/standalone_threat_meter.lua:6: in local 'check'\n\ttests/standalone_threat_meter.lua:408: in main chunk\n\t[C]: in ?\n"
+        }
+      },
+      "candidate": {
+        "skin": {
+          "command": [
+            "lua",
+            "tests/native_meter_skin.lua",
+            "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\Battlezonemap\\FluxMeterSkin.lua"
+          ],
+          "exit": 0,
+          "wallSeconds": 0.07651220000116155,
+          "output": "native meter skin: 134 checks, 0 failures; no native secrets/rendering/taint emulated\n"
+        },
+        "threat": {
+          "command": [
+            "lua",
+            "tests/standalone_threat_meter.lua",
+            "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\Battlezonemap\\FluxThreatMeter.lua",
+            "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\Battlezonemap\\FluxMeterSkin.lua"
+          ],
+          "exit": 0,
+          "wallSeconds": 2.4603207999898586,
+          "output": "standalone threat meter: 85 checks passed; 500-event scans=1; raid facts=80; retained rows=80\n"
+        }
+      }
+    },
+    {
+      "pair": 4,
+      "order": [
+        "candidate",
+        "baseline"
+      ],
+      "candidate": {
+        "skin": {
+          "command": [
+            "lua",
+            "tests/native_meter_skin.lua",
+            "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\Battlezonemap\\FluxMeterSkin.lua"
+          ],
+          "exit": 0,
+          "wallSeconds": 0.08094939999864437,
+          "output": "native meter skin: 134 checks, 0 failures; no native secrets/rendering/taint emulated\n"
+        },
+        "threat": {
+          "command": [
+            "lua",
+            "tests/standalone_threat_meter.lua",
+            "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\Battlezonemap\\FluxThreatMeter.lua",
+            "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\Battlezonemap\\FluxMeterSkin.lua"
+          ],
+          "exit": 0,
+          "wallSeconds": 2.5957780000171624,
+          "output": "standalone threat meter: 85 checks passed; 500-event scans=1; raid facts=80; retained rows=80\n"
+        }
+      },
+      "baseline": {
+        "skin": {
+          "command": [
+            "lua",
+            "tests/native_meter_skin.lua",
+            "C:\\Users\\mario\\.codex\\visualizations\\2026\\10\\29\\01a186ea-e332-79a1-9cdc-8e340df7e22b\\meter-threat-timer-bridge-20261106\\baseline\\FluxMeterSkin.lua"
+          ],
+          "exit": 1,
+          "wallSeconds": 0.06004989999928512,
+          "output": "FAIL explicitly enabled Threat clock initializes its header font before text\nFAIL Threat clock creation is required\nnative meter skin: 115 checks, 2 failures; no native secrets/rendering/taint emulated\nlua: tests/native_meter_skin.lua:647: native meter skin regressions\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/native_meter_skin.lua:647: in main chunk\n\t[C]: in ?\n"
+        },
+        "threat": {
+          "command": [
+            "lua",
+            "tests/standalone_threat_meter.lua",
+            "C:\\Users\\mario\\.codex\\visualizations\\2026\\10\\29\\01a186ea-e332-79a1-9cdc-8e340df7e22b\\meter-threat-timer-bridge-20261106\\baseline\\FluxThreatMeter.lua",
+            "C:\\Users\\mario\\.codex\\visualizations\\2026\\10\\29\\01a186ea-e332-79a1-9cdc-8e340df7e22b\\meter-threat-timer-bridge-20261106\\baseline\\FluxMeterSkin.lua"
+          ],
+          "exit": 1,
+          "wallSeconds": 2.436665500019444,
+          "output": "lua: tests/standalone_threat_meter.lua:6: Threat-only clock is font-ready and quiet before combat\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/standalone_threat_meter.lua:6: in local 'check'\n\ttests/standalone_threat_meter.lua:408: in main chunk\n\t[C]: in ?\n"
+        }
+      }
+    },
+    {
+      "pair": 5,
+      "order": [
+        "baseline",
+        "candidate"
+      ],
+      "baseline": {
+        "skin": {
+          "command": [
+            "lua",
+            "tests/native_meter_skin.lua",
+            "C:\\Users\\mario\\.codex\\visualizations\\2026\\10\\29\\01a186ea-e332-79a1-9cdc-8e340df7e22b\\meter-threat-timer-bridge-20261106\\baseline\\FluxMeterSkin.lua"
+          ],
+          "exit": 1,
+          "wallSeconds": 0.06440479998127557,
+          "output": "FAIL explicitly enabled Threat clock initializes its header font before text\nFAIL Threat clock creation is required\nnative meter skin: 115 checks, 2 failures; no native secrets/rendering/taint emulated\nlua: tests/native_meter_skin.lua:647: native meter skin regressions\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/native_meter_skin.lua:647: in main chunk\n\t[C]: in ?\n"
+        },
+        "threat": {
+          "command": [
+            "lua",
+            "tests/standalone_threat_meter.lua",
+            "C:\\Users\\mario\\.codex\\visualizations\\2026\\10\\29\\01a186ea-e332-79a1-9cdc-8e340df7e22b\\meter-threat-timer-bridge-20261106\\baseline\\FluxThreatMeter.lua",
+            "C:\\Users\\mario\\.codex\\visualizations\\2026\\10\\29\\01a186ea-e332-79a1-9cdc-8e340df7e22b\\meter-threat-timer-bridge-20261106\\baseline\\FluxMeterSkin.lua"
+          ],
+          "exit": 1,
+          "wallSeconds": 2.5715743000037037,
+          "output": "lua: tests/standalone_threat_meter.lua:6: Threat-only clock is font-ready and quiet before combat\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/standalone_threat_meter.lua:6: in local 'check'\n\ttests/standalone_threat_meter.lua:408: in main chunk\n\t[C]: in ?\n"
+        }
+      },
+      "candidate": {
+        "skin": {
+          "command": [
+            "lua",
+            "tests/native_meter_skin.lua",
+            "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\Battlezonemap\\FluxMeterSkin.lua"
+          ],
+          "exit": 0,
+          "wallSeconds": 0.07267090000095777,
+          "output": "native meter skin: 134 checks, 0 failures; no native secrets/rendering/taint emulated\n"
+        },
+        "threat": {
+          "command": [
+            "lua",
+            "tests/standalone_threat_meter.lua",
+            "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\Battlezonemap\\FluxThreatMeter.lua",
+            "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\Battlezonemap\\FluxMeterSkin.lua"
+          ],
+          "exit": 0,
+          "wallSeconds": 2.597869499993976,
+          "output": "standalone threat meter: 85 checks passed; 500-event scans=1; raid facts=80; retained rows=80\n"
+        }
+      }
+    }
+  ],
+  "mutants": [
+    {
+      "name": "threat-never-competes",
+      "command": [
+        "lua",
+        "tests/native_meter_skin.lua",
+        "C:\\Users\\mario\\.codex\\visualizations\\2026\\10\\29\\01a186ea-e332-79a1-9cdc-8e340df7e22b\\meter-threat-timer-bridge-20261106\\mutant-threat-never-competes.lua"
+      ],
+      "exit": 1,
+      "wallSeconds": 0.08968689999892376,
+      "output": "FAIL Threat takes the single timer when it is leftmost on the highest row\nFAIL native formatted timer text is forwarded to Threat\nFAIL a lower-priority native donor cannot replace the selected clock\nFAIL opaque native text reaches only the owned display sink without inspection\nFAIL Threat above native panes wins even when positioned farther right\nFAIL Threat priority accounts for physical scale and reuses an opaque cached native payload\nFAIL ordinary fallback never overwrites a visible native donor\nFAIL Threat-only presentation uses its separately supplied ordinary-combat clock\nFAIL restoring a native donor immediately replaces the fallback\nFAIL unregistered owned panes do not compete with the explicit Threat timer\nnative meter skin: 134 checks, 10 failures; no native secrets/rendering/taint emulated\nlua: tests/native_meter_skin.lua:647: native meter skin regressions\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/native_meter_skin.lua:647: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "opaque-text-inspection",
+      "command": [
+        "lua",
+        "tests/native_meter_skin.lua",
+        "C:\\Users\\mario\\.codex\\visualizations\\2026\\10\\29\\01a186ea-e332-79a1-9cdc-8e340df7e22b\\meter-threat-timer-bridge-20261106\\mutant-opaque-text-inspection.lua"
+      ],
+      "exit": 1,
+      "wallSeconds": 0.08233989999280311,
+      "output": "lua: meter data/native ownership was accessed\nstack traceback:\n\t[C]: in function 'error'\n\ttests/native_meter_skin.lua:8: in function <tests/native_meter_skin.lua:8>\n\t[C]: in function 'tostring'\n\t...-timer-bridge-20261106\\mutant-opaque-text-inspection.lua:580: in local 'fn'\n\ttests/native_meter_skin.lua:583: in local 'emit'\n\ttests/native_meter_skin.lua:597: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "fallback-overwrites-native",
+      "command": [
+        "lua",
+        "tests/native_meter_skin.lua",
+        "C:\\Users\\mario\\.codex\\visualizations\\2026\\10\\29\\01a186ea-e332-79a1-9cdc-8e340df7e22b\\meter-threat-timer-bridge-20261106\\mutant-fallback-overwrites-native.lua"
+      ],
+      "exit": 1,
+      "wallSeconds": 0.08833560001221485,
+      "output": "FAIL ordinary fallback never overwrites a visible native donor\nnative meter skin: 134 checks, 1 failures; no native secrets/rendering/taint emulated\nlua: tests/native_meter_skin.lua:647: native meter skin regressions\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/native_meter_skin.lua:647: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "retired-native-hook-stays-active",
+      "command": [
+        "lua",
+        "tests/native_meter_skin.lua",
+        "C:\\Users\\mario\\.codex\\visualizations\\2026\\10\\29\\01a186ea-e332-79a1-9cdc-8e340df7e22b\\meter-threat-timer-bridge-20261106\\mutant-retired-native-hook-stays-active.lua"
+      ],
+      "exit": 1,
+      "wallSeconds": 0.09761060000164434,
+      "output": "FAIL retired native hooks cannot seed a later embedding with stale cached text\nnative meter skin: 134 checks, 1 failures; no native secrets/rendering/taint emulated\nlua: tests/native_meter_skin.lua:647: native meter skin regressions\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/native_meter_skin.lua:647: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "retain-stale-native-payload",
+      "command": [
+        "lua",
+        "tests/native_meter_skin.lua",
+        "C:\\Users\\mario\\.codex\\visualizations\\2026\\10\\29\\01a186ea-e332-79a1-9cdc-8e340df7e22b\\meter-threat-timer-bridge-20261106\\mutant-retain-stale-native-payload.lua"
+      ],
+      "exit": 1,
+      "wallSeconds": 0.09948199999053031,
+      "output": "FAIL retired native hooks cannot seed a later embedding with stale cached text\nnative meter skin: 134 checks, 1 failures; no native secrets/rendering/taint emulated\nlua: tests/native_meter_skin.lua:647: native meter skin regressions\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/native_meter_skin.lua:647: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "target-restarts-clock",
+      "command": [
+        "lua",
+        "tests/standalone_threat_meter.lua",
+        "C:\\Users\\mario\\.codex\\visualizations\\2026\\10\\29\\01a186ea-e332-79a1-9cdc-8e340df7e22b\\meter-threat-timer-bridge-20261106\\mutant-target-restarts-clock.lua",
+        "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\Battlezonemap\\FluxMeterSkin.lua"
+      ],
+      "exit": 1,
+      "wallSeconds": 2.7122792000009213,
+      "output": "lua: tests/standalone_threat_meter.lua:6: changing targets does not restart the current fight clock\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/standalone_threat_meter.lua:6: in local 'check'\n\ttests/standalone_threat_meter.lua:419: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "combat-exit-keeps-clock",
+      "command": [
+        "lua",
+        "tests/standalone_threat_meter.lua",
+        "C:\\Users\\mario\\.codex\\visualizations\\2026\\10\\29\\01a186ea-e332-79a1-9cdc-8e340df7e22b\\meter-threat-timer-bridge-20261106\\mutant-combat-exit-keeps-clock.lua",
+        "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\Battlezonemap\\FluxMeterSkin.lua"
+      ],
+      "exit": 1,
+      "wallSeconds": 2.4233190000231843,
+      "output": "lua: tests/standalone_threat_meter.lua:6: combat exit clears the clock and stops updates without scanning\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/standalone_threat_meter.lua:6: in local 'check'\n\ttests/standalone_threat_meter.lua:421: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "clock-adds-scan",
+      "command": [
+        "lua",
+        "tests/standalone_threat_meter.lua",
+        "C:\\Users\\mario\\.codex\\visualizations\\2026\\10\\29\\01a186ea-e332-79a1-9cdc-8e340df7e22b\\meter-threat-timer-bridge-20261106\\mutant-clock-adds-scan.lua",
+        "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\Battlezonemap\\FluxMeterSkin.lua"
+      ],
+      "exit": 1,
+      "wallSeconds": 0.04858629999216646,
+      "output": "lua: tests/standalone_threat_meter.lua:6: 500 events coalesce to one group and pet scan\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/standalone_threat_meter.lua:6: in local 'check'\n\ttests/standalone_threat_meter.lua:201: in main chunk\n\t[C]: in ?\n"
+    }
+  ],
+  "result": "PASS"
+}

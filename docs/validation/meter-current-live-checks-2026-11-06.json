@@ -1,0 +1,277 @@
+{
+  "utc": "2026-11-06T08:13:21.320460+00:00",
+  "scope": "Historical baseline/read-only and failed native-menu attempts, plus user-reported real native Current experiment, rejection/removal and required safe reload cleanup. Raw historical phases are retained.",
+  "desktopVisibilityCorrection": "Default sandbox process enumeration returns no desktop WoW process. Escalated enumeration sees the still-running prior Forever PID37088/HWND341447356. Prior process-closed inference was invalid; do not report a game exit from sandbox absence.",
+  "client": {
+    "executable": "F:\\World of Warcraft\\_forever_\\Wow.exe",
+    "pid": 37088,
+    "hwnd": 341447356,
+    "runtimeBuild": "1.60.1.70790",
+    "interface": 16001,
+    "installedRetailExecutable": "12.1.5.70783"
+  },
+  "diskPreferences": {
+    "foreverNativeFileSHA256": "fee05636585f85c88ff574d330af05db7093050b33bbeca9c1641ca341e7fd5e",
+    "foreverNativeFileMtimeUtc": "2026-11-06T07:55:10.345088+00:00",
+    "nativeTypes": [
+      0,
+      2,
+      2
+    ],
+    "nativeSessionTypes": [
+      0,
+      0,
+      0
+    ],
+    "shown": [
+      true,
+      true,
+      false
+    ],
+    "configCacheCVars": {
+      "damageMeterEnabled": "1",
+      "damageMeterResetOnNewInstance": "1"
+    },
+    "fluxLayout": "builtin:7",
+    "fluxActiveTab": 2,
+    "detailsPreference": "disabled",
+    "warning": "Saved disk preferences are not live state."
+  },
+  "liveReadState": {
+    "utc": "2026-11-06T08:05:58.3894295Z",
+    "sessionTypes": {
+      "1": 0,
+      "2": 0
+    },
+    "primaryEnum": "Overall=0 Current=1 Expired=2 at eac30af597e5aaa43a60f6675ef5fdcea100375f DamageMeterConstantsDocumentation.lua",
+    "activeTab": "Meter",
+    "detailsLoaded": false,
+    "bugTabsFirstReportedCount": 0,
+    "capture": "followup-read-state.png",
+    "transport": "Two completed read-only slash commands through exact-HWND PostMessage; same nongame foreground394470 before every message and afterbatch. Noactivation/physicalinput/clipboard/mouse."
+  },
+  "calibration": {
+    "uiParentSize": [
+      1949.0030517578,
+      1023.9999389648
+    ],
+    "uiParentEffectiveScale": 0.75,
+    "screenSize": [
+      1949.0030517578,
+      1023.9999389648
+    ],
+    "physicalScreenSize": [
+      1890,
+      993
+    ],
+    "windowsClientRect": [
+      0,
+      0,
+      1890,
+      993
+    ],
+    "windowsWindowRect": [
+      7,
+      0,
+      1913,
+      1032
+    ],
+    "dpi": 96,
+    "capture": "followup-calibrate-after-guard.png",
+    "submissionCaveat": "First calibrationquery was fullytyped207chars but finalEnterguardrefused when gamebecameforeground. Later client/user normal input submitted it; output is visible. RetryrefusedbeforefirstEnter0chars. No calibrationcommand is claimed fullysubmittedbyhelper."
+  },
+  "nativeMenuClientPositions": [
+    {
+      "windowIndex": 1,
+      "nativeRect": [
+        2366.2536621094,
+        330,
+        17.999994277954,
+        17.999994277954
+      ],
+      "nativeEffectiveScale": 0.60000002384186,
+      "clientPixelRect": [
+        1835.6952679220624,
+        723.0281026197462,
+        13.964058396515517,
+        13.964059448149262
+      ],
+      "roundedCenter": [
+        1843,
+        730
+      ]
+    },
+    {
+      "windowIndex": 2,
+      "nativeRect": [
+        2366.2536621094,
+        134.5,
+        17.999994277954,
+        18.000001335144
+      ],
+      "nativeEffectiveScale": 0.60000002384186,
+      "clientPixelRect": [
+        1835.6952679220624,
+        874.6933465865052,
+        13.964058396515517,
+        13.964064922985488
+      ],
+      "roundedCenter": [
+        1843,
+        882
+      ]
+    }
+  ],
+  "mouseHelper": "native-menu-background.ps1 prepared/capturemodeonly; no click executed by this agent. Root must review coordinates/current screenshot and retain foregroundguard.",
+  "nativeAcceptance": "FAIL: native Current call changed pane/owner/saved1/1/1 but tainted changed fields with _FluxUI, followed by ordinary native secret comparison failures. Safe removal is desktop-checked; loaded-state cleanup/native acceptance pending.",
+  "nativeUIAttempt": {
+    "preflight": "current-ui-handoff-preflight.png at08:19:57.8345919UTC",
+    "preflightGeometry": "Client1890x993 andWindow7,0,1913,1032unchanged",
+    "preflightVisual": "Stocknativepanesfloatingtop-left; FluxcustomUIabsentvisually. Actualaddonloadedstateunqueried.",
+    "error": "Agentcheckedgeometrybutfailedtoviewpreflightimagebeforeusingearliermenucoordinates; thiswasnotajustifiedcurrentnativehitregion.",
+    "input": {
+      "utc": "2026-11-06T08:20:18.5008368Z",
+      "mode": "click",
+      "pid": 37088,
+      "hwnd": 341447356,
+      "executable": "F:\\World of Warcraft\\_forever_\\Wow.exe",
+      "foregroundBefore": 394470,
+      "foregroundAfter": 394470,
+      "clientRect": {
+        "Left": 0,
+        "Top": 0,
+        "Right": 1890,
+        "Bottom": 993
+      },
+      "windowRect": {
+        "Left": 7,
+        "Top": 0,
+        "Right": 1913,
+        "Bottom": 1032
+      },
+      "dpi": 96,
+      "targetX": 1843,
+      "targetY": 730,
+      "messages": [
+        "0x200",
+        "0x201",
+        "0x202"
+      ],
+      "cursorBefore": {
+        "X": 957,
+        "Y": 797
+      },
+      "cursorAfter": {
+        "X": 957,
+        "Y": 797
+      },
+      "capture": "C:\\Users\\mario\\.codex\\visualizations\\2026\\10\\29\\01a186ea-e332-79a1-9cdc-8e340df7e22b\\meter-texture-live-20261106\\current-ui-handoff-only-try.png",
+      "captured": true,
+      "noActivationOrSystemInput": "Only target-window PostMessage for explicit click; no foreground activation, physical input, cursor setter, clipboard or Lua configuration calls."
+    },
+    "postCapture": "Loading screen; native menu not confirmed; no Current radio chosen.",
+    "result": "INCONCLUSIVE/FAILED native setup attempt; neither per-fight selection nor protected/native combat acceptance established.",
+    "nextAction": "No further agent input after the one bounded attempt; root notified immediately and owns next decision."
+  },
+  "rootMenuAttempts": "Three root attempts, including stable-background wait, were refused before any posted message. Final separate worker attempt posted three target-window messages at stale coordinates after the native layout had changed; it did not select Current. Input then stopped.",
+  "processVisibilityCorrection": "Earlier closed-client assertions came from sandbox-hidden processes, not a demonstrated exit. This evidence corrects the inference; old raw reports retain their original observations and limitations.",
+  "userReportSequence": [
+    {
+      "kind": "manual mode claim",
+      "result": "Both meters now use Current; initially user-confirmed only, not native verified."
+    },
+    {
+      "kind": "later exact /fbm status paste",
+      "result": "Damage Done: Overall; Healing Done: Overall. This supersedes the earlier multiple-choice claim."
+    },
+    {
+      "kind": "scratch /run diagnostic",
+      "FXD": "false *** ForceTaint_Strong ***",
+      "FXB": "false *** ForceTaint_Strong ***",
+      "interpretation": "No native UI/setting changed by this local scratch test. Strong RunScript result does not establish ordinary addon handler behavior."
+    },
+    {
+      "kind": "real native Current experiment and delayed ordinary errors",
+      "result": "pane/owner/saved1/1/1; changed-field metadata true->false with _FluxUI pane/owner provenance; BugTabs2/2; delayed11:20 specIconID535/durationSeconds929 errors. Native FAIL; operative route removed."
+    }
+  ],
+  "currentStatus": "Real experiment selected Current1/1/1 but tainted native fields; operative route rejected/removed. Automatic Current defaults for every existing/future meter remain OPEN/unsupported. Preserve saved data and use native UI after cleanup.",
+  "pendingCommand": "No operative experiment. Reload safe source for cleanup, then use out-of-combat native session selector beside left cog -> Current; Advanced AutoReset is new-instance reset. Legacy test commands only report UNSUPPORTED.",
+  "nativeCurrentExperimentFailure": {
+    "date": "2026-11-06",
+    "context": "User invoked the explicitly bounded FluxUI Current command in the real Forever70790 client; not a mock.",
+    "result": "FAIL / REJECTED",
+    "selectionAfter": {
+      "pane": 1,
+      "owner": 1,
+      "saved": 1
+    },
+    "changedFieldMetadata": {
+      "before": true,
+      "after": false,
+      "paneSource": "_FluxUI",
+      "ownerSource": "_FluxUI"
+    },
+    "bugTabsReportedCounts": [
+      2,
+      2
+    ],
+    "delayedOrdinaryNativeErrors": {
+      "reportedTime": "11:20",
+      "entries": [
+        {
+          "comparison": "specIconID",
+          "line": 535
+        },
+        {
+          "comparison": "durationSeconds",
+          "line": 929
+        }
+      ]
+    },
+    "interpretation": "Selection success does not establish a permitted/clean native configuration route. Later ordinary native secret failures reject the experiment despite original-owner metadata and desktop passes."
+  },
+  "safeRemoval": {
+    "operativeCode": "Entire native Current test/preflight/securecallmethod block removed.",
+    "currenttest": "Read-only UNSUPPORTED; no native operation.",
+    "currentteststatus": "Read-only UNSUPPORTED; no native operation.",
+    "noFurtherNativeExperiments": true,
+    "normalizedBackendSHA256": "c093068e4e1409f87684e2911ad8cf30874feba89222c8d591bb9ba184e74788",
+    "allFiveClientCopiesByteEqual": true,
+    "focusedDesktopChecks": {
+      "noOperationProvenance": 126,
+      "ownership": 561,
+      "core": "PASS"
+    },
+    "safeFullValidation": {
+      "result": "PASS",
+      "scripts": 166,
+      "syntaxFiles": 823,
+      "sourceDriftGuard": "unchanged, no changed/added/removed files",
+      "corpusSHA256": "826008fbce898c35a480e1f3752b1bb86e0eb59e71ecfad0d4c8247d369a8039",
+      "report": "validation/meter-rejected-current-removal-2026-11-06.json"
+    },
+    "requiredCleanup": "Reload safe synchronized source to clear retained tainted native objects, then verify loaded source/BugTabs/ordinary native refresh and combat. No settings/session/history reset.",
+    "nativeAcceptance": "PENDING; disk identity and desktop tests do not certify native cleanup, taint, rendering or combat.",
+    "captureAndInterruptedReload": {
+      "captureUtc": "2026-11-06T10:36:31Z",
+      "pid": 37088,
+      "hwnd": 341447356,
+      "backgroundAtCapture": true,
+      "meterVisible": true,
+      "reload": "Guard refused before any input after the game became foreground.",
+      "noAgentInitiatedReload": true,
+      "cleanedMemoryAcceptance": false,
+      "interpretation": "Safe disk identity/capture does not prove loaded safe code or clear prior native taint."
+    },
+    "verifiedClientCopies": [
+      "Era",
+      "Anniversary",
+      "MoP",
+      "Retail Midnight",
+      "Forever Camelot"
+    ],
+    "originalWrathNotIncluded": true,
+    "unusedHelperCleanup": "Final source removes the proven unused dead helper; no operative native configuration path remains."
+  }
+}

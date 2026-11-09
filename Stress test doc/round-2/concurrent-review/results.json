@@ -1,0 +1,185 @@
+{
+  "capturedUTC": "2026-11-07T15:45:24.988722+00:00",
+  "scope": "Four independently changed files, current PvP formatter/native helper model, unchanged DOM04 bodies. No runtime/test/settings/game writes; not a full current-addon pass.",
+  "changes": [
+    {
+      "path": "UnitFrames/FluxUnitFrames_Shared.lua",
+      "initialRound2SHA256": "8453242b58b9f2261e117a94d83bc8d9eedc76900ceab7b87f14331c43b65db1",
+      "reviewSnapshotSHA256": "001c9471de765d1a87d112a81210890754c93e0e2c6e9225633e29d9ace66312",
+      "changedFromInitialRound2": true,
+      "patch": "UnitFrames_FluxUnitFrames_Shared.lua.patch",
+      "attribution": "Independent changes, preserved; this audit issued no source/test writes"
+    },
+    {
+      "path": "UnitFrames/FluxUnitFrames_Party.lua",
+      "initialRound2SHA256": "ffbf502561fdbc94924563689d33a87700f116ee84e2fbcc16236e9639fb4568",
+      "reviewSnapshotSHA256": "ac0f1b747d7281852a8c2bf7fa9059a073f600869bffd047fa5f55a8feedabbc",
+      "changedFromInitialRound2": true,
+      "patch": "UnitFrames_FluxUnitFrames_Party.lua.patch",
+      "attribution": "Independent changes, preserved; this audit issued no source/test writes"
+    },
+    {
+      "path": "tests/raid_party_frames.lua",
+      "initialRound2SHA256": "0bcaff1bf094aec318612c6243c3e86144318c4d8eb090956d4c0ed695da9411",
+      "reviewSnapshotSHA256": "b8af0cfde2f043d14d2e868e6ca8f6a43f7c8aaf8fc98d0e798877d92ce96129",
+      "changedFromInitialRound2": true,
+      "patch": "tests_raid_party_frames.lua.patch",
+      "attribution": "Independent changes, preserved; this audit issued no source/test writes"
+    },
+    {
+      "path": "tests/unit_indicator_layout.lua",
+      "initialRound2SHA256": "83e374263c24e5087babe2585999d0be159957cb47a31b405bcf00b1e7d1d18c",
+      "reviewSnapshotSHA256": "ef558111e9363c5e14618640e905c333d44f66255b01be7c8d5aaf5db7451c69",
+      "changedFromInitialRound2": true,
+      "patch": "tests_unit_indicator_layout.lua.patch",
+      "attribution": "Independent changes, preserved; this audit issued no source/test writes"
+    }
+  ],
+  "DOM04Bodies": [
+    {
+      "body": "portrait",
+      "initialNormalizedSHA256": "9b34f4c031f69154f244e4e1bce3699e10eaea0d9c271bafbf807eff11a4712f",
+      "currentNormalizedSHA256": "9b34f4c031f69154f244e4e1bce3699e10eaea0d9c271bafbf807eff11a4712f",
+      "unchanged": true
+    },
+    {
+      "body": "threatRaise",
+      "initialNormalizedSHA256": "8fe98a8415c7d95cf9d25412a0350a0a6e5bcfe06c3ae0be6468077b4d88e97e",
+      "currentNormalizedSHA256": "8fe98a8415c7d95cf9d25412a0350a0a6e5bcfe06c3ae0be6468077b4d88e97e",
+      "unchanged": true
+    }
+  ],
+  "contracts": [
+    {
+      "path": "Interface/AddOns/Blizzard_UnitFrame/Shared/UnitFrameUtil.lua",
+      "gitBlob": "60d5da8b429c3ac397a39fa576ab939b1a6b08ab",
+      "localReferenceCommit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "note": "Forever checkout contains both Camelot/Mainline style paths; actual current Live equivalence requires root primary fetch verification."
+    },
+    {
+      "path": "Interface/AddOns/Blizzard_UnitFrame/Camelot/UnitFramePvPIndicatorStyle.lua",
+      "gitBlob": "8ff587eea815a5aa2cdbbfa6f11977b630ccf074",
+      "localReferenceCommit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "note": "Forever checkout contains both Camelot/Mainline style paths; actual current Live equivalence requires root primary fetch verification."
+    },
+    {
+      "path": "Interface/AddOns/Blizzard_UnitFrame/Mainline/UnitFramePvPIndicatorStyle.lua",
+      "gitBlob": "e5a493a35b1c3f70af9587618ae0d8d3fb5d11b7",
+      "localReferenceCommit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "note": "Forever checkout contains both Camelot/Mainline style paths; actual current Live equivalence requires root primary fetch verification."
+    }
+  ],
+  "tests": [
+    {
+      "command": [
+        "lua",
+        "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\Stress test doc\\round-2\\concurrent-review\\pvp_native_helper.lua.txt"
+      ],
+      "exit": 0,
+      "stdout": "NATIVE_HELPER_MODEL|live|native_style_and_prestige=PASS|mercenary_player_only=PASS|secret_sink_wrapping=PASS|visible_state_reads=0\nNATIVE_HELPER_MODEL|forever|native_style_and_prestige=PASS|mercenary_player_only=PASS|secret_sink_wrapping=PASS|visible_state_reads=0\nTOTAL|checks=888|native_helper_scenarios=192|native_secure_VM=NOT_EMULATED\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "lua",
+        "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\Stress test doc\\round-2\\concurrent-review\\paging_scope_control.lua.txt"
+      ],
+      "exit": 0,
+      "stdout": "PAGING_SCOPE|supported=false|combat=false|events=256|host_visits=14592|SetAttribute_calls=379392\nPAGING_SCOPE|supported=false|combat=true|events=256|host_visits=14592|SetAttribute_calls=0\nPAGING_SCOPE|supported=true|combat=false|events=256|host_visits=0|SetAttribute_calls=0\nPAGING_SCOPE|supported=true|combat=true|events=256|host_visits=14592|SetAttribute_calls=0\nCHECKS|8|native_paging_capability_capture=NOT_RUN\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "lua",
+        "Stress test doc/round-2/remaining-domains/frame_level_reads.lua.txt"
+      ],
+      "exit": 0,
+      "stdout": "OBSERVATION|R2-DOM-04|portrait_public_controls=PASS|normal_opaque_denial=1|combat_outer_opaque_denial=1|combat_root_opaque_denial=1|guarded_setter_opaque_operations=0\nOBSERVATION|R2-DOM-04|threat_public_control=PASS|border_opaque_denial=1|root_opaque_denial=1|native_reachability=NOT_OBSERVED\nCHECKS|11\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "lua",
+        "tests/unit_indicator_layout.lua"
+      ],
+      "exit": 0,
+      "stdout": "PASS 299 unit indicator state/art/layout checks (desktop only)\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "lua",
+        "tests/raid_party_frames.lua"
+      ],
+      "exit": 0,
+      "stdout": "Party player-style frames: 905 checks; five pinned secure handler models, combat roster/pet/anchor transitions; native visuals/input pending\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "lua",
+        "tests/restricted_driver_ownership.lua"
+      ],
+      "exit": 0,
+      "stdout": "restricted driver ownership: 264 checks passed (five client models; native taint pending)\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "lua",
+        "tests/unit_identity_feedback.lua"
+      ],
+      "exit": 0,
+      "stdout": "Unit identity feedback: 206 checks passed; three routing mutations rejected\n",
+      "stderr": ""
+    }
+  ],
+  "sourcesBefore": {
+    "UnitFrames/FluxUnitFrames_Shared.lua": "001c9471de765d1a87d112a81210890754c93e0e2c6e9225633e29d9ace66312",
+    "UnitFrames/FluxUnitFrames_Party.lua": "ac0f1b747d7281852a8c2bf7fa9059a073f600869bffd047fa5f55a8feedabbc",
+    "tests/raid_party_frames.lua": "b8af0cfde2f043d14d2e868e6ca8f6a43f7c8aaf8fc98d0e798877d92ce96129",
+    "tests/unit_indicator_layout.lua": "ef558111e9363c5e14618640e905c333d44f66255b01be7c8d5aaf5db7451c69"
+  },
+  "sourcesAfter": {
+    "UnitFrames/FluxUnitFrames_Shared.lua": "001c9471de765d1a87d112a81210890754c93e0e2c6e9225633e29d9ace66312",
+    "UnitFrames/FluxUnitFrames_Party.lua": "ac0f1b747d7281852a8c2bf7fa9059a073f600869bffd047fa5f55a8feedabbc",
+    "tests/raid_party_frames.lua": "b8af0cfde2f043d14d2e868e6ca8f6a43f7c8aaf8fc98d0e798877d92ce96129",
+    "tests/unit_indicator_layout.lua": "ef558111e9363c5e14618640e905c333d44f66255b01be7c8d5aaf5db7451c69"
+  },
+  "driftDuringProbe": [],
+  "dependencySourcesBefore": {
+    "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\Bars\\State.lua": "52f005c429b03e4d04495a6183f200323fa71e71ecd0127296b29f4aa0a9dfef",
+    "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\Bars\\SlotMath.lua": "b202149ea5bb73adc23124c7bf6b60221e729d42dc381b9f28176404e4042cb8",
+    "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\Bars\\Hosts.lua": "de7ca45aa37e19b8e6a1a7f17e990a7de577e80efd832160cc65396eea83aabf",
+    "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\Bars\\Watch.lua": "2a5e85c6a99a579d566f9728552cec22120dbf363a2e9fa1a4f0cbe9e76eb564",
+    "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\Core\\Engine\\Restricted.lua": "73413b82c0dd4c26770d82e3f0524200971a5a04288e6c67bc47b66f20c7f806",
+    "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\Stress test doc\\round-2\\modifier-storm\\consumer_budgets.lua.txt": "eb87c8ecf6e617f3d4fa5e4415536d76575528f3ffc7f8b36b6c16df99d1c95c",
+    "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\Stress test doc\\round-2\\remaining-domains\\frame_level_reads.lua.txt": "28b0ba832b1bea76d1099e85774431acee226d7764c77ec821c04bb3031987de",
+    "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\Stress test doc\\round-2\\concurrent-review\\paging_scope_control.lua.txt": "2b852753adf6853ad5545a35e47ffc302768281291494746c22fe4ea4207eb1b",
+    "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\Stress test doc\\round-2\\concurrent-review\\pvp_native_helper.lua.txt": "52186eb8c632f2f433fc7c6a7e2150cf3ea3ac93019425088268d29226aad303",
+    "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\Stress test doc\\round-2\\concurrent-review\\run_review.py": "7fc1e17d7a87b7ad209513f238a0d77ba75217034b5eeb5125154ccfb0e167cf",
+    "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\__AddonsForRef\\wow-ui-source-forever\\Interface\\AddOns\\Blizzard_UnitFrame\\Shared\\UnitFrameUtil.lua": "3ddaa2911a323fe8e60d39d46b16c9d38d72cf464ead468340c946133d849e0f",
+    "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\__AddonsForRef\\wow-ui-source-forever\\Interface\\AddOns\\Blizzard_UnitFrame\\Camelot\\UnitFramePvPIndicatorStyle.lua": "b5ba4573c395dd5ab9e69551872408839abd8a13a34fb9650457ab99e3e5aad1",
+    "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\__AddonsForRef\\wow-ui-source-forever\\Interface\\AddOns\\Blizzard_UnitFrame\\Mainline\\UnitFramePvPIndicatorStyle.lua": "b79e36bebd7578ce82941b356176eb4bed89a652772ffd96bf1b1900f3be1ab1"
+  },
+  "dependencySourcesAfter": {
+    "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\Bars\\State.lua": "52f005c429b03e4d04495a6183f200323fa71e71ecd0127296b29f4aa0a9dfef",
+    "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\Bars\\SlotMath.lua": "b202149ea5bb73adc23124c7bf6b60221e729d42dc381b9f28176404e4042cb8",
+    "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\Bars\\Hosts.lua": "de7ca45aa37e19b8e6a1a7f17e990a7de577e80efd832160cc65396eea83aabf",
+    "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\Bars\\Watch.lua": "2a5e85c6a99a579d566f9728552cec22120dbf363a2e9fa1a4f0cbe9e76eb564",
+    "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\Core\\Engine\\Restricted.lua": "73413b82c0dd4c26770d82e3f0524200971a5a04288e6c67bc47b66f20c7f806",
+    "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\Stress test doc\\round-2\\modifier-storm\\consumer_budgets.lua.txt": "eb87c8ecf6e617f3d4fa5e4415536d76575528f3ffc7f8b36b6c16df99d1c95c",
+    "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\Stress test doc\\round-2\\remaining-domains\\frame_level_reads.lua.txt": "28b0ba832b1bea76d1099e85774431acee226d7764c77ec821c04bb3031987de",
+    "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\Stress test doc\\round-2\\concurrent-review\\paging_scope_control.lua.txt": "2b852753adf6853ad5545a35e47ffc302768281291494746c22fe4ea4207eb1b",
+    "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\Stress test doc\\round-2\\concurrent-review\\pvp_native_helper.lua.txt": "52186eb8c632f2f433fc7c6a7e2150cf3ea3ac93019425088268d29226aad303",
+    "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\Stress test doc\\round-2\\concurrent-review\\run_review.py": "7fc1e17d7a87b7ad209513f238a0d77ba75217034b5eeb5125154ccfb0e167cf",
+    "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\__AddonsForRef\\wow-ui-source-forever\\Interface\\AddOns\\Blizzard_UnitFrame\\Shared\\UnitFrameUtil.lua": "3ddaa2911a323fe8e60d39d46b16c9d38d72cf464ead468340c946133d849e0f",
+    "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\__AddonsForRef\\wow-ui-source-forever\\Interface\\AddOns\\Blizzard_UnitFrame\\Camelot\\UnitFramePvPIndicatorStyle.lua": "b5ba4573c395dd5ab9e69551872408839abd8a13a34fb9650457ab99e3e5aad1",
+    "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\__AddonsForRef\\wow-ui-source-forever\\Interface\\AddOns\\Blizzard_UnitFrame\\Mainline\\UnitFramePvPIndicatorStyle.lua": "b79e36bebd7578ce82941b356176eb4bed89a652772ffd96bf1b1900f3be1ab1"
+  },
+  "dependencyDriftDuringProbe": [],
+  "allFocusedTestsPassed": true,
+  "nativeErrorsObserved": 0,
+  "newFaultEstablishedInPvpDelta": false,
+  "limits": "CreateSecureDelegate and secret wrapping are modeled, not native security permissions; opaque visibility isn't read. Pixel/secure/native timing and additional source updates remain pending. Earlier whole-addon byte preservation cannot be claimed."
+}

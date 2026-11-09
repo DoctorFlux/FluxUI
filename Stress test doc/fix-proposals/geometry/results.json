@@ -1,0 +1,1200 @@
+{
+  "captured_at_utc": "2026-11-07T12:46:57.800270+00:00",
+  "scope": "Exact production function fragments from frozen baseline/isolated candidate. Mock native StatusBar geometry and artificial opaque traps; no native secret VM, combat/taint or pixel certification.",
+  "selected_threat_cache_baseline_rejected_candidate_passed": true,
+  "selected_Shared_ready_to_apply_independently": false,
+  "selected_Shared_gate": "Matching patched winning LCG and its ownership/readiness checks; otherwise changed retry semantics could increase repeated failed starts.",
+  "GEO-01_ready_to_apply": false,
+  "GEO-01_native_span_rejected_by_counterexample": true,
+  "GEO-01_selected_geometry_change": false,
+  "candidate_syntax_exit": 0,
+  "candidate_syntax_output": "",
+  "sources_before": {
+    "baseline": "79d1d123ee4c628b706b6c8e6f0a102ebe0a87084e0908501f95d493042cb20f",
+    "candidate": "4ccc5fe4059984cd130b34c37143f658efd64981aa37f7aabea29d8fa90540c8",
+    "rejected_experiment": "9fabb80db04aa999802d9e11c749f8fcf69ac725a33222607f0bf7fff4dddeb6"
+  },
+  "sources_after": {
+    "baseline": "79d1d123ee4c628b706b6c8e6f0a102ebe0a87084e0908501f95d493042cb20f",
+    "candidate": "4ccc5fe4059984cd130b34c37143f658efd64981aa37f7aabea29d8fa90540c8",
+    "rejected_experiment": "9fabb80db04aa999802d9e11c749f8fcf69ac725a33222607f0bf7fff4dddeb6"
+  },
+  "live_Shared_sha256_before": "79d1d123ee4c628b706b6c8e6f0a102ebe0a87084e0908501f95d493042cb20f",
+  "live_Shared_sha256_after": "79d1d123ee4c628b706b6c8e6f0a102ebe0a87084e0908501f95d493042cb20f",
+  "live_Shared_unchanged_during_test": true,
+  "GEO-02_source_unchanged": true,
+  "contracts": [
+    {
+      "name": "UnitHealPredictionCalculatorAPIDocumentation.lua",
+      "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "gitBlob": "9c7649e2d5b0d59a453d98eac14089541b166d2a",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_APIDocumentationGenerated/UnitHealPredictionCalculatorAPIDocumentation.lua",
+      "normalized_local_blob": "9c7649e2d5b0d59a453d98eac14089541b166d2a",
+      "matches_current_pin": true
+    },
+    {
+      "name": "UnitHealPredictionCalculatorSharedDocumentation.lua",
+      "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "gitBlob": "821b84bd32f9a401d8f84d65a9cdd4040604ccbb",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_APIDocumentationGenerated/UnitHealPredictionCalculatorSharedDocumentation.lua",
+      "normalized_local_blob": "821b84bd32f9a401d8f84d65a9cdd4040604ccbb",
+      "matches_current_pin": true
+    },
+    {
+      "name": "SimpleStatusBarAPIDocumentation.lua",
+      "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "gitBlob": "99dd0b3ad25e5bdf33bfeb9d694652b6badfeb90",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleStatusBarAPIDocumentation.lua",
+      "normalized_local_blob": "99dd0b3ad25e5bdf33bfeb9d694652b6badfeb90",
+      "matches_current_pin": true
+    },
+    {
+      "name": "SimpleTextureBaseAPIDocumentation.lua",
+      "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "gitBlob": "adc0caeaeba3c941e9c2d31c9fa644d102054edf",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleTextureBaseAPIDocumentation.lua",
+      "normalized_local_blob": "adc0caeaeba3c941e9c2d31c9fa644d102054edf",
+      "matches_current_pin": true
+    }
+  ],
+  "candidate_path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\07\\01a1b5b8-1789-7050-b49c-88d0a742e874\\fix-proposals-20261107T122821Z\\candidates\\geometry\\UnitFrames\\FluxUnitFrames_Shared.lua",
+  "rejected_experiment_path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\07\\01a1b5b8-1789-7050-b49c-88d0a742e874\\fix-proposals-20261107T122821Z\\experiments\\geometry-native-span\\UnitFrames\\FluxUnitFrames_Shared.lua",
+  "tests": [
+    {
+      "variant": "baseline_geometry",
+      "repetition": 1,
+      "exit_code": 1,
+      "metrics": [
+        {
+          "kind": "RESULT",
+          "case": "forward_geometry_grid",
+          "public_cases": 300,
+          "opaque_cases": 300,
+          "opaque_rejections": 300,
+          "scenarios": 600
+        },
+        {
+          "kind": "RESULT",
+          "case": "layer_controls_era",
+          "layered_public": "PASS",
+          "dead": "PASS",
+          "disabled": "PASS"
+        },
+        {
+          "kind": "RESULT",
+          "case": "layer_controls_anniversary",
+          "layered_public": "PASS",
+          "dead": "PASS",
+          "disabled": "PASS"
+        },
+        {
+          "kind": "RESULT",
+          "case": "layer_controls_live",
+          "layered_public": "PASS",
+          "dead": "PASS",
+          "disabled": "PASS"
+        },
+        {
+          "kind": "RESULT",
+          "case": "layer_controls_forever",
+          "layered_public": "PASS",
+          "dead": "PASS",
+          "disabled": "PASS"
+        },
+        {
+          "kind": "RESULT",
+          "case": "rebind_updates",
+          "updates_requested": 1000,
+          "all_accepted": false
+        },
+        {
+          "kind": "RESULT",
+          "case": "older_public_calculator",
+          "original_public_path_preserved": true
+        },
+        {
+          "kind": "LIMIT",
+          "case": "missing_calculator_method",
+          "explicit_unsupported": false,
+          "accepted": false
+        },
+        {
+          "kind": "LIMIT",
+          "case": "other_prediction_bar_secret_width",
+          "still_unresolved": true
+        },
+        {
+          "kind": "RESULT",
+          "case": "threat_cache_commit",
+          "start_attempts": 1,
+          "raise_calls": 3,
+          "stop_calls": 2
+        },
+        {
+          "kind": "LIMIT",
+          "case": "desynchronized_health_fill",
+          "drawn_health": 60,
+          "calculator_health": 40,
+          "old_filled_extent": 50,
+          "observed_filled_extent": "50.00000000",
+          "matches_existing": true
+        },
+        {
+          "kind": "RESULT",
+          "case": "SUMMARY",
+          "checks": 2072,
+          "failures": 304,
+          "pending_geometry_boundaries": 1
+        }
+      ],
+      "stdout": "FAIL|live painter must accept opaque geometry\nFAIL|live painter must accept opaque geometry\nFAIL|live painter must accept opaque geometry\nFAIL|live painter must accept opaque geometry\nFAIL|live painter must accept opaque geometry\nFAIL|live painter must accept opaque geometry\nFAIL|live painter must accept opaque geometry\nFAIL|live painter must accept opaque geometry\nFAIL|live painter must accept opaque geometry\nFAIL|live painter must accept opaque geometry\nFAIL|live painter must accept opaque geometry\nRESULT|forward_geometry_grid|public_cases=300|opaque_cases=300|opaque_rejections=300|scenarios=600\nRESULT|layer_controls_era|layered_public=PASS|dead=PASS|disabled=PASS\nRESULT|layer_controls_anniversary|layered_public=PASS|dead=PASS|disabled=PASS\nRESULT|layer_controls_live|layered_public=PASS|dead=PASS|disabled=PASS\nRESULT|layer_controls_forever|layered_public=PASS|dead=PASS|disabled=PASS\nRESULT|rebind_updates|updates_requested=1000|all_accepted=false\nRESULT|older_public_calculator|original_public_path_preserved=true\nLIMIT|missing_calculator_method|explicit_unsupported=false|accepted=false\nLIMIT|other_prediction_bar_secret_width|still_unresolved=true\nRESULT|threat_cache_commit|start_attempts=1|raise_calls=3|stop_calls=2\nLIMIT|desynchronized_health_fill|drawn_health=60|calculator_health=40|old_filled_extent=50|observed_filled_extent=50.00000000|matches_existing=true\nRESULT|SUMMARY|checks=2072|failures=304|pending_geometry_boundaries=1\n",
+      "stderr": ""
+    },
+    {
+      "variant": "native_span_experiment",
+      "repetition": 1,
+      "exit_code": 0,
+      "metrics": [
+        {
+          "kind": "RESULT",
+          "case": "forward_geometry_grid",
+          "public_cases": 300,
+          "opaque_cases": 300,
+          "opaque_rejections": 0,
+          "scenarios": 600
+        },
+        {
+          "kind": "RESULT",
+          "case": "layer_controls_era",
+          "layered_public": "PASS",
+          "dead": "PASS",
+          "disabled": "PASS"
+        },
+        {
+          "kind": "RESULT",
+          "case": "layer_controls_anniversary",
+          "layered_public": "PASS",
+          "dead": "PASS",
+          "disabled": "PASS"
+        },
+        {
+          "kind": "RESULT",
+          "case": "layer_controls_live",
+          "layered_public": "PASS",
+          "dead": "PASS",
+          "disabled": "PASS"
+        },
+        {
+          "kind": "RESULT",
+          "case": "layer_controls_forever",
+          "layered_public": "PASS",
+          "dead": "PASS",
+          "disabled": "PASS"
+        },
+        {
+          "kind": "RESULT",
+          "case": "rebind_updates",
+          "updates_requested": 1000,
+          "all_accepted": true
+        },
+        {
+          "kind": "RESULT",
+          "case": "older_public_calculator",
+          "original_public_path_preserved": true
+        },
+        {
+          "kind": "LIMIT",
+          "case": "missing_calculator_method",
+          "explicit_unsupported": true,
+          "accepted": false
+        },
+        {
+          "kind": "LIMIT",
+          "case": "other_prediction_bar_secret_width",
+          "still_unresolved": true
+        },
+        {
+          "kind": "RESULT",
+          "case": "threat_cache_commit",
+          "start_attempts": 2,
+          "raise_calls": 3,
+          "stop_calls": 2
+        },
+        {
+          "kind": "LIMIT",
+          "case": "desynchronized_health_fill",
+          "drawn_health": 60,
+          "calculator_health": 40,
+          "old_filled_extent": 50,
+          "observed_filled_extent": "33.33333333",
+          "matches_existing": false
+        },
+        {
+          "kind": "RESULT",
+          "case": "SUMMARY",
+          "checks": 4453,
+          "failures": 0,
+          "pending_geometry_boundaries": 1
+        }
+      ],
+      "stdout": "RESULT|forward_geometry_grid|public_cases=300|opaque_cases=300|opaque_rejections=0|scenarios=600\nRESULT|layer_controls_era|layered_public=PASS|dead=PASS|disabled=PASS\nRESULT|layer_controls_anniversary|layered_public=PASS|dead=PASS|disabled=PASS\nRESULT|layer_controls_live|layered_public=PASS|dead=PASS|disabled=PASS\nRESULT|layer_controls_forever|layered_public=PASS|dead=PASS|disabled=PASS\nRESULT|rebind_updates|updates_requested=1000|all_accepted=true\nRESULT|older_public_calculator|original_public_path_preserved=true\nLIMIT|missing_calculator_method|explicit_unsupported=true|accepted=false\nLIMIT|other_prediction_bar_secret_width|still_unresolved=true\nRESULT|threat_cache_commit|start_attempts=2|raise_calls=3|stop_calls=2\nLIMIT|desynchronized_health_fill|drawn_health=60|calculator_health=40|old_filled_extent=50|observed_filled_extent=33.33333333|matches_existing=false\nRESULT|SUMMARY|checks=4453|failures=0|pending_geometry_boundaries=1\n",
+      "stderr": ""
+    },
+    {
+      "variant": "baseline_threat",
+      "repetition": 1,
+      "exit_code": 1,
+      "metrics": [
+        {
+          "kind": "RESULT",
+          "case": "threat_cache_commit",
+          "start_attempts": 1,
+          "raise_calls": 3,
+          "stop_calls": 2
+        },
+        {
+          "kind": "RESULT",
+          "case": "SUMMARY",
+          "checks": 5,
+          "failures": 2,
+          "pending_geometry_boundaries": 0
+        }
+      ],
+      "stdout": "FAIL|failed glow preserves old band\nFAIL|same band retries after failure and commits after success\nRESULT|threat_cache_commit|start_attempts=1|raise_calls=3|stop_calls=2\nRESULT|SUMMARY|checks=5|failures=2|pending_geometry_boundaries=0\n",
+      "stderr": ""
+    },
+    {
+      "variant": "selected_threat",
+      "repetition": 1,
+      "exit_code": 0,
+      "metrics": [
+        {
+          "kind": "RESULT",
+          "case": "threat_cache_commit",
+          "start_attempts": 2,
+          "raise_calls": 3,
+          "stop_calls": 2
+        },
+        {
+          "kind": "RESULT",
+          "case": "SUMMARY",
+          "checks": 6,
+          "failures": 0,
+          "pending_geometry_boundaries": 0
+        }
+      ],
+      "stdout": "RESULT|threat_cache_commit|start_attempts=2|raise_calls=3|stop_calls=2\nRESULT|SUMMARY|checks=6|failures=0|pending_geometry_boundaries=0\n",
+      "stderr": ""
+    },
+    {
+      "variant": "baseline_geometry",
+      "repetition": 2,
+      "exit_code": 1,
+      "metrics": [
+        {
+          "kind": "RESULT",
+          "case": "forward_geometry_grid",
+          "public_cases": 300,
+          "opaque_cases": 300,
+          "opaque_rejections": 300,
+          "scenarios": 600
+        },
+        {
+          "kind": "RESULT",
+          "case": "layer_controls_era",
+          "layered_public": "PASS",
+          "dead": "PASS",
+          "disabled": "PASS"
+        },
+        {
+          "kind": "RESULT",
+          "case": "layer_controls_anniversary",
+          "layered_public": "PASS",
+          "dead": "PASS",
+          "disabled": "PASS"
+        },
+        {
+          "kind": "RESULT",
+          "case": "layer_controls_live",
+          "layered_public": "PASS",
+          "dead": "PASS",
+          "disabled": "PASS"
+        },
+        {
+          "kind": "RESULT",
+          "case": "layer_controls_forever",
+          "layered_public": "PASS",
+          "dead": "PASS",
+          "disabled": "PASS"
+        },
+        {
+          "kind": "RESULT",
+          "case": "rebind_updates",
+          "updates_requested": 1000,
+          "all_accepted": false
+        },
+        {
+          "kind": "RESULT",
+          "case": "older_public_calculator",
+          "original_public_path_preserved": true
+        },
+        {
+          "kind": "LIMIT",
+          "case": "missing_calculator_method",
+          "explicit_unsupported": false,
+          "accepted": false
+        },
+        {
+          "kind": "LIMIT",
+          "case": "other_prediction_bar_secret_width",
+          "still_unresolved": true
+        },
+        {
+          "kind": "RESULT",
+          "case": "threat_cache_commit",
+          "start_attempts": 1,
+          "raise_calls": 3,
+          "stop_calls": 2
+        },
+        {
+          "kind": "LIMIT",
+          "case": "desynchronized_health_fill",
+          "drawn_health": 60,
+          "calculator_health": 40,
+          "old_filled_extent": 50,
+          "observed_filled_extent": "50.00000000",
+          "matches_existing": true
+        },
+        {
+          "kind": "RESULT",
+          "case": "SUMMARY",
+          "checks": 2072,
+          "failures": 304,
+          "pending_geometry_boundaries": 1
+        }
+      ],
+      "stdout": "FAIL|live painter must accept opaque geometry\nFAIL|live painter must accept opaque geometry\nFAIL|live painter must accept opaque geometry\nFAIL|live painter must accept opaque geometry\nFAIL|live painter must accept opaque geometry\nFAIL|live painter must accept opaque geometry\nFAIL|live painter must accept opaque geometry\nFAIL|live painter must accept opaque geometry\nFAIL|live painter must accept opaque geometry\nFAIL|live painter must accept opaque geometry\nFAIL|live painter must accept opaque geometry\nRESULT|forward_geometry_grid|public_cases=300|opaque_cases=300|opaque_rejections=300|scenarios=600\nRESULT|layer_controls_era|layered_public=PASS|dead=PASS|disabled=PASS\nRESULT|layer_controls_anniversary|layered_public=PASS|dead=PASS|disabled=PASS\nRESULT|layer_controls_live|layered_public=PASS|dead=PASS|disabled=PASS\nRESULT|layer_controls_forever|layered_public=PASS|dead=PASS|disabled=PASS\nRESULT|rebind_updates|updates_requested=1000|all_accepted=false\nRESULT|older_public_calculator|original_public_path_preserved=true\nLIMIT|missing_calculator_method|explicit_unsupported=false|accepted=false\nLIMIT|other_prediction_bar_secret_width|still_unresolved=true\nRESULT|threat_cache_commit|start_attempts=1|raise_calls=3|stop_calls=2\nLIMIT|desynchronized_health_fill|drawn_health=60|calculator_health=40|old_filled_extent=50|observed_filled_extent=50.00000000|matches_existing=true\nRESULT|SUMMARY|checks=2072|failures=304|pending_geometry_boundaries=1\n",
+      "stderr": ""
+    },
+    {
+      "variant": "native_span_experiment",
+      "repetition": 2,
+      "exit_code": 0,
+      "metrics": [
+        {
+          "kind": "RESULT",
+          "case": "forward_geometry_grid",
+          "public_cases": 300,
+          "opaque_cases": 300,
+          "opaque_rejections": 0,
+          "scenarios": 600
+        },
+        {
+          "kind": "RESULT",
+          "case": "layer_controls_era",
+          "layered_public": "PASS",
+          "dead": "PASS",
+          "disabled": "PASS"
+        },
+        {
+          "kind": "RESULT",
+          "case": "layer_controls_anniversary",
+          "layered_public": "PASS",
+          "dead": "PASS",
+          "disabled": "PASS"
+        },
+        {
+          "kind": "RESULT",
+          "case": "layer_controls_live",
+          "layered_public": "PASS",
+          "dead": "PASS",
+          "disabled": "PASS"
+        },
+        {
+          "kind": "RESULT",
+          "case": "layer_controls_forever",
+          "layered_public": "PASS",
+          "dead": "PASS",
+          "disabled": "PASS"
+        },
+        {
+          "kind": "RESULT",
+          "case": "rebind_updates",
+          "updates_requested": 1000,
+          "all_accepted": true
+        },
+        {
+          "kind": "RESULT",
+          "case": "older_public_calculator",
+          "original_public_path_preserved": true
+        },
+        {
+          "kind": "LIMIT",
+          "case": "missing_calculator_method",
+          "explicit_unsupported": true,
+          "accepted": false
+        },
+        {
+          "kind": "LIMIT",
+          "case": "other_prediction_bar_secret_width",
+          "still_unresolved": true
+        },
+        {
+          "kind": "RESULT",
+          "case": "threat_cache_commit",
+          "start_attempts": 2,
+          "raise_calls": 3,
+          "stop_calls": 2
+        },
+        {
+          "kind": "LIMIT",
+          "case": "desynchronized_health_fill",
+          "drawn_health": 60,
+          "calculator_health": 40,
+          "old_filled_extent": 50,
+          "observed_filled_extent": "33.33333333",
+          "matches_existing": false
+        },
+        {
+          "kind": "RESULT",
+          "case": "SUMMARY",
+          "checks": 4453,
+          "failures": 0,
+          "pending_geometry_boundaries": 1
+        }
+      ],
+      "stdout": "RESULT|forward_geometry_grid|public_cases=300|opaque_cases=300|opaque_rejections=0|scenarios=600\nRESULT|layer_controls_era|layered_public=PASS|dead=PASS|disabled=PASS\nRESULT|layer_controls_anniversary|layered_public=PASS|dead=PASS|disabled=PASS\nRESULT|layer_controls_live|layered_public=PASS|dead=PASS|disabled=PASS\nRESULT|layer_controls_forever|layered_public=PASS|dead=PASS|disabled=PASS\nRESULT|rebind_updates|updates_requested=1000|all_accepted=true\nRESULT|older_public_calculator|original_public_path_preserved=true\nLIMIT|missing_calculator_method|explicit_unsupported=true|accepted=false\nLIMIT|other_prediction_bar_secret_width|still_unresolved=true\nRESULT|threat_cache_commit|start_attempts=2|raise_calls=3|stop_calls=2\nLIMIT|desynchronized_health_fill|drawn_health=60|calculator_health=40|old_filled_extent=50|observed_filled_extent=33.33333333|matches_existing=false\nRESULT|SUMMARY|checks=4453|failures=0|pending_geometry_boundaries=1\n",
+      "stderr": ""
+    },
+    {
+      "variant": "baseline_threat",
+      "repetition": 2,
+      "exit_code": 1,
+      "metrics": [
+        {
+          "kind": "RESULT",
+          "case": "threat_cache_commit",
+          "start_attempts": 1,
+          "raise_calls": 3,
+          "stop_calls": 2
+        },
+        {
+          "kind": "RESULT",
+          "case": "SUMMARY",
+          "checks": 5,
+          "failures": 2,
+          "pending_geometry_boundaries": 0
+        }
+      ],
+      "stdout": "FAIL|failed glow preserves old band\nFAIL|same band retries after failure and commits after success\nRESULT|threat_cache_commit|start_attempts=1|raise_calls=3|stop_calls=2\nRESULT|SUMMARY|checks=5|failures=2|pending_geometry_boundaries=0\n",
+      "stderr": ""
+    },
+    {
+      "variant": "selected_threat",
+      "repetition": 2,
+      "exit_code": 0,
+      "metrics": [
+        {
+          "kind": "RESULT",
+          "case": "threat_cache_commit",
+          "start_attempts": 2,
+          "raise_calls": 3,
+          "stop_calls": 2
+        },
+        {
+          "kind": "RESULT",
+          "case": "SUMMARY",
+          "checks": 6,
+          "failures": 0,
+          "pending_geometry_boundaries": 0
+        }
+      ],
+      "stdout": "RESULT|threat_cache_commit|start_attempts=2|raise_calls=3|stop_calls=2\nRESULT|SUMMARY|checks=6|failures=0|pending_geometry_boundaries=0\n",
+      "stderr": ""
+    },
+    {
+      "variant": "baseline_geometry",
+      "repetition": 3,
+      "exit_code": 1,
+      "metrics": [
+        {
+          "kind": "RESULT",
+          "case": "forward_geometry_grid",
+          "public_cases": 300,
+          "opaque_cases": 300,
+          "opaque_rejections": 300,
+          "scenarios": 600
+        },
+        {
+          "kind": "RESULT",
+          "case": "layer_controls_era",
+          "layered_public": "PASS",
+          "dead": "PASS",
+          "disabled": "PASS"
+        },
+        {
+          "kind": "RESULT",
+          "case": "layer_controls_anniversary",
+          "layered_public": "PASS",
+          "dead": "PASS",
+          "disabled": "PASS"
+        },
+        {
+          "kind": "RESULT",
+          "case": "layer_controls_live",
+          "layered_public": "PASS",
+          "dead": "PASS",
+          "disabled": "PASS"
+        },
+        {
+          "kind": "RESULT",
+          "case": "layer_controls_forever",
+          "layered_public": "PASS",
+          "dead": "PASS",
+          "disabled": "PASS"
+        },
+        {
+          "kind": "RESULT",
+          "case": "rebind_updates",
+          "updates_requested": 1000,
+          "all_accepted": false
+        },
+        {
+          "kind": "RESULT",
+          "case": "older_public_calculator",
+          "original_public_path_preserved": true
+        },
+        {
+          "kind": "LIMIT",
+          "case": "missing_calculator_method",
+          "explicit_unsupported": false,
+          "accepted": false
+        },
+        {
+          "kind": "LIMIT",
+          "case": "other_prediction_bar_secret_width",
+          "still_unresolved": true
+        },
+        {
+          "kind": "RESULT",
+          "case": "threat_cache_commit",
+          "start_attempts": 1,
+          "raise_calls": 3,
+          "stop_calls": 2
+        },
+        {
+          "kind": "LIMIT",
+          "case": "desynchronized_health_fill",
+          "drawn_health": 60,
+          "calculator_health": 40,
+          "old_filled_extent": 50,
+          "observed_filled_extent": "50.00000000",
+          "matches_existing": true
+        },
+        {
+          "kind": "RESULT",
+          "case": "SUMMARY",
+          "checks": 2072,
+          "failures": 304,
+          "pending_geometry_boundaries": 1
+        }
+      ],
+      "stdout": "FAIL|live painter must accept opaque geometry\nFAIL|live painter must accept opaque geometry\nFAIL|live painter must accept opaque geometry\nFAIL|live painter must accept opaque geometry\nFAIL|live painter must accept opaque geometry\nFAIL|live painter must accept opaque geometry\nFAIL|live painter must accept opaque geometry\nFAIL|live painter must accept opaque geometry\nFAIL|live painter must accept opaque geometry\nFAIL|live painter must accept opaque geometry\nFAIL|live painter must accept opaque geometry\nRESULT|forward_geometry_grid|public_cases=300|opaque_cases=300|opaque_rejections=300|scenarios=600\nRESULT|layer_controls_era|layered_public=PASS|dead=PASS|disabled=PASS\nRESULT|layer_controls_anniversary|layered_public=PASS|dead=PASS|disabled=PASS\nRESULT|layer_controls_live|layered_public=PASS|dead=PASS|disabled=PASS\nRESULT|layer_controls_forever|layered_public=PASS|dead=PASS|disabled=PASS\nRESULT|rebind_updates|updates_requested=1000|all_accepted=false\nRESULT|older_public_calculator|original_public_path_preserved=true\nLIMIT|missing_calculator_method|explicit_unsupported=false|accepted=false\nLIMIT|other_prediction_bar_secret_width|still_unresolved=true\nRESULT|threat_cache_commit|start_attempts=1|raise_calls=3|stop_calls=2\nLIMIT|desynchronized_health_fill|drawn_health=60|calculator_health=40|old_filled_extent=50|observed_filled_extent=50.00000000|matches_existing=true\nRESULT|SUMMARY|checks=2072|failures=304|pending_geometry_boundaries=1\n",
+      "stderr": ""
+    },
+    {
+      "variant": "native_span_experiment",
+      "repetition": 3,
+      "exit_code": 0,
+      "metrics": [
+        {
+          "kind": "RESULT",
+          "case": "forward_geometry_grid",
+          "public_cases": 300,
+          "opaque_cases": 300,
+          "opaque_rejections": 0,
+          "scenarios": 600
+        },
+        {
+          "kind": "RESULT",
+          "case": "layer_controls_era",
+          "layered_public": "PASS",
+          "dead": "PASS",
+          "disabled": "PASS"
+        },
+        {
+          "kind": "RESULT",
+          "case": "layer_controls_anniversary",
+          "layered_public": "PASS",
+          "dead": "PASS",
+          "disabled": "PASS"
+        },
+        {
+          "kind": "RESULT",
+          "case": "layer_controls_live",
+          "layered_public": "PASS",
+          "dead": "PASS",
+          "disabled": "PASS"
+        },
+        {
+          "kind": "RESULT",
+          "case": "layer_controls_forever",
+          "layered_public": "PASS",
+          "dead": "PASS",
+          "disabled": "PASS"
+        },
+        {
+          "kind": "RESULT",
+          "case": "rebind_updates",
+          "updates_requested": 1000,
+          "all_accepted": true
+        },
+        {
+          "kind": "RESULT",
+          "case": "older_public_calculator",
+          "original_public_path_preserved": true
+        },
+        {
+          "kind": "LIMIT",
+          "case": "missing_calculator_method",
+          "explicit_unsupported": true,
+          "accepted": false
+        },
+        {
+          "kind": "LIMIT",
+          "case": "other_prediction_bar_secret_width",
+          "still_unresolved": true
+        },
+        {
+          "kind": "RESULT",
+          "case": "threat_cache_commit",
+          "start_attempts": 2,
+          "raise_calls": 3,
+          "stop_calls": 2
+        },
+        {
+          "kind": "LIMIT",
+          "case": "desynchronized_health_fill",
+          "drawn_health": 60,
+          "calculator_health": 40,
+          "old_filled_extent": 50,
+          "observed_filled_extent": "33.33333333",
+          "matches_existing": false
+        },
+        {
+          "kind": "RESULT",
+          "case": "SUMMARY",
+          "checks": 4453,
+          "failures": 0,
+          "pending_geometry_boundaries": 1
+        }
+      ],
+      "stdout": "RESULT|forward_geometry_grid|public_cases=300|opaque_cases=300|opaque_rejections=0|scenarios=600\nRESULT|layer_controls_era|layered_public=PASS|dead=PASS|disabled=PASS\nRESULT|layer_controls_anniversary|layered_public=PASS|dead=PASS|disabled=PASS\nRESULT|layer_controls_live|layered_public=PASS|dead=PASS|disabled=PASS\nRESULT|layer_controls_forever|layered_public=PASS|dead=PASS|disabled=PASS\nRESULT|rebind_updates|updates_requested=1000|all_accepted=true\nRESULT|older_public_calculator|original_public_path_preserved=true\nLIMIT|missing_calculator_method|explicit_unsupported=true|accepted=false\nLIMIT|other_prediction_bar_secret_width|still_unresolved=true\nRESULT|threat_cache_commit|start_attempts=2|raise_calls=3|stop_calls=2\nLIMIT|desynchronized_health_fill|drawn_health=60|calculator_health=40|old_filled_extent=50|observed_filled_extent=33.33333333|matches_existing=false\nRESULT|SUMMARY|checks=4453|failures=0|pending_geometry_boundaries=1\n",
+      "stderr": ""
+    },
+    {
+      "variant": "baseline_threat",
+      "repetition": 3,
+      "exit_code": 1,
+      "metrics": [
+        {
+          "kind": "RESULT",
+          "case": "threat_cache_commit",
+          "start_attempts": 1,
+          "raise_calls": 3,
+          "stop_calls": 2
+        },
+        {
+          "kind": "RESULT",
+          "case": "SUMMARY",
+          "checks": 5,
+          "failures": 2,
+          "pending_geometry_boundaries": 0
+        }
+      ],
+      "stdout": "FAIL|failed glow preserves old band\nFAIL|same band retries after failure and commits after success\nRESULT|threat_cache_commit|start_attempts=1|raise_calls=3|stop_calls=2\nRESULT|SUMMARY|checks=5|failures=2|pending_geometry_boundaries=0\n",
+      "stderr": ""
+    },
+    {
+      "variant": "selected_threat",
+      "repetition": 3,
+      "exit_code": 0,
+      "metrics": [
+        {
+          "kind": "RESULT",
+          "case": "threat_cache_commit",
+          "start_attempts": 2,
+          "raise_calls": 3,
+          "stop_calls": 2
+        },
+        {
+          "kind": "RESULT",
+          "case": "SUMMARY",
+          "checks": 6,
+          "failures": 0,
+          "pending_geometry_boundaries": 0
+        }
+      ],
+      "stdout": "RESULT|threat_cache_commit|start_attempts=2|raise_calls=3|stop_calls=2\nRESULT|SUMMARY|checks=6|failures=0|pending_geometry_boundaries=0\n",
+      "stderr": ""
+    },
+    {
+      "variant": "baseline_geometry",
+      "repetition": 4,
+      "exit_code": 1,
+      "metrics": [
+        {
+          "kind": "RESULT",
+          "case": "forward_geometry_grid",
+          "public_cases": 300,
+          "opaque_cases": 300,
+          "opaque_rejections": 300,
+          "scenarios": 600
+        },
+        {
+          "kind": "RESULT",
+          "case": "layer_controls_era",
+          "layered_public": "PASS",
+          "dead": "PASS",
+          "disabled": "PASS"
+        },
+        {
+          "kind": "RESULT",
+          "case": "layer_controls_anniversary",
+          "layered_public": "PASS",
+          "dead": "PASS",
+          "disabled": "PASS"
+        },
+        {
+          "kind": "RESULT",
+          "case": "layer_controls_live",
+          "layered_public": "PASS",
+          "dead": "PASS",
+          "disabled": "PASS"
+        },
+        {
+          "kind": "RESULT",
+          "case": "layer_controls_forever",
+          "layered_public": "PASS",
+          "dead": "PASS",
+          "disabled": "PASS"
+        },
+        {
+          "kind": "RESULT",
+          "case": "rebind_updates",
+          "updates_requested": 1000,
+          "all_accepted": false
+        },
+        {
+          "kind": "RESULT",
+          "case": "older_public_calculator",
+          "original_public_path_preserved": true
+        },
+        {
+          "kind": "LIMIT",
+          "case": "missing_calculator_method",
+          "explicit_unsupported": false,
+          "accepted": false
+        },
+        {
+          "kind": "LIMIT",
+          "case": "other_prediction_bar_secret_width",
+          "still_unresolved": true
+        },
+        {
+          "kind": "RESULT",
+          "case": "threat_cache_commit",
+          "start_attempts": 1,
+          "raise_calls": 3,
+          "stop_calls": 2
+        },
+        {
+          "kind": "LIMIT",
+          "case": "desynchronized_health_fill",
+          "drawn_health": 60,
+          "calculator_health": 40,
+          "old_filled_extent": 50,
+          "observed_filled_extent": "50.00000000",
+          "matches_existing": true
+        },
+        {
+          "kind": "RESULT",
+          "case": "SUMMARY",
+          "checks": 2072,
+          "failures": 304,
+          "pending_geometry_boundaries": 1
+        }
+      ],
+      "stdout": "FAIL|live painter must accept opaque geometry\nFAIL|live painter must accept opaque geometry\nFAIL|live painter must accept opaque geometry\nFAIL|live painter must accept opaque geometry\nFAIL|live painter must accept opaque geometry\nFAIL|live painter must accept opaque geometry\nFAIL|live painter must accept opaque geometry\nFAIL|live painter must accept opaque geometry\nFAIL|live painter must accept opaque geometry\nFAIL|live painter must accept opaque geometry\nFAIL|live painter must accept opaque geometry\nRESULT|forward_geometry_grid|public_cases=300|opaque_cases=300|opaque_rejections=300|scenarios=600\nRESULT|layer_controls_era|layered_public=PASS|dead=PASS|disabled=PASS\nRESULT|layer_controls_anniversary|layered_public=PASS|dead=PASS|disabled=PASS\nRESULT|layer_controls_live|layered_public=PASS|dead=PASS|disabled=PASS\nRESULT|layer_controls_forever|layered_public=PASS|dead=PASS|disabled=PASS\nRESULT|rebind_updates|updates_requested=1000|all_accepted=false\nRESULT|older_public_calculator|original_public_path_preserved=true\nLIMIT|missing_calculator_method|explicit_unsupported=false|accepted=false\nLIMIT|other_prediction_bar_secret_width|still_unresolved=true\nRESULT|threat_cache_commit|start_attempts=1|raise_calls=3|stop_calls=2\nLIMIT|desynchronized_health_fill|drawn_health=60|calculator_health=40|old_filled_extent=50|observed_filled_extent=50.00000000|matches_existing=true\nRESULT|SUMMARY|checks=2072|failures=304|pending_geometry_boundaries=1\n",
+      "stderr": ""
+    },
+    {
+      "variant": "native_span_experiment",
+      "repetition": 4,
+      "exit_code": 0,
+      "metrics": [
+        {
+          "kind": "RESULT",
+          "case": "forward_geometry_grid",
+          "public_cases": 300,
+          "opaque_cases": 300,
+          "opaque_rejections": 0,
+          "scenarios": 600
+        },
+        {
+          "kind": "RESULT",
+          "case": "layer_controls_era",
+          "layered_public": "PASS",
+          "dead": "PASS",
+          "disabled": "PASS"
+        },
+        {
+          "kind": "RESULT",
+          "case": "layer_controls_anniversary",
+          "layered_public": "PASS",
+          "dead": "PASS",
+          "disabled": "PASS"
+        },
+        {
+          "kind": "RESULT",
+          "case": "layer_controls_live",
+          "layered_public": "PASS",
+          "dead": "PASS",
+          "disabled": "PASS"
+        },
+        {
+          "kind": "RESULT",
+          "case": "layer_controls_forever",
+          "layered_public": "PASS",
+          "dead": "PASS",
+          "disabled": "PASS"
+        },
+        {
+          "kind": "RESULT",
+          "case": "rebind_updates",
+          "updates_requested": 1000,
+          "all_accepted": true
+        },
+        {
+          "kind": "RESULT",
+          "case": "older_public_calculator",
+          "original_public_path_preserved": true
+        },
+        {
+          "kind": "LIMIT",
+          "case": "missing_calculator_method",
+          "explicit_unsupported": true,
+          "accepted": false
+        },
+        {
+          "kind": "LIMIT",
+          "case": "other_prediction_bar_secret_width",
+          "still_unresolved": true
+        },
+        {
+          "kind": "RESULT",
+          "case": "threat_cache_commit",
+          "start_attempts": 2,
+          "raise_calls": 3,
+          "stop_calls": 2
+        },
+        {
+          "kind": "LIMIT",
+          "case": "desynchronized_health_fill",
+          "drawn_health": 60,
+          "calculator_health": 40,
+          "old_filled_extent": 50,
+          "observed_filled_extent": "33.33333333",
+          "matches_existing": false
+        },
+        {
+          "kind": "RESULT",
+          "case": "SUMMARY",
+          "checks": 4453,
+          "failures": 0,
+          "pending_geometry_boundaries": 1
+        }
+      ],
+      "stdout": "RESULT|forward_geometry_grid|public_cases=300|opaque_cases=300|opaque_rejections=0|scenarios=600\nRESULT|layer_controls_era|layered_public=PASS|dead=PASS|disabled=PASS\nRESULT|layer_controls_anniversary|layered_public=PASS|dead=PASS|disabled=PASS\nRESULT|layer_controls_live|layered_public=PASS|dead=PASS|disabled=PASS\nRESULT|layer_controls_forever|layered_public=PASS|dead=PASS|disabled=PASS\nRESULT|rebind_updates|updates_requested=1000|all_accepted=true\nRESULT|older_public_calculator|original_public_path_preserved=true\nLIMIT|missing_calculator_method|explicit_unsupported=true|accepted=false\nLIMIT|other_prediction_bar_secret_width|still_unresolved=true\nRESULT|threat_cache_commit|start_attempts=2|raise_calls=3|stop_calls=2\nLIMIT|desynchronized_health_fill|drawn_health=60|calculator_health=40|old_filled_extent=50|observed_filled_extent=33.33333333|matches_existing=false\nRESULT|SUMMARY|checks=4453|failures=0|pending_geometry_boundaries=1\n",
+      "stderr": ""
+    },
+    {
+      "variant": "baseline_threat",
+      "repetition": 4,
+      "exit_code": 1,
+      "metrics": [
+        {
+          "kind": "RESULT",
+          "case": "threat_cache_commit",
+          "start_attempts": 1,
+          "raise_calls": 3,
+          "stop_calls": 2
+        },
+        {
+          "kind": "RESULT",
+          "case": "SUMMARY",
+          "checks": 5,
+          "failures": 2,
+          "pending_geometry_boundaries": 0
+        }
+      ],
+      "stdout": "FAIL|failed glow preserves old band\nFAIL|same band retries after failure and commits after success\nRESULT|threat_cache_commit|start_attempts=1|raise_calls=3|stop_calls=2\nRESULT|SUMMARY|checks=5|failures=2|pending_geometry_boundaries=0\n",
+      "stderr": ""
+    },
+    {
+      "variant": "selected_threat",
+      "repetition": 4,
+      "exit_code": 0,
+      "metrics": [
+        {
+          "kind": "RESULT",
+          "case": "threat_cache_commit",
+          "start_attempts": 2,
+          "raise_calls": 3,
+          "stop_calls": 2
+        },
+        {
+          "kind": "RESULT",
+          "case": "SUMMARY",
+          "checks": 6,
+          "failures": 0,
+          "pending_geometry_boundaries": 0
+        }
+      ],
+      "stdout": "RESULT|threat_cache_commit|start_attempts=2|raise_calls=3|stop_calls=2\nRESULT|SUMMARY|checks=6|failures=0|pending_geometry_boundaries=0\n",
+      "stderr": ""
+    },
+    {
+      "variant": "baseline_geometry",
+      "repetition": 5,
+      "exit_code": 1,
+      "metrics": [
+        {
+          "kind": "RESULT",
+          "case": "forward_geometry_grid",
+          "public_cases": 300,
+          "opaque_cases": 300,
+          "opaque_rejections": 300,
+          "scenarios": 600
+        },
+        {
+          "kind": "RESULT",
+          "case": "layer_controls_era",
+          "layered_public": "PASS",
+          "dead": "PASS",
+          "disabled": "PASS"
+        },
+        {
+          "kind": "RESULT",
+          "case": "layer_controls_anniversary",
+          "layered_public": "PASS",
+          "dead": "PASS",
+          "disabled": "PASS"
+        },
+        {
+          "kind": "RESULT",
+          "case": "layer_controls_live",
+          "layered_public": "PASS",
+          "dead": "PASS",
+          "disabled": "PASS"
+        },
+        {
+          "kind": "RESULT",
+          "case": "layer_controls_forever",
+          "layered_public": "PASS",
+          "dead": "PASS",
+          "disabled": "PASS"
+        },
+        {
+          "kind": "RESULT",
+          "case": "rebind_updates",
+          "updates_requested": 1000,
+          "all_accepted": false
+        },
+        {
+          "kind": "RESULT",
+          "case": "older_public_calculator",
+          "original_public_path_preserved": true
+        },
+        {
+          "kind": "LIMIT",
+          "case": "missing_calculator_method",
+          "explicit_unsupported": false,
+          "accepted": false
+        },
+        {
+          "kind": "LIMIT",
+          "case": "other_prediction_bar_secret_width",
+          "still_unresolved": true
+        },
+        {
+          "kind": "RESULT",
+          "case": "threat_cache_commit",
+          "start_attempts": 1,
+          "raise_calls": 3,
+          "stop_calls": 2
+        },
+        {
+          "kind": "LIMIT",
+          "case": "desynchronized_health_fill",
+          "drawn_health": 60,
+          "calculator_health": 40,
+          "old_filled_extent": 50,
+          "observed_filled_extent": "50.00000000",
+          "matches_existing": true
+        },
+        {
+          "kind": "RESULT",
+          "case": "SUMMARY",
+          "checks": 2072,
+          "failures": 304,
+          "pending_geometry_boundaries": 1
+        }
+      ],
+      "stdout": "FAIL|live painter must accept opaque geometry\nFAIL|live painter must accept opaque geometry\nFAIL|live painter must accept opaque geometry\nFAIL|live painter must accept opaque geometry\nFAIL|live painter must accept opaque geometry\nFAIL|live painter must accept opaque geometry\nFAIL|live painter must accept opaque geometry\nFAIL|live painter must accept opaque geometry\nFAIL|live painter must accept opaque geometry\nFAIL|live painter must accept opaque geometry\nFAIL|live painter must accept opaque geometry\nRESULT|forward_geometry_grid|public_cases=300|opaque_cases=300|opaque_rejections=300|scenarios=600\nRESULT|layer_controls_era|layered_public=PASS|dead=PASS|disabled=PASS\nRESULT|layer_controls_anniversary|layered_public=PASS|dead=PASS|disabled=PASS\nRESULT|layer_controls_live|layered_public=PASS|dead=PASS|disabled=PASS\nRESULT|layer_controls_forever|layered_public=PASS|dead=PASS|disabled=PASS\nRESULT|rebind_updates|updates_requested=1000|all_accepted=false\nRESULT|older_public_calculator|original_public_path_preserved=true\nLIMIT|missing_calculator_method|explicit_unsupported=false|accepted=false\nLIMIT|other_prediction_bar_secret_width|still_unresolved=true\nRESULT|threat_cache_commit|start_attempts=1|raise_calls=3|stop_calls=2\nLIMIT|desynchronized_health_fill|drawn_health=60|calculator_health=40|old_filled_extent=50|observed_filled_extent=50.00000000|matches_existing=true\nRESULT|SUMMARY|checks=2072|failures=304|pending_geometry_boundaries=1\n",
+      "stderr": ""
+    },
+    {
+      "variant": "native_span_experiment",
+      "repetition": 5,
+      "exit_code": 0,
+      "metrics": [
+        {
+          "kind": "RESULT",
+          "case": "forward_geometry_grid",
+          "public_cases": 300,
+          "opaque_cases": 300,
+          "opaque_rejections": 0,
+          "scenarios": 600
+        },
+        {
+          "kind": "RESULT",
+          "case": "layer_controls_era",
+          "layered_public": "PASS",
+          "dead": "PASS",
+          "disabled": "PASS"
+        },
+        {
+          "kind": "RESULT",
+          "case": "layer_controls_anniversary",
+          "layered_public": "PASS",
+          "dead": "PASS",
+          "disabled": "PASS"
+        },
+        {
+          "kind": "RESULT",
+          "case": "layer_controls_live",
+          "layered_public": "PASS",
+          "dead": "PASS",
+          "disabled": "PASS"
+        },
+        {
+          "kind": "RESULT",
+          "case": "layer_controls_forever",
+          "layered_public": "PASS",
+          "dead": "PASS",
+          "disabled": "PASS"
+        },
+        {
+          "kind": "RESULT",
+          "case": "rebind_updates",
+          "updates_requested": 1000,
+          "all_accepted": true
+        },
+        {
+          "kind": "RESULT",
+          "case": "older_public_calculator",
+          "original_public_path_preserved": true
+        },
+        {
+          "kind": "LIMIT",
+          "case": "missing_calculator_method",
+          "explicit_unsupported": true,
+          "accepted": false
+        },
+        {
+          "kind": "LIMIT",
+          "case": "other_prediction_bar_secret_width",
+          "still_unresolved": true
+        },
+        {
+          "kind": "RESULT",
+          "case": "threat_cache_commit",
+          "start_attempts": 2,
+          "raise_calls": 3,
+          "stop_calls": 2
+        },
+        {
+          "kind": "LIMIT",
+          "case": "desynchronized_health_fill",
+          "drawn_health": 60,
+          "calculator_health": 40,
+          "old_filled_extent": 50,
+          "observed_filled_extent": "33.33333333",
+          "matches_existing": false
+        },
+        {
+          "kind": "RESULT",
+          "case": "SUMMARY",
+          "checks": 4453,
+          "failures": 0,
+          "pending_geometry_boundaries": 1
+        }
+      ],
+      "stdout": "RESULT|forward_geometry_grid|public_cases=300|opaque_cases=300|opaque_rejections=0|scenarios=600\nRESULT|layer_controls_era|layered_public=PASS|dead=PASS|disabled=PASS\nRESULT|layer_controls_anniversary|layered_public=PASS|dead=PASS|disabled=PASS\nRESULT|layer_controls_live|layered_public=PASS|dead=PASS|disabled=PASS\nRESULT|layer_controls_forever|layered_public=PASS|dead=PASS|disabled=PASS\nRESULT|rebind_updates|updates_requested=1000|all_accepted=true\nRESULT|older_public_calculator|original_public_path_preserved=true\nLIMIT|missing_calculator_method|explicit_unsupported=true|accepted=false\nLIMIT|other_prediction_bar_secret_width|still_unresolved=true\nRESULT|threat_cache_commit|start_attempts=2|raise_calls=3|stop_calls=2\nLIMIT|desynchronized_health_fill|drawn_health=60|calculator_health=40|old_filled_extent=50|observed_filled_extent=33.33333333|matches_existing=false\nRESULT|SUMMARY|checks=4453|failures=0|pending_geometry_boundaries=1\n",
+      "stderr": ""
+    },
+    {
+      "variant": "baseline_threat",
+      "repetition": 5,
+      "exit_code": 1,
+      "metrics": [
+        {
+          "kind": "RESULT",
+          "case": "threat_cache_commit",
+          "start_attempts": 1,
+          "raise_calls": 3,
+          "stop_calls": 2
+        },
+        {
+          "kind": "RESULT",
+          "case": "SUMMARY",
+          "checks": 5,
+          "failures": 2,
+          "pending_geometry_boundaries": 0
+        }
+      ],
+      "stdout": "FAIL|failed glow preserves old band\nFAIL|same band retries after failure and commits after success\nRESULT|threat_cache_commit|start_attempts=1|raise_calls=3|stop_calls=2\nRESULT|SUMMARY|checks=5|failures=2|pending_geometry_boundaries=0\n",
+      "stderr": ""
+    },
+    {
+      "variant": "selected_threat",
+      "repetition": 5,
+      "exit_code": 0,
+      "metrics": [
+        {
+          "kind": "RESULT",
+          "case": "threat_cache_commit",
+          "start_attempts": 2,
+          "raise_calls": 3,
+          "stop_calls": 2
+        },
+        {
+          "kind": "RESULT",
+          "case": "SUMMARY",
+          "checks": 6,
+          "failures": 0,
+          "pending_geometry_boundaries": 0
+        }
+      ],
+      "stdout": "RESULT|threat_cache_commit|start_attempts=2|raise_calls=3|stop_calls=2\nRESULT|SUMMARY|checks=6|failures=0|pending_geometry_boundaries=0\n",
+      "stderr": ""
+    }
+  ],
+  "prior_conditional_results": "initial-matched-epoch-results.json retained unchanged; its native-span successes assumed health-fill/calculator epoch agreement and are not feature-parity acceptance.",
+  "unresolved": [
+    "Other existing UpdateFillPosition paths still reject inaccessible geometry in the explicit layered opaque model.",
+    "Opaque geometry with no GetMissingHealth method is explicitly unsupported; public geometry uses the retained compatibility path.",
+    "Native anchor/StatusBar fill pixels, secrecy/provenance and exact tiled-art frequency are not certified."
+  ]
+}

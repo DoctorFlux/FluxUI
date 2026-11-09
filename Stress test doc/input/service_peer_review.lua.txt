@@ -1,0 +1,71 @@
+-- Independent minimal production-service counterexamples; no addon modifications.
+local function fixture(module)
+    local h = { timers = {}, frames = {}, calls = {} }
+    local e = setmetatable({}, { __index = _G }); e._G = e
+    local ns = { Flux = { Client = {}, Safecall = function(fn, ...) return pcall(fn, ...) end } }
+    ns.Flux.Timer = { After = function(_, fn) h.timers[#h.timers + 1] = fn end }
+    e.C_EventUtils = { IsEventValid = function() return true end }
+    e.wipe = function(t) for k in pairs(t) do t[k] = nil end end
+    e.CreateFrame = function()
+        local f = { scripts = {}, events = {} }
+        function f:SetScript(key, value) self.scripts[key] = value end
+        function f:RegisterEvent(key) self.events[key] = true end
+        function f:UnregisterEvent(key) self.events[key] = nil end
+        function f:Hide() end
+        h.frames[#h.frames + 1] = f
+        return f
+    end
+    assert(loadfile("Core/Engine/" .. module .. ".lua", "t", e))("_FluxUI", ns)
+    function h.drain()
+        for tick = 1, 20 do
+            if #h.timers == 0 then return end
+            local q = h.timers; h.timers = {}
+            for _, fn in ipairs(q) do fn() end
+        end
+        error("did not drain")
+    end
+    function h.fire(name)
+        for _, f in ipairs(h.frames) do
+            if f.events[name] and f.scripts.OnEvent then f.scripts.OnEvent(f, name) end
+        end
+    end
+    return h, ns.Flux[module]
+end
+for _, initial in ipairs({ 8, 9 }) do
+    local h, s = fixture("Scheduler")
+    local old, new, seen = 0, 0, false
+    s.Register("inventory", function(tokens) seen = seen or tokens.new == true end)
+    for i = 1, initial do
+        local index = i
+        s.Request("inventory", "old", function()
+            old = old + 1
+            if index == 1 then s.Request("inventory", "new", function() new = new + 1 end) end
+        end)
+    end
+    h.drain()
+    print(("PEER scheduler initial=%d old=%d nested=%d new_token=%s pending=%s")
+        :format(initial, old, new, tostring(seen), tostring(s.HasPending())))
+    assert(old == initial)
+    if initial == 8 then assert(new == 1 and seen) else assert(new == 0 and not seen) end
+end
+for _, mutation in ipairs({ "none", "remove_self", "remove_next" }) do
+    local h, ev = fixture("Events")
+    local calls = {}
+    local first, second
+    first = function()
+        calls[#calls + 1] = "A"
+        if mutation == "remove_self" then ev.Unregister("TEST", first) end
+        if mutation == "remove_next" then ev.Unregister("TEST", second) end
+    end
+    second = function() calls[#calls + 1] = "B" end
+    ev.Register("TEST", first); ev.Register("TEST", second)
+    ev.Register("TEST", function() calls[#calls + 1] = "C" end)
+    h.fire("TEST")
+    local firstEvent = table.concat(calls)
+    calls = {}; h.fire("TEST")
+    print(("PEER events mutation=%s first=%s second=%s"):format(mutation, firstEvent, table.concat(calls)))
+    if mutation == "none" then assert(firstEvent == "ABC") end
+    if mutation == "remove_self" then assert(firstEvent == "AC" and table.concat(calls) == "BC") end
+    if mutation == "remove_next" then assert(firstEvent == "AC") end
+end
+print("PEER SUMMARY source-proven anomalies confirmed; feature reachability requires separate caller evidence")

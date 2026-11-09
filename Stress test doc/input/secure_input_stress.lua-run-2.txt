@@ -1,0 +1,6 @@
+METRIC utility branch=live chord_selections=4096 input_pairs=12288 native_handlers=true
+METRIC utility branch=forever chord_selections=4096 input_pairs=12288 native_handlers=true
+METRIC utility branch=classic chord_selections=4096 input_pairs=12288 native_handlers=true
+METRIC utility branch=classic_era chord_selections=4096 input_pairs=12288 native_handlers=true
+METRIC utility branch=classic_anniversary chord_selections=4096 input_pairs=12288 native_handlers=true
+Utility secure input: 197024 checks; five Blizzard dispatchers; mouse + both keys; all chords; combat; both CVar edges PASS

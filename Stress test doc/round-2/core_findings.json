@@ -1,0 +1,50 @@
+{
+  "scope": "New read-only core/options/Respec timer and modifier-context review. No addon fixes applied.",
+  "findings": [
+    {
+      "id": "R2-CORE-01", "priority": "P2", "classification": "Reproduced active callback cancellation defect with the native void-After contract; popup rendering not exercised",
+      "title": "Gear and rune picker leave/hide cannot cancel their delayed show request",
+      "source": "Respec/FluxRespec_GearPicker.lua", "line": 129,
+      "relatedSources": ["Respec/FluxRespec_GearPicker.lua:149", "Respec/FluxRespec_RunePicker.lua:156", "Respec/FluxRespec_RunePicker.lua:176"],
+      "trigger": "No-profile gear hover, or enabled SoD rune hover, enters then leaves/hides before the 0.06s show callback",
+      "observation": "CancelShowTimer sees nil because C_Timer.After returns nothing. The captured departed anchor still receives a P.Show request. A counterfactual cancellable-handle fixture suppresses it.",
+      "futureFix": "Use an owned generation/pending flag or a real cancellable timer object; invalidate both show/hide work on leave, mutual picker replacement, hide and UI teardown. Preserve delays, alternatives and combat/capability guards.",
+      "acceptance": "Rapid slot A/B hover, reverse leave, explicit Hide, gear/rune mutual hide, profile selection, combat and missing alternatives; only the latest permitted visible owner may show. Do not infer native popup parity from sink calls.",
+      "probe": "core_timers.lua.txt", "mechanismFamily": "R2-TIMER", "nativeTaintObserved": false
+    },
+    {
+      "id": "R2-CORE-02", "priority": "P2", "classification": "Reproduced active refresh fan-out with native void-After; callback counts only",
+      "title": "Restock panel bag refresh pending latch never arms",
+      "source": "AddonOptions/AceGUIWidget-FluxRestockPanel.lua", "line": 2392,
+      "relatedSources": ["AddonOptions/AceGUIWidget-FluxRestockPanel.lua:267"],
+      "trigger": "Visible attached options Restock panel receives repeated bag-refresh requests inside its 0.25s debounce window",
+      "observation": "1/10/1000 requests enqueue and deliver 1/10/1000 refresh callbacks; the handle-return countercontrol coalesces each burst to one. Hidden-panel guard remains effective, but cleanup cannot cancel pending native After callbacks.",
+      "futureFix": "Set a public scheduled flag before After and bind callback delivery to widget/operation generation, or use a verified cancellable timer. Merge count-refresh context rather than dropping valid item changes; retain existing storm/bank-organize deferrals.",
+      "acceptance": "Repeated bag/item events, inline edits, partial item contexts, panel hide/reopen/replacement, bank organization and provider handoff; bounded pending callbacks and one coherent latest refresh without lost rows or counts.",
+      "probe": "core_timers.lua.txt", "mechanismFamily": "R2-TIMER", "nativePerformanceObserved": false
+    },
+    {
+      "id": "R2-CORE-03", "priority": "P2", "classification": "Reproduced stale timer mutating a newer production watcher; native spec operation not performed",
+      "title": "Cancelled talent spec timeout can detach the next request's event observer",
+      "source": "Respec/FluxRespec_Talents.lua", "line": 770,
+      "relatedSources": ["Respec/FluxRespec_Talents.lua:451", "Respec/FluxRespec_Talents.lua:745", "Respec/FluxRespec_Talents.lua:759"],
+      "trigger": "Classic talent-group await A starts, is cancelled near its five-second deadline, then await B starts before A's uncancellable timeout fires",
+      "observation": "Old resolve(A) clears the shared specSwitchAwaitFrame now owned by B. B loses its native event observer and later times out; the top-level old completion generation guard cannot undo this earlier cleanup. Existing learn-state identity checks do reject cancelled learn callbacks, so not every timer assignment is a stale-write bug.",
+      "futureFix": "Give each await its own identity/frame/timer closure. Cleanup must only retire resources it owns; cancellation must settle/invalidate the old closure even when After has no handle. Retain existing applyCancelGen and public callbacks.",
+      "acceptance": "Cancel A at 4.9s, begin B, fire A's 5s timeout, deliver B's event at 5.1s: B must keep its watcher and complete once. Test normal success, independent timeout, repeated cancel/replacement, absent timer fallback, and no new frame growth.",
+      "probe": "core_timers.lua.txt", "mechanismFamily": "R2-TIMER", "nativeTaintObserved": false
+    },
+    {
+      "id": "R2-CORE-06", "priority": "P2", "classification": "Reproduced full-context delivery starvation; active display-consumer trace; native pixels/input not exercised",
+      "title": "Continuous mouseover postpones pending modifier, target and combat display context until quiet",
+      "source": "Core/Engine/Context.lua", "line": 363,
+      "relatedSources": ["Core/Engine/Context.lua:328", "Core/Engine/Context.lua:375", "Bars/ProgramFace.lua:1445", "Bars/ProgramFace.lua:1549"],
+      "trigger": "With an indexed mouseover-dependent program and no UF hover-peek bypass, a narrow mouseover timer starts, then rapid Shift/Ctrl/Alt, target and combat changes overlap uninterrupted mouseover events",
+      "observation": "Every mouseover pushes mouseoverAt forward; full Request only widens flags while refreshScheduled is true. Five current production bus models deliver zero context notifications across 1200 frames/10 modeled seconds, then one after quiet. Flags survive, so this is distinct from the previously fixed INPUT-001 flag-loss bug.",
+      "futureFix": "Let a full invalidation supersede or bound a pending narrow delay using owned timer generation and the existing display scheduler. Preserve narrow-only mouseover throttling and avoid per-edge structural/eval/protected work.",
+      "acceptance": "Sustained mouseover with all modifier edges and same-slot conditional macro displays, target/focus/combat/form changes; bounded full-display latency during the storm and correct final settle. Preserve independent EBS/Utility bypass paths and secure execution cadence.",
+      "probe": "modifier_bus.lua.txt", "nativeTaintObserved": false,
+      "scopeLimit": "ProgramFace bar-overlay/badge display path is affected by missing delivery; independent Utility modifier subscription and EBS condition flags can bypass it. This is not a whole-addon or secure-click freeze claim."
+    }
+  ]
+}

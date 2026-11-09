@@ -1,0 +1,7406 @@
+[
+  {
+    "path": "BaganatorCompat/FluxBaganator_BankRestock.lua",
+    "domain": "BaganatorCompat",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 8,
+      "nativeHooks": 3,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "2b5489ee2615dd61d7cd3347373e7ca2e2cd3269b962c4e28e63250afb113dca",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "BaganatorCompat/FluxBaganator_CategoryIcons.lua",
+    "domain": "BaganatorCompat",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 2,
+      "nativeHooks": 4,
+      "nativeDimensions": 3,
+      "combatGuards": 0,
+      "protectedWrites": 13
+    },
+    "sha256": "813be7c24cb7df5b1dd82aee1cf17f8472de2939162c1540d6434a0580424570",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "BaganatorCompat/FluxBaganator_CategoryVendorBlock.lua",
+    "domain": "BaganatorCompat",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 2,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "1dc6f8a4876e02366e96ed35f545c93c6a79322a3b3c79015a553df9d453ddf4",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "BaganatorCompat/FluxBaganator_ConsumablesCategories.lua",
+    "domain": "BaganatorCompat",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 5,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "0ea9430222e0369420befcc47c0ca75926b5a12cdfab7070396e88f7a62aa4d5",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "BaganatorCompat/FluxBaganator_EquipmentSetSection.lua",
+    "domain": "BaganatorCompat",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 3,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "6c4ff734d7e075cd1c57fa1b2a8daf51d11d900be90e9662baa89722e75abbaa",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "BaganatorCompat/FluxBaganator_GearSetContext.lua",
+    "domain": "BaganatorCompat",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 0,
+      "nativeHooks": 1,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "6c754c3ab69108a491aafa12db44a4b9d2031664a1042b67259097f8d99bd300",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "BaganatorCompat/FluxBaganator_GearSets.lua",
+    "domain": "BaganatorCompat",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 5,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "054c95507fcbb5899d2c0369ce49ec76a991ed3e07cd3e0a924e0bdf5f1ac209",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "BaganatorCompat/FluxBaganator_GearSetShield.lua",
+    "domain": "BaganatorCompat",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 2,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "5f61e086194f364d0e56c7a41ce50142423340610557b8bd8ff0666a04cf579c",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "BaganatorCompat/FluxBaganator_ItemViews.lua",
+    "domain": "BaganatorCompat",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 2,
+      "nativeHooks": 2,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "42f4e105a5e708a1a38b66f3be7edade294f9894c9e6ac8ec8266b20de6f258c",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "BaganatorCompat/FluxBaganator_Junk.lua",
+    "domain": "BaganatorCompat",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": "NewTimer cancellation control",
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 2,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "9628a448fa03b024abff3a6008269ea57e244d6b0609452be2d725cd58b43ba9",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "BaganatorCompat/FluxBaganator_Protection.lua",
+    "domain": "BaganatorCompat",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": "NewTimer cancellation control and visible protection refresh",
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 4,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "dc98d6ee1648d974bacd06e9b4e84d2a0afc15f6310b7c5aa7b7089a59efcf37",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "BaganatorCompat/Loader.lua",
+    "domain": "BaganatorCompat",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": "late dependencies and initialization latch",
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 2,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "95790e2dce5beed1766ce56424bd9323db32e3cdd5460cd9212a0d7c6823e8db",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Battlezonemap/_tmp_questiepinsmoke.lua",
+    "domain": "Battlezonemap",
+    "TOCReachable": false,
+    "TOCClients": [],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 0,
+      "nativeHooks": 2,
+      "nativeDimensions": 2,
+      "combatGuards": 2,
+      "protectedWrites": 8
+    },
+    "sha256": "3ff2284b43cbad68838f271ff30eddf85a885fde8ecc5afb82530a78c7113527",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Battlezonemap/FluxBattlefieldMap.lua",
+    "domain": "Battlezonemap",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": "initialization watcher reuse, combat stop, bounded checks",
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 12,
+      "timers": 10,
+      "nativeHooks": 4,
+      "nativeDimensions": 2,
+      "combatGuards": 16,
+      "protectedWrites": 24
+    },
+    "sha256": "d27d9188e328f21492e179a23cfc6b5cc307c3f8b5ee687688945b01cecb8438",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Battlezonemap/FluxBattlefieldMapPinRouter.lua",
+    "domain": "Battlezonemap",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 10,
+      "nativeHooks": 6,
+      "nativeDimensions": 0,
+      "combatGuards": 14,
+      "protectedWrites": 4
+    },
+    "sha256": "79c2f7bb0661844c702eb8c6968f9907aec180af7d184759ddf1dce7df195c7b",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Battlezonemap/FluxBattlefieldMapPinTooltips.lua",
+    "domain": "Battlezonemap",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 0,
+      "nativeHooks": 2,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "f2b64d27c46e6b465bad794acfb33e385af21b33a0509690c8cb55c4eb00b2f4",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Battlezonemap/FluxBattlefieldMapProviders.lua",
+    "domain": "Battlezonemap",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 6,
+      "nativeHooks": 7,
+      "nativeDimensions": 2,
+      "combatGuards": 6,
+      "protectedWrites": 9
+    },
+    "sha256": "3aac4df59ece5b96dde666c2a6f03fa34b211c44eea97ecdbda948ea2bf63578",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Battlezonemap/FluxBattlefieldMapQuestPins.lua",
+    "domain": "Battlezonemap",
+    "TOCReachable": false,
+    "TOCClients": [],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 2,
+      "nativeHooks": 2,
+      "nativeDimensions": 4,
+      "combatGuards": 0,
+      "protectedWrites": 16
+    },
+    "sha256": "01c4817fc30efd201bf6414ea2c96a2136cfbbf2bdf603a3cdeffb6453016690",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+    "domain": "Battlezonemap",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 6,
+      "nativeHooks": 3,
+      "nativeDimensions": 0,
+      "combatGuards": 15,
+      "protectedWrites": 5
+    },
+    "sha256": "00eaf0863563fcf826b5b32cb8adec764f1397f82e89e4e5f9acab1cbc6ebe43",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Battlezonemap/FluxBlizzardMeter.lua",
+    "domain": "Battlezonemap",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 6,
+      "nativeHooks": 11,
+      "nativeDimensions": 8,
+      "combatGuards": 32,
+      "protectedWrites": 16
+    },
+    "sha256": "835bd0386c3e4eb3cec6964112f4293b7dc215756259759b915d2c3b10071bc7",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Battlezonemap/FluxDetails.lua",
+    "domain": "Battlezonemap",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": "bounded containment watchdog and complete size-hook debounce",
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 15,
+      "nativeHooks": 5,
+      "nativeDimensions": 3,
+      "combatGuards": 3,
+      "protectedWrites": 14
+    },
+    "sha256": "3d06c3afa334a3103f3d7f7c5efd712fc011cc2fb9c8f623d4b3c028fc25cd61",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Battlezonemap/FluxDetailsForever.lua",
+    "domain": "Battlezonemap",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 5,
+      "nativeHooks": 0,
+      "nativeDimensions": 1,
+      "combatGuards": 1,
+      "protectedWrites": 0
+    },
+    "sha256": "0b8c4f071b9ac8476c9c41ca74da7ae53ebadef68132ce49813af210197834d0",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Battlezonemap/FluxDetailsWoWSkinTint.lua",
+    "domain": "Battlezonemap",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 0,
+      "nativeHooks": 2,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "9a55f8a95c83d39f0f32ec801b1d12ac11644bd856f1d40646df524363e4ddd0",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Battlezonemap/FluxMeterLayout.lua",
+    "domain": "Battlezonemap",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": "splitter OnUpdate arm/disarm",
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 2,
+      "timers": 3,
+      "nativeHooks": 0,
+      "nativeDimensions": 19,
+      "combatGuards": 7,
+      "protectedWrites": 85
+    },
+    "sha256": "f0baa87efe98f2b3c3690f1dbbeb1504559641808c1cbe59f895946764f47b89",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Battlezonemap/FluxMeterSkin.lua",
+    "domain": "Battlezonemap",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": "public-number/theme gates; prior getter guard controls retained",
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 0,
+      "nativeHooks": 21,
+      "nativeDimensions": 16,
+      "combatGuards": 2,
+      "protectedWrites": 37
+    },
+    "sha256": "151cf7bb0279d5e48e08c0db671095d9919d2fbfc58bd075a6f61724379ee76e",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Battlezonemap/FluxThreat.lua",
+    "domain": "Battlezonemap",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": "visible/combat/event-led poll gates",
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 3,
+      "timers": 0,
+      "nativeHooks": 1,
+      "nativeDimensions": 3,
+      "combatGuards": 8,
+      "protectedWrites": 4
+    },
+    "sha256": "520b3f721e48afba9ebd0cd32e90ee583d835983ed4057f57f4b85a2cdf54885",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Battlezonemap/FluxThreatMeter.lua",
+    "domain": "Battlezonemap",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 4,
+      "timers": 0,
+      "nativeHooks": 0,
+      "nativeDimensions": 2,
+      "combatGuards": 6,
+      "protectedWrites": 18
+    },
+    "sha256": "becf512375cd021f12c2d4510f9aeb688edc301381cd071b348ed2da3ec6b29d",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Battlezonemap/FluxWindowFrame.lua",
+    "domain": "Battlezonemap",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 5,
+      "timers": 4,
+      "nativeHooks": 1,
+      "nativeDimensions": 2,
+      "combatGuards": 15,
+      "protectedWrites": 34
+    },
+    "sha256": "2fc3c03209cbac3d02bd1708230546c32babc0ac3786afcb117a745650025158",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "CharacterInfo/_tmp_characterinfosmoke.lua",
+    "domain": "CharacterInfo",
+    "TOCReachable": false,
+    "TOCClients": [],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 0,
+      "nativeHooks": 2,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "c682431b38499e757855522fce5969cb6ac26175dfd5f9975928532245f7e2e2",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "CharacterInfo/_tmp_foreverstatssmoke.lua",
+    "domain": "CharacterInfo",
+    "TOCReachable": false,
+    "TOCClients": [],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 0,
+      "nativeHooks": 1,
+      "nativeDimensions": 0,
+      "combatGuards": 3,
+      "protectedWrites": 0
+    },
+    "sha256": "cd54622d6dd9cdf32066b5172895cc8e7499730149cb8e907be8e92679707df6",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "CharacterInfo/_tmp_foreverstatussmoke.lua",
+    "domain": "CharacterInfo",
+    "TOCReachable": false,
+    "TOCClients": [],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 0,
+      "nativeHooks": 1,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 1
+    },
+    "sha256": "ddc40698c4f64908e5d42d5615a292b6bbeb28877ae965c065b2299262d09897",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "CharacterInfo/GearScore.lua",
+    "domain": "CharacterInfo",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 0,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "869a6b75763c98a112b0057c20d6959cdbbead709325979a86a20d9c636a15dd",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "CharacterInfo/Init.lua",
+    "domain": "CharacterInfo",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 0,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "3555cf97545871e2ef562ba22861b1b9a58a5270ab04686c8f4a8c23a8f1828a",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "CharacterInfo/ItemLevel.lua",
+    "domain": "CharacterInfo",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 3,
+      "nativeHooks": 4,
+      "nativeDimensions": 2,
+      "combatGuards": 0,
+      "protectedWrites": 12
+    },
+    "sha256": "e8990f3fc889cb14c87d8155b9f6fdf92a7019798ad564388ef5096ef834a7b5",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "CharacterInfo/Localization/Localization_br.lua",
+    "domain": "CharacterInfo",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 0,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "810460bdc457f025aba45f5f30c668325a22e5987c83c400c467f0e43a58837a",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "CharacterInfo/Localization/Localization_cn.lua",
+    "domain": "CharacterInfo",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 0,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "8334b6567a7db883aa28ddff0add29275a30a3cc258b2143f3270b498fcd5fe6",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "CharacterInfo/Localization/Localization_de.lua",
+    "domain": "CharacterInfo",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 0,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "587275f33d4f4576e764fcc7480fc0ef7ae92639dc156f5a9c0f3c274972b8e8",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "CharacterInfo/Localization/Localization_en.lua",
+    "domain": "CharacterInfo",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 0,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "d73b70ce0b0f808b72c3f9b721344a0804e58841f94fdf3d4f05c975ee03973f",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "CharacterInfo/Localization/Localization_es.lua",
+    "domain": "CharacterInfo",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 0,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "7e609ffde423aa240ba50971409405b4821fc272844f5f32a951168fb6792920",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "CharacterInfo/Localization/Localization_fr.lua",
+    "domain": "CharacterInfo",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 0,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "d747adfc8bf8f2a47052e935cf80e9e80d014ddb343e7106088055f80653c678",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "CharacterInfo/Localization/Localization_it.lua",
+    "domain": "CharacterInfo",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 0,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "96db55a7d04fb7ce5481cc031684fe3c550b172d9eb6e50f56226e29cd3f97c6",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "CharacterInfo/Localization/Localization_kr.lua",
+    "domain": "CharacterInfo",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 0,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "a7f45639305bf1e3aeaafd22d17a863fa76ca4c4dd0ad074246b30b48cf6e66e",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "CharacterInfo/Localization/Localization_ru.lua",
+    "domain": "CharacterInfo",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 0,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "88d1bcbda277c140e59ca5bff0d263c1245af3f978ecb98567b6cde7ef7bb24d",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "CharacterInfo/Localization/Localization_tw.lua",
+    "domain": "CharacterInfo",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 0,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "e503b12fbdc55ac668b5ef17984c1ceb0d68aeb61975c2e5c9b811d4e718e43b",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "CharacterInfo/PaperDollEquipFlyout.lua",
+    "domain": "CharacterInfo",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": "hover ticker/panel lifetime and flyout entry/leave routing",
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 2,
+      "nativeHooks": 17,
+      "nativeDimensions": 0,
+      "combatGuards": 3,
+      "protectedWrites": 0
+    },
+    "sha256": "00e321401b1f0fc214884ee787d4c06dfaed2348f9034d1f797bf8ae0bbc6760",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "CharacterInfo/PaperDollQuality.lua",
+    "domain": "CharacterInfo",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 0,
+      "nativeHooks": 4,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "e817b231520e89af9b9e3234193ca935b2b630576bfe885fd2eb207814292e10",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "CharacterInfo/PaperDollSecondaryName.lua",
+    "domain": "CharacterInfo",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 0,
+      "nativeHooks": 12,
+      "nativeDimensions": 1,
+      "combatGuards": 0,
+      "protectedWrites": 8
+    },
+    "sha256": "0f54aa973c8f17017d09bce4872fc23f719563a0ff9d96d3a2da049049056a41",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "CharacterInfo/PaperDollVisibility.lua",
+    "domain": "CharacterInfo",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": "native visibility sync hook/install ownership",
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 2,
+      "nativeHooks": 7,
+      "nativeDimensions": 1,
+      "combatGuards": 0,
+      "protectedWrites": 6
+    },
+    "sha256": "4e769d22aefbdd3bde5bad11962ed0b4659b9f6808411d2b9bb76bd9fe6eb307",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "CharacterInfo/RetailPane.lua",
+    "domain": "CharacterInfo",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 6,
+      "nativeHooks": 20,
+      "nativeDimensions": 0,
+      "combatGuards": 2,
+      "protectedWrites": 4
+    },
+    "sha256": "2ab62f0846edc5e7c52ea216e87497b2f9002c43f54dc06fe2707bee41bfae8d",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "CharacterInfo/Shared.lua",
+    "domain": "CharacterInfo",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": "coalesced player-stat refresh",
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 2,
+      "timers": 2,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "1de3822f38b97be5bf7195da2ba0285beb60bea74a1e58ed17f58278e4c0ad43",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "CharacterInfo/StatsCritCalculator.lua",
+    "domain": "CharacterInfo",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 0,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "16f0acfcd775962ba5b79a2cfaa7a380e522b158f7178e34b8b227285e794b06",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "CharacterInfo/StatsCustomExtensions.lua",
+    "domain": "CharacterInfo",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 0,
+      "nativeHooks": 1,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "5d28ff3aafdf3f00d792d1c129d9781a8e9bae63febacb823aedbff897ed495a",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "CharacterInfo/StatsEra.lua",
+    "domain": "CharacterInfo",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 0,
+      "nativeHooks": 2,
+      "nativeDimensions": 3,
+      "combatGuards": 0,
+      "protectedWrites": 5
+    },
+    "sha256": "518059148f93d8a790783af509c1504f5cfac8d2e251b82c306f05dd24eb61c1",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "CharacterInfo/StatsProgression.lua",
+    "domain": "CharacterInfo",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 0,
+      "nativeHooks": 4,
+      "nativeDimensions": 2,
+      "combatGuards": 0,
+      "protectedWrites": 17
+    },
+    "sha256": "83cb1d1418e2ae5266ef7e3671763867906cd76a2d795ec164c9597e6f29a22e",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "CharacterInfo/TacoTip.lua",
+    "domain": "CharacterInfo",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 0,
+      "nativeHooks": 6,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "a94314453277b7613ceab8cd9d2660c95facaf5ddaa21fad1277a1e405b1efb7",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Inventory/_tmp_inventorylag_smoke.lua",
+    "domain": "Inventory",
+    "TOCReachable": false,
+    "TOCClients": [],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 0,
+      "nativeHooks": 1,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "cbd48f33f770bb40361e339834966e438850f8b8276bbff1de59758a09906834",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Inventory/Builtin/Auctions.lua",
+    "domain": "Inventory",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 6,
+      "timers": 0,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "dfac0adb95bcd180721129b9c30c8c147c6762d8a31ffc39fae4cbcfad1ccdcb",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Inventory/Builtin/Bags.lua",
+    "domain": "Inventory",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 0,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "a8ca6a5e62a9411b5db443521a5e207e4979d95c994684fd1b4f2aeb9426a4de",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Inventory/Builtin/Bank.lua",
+    "domain": "Inventory",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 0,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "5f601364e1d2f3d4363a1bf15a2e21f2dcbf1d376931938866772f5bd87987ad",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Inventory/Builtin/Currency.lua",
+    "domain": "Inventory",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 0,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "ed9961fb405b999420331bda0121bfb7628e5bc247662722b190d19c1c089b37",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Inventory/Builtin/Equip.lua",
+    "domain": "Inventory",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 0,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "c550d97014ac4745e6508cc345b37ebde7d57b5f7704ac335af23554f347cbf0",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Inventory/Builtin/FluxClassicCombinedBag.lua",
+    "domain": "Inventory",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 6,
+      "nativeHooks": 5,
+      "nativeDimensions": 10,
+      "combatGuards": 4,
+      "protectedWrites": 68
+    },
+    "sha256": "8da75582c1196c7b4c538118b83d15ab39356d08eb4423828f7ba3990908c59b",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Inventory/Builtin/FluxClassicCombinedBank.lua",
+    "domain": "Inventory",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 2,
+      "nativeHooks": 3,
+      "nativeDimensions": 21,
+      "combatGuards": 0,
+      "protectedWrites": 35
+    },
+    "sha256": "8f8b8b97673d69d6302d7675774d4ad7b0f13067959bca7555acfbf2a6ca61e2",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Inventory/Builtin/Guild.lua",
+    "domain": "Inventory",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 0,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "eae35c0b9e184fe9c097afc2bb306b46d33ae28ecf26c2b0f7f62f1510bf9a33",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Inventory/Builtin/Mail.lua",
+    "domain": "Inventory",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": "scan generation, bounded incomplete retry, publication gate",
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 3,
+      "timers": 0,
+      "nativeHooks": 4,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "e01251d91221f5d2d5d70bf3a069fb6632c1dc94991ad93c87782532526156ff",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Inventory/Builtin/Void.lua",
+    "domain": "Inventory",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 0,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "f9d007e70ac17e6365fbc075d589a6869ae866e3b78139817c94badd25cfd2c7",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Inventory/Builtin/Watch.lua",
+    "domain": "Inventory",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 2,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "277b1c21dfff274c0fa1af14a710fc1ac02d0592c56cdce492630f1a546a1b4a",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Inventory/Containers.lua",
+    "domain": "Inventory",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 0,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "f93c5fa627fee81f1af663633135e4bf26d22550b92d5373071fe8a03eb28bb6",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Inventory/Craft.lua",
+    "domain": "Inventory",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 0,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 2,
+      "protectedWrites": 0
+    },
+    "sha256": "4777526a27e4dec41afd6f69a781cf4bd8da45025ec0d6516d86c32b6a3d8a4b",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Inventory/CreateSpells.lua",
+    "domain": "Inventory",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 0,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "6eaac6714e819a78f49542a1c01bb788899cb1a2ef2a5a2476ccebf8b0eb483a",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Inventory/FluxConsumableBest/FluxConsumableBest.lua",
+    "domain": "Inventory",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 8,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 2,
+      "protectedWrites": 0
+    },
+    "sha256": "57bb8fb3529202b9ee566df93a2be2a7fed933b8d533ac93ad5ffee80fbe132f",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Inventory/FluxConsumableBest/Init.lua",
+    "domain": "Inventory",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 9,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "a253302ba007354071201157a3d777c1c30a2352b953f4b1c450c166dd6ca9f6",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Inventory/FluxConsumableBest/Persist.lua",
+    "domain": "Inventory",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 0,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "6764c168a51a91129561b3fa5c8a997a714131428ee8a2c23d40c80711c41593",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Inventory/FluxConsumableBest/Scan.lua",
+    "domain": "Inventory",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 2,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "6090268b37ede786e27afe002f8d21c263d379d93bd04e3d053d929ae740290b",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Inventory/FluxConsumableBest/Score.lua",
+    "domain": "Inventory",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 0,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "b7313f76c6e9a884974b94697133cc5f65ae0e498c9d5e5b5ad20461e9765059",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Inventory/FluxConsumableBest/VendorMemory.lua",
+    "domain": "Inventory",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 4,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "97df6a4d8450debd930538ed12250ad9b541f12d22d642a632d16668ca552db1",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Inventory/FluxConsumableClassify.lua",
+    "domain": "Inventory",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 0,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "923c11c73d546c2fe6fc151ed24418015f02ec906041ae5d0e616d2c75b96148",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Inventory/FluxEquipSlotCandidates.lua",
+    "domain": "Inventory",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 0,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 4,
+      "protectedWrites": 0
+    },
+    "sha256": "ec103630cfe1cbfa5f11105b5799ec3108f0ef3e0028431e244aaac604098698",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Inventory/FluxInv/FluxInv.lua",
+    "domain": "Inventory",
+    "TOCReachable": false,
+    "TOCClients": [],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 0,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "5c29f755bbc6b65f7ec2e1ba8e373da02be772d6ef97b63b7c930ec0897affa1",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Inventory/FluxInv/FluxInv_Actions.lua",
+    "domain": "Inventory",
+    "TOCReachable": false,
+    "TOCClients": [],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 0,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "ffc214996d60db4c31bf4fc1e6c4ec58e3fd05e8dad28bd088fd9287c003c8c3",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Inventory/FluxInv/FluxInv_Bags.lua",
+    "domain": "Inventory",
+    "TOCReachable": false,
+    "TOCClients": [],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 2,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "b88dad4e69f9c98338507313e627867efe342cf43f3525bcbb15f7eeef522ea7",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Inventory/FluxInv/FluxInv_Bank.lua",
+    "domain": "Inventory",
+    "TOCReachable": false,
+    "TOCClients": [],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 0,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "a7ab7aaed8472ecb370f3170c8da77d7559406b1913a8010ebaf232347b37c6b",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Inventory/FluxInv/FluxInv_Compat.lua",
+    "domain": "Inventory",
+    "TOCReachable": false,
+    "TOCClients": [],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 2,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "4676fb76cceb3a85568b75a75dc5d0c64e0b20218e58aaab4068fa66749adbed",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Inventory/FluxInv/FluxInv_Containers.lua",
+    "domain": "Inventory",
+    "TOCReachable": false,
+    "TOCClients": [],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 0,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "e05648beda791bbf51ec9bcfb7e124ddecf1021cf80677ba6df26f0339511660",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Inventory/FluxInv/FluxInv_CraftConsumables.lua",
+    "domain": "Inventory",
+    "TOCReachable": false,
+    "TOCClients": [],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 0,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 2,
+      "protectedWrites": 0
+    },
+    "sha256": "25b07c49978bd5e7c0985555de9b14078fa8b96820edd12695a92c84ce463629",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Inventory/FluxInv/FluxInv_Debug.lua",
+    "domain": "Inventory",
+    "TOCReachable": false,
+    "TOCClients": [],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 2,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "091bca3a641a8bfaaf1edb40ff614a3757edfe170f841e44fcd8929dffe38a7a",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Inventory/FluxInv/FluxInv_Equip.lua",
+    "domain": "Inventory",
+    "TOCReachable": false,
+    "TOCClients": [],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 0,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "0abd3a2501f01de0e288a67f85cff54924f2cf59e791b04881f6178182ed4f09",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Inventory/FluxInv/FluxInv_Events.lua",
+    "domain": "Inventory",
+    "TOCReachable": false,
+    "TOCClients": [],
+    "manualBoundedReview": "legacy queue triage; not TOC-reachable",
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 2,
+      "timers": 0,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 2,
+      "protectedWrites": 0
+    },
+    "sha256": "7cdf04fe37d5c5fc226aab408ba52048bb0dfa2246108f19d7f13dc4177ac83c",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Inventory/FluxInv/FluxInv_Index.lua",
+    "domain": "Inventory",
+    "TOCReachable": false,
+    "TOCClients": [],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 0,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "a313cde3d2dbac28e5e45766c347069d7eb263de5f8b11bb8bd376d47d220a2c",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Inventory/FluxInv/FluxInv_Professions.lua",
+    "domain": "Inventory",
+    "TOCReachable": false,
+    "TOCClients": [],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 0,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "54867aa113b17cf2dcf7dc716b22fc9cce1c12577a7f41034127a7594cb4bd2b",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Inventory/FluxInv/FluxInv_Spells.lua",
+    "domain": "Inventory",
+    "TOCReachable": false,
+    "TOCClients": [],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 0,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "236e493f59d4736b82f311d81432ad2f564db8ceb9fe7688282b7291dbb5cffa",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Inventory/FluxItemClass.lua",
+    "domain": "Inventory",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 0,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "af63bcf811e764bdffc6d6eefd36eafa805b318720409796587bde823fe91556",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Inventory/FluxItemMover.lua",
+    "domain": "Inventory",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 2,
+      "timers": 0,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "05cb0449f04261bc498f6759603e8d1ce5a7f10bb9f557c95f0b0e984a0da09d",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Inventory/Index.lua",
+    "domain": "Inventory",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 0,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "748bbc089afd89c7a3dffa6d677d0e79126fb1cc3dd89ec861767255cc4f668d",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Inventory/Init.lua",
+    "domain": "Inventory",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 4,
+      "timers": 23,
+      "nativeHooks": 3,
+      "nativeDimensions": 0,
+      "combatGuards": 2,
+      "protectedWrites": 0
+    },
+    "sha256": "42dedcfefd6362041eecbf65f7d07e70b23126a2957dfc1dfbbc48a3b2186131",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Inventory/Ledger.lua",
+    "domain": "Inventory",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 0,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "12027043048a9d1859267bb85ac6a497f10157b99822eaf9fbe71b38deed901a",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Inventory/LegacyBridge.lua",
+    "domain": "Inventory",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": "active listener routing",
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 0,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "a133c12021ffd4ddaa8dd0e2a52d7e86ff8bd673b908cac257328d3496f4b7af",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Inventory/MountFlyable.lua",
+    "domain": "Inventory",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 0,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "33c7e88a83f86efe0b11fb14f72317c8c39a6a131b109edd39590d049b22d6b9",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Inventory/Professions.lua",
+    "domain": "Inventory",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 2,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 4,
+      "protectedWrites": 0
+    },
+    "sha256": "48978d3e3cf1855a2cc2f43b0051c10da4894771dbe2ab6a321e71fc65811d76",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Inventory/Restock/Bank/FluxBankRestock.lua",
+    "domain": "Inventory",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 2,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "74d7319c9a6f9d9d78ca559ebc588be47bc5b122d2b94dbd934226979645ff37",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Inventory/Restock/Bank/FluxBankRestockButton.lua",
+    "domain": "Inventory",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 2,
+      "nativeHooks": 0,
+      "nativeDimensions": 21,
+      "combatGuards": 0,
+      "protectedWrites": 18
+    },
+    "sha256": "b684b61a0b874efea3555953dfd408a9bbad3abd03deb2d51fd6ecc8f73de7b8",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Inventory/Restock/Bank/FluxBankRestockDebug.lua",
+    "domain": "Inventory",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 0,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "96c9e1446a5381f90fda86d744651aaf6ce0a6e5f14bd086092da5b3c05da35a",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Inventory/Restock/Bank/FluxBankRestockInventory.lua",
+    "domain": "Inventory",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 0,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "7c475e793a8b4568ecb77c1d6f0301e39ecec637fa9ea4bcd28fc967a0a010ca",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Inventory/Restock/Bank/FluxBankRestockLedger.lua",
+    "domain": "Inventory",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 0,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "2fb4701f84c1b5bc13d337f553da5e43a59df368ddb29d052693a438e3c7aaca",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Inventory/Restock/Bank/FluxBankRestockMoveContext.lua",
+    "domain": "Inventory",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 0,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "32b68ee17fd21de704380273dbd8440c5ac0ec7fb14bb623a0c2dcb3ff002ae8",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Inventory/Restock/Bank/FluxBankRestockMoveExec.lua",
+    "domain": "Inventory",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": "active-frame visibility, timeout/reset/phase ownership (not guild bank)",
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 1,
+      "timers": 0,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "c73c888295cf74842d1b8f2d7cdb877985346fcdb8b5909969fbbda7931c0a09",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Inventory/Restock/Bank/FluxBankRestockMovePlan.lua",
+    "domain": "Inventory",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 0,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "b559c9b89e4b6d6441858079641adad38eb634c9d6e7c43ed24fda4f07ebfc78",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Inventory/Restock/Bank/FluxBankRestockMoves.lua",
+    "domain": "Inventory",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 0,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "86d138e6e3b6a971261a0265553c31a426466d8b0ff0fefa1983b0cee646a11e",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Inventory/Restock/Bank/FluxBankRestockNeed.lua",
+    "domain": "Inventory",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 0,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "5304a4842128b8883137afad27eb8cfa9b1f89f7a419c1b5c3e2c8630ef36701",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Inventory/Restock/Bank/FluxBankRestockRules.lua",
+    "domain": "Inventory",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 0,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "704a0fb38dbd2f75f2048b0f3e08a5d21117be7c7b743ef987e920902385ebdd",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Inventory/Restock/Core/FluxRestockList.lua",
+    "domain": "Inventory",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 2,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "2193301d557d4e659a3d285adf663a727f4aa7a6cb445f397e77bd5764e61222",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Inventory/Restock/Core/FluxRestockSession.lua",
+    "domain": "Inventory",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 0,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "4d70874a1da1cb82d35c5c97394de72b31e2ec795315a13ac9912d6c9a62b583",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Inventory/Restock/Core/FluxRestockSettings.lua",
+    "domain": "Inventory",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 0,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "18017b1a283bea71acb847f15777545a6d30d0640146c16c5778b478d7349dce",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Inventory/Restock/Core/Tiers/FluxRestockTiers.lua",
+    "domain": "Inventory",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 0,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "c5aedf7e7af82dfcd98b292666bc7d1c3d95d1901b587cc52c7318864bf379cc",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Inventory/Restock/Core/Tiers/FluxRestockTiers_Bank.lua",
+    "domain": "Inventory",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 0,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "ccddd30e5efc1a0b2dc6276ad066bf3371c4a6b708086c482a557941e3f9e37c",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Inventory/Restock/Core/Tiers/FluxRestockTiers_Inferior.lua",
+    "domain": "Inventory",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 0,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "1159844f3184c5cebf473b8296f3968b9fd73391cca90ed6e64b15bfac898ee8",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Inventory/Restock/Core/Tiers/FluxRestockTiers_Init.lua",
+    "domain": "Inventory",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 2,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "5c55d8e65283cee1db34fae014c6493bbc9eb2b42f330c31b5b15a1417addfa4",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Inventory/Restock/Core/Tiers/FluxRestockTiers_Match.lua",
+    "domain": "Inventory",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 0,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "e61bd163b614f5c6aaa3c59a72a9fb0d1469dc7d7733223156a27dda372da7a5",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Inventory/Restock/Core/Tiers/FluxRestockTiers_Settings.lua",
+    "domain": "Inventory",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 0,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "926454a7d64e41ef4ee674539eed5ec5bc11fc0c1e1dc3ab67925e38028f196a",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Inventory/Restock/Core/Tiers/FluxRestockTiers_UI.lua",
+    "domain": "Inventory",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 2,
+      "nativeHooks": 0,
+      "nativeDimensions": 1,
+      "combatGuards": 2,
+      "protectedWrites": 5
+    },
+    "sha256": "89e0901db2af3e7718f90fdb40a45f2575e95b6458a5674202b692fa7eb35e58",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Inventory/Restock/Core/Tiers/FluxRestockTiers_Vendor.lua",
+    "domain": "Inventory",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 0,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "f4bcdd2eb4fee3b0ad9dbf4bb4ce692686cd525acecb2f24cc38d722e971911e",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Inventory/Restock/FluxRestock_Inv.lua",
+    "domain": "Inventory",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 2,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "925d68b91c127ee7659e4706064a6aa312367073a88cc335c94acca80972f010",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Inventory/Restock/Junk/_tmp_junksmoke.lua",
+    "domain": "Inventory",
+    "TOCReachable": false,
+    "TOCClients": [],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 0,
+      "nativeHooks": 1,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "d8f8f396a30f30a0cdc47cd197a0208da713280d182d5b0a084222a471feee30",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Inventory/Restock/Junk/FluxJunk.lua",
+    "domain": "Inventory",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 2,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "6f01edb8dd3470a44ded54061fd553d61b50d14cc2717bcd0affb8b5e8514d84",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Inventory/Restock/Junk/FluxJunkOverlay.lua",
+    "domain": "Inventory",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 22,
+      "nativeHooks": 15,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 2
+    },
+    "sha256": "3b3aa3588a653b73a8f2200adfd425266a0f3420ec410f4b1577c4275792cc54",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Inventory/Restock/Junk/FluxSellJunk.lua",
+    "domain": "Inventory",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 4,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "02614249d5063181bf592014ebdb3dfe68fd2c02fee881f7a458e433cd605f9a",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Inventory/Restock/Junk/FluxVendorJunkPanel.lua",
+    "domain": "Inventory",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": "metadata query, active list, tab entry and retries",
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 4,
+      "nativeHooks": 0,
+      "nativeDimensions": 8,
+      "combatGuards": 0,
+      "protectedWrites": 16
+    },
+    "sha256": "96daeee2d0e852a945a963a38042f7d1fef41558720b7477c3ae857b75c8214c",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Inventory/Restock/Vendor/BuyEmAll/FluxBuyEmAll.lua",
+    "domain": "Inventory",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 2,
+      "timers": 0,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 2
+    },
+    "sha256": "d1aa23938b150848822bee3eac0d28cc15c4ad551629a165ce2cdf2c2207ff7b",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Inventory/Restock/Vendor/BuyEmAll/FluxBuyEmAll_Compat.lua",
+    "domain": "Inventory",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 0,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "3ec2c2a14bc8aa661a33e1afd20df665a5e6852f977e899530dcf9d34e995d6e",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Inventory/Restock/Vendor/BuyEmAll/Localization/Localization.deDE.lua",
+    "domain": "Inventory",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 0,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "15d4f22f3619173144fc0d1f15a4d99e9a1431aa9a76e8c12c33f160c4eacf26",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Inventory/Restock/Vendor/BuyEmAll/Localization/Localization.enUS.lua",
+    "domain": "Inventory",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 0,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "f4661ca1399316723f9526c33a33c5b95d17a3cf85a204fb6bb75f5a59eb6f79",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Inventory/Restock/Vendor/BuyEmAll/Localization/Localization.esES.lua",
+    "domain": "Inventory",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 0,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "67de12ffac32620a1420b9cb4ab93d4b294717a414687457816190c120554e72",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Inventory/Restock/Vendor/BuyEmAll/Localization/Localization.frFR.lua",
+    "domain": "Inventory",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 0,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "6ec5f4d2c8ebf29d58c67d5a00af0baf07c9b476fa6ac9073822080b6e6c34a0",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Inventory/Restock/Vendor/BuyEmAll/Localization/Localization.koKR.lua",
+    "domain": "Inventory",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 0,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "a22541bab28cdfcfd7c534db0408114f90ec1c5799e46e8986b26a72c8cf2ad3",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Inventory/Restock/Vendor/BuyEmAll/Localization/Localization.ptBR.lua",
+    "domain": "Inventory",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 0,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "9f31d8a523113d2cb1b75eef6e2f576d77c0d302f48b1468ebc5620d66a7ba3a",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Inventory/Restock/Vendor/BuyEmAll/Localization/Localization.ruRU.Alternate.lua",
+    "domain": "Inventory",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 0,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "0979e4f99948c5dbb9ca8858ff6299af77ee012a8726ac93fd7277cadaad26e8",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Inventory/Restock/Vendor/BuyEmAll/Localization/Localization.ruRU.lua",
+    "domain": "Inventory",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 0,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "188a1da3c70b9ff4e3360c08da7b73f53a7f15ca7e0b21da20110dedba54e5c4",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Inventory/Restock/Vendor/BuyEmAll/Localization/Localization.zhCN.lua",
+    "domain": "Inventory",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 0,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "de75fafbc3915f46b1bc98fc5e63929322596c6f5aa4255f16513d985f58ef86",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Inventory/Restock/Vendor/BuyEmAll/Localization/Localization.zhTW.lua",
+    "domain": "Inventory",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 0,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "a47904d9ff77ffd3a969402242c980258efd75ecd2d452f037a5eae087dc5e02",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Inventory/Restock/Vendor/FluxAlreadyKnown.lua",
+    "domain": "Inventory",
+    "TOCReachable": true,
+    "TOCClients": [
+      "mainline"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 1,
+      "nativeHooks": 3,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "ee9042d3a8e3cb6dec70f7658b355b9595ce84b1e80803fbd81f97dd578db6f1",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Inventory/Restock/Vendor/FluxAlreadyKnownClassic.lua",
+    "domain": "Inventory",
+    "TOCReachable": true,
+    "TOCClients": [
+      "cata",
+      "classic",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 0,
+      "nativeHooks": 5,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "a38083c0a427f55e80d1452013dc3fc2e77d784b6e42cfc91d4fbb4778251d2f",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Inventory/Restock/Vendor/FluxAlreadyKnownShared.lua",
+    "domain": "Inventory",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 0,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "05f3443d04cc550ad98ae0234fd9a24cd41194b0cfa5b394e85d63c68b568cbe",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Inventory/Restock/Vendor/FluxVendorAutoMerchantUI.lua",
+    "domain": "Inventory",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 20,
+      "nativeHooks": 13,
+      "nativeDimensions": 9,
+      "combatGuards": 0,
+      "protectedWrites": 36
+    },
+    "sha256": "8ce45eb7d6550e1546d56705715852b4f48d015c54619eee3041973a48b462da",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Inventory/Restock/Vendor/FluxVendorBuy.lua",
+    "domain": "Inventory",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 2,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "9149b61039bd9075c2689b77c8633dbdad6eeb397e00741c5e05755b04d78176",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Inventory/Restock/Vendor/FluxVendorItemDisplay.lua",
+    "domain": "Inventory",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 0,
+      "nativeHooks": 0,
+      "nativeDimensions": 1,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "ff67a771dd316beab66fa9a9008f01fdfbb19e5ca85353b11dfb42b2b3010980",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Inventory/Restock/Vendor/FluxVendorRepairUI.lua",
+    "domain": "Inventory",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 2,
+      "nativeHooks": 0,
+      "nativeDimensions": 1,
+      "combatGuards": 0,
+      "protectedWrites": 4
+    },
+    "sha256": "9588cca9baf40afe9d08938404a2ea2054ad4cc8c051d1068ce24f3ef5c82ea2",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Inventory/Restock/Vendor/FluxVendorRestockPanel.lua",
+    "domain": "Inventory",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": "metadata query, tab entry, hidden/storm/debounce guards",
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 8,
+      "nativeHooks": 0,
+      "nativeDimensions": 4,
+      "combatGuards": 0,
+      "protectedWrites": 14
+    },
+    "sha256": "1e9ee5f71cdd19a73824ae879e8f765d599e0c538d8a2430650ffaa1c005d180",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Inventory/Restock/Vendor/FluxVendorSession.lua",
+    "domain": "Inventory",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 2,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "6b84ca26ef5bee395c2dc60a1498442054f108ce458723469b08b5ed6b73211b",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Inventory/SpellReagents.lua",
+    "domain": "Inventory",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 2,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "fb55c4468968b62304a98e53bc85d20587e48667761872574112ade19d7ce653",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Inventory/Store.lua",
+    "domain": "Inventory",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 0,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "c7930c139f42602ef03d697731141d577eb4c0507c0551bcf6a3f924a3eb0f27",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Inventory/Summaries.lua",
+    "domain": "Inventory",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 0,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "23f253f19f4f64b64daed4c4730f2fdbf77a7e1379be62ae0eb3007cf9dd29da",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Inventory/Syndicator/Adapter.lua",
+    "domain": "Inventory",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": "mail debounce and initial provider handoff; excluded guild/void callbacks not reviewed",
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 4,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "670b74340e9e82f4498529e597db00941c8c3f8a8fa71ea7f4857c2ad636976f",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Inventory/Tooltip.lua",
+    "domain": "Inventory",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 0,
+      "nativeHooks": 4,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "4d9a34e34e26b45b9feebb53e8db18a331675a14bc5fb53b82a47b90085e59df",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Mail/CategoryAttach.lua",
+    "domain": "Mail",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": "install retry and settings visibility",
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 2,
+      "nativeHooks": 0,
+      "nativeDimensions": 1,
+      "combatGuards": 0,
+      "protectedWrites": 2
+    },
+    "sha256": "d41e8f5b5f7071b4019a0e635080776a4cc3d10629987e625ecd2922b86b9e79",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Mail/Contacts.lua",
+    "domain": "Mail",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": "recipient normalization, bounded recent list",
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 2,
+      "nativeHooks": 2,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 3
+    },
+    "sha256": "b17d07bfbdb9da8a13cbc5011f556622085a4dfeb16b8a9fdd1ded97d3a96f41",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Mail/Conveniences.lua",
+    "domain": "Mail",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 2,
+      "nativeHooks": 3,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 6
+    },
+    "sha256": "da24abe2cfbf54df233d7090be91386ff2ca79b1b1925568c366a9a45da5faec",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Mail/DoNotWant.lua",
+    "domain": "Mail",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 2,
+      "nativeHooks": 3,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 1
+    },
+    "sha256": "2ac4ac0abda4f532f97bbb4101c1341c8015a03c92bb117c2b3d8bb3ace8d178",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Mail/OpenAll.lua",
+    "domain": "Mail",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": "eligibility and native progress delegation",
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 2,
+      "nativeHooks": 3,
+      "nativeDimensions": 2,
+      "combatGuards": 0,
+      "protectedWrites": 2
+    },
+    "sha256": "d05a08c3afbcebc43861417cb204e85aa44259c9988b959563c8efa365520c4b",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Mail/QuickAttach.lua",
+    "domain": "Mail",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": "mail/combat/modifier/cursor gates",
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 0,
+      "nativeHooks": 3,
+      "nativeDimensions": 0,
+      "combatGuards": 2,
+      "protectedWrites": 0
+    },
+    "sha256": "8f0d570402dc55553ae1d5e3a1b2093f9bc686e9650424c50defd65634394688",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Mail/Select.lua",
+    "domain": "Mail",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": "worker/action identity, watchdog cancellation, module-disable stop",
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 7,
+      "nativeHooks": 3,
+      "nativeDimensions": 3,
+      "combatGuards": 0,
+      "protectedWrites": 10
+    },
+    "sha256": "c116d05970af885553d15010599c40f9c320e4a8a2cc7e56edc9fd77e460709c",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Mail/Settings.lua",
+    "domain": "Mail",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 2,
+      "nativeHooks": 0,
+      "nativeDimensions": 1,
+      "combatGuards": 0,
+      "protectedWrites": 1
+    },
+    "sha256": "cbc59e8bf494691d977b400befa24cb411cec53928bff016b8741312dec29df9",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Mail/TradeBlock.lua",
+    "domain": "Mail",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": "mailbox lifetime and prior CVar restore",
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 0,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "25ae0b1fb36c218cc94e7414122644afa4c97efde73d4391c796612a33c519dd",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "MicroMenu/_tmp_bagslotssmoke.lua",
+    "domain": "MicroMenu",
+    "TOCReachable": false,
+    "TOCClients": [],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 0,
+      "nativeHooks": 2,
+      "nativeDimensions": 4,
+      "combatGuards": 0,
+      "protectedWrites": 3
+    },
+    "sha256": "c4df7c05466734c14c0d2a5cc047d672aa3ff6ee5a2aa308f268fc533eef30f8",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "MicroMenu/_tmp_micromenusmoke.lua",
+    "domain": "MicroMenu",
+    "TOCReachable": false,
+    "TOCClients": [],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 2,
+      "nativeHooks": 12,
+      "nativeDimensions": 0,
+      "combatGuards": 1,
+      "protectedWrites": 0
+    },
+    "sha256": "da28196c346a626167c329c65f25be71337b3666e209104d5e4003dbf185db73",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "MicroMenu/AceGUIWidget-FluxMicroMenuEmbed.lua",
+    "domain": "MicroMenu",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 0,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "99b2ffc6f3afd13ff720f1bd883961169b125dabbc7d0c3e0f79d237660f7b5e",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "MicroMenu/FluxAddonMicroButton.lua",
+    "domain": "MicroMenu",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 2,
+      "nativeHooks": 3,
+      "nativeDimensions": 2,
+      "combatGuards": 0,
+      "protectedWrites": 5
+    },
+    "sha256": "aee9b43ccf325e6c7f956c946cc0078b65aac1b7ce9d331fe4d2ab95b4f925d2",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "MicroMenu/FluxBagMicroButton.lua",
+    "domain": "MicroMenu",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 5,
+      "nativeHooks": 8,
+      "nativeDimensions": 1,
+      "combatGuards": 0,
+      "protectedWrites": 12
+    },
+    "sha256": "c2f695e67c25188af3bc47e5c35548155f60fc9c939f867c7443071c132d4884",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "MicroMenu/FluxCombinedBagHeader.lua",
+    "domain": "MicroMenu",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 1,
+      "nativeHooks": 10,
+      "nativeDimensions": 12,
+      "combatGuards": 0,
+      "protectedWrites": 31
+    },
+    "sha256": "3b21d5882ec78c7591a86f0f2dcb92b5ae28c9b0994c4f8ccdff1262af835223",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "MicroMenu/FluxConfigMicroButton.lua",
+    "domain": "MicroMenu",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 0,
+      "nativeHooks": 1,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "2e704442ad96f8f0e0f5697f523b579abe32a72a802eed784da0f0c13a05497f",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "MicroMenu/FluxLFGMicroButton.lua",
+    "domain": "MicroMenu",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 2,
+      "timers": 8,
+      "nativeHooks": 2,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 1
+    },
+    "sha256": "65c682daeeb2f499d99bef9e45a633ca3ff636dbadf7e8b3083eda4fca0c960f",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "MicroMenu/FluxMacroMicroButton.lua",
+    "domain": "MicroMenu",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 0,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "e790bfc227b5c8254ea9ad145666bef07fc3ee2cf8edebe6727f298c75dc2c76",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "MicroMenu/FluxMicroMenu.lua",
+    "domain": "MicroMenu",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": "complete native proxy factory called by the conversion owner; both shell branches",
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 1,
+      "timers": 6,
+      "nativeHooks": 35,
+      "nativeDimensions": 16,
+      "combatGuards": 19,
+      "protectedWrites": 102
+    },
+    "sha256": "381ed6a313093defa4addd4ffa90ba7d0622c325a7b1ae24be7129c8fecc2d3a",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "MicroMenu/FluxMicroMenuConfig.lua",
+    "domain": "MicroMenu",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 1,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 1,
+      "protectedWrites": 1
+    },
+    "sha256": "80f106104b17650bd45a8342b8c9376c88b4be92c1de247bde136a5bab10821c",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "MicroMenu/FluxMicroMenuConfigUI.lua",
+    "domain": "MicroMenu",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 2,
+      "timers": 6,
+      "nativeHooks": 0,
+      "nativeDimensions": 15,
+      "combatGuards": 0,
+      "protectedWrites": 56
+    },
+    "sha256": "7d9508babe12a20866a647ab5ddae84d7ea11c6100d29d5f23d2bac662941c91",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "MicroMenu/FluxMinimapToMicro.lua",
+    "domain": "MicroMenu",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": "complete proxy create/rebuild/hover owner functions; finite login watcher",
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 9,
+      "timers": 7,
+      "nativeHooks": 4,
+      "nativeDimensions": 1,
+      "combatGuards": 0,
+      "protectedWrites": 25
+    },
+    "sha256": "4eb6c29f965158f27f405d3b7583bf33e2304916b8de14b1806f078de890d40e",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "MicroMenu/FluxReloadMicroButton.lua",
+    "domain": "MicroMenu",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 0,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "995ebc74b55a29178624be93ec0815c93b79298f2733af5a6cf19a63f6a4920a",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "MicroMenu/FluxTradeSkillMicro.lua",
+    "domain": "MicroMenu",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 6,
+      "nativeHooks": 0,
+      "nativeDimensions": 2,
+      "combatGuards": 4,
+      "protectedWrites": 10
+    },
+    "sha256": "a2b7f4ea60abbc67b9b16e90fa6a60d6bfd9ab164e86c6c46fa193c5405d2e39",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Minimap/_tmp_questiesmoke.lua",
+    "domain": "Minimap",
+    "TOCReachable": false,
+    "TOCClients": [],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 0,
+      "nativeHooks": 2,
+      "nativeDimensions": 24,
+      "combatGuards": 2,
+      "protectedWrites": 6
+    },
+    "sha256": "ff04deb6fea87015a5cbb4e8974d503f33bd50f67e3d300a034e9d4670d80d36",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Minimap/_tmp_trackercombatsmoke.lua",
+    "domain": "Minimap",
+    "TOCReachable": false,
+    "TOCClients": [],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 0,
+      "nativeHooks": 1,
+      "nativeDimensions": 0,
+      "combatGuards": 4,
+      "protectedWrites": 0
+    },
+    "sha256": "d21651defe4c3de0b72233b7484ea61986d91f735e5d4eacefe355d352fe691c",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Minimap/FluxBuffDebuffFrames.lua",
+    "domain": "Minimap",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 1,
+      "nativeHooks": 1,
+      "nativeDimensions": 0,
+      "combatGuards": 2,
+      "protectedWrites": 0
+    },
+    "sha256": "f7d5688164fb0cb05c8d0c0a0038ea374159d8cbb6c2de2f9629e89f944b379b",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Minimap/FluxMinimap.lua",
+    "domain": "Minimap",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": "current clock/calendar handlers and show/hide ticker lifecycle",
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 13,
+      "timers": 24,
+      "nativeHooks": 20,
+      "nativeDimensions": 27,
+      "combatGuards": 20,
+      "protectedWrites": 91
+    },
+    "sha256": "65504551e7d55a7efded807bfabe002b0a8a0baef0b23526a47390a5310d48ac",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Minimap/FluxMinimapButtons.lua",
+    "domain": "Minimap",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": "saved action capture and EBS delegation",
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 2,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 3,
+      "protectedWrites": 14
+    },
+    "sha256": "3d28cc2dfb193f7e701cca98ce83fff53cebaf3eb29fd2c97792ad8210385562",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Minimap/FluxObjectiveTrackerScroll.lua",
+    "domain": "Minimap",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 26,
+      "nativeHooks": 14,
+      "nativeDimensions": 40,
+      "combatGuards": 13,
+      "protectedWrites": 17
+    },
+    "sha256": "fa7832d6bb67a4ec21afae913d88464389e180cdf6227aa8d71e145bba14183d",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Minimap/FluxQuestie.lua",
+    "domain": "Minimap",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 1,
+      "nativeHooks": 4,
+      "nativeDimensions": 17,
+      "combatGuards": 4,
+      "protectedWrites": 24
+    },
+    "sha256": "534793c994a163af6a3702690cf2512fbc706cd5da98b8c80f113155cb626569",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "NamePlates/_tmp_combosmoke.lua",
+    "domain": "NamePlates",
+    "TOCReachable": false,
+    "TOCClients": [],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 0,
+      "nativeHooks": 3,
+      "nativeDimensions": 1,
+      "combatGuards": 1,
+      "protectedWrites": 3
+    },
+    "sha256": "df92a2454a9e25220fdc64ea8ccd041a04fe8648ca11024192d385b1548faf33",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "NamePlates/CastBarSchools.lua",
+    "domain": "NamePlates",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 0,
+      "nativeHooks": 4,
+      "nativeDimensions": 2,
+      "combatGuards": 0,
+      "protectedWrites": 2
+    },
+    "sha256": "6ab4f652aebd2f777f80990e73aa3073ec31ba278b1998acaeb062aa00ef7556",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "NamePlates/ComboPoints.lua",
+    "domain": "NamePlates",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "classic",
+      "tbc",
+      "vanilla"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 0,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 2
+    },
+    "sha256": "e0ab99bf4b0d8f165f436d373baec5251474303a521ce31af12bcd35c01a3a76",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "NamePlates/Core.lua",
+    "domain": "NamePlates",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": "module/Forever/Live driver ownership, active-unit fanout, prior unchanged-write guards",
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 3,
+      "timers": 0,
+      "nativeHooks": 2,
+      "nativeDimensions": 0,
+      "combatGuards": 2,
+      "protectedWrites": 26
+    },
+    "sha256": "cea2b96881c2c2789fcffcb48868b099ab20599eb0014451d250bb8ffc1dedf6",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "NamePlates/Countdown.lua",
+    "domain": "NamePlates",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 0,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 2
+    },
+    "sha256": "e43f0bfb60bb6a66b801cd5d8d6dbe65ce8ff6b452247c39012e3c5ffb073271",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "NamePlates/Level.lua",
+    "domain": "NamePlates",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 0,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 3
+    },
+    "sha256": "e0d5656f064adae94e5cf1dc1adfde7ec13113fad87a2df475902ba27a1e0a21",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "NamePlates/Threat.lua",
+    "domain": "NamePlates",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 0,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 2
+    },
+    "sha256": "37c4a2c54811274e3e6d8c03b8f41974e9ebc4ef4b564e9c832d157f8957d3db",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Other/FluxArenaFramePosition.lua",
+    "domain": "Other",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 2,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 5,
+      "protectedWrites": 3
+    },
+    "sha256": "fbe069ed348e2d1e0413ce404e86d70d2ac796be1f0c1a5b6180a88bc94efbe6",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Other/FluxBossFramePosition.lua",
+    "domain": "Other",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 2,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 5,
+      "protectedWrites": 3
+    },
+    "sha256": "63590dfabca4a5e8f3525bde49b8e15e74c10dca0b8b765350e939f358f55a0a",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Other/FluxCharacterStats/CharacterStatsCritCalculator.lua",
+    "domain": "Other",
+    "TOCReachable": false,
+    "TOCClients": [],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 0,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "16f0acfcd775962ba5b79a2cfaa7a380e522b158f7178e34b8b227285e794b06",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Other/FluxCharacterStats/CharacterStatsCustomExtensions.lua",
+    "domain": "Other",
+    "TOCReachable": false,
+    "TOCClients": [],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 0,
+      "nativeHooks": 1,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "2e10ed742f09a1690370cc1486a73a13ca9483532f258427d670cd97f072e6f0",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Other/FluxCharacterStats/CharacterStatsEra.lua",
+    "domain": "Other",
+    "TOCReachable": false,
+    "TOCClients": [],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 0,
+      "nativeHooks": 1,
+      "nativeDimensions": 3,
+      "combatGuards": 0,
+      "protectedWrites": 5
+    },
+    "sha256": "a2dd179e516bcfb283bdf9c796a06578d4cf9de8e3d5957341dd6cdca1e1c867",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Other/FluxCharacterStats/CharacterStatsGearScore.lua",
+    "domain": "Other",
+    "TOCReachable": false,
+    "TOCClients": [],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 0,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "0cc5a7a968eba5b0b87a42b1ab6930976307ed7938d64a1d1493ffed61372912",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Other/FluxCharacterStats/CharacterStatsItemLevel.lua",
+    "domain": "Other",
+    "TOCReachable": false,
+    "TOCClients": [],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 3,
+      "nativeHooks": 4,
+      "nativeDimensions": 2,
+      "combatGuards": 0,
+      "protectedWrites": 12
+    },
+    "sha256": "343e8351767957865e7ba2305f7ae1eba209f910d33f6842ddbce28173f0ac08",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Other/FluxCharacterStats/CharacterStatsPaperDollEquipFlyout.lua",
+    "domain": "Other",
+    "TOCReachable": false,
+    "TOCClients": [],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 2,
+      "nativeHooks": 17,
+      "nativeDimensions": 0,
+      "combatGuards": 3,
+      "protectedWrites": 0
+    },
+    "sha256": "14ad90719b4ddffcb94eead25427c54c2bbcd8f74fba182f8611155fcefbfaa3",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Other/FluxCharacterStats/CharacterStatsPaperDollQuality.lua",
+    "domain": "Other",
+    "TOCReachable": false,
+    "TOCClients": [],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 0,
+      "nativeHooks": 4,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "447f3c79e2d933e0884f01a861d693adf290e78a8909dfa7d3b41866955acc62",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Other/FluxCharacterStats/CharacterStatsPaperDollVisibility.lua",
+    "domain": "Other",
+    "TOCReachable": false,
+    "TOCClients": [],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 2,
+      "nativeHooks": 7,
+      "nativeDimensions": 1,
+      "combatGuards": 0,
+      "protectedWrites": 6
+    },
+    "sha256": "f256604402a26fc3e2aeaae53d2ae664d74d10812ac0afd8f45d0f88cdaec04b",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Other/FluxCharacterStats/CharacterStatsProgression.lua",
+    "domain": "Other",
+    "TOCReachable": false,
+    "TOCClients": [],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 0,
+      "nativeHooks": 3,
+      "nativeDimensions": 2,
+      "combatGuards": 0,
+      "protectedWrites": 17
+    },
+    "sha256": "4ffd8f26fe4091cbb9baf9e6a48c536375b8a28018dcb195bb546616d99c6c4c",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Other/FluxCharacterStats/CharacterStatsRetailIlvlFormat.lua",
+    "domain": "Other",
+    "TOCReachable": false,
+    "TOCClients": [],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 0,
+      "nativeHooks": 5,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "2cb10ffbdda06954cc0ad844464a69612af1b3f893eb4eff2fc68c62fcb16235",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Other/FluxCharacterStats/CharacterStatsTacoTipPaperDollSuppress.lua",
+    "domain": "Other",
+    "TOCReachable": false,
+    "TOCClients": [],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 0,
+      "nativeHooks": 6,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "af27d6f968854814d8af0e68e5d0453ec1356fbc827c5cb5a622d5db9d66eaa9",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Other/FluxCharacterStats/FluxCharacterStatsShared.lua",
+    "domain": "Other",
+    "TOCReachable": false,
+    "TOCClients": [],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 2,
+      "timers": 2,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "5807393b300a65c8878076ba8e015b7d030149112f45e9264372478fd144eb39",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Other/FluxCharacterStats/Localization/Localization_br.lua",
+    "domain": "Other",
+    "TOCReachable": false,
+    "TOCClients": [],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 0,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "810460bdc457f025aba45f5f30c668325a22e5987c83c400c467f0e43a58837a",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Other/FluxCharacterStats/Localization/Localization_cn.lua",
+    "domain": "Other",
+    "TOCReachable": false,
+    "TOCClients": [],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 0,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "8334b6567a7db883aa28ddff0add29275a30a3cc258b2143f3270b498fcd5fe6",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Other/FluxCharacterStats/Localization/Localization_de.lua",
+    "domain": "Other",
+    "TOCReachable": false,
+    "TOCClients": [],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 0,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "587275f33d4f4576e764fcc7480fc0ef7ae92639dc156f5a9c0f3c274972b8e8",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Other/FluxCharacterStats/Localization/Localization_en.lua",
+    "domain": "Other",
+    "TOCReachable": false,
+    "TOCClients": [],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 0,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "d73b70ce0b0f808b72c3f9b721344a0804e58841f94fdf3d4f05c975ee03973f",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Other/FluxCharacterStats/Localization/Localization_es.lua",
+    "domain": "Other",
+    "TOCReachable": false,
+    "TOCClients": [],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 0,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "7e609ffde423aa240ba50971409405b4821fc272844f5f32a951168fb6792920",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Other/FluxCharacterStats/Localization/Localization_fr.lua",
+    "domain": "Other",
+    "TOCReachable": false,
+    "TOCClients": [],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 0,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "d747adfc8bf8f2a47052e935cf80e9e80d014ddb343e7106088055f80653c678",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Other/FluxCharacterStats/Localization/Localization_it.lua",
+    "domain": "Other",
+    "TOCReachable": false,
+    "TOCClients": [],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 0,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "96db55a7d04fb7ce5481cc031684fe3c550b172d9eb6e50f56226e29cd3f97c6",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Other/FluxCharacterStats/Localization/Localization_kr.lua",
+    "domain": "Other",
+    "TOCReachable": false,
+    "TOCClients": [],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 0,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "a7f45639305bf1e3aeaafd22d17a863fa76ca4c4dd0ad074246b30b48cf6e66e",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Other/FluxCharacterStats/Localization/Localization_ru.lua",
+    "domain": "Other",
+    "TOCReachable": false,
+    "TOCClients": [],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 0,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "88d1bcbda277c140e59ca5bff0d263c1245af3f978ecb98567b6cde7ef7bb24d",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Other/FluxCharacterStats/Localization/Localization_tw.lua",
+    "domain": "Other",
+    "TOCReachable": false,
+    "TOCClients": [],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 0,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "e503b12fbdc55ac668b5ef17984c1ceb0d68aeb61975c2e5c9b811d4e718e43b",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Other/FluxChatColumnMicros.lua",
+    "domain": "Other",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": "prior hidden-watch fix retained",
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 1,
+      "timers": 9,
+      "nativeHooks": 7,
+      "nativeDimensions": 1,
+      "combatGuards": 7,
+      "protectedWrites": 30
+    },
+    "sha256": "daa47b18396b6a293e610f0e9a78bd38c57ef77b48fc644f5b58a767f875a2f0",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Other/FluxChatCopyPaste.lua",
+    "domain": "Other",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 2,
+      "nativeHooks": 27,
+      "nativeDimensions": 4,
+      "combatGuards": 14,
+      "protectedWrites": 27
+    },
+    "sha256": "11a619bb94789b6a224c73437fb68f7524f0d895ed051493b57c9b548f285a2c",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Other/FluxChatFrame.lua",
+    "domain": "Other",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": "chat drift ticker and edit-mode hold",
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 19,
+      "nativeHooks": 5,
+      "nativeDimensions": 11,
+      "combatGuards": 10,
+      "protectedWrites": 4
+    },
+    "sha256": "3ba1e90d9f756a8815b434065b8915f0d3afe0e91687f6b93b3bb3ddaa324c22",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Other/FluxDurationBars.lua",
+    "domain": "Other",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 0,
+      "nativeHooks": 1,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 3
+    },
+    "sha256": "58bd5ab748f3189d9e429a69be3cbd34c410f67fb4a58a92164e8c4ba0160e09",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Other/FluxEquipSlotFlyout.lua",
+    "domain": "Other",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": "actual show/hide timer owner and notify entrypoints; Show preconditions source review",
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 4,
+      "nativeHooks": 0,
+      "nativeDimensions": 2,
+      "combatGuards": 2,
+      "protectedWrites": 6
+    },
+    "sha256": "9ec5a00f229d87dfa98c210515fc0d74d39d6578d505497e598355ddce80f07c",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Other/FluxExtraAbilityHUD.lua",
+    "domain": "Other",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 3,
+      "nativeHooks": 5,
+      "nativeDimensions": 0,
+      "combatGuards": 6,
+      "protectedWrites": 5
+    },
+    "sha256": "e01d4b0c24a00018732b9e83148966299cdcfdfcd685ac4c4dd35df62bf16279",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Other/FluxHUDTooltip.lua",
+    "domain": "Other",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 1,
+      "nativeHooks": 1,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 2
+    },
+    "sha256": "cec8b0b4db3172112bf98fb0acc731a019f3f7f23133f759451425ae5748fac6",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Other/FluxInputDebug.lua",
+    "domain": "Other",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 2,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 2,
+      "protectedWrites": 0
+    },
+    "sha256": "985767bd22edddea4b8da149b53ac931fd470f617d169385076133940ed299c0",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Other/FluxLoot.lua",
+    "domain": "Other",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": "visible row pool, expiration driver, bounded session claims",
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 1,
+      "timers": 0,
+      "nativeHooks": 0,
+      "nativeDimensions": 2,
+      "combatGuards": 0,
+      "protectedWrites": 5
+    },
+    "sha256": "6955923f07024af645678f63b77c2a53281c88654a7ef4e350eefb889c13c687",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Other/FluxLootRollPosition.lua",
+    "domain": "Other",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": "combat defer and finite startup watcher",
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 4,
+      "timers": 0,
+      "nativeHooks": 2,
+      "nativeDimensions": 0,
+      "combatGuards": 3,
+      "protectedWrites": 2
+    },
+    "sha256": "291ba22a149ec0f1d8ea6a1e05aa61009643ead9f3966a88736a294767257b3c",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Other/FluxPerfCapture.lua",
+    "domain": "Other",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 2,
+      "timers": 4,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 2,
+      "protectedWrites": 0
+    },
+    "sha256": "c9deea4aaee79e0bfe60e2344200fa238e6cc021f37169d26678d3fd1bf320e0",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Other/FluxPerfDebug.lua",
+    "domain": "Other",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 2,
+      "timers": 1,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 3,
+      "protectedWrites": 0
+    },
+    "sha256": "436193f2ee58ebc5c000e4216dd212c21839568b7e94d7a49ff7fe089dfb81ee",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Other/FluxTalkingHead.lua",
+    "domain": "Other",
+    "TOCReachable": true,
+    "TOCClients": [
+      "mainline"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 2,
+      "timers": 2,
+      "nativeHooks": 12,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "01b085edce69b45631b427994a5f859c0a19bad7fa8519c88b6839acd0e2594d",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Other/FluxTradeFoodWater.lua",
+    "domain": "Other",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 2,
+      "timers": 2,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 1,
+      "protectedWrites": 9
+    },
+    "sha256": "db1cc1b737942ae38905d9663c453ef008f0538e9319a336c6de272657c179f0",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Other/FluxVehicleExitButton.lua",
+    "domain": "Other",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 7,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 3,
+      "protectedWrites": 2
+    },
+    "sha256": "1718bb3f1991cadacec3ea9f6de5d87098015f46d5d1af111a48475b3310e1c4",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Other/FluxVehicleSeats.lua",
+    "domain": "Other",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 2,
+      "nativeHooks": 2,
+      "nativeDimensions": 0,
+      "combatGuards": 6,
+      "protectedWrites": 8
+    },
+    "sha256": "12bbd63adfdffc520a646be83ea9a36a888cf36d3029ce9bde3892270149c06d",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "RaidFrame/_tmp_raidaurassmoke.lua",
+    "domain": "RaidFrame",
+    "TOCReachable": false,
+    "TOCClients": [],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 0,
+      "nativeHooks": 1,
+      "nativeDimensions": 3,
+      "combatGuards": 1,
+      "protectedWrites": 11
+    },
+    "sha256": "5100291a0a5f3140fcdda263611a247d32be88f96f1976b8c3daddcaa55d3250",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "RaidFrame/FluxRaidAuras.lua",
+    "domain": "RaidFrame",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 0,
+      "nativeHooks": 0,
+      "nativeDimensions": 6,
+      "combatGuards": 2,
+      "protectedWrites": 24
+    },
+    "sha256": "be3b9703545c97c499731f3c2ef17605f84d8e40d53b808b60f31d2d97393e07",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "RaidFrame/FluxRaidCompat.lua",
+    "domain": "RaidFrame",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 0,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "86c1b541a8787f587191b7d44621073a1d715dd3b562afbe7d92b3ebd05e8a66",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "RaidFrame/FluxRaidFrame.lua",
+    "domain": "RaidFrame",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 4,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 12,
+      "protectedWrites": 2
+    },
+    "sha256": "4518a2a937671df1181361d1e5ec44a29c457a435388ea7ec793843c4b6ed83e",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "RaidFrame/FluxRaidFrame_BigDebuffs.lua",
+    "domain": "RaidFrame",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 1,
+      "nativeHooks": 0,
+      "nativeDimensions": 2,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "4f2a9e8e409e0871a4967d909a9de18cc74299cd482ee0d1dffab53691d6b8b2",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "RaidFrame/FluxRaidHealerExtras.lua",
+    "domain": "RaidFrame",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 0,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 6,
+      "protectedWrites": 5
+    },
+    "sha256": "a2c7c68e9c7cfff5f6f707adb629dd9891978e1ec1c1bbb1eee3eb860457e9c0",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "RaidFrame/FluxRaidHoTs.lua",
+    "domain": "RaidFrame",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": "visible work set, aura access gate, ticker stop",
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 2,
+      "timers": 2,
+      "nativeHooks": 3,
+      "nativeDimensions": 3,
+      "combatGuards": 4,
+      "protectedWrites": 1
+    },
+    "sha256": "b37435ac2520fa0bfeb67a2883e0d913ee667528fd293af31aa4402d7677da6d",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "RaidFrame/FluxRaidLayout.lua",
+    "domain": "RaidFrame",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 8,
+      "nativeHooks": 14,
+      "nativeDimensions": 4,
+      "combatGuards": 20,
+      "protectedWrites": 47
+    },
+    "sha256": "3ef884cc02da8798cd8475d7978d0e7dee59e2c449c2ceac29fd90ba8e37b4d8",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "RaidFrame/FluxRaidPrediction.lua",
+    "domain": "RaidFrame",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 0,
+      "nativeHooks": 0,
+      "nativeDimensions": 4,
+      "combatGuards": 2,
+      "protectedWrites": 11
+    },
+    "sha256": "802d328312c5cb9eb9793a7b0ce0b04c17a96b0c70874acac7dc4ca0fd936bba",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "RaidFrame/FluxRaidPreview.lua",
+    "domain": "RaidFrame",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 2,
+      "nativeHooks": 0,
+      "nativeDimensions": 4,
+      "combatGuards": 3,
+      "protectedWrites": 32
+    },
+    "sha256": "e5894ebc5df34ccb459fdc86d24c5d17c677e339f496bb1635c4823fc006ea4c",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "RaidFrame/FluxRaidSecure.lua",
+    "domain": "RaidFrame",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 0,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 2,
+      "protectedWrites": 53
+    },
+    "sha256": "faf1ec840bde3174cb4c936a76e3fef2015a527d5bda3174241d5e5c5dba752f",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "RaidFrame/FluxRaidUnit.lua",
+    "domain": "RaidFrame",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": "paint-arm lifecycle and visible range poll cancellation",
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 4,
+      "timers": 2,
+      "nativeHooks": 4,
+      "nativeDimensions": 0,
+      "combatGuards": 20,
+      "protectedWrites": 9
+    },
+    "sha256": "16c5ced19d241a56288b7bfef1bab21dcdd3c2cb898a3aa829ddd9a6cbeccfa2",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "RaidFrame/FluxRaidVisuals.lua",
+    "domain": "RaidFrame",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 0,
+      "nativeHooks": 0,
+      "nativeDimensions": 12,
+      "combatGuards": 14,
+      "protectedWrites": 54
+    },
+    "sha256": "33a52cc172d63d9cd8da8b122d3ea7335bac48ad18af4fc149a812a97da80d8d",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Salvage/Data/crushable.lua",
+    "domain": "Salvage",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 0,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "d6de98e66f6a9d0bf24c91edf5b9268a3be892647101ed45c76da50b0453a07d",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Salvage/Data/disenchantable.lua",
+    "domain": "Salvage",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 0,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "02f8998ca1574fac32e8eeac07ea0d81f51fc44a7bf1d52e3e753f84795b9dca",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Salvage/Data/keys.lua",
+    "domain": "Salvage",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 0,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "16021b6aa890c3b9bb89f23564e8afb4f84225068bd793be53b448f29a358d03",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Salvage/Data/millable.lua",
+    "domain": "Salvage",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 0,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "927a88744b73650e2bc34f03b12610eb94cd09ce97541b98e076d9af8da4bc4f",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Salvage/Data/nondisenchantable.lua",
+    "domain": "Salvage",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 0,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "d8bc12d03559772ac84bf6c7e3754d212b7c14a3a90cfeaa2859b08897dd0077",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Salvage/Data/openable.lua",
+    "domain": "Salvage",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 0,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "ec9ca3d9544558ff54a76324523743667a5e78042e4140933e87b9391679d4d7",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Salvage/Data/prospectable.lua",
+    "domain": "Salvage",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 0,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "23315da792db35346d899e87a5e339d9b061424fce70c21f412af11f3679ba03",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Salvage/Data/scrappable.lua",
+    "domain": "Salvage",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 0,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "5234ba78cf2d5fd9a661496a872958f64a53be4fa475a725c797b1b2e1579db4",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Salvage/Data/shatterable.lua",
+    "domain": "Salvage",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 0,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "a9222cb8315a0c68fce5a67cd3d23f25d8c12907d1d6654cce11ae45a50af72a",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Salvage/Data/transmutable.lua",
+    "domain": "Salvage",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 0,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "d67f75ac04752e31222fda7b641fea4eb9cd1ae444748740be82d5019ccac08b",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Salvage/FluxSalvage.lua",
+    "domain": "Salvage",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 4,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "0a68fd5448a07c763fb2e2a76571f78797b4a26e539eaae2c3141f09d2ad7c7c",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Salvage/FluxSalvage_Classify.lua",
+    "domain": "Salvage",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 0,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "e2599e06ba29accd68bd56f77911fbb7fffc4d43f50ca782b1db60ac42b81f80",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Salvage/FluxSalvage_Colors.lua",
+    "domain": "Salvage",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 0,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "2482ab356586282b449b42aeded69985a197c86c16e6e63791313e6732e13fd9",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Salvage/FluxSalvage_Overlay.lua",
+    "domain": "Salvage",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": "entire production module in strict existing fixture; visible combat update/modifier paths",
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 3,
+      "timers": 0,
+      "nativeHooks": 10,
+      "nativeDimensions": 3,
+      "combatGuards": 8,
+      "protectedWrites": 34
+    },
+    "sha256": "b4385297cfd5f6534e5eac859f9be05971a1b1235ed7106f0b5e9df648b56be9",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Salvage/FluxSalvage_Settings.lua",
+    "domain": "Salvage",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 0,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "44e15d96c9e21f3f1323c5e9d20f5fe7779b95a7da21e84360c3401ae8affb3c",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "Salvage/FluxSalvage_Tooltip.lua",
+    "domain": "Salvage",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 0,
+      "nativeHooks": 4,
+      "nativeDimensions": 0,
+      "combatGuards": 1,
+      "protectedWrites": 0
+    },
+    "sha256": "56bdb4e163f6bb57ebd1fe1a26932fe93ee0c1aa2243ead566aa24174683b23a",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "StatusBars/FluxGoldLedger.lua",
+    "domain": "StatusBars",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 3,
+      "nativeHooks": 9,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "f875f13195eca71be5181fa2144f84d6fdb07fc3a919af42cd91fcbf6c0876bb",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "StatusBars/FluxInfoFrame.lua",
+    "domain": "StatusBars",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": "actual integrated cooldown coalescer, stats/tooltip ticker start/stop",
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 8,
+      "timers": 19,
+      "nativeHooks": 34,
+      "nativeDimensions": 22,
+      "combatGuards": 16,
+      "protectedWrites": 53
+    },
+    "sha256": "d335f73a27d320c0281a7ba50e0fcee48c20ff4db01643a43a33b63c971ef456",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "StatusBars/FluxItemCurrencyTracking.lua",
+    "domain": "StatusBars",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": "pending icon refresh flag and generation-gated retries",
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 2,
+      "nativeHooks": 0,
+      "nativeDimensions": 7,
+      "combatGuards": 0,
+      "protectedWrites": 14
+    },
+    "sha256": "325aaddbb4c2665901d757e4b923974785122f31edfe5d904a1aced39a182174",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "StatusBars/FluxPVPObjectiveMover.lua",
+    "domain": "StatusBars",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": "layout hooks, combat/layout entry and widget debounce",
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 2,
+      "timers": 3,
+      "nativeHooks": 7,
+      "nativeDimensions": 2,
+      "combatGuards": 0,
+      "protectedWrites": 6
+    },
+    "sha256": "5fe60fb8bec115293fff517722d2283be3c4757b364f883e710f2ca5a677d7bb",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "StatusBars/FluxPVPTracking.lua",
+    "domain": "StatusBars",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 1,
+      "nativeHooks": 2,
+      "nativeDimensions": 4,
+      "combatGuards": 0,
+      "protectedWrites": 6
+    },
+    "sha256": "78ae6807da78db89effe452672eefd6225047b7321828385a4ad26e128a8415d",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "StatusBars/FluxStatusBar.lua",
+    "domain": "StatusBars",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": "actual integrated layout notification coalescer",
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 2,
+      "timers": 13,
+      "nativeHooks": 14,
+      "nativeDimensions": 16,
+      "combatGuards": 22,
+      "protectedWrites": 62
+    },
+    "sha256": "0e0ab74c148f09d1e41f91a193e61115c5e0241c19a8f0618f60f136e12f3ff8",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "UnitFrames/FlightPath/Data/cata/flightData.lua",
+    "domain": "UnitFrames",
+    "TOCReachable": true,
+    "TOCClients": [
+      "cata"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 0,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "6d6ea9496df54690c36af56a47f4e2620059a7305dcfa6bcc741f8e7a2ab6867",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "UnitFrames/FlightPath/Data/classic/flightData.lua",
+    "domain": "UnitFrames",
+    "TOCReachable": true,
+    "TOCClients": [
+      "vanilla"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 0,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "6c9c2a6eef9836e71d3d4faebb227cca17d8de84284ab6c8e3e7d9104e645a36",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "UnitFrames/FlightPath/Data/mainline/flightData.lua",
+    "domain": "UnitFrames",
+    "TOCReachable": true,
+    "TOCClients": [
+      "mainline"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 0,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "6d6ea9496df54690c36af56a47f4e2620059a7305dcfa6bcc741f8e7a2ab6867",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "UnitFrames/FlightPath/Data/mop/flightData.lua",
+    "domain": "UnitFrames",
+    "TOCReachable": true,
+    "TOCClients": [
+      "mists"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 0,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "6d6ea9496df54690c36af56a47f4e2620059a7305dcfa6bcc741f8e7a2ab6867",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "UnitFrames/FlightPath/Data/tbc/flightData.lua",
+    "domain": "UnitFrames",
+    "TOCReachable": true,
+    "TOCClients": [
+      "tbc"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 0,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "98cfb1c24baf2bc7e434755b1aaa251dea7b0a281bba5660aa7d6d686cdd68a9",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "UnitFrames/FlightPath/Data/wotlk/flightData.lua",
+    "domain": "UnitFrames",
+    "TOCReachable": true,
+    "TOCClients": [
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 0,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "ea49995ab96cbb924d2b652f1df48ed4988396f59965cf416c6a2c4c5fdb7397",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "UnitFrames/FluxCastBar.lua",
+    "domain": "UnitFrames",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 1,
+      "timers": 6,
+      "nativeHooks": 13,
+      "nativeDimensions": 30,
+      "combatGuards": 0,
+      "protectedWrites": 38
+    },
+    "sha256": "02bf1b0acf018ab419ac9ca11ef51f33866d37145380817b9999f1726ec0be92",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "UnitFrames/FluxCastBarSchools.lua",
+    "domain": "UnitFrames",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 0,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "5a1ba7e814218462b3099d3c16a22d6945ef8f8f0467b4a024ae93abbc27551e",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "UnitFrames/FluxCastBarThemes.lua",
+    "domain": "UnitFrames",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 1,
+      "timers": 1,
+      "nativeHooks": 1,
+      "nativeDimensions": 12,
+      "combatGuards": 0,
+      "protectedWrites": 14
+    },
+    "sha256": "12baba747eb22de911e83840e47656721aab552252dadbb936fe492d22e30575",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "UnitFrames/FluxCastBarVisuals.lua",
+    "domain": "UnitFrames",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 0,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "7e6373d98df2d542f4c77713e1f85594d009f7e6c6e93b20a62c00e36f796edb",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "UnitFrames/FluxClassPower.lua",
+    "domain": "UnitFrames",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 12,
+      "nativeHooks": 3,
+      "nativeDimensions": 2,
+      "combatGuards": 9,
+      "protectedWrites": 12
+    },
+    "sha256": "c3442673ba076fd00e99666fd8b499a4e0fa1a8c7b20081d4b26f8d9c843cbf7",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "UnitFrames/FluxFlightPath.lua",
+    "domain": "UnitFrames",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 0,
+      "nativeHooks": 4,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "af3f06f8e4a59af0f3c9fa93ae4ff9f1bcfe340bab9fab2a532722383bd19b8b",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "UnitFrames/FluxForeverComboPoints.lua",
+    "domain": "UnitFrames",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 0,
+      "nativeHooks": 0,
+      "nativeDimensions": 3,
+      "combatGuards": 4,
+      "protectedWrites": 3
+    },
+    "sha256": "3b9b7e4f262c95822b31f2fd5ffdf5c29d500e60654d0f5a64613c6a24ee289a",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "UnitFrames/FluxHealthLossOverlay.lua",
+    "domain": "UnitFrames",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 1,
+      "timers": 3,
+      "nativeHooks": 0,
+      "nativeDimensions": 3,
+      "combatGuards": 0,
+      "protectedWrites": 3
+    },
+    "sha256": "586e382d9b342983f134a4509721e03a5cd6f3a803866f06b66bd0207dc5153a",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "UnitFrames/FluxLegacyComboPoints.lua",
+    "domain": "UnitFrames",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 6,
+      "nativeHooks": 0,
+      "nativeDimensions": 2,
+      "combatGuards": 4,
+      "protectedWrites": 8
+    },
+    "sha256": "22ac622d8347fa945853e482a66ac8a1b02e37b0c4e81ac6d3f7eff9a3dae0a7",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "UnitFrames/FluxMP5Overlay.lua",
+    "domain": "UnitFrames",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 3,
+      "timers": 1,
+      "nativeHooks": 3,
+      "nativeDimensions": 7,
+      "combatGuards": 0,
+      "protectedWrites": 13
+    },
+    "sha256": "4d84389161fab87f6238127413b4b671fb74ad0ce68886441d9d1ccfa9dc3c58",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "UnitFrames/FluxPortraitCombatFeedback.lua",
+    "domain": "UnitFrames",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 4,
+      "timers": 0,
+      "nativeHooks": 0,
+      "nativeDimensions": 1,
+      "combatGuards": 0,
+      "protectedWrites": 1
+    },
+    "sha256": "3f9e255f90f02655947236d01b3539275b876c1f80c66fc06a0cc30cc14ad274",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "UnitFrames/FluxPowerCostOverlay.lua",
+    "domain": "UnitFrames",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 1,
+      "timers": 4,
+      "nativeHooks": 0,
+      "nativeDimensions": 6,
+      "combatGuards": 0,
+      "protectedWrites": 13
+    },
+    "sha256": "8fdb80e0a66abd5eafe574de2d36147bb43208bfe58020bba0374accbdeaab18",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "UnitFrames/FluxSwingTimer.lua",
+    "domain": "UnitFrames",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 1,
+      "timers": 3,
+      "nativeHooks": 3,
+      "nativeDimensions": 15,
+      "combatGuards": 6,
+      "protectedWrites": 30
+    },
+    "sha256": "d1de753065397599bed540a6d99d739f0419c9108ec681fe7b64e3f690a92289",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "UnitFrames/FluxUnitFrames_Auras.lua",
+    "domain": "UnitFrames",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 16,
+      "nativeHooks": 0,
+      "nativeDimensions": 10,
+      "combatGuards": 9,
+      "protectedWrites": 42
+    },
+    "sha256": "390d024be8832e7482175393f6567cdf3d660bfe895894faba823495dee0cdb0",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "UnitFrames/FluxUnitFrames_AurasEngine.lua",
+    "domain": "UnitFrames",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "mainline"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 0,
+      "nativeHooks": 0,
+      "nativeDimensions": 4,
+      "combatGuards": 2,
+      "protectedWrites": 6
+    },
+    "sha256": "a50b0f178baeabe6ea527c24f1fca83dc3724b6377fa55116426003546be5e56",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "UnitFrames/FluxUnitFrames_AurasOwn.lua",
+    "domain": "UnitFrames",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 0,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 0,
+      "protectedWrites": 0
+    },
+    "sha256": "fc1501adb0067882a4637438800e56d51f085a2ceeff38631ea47a316b253b31",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "UnitFrames/FluxUnitFrames_BigDebuffs.lua",
+    "domain": "UnitFrames",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 1,
+      "nativeHooks": 1,
+      "nativeDimensions": 8,
+      "combatGuards": 2,
+      "protectedWrites": 0
+    },
+    "sha256": "918640a42184cbb644644c7fcd28b366543e2ac33304d5b711cf34d1e3f45c48",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "UnitFrames/FluxUnitFrames_FluxVsBlizzardRuntime.lua",
+    "domain": "UnitFrames",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 11,
+      "nativeHooks": 2,
+      "nativeDimensions": 0,
+      "combatGuards": 2,
+      "protectedWrites": 0
+    },
+    "sha256": "5fcf4ff5c92ea81f2987319ddb215af6e31ce48dcf91889b61c8b57d9aaf0435",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "UnitFrames/FluxUnitFrames_Focus.lua",
+    "domain": "UnitFrames",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 3,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 7,
+      "protectedWrites": 13
+    },
+    "sha256": "1bd1202785cdd061190949fadcaa130be88bcce8833abe018b80f69d42486611",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "UnitFrames/FluxUnitFrames_FocusTarget.lua",
+    "domain": "UnitFrames",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 4,
+      "nativeHooks": 0,
+      "nativeDimensions": 4,
+      "combatGuards": 9,
+      "protectedWrites": 6
+    },
+    "sha256": "575aa948b5ae1f66473425464b5b313672ceda70e05813ca08a75284b3217457",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "UnitFrames/FluxUnitFrames_Lifecycle.lua",
+    "domain": "UnitFrames",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 0,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 1,
+      "protectedWrites": 0
+    },
+    "sha256": "11aa29be10068eacfe8efa54a270e897ef731916dd18ad22d4be4ab786d0b075",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "UnitFrames/FluxUnitFrames_OptionsBridge.lua",
+    "domain": "UnitFrames",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 0,
+      "nativeHooks": 0,
+      "nativeDimensions": 3,
+      "combatGuards": 9,
+      "protectedWrites": 9
+    },
+    "sha256": "548965891c6e235e3ee79905b8b7d4988bc148b3a7c050349898dc31654b757b",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "UnitFrames/FluxUnitFrames_Party.lua",
+    "domain": "UnitFrames",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 2,
+      "nativeHooks": 5,
+      "nativeDimensions": 11,
+      "combatGuards": 4,
+      "protectedWrites": 46
+    },
+    "sha256": "ffbf502561fdbc94924563689d33a87700f116ee84e2fbcc16236e9639fb4568",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "UnitFrames/FluxUnitFrames_Pet.lua",
+    "domain": "UnitFrames",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": "public parent-level/dimension writers",
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 4,
+      "nativeHooks": 1,
+      "nativeDimensions": 0,
+      "combatGuards": 9,
+      "protectedWrites": 4
+    },
+    "sha256": "e2aa8d8f5bd716b0408ad76456d8ec57351e963c8b0e996d28a4f075b8f5306f",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "UnitFrames/FluxUnitFrames_PetAuraTooltip.lua",
+    "domain": "UnitFrames",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 3,
+      "nativeHooks": 1,
+      "nativeDimensions": 3,
+      "combatGuards": 3,
+      "protectedWrites": 8
+    },
+    "sha256": "a9855d3b6de7c2ea5256c0eb054be259bcf5b67654ef0fa132d453c0c6e1024f",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "UnitFrames/FluxUnitFrames_PetTarget.lua",
+    "domain": "UnitFrames",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 4,
+      "nativeHooks": 1,
+      "nativeDimensions": 5,
+      "combatGuards": 8,
+      "protectedWrites": 6
+    },
+    "sha256": "49dcc47fc6d6f93073c8f06d182f8a981657573e5bbeece29b6434276099bb7c",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "UnitFrames/FluxUnitFrames_Player.lua",
+    "domain": "UnitFrames",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 7,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 4,
+      "protectedWrites": 2
+    },
+    "sha256": "d127ea9a0fdf10e13282f2023c954b3c175a77ca93c7577aba360dd3f359662f",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "UnitFrames/FluxUnitFrames_PlayerSpecClick.lua",
+    "domain": "UnitFrames",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 2,
+      "timers": 1,
+      "nativeHooks": 1,
+      "nativeDimensions": 5,
+      "combatGuards": 13,
+      "protectedWrites": 21
+    },
+    "sha256": "e0ddf47835df81ef2cce6791175cc977080cc25a7c06365d44891bed2436b6a9",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "UnitFrames/FluxUnitFrames_PlayerTransmogClick.lua",
+    "domain": "UnitFrames",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 5,
+      "timers": 0,
+      "nativeHooks": 2,
+      "nativeDimensions": 8,
+      "combatGuards": 16,
+      "protectedWrites": 15
+    },
+    "sha256": "efca0fa1d3366c313d331fb116b1cedb2305ed394c4fe576e562c0b3ac7248e6",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "UnitFrames/FluxUnitFrames_Shared.lua",
+    "domain": "UnitFrames",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": "public geometry/level ledger, prediction helpers, portrait combat chrome, private threat raising",
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 3,
+      "timers": 21,
+      "nativeHooks": 8,
+      "nativeDimensions": 69,
+      "combatGuards": 43,
+      "protectedWrites": 249
+    },
+    "sha256": "8453242b58b9f2261e117a94d83bc8d9eedc76900ceab7b87f14331c43b65db1",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "UnitFrames/FluxUnitFrames_Target.lua",
+    "domain": "UnitFrames",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": null,
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 6,
+      "nativeHooks": 0,
+      "nativeDimensions": 0,
+      "combatGuards": 6,
+      "protectedWrites": 4
+    },
+    "sha256": "3989533a93747247b2a2a1d42317e14e7db10c006e6bc5ce92f245403a512ff3",
+    "matchesRound2Baseline": true
+  },
+  {
+    "path": "UnitFrames/FluxUnitFrames_TargetOfTarget.lua",
+    "domain": "UnitFrames",
+    "TOCReachable": true,
+    "TOCClients": [
+      "camelot",
+      "cata",
+      "classic",
+      "mainline",
+      "mists",
+      "tbc",
+      "vanilla",
+      "wrath"
+    ],
+    "manualBoundedReview": "public parent-level/dimension writers",
+    "lexicalHintsNotRuntimeCounts": {
+      "updateDriver": 0,
+      "timers": 4,
+      "nativeHooks": 1,
+      "nativeDimensions": 4,
+      "combatGuards": 5,
+      "protectedWrites": 13
+    },
+    "sha256": "55a6d5d8b388b284f20ab711207937710a849bf07cb1dd503bd0eabf498547b4",
+    "matchesRound2Baseline": true
+  }
+]

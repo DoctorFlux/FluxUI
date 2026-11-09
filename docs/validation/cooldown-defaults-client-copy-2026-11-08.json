@@ -1,0 +1,81 @@
+{
+  "utc": "2026-11-08T21:44:26.900862+00:00",
+  "copies": [
+    {
+      "client": "_retail_",
+      "path": "Other/FluxCooldownDefaults.lua",
+      "match": true
+    },
+    {
+      "client": "_retail_",
+      "path": "UnitFrames/FluxClassPower.lua",
+      "match": true
+    },
+    {
+      "client": "_retail_",
+      "path": "_FluxUI.toc",
+      "match": true
+    },
+    {
+      "client": "_forever_",
+      "path": "Other/FluxCooldownDefaults.lua",
+      "match": true
+    },
+    {
+      "client": "_forever_",
+      "path": "UnitFrames/FluxClassPower.lua",
+      "match": true
+    },
+    {
+      "client": "_forever_",
+      "path": "_FluxUI.toc",
+      "match": true
+    },
+    {
+      "client": "_classic_",
+      "path": "Other/FluxCooldownDefaults.lua",
+      "match": true
+    },
+    {
+      "client": "_classic_",
+      "path": "UnitFrames/FluxClassPower.lua",
+      "match": true
+    },
+    {
+      "client": "_classic_",
+      "path": "_FluxUI.toc",
+      "match": true
+    },
+    {
+      "client": "_classic_era_",
+      "path": "Other/FluxCooldownDefaults.lua",
+      "match": true
+    },
+    {
+      "client": "_classic_era_",
+      "path": "UnitFrames/FluxClassPower.lua",
+      "match": true
+    },
+    {
+      "client": "_classic_era_",
+      "path": "_FluxUI.toc",
+      "match": true
+    },
+    {
+      "client": "_anniversary_",
+      "path": "Other/FluxCooldownDefaults.lua",
+      "match": true
+    },
+    {
+      "client": "_anniversary_",
+      "path": "UnitFrames/FluxClassPower.lua",
+      "match": true
+    },
+    {
+      "client": "_anniversary_",
+      "path": "_FluxUI.toc",
+      "match": true
+    }
+  ],
+  "scope": "Read-only user-sync verification; does not establish loaded source or native acceptance."
+}

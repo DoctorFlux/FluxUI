@@ -1,0 +1,136 @@
+{
+  "capturedUTC": "2026-11-07T14:59:33.764975+00:00",
+  "scope": "Actual production PushPress/ChordMap/Clicks/Combat/SlotMath logic with physical key truth and presentation/widget mocks; secure click bodies/native hardware/taint/FPS not executed. ButtonFX native click wrapper is a policy stub; existing canonical secure-input controls cover that separate scope.",
+  "fixedSeed": 20261107,
+  "sourceBefore": [
+    {
+      "path": "Core/Engine/Combat.lua",
+      "sha256": "f36daa512a9f778db28c272ec19a092b188d83a170270fb6fa41bcd2bd728a7a"
+    },
+    {
+      "path": "Bars/Clicks.lua",
+      "sha256": "08bcd2bf585d13550d5077a2706ed0abccd589d07ff585951df2e43dedf8726a"
+    },
+    {
+      "path": "Bars/SlotMath.lua",
+      "sha256": "b202149ea5bb73adc23124c7bf6b60221e729d42dc381b9f28176404e4042cb8"
+    },
+    {
+      "path": "Binding/Core/PushPress.lua",
+      "sha256": "558d9171fddb980bb497c7d9a58447eaa169467cd3c457c20248ef0248d86f92"
+    },
+    {
+      "path": "Binding/Core/ChordMap.lua",
+      "sha256": "a75fcde7102bd3a2b3dc4d2f1441ef6ecb69a59d71f07661a54ba160e31e8d4b"
+    },
+    {
+      "path": "Stress test doc/round-2/action-binding/replay.lua.txt",
+      "sha256": "7244ace561c0543cea00b005a84fac2fd1d2e0b9bcab8bfef8fcc540f75ad658"
+    },
+    {
+      "path": "Stress test doc/round-2/action-binding/modifier-spam.lua.txt",
+      "sha256": "358d417b59000076764f256b89bb9a63f74212b48aa44284ce01fca89546b5ea"
+    }
+  ],
+  "sourceAfter": [
+    {
+      "path": "Core/Engine/Combat.lua",
+      "sha256": "f36daa512a9f778db28c272ec19a092b188d83a170270fb6fa41bcd2bd728a7a"
+    },
+    {
+      "path": "Bars/Clicks.lua",
+      "sha256": "08bcd2bf585d13550d5077a2706ed0abccd589d07ff585951df2e43dedf8726a"
+    },
+    {
+      "path": "Bars/SlotMath.lua",
+      "sha256": "b202149ea5bb73adc23124c7bf6b60221e729d42dc381b9f28176404e4042cb8"
+    },
+    {
+      "path": "Binding/Core/PushPress.lua",
+      "sha256": "558d9171fddb980bb497c7d9a58447eaa169467cd3c457c20248ef0248d86f92"
+    },
+    {
+      "path": "Binding/Core/ChordMap.lua",
+      "sha256": "a75fcde7102bd3a2b3dc4d2f1441ef6ecb69a59d71f07661a54ba160e31e8d4b"
+    },
+    {
+      "path": "Stress test doc/round-2/action-binding/replay.lua.txt",
+      "sha256": "7244ace561c0543cea00b005a84fac2fd1d2e0b9bcab8bfef8fcc540f75ad658"
+    },
+    {
+      "path": "Stress test doc/round-2/action-binding/modifier-spam.lua.txt",
+      "sha256": "358d417b59000076764f256b89bb9a63f74212b48aa44284ce01fca89546b5ea"
+    }
+  ],
+  "sourcePreserved": true,
+  "runs": [
+    {
+      "sample": 1,
+      "command": [
+        "lua",
+        "Stress test doc/round-2/action-binding/modifier-spam.lua.txt"
+      ],
+      "exit": 0,
+      "desktopSeconds": 75.0399,
+      "assertions": 1938260,
+      "counts": {
+        "modifierMessages": 1399680,
+        "blockedWriteAttempts": 0,
+        "regenEvents": 5760,
+        "orphanCases": 8640,
+        "scenarios": 8640,
+        "keyUps": 17280,
+        "ticks": 760320,
+        "maxDeferredJobs": 3,
+        "routeChecks": 933120,
+        "maxPendingTimers": 26,
+        "timersScheduled": 111863,
+        "noOrphanCases": 0,
+        "overrideWrites": 30,
+        "consumerCalls": 2819520,
+        "protectedWrites": 69336,
+        "keyDowns": 17280,
+        "physicalUpdates": 466560,
+        "mouseoverEvents": 8640
+      },
+      "output": "CLIENT|classic_era|useOnKeyDown=false|frames=9|hooks=3|orphan_cases=864\nCLIENT|classic_era|useOnKeyDown=true|frames=9|hooks=3|orphan_cases=864\nCLIENT|classic_anniversary|useOnKeyDown=false|frames=9|hooks=3|orphan_cases=864\nCLIENT|classic_anniversary|useOnKeyDown=true|frames=9|hooks=3|orphan_cases=864\nCLIENT|classic|useOnKeyDown=false|frames=9|hooks=3|orphan_cases=864\nCLIENT|classic|useOnKeyDown=true|frames=9|hooks=3|orphan_cases=864\nCLIENT|live|useOnKeyDown=false|frames=9|hooks=3|orphan_cases=864\nCLIENT|live|useOnKeyDown=true|frames=9|hooks=3|orphan_cases=864\nCLIENT|forever|useOnKeyDown=false|frames=11|hooks=5|orphan_cases=864\nCLIENT|forever|useOnKeyDown=true|frames=11|hooks=5|orphan_cases=864\nASSERTIONS|1938260\nCOUNT|modifierMessages|1399680\nCOUNT|blockedWriteAttempts|0\nCOUNT|regenEvents|5760\nCOUNT|orphanCases|8640\nCOUNT|scenarios|8640\nCOUNT|keyUps|17280\nCOUNT|ticks|760320\nCOUNT|maxDeferredJobs|3\nCOUNT|routeChecks|933120\nCOUNT|maxPendingTimers|26\nCOUNT|timersScheduled|111863\nCOUNT|noOrphanCases|0\nCOUNT|overrideWrites|30\nCOUNT|consumerCalls|2819520\nCOUNT|protectedWrites|69336\nCOUNT|keyDowns|17280\nCOUNT|physicalUpdates|466560\nCOUNT|mouseoverEvents|8640\nMODIFIER FOLLOWUP COMPLETE; modeled owner logic only, native hardware/secure VM not executed\n"
+    },
+    {
+      "sample": 2,
+      "command": [
+        "lua",
+        "Stress test doc/round-2/action-binding/modifier-spam.lua.txt"
+      ],
+      "exit": 0,
+      "desktopSeconds": 71.6449,
+      "assertions": 1938260,
+      "counts": {
+        "physicalUpdates": 466560,
+        "ticks": 760320,
+        "routeChecks": 933120,
+        "timersScheduled": 90230,
+        "blockedWriteAttempts": 0,
+        "keyUps": 17280,
+        "keyDowns": 17280,
+        "maxDeferredJobs": 3,
+        "mouseoverEvents": 8640,
+        "scenarios": 8640,
+        "consumerCalls": 2819520,
+        "modifierMessages": 1399680,
+        "overrideWrites": 30,
+        "maxPendingTimers": 22,
+        "noOrphanCases": 0,
+        "orphanCases": 8640,
+        "regenEvents": 5760,
+        "protectedWrites": 69336
+      },
+      "output": "CLIENT|classic_era|useOnKeyDown=false|frames=9|hooks=3|orphan_cases=864\nCLIENT|classic_era|useOnKeyDown=true|frames=9|hooks=3|orphan_cases=864\nCLIENT|classic_anniversary|useOnKeyDown=false|frames=9|hooks=3|orphan_cases=864\nCLIENT|classic_anniversary|useOnKeyDown=true|frames=9|hooks=3|orphan_cases=864\nCLIENT|classic|useOnKeyDown=false|frames=9|hooks=3|orphan_cases=864\nCLIENT|classic|useOnKeyDown=true|frames=9|hooks=3|orphan_cases=864\nCLIENT|live|useOnKeyDown=false|frames=9|hooks=3|orphan_cases=864\nCLIENT|live|useOnKeyDown=true|frames=9|hooks=3|orphan_cases=864\nCLIENT|forever|useOnKeyDown=false|frames=11|hooks=5|orphan_cases=864\nCLIENT|forever|useOnKeyDown=true|frames=11|hooks=5|orphan_cases=864\nASSERTIONS|1938260\nCOUNT|physicalUpdates|466560\nCOUNT|ticks|760320\nCOUNT|routeChecks|933120\nCOUNT|timersScheduled|90230\nCOUNT|blockedWriteAttempts|0\nCOUNT|keyUps|17280\nCOUNT|keyDowns|17280\nCOUNT|maxDeferredJobs|3\nCOUNT|mouseoverEvents|8640\nCOUNT|scenarios|8640\nCOUNT|consumerCalls|2819520\nCOUNT|modifierMessages|1399680\nCOUNT|overrideWrites|30\nCOUNT|maxPendingTimers|22\nCOUNT|noOrphanCases|0\nCOUNT|orphanCases|8640\nCOUNT|regenEvents|5760\nCOUNT|protectedWrites|69336\nMODIFIER FOLLOWUP COMPLETE; modeled owner logic only, native hardware/secure VM not executed\n"
+    }
+  ],
+  "derivedPhysicalModifierTransitionsPerRun": 267840,
+  "derivedTransitionBasis": "8640 scenarios * average(28+2*popcount(initialMask)) = 8640*31; physicalUpdates includes unchanged duplicates",
+  "documentedGroups": [
+    "R2-BIND-01"
+  ],
+  "newFindingGroups": 0
+}

@@ -1,0 +1,35 @@
+{
+  "scope": "Narrow read-only Equipment/Apply audit; new documentation/harness files only",
+  "findings": [
+    {
+      "id": "R2-CORE-04",
+      "priority": 2,
+      "classification": "confirmed production Lua completion defect under public inventory mocks",
+      "source": "Respec/FluxRespec_Equipment.lua",
+      "line": 1687,
+      "relatedSources": ["Respec/FluxRespec_Equipment.lua:1441", "Respec/FluxRespec_Equipment.lua:1600", "Respec/FluxRespec_Apply.lua:674", "Respec/FluxRespec_Apply.lua:105"],
+      "trigger": "Requested included gear is missing; either every mismatch is missing or another requested item is available",
+      "actual": "Warns, emits APPLY_DONE(true,DONE), clears checkpoint; actual AnyGearChangeNeeded remains true and IsProfileFullyApplied false",
+      "perRun": {"clients": 5, "allMissingCases": 5, "partialCases": 5, "falseSuccesses": 10},
+      "proposal": "Carry missing identities through completion and report incomplete gear truthfully while preserving available-item swaps and recovery checkpoint",
+      "acceptance": "REPORT.md",
+      "nativeObserved": false
+    },
+    {
+      "id": "R2-CORE-05",
+      "priority": 1,
+      "classification": "confirmed production Lua cancellation ownership defect under native-operation mocks",
+      "source": "Respec/FluxRespec_Apply.lua",
+      "line": 116,
+      "relatedSources": ["Respec/FluxRespec_Apply.lua:181", "Respec/FluxRespec_Equipment.lua:1742", "Respec/FluxRespec_Equipment.lua:1755", "Respec/FluxRespec_Equipment.lua:1620"],
+      "trigger": "Cancel while gear is queued for regen or while an active swap waits for its next deferred continuation",
+      "actual": "APPLY_DONE(false,CANCELLED) is emitted, then pending/active gear work still equips after cancellation; stale callback guard prevents a second APPLY_DONE but not the mutation",
+      "perRun": {"clients": 5, "pendingCases": 5, "activeCases": 5, "writesAfterCancel": 10},
+      "ordinaryRoutes": ["Respec/FluxRespec_UI.lua:2359", "Respec/FluxRespec_Core.lua:535", "Respec/FluxRespec_UI.lua:2026", "Respec/FluxRespec_Core.lua:525"],
+      "proposal": "Owner-scoped Equipment cancellation with generation-guarded pending/active continuations; invoke from cancellation/abort without rolling back committed gear or clearing foreign cursor state",
+      "acceptance": "REPORT.md; bank-withdraw ownership still requires coverage",
+      "nativeObserved": false
+    }
+  ],
+  "validation": {"repeats": 3, "checksPerRun": 225, "totalChecks": 675, "stdoutDeterministic": true, "sourceDrift": [], "details": "results.json"}
+}

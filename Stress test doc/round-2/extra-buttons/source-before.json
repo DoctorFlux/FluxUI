@@ -1,0 +1,466 @@
+{
+  "capturedUTC": "2026-11-07T14:24:21.550628+00:00",
+  "normalization": "raw bytes",
+  "sources": [
+    {
+      "path": "Bars/BadgeHost.lua",
+      "sha256": "c4fc487f45cda62e8a93932777f5478d08a9543658c456a5c6a67fb76bcf4616",
+      "bytes": 33137
+    },
+    {
+      "path": "Core/ButtonFX/Cast.lua",
+      "sha256": "ea8f5cc521d734e2010ea807c7ac1abc002a8938e4dcf00d0dae8f05c75d819b",
+      "bytes": 64308
+    },
+    {
+      "path": "Core/ButtonFX/Charges.lua",
+      "sha256": "7911a8cde0f2e8855a0f22a3a6bc791f4f5cf391354e978405774bed974e1df3",
+      "bytes": 14520
+    },
+    {
+      "path": "Core/ButtonFX/Click.lua",
+      "sha256": "b7e774a04297d86905eaf20a72b5be5a14eb9cbe87b4f8fc8a415debb0c8017d",
+      "bytes": 9496
+    },
+    {
+      "path": "Core/ButtonFX/Click2.lua",
+      "sha256": "7ca891b3b7be25d0d1a92c50f2784518dcb3a9612a95a1890201dd17875124e0",
+      "bytes": 3807
+    },
+    {
+      "path": "Core/ButtonFX/Flash.lua",
+      "sha256": "6f8a64cddc732c0b7a4459744c8ee507dcf0b2b15c6b4ad7bf8624abe9c277a4",
+      "bytes": 8692
+    },
+    {
+      "path": "Core/ButtonFX/Glow.lua",
+      "sha256": "d4be8ec4e8fc1ae26236dc58dfa4a53b87599e1ffbb4fbb77c145b7e7c5b4a57",
+      "bytes": 56114
+    },
+    {
+      "path": "Core/ButtonFX/Overlay.lua",
+      "sha256": "50dc114bcd3fbd0a2ff51eef289ea9d599df331f55caf453a0c57f49a2f5eeab",
+      "bytes": 73781
+    },
+    {
+      "path": "Core/ButtonFX/ThreatGlow.lua",
+      "sha256": "9e08ba85e8eaf5868bbf14b2403097d4aedf3bbef6181369b64d9eb47a5ec4e1",
+      "bytes": 15951
+    },
+    {
+      "path": "ExtraButtonSystem/Combat/Kind.lua",
+      "sha256": "98126d19012cb05fd393a21aea855b57dcd40ac3f96d71035b1b4309cd9d6b2f",
+      "bytes": 2223
+    },
+    {
+      "path": "ExtraButtonSystem/CombatGrid/Buttons/_tmp_ammosmoke.lua",
+      "sha256": "0e28f4b3c74bbd698aa307d938abcf7afd03524ffff6f7067a4b9504e180c741",
+      "bytes": 8874
+    },
+    {
+      "path": "ExtraButtonSystem/CombatGrid/Buttons/Ammo.lua",
+      "sha256": "287ca33a6a04730891aa01409714abf03d17e4fe0d8f5129c50b5fef6202c3be",
+      "bytes": 15740
+    },
+    {
+      "path": "ExtraButtonSystem/CombatGrid/Buttons/Bandage.lua",
+      "sha256": "c1a60b84320f9caa2ec444e52ae42f54b5c0018c050d0682ab630bbff0b95597",
+      "bytes": 2279
+    },
+    {
+      "path": "ExtraButtonSystem/CombatGrid/Buttons/HealPotion.lua",
+      "sha256": "9fce2630be5cc5a16e30cb73d0eeb1bbf18ea792d3deebf1a1932b538b019639",
+      "bytes": 2673
+    },
+    {
+      "path": "ExtraButtonSystem/CombatGrid/Buttons/Healthstone.lua",
+      "sha256": "3b8e33adebdcda476de7ea4426daa46ceaecb39076c248c1c8eee202bcc2f003",
+      "bytes": 13695
+    },
+    {
+      "path": "ExtraButtonSystem/CombatGrid/Buttons/ManaGem.lua",
+      "sha256": "cf9c94790c6d70615ea279ffd59993de82d7d61b2192ba43e7fb39a18acd15fd",
+      "bytes": 16651
+    },
+    {
+      "path": "ExtraButtonSystem/CombatGrid/Buttons/ManaPotion.lua",
+      "sha256": "fc47f8deefd8e030a8948f09d146045b7276cc6e96f2a2e71085c943b001dfb3",
+      "bytes": 3008
+    },
+    {
+      "path": "ExtraButtonSystem/CombatGrid/Grid.lua",
+      "sha256": "5b06b4f65545f08c455f2a828d5d85509a7c73b707c6596d9a532274b89510bd",
+      "bytes": 32776
+    },
+    {
+      "path": "ExtraButtonSystem/CombatGrid/GridManager.lua",
+      "sha256": "b72c5438e91d8883cf2ff05c29811ba66edd4bd9f231f794c5aa21f0947795b9",
+      "bytes": 12352
+    },
+    {
+      "path": "ExtraButtonSystem/Engine/_tmp_consumablesmoke.lua",
+      "sha256": "aefbd9e3042ac31366977881034dd243ad0509ce289ed43174e4c51755e8c42d",
+      "bytes": 32644
+    },
+    {
+      "path": "ExtraButtonSystem/Engine/Action.lua",
+      "sha256": "3daab1f50817b31545eff92d0e1ec834e6e00c0765f9a31c14520a5d7550379c",
+      "bytes": 90161
+    },
+    {
+      "path": "ExtraButtonSystem/Engine/Badge.lua",
+      "sha256": "713c2d1b6e27664d0a56a0a76bdde6e6d07bce4fbbcff461a3e9d207d236a58c",
+      "bytes": 12002
+    },
+    {
+      "path": "ExtraButtonSystem/Engine/Button.lua",
+      "sha256": "e209f9794ce1e48cd2841bd7b5eed3e0cb679c08646004dc3e37771083c4cc27",
+      "bytes": 188297
+    },
+    {
+      "path": "ExtraButtonSystem/Engine/ConsumableBind.lua",
+      "sha256": "bafe27593a9c17fb601b160b07607a77c530e3cbc450c5d6d559ac9f80e33522",
+      "bytes": 129068
+    },
+    {
+      "path": "ExtraButtonSystem/Engine/Core.lua",
+      "sha256": "7f34d573ccebed949fb977f2a5f1d0fe6fba2211ca6a9fb63c879dd8875363b5",
+      "bytes": 38643
+    },
+    {
+      "path": "ExtraButtonSystem/Engine/Events.lua",
+      "sha256": "f8b962b310a0bb2eefc693ab85af1d720049bb1040b3f2660067496733905d9d",
+      "bytes": 80145
+    },
+    {
+      "path": "ExtraButtonSystem/Engine/FluxBtn.lua",
+      "sha256": "c1a29f89a26dd8afd4041e16e2e48b5998f8688b63f98c98dddd817984e56c2d",
+      "bytes": 1708
+    },
+    {
+      "path": "ExtraButtonSystem/Engine/FluxBtn_Compat.lua",
+      "sha256": "97df2314a2f557ec92bf7c7e9e1ce8ccb71b4e389062ba6da821bef054f780fe",
+      "bytes": 2186
+    },
+    {
+      "path": "ExtraButtonSystem/Engine/FluxBtn_Flyout.lua",
+      "sha256": "41a8e764dd12329953b26c1623c3c657a8eeabdd66adaa0b55df4b3d22b0454f",
+      "bytes": 1637
+    },
+    {
+      "path": "ExtraButtonSystem/Engine/Paint.lua",
+      "sha256": "afb48689d07cd9b315894e984c0217a524e55ed056319d374e58c24c2038ffd4",
+      "bytes": 103909
+    },
+    {
+      "path": "ExtraButtonSystem/Engine/Range.lua",
+      "sha256": "7d498b3e56616dc4e6189f518d401fdc14bbd4706700abb4504253e8ea3a4e4b",
+      "bytes": 3227
+    },
+    {
+      "path": "ExtraButtonSystem/Engine/Style.lua",
+      "sha256": "0cc2decc08090e6fbbeb32cf2b299ab4752ae27235832423ccd6aa8f55602e66",
+      "bytes": 16098
+    },
+    {
+      "path": "ExtraButtonSystem/Engine/Usability.lua",
+      "sha256": "5b12b7f277acade9df7b51634800a1a6c02c3fb78702a80d4700de43fb8b6129",
+      "bytes": 62365
+    },
+    {
+      "path": "ExtraButtonSystem/Engine/Util.lua",
+      "sha256": "3cd7fa1d08137074aca1450990a195d7f5839a1272caefb86ebf05ccd7b7ef54",
+      "bytes": 51538
+    },
+    {
+      "path": "ExtraButtonSystem/Engine/VFX.lua",
+      "sha256": "8a820d83d5c06abe289455779612ad2dc9047d3fd5e5347ba7af8f0627bd56c9",
+      "bytes": 10275
+    },
+    {
+      "path": "ExtraButtonSystem/Engine/Watch.lua",
+      "sha256": "4e22b2fde9ff08ff2fb62f96e595921fef508fbfcd16bb96997daa2e1257a04f",
+      "bytes": 23633
+    },
+    {
+      "path": "ExtraButtonSystem/Engine/Widget.lua",
+      "sha256": "5458e613ae80fa7e750db36432cfb929f52fe3cf1aba642b870e77b046cd99a0",
+      "bytes": 22202
+    },
+    {
+      "path": "ExtraButtonSystem/ExtraButtons/Buttons.lua",
+      "sha256": "7e35133aad83a52c2bd17ed403b23fa275966f65b478cf0dcbf1523b53358179",
+      "bytes": 14001
+    },
+    {
+      "path": "ExtraButtonSystem/ExtraButtons/Categories.lua",
+      "sha256": "1e6053c5bfd7350628747cbbec1a735ed37d72d7cf66f654bc2bf8ddfb7f34e2",
+      "bytes": 42743
+    },
+    {
+      "path": "ExtraButtonSystem/ExtraButtons/Core.lua",
+      "sha256": "de23b44cbfe351430395cdc79e61b5f3b27f328badf5b4d4a916d24532e83234",
+      "bytes": 16626
+    },
+    {
+      "path": "ExtraButtonSystem/ExtraButtons/UI.lua",
+      "sha256": "839e769dfec007dcb0594637a9c3614134345bd6d8df1d127d0ed067781b5073",
+      "bytes": 32155
+    },
+    {
+      "path": "ExtraButtonSystem/Flyout/FluxFlyoutCore.lua",
+      "sha256": "97872fd6a2980c49bcf1427dbe7f236a6ebe32858e7433b608fe601a2178ced4",
+      "bytes": 43862
+    },
+    {
+      "path": "ExtraButtonSystem/Flyout/FluxFlyoutData.lua",
+      "sha256": "593232684d46635aca920cf29c3b531b93b280f23cad8b7c8ca5fecd28751b55",
+      "bytes": 27710
+    },
+    {
+      "path": "ExtraButtonSystem/Flyout/FluxFlyoutFavorites.lua",
+      "sha256": "d6691f83881ba81af3e7ef8d2700cb7ecc7021d4244ba52eef744b03a49cfc64",
+      "bytes": 57587
+    },
+    {
+      "path": "ExtraButtonSystem/Flyout/FluxFlyoutFrame.lua",
+      "sha256": "fc777bafbbdb2660d2dca69fa30ab2c9f276cc9de2887b6f4907b5ba67b6d3e7",
+      "bytes": 95873
+    },
+    {
+      "path": "ExtraButtonSystem/Flyout/FluxFlyoutGenerators.lua",
+      "sha256": "6f26325b1dd0d6497a5c828cc8318f45d6d1a3ee431c77107e6e30979295f5d0",
+      "bytes": 37505
+    },
+    {
+      "path": "ExtraButtonSystem/Flyout/FluxFlyoutParser.lua",
+      "sha256": "67bb8ad809f1e702461017d6d0f1bc0819ad34da68a242934628b39c3d9fe0bb",
+      "bytes": 17178
+    },
+    {
+      "path": "ExtraButtonSystem/Flyout/FluxGridFlyoutBind.lua",
+      "sha256": "737ef30cba5af7ff7069f319c8225df033718be53be3759363b611ce4d5c3148",
+      "bytes": 2925
+    },
+    {
+      "path": "ExtraButtonSystem/FlyoutEngine/Arrow.lua",
+      "sha256": "b08a0bd955f0d207190517fbbc5c233d9ea5d41471f051c096ff6c7e04896d45",
+      "bytes": 8083
+    },
+    {
+      "path": "ExtraButtonSystem/FlyoutEngine/Attach.lua",
+      "sha256": "8304c1a87fd3501a08f2d2cfffe82ddde779ad1b237a2c6a70ada298ef39161a",
+      "bytes": 5298
+    },
+    {
+      "path": "ExtraButtonSystem/FlyoutEngine/Chrome.lua",
+      "sha256": "fb7b757ce0a421daa0fdeff22ddc7bb162c0ddc84c127693949df240f0cb91d7",
+      "bytes": 7084
+    },
+    {
+      "path": "ExtraButtonSystem/FlyoutEngine/Def.lua",
+      "sha256": "8e3d1b5594f168db63ff14b48b840a1a79d68a83f5ddabecdb5170eb204d9c24",
+      "bytes": 2317
+    },
+    {
+      "path": "ExtraButtonSystem/FlyoutEngine/Favorites.lua",
+      "sha256": "b0da8901468065abeae2fb203fb65de243af460a17119293435a81dc4646618b",
+      "bytes": 17966
+    },
+    {
+      "path": "ExtraButtonSystem/FlyoutEngine/HostCompat.lua",
+      "sha256": "8840bdf6d3b92180de641cedbe4d1722c48da64722dd0daa3cda81ddfe26c122",
+      "bytes": 4382
+    },
+    {
+      "path": "ExtraButtonSystem/FlyoutEngine/Init.lua",
+      "sha256": "de82ae67050ea4c83b8dea0d9ce8545f87b79999128c507405ecdb62294f74cd",
+      "bytes": 3727
+    },
+    {
+      "path": "ExtraButtonSystem/FlyoutEngine/Popup.lua",
+      "sha256": "0d79e1a96cc62c3f446052978ba9735fadd123760a443f3801aff965e7cdf49c",
+      "bytes": 31642
+    },
+    {
+      "path": "ExtraButtonSystem/FlyoutEngine/Secure.lua",
+      "sha256": "f3310026cb806e223d85bdeca93e09e44789166d3eaeb8dc352a565e0dd63f3d",
+      "bytes": 4388
+    },
+    {
+      "path": "ExtraButtonSystem/Init.lua",
+      "sha256": "fa7e2334fa9d0595d4c9db208c66d4fa792781a0f3ac42e74249a52f621f3dc6",
+      "bytes": 7165
+    },
+    {
+      "path": "ExtraButtonSystem/Layout.lua",
+      "sha256": "06ea068ba997a81cef3bf68cdda51b498dfb45f7b7b527a88b301926d0524f9d",
+      "bytes": 11335
+    },
+    {
+      "path": "ExtraButtonSystem/NonCombat/Food.lua",
+      "sha256": "c65a91ca12d6b6f390800b62490e499bac063cd97484d3fef0a92c18df98e1f3",
+      "bytes": 2847
+    },
+    {
+      "path": "ExtraButtonSystem/NonCombat/Mount/Init.lua",
+      "sha256": "c1d6034fe468ea13e54fb78b7db15ccb77c12a8aa07190f7d480a8b96c181a13",
+      "bytes": 3652
+    },
+    {
+      "path": "ExtraButtonSystem/NonCombat/Roles.lua",
+      "sha256": "ee939ac2866cb4ac5c66de865b81c6098c530fea5b49d5b238fa6d92938413fe",
+      "bytes": 7333
+    },
+    {
+      "path": "ExtraButtonSystem/NonCombatGrid/Buttons/_tmp_mountitemsmoke.lua",
+      "sha256": "f3a956ea76ae28527fd9a64e4145756b96f6e42e823646a2b9b3fd1d337991a4",
+      "bytes": 6950
+    },
+    {
+      "path": "ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua",
+      "sha256": "7dcc07e54cd27ba1f93559c79e3c173b0eee83872a6691dbe2ead1da8334d7a1",
+      "bytes": 257184
+    },
+    {
+      "path": "ExtraButtonSystem/NonCombatGrid/Buttons/ConsumablesConfig.lua",
+      "sha256": "694a0badbb554bc637f2eea3fb752f1e76965a99e8f4644adef49112134d160b",
+      "bytes": 44976
+    },
+    {
+      "path": "ExtraButtonSystem/NonCombatGrid/Buttons/Food.lua",
+      "sha256": "842edde076d64f5a96f73ebfa48327ac614d91695d98ca550fc5070489c4872b",
+      "bytes": 21308
+    },
+    {
+      "path": "ExtraButtonSystem/NonCombatGrid/Buttons/Hearthstone.lua",
+      "sha256": "f57aaecade0460a9f3ce9ac5889035d217e2375fefbd0ff9f01eaed72925bd22",
+      "bytes": 109883
+    },
+    {
+      "path": "ExtraButtonSystem/NonCombatGrid/Buttons/Mount.lua",
+      "sha256": "728fe5df4975dd635f7be7bc03a9ec6444d211969328b3f0d5d08c2493bbc52c",
+      "bytes": 165937
+    },
+    {
+      "path": "ExtraButtonSystem/NonCombatGrid/Buttons/MountCollection.lua",
+      "sha256": "3794c4f876452d44a9af7ec7ae6a9cc54c0f81453218415f559b94b85dabe408",
+      "bytes": 5830
+    },
+    {
+      "path": "ExtraButtonSystem/NonCombatGrid/Buttons/MountItems.lua",
+      "sha256": "769cd51db2c54fad2b97b9d7e744720d56d02e13712aa52f6352499f26120a2e",
+      "bytes": 30528
+    },
+    {
+      "path": "ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua",
+      "sha256": "0b05706c352a4b608b80e6cfb8376d1e600f78259e999e84ac4a6defb83e73a1",
+      "bytes": 113754
+    },
+    {
+      "path": "ExtraButtonSystem/NonCombatGrid/Buttons/Water.lua",
+      "sha256": "36537724d48a94b2c14543087937d9985d240b2a45537fcd37675eb6f84bfa9b",
+      "bytes": 8971
+    },
+    {
+      "path": "ExtraButtonSystem/NonCombatGrid/FluxSmartHearthConfig.lua",
+      "sha256": "f00f16ff9428b78ef9e57056c12047d6fcb948718471d34d4035f21f30e9582c",
+      "bytes": 32221
+    },
+    {
+      "path": "ExtraButtonSystem/NonCombatGrid/FluxSmartMountConfig.lua",
+      "sha256": "51465e9627786935c4e825c65ade111c2bdd79c7352080225d1d59569d14188f",
+      "bytes": 38938
+    },
+    {
+      "path": "ExtraButtonSystem/NonCombatGrid/Grid.lua",
+      "sha256": "c77a19abbe02794c95b644c0ab83dfc8906f77910c59e50a39700fe2cc385676",
+      "bytes": 34539
+    },
+    {
+      "path": "ExtraButtonSystem/NonCombatGrid/GridInit.lua",
+      "sha256": "f6ed9d293f4aad3c9bf9d8767c6e708679101bf73b1e1529a7cb00f931186af4",
+      "bytes": 6485
+    },
+    {
+      "path": "ExtraButtonSystem/NonCombatGrid/UtilitySlots/Assign.lua",
+      "sha256": "a1a706068cb335050e314e092fa8ff07d7ae0dd9e88f4e6dbcf6a51dbe3f1a12",
+      "bytes": 26140
+    },
+    {
+      "path": "ExtraButtonSystem/NonCombatGrid/UtilitySlots/Manager.lua",
+      "sha256": "46d841979af9c6a7210734b7c55ee4fe80ead39c392a1666025083bfdff2e6b4",
+      "bytes": 54097
+    },
+    {
+      "path": "ExtraButtonSystem/Shared/FluxConsumablesGridUI.lua",
+      "sha256": "a444bc60318885cdd833f72f39dab26a56c561e475839e1692e4b37c4ea9c28f",
+      "bytes": 44454
+    },
+    {
+      "path": "ExtraButtonSystem/Shared/FluxEBSButtonRefresh.lua",
+      "sha256": "c459c840fd01c85ab2448c9072a65be60be9430cde8318d0f01b5c67ba5dba92",
+      "bytes": 24860
+    },
+    {
+      "path": "ExtraButtonSystem/Shared/FluxEBSConsumableBridge.lua",
+      "sha256": "9cf26af2d56f28508558e8279ce4e6ff552ac4d0594e030f91ae90acf8012f71",
+      "bytes": 62884
+    },
+    {
+      "path": "ExtraButtonSystem/Shared/FluxExtraButtonVisibility.lua",
+      "sha256": "3d8ce758fa7567db7780c74b1a2210ac080de1dde95ae3ccdfde8a09ab8926dc",
+      "bytes": 19601
+    },
+    {
+      "path": "ExtraButtonSystem/Shared/FluxMacroClickProxies.lua",
+      "sha256": "09378df03d1ecdafc2aeead0384d7f958a17d6132f817d5d78175b3e5c139a4f",
+      "bytes": 10310
+    },
+    {
+      "path": "ExtraButtonSystem/Shared/FluxModifierTracker.lua",
+      "sha256": "1371d7817c2f03c2a9a3ff600d1b6bdfe908bc162e0fc997c79630fdad6bd98b",
+      "bytes": 2537
+    },
+    {
+      "path": "ExtraButtonSystem/Shared/FluxMouseoverRefresh.lua",
+      "sha256": "804c5e887e4d87ef95c8958ab3ba11d48f7aae7faee708bb450a17c70f63ec4f",
+      "bytes": 11409
+    },
+    {
+      "path": "ExtraButtonSystem/Shared/FluxNCFlyoutOptions.lua",
+      "sha256": "c392c3942fd69ec1ffde64632b5afb2012bd047b996aeba46d5177bce1d4b9cd",
+      "bytes": 9189
+    },
+    {
+      "path": "ExtraButtonSystem/Shared/FluxRange.lua",
+      "sha256": "78d783cab717bf473ca58abafa5e79d733bb92766470261dc2540f7fc9973a85",
+      "bytes": 7812
+    },
+    {
+      "path": "ExtraButtonSystem/Shared/FluxTooltipGuard.lua",
+      "sha256": "9c02edb3ffe10e689c926e16d1e340708c48b09de63a243b8168a904b340d9aa",
+      "bytes": 6301
+    },
+    {
+      "path": "ExtraButtonSystem/Shared/HotkeyUtil.lua",
+      "sha256": "cd00b19b51c9411fa27f2e06805c45d5dae28e2d2b614b88a2e374c1237e210c",
+      "bytes": 20237
+    },
+    {
+      "path": "ExtraButtonSystem/Shared/QtyPopover.lua",
+      "sha256": "4ba76898b77a60f488cc255396432df5652cea0b60a27be1b4922bfdbc2bf432",
+      "bytes": 2032
+    },
+    {
+      "path": "ExtraButtonSystem/TrinketMenu/FluxTrinketMenu.lua",
+      "sha256": "3ab177e4885568df30d2a1a813e4412194e73af4344ba42be29468e53e21d355",
+      "bytes": 86278
+    },
+    {
+      "path": "ExtraButtonSystem/TrinketMenu/FluxTrinketMenuManager.lua",
+      "sha256": "61bf359abbf0cdd9ae4bca9389344e903466adf47d09753a82c8f1f1833cf7f0",
+      "bytes": 14063
+    }
+  ]
+}

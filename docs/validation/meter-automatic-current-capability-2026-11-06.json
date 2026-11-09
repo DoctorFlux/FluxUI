@@ -1,0 +1,263 @@
+{
+  "captured_at_utc": "2026-11-06T11:10:26.091633+00:00",
+  "requirement": "METER-DEFAULT-CURRENT-01: automatically default every existing and future native meter to Current per fight; no manual setup, taint, history loss or feature loss.",
+  "result": "BLOCKED: user explicitly chose to preserve every native feature and leave automatic Current blocked. No runtime change or automatic-default fix.",
+  "baseline_commit": "d4a45fbdc63229074af97853d7ec871cbb857162",
+  "candidate": "Documentation and capability evidence only; all 823 Lua files remain identical to the validated baseline manifest.",
+  "checkpoint": {
+    "utc": "20261106T110157Z",
+    "baseline": "d4a45fbdc63229074af97853d7ec871cbb857162",
+    "status": "",
+    "sourceFiles": 1595,
+    "settingsFiles": 177,
+    "sha256": {
+      "source.zip": "c6f2d2a58c8c226c42e7e16f3e486e714a612d406edd47a76953cf50ba860e50",
+      "settings.zip": "77e566a2db709445430f17a2dd57f09b5af30304811012652650c481372cad3c",
+      "history.bundle": "370cec3312ce0dc5cbe38793faa379fd846679bc9a184b10a41452755b68278a"
+    },
+    "zipIntegrity": "PASS",
+    "bundleVerification": "PASS",
+    "gameMemory": "Unsaved game memory excluded; no game input, settings mutation or foreground control"
+  },
+  "targets": {
+    "forever": {
+      "version": "1.60.1.70790",
+      "interface": 16001,
+      "commit": "eac30af597e5aaa43a60f6675ef5fdcea100375f",
+      "branch_rechecked": "forever still resolves to this commit",
+      "host_file_version": "1.60.1.70790"
+    },
+    "retail": {
+      "version": "12.1.5.70783",
+      "interface": 120105,
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "branch_rechecked": "live still resolves to this commit",
+      "native_checks": "Not performed this turn"
+    },
+    "other_clients": "No new capability or native acceptance inferred; preserve existing client adapters and Details routes."
+  },
+  "source_evidence": {
+    "owner": {
+      "path": "Interface/AddOns/Blizzard_DamageMeter/DamageMeter.lua",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/eac30af597e5aaa43a60f6675ef5fdcea100375f/Interface/AddOns/Blizzard_DamageMeter/DamageMeter.lua",
+      "cached_sha256": "68f8ded358c242ab6bacd79731d55252cd0c3e93e15756a6d55406a9e663dbde"
+    },
+    "session_menu": {
+      "path": "Interface/AddOns/Blizzard_DamageMeter/DamageMeterSessionWindow.lua",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/eac30af597e5aaa43a60f6675ef5fdcea100375f/Interface/AddOns/Blizzard_DamageMeter/DamageMeterSessionWindow.lua",
+      "cached_sha256": "b8eef129e3c614f9d0292d2b4645b6b58df6fe76283c92e10031eeae1dc87ece"
+    },
+    "api": {
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/DamageMeterDocumentation.lua",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/eac30af597e5aaa43a60f6675ef5fdcea100375f/Interface/AddOns/Blizzard_APIDocumentationGenerated/DamageMeterDocumentation.lua",
+      "cached_sha256": "7a0a2a40ff421ebaa21bb35753c809d303e881a8b70cc99d5177c4683ebd5bfb"
+    },
+    "edit_mode": {
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/EditModeManagerConstantsDocumentation.lua",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/eac30af597e5aaa43a60f6675ef5fdcea100375f/Interface/AddOns/Blizzard_APIDocumentationGenerated/EditModeManagerConstantsDocumentation.lua",
+      "cached_sha256": "f7befcbbebf7451199a0676f484f31385079f0f511673c5150988ddde1ad6a18"
+    },
+    "advanced_settings": {
+      "path": "Interface/AddOns/Blizzard_SettingsDefinitions_Frame/AdvancedOptions.lua",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/eac30af597e5aaa43a60f6675ef5fdcea100375f/Interface/AddOns/Blizzard_SettingsDefinitions_Frame/AdvancedOptions.lua",
+      "cached_sha256": "196ed05e63c9e5550a52e0e1ee17772fef12aa99002bb842248b6496b9cb0d24"
+    }
+  },
+  "public_methods": {
+    "forever": [
+      "GetAvailableCombatSessions",
+      "GetCombatSessionFromID",
+      "GetCombatSessionFromType",
+      "GetCombatSessionSourceFromID",
+      "GetCombatSessionSourceFromType",
+      "GetSessionDurationSeconds",
+      "IsDamageMeterAvailable",
+      "ResetAllCombatSessions"
+    ],
+    "retail": [
+      "GetAvailableCombatSessions",
+      "GetCombatSessionFromID",
+      "GetCombatSessionFromType",
+      "GetCombatSessionSourceFromID",
+      "GetCombatSessionSourceFromType",
+      "GetSessionDurationSeconds",
+      "IsDamageMeterAvailable",
+      "ResetAllCombatSessions"
+    ],
+    "interpretation": "Seven query/availability functions and one all-history reset; no declared session-selection/default setter."
+  },
+  "findings": [
+    {
+      "path": "Interface/AddOns/Blizzard_DamageMeter/DamageMeter.lua",
+      "lines": [
+        82,
+        94,
+        347,
+        366,
+        453
+      ],
+      "finding": "The native owner initializes Overall; new windows inherit that owner selection, saved windows restore native private session state, and the native setter writes owner/pane/saved state."
+    },
+    {
+      "path": "Interface/AddOns/Blizzard_DamageMeter/DamageMeterSessionWindow.lua",
+      "lines": [
+        396,
+        411,
+        434
+      ],
+      "finding": "The native Current radio uses the same owner setter rejected by the actual Forever taint test. Invoking its callback from addon code is not a new supported configuration API."
+    },
+    {
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/EditModeManagerConstantsDocumentation.lua",
+      "lines": [
+        413,
+        432
+      ],
+      "finding": "The 13 Edit Mode settings contain no session/default-Current option."
+    },
+    {
+      "path": "Interface/AddOns/Blizzard_SettingsDefinitions_Frame/AdvancedOptions.lua",
+      "lines": [
+        403,
+        415
+      ],
+      "finding": "The source-exposed meter CVars control enablement and reset on entering an instance. No Current-default CVar was found; this source search does not prove an undocumented CVar cannot exist."
+    },
+    {
+      "path": "Interface/AddOns/Blizzard_DamageMeter/DamageMeterSourceWindow.lua",
+      "lines": [
+        155,
+        168,
+        215,
+        233
+      ],
+      "finding": "An addon-owned replacement cannot presently guarantee native combat drilldown: sourceGUID is conditionally secret and source queries accept secret arguments only when untainted. Display sinks for opaque totals do not establish interactive parity."
+    }
+  ],
+  "rejected_substitutes": [
+    "Repeat the failed native setter through another call wrapper or menu callback.",
+    "Change private native factory/config fields or use SavedVariables plus reload to launder their provenance.",
+    "ResetAllCombatSessions each fight, which discards native history.",
+    "Silently substitute a reduced custom renderer or claim manual native selection satisfies the automatic requirement."
+  ],
+  "prior_native_rejection": "docs/validation/meter-current-live-checks-2026-11-06.json",
+  "native_checks": {
+    "client": {
+      "pid": 37088,
+      "hwnd": 341447356,
+      "executable": "F:\\World of Warcraft\\_forever_\\Wow.exe"
+    },
+    "captures": [
+      {
+        "utc": "2026-11-06T11:02:01Z",
+        "mode": "capture only",
+        "foreground": "Forever",
+        "input": false
+      },
+      {
+        "utc": "2026-11-06T11:06:07Z",
+        "mode": "capture only after user background readiness",
+        "foreground": "Forever",
+        "input": false
+      }
+    ],
+    "reload_attempt": {
+      "reason": "Game is foreground; refusing background test",
+      "completed_commands": [],
+      "current_character": 0,
+      "refused_message": 256,
+      "outcome": "Background guard refused before the first posted message; no reload, setting changes or other input."
+    },
+    "acceptance": "NOT RUN: no supported runtime candidate; native memory cleanup, Current defaults, two-fight behavior and combat taint remain unaccepted.",
+    "additional_readonly_attempt": {
+      "utc": "2026-11-06T11:25:15.9003892Z",
+      "wait_limit_seconds": 30,
+      "completed_commands": [],
+      "current_character": 0,
+      "refused_message": 256,
+      "reason": "Forever remained foreground; strict background guard refused before any input."
+    },
+    "later_pasted_native_errors": {
+      "times": [
+        "11:45:22",
+        "11:45:26"
+      ],
+      "failures": [
+        "durationSeconds comparison at DamageMeterSessionWindow.lua:929",
+        "specIconID comparison at DamageMeterEntry.lua:535"
+      ],
+      "scope": "Separate from the12:27 diagnostic error; fresh safe-source post-reload behavior not established. Do not assume cleared taint."
+    }
+  },
+  "validation": {
+    "source_identity": "All823 normalized Lua identities still match the existing manifest",
+    "retained_desktop_results": {
+      "scripts": 166,
+      "syntax_files": 823,
+      "failures": 0,
+      "scope": "Previous exact-source166-script/823-syntax run retained; new read-only inventory was user-tested, not an automatic-default or combat acceptance run."
+    },
+    "desktop_manifest": "docs/validation/meter-rejected-current-removal-2026-11-06.json"
+  },
+  "performance": {
+    "status": "NOT RUN / no runtime candidate",
+    "reason": "No code, polling, layout, events or native settings changed; profiling preferences untouched. No native CPU, memory or FPS improvement claimed."
+  },
+  "next_supported_step": "Keep native features and history intact. Reopen automatic Current only with a newly verified supported native configuration API; no further same-path setter experiments.",
+  "latest_decision": {
+    "date": "2026-11-06",
+    "user_choice": "Preserve every native feature; leave automatic Current blocked",
+    "status": "BLOCKED by supported-configuration gap; user chose feature preservation.",
+    "effect": "No replacement renderer, native settings writes, reset or automatic Current implementation. Manual selection is not completion."
+  },
+  "runtime_inventory_user_report": {
+    "client_context": "Requested from the ongoing Forever70790 session; supplied as user-pasted output, not agent-executed.",
+    "meter_functions": [
+      "ResetAllCombatSessions",
+      "GetCombatSessionFromType",
+      "GetAvailableCombatSessions",
+      "GetCombatSessionFromID",
+      "GetSessionDurationSeconds",
+      "GetCombatSessionSourceFromID",
+      "IsDamageMeterAvailable",
+      "GetCombatSessionSourceFromType"
+    ],
+    "meter_named_console_entries": [
+      {
+        "command": "damageMeterEnabled",
+        "help": "If true, show the damage meter UI."
+      },
+      {
+        "command": "damageMeterResetOnNewInstance",
+        "help": "If true, reset the damage meter any time the player enters a new instance."
+      }
+    ],
+    "completion_marker": "FXCV DONE",
+    "filter_scope": "Nil-safe read-only inventory filtered command names for damagemeter. It does not prove an unrelated undocumented console command cannot exist.",
+    "result": "Actual exported methods match the eight source-declared methods; listed meter settings provide no Current/default selector.",
+    "cleanup_scope": "Output followed a request to reload first, but no explicit loaded-source identity, reload confirmation or post-cleanup native taint acceptance was supplied."
+  },
+  "diagnostic_correction": {
+    "original_failure": "The first read-only macro concatenated command help without a nil guard; client returned nil help and raised a RunScript concatenation error at12:27:14.",
+    "responsibility": "Assistant diagnostic mistake, acknowledged and corrected; distinct from native meter secret-value errors.",
+    "corrected_command": "/run for _,v in ipairs(ConsoleGetAllCommands())do local n=v.command or \"\";if n:lower():find(\"damagemeter\",1,true)then print(\"FXCV\",n,v.help or \"\")end end print(\"FXCV DONE\")",
+    "desktop_check": "PASS: nil help, nil command, unrelated entries and completion marker; no native VM claim.",
+    "native_result": "User supplied the two entries and completion marker from the corrected command."
+  },
+  "updated_at_utc": "2026-11-06T11:35:22.738018+00:00",
+  "runtime_inventory_checkpoint": {
+    "utc": "20261106T113256Z",
+    "baseline": "0f2e3fdaddb2105eea6afdd1058b96e85308180a",
+    "status": "",
+    "sourceFiles": 1596,
+    "settingsFiles": 177,
+    "sha256": {
+      "source.zip": "3eebba4234ea4d02b899dde9d3e4e479319e05bd34845a57d26165d633ff01f5",
+      "settings.zip": "8669e1cc2f57a60fd5104d973f9996855a6357e3d7a538df3fba67cbd81330bf",
+      "history.bundle": "72277e9407b97fdceec4f506406bdaebac8cd2a7e7a1a56e0581a166ea9891cf"
+    },
+    "zipIntegrity": "PASS",
+    "bundleVerification": "PASS",
+    "gameMemory": "Unsaved game memory excluded; no game input, settings mutation or foreground control"
+  }
+}

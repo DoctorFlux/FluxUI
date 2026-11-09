@@ -1,0 +1,48 @@
+{
+  "capturedUTC": "2026-11-07T15:51:41.563830+00:00",
+  "baselineHead": "1fd463f4de4bbff659f4e402c6f31138c49765b4",
+  "currentHead": "1fd463f4de4bbff659f4e402c6f31138c49765b4",
+  "baselineBranch": "main",
+  "currentBranch": "main",
+  "baselineFiles": 2047,
+  "authorizedDocumentationChanges": [
+    "docs/CLIENT_MATRIX.csv",
+    "docs/CLIENT_VALIDATION.md",
+    "docs/DECISIONS.md",
+    "docs/FEATURE_PARITY.csv",
+    "docs/PERFORMANCE_AUDIT.csv",
+    "docs/PERFORMANCE_RESULTS.csv",
+    "docs/STATUS.md",
+    "docs/WORK_LOG.md",
+    "NEXT_SESSION.md",
+    "Stress test doc/README.md"
+  ],
+  "otherObservedChanges": [
+    "docs/14-unit-frames.md",
+    "docs/15-raid-frames.md",
+    "docs/RAID_HEALKIT_REWORK.md",
+    "docs/reference/interfaces.md",
+    "docs/reference/inventory.json",
+    "docs/reference/verification.json",
+    "tests/raid_party_frames.lua",
+    "tests/unit_indicator_layout.lua",
+    "UnitFrames/FluxUnitFrames_Party.lua",
+    "UnitFrames/FluxUnitFrames_Shared.lua"
+  ],
+  "observedIndependentCodeTestDrift": [
+    "tests/raid_party_frames.lua",
+    "tests/unit_indicator_layout.lua",
+    "UnitFrames/FluxUnitFrames_Party.lua",
+    "UnitFrames/FluxUnitFrames_Shared.lua"
+  ],
+  "unreconciledCodeTestTOCArtDrift": [],
+  "missingFiles": [],
+  "newOutsideRound2": [
+    "docs/validation/party-native-pvp-badge-2026-11-07.json",
+    "docs/validation/unit-native-pvp-badge-2026-11-07.json"
+  ],
+  "newCodeOutsideRound2": [],
+  "settingsOperations": "None issued; no WTF/profiler/game operations",
+  "issuedWriteScope": "New round-2 artifacts/external source snapshot and listed documentation continuity/ledgers only",
+  "pass": true
+}

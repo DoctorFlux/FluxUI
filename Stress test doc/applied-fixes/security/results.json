@@ -1,0 +1,378 @@
+{
+  "capturedUTC": "2026-11-07T13:31:51.294523+00:00",
+  "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\07\\01a1b5b8-1789-7050-b49c-88d0a742e874\\apply-fixes-20261107T125749Z",
+  "hashNormalization": "CRLF to LF only",
+  "scope": "Production Lua modules/functions under deterministic public API mocks; no native secure VM, native secret values, UI rendering, taint/FPS or game input execution.",
+  "sources": [
+    {
+      "path": "Core/Engine/Restricted.lua",
+      "appliedSHA256": "73413b82c0dd4c26770d82e3f0524200971a5a04288e6c67bc47b66f20c7f806",
+      "checkpointSHA256": "ee811112e2be9a9f65f91856ea124f22652d8ada552867b966e44c12c3a7cc44"
+    },
+    {
+      "path": "Respec/FluxRespec_ActionBars.lua",
+      "appliedSHA256": "7a91d7944f9710ab51ce150ab44fb5414c62f3269de84d3119aae54a10506162",
+      "checkpointSHA256": "608d64a449ba3110fef900a563edbfe0d470a12faf2039e463f089eae47ae533"
+    },
+    {
+      "path": "Respec/FluxRespec_Apply.lua",
+      "appliedSHA256": "891c77da3faf71d66204a47eb452dc0952c919c28beb9d63e5cb0370bed10ba3",
+      "checkpointSHA256": "16916f21c5b5d91c037b63c2f48b38f57f71a9e2a75e1af14be563b106205a09"
+    },
+    {
+      "path": "Respec/FluxRespec_PresetBundle.lua",
+      "appliedSHA256": "9e7f4b94f46c56cd76f82e5368dddecffbf1307a14b31b7aac15db6b42d39e13",
+      "checkpointSHA256": "420c5b848aacfdb1675d73c252fd1dfc64d13baaf3b45910c33505a294212da9"
+    },
+    {
+      "path": "Bars/State.lua",
+      "appliedSHA256": "52f005c429b03e4d04495a6183f200323fa71e71ecd0127296b29f4aa0a9dfef",
+      "checkpointSHA256": "94c5a04cd918fc2b530c41622e94bb165ebb440fde970afab9e34a92233d3dfb"
+    },
+    {
+      "path": "Bars/Pet/Init.lua",
+      "appliedSHA256": "b4cf96cdc52d01ea44576650d138cf38903314c52bf9f411aac1912c4f5d0296",
+      "checkpointSHA256": "88b89cfb82937fb85d60a3f482c3445368eaaf85451e97bdacfe561d6e5e9049"
+    },
+    {
+      "path": "Binding/Core/SecurePool.lua",
+      "appliedSHA256": "e25ce53f03c1122ed9a2e367e42807f01a4a74ab87e6e71c06f3d05b12d06fb2",
+      "checkpointSHA256": "4d4d02b879b369f9774dc7b62c8fe7da06f6cd800e2fd8df151d2280a4ead83d"
+    },
+    {
+      "path": "Binding/Input/FluxMouseoverKeybind.lua",
+      "appliedSHA256": "cba37032fa6ce6dbd97e6533dceda584338e37707a3b45f9b7b72bff97082092",
+      "checkpointSHA256": "74c5614f71f18e14e3d050a12691a3ff2c725b325928d2c73e333784754314cb"
+    },
+    {
+      "path": "Core/Engine/MouseoverCast.lua",
+      "appliedSHA256": "50d625393c18acbf7c92c2e3b44caff909b5f26a63fd946b49cf063a5c2ec714",
+      "checkpointSHA256": "c495351ce240f69827a5ab2ae85f0ae77dd821fe6d9ab8de385456996016ac08"
+    },
+    {
+      "path": "RaidFrame/FluxRaidLayout.lua",
+      "appliedSHA256": "3ef884cc02da8798cd8475d7978d0e7dee59e2c449c2ceac29fd90ba8e37b4d8",
+      "checkpointSHA256": "ed040a9bb89bc8454fb669505a829255ed6e0564eb81eb13ab0308115f27f0fe"
+    },
+    {
+      "path": "UnitFrames/FluxClassPower.lua",
+      "appliedSHA256": "c3442673ba076fd00e99666fd8b499a4e0fa1a8c7b20081d4b26f8d9c843cbf7",
+      "checkpointSHA256": "754d04e54dce37078a44ff8e4b9a9fa4927de7006a2a6bea7a045b6c2b5b92e4"
+    },
+    {
+      "path": "UnitFrames/FluxUnitFrames_Shared.lua",
+      "appliedSHA256": "5020d140703a24ba909b078e2f10df4abb841a32c914b9cfb51f0cdecd5e6c89",
+      "checkpointSHA256": "79d1d123ee4c628b706b6c8e6f0a102ebe0a87084e0908501f95d493042cb20f"
+    },
+    {
+      "path": "UnitFrames/FluxUnitFrames_Pet.lua",
+      "appliedSHA256": "5ec6400e06f281dc96d48537a3e4c2536aed21a53b26974099c82c0253fd534d",
+      "checkpointSHA256": "5105a0b99b7567bdf8e37f7946f331934606256967346809d9d8248d4f598813"
+    },
+    {
+      "path": "UnitFrames/FluxUnitFrames_PetTarget.lua",
+      "appliedSHA256": "49dcc47fc6d6f93073c8f06d182f8a981657573e5bbeece29b6434276099bb7c",
+      "checkpointSHA256": "51c968e82e879fa3735c7578abb1654aa6805ab8e0b8d610dde9309d736d4660"
+    },
+    {
+      "path": "UnitFrames/FluxUnitFrames_Target.lua",
+      "appliedSHA256": "3989533a93747247b2a2a1d42317e14e7db10c006e6bc5ce92f245403a512ff3",
+      "checkpointSHA256": "c32b482770b0de94a90a3339e04aafa8cabbbce033f7eee15dccfe57a242ded6"
+    },
+    {
+      "path": "UnitFrames/FluxUnitFrames_TargetOfTarget.lua",
+      "appliedSHA256": "c3ba39bedb19e5c8d02e206ff1de923599a817be3feeeb06bd9af1c73d9bc524",
+      "checkpointSHA256": "6e6ef6ce18c5cc057b32d816ccc413588f1711b839a750a0cf543371834b2df0"
+    },
+    {
+      "path": "UnitFrames/FluxUnitFrames_PlayerTransmogClick.lua",
+      "appliedSHA256": "efca0fa1d3366c313d331fb116b1cedb2305ed394c4fe576e562c0b3ac7248e6",
+      "checkpointSHA256": "237adef8656fb58ceb7dbea3cbaf00f96463358c55bf2d5c4046e422a845ee08"
+    },
+    {
+      "path": "Salvage/FluxSalvage_Overlay.lua",
+      "appliedSHA256": "b4385297cfd5f6534e5eac859f9be05971a1b1235ed7106f0b5e9df648b56be9",
+      "checkpointSHA256": "e95924b5cb5caa1640eca8327a0fd5bd629b5e539079259dda22e06be59b2405"
+    },
+    {
+      "path": "Core/_tmp_coresmoke.lua",
+      "appliedSHA256": "ba5a9583d26ceeae072fe20572f94f023a9d127bb2b3657da2c7824802d18d4b",
+      "checkpointSHA256": "f73df06e8865308f037e6d7256b90e099a1bab07a41e96d90d42e2fb226ebc2d"
+    },
+    {
+      "path": "tests/restricted_driver_ownership.lua",
+      "appliedSHA256": "1846c2883f7847b36d718267d9ba8023ab9fb23289c5b018feff1688858d3a1d",
+      "checkpointSHA256": null
+    },
+    {
+      "path": "tests/respec_actionbar_completion.lua",
+      "appliedSHA256": "ed2f82d8c38ec577a68db2ee569e76260d814b0a6ae06f28d8fe11c52bb44246",
+      "checkpointSHA256": null
+    }
+  ],
+  "tests": [
+    {
+      "id": "SEC-01",
+      "variant": "checkpoint-baseline",
+      "command": [
+        "lua",
+        "tests/restricted_driver_ownership.lua",
+        "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\07\\01a1b5b8-1789-7050-b49c-88d0a742e874\\apply-fixes-20261107T125749Z\\security-baseline-control"
+      ],
+      "exit": 1,
+      "expected": "reject",
+      "matchesExpectation": true,
+      "output": "lua: tests/restricted_driver_ownership.lua:5: forever preserves global RegisterAttributeDriver\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/restricted_driver_ownership.lua:5: in local 'check'\n\ttests/restricted_driver_ownership.lua:62: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "id": "SEC-01",
+      "variant": "applied",
+      "command": [
+        "lua",
+        "tests/restricted_driver_ownership.lua",
+        "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI"
+      ],
+      "exit": 0,
+      "expected": "pass",
+      "matchesExpectation": true,
+      "output": "restricted driver ownership: 264 checks passed (five client models; native taint pending)\n"
+    },
+    {
+      "id": "SEC-02",
+      "variant": "checkpoint-baseline",
+      "command": [
+        "lua",
+        "tests/respec_actionbar_completion.lua",
+        "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\07\\01a1b5b8-1789-7050-b49c-88d0a742e874\\apply-fixes-20261107T125749Z\\security-baseline-control",
+        "SEC-02"
+      ],
+      "exit": 1,
+      "expected": "reject",
+      "matchesExpectation": true,
+      "output": "lua: tests/respec_actionbar_completion.lua:6: classic_era stance_throw must report failure\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/respec_actionbar_completion.lua:6: in local 'check'\n\ttests/respec_actionbar_completion.lua:113: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "id": "SEC-02",
+      "variant": "applied",
+      "command": [
+        "lua",
+        "tests/respec_actionbar_completion.lua",
+        "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI",
+        "SEC-02"
+      ],
+      "exit": 0,
+      "expected": "pass",
+      "matchesExpectation": true,
+      "output": "respec action-bar completion: 125 checks passed (SEC-02; five client models; native pending)\n"
+    },
+    {
+      "id": "SEC-02-bundle",
+      "variant": "checkpoint-baseline",
+      "command": [
+        "lua",
+        "tests/respec_actionbar_completion.lua",
+        "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\07\\01a1b5b8-1789-7050-b49c-88d0a742e874\\apply-fixes-20261107T125749Z\\security-baseline-control",
+        "SEC-02-bundle"
+      ],
+      "exit": 1,
+      "expected": "reject",
+      "matchesExpectation": true,
+      "output": "lua: tests/respec_actionbar_completion.lua:6: preset bundle must propagate the restore result rather than pcall status\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/respec_actionbar_completion.lua:6: in local 'check'\n\ttests/respec_actionbar_completion.lua:106: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "id": "SEC-02-bundle",
+      "variant": "applied",
+      "command": [
+        "lua",
+        "tests/respec_actionbar_completion.lua",
+        "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI",
+        "SEC-02-bundle"
+      ],
+      "exit": 0,
+      "expected": "pass",
+      "matchesExpectation": true,
+      "output": "respec action-bar completion: 11 checks passed (SEC-02-bundle; five client models; native pending)\n"
+    },
+    {
+      "id": "SEC-03",
+      "variant": "checkpoint-baseline",
+      "command": [
+        "lua",
+        "tests/respec_actionbar_completion.lua",
+        "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\07\\01a1b5b8-1789-7050-b49c-88d0a742e874\\apply-fixes-20261107T125749Z\\security-baseline-control",
+        "SEC-03"
+      ],
+      "exit": 1,
+      "expected": "reject",
+      "matchesExpectation": true,
+      "output": "lua: tests/respec_actionbar_completion.lua:6: classic_era deferred bars keep profile pending\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/respec_actionbar_completion.lua:6: in local 'check'\n\ttests/respec_actionbar_completion.lua:136: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "id": "SEC-03",
+      "variant": "applied",
+      "command": [
+        "lua",
+        "tests/respec_actionbar_completion.lua",
+        "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI",
+        "SEC-03"
+      ],
+      "exit": 0,
+      "expected": "pass",
+      "matchesExpectation": true,
+      "output": "respec action-bar completion: 109 checks passed (SEC-03; five client models; native pending)\n"
+    },
+    {
+      "id": "SEC-03-mutable",
+      "variant": "checkpoint-baseline",
+      "command": [
+        "lua",
+        "tests/respec_actionbar_completion.lua",
+        "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\07\\01a1b5b8-1789-7050-b49c-88d0a742e874\\apply-fixes-20261107T125749Z\\security-baseline-control",
+        "SEC-03-mutable"
+      ],
+      "exit": 1,
+      "expected": "reject",
+      "matchesExpectation": true,
+      "output": "lua: tests/respec_actionbar_completion.lua:6: queued restore must use its original detached snapshot\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/respec_actionbar_completion.lua:6: in local 'check'\n\ttests/respec_actionbar_completion.lua:96: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "id": "SEC-03-mutable",
+      "variant": "applied",
+      "command": [
+        "lua",
+        "tests/respec_actionbar_completion.lua",
+        "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI",
+        "SEC-03-mutable"
+      ],
+      "exit": 0,
+      "expected": "pass",
+      "matchesExpectation": true,
+      "output": "respec action-bar completion: 11 checks passed (SEC-03-mutable; five client models; native pending)\n"
+    },
+    {
+      "id": "SEC-03-cancel",
+      "variant": "checkpoint-baseline",
+      "command": [
+        "lua",
+        "tests/respec_actionbar_completion.lua",
+        "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\07\\01a1b5b8-1789-7050-b49c-88d0a742e874\\apply-fixes-20261107T125749Z\\security-baseline-control",
+        "SEC-03-cancel"
+      ],
+      "exit": 1,
+      "expected": "reject",
+      "matchesExpectation": true,
+      "output": "lua: tests/respec_actionbar_completion.lua:6: cancelled profile must not restore action bars after combat\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/respec_actionbar_completion.lua:6: in local 'check'\n\ttests/respec_actionbar_completion.lua:102: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "id": "SEC-03-cancel",
+      "variant": "applied",
+      "command": [
+        "lua",
+        "tests/respec_actionbar_completion.lua",
+        "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI",
+        "SEC-03-cancel"
+      ],
+      "exit": 0,
+      "expected": "pass",
+      "matchesExpectation": true,
+      "output": "respec action-bar completion: 5 checks passed (SEC-03-cancel; five client models; native pending)\n"
+    },
+    {
+      "id": "compatibility",
+      "variant": "applied",
+      "command": [
+        "lua",
+        "tests/respec_actionbar_completion.lua"
+      ],
+      "exit": 0,
+      "expected": "pass",
+      "matchesExpectation": true,
+      "output": "respec action-bar completion: 320 checks passed (all cases; five client models; native pending)\n"
+    },
+    {
+      "id": "compatibility",
+      "variant": "applied",
+      "command": [
+        "lua",
+        "tests/restricted_driver_ownership.lua"
+      ],
+      "exit": 0,
+      "expected": "pass",
+      "matchesExpectation": true,
+      "output": "restricted driver ownership: 264 checks passed (five client models; native taint pending)\n"
+    },
+    {
+      "id": "compatibility",
+      "variant": "applied",
+      "command": [
+        "lua",
+        "tests/binding_respec_regression.lua"
+      ],
+      "exit": 0,
+      "expected": "pass",
+      "matchesExpectation": true,
+      "output": "binding/respec regression: 110 checks passed\n"
+    },
+    {
+      "id": "compatibility",
+      "variant": "applied",
+      "command": [
+        "lua",
+        "tests/idle_bars.lua"
+      ],
+      "exit": 0,
+      "expected": "pass",
+      "matchesExpectation": true,
+      "output": "Forever fallback: 14400 frame callbacks, 900 parses, 0 unit queries\nidle bars: 153 checks passed; 7 production mutations rejected\n"
+    },
+    {
+      "id": "compatibility",
+      "variant": "applied",
+      "command": [
+        "lua",
+        "Bars/_tmp_barsmoke.lua"
+      ],
+      "exit": 0,
+      "expected": "pass",
+      "matchesExpectation": true,
+      "output": "bars refresh: 17454 checks passed; 19 production mutations rejected\nbars contract regression: 468 production checks across five clients; 13 mutations rejected\nBlizzard script ownership: 26 checks passed; 6 native-owner mutations rejected\nbars smoke OK\n  slot math: rest/shift/ctrl/cat/bear/vehicle/static/promote/xor\n  lockdown: Layout guards, no combat unpack\n  clicks: ButtonForge wrap verbatim; no post-body; PreClick gated on button/down\n  leftover: stock ActionButtons off ActionBarButtonEventsFrame (mixins stay stock),\n            then EnableMouse false on MainActionBar/pager/ActionButton\n  drag: PreClick cursor + L+R without Shift; click fires on mouse up\n  checked: Paint owns SetChecked; gold hilight not mouseover atlas\n  flash: auto-attack/auto-shot/wand red blink on strip + Extra; Classic QuickslotRed, Forever atlas\n  paint: Midnight duration object + Classic GetActionCooldown\n  hotkey: MouseButton3-5 / scroll / space glyphs + S-/C- overlay\n  charges: UnpackCharges table+tuple, dual chargeCooldown\n  vfx: Transfer fill on swap; exclusive appear/clear; finish burst; no stuck fill\n  chrome: checked/pushed follow paging with fill/interrupt\n  glow: Transfer overlay on swap; skipBirth; ungated Set; Era OOC SAO capture; SyncColumn; ClearCache keeps _glowing\n  combat badges: alpha vis (no Hide taint); exclusive VFX/gold on the live Extra face\n  combat button: one FluxButton; Context hops; Binding Apply OOC only; vis after Identity\n  hovercast: TOC Keybind; strip hosts; UF peek only; no [@mouseover] on hover-only tail\n  range: one Flux.Range ticker for strip+Extra+badges; macros range their shown\n         spell against the macro's own @unit; frame-shared memo; 0.2s mouseover\n  mouseover cast: click-time unit only (no static unit=mouseover); factory tails\n         factory mouseover tails idle-stripped; Blizzard range-check gated; hovercast driver on UF hover\n  ebs assistant: GetNextCastSpell(false); rotation overlay; KeyBind override\n  assist morph: strip+EBS poll next-cast whenever the button exists\n  pet/stance: Extra Button surfaces; event-split paint; TOC-loaded\n  ingame: /reload; drag from book without Shift; pickup; click on release;\n          key on press; AOE cancel clears checked; SHIFT mini keeps proc loop;\n          macro condition drop glow when the face leaves; skipBirth on return;\n          VFX continues or appears/clears with the visible face\n"
+    },
+    {
+      "id": "compatibility",
+      "variant": "applied",
+      "command": [
+        "lua",
+        "Core/_tmp_coresmoke.lua"
+      ],
+      "exit": 0,
+      "expected": "pass",
+      "matchesExpectation": true,
+      "output": "core smoke OK\n  scheduler: layout \u00e2\u2020\u2019 display \u00e2\u2020\u2019 eval; paging defers eval/display\n  modifier: FluxModifierTracker alias, demand-driven OnUpdate\n  context: kinded fingerprint bus on display tier\n  identity: shown-face publish + last-sig skip\n  occupancy: type+id only, no GetMacroSpell\n  formstorm: IsBursting / IsSettling / GetSnapshot\n  hoplag: /fluxhop overlay, off by default\n  aura: slots/index gate on CanAccessSecrets; GetPlayerAuraBySpellID does not\n  secrets: SafeBooleanTest/SafeLooksEmpty/AuraUpdateInfoIsNoop/KeepLastNumber\n  swing: gated off live post-DF + post-Cata classic; Forever uses PLAYER_SWING; CLEU + DurationUtil probed\n"
+    },
+    {
+      "id": "raid-fixture-lifecycle",
+      "variant": "applied",
+      "command": [
+        "lua",
+        "tests/raid_header_precreation.lua"
+      ],
+      "exit": 0,
+      "expected": "pass",
+      "matchesExpectation": true,
+      "output": "raid precreation retail raid initialChildren=80 combatBlocked=0\nraid precreation retail visible-parent initialChildren=80 combatBlocked=0\nraid readiness retail ancestorCombatBlocked=0 recoveredChildren=80\nraid precreation forever raid initialChildren=80 combatBlocked=0\nraid precreation forever visible-parent initialChildren=80 combatBlocked=0\nraid readiness forever ancestorCombatBlocked=0 recoveredChildren=80\nraid precreation era raid initialChildren=80 combatBlocked=0\nraid precreation era visible-parent initialChildren=80 combatBlocked=0\nraid readiness era ancestorCombatBlocked=0 recoveredChildren=80\nraid precreation anniversary raid initialChildren=80 combatBlocked=0\nraid precreation anniversary visible-parent initialChildren=80 combatBlocked=0\nraid readiness anniversary ancestorCombatBlocked=0 recoveredChildren=80\nraid precreation mists raid initialChildren=80 combatBlocked=0\nraid precreation mists visible-parent initialChildren=80 combatBlocked=0\nraid readiness mists ancestorCombatBlocked=0 recoveredChildren=80\nraid header precreation: 1160 checks, 0 failures\n"
+    },
+    {
+      "id": "raid-fixture-lifecycle",
+      "variant": "applied",
+      "command": [
+        "lua",
+        "tests/raid_startup.lua"
+      ],
+      "exit": 0,
+      "expected": "pass",
+      "matchesExpectation": true,
+      "output": "Raid startup: 2080 assertions passed across 5 mocked clients; live secure-header/taint testing pending\n"
+    }
+  ],
+  "allExpected": true
+}

@@ -1,0 +1,11 @@
+{
+  "result": "FAILED due newer unrelated source work after capture",
+  "command": "python docs/tools/validate_docs.py",
+  "issues": [
+    "Stale source inventory: StatusBars/FluxInfoFrameStats.lua",
+    "Stale generated view: reference/interfaces.md",
+    "Recorded verification predates current source: StatusBars/FluxInfoFrame.lua",
+    "Reachable Lua absent from verification corpus: StatusBars/FluxInfoFrameStats.lua"
+  ],
+  "action": "Preserve newer work. Refresh full verification/source reference after the independent FluxInfoFrame batch settles. Do not overwrite it with earlier files."
+}

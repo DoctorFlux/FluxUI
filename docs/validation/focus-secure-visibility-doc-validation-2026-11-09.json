@@ -1,0 +1,16 @@
+{
+  "utc": "2026-11-09T00:23:57.457798+00:00",
+  "buildCommand": "python docs/tools/build_reference.py",
+  "validationCommand": "python docs/tools/validate_docs.py",
+  "result": "PASS",
+  "classifiedSources": 963,
+  "tocXmlReachable": 602,
+  "settingDefinitions": 415,
+  "savedVariableRoots": 24,
+  "localLinks": 15626,
+  "sourceInventoryCurrent": true,
+  "fullScriptsPassed": 263,
+  "syntaxFilesPassed": 930,
+  "sourceManifestCurrent": true,
+  "scope": "Documentation/source integrity; native acceptance kept separate in focus native report."
+}

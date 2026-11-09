@@ -1,0 +1,16 @@
+{
+  "capturedUTC": "2026-11-07T19:21:02.837783+00:00",
+  "scriptsPassed": 247,
+  "scriptsFailed": 0,
+  "syntaxFiles": 911,
+  "syntaxFailures": 0,
+  "suiteSourceDrift": [],
+  "stableWholeRuntimeAndTestsDuringSuite": true,
+  "roadmapFindingGroupsImplemented": 25,
+  "stressReportLocalLinksBroken": [],
+  "documentationValidation": "PASS:944 classified sources;599 TOC/XML reachable;415 settings;24 SavedVariables;15350 links",
+  "gitDiffCheck": "PASS",
+  "settingsMetadataFilesUnchanged": 45,
+  "nativeAcceptance": "Not run; actual secrets, secure VM, input, taint, pixels and native CPU/FPS remain pending",
+  "newerWorkPreserved": "14 specifically checked runtime files unchanged from checkpoint; public-level Shared changes retain latest feature regressions; TOC/XML/assets unchanged"
+}

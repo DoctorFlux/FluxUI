@@ -1,0 +1,163 @@
+-- Standalone desktop stress replay of unchanged production shared services.
+-- Run from repository root: lua "Stress test doc/performance/stress_services.lua.txt"
+-- The client label does not emulate a secure VM. No game or saved data is used.
+local checks, failed, anomalies = 0, 0, 0
+local function check(ok, label)
+    checks=checks+1
+    if not ok then failed=failed+1; print("FAIL|"..label) end
+end
+local function record(name, fields)
+    local keys={};for k in pairs(fields)do keys[#keys+1]=k end;table.sort(keys)
+    local out={"RESULT",name};for _,k in ipairs(keys)do out[#out+1]=k.."="..tostring(fields[k])end
+    print(table.concat(out,"|"))
+end
+local function boot(modules)
+    local e=setmetatable({},{__index=_G});e._G=e
+    local h={frames={},timers={},errors={},now=100,locked=false,existsCalls=0,spellCalls=0}
+    local flux={Client={},Safecall=function(fn,...)return pcall(fn,...)end}
+    local ns={Flux=flux}
+    e.GetTime=function()return h.now end
+    e.InCombatLockdown=function()return h.locked end
+    e.geterrorhandler=function()return function(err)h.errors[#h.errors+1]=tostring(err)end end
+    e.wipe=function(t)for k in pairs(t)do t[k]=nil end;return t end
+    e.CreateFrame=function()
+        local f={shown=true,scripts={},events={}}
+        function f:SetScript(k,v)self.scripts[k]=v end
+        function f:GetScript(k)return self.scripts[k]end
+        function f:Show()self.shown=true end
+        function f:Hide()self.shown=false end
+        function f:IsShown()return self.shown end
+        function f:RegisterEvent(k)self.events[k]=true end
+        function f:UnregisterEvent(k)self.events[k]=nil end
+        function f:RegisterUnitEvent(k,unit)self.events[k]=unit end
+        h.frames[#h.frames+1]=f;return f
+    end
+    e.C_EventUtils={IsEventValid=function()return true end}
+    e.UnitExists=function()h.existsCalls=h.existsCalls+1;return true end
+    e.UnitCanAttack=function()return true end
+    e.UnitCanAssist=function()return false end
+    e.UnitIsDead=function()return false end
+    flux.Spell={IsInRange=function()h.spellCalls=h.spellCalls+1;return true end}
+    flux.Timer={After=function(_,fn)h.timers[#h.timers+1]=fn end}
+    function h.frame(elapsed)
+        h.now=h.now+(elapsed or .016)
+        local q=h.timers;h.timers={};for _,fn in ipairs(q)do fn()end
+        for _,f in ipairs(h.frames)do if f.shown and f.scripts.OnUpdate then f.scripts.OnUpdate(f,elapsed or .016)end end
+    end
+    function h.drain(limit)
+        local frames=0
+        while #h.timers>0 and frames<(limit or 10000)do h.frame();frames=frames+1 end
+        return frames
+    end
+    function h.event(name,...)
+        for _,f in ipairs(h.frames)do if f.events[name]and f.scripts.OnEvent then f.scripts.OnEvent(f,name,...)end end
+    end
+    for _,name in ipairs(modules)do assert(loadfile("Core/Engine/"..name..".lua","t",e))("_FluxUI",ns)end
+    h.flux,h.env=flux,e;return h
+end
+
+-- Ordinary listeners coalesce tokens; callback-bearing requests deliberately
+-- retain each callback. Stress each independently so the distinction is visible.
+for _,n in ipairs({1,100,1000,10000})do
+    local h=boot({"Scheduler"});local s=h.flux.Scheduler
+    local calls=0;s.Register("display",function()calls=calls+1 end)
+    for i=1,n do s.Request("display","same")end
+    local timers=#h.timers;h.drain()
+    check(calls==1 and timers==1 and not s.HasPending(),"display token coalescing "..n)
+    record("scheduler_tokens_"..n,{requests=n,listener_calls=calls,initial_timers=timers})
+
+    h=boot({"Scheduler"});s=h.flux.Scheduler;calls=0
+    for i=1,n do s.Request("display","same",function()calls=calls+1 end)end
+    h.drain()
+    check(calls==n,"callback retention "..n)
+    record("scheduler_callbacks_"..n,{requests=n,callbacks=calls,tier_flushes=s.stats.tierFlushes.display})
+
+    h=boot({"Scheduler"});s=h.flux.Scheduler;calls=0;local listeners=0
+    s.Register("inventory",function()listeners=listeners+1 end)
+    for i=1,n do s.Request("inventory","same",function()calls=calls+1 end)end
+    local frames=h.drain()
+    check(calls==n and frames==math.ceil(n/8),"inventory capped callback progress "..n)
+    -- Exact model of production remain[] copies: (N-8)+(N-16)+... while >0.
+    local copies=0;for remain=n-8,1,-8 do copies=copies+remain end
+    record("scheduler_inventory_"..n,{requests=n,callbacks=calls,frames=frames,listener_calls=listeners,leftover_array_copies=copies})
+end
+
+-- Re-entrant inventory request while an older bucket has >8 callbacks.
+do
+    local h=boot({"Scheduler"});local s=h.flux.Scheduler
+    local old,new,newToken,seen=0,0,false,0
+    s.Register("inventory",function(tokens)seen=seen+1;newToken=newToken or tokens.newToken==true end)
+    s.Request("inventory","old",function()
+        old=old+1;s.Request("inventory","newToken",function()new=new+1 end)
+    end)
+    for i=2,9 do s.Request("inventory","old",function()old=old+1 end)end
+    local frames=h.drain()
+    local anomaly=old==9 and new==0 and not newToken
+    check(anomaly,"reproduce reentrant inventory overwrite")
+    if anomaly then anomalies=anomalies+1 end
+    record("scheduler_reentrant_inventory",{status=anomaly and "OBSERVED_ANOMALY"or"NOT_REPRODUCED",old_callbacks=old,new_callbacks=new,new_token_seen=newToken,frames=frames,listener_calls=seen})
+end
+
+-- Combat queue retains requests and resumes without executing structural work
+-- while lockdown is true. Same key coalesces the wakeup, not the callbacks.
+do
+    local h=boot({"Combat","Scheduler"});local s=h.flux.Scheduler;local calls=0
+    h.locked=true
+    for i=1,10000 do s.Request("structural","same",function()check(not h.locked,"structural callback outside combat");calls=calls+1 end)end
+    check(calls==0 and h.flux.Combat.PendingCount()==1,"10000 structural requests retain one combat wakeup")
+    h.locked=false;h.event("PLAYER_REGEN_ENABLED");h.drain()
+    check(calls==10000 and not s.HasPending()and not h.flux.Combat.HasPending(),"structural queue fully drains")
+    record("combat_structural_10000",{requests=10000,callbacks=calls,deferred_wakeups=1,errors=#h.errors})
+end
+
+-- Dispatch error isolation and callback-list mutation.
+do
+    local h=boot({"Events"});local ev=h.flux.Events;local a,b,c=0,0,0
+    ev.Register("BURST",function()a=a+1 end)
+    ev.Register("BURST",function()b=b+1;error("injected callback error")end)
+    ev.Register("BURST",function()c=c+1 end)
+    for i=1,10000 do h.event("BURST",i)end
+    check(a==10000 and b==10000 and c==10000 and #h.errors==10000,"event errors do not starve later subscribers")
+    record("events_error_isolation",{events=10000,callbacks=a+b+c,injected_errors=#h.errors,later_callbacks=c})
+    h=boot({"Events"});ev=h.flux.Events;a,b,c=0,0,0
+    local first;first=function()a=a+1;ev.Unregister("MUTATE",first)end
+    ev.Register("MUTATE",first);ev.Register("MUTATE",function()b=b+1 end);ev.Register("MUTATE",function()c=c+1 end)
+    h.event("MUTATE")
+    local anomaly=a==1 and b==0 and c==1
+    check(anomaly,"reproduce event subscriber skipped after self removal")
+    if anomaly then anomalies=anomalies+1 end
+    record("events_self_unregister",{status=anomaly and "OBSERVED_ANOMALY"or"NOT_REPRODUCED",first=a,second=b,third=c})
+end
+
+-- Stable subscriber replacement and self-removal must not grow or skip slots.
+do
+    local h=boot({"Ticker"});local t=h.flux.Ticker;local a,b=0,0
+    for i=1,100000 do t.Add("same",function()a=a+1 end)end
+    check(t.Count()==1,"100000 same-key ticker replacements retain one subscriber")
+    t.Add("other",function()b=b+1 end)
+    t.Add("same",function()a=a+1;t.Remove("same")end)
+    h.frame();check(a==1 and b==1 and t.Count()==1,"ticker swap removal visits survivor")
+    t.Remove("other");local ticks=t.Ticks();for i=1,10000 do h.frame()end
+    check(not t.IsArmed()and t.Ticks()==ticks,"no idle ticker execution")
+    record("ticker_replacement_and_idle",{replacements=100000,survivor_calls=b,idle_frames=10000,idle_ticks=t.Ticks()-ticks,remaining=t.Count()})
+end
+
+-- Range cache, mouseover storm suppression, bounded settle and disable cleanup.
+do
+    local h=boot({"Events","Ticker","Range"});local r=h.flux.Range;local needed,sweeps=true,0
+    r.RegisterSweep("bars",function()return needed end,function()
+        sweeps=sweeps+1;for i=1,1000 do r.CheckSpell(133,"target")end
+    end)
+    r.Start();r.Invalidate();local probes=h.spellCalls
+    check(probes==1,"1000 same-frame spell requests share one probe")
+    for i=1,100000 do h.event("UPDATE_MOUSEOVER_UNIT")end
+    local before=sweeps
+    for i=1,1000 do h.event("UPDATE_MOUSEOVER_UNIT");h.frame(.001)end
+    check(sweeps==before,"continuous mouseover storm postpones range sweeps")
+    h.frame(.5);check(sweeps==before+1,"range resumes after quiet interval")
+    needed=false;h.frame(.5)
+    check(not r.IsArmed()and h.flux.Ticker.Count()==0,"range disables when need disappears")
+    record("range_mouseover_storm",{stamp_events=101000,continuous_frames=1000,sweeps_during_storm=0,quiet_resume_sweeps=1,range_armed=r.IsArmed(),first_frame_api_probes=probes})
+end
+record("SUMMARY",{checks=checks,failed=failed,observed_anomalies=anomalies})
+assert(failed==0,"stress harness expectation failed")

@@ -1,0 +1,49 @@
+{
+  "capturedUTC": "2026-11-07T15:04:17.603415+00:00",
+  "status": "capability-qualified control and excluded ordinary-path lead; no new finding ID",
+  "command": [
+    "lua",
+    "Stress test doc/round-2/action-binding/state-keyer.lua.txt"
+  ],
+  "exit": 0,
+  "output": "CONTROL|repaired Forever paging keeps main mouse/key on slot1 with tertiary-only overlay\nCONDITIONAL-LEAD|direct ApplySlotsInsecure call writes shared keyer from tertiary overlay; normal repaired paging consumer does not reach this call\nSTATE|proxy_type1=macro|proxy_macrotext1=/cast SavedProgram\nSTATE KEYER CONTROL COMPLETE; not promoted to ordinary current-client finding; native VM unexecuted\n",
+  "scope": "Full current Forever control fixture plus local native Lua source handlers; engine/VM/hardware not executed. Direct fallback invocation differs from the guarded normal repaired-paging path.",
+  "consumedHashes": [
+    {
+      "path": "Bars/_tmp_forevercontrolsmoke.lua",
+      "sha256": "887b0290269dd5be6bbea65797c4a144b154174fa53fbc1a88ccd38050aed86e"
+    },
+    {
+      "path": "Bars/State.lua",
+      "sha256": "52f005c429b03e4d04495a6183f200323fa71e71ecd0127296b29f4aa0a9dfef"
+    },
+    {
+      "path": "Bars/SlotProgram.lua",
+      "sha256": "2bd7a8c44660718d475fe510dd2b70e22f021cc6c332291083949e6eee1e28d4"
+    },
+    {
+      "path": "Bars/Clicks.lua",
+      "sha256": "08bcd2bf585d13550d5077a2706ed0abccd589d07ff585951df2e43dedf8726a"
+    },
+    {
+      "path": "Core/Engine/Restricted.lua",
+      "sha256": "73413b82c0dd4c26770d82e3f0524200971a5a04288e6c67bc47b66f20c7f806"
+    },
+    {
+      "path": "Core/ButtonFX/Click.lua",
+      "sha256": "bb73ffadabbe938ccb37bc72e4d70b4b0b9779fb7f044d7a035842bfdaa8230f"
+    },
+    {
+      "path": "../__Backup/v8/_FluxUI/Bars/SlotMath.lua",
+      "sha256": "f8feb5f604238372917c2f89afd8f81a289fa3ba1fb57353efb99d740880cd52"
+    },
+    {
+      "path": "../__AddonsForRef/wow-ui-source-forever/Interface/AddOns/Blizzard_FrameXML/SecureTemplates.lua",
+      "sha256": "b6e91f1d54f269a8bd66312b368e6fd7706028d366eee0167161ace9004cae23"
+    },
+    {
+      "path": "../__AddonsForRef/wow-ui-source-forever/Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureStateDriver.lua",
+      "sha256": "bebd4a4b18e610233ff8f734df7b473df08fe25b1ce383b0c7883ae962a63029"
+    }
+  ]
+}

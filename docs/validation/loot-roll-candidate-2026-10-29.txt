@@ -1,0 +1,6 @@
+METRIC era frames=3 combat_frames=1 hooks=1 writes=101
+METRIC anniversary frames=3 combat_frames=1 hooks=1 writes=101
+METRIC progression frames=3 combat_frames=1 hooks=1 writes=101
+METRIC live frames=3 combat_frames=1 hooks=1 writes=101
+METRIC forever frames=3 combat_frames=1 hooks=1 writes=101
+Loot roll lifecycle: 2050 checks, 0 failures

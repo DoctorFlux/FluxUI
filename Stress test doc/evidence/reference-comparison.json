@@ -1,0 +1,72 @@
+[
+  {
+    "target": "retail",
+    "file": "Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureStateDriver.lua",
+    "localVersion": "12.1.0.69283",
+    "normalizedLocalGitBlob": "4861b5fd4a3249c97f1a2fea45a4c13833d5117c",
+    "remoteGitBlob": "4861b5fd4a3249c97f1a2fea45a4c13833d5117c",
+    "exactLFMatch": true,
+    "normalizedBytesMatch": true,
+    "remoteLFsha256": "bebd4a4b18e610233ff8f734df7b473df08fe25b1ce383b0c7883ae962a63029"
+  },
+  {
+    "target": "forever",
+    "file": "Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureStateDriver.lua",
+    "localVersion": "1.60.1.70425",
+    "normalizedLocalGitBlob": "4861b5fd4a3249c97f1a2fea45a4c13833d5117c",
+    "remoteGitBlob": "4861b5fd4a3249c97f1a2fea45a4c13833d5117c",
+    "exactLFMatch": true,
+    "normalizedBytesMatch": true,
+    "remoteLFsha256": "bebd4a4b18e610233ff8f734df7b473df08fe25b1ce383b0c7883ae962a63029"
+  },
+  {
+    "target": "era",
+    "file": "Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureStateDriver.lua",
+    "localVersion": "1.15.9.68808",
+    "normalizedLocalGitBlob": "4861b5fd4a3249c97f1a2fea45a4c13833d5117c",
+    "remoteGitBlob": "4861b5fd4a3249c97f1a2fea45a4c13833d5117c",
+    "exactLFMatch": true,
+    "normalizedBytesMatch": true,
+    "remoteLFsha256": "bebd4a4b18e610233ff8f734df7b473df08fe25b1ce383b0c7883ae962a63029"
+  },
+  {
+    "target": "anniversary",
+    "file": "Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureStateDriver.lua",
+    "localVersion": "2.5.6.68775",
+    "normalizedLocalGitBlob": "4861b5fd4a3249c97f1a2fea45a4c13833d5117c",
+    "remoteGitBlob": "8e210c10fe046a264cba54e04f7458d995f8ad6a",
+    "exactLFMatch": false,
+    "normalizedBytesMatch": true,
+    "remoteLFsha256": "bebd4a4b18e610233ff8f734df7b473df08fe25b1ce383b0c7883ae962a63029"
+  },
+  {
+    "target": "forever",
+    "file": "Interface/AddOns/Blizzard_ProjectConstants/Blizzard_ProjectConstants.toc",
+    "localVersion": "1.60.1.70425",
+    "normalizedLocalGitBlob": "f151c7c8d9234fc834d1db68cdad6f9342d8bb8f",
+    "remoteGitBlob": "f151c7c8d9234fc834d1db68cdad6f9342d8bb8f",
+    "exactLFMatch": true,
+    "normalizedBytesMatch": true,
+    "remoteLFsha256": "47d3c50d3f9547bd1aff0da9fe53db2a5c8b626330bba6738407d1bc70cbf191"
+  },
+  {
+    "target": "forever",
+    "file": "Interface/AddOns/Blizzard_ProjectConstants/Camelot/ProjectConstants.lua",
+    "localVersion": "1.60.1.70425",
+    "normalizedLocalGitBlob": "c6e0065736c29c02b49b3fbc5cc3c8a57d775ea4",
+    "remoteGitBlob": "c6e0065736c29c02b49b3fbc5cc3c8a57d775ea4",
+    "exactLFMatch": true,
+    "normalizedBytesMatch": true,
+    "remoteLFsha256": "93abd3ead633a3167265d68eea2f00d42dbf72170b089114b8cb45aa6922e1bd"
+  },
+  {
+    "target": "forever",
+    "file": "Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleFrameAPIDocumentation.lua",
+    "localVersion": "1.60.1.70425",
+    "normalizedLocalGitBlob": "07debf919e8b4d43087306d2eccfb8e18e8f2c82",
+    "remoteGitBlob": "07debf919e8b4d43087306d2eccfb8e18e8f2c82",
+    "exactLFMatch": true,
+    "normalizedBytesMatch": true,
+    "remoteLFsha256": "c00bc77ee27f8fd81ba8b8d1bfd85fbd0ad817b22457adbe5adca6876a1d604a"
+  }
+]

@@ -1,0 +1,138 @@
+{
+  "baselineCommit": "c1a5f901467ff5015938442c74580d6d4781cbaa",
+  "candidateIdentity": "SHA256 exact runtime/test files",
+  "sha256": {
+    "alreadyknown_before_cold_guard_20261105.lua": "f8419f125088da4a443065b1577d1e83c153dc3c941b208cf5a3d616d6c5cdbc",
+    "FluxAlreadyKnown.lua": "ee9042d3a8e3cb6dec70f7658b355b9595ce84b1e80803fbd81f97dd578db6f1",
+    "auction_cold_tooltip.lua": "3426a081e9fb7c9167c6d3effbc54ee8f7a057cac4326afd99731ee8df22dcba"
+  },
+  "scope": "Actual Retail AlreadyKnown module. Two provider-presence fixtures share the same UI. Explicit nil and missing-lines tooltip replies; native API internals, client loading, FPS, taint and pixels untested.",
+  "configuration": "Lua5.4.6; no WoW profiler or game input. One cached-known paint warm-up,500nil replies then1missing-lines and late/ready/recycled/disabled/released-view controls. Fresh process per variant, five alternating pairs. Process wall time includes process startup and is not operation latency.",
+  "matchedPairs": [
+    {
+      "repetition": 1,
+      "order": [
+        "baseline",
+        "candidate"
+      ],
+      "baseline": {
+        "exitCode": 0,
+        "processSeconds": 0.02229789999546483,
+        "stdout": "FAIL provider-absent 500 legitimate missing tooltip replies are safe\nFAIL provider-absent recycled cold row clears the previous tint\nFAIL provider-absent tooltip without lines is safe\nprovider-absent nilReplies=500 missingLinesReplies=1 errors=501 frames=1 timers=0 nativeRequests=0 continuations=0 knownRows=3\nFAIL provider-present 500 legitimate missing tooltip replies are safe\nFAIL provider-present recycled cold row clears the previous tint\nFAIL provider-present tooltip without lines is safe\nprovider-present nilReplies=500 missingLinesReplies=1 errors=501 frames=1 timers=0 nativeRequests=0 continuations=0 knownRows=3\nauction cold tooltip: 48 checks, 6 failures; desktop production replay only\n",
+        "stderr": ""
+      },
+      "candidate": {
+        "exitCode": 0,
+        "processSeconds": 0.02272350000566803,
+        "stdout": "provider-absent nilReplies=500 missingLinesReplies=1 errors=0 frames=1 timers=0 nativeRequests=0 continuations=0 knownRows=3\nprovider-present nilReplies=500 missingLinesReplies=1 errors=0 frames=1 timers=0 nativeRequests=0 continuations=0 knownRows=3\nauction cold tooltip: 48 checks, 0 failures; desktop production replay only\n",
+        "stderr": ""
+      }
+    },
+    {
+      "repetition": 2,
+      "order": [
+        "candidate",
+        "baseline"
+      ],
+      "candidate": {
+        "exitCode": 0,
+        "processSeconds": 0.018958300002850592,
+        "stdout": "provider-absent nilReplies=500 missingLinesReplies=1 errors=0 frames=1 timers=0 nativeRequests=0 continuations=0 knownRows=3\nprovider-present nilReplies=500 missingLinesReplies=1 errors=0 frames=1 timers=0 nativeRequests=0 continuations=0 knownRows=3\nauction cold tooltip: 48 checks, 0 failures; desktop production replay only\n",
+        "stderr": ""
+      },
+      "baseline": {
+        "exitCode": 0,
+        "processSeconds": 0.019978700001956895,
+        "stdout": "FAIL provider-absent 500 legitimate missing tooltip replies are safe\nFAIL provider-absent recycled cold row clears the previous tint\nFAIL provider-absent tooltip without lines is safe\nprovider-absent nilReplies=500 missingLinesReplies=1 errors=501 frames=1 timers=0 nativeRequests=0 continuations=0 knownRows=3\nFAIL provider-present 500 legitimate missing tooltip replies are safe\nFAIL provider-present recycled cold row clears the previous tint\nFAIL provider-present tooltip without lines is safe\nprovider-present nilReplies=500 missingLinesReplies=1 errors=501 frames=1 timers=0 nativeRequests=0 continuations=0 knownRows=3\nauction cold tooltip: 48 checks, 6 failures; desktop production replay only\n",
+        "stderr": ""
+      }
+    },
+    {
+      "repetition": 3,
+      "order": [
+        "baseline",
+        "candidate"
+      ],
+      "baseline": {
+        "exitCode": 0,
+        "processSeconds": 0.022301599994534627,
+        "stdout": "FAIL provider-absent 500 legitimate missing tooltip replies are safe\nFAIL provider-absent recycled cold row clears the previous tint\nFAIL provider-absent tooltip without lines is safe\nprovider-absent nilReplies=500 missingLinesReplies=1 errors=501 frames=1 timers=0 nativeRequests=0 continuations=0 knownRows=3\nFAIL provider-present 500 legitimate missing tooltip replies are safe\nFAIL provider-present recycled cold row clears the previous tint\nFAIL provider-present tooltip without lines is safe\nprovider-present nilReplies=500 missingLinesReplies=1 errors=501 frames=1 timers=0 nativeRequests=0 continuations=0 knownRows=3\nauction cold tooltip: 48 checks, 6 failures; desktop production replay only\n",
+        "stderr": ""
+      },
+      "candidate": {
+        "exitCode": 0,
+        "processSeconds": 0.01950689998921007,
+        "stdout": "provider-absent nilReplies=500 missingLinesReplies=1 errors=0 frames=1 timers=0 nativeRequests=0 continuations=0 knownRows=3\nprovider-present nilReplies=500 missingLinesReplies=1 errors=0 frames=1 timers=0 nativeRequests=0 continuations=0 knownRows=3\nauction cold tooltip: 48 checks, 0 failures; desktop production replay only\n",
+        "stderr": ""
+      }
+    },
+    {
+      "repetition": 4,
+      "order": [
+        "candidate",
+        "baseline"
+      ],
+      "candidate": {
+        "exitCode": 0,
+        "processSeconds": 0.020964199997251853,
+        "stdout": "provider-absent nilReplies=500 missingLinesReplies=1 errors=0 frames=1 timers=0 nativeRequests=0 continuations=0 knownRows=3\nprovider-present nilReplies=500 missingLinesReplies=1 errors=0 frames=1 timers=0 nativeRequests=0 continuations=0 knownRows=3\nauction cold tooltip: 48 checks, 0 failures; desktop production replay only\n",
+        "stderr": ""
+      },
+      "baseline": {
+        "exitCode": 0,
+        "processSeconds": 0.021425900020403787,
+        "stdout": "FAIL provider-absent 500 legitimate missing tooltip replies are safe\nFAIL provider-absent recycled cold row clears the previous tint\nFAIL provider-absent tooltip without lines is safe\nprovider-absent nilReplies=500 missingLinesReplies=1 errors=501 frames=1 timers=0 nativeRequests=0 continuations=0 knownRows=3\nFAIL provider-present 500 legitimate missing tooltip replies are safe\nFAIL provider-present recycled cold row clears the previous tint\nFAIL provider-present tooltip without lines is safe\nprovider-present nilReplies=500 missingLinesReplies=1 errors=501 frames=1 timers=0 nativeRequests=0 continuations=0 knownRows=3\nauction cold tooltip: 48 checks, 6 failures; desktop production replay only\n",
+        "stderr": ""
+      }
+    },
+    {
+      "repetition": 5,
+      "order": [
+        "baseline",
+        "candidate"
+      ],
+      "baseline": {
+        "exitCode": 0,
+        "processSeconds": 0.019270799995865673,
+        "stdout": "FAIL provider-absent 500 legitimate missing tooltip replies are safe\nFAIL provider-absent recycled cold row clears the previous tint\nFAIL provider-absent tooltip without lines is safe\nprovider-absent nilReplies=500 missingLinesReplies=1 errors=501 frames=1 timers=0 nativeRequests=0 continuations=0 knownRows=3\nFAIL provider-present 500 legitimate missing tooltip replies are safe\nFAIL provider-present recycled cold row clears the previous tint\nFAIL provider-present tooltip without lines is safe\nprovider-present nilReplies=500 missingLinesReplies=1 errors=501 frames=1 timers=0 nativeRequests=0 continuations=0 knownRows=3\nauction cold tooltip: 48 checks, 6 failures; desktop production replay only\n",
+        "stderr": ""
+      },
+      "candidate": {
+        "exitCode": 0,
+        "processSeconds": 0.01891099999193102,
+        "stdout": "provider-absent nilReplies=500 missingLinesReplies=1 errors=0 frames=1 timers=0 nativeRequests=0 continuations=0 knownRows=3\nprovider-present nilReplies=500 missingLinesReplies=1 errors=0 frames=1 timers=0 nativeRequests=0 continuations=0 knownRows=3\nauction cold tooltip: 48 checks, 0 failures; desktop production replay only\n",
+        "stderr": ""
+      }
+    }
+  ],
+  "mutations": [
+    {
+      "name": "missing_guard",
+      "exitCode": 1,
+      "processSeconds": 0.03738110000267625,
+      "stdout": "FAIL provider-absent 500 legitimate missing tooltip replies are safe\nFAIL provider-absent recycled cold row clears the previous tint\nFAIL provider-absent tooltip without lines is safe\nprovider-absent nilReplies=500 missingLinesReplies=1 errors=501 frames=1 timers=0 nativeRequests=0 continuations=0 knownRows=3\nFAIL provider-present 500 legitimate missing tooltip replies are safe\nFAIL provider-present recycled cold row clears the previous tint\nFAIL provider-present tooltip without lines is safe\nprovider-present nilReplies=500 missingLinesReplies=1 errors=501 frames=1 timers=0 nativeRequests=0 continuations=0 knownRows=3\nauction cold tooltip: 48 checks, 6 failures; desktop production replay only\n",
+      "stderr": "lua: ...\\Interface\\AddOns\\_FluxUI\\tests\\auction_cold_tooltip.lua:135: auction cold tooltip regressions\nstack traceback:\n\t[C]: in function 'assert'\n\t...\\Interface\\AddOns\\_FluxUI\\tests\\auction_cold_tooltip.lua:135: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "missing_data_paints_known",
+      "exitCode": 1,
+      "processSeconds": 0.039949099998921156,
+      "stdout": "FAIL provider-absent recycled cold row clears the previous tint\nprovider-absent nilReplies=500 missingLinesReplies=1 errors=0 frames=1 timers=0 nativeRequests=0 continuations=0 knownRows=3\nFAIL provider-present recycled cold row clears the previous tint\nprovider-present nilReplies=500 missingLinesReplies=1 errors=0 frames=1 timers=0 nativeRequests=0 continuations=0 knownRows=3\nauction cold tooltip: 48 checks, 2 failures; desktop production replay only\n",
+      "stderr": "lua: ...\\Interface\\AddOns\\_FluxUI\\tests\\auction_cold_tooltip.lua:135: auction cold tooltip regressions\nstack traceback:\n\t[C]: in function 'assert'\n\t...\\Interface\\AddOns\\_FluxUI\\tests\\auction_cold_tooltip.lua:135: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "missing_data_enters_positive_cache",
+      "exitCode": 1,
+      "processSeconds": 0.03313920000800863,
+      "stdout": "FAIL provider-absent cold replies recheck on normal paint\nFAIL provider-absent cold result is not cached negative\nFAIL provider-absent recycled cold row clears the previous tint\nFAIL provider-absent incomplete result stays uncached\nFAIL provider-absent ready unknown result stays uncached\nprovider-absent nilReplies=500 missingLinesReplies=1 errors=0 frames=1 timers=0 nativeRequests=0 continuations=0 knownRows=3\nFAIL provider-present cold replies recheck on normal paint\nFAIL provider-present cold result is not cached negative\nFAIL provider-present recycled cold row clears the previous tint\nFAIL provider-present incomplete result stays uncached\nFAIL provider-present ready unknown result stays uncached\nprovider-present nilReplies=500 missingLinesReplies=1 errors=0 frames=1 timers=0 nativeRequests=0 continuations=0 knownRows=3\nauction cold tooltip: 48 checks, 10 failures; desktop production replay only\n",
+      "stderr": "lua: ...\\Interface\\AddOns\\_FluxUI\\tests\\auction_cold_tooltip.lua:135: auction cold tooltip regressions\nstack traceback:\n\t[C]: in function 'assert'\n\t...\\Interface\\AddOns\\_FluxUI\\tests\\auction_cold_tooltip.lua:135: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "drop_ready_tooltip_lines",
+      "exitCode": 1,
+      "processSeconds": 0.03069139999570325,
+      "stdout": "FAIL provider-absent late ready known result repaints immediately\nFAIL provider-absent late known tint and monochrome retained\nFAIL provider-absent known cache remains valid during later metadata gaps\nFAIL provider-absent known tint also retains the default non-monochrome option\nFAIL provider-absent newly learned item is detected on next paint\nFAIL provider-absent only known items enter the cache\nprovider-absent nilReplies=500 missingLinesReplies=1 errors=0 frames=1 timers=0 nativeRequests=0 continuations=0 knownRows=1\nFAIL provider-present late ready known result repaints immediately\nFAIL provider-present late known tint and monochrome retained\nFAIL provider-present known cache remains valid during later metadata gaps\nFAIL provider-present known tint also retains the default non-monochrome option\nFAIL provider-present newly learned item is detected on next paint\nFAIL provider-present only known items enter the cache\nprovider-present nilReplies=500 missingLinesReplies=1 errors=0 frames=1 timers=0 nativeRequests=0 continuations=0 knownRows=1\nauction cold tooltip: 48 checks, 12 failures; desktop production replay only\n",
+      "stderr": "lua: ...\\Interface\\AddOns\\_FluxUI\\tests\\auction_cold_tooltip.lua:135: auction cold tooltip regressions\nstack traceback:\n\t[C]: in function 'assert'\n\t...\\Interface\\AddOns\\_FluxUI\\tests\\auction_cold_tooltip.lua:135: in main chunk\n\t[C]: in ?\n"
+    }
+  ]
+}

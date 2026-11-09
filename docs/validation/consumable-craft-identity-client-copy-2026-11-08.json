@@ -1,0 +1,93 @@
+{
+  "capturedUTC": "2026-11-08T09:17:58.500347+00:00",
+  "mode": "Read only; user continuous sync; no destination writes",
+  "checks": [
+    {
+      "client": "_classic_",
+      "path": "Inventory/FluxConsumableClassify.lua",
+      "sourceSHA256": "27dfe943444c5630615c85f7ffe6b134fa8d75242ff552a74b35912ca2bb9b59",
+      "destinationSHA256": "27dfe943444c5630615c85f7ffe6b134fa8d75242ff552a74b35912ca2bb9b59",
+      "matches": true
+    },
+    {
+      "client": "_classic_",
+      "path": "Inventory/FluxConsumableBest/Score.lua",
+      "sourceSHA256": "17973299b3163c5c04abc04880d8465b388ffd94ce2fb68e4b4bad0d5cd1c3f7",
+      "destinationSHA256": "17973299b3163c5c04abc04880d8465b388ffd94ce2fb68e4b4bad0d5cd1c3f7",
+      "matches": true
+    },
+    {
+      "client": "_classic_",
+      "path": "ExtraButtonSystem/Engine/ConsumableBind.lua",
+      "sourceSHA256": "ae8086c680f5aeea66260dc5badb48e376ceda016defdaad8193ccece14374ff",
+      "destinationSHA256": "ae8086c680f5aeea66260dc5badb48e376ceda016defdaad8193ccece14374ff",
+      "matches": true
+    },
+    {
+      "client": "_anniversary_",
+      "path": "Inventory/FluxConsumableClassify.lua",
+      "sourceSHA256": "27dfe943444c5630615c85f7ffe6b134fa8d75242ff552a74b35912ca2bb9b59",
+      "destinationSHA256": "27dfe943444c5630615c85f7ffe6b134fa8d75242ff552a74b35912ca2bb9b59",
+      "matches": true
+    },
+    {
+      "client": "_anniversary_",
+      "path": "Inventory/FluxConsumableBest/Score.lua",
+      "sourceSHA256": "17973299b3163c5c04abc04880d8465b388ffd94ce2fb68e4b4bad0d5cd1c3f7",
+      "destinationSHA256": "17973299b3163c5c04abc04880d8465b388ffd94ce2fb68e4b4bad0d5cd1c3f7",
+      "matches": true
+    },
+    {
+      "client": "_anniversary_",
+      "path": "ExtraButtonSystem/Engine/ConsumableBind.lua",
+      "sourceSHA256": "ae8086c680f5aeea66260dc5badb48e376ceda016defdaad8193ccece14374ff",
+      "destinationSHA256": "ae8086c680f5aeea66260dc5badb48e376ceda016defdaad8193ccece14374ff",
+      "matches": true
+    },
+    {
+      "client": "_classic_era_",
+      "path": "Inventory/FluxConsumableClassify.lua",
+      "sourceSHA256": "27dfe943444c5630615c85f7ffe6b134fa8d75242ff552a74b35912ca2bb9b59",
+      "destinationSHA256": "27dfe943444c5630615c85f7ffe6b134fa8d75242ff552a74b35912ca2bb9b59",
+      "matches": true
+    },
+    {
+      "client": "_classic_era_",
+      "path": "Inventory/FluxConsumableBest/Score.lua",
+      "sourceSHA256": "17973299b3163c5c04abc04880d8465b388ffd94ce2fb68e4b4bad0d5cd1c3f7",
+      "destinationSHA256": "17973299b3163c5c04abc04880d8465b388ffd94ce2fb68e4b4bad0d5cd1c3f7",
+      "matches": true
+    },
+    {
+      "client": "_classic_era_",
+      "path": "ExtraButtonSystem/Engine/ConsumableBind.lua",
+      "sourceSHA256": "ae8086c680f5aeea66260dc5badb48e376ceda016defdaad8193ccece14374ff",
+      "destinationSHA256": "ae8086c680f5aeea66260dc5badb48e376ceda016defdaad8193ccece14374ff",
+      "matches": true
+    },
+    {
+      "client": "_forever_",
+      "path": "Inventory/FluxConsumableClassify.lua",
+      "sourceSHA256": "27dfe943444c5630615c85f7ffe6b134fa8d75242ff552a74b35912ca2bb9b59",
+      "destinationSHA256": "27dfe943444c5630615c85f7ffe6b134fa8d75242ff552a74b35912ca2bb9b59",
+      "matches": true
+    },
+    {
+      "client": "_forever_",
+      "path": "Inventory/FluxConsumableBest/Score.lua",
+      "sourceSHA256": "17973299b3163c5c04abc04880d8465b388ffd94ce2fb68e4b4bad0d5cd1c3f7",
+      "destinationSHA256": "17973299b3163c5c04abc04880d8465b388ffd94ce2fb68e4b4bad0d5cd1c3f7",
+      "matches": true
+    },
+    {
+      "client": "_forever_",
+      "path": "ExtraButtonSystem/Engine/ConsumableBind.lua",
+      "sourceSHA256": "ae8086c680f5aeea66260dc5badb48e376ceda016defdaad8193ccece14374ff",
+      "destinationSHA256": "ae8086c680f5aeea66260dc5badb48e376ceda016defdaad8193ccece14374ff",
+      "matches": true
+    }
+  ],
+  "allMatched": true,
+  "nativeResult": "Copies only; no reload/candidate load/rendering/input acceptance inferred",
+  "finalReadUTC": "2026-11-08T09:21:09.497076+00:00"
+}

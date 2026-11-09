@@ -1,0 +1,516 @@
+{
+  "date": "2026-11-06",
+  "capturedUTC": "2026-11-06T19:09:19.120656+00:00",
+  "requirement": "REQ-RF-25: user confirmed cooldown overlap means a countdown swipe over each aura with remaining duration text on top.",
+  "checkpoint": {
+    "name": "Raid-rewrite-20261106T185415Z",
+    "baseline": "75cf2bcba83adfea0501934f4eeb2a980c46fdf8",
+    "sourceFiles": 1669,
+    "settingsFiles": 156,
+    "sourceZipSHA256": "514df75edd0f29f790e0203f4b9e7e0b6d437673edef18b8421cc199eac0f850",
+    "zipAndHistoryVerification": "PASS",
+    "settingsScope": "On-disk only; no unsaved-memory or closed-client assertion"
+  },
+  "baselineFeatureHashes": {
+    "RaidFrame/FluxRaidAuras.lua": "cad84289267be01559ff179062d41c73573bf1b1044700fa115b0a3580326173",
+    "RaidFrame/FluxRaidVisuals.lua": "867feafa8bfa04b5574d4dd6ed35e7a7162bbe47bd468e5b932ddeb6e85bd7d6",
+    "RaidFrame/FluxRaidPreview.lua": "841c06c835d01eb7c92b0e06cb32de400cf4e37ba8feab690a60e798e33d894b",
+    "RaidFrame/FluxRaidFrame.xml": "e395c5bf5c58c68018aa0e476317278c064316e09f197e97ec73bb5f53f855d3"
+  },
+  "candidateFeatureHashes": {
+    "RaidFrame/FluxRaidAuras.lua": "59bcceb9cad1dfbe91c18f60818ae3cc096fa8950d94376e315b14bc53c771ac",
+    "RaidFrame/FluxRaidVisuals.lua": "3623bddda642dac117365185343f6cf857fe4104ba8c500577594ed2a5f1fb92",
+    "RaidFrame/FluxRaidPreview.lua": "2b043176f2de5e3641f85ed55f6ad2c35e7395aa146a17f3ee9afb06cc5b3fec",
+    "RaidFrame/FluxRaidFrame.xml": "71a7f7a9d6240f0297c24ff4733d4a4f44c5926054fe0c1d583e5a0a4fea836c"
+  },
+  "implementation": [
+    "Full-icon reverse cooldown sweep with intrinsic black alpha0.75 instead of0.3.",
+    "Centered9px white outlined duration above the swipe, with black shadow; stack count remains top-right7px.",
+    "One cached addon-owned native one-unit formatter strips interval whitespace; absent API preserves native default.",
+    "Native duration/cooldown sinks retain restricted duration ownership; no addon duration reads or polling introduced.",
+    "Readable built-in countdown FontString is prepared above the swipe once; timer-to-permanent recycling clears/hides both.",
+    "Existing alpha slider,3x2 blocks, icon dimensions, native categories and strict dispel filtering remain."
+  ],
+  "opacityScope": "At row alpha0.3: nominal intrinsic swipe contribution0.09->0.225, before frame/range alpha. No pixel-opacity measurement.",
+  "resourceScope": "No new frames/tickers/timers; one owned formatter object when supported, shared by native pools. Desktop/static resource scope only.",
+  "fullDesktop": {
+    "scripts": 193,
+    "failures": 0,
+    "syntaxFiles": 855,
+    "syntaxFailures": 0,
+    "runtime": "Lua 5.4.6  Copyright (C) 1994-2023 Lua.org, PUC-Rio",
+    "sourceDrift": {
+      "beforeCount": 855,
+      "afterCount": 855,
+      "unchanged": true,
+      "corpusSHA256": "1538c103263364507b0c9cace817c95ee832defa81bb32b81da571610765c044"
+    }
+  },
+  "focusedResults": [
+    {
+      "path": "tests/raid_aura_native_filters.lua",
+      "exit": 0,
+      "wallSeconds": 0.3555,
+      "output": "Raid native aura policy: 126 passed, 0 failed; five pinned client policies, public native predicates; native VM/rendering pending\n"
+    },
+    {
+      "path": "tests/raid_aura_options.lua",
+      "exit": 0,
+      "wallSeconds": 0.0271,
+      "output": "Raid aura options/preview: 87 checks; actual scoped callbacks and synthetic widget geometry; desktop only\n"
+    },
+    {
+      "path": "tests/raid_healer_auras.lua",
+      "exit": 0,
+      "wallSeconds": 0.0949,
+      "output": "Raid healer auras: 3720 checks; bounded three-by-two side blocks, strict filters, centered duration sinks and full-icon cooldown swipe; six rejected negative controls; client visuals pending\n"
+    },
+    {
+      "path": "tests/raid_healer_visuals.lua",
+      "exit": 0,
+      "wallSeconds": 0.0446,
+      "output": "raid healer visuals: 598 checks passed (desktop only)\n"
+    }
+  ],
+  "pairedFunctionalRegressions": {
+    "scope": "Five alternating fresh-process functional pairs per case; no native CPU/FPS/time measurement.",
+    "sourceHashes": {
+      "auras": {
+        "baseline": "cad84289267be01559ff179062d41c73573bf1b1044700fa115b0a3580326173",
+        "candidate": "59bcceb9cad1dfbe91c18f60818ae3cc096fa8950d94376e315b14bc53c771ac"
+      },
+      "preview": {
+        "baseline": "841c06c835d01eb7c92b0e06cb32de400cf4e37ba8feab690a60e798e33d894b",
+        "candidate": "2b043176f2de5e3641f85ed55f6ad2c35e7395aa146a17f3ee9afb06cc5b3fec"
+      }
+    },
+    "pairs": [
+      {
+        "case": "auras",
+        "trial": 1,
+        "order": [
+          "baseline",
+          "candidate"
+        ],
+        "baseline": {
+          "exit": 1,
+          "output": "lua: tests/raid_healer_auras.lua:4: bounded outlined native duration is centered above the icon with a dark shadow\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/raid_healer_auras.lua:4: in local 'check'\n\ttests/raid_healer_auras.lua:240: in main chunk\n\t[C]: in ?\n"
+        },
+        "candidate": {
+          "exit": 0,
+          "output": "Raid healer auras: 3720 checks; bounded three-by-two side blocks, strict filters, centered duration sinks and full-icon cooldown swipe; six rejected negative controls; client visuals pending\n"
+        }
+      },
+      {
+        "case": "auras",
+        "trial": 2,
+        "order": [
+          "candidate",
+          "baseline"
+        ],
+        "candidate": {
+          "exit": 0,
+          "output": "Raid healer auras: 3720 checks; bounded three-by-two side blocks, strict filters, centered duration sinks and full-icon cooldown swipe; six rejected negative controls; client visuals pending\n"
+        },
+        "baseline": {
+          "exit": 1,
+          "output": "lua: tests/raid_healer_auras.lua:4: bounded outlined native duration is centered above the icon with a dark shadow\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/raid_healer_auras.lua:4: in local 'check'\n\ttests/raid_healer_auras.lua:240: in main chunk\n\t[C]: in ?\n"
+        }
+      },
+      {
+        "case": "auras",
+        "trial": 3,
+        "order": [
+          "baseline",
+          "candidate"
+        ],
+        "baseline": {
+          "exit": 1,
+          "output": "lua: tests/raid_healer_auras.lua:4: bounded outlined native duration is centered above the icon with a dark shadow\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/raid_healer_auras.lua:4: in local 'check'\n\ttests/raid_healer_auras.lua:240: in main chunk\n\t[C]: in ?\n"
+        },
+        "candidate": {
+          "exit": 0,
+          "output": "Raid healer auras: 3720 checks; bounded three-by-two side blocks, strict filters, centered duration sinks and full-icon cooldown swipe; six rejected negative controls; client visuals pending\n"
+        }
+      },
+      {
+        "case": "auras",
+        "trial": 4,
+        "order": [
+          "candidate",
+          "baseline"
+        ],
+        "candidate": {
+          "exit": 0,
+          "output": "Raid healer auras: 3720 checks; bounded three-by-two side blocks, strict filters, centered duration sinks and full-icon cooldown swipe; six rejected negative controls; client visuals pending\n"
+        },
+        "baseline": {
+          "exit": 1,
+          "output": "lua: tests/raid_healer_auras.lua:4: bounded outlined native duration is centered above the icon with a dark shadow\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/raid_healer_auras.lua:4: in local 'check'\n\ttests/raid_healer_auras.lua:240: in main chunk\n\t[C]: in ?\n"
+        }
+      },
+      {
+        "case": "auras",
+        "trial": 5,
+        "order": [
+          "baseline",
+          "candidate"
+        ],
+        "baseline": {
+          "exit": 1,
+          "output": "lua: tests/raid_healer_auras.lua:4: bounded outlined native duration is centered above the icon with a dark shadow\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/raid_healer_auras.lua:4: in local 'check'\n\ttests/raid_healer_auras.lua:240: in main chunk\n\t[C]: in ?\n"
+        },
+        "candidate": {
+          "exit": 0,
+          "output": "Raid healer auras: 3720 checks; bounded three-by-two side blocks, strict filters, centered duration sinks and full-icon cooldown swipe; six rejected negative controls; client visuals pending\n"
+        }
+      },
+      {
+        "case": "preview",
+        "trial": 1,
+        "order": [
+          "baseline",
+          "candidate"
+        ],
+        "baseline": {
+          "exit": 1,
+          "output": "lua: raid-aura-options-absolute-path-adapter:12: all six reverse black swipes cover the full icon at the shared three-quarter opacity\nstack traceback:\n\t[C]: in function 'assert'\n\traid-aura-options-absolute-path-adapter:12: in local 'check'\n\traid-aura-options-absolute-path-adapter:144: in main chunk\n\t...7972-8df9-fa26882e0e03\\duration_preview_pair_adapter.lua:8: in main chunk\n\t[C]: in ?\n"
+        },
+        "candidate": {
+          "exit": 0,
+          "output": "Raid aura options/preview: 87 checks; actual scoped callbacks and synthetic widget geometry; desktop only\n"
+        }
+      },
+      {
+        "case": "preview",
+        "trial": 2,
+        "order": [
+          "candidate",
+          "baseline"
+        ],
+        "candidate": {
+          "exit": 0,
+          "output": "Raid aura options/preview: 87 checks; actual scoped callbacks and synthetic widget geometry; desktop only\n"
+        },
+        "baseline": {
+          "exit": 1,
+          "output": "lua: raid-aura-options-absolute-path-adapter:12: all six reverse black swipes cover the full icon at the shared three-quarter opacity\nstack traceback:\n\t[C]: in function 'assert'\n\traid-aura-options-absolute-path-adapter:12: in local 'check'\n\traid-aura-options-absolute-path-adapter:144: in main chunk\n\t...7972-8df9-fa26882e0e03\\duration_preview_pair_adapter.lua:8: in main chunk\n\t[C]: in ?\n"
+        }
+      },
+      {
+        "case": "preview",
+        "trial": 3,
+        "order": [
+          "baseline",
+          "candidate"
+        ],
+        "baseline": {
+          "exit": 1,
+          "output": "lua: raid-aura-options-absolute-path-adapter:12: all six reverse black swipes cover the full icon at the shared three-quarter opacity\nstack traceback:\n\t[C]: in function 'assert'\n\traid-aura-options-absolute-path-adapter:12: in local 'check'\n\traid-aura-options-absolute-path-adapter:144: in main chunk\n\t...7972-8df9-fa26882e0e03\\duration_preview_pair_adapter.lua:8: in main chunk\n\t[C]: in ?\n"
+        },
+        "candidate": {
+          "exit": 0,
+          "output": "Raid aura options/preview: 87 checks; actual scoped callbacks and synthetic widget geometry; desktop only\n"
+        }
+      },
+      {
+        "case": "preview",
+        "trial": 4,
+        "order": [
+          "candidate",
+          "baseline"
+        ],
+        "candidate": {
+          "exit": 0,
+          "output": "Raid aura options/preview: 87 checks; actual scoped callbacks and synthetic widget geometry; desktop only\n"
+        },
+        "baseline": {
+          "exit": 1,
+          "output": "lua: raid-aura-options-absolute-path-adapter:12: all six reverse black swipes cover the full icon at the shared three-quarter opacity\nstack traceback:\n\t[C]: in function 'assert'\n\traid-aura-options-absolute-path-adapter:12: in local 'check'\n\traid-aura-options-absolute-path-adapter:144: in main chunk\n\t...7972-8df9-fa26882e0e03\\duration_preview_pair_adapter.lua:8: in main chunk\n\t[C]: in ?\n"
+        }
+      },
+      {
+        "case": "preview",
+        "trial": 5,
+        "order": [
+          "baseline",
+          "candidate"
+        ],
+        "baseline": {
+          "exit": 1,
+          "output": "lua: raid-aura-options-absolute-path-adapter:12: all six reverse black swipes cover the full icon at the shared three-quarter opacity\nstack traceback:\n\t[C]: in function 'assert'\n\traid-aura-options-absolute-path-adapter:12: in local 'check'\n\traid-aura-options-absolute-path-adapter:144: in main chunk\n\t...7972-8df9-fa26882e0e03\\duration_preview_pair_adapter.lua:8: in main chunk\n\t[C]: in ?\n"
+        },
+        "candidate": {
+          "exit": 0,
+          "output": "Raid aura options/preview: 87 checks; actual scoped callbacks and synthetic widget geometry; desktop only\n"
+        }
+      }
+    ],
+    "variation": "All10 baseline runs rejected; all10 candidate runs pass.",
+    "previewHarnessAdapter": "External adapter permits absolute baseline paths in the test file reader; production code and all assertions remain unchanged."
+  },
+  "sourceEvidence": [
+    {
+      "branch": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/FrameAPICooldownDocumentation.lua",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_APIDocumentationGenerated/FrameAPICooldownDocumentation.lua",
+      "sha256": "f4b117e888a1f7535dec1c720edaceef4b984e5d9c4af3be19c9cf499d757279",
+      "bytes": 13120
+    },
+    {
+      "branch": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleFrameAPIDocumentation.lua",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleFrameAPIDocumentation.lua",
+      "sha256": "c6275c78b80e584083000b19dff052cbbb7e1065bdcd0db4cf430c584a5c9430",
+      "bytes": 33423
+    },
+    {
+      "branch": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_FrameXMLUtil/Cooldown.lua",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_FrameXMLUtil/Cooldown.lua",
+      "sha256": "54cf16c0f847385e1965f4ba64363dcf76e7413ba015e1c7b79acf859918d538",
+      "bytes": 623
+    },
+    {
+      "branch": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_FrameXMLUtil/Mainline/Cooldown.xml",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_FrameXMLUtil/Mainline/Cooldown.xml",
+      "sha256": "11df17d06cff2380bbd510d3d4c2f0f121a78ac1c2310effe480a40827232ce7",
+      "bytes": 555
+    },
+    {
+      "branch": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/DurationTextBindingSharedDocumentation.lua",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_APIDocumentationGenerated/DurationTextBindingSharedDocumentation.lua",
+      "sha256": "328bc4135f319f6a49e09f62da29404e38a8462212797cd76ca1ef71159aded6",
+      "bytes": 1864
+    },
+    {
+      "branch": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/DurationTextBindingObjectAPIDocumentation.lua",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_APIDocumentationGenerated/DurationTextBindingObjectAPIDocumentation.lua",
+      "sha256": "8494c4190860ea529885006016e9e61d41689551f362aa913b7054453e062f18",
+      "bytes": 9182
+    },
+    {
+      "branch": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/DurationUtilDocumentation.lua",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_APIDocumentationGenerated/DurationUtilDocumentation.lua",
+      "sha256": "d3f9e8029b52a518a3f5a8fb6c3e1a11af55b436e89858991418c097624644fc",
+      "bytes": 1079
+    },
+    {
+      "branch": "forever",
+      "commit": "eac30af597e5aaa43a60f6675ef5fdcea100375f",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/FrameAPICooldownDocumentation.lua",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/eac30af597e5aaa43a60f6675ef5fdcea100375f/Interface/AddOns/Blizzard_APIDocumentationGenerated/FrameAPICooldownDocumentation.lua",
+      "sha256": "ee67c76884225cbe9186de80137b8f250d3a96ab963952f84094c0dab7691563",
+      "bytes": 13119
+    },
+    {
+      "branch": "forever",
+      "commit": "eac30af597e5aaa43a60f6675ef5fdcea100375f",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleFrameAPIDocumentation.lua",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/eac30af597e5aaa43a60f6675ef5fdcea100375f/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleFrameAPIDocumentation.lua",
+      "sha256": "c00bc77ee27f8fd81ba8b8d1bfd85fbd0ad817b22457adbe5adca6876a1d604a",
+      "bytes": 33561
+    },
+    {
+      "branch": "forever",
+      "commit": "eac30af597e5aaa43a60f6675ef5fdcea100375f",
+      "path": "Interface/AddOns/Blizzard_FrameXMLUtil/Cooldown.lua",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/eac30af597e5aaa43a60f6675ef5fdcea100375f/Interface/AddOns/Blizzard_FrameXMLUtil/Cooldown.lua",
+      "sha256": "54cf16c0f847385e1965f4ba64363dcf76e7413ba015e1c7b79acf859918d538",
+      "bytes": 623
+    },
+    {
+      "branch": "forever",
+      "commit": "eac30af597e5aaa43a60f6675ef5fdcea100375f",
+      "path": "Interface/AddOns/Blizzard_FrameXMLUtil/Mainline/Cooldown.xml",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/eac30af597e5aaa43a60f6675ef5fdcea100375f/Interface/AddOns/Blizzard_FrameXMLUtil/Mainline/Cooldown.xml",
+      "sha256": "11df17d06cff2380bbd510d3d4c2f0f121a78ac1c2310effe480a40827232ce7",
+      "bytes": 555
+    },
+    {
+      "branch": "forever",
+      "commit": "eac30af597e5aaa43a60f6675ef5fdcea100375f",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/DurationTextBindingSharedDocumentation.lua",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/eac30af597e5aaa43a60f6675ef5fdcea100375f/Interface/AddOns/Blizzard_APIDocumentationGenerated/DurationTextBindingSharedDocumentation.lua",
+      "sha256": "328bc4135f319f6a49e09f62da29404e38a8462212797cd76ca1ef71159aded6",
+      "bytes": 1864
+    },
+    {
+      "branch": "forever",
+      "commit": "eac30af597e5aaa43a60f6675ef5fdcea100375f",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/DurationTextBindingObjectAPIDocumentation.lua",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/eac30af597e5aaa43a60f6675ef5fdcea100375f/Interface/AddOns/Blizzard_APIDocumentationGenerated/DurationTextBindingObjectAPIDocumentation.lua",
+      "sha256": "8494c4190860ea529885006016e9e61d41689551f362aa913b7054453e062f18",
+      "bytes": 9182
+    },
+    {
+      "branch": "forever",
+      "commit": "eac30af597e5aaa43a60f6675ef5fdcea100375f",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/DurationUtilDocumentation.lua",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/eac30af597e5aaa43a60f6675ef5fdcea100375f/Interface/AddOns/Blizzard_APIDocumentationGenerated/DurationUtilDocumentation.lua",
+      "sha256": "d3f9e8029b52a518a3f5a8fb6c3e1a11af55b436e89858991418c097624644fc",
+      "bytes": 1079
+    },
+    {
+      "branch": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/FrameAPICooldownDocumentation.lua",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_APIDocumentationGenerated/FrameAPICooldownDocumentation.lua",
+      "sha256": "b8ff4e092308862adc758c5f42d449461af30d067bf60a24dc4ff46d6ed42178",
+      "bytes": 10957
+    },
+    {
+      "branch": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleFrameAPIDocumentation.lua",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleFrameAPIDocumentation.lua",
+      "sha256": "6088af46a447e9a775a60b6d3acc429541951da8cfbf58e65adb98338d2a8298",
+      "bytes": 24276
+    },
+    {
+      "branch": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_FrameXMLUtil/Cooldown.lua",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_FrameXMLUtil/Cooldown.lua",
+      "sha256": "a9ba4f24d0d7131cc42d5fc1b4892f98077b398aa2d1fcbe7338bcb3bbf26dcc",
+      "bytes": 536
+    },
+    {
+      "branch": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_FrameXMLUtil/Classic/Cooldown.xml",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_FrameXMLUtil/Classic/Cooldown.xml",
+      "sha256": "307a1105df1f66dbf9db267a1741cb5370af0eb3e1c2fa9bd2447d92d109ec36",
+      "bytes": 522
+    },
+    {
+      "branch": "classic_era",
+      "commit": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/FrameAPICooldownDocumentation.lua",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_APIDocumentationGenerated/FrameAPICooldownDocumentation.lua",
+      "sha256": "b8ff4e092308862adc758c5f42d449461af30d067bf60a24dc4ff46d6ed42178",
+      "bytes": 10957
+    },
+    {
+      "branch": "classic_era",
+      "commit": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleFrameAPIDocumentation.lua",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleFrameAPIDocumentation.lua",
+      "sha256": "6088af46a447e9a775a60b6d3acc429541951da8cfbf58e65adb98338d2a8298",
+      "bytes": 24276
+    },
+    {
+      "branch": "classic_era",
+      "commit": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "path": "Interface/AddOns/Blizzard_FrameXMLUtil/Cooldown.lua",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_FrameXMLUtil/Cooldown.lua",
+      "sha256": "a9ba4f24d0d7131cc42d5fc1b4892f98077b398aa2d1fcbe7338bcb3bbf26dcc",
+      "bytes": 536
+    },
+    {
+      "branch": "classic_era",
+      "commit": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "path": "Interface/AddOns/Blizzard_FrameXMLUtil/Classic/Cooldown.xml",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_FrameXMLUtil/Classic/Cooldown.xml",
+      "sha256": "307a1105df1f66dbf9db267a1741cb5370af0eb3e1c2fa9bd2447d92d109ec36",
+      "bytes": 522
+    },
+    {
+      "branch": "classic_anniversary",
+      "commit": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/FrameAPICooldownDocumentation.lua",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_APIDocumentationGenerated/FrameAPICooldownDocumentation.lua",
+      "sha256": "b8ff4e092308862adc758c5f42d449461af30d067bf60a24dc4ff46d6ed42178",
+      "bytes": 10957
+    },
+    {
+      "branch": "classic_anniversary",
+      "commit": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleFrameAPIDocumentation.lua",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleFrameAPIDocumentation.lua",
+      "sha256": "6088af46a447e9a775a60b6d3acc429541951da8cfbf58e65adb98338d2a8298",
+      "bytes": 24276
+    },
+    {
+      "branch": "classic_anniversary",
+      "commit": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "path": "Interface/AddOns/Blizzard_FrameXMLUtil/Cooldown.lua",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_FrameXMLUtil/Cooldown.lua",
+      "sha256": "f198c11ad8669459348827a932104dbf64d29c7fbbbe9e05b1818d89106b78c4",
+      "bytes": 555
+    },
+    {
+      "branch": "classic_anniversary",
+      "commit": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "path": "Interface/AddOns/Blizzard_FrameXMLUtil/Classic/Cooldown.xml",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_FrameXMLUtil/Classic/Cooldown.xml",
+      "sha256": "e630d0b6c1bb059ee2507ac88af4fc78ee17a541cc1d3d31e2a7012401dc6504",
+      "bytes": 533
+    },
+    {
+      "branch": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/SecondsFormatterAPIDocumentation.lua",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_APIDocumentationGenerated/SecondsFormatterAPIDocumentation.lua",
+      "sha256": "9ddd2af27b44aa4d19c113cf60e6a23a640321c8228232e648352e1fbfc5cab4",
+      "bytes": 12247
+    },
+    {
+      "branch": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/SecondsFormatterSharedDocumentation.lua",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_APIDocumentationGenerated/SecondsFormatterSharedDocumentation.lua",
+      "sha256": "1439da4b82977dbdea86535f41626e7e2c263b1badb32192067ec89ae7f2d4e0",
+      "bytes": 2260
+    },
+    {
+      "branch": "forever",
+      "commit": "eac30af597e5aaa43a60f6675ef5fdcea100375f",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/SecondsFormatterAPIDocumentation.lua",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/eac30af597e5aaa43a60f6675ef5fdcea100375f/Interface/AddOns/Blizzard_APIDocumentationGenerated/SecondsFormatterAPIDocumentation.lua",
+      "sha256": "9ddd2af27b44aa4d19c113cf60e6a23a640321c8228232e648352e1fbfc5cab4",
+      "bytes": 12247
+    },
+    {
+      "branch": "forever",
+      "commit": "eac30af597e5aaa43a60f6675ef5fdcea100375f",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/SecondsFormatterSharedDocumentation.lua",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/eac30af597e5aaa43a60f6675ef5fdcea100375f/Interface/AddOns/Blizzard_APIDocumentationGenerated/SecondsFormatterSharedDocumentation.lua",
+      "sha256": "1439da4b82977dbdea86535f41626e7e2c263b1badb32192067ec89ae7f2d4e0",
+      "bytes": 2260
+    }
+  ],
+  "limits": [
+    "New presentation native pixels/combat/taint/FPS and all-client runtime checks remain pending.",
+    "Previous Forever user acceptance applies to the earlier aura behavior, not this new presentation.",
+    "Prior category/private-exclusion and supplemental-rank limitations remain in the separate eligibility record.",
+    "User prefers direct implementation and has used manual in-game Forever reproduction; no Witchcraft/UIForever tools are available this round."
+  ],
+  "nativeActions": "Four changed runtime files installed in each of four existing client copies after baseline guards and external backups. No game input, reload, settings reset or profiler change performed.",
+  "clientInstallation": {
+    "clients": 4,
+    "files": 16,
+    "backupName": "Raid-duration-client-originals-20261106T191203Z",
+    "beforeAndAfterVerification": "PASS",
+    "scope": "Only four tested raid runtime files per existing client; no TOC/settings/profiler/input changes."
+  },
+  "documentationValidation": {
+    "result": "PASS",
+    "classifiedSources": 888,
+    "reachableSources": 597,
+    "settingDefinitions": 385,
+    "savedVariables": 24,
+    "localLinks": 14475
+  }
+}

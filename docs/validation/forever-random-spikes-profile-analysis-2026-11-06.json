@@ -1,0 +1,271 @@
+{
+  "sourceSavedUTC": "2026-11-06T15:27:40.627255+00:00",
+  "sourceSavedSHA256": "82fe7883659b1ca240290ba3fd9a05823c73032fa2eddd0e4ae30eeeae3b6426",
+  "privacy": "Only the requested normal performance capture was extracted. No other SavedVariables roots, account paths or settings were exported.",
+  "capture": {
+    "client": "Forever",
+    "version": "1.60.1",
+    "build": "70790",
+    "gameType": "camelot",
+    "spellRanks": "1",
+    "scriptProfile": "1",
+    "seconds": 120.002999999997,
+    "capturedAt": "2026-11-06 16:25:27",
+    "addonMsPerSecond": 33.62113613826406,
+    "fpsAverage": 139.011911055621,
+    "fpsMin": 20.55674362182617,
+    "liveBefore": 45,
+    "liveAfter": 51,
+    "cvars": "maxFPS=120 maxFPSBk=30 maxFPSLoading=10 vsync=0 targetFPS=60 useTargetFPS=0 gxMaxFrameLatency=3",
+    "uiBefore": {
+      "battlefieldMap": "shown=true/visible=true",
+      "character": "shown=false/visible=false",
+      "fluxTab": "Map",
+      "worldMap": "shown=false/visible=false"
+    },
+    "uiAfter": {
+      "battlefieldMap": "shown=true/visible=true",
+      "character": "shown=false/visible=false",
+      "fluxTab": "Map",
+      "worldMap": "shown=false/visible=false"
+    },
+    "recentProfiler": {
+      "applicationMs": 7.349719915966388,
+      "addonMs": 0.4923255602240898,
+      "count": 119,
+      "overallMs": 0.8478344117647062
+    }
+  },
+  "timestampMeaning": "Normal capturedAt is assigned when capture finishes. Europe/Copenhagen (UTC+1) places this approximately120.003-second interval at15:23:27 to15:25:27 UTC, separate from the earlier15:01 to15:11 UTC watch.",
+  "preservedEarlierWatch": {
+    "spikeCount": 7,
+    "normalReportExportExcludesWatch": true
+  },
+  "profilerRestoration": "Global Config.wtf saved15:27:40UTC does not store a scriptProfile key. Absence is not a live0 proof. The report records1 at capture time regardless of any later restoration.",
+  "limits": [
+    "This is one profiled normal/startup-adjacent interval without a matched baseline/candidate A/B, verified warmup or exact frame-gap capture. It does not identify which function caused the prior seven gaps.",
+    "All function/frame/pass CPU rows are inclusive and overlap. Do not sum rows, multiply modern per-tick samples into legacy counters, or sum identical shared-frame counters.",
+    "Profiler overhead changes timing; captured FPS is not an unprofiled acceptance result.",
+    "The shared chat edit-box OnEnterPressed slash handler invokes Capture.Start and its expensive endpoint scan. Per-frame/function counter collection occurs at different points from the addon CPU/time boundary. The1926ms/3call shared edit-box sample may include diagnostic-command/endpoint work, not normal chat work or ten independent spikes.",
+    "Registered owner visibility does not identify every direct caller. The hidden WorldMap script sample cannot alone prove that a hidden OnUpdate driver executed.",
+    "Frame/region growth over one post-reload interval can be startup settling, lazy loading, pools or actual growth. It is not a leak diagnosis without repeated matched warm cycles."
+  ],
+  "presentationDelta": {
+    "allFramesBefore": 51734,
+    "allFramesAfter": 55506,
+    "allFramesIncrease": 3772,
+    "visibleFramesIncrease": 286,
+    "visibleRegionsIncrease": 662,
+    "liveOnUpdatesIncrease": 6
+  },
+  "repeatedFrameCounterGroups": [
+    {
+      "creationSource": "Interface/AddOns/Blizzard_ChatFrameBase/Mainline/FloatingChatFrame.xml:555",
+      "recordCount": 10,
+      "sameCounterMs": 1926.4294,
+      "sameCounterCalls": 3,
+      "sameCounterMsPerSecond": 16.05317700390864,
+      "representativeLabels": [
+        "ChatFrame3EditBox",
+        "ChatFrame1EditBox",
+        "ChatFrame9EditBox",
+        "ChatFrame5EditBox",
+        "ChatFrame7EditBox"
+      ],
+      "interpretation": "Identical frame-counter samples are consistent with shared script functions; do not sum these rows. Source locations identify owner construction, not callback definitions/callers."
+    },
+    {
+      "creationSource": "Interface/AddOns/Blizzard_BuffFrame/BuffFrame.lua:196",
+      "recordCount": 37,
+      "sameCounterMs": 623.7519,
+      "sameCounterCalls": 50242,
+      "sameCounterMsPerSecond": 5.197802554936257,
+      "representativeLabels": [
+        "BuffFrame.ConsolidatedBuffs.Tooltip.Auras.AuraContainer.1d8db830730",
+        "BuffFrame.AuraContainer.1d8db83ab20",
+        "BuffFrame.AuraContainer.1d8db8394a0",
+        "BuffFrame.AuraContainer.1d8db83ce20",
+        "DebuffFrame.AuraContainer.1d8db85cfd0"
+      ],
+      "interpretation": "Identical frame-counter samples are consistent with shared script functions; do not sum these rows. Source locations identify owner construction, not callback definitions/callers."
+    }
+  ],
+  "selectedInclusiveFunctions": [
+    {
+      "ms": 1895.7609,
+      "msPerSecond": 15.79761255968641,
+      "calls": 912,
+      "label": "Flux.Scheduler.Flush",
+      "averageMsPerCall": 2.078685197368421
+    },
+    {
+      "ms": 1125.0226,
+      "msPerSecond": 9.374953959484584,
+      "calls": 122818,
+      "label": "FluxMouseoverKeybindModule.IsHovercastPeekMouseContext",
+      "averageMsPerCall": 0.009160079141493917
+    },
+    {
+      "ms": 1090.7436,
+      "msPerSecond": 9.089302767431045,
+      "calls": 791,
+      "label": "Flux.Bars.ForEachHost",
+      "averageMsPerCall": 1.3789426042983566
+    },
+    {
+      "ms": 1083.0384,
+      "msPerSecond": 9.025094372640913,
+      "calls": 682,
+      "label": "Flux.Bars.Paint.Flush",
+      "averageMsPerCall": 1.58803284457478
+    },
+    {
+      "ms": 732.1616,
+      "msPerSecond": 6.1011941368134,
+      "calls": 790,
+      "label": "Flux.EBS.Paint.FlushEval",
+      "averageMsPerCall": 0.926786835443038
+    },
+    {
+      "ms": 598.9696,
+      "msPerSecond": 4.991288551119681,
+      "calls": 8323,
+      "label": "Flux.Bars.Paint.UpdateUsable",
+      "averageMsPerCall": 0.07196558933077016
+    },
+    {
+      "ms": 491.3582,
+      "msPerSecond": 4.094549302934197,
+      "calls": 1902,
+      "label": "Flux.Bars.Effects.SyncColumn",
+      "averageMsPerCall": 0.25833764458464775
+    },
+    {
+      "ms": 421.5659,
+      "msPerSecond": 3.51296134263319,
+      "calls": 216,
+      "label": "FluxInfoFrame._CamelotSpellBonus",
+      "averageMsPerCall": 1.9516939814814815
+    },
+    {
+      "ms": 415.6603,
+      "msPerSecond": 3.463749239602431,
+      "calls": 578,
+      "label": "FluxInfoFrame.ResolveStatFramesForTooltip",
+      "averageMsPerCall": 0.7191354671280277
+    },
+    {
+      "ms": 162.9071,
+      "msPerSecond": 1.357525228535988,
+      "calls": 18,
+      "label": "FluxRestockTiers.RecomputeInferior",
+      "averageMsPerCall": 9.050394444444445
+    },
+    {
+      "ms": 1025.4905,
+      "calls": 16604,
+      "ownerSources": [
+        {
+          "creationSource": "Interface/AddOns/_FluxUI/Bars/ProgramFace.lua:1304",
+          "label": "1d9cafdc410"
+        }
+      ],
+      "label": "1d9cafdc410:OnUpdate",
+      "owners": [
+        "1d9cafdc410 (shown=true/visible=true)"
+      ],
+      "msPerSecond": 8.545540528153678,
+      "visibleOwners": 1,
+      "ownerCount": 1
+    },
+    {
+      "ms": 684.1287000000001,
+      "calls": 16604,
+      "ownerSources": [
+        {
+          "creationSource": "Interface/AddOns/_FluxUI/Bars/Stance/Extras.lua:1054",
+          "label": "1d8ad834750"
+        }
+      ],
+      "label": "1d8ad834750:OnUpdate",
+      "owners": [
+        "1d8ad834750 (shown=true/visible=true)"
+      ],
+      "msPerSecond": 5.700929976750726,
+      "visibleOwners": 1,
+      "ownerCount": 1
+    },
+    {
+      "ms": 366.3798,
+      "calls": 5289,
+      "ownerSources": [
+        {
+          "creationSource": "Interface/AddOns/_FluxUI/NamePlates/Core.lua:483",
+          "label": "1d8ef5dbc40"
+        }
+      ],
+      "label": "1d8ef5dbc40:OnUpdate",
+      "owners": [
+        "1d8ef5dbc40 (shown=true/visible=true)"
+      ],
+      "msPerSecond": 3.053088672783257,
+      "visibleOwners": 1,
+      "ownerCount": 1
+    },
+    {
+      "ms": 111.5146,
+      "calls": 16604,
+      "ownerSources": [
+        {
+          "creationSource": "Interface/AddOns/_FluxUI/Other/FluxChatColumnMicros.lua:972",
+          "label": "FluxChatCharacterPressDriver"
+        }
+      ],
+      "label": "FluxChatCharacterPressDriver:OnUpdate",
+      "owners": [
+        "FluxChatCharacterPressDriver (shown=true/visible=true)"
+      ],
+      "msPerSecond": 0.9292651017058142,
+      "visibleOwners": 1,
+      "ownerCount": 1
+    }
+  ],
+  "passes": [
+    {
+      "ms": 1076.650699943304,
+      "msPerSecond": 8.971864869572688,
+      "calls": 682,
+      "label": "bars.paint.lane"
+    },
+    {
+      "ms": 31.82810005545616,
+      "msPerSecond": 0.265227536440397,
+      "calls": 232,
+      "label": "ebs.paint.checkedpoll"
+    },
+    {
+      "ms": 3.342400014400482,
+      "msPerSecond": 0.02785263713740962,
+      "calls": 2,
+      "label": "bars.paint.dirty"
+    },
+    {
+      "ms": 0.1453999876976013,
+      "msPerSecond": 0.001211636273239877,
+      "calls": 5,
+      "label": "gearset.rebuild"
+    }
+  ],
+  "persistedErrorEvidence": {
+    "sourceSavedUTC": "2026-11-06T15:27:40.591926+00:00",
+    "saveHistory": true,
+    "captureLocals": true,
+    "recordCount": 0,
+    "repeatTotal": 0,
+    "records": [],
+    "scope": "Persisted BugTabs history only, not a current-memory query or exhaustive error acceptance."
+  },
+  "finding": "Measured steady-work candidates include the frequent mouseover-context predicate, private ProgramFace/stance frame drivers, bar/EBS refreshes and synchronous stat-tooltip/restock computations. These are actionable leads, not proven random-freeze causes.",
+  "publicationNote": "Timestamp-range punctuation was repaired. Numeric measurements and original extraction-time limits are retained; later live restoration evidence is separate.",
+  "laterProfilerRestorationEvidence": "forever-random-spikes-profile-restoration-2026-11-06.json"
+}

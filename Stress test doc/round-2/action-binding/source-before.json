@@ -1,0 +1,444 @@
+{
+  "capturedUTC": "2026-11-07T14:27:19.171576+00:00",
+  "scope": "Round2 read-only owner sources; BadgeHost listed only for before/after preservation; its audit belongs to input agent.",
+  "files": [
+    {
+      "path": "Bars/_tmp_barsmoke.lua",
+      "rawSHA256": "38e49d7f47e1663e756c77d99eabce32c448fdb9732d3802cd500259c32bd977",
+      "normalizedSHA256": "38e49d7f47e1663e756c77d99eabce32c448fdb9732d3802cd500259c32bd977",
+      "bytes": 418958
+    },
+    {
+      "path": "Bars/_tmp_forevercontrolsmoke.lua",
+      "rawSHA256": "887b0290269dd5be6bbea65797c4a144b154174fa53fbc1a88ccd38050aed86e",
+      "normalizedSHA256": "887b0290269dd5be6bbea65797c4a144b154174fa53fbc1a88ccd38050aed86e",
+      "bytes": 15895
+    },
+    {
+      "path": "Bars/_tmp_stockgridsmoke.lua",
+      "rawSHA256": "1938cecf621da695ec821bc67dbb186d5f8fea41bec273d109dc49cdab37cda9",
+      "normalizedSHA256": "1938cecf621da695ec821bc67dbb186d5f8fea41bec273d109dc49cdab37cda9",
+      "bytes": 17277
+    },
+    {
+      "path": "Bars/BadgeHost.lua",
+      "rawSHA256": "c4fc487f45cda62e8a93932777f5478d08a9543658c456a5c6a67fb76bcf4616",
+      "normalizedSHA256": "c4fc487f45cda62e8a93932777f5478d08a9543658c456a5c6a67fb76bcf4616",
+      "bytes": 33137
+    },
+    {
+      "path": "Bars/BindingMode.lua",
+      "rawSHA256": "022d6db5b7c5ad73605be13da3252e88fe385187d23aef9e813e39306f605ba5",
+      "normalizedSHA256": "ebc13cc70e78ee8bfa6777047ac0e2c6eefb3aefa76f99767a81ec1df57dc606",
+      "bytes": 14745
+    },
+    {
+      "path": "Bars/Blizzard.lua",
+      "rawSHA256": "9b2209f02654001750f85a9ccf3c935ff4b58ef7cf8d42d0b81dfc77b785925f",
+      "normalizedSHA256": "9b2209f02654001750f85a9ccf3c935ff4b58ef7cf8d42d0b81dfc77b785925f",
+      "bytes": 33116
+    },
+    {
+      "path": "Bars/BlizzardOptions.lua",
+      "rawSHA256": "61b8a34ef514dedd10a3f74fd74ed0ac8f3634703a0ddb1438e773bc03297c5c",
+      "normalizedSHA256": "61b8a34ef514dedd10a3f74fd74ed0ac8f3634703a0ddb1438e773bc03297c5c",
+      "bytes": 10770
+    },
+    {
+      "path": "Bars/Clicks.lua",
+      "rawSHA256": "08bcd2bf585d13550d5077a2706ed0abccd589d07ff585951df2e43dedf8726a",
+      "normalizedSHA256": "08bcd2bf585d13550d5077a2706ed0abccd589d07ff585951df2e43dedf8726a",
+      "bytes": 9110
+    },
+    {
+      "path": "Bars/Effects.lua",
+      "rawSHA256": "7157f719602a74eb3912077c0b63ed6e4e1eb8f8892dc857e214983968bf286e",
+      "normalizedSHA256": "7157f719602a74eb3912077c0b63ed6e4e1eb8f8892dc857e214983968bf286e",
+      "bytes": 18660
+    },
+    {
+      "path": "Bars/Flyout.lua",
+      "rawSHA256": "6bd436bf6a6a2556ff0b0e5664fa8b9fcfc7c98e88998d2f27bae2050a9b0df1",
+      "normalizedSHA256": "0d0952b60295d987fbf5a14b948800514efab0bf374c8fbf84b8bdebdacb64fb",
+      "bytes": 2932
+    },
+    {
+      "path": "Bars/Hosts.lua",
+      "rawSHA256": "de7ca45aa37e19b8e6a1a7f17e990a7de577e80efd832160cc65396eea83aabf",
+      "normalizedSHA256": "de7ca45aa37e19b8e6a1a7f17e990a7de577e80efd832160cc65396eea83aabf",
+      "bytes": 27460
+    },
+    {
+      "path": "Bars/Init.lua",
+      "rawSHA256": "169e18d2f7b946ed41c1890828ede7ce0cec8a8d3041fccf23e11f5dc85dba38",
+      "normalizedSHA256": "169e18d2f7b946ed41c1890828ede7ce0cec8a8d3041fccf23e11f5dc85dba38",
+      "bytes": 16253
+    },
+    {
+      "path": "Bars/Layout.lua",
+      "rawSHA256": "cee77ad50dd6d3ac26a6cc446fde95ed7609f11822c132721735806870fe96d3",
+      "normalizedSHA256": "cee77ad50dd6d3ac26a6cc446fde95ed7609f11822c132721735806870fe96d3",
+      "bytes": 20586
+    },
+    {
+      "path": "Bars/MacrotextDisplay.lua",
+      "rawSHA256": "a55a950d72c19a595ed6fc30bfc817f856eebf536389efab959fc890d6c2f400",
+      "normalizedSHA256": "837e53631b4e5b384fed079e161bc9c813b6f177da0a25ef0419cba80d92e69e",
+      "bytes": 1329
+    },
+    {
+      "path": "Bars/Minis.lua",
+      "rawSHA256": "067bec3fbfdcb8b30462d0ba5dd6a391e5408769bfa81f5eff0b4a043e88fbd8",
+      "normalizedSHA256": "067bec3fbfdcb8b30462d0ba5dd6a391e5408769bfa81f5eff0b4a043e88fbd8",
+      "bytes": 2140
+    },
+    {
+      "path": "Bars/Paint.lua",
+      "rawSHA256": "cb77672bd86298536558b0486b13680360dfd6e86ae134fe207a0bbeafee4224",
+      "normalizedSHA256": "cb77672bd86298536558b0486b13680360dfd6e86ae134fe207a0bbeafee4224",
+      "bytes": 68162
+    },
+    {
+      "path": "Bars/Pet/Init.lua",
+      "rawSHA256": "b4cf96cdc52d01ea44576650d138cf38903314c52bf9f411aac1912c4f5d0296",
+      "normalizedSHA256": "b4cf96cdc52d01ea44576650d138cf38903314c52bf9f411aac1912c4f5d0296",
+      "bytes": 8908
+    },
+    {
+      "path": "Bars/Pet/Keys.lua",
+      "rawSHA256": "5731af690b942a3c86f2e4cb1720136c4808c071dbfdc71ebf6780e8891cedee",
+      "normalizedSHA256": "1adf3fec3dc1db0b9c10489896fa1b7353fc269c7494277be9bfd68c240060f7",
+      "bytes": 1295
+    },
+    {
+      "path": "Bars/Pet/Layout.lua",
+      "rawSHA256": "2f077d6f49e3e539077acdec5681b861665c6939390c1aa8d7a5961ff1cc807a",
+      "normalizedSHA256": "2f077d6f49e3e539077acdec5681b861665c6939390c1aa8d7a5961ff1cc807a",
+      "bytes": 3520
+    },
+    {
+      "path": "Bars/Pet/Watch.lua",
+      "rawSHA256": "0156c62c013b53d8e0934d6bbc27771ead6a82ac615fbd48377a4f4ad17d958a",
+      "normalizedSHA256": "fef92d30de8eb06c69d56762ad4dfd431045d67e93aa48a9c921959317a24780",
+      "bytes": 2925
+    },
+    {
+      "path": "Bars/ProgramFace.lua",
+      "rawSHA256": "40d7bc0133f68f38cace6a464503ca2d98185f1df96b4be3b279cfa4528cf4a1",
+      "normalizedSHA256": "40d7bc0133f68f38cace6a464503ca2d98185f1df96b4be3b279cfa4528cf4a1",
+      "bytes": 38797
+    },
+    {
+      "path": "Bars/SlotMath.lua",
+      "rawSHA256": "b202149ea5bb73adc23124c7bf6b60221e729d42dc381b9f28176404e4042cb8",
+      "normalizedSHA256": "271b88bfe7b597ffc61a2d17afffbb84eb71b51da5ca6e9d51a86cf4fb72d40a",
+      "bytes": 7577
+    },
+    {
+      "path": "Bars/SlotProgram.lua",
+      "rawSHA256": "2bd7a8c44660718d475fe510dd2b70e22f021cc6c332291083949e6eee1e28d4",
+      "normalizedSHA256": "2bd7a8c44660718d475fe510dd2b70e22f021cc6c332291083949e6eee1e28d4",
+      "bytes": 15115
+    },
+    {
+      "path": "Bars/SpellRank.lua",
+      "rawSHA256": "01c566f23be68779d8d7ff9eb5630951349c5eb9320ec5f9f1287e6a3ce2927f",
+      "normalizedSHA256": "01c566f23be68779d8d7ff9eb5630951349c5eb9320ec5f9f1287e6a3ce2927f",
+      "bytes": 48746
+    },
+    {
+      "path": "Bars/Stance/Extras.lua",
+      "rawSHA256": "26bdef971675ece8388be025c324c3a337ca108bc61ea97da142df96d725e81f",
+      "normalizedSHA256": "26bdef971675ece8388be025c324c3a337ca108bc61ea97da142df96d725e81f",
+      "bytes": 48280
+    },
+    {
+      "path": "Bars/Stance/Forms.lua",
+      "rawSHA256": "5d567f4faf5f9424e480e1e58ad66b1264c782a7ec7deac701273aaecb0cf0bc",
+      "normalizedSHA256": "5d567f4faf5f9424e480e1e58ad66b1264c782a7ec7deac701273aaecb0cf0bc",
+      "bytes": 8830
+    },
+    {
+      "path": "Bars/Stance/Init.lua",
+      "rawSHA256": "489a552c6334f838f4cd3b209103f20ab1babd0e6b42c9f1010e15b0703f3dd7",
+      "normalizedSHA256": "489a552c6334f838f4cd3b209103f20ab1babd0e6b42c9f1010e15b0703f3dd7",
+      "bytes": 10607
+    },
+    {
+      "path": "Bars/Stance/Layout.lua",
+      "rawSHA256": "a3fed55d3b10dff53b558c001ab54ef32880975ba82c37276df0c405cf1a19b6",
+      "normalizedSHA256": "a3fed55d3b10dff53b558c001ab54ef32880975ba82c37276df0c405cf1a19b6",
+      "bytes": 14241
+    },
+    {
+      "path": "Bars/Stance/Order.lua",
+      "rawSHA256": "eaa41fbc29459fdea916b10a144db1d47bb51c3e6134ec27c0336f0ce56667ef",
+      "normalizedSHA256": "eaa41fbc29459fdea916b10a144db1d47bb51c3e6134ec27c0336f0ce56667ef",
+      "bytes": 13862
+    },
+    {
+      "path": "Bars/Stance/Watch.lua",
+      "rawSHA256": "dd6405f6475ce5a0f9591a3737596fbc3696c9b553925bbbcd91fa85aad1eeec",
+      "normalizedSHA256": "dd6405f6475ce5a0f9591a3737596fbc3696c9b553925bbbcd91fa85aad1eeec",
+      "bytes": 3561
+    },
+    {
+      "path": "Bars/State.lua",
+      "rawSHA256": "52f005c429b03e4d04495a6183f200323fa71e71ecd0127296b29f4aa0a9dfef",
+      "normalizedSHA256": "52f005c429b03e4d04495a6183f200323fa71e71ecd0127296b29f4aa0a9dfef",
+      "bytes": 40303
+    },
+    {
+      "path": "Bars/Strip.lua",
+      "rawSHA256": "024bb26e739300faf2b8ce562c851b11a7baf6361626e6946191b9d6bf8791df",
+      "normalizedSHA256": "024bb26e739300faf2b8ce562c851b11a7baf6361626e6946191b9d6bf8791df",
+      "bytes": 11893
+    },
+    {
+      "path": "Bars/Vehicle.lua",
+      "rawSHA256": "f44778392115319eed121a22e18db79f91a27eb438a40a331dc144af4d1e0595",
+      "normalizedSHA256": "f44778392115319eed121a22e18db79f91a27eb438a40a331dc144af4d1e0595",
+      "bytes": 8801
+    },
+    {
+      "path": "Bars/Watch.lua",
+      "rawSHA256": "2a5e85c6a99a579d566f9728552cec22120dbf363a2e9fa1a4f0cbe9e76eb564",
+      "normalizedSHA256": "2a5e85c6a99a579d566f9728552cec22120dbf363a2e9fa1a4f0cbe9e76eb564",
+      "bytes": 29141
+    },
+    {
+      "path": "Binding/Boot.lua",
+      "rawSHA256": "678f747ccc3017b3059d982a82e5411ae94e79e42d7623104923ae22fa49f71d",
+      "normalizedSHA256": "4f7a07bacb9fda4b41361752a55d08b3f49f55eefcfb1b6c7ad5ed0a327fe03c",
+      "bytes": 1685
+    },
+    {
+      "path": "Binding/Core/Action.lua",
+      "rawSHA256": "97f48fdf859ff5e3e453860749f0518bcdd9cc50903913041e4843194eee1e78",
+      "normalizedSHA256": "97f48fdf859ff5e3e453860749f0518bcdd9cc50903913041e4843194eee1e78",
+      "bytes": 30938
+    },
+    {
+      "path": "Binding/Core/Apply.lua",
+      "rawSHA256": "311a9bd42f833c7c6ba63762427de45ab99db664ce008a6afda576d64b431c5a",
+      "normalizedSHA256": "311a9bd42f833c7c6ba63762427de45ab99db664ce008a6afda576d64b431c5a",
+      "bytes": 120313
+    },
+    {
+      "path": "Binding/Core/BindingTooltip.lua",
+      "rawSHA256": "8e9a3f9f7468f5ef8691ec2c8212b20d0b75e531a774bff8e6b97c3316e6c0de",
+      "normalizedSHA256": "8e9a3f9f7468f5ef8691ec2c8212b20d0b75e531a774bff8e6b97c3316e6c0de",
+      "bytes": 29161
+    },
+    {
+      "path": "Binding/Core/ChordMap.lua",
+      "rawSHA256": "a75fcde7102bd3a2b3dc4d2f1441ef6ecb69a59d71f07661a54ba160e31e8d4b",
+      "normalizedSHA256": "0b3328c9ff5f8d26b209617b3fd339ba7c8733c20afce8b76c0516427a566945",
+      "bytes": 7743
+    },
+    {
+      "path": "Binding/Core/Conditions.lua",
+      "rawSHA256": "6403b5c3e587b542b40b69a11ac57b859a22d0180a3b65e33fd2ee3c258cc661",
+      "normalizedSHA256": "6403b5c3e587b542b40b69a11ac57b859a22d0180a3b65e33fd2ee3c258cc661",
+      "bytes": 23961
+    },
+    {
+      "path": "Binding/Core/DB.lua",
+      "rawSHA256": "3dd80cc0ab32711c0fd4af2d063dac616a77a035ad8ee0d8bcc7181fb648522a",
+      "normalizedSHA256": "3dd80cc0ab32711c0fd4af2d063dac616a77a035ad8ee0d8bcc7181fb648522a",
+      "bytes": 34790
+    },
+    {
+      "path": "Binding/Core/Engraving.lua",
+      "rawSHA256": "e27fae33a93fe544758b3a1ce967256fe1daba7bbcb846fafaee243cf703b6b3",
+      "normalizedSHA256": "e27fae33a93fe544758b3a1ce967256fe1daba7bbcb846fafaee243cf703b6b3",
+      "bytes": 9977
+    },
+    {
+      "path": "Binding/Core/Forms.lua",
+      "rawSHA256": "8ee94495e83f56ababba18fb96808be011c88391b6697ac4b19ece71dee4f1cd",
+      "normalizedSHA256": "53001467c594b035c67165de4fd34281eb91601020eaa071aa6fea99ae5ae5e6",
+      "bytes": 8749
+    },
+    {
+      "path": "Binding/Core/MacroFactory.lua",
+      "rawSHA256": "db1f3ba1e5cacff4708583554aed93077b541bf6d33d5caf409ad034f0c92262",
+      "normalizedSHA256": "db1f3ba1e5cacff4708583554aed93077b541bf6d33d5caf409ad034f0c92262",
+      "bytes": 43996
+    },
+    {
+      "path": "Binding/Core/Placement.lua",
+      "rawSHA256": "280c3bcd9be3aeeb923c8289abef73eb374e8dea680c19492186e7e780e78292",
+      "normalizedSHA256": "280c3bcd9be3aeeb923c8289abef73eb374e8dea680c19492186e7e780e78292",
+      "bytes": 95004
+    },
+    {
+      "path": "Binding/Core/PushPress.lua",
+      "rawSHA256": "558d9171fddb980bb497c7d9a58447eaa169467cd3c457c20248ef0248d86f92",
+      "normalizedSHA256": "558d9171fddb980bb497c7d9a58447eaa169467cd3c457c20248ef0248d86f92",
+      "bytes": 28614
+    },
+    {
+      "path": "Binding/Core/SecurePool.lua",
+      "rawSHA256": "e25ce53f03c1122ed9a2e367e42807f01a4a74ab87e6e71c06f3d05b12d06fb2",
+      "normalizedSHA256": "e25ce53f03c1122ed9a2e367e42807f01a4a74ab87e6e71c06f3d05b12d06fb2",
+      "bytes": 4846
+    },
+    {
+      "path": "Binding/Core/SpellLibrary.lua",
+      "rawSHA256": "6cd7e2824816f076c78673c616a019a9587c7056e841479de963895b14fc268c",
+      "normalizedSHA256": "6cd7e2824816f076c78673c616a019a9587c7056e841479de963895b14fc268c",
+      "bytes": 62962
+    },
+    {
+      "path": "Binding/Input/FluxMouseoverKeybind.lua",
+      "rawSHA256": "cba37032fa6ce6dbd97e6533dceda584338e37707a3b45f9b7b72bff97082092",
+      "normalizedSHA256": "cba37032fa6ce6dbd97e6533dceda584338e37707a3b45f9b7b72bff97082092",
+      "bytes": 78756
+    },
+    {
+      "path": "Binding/Respec.lua",
+      "rawSHA256": "75e606330ab71c70881f13bbac29b6b515c3d7847b12c3df444a03859ecca417",
+      "normalizedSHA256": "75e606330ab71c70881f13bbac29b6b515c3d7847b12c3df444a03859ecca417",
+      "bytes": 16224
+    },
+    {
+      "path": "Binding/Slash.lua",
+      "rawSHA256": "6ecd15b2cb32d61c4a2664aa73574239fcc30510c156f919763b2e71f4b45660",
+      "normalizedSHA256": "6ecd15b2cb32d61c4a2664aa73574239fcc30510c156f919763b2e71f4b45660",
+      "bytes": 1527
+    },
+    {
+      "path": "Binding/UI/Browser/AceGUIWidget-FluxBindingBrowserEmbed.lua",
+      "rawSHA256": "12583d029dff6b86dc5775eb11e06bd92b9987dc5acc7f02d4438eaf41ebd2d7",
+      "normalizedSHA256": "c91a2abe0e605508112d82ab261e73525a853cba3a7a937dece09023b262caa1",
+      "bytes": 12148
+    },
+    {
+      "path": "Binding/UI/Browser/Core.lua",
+      "rawSHA256": "61f5b0e24c750e600d6eed11e60f9b5b512d326def71375e5c481b409e08ec67",
+      "normalizedSHA256": "61f5b0e24c750e600d6eed11e60f9b5b512d326def71375e5c481b409e08ec67",
+      "bytes": 76097
+    },
+    {
+      "path": "Binding/UI/Editor/Chrome.lua",
+      "rawSHA256": "140cc0c0d51f9f0aa8bcb2ec712fe80afe6a8b0830f229fd6f238183994f942e",
+      "normalizedSHA256": "140cc0c0d51f9f0aa8bcb2ec712fe80afe6a8b0830f229fd6f238183994f942e",
+      "bytes": 23647
+    },
+    {
+      "path": "Binding/UI/Editor/Core.lua",
+      "rawSHA256": "1a61a5c56a2e447b934db80d9c7a7c04eaaae462c9dde63d3084570138f7f51e",
+      "normalizedSHA256": "1a61a5c56a2e447b934db80d9c7a7c04eaaae462c9dde63d3084570138f7f51e",
+      "bytes": 40822
+    },
+    {
+      "path": "Binding/UI/Editor/Panels.lua",
+      "rawSHA256": "b66baa570d59e4fcd719c941835a318138b103bfd1f78025be4fd62891fab15e",
+      "normalizedSHA256": "b66baa570d59e4fcd719c941835a318138b103bfd1f78025be4fd62891fab15e",
+      "bytes": 83791
+    },
+    {
+      "path": "Binding/UI/Editor/Theme.lua",
+      "rawSHA256": "329eed17da96587e2b93b47766a69e82eb4bf454f7e414af0725493093307d53",
+      "normalizedSHA256": "329eed17da96587e2b93b47766a69e82eb4bf454f7e414af0725493093307d53",
+      "bytes": 2518
+    },
+    {
+      "path": "Binding/UI/Editor/Widgets/AceGUIWidget-FluxBlizzardDropdown.lua",
+      "rawSHA256": "e09a978e5cdeca2022952f255e1a4cf2524e374a988e96ba18b1e5bde872748d",
+      "normalizedSHA256": "e09a978e5cdeca2022952f255e1a4cf2524e374a988e96ba18b1e5bde872748d",
+      "bytes": 7069
+    },
+    {
+      "path": "Binding/UI/Editor/Widgets/AceGUIWidget-FluxMultiCastOrderPanel.lua",
+      "rawSHA256": "112c517cb39a027b24068fded2db6c29b14d3de726c70ccca48b17950af23f98",
+      "normalizedSHA256": "327885113d55d44a83c0bf62064ea90d482961b1e14e2437c780cc366e6f4f42",
+      "bytes": 24493
+    },
+    {
+      "path": "Binding/UI/Editor/Widgets/FluxBindingFrame.lua",
+      "rawSHA256": "efdea3eaa728242afba2e4519d7fad7ded62f8b293100acab5cf9ca52cdfb3f9",
+      "normalizedSHA256": "efdea3eaa728242afba2e4519d7fad7ded62f8b293100acab5cf9ca52cdfb3f9",
+      "bytes": 1878
+    },
+    {
+      "path": "Binding/UI/Editor/Widgets/FluxBindingTabGroup.lua",
+      "rawSHA256": "3abc1eadd56bfb06c3a8abe66348091d41345d511b701624793aa0fdfe81cd9a",
+      "normalizedSHA256": "3abc1eadd56bfb06c3a8abe66348091d41345d511b701624793aa0fdfe81cd9a",
+      "bytes": 811
+    },
+    {
+      "path": "Binding/UI/Editor/Widgets/FluxKeyCapture.lua",
+      "rawSHA256": "7c46385147c7606bd4925251cee80e8452df19c89b0582901e13ff22e2360d42",
+      "normalizedSHA256": "7c46385147c7606bd4925251cee80e8452df19c89b0582901e13ff22e2360d42",
+      "bytes": 6191
+    },
+    {
+      "path": "Binding/UI/Editor/Widgets/FluxSectionHeading.lua",
+      "rawSHA256": "46592e5df1707f8158e4e74bb9fa10e35627769090a8bc9a884ac384f12a6126",
+      "normalizedSHA256": "46592e5df1707f8158e4e74bb9fa10e35627769090a8bc9a884ac384f12a6126",
+      "bytes": 3922
+    },
+    {
+      "path": "Binding/UI/Editor/Widgets/FluxTargetRow.lua",
+      "rawSHA256": "eb9aaa261d8d25851445f14fa137661e16423205e6a02b490f90e2cf5050b2a7",
+      "normalizedSHA256": "eb9aaa261d8d25851445f14fa137661e16423205e6a02b490f90e2cf5050b2a7",
+      "bytes": 2620
+    },
+    {
+      "path": "Binding/UI/KeyVisualizer/AceGUIContainer-FluxKeyVisualizerTreeGroup.lua",
+      "rawSHA256": "e8104f7997866d2e596e6a2cd103f0540544df2365d659f014c77afb186cd36e",
+      "normalizedSHA256": "e8104f7997866d2e596e6a2cd103f0540544df2365d659f014c77afb186cd36e",
+      "bytes": 1180
+    },
+    {
+      "path": "Binding/UI/KeyVisualizer/AceGUIWidget-FluxKeyVisualizerButton.lua",
+      "rawSHA256": "8873a1c8317bb37162411741e9879ffb608409eb9ae073a05d82be8d43b13aa0",
+      "normalizedSHA256": "8873a1c8317bb37162411741e9879ffb608409eb9ae073a05d82be8d43b13aa0",
+      "bytes": 11778
+    },
+    {
+      "path": "Binding/UI/KeyVisualizer/Core.lua",
+      "rawSHA256": "a92f9dfe72a9156b7bb4b5c26c49498b79162836b8c0f1981532348956c770e8",
+      "normalizedSHA256": "a92f9dfe72a9156b7bb4b5c26c49498b79162836b8c0f1981532348956c770e8",
+      "bytes": 82977
+    },
+    {
+      "path": "Binding/UI/KeyVisualizer/KeyLayouts.lua",
+      "rawSHA256": "f25be4a5fd0a3465829be528a55f5d1dde3e27243ed354bbce4dc574c5fe0e81",
+      "normalizedSHA256": "f25be4a5fd0a3465829be528a55f5d1dde3e27243ed354bbce4dc574c5fe0e81",
+      "bytes": 20856
+    },
+    {
+      "path": "Binding/UI/Locale.lua",
+      "rawSHA256": "40ccf1f2990a436efd89e16022720117cb718f8f3fb9c3f0bbdfa0a2431e533b",
+      "normalizedSHA256": "40ccf1f2990a436efd89e16022720117cb718f8f3fb9c3f0bbdfa0a2431e533b",
+      "bytes": 39952
+    },
+    {
+      "path": "Binding/UI/Media/Media.lua",
+      "rawSHA256": "d22acf90057bc98f6ceaa1cb99a24d295040b73c8a4b9decaa47fb0ea527ce93",
+      "normalizedSHA256": "123ece6081eed1506300e36921303920e8620c88f47d3b3d81869143d479ef44",
+      "bytes": 851
+    },
+    {
+      "path": "Binding/UI/SpellbookBindingHooks.lua",
+      "rawSHA256": "d4c60b24af8349b5973d980113a53d509c17110aba31a6af9b0f85ddac6368a4",
+      "normalizedSHA256": "d4c60b24af8349b5973d980113a53d509c17110aba31a6af9b0f85ddac6368a4",
+      "bytes": 18301
+    },
+    {
+      "path": "Core/Engine/MouseoverCast.lua",
+      "rawSHA256": "f2599b4f78b9ef1d35316aa3129d68c0a93583a9d559cca8fe8dbc3a14c58531",
+      "normalizedSHA256": "f2599b4f78b9ef1d35316aa3129d68c0a93583a9d559cca8fe8dbc3a14c58531",
+      "bytes": 42743
+    },
+    {
+      "path": "Core/Engine/Restricted.lua",
+      "rawSHA256": "73413b82c0dd4c26770d82e3f0524200971a5a04288e6c67bc47b66f20c7f806",
+      "normalizedSHA256": "73413b82c0dd4c26770d82e3f0524200971a5a04288e6c67bc47b66f20c7f806",
+      "bytes": 12540
+    }
+  ]
+}

@@ -1,0 +1,126 @@
+{
+  "changeID": "FOCUS-ANCHOR-AURA-SCALE-20261107",
+  "requirement": "REQ-RF-80",
+  "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\06\\01a1b0ac-547f-7972-8df9-fa26882e0e03\\focus-anchor-aura-fix-20261107T161428Z\\checkpoint.json",
+  "sources": {
+    "live": {
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "playerXMLBlob": "f2e106ab9da91fb7b32cfa2bf067c69aff6ca31e",
+      "path": "Interface/AddOns/Blizzard_UnitFrame/Mainline/PlayerFrame.xml"
+    },
+    "forever": {
+      "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "playerXMLBlob": "410ca1307eba91401aacbc64e5389426d870cfa7",
+      "path": "Interface/AddOns/Blizzard_UnitFrame/Mainline/PlayerFrame.xml"
+    },
+    "classic": {
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "playerXMLBlob": "c48b3e6e8dea4059dea6847f522c23a3023e3d0c",
+      "path": "Interface/AddOns/Blizzard_UnitFrame/Classic/PlayerFrame.xml"
+    },
+    "classic_era": {
+      "commit": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "playerXMLBlob": "c48b3e6e8dea4059dea6847f522c23a3023e3d0c",
+      "path": "Interface/AddOns/Blizzard_UnitFrame/Classic/PlayerFrame.xml"
+    },
+    "classic_anniversary": {
+      "commit": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "playerXMLBlob": "f03ed39542ccf4e61f717c845625c1c2aff63e0d",
+      "path": "Interface/AddOns/Blizzard_UnitFrame/Classic/PlayerFrame.xml"
+    },
+    "nativeRenderers": {
+      "live": "e4d36ab0dca70d28e56d38edaea16aad20a34e42",
+      "forever": "60d5da8b429c3ac397a39fa576ab939b1a6b08ab",
+      "path": "Interface/AddOns/Blizzard_UnitFrame/Shared/UnitFrameUtil.lua"
+    },
+    "timerAPI": {
+      "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "blob": "acc0ec3d9eaae7854a8e688bddde0850d0623274",
+      "contract": "GetPVPTimer has no unit argument; native player frame uses it only for player countdown."
+    },
+    "nativePlayerLua": {
+      "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "path": "Interface/AddOns/Blizzard_UnitFrame/Mainline/PlayerFrame.lua",
+      "blob": "ec49779f9bb6e54dab747518ac46f329f461b360",
+      "contract": "native PlayerFrame_UpdatePvPStatus passes checkMercenary=true for player"
+    },
+    "nativeTargetLua": {
+      "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "path": "Interface/AddOns/Blizzard_UnitFrame/Mainline/TargetFrame.lua",
+      "blob": "9132e790f0e354a9bec81093bf3b20c434c0f6eb",
+      "contract": "native target uses UpdateUnitPvPIndicator for self.unit without mercenary override"
+    }
+  },
+  "after": {
+    "UnitFrames/FluxUnitFrames_Focus.lua": "81c780cb8d9c761c39874adfa84d9f6971cca683d0ef248af35fba72d0707a91",
+    "UnitFrames/FluxUnitFrames_Auras.lua": "ffbb599e37d8c45510e94c8c5b8312ea6d77eb6a8ae2d12a4a6af18e734c8b13",
+    "UnitFrames/FluxUnitFrames_Party.lua": "0eb7baf0e7ba03f256b50898a197ab0d80262e3ecf3cab1506cc114f26c9452f",
+    "tests/unit_frame_whole_scale.lua": "bafd0201357ba3aa4c2fe9c8dfbc0b78d8d7d6284604bf342359bcab10538878",
+    "tests/raid_party_frames.lua": "421d5412c51ada6e05bc1de612941b330f2ff0a8ae9b8468c37cbcde2eb524c6",
+    "tests/focus_aura_geometry.lua": "ae5f781a211b815103e705e75feeb1eefd90031653394bdf9464451c862270f1"
+  },
+  "previousVisualResult": "User rejects previous focus location above party/raid and external buff/debuff panel arrangement; earlier unchanged-code claim did not establish equivalent screen coordinates.",
+  "causes": [
+    "Raid-stack UIParent coordinates were passed as local focus offsets after introducing the party body scale",
+    "Inverse-scaled aura panels still took the enlarged unscaled design width/height, making both boxes oversized and overlapping"
+  ],
+  "implementation": [
+    "Scale raid anchor offsets by UIParent/focus effective-scale ratio; retain original raid helper/gap/placement selection and legacy chat fallback",
+    "Raid-relative branch no longer requires ChatFrame1 to exist",
+    "Cache independent aura-panel scale on focus; convert recorded public body dimensions into panel units before applying existing half-width/border/height rules",
+    "External panels remain above outer header and sit on body+90 above indicators/below cast; retain aura size/spacing/timers/filter controls",
+    "Player-style focus, narrow vertical target and larger PvP badge retained; no saved settings reset"
+  ],
+  "geometryExample": {
+    "bodyDesign": [
+      260,
+      85
+    ],
+    "partyBodyScale": 0.4,
+    "visibleWidthWithPortrait": 138,
+    "beforeEachAuraPanelWidth": 185.5,
+    "afterEachAuraPanelWidth": 82,
+    "borderNesting": "Original16-unit transparent border overlap only; original buff-left -10 offset retained"
+  },
+  "tests": {
+    "scaleAnchor": 47,
+    "panelGeometry": 265,
+    "partyAndFocus": 975,
+    "auraTimerPolicy": 36,
+    "binding": 310,
+    "scriptsPass": 233,
+    "scriptsFail": 0,
+    "syntaxFiles": 897,
+    "syntaxFailures": [],
+    "ownedManifestDrift": [],
+    "negativeControls": [
+      "Old focus anchor fails physical-position assertion",
+      "Old aura source fails half-visible-width panel assertion even with public native getter values; also fails guarded cached-geometry access"
+    ]
+  },
+  "resources": "No new runtime frame/texture/timer/ticker/event/global hook. One cached panel scale; constant arithmetic inside existing layout/refresh. No FPS/CPU claim.",
+  "nativePending": "Actual screen position/spacing/borders/aura rendering, native secure combat/taint and performance NOT RUN; native foreground/input not taken.",
+  "recovery": "Fresh history bundle verified;45 settings metadata entries read-only; prior complete external source/settings recovery retained; no game/WTF/profiler writes.",
+  "copies": [
+    {
+      "client": "_retail_",
+      "mismatches": []
+    },
+    {
+      "client": "_forever_",
+      "mismatches": []
+    },
+    {
+      "client": "_classic_",
+      "mismatches": []
+    },
+    {
+      "client": "_classic_era_",
+      "mismatches": []
+    },
+    {
+      "client": "_anniversary_",
+      "mismatches": []
+    }
+  ]
+}

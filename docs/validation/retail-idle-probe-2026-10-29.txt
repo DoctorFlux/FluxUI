@@ -1,0 +1,68 @@
+local A=assert(FluxPerfCaptureDB.retailAudit)
+_FRetailAudit=A
+A.runs={};A.memory={};A.startedAt=date("%Y-%m-%d %H:%M:%S")
+A.meta.class=select(2,UnitClass("player"));A.meta.level=UnitLevel("player")
+A.meta.zone=GetRealZoneText();A.meta.project=WOW_PROJECT_ID
+A.meta.physical={GetPhysicalScreenSize()};A.meta.font={GameFontNormal:GetFont()}
+A.meta.addons={};A.meta.cvars={}
+for _,k in ipairs({"scriptProfile","uiScale","useUiScale","gxApi","graphicsQuality","maxFPS","maxFPSBk","useMaxFPS","useMaxFPSBk","vsync","renderScale","targetFPS","useTargetFPS","gxMaxFrameLatency"})do A.meta.cvars[k]=GetCVar(k)end
+for i=1,C_AddOns.GetNumAddOns()do if C_AddOns.IsAddOnLoaded(i)then local name=C_AddOns.GetAddOnInfo(i);A.meta.addons[#A.meta.addons+1]={name,C_AddOns.GetAddOnMetadata(i,"Version")}end end
+local function readable(t)
+ return type(t)=="table" and not(issecretvalue and issecretvalue(t)) and not(issecrettable and issecrettable(t)) and not(canaccesstable and not canaccesstable(t))
+end
+local function method(f,k)
+ if type(f)=="table" and not readable(f)then return end
+ local fn=f and f[k];if type(fn)~="function"then return end
+ local ok,v=pcall(fn,f);if ok and not(issecretvalue and issecretvalue(v))then return v end
+end
+local function census(label)
+ local s={label=label,time=GetTime(),frames=0,ownedFrames=0,ownedVisible=0,ownedOnUpdates=0,bySource={},cacheSizes={}}
+ s.gcSucceeded,s.gcError=pcall(collectgarbage,"collect");if s.gcSucceeded then s.gcError=nil end
+ if UpdateAddOnMemoryUsage then UpdateAddOnMemoryUsage()end
+ s.addonKiB=GetAddOnMemoryUsage and GetAddOnMemoryUsage("_FluxUI")
+ s.luaKiB=collectgarbage("count")
+ local f=EnumerateFrames()
+ while f do
+  s.frames=s.frames+1
+  if not method(f,"IsForbidden")then
+   local src=method(f,"GetSourceLocation")
+   if type(src)=="string" and src:find("AddOns/_FluxUI/",1,true)then
+    s.ownedFrames=s.ownedFrames+1;s.bySource[src]=(s.bySource[src]or 0)+1
+    if method(f,"IsVisible")then s.ownedVisible=s.ownedVisible+1 end
+    local ok,fn=pcall(f.GetScript,f,"OnUpdate");if ok and type(fn)=="function"then s.ownedOnUpdates=s.ownedOnUpdates+1 end
+   end
+  end
+  f=EnumerateFrames(f)
+ end
+ local seen={}
+ local function walk(t,path,depth)
+  if depth>3 or not readable(t)or seen[t]or rawget(t,0)or t.GetObjectType then return end
+  seen[t]=true
+  for k,v in pairs(t)do
+   if type(k)=="string"and k~="ns"and k~="PerfCapture"and readable(v)then
+    local p=path.."."..k
+    if k:lower():find("cache",1,true)then local n=0;for _ in pairs(v)do n=n+1 end;s.cacheSizes[p]=n end
+    walk(v,p,depth+1)
+   end
+  end
+ end
+ walk(Flux,"Flux",0)
+ for k,v in pairs(_G)do if type(k)=="string"and k:match("^Flux")and k~="FluxPerfCaptureDB"then walk(v,k,1)end end
+ s.sharedSubscribers=Flux.Ticker and Flux.Ticker.Count and Flux.Ticker.Count()
+ A.memory[#A.memory+1]=s
+end
+local function capture(i)
+ census("before"..i)
+ Flux.PerfCapture.Start(20)
+ C_Timer.After(22,function()
+  A.runs[#A.runs+1]=FluxPerfCaptureDB
+  census("after"..i)
+  if i<5 then C_Timer.After(8,function()capture(i+1)end)
+  else
+   A.complete=true;A.finishedAt=date("%Y-%m-%d %H:%M:%S")
+   FluxPerfCaptureDB={retailAudit=A};SetCVar("scriptProfile",A.originalProfile);ReloadUI()
+  end
+ end)
+end
+C_Timer.After(30,function()capture(1)end)
+return true

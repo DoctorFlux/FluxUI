@@ -1,0 +1,221 @@
+{
+  "baselineCommit": "8006494fd5f10b54818471933467b9bb867c6543",
+  "baselineIdentity": "Actual source ZIP in Mail-auction-publication-20261105T205512Z, including all uncommitted native feature/enable work and user changes; not plain8006494",
+  "checkpoint": {
+    "name": "Mail-auction-publication-20261105T205512Z",
+    "sourceFiles": 1549,
+    "settingsFiles": 122,
+    "sourceZipSHA256": "c01241bfe2564ab2baabaecd4023dd06c4c17193fb211e86b3f45e1276a24b32"
+  },
+  "baselineRuntimeRawSHA256": "3c84a9cd3f3352d8fb47c034ecc7f06f211d73973cd2c029744d242620d80ebf",
+  "candidateSourceHashes": {
+    "Battlezonemap/FluxBlizzardMeter.lua": "a630525aa4fdd0cf8bc9bd05f969d6f68fd2fd0f8fcfb21626edb08074194d94",
+    "tests/native_meter_ownership.lua": "a5c543333640c4003d7ed3c0856e56a368221e594bfa686d2811fd0de04ff724",
+    "tests/native_meter_docking.lua": "ab38155aa1655c98e069358a8b9ce7c40c95225acbeb50ff1e3756409b47ba55"
+  },
+  "sourceDrift": false,
+  "nativeSource": {
+    "commit": "eac30af597e5aaa43a60f6675ef5fdcea100375f",
+    "path": "Interface/AddOns/Blizzard_EditMode/Shared/EditModeSystemTemplates.lua",
+    "sha256": "42ed9651df45ec43c2ec6f3a461ad30c366d1959571de77e9b277d87460a6736",
+    "version": "Forever1.60.1.70790 source, not new native operation capture"
+  },
+  "method": "Existing production meter harness plus real FluxBlizzardMeter. External pinned native ApplySystemAnchor/SetPointOverride/ClearAllPointsOverride/SetScaleOverride bodies replayed; widget methods, geometry, protected context and native manager/snap callbacks explicitly mocked. One initial Embed warm-up per plain/gamepad fixture; native late restore then500native restoration bursts. Five fresh-process AB/BA pairs. Separately modeled engine field updates bypass Lua setter hooks and recover through native layout/world events. Combat/deferred cleanup/latest-intent/Hide/Details behavior is tested. No game input, profiling or foreground control.",
+  "metricsScope": "500burstTimers=2 is one wake in each of two plain/gamepad fixtures, not two wakes per burst. Frames=4 counts existing addon-created fixture frames; it excludes native widgets/skin/threat module resources. addonSnapWrites counts modeled calls into native snap metadata callbacks from addon geometry; it is not an engine taint measurement. Native snap writes belong to deliberately replayed native restoration. Source calls to type/session setters and entry walks remain unchanged during pure repairs.",
+  "host": {
+    "platform": "Windows-10-10.0.26200-SP0",
+    "processor": "Intel64 Family 6 Model 151 Stepping 2, GenuineIntel",
+    "logicalCPUs": 20,
+    "lua": "Lua 5.4.6  Copyright (C) 1994-2023 Lua.org, PUC-Rio"
+  },
+  "nativeMeasurements": "Current candidate native build/profile/addons/hardware/settings/screenshots/CPU/allocation/memory/frame-time/FPS not captured. Native protection/secret safety/pixel parity and C++cache behavior remain pending. The screenshot establishes a user-reported Map startup leak, not candidate acceptance; startup ownership has its separate public regression/comparison.",
+  "pairs": [
+    {
+      "repetition": 1,
+      "order": [
+        "baseline",
+        "candidate"
+      ],
+      "baseline": {
+        "exitCode": 1,
+        "processSeconds": 0.027564400021219626,
+        "stdout": "FAIL addon geometry uses widget aliases without native snap metadata writes\nFAIL native setters request one next-frame repair\nFAIL late native restoration repairs root and secondary pane\nFAIL native override work stays native while addon uses aliases\nFAIL 500 native restoration bursts coalesce to one wake\nFAIL burst repairs once without a self-generated repair loop\nFAIL native layout event covers modeled engine updates without Lua setters\nFAIL layout event restores modeled engine geometry\nFAIL world entry schedules one settle after native position work\nFAIL hidden-tab world repair never shows or paints the meter\nFAIL existing combat-exit service requests one deferred repair\nFAIL deferred geometry repairs after combat\nFAIL combat cleanup keeps native geometry intact until an allowed transition\nFAIL a premature regen event cannot run combat cleanup\nFAIL cleanup also uses native widget aliases without snap metadata writes\nFAIL addon geometry uses widget aliases without native snap metadata writes\nFAIL native setters request one next-frame repair\nFAIL late native restoration repairs root and secondary pane\nFAIL native override work stays native while addon uses aliases\nFAIL 500 native restoration bursts coalesce to one wake\nFAIL burst repairs once without a self-generated repair loop\nFAIL native layout event covers modeled engine updates without Lua setters\nFAIL layout event restores modeled engine geometry\nFAIL world entry schedules one settle after native position work\nFAIL hidden-tab world repair never shows or paints the meter\nFAIL existing combat-exit service requests one deferred repair\nFAIL deferred geometry repairs after combat\nFAIL combat cleanup keeps native geometry intact until an allowed transition\nFAIL a premature regen event cannot run combat cleanup\nFAIL cleanup also uses native widget aliases without snap metadata writes\nnative docking: 60 checks, 30 failures; 500burstTimers=0 frames=4 addonSnapWrites=76 nativeSnapWrites=4064 pinnedNative=true\n",
+        "stderr": "lua: ...\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_docking.lua:177: native docking regressions\nstack traceback:\n\t[C]: in function 'assert'\n\t...\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_docking.lua:177: in main chunk\n\t[C]: in ?\n"
+      },
+      "candidate": {
+        "exitCode": 0,
+        "processSeconds": 0.027912599995033816,
+        "stdout": "native docking: 60 checks, 0 failures; 500burstTimers=2 frames=4 addonSnapWrites=0 nativeSnapWrites=4072 pinnedNative=true\n",
+        "stderr": ""
+      }
+    },
+    {
+      "repetition": 2,
+      "order": [
+        "candidate",
+        "baseline"
+      ],
+      "candidate": {
+        "exitCode": 0,
+        "processSeconds": 0.02730889999656938,
+        "stdout": "native docking: 60 checks, 0 failures; 500burstTimers=2 frames=4 addonSnapWrites=0 nativeSnapWrites=4072 pinnedNative=true\n",
+        "stderr": ""
+      },
+      "baseline": {
+        "exitCode": 1,
+        "processSeconds": 0.022995100007392466,
+        "stdout": "FAIL addon geometry uses widget aliases without native snap metadata writes\nFAIL native setters request one next-frame repair\nFAIL late native restoration repairs root and secondary pane\nFAIL native override work stays native while addon uses aliases\nFAIL 500 native restoration bursts coalesce to one wake\nFAIL burst repairs once without a self-generated repair loop\nFAIL native layout event covers modeled engine updates without Lua setters\nFAIL layout event restores modeled engine geometry\nFAIL world entry schedules one settle after native position work\nFAIL hidden-tab world repair never shows or paints the meter\nFAIL existing combat-exit service requests one deferred repair\nFAIL deferred geometry repairs after combat\nFAIL combat cleanup keeps native geometry intact until an allowed transition\nFAIL a premature regen event cannot run combat cleanup\nFAIL cleanup also uses native widget aliases without snap metadata writes\nFAIL addon geometry uses widget aliases without native snap metadata writes\nFAIL native setters request one next-frame repair\nFAIL late native restoration repairs root and secondary pane\nFAIL native override work stays native while addon uses aliases\nFAIL 500 native restoration bursts coalesce to one wake\nFAIL burst repairs once without a self-generated repair loop\nFAIL native layout event covers modeled engine updates without Lua setters\nFAIL layout event restores modeled engine geometry\nFAIL world entry schedules one settle after native position work\nFAIL hidden-tab world repair never shows or paints the meter\nFAIL existing combat-exit service requests one deferred repair\nFAIL deferred geometry repairs after combat\nFAIL combat cleanup keeps native geometry intact until an allowed transition\nFAIL a premature regen event cannot run combat cleanup\nFAIL cleanup also uses native widget aliases without snap metadata writes\nnative docking: 60 checks, 30 failures; 500burstTimers=0 frames=4 addonSnapWrites=76 nativeSnapWrites=4064 pinnedNative=true\n",
+        "stderr": "lua: ...\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_docking.lua:177: native docking regressions\nstack traceback:\n\t[C]: in function 'assert'\n\t...\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_docking.lua:177: in main chunk\n\t[C]: in ?\n"
+      }
+    },
+    {
+      "repetition": 3,
+      "order": [
+        "baseline",
+        "candidate"
+      ],
+      "baseline": {
+        "exitCode": 1,
+        "processSeconds": 0.022558200027560815,
+        "stdout": "FAIL addon geometry uses widget aliases without native snap metadata writes\nFAIL native setters request one next-frame repair\nFAIL late native restoration repairs root and secondary pane\nFAIL native override work stays native while addon uses aliases\nFAIL 500 native restoration bursts coalesce to one wake\nFAIL burst repairs once without a self-generated repair loop\nFAIL native layout event covers modeled engine updates without Lua setters\nFAIL layout event restores modeled engine geometry\nFAIL world entry schedules one settle after native position work\nFAIL hidden-tab world repair never shows or paints the meter\nFAIL existing combat-exit service requests one deferred repair\nFAIL deferred geometry repairs after combat\nFAIL combat cleanup keeps native geometry intact until an allowed transition\nFAIL a premature regen event cannot run combat cleanup\nFAIL cleanup also uses native widget aliases without snap metadata writes\nFAIL addon geometry uses widget aliases without native snap metadata writes\nFAIL native setters request one next-frame repair\nFAIL late native restoration repairs root and secondary pane\nFAIL native override work stays native while addon uses aliases\nFAIL 500 native restoration bursts coalesce to one wake\nFAIL burst repairs once without a self-generated repair loop\nFAIL native layout event covers modeled engine updates without Lua setters\nFAIL layout event restores modeled engine geometry\nFAIL world entry schedules one settle after native position work\nFAIL hidden-tab world repair never shows or paints the meter\nFAIL existing combat-exit service requests one deferred repair\nFAIL deferred geometry repairs after combat\nFAIL combat cleanup keeps native geometry intact until an allowed transition\nFAIL a premature regen event cannot run combat cleanup\nFAIL cleanup also uses native widget aliases without snap metadata writes\nnative docking: 60 checks, 30 failures; 500burstTimers=0 frames=4 addonSnapWrites=76 nativeSnapWrites=4064 pinnedNative=true\n",
+        "stderr": "lua: ...\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_docking.lua:177: native docking regressions\nstack traceback:\n\t[C]: in function 'assert'\n\t...\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_docking.lua:177: in main chunk\n\t[C]: in ?\n"
+      },
+      "candidate": {
+        "exitCode": 0,
+        "processSeconds": 0.0258451999980025,
+        "stdout": "native docking: 60 checks, 0 failures; 500burstTimers=2 frames=4 addonSnapWrites=0 nativeSnapWrites=4072 pinnedNative=true\n",
+        "stderr": ""
+      }
+    },
+    {
+      "repetition": 4,
+      "order": [
+        "candidate",
+        "baseline"
+      ],
+      "candidate": {
+        "exitCode": 0,
+        "processSeconds": 0.02740660001290962,
+        "stdout": "native docking: 60 checks, 0 failures; 500burstTimers=2 frames=4 addonSnapWrites=0 nativeSnapWrites=4072 pinnedNative=true\n",
+        "stderr": ""
+      },
+      "baseline": {
+        "exitCode": 1,
+        "processSeconds": 0.022857399977510795,
+        "stdout": "FAIL addon geometry uses widget aliases without native snap metadata writes\nFAIL native setters request one next-frame repair\nFAIL late native restoration repairs root and secondary pane\nFAIL native override work stays native while addon uses aliases\nFAIL 500 native restoration bursts coalesce to one wake\nFAIL burst repairs once without a self-generated repair loop\nFAIL native layout event covers modeled engine updates without Lua setters\nFAIL layout event restores modeled engine geometry\nFAIL world entry schedules one settle after native position work\nFAIL hidden-tab world repair never shows or paints the meter\nFAIL existing combat-exit service requests one deferred repair\nFAIL deferred geometry repairs after combat\nFAIL combat cleanup keeps native geometry intact until an allowed transition\nFAIL a premature regen event cannot run combat cleanup\nFAIL cleanup also uses native widget aliases without snap metadata writes\nFAIL addon geometry uses widget aliases without native snap metadata writes\nFAIL native setters request one next-frame repair\nFAIL late native restoration repairs root and secondary pane\nFAIL native override work stays native while addon uses aliases\nFAIL 500 native restoration bursts coalesce to one wake\nFAIL burst repairs once without a self-generated repair loop\nFAIL native layout event covers modeled engine updates without Lua setters\nFAIL layout event restores modeled engine geometry\nFAIL world entry schedules one settle after native position work\nFAIL hidden-tab world repair never shows or paints the meter\nFAIL existing combat-exit service requests one deferred repair\nFAIL deferred geometry repairs after combat\nFAIL combat cleanup keeps native geometry intact until an allowed transition\nFAIL a premature regen event cannot run combat cleanup\nFAIL cleanup also uses native widget aliases without snap metadata writes\nnative docking: 60 checks, 30 failures; 500burstTimers=0 frames=4 addonSnapWrites=76 nativeSnapWrites=4064 pinnedNative=true\n",
+        "stderr": "lua: ...\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_docking.lua:177: native docking regressions\nstack traceback:\n\t[C]: in function 'assert'\n\t...\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_docking.lua:177: in main chunk\n\t[C]: in ?\n"
+      }
+    },
+    {
+      "repetition": 5,
+      "order": [
+        "baseline",
+        "candidate"
+      ],
+      "baseline": {
+        "exitCode": 1,
+        "processSeconds": 0.02383600000757724,
+        "stdout": "FAIL addon geometry uses widget aliases without native snap metadata writes\nFAIL native setters request one next-frame repair\nFAIL late native restoration repairs root and secondary pane\nFAIL native override work stays native while addon uses aliases\nFAIL 500 native restoration bursts coalesce to one wake\nFAIL burst repairs once without a self-generated repair loop\nFAIL native layout event covers modeled engine updates without Lua setters\nFAIL layout event restores modeled engine geometry\nFAIL world entry schedules one settle after native position work\nFAIL hidden-tab world repair never shows or paints the meter\nFAIL existing combat-exit service requests one deferred repair\nFAIL deferred geometry repairs after combat\nFAIL combat cleanup keeps native geometry intact until an allowed transition\nFAIL a premature regen event cannot run combat cleanup\nFAIL cleanup also uses native widget aliases without snap metadata writes\nFAIL addon geometry uses widget aliases without native snap metadata writes\nFAIL native setters request one next-frame repair\nFAIL late native restoration repairs root and secondary pane\nFAIL native override work stays native while addon uses aliases\nFAIL 500 native restoration bursts coalesce to one wake\nFAIL burst repairs once without a self-generated repair loop\nFAIL native layout event covers modeled engine updates without Lua setters\nFAIL layout event restores modeled engine geometry\nFAIL world entry schedules one settle after native position work\nFAIL hidden-tab world repair never shows or paints the meter\nFAIL existing combat-exit service requests one deferred repair\nFAIL deferred geometry repairs after combat\nFAIL combat cleanup keeps native geometry intact until an allowed transition\nFAIL a premature regen event cannot run combat cleanup\nFAIL cleanup also uses native widget aliases without snap metadata writes\nnative docking: 60 checks, 30 failures; 500burstTimers=0 frames=4 addonSnapWrites=76 nativeSnapWrites=4064 pinnedNative=true\n",
+        "stderr": "lua: ...\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_docking.lua:177: native docking regressions\nstack traceback:\n\t[C]: in function 'assert'\n\t...\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_docking.lua:177: in main chunk\n\t[C]: in ?\n"
+      },
+      "candidate": {
+        "exitCode": 0,
+        "processSeconds": 0.027329999982612208,
+        "stdout": "native docking: 60 checks, 0 failures; 500burstTimers=2 frames=4 addonSnapWrites=0 nativeSnapWrites=4072 pinnedNative=true\n",
+        "stderr": ""
+      }
+    }
+  ],
+  "mutants": [
+    {
+      "name": "missing-geometry-hooks",
+      "sha256": "1063266b41befe1e5ff93b6e03bab90f03e673372d512c705c0ee9df20782d3f",
+      "exitCode": 1,
+      "processSeconds": 0.04058690002420917,
+      "stdout": "FAIL native setters request one next-frame repair\nFAIL late native restoration repairs root and secondary pane\nFAIL 500 native restoration bursts coalesce to one wake\nFAIL burst repairs once without a self-generated repair loop\nFAIL native setters request one next-frame repair\nFAIL late native restoration repairs root and secondary pane\nFAIL 500 native restoration bursts coalesce to one wake\nFAIL burst repairs once without a self-generated repair loop\nnative docking: 60 checks, 8 failures; 500burstTimers=0 frames=4 addonSnapWrites=0 nativeSnapWrites=4068 pinnedNative=true\n",
+      "stderr": "lua: ...\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_docking.lua:177: native docking regressions\nstack traceback:\n\t[C]: in function 'assert'\n\t...\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_docking.lua:177: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "native-overrides-for-addon-geometry",
+      "sha256": "e4311d9d7225b8e9a657dd5f5c05b1ee7ad53ea9e4bfe6c76290ee90d68c322b",
+      "exitCode": 1,
+      "processSeconds": 0.04962169998907484,
+      "stdout": "FAIL addon geometry uses widget aliases without native snap metadata writes\nFAIL native override work stays native while addon uses aliases\nFAIL cleanup also uses native widget aliases without snap metadata writes\nFAIL addon geometry uses widget aliases without native snap metadata writes\nFAIL native override work stays native while addon uses aliases\nFAIL cleanup also uses native widget aliases without snap metadata writes\nnative docking: 60 checks, 6 failures; 500burstTimers=2 frames=4 addonSnapWrites=124 nativeSnapWrites=4072 pinnedNative=true\n",
+      "stderr": "lua: ...\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_docking.lua:177: native docking regressions\nstack traceback:\n\t[C]: in function 'assert'\n\t...\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_docking.lua:177: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "no-wake-coalescing",
+      "sha256": "f74cb82883a1bc9a9048a46c0869975285782680327a1206a91c51c90cc481ac",
+      "exitCode": 1,
+      "processSeconds": 0.10504819999914616,
+      "stdout": "FAIL native setters request one next-frame repair\nFAIL 500 native restoration bursts coalesce to one wake\nFAIL native setters request one next-frame repair\nFAIL 500 native restoration bursts coalesce to one wake\nnative docking: 60 checks, 4 failures; 500burstTimers=7504 frames=4 addonSnapWrites=0 nativeSnapWrites=4072 pinnedNative=true\n",
+      "stderr": "lua: ...\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_docking.lua:177: native docking regressions\nstack traceback:\n\t[C]: in function 'assert'\n\t...\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_docking.lua:177: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "inline-native-callback-repair",
+      "sha256": "9489ecb0ebc530d2b24043a9abaaa88e28f8a608238296fa2c45986acfd83f4d",
+      "exitCode": 1,
+      "processSeconds": 0.11769529999583028,
+      "stdout": "FAIL native restoration completes before addon repair\nFAIL native setters request one next-frame repair\nFAIL 500 native restoration bursts coalesce to one wake\nFAIL native layout event covers modeled engine updates without Lua setters\nFAIL world entry schedules one settle after native position work\nFAIL existing combat-exit service requests one deferred repair\nFAIL Hide invalidates a queued repair without resurrection\nFAIL native restoration completes before addon repair\nFAIL native setters request one next-frame repair\nFAIL 500 native restoration bursts coalesce to one wake\nFAIL native layout event covers modeled engine updates without Lua setters\nFAIL world entry schedules one settle after native position work\nFAIL existing combat-exit service requests one deferred repair\nFAIL Hide invalidates a queued repair without resurrection\nnative docking: 60 checks, 14 failures; 500burstTimers=0 frames=4 addonSnapWrites=0 nativeSnapWrites=6072 pinnedNative=true\n",
+      "stderr": "lua: ...\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_docking.lua:177: native docking regressions\nstack traceback:\n\t[C]: in function 'assert'\n\t...\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_docking.lua:177: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "repair-reenters-content-setters",
+      "sha256": "10ae218c6b19c8e35d575d054021a145e2ae89eb4b55f064fd1031bf0407a925",
+      "exitCode": 1,
+      "processSeconds": 0.05266860002302565,
+      "stdout": "FAIL repair changes only geometry without content setters or entry walks\nFAIL burst repair retains frames content setter counts and entry walk counts\nFAIL repair changes only geometry without content setters or entry walks\nFAIL burst repair retains frames content setter counts and entry walk counts\nnative docking: 60 checks, 4 failures; 500burstTimers=2 frames=4 addonSnapWrites=0 nativeSnapWrites=4072 pinnedNative=true\n",
+      "stderr": "lua: ...\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_docking.lua:177: native docking regressions\nstack traceback:\n\t[C]: in function 'assert'\n\t...\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_docking.lua:177: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "combat-wakes-queued",
+      "sha256": "85888082e466b272b15af8549205bbef1353e47e42d6642dd99116080eea77ac",
+      "exitCode": 1,
+      "processSeconds": 0.045749700017040595,
+      "stdout": "FAIL existing combat-exit service requests one deferred repair\nFAIL existing combat-exit service requests one deferred repair\nnative docking: 60 checks, 2 failures; 500burstTimers=2 frames=4 addonSnapWrites=0 nativeSnapWrites=4072 pinnedNative=true\n",
+      "stderr": "lua: ...\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_docking.lua:177: native docking regressions\nstack traceback:\n\t[C]: in function 'assert'\n\t...\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_docking.lua:177: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "stale-wake-not-invalidated",
+      "sha256": "0536c04b6391c4edf4b715d3354fa57963e7dda1cea16150d66b04fc5bf3acb5",
+      "exitCode": 1,
+      "processSeconds": 0.051105499995173886,
+      "stdout": "FAIL Hide invalidates a queued repair without resurrection\nFAIL Hide invalidates a queued repair without resurrection\nnative docking: 60 checks, 2 failures; 500burstTimers=2 frames=4 addonSnapWrites=0 nativeSnapWrites=4072 pinnedNative=true\n",
+      "stderr": "lua: ...\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_docking.lua:177: native docking regressions\nstack traceback:\n\t[C]: in function 'assert'\n\t...\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_docking.lua:177: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "world-settle-missing",
+      "sha256": "13ab01b131c50bc724e1e9b07054308170c41eea7f2072031fa2347609cccecf",
+      "exitCode": 1,
+      "processSeconds": 0.04688489998807199,
+      "stdout": "FAIL world entry schedules one settle after native position work\nFAIL hidden-tab world repair never shows or paints the meter\nFAIL world entry schedules one settle after native position work\nFAIL hidden-tab world repair never shows or paints the meter\nnative docking: 60 checks, 4 failures; 500burstTimers=2 frames=4 addonSnapWrites=0 nativeSnapWrites=4072 pinnedNative=true\n",
+      "stderr": "lua: ...\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_docking.lua:177: native docking regressions\nstack traceback:\n\t[C]: in function 'assert'\n\t...\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_docking.lua:177: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "layout-event-missing",
+      "sha256": "1e1c7663cc1dc71ac7803a56f8be66c084de3838c1d21f240efe7df8811e6216",
+      "exitCode": 1,
+      "processSeconds": 0.04499190000933595,
+      "stdout": "FAIL native layout event covers modeled engine updates without Lua setters\nFAIL layout event restores modeled engine geometry\nFAIL native layout event covers modeled engine updates without Lua setters\nFAIL layout event restores modeled engine geometry\nnative docking: 60 checks, 4 failures; 500burstTimers=2 frames=4 addonSnapWrites=0 nativeSnapWrites=4072 pinnedNative=true\n",
+      "stderr": "lua: ...\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_docking.lua:177: native docking regressions\nstack traceback:\n\t[C]: in function 'assert'\n\t...\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_docking.lua:177: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "cleanup-runs-in-combat",
+      "sha256": "e4e693b3bb6e783478446c3c15cd9f3a74a7f273e46a8378ebb38c72379987be",
+      "exitCode": 1,
+      "processSeconds": 0.0477717999892775,
+      "stdout": "FAIL combat cleanup keeps native geometry intact until an allowed transition\nFAIL a premature regen event cannot run combat cleanup\nFAIL combat cleanup keeps native geometry intact until an allowed transition\nFAIL a premature regen event cannot run combat cleanup\nnative docking: 60 checks, 4 failures; 500burstTimers=2 frames=4 addonSnapWrites=0 nativeSnapWrites=4072 pinnedNative=true\n",
+      "stderr": "lua: ...\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_docking.lua:177: native docking regressions\nstack traceback:\n\t[C]: in function 'assert'\n\t...\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_docking.lua:177: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "newer-embed-keeps-stale-cleanup",
+      "sha256": "ae235b4a4e2ef25d0825e669795dd2ed2c467731e2b66cab6fe4fa6af760b8fb",
+      "exitCode": 1,
+      "processSeconds": 0.046136499993735924,
+      "stdout": "FAIL newer embed cancels stale deferred cleanup\nFAIL newer embed cancels stale deferred cleanup\nnative docking: 60 checks, 2 failures; 500burstTimers=2 frames=4 addonSnapWrites=0 nativeSnapWrites=4072 pinnedNative=true\n",
+      "stderr": "lua: ...\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_docking.lua:177: native docking regressions\nstack traceback:\n\t[C]: in function 'assert'\n\t...\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_docking.lua:177: in main chunk\n\t[C]: in ?\n"
+    }
+  ],
+  "variation": "All assertion and resource counts identical across five pairs. Process wall times include startup and fixtures; they are not native operation latency.",
+  "interpretation": "PASS for observed post-native geometry reconciliation, once-only hooks/coalesced wakes, native method/metadata ownership and deferred lifecycle contracts. Native rendering/taint/performance remain unverified. The existing1.40canvas*.8scale=1.12Content visual size is preserved, separately from escaping UIParent anchors."
+}

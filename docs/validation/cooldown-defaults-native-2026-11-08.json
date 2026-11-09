@@ -1,0 +1,40 @@
+{
+  "changeID": "COOLDOWN-DEFAULTS-20261108",
+  "client": "Forever",
+  "GetBuildInfo": {
+    "version": "1.60.1",
+    "build": "70862",
+    "interface": "16001"
+  },
+  "publicSaveProbe": {
+    "source": "User-pasted result",
+    "result": "unchanged native save: metadata PASS; native interactions still required"
+  },
+  "twoCopyBuild": {
+    "source": "User response",
+    "result": "it worked",
+    "scope": "Before the final one-profile preference; not acceptance of the final build"
+  },
+  "singleProfileBuild": {
+    "sourceFilesSynced": true,
+    "nativeReload": "PASS exactly1 active FluxUI persists",
+    "nativeSettings": "PASS four groups match requested encoded settings",
+    "geometry": "PASS current player-bound offsets; class-resource cases pending",
+    "result": "PARTIAL native acceptance; full objective pending",
+    "evidence": "cooldown-native-acceptance-2026-11-09.json"
+  },
+  "backgroundInput": {
+    "finalAttempt": "No command sent",
+    "earlierRead": "First status command completed; second metadata command refused before first key; no partial draft typed"
+  },
+  "desktop": {
+    "focusedChecks": 186,
+    "repetitions": 5,
+    "harmfulControlsRejected": 4,
+    "fullScripts": 260,
+    "luaSyntaxFiles": 926,
+    "sourceDrift": [],
+    "documentation": "PASS959classified sources/601reachable/415settings/24SavedVariables/15545local links"
+  },
+  "limits": "No final matched screenshot/combat/aura/alert/secure-VM/taint/performance acceptance. Other native clients pending. No profiler commands, foreground, mouse or clipboard control."
+}

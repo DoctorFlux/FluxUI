@@ -1,0 +1,15 @@
+{
+  "change": "AUDIT-R2-20261107",
+  "authorizedDocumentationPaths": [
+    "docs/STATUS.md",
+    "docs/DECISIONS.md",
+    "docs/WORK_LOG.md",
+    "docs/CLIENT_VALIDATION.md",
+    "NEXT_SESSION.md",
+    "Stress test doc/README.md",
+    "docs/FEATURE_PARITY.csv",
+    "docs/CLIENT_MATRIX.csv",
+    "docs/PERFORMANCE_AUDIT.csv",
+    "docs/PERFORMANCE_RESULTS.csv"
+  ]
+}

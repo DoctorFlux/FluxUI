@@ -1,0 +1,159 @@
+-- Documentation-only production-code experiments. Run from repository root:
+-- lua "Stress test doc/security/security_stress.lua.txt"
+-- No game, addon files, settings, or native secure VM are modified.
+local checks, findings, records = 0, 0, {}
+local function check(ok, why) checks = checks + 1; assert(ok, why) end
+local function read(path)
+    local f = assert(io.open(path, "rb")); local text = f:read("*a"); f:close()
+    return text:gsub("\r\n", "\n")
+end
+local function env(t) t=t or {}; setmetatable(t,{__index=_G}); t._G=t; return t end
+local function module(path,e,ns) return assert(load(read(path),"@"..path,"t",e))("_FluxUI",ns or {}) end
+local function note(id, detail) findings=findings+1; print("OBSERVED "..id.." "..detail) end
+
+-- Execute the current native-driver adapter with original API call counters.
+-- This demonstrates interception, not native taint/protected-execution behavior.
+for _, client in ipairs({"live","forever","classic_era","classic_anniversary","classic"}) do
+    local calls, frames, originals = {}, {}, {}
+    local e=env({InCombatLockdown=function()return false end})
+    for _,name in ipairs({"RegisterAttributeDriver","UnregisterAttributeDriver","RegisterStateDriver",
+        "UnregisterStateDriver","RegisterUnitWatch","UnregisterUnitWatch","UnitWatchRegistered"}) do
+        local n=name; originals[n]=function()calls[n]=(calls[n] or 0)+1; return true end; e[n]=originals[n]
+    end
+    e.CreateFrame=function(_,name)
+        local f={name=name,attrs={}}
+        function f:GetName()return self.name end
+        function f:Hide()self.shown=false end
+        function f:Show()self.shown=true end
+        function f:IsShown()return self.shown end
+        function f:SetScript(k,v)self[k]=v end
+        function f:RegisterEvent()end
+        function f:SetAttribute(k,v)self.attrs[k]=v end
+        function f:GetAttribute(k)return self.attrs[k]end
+        frames[#frames+1]=f; return f
+    end
+    e.UnitExists=function()return true end
+    e.SecureCmdOptionParse=function()return "show"end
+    local managerWrites=0
+    if client=="forever"then
+        -- This exact source body matches the freshly pinned Forever Gethe blob
+        -- recorded by the root audit in evidence/upstream-pins.json.
+        local native=read("../__AddonsForRef/wow-ui-source-forever/Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureStateDriver.lua")
+        local stop=assert(native:find("--\n-- Private implementation",1,true))
+        e.SecureStateDriverManager={SetAttribute=function()managerWrites=managerWrites+1 end}
+        assert(load(native:sub(1,stop-1),"@Gethe-SecureStateDriver-public-functions","t",e))()
+        for name in pairs(originals)do originals[name]=e[name]end
+        e.RegisterStateDriver(e.CreateFrame("Frame","OtherAddonSecureButton"),"visibility","show")
+        e.RegisterUnitWatch(e.CreateFrame("Frame","OtherAddonSecureButton"))
+        e.RegisterStateDriver(e.CreateFrame("Frame"),"visibility","show")
+        check(managerWrites==5,"actual Blizzard public functions reach manager for foreign and unnamed frames")
+        managerWrites=0
+    end
+    local flux={Cap={hasRestrictedClosures=client~="forever"},Client={isForever=client=="forever",isCamelot=client=="forever"}}
+    module("Core/Engine/Restricted.lua",e,{Flux=flux})
+    local foreign=e.CreateFrame("Frame","OtherAddonSecureButton")
+    local unnamed=e.CreateFrame("Frame")
+    local a=e.RegisterStateDriver(foreign,"visibility","[combat]show;hide")
+    local b=e.RegisterUnitWatch(foreign)
+    local c=e.RegisterStateDriver(unnamed,"visibility","show")
+    if client=="forever" then
+        check(e.RegisterStateDriver~=originals.RegisterStateDriver,"Forever global rewritten")
+        check(a==false and b==false and c==false,"foreign/unnamed registration rejected")
+        check(not next(calls) and managerWrites==0,"foreign requests never forwarded")
+        note("SEC-01",client.." foreign named state/unit and unnamed state requests: 3 rejected, 0 original calls")
+    else
+        check(e.RegisterStateDriver==originals.RegisterStateDriver,"other-client globals untouched")
+        check(a and b and c and calls.RegisterStateDriver==2 and calls.RegisterUnitWatch==1,"native delegation retained")
+    end
+end
+
+-- Production Combat.lua: 100,000 same-key requests, 10,000 unique jobs,
+-- re-entry to combat in the middle of a flush, and regen queue fan-out.
+for _,client in ipairs({"live","forever","classic_era","classic_anniversary","classic"})do
+    local s={locked=true,timers={},frames={},errors={},ran=0}
+    local e=env({InCombatLockdown=function()return s.locked end})
+    e.CreateFrame=function()local f={}; function f:RegisterEvent()end; function f:SetScript(k,v)self[k]=v end;s.frames[#s.frames+1]=f;return f end
+    local flux={Timer={After=function(_,fn)s.timers[#s.timers+1]=fn end},Safecall=function(fn)local ok,err=pcall(fn);if not ok then s.errors[#s.errors+1]=err end;return ok end}
+    module("Core/Engine/Combat.lua",e,{Flux=flux})
+    local c=flux.Combat
+    for i=1,100000 do local last=i;c.Defer("layout",function()s.last=last;s.ran=s.ran+1 end)end
+    check(c.PendingCount()==1 and s.ran==0,client.." same-key queue bounded")
+    s.locked=false;c.Flush()
+    check(s.last==100000 and s.ran==1 and not c.HasPending(),client.." latest request runs once")
+    s.locked=true
+    for i=1,10000 do local n=i;c.Defer("unique"..i,function()s.ran=s.ran+1;if n==5000 then s.locked=true end end)end
+    s.locked=false;c.Flush()
+    check(s.ran==5001 and c.PendingCount()==5000,client.." mid-flush combat retains remaining half")
+    s.locked=false;c.Flush();check(s.ran==10001 and not c.HasPending(),client.." interrupted flush resumes without loss")
+    local count=0;s.locked=true
+    for i=1,10000 do c.RegenDefer(function()count=count+1 end,i%2==0)end
+    check(count==0 and #s.timers==0,client.." regen list waits during combat")
+    s.locked=false;s.frames[1].OnEvent(nil,"PLAYER_REGEN_ENABLED")
+    check(#s.timers==1,client.." one regen drain scheduled")
+    local q=s.timers;s.timers={};for _,fn in ipairs(q)do fn()end
+    check(count==10000 and #s.errors==0,client.." regen list completes all jobs in a single drain")
+    print("COMBAT "..client.." requests=120000 sameKeyRuns=1 uniqueRuns=10000 regenJobsInOneFrame=10000")
+end
+
+-- Real Respec orchestrator plus real ActionBars owner; mocked cursor/action APIs
+-- let us inject an ordinary failure or enter combat without performing game input.
+local function respecFixture(client,mode)
+    local s={combat=mode=="combat",events={},warnings={},frames={},placed=0,cursor=nil,slots={}}
+    local profile={bars={slots={[1]={type="spell",id=133}},stanceCustomSlots={{type="spell",id=133}}}}
+    local R={Compat={HasTalentLoadouts=function()return client=="live" or client=="forever"end,IsSoD=function()return false end},
+        GetProfile=function()return profile end,GetStore=function()s.store=s.store or {};return s.store end,
+        ApplyInfoFrameForProfile=function()end,LinkProfilePresets=function()end,On=function()end,
+        Print=function()end,Warn=function(v)s.warnings[#s.warnings+1]=v end,
+        Fire=function(...)s.events[#s.events+1]={...}end,
+        SetLoadCheckpoint=function(_,step)s.checkpoint=step end,ClearLoadCheckpoint=function()s.checkpoint=nil end}
+    local stance={GetSavedOrder=function()return{}end,GetHiddenSlots=function()return{}end,GetSavedCustomSlots=function()return{}end,
+        SetSavedCustomSlots=function()if mode=="throw"then error("injected layout failure")end end,RequestLayout=function()end}
+    local e=env({FluxRespec=R,InCombatLockdown=function()return s.combat end,time=function()return 1 end,
+        GetActionInfo=function(slot)local a=s.slots[slot];if a then return "spell",a end end,
+        PickupSpell=function(id)if mode=="pickup"then error("injected pickup denial")end;s.cursor=id end,
+        GetCursorInfo=function()return s.cursor end,ClearCursor=function()s.cursor=nil end,
+        PlaceAction=function(slot)if mode=="place"then error("injected placement denial")end;s.slots[slot]=s.cursor;s.placed=s.placed+1 end})
+    e.CreateFrame=function()local f={};function f:RegisterEvent()end;function f:UnregisterAllEvents()end;function f:SetScript(k,v)self[k]=v end;s.frames[#s.frames+1]=f;return f end
+    local ns={Flux={Bars={Stance=stance}}}
+    module("Respec/FluxRespec_ActionBars.lua",e,ns)
+    module("Respec/FluxRespec_Apply.lua",e,ns)
+    return s,R,profile,e
+end
+for _,client in ipairs({"live","forever","classic_era","classic_anniversary","classic"})do
+    for _,mode in ipairs({"throw","pickup","place","combat"})do
+        if (client~="live" and client~="forever") or mode=="throw" then
+            local s,R,profile=respecFixture(client,mode)
+            check(not R.Apply.IsProfileFullyApplied("Test"),"mismatching profile reaches action phase")
+            check(R.Apply.Run("Test"),"profile request accepted")
+            local done
+            for _,v in ipairs(s.events)do if v[1]=="APPLY_DONE"then done=v end end
+            check(done and done[2]==true and not R.Apply.IsRunning(),"current pipeline reports success despite injected failure/defer")
+            check(s.checkpoint==nil,"current pipeline clears recovery checkpoint")
+            note("SEC-02",client.." mode="..mode.." APPLY_DONE=true checkpoint=cleared placements="..s.placed)
+            if mode=="combat"then
+                check(s.placed==0 and #s.frames==1,"protected placement waits for regen")
+                -- Cancellation after reported completion cannot cancel detached bar work.
+                R.Apply.Cancel();profile.bars.slots[1].id=116
+                s.combat=false;s.frames[1].OnEvent(s.frames[1],"PLAYER_REGEN_ENABLED")
+                check(s.slots[1]==116,"deferred action snapshot is mutable and outlives completed pipeline")
+                note("SEC-03",client.." cancelled/completed pending bars still restore mutated snapshot 116 on regen")
+            end
+        end
+    end
+end
+for _,client in ipairs({"classic_era","classic_anniversary","classic"})do
+    local s,R,profile,e=respecFixture(client,"combat")
+    profile.spellBindings={version=3,doc={}}
+    e.FluxSpellBindings_MatchesSnapshot=function()return false end
+    e.FluxSpellBindings_IsV3Snapshot=function()return true end
+    e.FluxSpellBindings_ApplySnapshot=function(_,callback)s.pendingBindingCallback=callback;return false,"IN_COMBAT"end
+    e.FluxSpellBindings_CancelPendingApply=function(callback)check(callback==s.pendingBindingCallback,"binding cancellation belongs to current profile");callback(false,"CANCELLED");return true end
+    R.Apply.Run("Test")
+    check(R.Apply.IsRunning() and s.pendingBindingCallback and s.placed==0,"actual running profile waits for deferred bindings and bars")
+    R.Apply.Cancel()
+    check(not R.Apply.IsRunning() and s.events[#s.events][1]=="APPLY_DONE" and s.events[#s.events][2]==false,"running profile cancellation reports cancelled")
+    s.combat=false;s.frames[1].OnEvent(s.frames[1],"PLAYER_REGEN_ENABLED")
+    check(s.slots[1]==133,"cancelled running profile still changes action slot on regen")
+    note("SEC-03",client.." actual running cancellation still leaves queued action-slot write on regen")
+end
+print(("SECURITY EXPERIMENTS COMPLETE assertions=%d observations=%d; expected defects reproduced; native taint not tested"):format(checks,findings))

@@ -1,0 +1,15 @@
+METRIC era cold_reads=300 repeat_reads=5000 frames=1 native_reads=0
+FAIL era repeated idle opens reuse unchanged availability
+METRIC anniversary cold_reads=300 repeat_reads=5000 frames=1 native_reads=0
+FAIL anniversary repeated idle opens reuse unchanged availability
+METRIC wrath cold_reads=300 repeat_reads=5000 frames=1 native_reads=0
+FAIL wrath repeated idle opens reuse unchanged availability
+METRIC cata cold_reads=300 repeat_reads=5000 frames=1 native_reads=0
+FAIL cata repeated idle opens reuse unchanged availability
+METRIC mists cold_reads=300 repeat_reads=5000 frames=1 native_reads=0
+FAIL mists repeated idle opens reuse unchanged availability
+METRIC live cold_reads=360 repeat_reads=6000 frames=1 native_reads=182
+FAIL live repeated idle opens reuse unchanged availability
+METRIC forever cold_reads=360 repeat_reads=6000 frames=1 native_reads=182
+FAIL forever repeated idle opens reuse unchanged availability
+Vendor-open work: 265 checks, 7 failures

@@ -1,0 +1,17 @@
+{
+  "id": "FOREVER-PROFILE-RESTORATION-20261106",
+  "client": "Forever1.60.1.70790",
+  "userConfirmation": "The user confirmed restoration to scriptProfile=0 after the optional short function-level CPU capture.",
+  "probeUtc": "2026-11-06T15:57:36.5727533Z",
+  "operation": "Read-only status/profiler/combat probe through the verified client window, with stable non-game foreground guards before each posted message.",
+  "observedPrintedOutput": "FXWATCH_PROBE false 0 false",
+  "evidence": "The resulting capture image was visually inspected: active watch=false, scriptProfile=0, combat lockdown=false. PostMessage send completion alone is not counted as command execution proof.",
+  "probeMetadataSHA256": "509175c97e8317f71314321bbafa135beab2fbe0770583fc4cb5ee49084a1079",
+  "privateCaptureSHA256": "bd160bc3eef3a1aaefc21d316439ff467b440e4ed1a70ecbac0dc6d151e3a82b",
+  "privacy": "Only isolated diagnostic values and hashes are published. The screenshot, account/character paths and unrelated chat remain private.",
+  "limits": [
+    "This proves those live values at the sampled instant, not permanent state or native acceptance of the later candidate.",
+    "The probe does not print a diagnostic version or establish that Watch v2 was loaded or armed.",
+    "No frame-time, combat, taint, security or visual acceptance is inferred."
+  ]
+}

@@ -1,0 +1,108 @@
+{
+  "dateUtc": "2026-11-06T05:47:26.095714+00:00",
+  "baselineCommit": "a07c449b1783a7bc876943e5909c3573cfec267a",
+  "baselineRawSHA256": "cdd1408c9d2cc2e3eb682bbcc24098c394622cac617c4979206b027fb71a5dca",
+  "candidateRawSHA256": "34acac45218bda52397318b71e0036a7d159d634eab735249c9ed22c6c81045f",
+  "testRawSHA256": "422eaa810c66819e8c0e52f34701b7bc7c3a09edd36f645cbd3cb91e646f8a2b",
+  "scope": "Production integration in desktop widget/timer fixtures. First pooled entry requires owned-artwork availability before styling. Five fresh-process alternating pairs, no warm-up; process time includes full fixture work and is not native latency/CPU/FPS. No game input/profile or native rendering/secret VM emulation.",
+  "runtime": "Lua 5.4.6  Copyright (C) 1994-2023 Lua.org, PUC-Rio",
+  "host": "Windows-10-10.0.26200-SP0",
+  "pairs": [
+    {
+      "repetition": 1,
+      "order": [
+        "baseline",
+        "candidate"
+      ],
+      "baseline": {
+        "exitCode": 1,
+        "processSeconds": 0.17501720000291243,
+        "stdout": "meter visibility: policyWrites=0 setterCalls=0 nativeEvents=4032 timerDispatches=4032 repeatedAddonRootShows=0 timerWrites=8064 pinnedNative=false\nFAIL owned window establishes asset availability before existing pooled entries are styled\nFAIL owned window establishes asset availability before existing pooled entries are styled\nnative backgrounds: updates=2000 skinCalls=2028\nmeter tab transitions: cycles=4000 threatResurrections=0 rootResurrections=0\nnative meter ownership: 465 checks, 2 failures; geometry typeCalls=0 sessionCalls=0 entryWalks=0 gamepadPatchTimers=0\n",
+        "stderr": ""
+      },
+      "candidate": {
+        "exitCode": 0,
+        "processSeconds": 0.16041270000278018,
+        "stdout": "meter visibility: policyWrites=0 setterCalls=0 nativeEvents=4032 timerDispatches=4032 repeatedAddonRootShows=0 timerWrites=8064 pinnedNative=false\nnative backgrounds: updates=2000 skinCalls=2052\nmeter tab transitions: cycles=4000 threatResurrections=0 rootResurrections=0\nnative meter ownership: 465 checks, 0 failures; geometry typeCalls=0 sessionCalls=0 entryWalks=0 gamepadPatchTimers=0\n",
+        "stderr": ""
+      }
+    },
+    {
+      "repetition": 2,
+      "order": [
+        "candidate",
+        "baseline"
+      ],
+      "candidate": {
+        "exitCode": 0,
+        "processSeconds": 0.1595919999817852,
+        "stdout": "meter visibility: policyWrites=0 setterCalls=0 nativeEvents=4032 timerDispatches=4032 repeatedAddonRootShows=0 timerWrites=8064 pinnedNative=false\nnative backgrounds: updates=2000 skinCalls=2052\nmeter tab transitions: cycles=4000 threatResurrections=0 rootResurrections=0\nnative meter ownership: 465 checks, 0 failures; geometry typeCalls=0 sessionCalls=0 entryWalks=0 gamepadPatchTimers=0\n",
+        "stderr": ""
+      },
+      "baseline": {
+        "exitCode": 1,
+        "processSeconds": 0.15508190001128241,
+        "stdout": "meter visibility: policyWrites=0 setterCalls=0 nativeEvents=4032 timerDispatches=4032 repeatedAddonRootShows=0 timerWrites=8064 pinnedNative=false\nFAIL owned window establishes asset availability before existing pooled entries are styled\nFAIL owned window establishes asset availability before existing pooled entries are styled\nnative backgrounds: updates=2000 skinCalls=2028\nmeter tab transitions: cycles=4000 threatResurrections=0 rootResurrections=0\nnative meter ownership: 465 checks, 2 failures; geometry typeCalls=0 sessionCalls=0 entryWalks=0 gamepadPatchTimers=0\n",
+        "stderr": ""
+      }
+    },
+    {
+      "repetition": 3,
+      "order": [
+        "baseline",
+        "candidate"
+      ],
+      "baseline": {
+        "exitCode": 1,
+        "processSeconds": 0.1576356000150554,
+        "stdout": "meter visibility: policyWrites=0 setterCalls=0 nativeEvents=4032 timerDispatches=4032 repeatedAddonRootShows=0 timerWrites=8064 pinnedNative=false\nFAIL owned window establishes asset availability before existing pooled entries are styled\nFAIL owned window establishes asset availability before existing pooled entries are styled\nnative backgrounds: updates=2000 skinCalls=2028\nmeter tab transitions: cycles=4000 threatResurrections=0 rootResurrections=0\nnative meter ownership: 465 checks, 2 failures; geometry typeCalls=0 sessionCalls=0 entryWalks=0 gamepadPatchTimers=0\n",
+        "stderr": ""
+      },
+      "candidate": {
+        "exitCode": 0,
+        "processSeconds": 0.15636839999933727,
+        "stdout": "meter visibility: policyWrites=0 setterCalls=0 nativeEvents=4032 timerDispatches=4032 repeatedAddonRootShows=0 timerWrites=8064 pinnedNative=false\nnative backgrounds: updates=2000 skinCalls=2052\nmeter tab transitions: cycles=4000 threatResurrections=0 rootResurrections=0\nnative meter ownership: 465 checks, 0 failures; geometry typeCalls=0 sessionCalls=0 entryWalks=0 gamepadPatchTimers=0\n",
+        "stderr": ""
+      }
+    },
+    {
+      "repetition": 4,
+      "order": [
+        "candidate",
+        "baseline"
+      ],
+      "candidate": {
+        "exitCode": 0,
+        "processSeconds": 0.16206639999290928,
+        "stdout": "meter visibility: policyWrites=0 setterCalls=0 nativeEvents=4032 timerDispatches=4032 repeatedAddonRootShows=0 timerWrites=8064 pinnedNative=false\nnative backgrounds: updates=2000 skinCalls=2052\nmeter tab transitions: cycles=4000 threatResurrections=0 rootResurrections=0\nnative meter ownership: 465 checks, 0 failures; geometry typeCalls=0 sessionCalls=0 entryWalks=0 gamepadPatchTimers=0\n",
+        "stderr": ""
+      },
+      "baseline": {
+        "exitCode": 1,
+        "processSeconds": 0.1665886000264436,
+        "stdout": "meter visibility: policyWrites=0 setterCalls=0 nativeEvents=4032 timerDispatches=4032 repeatedAddonRootShows=0 timerWrites=8064 pinnedNative=false\nFAIL owned window establishes asset availability before existing pooled entries are styled\nFAIL owned window establishes asset availability before existing pooled entries are styled\nnative backgrounds: updates=2000 skinCalls=2028\nmeter tab transitions: cycles=4000 threatResurrections=0 rootResurrections=0\nnative meter ownership: 465 checks, 2 failures; geometry typeCalls=0 sessionCalls=0 entryWalks=0 gamepadPatchTimers=0\n",
+        "stderr": ""
+      }
+    },
+    {
+      "repetition": 5,
+      "order": [
+        "baseline",
+        "candidate"
+      ],
+      "baseline": {
+        "exitCode": 1,
+        "processSeconds": 0.1572259000095073,
+        "stdout": "meter visibility: policyWrites=0 setterCalls=0 nativeEvents=4032 timerDispatches=4032 repeatedAddonRootShows=0 timerWrites=8064 pinnedNative=false\nFAIL owned window establishes asset availability before existing pooled entries are styled\nFAIL owned window establishes asset availability before existing pooled entries are styled\nnative backgrounds: updates=2000 skinCalls=2028\nmeter tab transitions: cycles=4000 threatResurrections=0 rootResurrections=0\nnative meter ownership: 465 checks, 2 failures; geometry typeCalls=0 sessionCalls=0 entryWalks=0 gamepadPatchTimers=0\n",
+        "stderr": ""
+      },
+      "candidate": {
+        "exitCode": 0,
+        "processSeconds": 0.15922920001321472,
+        "stdout": "meter visibility: policyWrites=0 setterCalls=0 nativeEvents=4032 timerDispatches=4032 repeatedAddonRootShows=0 timerWrites=8064 pinnedNative=false\nnative backgrounds: updates=2000 skinCalls=2052\nmeter tab transitions: cycles=4000 threatResurrections=0 rootResurrections=0\nnative meter ownership: 465 checks, 0 failures; geometry typeCalls=0 sessionCalls=0 entryWalks=0 gamepadPatchTimers=0\n",
+        "stderr": ""
+      }
+    }
+  ],
+  "interpretation": "Baseline pooled-entry ordering fails in normal and gamepad fixtures; candidate resolves before entry styling while retaining final post-configuration/background paint. Native visibility/timer/event dispatch and bounded frame/timer ownership retained. Added initial paint calls are required correctness work; no CPU/FPS improvement claimed."
+}

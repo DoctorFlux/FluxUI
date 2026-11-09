@@ -1,0 +1,14 @@
+[
+  {
+    "source": "UnitFrames/FluxCastBar.lua",
+    "before": "03193b8406cf145398a983e0ac2478c97549c74d4bb7e9a86a466572c528f0a6",
+    "after": "02bf1b0acf018ab419ac9ca11ef51f33866d37145380817b9999f1726ec0be92",
+    "origin": "tested external fade proposal"
+  },
+  {
+    "source": "UnitFrames/FluxSwingTimer.lua",
+    "before": "517529257035f41cc06ffa46086fe2b23a5ac3c3c7f41bcd3f1ae617a05b4814",
+    "after": "d1de753065397599bed540a6d99d739f0419c9108ec681fe7b64e3f690a92289",
+    "origin": "tested external fade proposal"
+  }
+]

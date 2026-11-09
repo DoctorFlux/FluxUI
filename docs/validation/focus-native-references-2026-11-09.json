@@ -1,0 +1,225 @@
+{
+  "sources": [
+    {
+      "client": "live",
+      "ref": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureStateDriver.lua",
+      "blob": "4861b5fd4a3249c97f1a2fea45a4c13833d5117c",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureStateDriver.lua",
+      "localLFMatches": true,
+      "executedBodiesLFMatch": true,
+      "replayAdjustment": null,
+      "executedBodiesSHA256": "bebd4a4b18e610233ff8f734df7b473df08fe25b1ce383b0c7883ae962a63029"
+    },
+    {
+      "client": "forever",
+      "ref": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "path": "Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureStateDriver.lua",
+      "blob": "4861b5fd4a3249c97f1a2fea45a4c13833d5117c",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureStateDriver.lua",
+      "localLFMatches": true,
+      "executedBodiesLFMatch": true,
+      "replayAdjustment": null,
+      "executedBodiesSHA256": "bebd4a4b18e610233ff8f734df7b473df08fe25b1ce383b0c7883ae962a63029"
+    },
+    {
+      "client": "classic",
+      "ref": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureStateDriver.lua",
+      "blob": "4861b5fd4a3249c97f1a2fea45a4c13833d5117c",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureStateDriver.lua",
+      "localLFMatches": true,
+      "executedBodiesLFMatch": true,
+      "replayAdjustment": null,
+      "executedBodiesSHA256": "bebd4a4b18e610233ff8f734df7b473df08fe25b1ce383b0c7883ae962a63029"
+    },
+    {
+      "client": "classic_era",
+      "ref": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "path": "Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureStateDriver.lua",
+      "blob": "4861b5fd4a3249c97f1a2fea45a4c13833d5117c",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureStateDriver.lua",
+      "localLFMatches": true,
+      "executedBodiesLFMatch": true,
+      "replayAdjustment": null,
+      "executedBodiesSHA256": "bebd4a4b18e610233ff8f734df7b473df08fe25b1ce383b0c7883ae962a63029"
+    },
+    {
+      "client": "classic_anniversary",
+      "ref": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "path": "Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureStateDriver.lua",
+      "blob": "8e210c10fe046a264cba54e04f7458d995f8ad6a",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureStateDriver.lua",
+      "localLFMatches": true,
+      "executedBodiesLFMatch": true,
+      "replayAdjustment": null,
+      "executedBodiesSHA256": "bebd4a4b18e610233ff8f734df7b473df08fe25b1ce383b0c7883ae962a63029"
+    },
+    {
+      "client": "live",
+      "ref": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_FrameXML/SecureTemplates.lua",
+      "blob": "0b7ba234696b5f1c551e7d84375900e50c824cbb",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_FrameXML/SecureTemplates.lua",
+      "localLFMatches": true,
+      "executedBodiesLFMatch": true,
+      "replayAdjustment": null,
+      "executedBodiesSHA256": "5fd1efcbfc20b4d426187f55dbee52542d37befd1ef52082db1f466f1049929a"
+    },
+    {
+      "client": "live",
+      "ref": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_UnitPopupShared/UnitPopupSharedButtonMixins.lua",
+      "blob": "c74aa577e00a6faf28f826f536daaf49df756b6a",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_UnitPopupShared/UnitPopupSharedButtonMixins.lua",
+      "localLFMatches": false,
+      "executedBodiesLFMatch": true,
+      "replayAdjustment": null,
+      "executedBodiesSHA256": "bf2f69f5fab61cc170d1155ef9c0fbac0b899277ce99c375d296e55f0b3701c0"
+    },
+    {
+      "client": "forever",
+      "ref": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "path": "Interface/AddOns/Blizzard_FrameXML/SecureTemplates.lua",
+      "blob": "66f203e31a819f383ea3c6920be8d4f6556848eb",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_FrameXML/SecureTemplates.lua",
+      "localLFMatches": true,
+      "executedBodiesLFMatch": true,
+      "replayAdjustment": null,
+      "executedBodiesSHA256": "b6e91f1d54f269a8bd66312b368e6fd7706028d366eee0167161ace9004cae23"
+    },
+    {
+      "client": "forever",
+      "ref": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "path": "Interface/AddOns/Blizzard_UnitPopupShared/UnitPopupSharedButtonMixins.lua",
+      "blob": "b45fd55523b50fa26ba945ca9931ee38adbb4b4c",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_UnitPopupShared/UnitPopupSharedButtonMixins.lua",
+      "localLFMatches": false,
+      "executedBodiesLFMatch": true,
+      "replayAdjustment": "Forever ClearFocus no-argument call at pinned upstream; external local reference kept read-only",
+      "executedBodiesSHA256": "2b1b43be9c0e7c89b93988f5cf5a64137ff12c8f4712877702a45314ae95352c"
+    },
+    {
+      "client": "classic",
+      "ref": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_FrameXML/SecureTemplates.lua",
+      "blob": "e35a52fa79f9cbc38452b6b529d8734ded0938ea",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_FrameXML/SecureTemplates.lua",
+      "localLFMatches": true,
+      "executedBodiesLFMatch": true,
+      "replayAdjustment": null,
+      "executedBodiesSHA256": "8bc0c7f6cac0340a00bec729253a6768b1ff4baa7879b70a4fdb6f4f3b287fde"
+    },
+    {
+      "client": "classic",
+      "ref": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_UnitPopupShared/UnitPopupSharedButtonMixins.lua",
+      "blob": "446b29168f12625ce2ea037b6e30ab4f9fbd70d6",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_UnitPopupShared/UnitPopupSharedButtonMixins.lua",
+      "localLFMatches": true,
+      "executedBodiesLFMatch": true,
+      "replayAdjustment": null,
+      "executedBodiesSHA256": "bf2f69f5fab61cc170d1155ef9c0fbac0b899277ce99c375d296e55f0b3701c0"
+    },
+    {
+      "client": "classic_era",
+      "ref": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "path": "Interface/AddOns/Blizzard_FrameXML/SecureTemplates.lua",
+      "blob": "31ea34c7dc3995bac10adcd2ce57b02f06db13e2",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_FrameXML/SecureTemplates.lua",
+      "localLFMatches": true,
+      "executedBodiesLFMatch": true,
+      "replayAdjustment": null,
+      "executedBodiesSHA256": "1c3b956e03752ab9f3bffd62ff7b5b545d57de8d8026f242c69d843cdbe32400"
+    },
+    {
+      "client": "classic_era",
+      "ref": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "path": "Interface/AddOns/Blizzard_UnitPopupShared/UnitPopupSharedButtonMixins.lua",
+      "blob": "446b29168f12625ce2ea037b6e30ab4f9fbd70d6",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_UnitPopupShared/UnitPopupSharedButtonMixins.lua",
+      "localLFMatches": true,
+      "executedBodiesLFMatch": true,
+      "replayAdjustment": null,
+      "executedBodiesSHA256": "bf2f69f5fab61cc170d1155ef9c0fbac0b899277ce99c375d296e55f0b3701c0"
+    },
+    {
+      "client": "classic_anniversary",
+      "ref": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "path": "Interface/AddOns/Blizzard_FrameXML/SecureTemplates.lua",
+      "blob": "ba180de8cf11512e45d0f184d8e060efdf3471f4",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_FrameXML/SecureTemplates.lua",
+      "localLFMatches": true,
+      "executedBodiesLFMatch": true,
+      "replayAdjustment": null,
+      "executedBodiesSHA256": "1c3b956e03752ab9f3bffd62ff7b5b545d57de8d8026f242c69d843cdbe32400"
+    },
+    {
+      "client": "classic_anniversary",
+      "ref": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "path": "Interface/AddOns/Blizzard_UnitPopupShared/UnitPopupSharedButtonMixins.lua",
+      "blob": "e7f5c465082857408f15403a9af433fb9a758515",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_UnitPopupShared/UnitPopupSharedButtonMixins.lua",
+      "localLFMatches": true,
+      "executedBodiesLFMatch": true,
+      "replayAdjustment": null,
+      "executedBodiesSHA256": "bf2f69f5fab61cc170d1155ef9c0fbac0b899277ce99c375d296e55f0b3701c0"
+    },
+    {
+      "client": "live",
+      "ref": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_ChatFrameBase/Shared/SlashCommands.lua",
+      "blob": "d1f924906dcd441191ed8e567792deeafb0cee42",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_ChatFrameBase/Shared/SlashCommands.lua",
+      "localLFMatches": true,
+      "executedBodiesLFMatch": true,
+      "replayAdjustment": null,
+      "executedBodiesSHA256": "383f7f14b2b3362fdb941d45bbc47e0818da09733756628894638b367937cf9f"
+    },
+    {
+      "client": "forever",
+      "ref": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "path": "Interface/AddOns/Blizzard_ChatFrameBase/Shared/SlashCommands.lua",
+      "blob": "0799acd4509c6b2b701a55afb4efcc76438f73eb",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_ChatFrameBase/Shared/SlashCommands.lua",
+      "localLFMatches": true,
+      "executedBodiesLFMatch": true,
+      "replayAdjustment": null,
+      "executedBodiesSHA256": "383f7f14b2b3362fdb941d45bbc47e0818da09733756628894638b367937cf9f"
+    },
+    {
+      "client": "classic",
+      "ref": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_ChatFrameBase/Shared/SlashCommands.lua",
+      "blob": "725414dab3f4d0cdeb28ed592a5bdef87b9b3b3f",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_ChatFrameBase/Shared/SlashCommands.lua",
+      "localLFMatches": true,
+      "executedBodiesLFMatch": true,
+      "replayAdjustment": null,
+      "executedBodiesSHA256": "383f7f14b2b3362fdb941d45bbc47e0818da09733756628894638b367937cf9f"
+    },
+    {
+      "client": "classic_era",
+      "ref": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "path": "Interface/AddOns/Blizzard_ChatFrameBase/Shared/SlashCommands.lua",
+      "blob": "a894894b48ffc64cfa5cdf0105c1604545fffad5",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_ChatFrameBase/Shared/SlashCommands.lua",
+      "localLFMatches": true,
+      "executedBodiesLFMatch": true,
+      "replayAdjustment": null,
+      "executedBodiesSHA256": "383f7f14b2b3362fdb941d45bbc47e0818da09733756628894638b367937cf9f"
+    },
+    {
+      "client": "classic_anniversary",
+      "ref": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "path": "Interface/AddOns/Blizzard_ChatFrameBase/Shared/SlashCommands.lua",
+      "blob": "2e49cb5e6a6486b0d4c1c46c0d94b8bc4d779ea0",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_ChatFrameBase/Shared/SlashCommands.lua",
+      "localLFMatches": true,
+      "executedBodiesLFMatch": true,
+      "replayAdjustment": null,
+      "executedBodiesSHA256": "383f7f14b2b3362fdb941d45bbc47e0818da09733756628894638b367937cf9f"
+    }
+  ],
+  "scope": "20 primary source blobs; all executed bodies match after LF normalization and the documented Forever ClearFocus no-argument replay adjustment. Two full popup file differences retained; external sources read-only. Native secure VM/hardware dispatch is not replayed."
+}

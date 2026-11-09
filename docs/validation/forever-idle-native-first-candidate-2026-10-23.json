@@ -1,0 +1,30 @@
+{
+  "evidence": "User-pasted 20-second first-candidate capture. Profiling enabled; FPS is not an unprofiled acceptance comparison. World Map closed; Flux Window Map tab open. Full native rendering cost is not attributed.",
+  "client": "Forever",
+  "version": "1.60.1",
+  "gameType": "camelot",
+  "build": "70532",
+  "seconds": 20,
+  "scriptProfile": "1",
+  "fpsAverage": 195.5,
+  "fpsMin": 137.5,
+  "addonMsPerSecond": 9.84,
+  "liveBefore": 42,
+  "liveAfter": 41,
+  "subscribers": [],
+  "cvars": "maxFPS=120 maxFPSBk=30 maxFPSLoading=75 vsync=0 targetFPS=60 useTargetFPS=1 gxMaxFrameLatency=2",
+  "functions": [
+    { "label": "1e43d2df560:OnUpdate", "msPerSecond": 8.37, "calls": 3897 },
+    { "label": "BattlefieldMapFrame.ScrollContainer.Child.1e46883e470:OnUpdate", "msPerSecond": 5.22, "calls": 3897 },
+    { "label": "FluxInfoFrame._CamelotSpellBonus", "msPerSecond": 3.83, "calls": 30 },
+    { "label": "FluxInfoFrame.ResolveStatFramesForTooltip", "msPerSecond": 3.79, "calls": 90 },
+    { "label": "BattlefieldMapFrame.ScrollContainer:OnUpdate", "msPerSecond": 3.69, "calls": 3897 },
+    { "label": "BattlefieldMapFrame:OnUpdate", "msPerSecond": 3.13, "calls": 3897 },
+    { "label": "WorldMapFrame:OnUpdate", "msPerSecond": 2.91, "calls": 3897 },
+    { "label": "1e40ec0a640:OnUpdate", "msPerSecond": 2.11, "calls": 3897 },
+    { "label": "1e4951bd900:OnUpdate", "msPerSecond": 2.09, "calls": 3897 },
+    { "label": "SecondaryStatusTrackingBarContainer.1e46951b1b0.StatusBar:OnUpdate", "msPerSecond": 1.73, "calls": 7794 },
+    { "label": "PlayerFrame:OnUpdate", "msPerSecond": 1.43, "calls": 3897 },
+    { "label": "UnitFrames.UpdateHealth", "msPerSecond": 1.39, "calls": 97 }
+  ]
+}

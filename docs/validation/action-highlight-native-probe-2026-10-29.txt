@@ -1,0 +1,43 @@
+-- Temporary in-game probe. Before/after strings contain exact batch functions.
+-- Each private Paint table delegates to the current production single-host painter.
+-- No production/native API, script, setting or action slot is replaced.
+assert(not InCombatLockdown(), "native checks require out of combat")
+local A=_FBA
+local before=assert(loadstring(_FBBefore))()
+local after=assert(loadstring(_FBAfter))()
+local active=Flux.Action.IsAssistedHighlightActive
+local function errors()
+ local n=0
+ if BugTabs then for _,rows in pairs(BugTabs.sessionErrors or {})do
+  for _,e in ipairs(rows)do n=n+(e.count or 1)end
+ end end
+ return n
+end
+local function shapes()
+ local t={}
+ Flux.Bars.ForEachHost(function(h)
+  local w=h.widget
+  local x,y,width,height=w:GetRect()
+  t[#t+1]={column=h.column,row=h.row,slot=h.slot,x=x,y=y,width=width,height=height,
+   shown=w:IsShown(),visible=w:IsVisible(),scale=w:GetEffectiveScale()}
+ end)
+ return t
+end
+A.barBefore=shapes();A.nativeErrorsBefore=errors();A.highlightActive=active()
+for i=1,20 do before();after()end
+local function run(fn)
+ local ms,calls=GetFunctionCPUUsage(active,true)
+ local started=debugprofilestop()
+ for i=1,100 do fn()end
+ local elapsed=debugprofilestop()-started
+ local endedMs,endedCalls=GetFunctionCPUUsage(active,true)
+ return {elapsedMs=elapsed,activationMs=endedMs-ms,activationCalls=endedCalls-calls,passes=100}
+end
+A.matched={}
+for i=1,5 do
+ local b,c
+ if i%2==1 then b=run(before);c=run(after)else c=run(after);b=run(before)end
+ A.matched[i]={before=b,after=c,order=i%2==1 and "before-after"or"after-before"}
+end
+A.barAfter=shapes();A.nativeErrorsAfter=errors();A.nativeComplete=true
+print("FBA matched",#A.matched,A.nativeErrorsBefore,A.nativeErrorsAfter)

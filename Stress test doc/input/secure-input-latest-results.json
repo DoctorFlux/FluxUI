@@ -1,0 +1,122 @@
+{
+  "started_at_utc": "2026-11-07T11:40:19.633302+00:00",
+  "finished_at_utc": "2026-11-07T11:40:49.404735+00:00",
+  "scope": "Targeted refresh of original preserved secure utility stress harness against newest consumed source/fixture only. No addon edits, game control or settings/profiler writes. Does not update acceptance of unrelated suites or establish global-current source stability.",
+  "runtime": "Lua 5.4.6  Copyright (C) 1994-2023 Lua.org, PUC-Rio",
+  "fixture_anchor": {
+    "marker": "    if branch == \"forever\" then\n",
+    "occurrences": 1,
+    "source": "Unique fixture anchor is asserted by original preserved harness before injection"
+  },
+  "consumed_sha256_before": {
+    "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\Stress test doc\\input\\secure_input_stress.lua.txt": "1b546a70522b5f8716d4d1c5f61ec56b887140bd736df7ebe1197f15bfe677c3",
+    "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\tests\\utility_secure_input.lua": "8d01153c8ac3f883b717b92ead2149f9fb2d66a61a750eab9dc78ebaeb63765d",
+    "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\Core\\ButtonFX\\Click.lua": "09614baefe1fbbe85c7dbd006bddea25e2d278290581569d37594825ee5909ab",
+    "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\Binding\\Core\\SecurePool.lua": "4d4d02b879b369f9774dc7b62c8fe7da06f6cd800e2fd8df151d2280a4ead83d",
+    "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\Binding\\Core\\ChordMap.lua": "a75fcde7102bd3a2b3dc4d2f1441ef6ecb69a59d71f07661a54ba160e31e8d4b",
+    "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\ExtraButtonSystem\\Engine\\Action.lua": "9ab016161dc7c3a9a98470121069668e6fead9d187d190960e030afaa4ec5a86",
+    "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\ExtraButtonSystem\\NonCombatGrid\\UtilitySlots\\Assign.lua": "a1a706068cb335050e314e092fa8ff07d7ae0dd9e88f4e6dbcf6a51dbe3f1a12",
+    "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\ExtraButtonSystem\\NonCombatGrid\\UtilitySlots\\Manager.lua": "01aa78a28e9ceee770e9c5363206f06fe6dd30c73539a322ca3ec59683e9ee10",
+    "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\__AddonsForRef\\wow-ui-source-live\\Interface\\AddOns\\Blizzard_FrameXML\\SecureTemplates.lua": "5fd1efcbfc20b4d426187f55dbee52542d37befd1ef52082db1f466f1049929a",
+    "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\__AddonsForRef\\wow-ui-source-live\\Interface\\AddOns\\Blizzard_ChatFrameBase\\Shared\\SlashCommands.lua": "730e612cc460c50420dd7783a374e876249915730bb0986691db52529d9c1a6f",
+    "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\__AddonsForRef\\wow-ui-source-forever\\Interface\\AddOns\\Blizzard_FrameXML\\SecureTemplates.lua": "b6e91f1d54f269a8bd66312b368e6fd7706028d366eee0167161ace9004cae23",
+    "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\__AddonsForRef\\wow-ui-source-forever\\Interface\\AddOns\\Blizzard_ChatFrameBase\\Shared\\SlashCommands.lua": "8c59b81deb2d8ccf9cb9687dfacd7ff7e82d1a8a83f8414843a23b8d58819072",
+    "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\__AddonsForRef\\wow-ui-source-classic\\Interface\\AddOns\\Blizzard_FrameXML\\SecureTemplates.lua": "8bc0c7f6cac0340a00bec729253a6768b1ff4baa7879b70a4fdb6f4f3b287fde",
+    "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\__AddonsForRef\\wow-ui-source-classic\\Interface\\AddOns\\Blizzard_ChatFrameBase\\Shared\\SlashCommands.lua": "6e32cb60340f2808912bdc393223fa3340af45cf02b16c2e8b0cfe023764eb3f",
+    "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\__AddonsForRef\\wow-ui-source-classic_era\\Interface\\AddOns\\Blizzard_FrameXML\\SecureTemplates.lua": "1c3b956e03752ab9f3bffd62ff7b5b545d57de8d8026f242c69d843cdbe32400",
+    "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\__AddonsForRef\\wow-ui-source-classic_era\\Interface\\AddOns\\Blizzard_ChatFrameBase\\Shared\\SlashCommands.lua": "becc39780849b82d071c331980c3ccf4d218d67b278e05720c76e54cf6c88a8b",
+    "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\__AddonsForRef\\wow-ui-source-classic_anniversary\\Interface\\AddOns\\Blizzard_FrameXML\\SecureTemplates.lua": "45a0e3164c63070f265e22028a829717c262cabecad21a4d090d2b663c22addf",
+    "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\__AddonsForRef\\wow-ui-source-classic_anniversary\\Interface\\AddOns\\Blizzard_ChatFrameBase\\Shared\\SlashCommands.lua": "7294b6ae2eb7b9613713f0817d273a86d42ee547a85adbbcbf0b88a5bb565631"
+  },
+  "consumed_sha256_after": {
+    "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\Stress test doc\\input\\secure_input_stress.lua.txt": "1b546a70522b5f8716d4d1c5f61ec56b887140bd736df7ebe1197f15bfe677c3",
+    "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\tests\\utility_secure_input.lua": "8d01153c8ac3f883b717b92ead2149f9fb2d66a61a750eab9dc78ebaeb63765d",
+    "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\Core\\ButtonFX\\Click.lua": "09614baefe1fbbe85c7dbd006bddea25e2d278290581569d37594825ee5909ab",
+    "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\Binding\\Core\\SecurePool.lua": "4d4d02b879b369f9774dc7b62c8fe7da06f6cd800e2fd8df151d2280a4ead83d",
+    "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\Binding\\Core\\ChordMap.lua": "a75fcde7102bd3a2b3dc4d2f1441ef6ecb69a59d71f07661a54ba160e31e8d4b",
+    "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\ExtraButtonSystem\\Engine\\Action.lua": "9ab016161dc7c3a9a98470121069668e6fead9d187d190960e030afaa4ec5a86",
+    "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\ExtraButtonSystem\\NonCombatGrid\\UtilitySlots\\Assign.lua": "a1a706068cb335050e314e092fa8ff07d7ae0dd9e88f4e6dbcf6a51dbe3f1a12",
+    "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\ExtraButtonSystem\\NonCombatGrid\\UtilitySlots\\Manager.lua": "01aa78a28e9ceee770e9c5363206f06fe6dd30c73539a322ca3ec59683e9ee10",
+    "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\__AddonsForRef\\wow-ui-source-live\\Interface\\AddOns\\Blizzard_FrameXML\\SecureTemplates.lua": "5fd1efcbfc20b4d426187f55dbee52542d37befd1ef52082db1f466f1049929a",
+    "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\__AddonsForRef\\wow-ui-source-live\\Interface\\AddOns\\Blizzard_ChatFrameBase\\Shared\\SlashCommands.lua": "730e612cc460c50420dd7783a374e876249915730bb0986691db52529d9c1a6f",
+    "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\__AddonsForRef\\wow-ui-source-forever\\Interface\\AddOns\\Blizzard_FrameXML\\SecureTemplates.lua": "b6e91f1d54f269a8bd66312b368e6fd7706028d366eee0167161ace9004cae23",
+    "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\__AddonsForRef\\wow-ui-source-forever\\Interface\\AddOns\\Blizzard_ChatFrameBase\\Shared\\SlashCommands.lua": "8c59b81deb2d8ccf9cb9687dfacd7ff7e82d1a8a83f8414843a23b8d58819072",
+    "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\__AddonsForRef\\wow-ui-source-classic\\Interface\\AddOns\\Blizzard_FrameXML\\SecureTemplates.lua": "8bc0c7f6cac0340a00bec729253a6768b1ff4baa7879b70a4fdb6f4f3b287fde",
+    "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\__AddonsForRef\\wow-ui-source-classic\\Interface\\AddOns\\Blizzard_ChatFrameBase\\Shared\\SlashCommands.lua": "6e32cb60340f2808912bdc393223fa3340af45cf02b16c2e8b0cfe023764eb3f",
+    "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\__AddonsForRef\\wow-ui-source-classic_era\\Interface\\AddOns\\Blizzard_FrameXML\\SecureTemplates.lua": "1c3b956e03752ab9f3bffd62ff7b5b545d57de8d8026f242c69d843cdbe32400",
+    "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\__AddonsForRef\\wow-ui-source-classic_era\\Interface\\AddOns\\Blizzard_ChatFrameBase\\Shared\\SlashCommands.lua": "becc39780849b82d071c331980c3ccf4d218d67b278e05720c76e54cf6c88a8b",
+    "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\__AddonsForRef\\wow-ui-source-classic_anniversary\\Interface\\AddOns\\Blizzard_FrameXML\\SecureTemplates.lua": "45a0e3164c63070f265e22028a829717c262cabecad21a4d090d2b663c22addf",
+    "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\__AddonsForRef\\wow-ui-source-classic_anniversary\\Interface\\AddOns\\Blizzard_ChatFrameBase\\Shared\\SlashCommands.lua": "7294b6ae2eb7b9613713f0817d273a86d42ee547a85adbbcbf0b88a5bb565631"
+  },
+  "consumed_drift_during_runs": [],
+  "consumed_changes_since_original_15_run_record": [
+    {
+      "path": "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\tests\\utility_secure_input.lua",
+      "original_sha256": "68af816730b6533f6edba694e841c5a3c89aa1522cb275790f0454a892dc1dbe",
+      "latest_sha256": "8d01153c8ac3f883b717b92ead2149f9fb2d66a61a750eab9dc78ebaeb63765d"
+    },
+    {
+      "path": "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\ExtraButtonSystem\\NonCombatGrid\\UtilitySlots\\Manager.lua",
+      "original_sha256": "3b14c0156cc6e8d4446078e0b8c906f56239b7fe3818dc6256791cb7c2ec8dd9",
+      "latest_sha256": "01aa78a28e9ceee770e9c5363206f06fe6dd30c73539a322ca3ec59683e9ee10"
+    }
+  ],
+  "original_results_preserved": "input-stress-results.json and original per-run logs remain unchanged",
+  "runs": [
+    {
+      "repeat": 1,
+      "exit": 0,
+      "status": "PASS",
+      "desktop_wall_seconds_not_native_performance": 9.428743,
+      "log": "secure-input-latest-run-1.txt",
+      "log_sha256": "382369a7037f564ba93ac6f91e2b169be173393ab97bad0080e8223b1c03a06e",
+      "semantic_counters": [
+        "METRIC utility branch=live chord_selections=4096 input_pairs=12288 native_handlers=true",
+        "METRIC utility branch=forever chord_selections=4096 input_pairs=12288 native_handlers=true",
+        "METRIC utility branch=classic chord_selections=4096 input_pairs=12288 native_handlers=true",
+        "METRIC utility branch=classic_era chord_selections=4096 input_pairs=12288 native_handlers=true",
+        "METRIC utility branch=classic_anniversary chord_selections=4096 input_pairs=12288 native_handlers=true",
+        "Utility secure input: 201401 checks; five Blizzard dispatchers; mouse + both keys; all chords; combat; both CVar edges PASS"
+      ],
+      "output": "METRIC utility branch=live chord_selections=4096 input_pairs=12288 native_handlers=true\nMETRIC utility branch=forever chord_selections=4096 input_pairs=12288 native_handlers=true\nMETRIC utility branch=classic chord_selections=4096 input_pairs=12288 native_handlers=true\nMETRIC utility branch=classic_era chord_selections=4096 input_pairs=12288 native_handlers=true\nMETRIC utility branch=classic_anniversary chord_selections=4096 input_pairs=12288 native_handlers=true\nUtility secure input: 201401 checks; five Blizzard dispatchers; mouse + both keys; all chords; combat; both CVar edges PASS\n"
+    },
+    {
+      "repeat": 2,
+      "exit": 0,
+      "status": "PASS",
+      "desktop_wall_seconds_not_native_performance": 8.749286,
+      "log": "secure-input-latest-run-2.txt",
+      "log_sha256": "382369a7037f564ba93ac6f91e2b169be173393ab97bad0080e8223b1c03a06e",
+      "semantic_counters": [
+        "METRIC utility branch=live chord_selections=4096 input_pairs=12288 native_handlers=true",
+        "METRIC utility branch=forever chord_selections=4096 input_pairs=12288 native_handlers=true",
+        "METRIC utility branch=classic chord_selections=4096 input_pairs=12288 native_handlers=true",
+        "METRIC utility branch=classic_era chord_selections=4096 input_pairs=12288 native_handlers=true",
+        "METRIC utility branch=classic_anniversary chord_selections=4096 input_pairs=12288 native_handlers=true",
+        "Utility secure input: 201401 checks; five Blizzard dispatchers; mouse + both keys; all chords; combat; both CVar edges PASS"
+      ],
+      "output": "METRIC utility branch=live chord_selections=4096 input_pairs=12288 native_handlers=true\nMETRIC utility branch=forever chord_selections=4096 input_pairs=12288 native_handlers=true\nMETRIC utility branch=classic chord_selections=4096 input_pairs=12288 native_handlers=true\nMETRIC utility branch=classic_era chord_selections=4096 input_pairs=12288 native_handlers=true\nMETRIC utility branch=classic_anniversary chord_selections=4096 input_pairs=12288 native_handlers=true\nUtility secure input: 201401 checks; five Blizzard dispatchers; mouse + both keys; all chords; combat; both CVar edges PASS\n"
+    },
+    {
+      "repeat": 3,
+      "exit": 0,
+      "status": "PASS",
+      "desktop_wall_seconds_not_native_performance": 11.568862,
+      "log": "secure-input-latest-run-3.txt",
+      "log_sha256": "382369a7037f564ba93ac6f91e2b169be173393ab97bad0080e8223b1c03a06e",
+      "semantic_counters": [
+        "METRIC utility branch=live chord_selections=4096 input_pairs=12288 native_handlers=true",
+        "METRIC utility branch=forever chord_selections=4096 input_pairs=12288 native_handlers=true",
+        "METRIC utility branch=classic chord_selections=4096 input_pairs=12288 native_handlers=true",
+        "METRIC utility branch=classic_era chord_selections=4096 input_pairs=12288 native_handlers=true",
+        "METRIC utility branch=classic_anniversary chord_selections=4096 input_pairs=12288 native_handlers=true",
+        "Utility secure input: 201401 checks; five Blizzard dispatchers; mouse + both keys; all chords; combat; both CVar edges PASS"
+      ],
+      "output": "METRIC utility branch=live chord_selections=4096 input_pairs=12288 native_handlers=true\nMETRIC utility branch=forever chord_selections=4096 input_pairs=12288 native_handlers=true\nMETRIC utility branch=classic chord_selections=4096 input_pairs=12288 native_handlers=true\nMETRIC utility branch=classic_era chord_selections=4096 input_pairs=12288 native_handlers=true\nMETRIC utility branch=classic_anniversary chord_selections=4096 input_pairs=12288 native_handlers=true\nUtility secure input: 201401 checks; five Blizzard dispatchers; mouse + both keys; all chords; combat; both CVar edges PASS\n"
+    }
+  ],
+  "semantic_counters_deterministic": true,
+  "all_pass": true,
+  "syntax_exit": 0,
+  "native_limit": "No native secure VM, taint propagation, secret values, actual input timing, pixels or CPU/FPS acceptance."
+}

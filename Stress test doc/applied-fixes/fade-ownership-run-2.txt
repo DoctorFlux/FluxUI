@@ -1,0 +1,1 @@
+FADE PROPOSAL checks=1017 baseline_rejections=4 candidate/native-model trajectory and lifecycle controls PASS; native attribution/pixels/taint pending

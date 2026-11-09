@@ -1,0 +1,28 @@
+{
+  "reviewed_at_utc": "2026-11-07",
+  "repository": "Stanzilla/LibCustomGlow",
+  "branch": "master",
+  "commit": "4f8f5c2607d7384b26df9175bb99fa3df891b015",
+  "commit_date": "2026-07-17T07:44:20Z",
+  "source_url": "https://github.com/Stanzilla/LibCustomGlow/blob/4f8f5c2607d7384b26df9175bb99fa3df891b015/LibCustomGlow-1.0.lua",
+  "source_git_blob": "c7a328ade1d9a4a026d704d812a0250ebd373212",
+  "upstream_minor": 25,
+  "reviewed_recolor_getter_lines": [
+    {
+      "line": 687,
+      "text": "local alpha = math.min(f[texture]:GetAlpha()/noZero(f.color and f.color[4] or 1), 1)"
+    },
+    {
+      "line": 701,
+      "text": "local alpha = math.min(f[texture]:GetAlpha()/noZero(f.color and f.color[4] or 1)*color[4], 1)"
+    }
+  ],
+  "conclusion": "Current upstream retains GetAlpha division in both ButtonGlow recolor branches; upgrading alone does not establish an ALPHA-06 fix.",
+  "installed_baseline_minor": 20,
+  "candidate_minor": 20,
+  "source_replaced_by_upstream": false,
+  "global_runtime_monkeypatch": false,
+  "readiness_gate": "Patched embedded library must actually own the winning LibStub implementation; an external winning minor25 is not covered. No arbitrary minor bump.",
+  "license_policy": "Existing baseline LICENSE and attribution remain unchanged. The external frozen baseline retains the LICENSE; candidate patch changes no license file.",
+  "native_acceptance": "not run"
+}

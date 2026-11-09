@@ -1,0 +1,494 @@
+{
+  "utc": "2026-11-06T08:39:30.487745+00:00",
+  "baselineCommit": "b6cb2c7bdff70e88b3bdca4bc2de7d753352eac9 plus frozen uncommitted Threat/native timer bridge stage",
+  "candidateSHA256": {
+    "Battlezonemap/FluxMeterSkin.lua": "5450fab43b64e69046396f5766edf10d84838eac78193fb19b68e2a601d321d0",
+    "Battlezonemap/FluxThreatMeter.lua": "c69df568538d4101cac2fded1d7cd9b5fd83e0e28cef4eb1953ae2c1ff75d235",
+    "tests/native_meter_skin.lua": "af55350fd9ccc7de0b6d23b24bd1f27396212d03f70ab1631d4b186bcbc19a61",
+    "tests/standalone_threat_meter.lua": "befb9381688bbdfa9de08beb40ae8c6961dab3a58a84c4f297c46b1fd74b801d"
+  },
+  "baselineSHA256": {
+    "Battlezonemap/FluxMeterSkin.lua": "da422ca4401705259de7e3b3b08e21fbc4b42f4c804d100e92387bd0a9bd80c1",
+    "Battlezonemap/FluxThreatMeter.lua": "31d93fb67304f6315331705ba06df3fc8b217099ca0ea2ff2b63d1b5d0c8d6c1",
+    "tests/native_meter_skin.lua": "cc062a578dcf485dee280e5375776973b52802ffa21881006d6862b036c423a5",
+    "tests/standalone_threat_meter.lua": "0e061554ad62ba8c699137bb72c4fcd5ce45559e597cee50cf2ea9ee2dff4afe"
+  },
+  "sourceDriftGuard": true,
+  "scope": "Desktop public-heading/widget/opaque-display/lifecycle regression only; no native secure VM, real secrets, taint, rendering/pixel/latency/CPU/memory/FPS acceptance. Baseline deliberately lacks the correction, so process durations are not performance comparisons.",
+  "scenario": "Native and owned headings retain five-unit left position and baseline, explicit owned left justification, timer follows heading right edge with a small gap and all remaining menu-bounded width. Only public heading intrinsic width can be read out of combat; actor/timer measurement is forbidden. Long/narrow/opaque/unavailable heading metrics and first-pass font order are covered alongside the prior bridge lifecycle.",
+  "configuration": "Lua5.4.6 fresh process per fixture/sample; five alternating baseline/candidate pairs; bounded 500-repaint/reuse checks. Existing Threat poll and clock/data behavior unchanged.",
+  "warmup": "Each fixture initializes its widgets before repeated loops; process times include startup and failed baseline assertions. No additional warmup or native profiler.",
+  "resources": "No new resources or native hooks beyond the prior bridge stage. Public heading measurement is out-of-combat presentation work; combat timer election remains alpha-only. Native timer justification and saved title/timer/control geometry restore on release.",
+  "nativeStatus": "Pending fresh native capture, actual text clipping/click geometry and combat/taint checks. Child performed no native input/settings/profiler actions.",
+  "pairs": [
+    {
+      "pair": 1,
+      "order": [
+        "baseline",
+        "candidate"
+      ],
+      "baseline": {
+        "skin": {
+          "command": [
+            "lua",
+            "tests/native_meter_skin.lua",
+            "C:\\Users\\mario\\.codex\\visualizations\\2026\\10\\29\\01a186ea-e332-79a1-9cdc-8e340df7e22b\\meter-heading-timer-20261106\\baseline\\FluxMeterSkin.lua"
+          ],
+          "exit": 1,
+          "wallSeconds": 0.0922668999992311,
+          "output": "FAIL timer follows the heading's right edge on its unchanged compact baseline\nFAIL sub-pixel available header space clamps the timer gap and box together\nFAIL native heading keeps its original left display position and baseline while using its public intrinsic width\nFAIL native timer starts immediately after the heading rather than at the pane's far edge\nFAIL native timer uses all remaining header space rather than the old forty-pixel box\nFAIL an opaque heading metric is never compared and falls back to the existing bounded heading box\nFAIL narrow native headers keep title and adjacent timer within the menu boundary\nFAIL owned Threat heading is left-justified instead of centered within its widened box\nFAIL Threat's visible name starts at the original five-pixel left offset\nnative meter skin: 144 checks, 9 failures; no native secrets/rendering/taint emulated\nlua: tests/native_meter_skin.lua:696: native meter skin regressions\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/native_meter_skin.lua:696: in main chunk\n\t[C]: in ?\n"
+        },
+        "threat": {
+          "command": [
+            "lua",
+            "tests/standalone_threat_meter.lua",
+            "C:\\Users\\mario\\.codex\\visualizations\\2026\\10\\29\\01a186ea-e332-79a1-9cdc-8e340df7e22b\\meter-heading-timer-20261106\\baseline\\FluxThreatMeter.lua",
+            "C:\\Users\\mario\\.codex\\visualizations\\2026\\10\\29\\01a186ea-e332-79a1-9cdc-8e340df7e22b\\meter-heading-timer-20261106\\baseline\\FluxMeterSkin.lua"
+          ],
+          "exit": 1,
+          "wallSeconds": 2.88610420000623,
+          "output": "lua: tests/standalone_threat_meter.lua:6: Threat's public heading is measured without moving or centering its visible name\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/standalone_threat_meter.lua:6: in local 'check'\n\ttests/standalone_threat_meter.lua:417: in main chunk\n\t[C]: in ?\n"
+        }
+      },
+      "candidate": {
+        "skin": {
+          "command": [
+            "lua",
+            "tests/native_meter_skin.lua",
+            "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\Battlezonemap\\FluxMeterSkin.lua"
+          ],
+          "exit": 0,
+          "wallSeconds": 0.08504020000691526,
+          "output": "native meter skin: 144 checks, 0 failures; no native secrets/rendering/taint emulated\n"
+        },
+        "threat": {
+          "command": [
+            "lua",
+            "tests/standalone_threat_meter.lua",
+            "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\Battlezonemap\\FluxThreatMeter.lua",
+            "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\Battlezonemap\\FluxMeterSkin.lua"
+          ],
+          "exit": 0,
+          "wallSeconds": 2.9275812999985646,
+          "output": "standalone threat meter: 87 checks passed; 500-event scans=1; raid facts=80; retained rows=80\n"
+        }
+      }
+    },
+    {
+      "pair": 2,
+      "order": [
+        "candidate",
+        "baseline"
+      ],
+      "candidate": {
+        "skin": {
+          "command": [
+            "lua",
+            "tests/native_meter_skin.lua",
+            "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\Battlezonemap\\FluxMeterSkin.lua"
+          ],
+          "exit": 0,
+          "wallSeconds": 0.07655890000751242,
+          "output": "native meter skin: 144 checks, 0 failures; no native secrets/rendering/taint emulated\n"
+        },
+        "threat": {
+          "command": [
+            "lua",
+            "tests/standalone_threat_meter.lua",
+            "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\Battlezonemap\\FluxThreatMeter.lua",
+            "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\Battlezonemap\\FluxMeterSkin.lua"
+          ],
+          "exit": 0,
+          "wallSeconds": 2.7744551000068896,
+          "output": "standalone threat meter: 87 checks passed; 500-event scans=1; raid facts=80; retained rows=80\n"
+        }
+      },
+      "baseline": {
+        "skin": {
+          "command": [
+            "lua",
+            "tests/native_meter_skin.lua",
+            "C:\\Users\\mario\\.codex\\visualizations\\2026\\10\\29\\01a186ea-e332-79a1-9cdc-8e340df7e22b\\meter-heading-timer-20261106\\baseline\\FluxMeterSkin.lua"
+          ],
+          "exit": 1,
+          "wallSeconds": 0.0851367000141181,
+          "output": "FAIL timer follows the heading's right edge on its unchanged compact baseline\nFAIL sub-pixel available header space clamps the timer gap and box together\nFAIL native heading keeps its original left display position and baseline while using its public intrinsic width\nFAIL native timer starts immediately after the heading rather than at the pane's far edge\nFAIL native timer uses all remaining header space rather than the old forty-pixel box\nFAIL an opaque heading metric is never compared and falls back to the existing bounded heading box\nFAIL narrow native headers keep title and adjacent timer within the menu boundary\nFAIL owned Threat heading is left-justified instead of centered within its widened box\nFAIL Threat's visible name starts at the original five-pixel left offset\nnative meter skin: 144 checks, 9 failures; no native secrets/rendering/taint emulated\nlua: tests/native_meter_skin.lua:696: native meter skin regressions\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/native_meter_skin.lua:696: in main chunk\n\t[C]: in ?\n"
+        },
+        "threat": {
+          "command": [
+            "lua",
+            "tests/standalone_threat_meter.lua",
+            "C:\\Users\\mario\\.codex\\visualizations\\2026\\10\\29\\01a186ea-e332-79a1-9cdc-8e340df7e22b\\meter-heading-timer-20261106\\baseline\\FluxThreatMeter.lua",
+            "C:\\Users\\mario\\.codex\\visualizations\\2026\\10\\29\\01a186ea-e332-79a1-9cdc-8e340df7e22b\\meter-heading-timer-20261106\\baseline\\FluxMeterSkin.lua"
+          ],
+          "exit": 1,
+          "wallSeconds": 2.760167000000365,
+          "output": "lua: tests/standalone_threat_meter.lua:6: Threat's public heading is measured without moving or centering its visible name\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/standalone_threat_meter.lua:6: in local 'check'\n\ttests/standalone_threat_meter.lua:417: in main chunk\n\t[C]: in ?\n"
+        }
+      }
+    },
+    {
+      "pair": 3,
+      "order": [
+        "baseline",
+        "candidate"
+      ],
+      "baseline": {
+        "skin": {
+          "command": [
+            "lua",
+            "tests/native_meter_skin.lua",
+            "C:\\Users\\mario\\.codex\\visualizations\\2026\\10\\29\\01a186ea-e332-79a1-9cdc-8e340df7e22b\\meter-heading-timer-20261106\\baseline\\FluxMeterSkin.lua"
+          ],
+          "exit": 1,
+          "wallSeconds": 0.07991190001484938,
+          "output": "FAIL timer follows the heading's right edge on its unchanged compact baseline\nFAIL sub-pixel available header space clamps the timer gap and box together\nFAIL native heading keeps its original left display position and baseline while using its public intrinsic width\nFAIL native timer starts immediately after the heading rather than at the pane's far edge\nFAIL native timer uses all remaining header space rather than the old forty-pixel box\nFAIL an opaque heading metric is never compared and falls back to the existing bounded heading box\nFAIL narrow native headers keep title and adjacent timer within the menu boundary\nFAIL owned Threat heading is left-justified instead of centered within its widened box\nFAIL Threat's visible name starts at the original five-pixel left offset\nnative meter skin: 144 checks, 9 failures; no native secrets/rendering/taint emulated\nlua: tests/native_meter_skin.lua:696: native meter skin regressions\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/native_meter_skin.lua:696: in main chunk\n\t[C]: in ?\n"
+        },
+        "threat": {
+          "command": [
+            "lua",
+            "tests/standalone_threat_meter.lua",
+            "C:\\Users\\mario\\.codex\\visualizations\\2026\\10\\29\\01a186ea-e332-79a1-9cdc-8e340df7e22b\\meter-heading-timer-20261106\\baseline\\FluxThreatMeter.lua",
+            "C:\\Users\\mario\\.codex\\visualizations\\2026\\10\\29\\01a186ea-e332-79a1-9cdc-8e340df7e22b\\meter-heading-timer-20261106\\baseline\\FluxMeterSkin.lua"
+          ],
+          "exit": 1,
+          "wallSeconds": 2.606669000000693,
+          "output": "lua: tests/standalone_threat_meter.lua:6: Threat's public heading is measured without moving or centering its visible name\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/standalone_threat_meter.lua:6: in local 'check'\n\ttests/standalone_threat_meter.lua:417: in main chunk\n\t[C]: in ?\n"
+        }
+      },
+      "candidate": {
+        "skin": {
+          "command": [
+            "lua",
+            "tests/native_meter_skin.lua",
+            "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\Battlezonemap\\FluxMeterSkin.lua"
+          ],
+          "exit": 0,
+          "wallSeconds": 0.08493660000385717,
+          "output": "native meter skin: 144 checks, 0 failures; no native secrets/rendering/taint emulated\n"
+        },
+        "threat": {
+          "command": [
+            "lua",
+            "tests/standalone_threat_meter.lua",
+            "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\Battlezonemap\\FluxThreatMeter.lua",
+            "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\Battlezonemap\\FluxMeterSkin.lua"
+          ],
+          "exit": 0,
+          "wallSeconds": 2.4433371999766678,
+          "output": "standalone threat meter: 87 checks passed; 500-event scans=1; raid facts=80; retained rows=80\n"
+        }
+      }
+    },
+    {
+      "pair": 4,
+      "order": [
+        "candidate",
+        "baseline"
+      ],
+      "candidate": {
+        "skin": {
+          "command": [
+            "lua",
+            "tests/native_meter_skin.lua",
+            "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\Battlezonemap\\FluxMeterSkin.lua"
+          ],
+          "exit": 0,
+          "wallSeconds": 0.07938119999016635,
+          "output": "native meter skin: 144 checks, 0 failures; no native secrets/rendering/taint emulated\n"
+        },
+        "threat": {
+          "command": [
+            "lua",
+            "tests/standalone_threat_meter.lua",
+            "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\Battlezonemap\\FluxThreatMeter.lua",
+            "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\Battlezonemap\\FluxMeterSkin.lua"
+          ],
+          "exit": 0,
+          "wallSeconds": 2.8099486000137404,
+          "output": "standalone threat meter: 87 checks passed; 500-event scans=1; raid facts=80; retained rows=80\n"
+        }
+      },
+      "baseline": {
+        "skin": {
+          "command": [
+            "lua",
+            "tests/native_meter_skin.lua",
+            "C:\\Users\\mario\\.codex\\visualizations\\2026\\10\\29\\01a186ea-e332-79a1-9cdc-8e340df7e22b\\meter-heading-timer-20261106\\baseline\\FluxMeterSkin.lua"
+          ],
+          "exit": 1,
+          "wallSeconds": 0.07390240000677295,
+          "output": "FAIL timer follows the heading's right edge on its unchanged compact baseline\nFAIL sub-pixel available header space clamps the timer gap and box together\nFAIL native heading keeps its original left display position and baseline while using its public intrinsic width\nFAIL native timer starts immediately after the heading rather than at the pane's far edge\nFAIL native timer uses all remaining header space rather than the old forty-pixel box\nFAIL an opaque heading metric is never compared and falls back to the existing bounded heading box\nFAIL narrow native headers keep title and adjacent timer within the menu boundary\nFAIL owned Threat heading is left-justified instead of centered within its widened box\nFAIL Threat's visible name starts at the original five-pixel left offset\nnative meter skin: 144 checks, 9 failures; no native secrets/rendering/taint emulated\nlua: tests/native_meter_skin.lua:696: native meter skin regressions\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/native_meter_skin.lua:696: in main chunk\n\t[C]: in ?\n"
+        },
+        "threat": {
+          "command": [
+            "lua",
+            "tests/standalone_threat_meter.lua",
+            "C:\\Users\\mario\\.codex\\visualizations\\2026\\10\\29\\01a186ea-e332-79a1-9cdc-8e340df7e22b\\meter-heading-timer-20261106\\baseline\\FluxThreatMeter.lua",
+            "C:\\Users\\mario\\.codex\\visualizations\\2026\\10\\29\\01a186ea-e332-79a1-9cdc-8e340df7e22b\\meter-heading-timer-20261106\\baseline\\FluxMeterSkin.lua"
+          ],
+          "exit": 1,
+          "wallSeconds": 2.5166337999980897,
+          "output": "lua: tests/standalone_threat_meter.lua:6: Threat's public heading is measured without moving or centering its visible name\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/standalone_threat_meter.lua:6: in local 'check'\n\ttests/standalone_threat_meter.lua:417: in main chunk\n\t[C]: in ?\n"
+        }
+      }
+    },
+    {
+      "pair": 5,
+      "order": [
+        "baseline",
+        "candidate"
+      ],
+      "baseline": {
+        "skin": {
+          "command": [
+            "lua",
+            "tests/native_meter_skin.lua",
+            "C:\\Users\\mario\\.codex\\visualizations\\2026\\10\\29\\01a186ea-e332-79a1-9cdc-8e340df7e22b\\meter-heading-timer-20261106\\baseline\\FluxMeterSkin.lua"
+          ],
+          "exit": 1,
+          "wallSeconds": 0.08347019998473115,
+          "output": "FAIL timer follows the heading's right edge on its unchanged compact baseline\nFAIL sub-pixel available header space clamps the timer gap and box together\nFAIL native heading keeps its original left display position and baseline while using its public intrinsic width\nFAIL native timer starts immediately after the heading rather than at the pane's far edge\nFAIL native timer uses all remaining header space rather than the old forty-pixel box\nFAIL an opaque heading metric is never compared and falls back to the existing bounded heading box\nFAIL narrow native headers keep title and adjacent timer within the menu boundary\nFAIL owned Threat heading is left-justified instead of centered within its widened box\nFAIL Threat's visible name starts at the original five-pixel left offset\nnative meter skin: 144 checks, 9 failures; no native secrets/rendering/taint emulated\nlua: tests/native_meter_skin.lua:696: native meter skin regressions\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/native_meter_skin.lua:696: in main chunk\n\t[C]: in ?\n"
+        },
+        "threat": {
+          "command": [
+            "lua",
+            "tests/standalone_threat_meter.lua",
+            "C:\\Users\\mario\\.codex\\visualizations\\2026\\10\\29\\01a186ea-e332-79a1-9cdc-8e340df7e22b\\meter-heading-timer-20261106\\baseline\\FluxThreatMeter.lua",
+            "C:\\Users\\mario\\.codex\\visualizations\\2026\\10\\29\\01a186ea-e332-79a1-9cdc-8e340df7e22b\\meter-heading-timer-20261106\\baseline\\FluxMeterSkin.lua"
+          ],
+          "exit": 1,
+          "wallSeconds": 2.8472296000109054,
+          "output": "lua: tests/standalone_threat_meter.lua:6: Threat's public heading is measured without moving or centering its visible name\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/standalone_threat_meter.lua:6: in local 'check'\n\ttests/standalone_threat_meter.lua:417: in main chunk\n\t[C]: in ?\n"
+        }
+      },
+      "candidate": {
+        "skin": {
+          "command": [
+            "lua",
+            "tests/native_meter_skin.lua",
+            "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\Battlezonemap\\FluxMeterSkin.lua"
+          ],
+          "exit": 0,
+          "wallSeconds": 0.07996850000927225,
+          "output": "native meter skin: 144 checks, 0 failures; no native secrets/rendering/taint emulated\n"
+        },
+        "threat": {
+          "command": [
+            "lua",
+            "tests/standalone_threat_meter.lua",
+            "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\Battlezonemap\\FluxThreatMeter.lua",
+            "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\Battlezonemap\\FluxMeterSkin.lua"
+          ],
+          "exit": 0,
+          "wallSeconds": 2.6945776999928057,
+          "output": "standalone threat meter: 87 checks passed; 500-event scans=1; raid facts=80; retained rows=80\n"
+        }
+      }
+    }
+  ],
+  "mutants": [
+    {
+      "name": "center-owned-heading",
+      "skin": {
+        "command": [
+          "lua",
+          "tests/native_meter_skin.lua",
+          "C:\\Users\\mario\\.codex\\visualizations\\2026\\10\\29\\01a186ea-e332-79a1-9cdc-8e340df7e22b\\meter-heading-timer-20261106\\mutant-center-owned-heading.lua"
+        ],
+        "exit": 1,
+        "wallSeconds": 0.09285529999760911,
+        "output": "FAIL owned Threat heading is left-justified instead of centered within its widened box\nFAIL Threat's visible name starts at the original five-pixel left offset\nnative meter skin: 144 checks, 2 failures; no native secrets/rendering/taint emulated\nlua: tests/native_meter_skin.lua:696: native meter skin regressions\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/native_meter_skin.lua:696: in main chunk\n\t[C]: in ?\n"
+      },
+      "threat": {
+        "command": [
+          "lua",
+          "tests/standalone_threat_meter.lua",
+          "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\Battlezonemap\\FluxThreatMeter.lua",
+          "C:\\Users\\mario\\.codex\\visualizations\\2026\\10\\29\\01a186ea-e332-79a1-9cdc-8e340df7e22b\\meter-heading-timer-20261106\\mutant-center-owned-heading.lua"
+        ],
+        "exit": 1,
+        "wallSeconds": 2.552351499994984,
+        "output": "lua: tests/standalone_threat_meter.lua:6: Threat's public heading is measured without moving or centering its visible name\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/standalone_threat_meter.lua:6: in local 'check'\n\ttests/standalone_threat_meter.lua:417: in main chunk\n\t[C]: in ?\n"
+      },
+      "detected": true
+    },
+    {
+      "name": "native-timer-far-right",
+      "skin": {
+        "command": [
+          "lua",
+          "tests/native_meter_skin.lua",
+          "C:\\Users\\mario\\.codex\\visualizations\\2026\\10\\29\\01a186ea-e332-79a1-9cdc-8e340df7e22b\\meter-heading-timer-20261106\\mutant-native-timer-far-right.lua"
+        ],
+        "exit": 1,
+        "wallSeconds": 0.09850540000479668,
+        "output": "FAIL timer follows the heading's right edge on its unchanged compact baseline\nFAIL sub-pixel available header space clamps the timer gap and box together\nFAIL native timer starts immediately after the heading rather than at the pane's far edge\nFAIL an opaque heading metric is never compared and falls back to the existing bounded heading box\nFAIL narrow native headers keep title and adjacent timer within the menu boundary\nnative meter skin: 144 checks, 5 failures; no native secrets/rendering/taint emulated\nlua: tests/native_meter_skin.lua:696: native meter skin regressions\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/native_meter_skin.lua:696: in main chunk\n\t[C]: in ?\n"
+      },
+      "threat": {
+        "command": [
+          "lua",
+          "tests/standalone_threat_meter.lua",
+          "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\Battlezonemap\\FluxThreatMeter.lua",
+          "C:\\Users\\mario\\.codex\\visualizations\\2026\\10\\29\\01a186ea-e332-79a1-9cdc-8e340df7e22b\\meter-heading-timer-20261106\\mutant-native-timer-far-right.lua"
+        ],
+        "exit": 0,
+        "wallSeconds": 2.4663362000137568,
+        "output": "standalone threat meter: 87 checks passed; 500-event scans=1; raid facts=80; retained rows=80\n"
+      },
+      "detected": true
+    },
+    {
+      "name": "owned-timer-far-right",
+      "skin": {
+        "command": [
+          "lua",
+          "tests/native_meter_skin.lua",
+          "C:\\Users\\mario\\.codex\\visualizations\\2026\\10\\29\\01a186ea-e332-79a1-9cdc-8e340df7e22b\\meter-heading-timer-20261106\\mutant-owned-timer-far-right.lua"
+        ],
+        "exit": 0,
+        "wallSeconds": 0.09327599999960512,
+        "output": "native meter skin: 144 checks, 0 failures; no native secrets/rendering/taint emulated\n"
+      },
+      "threat": {
+        "command": [
+          "lua",
+          "tests/standalone_threat_meter.lua",
+          "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\Battlezonemap\\FluxThreatMeter.lua",
+          "C:\\Users\\mario\\.codex\\visualizations\\2026\\10\\29\\01a186ea-e332-79a1-9cdc-8e340df7e22b\\meter-heading-timer-20261106\\mutant-owned-timer-far-right.lua"
+        ],
+        "exit": 1,
+        "wallSeconds": 2.5002935999946203,
+        "output": "lua: tests/standalone_threat_meter.lua:6: Threat clock follows the heading immediately and receives the remaining width for full native time text\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/standalone_threat_meter.lua:6: in local 'check'\n\ttests/standalone_threat_meter.lua:419: in main chunk\n\t[C]: in ?\n"
+      },
+      "detected": true
+    },
+    {
+      "name": "cap-native-clock-at40",
+      "skin": {
+        "command": [
+          "lua",
+          "tests/native_meter_skin.lua",
+          "C:\\Users\\mario\\.codex\\visualizations\\2026\\10\\29\\01a186ea-e332-79a1-9cdc-8e340df7e22b\\meter-heading-timer-20261106\\mutant-cap-native-clock-at40.lua"
+        ],
+        "exit": 1,
+        "wallSeconds": 0.10878680000314489,
+        "output": "FAIL native timer uses all remaining header space rather than the old forty-pixel box\nnative meter skin: 144 checks, 1 failures; no native secrets/rendering/taint emulated\nlua: tests/native_meter_skin.lua:696: native meter skin regressions\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/native_meter_skin.lua:696: in main chunk\n\t[C]: in ?\n"
+      },
+      "threat": {
+        "command": [
+          "lua",
+          "tests/standalone_threat_meter.lua",
+          "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\Battlezonemap\\FluxThreatMeter.lua",
+          "C:\\Users\\mario\\.codex\\visualizations\\2026\\10\\29\\01a186ea-e332-79a1-9cdc-8e340df7e22b\\meter-heading-timer-20261106\\mutant-cap-native-clock-at40.lua"
+        ],
+        "exit": 0,
+        "wallSeconds": 2.47167879997869,
+        "output": "standalone threat meter: 87 checks passed; 500-event scans=1; raid facts=80; retained rows=80\n"
+      },
+      "detected": true
+    },
+    {
+      "name": "cap-owned-clock-at40",
+      "skin": {
+        "command": [
+          "lua",
+          "tests/native_meter_skin.lua",
+          "C:\\Users\\mario\\.codex\\visualizations\\2026\\10\\29\\01a186ea-e332-79a1-9cdc-8e340df7e22b\\meter-heading-timer-20261106\\mutant-cap-owned-clock-at40.lua"
+        ],
+        "exit": 0,
+        "wallSeconds": 0.09574309998424724,
+        "output": "native meter skin: 144 checks, 0 failures; no native secrets/rendering/taint emulated\n"
+      },
+      "threat": {
+        "command": [
+          "lua",
+          "tests/standalone_threat_meter.lua",
+          "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\Battlezonemap\\FluxThreatMeter.lua",
+          "C:\\Users\\mario\\.codex\\visualizations\\2026\\10\\29\\01a186ea-e332-79a1-9cdc-8e340df7e22b\\meter-heading-timer-20261106\\mutant-cap-owned-clock-at40.lua"
+        ],
+        "exit": 1,
+        "wallSeconds": 2.546285699994769,
+        "output": "lua: tests/standalone_threat_meter.lua:6: Threat clock follows the heading immediately and receives the remaining width for full native time text\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/standalone_threat_meter.lua:6: in local 'check'\n\ttests/standalone_threat_meter.lua:419: in main chunk\n\t[C]: in ?\n"
+      },
+      "detected": true
+    },
+    {
+      "name": "measure-before-presentation-font",
+      "skin": {
+        "command": [
+          "lua",
+          "tests/native_meter_skin.lua",
+          "C:\\Users\\mario\\.codex\\visualizations\\2026\\10\\29\\01a186ea-e332-79a1-9cdc-8e340df7e22b\\meter-heading-timer-20261106\\mutant-measure-before-presentation-font.lua"
+        ],
+        "exit": 1,
+        "wallSeconds": 0.09341060000588186,
+        "output": "lua: tests/native_meter_skin.lua:664: heading measured before presentation font\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/native_meter_skin.lua:664: in method 'GetStringWidth'\n\t...mer-20261106\\mutant-measure-before-presentation-font.lua:333: in upvalue 'HeadingTimerWidths'\n\t...mer-20261106\\mutant-measure-before-presentation-font.lua:412: in upvalue 'AlignTitle'\n\t...mer-20261106\\mutant-measure-before-presentation-font.lua:612: in method 'ApplyToWindow'\n\ttests/native_meter_skin.lua:667: in main chunk\n\t[C]: in ?\n"
+      },
+      "threat": {
+        "command": [
+          "lua",
+          "tests/standalone_threat_meter.lua",
+          "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\Battlezonemap\\FluxThreatMeter.lua",
+          "C:\\Users\\mario\\.codex\\visualizations\\2026\\10\\29\\01a186ea-e332-79a1-9cdc-8e340df7e22b\\meter-heading-timer-20261106\\mutant-measure-before-presentation-font.lua"
+        ],
+        "exit": 0,
+        "wallSeconds": 2.4319427000009455,
+        "output": "standalone threat meter: 87 checks passed; 500-event scans=1; raid facts=80; retained rows=80\n"
+      },
+      "detected": true
+    },
+    {
+      "name": "compare-opaque-heading",
+      "skin": {
+        "command": [
+          "lua",
+          "tests/native_meter_skin.lua",
+          "C:\\Users\\mario\\.codex\\visualizations\\2026\\10\\29\\01a186ea-e332-79a1-9cdc-8e340df7e22b\\meter-heading-timer-20261106\\mutant-compare-opaque-heading.lua"
+        ],
+        "exit": 1,
+        "wallSeconds": 0.09129660000326112,
+        "output": "lua: ...heading-timer-20261106\\mutant-compare-opaque-heading.lua:334: meter data/native ownership was accessed\nstack traceback:\n\t[C]: in function 'error'\n\ttests/native_meter_skin.lua:8: in metamethod 'lt'\n\t...heading-timer-20261106\\mutant-compare-opaque-heading.lua:334: in upvalue 'HeadingTimerWidths'\n\t...heading-timer-20261106\\mutant-compare-opaque-heading.lua:412: in upvalue 'AlignTitle'\n\t...heading-timer-20261106\\mutant-compare-opaque-heading.lua:613: in method 'ApplyToWindow'\n\ttests/native_meter_skin.lua:680: in main chunk\n\t[C]: in ?\n"
+      },
+      "threat": {
+        "command": [
+          "lua",
+          "tests/standalone_threat_meter.lua",
+          "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\Battlezonemap\\FluxThreatMeter.lua",
+          "C:\\Users\\mario\\.codex\\visualizations\\2026\\10\\29\\01a186ea-e332-79a1-9cdc-8e340df7e22b\\meter-heading-timer-20261106\\mutant-compare-opaque-heading.lua"
+        ],
+        "exit": 0,
+        "wallSeconds": 2.52586799999699,
+        "output": "standalone threat meter: 87 checks passed; 500-event scans=1; raid facts=80; retained rows=80\n"
+      },
+      "detected": true
+    },
+    {
+      "name": "right-justify-native-clock",
+      "skin": {
+        "command": [
+          "lua",
+          "tests/native_meter_skin.lua",
+          "C:\\Users\\mario\\.codex\\visualizations\\2026\\10\\29\\01a186ea-e332-79a1-9cdc-8e340df7e22b\\meter-heading-timer-20261106\\mutant-right-justify-native-clock.lua"
+        ],
+        "exit": 1,
+        "wallSeconds": 0.09406239999225363,
+        "output": "FAIL native timer starts immediately after the heading rather than at the pane's far edge\nnative meter skin: 144 checks, 1 failures; no native secrets/rendering/taint emulated\nlua: tests/native_meter_skin.lua:696: native meter skin regressions\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/native_meter_skin.lua:696: in main chunk\n\t[C]: in ?\n"
+      },
+      "threat": {
+        "command": [
+          "lua",
+          "tests/standalone_threat_meter.lua",
+          "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\Battlezonemap\\FluxThreatMeter.lua",
+          "C:\\Users\\mario\\.codex\\visualizations\\2026\\10\\29\\01a186ea-e332-79a1-9cdc-8e340df7e22b\\meter-heading-timer-20261106\\mutant-right-justify-native-clock.lua"
+        ],
+        "exit": 0,
+        "wallSeconds": 2.6750364000035916,
+        "output": "standalone threat meter: 87 checks passed; 500-event scans=1; raid facts=80; retained rows=80\n"
+      },
+      "detected": true
+    }
+  ],
+  "result": "PASS",
+  "mutantRouting": "Both focused fixtures run per Skin mutant. Owned heading geometry is exercised by the composed Threat fixture; native heading/opaque/restore cases by the Skin fixture. Initial Skin-only routing missed two owned-layout mutations and is preserved privately; no production change was required."
+}

@@ -1,0 +1,525 @@
+--- FROZEN_BASELINE/UnitFrames/FluxCastBar.lua
++++ RESEARCH_ONLY_NOT_APPLIED/UnitFrames/FluxCastBar.lua
+@@ -1288,7 +1288,7 @@
+         self:Show()
+     end
+     local fadeDur = self.interrupted and FLUX_CASTBAR_FADE_INTERRUPT or FLUX_CASTBAR_FADE_DURATION
+-    UIFrameFadeOut(self, fadeDur, self:GetAlpha(), 0)
++    UIFrameFadeOut(self, fadeDur, 1, 0)
+     self.fadeTimer = C_Timer.NewTimer(fadeDur, function()
+         if self.fadeOut and not self.casting and not self.channeling and not self.customTimer then
+             FinishCastBarFade(self)
+--- FROZEN_BASELINE/UnitFrames/FluxSwingTimer.lua
++++ RESEARCH_ONLY_NOT_APPLIED/UnitFrames/FluxSwingTimer.lua
+@@ -161,6 +161,36 @@
+ -- Wand "Shoot": brief hold at full bar when timer hits ready (while still autorepeating).
+ local SWING_HOLD_WAND_SHOOT_READY = 1.0
+ local SWING_FADE_DURATION = 1.0    -- match FluxCastBar CastStop fade
++
++-- Public alpha belongs to this private overlay. Native GetAlpha can be secret.
++-- FrameUtil's public record gives the exact elapsed value of its last paint.
++-- A new owner write retires that fade, including zero-elapsed repaint races.
++local swingAlpha = 0
++local swingFadeInfo
++
++local function SetSwingAlpha(alpha)
++    if swingFadeOut then
++        if swingFadeTimer then swingFadeTimer:Cancel(); swingFadeTimer = nil end
++        if swingFrame then UIFrameFadeRemoveFrame(swingFrame) end
++        swingFadeOut = false
++        swingFadeInfo = nil
++    end
++    swingAlpha = alpha
++    if swingFrame then swingFrame:SetAlpha(alpha) end
++end
++
++local function CurrentSwingAlpha()
++    local info = swingFadeInfo
++    if info then
++        local timer = info.fadeTimer or 0
++        if timer < info.timeToFade then
++            return ((info.timeToFade - timer) / info.timeToFade)
++                * (info.startAlpha - info.endAlpha) + info.endAlpha
++        end
++        return info.endAlpha
++    end
++    return swingAlpha
++end
+ 
+ -- After STOP_AUTOREPEAT: keep ranged bar visible this long (timer keeps counting from preserved anchor), or until FluxCastBar needs the slot.
+ local SWING_RANGED_LINGER_AFTER_STOP = 5.0
+@@ -913,10 +943,6 @@
+     if castBar.preInterrupt then return true end
+     if castBar.holdTime and castBar.holdTime > 0 then return true end
+     if castBar.fadeOut then return true end
+-    -- Only block when the cast bar is actually on-screen.
+-    if not castBar:IsShown() or castBar:GetAlpha() <= 0.01 then
+-        return false
+-    end
+     return false
+ end
+ 
+@@ -1052,7 +1078,7 @@
+         return
+     end
+     local oor = nativeShownTypeOutOfRange == true
+-    swingFrame:SetAlpha(oor and NATIVE_SWING_OOR_ALPHA or 1)
++    SetSwingAlpha(oor and NATIVE_SWING_OOR_ALPHA or 1)
+     local r, g, b = 1, 1, 1
+     if oor then
+         r, g, b = NativeOORTextColor()
+@@ -1137,19 +1163,21 @@
+     end
+     if swingFrame and swingFadeOut then
+         UIFrameFadeRemoveFrame(swingFrame)
+-        swingFrame:SetAlpha(1)
++        swingFadeInfo = nil
+         swingFadeOut = false
++        SetSwingAlpha(1)
+     end
+ end
+ 
+ local function FinishSwingFade()
+     swingFadeOut = false
+     swingFadeTimer = nil
++    swingFadeInfo = nil
+     swingVisible = false
+     if swingFrame then
+         UIFrameFadeRemoveFrame(swingFrame)
+         -- Flux perf T2.4: Hide() stops OnUpdate; alpha reset for the next show.
+-        swingFrame:SetAlpha(0)
++        SetSwingAlpha(0)
+         swingFrame:Hide()
+     end
+     if swingText then swingText:Hide() end
+@@ -1162,11 +1190,17 @@
+         swingFadeTimer:Cancel()
+         swingFadeTimer = nil
+     end
++    local startAlpha = CurrentSwingAlpha()
+     UIFrameFadeRemoveFrame(swingFrame)
+     swingFadeOut = true
+-    UIFrameFadeOut(swingFrame, SWING_FADE_DURATION, swingFrame:GetAlpha(), 0)
++    UIFrameFadeOut(swingFrame, SWING_FADE_DURATION, startAlpha, 0)
++    -- This is the public record just created by our call above, not alpha
++    -- recovered from the native frame. FrameUtil only advances its fadeTimer.
++    local fadeInfo = swingFrame.fadeInfo
++    swingFadeInfo = fadeInfo
++    swingAlpha = startAlpha
+     swingFadeTimer = C_Timer.NewTimer(SWING_FADE_DURATION, function()
+-        if swingFadeOut then
++        if swingFadeOut and swingFadeInfo == fadeInfo then
+             FinishSwingFade()
+         end
+     end)
+@@ -1179,7 +1213,7 @@
+     swingVisible = true
+     SyncSwingFrameLevel()
+     -- Flux perf T2.4: ensure Show() so OnUpdate resumes if previously hidden.
+-    swingFrame:SetAlpha(1)
++    SetSwingAlpha(1)
+     if not swingFrame:IsShown() then
+         swingFrame:Show()
+     end
+@@ -1205,7 +1239,7 @@
+     if swingFrame then
+         UIFrameFadeRemoveFrame(swingFrame)
+         -- Flux perf T2.4: Hide() stops the OnUpdate ticker.
+-        swingFrame:SetAlpha(0)
++        SetSwingAlpha(0)
+         swingFrame:Hide()
+     end
+     if swingText then swingText:Hide() end
+@@ -2426,7 +2460,7 @@
+     -- Draw below the cast bar so cast textures win if both were visible same slot.
+     SyncSwingFrameLevel()
+     swingFrame:SetAllPoints(castBar)
+-    swingFrame:SetAlpha(0)
++    SetSwingAlpha(0)
+     swingFrame:Hide()
+ 
+     -- Status bars
+@@ -2527,8 +2561,9 @@
+             end
+         else
+             -- Flux perf T2.4: stay Hide()d; ShowSwing from the next swing event re-Shows the frame.
++            SetSwingAlpha(0)
++            swingVisible = false
+             swingFrame:Hide()
+-            swingFrame:SetAlpha(0)
+         end
+         UpdateNativeRangeCheckRegistration()
+     else
+@@ -2538,6 +2573,8 @@
+         SetNativeRangeCheck("ranged", types and types.Ranged, false)
+         SetNativeShownOutOfRange(false)
+         if swingFrame then
++            SetSwingAlpha(0)
++            swingVisible = false
+             swingFrame:Hide()
+         end
+     end
+--- FROZEN_BASELINE/Bars/BadgeHost.lua
++++ RESEARCH_ONLY_NOT_APPLIED/Bars/BadgeHost.lua
+@@ -1227,7 +1227,10 @@
+ 					local alphaOk = true
+ 					if w and w.GetAlpha then
+ 						local ok, a = pcall(w.GetAlpha, w)
+-						if ok and type(a) == "number" and a <= 0 then
++						-- The configured owned badge alpha is public even when its
++						-- widget getter is restricted. Hidden/parked flags above win.
++						if not ok or not CanRead(a) then a = badge._fluxBadgeAlpha end
++						if CanRead(a) and type(a) == "number" and a <= 0 then
+ 							alphaOk = false
+ 						end
+ 					end
+--- FROZEN_BASELINE/Bars/Blizzard.lua
++++ RESEARCH_ONLY_NOT_APPLIED/Bars/Blizzard.lua
+@@ -1027,9 +1027,18 @@
+ 		return
+ 	end
+ 	local function Dim(frame)
+-		if type(frame) == "table" and frame.GetAlpha and frame.SetAlpha and frame:GetAlpha() > 0 then
+-			frame:SetAlpha(0)
+-		end
++		if type(frame) ~= "table" or not frame.SetAlpha then return end
++		if frame.GetAlpha then
++			local alpha = frame:GetAlpha()
++			local S = Flux.Secrets
++			local secret = (S and S.IsSecretValue) or issecretvalue
++			local access = (S and S.CanAccessValue) or canaccessvalue
++			if not (secret and secret(alpha)) and (not access or access(alpha))
++				and type(alpha) == "number" and alpha <= 0 then return end
++		end
++		-- Selected native chrome is owned suppression intent. An unreadable
++		-- value cannot veto that intent; public zero still avoids repeat writes.
++		frame:SetAlpha(0)
+ 	end
+ 	for i = 1, Bars.NUM_NATIVE do
+ 		Dim(Blizzard.GetActionButton(i))
+--- FROZEN_BASELINE/Core/ButtonFX/Cast.lua
++++ RESEARCH_ONLY_NOT_APPLIED/Core/ButtonFX/Cast.lua
+@@ -487,6 +487,13 @@
+ 	return nil
+ end
+ 
++local function ReadableAlpha(value)
++	local S = Flux.Secrets
++	local secret = (S and S.IsSecretValue) or issecretvalue
++	local access = (S and S.CanAccessValue) or canaccessvalue
++	return not (secret and secret(value)) and (not access or access(value))
++end
++
+ local function WidgetShown(widget)
+ 	if not widget or widget._fluxParked then
+ 		return false
+@@ -496,7 +503,13 @@
+ 	end
+ 	if widget.GetAlpha then
+ 		local ok, a = pcall(widget.GetAlpha, widget)
+-		if ok and type(a) == "number" and a <= 0 then
++		if not ok or not ReadableAlpha(a) then
++			-- Badge alpha is configured by its owner; no alpha is inferred for
++			-- other restricted widgets. Parked/hidden/IsShown still prune them.
++			local owner = widget.FluxButton
++			a = owner and owner._fluxBadgeAlpha
++		end
++		if ReadableAlpha(a) and type(a) == "number" and a <= 0 then
+ 			return false
+ 		end
+ 	end
+--- FROZEN_BASELINE/Core/ButtonFX/Charges.lua
++++ RESEARCH_ONLY_NOT_APPLIED/Core/ButtonFX/Charges.lua
+@@ -123,16 +123,23 @@
+ 	end
+ 	if not on then
+ 		cd:SetDrawBling(false)
+-		return
+-	end
++		cd._fxBlingDeferred = nil
++		return
++	end
++	-- Missing legacy getter keeps its established compatibility policy.
++	-- An existing but unreadable getter is unknown, not forced to 0 or 1.
+ 	local alpha = 1
+-	if cd.GetEffectiveAlpha then
+-		local a = cd:GetEffectiveAlpha()
+-		if type(a) == "number" then
+-			alpha = a
+-		end
++	if cd.GetEffectiveAlpha then alpha = cd:GetEffectiveAlpha() end
++	local S = Flux.Secrets
++	local secret = (S and S.IsSecretValue) or issecretvalue
++	local access = (S and S.CanAccessValue) or canaccessvalue
++	if (secret and secret(alpha)) or (access and not access(alpha))
++		or type(alpha) ~= "number" then
++		cd._fxBlingDeferred = true
++		return
+ 	end
+ 	cd:SetDrawBling(alpha > 0.4)
++	cd._fxBlingDeferred = nil
+ end
+ 
+ -- ButtonForge Classic: keep the cooldown frame shown when idle. Hide() drops
+@@ -255,6 +262,9 @@
+ 		and cd._fxSigRate == modRate
+ 		and cd._fxSigExp == expirationTime
+ 	then
++		-- Retry only a deferred appearance decision. Do not restart an
++		-- unchanged native timer merely because its alpha was restricted.
++		if cd._fxBlingDeferred then SetBling(cd, cd._fxSigShown == true) end
+ 		return cd._fxSigShown, false
+ 	end
+ 	local shown = SetCD(cd, start, duration, enable, drawEdge, durationObject, modRate, expirationTime)
+--- FROZEN_BASELINE/ExtraButtonSystem/Engine/Button.lua
++++ RESEARCH_ONLY_NOT_APPLIED/ExtraButtonSystem/Engine/Button.lua
+@@ -2255,6 +2255,18 @@
+     self._lastCooldownIsCharge = nil
+ end
+ 
++local function PublicCooldownAlpha(cd)
++    if not cd.GetEffectiveAlpha then return 1 end -- established legacy policy
++    local alpha = cd:GetEffectiveAlpha()
++    local Flux = _G.Flux
++    local S = (Flux and Flux.Secrets) or (FluxAPICompat and FluxAPICompat.API)
++    local secret = (S and S.IsSecretValue) or issecretvalue
++    local access = (S and S.CanAccessValue) or canaccessvalue
++    if (secret and secret(alpha)) or (access and not access(alpha))
++        or type(alpha) ~= "number" then return nil end
++    return alpha
++end
++
+ --- Paint via Midnight duration object when available; otherwise numeric SetCooldown.
+ function FluxButton:CooldownFrame_SetFromDurationObject(durationObject, isCharge)
+     if not self.WCooldown then return end
+@@ -2263,14 +2275,18 @@
+         self:ClearCooldownVisual()
+         return
+     end
+-    local alpha = (cd.GetEffectiveAlpha and cd:GetEffectiveAlpha()) or 1
+-    if cd.SetSwipeColor then pcall(cd.SetSwipeColor, cd, 0, 0, 0, alpha) end
+-    if alpha > 0.4 then
+-        if cd.SetDrawBling then pcall(cd.SetDrawBling, cd, true) end
+-        if cd.SetDrawEdge then pcall(cd.SetDrawEdge, cd, isCharge and true or false) end
+-    else
+-        if cd.SetDrawBling then pcall(cd.SetDrawBling, cd, false) end
+-        if cd.SetDrawEdge then pcall(cd.SetDrawEdge, cd, false) end
++    local alpha = PublicCooldownAlpha(cd)
++    -- Retain existing appearance when private; duration lifecycle continues.
++    -- The existing next paint retries, without a new timer or forced alpha.
++    if alpha ~= nil then
++        if cd.SetSwipeColor then pcall(cd.SetSwipeColor, cd, 0, 0, 0, alpha) end
++        if alpha > 0.4 then
++            if cd.SetDrawBling then pcall(cd.SetDrawBling, cd, true) end
++            if cd.SetDrawEdge then pcall(cd.SetDrawEdge, cd, isCharge and true or false) end
++        else
++            if cd.SetDrawBling then pcall(cd.SetDrawBling, cd, false) end
++            if cd.SetDrawEdge then pcall(cd.SetDrawEdge, cd, false) end
++        end
+     end
+     if cd.SetDrawSwipe then pcall(cd.SetDrawSwipe, cd, not isCharge) end
+     if cd.SetCooldownFromDurationObject then
+@@ -2606,15 +2622,16 @@
+                 end
+             end
+ 
+-            local alpha = (cd.GetEffectiveAlpha and cd:GetEffectiveAlpha()) or 1
+-            if cd.SetSwipeColor then cd:SetSwipeColor(0, 0, 0, alpha) end
+-
+-            if alpha > 0.4 then
+-                if cd.SetDrawEdge then cd:SetDrawEdge(drawEdge or forceShowDrawEdge) end
+-                if cd.SetDrawBling then cd:SetDrawBling(true) end
+-            else
+-                if cd.SetDrawEdge then cd:SetDrawEdge(false) end
+-                if cd.SetDrawBling then cd:SetDrawBling(false) end
++            local alpha = PublicCooldownAlpha(cd)
++            if alpha ~= nil then
++                if cd.SetSwipeColor then cd:SetSwipeColor(0, 0, 0, alpha) end
++                if alpha > 0.4 then
++                    if cd.SetDrawEdge then cd:SetDrawEdge(drawEdge or forceShowDrawEdge) end
++                    if cd.SetDrawBling then cd:SetDrawBling(true) end
++                else
++                    if cd.SetDrawEdge then cd:SetDrawEdge(false) end
++                    if cd.SetDrawBling then cd:SetDrawBling(false) end
++                end
+             end
+             if cd.SetDrawSwipe then cd:SetDrawSwipe(not drawEdge) end
+ 
+--- FROZEN_BASELINE/libs/LibCustomGlow-1.0/LibCustomGlow-1.0.lua
++++ RESEARCH_ONLY_NOT_APPLIED/libs/LibCustomGlow-1.0/LibCustomGlow-1.0.lua
+@@ -493,42 +493,51 @@
+     end
+ end
+ 
++-- Local candidate: record only this library owner's explicit base-alpha
++-- writes. Native animation parameters stay on their existing groups.
++-- No global hook, secret read or arbitrary shared-library minor bump.
++local function SetButtonGlowAlpha(frame, texture, alpha)
++    frame[texture]:SetAlpha(alpha)
++    frame._lCGTextureAlpha = frame._lCGTextureAlpha or {}
++    frame._lCGTextureAlpha[texture] = alpha
++end
++
+ local function AnimIn_OnPlay(group)
+     local frame = group:GetParent()
+     local frameWidth, frameHeight = frame:GetSize()
+     frame.spark:SetSize(frameWidth, frameHeight)
+-    frame.spark:SetAlpha(not(frame.color) and 1.0 or 0.3*frame.color[4])
++    SetButtonGlowAlpha(frame, "spark", not(frame.color) and 1.0 or 0.3*frame.color[4])
+     frame.innerGlow:SetSize(frameWidth / 2, frameHeight / 2)
+-    frame.innerGlow:SetAlpha(not(frame.color) and 1.0 or frame.color[4])
+-    frame.innerGlowOver:SetAlpha(not(frame.color) and 1.0 or frame.color[4])
++    SetButtonGlowAlpha(frame, "innerGlow", not(frame.color) and 1.0 or frame.color[4])
++    SetButtonGlowAlpha(frame, "innerGlowOver", not(frame.color) and 1.0 or frame.color[4])
+     frame.outerGlow:SetSize(frameWidth * 2, frameHeight * 2)
+-    frame.outerGlow:SetAlpha(not(frame.color) and 1.0 or frame.color[4])
+-    frame.outerGlowOver:SetAlpha(not(frame.color) and 1.0 or frame.color[4])
++    SetButtonGlowAlpha(frame, "outerGlow", not(frame.color) and 1.0 or frame.color[4])
++    SetButtonGlowAlpha(frame, "outerGlowOver", not(frame.color) and 1.0 or frame.color[4])
+     frame.ants:SetSize(frameWidth * 0.85, frameHeight * 0.85)
+-    frame.ants:SetAlpha(0)
++    SetButtonGlowAlpha(frame, "ants", 0)
+     frame:Show()
+ end
+ 
+ local function AnimIn_OnFinished(group)
+     local frame = group:GetParent()
+     local frameWidth, frameHeight = frame:GetSize()
+-    frame.spark:SetAlpha(0)
+-    frame.innerGlow:SetAlpha(0)
++    SetButtonGlowAlpha(frame, "spark", 0)
++    SetButtonGlowAlpha(frame, "innerGlow", 0)
+     frame.innerGlow:SetSize(frameWidth, frameHeight)
+-    frame.innerGlowOver:SetAlpha(0.0)
++    SetButtonGlowAlpha(frame, "innerGlowOver", 0.0)
+     frame.outerGlow:SetSize(frameWidth, frameHeight)
+-    frame.outerGlowOver:SetAlpha(0.0)
++    SetButtonGlowAlpha(frame, "outerGlowOver", 0.0)
+     frame.outerGlowOver:SetSize(frameWidth, frameHeight)
+-    frame.ants:SetAlpha(not(frame.color) and 1.0 or frame.color[4])
++    SetButtonGlowAlpha(frame, "ants", not(frame.color) and 1.0 or frame.color[4])
+ end
+ 
+ local function AnimIn_OnStop(group)
+     local frame = group:GetParent()
+     local frameWidth, frameHeight = frame:GetSize()
+-    frame.spark:SetAlpha(0)
+-    frame.innerGlow:SetAlpha(0)
+-    frame.innerGlowOver:SetAlpha(0.0)
+-    frame.outerGlowOver:SetAlpha(0.0)
++    SetButtonGlowAlpha(frame, "spark", 0)
++    SetButtonGlowAlpha(frame, "innerGlow", 0)
++    SetButtonGlowAlpha(frame, "innerGlowOver", 0.0)
++    SetButtonGlowAlpha(frame, "outerGlowOver", 0.0)
+ end
+ 
+ local function bgHide(self)
+@@ -589,14 +598,14 @@
+ local function configureButtonGlow(f,alpha)
+     f.spark = f:CreateTexture(nil, "BACKGROUND")
+     f.spark:SetPoint("CENTER")
+-    f.spark:SetAlpha(0)
++    SetButtonGlowAlpha(f, "spark", 0)
+     f.spark:SetTexture([[Interface\SpellActivationOverlay\IconAlert]])
+     f.spark:SetTexCoord(0.00781250, 0.61718750, 0.00390625, 0.26953125)
+ 
+     -- inner glow
+     f.innerGlow = f:CreateTexture(nil, "ARTWORK")
+     f.innerGlow:SetPoint("CENTER")
+-    f.innerGlow:SetAlpha(0)
++    SetButtonGlowAlpha(f, "innerGlow", 0)
+     f.innerGlow:SetTexture([[Interface\SpellActivationOverlay\IconAlert]])
+     f.innerGlow:SetTexCoord(0.00781250, 0.50781250, 0.27734375, 0.52734375)
+ 
+@@ -604,14 +613,14 @@
+     f.innerGlowOver = f:CreateTexture(nil, "ARTWORK")
+     f.innerGlowOver:SetPoint("TOPLEFT", f.innerGlow, "TOPLEFT")
+     f.innerGlowOver:SetPoint("BOTTOMRIGHT", f.innerGlow, "BOTTOMRIGHT")
+-    f.innerGlowOver:SetAlpha(0)
++    SetButtonGlowAlpha(f, "innerGlowOver", 0)
+     f.innerGlowOver:SetTexture([[Interface\SpellActivationOverlay\IconAlert]])
+     f.innerGlowOver:SetTexCoord(0.00781250, 0.50781250, 0.53515625, 0.78515625)
+ 
+     -- outer glow
+     f.outerGlow = f:CreateTexture(nil, "ARTWORK")
+     f.outerGlow:SetPoint("CENTER")
+-    f.outerGlow:SetAlpha(0)
++    SetButtonGlowAlpha(f, "outerGlow", 0)
+     f.outerGlow:SetTexture([[Interface\SpellActivationOverlay\IconAlert]])
+     f.outerGlow:SetTexCoord(0.00781250, 0.50781250, 0.27734375, 0.52734375)
+ 
+@@ -619,14 +628,14 @@
+     f.outerGlowOver = f:CreateTexture(nil, "ARTWORK")
+     f.outerGlowOver:SetPoint("TOPLEFT", f.outerGlow, "TOPLEFT")
+     f.outerGlowOver:SetPoint("BOTTOMRIGHT", f.outerGlow, "BOTTOMRIGHT")
+-    f.outerGlowOver:SetAlpha(0)
++    SetButtonGlowAlpha(f, "outerGlowOver", 0)
+     f.outerGlowOver:SetTexture([[Interface\SpellActivationOverlay\IconAlert]])
+     f.outerGlowOver:SetTexCoord(0.00781250, 0.50781250, 0.53515625, 0.78515625)
+ 
+     -- ants
+     f.ants = f:CreateTexture(nil, "OVERLAY")
+     f.ants:SetPoint("CENTER")
+-    f.ants:SetAlpha(0)
++    SetButtonGlowAlpha(f, "ants", 0)
+     f.ants:SetTexture([[Interface\SpellActivationOverlay\IconAlertAnts]])
+ 
+     f.animIn = f:CreateAnimationGroup()
+@@ -714,8 +723,8 @@
+             for texture in pairs(ButtonGlowTextures) do
+                 f[texture]:SetDesaturated(nil)
+                 f[texture]:SetVertexColor(1,1,1)
+-                local alpha = math.min(f[texture]:GetAlpha()/noZero(f.color and f.color[4] or 1), 1)
+-                f[texture]:SetAlpha(alpha)
++                local alpha = math.min(f._lCGTextureAlpha[texture]/noZero(f.color and f.color[4] or 1), 1)
++                SetButtonGlowAlpha(f, texture, alpha)
+                 updateAlphaAnim(f, 1)
+             end
+             f.color = false
+@@ -723,8 +732,8 @@
+             for texture in pairs(ButtonGlowTextures) do
+                 f[texture]:SetDesaturated(1)
+                 f[texture]:SetVertexColor(color[1],color[2],color[3])
+-                local alpha = math.min(f[texture]:GetAlpha()/noZero(f.color and f.color[4] or 1)*color[4], 1)
+-                f[texture]:SetAlpha(alpha)
++                local alpha = math.min(f._lCGTextureAlpha[texture]/noZero(f.color and f.color[4] or 1)*color[4], 1)
++                SetButtonGlowAlpha(f, texture, alpha)
+                 updateAlphaAnim(f,color and color[4] or 1)
+             end
+             f.color = color
+--- FROZEN_BASELINE/UnitFrames/FluxUnitFrames_Shared.lua
++++ RESEARCH_ONLY_NOT_APPLIED/UnitFrames/FluxUnitFrames_Shared.lua
+@@ -2507,10 +2507,10 @@
+ 
+     if API.isMidnight then
+         -- ---------------------------------------------------------------
+-        -- 12.0+ Path: All numeric values may be secret.
+-        -- Arithmetic on secrets produces secrets (safe); only comparisons
+-        -- (>, <, ==) error.  Wrap comparisons in pcall; pass secrets
+-        -- directly to widget APIs (SetValue, SetMinMaxValues, SetPoint).
++        -- Native numeric getters may return values addon Lua cannot inspect.
++        -- Access is operation-specific; pcall does not make a value readable.
++        -- Keep opaque health/absorb amounts on permitted StatusBar sinks and
++        -- use native anchors with public offsets for their presentation.
+         -- ---------------------------------------------------------------
+         if not frame.Health.healCalc then
+             frame.Health.healCalc = API.CreateUnitHealPredictionCalculator()
+@@ -7294,13 +7294,14 @@
+         ThreatBarRaiseGlowAboveBorder(shell)
+         return
+     end
+-    shell._fluxThreatGlowBand = band
+     -- Prefer LCG so we can tint yellow→red; frameLevel arg must clear the border (+10).
++    local applied = false
+     if LCG and LCG.ButtonGlow_Start then
+-        pcall(LCG.ButtonGlow_Start, shell, color, 0.25, 16)
++        applied = pcall(LCG.ButtonGlow_Start, shell, color, 0.25, 16)
+     elseif LBG and LBG.ShowOverlayGlow then
+-        pcall(LBG.ShowOverlayGlow, shell)
+-    end
++        applied = pcall(LBG.ShowOverlayGlow, shell)
++    end
++    if applied then shell._fluxThreatGlowBand = band end
+     ThreatBarRaiseGlowAboveBorder(shell)
+ end
+ 

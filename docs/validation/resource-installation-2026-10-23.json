@@ -1,0 +1,115 @@
+{
+  "scope": "Read-only source fingerprint check. Installed files matching does not mean currently executing Lua has reloaded, and is not native compatibility acceptance.",
+  "files": [
+    {
+      "path": "FluxDefaultSettings.lua",
+      "sha256": "353a596d1c38ff6c3e47538ba3b7305fc9a233473301f27488b7821288a1d6a7",
+      "installedMatches": {
+        "_retail_": true,
+        "_classic_beta_": true,
+        "_classic_era_": true,
+        "_anniversary_": true,
+        "_classic_": true
+      }
+    },
+    {
+      "path": "Respec/FluxRespec_Apply.lua",
+      "sha256": "16916f21c5b5d91c037b63c2f48b38f57f71a9e2a75e1af14be563b106205a09",
+      "installedMatches": {
+        "_retail_": true,
+        "_classic_beta_": true,
+        "_classic_era_": true,
+        "_anniversary_": true,
+        "_classic_": true
+      }
+    },
+    {
+      "path": "Binding/Respec.lua",
+      "sha256": "75e606330ab71c70881f13bbac29b6b515c3d7847b12c3df444a03859ecca417",
+      "installedMatches": {
+        "_retail_": true,
+        "_classic_beta_": true,
+        "_classic_era_": true,
+        "_anniversary_": true,
+        "_classic_": true
+      }
+    },
+    {
+      "path": "BaganatorCompat/Loader.lua",
+      "sha256": "95790e2dce5beed1766ce56424bd9323db32e3cdd5460cd9212a0d7c6823e8db",
+      "installedMatches": {
+        "_retail_": true,
+        "_classic_beta_": true,
+        "_classic_era_": true,
+        "_anniversary_": true,
+        "_classic_": true
+      }
+    },
+    {
+      "path": "BaganatorCompat/FluxBaganator_GearSets.lua",
+      "sha256": "054c95507fcbb5899d2c0369ce49ec76a991ed3e07cd3e0a924e0bdf5f1ac209",
+      "installedMatches": {
+        "_retail_": true,
+        "_classic_beta_": true,
+        "_classic_era_": true,
+        "_anniversary_": true,
+        "_classic_": true
+      }
+    },
+    {
+      "path": "Inventory/Restock/Core/FluxRestockSettings.lua",
+      "sha256": "18017b1a283bea71acb847f15777545a6d30d0640146c16c5778b478d7349dce",
+      "installedMatches": {
+        "_retail_": true,
+        "_classic_beta_": true,
+        "_classic_era_": true,
+        "_anniversary_": true,
+        "_classic_": true
+      }
+    },
+    {
+      "path": "Core/DB.lua",
+      "sha256": "e833ac2b21230dfdf3ad55d5f4c7c4a161208356c5090c782767e72be70927c1",
+      "installedMatches": {
+        "_retail_": true,
+        "_classic_beta_": true,
+        "_classic_era_": true,
+        "_anniversary_": true,
+        "_classic_": true
+      }
+    },
+    {
+      "path": "Core/Engine/Combat.lua",
+      "sha256": "2eaf940e92498af507f9d4afb5b88e552b3217169d03956d091e6d025cc09092",
+      "installedMatches": {
+        "_retail_": true,
+        "_classic_beta_": true,
+        "_classic_era_": true,
+        "_anniversary_": true,
+        "_classic_": true
+      }
+    },
+    {
+      "path": "UnitFrames/FluxPowerCostOverlay.lua",
+      "sha256": "386e4e2d1a17aeec00ede2e20cbe4cc76cfe2ac6ba2b9a3fec8a9f2d2725b3e8",
+      "installedMatches": {
+        "_retail_": true,
+        "_classic_beta_": true,
+        "_classic_era_": true,
+        "_anniversary_": true,
+        "_classic_": true
+      }
+    },
+    {
+      "path": "UnitFrames/FluxUnitFrames_Shared.lua",
+      "sha256": "fcbb2993a20ede85b3a33b570d6d653371dfb610a5ab13ed2d40f79fa1c89797",
+      "installedMatches": {
+        "_retail_": true,
+        "_classic_beta_": true,
+        "_classic_era_": true,
+        "_anniversary_": true,
+        "_classic_": true
+      }
+    }
+  ]
+}

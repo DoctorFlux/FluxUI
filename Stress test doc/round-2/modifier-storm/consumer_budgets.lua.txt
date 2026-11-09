@@ -1,0 +1,114 @@
+-- Actual Bars State/slot bookkeeping/Watch modifier callback and full EBS
+-- HotkeyUtil. Counters are desktop call counts, not native CPU/FPS/taint proof.
+local function read(path)local f=assert(io.open(path,"rb"));local s=f:read("*a"):gsub("\r\n","\n");f:close();return s end
+local function cut(s,a,b)local p=assert(s:find(a,1,true),a);return s:sub(p,assert(s:find(b,p+#a,true),b)-1)end
+local stateSource=read("Bars/State.lua");local watchSource=read("Bars/Watch.lua");local hostSource=read("Bars/Hosts.lua")
+local checks,rawEvents=0,0;local function check(v,why)checks=checks+1;assert(v,why)end
+local clients={"classic_era","classic_anniversary","live","forever"}
+local function barsFixture(client,combat,count)
+    local s={combat=false,mask=0,hostVisits=0,walks=0,reads=0,writes=0,removes=0,paintRequests=0,paintTokens={},dirty=0,badge=0,effects=0}
+    local e=setmetatable({},{__index=_G});e._G=e
+    e.IsShiftKeyDown=function()return s.mask%2==1 end;e.IsControlKeyDown=function()return math.floor(s.mask/2)%2==1 end
+    e.IsAltKeyDown=function()return math.floor(s.mask/4)%2==1 end
+    e.table={};for k,v in pairs(table)do e.table[k]=v end
+    e.table.remove=function(t,i)s.removes=s.removes+1;return table.remove(t,i)end
+    local hosts={};local bars={};local flux={Bars=bars,Combat={InLockdown=function()return s.combat end},
+        Restricted={PagingWorks=function()return client~="forever"end,Works=function()return client~="forever"end},
+        Context={HasSubscribers=function()return true end}}
+    e.Flux=flux;local ns={Flux=flux}
+    assert(load(read("Bars/SlotMath.lua"),"@production-slot-math","t",e))("_FluxUI",ns)
+    bars.Hosts={};local index=assert(load("local Hosts=...;local slotIndex={}\n"
+        ..cut(hostSource,"function Hosts.IndexSlot(host, newSlot)","function Hosts.ForSlot(slot)").."\nreturn slotIndex","@production-index-slot","t",e))(bars.Hosts)
+    bars.Paint={Dirty=function()s.dirty=s.dirty+1 end};bars.BadgeHost={NotifyDisplay=function()s.badge=s.badge+1 end}
+    bars.Effects={Refresh=function()s.effects=s.effects+1 end}
+    bars.ForEachHost=function(fn)s.walks=s.walks+1;for _,host in ipairs(hosts)do s.hostVisits=s.hostVisits+1;fn(host)end end
+    bars.RequestPaint=function(key)s.paintRequests=s.paintRequests+1;s.paintTokens[key]=true end
+    for i=1,count do
+        local col=(i-1)%19+1;local row=({"main","sec","tert"})[math.floor((i-1)/19)+1]
+        local widget={attrs={["flux-column"]=col,["flux-has-sec"]=1,["flux-has-tert"]=1,["flux-promoted"]=0}}
+        function widget:GetAttribute(k)s.reads=s.reads+1;return self.attrs[k]end
+        function widget:SetAttribute(k,v)if s.combat then error("protected combat attribute write")end;s.writes=s.writes+1;self.attrs[k]=v end
+        hosts[#hosts+1]={widget=widget,column=col,row=row}
+    end
+    assert(load(stateSource,"@production-bars-state","t",e))("_FluxUI",ns)
+    bars.State.ApplySlotsInsecure() -- Normal out-of-combat preparation.
+    local ev={};ev.Register=function(name,callback)s.event=callback end
+    local callbackCode="local Flux,Bars,Ev=...;local InLockdown=function()return Flux.Combat.InLockdown()end\n"
+        ..cut(watchSource,"\tlocal function ContextOwnsDisplay()","\t-- Extra Watch used to be the only")
+        ..cut(watchSource,'\tEv.Register("MODIFIER_STATE_CHANGED", function()','\tEv.Register("UPDATE_BINDINGS", function()')
+    assert(load(callbackCode,"@production-bars-watch-modifier","t",e))(flux,bars,ev)
+    s.combat=combat;s.hosts,s.index=hosts,index
+    for _,name in ipairs({"hostVisits","walks","reads","writes","removes","paintRequests","dirty","badge","effects"})do s[name]=0 end
+    return s
+end
+local totals={barsEdges=0,barsHostVisits=0,barsAttributeWrites=0,hotkeyEdges=0,hotkeyTimerFlushes=0}
+for _,client in ipairs(clients)do for _,combat in ipairs({false,true})do for _,n in ipairs({0,1,57})do
+    for _,pattern in ipairs({"duplicate-held","gray-chords"})do
+        local s=barsFixture(client,combat,n);local edges,frames=256,20;local gray={0,1,3,2,6,7,5,4}
+        for frame=1,frames do
+            for i=1,edges do
+                s.mask=pattern=="duplicate-held"and 1 or gray[(i-1)%8+1]
+                s.event("MODIFIER_STATE_CHANGED","LSHIFT",i%2);rawEvents=rawEvents+1
+            end
+            local pending=0;for _ in pairs(s.paintTokens)do pending=pending+1 end
+            check(pending==4,"four paint buckets remain bounded independently of raw-edge count")
+            s.paintTokens={}
+        end
+        local expectedVisits=(combat or client=="forever")and n*edges*frames or 0
+        check(s.hostVisits==expectedVisits,"actual raw Watch state walks precede downstream coalescing")
+        if combat then check(s.writes==0,"combat uses paint-only slot indexing")end
+        if not combat and client=="forever"then check(s.writes==n*edges*frames*26,"fallback restamps26 attributes per host per raw modifier event")end
+        local indexed=0;for _,list in pairs(s.index)do for _ in ipairs(list)do indexed=indexed+1 end end
+        check(indexed==n,"repeated remove/reinsert retains exact host membership without cache growth")
+        totals.barsEdges=totals.barsEdges+edges*frames;totals.barsHostVisits=totals.barsHostVisits+s.hostVisits;totals.barsAttributeWrites=totals.barsAttributeWrites+s.writes
+        if n==57 then print(("BARS|%s|combat=%s|pattern=%s|edges=%d|host_visits=%d|attribute_reads=%d|attribute_writes=%d|index_removes=%d|paint_requests=%d|peak_paint_tokens=4")
+            :format(client,tostring(combat),pattern,edges*frames,s.hostVisits,s.reads,s.writes,s.removes,s.paintRequests))end
+    end
+end end end
+
+local function hotkeyFixture(client,combat,n)
+    local s={time=0,mask=0,combat=combat,frames={},timers={},maxPending=0,keyReads=0,textWrites=0,styleWrites=0,flushes=0}
+    local e=setmetatable({},{__index=_G});e._G=e
+    local function mod(bit)s.keyReads=s.keyReads+1;return math.floor(s.mask/bit)%2==1 end
+    e.IsShiftKeyDown=function()return mod(1)end;e.IsControlKeyDown=function()return mod(2)end;e.IsAltKeyDown=function()return mod(4)end
+    e.InCombatLockdown=function()return s.combat end;e.GetBindingKey=function()return"G"end;e.GetBindingText=function(v)return v end
+    e.FLUX_API={majorVersion=(client=="live"or client=="forever")and 12 or 1}
+    local buttons={};e.Flux={EBS={buttons=buttons}}
+    e.C_Timer={After=function(delay,fn)s.timers[#s.timers+1]={at=s.time+delay,fn=fn};s.maxPending=math.max(s.maxPending,#s.timers)end}
+    e.CreateFrame=function()
+        local f={events={},scripts={}};function f:RegisterEvent(k)self.events[k]=true end;function f:SetScript(k,v)self.scripts[k]=v end
+        s.frames[#s.frames+1]=f;return f
+    end
+    for i=1,n do
+        local text={text=""};for _,method in ipairs({"ClearAllPoints","SetPoint","SetSize","SetFontObject","SetFont","SetTextColor","SetJustifyH","SetJustifyV","SetWordWrap"})do
+            text[method]=function()s.styleWrites=s.styleWrites+1 end
+        end
+        function text:GetWidth()return 44 end;function text:GetFont()return"font"end
+        function text:SetText(v)self.text=v;s.textWrites=s.textWrites+1 end;function text:Show()end;function text:Hide()end
+        buttons[i]={Widget={},WHotKey=text,HotkeyBinding="TEST"..i,HotkeyAddDynamicModifiers=true,HotkeyHasModifierAssignments=true}
+    end
+    assert(load(read("ExtraButtonSystem/Shared/HotkeyUtil.lua"),"@production-ebs-hotkey-util","t",e))()
+    function s.flushDue()
+        local pending,keep={},{};for _,t in ipairs(s.timers)do if t.at<=s.time then pending[#pending+1]=t else keep[#keep+1]=t end end;s.timers=keep
+        for _,t in ipairs(pending)do s.flushes=s.flushes+1;t.fn()end
+    end
+    s.buttons=buttons;return s
+end
+for _,client in ipairs(clients)do for _,combat in ipairs({false,true})do for _,n in ipairs({0,1,60})do
+    local s=hotkeyFixture(client,combat,n);local f=s.frames[1]
+    for frame=1,120 do
+        for i=1,256 do s.mask=i%8;f.scripts.OnEvent(f,"MODIFIER_STATE_CHANGED");rawEvents=rawEvents+1 end
+        s.time=frame/120;s.flushDue()
+        check(#s.timers<=1,"hotkey coalescer retains at most one timer under256 edges/frame")
+    end
+    s.mask=0;f.scripts.OnEvent(f,"MODIFIER_STATE_CHANGED");rawEvents=rawEvents+1;s.time=s.time+.1;s.flushDue()
+    check(#s.frames==1 and #s.timers==0 and not f._modifierUpdatePending,"hotkey owner leaves no driver/timer backlog after release")
+    for _,button in ipairs(s.buttons)do check(button.WHotKey.text=="G","final authoritative release clears all modifier prefixes")end
+    check(s.maxPending<=1 and s.flushes<=21,"hotkey work is bounded by existing50ms cadence")
+    check(s.textWrites==n*s.flushes,"one label paint per active button per timer flush")
+    totals.hotkeyEdges=totals.hotkeyEdges+120*256+1;totals.hotkeyTimerFlushes=totals.hotkeyTimerFlushes+s.flushes
+    if n==60 then print(("HOTKEY|%s|combat=%s|edges=%d|timer_flushes=%d|peak_pending=%d|text_writes=%d|style_writes=%d|modifier_getter_calls=%d|final_release=PASS")
+        :format(client,tostring(combat),120*256+1,s.flushes,s.maxPending,s.textWrites,s.styleWrites,s.keyReads))end
+end end end
+print(("TOTAL|checks=%d|raw_events=%d|bars_edges=%d|bars_host_visits=%d|bars_attribute_writes=%d|hotkey_edges=%d|hotkey_timer_flushes=%d")
+    :format(checks,rawEvents,totals.barsEdges,totals.barsHostVisits,totals.barsAttributeWrites,totals.hotkeyEdges,totals.hotkeyTimerFlushes))

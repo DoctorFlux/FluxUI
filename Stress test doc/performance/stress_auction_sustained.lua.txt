@@ -1,0 +1,29 @@
+-- Sustained event stream through unchanged complete builtin auction scanner.
+-- Reuses existing native/API fixture; modeled clocks are not measured native ms.
+local f=assert(io.open("tests/builtin_auction_publication.lua","rb"));local src=f:read("*a"):gsub("\r\n","\n");f:close()
+local boundary=assert(src:find('for _,client in ipairs({"era","anniversary","forever","retail","mists"})do',1,true))
+local boot=assert(load(src:sub(1,boundary-1).."\nreturn boot", "@auction-publication-fixture", "t",_G))()
+local checks,events=0,0
+local function check(ok,msg)checks=checks+1;assert(ok,msg)end
+for _,client in ipairs({"era","anniversary","live","forever"})do
+    for _,rows in ipairs({32,1024})do
+        local s=boot(client=="era"or client=="anniversary",false,rows)
+        s:open();s:drain();local original=s.snap.generation
+        s.quantity=3;s:reset();local beforeReads,beforePulses=s.nativeReads,s.pulses
+        for i=1,200 do
+            s:event((client=="era"or client=="anniversary")and"AUCTION_OWNED_LIST_UPDATE"or"OWNED_AUCTIONS_UPDATED")
+            s:step(.05);events=events+1
+        end
+        local duringReads,duringPulses=s.nativeReads-beforeReads,s.pulses-beforePulses
+        local beforeTime=s.now;s:drain();local quietDelay=s.now-beforeTime
+        local sum=0;for _,v in pairs(s.snap.counts)do sum=sum+v end
+        check(s.errors==0 and sum==3*rows,"quiet settle publishes complete current quantities")
+        check(s.snap.generation==original+1,"only final coherent changed generation publishes")
+        check(s:measure().maxNative<=32,"continuous event scanner retains row bound")
+        local reads=s.nativeReads;s:event("AUCTION_HOUSE_CLOSED");s:step(.05)
+        check(s.nativeReads==reads,"closed auction house cancels work")
+        print(("RESULT|auction_sustained_%s_%d|storm_events=200|storm_simulated_seconds=10|native_reads_during_storm=%d|publications_during_storm=%d|total_changed_publications=%d|quiet_settle_simulated_seconds=%.4f|max_rows_per_frame=%d")
+            :format(client,rows,duringReads,duringPulses,s.pulses-beforePulses,quietDelay,s:measure().maxNative))
+    end
+end
+print(("RESULT|SUMMARY|checks=%d|failed=0|event_steps=%d|scenarios=8"):format(checks,events))

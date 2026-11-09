@@ -1,0 +1,15 @@
+{
+  "id": "R2-MOD-01",
+  "correctedPriority": "P3 optimization candidate",
+  "correction": "The historical consumer-budget fixture forced PagingWorks=false for the Forever label. That tests the unsupported-paging fallback, not ordinary current Forever out-of-combat execution. Current Restricted.PagingWorks separately probes repaired secure paging; it must not be inferred from generic Restricted.Works.",
+  "retainedHistoricalEvidence": "../modifier-storm/consumer-results.json and CONSUMER_REPORT.md are retained at their original identities; their out-of-combat fallback counts require this capability qualification.",
+  "actualCurrentSourceGate": "Bars.Watch calls ApplySlotsInsecure only when State.UsesSecurePaging returns false. Combat independently calls IndexLiveSlots.",
+  "correctedControl": "paging_scope_control.lua.txt varies PagingWorks independently from client identity while executing actual State/Watch/Hosts/SlotMath.",
+  "representative256Events57Hosts": {
+    "supportedPagingOutOfCombat": { "hostVisits": 0, "SetAttributeCalls": 0 },
+    "unsupportedPagingOutOfCombat": { "hostVisits": 14592, "SetAttributeCalls": 379392 },
+    "combatEitherCapability": { "hostVisits": 14592, "SetAttributeCalls": 0 }
+  },
+  "retainedHeadline": "Actual raw combat modifier callbacks walk/reindex all hosts even for unchanged state; candidate optimization needs exact input/visual cadence regressions and native profiling.",
+  "notClaimed": ["Ordinary current Forever out-of-combat restamping", "Current native paging capability capture", "Keyer corruption on the supported path", "Native FPS or CPU regression"]
+}

@@ -1,0 +1,3874 @@
+{
+  "baseline": {
+    "commit": "07b11ce66c1b9efd70752f70f15a8e3f88fa63eb",
+    "tree": "ddd388fb8c69d8650efb485f1d9b95d0512f7e3e",
+    "reusedReport": "docs/validation/editorial-cleanup-full-2026-10-29.json",
+    "verifiedLuaFiles": 726,
+    "tests": 85,
+    "fail": 0,
+    "normalization": "CRLF to LF only",
+    "runtimeSource": "Inventory/Restock/Vendor/FluxVendorBuy.lua",
+    "runtimeSha256": "a5daa9465a124b6c2ee4268f4e3b11eafc11f33a422ddd44b14ce36d5dd98da8"
+  },
+  "candidate": {
+    "commit": "cdd752abd060588bc1602e880d997a60dd0b34a9",
+    "tree": "d18478f458e670f18931c070a00d53a708387fee",
+    "sources": {
+      "Inventory/Restock/Vendor/FluxVendorBuy.lua": "e9ce58c2d97709a18eb784d98b6f560258964b6ebf67c057452b8ffceeff564a",
+      "tests/vendor_slot_identity.lua": "e420f27633b322130945c0069ac81c100e92079cb0cfe27f9b346ecc7c61f3f6"
+    }
+  },
+  "configuration": {
+    "scope": "Production FluxVendorBuy module; native merchant/timers/cursor/UI/inventory counts modeled. No client build or native addon list.",
+    "models": [
+      "legacy tuple + item-ID",
+      "legacy tuple + link-only",
+      "modern table + item-ID",
+      "modern table + link-only"
+    ],
+    "cases": "16 changed-listing tails (manual/tier; before/after index refresh), 4 same-pass changes, 4 stable 40-item queues",
+    "warmup": "0.6 modeled second open/settle, build index and advance 0.05; first 8 purchases before changed-tail capture",
+    "duration": "operation bounded; 4 queued tail tasks; stable 40 targets in 5 bag-driven passes plus 100 settled pulses",
+    "repetitions": "5 alternating fresh-process baseline/candidate pairs",
+    "profilers": "off; deterministic harness counters; process times advisory only",
+    "hardware": "Intel Core i7-12700F / 20 logical processors (previous registry evidence); GPU/RAM unavailable",
+    "environment": "Windows-10-10.0.26200-SP0",
+    "nativeMeasurements": "CPU/memory/allocations/latency/frame time/FPS/screenshots/secure behavior pending"
+  },
+  "configSha256": "3bd746da2c3f8edbc9e38a58eca3d0bd49abc6b700319d1925762650f0cb07c1",
+  "samples": [
+    {
+      "trial": 1,
+      "variant": "baseline",
+      "command": [
+        "lua",
+        "tests/vendor_slot_identity.lua",
+        "--source",
+        "tests/fixtures/vendor_buy_slot_before.txt",
+        "--measure"
+      ],
+      "wallSeconds": 0.06999940000241622,
+      "metrics": {
+        "legacy_id_debounced_manual": {
+          "wrong": 1.0,
+          "unavailable": 1.0,
+          "wrong_cost": 800.0,
+          "calls": 4.0,
+          "id_reads": 0.0,
+          "link_reads": 0.0,
+          "spent": 810.0,
+          "frames": 1.0
+        },
+        "legacy_id_debounced_tier": {
+          "wrong": 1.0,
+          "unavailable": 1.0,
+          "wrong_cost": 800.0,
+          "calls": 4.0,
+          "id_reads": 0.0,
+          "link_reads": 0.0,
+          "spent": 810.0,
+          "frames": 1.0
+        },
+        "legacy_id_rebuilt_manual": {
+          "wrong": 1.0,
+          "unavailable": 1.0,
+          "wrong_cost": 800.0,
+          "calls": 4.0,
+          "id_reads": 0.0,
+          "link_reads": 0.0,
+          "spent": 810.0,
+          "frames": 1.0
+        },
+        "legacy_id_rebuilt_tier": {
+          "wrong": 1.0,
+          "unavailable": 1.0,
+          "wrong_cost": 800.0,
+          "calls": 4.0,
+          "id_reads": 0.0,
+          "link_reads": 0.0,
+          "spent": 810.0,
+          "frames": 1.0
+        },
+        "legacy_id_stable": {
+          "calls": 40.0,
+          "passes": 5.0,
+          "id_reads": 0.0,
+          "link_reads": 0.0,
+          "frames": 1.0
+        },
+        "legacy_link_debounced_manual": {
+          "wrong": 1.0,
+          "unavailable": 1.0,
+          "wrong_cost": 800.0,
+          "calls": 4.0,
+          "id_reads": 0.0,
+          "link_reads": 0.0,
+          "spent": 810.0,
+          "frames": 1.0
+        },
+        "legacy_link_debounced_tier": {
+          "wrong": 1.0,
+          "unavailable": 1.0,
+          "wrong_cost": 800.0,
+          "calls": 4.0,
+          "id_reads": 0.0,
+          "link_reads": 0.0,
+          "spent": 810.0,
+          "frames": 1.0
+        },
+        "legacy_link_rebuilt_manual": {
+          "wrong": 1.0,
+          "unavailable": 1.0,
+          "wrong_cost": 800.0,
+          "calls": 4.0,
+          "id_reads": 0.0,
+          "link_reads": 0.0,
+          "spent": 810.0,
+          "frames": 1.0
+        },
+        "legacy_link_rebuilt_tier": {
+          "wrong": 1.0,
+          "unavailable": 1.0,
+          "wrong_cost": 800.0,
+          "calls": 4.0,
+          "id_reads": 0.0,
+          "link_reads": 0.0,
+          "spent": 810.0,
+          "frames": 1.0
+        },
+        "legacy_link_stable": {
+          "calls": 40.0,
+          "passes": 5.0,
+          "id_reads": 0.0,
+          "link_reads": 0.0,
+          "frames": 1.0
+        },
+        "modern_id_debounced_manual": {
+          "wrong": 1.0,
+          "unavailable": 1.0,
+          "wrong_cost": 800.0,
+          "calls": 4.0,
+          "id_reads": 0.0,
+          "link_reads": 0.0,
+          "spent": 810.0,
+          "frames": 1.0
+        },
+        "modern_id_debounced_tier": {
+          "wrong": 1.0,
+          "unavailable": 1.0,
+          "wrong_cost": 800.0,
+          "calls": 4.0,
+          "id_reads": 0.0,
+          "link_reads": 0.0,
+          "spent": 810.0,
+          "frames": 1.0
+        },
+        "modern_id_rebuilt_manual": {
+          "wrong": 1.0,
+          "unavailable": 1.0,
+          "wrong_cost": 800.0,
+          "calls": 4.0,
+          "id_reads": 0.0,
+          "link_reads": 0.0,
+          "spent": 810.0,
+          "frames": 1.0
+        },
+        "modern_id_rebuilt_tier": {
+          "wrong": 1.0,
+          "unavailable": 1.0,
+          "wrong_cost": 800.0,
+          "calls": 4.0,
+          "id_reads": 0.0,
+          "link_reads": 0.0,
+          "spent": 810.0,
+          "frames": 1.0
+        },
+        "modern_id_stable": {
+          "calls": 40.0,
+          "passes": 5.0,
+          "id_reads": 0.0,
+          "link_reads": 0.0,
+          "frames": 1.0
+        },
+        "modern_link_debounced_manual": {
+          "wrong": 1.0,
+          "unavailable": 1.0,
+          "wrong_cost": 800.0,
+          "calls": 4.0,
+          "id_reads": 0.0,
+          "link_reads": 0.0,
+          "spent": 810.0,
+          "frames": 1.0
+        },
+        "modern_link_debounced_tier": {
+          "wrong": 1.0,
+          "unavailable": 1.0,
+          "wrong_cost": 800.0,
+          "calls": 4.0,
+          "id_reads": 0.0,
+          "link_reads": 0.0,
+          "spent": 810.0,
+          "frames": 1.0
+        },
+        "modern_link_rebuilt_manual": {
+          "wrong": 1.0,
+          "unavailable": 1.0,
+          "wrong_cost": 800.0,
+          "calls": 4.0,
+          "id_reads": 0.0,
+          "link_reads": 0.0,
+          "spent": 810.0,
+          "frames": 1.0
+        },
+        "modern_link_rebuilt_tier": {
+          "wrong": 1.0,
+          "unavailable": 1.0,
+          "wrong_cost": 800.0,
+          "calls": 4.0,
+          "id_reads": 0.0,
+          "link_reads": 0.0,
+          "spent": 810.0,
+          "frames": 1.0
+        },
+        "modern_link_stable": {
+          "calls": 40.0,
+          "passes": 5.0,
+          "id_reads": 0.0,
+          "link_reads": 0.0,
+          "frames": 1.0
+        }
+      },
+      "output": "METRIC legacy_id_debounced_manual wrong=1 unavailable=1 wrong_cost=800 calls=4 id_reads=0 link_reads=0 spent=810 frames=1\nFAIL legacy_id_debounced_manual replacement item never bought\nFAIL legacy_id_debounced_manual missing listing never submitted\nMETRIC legacy_id_debounced_tier wrong=1 unavailable=1 wrong_cost=800 calls=4 id_reads=0 link_reads=0 spent=810 frames=1\nFAIL legacy_id_debounced_tier replacement item never bought\nFAIL legacy_id_debounced_tier missing listing never submitted\nMETRIC legacy_id_rebuilt_manual wrong=1 unavailable=1 wrong_cost=800 calls=4 id_reads=0 link_reads=0 spent=810 frames=1\nFAIL legacy_id_rebuilt_manual replacement item never bought\nFAIL legacy_id_rebuilt_manual missing listing never submitted\nMETRIC legacy_id_rebuilt_tier wrong=1 unavailable=1 wrong_cost=800 calls=4 id_reads=0 link_reads=0 spent=810 frames=1\nFAIL legacy_id_rebuilt_tier replacement item never bought\nFAIL legacy_id_rebuilt_tier missing listing never submitted\nFAIL legacy_id each same-pass task rechecks identity\nMETRIC legacy_id_stable calls=40 passes=5 id_reads=0 link_reads=0 frames=1\nMETRIC legacy_link_debounced_manual wrong=1 unavailable=1 wrong_cost=800 calls=4 id_reads=0 link_reads=0 spent=810 frames=1\nFAIL legacy_link_debounced_manual replacement item never bought\nFAIL legacy_link_debounced_manual missing listing never submitted\nMETRIC legacy_link_debounced_tier wrong=1 unavailable=1 wrong_cost=800 calls=4 id_reads=0 link_reads=0 spent=810 frames=1\nFAIL legacy_link_debounced_tier replacement item never bought\nFAIL legacy_link_debounced_tier missing listing never submitted\nMETRIC legacy_link_rebuilt_manual wrong=1 unavailable=1 wrong_cost=800 calls=4 id_reads=0 link_reads=0 spent=810 frames=1\nFAIL legacy_link_rebuilt_manual replacement item never bought\nFAIL legacy_link_rebuilt_manual missing listing never submitted\nMETRIC legacy_link_rebuilt_tier wrong=1 unavailable=1 wrong_cost=800 calls=4 id_reads=0 link_reads=0 spent=810 frames=1\nFAIL legacy_link_rebuilt_tier replacement item never bought\nFAIL legacy_link_rebuilt_tier missing listing never submitted\nFAIL legacy_link each same-pass task rechecks identity\nMETRIC legacy_link_stable calls=40 passes=5 id_reads=0 link_reads=0 frames=1\nMETRIC modern_id_debounced_manual wrong=1 unavailable=1 wrong_cost=800 calls=4 id_reads=0 link_reads=0 spent=810 frames=1\nFAIL modern_id_debounced_manual replacement item never bought\nFAIL modern_id_debounced_manual missing listing never submitted\nMETRIC modern_id_debounced_tier wrong=1 unavailable=1 wrong_cost=800 calls=4 id_reads=0 link_reads=0 spent=810 frames=1\nFAIL modern_id_debounced_tier replacement item never bought\nFAIL modern_id_debounced_tier missing listing never submitted\nMETRIC modern_id_rebuilt_manual wrong=1 unavailable=1 wrong_cost=800 calls=4 id_reads=0 link_reads=0 spent=810 frames=1\nFAIL modern_id_rebuilt_manual replacement item never bought\nFAIL modern_id_rebuilt_manual missing listing never submitted\nMETRIC modern_id_rebuilt_tier wrong=1 unavailable=1 wrong_cost=800 calls=4 id_reads=0 link_reads=0 spent=810 frames=1\nFAIL modern_id_rebuilt_tier replacement item never bought\nFAIL modern_id_rebuilt_tier missing listing never submitted\nFAIL modern_id each same-pass task rechecks identity\nMETRIC modern_id_stable calls=40 passes=5 id_reads=0 link_reads=0 frames=1\nMETRIC modern_link_debounced_manual wrong=1 unavailable=1 wrong_cost=800 calls=4 id_reads=0 link_reads=0 spent=810 frames=1\nFAIL modern_link_debounced_manual replacement item never bought\nFAIL modern_link_debounced_manual missing listing never submitted\nMETRIC modern_link_debounced_tier wrong=1 unavailable=1 wrong_cost=800 calls=4 id_reads=0 link_reads=0 spent=810 frames=1\nFAIL modern_link_debounced_tier replacement item never bought\nFAIL modern_link_debounced_tier missing listing never submitted\nMETRIC modern_link_rebuilt_manual wrong=1 unavailable=1 wrong_cost=800 calls=4 id_reads=0 link_reads=0 spent=810 frames=1\nFAIL modern_link_rebuilt_manual replacement item never bought\nFAIL modern_link_rebuilt_manual missing listing never submitted\nMETRIC modern_link_rebuilt_tier wrong=1 unavailable=1 wrong_cost=800 calls=4 id_reads=0 link_reads=0 spent=810 frames=1\nFAIL modern_link_rebuilt_tier replacement item never bought\nFAIL modern_link_rebuilt_tier missing listing never submitted\nFAIL modern_link each same-pass task rechecks identity\nMETRIC modern_link_stable calls=40 passes=5 id_reads=0 link_reads=0 frames=1\nVendor slot identity: 660 checks, 36 failures\n"
+    },
+    {
+      "trial": 1,
+      "variant": "candidate",
+      "command": [
+        "lua",
+        "tests/vendor_slot_identity.lua"
+      ],
+      "wallSeconds": 0.05174729999998817,
+      "metrics": {
+        "legacy_id_debounced_manual": {
+          "wrong": 0.0,
+          "unavailable": 0.0,
+          "wrong_cost": 0.0,
+          "calls": 2.0,
+          "id_reads": 4.0,
+          "link_reads": 1.0,
+          "spent": 10.0,
+          "frames": 1.0
+        },
+        "legacy_id_debounced_tier": {
+          "wrong": 0.0,
+          "unavailable": 0.0,
+          "wrong_cost": 0.0,
+          "calls": 2.0,
+          "id_reads": 4.0,
+          "link_reads": 1.0,
+          "spent": 10.0,
+          "frames": 1.0
+        },
+        "legacy_id_rebuilt_manual": {
+          "wrong": 0.0,
+          "unavailable": 0.0,
+          "wrong_cost": 0.0,
+          "calls": 2.0,
+          "id_reads": 4.0,
+          "link_reads": 1.0,
+          "spent": 10.0,
+          "frames": 1.0
+        },
+        "legacy_id_rebuilt_tier": {
+          "wrong": 0.0,
+          "unavailable": 0.0,
+          "wrong_cost": 0.0,
+          "calls": 2.0,
+          "id_reads": 4.0,
+          "link_reads": 1.0,
+          "spent": 10.0,
+          "frames": 1.0
+        },
+        "legacy_id_stable": {
+          "calls": 40.0,
+          "passes": 5.0,
+          "id_reads": 40.0,
+          "link_reads": 0.0,
+          "frames": 1.0
+        },
+        "legacy_link_debounced_manual": {
+          "wrong": 0.0,
+          "unavailable": 0.0,
+          "wrong_cost": 0.0,
+          "calls": 2.0,
+          "id_reads": 0.0,
+          "link_reads": 4.0,
+          "spent": 10.0,
+          "frames": 1.0
+        },
+        "legacy_link_debounced_tier": {
+          "wrong": 0.0,
+          "unavailable": 0.0,
+          "wrong_cost": 0.0,
+          "calls": 2.0,
+          "id_reads": 0.0,
+          "link_reads": 4.0,
+          "spent": 10.0,
+          "frames": 1.0
+        },
+        "legacy_link_rebuilt_manual": {
+          "wrong": 0.0,
+          "unavailable": 0.0,
+          "wrong_cost": 0.0,
+          "calls": 2.0,
+          "id_reads": 0.0,
+          "link_reads": 4.0,
+          "spent": 10.0,
+          "frames": 1.0
+        },
+        "legacy_link_rebuilt_tier": {
+          "wrong": 0.0,
+          "unavailable": 0.0,
+          "wrong_cost": 0.0,
+          "calls": 2.0,
+          "id_reads": 0.0,
+          "link_reads": 4.0,
+          "spent": 10.0,
+          "frames": 1.0
+        },
+        "legacy_link_stable": {
+          "calls": 40.0,
+          "passes": 5.0,
+          "id_reads": 0.0,
+          "link_reads": 40.0,
+          "frames": 1.0
+        },
+        "modern_id_debounced_manual": {
+          "wrong": 0.0,
+          "unavailable": 0.0,
+          "wrong_cost": 0.0,
+          "calls": 2.0,
+          "id_reads": 4.0,
+          "link_reads": 1.0,
+          "spent": 10.0,
+          "frames": 1.0
+        },
+        "modern_id_debounced_tier": {
+          "wrong": 0.0,
+          "unavailable": 0.0,
+          "wrong_cost": 0.0,
+          "calls": 2.0,
+          "id_reads": 4.0,
+          "link_reads": 1.0,
+          "spent": 10.0,
+          "frames": 1.0
+        },
+        "modern_id_rebuilt_manual": {
+          "wrong": 0.0,
+          "unavailable": 0.0,
+          "wrong_cost": 0.0,
+          "calls": 2.0,
+          "id_reads": 4.0,
+          "link_reads": 1.0,
+          "spent": 10.0,
+          "frames": 1.0
+        },
+        "modern_id_rebuilt_tier": {
+          "wrong": 0.0,
+          "unavailable": 0.0,
+          "wrong_cost": 0.0,
+          "calls": 2.0,
+          "id_reads": 4.0,
+          "link_reads": 1.0,
+          "spent": 10.0,
+          "frames": 1.0
+        },
+        "modern_id_stable": {
+          "calls": 40.0,
+          "passes": 5.0,
+          "id_reads": 40.0,
+          "link_reads": 0.0,
+          "frames": 1.0
+        },
+        "modern_link_debounced_manual": {
+          "wrong": 0.0,
+          "unavailable": 0.0,
+          "wrong_cost": 0.0,
+          "calls": 2.0,
+          "id_reads": 0.0,
+          "link_reads": 4.0,
+          "spent": 10.0,
+          "frames": 1.0
+        },
+        "modern_link_debounced_tier": {
+          "wrong": 0.0,
+          "unavailable": 0.0,
+          "wrong_cost": 0.0,
+          "calls": 2.0,
+          "id_reads": 0.0,
+          "link_reads": 4.0,
+          "spent": 10.0,
+          "frames": 1.0
+        },
+        "modern_link_rebuilt_manual": {
+          "wrong": 0.0,
+          "unavailable": 0.0,
+          "wrong_cost": 0.0,
+          "calls": 2.0,
+          "id_reads": 0.0,
+          "link_reads": 4.0,
+          "spent": 10.0,
+          "frames": 1.0
+        },
+        "modern_link_rebuilt_tier": {
+          "wrong": 0.0,
+          "unavailable": 0.0,
+          "wrong_cost": 0.0,
+          "calls": 2.0,
+          "id_reads": 0.0,
+          "link_reads": 4.0,
+          "spent": 10.0,
+          "frames": 1.0
+        },
+        "modern_link_stable": {
+          "calls": 40.0,
+          "passes": 5.0,
+          "id_reads": 0.0,
+          "link_reads": 40.0,
+          "frames": 1.0
+        }
+      },
+      "output": "METRIC legacy_id_debounced_manual wrong=0 unavailable=0 wrong_cost=0 calls=2 id_reads=4 link_reads=1 spent=10 frames=1\nMETRIC legacy_id_debounced_tier wrong=0 unavailable=0 wrong_cost=0 calls=2 id_reads=4 link_reads=1 spent=10 frames=1\nMETRIC legacy_id_rebuilt_manual wrong=0 unavailable=0 wrong_cost=0 calls=2 id_reads=4 link_reads=1 spent=10 frames=1\nMETRIC legacy_id_rebuilt_tier wrong=0 unavailable=0 wrong_cost=0 calls=2 id_reads=4 link_reads=1 spent=10 frames=1\nMETRIC legacy_id_stable calls=40 passes=5 id_reads=40 link_reads=0 frames=1\nMETRIC legacy_link_debounced_manual wrong=0 unavailable=0 wrong_cost=0 calls=2 id_reads=0 link_reads=4 spent=10 frames=1\nMETRIC legacy_link_debounced_tier wrong=0 unavailable=0 wrong_cost=0 calls=2 id_reads=0 link_reads=4 spent=10 frames=1\nMETRIC legacy_link_rebuilt_manual wrong=0 unavailable=0 wrong_cost=0 calls=2 id_reads=0 link_reads=4 spent=10 frames=1\nMETRIC legacy_link_rebuilt_tier wrong=0 unavailable=0 wrong_cost=0 calls=2 id_reads=0 link_reads=4 spent=10 frames=1\nMETRIC legacy_link_stable calls=40 passes=5 id_reads=0 link_reads=40 frames=1\nMETRIC modern_id_debounced_manual wrong=0 unavailable=0 wrong_cost=0 calls=2 id_reads=4 link_reads=1 spent=10 frames=1\nMETRIC modern_id_debounced_tier wrong=0 unavailable=0 wrong_cost=0 calls=2 id_reads=4 link_reads=1 spent=10 frames=1\nMETRIC modern_id_rebuilt_manual wrong=0 unavailable=0 wrong_cost=0 calls=2 id_reads=4 link_reads=1 spent=10 frames=1\nMETRIC modern_id_rebuilt_tier wrong=0 unavailable=0 wrong_cost=0 calls=2 id_reads=4 link_reads=1 spent=10 frames=1\nMETRIC modern_id_stable calls=40 passes=5 id_reads=40 link_reads=0 frames=1\nMETRIC modern_link_debounced_manual wrong=0 unavailable=0 wrong_cost=0 calls=2 id_reads=0 link_reads=4 spent=10 frames=1\nMETRIC modern_link_debounced_tier wrong=0 unavailable=0 wrong_cost=0 calls=2 id_reads=0 link_reads=4 spent=10 frames=1\nMETRIC modern_link_rebuilt_manual wrong=0 unavailable=0 wrong_cost=0 calls=2 id_reads=0 link_reads=4 spent=10 frames=1\nMETRIC modern_link_rebuilt_tier wrong=0 unavailable=0 wrong_cost=0 calls=2 id_reads=0 link_reads=4 spent=10 frames=1\nMETRIC modern_link_stable calls=40 passes=5 id_reads=0 link_reads=40 frames=1\nVendor slot identity: 660 checks, 0 failures\n"
+    },
+    {
+      "trial": 2,
+      "variant": "baseline",
+      "command": [
+        "lua",
+        "tests/vendor_slot_identity.lua",
+        "--source",
+        "tests/fixtures/vendor_buy_slot_before.txt",
+        "--measure"
+      ],
+      "wallSeconds": 0.05706730000383686,
+      "metrics": {
+        "legacy_id_debounced_manual": {
+          "wrong": 1.0,
+          "unavailable": 1.0,
+          "wrong_cost": 800.0,
+          "calls": 4.0,
+          "id_reads": 0.0,
+          "link_reads": 0.0,
+          "spent": 810.0,
+          "frames": 1.0
+        },
+        "legacy_id_debounced_tier": {
+          "wrong": 1.0,
+          "unavailable": 1.0,
+          "wrong_cost": 800.0,
+          "calls": 4.0,
+          "id_reads": 0.0,
+          "link_reads": 0.0,
+          "spent": 810.0,
+          "frames": 1.0
+        },
+        "legacy_id_rebuilt_manual": {
+          "wrong": 1.0,
+          "unavailable": 1.0,
+          "wrong_cost": 800.0,
+          "calls": 4.0,
+          "id_reads": 0.0,
+          "link_reads": 0.0,
+          "spent": 810.0,
+          "frames": 1.0
+        },
+        "legacy_id_rebuilt_tier": {
+          "wrong": 1.0,
+          "unavailable": 1.0,
+          "wrong_cost": 800.0,
+          "calls": 4.0,
+          "id_reads": 0.0,
+          "link_reads": 0.0,
+          "spent": 810.0,
+          "frames": 1.0
+        },
+        "legacy_id_stable": {
+          "calls": 40.0,
+          "passes": 5.0,
+          "id_reads": 0.0,
+          "link_reads": 0.0,
+          "frames": 1.0
+        },
+        "legacy_link_debounced_manual": {
+          "wrong": 1.0,
+          "unavailable": 1.0,
+          "wrong_cost": 800.0,
+          "calls": 4.0,
+          "id_reads": 0.0,
+          "link_reads": 0.0,
+          "spent": 810.0,
+          "frames": 1.0
+        },
+        "legacy_link_debounced_tier": {
+          "wrong": 1.0,
+          "unavailable": 1.0,
+          "wrong_cost": 800.0,
+          "calls": 4.0,
+          "id_reads": 0.0,
+          "link_reads": 0.0,
+          "spent": 810.0,
+          "frames": 1.0
+        },
+        "legacy_link_rebuilt_manual": {
+          "wrong": 1.0,
+          "unavailable": 1.0,
+          "wrong_cost": 800.0,
+          "calls": 4.0,
+          "id_reads": 0.0,
+          "link_reads": 0.0,
+          "spent": 810.0,
+          "frames": 1.0
+        },
+        "legacy_link_rebuilt_tier": {
+          "wrong": 1.0,
+          "unavailable": 1.0,
+          "wrong_cost": 800.0,
+          "calls": 4.0,
+          "id_reads": 0.0,
+          "link_reads": 0.0,
+          "spent": 810.0,
+          "frames": 1.0
+        },
+        "legacy_link_stable": {
+          "calls": 40.0,
+          "passes": 5.0,
+          "id_reads": 0.0,
+          "link_reads": 0.0,
+          "frames": 1.0
+        },
+        "modern_id_debounced_manual": {
+          "wrong": 1.0,
+          "unavailable": 1.0,
+          "wrong_cost": 800.0,
+          "calls": 4.0,
+          "id_reads": 0.0,
+          "link_reads": 0.0,
+          "spent": 810.0,
+          "frames": 1.0
+        },
+        "modern_id_debounced_tier": {
+          "wrong": 1.0,
+          "unavailable": 1.0,
+          "wrong_cost": 800.0,
+          "calls": 4.0,
+          "id_reads": 0.0,
+          "link_reads": 0.0,
+          "spent": 810.0,
+          "frames": 1.0
+        },
+        "modern_id_rebuilt_manual": {
+          "wrong": 1.0,
+          "unavailable": 1.0,
+          "wrong_cost": 800.0,
+          "calls": 4.0,
+          "id_reads": 0.0,
+          "link_reads": 0.0,
+          "spent": 810.0,
+          "frames": 1.0
+        },
+        "modern_id_rebuilt_tier": {
+          "wrong": 1.0,
+          "unavailable": 1.0,
+          "wrong_cost": 800.0,
+          "calls": 4.0,
+          "id_reads": 0.0,
+          "link_reads": 0.0,
+          "spent": 810.0,
+          "frames": 1.0
+        },
+        "modern_id_stable": {
+          "calls": 40.0,
+          "passes": 5.0,
+          "id_reads": 0.0,
+          "link_reads": 0.0,
+          "frames": 1.0
+        },
+        "modern_link_debounced_manual": {
+          "wrong": 1.0,
+          "unavailable": 1.0,
+          "wrong_cost": 800.0,
+          "calls": 4.0,
+          "id_reads": 0.0,
+          "link_reads": 0.0,
+          "spent": 810.0,
+          "frames": 1.0
+        },
+        "modern_link_debounced_tier": {
+          "wrong": 1.0,
+          "unavailable": 1.0,
+          "wrong_cost": 800.0,
+          "calls": 4.0,
+          "id_reads": 0.0,
+          "link_reads": 0.0,
+          "spent": 810.0,
+          "frames": 1.0
+        },
+        "modern_link_rebuilt_manual": {
+          "wrong": 1.0,
+          "unavailable": 1.0,
+          "wrong_cost": 800.0,
+          "calls": 4.0,
+          "id_reads": 0.0,
+          "link_reads": 0.0,
+          "spent": 810.0,
+          "frames": 1.0
+        },
+        "modern_link_rebuilt_tier": {
+          "wrong": 1.0,
+          "unavailable": 1.0,
+          "wrong_cost": 800.0,
+          "calls": 4.0,
+          "id_reads": 0.0,
+          "link_reads": 0.0,
+          "spent": 810.0,
+          "frames": 1.0
+        },
+        "modern_link_stable": {
+          "calls": 40.0,
+          "passes": 5.0,
+          "id_reads": 0.0,
+          "link_reads": 0.0,
+          "frames": 1.0
+        }
+      },
+      "output": "METRIC legacy_id_debounced_manual wrong=1 unavailable=1 wrong_cost=800 calls=4 id_reads=0 link_reads=0 spent=810 frames=1\nFAIL legacy_id_debounced_manual replacement item never bought\nFAIL legacy_id_debounced_manual missing listing never submitted\nMETRIC legacy_id_debounced_tier wrong=1 unavailable=1 wrong_cost=800 calls=4 id_reads=0 link_reads=0 spent=810 frames=1\nFAIL legacy_id_debounced_tier replacement item never bought\nFAIL legacy_id_debounced_tier missing listing never submitted\nMETRIC legacy_id_rebuilt_manual wrong=1 unavailable=1 wrong_cost=800 calls=4 id_reads=0 link_reads=0 spent=810 frames=1\nFAIL legacy_id_rebuilt_manual replacement item never bought\nFAIL legacy_id_rebuilt_manual missing listing never submitted\nMETRIC legacy_id_rebuilt_tier wrong=1 unavailable=1 wrong_cost=800 calls=4 id_reads=0 link_reads=0 spent=810 frames=1\nFAIL legacy_id_rebuilt_tier replacement item never bought\nFAIL legacy_id_rebuilt_tier missing listing never submitted\nFAIL legacy_id each same-pass task rechecks identity\nMETRIC legacy_id_stable calls=40 passes=5 id_reads=0 link_reads=0 frames=1\nMETRIC legacy_link_debounced_manual wrong=1 unavailable=1 wrong_cost=800 calls=4 id_reads=0 link_reads=0 spent=810 frames=1\nFAIL legacy_link_debounced_manual replacement item never bought\nFAIL legacy_link_debounced_manual missing listing never submitted\nMETRIC legacy_link_debounced_tier wrong=1 unavailable=1 wrong_cost=800 calls=4 id_reads=0 link_reads=0 spent=810 frames=1\nFAIL legacy_link_debounced_tier replacement item never bought\nFAIL legacy_link_debounced_tier missing listing never submitted\nMETRIC legacy_link_rebuilt_manual wrong=1 unavailable=1 wrong_cost=800 calls=4 id_reads=0 link_reads=0 spent=810 frames=1\nFAIL legacy_link_rebuilt_manual replacement item never bought\nFAIL legacy_link_rebuilt_manual missing listing never submitted\nMETRIC legacy_link_rebuilt_tier wrong=1 unavailable=1 wrong_cost=800 calls=4 id_reads=0 link_reads=0 spent=810 frames=1\nFAIL legacy_link_rebuilt_tier replacement item never bought\nFAIL legacy_link_rebuilt_tier missing listing never submitted\nFAIL legacy_link each same-pass task rechecks identity\nMETRIC legacy_link_stable calls=40 passes=5 id_reads=0 link_reads=0 frames=1\nMETRIC modern_id_debounced_manual wrong=1 unavailable=1 wrong_cost=800 calls=4 id_reads=0 link_reads=0 spent=810 frames=1\nFAIL modern_id_debounced_manual replacement item never bought\nFAIL modern_id_debounced_manual missing listing never submitted\nMETRIC modern_id_debounced_tier wrong=1 unavailable=1 wrong_cost=800 calls=4 id_reads=0 link_reads=0 spent=810 frames=1\nFAIL modern_id_debounced_tier replacement item never bought\nFAIL modern_id_debounced_tier missing listing never submitted\nMETRIC modern_id_rebuilt_manual wrong=1 unavailable=1 wrong_cost=800 calls=4 id_reads=0 link_reads=0 spent=810 frames=1\nFAIL modern_id_rebuilt_manual replacement item never bought\nFAIL modern_id_rebuilt_manual missing listing never submitted\nMETRIC modern_id_rebuilt_tier wrong=1 unavailable=1 wrong_cost=800 calls=4 id_reads=0 link_reads=0 spent=810 frames=1\nFAIL modern_id_rebuilt_tier replacement item never bought\nFAIL modern_id_rebuilt_tier missing listing never submitted\nFAIL modern_id each same-pass task rechecks identity\nMETRIC modern_id_stable calls=40 passes=5 id_reads=0 link_reads=0 frames=1\nMETRIC modern_link_debounced_manual wrong=1 unavailable=1 wrong_cost=800 calls=4 id_reads=0 link_reads=0 spent=810 frames=1\nFAIL modern_link_debounced_manual replacement item never bought\nFAIL modern_link_debounced_manual missing listing never submitted\nMETRIC modern_link_debounced_tier wrong=1 unavailable=1 wrong_cost=800 calls=4 id_reads=0 link_reads=0 spent=810 frames=1\nFAIL modern_link_debounced_tier replacement item never bought\nFAIL modern_link_debounced_tier missing listing never submitted\nMETRIC modern_link_rebuilt_manual wrong=1 unavailable=1 wrong_cost=800 calls=4 id_reads=0 link_reads=0 spent=810 frames=1\nFAIL modern_link_rebuilt_manual replacement item never bought\nFAIL modern_link_rebuilt_manual missing listing never submitted\nMETRIC modern_link_rebuilt_tier wrong=1 unavailable=1 wrong_cost=800 calls=4 id_reads=0 link_reads=0 spent=810 frames=1\nFAIL modern_link_rebuilt_tier replacement item never bought\nFAIL modern_link_rebuilt_tier missing listing never submitted\nFAIL modern_link each same-pass task rechecks identity\nMETRIC modern_link_stable calls=40 passes=5 id_reads=0 link_reads=0 frames=1\nVendor slot identity: 660 checks, 36 failures\n"
+    },
+    {
+      "trial": 2,
+      "variant": "candidate",
+      "command": [
+        "lua",
+        "tests/vendor_slot_identity.lua"
+      ],
+      "wallSeconds": 0.050183799998194445,
+      "metrics": {
+        "legacy_id_debounced_manual": {
+          "wrong": 0.0,
+          "unavailable": 0.0,
+          "wrong_cost": 0.0,
+          "calls": 2.0,
+          "id_reads": 4.0,
+          "link_reads": 1.0,
+          "spent": 10.0,
+          "frames": 1.0
+        },
+        "legacy_id_debounced_tier": {
+          "wrong": 0.0,
+          "unavailable": 0.0,
+          "wrong_cost": 0.0,
+          "calls": 2.0,
+          "id_reads": 4.0,
+          "link_reads": 1.0,
+          "spent": 10.0,
+          "frames": 1.0
+        },
+        "legacy_id_rebuilt_manual": {
+          "wrong": 0.0,
+          "unavailable": 0.0,
+          "wrong_cost": 0.0,
+          "calls": 2.0,
+          "id_reads": 4.0,
+          "link_reads": 1.0,
+          "spent": 10.0,
+          "frames": 1.0
+        },
+        "legacy_id_rebuilt_tier": {
+          "wrong": 0.0,
+          "unavailable": 0.0,
+          "wrong_cost": 0.0,
+          "calls": 2.0,
+          "id_reads": 4.0,
+          "link_reads": 1.0,
+          "spent": 10.0,
+          "frames": 1.0
+        },
+        "legacy_id_stable": {
+          "calls": 40.0,
+          "passes": 5.0,
+          "id_reads": 40.0,
+          "link_reads": 0.0,
+          "frames": 1.0
+        },
+        "legacy_link_debounced_manual": {
+          "wrong": 0.0,
+          "unavailable": 0.0,
+          "wrong_cost": 0.0,
+          "calls": 2.0,
+          "id_reads": 0.0,
+          "link_reads": 4.0,
+          "spent": 10.0,
+          "frames": 1.0
+        },
+        "legacy_link_debounced_tier": {
+          "wrong": 0.0,
+          "unavailable": 0.0,
+          "wrong_cost": 0.0,
+          "calls": 2.0,
+          "id_reads": 0.0,
+          "link_reads": 4.0,
+          "spent": 10.0,
+          "frames": 1.0
+        },
+        "legacy_link_rebuilt_manual": {
+          "wrong": 0.0,
+          "unavailable": 0.0,
+          "wrong_cost": 0.0,
+          "calls": 2.0,
+          "id_reads": 0.0,
+          "link_reads": 4.0,
+          "spent": 10.0,
+          "frames": 1.0
+        },
+        "legacy_link_rebuilt_tier": {
+          "wrong": 0.0,
+          "unavailable": 0.0,
+          "wrong_cost": 0.0,
+          "calls": 2.0,
+          "id_reads": 0.0,
+          "link_reads": 4.0,
+          "spent": 10.0,
+          "frames": 1.0
+        },
+        "legacy_link_stable": {
+          "calls": 40.0,
+          "passes": 5.0,
+          "id_reads": 0.0,
+          "link_reads": 40.0,
+          "frames": 1.0
+        },
+        "modern_id_debounced_manual": {
+          "wrong": 0.0,
+          "unavailable": 0.0,
+          "wrong_cost": 0.0,
+          "calls": 2.0,
+          "id_reads": 4.0,
+          "link_reads": 1.0,
+          "spent": 10.0,
+          "frames": 1.0
+        },
+        "modern_id_debounced_tier": {
+          "wrong": 0.0,
+          "unavailable": 0.0,
+          "wrong_cost": 0.0,
+          "calls": 2.0,
+          "id_reads": 4.0,
+          "link_reads": 1.0,
+          "spent": 10.0,
+          "frames": 1.0
+        },
+        "modern_id_rebuilt_manual": {
+          "wrong": 0.0,
+          "unavailable": 0.0,
+          "wrong_cost": 0.0,
+          "calls": 2.0,
+          "id_reads": 4.0,
+          "link_reads": 1.0,
+          "spent": 10.0,
+          "frames": 1.0
+        },
+        "modern_id_rebuilt_tier": {
+          "wrong": 0.0,
+          "unavailable": 0.0,
+          "wrong_cost": 0.0,
+          "calls": 2.0,
+          "id_reads": 4.0,
+          "link_reads": 1.0,
+          "spent": 10.0,
+          "frames": 1.0
+        },
+        "modern_id_stable": {
+          "calls": 40.0,
+          "passes": 5.0,
+          "id_reads": 40.0,
+          "link_reads": 0.0,
+          "frames": 1.0
+        },
+        "modern_link_debounced_manual": {
+          "wrong": 0.0,
+          "unavailable": 0.0,
+          "wrong_cost": 0.0,
+          "calls": 2.0,
+          "id_reads": 0.0,
+          "link_reads": 4.0,
+          "spent": 10.0,
+          "frames": 1.0
+        },
+        "modern_link_debounced_tier": {
+          "wrong": 0.0,
+          "unavailable": 0.0,
+          "wrong_cost": 0.0,
+          "calls": 2.0,
+          "id_reads": 0.0,
+          "link_reads": 4.0,
+          "spent": 10.0,
+          "frames": 1.0
+        },
+        "modern_link_rebuilt_manual": {
+          "wrong": 0.0,
+          "unavailable": 0.0,
+          "wrong_cost": 0.0,
+          "calls": 2.0,
+          "id_reads": 0.0,
+          "link_reads": 4.0,
+          "spent": 10.0,
+          "frames": 1.0
+        },
+        "modern_link_rebuilt_tier": {
+          "wrong": 0.0,
+          "unavailable": 0.0,
+          "wrong_cost": 0.0,
+          "calls": 2.0,
+          "id_reads": 0.0,
+          "link_reads": 4.0,
+          "spent": 10.0,
+          "frames": 1.0
+        },
+        "modern_link_stable": {
+          "calls": 40.0,
+          "passes": 5.0,
+          "id_reads": 0.0,
+          "link_reads": 40.0,
+          "frames": 1.0
+        }
+      },
+      "output": "METRIC legacy_id_debounced_manual wrong=0 unavailable=0 wrong_cost=0 calls=2 id_reads=4 link_reads=1 spent=10 frames=1\nMETRIC legacy_id_debounced_tier wrong=0 unavailable=0 wrong_cost=0 calls=2 id_reads=4 link_reads=1 spent=10 frames=1\nMETRIC legacy_id_rebuilt_manual wrong=0 unavailable=0 wrong_cost=0 calls=2 id_reads=4 link_reads=1 spent=10 frames=1\nMETRIC legacy_id_rebuilt_tier wrong=0 unavailable=0 wrong_cost=0 calls=2 id_reads=4 link_reads=1 spent=10 frames=1\nMETRIC legacy_id_stable calls=40 passes=5 id_reads=40 link_reads=0 frames=1\nMETRIC legacy_link_debounced_manual wrong=0 unavailable=0 wrong_cost=0 calls=2 id_reads=0 link_reads=4 spent=10 frames=1\nMETRIC legacy_link_debounced_tier wrong=0 unavailable=0 wrong_cost=0 calls=2 id_reads=0 link_reads=4 spent=10 frames=1\nMETRIC legacy_link_rebuilt_manual wrong=0 unavailable=0 wrong_cost=0 calls=2 id_reads=0 link_reads=4 spent=10 frames=1\nMETRIC legacy_link_rebuilt_tier wrong=0 unavailable=0 wrong_cost=0 calls=2 id_reads=0 link_reads=4 spent=10 frames=1\nMETRIC legacy_link_stable calls=40 passes=5 id_reads=0 link_reads=40 frames=1\nMETRIC modern_id_debounced_manual wrong=0 unavailable=0 wrong_cost=0 calls=2 id_reads=4 link_reads=1 spent=10 frames=1\nMETRIC modern_id_debounced_tier wrong=0 unavailable=0 wrong_cost=0 calls=2 id_reads=4 link_reads=1 spent=10 frames=1\nMETRIC modern_id_rebuilt_manual wrong=0 unavailable=0 wrong_cost=0 calls=2 id_reads=4 link_reads=1 spent=10 frames=1\nMETRIC modern_id_rebuilt_tier wrong=0 unavailable=0 wrong_cost=0 calls=2 id_reads=4 link_reads=1 spent=10 frames=1\nMETRIC modern_id_stable calls=40 passes=5 id_reads=40 link_reads=0 frames=1\nMETRIC modern_link_debounced_manual wrong=0 unavailable=0 wrong_cost=0 calls=2 id_reads=0 link_reads=4 spent=10 frames=1\nMETRIC modern_link_debounced_tier wrong=0 unavailable=0 wrong_cost=0 calls=2 id_reads=0 link_reads=4 spent=10 frames=1\nMETRIC modern_link_rebuilt_manual wrong=0 unavailable=0 wrong_cost=0 calls=2 id_reads=0 link_reads=4 spent=10 frames=1\nMETRIC modern_link_rebuilt_tier wrong=0 unavailable=0 wrong_cost=0 calls=2 id_reads=0 link_reads=4 spent=10 frames=1\nMETRIC modern_link_stable calls=40 passes=5 id_reads=0 link_reads=40 frames=1\nVendor slot identity: 660 checks, 0 failures\n"
+    },
+    {
+      "trial": 3,
+      "variant": "baseline",
+      "command": [
+        "lua",
+        "tests/vendor_slot_identity.lua",
+        "--source",
+        "tests/fixtures/vendor_buy_slot_before.txt",
+        "--measure"
+      ],
+      "wallSeconds": 0.055915400000230875,
+      "metrics": {
+        "legacy_id_debounced_manual": {
+          "wrong": 1.0,
+          "unavailable": 1.0,
+          "wrong_cost": 800.0,
+          "calls": 4.0,
+          "id_reads": 0.0,
+          "link_reads": 0.0,
+          "spent": 810.0,
+          "frames": 1.0
+        },
+        "legacy_id_debounced_tier": {
+          "wrong": 1.0,
+          "unavailable": 1.0,
+          "wrong_cost": 800.0,
+          "calls": 4.0,
+          "id_reads": 0.0,
+          "link_reads": 0.0,
+          "spent": 810.0,
+          "frames": 1.0
+        },
+        "legacy_id_rebuilt_manual": {
+          "wrong": 1.0,
+          "unavailable": 1.0,
+          "wrong_cost": 800.0,
+          "calls": 4.0,
+          "id_reads": 0.0,
+          "link_reads": 0.0,
+          "spent": 810.0,
+          "frames": 1.0
+        },
+        "legacy_id_rebuilt_tier": {
+          "wrong": 1.0,
+          "unavailable": 1.0,
+          "wrong_cost": 800.0,
+          "calls": 4.0,
+          "id_reads": 0.0,
+          "link_reads": 0.0,
+          "spent": 810.0,
+          "frames": 1.0
+        },
+        "legacy_id_stable": {
+          "calls": 40.0,
+          "passes": 5.0,
+          "id_reads": 0.0,
+          "link_reads": 0.0,
+          "frames": 1.0
+        },
+        "legacy_link_debounced_manual": {
+          "wrong": 1.0,
+          "unavailable": 1.0,
+          "wrong_cost": 800.0,
+          "calls": 4.0,
+          "id_reads": 0.0,
+          "link_reads": 0.0,
+          "spent": 810.0,
+          "frames": 1.0
+        },
+        "legacy_link_debounced_tier": {
+          "wrong": 1.0,
+          "unavailable": 1.0,
+          "wrong_cost": 800.0,
+          "calls": 4.0,
+          "id_reads": 0.0,
+          "link_reads": 0.0,
+          "spent": 810.0,
+          "frames": 1.0
+        },
+        "legacy_link_rebuilt_manual": {
+          "wrong": 1.0,
+          "unavailable": 1.0,
+          "wrong_cost": 800.0,
+          "calls": 4.0,
+          "id_reads": 0.0,
+          "link_reads": 0.0,
+          "spent": 810.0,
+          "frames": 1.0
+        },
+        "legacy_link_rebuilt_tier": {
+          "wrong": 1.0,
+          "unavailable": 1.0,
+          "wrong_cost": 800.0,
+          "calls": 4.0,
+          "id_reads": 0.0,
+          "link_reads": 0.0,
+          "spent": 810.0,
+          "frames": 1.0
+        },
+        "legacy_link_stable": {
+          "calls": 40.0,
+          "passes": 5.0,
+          "id_reads": 0.0,
+          "link_reads": 0.0,
+          "frames": 1.0
+        },
+        "modern_id_debounced_manual": {
+          "wrong": 1.0,
+          "unavailable": 1.0,
+          "wrong_cost": 800.0,
+          "calls": 4.0,
+          "id_reads": 0.0,
+          "link_reads": 0.0,
+          "spent": 810.0,
+          "frames": 1.0
+        },
+        "modern_id_debounced_tier": {
+          "wrong": 1.0,
+          "unavailable": 1.0,
+          "wrong_cost": 800.0,
+          "calls": 4.0,
+          "id_reads": 0.0,
+          "link_reads": 0.0,
+          "spent": 810.0,
+          "frames": 1.0
+        },
+        "modern_id_rebuilt_manual": {
+          "wrong": 1.0,
+          "unavailable": 1.0,
+          "wrong_cost": 800.0,
+          "calls": 4.0,
+          "id_reads": 0.0,
+          "link_reads": 0.0,
+          "spent": 810.0,
+          "frames": 1.0
+        },
+        "modern_id_rebuilt_tier": {
+          "wrong": 1.0,
+          "unavailable": 1.0,
+          "wrong_cost": 800.0,
+          "calls": 4.0,
+          "id_reads": 0.0,
+          "link_reads": 0.0,
+          "spent": 810.0,
+          "frames": 1.0
+        },
+        "modern_id_stable": {
+          "calls": 40.0,
+          "passes": 5.0,
+          "id_reads": 0.0,
+          "link_reads": 0.0,
+          "frames": 1.0
+        },
+        "modern_link_debounced_manual": {
+          "wrong": 1.0,
+          "unavailable": 1.0,
+          "wrong_cost": 800.0,
+          "calls": 4.0,
+          "id_reads": 0.0,
+          "link_reads": 0.0,
+          "spent": 810.0,
+          "frames": 1.0
+        },
+        "modern_link_debounced_tier": {
+          "wrong": 1.0,
+          "unavailable": 1.0,
+          "wrong_cost": 800.0,
+          "calls": 4.0,
+          "id_reads": 0.0,
+          "link_reads": 0.0,
+          "spent": 810.0,
+          "frames": 1.0
+        },
+        "modern_link_rebuilt_manual": {
+          "wrong": 1.0,
+          "unavailable": 1.0,
+          "wrong_cost": 800.0,
+          "calls": 4.0,
+          "id_reads": 0.0,
+          "link_reads": 0.0,
+          "spent": 810.0,
+          "frames": 1.0
+        },
+        "modern_link_rebuilt_tier": {
+          "wrong": 1.0,
+          "unavailable": 1.0,
+          "wrong_cost": 800.0,
+          "calls": 4.0,
+          "id_reads": 0.0,
+          "link_reads": 0.0,
+          "spent": 810.0,
+          "frames": 1.0
+        },
+        "modern_link_stable": {
+          "calls": 40.0,
+          "passes": 5.0,
+          "id_reads": 0.0,
+          "link_reads": 0.0,
+          "frames": 1.0
+        }
+      },
+      "output": "METRIC legacy_id_debounced_manual wrong=1 unavailable=1 wrong_cost=800 calls=4 id_reads=0 link_reads=0 spent=810 frames=1\nFAIL legacy_id_debounced_manual replacement item never bought\nFAIL legacy_id_debounced_manual missing listing never submitted\nMETRIC legacy_id_debounced_tier wrong=1 unavailable=1 wrong_cost=800 calls=4 id_reads=0 link_reads=0 spent=810 frames=1\nFAIL legacy_id_debounced_tier replacement item never bought\nFAIL legacy_id_debounced_tier missing listing never submitted\nMETRIC legacy_id_rebuilt_manual wrong=1 unavailable=1 wrong_cost=800 calls=4 id_reads=0 link_reads=0 spent=810 frames=1\nFAIL legacy_id_rebuilt_manual replacement item never bought\nFAIL legacy_id_rebuilt_manual missing listing never submitted\nMETRIC legacy_id_rebuilt_tier wrong=1 unavailable=1 wrong_cost=800 calls=4 id_reads=0 link_reads=0 spent=810 frames=1\nFAIL legacy_id_rebuilt_tier replacement item never bought\nFAIL legacy_id_rebuilt_tier missing listing never submitted\nFAIL legacy_id each same-pass task rechecks identity\nMETRIC legacy_id_stable calls=40 passes=5 id_reads=0 link_reads=0 frames=1\nMETRIC legacy_link_debounced_manual wrong=1 unavailable=1 wrong_cost=800 calls=4 id_reads=0 link_reads=0 spent=810 frames=1\nFAIL legacy_link_debounced_manual replacement item never bought\nFAIL legacy_link_debounced_manual missing listing never submitted\nMETRIC legacy_link_debounced_tier wrong=1 unavailable=1 wrong_cost=800 calls=4 id_reads=0 link_reads=0 spent=810 frames=1\nFAIL legacy_link_debounced_tier replacement item never bought\nFAIL legacy_link_debounced_tier missing listing never submitted\nMETRIC legacy_link_rebuilt_manual wrong=1 unavailable=1 wrong_cost=800 calls=4 id_reads=0 link_reads=0 spent=810 frames=1\nFAIL legacy_link_rebuilt_manual replacement item never bought\nFAIL legacy_link_rebuilt_manual missing listing never submitted\nMETRIC legacy_link_rebuilt_tier wrong=1 unavailable=1 wrong_cost=800 calls=4 id_reads=0 link_reads=0 spent=810 frames=1\nFAIL legacy_link_rebuilt_tier replacement item never bought\nFAIL legacy_link_rebuilt_tier missing listing never submitted\nFAIL legacy_link each same-pass task rechecks identity\nMETRIC legacy_link_stable calls=40 passes=5 id_reads=0 link_reads=0 frames=1\nMETRIC modern_id_debounced_manual wrong=1 unavailable=1 wrong_cost=800 calls=4 id_reads=0 link_reads=0 spent=810 frames=1\nFAIL modern_id_debounced_manual replacement item never bought\nFAIL modern_id_debounced_manual missing listing never submitted\nMETRIC modern_id_debounced_tier wrong=1 unavailable=1 wrong_cost=800 calls=4 id_reads=0 link_reads=0 spent=810 frames=1\nFAIL modern_id_debounced_tier replacement item never bought\nFAIL modern_id_debounced_tier missing listing never submitted\nMETRIC modern_id_rebuilt_manual wrong=1 unavailable=1 wrong_cost=800 calls=4 id_reads=0 link_reads=0 spent=810 frames=1\nFAIL modern_id_rebuilt_manual replacement item never bought\nFAIL modern_id_rebuilt_manual missing listing never submitted\nMETRIC modern_id_rebuilt_tier wrong=1 unavailable=1 wrong_cost=800 calls=4 id_reads=0 link_reads=0 spent=810 frames=1\nFAIL modern_id_rebuilt_tier replacement item never bought\nFAIL modern_id_rebuilt_tier missing listing never submitted\nFAIL modern_id each same-pass task rechecks identity\nMETRIC modern_id_stable calls=40 passes=5 id_reads=0 link_reads=0 frames=1\nMETRIC modern_link_debounced_manual wrong=1 unavailable=1 wrong_cost=800 calls=4 id_reads=0 link_reads=0 spent=810 frames=1\nFAIL modern_link_debounced_manual replacement item never bought\nFAIL modern_link_debounced_manual missing listing never submitted\nMETRIC modern_link_debounced_tier wrong=1 unavailable=1 wrong_cost=800 calls=4 id_reads=0 link_reads=0 spent=810 frames=1\nFAIL modern_link_debounced_tier replacement item never bought\nFAIL modern_link_debounced_tier missing listing never submitted\nMETRIC modern_link_rebuilt_manual wrong=1 unavailable=1 wrong_cost=800 calls=4 id_reads=0 link_reads=0 spent=810 frames=1\nFAIL modern_link_rebuilt_manual replacement item never bought\nFAIL modern_link_rebuilt_manual missing listing never submitted\nMETRIC modern_link_rebuilt_tier wrong=1 unavailable=1 wrong_cost=800 calls=4 id_reads=0 link_reads=0 spent=810 frames=1\nFAIL modern_link_rebuilt_tier replacement item never bought\nFAIL modern_link_rebuilt_tier missing listing never submitted\nFAIL modern_link each same-pass task rechecks identity\nMETRIC modern_link_stable calls=40 passes=5 id_reads=0 link_reads=0 frames=1\nVendor slot identity: 660 checks, 36 failures\n"
+    },
+    {
+      "trial": 3,
+      "variant": "candidate",
+      "command": [
+        "lua",
+        "tests/vendor_slot_identity.lua"
+      ],
+      "wallSeconds": 0.0562629999985802,
+      "metrics": {
+        "legacy_id_debounced_manual": {
+          "wrong": 0.0,
+          "unavailable": 0.0,
+          "wrong_cost": 0.0,
+          "calls": 2.0,
+          "id_reads": 4.0,
+          "link_reads": 1.0,
+          "spent": 10.0,
+          "frames": 1.0
+        },
+        "legacy_id_debounced_tier": {
+          "wrong": 0.0,
+          "unavailable": 0.0,
+          "wrong_cost": 0.0,
+          "calls": 2.0,
+          "id_reads": 4.0,
+          "link_reads": 1.0,
+          "spent": 10.0,
+          "frames": 1.0
+        },
+        "legacy_id_rebuilt_manual": {
+          "wrong": 0.0,
+          "unavailable": 0.0,
+          "wrong_cost": 0.0,
+          "calls": 2.0,
+          "id_reads": 4.0,
+          "link_reads": 1.0,
+          "spent": 10.0,
+          "frames": 1.0
+        },
+        "legacy_id_rebuilt_tier": {
+          "wrong": 0.0,
+          "unavailable": 0.0,
+          "wrong_cost": 0.0,
+          "calls": 2.0,
+          "id_reads": 4.0,
+          "link_reads": 1.0,
+          "spent": 10.0,
+          "frames": 1.0
+        },
+        "legacy_id_stable": {
+          "calls": 40.0,
+          "passes": 5.0,
+          "id_reads": 40.0,
+          "link_reads": 0.0,
+          "frames": 1.0
+        },
+        "legacy_link_debounced_manual": {
+          "wrong": 0.0,
+          "unavailable": 0.0,
+          "wrong_cost": 0.0,
+          "calls": 2.0,
+          "id_reads": 0.0,
+          "link_reads": 4.0,
+          "spent": 10.0,
+          "frames": 1.0
+        },
+        "legacy_link_debounced_tier": {
+          "wrong": 0.0,
+          "unavailable": 0.0,
+          "wrong_cost": 0.0,
+          "calls": 2.0,
+          "id_reads": 0.0,
+          "link_reads": 4.0,
+          "spent": 10.0,
+          "frames": 1.0
+        },
+        "legacy_link_rebuilt_manual": {
+          "wrong": 0.0,
+          "unavailable": 0.0,
+          "wrong_cost": 0.0,
+          "calls": 2.0,
+          "id_reads": 0.0,
+          "link_reads": 4.0,
+          "spent": 10.0,
+          "frames": 1.0
+        },
+        "legacy_link_rebuilt_tier": {
+          "wrong": 0.0,
+          "unavailable": 0.0,
+          "wrong_cost": 0.0,
+          "calls": 2.0,
+          "id_reads": 0.0,
+          "link_reads": 4.0,
+          "spent": 10.0,
+          "frames": 1.0
+        },
+        "legacy_link_stable": {
+          "calls": 40.0,
+          "passes": 5.0,
+          "id_reads": 0.0,
+          "link_reads": 40.0,
+          "frames": 1.0
+        },
+        "modern_id_debounced_manual": {
+          "wrong": 0.0,
+          "unavailable": 0.0,
+          "wrong_cost": 0.0,
+          "calls": 2.0,
+          "id_reads": 4.0,
+          "link_reads": 1.0,
+          "spent": 10.0,
+          "frames": 1.0
+        },
+        "modern_id_debounced_tier": {
+          "wrong": 0.0,
+          "unavailable": 0.0,
+          "wrong_cost": 0.0,
+          "calls": 2.0,
+          "id_reads": 4.0,
+          "link_reads": 1.0,
+          "spent": 10.0,
+          "frames": 1.0
+        },
+        "modern_id_rebuilt_manual": {
+          "wrong": 0.0,
+          "unavailable": 0.0,
+          "wrong_cost": 0.0,
+          "calls": 2.0,
+          "id_reads": 4.0,
+          "link_reads": 1.0,
+          "spent": 10.0,
+          "frames": 1.0
+        },
+        "modern_id_rebuilt_tier": {
+          "wrong": 0.0,
+          "unavailable": 0.0,
+          "wrong_cost": 0.0,
+          "calls": 2.0,
+          "id_reads": 4.0,
+          "link_reads": 1.0,
+          "spent": 10.0,
+          "frames": 1.0
+        },
+        "modern_id_stable": {
+          "calls": 40.0,
+          "passes": 5.0,
+          "id_reads": 40.0,
+          "link_reads": 0.0,
+          "frames": 1.0
+        },
+        "modern_link_debounced_manual": {
+          "wrong": 0.0,
+          "unavailable": 0.0,
+          "wrong_cost": 0.0,
+          "calls": 2.0,
+          "id_reads": 0.0,
+          "link_reads": 4.0,
+          "spent": 10.0,
+          "frames": 1.0
+        },
+        "modern_link_debounced_tier": {
+          "wrong": 0.0,
+          "unavailable": 0.0,
+          "wrong_cost": 0.0,
+          "calls": 2.0,
+          "id_reads": 0.0,
+          "link_reads": 4.0,
+          "spent": 10.0,
+          "frames": 1.0
+        },
+        "modern_link_rebuilt_manual": {
+          "wrong": 0.0,
+          "unavailable": 0.0,
+          "wrong_cost": 0.0,
+          "calls": 2.0,
+          "id_reads": 0.0,
+          "link_reads": 4.0,
+          "spent": 10.0,
+          "frames": 1.0
+        },
+        "modern_link_rebuilt_tier": {
+          "wrong": 0.0,
+          "unavailable": 0.0,
+          "wrong_cost": 0.0,
+          "calls": 2.0,
+          "id_reads": 0.0,
+          "link_reads": 4.0,
+          "spent": 10.0,
+          "frames": 1.0
+        },
+        "modern_link_stable": {
+          "calls": 40.0,
+          "passes": 5.0,
+          "id_reads": 0.0,
+          "link_reads": 40.0,
+          "frames": 1.0
+        }
+      },
+      "output": "METRIC legacy_id_debounced_manual wrong=0 unavailable=0 wrong_cost=0 calls=2 id_reads=4 link_reads=1 spent=10 frames=1\nMETRIC legacy_id_debounced_tier wrong=0 unavailable=0 wrong_cost=0 calls=2 id_reads=4 link_reads=1 spent=10 frames=1\nMETRIC legacy_id_rebuilt_manual wrong=0 unavailable=0 wrong_cost=0 calls=2 id_reads=4 link_reads=1 spent=10 frames=1\nMETRIC legacy_id_rebuilt_tier wrong=0 unavailable=0 wrong_cost=0 calls=2 id_reads=4 link_reads=1 spent=10 frames=1\nMETRIC legacy_id_stable calls=40 passes=5 id_reads=40 link_reads=0 frames=1\nMETRIC legacy_link_debounced_manual wrong=0 unavailable=0 wrong_cost=0 calls=2 id_reads=0 link_reads=4 spent=10 frames=1\nMETRIC legacy_link_debounced_tier wrong=0 unavailable=0 wrong_cost=0 calls=2 id_reads=0 link_reads=4 spent=10 frames=1\nMETRIC legacy_link_rebuilt_manual wrong=0 unavailable=0 wrong_cost=0 calls=2 id_reads=0 link_reads=4 spent=10 frames=1\nMETRIC legacy_link_rebuilt_tier wrong=0 unavailable=0 wrong_cost=0 calls=2 id_reads=0 link_reads=4 spent=10 frames=1\nMETRIC legacy_link_stable calls=40 passes=5 id_reads=0 link_reads=40 frames=1\nMETRIC modern_id_debounced_manual wrong=0 unavailable=0 wrong_cost=0 calls=2 id_reads=4 link_reads=1 spent=10 frames=1\nMETRIC modern_id_debounced_tier wrong=0 unavailable=0 wrong_cost=0 calls=2 id_reads=4 link_reads=1 spent=10 frames=1\nMETRIC modern_id_rebuilt_manual wrong=0 unavailable=0 wrong_cost=0 calls=2 id_reads=4 link_reads=1 spent=10 frames=1\nMETRIC modern_id_rebuilt_tier wrong=0 unavailable=0 wrong_cost=0 calls=2 id_reads=4 link_reads=1 spent=10 frames=1\nMETRIC modern_id_stable calls=40 passes=5 id_reads=40 link_reads=0 frames=1\nMETRIC modern_link_debounced_manual wrong=0 unavailable=0 wrong_cost=0 calls=2 id_reads=0 link_reads=4 spent=10 frames=1\nMETRIC modern_link_debounced_tier wrong=0 unavailable=0 wrong_cost=0 calls=2 id_reads=0 link_reads=4 spent=10 frames=1\nMETRIC modern_link_rebuilt_manual wrong=0 unavailable=0 wrong_cost=0 calls=2 id_reads=0 link_reads=4 spent=10 frames=1\nMETRIC modern_link_rebuilt_tier wrong=0 unavailable=0 wrong_cost=0 calls=2 id_reads=0 link_reads=4 spent=10 frames=1\nMETRIC modern_link_stable calls=40 passes=5 id_reads=0 link_reads=40 frames=1\nVendor slot identity: 660 checks, 0 failures\n"
+    },
+    {
+      "trial": 4,
+      "variant": "baseline",
+      "command": [
+        "lua",
+        "tests/vendor_slot_identity.lua",
+        "--source",
+        "tests/fixtures/vendor_buy_slot_before.txt",
+        "--measure"
+      ],
+      "wallSeconds": 0.051860200001101475,
+      "metrics": {
+        "legacy_id_debounced_manual": {
+          "wrong": 1.0,
+          "unavailable": 1.0,
+          "wrong_cost": 800.0,
+          "calls": 4.0,
+          "id_reads": 0.0,
+          "link_reads": 0.0,
+          "spent": 810.0,
+          "frames": 1.0
+        },
+        "legacy_id_debounced_tier": {
+          "wrong": 1.0,
+          "unavailable": 1.0,
+          "wrong_cost": 800.0,
+          "calls": 4.0,
+          "id_reads": 0.0,
+          "link_reads": 0.0,
+          "spent": 810.0,
+          "frames": 1.0
+        },
+        "legacy_id_rebuilt_manual": {
+          "wrong": 1.0,
+          "unavailable": 1.0,
+          "wrong_cost": 800.0,
+          "calls": 4.0,
+          "id_reads": 0.0,
+          "link_reads": 0.0,
+          "spent": 810.0,
+          "frames": 1.0
+        },
+        "legacy_id_rebuilt_tier": {
+          "wrong": 1.0,
+          "unavailable": 1.0,
+          "wrong_cost": 800.0,
+          "calls": 4.0,
+          "id_reads": 0.0,
+          "link_reads": 0.0,
+          "spent": 810.0,
+          "frames": 1.0
+        },
+        "legacy_id_stable": {
+          "calls": 40.0,
+          "passes": 5.0,
+          "id_reads": 0.0,
+          "link_reads": 0.0,
+          "frames": 1.0
+        },
+        "legacy_link_debounced_manual": {
+          "wrong": 1.0,
+          "unavailable": 1.0,
+          "wrong_cost": 800.0,
+          "calls": 4.0,
+          "id_reads": 0.0,
+          "link_reads": 0.0,
+          "spent": 810.0,
+          "frames": 1.0
+        },
+        "legacy_link_debounced_tier": {
+          "wrong": 1.0,
+          "unavailable": 1.0,
+          "wrong_cost": 800.0,
+          "calls": 4.0,
+          "id_reads": 0.0,
+          "link_reads": 0.0,
+          "spent": 810.0,
+          "frames": 1.0
+        },
+        "legacy_link_rebuilt_manual": {
+          "wrong": 1.0,
+          "unavailable": 1.0,
+          "wrong_cost": 800.0,
+          "calls": 4.0,
+          "id_reads": 0.0,
+          "link_reads": 0.0,
+          "spent": 810.0,
+          "frames": 1.0
+        },
+        "legacy_link_rebuilt_tier": {
+          "wrong": 1.0,
+          "unavailable": 1.0,
+          "wrong_cost": 800.0,
+          "calls": 4.0,
+          "id_reads": 0.0,
+          "link_reads": 0.0,
+          "spent": 810.0,
+          "frames": 1.0
+        },
+        "legacy_link_stable": {
+          "calls": 40.0,
+          "passes": 5.0,
+          "id_reads": 0.0,
+          "link_reads": 0.0,
+          "frames": 1.0
+        },
+        "modern_id_debounced_manual": {
+          "wrong": 1.0,
+          "unavailable": 1.0,
+          "wrong_cost": 800.0,
+          "calls": 4.0,
+          "id_reads": 0.0,
+          "link_reads": 0.0,
+          "spent": 810.0,
+          "frames": 1.0
+        },
+        "modern_id_debounced_tier": {
+          "wrong": 1.0,
+          "unavailable": 1.0,
+          "wrong_cost": 800.0,
+          "calls": 4.0,
+          "id_reads": 0.0,
+          "link_reads": 0.0,
+          "spent": 810.0,
+          "frames": 1.0
+        },
+        "modern_id_rebuilt_manual": {
+          "wrong": 1.0,
+          "unavailable": 1.0,
+          "wrong_cost": 800.0,
+          "calls": 4.0,
+          "id_reads": 0.0,
+          "link_reads": 0.0,
+          "spent": 810.0,
+          "frames": 1.0
+        },
+        "modern_id_rebuilt_tier": {
+          "wrong": 1.0,
+          "unavailable": 1.0,
+          "wrong_cost": 800.0,
+          "calls": 4.0,
+          "id_reads": 0.0,
+          "link_reads": 0.0,
+          "spent": 810.0,
+          "frames": 1.0
+        },
+        "modern_id_stable": {
+          "calls": 40.0,
+          "passes": 5.0,
+          "id_reads": 0.0,
+          "link_reads": 0.0,
+          "frames": 1.0
+        },
+        "modern_link_debounced_manual": {
+          "wrong": 1.0,
+          "unavailable": 1.0,
+          "wrong_cost": 800.0,
+          "calls": 4.0,
+          "id_reads": 0.0,
+          "link_reads": 0.0,
+          "spent": 810.0,
+          "frames": 1.0
+        },
+        "modern_link_debounced_tier": {
+          "wrong": 1.0,
+          "unavailable": 1.0,
+          "wrong_cost": 800.0,
+          "calls": 4.0,
+          "id_reads": 0.0,
+          "link_reads": 0.0,
+          "spent": 810.0,
+          "frames": 1.0
+        },
+        "modern_link_rebuilt_manual": {
+          "wrong": 1.0,
+          "unavailable": 1.0,
+          "wrong_cost": 800.0,
+          "calls": 4.0,
+          "id_reads": 0.0,
+          "link_reads": 0.0,
+          "spent": 810.0,
+          "frames": 1.0
+        },
+        "modern_link_rebuilt_tier": {
+          "wrong": 1.0,
+          "unavailable": 1.0,
+          "wrong_cost": 800.0,
+          "calls": 4.0,
+          "id_reads": 0.0,
+          "link_reads": 0.0,
+          "spent": 810.0,
+          "frames": 1.0
+        },
+        "modern_link_stable": {
+          "calls": 40.0,
+          "passes": 5.0,
+          "id_reads": 0.0,
+          "link_reads": 0.0,
+          "frames": 1.0
+        }
+      },
+      "output": "METRIC legacy_id_debounced_manual wrong=1 unavailable=1 wrong_cost=800 calls=4 id_reads=0 link_reads=0 spent=810 frames=1\nFAIL legacy_id_debounced_manual replacement item never bought\nFAIL legacy_id_debounced_manual missing listing never submitted\nMETRIC legacy_id_debounced_tier wrong=1 unavailable=1 wrong_cost=800 calls=4 id_reads=0 link_reads=0 spent=810 frames=1\nFAIL legacy_id_debounced_tier replacement item never bought\nFAIL legacy_id_debounced_tier missing listing never submitted\nMETRIC legacy_id_rebuilt_manual wrong=1 unavailable=1 wrong_cost=800 calls=4 id_reads=0 link_reads=0 spent=810 frames=1\nFAIL legacy_id_rebuilt_manual replacement item never bought\nFAIL legacy_id_rebuilt_manual missing listing never submitted\nMETRIC legacy_id_rebuilt_tier wrong=1 unavailable=1 wrong_cost=800 calls=4 id_reads=0 link_reads=0 spent=810 frames=1\nFAIL legacy_id_rebuilt_tier replacement item never bought\nFAIL legacy_id_rebuilt_tier missing listing never submitted\nFAIL legacy_id each same-pass task rechecks identity\nMETRIC legacy_id_stable calls=40 passes=5 id_reads=0 link_reads=0 frames=1\nMETRIC legacy_link_debounced_manual wrong=1 unavailable=1 wrong_cost=800 calls=4 id_reads=0 link_reads=0 spent=810 frames=1\nFAIL legacy_link_debounced_manual replacement item never bought\nFAIL legacy_link_debounced_manual missing listing never submitted\nMETRIC legacy_link_debounced_tier wrong=1 unavailable=1 wrong_cost=800 calls=4 id_reads=0 link_reads=0 spent=810 frames=1\nFAIL legacy_link_debounced_tier replacement item never bought\nFAIL legacy_link_debounced_tier missing listing never submitted\nMETRIC legacy_link_rebuilt_manual wrong=1 unavailable=1 wrong_cost=800 calls=4 id_reads=0 link_reads=0 spent=810 frames=1\nFAIL legacy_link_rebuilt_manual replacement item never bought\nFAIL legacy_link_rebuilt_manual missing listing never submitted\nMETRIC legacy_link_rebuilt_tier wrong=1 unavailable=1 wrong_cost=800 calls=4 id_reads=0 link_reads=0 spent=810 frames=1\nFAIL legacy_link_rebuilt_tier replacement item never bought\nFAIL legacy_link_rebuilt_tier missing listing never submitted\nFAIL legacy_link each same-pass task rechecks identity\nMETRIC legacy_link_stable calls=40 passes=5 id_reads=0 link_reads=0 frames=1\nMETRIC modern_id_debounced_manual wrong=1 unavailable=1 wrong_cost=800 calls=4 id_reads=0 link_reads=0 spent=810 frames=1\nFAIL modern_id_debounced_manual replacement item never bought\nFAIL modern_id_debounced_manual missing listing never submitted\nMETRIC modern_id_debounced_tier wrong=1 unavailable=1 wrong_cost=800 calls=4 id_reads=0 link_reads=0 spent=810 frames=1\nFAIL modern_id_debounced_tier replacement item never bought\nFAIL modern_id_debounced_tier missing listing never submitted\nMETRIC modern_id_rebuilt_manual wrong=1 unavailable=1 wrong_cost=800 calls=4 id_reads=0 link_reads=0 spent=810 frames=1\nFAIL modern_id_rebuilt_manual replacement item never bought\nFAIL modern_id_rebuilt_manual missing listing never submitted\nMETRIC modern_id_rebuilt_tier wrong=1 unavailable=1 wrong_cost=800 calls=4 id_reads=0 link_reads=0 spent=810 frames=1\nFAIL modern_id_rebuilt_tier replacement item never bought\nFAIL modern_id_rebuilt_tier missing listing never submitted\nFAIL modern_id each same-pass task rechecks identity\nMETRIC modern_id_stable calls=40 passes=5 id_reads=0 link_reads=0 frames=1\nMETRIC modern_link_debounced_manual wrong=1 unavailable=1 wrong_cost=800 calls=4 id_reads=0 link_reads=0 spent=810 frames=1\nFAIL modern_link_debounced_manual replacement item never bought\nFAIL modern_link_debounced_manual missing listing never submitted\nMETRIC modern_link_debounced_tier wrong=1 unavailable=1 wrong_cost=800 calls=4 id_reads=0 link_reads=0 spent=810 frames=1\nFAIL modern_link_debounced_tier replacement item never bought\nFAIL modern_link_debounced_tier missing listing never submitted\nMETRIC modern_link_rebuilt_manual wrong=1 unavailable=1 wrong_cost=800 calls=4 id_reads=0 link_reads=0 spent=810 frames=1\nFAIL modern_link_rebuilt_manual replacement item never bought\nFAIL modern_link_rebuilt_manual missing listing never submitted\nMETRIC modern_link_rebuilt_tier wrong=1 unavailable=1 wrong_cost=800 calls=4 id_reads=0 link_reads=0 spent=810 frames=1\nFAIL modern_link_rebuilt_tier replacement item never bought\nFAIL modern_link_rebuilt_tier missing listing never submitted\nFAIL modern_link each same-pass task rechecks identity\nMETRIC modern_link_stable calls=40 passes=5 id_reads=0 link_reads=0 frames=1\nVendor slot identity: 660 checks, 36 failures\n"
+    },
+    {
+      "trial": 4,
+      "variant": "candidate",
+      "command": [
+        "lua",
+        "tests/vendor_slot_identity.lua"
+      ],
+      "wallSeconds": 0.052250099994125776,
+      "metrics": {
+        "legacy_id_debounced_manual": {
+          "wrong": 0.0,
+          "unavailable": 0.0,
+          "wrong_cost": 0.0,
+          "calls": 2.0,
+          "id_reads": 4.0,
+          "link_reads": 1.0,
+          "spent": 10.0,
+          "frames": 1.0
+        },
+        "legacy_id_debounced_tier": {
+          "wrong": 0.0,
+          "unavailable": 0.0,
+          "wrong_cost": 0.0,
+          "calls": 2.0,
+          "id_reads": 4.0,
+          "link_reads": 1.0,
+          "spent": 10.0,
+          "frames": 1.0
+        },
+        "legacy_id_rebuilt_manual": {
+          "wrong": 0.0,
+          "unavailable": 0.0,
+          "wrong_cost": 0.0,
+          "calls": 2.0,
+          "id_reads": 4.0,
+          "link_reads": 1.0,
+          "spent": 10.0,
+          "frames": 1.0
+        },
+        "legacy_id_rebuilt_tier": {
+          "wrong": 0.0,
+          "unavailable": 0.0,
+          "wrong_cost": 0.0,
+          "calls": 2.0,
+          "id_reads": 4.0,
+          "link_reads": 1.0,
+          "spent": 10.0,
+          "frames": 1.0
+        },
+        "legacy_id_stable": {
+          "calls": 40.0,
+          "passes": 5.0,
+          "id_reads": 40.0,
+          "link_reads": 0.0,
+          "frames": 1.0
+        },
+        "legacy_link_debounced_manual": {
+          "wrong": 0.0,
+          "unavailable": 0.0,
+          "wrong_cost": 0.0,
+          "calls": 2.0,
+          "id_reads": 0.0,
+          "link_reads": 4.0,
+          "spent": 10.0,
+          "frames": 1.0
+        },
+        "legacy_link_debounced_tier": {
+          "wrong": 0.0,
+          "unavailable": 0.0,
+          "wrong_cost": 0.0,
+          "calls": 2.0,
+          "id_reads": 0.0,
+          "link_reads": 4.0,
+          "spent": 10.0,
+          "frames": 1.0
+        },
+        "legacy_link_rebuilt_manual": {
+          "wrong": 0.0,
+          "unavailable": 0.0,
+          "wrong_cost": 0.0,
+          "calls": 2.0,
+          "id_reads": 0.0,
+          "link_reads": 4.0,
+          "spent": 10.0,
+          "frames": 1.0
+        },
+        "legacy_link_rebuilt_tier": {
+          "wrong": 0.0,
+          "unavailable": 0.0,
+          "wrong_cost": 0.0,
+          "calls": 2.0,
+          "id_reads": 0.0,
+          "link_reads": 4.0,
+          "spent": 10.0,
+          "frames": 1.0
+        },
+        "legacy_link_stable": {
+          "calls": 40.0,
+          "passes": 5.0,
+          "id_reads": 0.0,
+          "link_reads": 40.0,
+          "frames": 1.0
+        },
+        "modern_id_debounced_manual": {
+          "wrong": 0.0,
+          "unavailable": 0.0,
+          "wrong_cost": 0.0,
+          "calls": 2.0,
+          "id_reads": 4.0,
+          "link_reads": 1.0,
+          "spent": 10.0,
+          "frames": 1.0
+        },
+        "modern_id_debounced_tier": {
+          "wrong": 0.0,
+          "unavailable": 0.0,
+          "wrong_cost": 0.0,
+          "calls": 2.0,
+          "id_reads": 4.0,
+          "link_reads": 1.0,
+          "spent": 10.0,
+          "frames": 1.0
+        },
+        "modern_id_rebuilt_manual": {
+          "wrong": 0.0,
+          "unavailable": 0.0,
+          "wrong_cost": 0.0,
+          "calls": 2.0,
+          "id_reads": 4.0,
+          "link_reads": 1.0,
+          "spent": 10.0,
+          "frames": 1.0
+        },
+        "modern_id_rebuilt_tier": {
+          "wrong": 0.0,
+          "unavailable": 0.0,
+          "wrong_cost": 0.0,
+          "calls": 2.0,
+          "id_reads": 4.0,
+          "link_reads": 1.0,
+          "spent": 10.0,
+          "frames": 1.0
+        },
+        "modern_id_stable": {
+          "calls": 40.0,
+          "passes": 5.0,
+          "id_reads": 40.0,
+          "link_reads": 0.0,
+          "frames": 1.0
+        },
+        "modern_link_debounced_manual": {
+          "wrong": 0.0,
+          "unavailable": 0.0,
+          "wrong_cost": 0.0,
+          "calls": 2.0,
+          "id_reads": 0.0,
+          "link_reads": 4.0,
+          "spent": 10.0,
+          "frames": 1.0
+        },
+        "modern_link_debounced_tier": {
+          "wrong": 0.0,
+          "unavailable": 0.0,
+          "wrong_cost": 0.0,
+          "calls": 2.0,
+          "id_reads": 0.0,
+          "link_reads": 4.0,
+          "spent": 10.0,
+          "frames": 1.0
+        },
+        "modern_link_rebuilt_manual": {
+          "wrong": 0.0,
+          "unavailable": 0.0,
+          "wrong_cost": 0.0,
+          "calls": 2.0,
+          "id_reads": 0.0,
+          "link_reads": 4.0,
+          "spent": 10.0,
+          "frames": 1.0
+        },
+        "modern_link_rebuilt_tier": {
+          "wrong": 0.0,
+          "unavailable": 0.0,
+          "wrong_cost": 0.0,
+          "calls": 2.0,
+          "id_reads": 0.0,
+          "link_reads": 4.0,
+          "spent": 10.0,
+          "frames": 1.0
+        },
+        "modern_link_stable": {
+          "calls": 40.0,
+          "passes": 5.0,
+          "id_reads": 0.0,
+          "link_reads": 40.0,
+          "frames": 1.0
+        }
+      },
+      "output": "METRIC legacy_id_debounced_manual wrong=0 unavailable=0 wrong_cost=0 calls=2 id_reads=4 link_reads=1 spent=10 frames=1\nMETRIC legacy_id_debounced_tier wrong=0 unavailable=0 wrong_cost=0 calls=2 id_reads=4 link_reads=1 spent=10 frames=1\nMETRIC legacy_id_rebuilt_manual wrong=0 unavailable=0 wrong_cost=0 calls=2 id_reads=4 link_reads=1 spent=10 frames=1\nMETRIC legacy_id_rebuilt_tier wrong=0 unavailable=0 wrong_cost=0 calls=2 id_reads=4 link_reads=1 spent=10 frames=1\nMETRIC legacy_id_stable calls=40 passes=5 id_reads=40 link_reads=0 frames=1\nMETRIC legacy_link_debounced_manual wrong=0 unavailable=0 wrong_cost=0 calls=2 id_reads=0 link_reads=4 spent=10 frames=1\nMETRIC legacy_link_debounced_tier wrong=0 unavailable=0 wrong_cost=0 calls=2 id_reads=0 link_reads=4 spent=10 frames=1\nMETRIC legacy_link_rebuilt_manual wrong=0 unavailable=0 wrong_cost=0 calls=2 id_reads=0 link_reads=4 spent=10 frames=1\nMETRIC legacy_link_rebuilt_tier wrong=0 unavailable=0 wrong_cost=0 calls=2 id_reads=0 link_reads=4 spent=10 frames=1\nMETRIC legacy_link_stable calls=40 passes=5 id_reads=0 link_reads=40 frames=1\nMETRIC modern_id_debounced_manual wrong=0 unavailable=0 wrong_cost=0 calls=2 id_reads=4 link_reads=1 spent=10 frames=1\nMETRIC modern_id_debounced_tier wrong=0 unavailable=0 wrong_cost=0 calls=2 id_reads=4 link_reads=1 spent=10 frames=1\nMETRIC modern_id_rebuilt_manual wrong=0 unavailable=0 wrong_cost=0 calls=2 id_reads=4 link_reads=1 spent=10 frames=1\nMETRIC modern_id_rebuilt_tier wrong=0 unavailable=0 wrong_cost=0 calls=2 id_reads=4 link_reads=1 spent=10 frames=1\nMETRIC modern_id_stable calls=40 passes=5 id_reads=40 link_reads=0 frames=1\nMETRIC modern_link_debounced_manual wrong=0 unavailable=0 wrong_cost=0 calls=2 id_reads=0 link_reads=4 spent=10 frames=1\nMETRIC modern_link_debounced_tier wrong=0 unavailable=0 wrong_cost=0 calls=2 id_reads=0 link_reads=4 spent=10 frames=1\nMETRIC modern_link_rebuilt_manual wrong=0 unavailable=0 wrong_cost=0 calls=2 id_reads=0 link_reads=4 spent=10 frames=1\nMETRIC modern_link_rebuilt_tier wrong=0 unavailable=0 wrong_cost=0 calls=2 id_reads=0 link_reads=4 spent=10 frames=1\nMETRIC modern_link_stable calls=40 passes=5 id_reads=0 link_reads=40 frames=1\nVendor slot identity: 660 checks, 0 failures\n"
+    },
+    {
+      "trial": 5,
+      "variant": "baseline",
+      "command": [
+        "lua",
+        "tests/vendor_slot_identity.lua",
+        "--source",
+        "tests/fixtures/vendor_buy_slot_before.txt",
+        "--measure"
+      ],
+      "wallSeconds": 0.0536292000033427,
+      "metrics": {
+        "legacy_id_debounced_manual": {
+          "wrong": 1.0,
+          "unavailable": 1.0,
+          "wrong_cost": 800.0,
+          "calls": 4.0,
+          "id_reads": 0.0,
+          "link_reads": 0.0,
+          "spent": 810.0,
+          "frames": 1.0
+        },
+        "legacy_id_debounced_tier": {
+          "wrong": 1.0,
+          "unavailable": 1.0,
+          "wrong_cost": 800.0,
+          "calls": 4.0,
+          "id_reads": 0.0,
+          "link_reads": 0.0,
+          "spent": 810.0,
+          "frames": 1.0
+        },
+        "legacy_id_rebuilt_manual": {
+          "wrong": 1.0,
+          "unavailable": 1.0,
+          "wrong_cost": 800.0,
+          "calls": 4.0,
+          "id_reads": 0.0,
+          "link_reads": 0.0,
+          "spent": 810.0,
+          "frames": 1.0
+        },
+        "legacy_id_rebuilt_tier": {
+          "wrong": 1.0,
+          "unavailable": 1.0,
+          "wrong_cost": 800.0,
+          "calls": 4.0,
+          "id_reads": 0.0,
+          "link_reads": 0.0,
+          "spent": 810.0,
+          "frames": 1.0
+        },
+        "legacy_id_stable": {
+          "calls": 40.0,
+          "passes": 5.0,
+          "id_reads": 0.0,
+          "link_reads": 0.0,
+          "frames": 1.0
+        },
+        "legacy_link_debounced_manual": {
+          "wrong": 1.0,
+          "unavailable": 1.0,
+          "wrong_cost": 800.0,
+          "calls": 4.0,
+          "id_reads": 0.0,
+          "link_reads": 0.0,
+          "spent": 810.0,
+          "frames": 1.0
+        },
+        "legacy_link_debounced_tier": {
+          "wrong": 1.0,
+          "unavailable": 1.0,
+          "wrong_cost": 800.0,
+          "calls": 4.0,
+          "id_reads": 0.0,
+          "link_reads": 0.0,
+          "spent": 810.0,
+          "frames": 1.0
+        },
+        "legacy_link_rebuilt_manual": {
+          "wrong": 1.0,
+          "unavailable": 1.0,
+          "wrong_cost": 800.0,
+          "calls": 4.0,
+          "id_reads": 0.0,
+          "link_reads": 0.0,
+          "spent": 810.0,
+          "frames": 1.0
+        },
+        "legacy_link_rebuilt_tier": {
+          "wrong": 1.0,
+          "unavailable": 1.0,
+          "wrong_cost": 800.0,
+          "calls": 4.0,
+          "id_reads": 0.0,
+          "link_reads": 0.0,
+          "spent": 810.0,
+          "frames": 1.0
+        },
+        "legacy_link_stable": {
+          "calls": 40.0,
+          "passes": 5.0,
+          "id_reads": 0.0,
+          "link_reads": 0.0,
+          "frames": 1.0
+        },
+        "modern_id_debounced_manual": {
+          "wrong": 1.0,
+          "unavailable": 1.0,
+          "wrong_cost": 800.0,
+          "calls": 4.0,
+          "id_reads": 0.0,
+          "link_reads": 0.0,
+          "spent": 810.0,
+          "frames": 1.0
+        },
+        "modern_id_debounced_tier": {
+          "wrong": 1.0,
+          "unavailable": 1.0,
+          "wrong_cost": 800.0,
+          "calls": 4.0,
+          "id_reads": 0.0,
+          "link_reads": 0.0,
+          "spent": 810.0,
+          "frames": 1.0
+        },
+        "modern_id_rebuilt_manual": {
+          "wrong": 1.0,
+          "unavailable": 1.0,
+          "wrong_cost": 800.0,
+          "calls": 4.0,
+          "id_reads": 0.0,
+          "link_reads": 0.0,
+          "spent": 810.0,
+          "frames": 1.0
+        },
+        "modern_id_rebuilt_tier": {
+          "wrong": 1.0,
+          "unavailable": 1.0,
+          "wrong_cost": 800.0,
+          "calls": 4.0,
+          "id_reads": 0.0,
+          "link_reads": 0.0,
+          "spent": 810.0,
+          "frames": 1.0
+        },
+        "modern_id_stable": {
+          "calls": 40.0,
+          "passes": 5.0,
+          "id_reads": 0.0,
+          "link_reads": 0.0,
+          "frames": 1.0
+        },
+        "modern_link_debounced_manual": {
+          "wrong": 1.0,
+          "unavailable": 1.0,
+          "wrong_cost": 800.0,
+          "calls": 4.0,
+          "id_reads": 0.0,
+          "link_reads": 0.0,
+          "spent": 810.0,
+          "frames": 1.0
+        },
+        "modern_link_debounced_tier": {
+          "wrong": 1.0,
+          "unavailable": 1.0,
+          "wrong_cost": 800.0,
+          "calls": 4.0,
+          "id_reads": 0.0,
+          "link_reads": 0.0,
+          "spent": 810.0,
+          "frames": 1.0
+        },
+        "modern_link_rebuilt_manual": {
+          "wrong": 1.0,
+          "unavailable": 1.0,
+          "wrong_cost": 800.0,
+          "calls": 4.0,
+          "id_reads": 0.0,
+          "link_reads": 0.0,
+          "spent": 810.0,
+          "frames": 1.0
+        },
+        "modern_link_rebuilt_tier": {
+          "wrong": 1.0,
+          "unavailable": 1.0,
+          "wrong_cost": 800.0,
+          "calls": 4.0,
+          "id_reads": 0.0,
+          "link_reads": 0.0,
+          "spent": 810.0,
+          "frames": 1.0
+        },
+        "modern_link_stable": {
+          "calls": 40.0,
+          "passes": 5.0,
+          "id_reads": 0.0,
+          "link_reads": 0.0,
+          "frames": 1.0
+        }
+      },
+      "output": "METRIC legacy_id_debounced_manual wrong=1 unavailable=1 wrong_cost=800 calls=4 id_reads=0 link_reads=0 spent=810 frames=1\nFAIL legacy_id_debounced_manual replacement item never bought\nFAIL legacy_id_debounced_manual missing listing never submitted\nMETRIC legacy_id_debounced_tier wrong=1 unavailable=1 wrong_cost=800 calls=4 id_reads=0 link_reads=0 spent=810 frames=1\nFAIL legacy_id_debounced_tier replacement item never bought\nFAIL legacy_id_debounced_tier missing listing never submitted\nMETRIC legacy_id_rebuilt_manual wrong=1 unavailable=1 wrong_cost=800 calls=4 id_reads=0 link_reads=0 spent=810 frames=1\nFAIL legacy_id_rebuilt_manual replacement item never bought\nFAIL legacy_id_rebuilt_manual missing listing never submitted\nMETRIC legacy_id_rebuilt_tier wrong=1 unavailable=1 wrong_cost=800 calls=4 id_reads=0 link_reads=0 spent=810 frames=1\nFAIL legacy_id_rebuilt_tier replacement item never bought\nFAIL legacy_id_rebuilt_tier missing listing never submitted\nFAIL legacy_id each same-pass task rechecks identity\nMETRIC legacy_id_stable calls=40 passes=5 id_reads=0 link_reads=0 frames=1\nMETRIC legacy_link_debounced_manual wrong=1 unavailable=1 wrong_cost=800 calls=4 id_reads=0 link_reads=0 spent=810 frames=1\nFAIL legacy_link_debounced_manual replacement item never bought\nFAIL legacy_link_debounced_manual missing listing never submitted\nMETRIC legacy_link_debounced_tier wrong=1 unavailable=1 wrong_cost=800 calls=4 id_reads=0 link_reads=0 spent=810 frames=1\nFAIL legacy_link_debounced_tier replacement item never bought\nFAIL legacy_link_debounced_tier missing listing never submitted\nMETRIC legacy_link_rebuilt_manual wrong=1 unavailable=1 wrong_cost=800 calls=4 id_reads=0 link_reads=0 spent=810 frames=1\nFAIL legacy_link_rebuilt_manual replacement item never bought\nFAIL legacy_link_rebuilt_manual missing listing never submitted\nMETRIC legacy_link_rebuilt_tier wrong=1 unavailable=1 wrong_cost=800 calls=4 id_reads=0 link_reads=0 spent=810 frames=1\nFAIL legacy_link_rebuilt_tier replacement item never bought\nFAIL legacy_link_rebuilt_tier missing listing never submitted\nFAIL legacy_link each same-pass task rechecks identity\nMETRIC legacy_link_stable calls=40 passes=5 id_reads=0 link_reads=0 frames=1\nMETRIC modern_id_debounced_manual wrong=1 unavailable=1 wrong_cost=800 calls=4 id_reads=0 link_reads=0 spent=810 frames=1\nFAIL modern_id_debounced_manual replacement item never bought\nFAIL modern_id_debounced_manual missing listing never submitted\nMETRIC modern_id_debounced_tier wrong=1 unavailable=1 wrong_cost=800 calls=4 id_reads=0 link_reads=0 spent=810 frames=1\nFAIL modern_id_debounced_tier replacement item never bought\nFAIL modern_id_debounced_tier missing listing never submitted\nMETRIC modern_id_rebuilt_manual wrong=1 unavailable=1 wrong_cost=800 calls=4 id_reads=0 link_reads=0 spent=810 frames=1\nFAIL modern_id_rebuilt_manual replacement item never bought\nFAIL modern_id_rebuilt_manual missing listing never submitted\nMETRIC modern_id_rebuilt_tier wrong=1 unavailable=1 wrong_cost=800 calls=4 id_reads=0 link_reads=0 spent=810 frames=1\nFAIL modern_id_rebuilt_tier replacement item never bought\nFAIL modern_id_rebuilt_tier missing listing never submitted\nFAIL modern_id each same-pass task rechecks identity\nMETRIC modern_id_stable calls=40 passes=5 id_reads=0 link_reads=0 frames=1\nMETRIC modern_link_debounced_manual wrong=1 unavailable=1 wrong_cost=800 calls=4 id_reads=0 link_reads=0 spent=810 frames=1\nFAIL modern_link_debounced_manual replacement item never bought\nFAIL modern_link_debounced_manual missing listing never submitted\nMETRIC modern_link_debounced_tier wrong=1 unavailable=1 wrong_cost=800 calls=4 id_reads=0 link_reads=0 spent=810 frames=1\nFAIL modern_link_debounced_tier replacement item never bought\nFAIL modern_link_debounced_tier missing listing never submitted\nMETRIC modern_link_rebuilt_manual wrong=1 unavailable=1 wrong_cost=800 calls=4 id_reads=0 link_reads=0 spent=810 frames=1\nFAIL modern_link_rebuilt_manual replacement item never bought\nFAIL modern_link_rebuilt_manual missing listing never submitted\nMETRIC modern_link_rebuilt_tier wrong=1 unavailable=1 wrong_cost=800 calls=4 id_reads=0 link_reads=0 spent=810 frames=1\nFAIL modern_link_rebuilt_tier replacement item never bought\nFAIL modern_link_rebuilt_tier missing listing never submitted\nFAIL modern_link each same-pass task rechecks identity\nMETRIC modern_link_stable calls=40 passes=5 id_reads=0 link_reads=0 frames=1\nVendor slot identity: 660 checks, 36 failures\n"
+    },
+    {
+      "trial": 5,
+      "variant": "candidate",
+      "command": [
+        "lua",
+        "tests/vendor_slot_identity.lua"
+      ],
+      "wallSeconds": 0.05026009999710368,
+      "metrics": {
+        "legacy_id_debounced_manual": {
+          "wrong": 0.0,
+          "unavailable": 0.0,
+          "wrong_cost": 0.0,
+          "calls": 2.0,
+          "id_reads": 4.0,
+          "link_reads": 1.0,
+          "spent": 10.0,
+          "frames": 1.0
+        },
+        "legacy_id_debounced_tier": {
+          "wrong": 0.0,
+          "unavailable": 0.0,
+          "wrong_cost": 0.0,
+          "calls": 2.0,
+          "id_reads": 4.0,
+          "link_reads": 1.0,
+          "spent": 10.0,
+          "frames": 1.0
+        },
+        "legacy_id_rebuilt_manual": {
+          "wrong": 0.0,
+          "unavailable": 0.0,
+          "wrong_cost": 0.0,
+          "calls": 2.0,
+          "id_reads": 4.0,
+          "link_reads": 1.0,
+          "spent": 10.0,
+          "frames": 1.0
+        },
+        "legacy_id_rebuilt_tier": {
+          "wrong": 0.0,
+          "unavailable": 0.0,
+          "wrong_cost": 0.0,
+          "calls": 2.0,
+          "id_reads": 4.0,
+          "link_reads": 1.0,
+          "spent": 10.0,
+          "frames": 1.0
+        },
+        "legacy_id_stable": {
+          "calls": 40.0,
+          "passes": 5.0,
+          "id_reads": 40.0,
+          "link_reads": 0.0,
+          "frames": 1.0
+        },
+        "legacy_link_debounced_manual": {
+          "wrong": 0.0,
+          "unavailable": 0.0,
+          "wrong_cost": 0.0,
+          "calls": 2.0,
+          "id_reads": 0.0,
+          "link_reads": 4.0,
+          "spent": 10.0,
+          "frames": 1.0
+        },
+        "legacy_link_debounced_tier": {
+          "wrong": 0.0,
+          "unavailable": 0.0,
+          "wrong_cost": 0.0,
+          "calls": 2.0,
+          "id_reads": 0.0,
+          "link_reads": 4.0,
+          "spent": 10.0,
+          "frames": 1.0
+        },
+        "legacy_link_rebuilt_manual": {
+          "wrong": 0.0,
+          "unavailable": 0.0,
+          "wrong_cost": 0.0,
+          "calls": 2.0,
+          "id_reads": 0.0,
+          "link_reads": 4.0,
+          "spent": 10.0,
+          "frames": 1.0
+        },
+        "legacy_link_rebuilt_tier": {
+          "wrong": 0.0,
+          "unavailable": 0.0,
+          "wrong_cost": 0.0,
+          "calls": 2.0,
+          "id_reads": 0.0,
+          "link_reads": 4.0,
+          "spent": 10.0,
+          "frames": 1.0
+        },
+        "legacy_link_stable": {
+          "calls": 40.0,
+          "passes": 5.0,
+          "id_reads": 0.0,
+          "link_reads": 40.0,
+          "frames": 1.0
+        },
+        "modern_id_debounced_manual": {
+          "wrong": 0.0,
+          "unavailable": 0.0,
+          "wrong_cost": 0.0,
+          "calls": 2.0,
+          "id_reads": 4.0,
+          "link_reads": 1.0,
+          "spent": 10.0,
+          "frames": 1.0
+        },
+        "modern_id_debounced_tier": {
+          "wrong": 0.0,
+          "unavailable": 0.0,
+          "wrong_cost": 0.0,
+          "calls": 2.0,
+          "id_reads": 4.0,
+          "link_reads": 1.0,
+          "spent": 10.0,
+          "frames": 1.0
+        },
+        "modern_id_rebuilt_manual": {
+          "wrong": 0.0,
+          "unavailable": 0.0,
+          "wrong_cost": 0.0,
+          "calls": 2.0,
+          "id_reads": 4.0,
+          "link_reads": 1.0,
+          "spent": 10.0,
+          "frames": 1.0
+        },
+        "modern_id_rebuilt_tier": {
+          "wrong": 0.0,
+          "unavailable": 0.0,
+          "wrong_cost": 0.0,
+          "calls": 2.0,
+          "id_reads": 4.0,
+          "link_reads": 1.0,
+          "spent": 10.0,
+          "frames": 1.0
+        },
+        "modern_id_stable": {
+          "calls": 40.0,
+          "passes": 5.0,
+          "id_reads": 40.0,
+          "link_reads": 0.0,
+          "frames": 1.0
+        },
+        "modern_link_debounced_manual": {
+          "wrong": 0.0,
+          "unavailable": 0.0,
+          "wrong_cost": 0.0,
+          "calls": 2.0,
+          "id_reads": 0.0,
+          "link_reads": 4.0,
+          "spent": 10.0,
+          "frames": 1.0
+        },
+        "modern_link_debounced_tier": {
+          "wrong": 0.0,
+          "unavailable": 0.0,
+          "wrong_cost": 0.0,
+          "calls": 2.0,
+          "id_reads": 0.0,
+          "link_reads": 4.0,
+          "spent": 10.0,
+          "frames": 1.0
+        },
+        "modern_link_rebuilt_manual": {
+          "wrong": 0.0,
+          "unavailable": 0.0,
+          "wrong_cost": 0.0,
+          "calls": 2.0,
+          "id_reads": 0.0,
+          "link_reads": 4.0,
+          "spent": 10.0,
+          "frames": 1.0
+        },
+        "modern_link_rebuilt_tier": {
+          "wrong": 0.0,
+          "unavailable": 0.0,
+          "wrong_cost": 0.0,
+          "calls": 2.0,
+          "id_reads": 0.0,
+          "link_reads": 4.0,
+          "spent": 10.0,
+          "frames": 1.0
+        },
+        "modern_link_stable": {
+          "calls": 40.0,
+          "passes": 5.0,
+          "id_reads": 0.0,
+          "link_reads": 40.0,
+          "frames": 1.0
+        }
+      },
+      "output": "METRIC legacy_id_debounced_manual wrong=0 unavailable=0 wrong_cost=0 calls=2 id_reads=4 link_reads=1 spent=10 frames=1\nMETRIC legacy_id_debounced_tier wrong=0 unavailable=0 wrong_cost=0 calls=2 id_reads=4 link_reads=1 spent=10 frames=1\nMETRIC legacy_id_rebuilt_manual wrong=0 unavailable=0 wrong_cost=0 calls=2 id_reads=4 link_reads=1 spent=10 frames=1\nMETRIC legacy_id_rebuilt_tier wrong=0 unavailable=0 wrong_cost=0 calls=2 id_reads=4 link_reads=1 spent=10 frames=1\nMETRIC legacy_id_stable calls=40 passes=5 id_reads=40 link_reads=0 frames=1\nMETRIC legacy_link_debounced_manual wrong=0 unavailable=0 wrong_cost=0 calls=2 id_reads=0 link_reads=4 spent=10 frames=1\nMETRIC legacy_link_debounced_tier wrong=0 unavailable=0 wrong_cost=0 calls=2 id_reads=0 link_reads=4 spent=10 frames=1\nMETRIC legacy_link_rebuilt_manual wrong=0 unavailable=0 wrong_cost=0 calls=2 id_reads=0 link_reads=4 spent=10 frames=1\nMETRIC legacy_link_rebuilt_tier wrong=0 unavailable=0 wrong_cost=0 calls=2 id_reads=0 link_reads=4 spent=10 frames=1\nMETRIC legacy_link_stable calls=40 passes=5 id_reads=0 link_reads=40 frames=1\nMETRIC modern_id_debounced_manual wrong=0 unavailable=0 wrong_cost=0 calls=2 id_reads=4 link_reads=1 spent=10 frames=1\nMETRIC modern_id_debounced_tier wrong=0 unavailable=0 wrong_cost=0 calls=2 id_reads=4 link_reads=1 spent=10 frames=1\nMETRIC modern_id_rebuilt_manual wrong=0 unavailable=0 wrong_cost=0 calls=2 id_reads=4 link_reads=1 spent=10 frames=1\nMETRIC modern_id_rebuilt_tier wrong=0 unavailable=0 wrong_cost=0 calls=2 id_reads=4 link_reads=1 spent=10 frames=1\nMETRIC modern_id_stable calls=40 passes=5 id_reads=40 link_reads=0 frames=1\nMETRIC modern_link_debounced_manual wrong=0 unavailable=0 wrong_cost=0 calls=2 id_reads=0 link_reads=4 spent=10 frames=1\nMETRIC modern_link_debounced_tier wrong=0 unavailable=0 wrong_cost=0 calls=2 id_reads=0 link_reads=4 spent=10 frames=1\nMETRIC modern_link_rebuilt_manual wrong=0 unavailable=0 wrong_cost=0 calls=2 id_reads=0 link_reads=4 spent=10 frames=1\nMETRIC modern_link_rebuilt_tier wrong=0 unavailable=0 wrong_cost=0 calls=2 id_reads=0 link_reads=4 spent=10 frames=1\nMETRIC modern_link_stable calls=40 passes=5 id_reads=0 link_reads=40 frames=1\nVendor slot identity: 660 checks, 0 failures\n"
+    }
+  ],
+  "summary": {
+    "legacy_id_debounced_manual": {
+      "wrong": {
+        "baseline": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "candidate": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "unavailable": {
+        "baseline": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "candidate": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "wrong_cost": {
+        "baseline": {
+          "median": 800.0,
+          "min": 800.0,
+          "max": 800.0
+        },
+        "candidate": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "calls": {
+        "baseline": {
+          "median": 4.0,
+          "min": 4.0,
+          "max": 4.0
+        },
+        "candidate": {
+          "median": 2.0,
+          "min": 2.0,
+          "max": 2.0
+        }
+      },
+      "id_reads": {
+        "baseline": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "candidate": {
+          "median": 4.0,
+          "min": 4.0,
+          "max": 4.0
+        }
+      },
+      "link_reads": {
+        "baseline": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "candidate": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        }
+      },
+      "spent": {
+        "baseline": {
+          "median": 810.0,
+          "min": 810.0,
+          "max": 810.0
+        },
+        "candidate": {
+          "median": 10.0,
+          "min": 10.0,
+          "max": 10.0
+        }
+      },
+      "frames": {
+        "baseline": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "candidate": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        }
+      }
+    },
+    "legacy_id_debounced_tier": {
+      "wrong": {
+        "baseline": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "candidate": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "unavailable": {
+        "baseline": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "candidate": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "wrong_cost": {
+        "baseline": {
+          "median": 800.0,
+          "min": 800.0,
+          "max": 800.0
+        },
+        "candidate": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "calls": {
+        "baseline": {
+          "median": 4.0,
+          "min": 4.0,
+          "max": 4.0
+        },
+        "candidate": {
+          "median": 2.0,
+          "min": 2.0,
+          "max": 2.0
+        }
+      },
+      "id_reads": {
+        "baseline": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "candidate": {
+          "median": 4.0,
+          "min": 4.0,
+          "max": 4.0
+        }
+      },
+      "link_reads": {
+        "baseline": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "candidate": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        }
+      },
+      "spent": {
+        "baseline": {
+          "median": 810.0,
+          "min": 810.0,
+          "max": 810.0
+        },
+        "candidate": {
+          "median": 10.0,
+          "min": 10.0,
+          "max": 10.0
+        }
+      },
+      "frames": {
+        "baseline": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "candidate": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        }
+      }
+    },
+    "legacy_id_rebuilt_manual": {
+      "wrong": {
+        "baseline": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "candidate": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "unavailable": {
+        "baseline": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "candidate": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "wrong_cost": {
+        "baseline": {
+          "median": 800.0,
+          "min": 800.0,
+          "max": 800.0
+        },
+        "candidate": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "calls": {
+        "baseline": {
+          "median": 4.0,
+          "min": 4.0,
+          "max": 4.0
+        },
+        "candidate": {
+          "median": 2.0,
+          "min": 2.0,
+          "max": 2.0
+        }
+      },
+      "id_reads": {
+        "baseline": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "candidate": {
+          "median": 4.0,
+          "min": 4.0,
+          "max": 4.0
+        }
+      },
+      "link_reads": {
+        "baseline": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "candidate": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        }
+      },
+      "spent": {
+        "baseline": {
+          "median": 810.0,
+          "min": 810.0,
+          "max": 810.0
+        },
+        "candidate": {
+          "median": 10.0,
+          "min": 10.0,
+          "max": 10.0
+        }
+      },
+      "frames": {
+        "baseline": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "candidate": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        }
+      }
+    },
+    "legacy_id_rebuilt_tier": {
+      "wrong": {
+        "baseline": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "candidate": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "unavailable": {
+        "baseline": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "candidate": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "wrong_cost": {
+        "baseline": {
+          "median": 800.0,
+          "min": 800.0,
+          "max": 800.0
+        },
+        "candidate": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "calls": {
+        "baseline": {
+          "median": 4.0,
+          "min": 4.0,
+          "max": 4.0
+        },
+        "candidate": {
+          "median": 2.0,
+          "min": 2.0,
+          "max": 2.0
+        }
+      },
+      "id_reads": {
+        "baseline": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "candidate": {
+          "median": 4.0,
+          "min": 4.0,
+          "max": 4.0
+        }
+      },
+      "link_reads": {
+        "baseline": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "candidate": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        }
+      },
+      "spent": {
+        "baseline": {
+          "median": 810.0,
+          "min": 810.0,
+          "max": 810.0
+        },
+        "candidate": {
+          "median": 10.0,
+          "min": 10.0,
+          "max": 10.0
+        }
+      },
+      "frames": {
+        "baseline": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "candidate": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        }
+      }
+    },
+    "legacy_id_stable": {
+      "calls": {
+        "baseline": {
+          "median": 40.0,
+          "min": 40.0,
+          "max": 40.0
+        },
+        "candidate": {
+          "median": 40.0,
+          "min": 40.0,
+          "max": 40.0
+        }
+      },
+      "passes": {
+        "baseline": {
+          "median": 5.0,
+          "min": 5.0,
+          "max": 5.0
+        },
+        "candidate": {
+          "median": 5.0,
+          "min": 5.0,
+          "max": 5.0
+        }
+      },
+      "id_reads": {
+        "baseline": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "candidate": {
+          "median": 40.0,
+          "min": 40.0,
+          "max": 40.0
+        }
+      },
+      "link_reads": {
+        "baseline": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "candidate": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "frames": {
+        "baseline": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "candidate": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        }
+      }
+    },
+    "legacy_link_debounced_manual": {
+      "wrong": {
+        "baseline": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "candidate": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "unavailable": {
+        "baseline": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "candidate": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "wrong_cost": {
+        "baseline": {
+          "median": 800.0,
+          "min": 800.0,
+          "max": 800.0
+        },
+        "candidate": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "calls": {
+        "baseline": {
+          "median": 4.0,
+          "min": 4.0,
+          "max": 4.0
+        },
+        "candidate": {
+          "median": 2.0,
+          "min": 2.0,
+          "max": 2.0
+        }
+      },
+      "id_reads": {
+        "baseline": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "candidate": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "link_reads": {
+        "baseline": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "candidate": {
+          "median": 4.0,
+          "min": 4.0,
+          "max": 4.0
+        }
+      },
+      "spent": {
+        "baseline": {
+          "median": 810.0,
+          "min": 810.0,
+          "max": 810.0
+        },
+        "candidate": {
+          "median": 10.0,
+          "min": 10.0,
+          "max": 10.0
+        }
+      },
+      "frames": {
+        "baseline": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "candidate": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        }
+      }
+    },
+    "legacy_link_debounced_tier": {
+      "wrong": {
+        "baseline": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "candidate": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "unavailable": {
+        "baseline": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "candidate": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "wrong_cost": {
+        "baseline": {
+          "median": 800.0,
+          "min": 800.0,
+          "max": 800.0
+        },
+        "candidate": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "calls": {
+        "baseline": {
+          "median": 4.0,
+          "min": 4.0,
+          "max": 4.0
+        },
+        "candidate": {
+          "median": 2.0,
+          "min": 2.0,
+          "max": 2.0
+        }
+      },
+      "id_reads": {
+        "baseline": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "candidate": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "link_reads": {
+        "baseline": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "candidate": {
+          "median": 4.0,
+          "min": 4.0,
+          "max": 4.0
+        }
+      },
+      "spent": {
+        "baseline": {
+          "median": 810.0,
+          "min": 810.0,
+          "max": 810.0
+        },
+        "candidate": {
+          "median": 10.0,
+          "min": 10.0,
+          "max": 10.0
+        }
+      },
+      "frames": {
+        "baseline": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "candidate": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        }
+      }
+    },
+    "legacy_link_rebuilt_manual": {
+      "wrong": {
+        "baseline": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "candidate": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "unavailable": {
+        "baseline": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "candidate": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "wrong_cost": {
+        "baseline": {
+          "median": 800.0,
+          "min": 800.0,
+          "max": 800.0
+        },
+        "candidate": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "calls": {
+        "baseline": {
+          "median": 4.0,
+          "min": 4.0,
+          "max": 4.0
+        },
+        "candidate": {
+          "median": 2.0,
+          "min": 2.0,
+          "max": 2.0
+        }
+      },
+      "id_reads": {
+        "baseline": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "candidate": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "link_reads": {
+        "baseline": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "candidate": {
+          "median": 4.0,
+          "min": 4.0,
+          "max": 4.0
+        }
+      },
+      "spent": {
+        "baseline": {
+          "median": 810.0,
+          "min": 810.0,
+          "max": 810.0
+        },
+        "candidate": {
+          "median": 10.0,
+          "min": 10.0,
+          "max": 10.0
+        }
+      },
+      "frames": {
+        "baseline": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "candidate": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        }
+      }
+    },
+    "legacy_link_rebuilt_tier": {
+      "wrong": {
+        "baseline": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "candidate": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "unavailable": {
+        "baseline": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "candidate": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "wrong_cost": {
+        "baseline": {
+          "median": 800.0,
+          "min": 800.0,
+          "max": 800.0
+        },
+        "candidate": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "calls": {
+        "baseline": {
+          "median": 4.0,
+          "min": 4.0,
+          "max": 4.0
+        },
+        "candidate": {
+          "median": 2.0,
+          "min": 2.0,
+          "max": 2.0
+        }
+      },
+      "id_reads": {
+        "baseline": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "candidate": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "link_reads": {
+        "baseline": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "candidate": {
+          "median": 4.0,
+          "min": 4.0,
+          "max": 4.0
+        }
+      },
+      "spent": {
+        "baseline": {
+          "median": 810.0,
+          "min": 810.0,
+          "max": 810.0
+        },
+        "candidate": {
+          "median": 10.0,
+          "min": 10.0,
+          "max": 10.0
+        }
+      },
+      "frames": {
+        "baseline": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "candidate": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        }
+      }
+    },
+    "legacy_link_stable": {
+      "calls": {
+        "baseline": {
+          "median": 40.0,
+          "min": 40.0,
+          "max": 40.0
+        },
+        "candidate": {
+          "median": 40.0,
+          "min": 40.0,
+          "max": 40.0
+        }
+      },
+      "passes": {
+        "baseline": {
+          "median": 5.0,
+          "min": 5.0,
+          "max": 5.0
+        },
+        "candidate": {
+          "median": 5.0,
+          "min": 5.0,
+          "max": 5.0
+        }
+      },
+      "id_reads": {
+        "baseline": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "candidate": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "link_reads": {
+        "baseline": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "candidate": {
+          "median": 40.0,
+          "min": 40.0,
+          "max": 40.0
+        }
+      },
+      "frames": {
+        "baseline": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "candidate": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        }
+      }
+    },
+    "modern_id_debounced_manual": {
+      "wrong": {
+        "baseline": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "candidate": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "unavailable": {
+        "baseline": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "candidate": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "wrong_cost": {
+        "baseline": {
+          "median": 800.0,
+          "min": 800.0,
+          "max": 800.0
+        },
+        "candidate": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "calls": {
+        "baseline": {
+          "median": 4.0,
+          "min": 4.0,
+          "max": 4.0
+        },
+        "candidate": {
+          "median": 2.0,
+          "min": 2.0,
+          "max": 2.0
+        }
+      },
+      "id_reads": {
+        "baseline": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "candidate": {
+          "median": 4.0,
+          "min": 4.0,
+          "max": 4.0
+        }
+      },
+      "link_reads": {
+        "baseline": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "candidate": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        }
+      },
+      "spent": {
+        "baseline": {
+          "median": 810.0,
+          "min": 810.0,
+          "max": 810.0
+        },
+        "candidate": {
+          "median": 10.0,
+          "min": 10.0,
+          "max": 10.0
+        }
+      },
+      "frames": {
+        "baseline": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "candidate": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        }
+      }
+    },
+    "modern_id_debounced_tier": {
+      "wrong": {
+        "baseline": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "candidate": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "unavailable": {
+        "baseline": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "candidate": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "wrong_cost": {
+        "baseline": {
+          "median": 800.0,
+          "min": 800.0,
+          "max": 800.0
+        },
+        "candidate": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "calls": {
+        "baseline": {
+          "median": 4.0,
+          "min": 4.0,
+          "max": 4.0
+        },
+        "candidate": {
+          "median": 2.0,
+          "min": 2.0,
+          "max": 2.0
+        }
+      },
+      "id_reads": {
+        "baseline": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "candidate": {
+          "median": 4.0,
+          "min": 4.0,
+          "max": 4.0
+        }
+      },
+      "link_reads": {
+        "baseline": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "candidate": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        }
+      },
+      "spent": {
+        "baseline": {
+          "median": 810.0,
+          "min": 810.0,
+          "max": 810.0
+        },
+        "candidate": {
+          "median": 10.0,
+          "min": 10.0,
+          "max": 10.0
+        }
+      },
+      "frames": {
+        "baseline": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "candidate": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        }
+      }
+    },
+    "modern_id_rebuilt_manual": {
+      "wrong": {
+        "baseline": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "candidate": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "unavailable": {
+        "baseline": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "candidate": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "wrong_cost": {
+        "baseline": {
+          "median": 800.0,
+          "min": 800.0,
+          "max": 800.0
+        },
+        "candidate": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "calls": {
+        "baseline": {
+          "median": 4.0,
+          "min": 4.0,
+          "max": 4.0
+        },
+        "candidate": {
+          "median": 2.0,
+          "min": 2.0,
+          "max": 2.0
+        }
+      },
+      "id_reads": {
+        "baseline": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "candidate": {
+          "median": 4.0,
+          "min": 4.0,
+          "max": 4.0
+        }
+      },
+      "link_reads": {
+        "baseline": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "candidate": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        }
+      },
+      "spent": {
+        "baseline": {
+          "median": 810.0,
+          "min": 810.0,
+          "max": 810.0
+        },
+        "candidate": {
+          "median": 10.0,
+          "min": 10.0,
+          "max": 10.0
+        }
+      },
+      "frames": {
+        "baseline": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "candidate": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        }
+      }
+    },
+    "modern_id_rebuilt_tier": {
+      "wrong": {
+        "baseline": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "candidate": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "unavailable": {
+        "baseline": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "candidate": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "wrong_cost": {
+        "baseline": {
+          "median": 800.0,
+          "min": 800.0,
+          "max": 800.0
+        },
+        "candidate": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "calls": {
+        "baseline": {
+          "median": 4.0,
+          "min": 4.0,
+          "max": 4.0
+        },
+        "candidate": {
+          "median": 2.0,
+          "min": 2.0,
+          "max": 2.0
+        }
+      },
+      "id_reads": {
+        "baseline": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "candidate": {
+          "median": 4.0,
+          "min": 4.0,
+          "max": 4.0
+        }
+      },
+      "link_reads": {
+        "baseline": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "candidate": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        }
+      },
+      "spent": {
+        "baseline": {
+          "median": 810.0,
+          "min": 810.0,
+          "max": 810.0
+        },
+        "candidate": {
+          "median": 10.0,
+          "min": 10.0,
+          "max": 10.0
+        }
+      },
+      "frames": {
+        "baseline": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "candidate": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        }
+      }
+    },
+    "modern_id_stable": {
+      "calls": {
+        "baseline": {
+          "median": 40.0,
+          "min": 40.0,
+          "max": 40.0
+        },
+        "candidate": {
+          "median": 40.0,
+          "min": 40.0,
+          "max": 40.0
+        }
+      },
+      "passes": {
+        "baseline": {
+          "median": 5.0,
+          "min": 5.0,
+          "max": 5.0
+        },
+        "candidate": {
+          "median": 5.0,
+          "min": 5.0,
+          "max": 5.0
+        }
+      },
+      "id_reads": {
+        "baseline": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "candidate": {
+          "median": 40.0,
+          "min": 40.0,
+          "max": 40.0
+        }
+      },
+      "link_reads": {
+        "baseline": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "candidate": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "frames": {
+        "baseline": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "candidate": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        }
+      }
+    },
+    "modern_link_debounced_manual": {
+      "wrong": {
+        "baseline": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "candidate": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "unavailable": {
+        "baseline": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "candidate": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "wrong_cost": {
+        "baseline": {
+          "median": 800.0,
+          "min": 800.0,
+          "max": 800.0
+        },
+        "candidate": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "calls": {
+        "baseline": {
+          "median": 4.0,
+          "min": 4.0,
+          "max": 4.0
+        },
+        "candidate": {
+          "median": 2.0,
+          "min": 2.0,
+          "max": 2.0
+        }
+      },
+      "id_reads": {
+        "baseline": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "candidate": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "link_reads": {
+        "baseline": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "candidate": {
+          "median": 4.0,
+          "min": 4.0,
+          "max": 4.0
+        }
+      },
+      "spent": {
+        "baseline": {
+          "median": 810.0,
+          "min": 810.0,
+          "max": 810.0
+        },
+        "candidate": {
+          "median": 10.0,
+          "min": 10.0,
+          "max": 10.0
+        }
+      },
+      "frames": {
+        "baseline": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "candidate": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        }
+      }
+    },
+    "modern_link_debounced_tier": {
+      "wrong": {
+        "baseline": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "candidate": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "unavailable": {
+        "baseline": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "candidate": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "wrong_cost": {
+        "baseline": {
+          "median": 800.0,
+          "min": 800.0,
+          "max": 800.0
+        },
+        "candidate": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "calls": {
+        "baseline": {
+          "median": 4.0,
+          "min": 4.0,
+          "max": 4.0
+        },
+        "candidate": {
+          "median": 2.0,
+          "min": 2.0,
+          "max": 2.0
+        }
+      },
+      "id_reads": {
+        "baseline": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "candidate": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "link_reads": {
+        "baseline": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "candidate": {
+          "median": 4.0,
+          "min": 4.0,
+          "max": 4.0
+        }
+      },
+      "spent": {
+        "baseline": {
+          "median": 810.0,
+          "min": 810.0,
+          "max": 810.0
+        },
+        "candidate": {
+          "median": 10.0,
+          "min": 10.0,
+          "max": 10.0
+        }
+      },
+      "frames": {
+        "baseline": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "candidate": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        }
+      }
+    },
+    "modern_link_rebuilt_manual": {
+      "wrong": {
+        "baseline": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "candidate": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "unavailable": {
+        "baseline": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "candidate": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "wrong_cost": {
+        "baseline": {
+          "median": 800.0,
+          "min": 800.0,
+          "max": 800.0
+        },
+        "candidate": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "calls": {
+        "baseline": {
+          "median": 4.0,
+          "min": 4.0,
+          "max": 4.0
+        },
+        "candidate": {
+          "median": 2.0,
+          "min": 2.0,
+          "max": 2.0
+        }
+      },
+      "id_reads": {
+        "baseline": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "candidate": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "link_reads": {
+        "baseline": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "candidate": {
+          "median": 4.0,
+          "min": 4.0,
+          "max": 4.0
+        }
+      },
+      "spent": {
+        "baseline": {
+          "median": 810.0,
+          "min": 810.0,
+          "max": 810.0
+        },
+        "candidate": {
+          "median": 10.0,
+          "min": 10.0,
+          "max": 10.0
+        }
+      },
+      "frames": {
+        "baseline": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "candidate": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        }
+      }
+    },
+    "modern_link_rebuilt_tier": {
+      "wrong": {
+        "baseline": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "candidate": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "unavailable": {
+        "baseline": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "candidate": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "wrong_cost": {
+        "baseline": {
+          "median": 800.0,
+          "min": 800.0,
+          "max": 800.0
+        },
+        "candidate": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "calls": {
+        "baseline": {
+          "median": 4.0,
+          "min": 4.0,
+          "max": 4.0
+        },
+        "candidate": {
+          "median": 2.0,
+          "min": 2.0,
+          "max": 2.0
+        }
+      },
+      "id_reads": {
+        "baseline": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "candidate": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "link_reads": {
+        "baseline": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "candidate": {
+          "median": 4.0,
+          "min": 4.0,
+          "max": 4.0
+        }
+      },
+      "spent": {
+        "baseline": {
+          "median": 810.0,
+          "min": 810.0,
+          "max": 810.0
+        },
+        "candidate": {
+          "median": 10.0,
+          "min": 10.0,
+          "max": 10.0
+        }
+      },
+      "frames": {
+        "baseline": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "candidate": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        }
+      }
+    },
+    "modern_link_stable": {
+      "calls": {
+        "baseline": {
+          "median": 40.0,
+          "min": 40.0,
+          "max": 40.0
+        },
+        "candidate": {
+          "median": 40.0,
+          "min": 40.0,
+          "max": 40.0
+        }
+      },
+      "passes": {
+        "baseline": {
+          "median": 5.0,
+          "min": 5.0,
+          "max": 5.0
+        },
+        "candidate": {
+          "median": 5.0,
+          "min": 5.0,
+          "max": 5.0
+        }
+      },
+      "id_reads": {
+        "baseline": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "candidate": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "link_reads": {
+        "baseline": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "candidate": {
+          "median": 40.0,
+          "min": 40.0,
+          "max": 40.0
+        }
+      },
+      "frames": {
+        "baseline": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "candidate": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        }
+      }
+    }
+  }
+}

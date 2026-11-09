@@ -1,0 +1,50 @@
+{
+  "changeID": "PARTY-DIVIDER-STYLE-20261107",
+  "requirement": "REQ-RF-73",
+  "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\06\\01a1b0ac-547f-7972-8df9-fa26882e0e03\\party-divider-style-20261107T105705Z\\checkpoint.json",
+  "existingHistorySettings": "Raid-rewrite-20261107T082357Z complete external recovery retained; no WTF/profiler writes",
+  "after": {
+    "UnitFrames/FluxUnitFrames_Party.lua": "11752b28dd3e20cf6279e8e85cd2c3a7be502e6e4dc224f46b19139c65dcf962",
+    "UnitFrames/FluxUnitFrames_Shared.lua": "f7a365f38c5c00653629d4dd2ec016ea02662b4db28b83f81a6a832404f34953",
+    "tests/party_divider_boundary.lua": "8389e3873ef1db1dc61de38c1d524bdd77e69246bb7e2491f387d5c280d412d2",
+    "tests/raid_party_frames.lua": "36f6b831ec8e976452fcc23ca9444108ac184bcc0d9a8eba369a79b72b198fe4"
+  },
+  "changes": [
+    "Divider height3 to4, same resource-top seam anchors and opacity",
+    "Party.PaintChrome applies the same GetAccentColor result or member-class override to divider and outer frame borders",
+    "Existing appearance chrome refresh repaints live/preview party chrome, preserving member class override and divider match without a new hook/event/timer"
+  ],
+  "nativeUserEvidence": "User confirms divider is present after RF72; now requests thicker and matching color. This establishes presence only, not acceptance of this new style.",
+  "tests": {
+    "existingBoundary": 54,
+    "existingParty": 840,
+    "existingIndicator": 59,
+    "whole": "222/222 scripts PASS; 885 syntax files/0 failures.",
+    "failures": [],
+    "corpusDrift": []
+  },
+  "resources": "No new frame/event/hook/timer/ticker/recurring driver. Existing appearance refresh adds bounded live/preview party repaint. No low-impact style benchmark or new implementation-mirroring tests; existing geometry/style expectations updated.",
+  "nativePending": "New thickness/tint and live appearance/class-color visual acceptance; native combat/taint/FPS not certified by desktop checks.",
+  "copies": [
+    {
+      "client": "_retail_",
+      "mismatches": []
+    },
+    {
+      "client": "_forever_",
+      "mismatches": []
+    },
+    {
+      "client": "_classic_",
+      "mismatches": []
+    },
+    {
+      "client": "_classic_era_",
+      "mismatches": []
+    },
+    {
+      "client": "_anniversary_",
+      "mismatches": []
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "baselineCommit": "57a252e0e2b467cf7788c3f52aa5d1dd8d83779e",
+  "historyBundleSha256": "3CCA4322B0D86E4D61FDF1D8509D43951EC0C9CC9C8047CCD352369D7009F9CC",
+  "beforeSourceArchiveSha256": "4050CF47DB98740AC9C4A64A74EB1E3242D90A1795C0B42779454CD791FD5B00",
+  "scope": "Loot-source filtering candidate; desktop validated, native pending",
+  "files": {
+    "_FluxUI.toc": "08299a8a385a61fa8d51696ac07fa29a1d074a22f55daf7e1532e8c88841682a",
+    "AddonOptions/FluxOptionsCatalog.lua": "9e56439a847d640292d53e57bd0a5ac0d5846a5d845bc56dc179c0e6b57f4f03",
+    "AddonOptions/FluxOptionsDefaults.lua": "9b4d971a008d6f5d0a0188824f5c5d6f1f9a9335324ebb99fa3028d44d011120",
+    "AddonOptions/FluxOptionsLoot.lua": "ee7ca67464e1880f8da14cab97667cf8975d7a10cf3f0db68c709e343a30d7f4",
+    "Other/FluxLoot.lua": "85321b30e95a87ee7d032974ad0e149f7eb476c5ee52b6d0443a0dff0310a23c"
+  }
+}

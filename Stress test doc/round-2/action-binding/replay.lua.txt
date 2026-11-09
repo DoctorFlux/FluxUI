@@ -1,0 +1,171 @@
+-- Round2 audit-only. Assertions reproduce defects/controls; PASS is not a clean bill.
+local checks, findings = 0, 0
+local function check(ok, why) checks = checks + 1; assert(ok, why) end
+local function read(path) local f=assert(io.open(path,'rb'));local s=f:read('*a');f:close();return s:gsub('\r\n','\n') end
+local function env(t) t=t or {};setmetatable(t,{__index=_G});t._G=t;return t end
+local function module(path,e,ns) return assert(load(read(path),'@'..path,'t',e))('_FluxUI',ns or {}) end
+local function note(id,text) findings=findings+1;print('OBSERVED|'..id..'|'..text) end
+local function frames(e,s)
+ e.CreateFrame=function(_,name)
+  local f={name=name,shown=true,scripts={},events={},hooks={},attrs={}}
+  function f:Hide()self.shown=false end;function f:Show()self.shown=true end;function f:IsShown()return self.shown end
+  function f:SetScript(k,v)self.scripts[k]=v end;function f:RegisterEvent(k)self.events[k]=true end
+  function f:UnregisterEvent(k)self.events[k]=nil end
+  function f:HookScript(k,v)self.hooks[k]=self.hooks[k]or{};self.hooks[k][#self.hooks[k]+1]=v end
+  function f:GetName()return self.name end
+  function f:SetButtonState(v)self.state=v end
+  function f:SetSize(w,h)self.width,self.height=w,h end
+  function f:SetParent(p)self.parent=p end
+  function f:RegisterForClicks(...)self.clicks={...}end
+  function f:WrapScript()end
+  function f:IsForbidden()return false end
+  function f:GetAttribute(k)return self.attrs[k]end
+  function f:SetAttribute(k,v)self.attrs[k]=v end
+  s.frames[#s.frames+1]=f;if name then e[name]=f end;return f
+ end
+end
+local function pushFixture(client,mode)
+ local s={frames={},down={},timers={},shift=false,ctrl=false,alt=false}
+ local e=env({UIParent={}});frames(e,s)
+ e.C_Timer={After=function(_,fn)s.timers[#s.timers+1]=fn end}
+ e.IsKeyDown=function(k)return s.down[k]or false end
+ e.IsShiftKeyDown=function()return s.shift end;e.IsControlKeyDown=function()return s.ctrl end;e.IsAltKeyDown=function()return s.alt end
+ e.GetBindingKey=function(command)return({ACTIONBUTTON1='Q',ACTIONBUTTON2='E',ACTIONBUTTON3='-'})[command]end
+ local hosts={};local flux={Client={key=client},Bars={GetMain=function(col)return hosts[col]end}}
+ local ns={Flux=flux};module('Binding/Core/ChordMap.lua',e,ns)
+ for i=1,3 do
+  local f=e.CreateFrame('Button','FluxActionStripButton'..i);local rgb={1,1,1}
+  f.icon={GetVertexColor=function()
+   if mode=='nil' then return end
+   if mode=='opaque' then
+    local value=setmetatable({secret=true},{__mul=function()error('modeled secret color arithmetic')end})
+    return value,value,value,1
+   end
+   return table.unpack(rgb)
+  end,SetVertexColor=function(_,r,g,b)rgb={r,g,b}end}
+  hosts[i]={widget=f};f.rgb=function()return table.unpack(rgb)end
+ end
+ module('Binding/Core/PushPress.lua',e,ns);ns.FluxBindingPushPress.EnsureBarButtonPushHooks()
+ function s.press(col)
+  local f=hosts[col].widget
+  for _,fn in ipairs(f.hooks.PreClick or{})do fn(f,'KeyBind',true)end
+ end
+ function s.tick(dt)
+  local q=s.timers;s.timers={};for _,fn in ipairs(q)do fn()end
+  for _,f in ipairs(s.frames)do if f.shown and f.scripts.OnUpdate then f.scripts.OnUpdate(f,dt)end end
+ end
+ return s,e,ns,hosts
+end
+
+for _,client in ipairs({'classic_era','classic_anniversary','classic','live','forever'})do
+ do
+  local s,e,ns,h=pushFixture(client)
+  s.down.Q=true;s.press(1);check(h[1].widget.state=='PUSHED'and h[1].widget.rgb()==.62,'public single press paints original dim')
+  s.down.Q=false;s.tick(.1)
+  check(h[1].widget.state=='NORMAL'and h[1].widget.rgb()==1,'single key release clears correctly')
+  s.down.Q=true;s.press(1);s.down.E=true;s.press(2)
+  s.down.Q=false;s.down.E=false;s.tick(.1);s.tick(2)
+  check(h[2].widget.state=='NORMAL'and h[2].widget.rgb()==1,'latest key hold retires normally')
+  check(h[1].widget.state=='PUSHED'and h[1].widget.rgb()==.62,'previous column stays orphaned after both keys release and safety cap')
+  ns.FluxBindingPushPress.ClearAll();check(h[1].widget.state=='NORMAL','explicit all-clear is a recovery control')
+  note('R2-BIND-01',client..' Q down then E down: old column remains PUSHED and dim after release+2s; explicit clear recovers')
+  local frameCount=#s.frames
+  for i=1,2000 do
+   s.down.Q,s.down.E=true,true;s.shift=i%3==1;s.ctrl=i%3==2;s.press(i%2+1)
+  end
+  check(#s.timers==2000,'synthetic same-frame changed-key burst currently retains one zero-delay reassert callback per press')
+  s.down.Q,s.down.E=false,false;s.shift,s.ctrl=false,false;s.tick(.1);s.tick(2)
+  check(#s.frames==frameCount,'rapid modifier/key press stress does not allocate extra poller frames')
+  check(h[2].widget.state=='PUSHED'and h[1].widget.state=='NORMAL','2000 alternating modifier/key presses leave the non-current column orphaned')
+  ns.FluxBindingPushPress.ClearAll()
+ end
+ do
+  local s,e,ns=pushFixture(client)
+  local cm=ns.FluxBindingChordMap
+  check(cm.Normalize('CTRL-SHIFT-Q')=='CTRL-SHIFT-Q'and cm.FindColumnForChord('SHIFT-Q')==1,'ordinary chord control')
+  local capture=read('Binding/UI/Editor/Widgets/FluxKeyCapture.lua')
+  local a=assert(capture:find('local function GenerateChord(key)',1,true));local b=assert(capture:find('local function EnableKeyCapture',a,true))
+  local generate=assert(load('local ignoreKeys={}\n'..capture:sub(a,b-1)..'\nreturn GenerateChord','@FluxKeyCapture:GenerateChord','t',e))()
+  local bare=generate('-');s.shift=true;local shifted=generate('-')
+  check(bare=='-'and shifted=='SHIFT--','actual key-capture function emits literal hyphen chords')
+  check(cm.Normalize(bare)==''and cm.Parse(shifted)=='SHIFT','ChordMap loses literal minus and misparses shifted minus')
+  check(cm.FindColumnForChord('-')==nil,'minus column cannot be found by Binding route')
+  note('R2-BIND-02',client..' captured "-" normalizes empty; "SHIFT--" parses base SHIFT; Q control routes normally')
+ end
+ do
+  for _,mode in ipairs({'nil','opaque'})do
+   local s,e,ns,h=pushFixture(client,mode);s.down.Q=true
+   local ok,why=pcall(s.press,1)
+   check(not ok and tostring(why):find('arithmetic',1,true),'unreadable RGB faults in actual press visual')
+   check(h[1].widget.state=='PUSHED','native button state was already changed before RGB failure')
+   note('R2-BIND-04',client..' modeled GetVertexColor='..mode..' actual HookButton press raises '..tostring(why))
+  end
+ end
+ do
+  local s={frames={},combat=true,timers={}};local store={nextUid=1,bindings={},chordStackOrder={},badgeCornerOrder={},formPageEnabled={},rankSyncNames={}}
+  local e=env({InCombatLockdown=function()return s.combat end,C_Timer={After=function(_,fn)s.timers[#s.timers+1]=fn end},
+   FluxBinding={RequestApplyAll=function()end,IsBindingRespecRelevant=function()return true end}});frames(e,s)
+  local ns={FluxBindingDB3={EnsureLive=function()return store end},FluxBindingConditions={InvalidateAvailability=function()end}}
+  module('Binding/Respec.lua',e,ns)
+  local function snap(id)return{version=3,doc={bindings={[id]={uid=id,action={type='spell',id=id},key='Q'}}}}end
+  local calls={A={},B={},C={}}
+  local function callback(key)return function(...)calls[key][#calls[key]+1]={...}end end
+  e.FluxSpellBindings_ApplySnapshot(snap(101),function(ok,why)
+   calls.A[#calls.A+1]={ok,why}
+   if why=='SUPERSEDED'then e.FluxSpellBindings_ApplySnapshot(snap(103),callback('C'))end
+  end)
+  e.FluxSpellBindings_ApplySnapshot(snap(102),callback('B'))
+  s.combat=false;s.frames[1].scripts.OnEvent(s.frames[1],'PLAYER_REGEN_ENABLED')
+  for _,fn in ipairs(s.timers)do fn()end
+  check(#calls.A==1 and calls.A[1][2]=='SUPERSEDED','superseded owner is notified once')
+  check(store.bindings[102]and not store.bindings[103]and#calls.B==1 and#calls.C==0,'reentrant newest snapshot is overwritten and never settled')
+  note('R2-BIND-03',client..' A superseded callback queues C; outer B overwrites C, applies B, never calls C completion')
+ end
+ do
+  local s={frames={}};local overrides,routing={},{}
+  local e=env({UIParent={},InCombatLockdown=function()return false end,GetBindingKey=function()end});frames(e,s)
+  e.SetOverrideBindingClick=function(_,_,key,name,button)overrides[key]={name,button}end
+  e.SetOverrideBinding=function(_,_,key)overrides[key]=nil end
+  e.FluxMouseoverKeybindModule={SetUfHoverRouting=function(_,keys,names,_,bodies)routing={keys=keys,names=names,bodies=bodies};return true end}
+  local ns={Flux={}};module('Binding/Core/SecurePool.lua',e,ns);module('Binding/Core/ChordMap.lua',e,ns)
+  local source=read('Binding/Core/Apply.lua');local a=assert(source:find('local overrideOwner = CreateFrame',1,true));local b=assert(source:find('local function MainStripButtonName',a,true))
+  local apply=assert(load('local ns=...;local Pool=ns.FluxSecureButtonPool;local ChordMap=ns.FluxBindingChordMap\n'..source:sub(a,b-1)..'\nreturn ApplyFreeChords','@Binding/Core/Apply.lua:free-chords','t',e))(ns)
+  local ordinary={Q={text='/cast One'},E={text='/cast Two'}};apply(ordinary,{}, {})
+  check(overrides.Q[1]~=overrides.E[1]and e[overrides.Q[1]].attrs.macrotext=='/cast One'and e[overrides.E[1]].attrs.macrotext=='/cast Two','ordinary alphanumeric world overrides remain separate')
+  apply({}, {}, {})
+  check(ns.FluxBindingChordMap.Route('ALT-=').kind=='free'and ns.FluxBindingChordMap.Route('ALT-/').kind=='free','Alt punctuation chords are free override routes')
+  local punctuation={['ALT-=']={text='/cast One',hoverText='/cast HoverOne'},['ALT-/']={text='/cast Two',hoverText='/cast HoverTwo'}}
+  apply(punctuation,{}, {})
+  check(overrides['ALT-='][1]==overrides['ALT-/'][1],'different normalized punctuation keys share one named pool button')
+  local first=e[overrides['ALT-='][1]].attrs.macrotext;local second=e[overrides['ALT-/'][1]].attrs.macrotext
+  check(first==second and (first=='/cast One'or first=='/cast Two'),'both world chords execute the same final macro payload')
+  check(#routing.names==2 and routing.names[1]==routing.names[2]and routing.bodies[1]~=routing.bodies[2],'hover routing also points two distinct bodies at the same HC button')
+  local shared=first;apply(punctuation,{}, {})
+  check(e[overrides['ALT-='][1]].attrs.macrotext==shared,'diff cache accepts both logical records while shared physical payload remains collided')
+  local keep=shared=='/cast One'and'ALT-/'or'ALT-='
+  apply({[keep]=punctuation[keep]}, {}, {})
+  check(e[overrides[keep][1]].attrs.macrotext~=punctuation[keep].text,'removing the last-writer chord leaves the surviving world override with its removed peer payload')
+  note('R2-BIND-06',client..' ALT-= and ALT-/ share world+HC pool names; both keys execute one final payload; alphanumeric controls remain independent')
+ end
+ do
+  local s={combat=false,pending={}};local e=env();local widget={attrs={}}
+  function widget:GetAttribute(k)return self.attrs[k]end
+  function widget:SetAttribute(k,v)check(not s.combat,'no direct protected write during combat');self.attrs[k]=v end
+  local host={widget=widget,slot=1,row='main',column=1}
+  local bars={ForEachHost=function(fn)fn(host)end,Hosts={LiveSlot=function()return 1 end}}
+  local ns={Flux={Bars=bars,Combat={InLockdown=function()return s.combat end,Defer=function(k,fn)s.pending[k]=fn end}}}
+  module('Bars/SlotProgram.lua',e,ns);local sp=ns.FluxSlotProgram
+  sp.Apply(1,'/cast Original','surface')
+  check(widget.attrs['flux-p-1']=='/cast Original'and widget.attrs.type=='macro','installed overlay control')
+  s.combat=true;sp.Apply(1,false)
+  check(sp.Get(1)==nil and widget.attrs['flux-p-1']=='/cast Original','combat removal defers protected writer')
+  s.combat=false;for _,fn in pairs(s.pending)do fn()end;s.pending={}
+  check(sp.Get(1)==nil and widget.attrs['flux-p-1']=='/cast Original'and widget.attrs.type=='macro','queued clear absent from remaining-program-only replay')
+  sp.Apply(1,false)
+  check(widget.attrs.type=='macro','same requested clear short-circuits because logical model already cleared')
+  sp.Apply(1,'/cast Replacement','surface');sp.Apply(1,false)
+  check(widget.attrs['flux-p-1']==nil and widget.attrs.type=='action','ordinary changed-then-clear out of combat remains functional')
+  note('R2-BIND-05',client..' direct public SlotProgram.Apply(false) in combat removes model but regen omits protected clear; no ordinary Binding caller reach established')
+ end
+end
+print(('ROUND2 ACTION/BINDING replay assertions=%d reproduced_observations=%d; expected defects, native VM not executed'):format(checks,findings))

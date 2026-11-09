@@ -1,0 +1,129 @@
+{
+  "capturedUTC": "2026-11-07T14:55:11.134880+00:00",
+  "scope": "Production owner functions/buses under controlled desktop API leaves; passing probes include expected defect reproductions, not native taint/CPU/input/pixel acceptance.",
+  "sourcesBefore": {
+    "Respec/FluxRespec_GearPicker.lua": "64d870b894c1857275705869d7da8dccd2b41ff4cef9c5874d1dd22625c0939f",
+    "Respec/FluxRespec_RunePicker.lua": "9aeec7f7483e26a81b17a92398cb2172d13ef164a1000e2230cabdfce32b0c6e",
+    "Respec/FluxRespec_Talents.lua": "e8d64c22e3fbef0a97dd4a1ca70cb9768406760d47869770bab6615baefc4d6b",
+    "AddonOptions/AceGUIWidget-FluxRestockPanel.lua": "2236f84f66725ed4ebf4e8e666508c65fdae20e3cee49da2e6b9bf339bdbabb8",
+    "Core/Engine/Modifier.lua": "f546dd7e98f541af680722b5ea54da2762445ac03f30d6ef7f6059c776cbad1b",
+    "Core/Engine/Context.lua": "14c6f41ab314604661b1c089196cd6095606c3b75c6dcd1ae4ec66eb740c22c2",
+    "tests/context_invalidation_stress.lua": "562b4f1b43980f4431ba7ebe29cbcf77535996002fc968b3b63a4ac3686b9283",
+    "Core/DB.lua": "e833ac2b21230dfdf3ad55d5f4c7c4a161208356c5090c782767e72be70927c1",
+    "Core/Module.lua": "3a4112552a09b756178a136b1aaae45fc47d040ad2eedd9f79a2898cd203f239",
+    "Core/Optional.lua": "cb06588714a86bf612faa0941153f96b774b682bce4c566bbfa23e36978cad10",
+    "Core/Startup.lua": "cd500c189dc43f5bb1d8d8ee274c94f23d1834bae995c18ee354ed7b7ac8c4e2",
+    "Core/Engine/Timer.lua": "0f3cb48fadc0bafbd91cd20648806fce478db0d0e39dc8bc9ba975e6bc73bfaa",
+    "Core/Engine/Ticker.lua": "5f60091407bdc9b77c4257c50f3aecc344e4c81f8ae7915b235b8fac71726881",
+    "Core/Engine/Scheduler.lua": "a524afb69135af4e7aaefddfe7ab97527b5292380949f0786b6f1ffa94008d11",
+    "Core/Engine/Events.lua": "7fa3aacf4e40ed32bdf474704b3b2c5e3149c9aafc7b5b655260393d7c91ae53",
+    "Core/Engine/Combat.lua": "f36daa512a9f778db28c272ec19a092b188d83a170270fb6fa41bcd2bd728a7a",
+    "Core/Engine/Range.lua": "f9035ada5900185e94a890f558e2eda546dbf1d33fd091a21ae9b73d1d521ea6"
+  },
+  "sourcesAfter": {
+    "Respec/FluxRespec_GearPicker.lua": "64d870b894c1857275705869d7da8dccd2b41ff4cef9c5874d1dd22625c0939f",
+    "Respec/FluxRespec_RunePicker.lua": "9aeec7f7483e26a81b17a92398cb2172d13ef164a1000e2230cabdfce32b0c6e",
+    "Respec/FluxRespec_Talents.lua": "e8d64c22e3fbef0a97dd4a1ca70cb9768406760d47869770bab6615baefc4d6b",
+    "AddonOptions/AceGUIWidget-FluxRestockPanel.lua": "2236f84f66725ed4ebf4e8e666508c65fdae20e3cee49da2e6b9bf339bdbabb8",
+    "Core/Engine/Modifier.lua": "f546dd7e98f541af680722b5ea54da2762445ac03f30d6ef7f6059c776cbad1b",
+    "Core/Engine/Context.lua": "14c6f41ab314604661b1c089196cd6095606c3b75c6dcd1ae4ec66eb740c22c2",
+    "tests/context_invalidation_stress.lua": "562b4f1b43980f4431ba7ebe29cbcf77535996002fc968b3b63a4ac3686b9283",
+    "Core/DB.lua": "e833ac2b21230dfdf3ad55d5f4c7c4a161208356c5090c782767e72be70927c1",
+    "Core/Module.lua": "3a4112552a09b756178a136b1aaae45fc47d040ad2eedd9f79a2898cd203f239",
+    "Core/Optional.lua": "cb06588714a86bf612faa0941153f96b774b682bce4c566bbfa23e36978cad10",
+    "Core/Startup.lua": "cd500c189dc43f5bb1d8d8ee274c94f23d1834bae995c18ee354ed7b7ac8c4e2",
+    "Core/Engine/Timer.lua": "0f3cb48fadc0bafbd91cd20648806fce478db0d0e39dc8bc9ba975e6bc73bfaa",
+    "Core/Engine/Ticker.lua": "5f60091407bdc9b77c4257c50f3aecc344e4c81f8ae7915b235b8fac71726881",
+    "Core/Engine/Scheduler.lua": "a524afb69135af4e7aaefddfe7ab97527b5292380949f0786b6f1ffa94008d11",
+    "Core/Engine/Events.lua": "7fa3aacf4e40ed32bdf474704b3b2c5e3149c9aafc7b5b655260393d7c91ae53",
+    "Core/Engine/Combat.lua": "f36daa512a9f778db28c272ec19a092b188d83a170270fb6fa41bcd2bd728a7a",
+    "Core/Engine/Range.lua": "f9035ada5900185e94a890f558e2eda546dbf1d33fd091a21ae9b73d1d521ea6"
+  },
+  "baselineSourceDrift": [],
+  "runs": [
+    {
+      "script": "core_timers.lua.txt",
+      "repeat": 1,
+      "exit": 0,
+      "log": "core_timers.lua.txt-run-1.txt",
+      "outputSHA256": "b0670f6e81e2b0fcb73ec097888e2198f0f5689a73e8aeff897fbb1aacbd127d"
+    },
+    {
+      "script": "core_timers.lua.txt",
+      "repeat": 2,
+      "exit": 0,
+      "log": "core_timers.lua.txt-run-2.txt",
+      "outputSHA256": "b0670f6e81e2b0fcb73ec097888e2198f0f5689a73e8aeff897fbb1aacbd127d"
+    },
+    {
+      "script": "core_timers.lua.txt",
+      "repeat": 3,
+      "exit": 0,
+      "log": "core_timers.lua.txt-run-3.txt",
+      "outputSHA256": "b0670f6e81e2b0fcb73ec097888e2198f0f5689a73e8aeff897fbb1aacbd127d"
+    },
+    {
+      "script": "core_timers.lua.txt",
+      "repeat": 4,
+      "exit": 0,
+      "log": "core_timers.lua.txt-run-4.txt",
+      "outputSHA256": "b0670f6e81e2b0fcb73ec097888e2198f0f5689a73e8aeff897fbb1aacbd127d"
+    },
+    {
+      "script": "core_timers.lua.txt",
+      "repeat": 5,
+      "exit": 0,
+      "log": "core_timers.lua.txt-run-5.txt",
+      "outputSHA256": "b0670f6e81e2b0fcb73ec097888e2198f0f5689a73e8aeff897fbb1aacbd127d"
+    },
+    {
+      "script": "modifier_bus.lua.txt",
+      "repeat": 1,
+      "exit": 0,
+      "log": "modifier_bus.lua.txt-run-1.txt",
+      "outputSHA256": "0786b765dadf1aed9d0e9a8b699e8809d6ea6dc30a104c3d9d85e5eda5486518"
+    },
+    {
+      "script": "modifier_bus.lua.txt",
+      "repeat": 2,
+      "exit": 0,
+      "log": "modifier_bus.lua.txt-run-2.txt",
+      "outputSHA256": "0786b765dadf1aed9d0e9a8b699e8809d6ea6dc30a104c3d9d85e5eda5486518"
+    },
+    {
+      "script": "modifier_bus.lua.txt",
+      "repeat": 3,
+      "exit": 0,
+      "log": "modifier_bus.lua.txt-run-3.txt",
+      "outputSHA256": "0786b765dadf1aed9d0e9a8b699e8809d6ea6dc30a104c3d9d85e5eda5486518"
+    },
+    {
+      "script": "modifier_bus.lua.txt",
+      "repeat": 4,
+      "exit": 0,
+      "log": "modifier_bus.lua.txt-run-4.txt",
+      "outputSHA256": "0786b765dadf1aed9d0e9a8b699e8809d6ea6dc30a104c3d9d85e5eda5486518"
+    },
+    {
+      "script": "modifier_bus.lua.txt",
+      "repeat": 5,
+      "exit": 0,
+      "log": "modifier_bus.lua.txt-run-5.txt",
+      "outputSHA256": "0786b765dadf1aed9d0e9a8b699e8809d6ea6dc30a104c3d9d85e5eda5486518"
+    }
+  ],
+  "allProcessesPassed": true,
+  "sameScenariosRepeated": true,
+  "timerAssertionsPerRun": 40,
+  "modifierAssertionsPerRun": 96850,
+  "modifierPerRun": {
+    "physicalStateEdges": 10544220,
+    "modifierEventNotifications": 10883400,
+    "orderedTransitionCases": 3840,
+    "isolatedStormModels": 10,
+    "mixedStarvationCases": 5,
+    "mixedFramesPerModel": 1200,
+    "mixedModeledSecondsPerModel": 10
+  },
+  "evidenceLimits": "Core bus replay uses the current existing fixture leaves for event/timer/display delivery, not a native VM. Button/badge/Binding owners are separate supplements."
+}

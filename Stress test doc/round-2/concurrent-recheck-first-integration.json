@@ -1,0 +1,40 @@
+{
+  "scope": "Independent Party PvP presentation and fixture delta preserved; current complete suite and affected conditional-level probe rerun. No audit/team code edits.",
+  "currentSuite": "current-suite.json",
+  "testsPass": 232,
+  "testsFail": 0,
+  "syntaxFiles": 896,
+  "knownBeforeAfterCurrentLuaDrift": [],
+  "affectedProbe": "remaining-domains/frame_level_reads.lua.txt",
+  "probeExit": 0,
+  "probeAssertions": 11,
+  "currentSharedRawSHA256": "78c236391a5f0dba71fa2e4dd6fd4a0894384eb404cac4556094939d9053c323",
+  "review": "Diff adds party PvP badge fields/routing and fixture coverage. Portrait/threat frame-level conditional probes still reproduce with public controls. No new issue established by bounded delta review; native new PvP rendering/protection remains untested.",
+  "knownIndependentChanges": [
+    {
+      "path": "UnitFrames/FluxUnitFrames_Party.lua",
+      "baselineSHA256": "ffbf502561fdbc94924563689d33a87700f116ee84e2fbcc16236e9639fb4568",
+      "currentSHA256": "cbbb33f733af41322e13ed576dc691058c8a03a0cdcb65fe7b0f36f6064d67b8",
+      "patch": "UnitFrames_FluxUnitFrames_Party.lua.patch",
+      "attribution": "Independent worktree change, not issued by this audit/team; preserved",
+      "review": "Party PvP badge presentation/routing and its fixture changed; prior portrait/threat level-getter bodies remain in source. Native visual/secret permission of new presentation remains untested."
+    },
+    {
+      "path": "UnitFrames/FluxUnitFrames_Shared.lua",
+      "baselineSHA256": "8453242b58b9f2261e117a94d83bc8d9eedc76900ceab7b87f14331c43b65db1",
+      "currentSHA256": "78c236391a5f0dba71fa2e4dd6fd4a0894384eb404cac4556094939d9053c323",
+      "patch": "UnitFrames_FluxUnitFrames_Shared.lua.patch",
+      "attribution": "Independent worktree change, not issued by this audit/team; preserved",
+      "review": "Party PvP badge presentation/routing and its fixture changed; prior portrait/threat level-getter bodies remain in source. Native visual/secret permission of new presentation remains untested."
+    },
+    {
+      "path": "tests/raid_party_frames.lua",
+      "baselineSHA256": "0bcaff1bf094aec318612c6243c3e86144318c4d8eb090956d4c0ed695da9411",
+      "currentSHA256": "782653db576b29b4e52c57c92c785c39547931de442d1246851a90a86f9b0f12",
+      "patch": "tests_raid_party_frames.lua.patch",
+      "attribution": "Independent worktree change, not issued by this audit/team; preserved",
+      "review": "Party PvP badge presentation/routing and its fixture changed; prior portrait/threat level-getter bodies remain in source. Native visual/secret permission of new presentation remains untested."
+    }
+  ],
+  "baselineRetained": true
+}

@@ -1,0 +1,86 @@
+<Bindings>
+	<!-- Addon Controls -->
+	<Binding name="FLUXRELOADUI" category="BINDING_HEADER_AAA_FLUXUI">
+		ReloadUI()
+	</Binding>
+    
+    <!-- NonCombatGrid Button Bindings (bound via SetOverrideBindingClick in Lua) -->
+    <Binding name="FLUXGRIDSMARTMOUNT" category="BINDING_HEADER_AAA_FLUXUI">
+        -- No-op: actual click is bound via SetOverrideBindingClick to the mount button widget
+    </Binding>
+    <Binding name="FLUXGRIDHEARTH" category="BINDING_HEADER_AAA_FLUXUI">
+        -- No-op: actual click is bound via SetOverrideBindingClick to the hearthstone button widget
+    </Binding>
+    <Binding name="FLUXGRIDVENDORMOUNT" category="BINDING_HEADER_AAA_FLUXUI">
+        -- No-op: actual toggle is bound via SetOverrideBinding in Mount.lua
+    </Binding>
+
+    <Binding name="FLUXGRID_FOOD_OR_RECUP" category="BINDING_HEADER_AAA_FLUXUI">
+        -- No-op: actual click is bound via SetOverrideBindingClick to the food button widget
+    </Binding>
+    <Binding name="FLUXGRID_WATER_OR_COMBINED" category="BINDING_HEADER_AAA_FLUXUI">
+        -- No-op: actual click is bound via SetOverrideBindingClick to the water/combined button widget
+    </Binding>
+    <Binding name="FLUXCOMBAT_HEALPOT" category="BINDING_HEADER_AAA_FLUXUI">
+        -- No-op: actual click is bound via SetOverrideBindingClick
+    </Binding>
+    <Binding name="FLUXCOMBAT_BANDAGE" category="BINDING_HEADER_AAA_FLUXUI">
+        -- No-op: actual click is bound via SetOverrideBindingClick
+    </Binding>
+    <Binding name="FLUXCOMBAT_HEALTHSTONE" category="BINDING_HEADER_AAA_FLUXUI">
+        -- No-op: actual click is bound via SetOverrideBindingClick
+    </Binding>
+    <Binding name="FLUXCOMBAT_MANAPOT" category="BINDING_HEADER_AAA_FLUXUI">
+        -- No-op: actual click is bound via SetOverrideBindingClick
+    </Binding>
+    <Binding name="FLUXCOMBAT_MANAGEM" category="BINDING_HEADER_AAA_FLUXUI">
+        -- No-op: actual click is bound via SetOverrideBindingClick
+    </Binding>
+    <Binding name="FLUX_ASSISTED_COMBAT" category="BINDING_HEADER_AAA_FLUXUI">
+        -- No-op: Extra Button single-button assistant. SetOverrideBindingClick in ExtraButtonSystem/Engine/Action.lua onto the live EBS widget.
+    </Binding>
+    <Binding name="FLUXCLASS_TELEPORT" category="BINDING_HEADER_AAA_FLUXUI">
+        -- No-op: actual click is bound via SetOverrideBindingClick to the teleport button widget
+    </Binding>
+    <Binding name="FLUXMAGE_TOGGLE_TPPT" category="BINDING_HEADER_AAA_FLUXUI">
+        -- No-op: actual toggle is bound via SetOverrideBinding in TeleportPortal.lua
+    </Binding>
+    <Binding name="FLUXMAGE_CONJURE_FOOD" category="BINDING_HEADER_AAA_FLUXUI">
+        -- No-op: actual click is bound via SetOverrideBindingClick to food button RightButton
+    </Binding>
+    <Binding name="FLUXMAGE_CONJURE_WATER" category="BINDING_HEADER_AAA_FLUXUI">
+        -- No-op: actual click is bound via SetOverrideBindingClick to water button RightButton
+    </Binding>
+    <Binding name="FLUXMAGE_RITUAL_OF_REFRESHMENT" category="BINDING_HEADER_AAA_FLUXUI">
+        -- No-op: actual click is bound via SetOverrideBindingClick to hidden Ritual button
+    </Binding>
+    <!-- Shared: Mage Mana Gem conjure (right-click) OR Warlock Create Healthstone (right-click); label updates in Lua -->
+    <Binding name="FLUXMAGE_CONJURE_MANAGEM" category="BINDING_HEADER_AAA_FLUXUI">
+        -- No-op: actual click is bound via SetOverrideBindingClick
+    </Binding>
+    <Binding name="FLUXGRID_CONSUMABLES" category="BINDING_HEADER_AAA_FLUXUI">
+        -- No-op: actual click is bound via SetOverrideBindingClick to the consumables button widget
+    </Binding>
+
+    <!-- Utility slots (same binding names as V9 spellbook slots) -->
+    <Binding name="FLUXSPELLBOOKSLOT1" category="BINDING_HEADER_AAA_FLUXUI">
+        -- Utility slot 1
+    </Binding>
+    <Binding name="FLUXSPELLBOOKSLOT2" category="BINDING_HEADER_AAA_FLUXUI">
+        -- Utility slot 2
+    </Binding>
+    <Binding name="FLUXSPELLBOOKSLOT3" category="BINDING_HEADER_AAA_FLUXUI">
+        -- Utility slot 3
+    </Binding>
+    <Binding name="FLUXSPELLBOOKSLOT4" category="BINDING_HEADER_AAA_FLUXUI">
+        -- Utility slot 4
+    </Binding>
+
+    <!-- TrinketMenu Bindings -->
+    <Binding name="FLUXTRINKET1" category="BINDING_HEADER_AAA_FLUXUI">
+        -- No-op: actual click is bound via SetOverrideBindingClick to top trinket (slot 13)
+    </Binding>
+    <Binding name="FLUXTRINKET2" category="BINDING_HEADER_AAA_FLUXUI">
+        -- No-op: actual click is bound via SetOverrideBindingClick to bottom trinket (slot 14)
+    </Binding>
+</Bindings>

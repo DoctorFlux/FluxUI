@@ -1,0 +1,25 @@
+local function AnchorOverlayToStatusBarFill(bar, overlay)
+    if not bar or not overlay then return end
+    local fill = bar.GetStatusBarTexture and bar:GetStatusBarTexture()
+    if not fill then return end
+    overlay:ClearAllPoints()
+    overlay:SetPoint("TOPLEFT", fill, "TOPLEFT", 0, 0)
+    overlay:SetPoint("BOTTOMRIGHT", fill, "BOTTOMRIGHT", 0, 0)
+end
+
+local function RefreshTiledOverlayTexCoords(overlay, tileSize)
+    if not overlay or not overlay:IsShown() then return end
+    if not tileSize or tileSize <= 0 then return end
+    -- Use overlay's own dimensions (matches fill after AnchorOverlayToStatusBarFill).
+    pcall(function()
+        local w = overlay:GetWidth()
+        local h = overlay:GetHeight()
+        overlay:SetTexCoord(0, w / tileSize, 0, h / tileSize)
+    end)
+end
+
+local function RefreshAbsorbShieldOverlay(bar, tileSize)
+    if not bar or not bar.shieldOverlay then return end
+    AnchorOverlayToStatusBarFill(bar, bar.shieldOverlay)
+    RefreshTiledOverlayTexCoords(bar.shieldOverlay, tileSize)
+end

@@ -1,0 +1,98 @@
+{
+  "sourceLF": {
+    "UnitFrames/FluxUnitFrames_Shared.lua": "cf7ca23d31685de195d40c4e6bc20942c4f5a28963b51c080cf2cc8ddb1f4ec3",
+    "UnitFrames/FluxUnitFrames_Focus.lua": "8468017146219705e8500a88db42ce04cc49e73c7364f344b674a912567e2901",
+    "UnitFrames/FluxUnitFrames_FocusTarget.lua": "89d8a8753f3369242e102a8fc2cf420d6fb557be733916e04ad284ff1ebf7031"
+  },
+  "client": "Forever",
+  "build": "1.60.1 / 70862 / interface16001",
+  "reload": {
+    "utc": "2026-11-09T00:09:09.2367883Z",
+    "executable": "F:\\World of Warcraft\\_forever_\\Wow.exe",
+    "pid": 30552,
+    "window": 855280,
+    "foregroundUnchanged": true,
+    "commands": [
+      "/run if InCombatLockdown()or FluxEditModeBusy()then return end for _,n in ipairs({\"MailFrame\",\"AuctionFrame\",\"AuctionHouseFrame\",\"MerchantFrame\",\"TradeFrame\",\"BankFrame\"})do local f=_G[n];if f and f:IsShown()then return end end ReloadUI()"
+    ],
+    "screenshotSHA256": "761abcd1d9198fbc12eb918b2c49d2dbcde3239265414a98f6793f294d458d80",
+    "screenshot": "Private external native artifact: focus-menu-reload.png"
+  },
+  "loadedState": {
+    "utc": "2026-11-09T00:09:46.6161089Z",
+    "executable": "F:\\World of Warcraft\\_forever_\\Wow.exe",
+    "pid": 30552,
+    "window": 855280,
+    "foregroundUnchanged": true,
+    "commands": [
+      "/run for _,u in ipairs({\"focus\",\"focustarget\"})do local f=_G[\"FluxUnitFrame_\"..u];local o=f and(f.outerBorderFrame or f);print(\"FXFOCUSFIX\",u,f and f._fluxFocusVisibilityDriver,f and f:IsShown(),o and o:IsVisible())end",
+      "/run for _,u in ipairs({\"player\",\"target\",\"focus\",\"pet\"})do local f=_G[\"FluxUnitFrameOuter_\"..u]or _G[\"FluxUnitFrame_\"..u];print(\"FXMENU\",u,f and f:GetAttribute(\"type2\"),f and f:GetAttribute(\"*type2\"))end",
+      "/run print(\"FXFOCUSCAP\",Flux.Cap.hasSecureBarPaging,InCombatLockdown());print(\"FXBUILD\",GetBuildInfo());print(\"FXERR\",BugTabs and BugTabs.GetSessionCounts())"
+    ],
+    "screenshotSHA256": "2b0206c760963cafce9ce3cd87b3209af6853ecfb0c06105a81d023af894795a",
+    "screenshot": "Private external native artifact: focus-live-menu-state.png"
+  },
+  "preflight": {
+    "utc": "2026-11-09T00:13:03.8711952Z",
+    "executable": "F:\\World of Warcraft\\_forever_\\Wow.exe",
+    "pid": 30552,
+    "window": 855280,
+    "foregroundUnchanged": true,
+    "commands": [
+      "/run local f=Flux.ns.FocusFrame;print(\"FXMACROREADY\",InCombatLockdown(),UnitExists(\"focus\"),f and f:IsShown(),f and f._fluxFocusVisibilityDriver)"
+    ],
+    "screenshotSHA256": "9a02af84a243df662312b5379ff284538593145bfa435a81518eab5cfbf4d455",
+    "screenshot": "Private external native artifact: focus-macro-preflight-read.png"
+  },
+  "nativeMacro": {
+    "utc": "2026-11-09T00:16:28.3478212Z",
+    "executable": "F:\\World of Warcraft\\_forever_\\Wow.exe",
+    "pid": 30552,
+    "window": 855280,
+    "foregroundUnchanged": true,
+    "commands": [
+      "/focus [@focus,noexists] player",
+      "/run local f=Flux.ns.FocusFrame;local o=f.outerBorderFrame or f;print(\"FXMACROSET\",UnitIsUnit(\"focus\",\"player\"),f:IsShown(),o:IsVisible(),f._fluxFocusVisibilityDriver)",
+      "/clearfocus",
+      "/run local f=Flux.ns.FocusFrame;local o=f.outerBorderFrame or f;print(\"FXMACROCLEAR\",UnitExists(\"focus\"),f:IsShown(),o:IsVisible());print(\"FXMACROERR\",BugTabs and BugTabs.GetSessionCounts())"
+    ],
+    "screenshotSHA256": "6f542aa251b63dc063cefbb99ff8a599ee5e90a3dfb38e10e9c6b8c019cdcbb6",
+    "screenshot": "Private external native artifact: focus-native-macro-live.png"
+  },
+  "transcribedLines": [
+    "FXFOCUSFIX focus true false false",
+    "FXFOCUSFIX focustarget true false false",
+    "FXMENU player togglemenu togglemenu",
+    "FXMENU target togglemenu togglemenu",
+    "FXMENU focus togglemenu togglemenu",
+    "FXMENU pet togglemenu togglemenu",
+    "FXFOCUSCAP true false",
+    "FXBUILD 1.60.1 70862 Nov 6 2026 16001",
+    "FXERR 0",
+    "FXMACROREADY false false false true",
+    "FXMACROSET true true true true",
+    "FXMACROCLEAR false false false",
+    "FXMACROERR 0"
+  ],
+  "interpretation": "Current sources loaded; focus and dependent root real-hidden without focus; native /focus shows prepared interactive frame and /clearfocus restores empty focus. Zero BugTabs session errors. No casts, attacks, target changes, binding/settings changes, profiler changes, foreground/mouse/clipboard/physical-keyboard control.",
+  "userAcceptance": [
+    {
+      "phase": "Initial target-only native menu routing",
+      "result": "Target Set Focus worked; player/other callback menu still failed at00:53:20; broader fix subsequently loaded"
+    },
+    {
+      "phase": "Latest broad native menu routing",
+      "question": "Player Set Focus menu and normal focus/clear-focus macro during combat",
+      "response": "Both work without errors",
+      "evidence": "User report; not an automated combat trace"
+    }
+  ],
+  "pending": [
+    "Party/raid/pet physical menus",
+    "Physical click-through behind empty focus during combat",
+    "Matched screenshot/geometry parity",
+    "Other native clients; native CPU/memory/latency/FPS",
+    "Old unrepaired Forever restricted-engine fallback"
+  ],
+  "policy": "Mini-frame menus retained; their restricted callback focus entry is not claimed fixed. User chose native focus bindings/macros instead."
+}

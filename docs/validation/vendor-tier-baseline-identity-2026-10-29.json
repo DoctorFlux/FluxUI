@@ -1,0 +1,9 @@
+{
+  "commit": "af5eee0d7a4c4693bf30124855a40a4c5e50981f",
+  "tree": "f5ab638b4c42a67f4b3f73e5e3fa4428b56022bc",
+  "reusedFullReport": "docs/validation/chat-quickjoin-full-2026-10-29.json",
+  "verifiedLuaFiles": 728,
+  "tests": 87,
+  "fail": 0,
+  "normalization": "CRLF to LF only; actual pre-edit archive verified"
+}

@@ -1,0 +1,89 @@
+-- Execute both actual layout coalescers using C_Timer.After's native no-return
+-- contract. Dependency sinks are counted, not replaced with alternative logic.
+local function read(path)local f=assert(io.open(path,"rb"));local s=f:read("*a"):gsub("\r\n","\n");f:close();return s end
+local function cut(s,a,b)local p=assert(s:find(a,1,true),a);return s:sub(p,assert(s:find(b,p+#a,true),b)-1)end
+local checks=0;local function check(v,why)checks=checks+1;assert(v,why)end
+local function boot(kind)
+    local s={now=100,queue={},calls=0,placement="statusIntegrated",combat=false}
+    local e=setmetatable({},{__index=_G});e._G=e
+    e.GetTime=function()return s.now end;e.InCombatLockdown=function()return s.combat end
+    e.C_Timer={After=function(delay,fn)s.queue[#s.queue+1]={at=s.now+delay,fn=fn}end} -- no handle
+    e.FluxOptions={GetInfoFramePlacement=function()return s.placement end}
+    local function sink()s.calls=s.calls+1 end
+    e.FluxUnifiedBorder={UpdateBorder=sink,UpdateStatusBarBorder=sink};e.FluxPVPObjectiveMover={UpdatePositions=sink}
+    local code
+    if kind=="status"then
+        code=cut(read("StatusBars/FluxStatusBar.lua"),"local function InfoPlacementIsStatusIntegrated()","local function NotifyStatusBarLayoutDependentsBody()")
+            .."\nreturn NotifyUnifiedUIAndPVPThrottled,CancelNotifyUnifiedUICoalescer"
+    else
+        e.fixtureGetPlacement=function()return s.placement end;e.fixtureRunLayout=sink
+        code="local GetPlacement=fixtureGetPlacement;local RunIntegratedLayoutPass=fixtureRunLayout;local UpdatePositionImmediate=function()end\n"
+            ..cut(read("StatusBars/FluxInfoFrame.lua"),"local INTEGRATED_LAYOUT_COOLDOWN =","-- EVENT-BASED: Stats updates")
+            .."\nreturn UpdatePosition,CancelIntegratedCooldownTimer"
+    end
+    s.notify,s.cancel=assert(load(code,"@production-layout-"..kind.."-after-token","t",e))()
+    function s.drain()
+        local q=s.queue;s.queue={};s.now=s.now+1
+        for _,entry in ipairs(q)do entry.fn()end
+    end
+    return s
+end
+for _,kind in ipairs({"status","info"})do
+    for _,burst in ipairs({1,50,1000})do
+        local s=boot(kind)
+        if kind=="info"then s.notify();check(s.calls==1,"first Info layout remains immediate")end
+        for i=1,burst do s.notify()end
+        check(#s.queue==burst,"R2-DOM-06: no-return After leaves each owner pending token nil")
+        local before=s.calls;s.drain()
+        local expected=kind=="status"and burst*3 or burst
+        check(s.calls-before==expected,"every scheduled callback invokes its real dependency sinks")
+        print("OBSERVATION|R2-DOM-06|"..kind.."|requests_in_one_window="..burst.."|queued_callbacks="..burst.."|dependency_entries="..expected)
+    end
+    local s=boot(kind);if kind=="info"then s.notify()end;s.notify();s.cancel()
+    local before=s.calls;s.drain()
+    check(s.calls>before,"cancel function cannot cancel or invalidate native After callbacks")
+    s=boot(kind);if kind=="info"then s.notify()end;s.notify();s.combat=true;local beforeCombat=s.calls;s.drain()
+    check(s.calls==beforeCombat,"combat callback guard avoids layout work")
+    print("CONTROL|"..kind.."|pending_cancel_ineffective=true|combat_callback_guard=PASS")
+end
+do
+    local s={queue={},layouts=0,configs=0};local e=setmetatable({},{__index=_G});e._G=e
+    e.C_Timer={After=function(_,fn)s.queue[#s.queue+1]=fn end}
+    local parent={hooks={}};function parent:HookScript(k,fn)self.hooks[k]=fn end
+    e.fixtureParent=parent;e.fixtureLayout=function()s.layouts=s.layouts+1 end;e.fixtureConfigure=function()s.configs=s.configs+1 end
+    local code="local isEmbedded=true;local embeddedParentFrame=fixtureParent;local currentLayoutConfig={};local LayoutMeterGrid=fixtureLayout;local ReapplyConfigureEmbeddedInstances=fixtureConfigure\n"
+        ..cut(read("Battlezonemap/FluxDetails.lua"),"local GRID_LAYOUT_ON_SIZE_DEBOUNCE =","function FluxDetails:Embed(parentFrame, layoutConfigOrMode)")
+        .."\nreturn EnsureMeterGridSizeHook,function()isEmbedded=false end"
+    local ensure,detach=assert(load(code,"@production-details-size-hook","t",e))()
+    ensure(parent,{});ensure(parent,{})
+    for i=1,1000 do parent.hooks.OnSizeChanged(parent)end
+    check(#s.queue==1000,"Details retained single hook still starts one native After per size event")
+    for _,fn in ipairs(s.queue)do fn()end
+    check(s.layouts==1000 and s.configs==1000,"Details size debounce performs all duplicate grid/config passes")
+    s.queue={};parent.hooks.OnSizeChanged(parent);detach();for _,fn in ipairs(s.queue)do fn()end
+    check(s.layouts==1000,"Details detached-owner callback guard remains effective")
+    print("OBSERVATION|R2-DOM-06|details|size_events=1000|grid_passes=1000|configure_passes=1000|detach_guard=PASS")
+end
+do
+    local s={now=0,queue={},shownCalls={}};local e=setmetatable({},{__index=_G});e._G=e
+    e.C_Timer={After=function(delay,fn)s.queue[#s.queue+1]={at=s.now+delay,fn=fn}end}
+    local fly={Show=function(anchor,id)s.shownCalls[#s.shownCalls+1]={anchor=anchor,id=id}end,Hide=function()end}
+    local source=read("Other/FluxEquipSlotFlyout.lua")
+    local code="local Flyout,Candidates=...\n"
+        ..cut(source,"local function CancelTimer(t)","function Flyout.IsOpenFor(slotID, anchor)")
+        ..cut(source,"function Flyout.ScheduleHideSoon(extraFrames)","local function CreateMenuButton(f, idx)")
+        ..cut(source,"function Flyout.NotifyEnter(anchor, slotID, opts)","function Flyout.SetOnEquipped(fn)")
+    assert(load(code,"@production-equip-flyout-timers","t",e))(fly,{HasAlternatives=function()return true end})
+    local anchor={IsMouseOver=function()return false end}
+    fly.NotifyEnter(anchor,1,{});s.now=.02;fly.NotifyLeave({})
+    check(fly._showTimer==nil and fly._hideTimer==nil,"flyout cancellation tokens get no native After handle")
+    s.now=.07
+    for _,entry in ipairs(s.queue)do if entry.at<=s.now then entry.fn()end end
+    check(#s.shownCalls==1 and s.shownCalls[1].anchor==anchor,"flyout invokes Show for departed anchor before hide deadline")
+    s.queue={};s.shownCalls={}
+    for i=1,1000 do fly.NotifyEnter({id=i},i%19+1,{})end
+    for _,entry in ipairs(s.queue)do entry.fn()end
+    check(#s.shownCalls==1000,"rapid target hover invokes every stale pending Show entry")
+    print("OBSERVATION|R2-DOM-06|equip_flyout|departed_anchor_Show_invocations=1|1000_hover_entries_Show_invocations=1000|native_presentation=NOT_OBSERVED")
+end
+print("CHECKS|"..checks)

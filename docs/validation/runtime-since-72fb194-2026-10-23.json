@@ -1,0 +1,212 @@
+{
+  "baseline": "72fb194ffc79337a0c8f65591c9579f40be06ce2",
+  "workingHead": "72fb194ffc79337a0c8f65591c9579f40be06ce2",
+  "scope": "Runtime files changed against the user-identified optimized baseline. Source audit, not a native before/after performance attribution. Excludes harnesses and documents.",
+  "findings": {
+    "optimizedRegionsRetained": "The earlier idle-retention-post-v9-2026-10-23.json snapshot found eight optimization regions identical to 72fb194. This follow-up changes only bounded map-tab discovery within the formerly identical map file; ongoing map updates and the earlier lifecycle optimizations remain.",
+    "nativeGridSuppression": "RaidFrame/FluxRaidLayout.lua now requests keepParent=true: native roots stay shown at alpha zero to preserve native Edit Mode setup/visibility ownership. This can retain native updates when grouped and requires targeted native measurement. It is not proven to explain the captured FPS gap.",
+    "statusSuppression": "Native modern status roots already used alpha-zero suppression in the baseline; the later change adds reversible input suppression and an Edit Mode barrier.",
+    "playerContent": "The baseline already hid PlayerFrameContent. Current code retains that, hides the decorative PlayerFrameContainer too, and preserves input/readiness/combat/Edit Mode boundaries.",
+    "castBar": "UnitFrames/FluxCastBar.lua is unchanged from the baseline.",
+    "map": "Ongoing MapCanvas animation/input/provider cadence remains as in 72fb194. Tab discovery reuses its event frame. Scaling/legacy zoom initialization now reuses bounded watchers and cancels on hide/cleanup; combat interruption uses the existing deferred-embed recovery.",
+    "newMeasuredChanges": "Trinket binding metadata cache/scratch reuse and bag tier candidate filtering reduce observed CPU readings; no native FPS gain demonstrated.",
+    "diagnosticAttribution": "Other/FluxPerfCapture.lua now reads and ranks native EventRegistry onUpdateCallbacksByOwner only at requested capture endpoints. No native callback hooks, execution or idle work.",
+    "coalescedLayoutRetries": "Chat native button-side/alert hooks share a retry batch for the current frame. The next-frame, 100ms and one-second deadlines remain, and later frames may request another batch. Clients without QuickJoin/channel controls install no added hooks or timers.",
+    "ownedUnitGeometry": "Shared unit frames retain completed owned overlay/prediction anchors, readable overlay UV dimensions and portrait geometry. Live values, secret display updates and animation cadence remain. See unit-map-operation-counts-2026-10-23.json; no native FPS improvement demonstrated.",
+    "p0Audit": "All seven P0-related files remain identical to 72fb194 in all five installations; live GitHub main has no later commit. V9 copies match pre-fix parent 2cedce8 and six isolated old-code substitutions are rejected. See github-history-p0-2026-10-23.json.",
+    "combatQueueSupersession": "The current queue skips a stale later batch job if an earlier callback has already replaced its key. The newer job remains for the existing next-frame drain, avoiding duplicate structural work without dropping unrelated keys.",
+    "resourceLifecycle": "Power-cost event frames are reused across option changes and feature toggles, including retry after partial setup. Disabling invalidates delayed ghost updates, stops feedback animations and hides unused meters. Resource sparks cache completed owned styling while checking live visibility on every paint. See 55-resource-lifecycle-audit.md; no native FPS improvement established."
+  },
+  "files": [
+    {
+      "path": "AddonOptions/AceGUIWidget-FluxSpellBookSlotsPanel.lua",
+      "baselineSha256": "f36d560c60b3248a49164e256d718db372a154eabfcb94d4677b42da2f78236b",
+      "currentSha256": "af47feda5c3ecc3e983409f9875eeec24834663653e7fbff187c10a2f79a8f0d"
+    },
+    {
+      "path": "Bars/Blizzard.lua",
+      "baselineSha256": "52c863594e6da4313ce411a80b473b909a250cdfe4ba681478b07b6c9005b530",
+      "currentSha256": "afea5e7b59d545a6790f1b7520684a05290a5e961369a6d3c7a652f2fa9bbff6"
+    },
+    {
+      "path": "Battlezonemap/FluxBattlefieldMap.lua",
+      "baselineSha256": "cad3541c7d3e980b0f3c97b572c8555dfe08d99bbcfabec735fe27c5ae19b8df",
+      "currentSha256": "d27d9188e328f21492e179a23cfc6b5cc307c3f8b5ee687688945b01cecb8438"
+    },
+    {
+      "path": "Binding/Input/FluxMouseoverKeybind.lua",
+      "baselineSha256": "a78d499dacd4d8b44b9ca57e1d94fdc1cc7f300f90cfd9adf9e2e6f57bc6f727",
+      "currentSha256": "ac452001f1d59f9c804a0e6260142a4799a1961e6c8e7b735a6fd315c6b05eb5"
+    },
+    {
+      "path": "Blizzard/Hide.lua",
+      "baselineSha256": "daed28d09bf8040a726ca08754bf5b82ae06d5728d0e5ae4e2af98a69fdcb2a2",
+      "currentSha256": "128652b87e2beeb2986492e445438abf6f6198ccd458918eb64a49e7f1cf0f92"
+    },
+    {
+      "path": "BlizzardSettings/Raid.lua",
+      "baselineSha256": "83f5dbe0a5fa66f96ac02019ad3c38858b214cb9615480620b6fcdd27e602a31",
+      "currentSha256": "fc07fed69eec86ad2c594a40f3c067380824653e0adbb3724a658d46e06572f4"
+    },
+    {
+      "path": "BlizzardSettings/Write.lua",
+      "baselineSha256": "715655bd155d0998556f69fe07b7b69d5ea6b83dc4489e0ca2bb845bad61efee",
+      "currentSha256": "eaebcfc5e1a2d0d6a67163f8264efaee2e49f2e81e127fc685284a3454c93891"
+    },
+    {
+      "path": "Core/API/Container.lua",
+      "baselineSha256": "e7951686c90b6c1a65d78a4106415be186ce034c7e98fc541225abb98a05aca5",
+      "currentSha256": "640f0bbdd3ee004d84f65fd4b80c7ac3fc03271633da44d787ec79aaf2bb72e2"
+    },
+    {
+      "path": "Core/Engine/Combat.lua",
+      "baselineSha256": "623e16e2fa43cdc47784b68a3b4810f279633bb1affc5f30264c735b0c989180",
+      "currentSha256": "2eaf940e92498af507f9d4afb5b88e552b3217169d03956d091e6d025cc09092"
+    },
+    {
+      "path": "Core/FluxAPI/UI.lua",
+      "baselineSha256": "d0e0cb55578b10fd302bcaf37c77e7021dca8c5b9eeb9c0e96acbf9c9903e98b",
+      "currentSha256": "2eccfb11d81970f10ecdcdbf9ff57e5ddbee78ee41d95c92f023e7526c0239fb"
+    },
+    {
+      "path": "ExtraButtonSystem/Engine/Action.lua",
+      "baselineSha256": "e2ebf845d1774276ba1063828bebb845cd1d78071c63afcf9ccae3be105cce5d",
+      "currentSha256": "725c28de19c629a506938f4be0538ce70f6af428a1b370987009aa5ba0a80780"
+    },
+    {
+      "path": "ExtraButtonSystem/Engine/Paint.lua",
+      "baselineSha256": "c14fb0dde18c4dd626de8155cda527f8db954cd645c65cad81ddd1170c83ec00",
+      "currentSha256": "caabf1ca437b4329f06977770f3d9fc1ca38b45ed3f2c6953e7fb0e7d48be3b5"
+    },
+    {
+      "path": "ExtraButtonSystem/Engine/Watch.lua",
+      "baselineSha256": "ac906b94f1b33347d26757c6ffd199b29bf397e8e32a96ef1fe66124b8a0dd44",
+      "currentSha256": "4e22b2fde9ff08ff2fb62f96e595921fef508fbfcd16bb96997daa2e1257a04f"
+    },
+    {
+      "path": "ExtraButtonSystem/FlyoutEngine/Def.lua",
+      "baselineSha256": "7c68d238d5a55c8aa3a88506afdb2f21a979bec9f934629753336f09d3c5caeb",
+      "currentSha256": "8e3d1b5594f168db63ff14b48b840a1a79d68a83f5ddabecdb5170eb204d9c24"
+    },
+    {
+      "path": "ExtraButtonSystem/FlyoutEngine/Popup.lua",
+      "baselineSha256": "9be500c557b40d8b2977972f7d37ac04d5a91d0b7fa79f5f63e195dd9e8f00ea",
+      "currentSha256": "4260879a1fd6d57542b9522dbbd4548c97151ea6d656e705e2301850205a581e"
+    },
+    {
+      "path": "ExtraButtonSystem/NonCombatGrid/UtilitySlots/Assign.lua",
+      "baselineSha256": "4a87144dd9e18e89dc93990a5242fba7f7fb012f4263a0a067da00ef16501dd0",
+      "currentSha256": "a1a706068cb335050e314e092fa8ff07d7ae0dd9e88f4e6dbcf6a51dbe3f1a12"
+    },
+    {
+      "path": "ExtraButtonSystem/NonCombatGrid/UtilitySlots/Manager.lua",
+      "baselineSha256": "3cb2771bcf60c7319c7f1f8fa9598000e4c84cee73b697d5364ee74eb47bbd2c",
+      "currentSha256": "2bb620ab14c30df17be7b496b36432d4de7bf803856378a25f887403eaf3ab5d"
+    },
+    {
+      "path": "ExtraButtonSystem/TrinketMenu/FluxTrinketMenu.lua",
+      "baselineSha256": "78eddec2f3b0972c7769f7e56facf5d69ed071e76d10e7a4f4c03554a2eeec68",
+      "currentSha256": "3ab177e4885568df30d2a1a813e4412194e73af4344ba42be29468e53e21d355"
+    },
+    {
+      "path": "Inventory/Builtin/FluxClassicCombinedBag.lua",
+      "baselineSha256": "a9d2edc12697d15279ca22a74b02b98b89b6e04b0a297f7c5c24d1954dca75ac",
+      "currentSha256": "15a92981df3ef53d6b70c2c2a88533151adb76700ea51946ecf336c6c6e2562d"
+    },
+    {
+      "path": "Inventory/Restock/Core/Tiers/FluxRestockTiers_Match.lua",
+      "baselineSha256": "80a7321ec29466f138ee8a571e73650ab3b3dd07f3ed05a4af8b148090befc61",
+      "currentSha256": "aca3e913864e21a9abed31dfff50e95105ae17e8c6471e442f3ea249f28cd814"
+    },
+    {
+      "path": "MicroMenu/FluxBagMicroButton.lua",
+      "baselineSha256": "9526f84652f45344477dbb1ed0371b2e61d0d0ede1a1bb03bbfbd0532db8e6f7",
+      "currentSha256": "c2f695e67c25188af3bc47e5c35548155f60fc9c939f867c7443071c132d4884"
+    },
+    {
+      "path": "MicroMenu/FluxCombinedBagHeader.lua",
+      "baselineSha256": "c55e7d6dfa04ff3934a32a2ff20a05804bc4e4439d1a55321f54ba3812bcd0af",
+      "currentSha256": "3b21d5882ec78c7591a86f0f2dcb92b5ae28c9b0994c4f8ccdff1262af835223"
+    },
+    {
+      "path": "MicroMenu/FluxMicroMenu.lua",
+      "baselineSha256": "6ebf7d360e91341277631af88eee894d71d942d044c702a15326fbc74445642e",
+      "currentSha256": "04619b3ee9c4d9e836d389b545679b24313c90b342a025f38276efb1cfab9169"
+    },
+    {
+      "path": "Minimap/FluxMinimap.lua",
+      "baselineSha256": "8365b3de828202dad6e33ed20ef49388d18830f50be3c23b57723643ae52a56e",
+      "currentSha256": "3b822e92f5145cd8c02af16f732a4ddd1ae079363f76e9a96a7fb4df22f034df"
+    },
+    {
+      "path": "Other/FluxChatColumnMicros.lua",
+      "baselineSha256": "2f08481f81da3224b0015ba83d0c73ec015b51caabfe718c5ff541dbccaa51b7",
+      "currentSha256": "470ff6192b5a4f512aa673d4c27949ac0f2b28ebcd8044fbf67412d6315c1919"
+    },
+    {
+      "path": "Other/FluxChatCopyPaste.lua",
+      "baselineSha256": "10bcc681b367200249974024a335dca918f8a5fbe658769deb4a1a79de840d03",
+      "currentSha256": "9c234347dea3f464aac068d0906c234ad06a1379a1518a9c9807763ff799bb41"
+    },
+    {
+      "path": "Other/FluxChatFrame.lua",
+      "baselineSha256": "f5501a07123b14c68f19e80290bc35628b183dc683255ae7187379a0ee49a58b",
+      "currentSha256": "e253b9157dc10b7b946a6d3999080f62c559eabe2c9ba5583fb42ff07054c6d4"
+    },
+    {
+      "path": "Other/FluxInputDebug.lua",
+      "baselineSha256": null,
+      "currentSha256": "22a62ac9736c812ef8a116639f5356a075866ede4f0d9e3ef9caf30cbd1d1997"
+    },
+    {
+      "path": "Other/FluxPerfCapture.lua",
+      "baselineSha256": "7464a0bf581fd7c4215cb3844eafd6cc3de93420118fb9ee204a185e350acb72",
+      "currentSha256": "e29200378c73be645919e76ecd63af2908d3bbf1ebdea6123692732547f27a07"
+    },
+    {
+      "path": "RaidFrame/FluxRaidLayout.lua",
+      "baselineSha256": "ecd9db377f12abbfccd1bc989ff572e1aa3aa2aa2206bc33148cc113524da1b9",
+      "currentSha256": "e83d1c0c288d668f414f9af334f9ba10863d319da37e013ebc8208f8b00d1a34"
+    },
+    {
+      "path": "Respec/FluxRespec_GearSetTooltip.lua",
+      "baselineSha256": "9da03fbf5fe655bde14570f56a70edd7e76d4080e32169429809c95391e28091",
+      "currentSha256": "a156f176cc7ed84d418a83fb8758698cc9b33aed2bf34b9a0684e51fa0fdc197"
+    },
+    {
+      "path": "StatusBars/FluxStatusBar.lua",
+      "baselineSha256": "419f666fbdfa18b2a4186ce0667e59d95f425d5a968a6883e0ca381a9e3509ff",
+      "currentSha256": "9199393ed286f8761fb7580f164e22c8b0bba61025cd6d10084d560c6e639e94"
+    },
+    {
+      "path": "UnitFrames/FluxPowerCostOverlay.lua",
+      "baselineSha256": "fc958589cfd03834f03d3bb7a44c07de9795bfb884c36cd0486d8338e59af59b",
+      "currentSha256": "386e4e2d1a17aeec00ede2e20cbe4cc76cfe2ac6ba2b9a3fec8a9f2d2725b3e8"
+    },
+    {
+      "path": "UnitFrames/FluxUnitFrames_FluxVsBlizzardRuntime.lua",
+      "baselineSha256": "4b9db4c697f58cfebec646547093a3b48bfbe7afdca98721d9bf0789961f74d2",
+      "currentSha256": "5fcf4ff5c92ea81f2987319ddb215af6e31ce48dcf91889b61c8b57d9aaf0435"
+    },
+    {
+      "path": "UnitFrames/FluxUnitFrames_Player.lua",
+      "baselineSha256": "689e8e644c4b3aa868899a56a186badbf502c22018336b8fb6b3e9ee4bb54d0f",
+      "currentSha256": "5e913be6da5f642af6ac565bb21a49a84b3542fd255bce4a16cc1d50fa452091"
+    },
+    {
+      "path": "UnitFrames/FluxUnitFrames_PlayerTransmogClick.lua",
+      "baselineSha256": "9e8a964da8324527f7be83f1ab5c87a3238a73864a7b1b79214827bed5f41197",
+      "currentSha256": "237adef8656fb58ceb7dbea3cbaf00f96463358c55bf2d5c4046e422a845ee08"
+    },
+    {
+      "path": "UnitFrames/FluxUnitFrames_Shared.lua",
+      "baselineSha256": "82a2dd27c84078e0deb51f49e66b1e1ca1bcdb6647959238eeccc220ce532e1c",
+      "currentSha256": "fcbb2993a20ede85b3a33b570d6d653371dfb610a5ab13ed2d40f79fa1c89797"
+    },
+    {
+      "path": "_FluxUI.toc",
+      "baselineSha256": "8cb264fa0f1fbf955cef610f1c7eace5683d0ebce9804a3d32d5bd282be2f9d8",
+      "currentSha256": "aeddf93de699120cc3223441b07ce1f74d2a7046ae74305b83f2e12605f22373"
+    }
+  ]
+}

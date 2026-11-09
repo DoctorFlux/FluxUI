@@ -1,0 +1,6 @@
+lua: tests/shared_service_integrity.lua:4: inventory per-frame callback budget
+stack traceback:
+	[C]: in function 'assert'
+	tests/shared_service_integrity.lua:4: in local 'check'
+	tests/shared_service_integrity.lua:58: in main chunk
+	[C]: in ?

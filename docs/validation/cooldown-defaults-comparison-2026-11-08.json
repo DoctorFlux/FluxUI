@@ -1,0 +1,183 @@
+{
+  "changeID": "COOLDOWN-DEFAULTS-20261108",
+  "utc": "2026-11-08T21:44:26.737003+00:00",
+  "checkpoint": {
+    "utc": "20261108T211308Z",
+    "baseline": "1fd463f4de4bbff659f4e402c6f31138c49765b4",
+    "sourceFiles": 2300,
+    "settingsFiles": 188,
+    "sha256": {
+      "source.zip": "511b056f56d3f3a5fe2dbfb411d4c9cdf087d34630230298c8493080c5055d87",
+      "settings.zip": "9a1f071234ab8b36a31cece402b3d535dd3798eed60497b0c7ef07352b0f8d63",
+      "history.bundle": "cedf36ccc3f0c0644c561c54d42b9c85591993ab8c5544d463f9d56ae8f96ae4"
+    },
+    "zipIntegrity": "PASS",
+    "bundleVerification": "PASS",
+    "gameMemory": "Unsaved game memory excluded; no game input, settings mutation or foreground control"
+  },
+  "baseline": {
+    "head": "1fd463f4de4bbff659f4e402c6f31138c49765b4",
+    "newModule": "absent",
+    "classPowerLF": "c3442673ba076fd00e99666fd8b499a4e0fa1a8c7b20081d4b26f8d9c843cbf7",
+    "tocLF": "f9a16dfba05a848069a99e315a36d987433d14179b0b08e876b93c04cf3873ff"
+  },
+  "candidate": {
+    "Other/FluxCooldownDefaults.lua": "27431e8f0c5548587cde544c71fe31a7fae9eab21a23048970d8f9214796b754",
+    "UnitFrames/FluxClassPower.lua": "91f5108f0eddc2278cb80280bad88b61ee2eb9c103db787974b51b0f5cc98527",
+    "_FluxUI.toc": "cf3620b2e0da9876c1bb97688decc6d565367b563b674ba6f807aa53deff436b",
+    "tests/cooldown_defaults.lua": "d4c3663eef6a883c61f25d499249e73bb442f8d840bc72269eeac44d58039f3a"
+  },
+  "scenario": {
+    "scope": "Desktop native-layout data conversion, public geometry and lifecycle; no native secret/protected VM.",
+    "runtime": "Lua 5.4.6  Copyright (C) 1994-2023 Lua.org, PUC-Rio",
+    "host": "Windows-10-10.0.26200-SP0",
+    "hardware": "Uncontrolled shared desktop; hardware not captured; harness wall times are not addon timings.",
+    "profiler": "No profiling enabled/preferences changed. Native CPU, allocations, memory, latency, frame time and FPS unavailable.",
+    "settings": "Isolated native presets/custom layouts and event/widget/API models. Actual saved data not input to desktop tests.",
+    "addons": "Actual cooldown default owner and extracted ClassPower public geometry helper; remaining native interfaces modeled.",
+    "warmup": "One excluded candidate process; five repeated bounded candidate scenarios and four harmful controls.",
+    "baseline": "No prior equivalent default-copy feature. No claim of matched native A/B runs or an optimization speedup.",
+    "counts": {
+      "newFrames": 0,
+      "tickers": 0,
+      "OnUpdates": 0,
+      "singleProfileAndConsolidationBatch": {
+        "nativeSaves": 1,
+        "nativeActivations": 1,
+        "basePointCalls": 8
+      },
+      "twentyStableLayoutEvents": {
+        "additionalSaves": 0,
+        "additionalActivations": 0,
+        "additionalPointCalls": 0
+      },
+      "activeCustomLayout": {
+        "newCopiesSave": 1,
+        "activations": 0,
+        "pointCalls": 0
+      },
+      "unavailableOrNamesReserved": {
+        "saves": 0,
+        "activations": 0,
+        "pointCalls": 0
+      }
+    },
+    "interpretation": "New optional default copies add one bounded engine save. Stable events do not rewrite settings or points. These counts do not establish lower native CPU or higher FPS."
+  },
+  "samples": [
+    {
+      "command": [
+        "lua",
+        "tests/cooldown_defaults.lua"
+      ],
+      "exit": 0,
+      "wallSeconds": 0.025961500010453165,
+      "output": "[FluxUI] Cooldown defaults stopped: native metadata changed; reload before continuing.\ncooldown defaults: 186 checks PASS (desktop data/guard scope)\n",
+      "repetition": 1
+    },
+    {
+      "command": [
+        "lua",
+        "tests/cooldown_defaults.lua"
+      ],
+      "exit": 0,
+      "wallSeconds": 0.04637530000763945,
+      "output": "[FluxUI] Cooldown defaults stopped: native metadata changed; reload before continuing.\ncooldown defaults: 186 checks PASS (desktop data/guard scope)\n",
+      "repetition": 2
+    },
+    {
+      "command": [
+        "lua",
+        "tests/cooldown_defaults.lua"
+      ],
+      "exit": 0,
+      "wallSeconds": 0.02494420000584796,
+      "output": "[FluxUI] Cooldown defaults stopped: native metadata changed; reload before continuing.\ncooldown defaults: 186 checks PASS (desktop data/guard scope)\n",
+      "repetition": 3
+    },
+    {
+      "command": [
+        "lua",
+        "tests/cooldown_defaults.lua"
+      ],
+      "exit": 0,
+      "wallSeconds": 0.04631639999570325,
+      "output": "[FluxUI] Cooldown defaults stopped: native metadata changed; reload before continuing.\ncooldown defaults: 186 checks PASS (desktop data/guard scope)\n",
+      "repetition": 4
+    },
+    {
+      "command": [
+        "lua",
+        "tests/cooldown_defaults.lua"
+      ],
+      "exit": 0,
+      "wallSeconds": 0.04910819997894578,
+      "output": "[FluxUI] Cooldown defaults stopped: native metadata changed; reload before continuing.\ncooldown defaults: 186 checks PASS (desktop data/guard scope)\n",
+      "repetition": 5
+    }
+  ],
+  "harmfulControls": [
+    {
+      "command": [
+        "lua",
+        "tests/cooldown_defaults.lua",
+        "C:\\Users\\mario\\.codex\\visualizations\\2026\\10\\29\\01a186ea-e332-79a1-9cdc-8e340df7e22b\\Cooldown-defaults-20261108T211308Z\\custom-layout-guard.lua"
+      ],
+      "exit": 1,
+      "wallSeconds": 0.04973759999847971,
+      "output": "lua: tests/cooldown_defaults.lua:3: account custom untouched\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/cooldown_defaults.lua:3: in local 'check'\n\ttests/cooldown_defaults.lua:81: in main chunk\n\t[C]: in ?\n",
+      "control": "custom-layout-guard"
+    },
+    {
+      "command": [
+        "lua",
+        "tests/cooldown_defaults.lua",
+        "C:\\Users\\mario\\.codex\\visualizations\\2026\\10\\29\\01a186ea-e332-79a1-9cdc-8e340df7e22b\\Cooldown-defaults-20261108T211308Z\\native-save-handoff.lua"
+      ],
+      "exit": 1,
+      "wallSeconds": 0.05433159999665804,
+      "output": "lua: tests/cooldown_defaults.lua:3: native save takes ownership\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/cooldown_defaults.lua:3: in local 'check'\n\ttests/cooldown_defaults.lua:187: in main chunk\n\t[C]: in ?\n",
+      "control": "native-save-handoff"
+    },
+    {
+      "command": [
+        "lua",
+        "tests/cooldown_defaults.lua",
+        "C:\\Users\\mario\\.codex\\visualizations\\2026\\10\\29\\01a186ea-e332-79a1-9cdc-8e340df7e22b\\Cooldown-defaults-20261108T211308Z\\combat-guard.lua"
+      ],
+      "exit": 1,
+      "wallSeconds": 0.04986800000187941,
+      "output": "lua: tests/cooldown_defaults.lua:3: combat no writes\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/cooldown_defaults.lua:3: in local 'check'\n\ttests/cooldown_defaults.lua:91: in main chunk\n\t[C]: in ?\n",
+      "control": "combat-guard"
+    },
+    {
+      "command": [
+        "lua",
+        "tests/cooldown_defaults.lua",
+        "C:\\Users\\mario\\.codex\\visualizations\\2026\\10\\29\\01a186ea-e332-79a1-9cdc-8e340df7e22b\\Cooldown-defaults-20261108T211308Z\\editor-guard.lua"
+      ],
+      "exit": 1,
+      "wallSeconds": 0.05051790000288747,
+      "output": "lua: tests/cooldown_defaults.lua:3: editor no writes\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/cooldown_defaults.lua:3: in local 'check'\n\ttests/cooldown_defaults.lua:92: in main chunk\n\t[C]: in ?\n",
+      "control": "editor-guard"
+    }
+  ],
+  "native": {
+    "client": "Forever1.60.1 build70862 interface16001",
+    "publicNoOpSave": "User output metadata PASS; not a complete taint/security certificate.",
+    "firstSingleCopyCandidate": "Background guarded reload; applied status; current Modern selected by user; BugTabs0. Superseded by approved single-profile design.",
+    "latestChoice": "User tested the two-copy build successfully, then requested one FluxUI profile; native presets and custom layouts retained. Exact native export verification gates retirement of unchanged generated copies, with recovery records.",
+    "pending": "Two-copy native reload, native saves, real combat/aura/alert behavior, exact visual parity and other native clients."
+  },
+  "preNativeConsolidationCheckpoint": {
+    "utc": "20261108T214837Z",
+    "sourceFiles": 2306,
+    "settingsFiles": 188,
+    "sourceZIP": "139885271cf7887838cba07d458dfb8f3ce4ca6354386c249659801f8239984e",
+    "settingsZIP": "32ef7e5b4b0456dc63d5c4b2fe11f74c870f6ad341133b1f4407c588de67ba7e",
+    "historyBundle": "3d48ba21c574538b973870a228684e7a0aa9244eb8a8df555ffa65ca14b949cf",
+    "zipIntegrity": "PASS",
+    "bundleVerification": "PASS",
+    "scope": "Outside AddOns; on-disk settings and current local files; unsaved game memory excluded"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "capturedUTC": "2026-11-07T15:51:42.529985+00:00",
+  "scope": "Artifact syntax/links/requirements coverage, exact current tested Lua corpus and no-code-edit invariant. Does not certify native behavior.",
+  "counts": {
+    "python": 14,
+    "luaHarnesses": 20,
+    "json": 47,
+    "csv": 6,
+    "localLinks": 123
+  },
+  "suiteEvidence": "current-suite.json",
+  "currentScriptsPassed": 232,
+  "currentSyntaxFiles": 896,
+  "findings": 25,
+  "classifiedSources": 929,
+  "reachablePaths": 599,
+  "errors": [],
+  "pass": true
+}

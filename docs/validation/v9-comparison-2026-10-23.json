@@ -1,0 +1,178 @@
+{
+  "scope": "Focused source comparison only, not a native A/B test or complete-addon equivalence claim.",
+  "mainCommitVerifiedViaGitHub": "72fb194ffc79337a0c8f65591c9579f40be06ce2",
+  "normalization": "CRLF to LF only; BOM preserved",
+  "v9Root": "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\__Backup\\v9",
+  "files": [
+    {
+      "path": "Core/FluxAPI/UI.lua",
+      "v9Sha256": "d0e0cb55578b10fd302bcaf37c77e7021dca8c5b9eeb9c0e96acbf9c9903e98b",
+      "currentSha256": "2eccfb11d81970f10ecdcdbf9ff57e5ddbee78ee41d95c92f023e7526c0239fb",
+      "main72fb194Sha256": "d0e0cb55578b10fd302bcaf37c77e7021dca8c5b9eeb9c0e96acbf9c9903e98b",
+      "currentEqualsV9": false,
+      "v9EqualsMain": true,
+      "currentEqualsMain": false,
+      "diffLinesFromV9": 102
+    },
+    {
+      "path": "Bars/Blizzard.lua",
+      "v9Sha256": "3d6baf755d6e3aedb2ec832b92277bc2a4aecc2d5439cb96f90ff147a4cf8799",
+      "currentSha256": "afea5e7b59d545a6790f1b7520684a05290a5e961369a6d3c7a652f2fa9bbff6",
+      "main72fb194Sha256": "52c863594e6da4313ce411a80b473b909a250cdfe4ba681478b07b6c9005b530",
+      "currentEqualsV9": false,
+      "v9EqualsMain": false,
+      "currentEqualsMain": false,
+      "diffLinesFromV9": 111
+    },
+    {
+      "path": "Blizzard/Hide.lua",
+      "v9Sha256": "daed28d09bf8040a726ca08754bf5b82ae06d5728d0e5ae4e2af98a69fdcb2a2",
+      "currentSha256": "128652b87e2beeb2986492e445438abf6f6198ccd458918eb64a49e7f1cf0f92",
+      "main72fb194Sha256": "daed28d09bf8040a726ca08754bf5b82ae06d5728d0e5ae4e2af98a69fdcb2a2",
+      "currentEqualsV9": false,
+      "v9EqualsMain": true,
+      "currentEqualsMain": false,
+      "diffLinesFromV9": 132
+    },
+    {
+      "path": "BlizzardSettings/Write.lua",
+      "v9Sha256": "715655bd155d0998556f69fe07b7b69d5ea6b83dc4489e0ca2bb845bad61efee",
+      "currentSha256": "eaebcfc5e1a2d0d6a67163f8264efaee2e49f2e81e127fc685284a3454c93891",
+      "main72fb194Sha256": "715655bd155d0998556f69fe07b7b69d5ea6b83dc4489e0ca2bb845bad61efee",
+      "currentEqualsV9": false,
+      "v9EqualsMain": true,
+      "currentEqualsMain": false,
+      "diffLinesFromV9": 22
+    },
+    {
+      "path": "BlizzardSettings/Raid.lua",
+      "v9Sha256": "83f5dbe0a5fa66f96ac02019ad3c38858b214cb9615480620b6fcdd27e602a31",
+      "currentSha256": "fc07fed69eec86ad2c594a40f3c067380824653e0adbb3724a658d46e06572f4",
+      "main72fb194Sha256": "83f5dbe0a5fa66f96ac02019ad3c38858b214cb9615480620b6fcdd27e602a31",
+      "currentEqualsV9": false,
+      "v9EqualsMain": true,
+      "currentEqualsMain": false,
+      "diffLinesFromV9": 3
+    },
+    {
+      "path": "UnitFrames/FluxCastBar.lua",
+      "v9Sha256": "32da3bef50afb007ef6ee3044aaabe2801ca01942aeb58199b56ae8194dbbd9c",
+      "currentSha256": "32da3bef50afb007ef6ee3044aaabe2801ca01942aeb58199b56ae8194dbbd9c",
+      "main72fb194Sha256": "32da3bef50afb007ef6ee3044aaabe2801ca01942aeb58199b56ae8194dbbd9c",
+      "currentEqualsV9": true,
+      "v9EqualsMain": true,
+      "currentEqualsMain": true,
+      "diffLinesFromV9": 0
+    },
+    {
+      "path": "UnitFrames/FluxUnitFrames_FluxVsBlizzardRuntime.lua",
+      "v9Sha256": "fa424ed60fa9c493895c0abc6d58fc41d13ca4df6f58eed622c6e1a7918a991a",
+      "currentSha256": "5fcf4ff5c92ea81f2987319ddb215af6e31ce48dcf91889b61c8b57d9aaf0435",
+      "main72fb194Sha256": "4b9db4c697f58cfebec646547093a3b48bfbe7afdca98721d9bf0789961f74d2",
+      "currentEqualsV9": false,
+      "v9EqualsMain": false,
+      "currentEqualsMain": false,
+      "diffLinesFromV9": 73
+    },
+    {
+      "path": "UnitFrames/FluxUnitFrames_PlayerTransmogClick.lua",
+      "v9Sha256": "9e8a964da8324527f7be83f1ab5c87a3238a73864a7b1b79214827bed5f41197",
+      "currentSha256": "237adef8656fb58ceb7dbea3cbaf00f96463358c55bf2d5c4046e422a845ee08",
+      "main72fb194Sha256": "9e8a964da8324527f7be83f1ab5c87a3238a73864a7b1b79214827bed5f41197",
+      "currentEqualsV9": false,
+      "v9EqualsMain": true,
+      "currentEqualsMain": false,
+      "diffLinesFromV9": 72
+    },
+    {
+      "path": "StatusBars/FluxStatusBar.lua",
+      "v9Sha256": "a6df6579f3fd0cd78d4a602e5721c7428d171df3336deed6c9d4bc44fee5202f",
+      "currentSha256": "9199393ed286f8761fb7580f164e22c8b0bba61025cd6d10084d560c6e639e94",
+      "main72fb194Sha256": "419f666fbdfa18b2a4186ce0667e59d95f425d5a968a6883e0ca381a9e3509ff",
+      "currentEqualsV9": false,
+      "v9EqualsMain": false,
+      "currentEqualsMain": false,
+      "diffLinesFromV9": 172
+    },
+    {
+      "path": "RaidFrame/FluxRaidLayout.lua",
+      "v9Sha256": "f92d56aafca641e04da3cf655719f5f504c018001122beddab8a19e227475077",
+      "currentSha256": "e83d1c0c288d668f414f9af334f9ba10863d319da37e013ebc8208f8b00d1a34",
+      "main72fb194Sha256": "ecd9db377f12abbfccd1bc989ff572e1aa3aa2aa2206bc33148cc113524da1b9",
+      "currentEqualsV9": false,
+      "v9EqualsMain": false,
+      "currentEqualsMain": false,
+      "diffLinesFromV9": 74
+    },
+    {
+      "path": "MicroMenu/FluxBagMicroButton.lua",
+      "v9Sha256": "9526f84652f45344477dbb1ed0371b2e61d0d0ede1a1bb03bbfbd0532db8e6f7",
+      "currentSha256": "c2f695e67c25188af3bc47e5c35548155f60fc9c939f867c7443071c132d4884",
+      "main72fb194Sha256": "9526f84652f45344477dbb1ed0371b2e61d0d0ede1a1bb03bbfbd0532db8e6f7",
+      "currentEqualsV9": false,
+      "v9EqualsMain": true,
+      "currentEqualsMain": false,
+      "diffLinesFromV9": 27
+    },
+    {
+      "path": "MicroMenu/FluxMicroMenu.lua",
+      "v9Sha256": "a18894ea2f6655a50222cf8ea273b37945af57d6fd0ceb85afae99cd82f75533",
+      "currentSha256": "04619b3ee9c4d9e836d389b545679b24313c90b342a025f38276efb1cfab9169",
+      "main72fb194Sha256": "6ebf7d360e91341277631af88eee894d71d942d044c702a15326fbc74445642e",
+      "currentEqualsV9": false,
+      "v9EqualsMain": false,
+      "currentEqualsMain": false,
+      "diffLinesFromV9": 144
+    },
+    {
+      "path": "MicroMenu/FluxCombinedBagHeader.lua",
+      "v9Sha256": "c55e7d6dfa04ff3934a32a2ff20a05804bc4e4439d1a55321f54ba3812bcd0af",
+      "currentSha256": "3b21d5882ec78c7591a86f0f2dcb92b5ae28c9b0994c4f8ccdff1262af835223",
+      "main72fb194Sha256": "c55e7d6dfa04ff3934a32a2ff20a05804bc4e4439d1a55321f54ba3812bcd0af",
+      "currentEqualsV9": false,
+      "v9EqualsMain": true,
+      "currentEqualsMain": false,
+      "diffLinesFromV9": 92
+    },
+    {
+      "path": "Minimap/FluxMinimap.lua",
+      "v9Sha256": "89e136547c2f720b52cf9bb5fe84b85bf01222ae05f17d5af76d14e71cd3b77a",
+      "currentSha256": "3b822e92f5145cd8c02af16f732a4ddd1ae079363f76e9a96a7fb4df22f034df",
+      "main72fb194Sha256": "8365b3de828202dad6e33ed20ef49388d18830f50be3c23b57723643ae52a56e",
+      "currentEqualsV9": false,
+      "v9EqualsMain": false,
+      "currentEqualsMain": false,
+      "diffLinesFromV9": 137
+    },
+    {
+      "path": "Other/FluxChatFrame.lua",
+      "v9Sha256": "f5501a07123b14c68f19e80290bc35628b183dc683255ae7187379a0ee49a58b",
+      "currentSha256": "afc2b1a1d7546dc4bfe41fd4332a007fcfa63ce07536b6645a4459a432dedc43",
+      "main72fb194Sha256": "f5501a07123b14c68f19e80290bc35628b183dc683255ae7187379a0ee49a58b",
+      "currentEqualsV9": false,
+      "v9EqualsMain": true,
+      "currentEqualsMain": false,
+      "diffLinesFromV9": 54
+    },
+    {
+      "path": "Other/FluxChatCopyPaste.lua",
+      "v9Sha256": "10bcc681b367200249974024a335dca918f8a5fbe658769deb4a1a79de840d03",
+      "currentSha256": "9c234347dea3f464aac068d0906c234ad06a1379a1518a9c9807763ff799bb41",
+      "main72fb194Sha256": "10bcc681b367200249974024a335dca918f8a5fbe658769deb4a1a79de840d03",
+      "currentEqualsV9": false,
+      "v9EqualsMain": true,
+      "currentEqualsMain": false,
+      "diffLinesFromV9": 96
+    },
+    {
+      "path": "Other/FluxDurationBars.lua",
+      "v9Sha256": "b73afa84cfd6fa3a23e2eb536755aa3d4f2a9dae4504f7ff560e902d1da61cbf",
+      "currentSha256": "58bd5ab748f3189d9e429a69be3cbd34c410f67fb4a58a92164e8c4ba0160e09",
+      "main72fb194Sha256": "58bd5ab748f3189d9e429a69be3cbd34c410f67fb4a58a92164e8c4ba0160e09",
+      "currentEqualsV9": false,
+      "v9EqualsMain": false,
+      "currentEqualsMain": true,
+      "diffLinesFromV9": 27
+    }
+  ]
+}

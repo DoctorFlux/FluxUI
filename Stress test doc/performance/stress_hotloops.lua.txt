@@ -1,0 +1,82 @@
+-- Execute unchanged production source slices with narrow counted native regions.
+-- No secure VM, actual renderer, settings, input, game process, or FPS is used.
+local function read(path)local f=assert(io.open(path,"rb"));local s=f:read("*a"):gsub("\r\n","\n");f:close();return s end
+local source=read("NamePlates/Core.lua")
+local start=assert(source:find("local function IsForeverClient()",1,true))
+local slice=source:sub(start)
+local checks=0
+local function check(ok,msg)checks=checks+1;assert(ok,msg)end
+for _,branch in ipairs({"era","anniversary","live","forever"})do
+    for _,count in ipairs({0,1,5,40})do
+        local e=setmetatable({},{__index=_G});e._G=e
+        local s={alpha=0,points=0,clears=0,hides=0,textHeights=0,lookups=0,cvReads=0}
+        local frames,active,hooks={},{},{}
+        local function region()
+            return {SetAlpha=function()s.alpha=s.alpha+1 end,
+                SetPoint=function()s.points=s.points+1 end,
+                ClearAllPoints=function()s.clears=s.clears+1 end,
+                SetTextHeight=function()s.textHeights=s.textHeights+1 end,
+                SetJustifyH=function()end,Hide=function()s.hides=s.hides+1 end}
+        end
+        for i=1,count do
+            local bar=region();bar.LeftText,bar.RightText,bar.Text=region(),region(),region()
+            local health=region();health.healthBar=bar
+            frames["nameplate"..i]={unit="nameplate"..i,HealthBarsContainer=health,CastBarsContainer=region(),
+                AurasFrame={CrowdControlListFrame=region(),LossOfControlFrame=region()},
+                PlayerLevelDiffFrame={playerLevelDiffText=region(),playerLevelDiffIcon=region(),highLevelTexture=region(),selectedBorder=region(),Hide=function()s.hides=s.hides+1 end},
+                LevelFrame={LevelText=region(),HighLevelTexture=region(),Hide=function()s.hides=s.hides+1 end},name=region()}
+            active["nameplate"..i]=true
+        end
+        local np={PREVIEW_UNIT="preview",IsLiveClient=function()return branch=="live"end,
+            BoolTest=function(v)return v and true or false end,
+            GetParts=function(unit)s.lookups=s.lookups+1;return frames[unit]end}
+        local driver={HookScript=function(_,name,fn)hooks[#hooks+1]=fn end}
+        e.NamePlateSetupOptions={useClassicHealthBar=true,horizontalScale=1,verticalScale=1,unitNameAnchorStyle=2,healthBarFontHeight=12}
+        e.NamePlateConstants={NAME_ANCHOR_STYLES={InsideHealthBar=1,AboveHealthBar=2}}
+        e.Enum={NamePlateStyle={Modern=0,CastFocus=1}}
+        e.C_CVar={GetCVar=function()s.cvReads=s.cvReads+1;return "0"end}
+        local preamble=[[local NP,driver,activeUnits,ClientFlag=...
+]]
+        assert(load(preamble..slice,"@NamePlates/Core.lua:plate-hooks","t",e))(np,driver,active,function(name)return branch=="forever"and(name=="isForever"or name=="isCamelot")end)
+        -- Hook called only while the real driver is visible (active units >0).
+        local ticks=count>0 and 600 or 0
+        for i=1,ticks do for _,fn in ipairs(hooks)do fn(driver,1/60)end end
+        if branch=="forever"then check(s.alpha==count*ticks*6,"Forever six artwork alpha writes per plate/frame")
+        elseif branch=="live"then check(s.hides==count*ticks*2,"Live two native level Hide calls per plate/frame")
+        else check(#hooks==0 and s.alpha==0 and s.points==0,"Classic family no mainline/Forever geometry loop")end
+        print(("RESULT|plates_%s_%d|simulated_frames=%d|native_alpha_calls=%d|native_point_calls=%d|native_clear_calls=%d|native_hide_calls=%d|text_height_calls=%d|plate_lookups=%d|cvar_reads=%d")
+            :format(branch,count,ticks,s.alpha,s.points,s.clears,s.hides,s.textHeights,s.lookups,s.cvReads))
+        -- Options-open exclusion is part of current appearance ownership.
+        e.SettingsPanel={IsShown=function()return true end};local before=s.alpha+s.points+s.hides
+        for _,fn in ipairs(hooks)do fn(driver,1/60)end
+        check(s.alpha+s.points+s.hides==before,"options open prevents plate repair writes")
+    end
+end
+
+-- Forever character microbutton has an unparented, always-shown watch frame.
+do
+    source=read("Other/FluxChatColumnMicros.lua")
+    local a=assert(source:find("local function TrackCharacterPress(btn)",1,true))
+    local b=assert(source:find("local function WatchCharacterFrame(btn)",a,true))
+    local e=setmetatable({},{__index=_G});e._G=e
+    local s={callbacks=0,shownReads=0,mouseReads=0,panelReads=0,paints=0}
+    local driver
+    e.CreateFrame=function()
+        driver={shown=true,SetScript=function(self,_,fn)self.fn=fn end};return driver
+    end
+    e.IsMouseButtonDown=function()s.mouseReads=s.mouseReads+1;return false end
+    local track=assert(load([[local CharacterPanelShown,ApplyCharacterPlate=...
+]]..source:sub(a,b-1).."\nreturn TrackCharacterPress","@FluxChatColumnMicros:press-watch","t",e))(
+        function()s.panelReads=s.panelReads+1;return false end,function(btn,value)s.paints=s.paints+1;btn._fluxPlatePushed=value end)
+    local shown=true
+    local btn={IsShown=function()s.shownReads=s.shownReads+1;return shown end,IsMouseOver=function()return false end,_fluxPlatePushed=false}
+    track(btn);track(btn)
+    for i=1,36000 do s.callbacks=s.callbacks+1;driver.fn()end
+    check(s.mouseReads==36000 and s.panelReads==36000 and s.paints==0,"ten-minute stationary visible character button still polls each frame")
+    shown=false
+    for i=1,36000 do s.callbacks=s.callbacks+1;driver.fn()end
+    check(s.mouseReads==36000 and s.shownReads==72000 and driver.shown,"hidden button leaves unparented watch driver active")
+    print(("RESULT|forever_character_watch|simulated_frames=%d|button_is_shown_reads=%d|mouse_down_reads=%d|panel_shown_reads=%d|appearance_paints=%d|watch_driver_shown=%s")
+        :format(s.callbacks,s.shownReads,s.mouseReads,s.panelReads,s.paints,tostring(driver.shown)))
+end
+print(("RESULT|SUMMARY|checks=%d|failed=0"):format(checks))

@@ -1,0 +1,156 @@
+{
+  "changeID": "UNIT-COMBAT-MENUS-20261108",
+  "requirement": "REQ-RF-91",
+  "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\06\\01a1b0ac-547f-7972-8df9-fa26882e0e03\\unit-combat-menus-20261108T074903Z\\checkpoint.json",
+  "before": {
+    "UnitFrames/FluxUnitFrames_Shared.lua": "58ee0dd7b6b6f48d5b3ab347076d5bc221440cbf01aaa149457e57a342fe17e3",
+    "UnitFrames/FluxUnitFrames_Party.lua": "91104dbef11924601b098fce4d2c1c1c23b1ea594137098317ec23ed1484be66",
+    "UnitFrames/FluxUnitFrames_PetTarget.lua": "b6b2bd919b5797632ad25f0bd65e01d0777516bf5080d8309e837165b78a1061",
+    "RaidFrame/FluxRaidUnit.lua": "16c5ced19d241a56288b7bfef1bab21dcdd3c2cb898a3aa829ddd9a6cbeccfa2",
+    "tests/raid_party_frames.lua": "fcd9639679260ef6e0d84f8b6994d720f0d77a9aba6038604f39ba3daeb8264a",
+    "tests/unit_combat_menus.lua": "new"
+  },
+  "after": {
+    "UnitFrames/FluxUnitFrames_Shared.lua": "814fec866fa4157991234c94e1703d771ed6fc571483b13c7ebecf2c0da67d9d",
+    "UnitFrames/FluxUnitFrames_Party.lua": "cf4329e19d2f80876118e30612abef72f0000d5c5765e1b174f45f1d0b91fa35",
+    "UnitFrames/FluxUnitFrames_PetTarget.lua": "54229e03f5721dc0cfc4bbc37256c85f1f8b26858d7326515cc1636cf0d63b78",
+    "RaidFrame/FluxRaidUnit.lua": "dd35f786e34f1da4f820f1bbf5254ed70d21ee5fc906f2e4ff0a5e17b106ac01",
+    "tests/raid_party_frames.lua": "b1b0ff9fb2eb6220e3e3a9d3eaab68edae515dce6085f4e2803b5987aaf1bb27",
+    "tests/unit_combat_menus.lua": "88379553c692db11d597ff596b0ec708f05006946e7a81963ac528b1117fdc49"
+  },
+  "nativeSources": [
+    {
+      "client": "live",
+      "path": "Interface/AddOns/Blizzard_FrameXML/SecureTemplates.lua",
+      "ref": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "blob": "0b7ba234696b5f1c551e7d84375900e50c824cbb",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_FrameXML/SecureTemplates.lua"
+    },
+    {
+      "client": "live",
+      "path": "Interface/AddOns/Blizzard_UnitFrame/Shared/CompactUnitFrame.lua",
+      "ref": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "blob": "bb88b9c96c5da24e4782f99948c9001dfae44271",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_UnitFrame/Shared/CompactUnitFrame.lua"
+    },
+    {
+      "client": "forever",
+      "path": "Interface/AddOns/Blizzard_FrameXML/SecureTemplates.lua",
+      "ref": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "blob": "66f203e31a819f383ea3c6920be8d4f6556848eb",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_FrameXML/SecureTemplates.lua"
+    },
+    {
+      "client": "forever",
+      "path": "Interface/AddOns/Blizzard_UnitFrame/Shared/CompactUnitFrame.lua",
+      "ref": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "blob": "bf81a55c61228133a80394b7f0547bf2758c364e",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_UnitFrame/Shared/CompactUnitFrame.lua"
+    },
+    {
+      "client": "classic",
+      "path": "Interface/AddOns/Blizzard_FrameXML/SecureTemplates.lua",
+      "ref": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "blob": "e35a52fa79f9cbc38452b6b529d8734ded0938ea",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_FrameXML/SecureTemplates.lua"
+    },
+    {
+      "client": "classic",
+      "path": "Interface/AddOns/Blizzard_UnitFrame/Shared/CompactUnitFrame.lua",
+      "ref": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "blob": "64b6cc8714a4c728cd8f3e3c2f13ca20c18cce16",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_UnitFrame/Shared/CompactUnitFrame.lua"
+    },
+    {
+      "client": "classic_era",
+      "path": "Interface/AddOns/Blizzard_FrameXML/SecureTemplates.lua",
+      "ref": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "blob": "31ea34c7dc3995bac10adcd2ce57b02f06db13e2",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_FrameXML/SecureTemplates.lua"
+    },
+    {
+      "client": "classic_era",
+      "path": "Interface/AddOns/Blizzard_UnitFrame/Shared/CompactUnitFrame.lua",
+      "ref": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "blob": "64b6cc8714a4c728cd8f3e3c2f13ca20c18cce16",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_UnitFrame/Shared/CompactUnitFrame.lua"
+    },
+    {
+      "client": "classic_anniversary",
+      "path": "Interface/AddOns/Blizzard_FrameXML/SecureTemplates.lua",
+      "ref": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "blob": "ba180de8cf11512e45d0f184d8e060efdf3471f4",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_FrameXML/SecureTemplates.lua"
+    },
+    {
+      "client": "classic_anniversary",
+      "path": "Interface/AddOns/Blizzard_UnitFrame/Shared/CompactUnitFrame.lua",
+      "ref": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "blob": "5e32fb987b9b907125f6fb826ed81be9679f2236",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_UnitFrame/Shared/CompactUnitFrame.lua"
+    }
+  ],
+  "implementation": [
+    "Shared OOC setup selects Blizzard native menu callback by target/focus or generic CompactUnitFrame callback. Native callback object is stored directly as menu-function; explicit and wildcard right button actions are menu. Legacy secure togglemenu fallback remains if optional native callback unavailable.",
+    "Configure every actual click rectangle: base/outer unit buttons, normal party members/pets through common factories, party-target and pet-target vertical strips, raid/pet/mini cells and MT target children. Generic callback uses current secure unit attribute after combat roster/group changes.",
+    "Right-menu enable/disable attribute changes defer through existing unit-frame combat queue; click opens menu using native secure ExecuteAttribute on release without ordinary protected writes. No addon popup dispatcher or OnMouseUp workaround.",
+    "Preserve explicit Flux modifier hover programs and native click-cast precedence; keep native filtering of menu actions unavailable in combat. Existing visuals, positions, frame visibility and saved data unchanged."
+  ],
+  "tests": {
+    "unitCombatMenus": 680,
+    "exactPinnedNativeReplay": 680,
+    "pinnedReplay": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\06\\01a1b0ac-547f-7972-8df9-fa26882e0e03\\unit-combat-menus-20261108T074903Z\\pinned-unit-combat-menus.lua",
+    "negativeControls": [
+      {
+        "name": "legacy-action",
+        "rejected": true,
+        "error": "lua: ...mbat-menus-20261108T074903Z\\pinned-unit-combat-menus.lua:5: native callback identity retained with explicit/wildcard secure menu action"
+      },
+      {
+        "name": "combat-write",
+        "rejected": true,
+        "error": "lua: ...mbat-menus-20261108T074903Z\\pinned-unit-combat-menus.lua:54: ordinary protected write in combat"
+      },
+      {
+        "name": "missing-callback",
+        "rejected": true,
+        "error": "lua: ...mbat-menus-20261108T074903Z\\pinned-unit-combat-menus.lua:5: native callback identity retained with explicit/wildcard secure menu action"
+      }
+    ],
+    "partyFocus": 1010,
+    "raidHoverCast": 182,
+    "partyHoverCast": 310,
+    "scriptsPass": 252,
+    "scriptsFail": 0,
+    "syntaxFiles": 916,
+    "syntaxFailures": [],
+    "ownedManifestDrift": []
+  },
+  "nativeReplayScope": "Full suite uses installed reference snapshots. Seven of ten whole-file blobs match selected pins after CRLF normalization; three differ. Separate external replay uses all ten exact fetched pinned source contents and passes 680 checks; upstream reference installs were not modified.",
+  "fullReport": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\06\\01a1b0ac-547f-7972-8df9-fa26882e0e03\\unit-combat-menus-20261108T074903Z\\full.json",
+  "resources": "No new frames/events/hooks/polling/tickers/timers. Three menu attributes prepared per setup; optional combat setting edits use existing keyed defer queue. Native menu creation is only on click. No native CPU/FPS claim.",
+  "nativePending": "Actual hardware dispatch, protected VM, native popup availability/restrictions, taint and combat input on each client still need in-game validation; modeled secure dispatch does not certify these.",
+  "recovery": "Verified dated before-source.zip and all-history bundle;45 settings metadata entries read-only. Retain prior recovery. No foreground/game/input/WTF/profiler/settings writes, manual sync, branch/commit/push.",
+  "copies": [
+    {
+      "client": "_retail_",
+      "mismatches": []
+    },
+    {
+      "client": "_forever_",
+      "mismatches": []
+    },
+    {
+      "client": "_classic_",
+      "mismatches": []
+    },
+    {
+      "client": "_classic_era_",
+      "mismatches": []
+    },
+    {
+      "client": "_anniversary_",
+      "mismatches": []
+    }
+  ]
+}

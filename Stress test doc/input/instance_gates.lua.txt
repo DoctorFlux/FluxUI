@@ -1,0 +1,143 @@
+-- Complete production Conditions module, read-only API models.
+-- The instance values below are consumed by actual addon branches, not labels.
+local checks, failures, loadCases, transitions = 0, 0, 0, 0
+local function check(ok, message)
+    checks = checks + 1
+    if not ok then failures = failures + 1; print("FAIL " .. message) end
+end
+local wantedTypes = { "NONE", "none", "PARTY", "party", "RAID", "raid", "PVP", "pvp",
+    "ARENA", "arena", "SCENARIO", "scenario", "UNKNOWN" }
+local actualTypes = { "none", "party", "raid", "pvp", "arena", "scenario" }
+local instanceIDs = { none = 530, party = 33, raid = 409, pvp = 30, arena = 559, scenario = 1136 }
+local function fixture(branch)
+    local s = { kind = "none", combat = false, mods = "", zone = "Zone", subzone = "Subzone",
+        frames = {}, gateNotifies = 0, petInvalidates = 0, physicalReads = 0, time = 100,
+        outdoors = true, skill = true, flyable = true, mapID = 530, spec = 1 }
+    local e = setmetatable({}, { __index = _G }); e._G = e
+    local flags = { key = branch, branch = branch, isEra = branch == "classic_era",
+        isTBC = branch == "classic_anniversary", isAnniversary = branch == "classic_anniversary",
+        isRetail = branch == "live" or branch == "forever", isForever = branch == "forever",
+        isMists = branch == "classic", majorVersion = branch == "live" and 12
+            or branch == "classic_anniversary" and 2 or branch == "classic" and 5 or 1 }
+    local ns = { Flux = { Client = flags, Inventory = {}, Cap = { hasIsFlyableArea = true } },
+        FluxBindingAction = { IsAvailable = function() return not s.unavailable end },
+        FluxBindingDB3 = { IsFormPageEnabled = function() return not s.pageDisabled end,
+            IsCustomActiveForForm = function() return not s.customDisabled end },
+        FluxBindingForms = { HasMultipleForms = function() return false end },
+        FluxBindingSpellLibrary = { InvalidatePetAbilityGate = function() s.petInvalidates = s.petInvalidates + 1 end } }
+    e.FluxBinding = { NotifyLoadGatesChanged = function() s.gateNotifies = s.gateNotifies + 1 end,
+        GetEditorOverlap = function() return { route = { kind = "slot", row = "secondary" }, slot = 1 } end }
+    e.InCombatLockdown = function() s.physicalReads = s.physicalReads + 1; return s.combat end
+    e.IsShiftKeyDown = function() s.physicalReads = s.physicalReads + 1; return s.mods:find("s", 1, true) ~= nil end
+    e.IsControlKeyDown = function() s.physicalReads = s.physicalReads + 1; return s.mods:find("c", 1, true) ~= nil end
+    e.IsInInstance = function() return s.kind ~= "none", s.kind end
+    e.GetInstanceInfo = function() return s.zone, s.kind, 1, "", 40, false, false, s.mapID end
+    e.GetRealZoneText, e.GetZoneText = function() return s.zone end, function() return s.zone end
+    e.GetSubZoneText = function() return s.subzone end
+    e.GetTime = function() return s.time end
+    e.IsOutdoors = function() return s.outdoors end
+    e.IsFlyableArea = function() return s.flyable end
+    e.IsPlayerSpell = function(id) return s.skill and (id == 34090 or id == 54197) end
+    e.GetSpecialization = (branch == "live" or branch == "classic") and function() return s.spec end or nil
+    e.GetActiveTalentGroup = function() return s.spec end
+    e.CreateFrame = function()
+        local frame = { events = {}, scripts = {} }
+        function frame:RegisterEvent(name) self.events[name] = true end
+        function frame:SetScript(name, fn) self.scripts[name] = fn end
+        s.frames[#s.frames + 1] = frame
+        return frame
+    end
+    function s.fire(name, unit)
+        for _, frame in ipairs(s.frames) do
+            if frame.events[name] and frame.scripts.OnEvent then frame.scripts.OnEvent(frame, name, unit) end
+        end
+    end
+    assert(loadfile("Binding/Core/Conditions.lua", "t", e))("_FluxUI", ns)
+    return s, e, ns
+end
+
+for _, branch in ipairs({ "live", "forever", "classic_era", "classic_anniversary", "classic" }) do
+    local s, e, ns = fixture(branch)
+    local c = ns.FluxBindingConditions
+    local binding = { uid = "instance-test", action = { type = "spell", id = 1 }, forms = {} }
+    local branchCases, notices = 0, 0
+    for _, selected in ipairs({ false, true }) do
+        for _, negated in ipairs({ false, true }) do
+            for _, want in ipairs(wantedTypes) do
+                for _, combat in ipairs({ false, true }) do
+                    for _, mods in ipairs({ "", "s", "c", "sc" }) do
+                        s.combat, s.mods = combat, mods
+                        for _, actual in ipairs(actualTypes) do
+                            s.kind, s.mapID = actual, instanceIDs[actual]
+                            s.zone, s.subzone = "Zone " .. actual, "Subzone " .. actual
+                            s.fire("ZONE_CHANGED_NEW_AREA")
+                            transitions = transitions + 1; notices = notices + 1
+                            local opt = { selected = selected, value = want, negated = negated }
+                            local sub = { load = { instanceType = opt,
+                                combat = { selected = true, value = true },
+                                modShiftCtrl = { selected = true } } }
+                            binding.forms.noform = sub
+                            local expected = string.upper(actual) == string.upper(want)
+                            if negated then expected = not expected end
+                            if not selected then expected = true end
+                            check(c.SubPassesLoadGates(sub) == expected, branch .. " selected/negated instance gate " .. actual .. " wanted " .. want)
+                            check(c.IsActive(binding, "noform") == expected, branch .. " active check uses actual instance gate")
+                            check(table.concat(c.MacroTokensForSub(sub, binding), ",") == "combat,mod:ctrl,mod:shift",
+                                branch .. " physical combat/modifier changes leave generated conditional tokens stable")
+                            branchCases = branchCases + 1; loadCases = loadCases + 1
+                        end
+                    end
+                end
+            end
+        end
+    end
+    check(s.gateNotifies == notices, branch .. " every modeled zone event notifies its load-gate owner")
+    check(s.physicalReads == 0, branch .. " Lua gates never poll physical combat/modifier state")
+    check(#s.frames == 2, branch .. " zone transitions do not allocate extra event frames")
+
+    for _, actual in ipairs(actualTypes) do
+        s.kind, s.mapID = actual, instanceIDs[actual]
+        s.zone, s.subzone = "Zone " .. actual, "Subzone " .. actual
+        for _, target in ipairs({ s.zone, s.subzone, "Wrong zone", "" }) do
+            local sub = { load = { zoneName = { selected = true, value = target } } }
+            local expected = target == "" or target == s.zone or target == s.subzone
+            check(c.SubPassesLoadGates(sub) == expected, branch .. " real zone/subzone gate " .. actual)
+            sub.load.instanceType = { selected = true, value = actual }
+            check(c.SubPassesLoadGates(sub) == expected, branch .. " zone and instance gates combine")
+        end
+        check(c.SubPassesLoadGates({ load = { never = true } }) == false, branch .. " never gate blocks every instance")
+        check(c.SubPassesLoadGates(nil) == true, branch .. " absent load configuration remains allowed")
+        local nilValue = { load = { instanceType = { selected = true } } }
+        check(c.SubPassesLoadGates(nilValue) == (actual == "none"), branch .. " absent desired instance value defaults open world")
+        local sub = { load = { instanceType = { selected = true, value = actual },
+            specialization = { selected = true, value = 1 } } }
+        check(c.SubPassesLoadGates(sub), branch .. " specialization compatibility allows matching instance/spec")
+        s.spec = 2; check(not c.SubPassesLoadGates(sub), branch .. " specialization compatibility blocks nonmatching spec")
+        sub.load.specialization.negated = true
+        check(c.SubPassesLoadGates(sub), branch .. " negated specialization gate composes with instance")
+        s.spec = 1
+    end
+
+    -- Macro combat options are emitted, not evaluated by Lua on transition.
+    for _, value in ipairs({ false, true }) do
+        for _, negated in ipairs({ false, true }) do
+            local sub = { load = { combat = { selected = true, value = value, negated = negated },
+                modAlt = { selected = true }, modShiftCtrl = { selected = true } } }
+            local expectedCombat = negated and not value or (not negated and value)
+            local prefix = expectedCombat and "combat" or "nocombat"
+            local expectedTokens = { prefix, "mod:alt", "mod:ctrl", "mod:shift" }; table.sort(expectedTokens)
+            check(table.concat(c.MacroTokensForSub(sub, binding), ",") == table.concat(expectedTokens, ","),
+                branch .. " include/exclude combat condition and gated modifiers compile correctly")
+        end
+    end
+    local beforePet = s.gateNotifies
+    s.fire("UNIT_PET", "party1"); check(s.petInvalidates == 0, branch .. " unrelated unit pet event ignored")
+    s.fire("UNIT_PET", "player"); check(s.petInvalidates == 1 and s.gateNotifies == beforePet,
+        branch .. " own pet event updates catalog gate without load-gate rebuild")
+
+    print(("METRIC branch=%s instance_load_cases=%d actual_zone_transitions=%d event_frames=%d physical_state_reads=%d")
+        :format(branch, branchCases, notices, #s.frames, s.physicalReads))
+end
+print(("SUMMARY checks=%d failures=%d instance_load_cases=%d transitions=%d")
+    :format(checks, failures, loadCases, transitions))
+os.exit(failures > 0 and 1 or 0)

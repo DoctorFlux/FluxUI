@@ -1,0 +1,21 @@
+-- Full current Forever controls fixture and real pinned native Lua handlers.
+-- Native secure VM/hardware/taint/rendering remain unexecuted.
+local f=assert(io.open('Bars/_tmp_forevercontrolsmoke.lua','rb'));local s=f:read('*a'):gsub('\r\n','\n');f:close()
+local stop=assert(s:find('\nlocal checks=0',1,true))
+local e=setmetatable({arg={[0]='Bars/_tmp_forevercontrolsmoke.lua'}},{__index=_G})
+local boot=assert(load(s:sub(1,stop-1)..'\nreturn boot','@reused-current-Forever-controls','t',e))()
+local t=boot(0,0,nil,1)
+assert(t.press(1,false)==1 and t.press(1,true)==1,'ordinary mouse/key control')
+t.B.SlotProgram.ApplyMap({[25]='/cast SavedProgram'})
+local mouse,key=t.press(1,false),t.press(1,true)
+assert(mouse==1,'unmodified mouse still resolves main slot')
+assert(key==1,'repaired secure paging preserves unmodified main key with tertiary overlay')
+print('CONTROL|repaired Forever paging keeps main mouse/key on slot1 with tertiary-only overlay')
+t.B.State.ApplySlotsInsecure()
+key=t.press(1,true)
+assert(key=='SavedProgram','direct fallback API writes keyer from tertiary row')
+print('CONDITIONAL-LEAD|direct ApplySlotsInsecure call writes shared keyer from tertiary overlay; normal repaired paging consumer does not reach this call')
+local proxy=t.env.FluxActionStripKey1
+assert(proxy:GetAttribute('macrotext1')=='/cast SavedProgram','shared proxy stamped from tertiary row')
+print('STATE|proxy_type1='..tostring(proxy:GetAttribute('type1'))..'|proxy_macrotext1='..tostring(proxy:GetAttribute('macrotext1')))
+print('STATE KEYER CONTROL COMPLETE; not promoted to ordinary current-client finding; native VM unexecuted')

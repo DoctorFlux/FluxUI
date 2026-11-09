@@ -1,0 +1,131 @@
+{
+  "changeID": "METER-ALL-OPTIONS-20261107",
+  "dateUTC": "2026-11-07T07:19:11.153352+00:00",
+  "checkpoint": {
+    "capturedAtUTC": "2026-11-07T07:10:13.151405+00:00",
+    "head": "75cf2bcba83adfea0501934f4eeb2a980c46fdf8",
+    "sourceFiles": 1713,
+    "sha256": {
+      "source.zip": "868df435a163c8d206150694845cfcb76cd90b52c55f1a2bd70e974bf66a4317",
+      "history.bundle": "ae160da84af755167efb8b189958f4ef87fe06bccac3be1aa76917023fa2ff06"
+    },
+    "availableSettingsCount": 53,
+    "settingsScope": "Existing recovery settings.zip rehashed; fresh available settings metadata only. No settings reads into Git or writes; WoW remains in background."
+  },
+  "pins": {
+    "forever": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+    "live": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f"
+  },
+  "baselineSHA256": "46961c13f2b9c35f6f5f1a4d0531ebea8f92c9181a548c7c2116a0847e40329d",
+  "candidateSHA256": {
+    "Battlezonemap/FluxBlizzardMeter.lua": "8456f1e2808fd2986c82dcee75e70d1921abf3fea7974ff5f9750b6762efd5e3",
+    "Battlezonemap/FluxMeterSkin.lua": "151cf7bb0279d5e48e08c0db671095d9919d2fbfc58bd075a6f61724379ee76e",
+    "Battlezonemap/FluxMeterLayout.lua": "11e03a12e33b90a35b01909343e4db08621781357e9efd81505aa879930ef896",
+    "tests/native_meter_all_options.lua": "25817514c83d0823af70aa1474967942e78d8bb198bad3d6c947710496161e34",
+    "tests/native_meter_writer_provenance.lua": "4accfe99e7bf714922a6139357564200b19f9410f2a6943d36d369aa7e414d68"
+  },
+  "samples": [
+    {
+      "pair": 1,
+      "mode": "baseline",
+      "exit": 1,
+      "wallSeconds": 0.02032879999751458,
+      "output": "lua: tests/native_meter_all_options.lua:6: preset must keep native menus visible for Damage Taken setup\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/native_meter_all_options.lua:6: in local 'check'\n\ttests/native_meter_all_options.lua:54: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "pair": 1,
+      "mode": "candidate",
+      "exit": 0,
+      "wallSeconds": 0.03315959999599727,
+      "output": "native meter all options: 128 checks; native pixels/taint/FPS pending\n"
+    },
+    {
+      "pair": 2,
+      "mode": "candidate",
+      "exit": 0,
+      "wallSeconds": 0.030841799998597708,
+      "output": "native meter all options: 128 checks; native pixels/taint/FPS pending\n"
+    },
+    {
+      "pair": 2,
+      "mode": "baseline",
+      "exit": 1,
+      "wallSeconds": 0.018917499997769482,
+      "output": "lua: tests/native_meter_all_options.lua:6: preset must keep native menus visible for Damage Taken setup\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/native_meter_all_options.lua:6: in local 'check'\n\ttests/native_meter_all_options.lua:54: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "pair": 3,
+      "mode": "baseline",
+      "exit": 1,
+      "wallSeconds": 0.017995200003497303,
+      "output": "lua: tests/native_meter_all_options.lua:6: preset must keep native menus visible for Damage Taken setup\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/native_meter_all_options.lua:6: in local 'check'\n\ttests/native_meter_all_options.lua:54: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "pair": 3,
+      "mode": "candidate",
+      "exit": 0,
+      "wallSeconds": 0.030696200003148988,
+      "output": "native meter all options: 128 checks; native pixels/taint/FPS pending\n"
+    },
+    {
+      "pair": 4,
+      "mode": "candidate",
+      "exit": 0,
+      "wallSeconds": 0.031127800000831485,
+      "output": "native meter all options: 128 checks; native pixels/taint/FPS pending\n"
+    },
+    {
+      "pair": 4,
+      "mode": "baseline",
+      "exit": 1,
+      "wallSeconds": 0.018725299996731337,
+      "output": "lua: tests/native_meter_all_options.lua:6: preset must keep native menus visible for Damage Taken setup\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/native_meter_all_options.lua:6: in local 'check'\n\ttests/native_meter_all_options.lua:54: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "pair": 5,
+      "mode": "baseline",
+      "exit": 1,
+      "wallSeconds": 0.018640900001628324,
+      "output": "lua: tests/native_meter_all_options.lua:6: preset must keep native menus visible for Damage Taken setup\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/native_meter_all_options.lua:6: in local 'check'\n\ttests/native_meter_all_options.lua:54: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "pair": 5,
+      "mode": "candidate",
+      "exit": 0,
+      "wallSeconds": 0.03255040000658482,
+      "output": "native meter all options: 128 checks; native pixels/taint/FPS pending\n"
+    }
+  ],
+  "scope": "Desktop widget/lifecycle/provenance tests only; process wall time is not native performance. Native pixels/combat/taint/FPS pending.",
+  "performance": "Up to three pooled setup frames/texture/fontstring sets only when needed. Two guarded root posthooks reuse existing zero-delay geometry coalescer; no new event or recurring driver. Exact matches reserved first; native configuration/data never written.",
+  "limitations": "Presets cannot safely set native types or create native windows automatically. User selects available types using native menus; source-pinned native menu omits Absorbs. Already configured Absorbs and all eleven enum types retain skin.",
+  "full": {
+    "exit": 0,
+    "pass": 209,
+    "fail": 0,
+    "syntaxFiles": 871,
+    "syntaxFailures": [],
+    "unchangedLuaCorpus": true,
+    "corpusSHA256": "d3c3756cd26ed745a5517c152660bb39fb48b07db18fa5ec3b8e4c15bf9b667d"
+  },
+  "testedSourcesUnchanged": true,
+  "externalEvidence": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\07\\01a1b4d3-ff99-76f1-9caf-21bb64aa5e39\\meter-all-options",
+  "userChoice": "Keep native meters; configure extra windows once in Blizzard menu. Missing-window chrome must match Damage/Healing.",
+  "nativeEvidence": "User screenshot shows preceding plain setup frame and two actual native windows. Final shared-skin native screenshot/combat/taint/FPS pending; no agent game input.",
+  "installedCopySHA256": {
+    "_retail_": "8456f1e2808fd2986c82dcee75e70d1921abf3fea7974ff5f9750b6762efd5e3",
+    "_forever_": "8456f1e2808fd2986c82dcee75e70d1921abf3fea7974ff5f9750b6762efd5e3",
+    "_classic_": "8456f1e2808fd2986c82dcee75e70d1921abf3fea7974ff5f9750b6762efd5e3",
+    "_classic_era_": "8456f1e2808fd2986c82dcee75e70d1921abf3fea7974ff5f9750b6762efd5e3",
+    "_anniversary_": "8456f1e2808fd2986c82dcee75e70d1921abf3fea7974ff5f9750b6762efd5e3"
+  },
+  "copyScope": "Read-only verification: all five match final tested candidate through existing mirror; no manual client writes.",
+  "documentationValidation": {
+    "result": "PASS",
+    "classifiedSources": 904,
+    "tocXmlReachable": 597,
+    "settingDefinitions": 391,
+    "savedVariables": 24,
+    "localLinks": 14704
+  }
+}

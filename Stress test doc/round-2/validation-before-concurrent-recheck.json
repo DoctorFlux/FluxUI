@@ -1,0 +1,30 @@
+{
+  "capturedUTC": "2026-11-07T15:19:35.242476+00:00",
+  "scope": "Artifact syntax/links/requirements coverage, exact current tested Lua corpus and no-code-edit invariant. Does not certify native behavior.",
+  "counts": {
+    "python": 11,
+    "luaHarnesses": 18,
+    "json": 33,
+    "csv": 6,
+    "localLinks": 111
+  },
+  "currentScriptsPassed": 232,
+  "currentSyntaxFiles": 896,
+  "findings": 25,
+  "classifiedSources": 929,
+  "reachablePaths": 599,
+  "errors": [
+    "Runtime/test/tool/art/missing-file drift: ['UnitFrames/FluxUnitFrames_Party.lua', 'UnitFrames/FluxUnitFrames_Shared.lua']",
+    "Tested source identity drift: UnitFrames/FluxUnitFrames_Party.lua",
+    "Tested source identity drift: UnitFrames/FluxUnitFrames_Shared.lua",
+    "Missing proposal/acceptance: R2-EBS-02",
+    "Missing proposal/acceptance: R2-EBS-03",
+    "Missing proposal/acceptance: R2-EBS-05",
+    "Missing proposal/acceptance: R2-EBS-04",
+    "Missing proposal/acceptance: R2-EBS-06",
+    "Missing proposal/acceptance: R2-EBS-01",
+    "Broken link: COMPLETION_AUDIT.md -> validation.json",
+    "Broken link: CONTINUITY.md -> validation.json"
+  ],
+  "pass": false
+}

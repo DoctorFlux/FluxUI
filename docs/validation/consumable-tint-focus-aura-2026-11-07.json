@@ -1,0 +1,363 @@
+{
+  "changeID": "CONSUMABLE-TINT-FOCUS-AURA-20261107",
+  "requirements": [
+    "CONS-TINT-01",
+    "UF-FOCUS-AURA-02"
+  ],
+  "dateUTC": "2026-11-07T17:16:15.691721+00:00",
+  "checkpoint": {
+    "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\07\\01a1b54c-d8ad-7fb2-8983-8450144d40ed\\Consumable-tint-20261107",
+    "sourceZIP": "d071326fc52fea03607676064f90f0abb726c55924cf5e16d217770e43da6e6b",
+    "historyBundle": "4c2beeb045a41af1c1a825111cabda7432fe4e67878c46017b3a5c2d4cc435e5",
+    "sourceFiles": 2178,
+    "history": "Current --all bundle created/verified before runtime changes; external history-verification.txt retained.",
+    "availableSettingsMetadataFiles": 121,
+    "settings": "Read-only metadata; no WTF/profiler writes or foreground control."
+  },
+  "baseline": {
+    "ExtraButtonSystem/Engine/Paint.lua": "afb48689d07cd9b315894e984c0217a524e55ed056319d374e58c24c2038ffd4",
+    "ExtraButtonSystem/Engine/Action.lua": "3daab1f50817b31545eff92d0e1ec834e6e00c0765f9a31c14520a5d7550379c",
+    "ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua": "7dcc07e54cd27ba1f93559c79e3c173b0eee83872a6691dbe2ead1da8334d7a1",
+    "UnitFrames/FluxUnitFrames_Auras.lua": "dd40f6b3678b24ad4409e5bf8f596314317c093504b88af0970882f0ccf0de4f",
+    "UnitFrames/FluxUnitFrames_AurasEngine.lua": "a50b0f178baeabe6ea527c24f1fca83dc3724b6377fa55116426003546be5e56"
+  },
+  "screenshots": {
+    "focus-reference.png": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\07\\01a1b54c-d8ad-7fb2-8983-8450144d40ed\\Consumable-tint-20261107\\focus-reference.png",
+      "sha256": "c33064c6f683d59522ca29086c98f0edcefc8693e2b6eccd6d8185910810ebae",
+      "role": "User image1: focus before correction"
+    },
+    "target-reference.png": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\07\\01a1b54c-d8ad-7fb2-8983-8450144d40ed\\Consumable-tint-20261107\\target-reference.png",
+      "sha256": "fe3e881740a9aca422dbb20080814a7fa54432fc14ab859c241adc918ffbd87a",
+      "role": "User image2: target reference; no candidate native screenshot"
+    }
+  },
+  "policy": {
+    "consumable": "Shared usable item result is authoritative; reliable native item results retain unknown/false without querying non-action effect spells. Empty/mana/native item range remain shared. Item range replaces effect-spell range for ordinary item faces, matching item macros. Managed item pins survive changed/cached macro translation; stale spell/charge identity is cleared and item-change usability/mana caches reset. Wisp and buff countdown policy retained.",
+    "focus": "Compact focus borders retain exact accepted half widths and current icon/font settings. A shared anchor helper is used by create/re-enable and relayout. Content translation reproduces target body-relative first-icon origins (-2 buff,-5 debuff), header-contact baseline and caption baseline, converted to independent panel scale. Both Lua positioner and native AuraContainer use the same translation; focus native container clipping is disabled to permit target-style overhang. Caption anchors cache unchanged geometry. Target/legacy metrics/offsets retained. Captions also retain target body-relative horizontal origins (-3.5 buff,-6.5 debuff), with cached x/y anchors."
+  },
+  "pairs": [
+    {
+      "pair": 1,
+      "feature": "consumable",
+      "kind": "baseline",
+      "exit": 1,
+      "wallSeconds": 0.07046,
+      "output": "FAIL retail native usable item stays bright even when its effect spell is not independently usable\nFAIL ready item usability does not query a non-action effect spell\nFAIL temporarily unknown item state does not inherit an unusable effect-spell result\nFAIL reliable native item restriction still darkens consumable\nFAIL new item does not inherit previous item dark/mana cache in combat\nFAIL self-use item is not dimmed by effect-spell range against an unrelated target\nFAIL actual item out-of-range retains shared range tint\nFAIL native item range recovery restores brightness\nFAIL consumable refresh clears unrelated parsed spell/charge identity\nFAIL changed macro evaluation preserves managed item face and shared tint\nFAIL cached macro evaluation also restores item identity\nFAIL buff countdown does not become an unusable-item tint\nFAIL forever native usable item stays bright even when its effect spell is not independently usable\nFAIL ready item usability does not query a non-action effect spell\nFAIL temporarily unknown item state does not inherit an unusable effect-spell result\nFAIL reliable native item restriction still darkens consumable\nFAIL new item does not inherit previous item dark/mana cache in combat\nFAIL self-use item is not dimmed by effect-spell range against an unrelated target\nFAIL actual item out-of-range retains shared range tint\nFAIL native item range recovery restores brightness\nFAIL consumable refresh clears unrelated parsed spell/charge identity\nFAIL changed macro evaluation preserves managed item face and shared tint\nFAIL cached macro evaluation also restores item identity\nFAIL buff countdown does not become an unusable-item tint\nFAIL era native usable item stays bright even when its effect spell is not independently usable\nFAIL ready item usability does not query a non-action effect spell\nFAIL temporarily unknown item state does not inherit an unusable effect-spell result\nFAIL reliable native item restriction still darkens consumable\nFAIL new item does not inherit previous item dark/mana cache in combat\nFAIL self-use item is not dimmed by effect-spell range against an unrelated target\nFAIL actual item out-of-range retains shared range tint\nFAIL native item range recovery restores brightness\nFAIL consumable refresh clears unrelated parsed spell/charge identity\nFAIL changed macro evaluation preserves managed item face and shared tint\nFAIL cached macro evaluation also restores item identity\nFAIL buff countdown does not become an unusable-item tint\nFAIL anniversary native usable item stays bright even when its effect spell is not independently usable\nFAIL ready item usability does not query a non-action effect spell\nFAIL temporarily unknown item state does not inherit an unusable effect-spell result\nFAIL reliable native item restriction still darkens consumable\nFAIL new item does not inherit previous item dark/mana cache in combat\nFAIL self-use item is not dimmed by effect-spell range against an unrelated target\nFAIL actual item out-of-range retains shared range tint\nFAIL native item range recovery restores brightness\nFAIL consumable refresh clears unrelated parsed spell/charge identity\nFAIL changed macro evaluation preserves managed item face and shared tint\nFAIL cached macro evaluation also restores item identity\nFAIL buff countdown does not become an unusable-item tint\nFAIL mists native usable item stays bright even when its effect spell is not independently usable\nFAIL ready item usability does not query a non-action effect spell\nFAIL temporarily unknown item state does not inherit an unusable effect-spell result\nFAIL reliable native item restriction still darkens consumable\nFAIL new item does not inherit previous item dark/mana cache in combat\nFAIL self-use item is not dimmed by effect-spell range against an unrelated target\nFAIL actual item out-of-range retains shared range tint\nFAIL native item range recovery restores brightness\nFAIL consumable refresh clears unrelated parsed spell/charge identity\nFAIL changed macro evaluation preserves managed item face and shared tint\nFAIL cached macro evaluation also restores item identity\nFAIL buff countdown does not become an unusable-item tint\nConsumable usability: 75 checks, 60 failures\n"
+    },
+    {
+      "pair": 1,
+      "feature": "consumable",
+      "kind": "candidate",
+      "exit": 0,
+      "wallSeconds": 0.07606,
+      "output": "Consumable usability: 75 checks, 0 failures\n"
+    },
+    {
+      "pair": 1,
+      "feature": "focus",
+      "kind": "baseline",
+      "exit": 1,
+      "wallSeconds": 0.02586,
+      "output": "lua: tests/focus_aura_geometry.lua:11: focus icon starts at target-equivalent body-relative horizontal origin\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/focus_aura_geometry.lua:11: in local 'check'\n\ttests/focus_aura_geometry.lua:82: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "pair": 1,
+      "feature": "focus",
+      "kind": "candidate",
+      "exit": 0,
+      "wallSeconds": 0.02611,
+      "output": "Focus aura geometry: 939 actual metric/anchor checks; native pixels pending\n"
+    },
+    {
+      "pair": 2,
+      "feature": "consumable",
+      "kind": "baseline",
+      "exit": 1,
+      "wallSeconds": 0.07256,
+      "output": "FAIL retail native usable item stays bright even when its effect spell is not independently usable\nFAIL ready item usability does not query a non-action effect spell\nFAIL temporarily unknown item state does not inherit an unusable effect-spell result\nFAIL reliable native item restriction still darkens consumable\nFAIL new item does not inherit previous item dark/mana cache in combat\nFAIL self-use item is not dimmed by effect-spell range against an unrelated target\nFAIL actual item out-of-range retains shared range tint\nFAIL native item range recovery restores brightness\nFAIL consumable refresh clears unrelated parsed spell/charge identity\nFAIL changed macro evaluation preserves managed item face and shared tint\nFAIL cached macro evaluation also restores item identity\nFAIL buff countdown does not become an unusable-item tint\nFAIL forever native usable item stays bright even when its effect spell is not independently usable\nFAIL ready item usability does not query a non-action effect spell\nFAIL temporarily unknown item state does not inherit an unusable effect-spell result\nFAIL reliable native item restriction still darkens consumable\nFAIL new item does not inherit previous item dark/mana cache in combat\nFAIL self-use item is not dimmed by effect-spell range against an unrelated target\nFAIL actual item out-of-range retains shared range tint\nFAIL native item range recovery restores brightness\nFAIL consumable refresh clears unrelated parsed spell/charge identity\nFAIL changed macro evaluation preserves managed item face and shared tint\nFAIL cached macro evaluation also restores item identity\nFAIL buff countdown does not become an unusable-item tint\nFAIL era native usable item stays bright even when its effect spell is not independently usable\nFAIL ready item usability does not query a non-action effect spell\nFAIL temporarily unknown item state does not inherit an unusable effect-spell result\nFAIL reliable native item restriction still darkens consumable\nFAIL new item does not inherit previous item dark/mana cache in combat\nFAIL self-use item is not dimmed by effect-spell range against an unrelated target\nFAIL actual item out-of-range retains shared range tint\nFAIL native item range recovery restores brightness\nFAIL consumable refresh clears unrelated parsed spell/charge identity\nFAIL changed macro evaluation preserves managed item face and shared tint\nFAIL cached macro evaluation also restores item identity\nFAIL buff countdown does not become an unusable-item tint\nFAIL anniversary native usable item stays bright even when its effect spell is not independently usable\nFAIL ready item usability does not query a non-action effect spell\nFAIL temporarily unknown item state does not inherit an unusable effect-spell result\nFAIL reliable native item restriction still darkens consumable\nFAIL new item does not inherit previous item dark/mana cache in combat\nFAIL self-use item is not dimmed by effect-spell range against an unrelated target\nFAIL actual item out-of-range retains shared range tint\nFAIL native item range recovery restores brightness\nFAIL consumable refresh clears unrelated parsed spell/charge identity\nFAIL changed macro evaluation preserves managed item face and shared tint\nFAIL cached macro evaluation also restores item identity\nFAIL buff countdown does not become an unusable-item tint\nFAIL mists native usable item stays bright even when its effect spell is not independently usable\nFAIL ready item usability does not query a non-action effect spell\nFAIL temporarily unknown item state does not inherit an unusable effect-spell result\nFAIL reliable native item restriction still darkens consumable\nFAIL new item does not inherit previous item dark/mana cache in combat\nFAIL self-use item is not dimmed by effect-spell range against an unrelated target\nFAIL actual item out-of-range retains shared range tint\nFAIL native item range recovery restores brightness\nFAIL consumable refresh clears unrelated parsed spell/charge identity\nFAIL changed macro evaluation preserves managed item face and shared tint\nFAIL cached macro evaluation also restores item identity\nFAIL buff countdown does not become an unusable-item tint\nConsumable usability: 75 checks, 60 failures\n"
+    },
+    {
+      "pair": 2,
+      "feature": "consumable",
+      "kind": "candidate",
+      "exit": 0,
+      "wallSeconds": 0.07246,
+      "output": "Consumable usability: 75 checks, 0 failures\n"
+    },
+    {
+      "pair": 2,
+      "feature": "focus",
+      "kind": "baseline",
+      "exit": 1,
+      "wallSeconds": 0.01764,
+      "output": "lua: tests/focus_aura_geometry.lua:11: focus icon starts at target-equivalent body-relative horizontal origin\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/focus_aura_geometry.lua:11: in local 'check'\n\ttests/focus_aura_geometry.lua:82: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "pair": 2,
+      "feature": "focus",
+      "kind": "candidate",
+      "exit": 0,
+      "wallSeconds": 0.01991,
+      "output": "Focus aura geometry: 939 actual metric/anchor checks; native pixels pending\n"
+    },
+    {
+      "pair": 3,
+      "feature": "consumable",
+      "kind": "baseline",
+      "exit": 1,
+      "wallSeconds": 0.07072,
+      "output": "FAIL retail native usable item stays bright even when its effect spell is not independently usable\nFAIL ready item usability does not query a non-action effect spell\nFAIL temporarily unknown item state does not inherit an unusable effect-spell result\nFAIL reliable native item restriction still darkens consumable\nFAIL new item does not inherit previous item dark/mana cache in combat\nFAIL self-use item is not dimmed by effect-spell range against an unrelated target\nFAIL actual item out-of-range retains shared range tint\nFAIL native item range recovery restores brightness\nFAIL consumable refresh clears unrelated parsed spell/charge identity\nFAIL changed macro evaluation preserves managed item face and shared tint\nFAIL cached macro evaluation also restores item identity\nFAIL buff countdown does not become an unusable-item tint\nFAIL forever native usable item stays bright even when its effect spell is not independently usable\nFAIL ready item usability does not query a non-action effect spell\nFAIL temporarily unknown item state does not inherit an unusable effect-spell result\nFAIL reliable native item restriction still darkens consumable\nFAIL new item does not inherit previous item dark/mana cache in combat\nFAIL self-use item is not dimmed by effect-spell range against an unrelated target\nFAIL actual item out-of-range retains shared range tint\nFAIL native item range recovery restores brightness\nFAIL consumable refresh clears unrelated parsed spell/charge identity\nFAIL changed macro evaluation preserves managed item face and shared tint\nFAIL cached macro evaluation also restores item identity\nFAIL buff countdown does not become an unusable-item tint\nFAIL era native usable item stays bright even when its effect spell is not independently usable\nFAIL ready item usability does not query a non-action effect spell\nFAIL temporarily unknown item state does not inherit an unusable effect-spell result\nFAIL reliable native item restriction still darkens consumable\nFAIL new item does not inherit previous item dark/mana cache in combat\nFAIL self-use item is not dimmed by effect-spell range against an unrelated target\nFAIL actual item out-of-range retains shared range tint\nFAIL native item range recovery restores brightness\nFAIL consumable refresh clears unrelated parsed spell/charge identity\nFAIL changed macro evaluation preserves managed item face and shared tint\nFAIL cached macro evaluation also restores item identity\nFAIL buff countdown does not become an unusable-item tint\nFAIL anniversary native usable item stays bright even when its effect spell is not independently usable\nFAIL ready item usability does not query a non-action effect spell\nFAIL temporarily unknown item state does not inherit an unusable effect-spell result\nFAIL reliable native item restriction still darkens consumable\nFAIL new item does not inherit previous item dark/mana cache in combat\nFAIL self-use item is not dimmed by effect-spell range against an unrelated target\nFAIL actual item out-of-range retains shared range tint\nFAIL native item range recovery restores brightness\nFAIL consumable refresh clears unrelated parsed spell/charge identity\nFAIL changed macro evaluation preserves managed item face and shared tint\nFAIL cached macro evaluation also restores item identity\nFAIL buff countdown does not become an unusable-item tint\nFAIL mists native usable item stays bright even when its effect spell is not independently usable\nFAIL ready item usability does not query a non-action effect spell\nFAIL temporarily unknown item state does not inherit an unusable effect-spell result\nFAIL reliable native item restriction still darkens consumable\nFAIL new item does not inherit previous item dark/mana cache in combat\nFAIL self-use item is not dimmed by effect-spell range against an unrelated target\nFAIL actual item out-of-range retains shared range tint\nFAIL native item range recovery restores brightness\nFAIL consumable refresh clears unrelated parsed spell/charge identity\nFAIL changed macro evaluation preserves managed item face and shared tint\nFAIL cached macro evaluation also restores item identity\nFAIL buff countdown does not become an unusable-item tint\nConsumable usability: 75 checks, 60 failures\n"
+    },
+    {
+      "pair": 3,
+      "feature": "consumable",
+      "kind": "candidate",
+      "exit": 0,
+      "wallSeconds": 0.07163,
+      "output": "Consumable usability: 75 checks, 0 failures\n"
+    },
+    {
+      "pair": 3,
+      "feature": "focus",
+      "kind": "baseline",
+      "exit": 1,
+      "wallSeconds": 0.01731,
+      "output": "lua: tests/focus_aura_geometry.lua:11: focus icon starts at target-equivalent body-relative horizontal origin\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/focus_aura_geometry.lua:11: in local 'check'\n\ttests/focus_aura_geometry.lua:82: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "pair": 3,
+      "feature": "focus",
+      "kind": "candidate",
+      "exit": 0,
+      "wallSeconds": 0.01932,
+      "output": "Focus aura geometry: 939 actual metric/anchor checks; native pixels pending\n"
+    },
+    {
+      "pair": 4,
+      "feature": "consumable",
+      "kind": "baseline",
+      "exit": 1,
+      "wallSeconds": 0.06639,
+      "output": "FAIL retail native usable item stays bright even when its effect spell is not independently usable\nFAIL ready item usability does not query a non-action effect spell\nFAIL temporarily unknown item state does not inherit an unusable effect-spell result\nFAIL reliable native item restriction still darkens consumable\nFAIL new item does not inherit previous item dark/mana cache in combat\nFAIL self-use item is not dimmed by effect-spell range against an unrelated target\nFAIL actual item out-of-range retains shared range tint\nFAIL native item range recovery restores brightness\nFAIL consumable refresh clears unrelated parsed spell/charge identity\nFAIL changed macro evaluation preserves managed item face and shared tint\nFAIL cached macro evaluation also restores item identity\nFAIL buff countdown does not become an unusable-item tint\nFAIL forever native usable item stays bright even when its effect spell is not independently usable\nFAIL ready item usability does not query a non-action effect spell\nFAIL temporarily unknown item state does not inherit an unusable effect-spell result\nFAIL reliable native item restriction still darkens consumable\nFAIL new item does not inherit previous item dark/mana cache in combat\nFAIL self-use item is not dimmed by effect-spell range against an unrelated target\nFAIL actual item out-of-range retains shared range tint\nFAIL native item range recovery restores brightness\nFAIL consumable refresh clears unrelated parsed spell/charge identity\nFAIL changed macro evaluation preserves managed item face and shared tint\nFAIL cached macro evaluation also restores item identity\nFAIL buff countdown does not become an unusable-item tint\nFAIL era native usable item stays bright even when its effect spell is not independently usable\nFAIL ready item usability does not query a non-action effect spell\nFAIL temporarily unknown item state does not inherit an unusable effect-spell result\nFAIL reliable native item restriction still darkens consumable\nFAIL new item does not inherit previous item dark/mana cache in combat\nFAIL self-use item is not dimmed by effect-spell range against an unrelated target\nFAIL actual item out-of-range retains shared range tint\nFAIL native item range recovery restores brightness\nFAIL consumable refresh clears unrelated parsed spell/charge identity\nFAIL changed macro evaluation preserves managed item face and shared tint\nFAIL cached macro evaluation also restores item identity\nFAIL buff countdown does not become an unusable-item tint\nFAIL anniversary native usable item stays bright even when its effect spell is not independently usable\nFAIL ready item usability does not query a non-action effect spell\nFAIL temporarily unknown item state does not inherit an unusable effect-spell result\nFAIL reliable native item restriction still darkens consumable\nFAIL new item does not inherit previous item dark/mana cache in combat\nFAIL self-use item is not dimmed by effect-spell range against an unrelated target\nFAIL actual item out-of-range retains shared range tint\nFAIL native item range recovery restores brightness\nFAIL consumable refresh clears unrelated parsed spell/charge identity\nFAIL changed macro evaluation preserves managed item face and shared tint\nFAIL cached macro evaluation also restores item identity\nFAIL buff countdown does not become an unusable-item tint\nFAIL mists native usable item stays bright even when its effect spell is not independently usable\nFAIL ready item usability does not query a non-action effect spell\nFAIL temporarily unknown item state does not inherit an unusable effect-spell result\nFAIL reliable native item restriction still darkens consumable\nFAIL new item does not inherit previous item dark/mana cache in combat\nFAIL self-use item is not dimmed by effect-spell range against an unrelated target\nFAIL actual item out-of-range retains shared range tint\nFAIL native item range recovery restores brightness\nFAIL consumable refresh clears unrelated parsed spell/charge identity\nFAIL changed macro evaluation preserves managed item face and shared tint\nFAIL cached macro evaluation also restores item identity\nFAIL buff countdown does not become an unusable-item tint\nConsumable usability: 75 checks, 60 failures\n"
+    },
+    {
+      "pair": 4,
+      "feature": "consumable",
+      "kind": "candidate",
+      "exit": 0,
+      "wallSeconds": 0.0621,
+      "output": "Consumable usability: 75 checks, 0 failures\n"
+    },
+    {
+      "pair": 4,
+      "feature": "focus",
+      "kind": "baseline",
+      "exit": 1,
+      "wallSeconds": 0.01699,
+      "output": "lua: tests/focus_aura_geometry.lua:11: focus icon starts at target-equivalent body-relative horizontal origin\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/focus_aura_geometry.lua:11: in local 'check'\n\ttests/focus_aura_geometry.lua:82: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "pair": 4,
+      "feature": "focus",
+      "kind": "candidate",
+      "exit": 0,
+      "wallSeconds": 0.01822,
+      "output": "Focus aura geometry: 939 actual metric/anchor checks; native pixels pending\n"
+    },
+    {
+      "pair": 5,
+      "feature": "consumable",
+      "kind": "baseline",
+      "exit": 1,
+      "wallSeconds": 0.06099,
+      "output": "FAIL retail native usable item stays bright even when its effect spell is not independently usable\nFAIL ready item usability does not query a non-action effect spell\nFAIL temporarily unknown item state does not inherit an unusable effect-spell result\nFAIL reliable native item restriction still darkens consumable\nFAIL new item does not inherit previous item dark/mana cache in combat\nFAIL self-use item is not dimmed by effect-spell range against an unrelated target\nFAIL actual item out-of-range retains shared range tint\nFAIL native item range recovery restores brightness\nFAIL consumable refresh clears unrelated parsed spell/charge identity\nFAIL changed macro evaluation preserves managed item face and shared tint\nFAIL cached macro evaluation also restores item identity\nFAIL buff countdown does not become an unusable-item tint\nFAIL forever native usable item stays bright even when its effect spell is not independently usable\nFAIL ready item usability does not query a non-action effect spell\nFAIL temporarily unknown item state does not inherit an unusable effect-spell result\nFAIL reliable native item restriction still darkens consumable\nFAIL new item does not inherit previous item dark/mana cache in combat\nFAIL self-use item is not dimmed by effect-spell range against an unrelated target\nFAIL actual item out-of-range retains shared range tint\nFAIL native item range recovery restores brightness\nFAIL consumable refresh clears unrelated parsed spell/charge identity\nFAIL changed macro evaluation preserves managed item face and shared tint\nFAIL cached macro evaluation also restores item identity\nFAIL buff countdown does not become an unusable-item tint\nFAIL era native usable item stays bright even when its effect spell is not independently usable\nFAIL ready item usability does not query a non-action effect spell\nFAIL temporarily unknown item state does not inherit an unusable effect-spell result\nFAIL reliable native item restriction still darkens consumable\nFAIL new item does not inherit previous item dark/mana cache in combat\nFAIL self-use item is not dimmed by effect-spell range against an unrelated target\nFAIL actual item out-of-range retains shared range tint\nFAIL native item range recovery restores brightness\nFAIL consumable refresh clears unrelated parsed spell/charge identity\nFAIL changed macro evaluation preserves managed item face and shared tint\nFAIL cached macro evaluation also restores item identity\nFAIL buff countdown does not become an unusable-item tint\nFAIL anniversary native usable item stays bright even when its effect spell is not independently usable\nFAIL ready item usability does not query a non-action effect spell\nFAIL temporarily unknown item state does not inherit an unusable effect-spell result\nFAIL reliable native item restriction still darkens consumable\nFAIL new item does not inherit previous item dark/mana cache in combat\nFAIL self-use item is not dimmed by effect-spell range against an unrelated target\nFAIL actual item out-of-range retains shared range tint\nFAIL native item range recovery restores brightness\nFAIL consumable refresh clears unrelated parsed spell/charge identity\nFAIL changed macro evaluation preserves managed item face and shared tint\nFAIL cached macro evaluation also restores item identity\nFAIL buff countdown does not become an unusable-item tint\nFAIL mists native usable item stays bright even when its effect spell is not independently usable\nFAIL ready item usability does not query a non-action effect spell\nFAIL temporarily unknown item state does not inherit an unusable effect-spell result\nFAIL reliable native item restriction still darkens consumable\nFAIL new item does not inherit previous item dark/mana cache in combat\nFAIL self-use item is not dimmed by effect-spell range against an unrelated target\nFAIL actual item out-of-range retains shared range tint\nFAIL native item range recovery restores brightness\nFAIL consumable refresh clears unrelated parsed spell/charge identity\nFAIL changed macro evaluation preserves managed item face and shared tint\nFAIL cached macro evaluation also restores item identity\nFAIL buff countdown does not become an unusable-item tint\nConsumable usability: 75 checks, 60 failures\n"
+    },
+    {
+      "pair": 5,
+      "feature": "consumable",
+      "kind": "candidate",
+      "exit": 0,
+      "wallSeconds": 0.06121,
+      "output": "Consumable usability: 75 checks, 0 failures\n"
+    },
+    {
+      "pair": 5,
+      "feature": "focus",
+      "kind": "baseline",
+      "exit": 1,
+      "wallSeconds": 0.01619,
+      "output": "lua: tests/focus_aura_geometry.lua:11: focus icon starts at target-equivalent body-relative horizontal origin\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/focus_aura_geometry.lua:11: in local 'check'\n\ttests/focus_aura_geometry.lua:82: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "pair": 5,
+      "feature": "focus",
+      "kind": "candidate",
+      "exit": 0,
+      "wallSeconds": 0.01912,
+      "output": "Focus aura geometry: 939 actual metric/anchor checks; native pixels pending\n"
+    }
+  ],
+  "regressions": "Initial five alternating pairs pass75 consumable/939 focus checks and reject both baseline paths. Final five integration runs pass75 consumable/1011 focus checks against latest focus-target width/full-row packing and cached placement code. Native screenshots/rendering/taint/FPS not run.",
+  "work": "No new runtime frame/texture/event/hook/timer/ticker/OnUpdate. Ready native items skip effect usability queries; focus adds constant layout arithmetic; unchanged caption anchors write0 and existing border-scale cache remains1 per panel. Source-model counters/process times are not native CPU/FPS.",
+  "fullValidation": {
+    "path": "docs/validation/consumable-tint-focus-aura-full-2026-11-07.json",
+    "pass": 234,
+    "fail": 0,
+    "syntaxFiles": 898,
+    "syntaxFailures": 0,
+    "normalizedLuaManifestMismatch": [],
+    "candidateMismatch": []
+  },
+  "nativeAcceptance": "NOT RUN: consumable native tint recovery/valid disabled tint/aura swipe and focus alignment at actual scale, above/below settings, both aura backends, combat/taint/pixels/FPS. User unsure whether consumable symptom is icon tint or swipe; both shared tint behavior and retained timer contract covered by models.",
+  "initialPairedCandidate": {
+    "ExtraButtonSystem/Engine/Paint.lua": "a0140c8ec8ddba51b5d9a3db232863d0e3afbe613962039e8fc798f657c002d1",
+    "ExtraButtonSystem/Engine/Action.lua": "05f4db93f2d81ee8cbfaf0aee772218c49a96cdd6b6268b10532db4118b9fffc",
+    "ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua": "a4cc7223bf109ffe29bda67ba330a98066eada17370bcc24297a82d2f559d0a9",
+    "UnitFrames/FluxUnitFrames_Auras.lua": "1bb75107431891758f9b204afcb92790daf2bedcf2f8bb5977ca7b8fbe16c3c1",
+    "UnitFrames/FluxUnitFrames_AurasEngine.lua": "8160290b1ebe4131c82b21e8bb7f51205731bd6df37854f718825113e238003d",
+    "tests/consumable_usability.lua": "8146f2188e88801276db31a94b0100f255bab5bd645819bbcab5dc8b6772d990",
+    "tests/focus_aura_geometry.lua": "3a750ba2ae8c686227aa4ffb25b47cccbba8b73213ca9e591153e421fa9b9fb1",
+    "ExtraButtonSystem/Engine/_tmp_consumablesmoke.lua": "7cc4586c17a71c8c5ab7b9559b0f7a08c10f57120df4a11dd1b55cf8cdb4d6a0"
+  },
+  "candidate": {
+    "ExtraButtonSystem/Engine/Paint.lua": "a0140c8ec8ddba51b5d9a3db232863d0e3afbe613962039e8fc798f657c002d1",
+    "ExtraButtonSystem/Engine/Action.lua": "05f4db93f2d81ee8cbfaf0aee772218c49a96cdd6b6268b10532db4118b9fffc",
+    "ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua": "a4cc7223bf109ffe29bda67ba330a98066eada17370bcc24297a82d2f559d0a9",
+    "UnitFrames/FluxUnitFrames_Auras.lua": "2f29f8b96ed8774ab290e3d1450cbee92cd9a66265b82f475c0f144b4329b500",
+    "UnitFrames/FluxUnitFrames_AurasEngine.lua": "0ca0562f7260a265e62f5ade0250eb6cceb382f488ac1c637f0f3b31c58df6c4",
+    "tests/consumable_usability.lua": "8146f2188e88801276db31a94b0100f255bab5bd645819bbcab5dc8b6772d990",
+    "tests/focus_aura_geometry.lua": "d96b26e2abfe69c463f882cef142b03499afd52bfb01006739642fb6dba2cef9",
+    "ExtraButtonSystem/Engine/_tmp_consumablesmoke.lua": "7cc4586c17a71c8c5ab7b9559b0f7a08c10f57120df4a11dd1b55cf8cdb4d6a0"
+  },
+  "integrationNote": "After initial five paired 75/939 runs, concurrent focus work extended the row over the prepared focus-target slot, removed compact packing gutters and cached/reapplied native placement. Preserve those newer changes. The shared focus fixture now tests actual packing/flow and changed-scale cached native placement. Initial pairs/source identities remain historical; final integration samples use the current candidate identities.",
+  "integrationSamples": [
+    {
+      "pair": 1,
+      "feature": "focus",
+      "exit": 0,
+      "wallSeconds": 0.01901,
+      "output": "Focus aura geometry: 1011 actual metric/anchor checks; native pixels pending\n"
+    },
+    {
+      "pair": 1,
+      "feature": "consumable",
+      "exit": 0,
+      "wallSeconds": 0.06006,
+      "output": "Consumable usability: 75 checks, 0 failures\n"
+    },
+    {
+      "pair": 2,
+      "feature": "focus",
+      "exit": 0,
+      "wallSeconds": 0.02692,
+      "output": "Focus aura geometry: 1011 actual metric/anchor checks; native pixels pending\n"
+    },
+    {
+      "pair": 2,
+      "feature": "consumable",
+      "exit": 0,
+      "wallSeconds": 0.0563,
+      "output": "Consumable usability: 75 checks, 0 failures\n"
+    },
+    {
+      "pair": 3,
+      "feature": "focus",
+      "exit": 0,
+      "wallSeconds": 0.01736,
+      "output": "Focus aura geometry: 1011 actual metric/anchor checks; native pixels pending\n"
+    },
+    {
+      "pair": 3,
+      "feature": "consumable",
+      "exit": 0,
+      "wallSeconds": 0.05538,
+      "output": "Consumable usability: 75 checks, 0 failures\n"
+    },
+    {
+      "pair": 4,
+      "feature": "focus",
+      "exit": 0,
+      "wallSeconds": 0.01919,
+      "output": "Focus aura geometry: 1011 actual metric/anchor checks; native pixels pending\n"
+    },
+    {
+      "pair": 4,
+      "feature": "consumable",
+      "exit": 0,
+      "wallSeconds": 0.0566,
+      "output": "Consumable usability: 75 checks, 0 failures\n"
+    },
+    {
+      "pair": 5,
+      "feature": "focus",
+      "exit": 0,
+      "wallSeconds": 0.01912,
+      "output": "Focus aura geometry: 1011 actual metric/anchor checks; native pixels pending\n"
+    },
+    {
+      "pair": 5,
+      "feature": "consumable",
+      "exit": 0,
+      "wallSeconds": 0.05825,
+      "output": "Consumable usability: 75 checks, 0 failures\n"
+    }
+  ],
+  "dateFinalIntegrationUTC": "2026-11-07T17:25:40.409258+00:00",
+  "finalSourceCopies": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\07\\01a1b54c-d8ad-7fb2-8983-8450144d40ed\\Consumable-tint-20261107\\final",
+  "readOnlyInstalledSourceCheck": {
+    "_retail_": {
+      "exists": true,
+      "owners": {
+        "ExtraButtonSystem/Engine/Paint.lua": "match",
+        "ExtraButtonSystem/Engine/Action.lua": "match",
+        "ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua": "match",
+        "UnitFrames/FluxUnitFrames_Auras.lua": "match",
+        "UnitFrames/FluxUnitFrames_AurasEngine.lua": "match"
+      }
+    },
+    "_forever_": {
+      "exists": true,
+      "owners": {
+        "ExtraButtonSystem/Engine/Paint.lua": "match",
+        "ExtraButtonSystem/Engine/Action.lua": "match",
+        "ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua": "match",
+        "UnitFrames/FluxUnitFrames_Auras.lua": "match",
+        "UnitFrames/FluxUnitFrames_AurasEngine.lua": "match"
+      }
+    },
+    "_classic_": {
+      "exists": true,
+      "owners": {
+        "ExtraButtonSystem/Engine/Paint.lua": "match",
+        "ExtraButtonSystem/Engine/Action.lua": "match",
+        "ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua": "match",
+        "UnitFrames/FluxUnitFrames_Auras.lua": "match",
+        "UnitFrames/FluxUnitFrames_AurasEngine.lua": "match"
+      }
+    },
+    "_classic_era_": {
+      "exists": true,
+      "owners": {
+        "ExtraButtonSystem/Engine/Paint.lua": "match",
+        "ExtraButtonSystem/Engine/Action.lua": "match",
+        "ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua": "match",
+        "UnitFrames/FluxUnitFrames_Auras.lua": "match",
+        "UnitFrames/FluxUnitFrames_AurasEngine.lua": "match"
+      }
+    },
+    "_anniversary_": {
+      "exists": true,
+      "owners": {
+        "ExtraButtonSystem/Engine/Paint.lua": "match",
+        "ExtraButtonSystem/Engine/Action.lua": "match",
+        "ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua": "match",
+        "UnitFrames/FluxUnitFrames_Auras.lua": "match",
+        "UnitFrames/FluxUnitFrames_AurasEngine.lua": "match"
+      }
+    }
+  },
+  "documentationValidation": "PASS:931 classified sources;599 TOC/XML reachable;415 setting definitions;24 SavedVariables;15282 local links. Reference rebuilt; no native game control.",
+  "finalSourceAudit": "All898 normalized Lua manifest entries and8 owned runtime/test raw hashes match after documentation generation."
+}

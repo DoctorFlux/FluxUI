@@ -1,0 +1,370 @@
+{
+  "scope": "Actual production native-meter backend and layout modules under explicit widget/native-settings mocks. Does not emulate native secret VM, rendering, secure restrictions, real combat/session engine, CPU, allocation bytes, FPS or server reset behavior. Wall timings include process/setup and are not native performance results.",
+  "baselineCheckpoint": "Meter-reference-fix-checkpoint-20261106T055350Z",
+  "baselineBackendSha256": "34acac45218bda52397318b71e0036a7d159d634eab735249c9ed22c6c81045f",
+  "candidateAndTestSha256": {
+    "Battlezonemap/FluxBlizzardMeter.lua": "50459ac8a363451e0b0462f8dd8e65e75d85f86c774a89b40f10dc61ec73d7e1",
+    "tests/native_meter_ownership.lua": "86d3db11ac92f26331c3ccc3716f060044333f85241f532427b303acdc95e780",
+    "tests/native_threat_layout.lua": "75abc9ea80a38a652f8542acce74079b6b462f08eb6c4916bf71099351863f19"
+  },
+  "sourceDriftGuard": true,
+  "endSha256": {
+    "Battlezonemap/FluxBlizzardMeter.lua": "50459ac8a363451e0b0462f8dd8e65e75d85f86c774a89b40f10dc61ec73d7e1",
+    "tests/native_meter_ownership.lua": "86d3db11ac92f26331c3ccc3716f060044333f85241f532427b303acdc95e780",
+    "tests/native_threat_layout.lua": "75abc9ea80a38a652f8542acce74079b6b462f08eb6c4916bf71099351863f19"
+  },
+  "intentionalBugFix": "Layout embed/reflow was persisting Overall/nil over native Current/historical session selection; native dropdown owns session choice. Remove only forced selection; preserve native Overall defaults, display type ownership, settings and stored combat data. No automatic reset/deletion triggers or CVar rewrites.",
+  "autoResetSettingContract": {
+    "foreverSourcePin": "eac30af597e5aaa43a60f6675ef5fdcea100375f",
+    "retailSourcePin": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+    "sourcePath": "Interface/AddOns/Blizzard_SettingsDefinitions_Frame/AdvancedOptions.lua",
+    "CVar": "damageMeterResetOnNewInstance",
+    "scope": "New instance, separate from Current per-fight display. Actual engine clear remains native acceptance."
+  },
+  "configuration": "Lua5.4.6; fresh deterministic process/fixture setup per run (no additional warmup). Five matched alternating pairs. Each ownership replay covers ordinary/gamepad Current,historical andOverall through500relayouts,hide/reveal,typechange,combatdefer,cleanup/reembed; layout replay retains3nativepanes+ownedthreat through500reflows. No game profile, CVars, addons, diagnostic roots or saved-variable files modified by desktop checks.",
+  "hardware": {
+    "cpu": "IntelCorei7-12700F12cores20logical",
+    "ramBytes": 34164105216,
+    "gpu": "NVIDIA RTX3060 driver32.0.16.2114",
+    "os": "Windows10.0.26200"
+  },
+  "samples": [
+    {
+      "pair": 1,
+      "variant": "baseline",
+      "script": "tests/native_meter_ownership.lua",
+      "command": [
+        "lua",
+        "tests/native_meter_ownership.lua",
+        "C:\\Users\\mario\\.codex\\visualizations\\2026\\10\\29\\01a186ea-e332-79a1-9cdc-8e340df7e22b\\meter-session-choice-20261106\\baseline\\Battlezonemap\\FluxBlizzardMeter.lua"
+      ],
+      "exit": 1,
+      "wallSeconds": 0.22689650001120754,
+      "output": "FAIL ordinary current retains native and saved session through embed\nFAIL ordinary current makes no session-setting writes through embed\nFAIL ordinary current retains native and saved session through 500 relayouts\nFAIL ordinary current makes no session-setting writes through 500 relayouts\nFAIL ordinary current retains native and saved session through tab hide and reveal\nFAIL ordinary current makes no session-setting writes through tab hide and reveal\nFAIL ordinary current retains native and saved session through display-type change\nFAIL ordinary current makes no session-setting writes through display-type change\nFAIL ordinary current retains native and saved session through combat-deferred layout\nFAIL ordinary current makes no session-setting writes through combat-deferred layout\nFAIL ordinary current retains native and saved session through cleanup and re-embed\nFAIL ordinary current makes no session-setting writes through cleanup and re-embed\nFAIL ordinary historical retains native and saved session through embed\nFAIL ordinary historical makes no session-setting writes through embed\nFAIL ordinary historical retains native and saved session through 500 relayouts\nFAIL ordinary historical makes no session-setting writes through 500 relayouts\nFAIL ordinary historical retains native and saved session through tab hide and reveal\nFAIL ordinary historical makes no session-setting writes through tab hide and reveal\nFAIL ordinary historical retains native and saved session through display-type change\nFAIL ordinary historical makes no session-setting writes through display-type change\nFAIL ordinary historical retains native and saved session through combat-deferred layout\nFAIL ordinary historical makes no session-setting writes through combat-deferred layout\nFAIL ordinary historical retains native and saved session through cleanup and re-embed\nFAIL ordinary historical makes no session-setting writes through cleanup and re-embed\nFAIL gamepad current retains native and saved session through embed\nFAIL gamepad current makes no session-setting writes through embed\nFAIL gamepad current retains native and saved session through 500 relayouts\nFAIL gamepad current makes no session-setting writes through 500 relayouts\nFAIL gamepad current retains native and saved session through tab hide and reveal\nFAIL gamepad current makes no session-setting writes through tab hide and reveal\nFAIL gamepad current retains native and saved session through display-type change\nFAIL gamepad current makes no session-setting writes through display-type change\nFAIL gamepad current retains native and saved session through combat-deferred layout\nFAIL gamepad current makes no session-setting writes through combat-deferred layout\nFAIL gamepad current retains native and saved session through cleanup and re-embed\nFAIL gamepad current makes no session-setting writes through cleanup and re-embed\nFAIL gamepad historical retains native and saved session through embed\nFAIL gamepad historical makes no session-setting writes through embed\nFAIL gamepad historical retains native and saved session through 500 relayouts\nFAIL gamepad historical makes no session-setting writes through 500 relayouts\nFAIL gamepad historical retains native and saved session through tab hide and reveal\nFAIL gamepad historical makes no session-setting writes through tab hide and reveal\nFAIL gamepad historical retains native and saved session through display-type change\nFAIL gamepad historical makes no session-setting writes through display-type change\nFAIL gamepad historical retains native and saved session through combat-deferred layout\nFAIL gamepad historical makes no session-setting writes through combat-deferred layout\nFAIL gamepad historical retains native and saved session through cleanup and re-embed\nFAIL gamepad historical makes no session-setting writes through cleanup and re-embed\nmeter visibility: policyWrites=0 setterCalls=0 nativeEvents=4032 timerDispatches=4032 repeatedAddonRootShows=0 timerWrites=8064 pinnedNative=false\nnative backgrounds: updates=2000 skinCalls=2052\nmeter tab transitions: cycles=4000 threatResurrections=0 rootResurrections=0\nFAIL retail layout owns display type while the native menu owns its session choice\nFAIL forever layout owns display type while the native menu owns its session choice\nFAIL era layout owns display type while the native menu owns its session choice\nFAIL anniversary layout owns display type while the native menu owns its session choice\nFAIL mists layout owns display type while the native menu owns its session choice\nFAIL forever-gamepad layout owns display type while the native menu owns its session choice\nnative meter ownership: 561 checks, 54 failures; geometry typeCalls=0 sessionCalls=0 entryWalks=0 gamepadPatchTimers=0\n"
+    },
+    {
+      "pair": 1,
+      "variant": "baseline",
+      "script": "tests/native_threat_layout.lua",
+      "command": [
+        "lua",
+        "tests/native_threat_layout.lua",
+        "C:\\Users\\mario\\.codex\\visualizations\\2026\\10\\29\\01a186ea-e332-79a1-9cdc-8e340df7e22b\\meter-session-choice-20261106\\baseline\\Battlezonemap\\FluxBlizzardMeter.lua"
+      ],
+      "exit": 1,
+      "wallSeconds": 0.10770000002230518,
+      "output": "FAIL four-pane embed retains Current and historical choices plus the new native Overall default\nFAIL 500 four-pane layouts never overwrite saved native session choices\nFAIL threat-only layout and cleanup preserve native session choices on return\nnative threat layout: 71 checks, 3 failures; nativeMax=3 ownedFrames=1 permanentEntryHooks=1\nlua: tests/native_threat_layout.lua:308: native threat layout regressions\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/native_threat_layout.lua:308: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "pair": 1,
+      "variant": "candidate",
+      "script": "tests/native_meter_ownership.lua",
+      "command": [
+        "lua",
+        "tests/native_meter_ownership.lua"
+      ],
+      "exit": 0,
+      "wallSeconds": 0.21523820000584237,
+      "output": "meter visibility: policyWrites=0 setterCalls=0 nativeEvents=4032 timerDispatches=4032 repeatedAddonRootShows=0 timerWrites=8064 pinnedNative=false\nnative backgrounds: updates=2000 skinCalls=2052\nmeter tab transitions: cycles=4000 threatResurrections=0 rootResurrections=0\nnative meter ownership: 561 checks, 0 failures; geometry typeCalls=0 sessionCalls=0 entryWalks=0 gamepadPatchTimers=0\n"
+    },
+    {
+      "pair": 1,
+      "variant": "candidate",
+      "script": "tests/native_threat_layout.lua",
+      "command": [
+        "lua",
+        "tests/native_threat_layout.lua"
+      ],
+      "exit": 0,
+      "wallSeconds": 0.10264370002551004,
+      "output": "native threat layout: 71 checks, 0 failures; nativeMax=3 ownedFrames=1 permanentEntryHooks=1\n"
+    },
+    {
+      "pair": 2,
+      "variant": "candidate",
+      "script": "tests/native_meter_ownership.lua",
+      "command": [
+        "lua",
+        "tests/native_meter_ownership.lua"
+      ],
+      "exit": 0,
+      "wallSeconds": 0.21292930000345223,
+      "output": "meter visibility: policyWrites=0 setterCalls=0 nativeEvents=4032 timerDispatches=4032 repeatedAddonRootShows=0 timerWrites=8064 pinnedNative=false\nnative backgrounds: updates=2000 skinCalls=2052\nmeter tab transitions: cycles=4000 threatResurrections=0 rootResurrections=0\nnative meter ownership: 561 checks, 0 failures; geometry typeCalls=0 sessionCalls=0 entryWalks=0 gamepadPatchTimers=0\n"
+    },
+    {
+      "pair": 2,
+      "variant": "candidate",
+      "script": "tests/native_threat_layout.lua",
+      "command": [
+        "lua",
+        "tests/native_threat_layout.lua"
+      ],
+      "exit": 0,
+      "wallSeconds": 0.09065599998575635,
+      "output": "native threat layout: 71 checks, 0 failures; nativeMax=3 ownedFrames=1 permanentEntryHooks=1\n"
+    },
+    {
+      "pair": 2,
+      "variant": "baseline",
+      "script": "tests/native_meter_ownership.lua",
+      "command": [
+        "lua",
+        "tests/native_meter_ownership.lua",
+        "C:\\Users\\mario\\.codex\\visualizations\\2026\\10\\29\\01a186ea-e332-79a1-9cdc-8e340df7e22b\\meter-session-choice-20261106\\baseline\\Battlezonemap\\FluxBlizzardMeter.lua"
+      ],
+      "exit": 1,
+      "wallSeconds": 0.1902027000032831,
+      "output": "FAIL ordinary current retains native and saved session through embed\nFAIL ordinary current makes no session-setting writes through embed\nFAIL ordinary current retains native and saved session through 500 relayouts\nFAIL ordinary current makes no session-setting writes through 500 relayouts\nFAIL ordinary current retains native and saved session through tab hide and reveal\nFAIL ordinary current makes no session-setting writes through tab hide and reveal\nFAIL ordinary current retains native and saved session through display-type change\nFAIL ordinary current makes no session-setting writes through display-type change\nFAIL ordinary current retains native and saved session through combat-deferred layout\nFAIL ordinary current makes no session-setting writes through combat-deferred layout\nFAIL ordinary current retains native and saved session through cleanup and re-embed\nFAIL ordinary current makes no session-setting writes through cleanup and re-embed\nFAIL ordinary historical retains native and saved session through embed\nFAIL ordinary historical makes no session-setting writes through embed\nFAIL ordinary historical retains native and saved session through 500 relayouts\nFAIL ordinary historical makes no session-setting writes through 500 relayouts\nFAIL ordinary historical retains native and saved session through tab hide and reveal\nFAIL ordinary historical makes no session-setting writes through tab hide and reveal\nFAIL ordinary historical retains native and saved session through display-type change\nFAIL ordinary historical makes no session-setting writes through display-type change\nFAIL ordinary historical retains native and saved session through combat-deferred layout\nFAIL ordinary historical makes no session-setting writes through combat-deferred layout\nFAIL ordinary historical retains native and saved session through cleanup and re-embed\nFAIL ordinary historical makes no session-setting writes through cleanup and re-embed\nFAIL gamepad current retains native and saved session through embed\nFAIL gamepad current makes no session-setting writes through embed\nFAIL gamepad current retains native and saved session through 500 relayouts\nFAIL gamepad current makes no session-setting writes through 500 relayouts\nFAIL gamepad current retains native and saved session through tab hide and reveal\nFAIL gamepad current makes no session-setting writes through tab hide and reveal\nFAIL gamepad current retains native and saved session through display-type change\nFAIL gamepad current makes no session-setting writes through display-type change\nFAIL gamepad current retains native and saved session through combat-deferred layout\nFAIL gamepad current makes no session-setting writes through combat-deferred layout\nFAIL gamepad current retains native and saved session through cleanup and re-embed\nFAIL gamepad current makes no session-setting writes through cleanup and re-embed\nFAIL gamepad historical retains native and saved session through embed\nFAIL gamepad historical makes no session-setting writes through embed\nFAIL gamepad historical retains native and saved session through 500 relayouts\nFAIL gamepad historical makes no session-setting writes through 500 relayouts\nFAIL gamepad historical retains native and saved session through tab hide and reveal\nFAIL gamepad historical makes no session-setting writes through tab hide and reveal\nFAIL gamepad historical retains native and saved session through display-type change\nFAIL gamepad historical makes no session-setting writes through display-type change\nFAIL gamepad historical retains native and saved session through combat-deferred layout\nFAIL gamepad historical makes no session-setting writes through combat-deferred layout\nFAIL gamepad historical retains native and saved session through cleanup and re-embed\nFAIL gamepad historical makes no session-setting writes through cleanup and re-embed\nmeter visibility: policyWrites=0 setterCalls=0 nativeEvents=4032 timerDispatches=4032 repeatedAddonRootShows=0 timerWrites=8064 pinnedNative=false\nnative backgrounds: updates=2000 skinCalls=2052\nmeter tab transitions: cycles=4000 threatResurrections=0 rootResurrections=0\nFAIL retail layout owns display type while the native menu owns its session choice\nFAIL forever layout owns display type while the native menu owns its session choice\nFAIL era layout owns display type while the native menu owns its session choice\nFAIL anniversary layout owns display type while the native menu owns its session choice\nFAIL mists layout owns display type while the native menu owns its session choice\nFAIL forever-gamepad layout owns display type while the native menu owns its session choice\nnative meter ownership: 561 checks, 54 failures; geometry typeCalls=0 sessionCalls=0 entryWalks=0 gamepadPatchTimers=0\n"
+    },
+    {
+      "pair": 2,
+      "variant": "baseline",
+      "script": "tests/native_threat_layout.lua",
+      "command": [
+        "lua",
+        "tests/native_threat_layout.lua",
+        "C:\\Users\\mario\\.codex\\visualizations\\2026\\10\\29\\01a186ea-e332-79a1-9cdc-8e340df7e22b\\meter-session-choice-20261106\\baseline\\Battlezonemap\\FluxBlizzardMeter.lua"
+      ],
+      "exit": 1,
+      "wallSeconds": 0.0898039999883622,
+      "output": "FAIL four-pane embed retains Current and historical choices plus the new native Overall default\nFAIL 500 four-pane layouts never overwrite saved native session choices\nFAIL threat-only layout and cleanup preserve native session choices on return\nnative threat layout: 71 checks, 3 failures; nativeMax=3 ownedFrames=1 permanentEntryHooks=1\nlua: tests/native_threat_layout.lua:308: native threat layout regressions\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/native_threat_layout.lua:308: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "pair": 3,
+      "variant": "baseline",
+      "script": "tests/native_meter_ownership.lua",
+      "command": [
+        "lua",
+        "tests/native_meter_ownership.lua",
+        "C:\\Users\\mario\\.codex\\visualizations\\2026\\10\\29\\01a186ea-e332-79a1-9cdc-8e340df7e22b\\meter-session-choice-20261106\\baseline\\Battlezonemap\\FluxBlizzardMeter.lua"
+      ],
+      "exit": 1,
+      "wallSeconds": 0.20346100002643652,
+      "output": "FAIL ordinary current retains native and saved session through embed\nFAIL ordinary current makes no session-setting writes through embed\nFAIL ordinary current retains native and saved session through 500 relayouts\nFAIL ordinary current makes no session-setting writes through 500 relayouts\nFAIL ordinary current retains native and saved session through tab hide and reveal\nFAIL ordinary current makes no session-setting writes through tab hide and reveal\nFAIL ordinary current retains native and saved session through display-type change\nFAIL ordinary current makes no session-setting writes through display-type change\nFAIL ordinary current retains native and saved session through combat-deferred layout\nFAIL ordinary current makes no session-setting writes through combat-deferred layout\nFAIL ordinary current retains native and saved session through cleanup and re-embed\nFAIL ordinary current makes no session-setting writes through cleanup and re-embed\nFAIL ordinary historical retains native and saved session through embed\nFAIL ordinary historical makes no session-setting writes through embed\nFAIL ordinary historical retains native and saved session through 500 relayouts\nFAIL ordinary historical makes no session-setting writes through 500 relayouts\nFAIL ordinary historical retains native and saved session through tab hide and reveal\nFAIL ordinary historical makes no session-setting writes through tab hide and reveal\nFAIL ordinary historical retains native and saved session through display-type change\nFAIL ordinary historical makes no session-setting writes through display-type change\nFAIL ordinary historical retains native and saved session through combat-deferred layout\nFAIL ordinary historical makes no session-setting writes through combat-deferred layout\nFAIL ordinary historical retains native and saved session through cleanup and re-embed\nFAIL ordinary historical makes no session-setting writes through cleanup and re-embed\nFAIL gamepad current retains native and saved session through embed\nFAIL gamepad current makes no session-setting writes through embed\nFAIL gamepad current retains native and saved session through 500 relayouts\nFAIL gamepad current makes no session-setting writes through 500 relayouts\nFAIL gamepad current retains native and saved session through tab hide and reveal\nFAIL gamepad current makes no session-setting writes through tab hide and reveal\nFAIL gamepad current retains native and saved session through display-type change\nFAIL gamepad current makes no session-setting writes through display-type change\nFAIL gamepad current retains native and saved session through combat-deferred layout\nFAIL gamepad current makes no session-setting writes through combat-deferred layout\nFAIL gamepad current retains native and saved session through cleanup and re-embed\nFAIL gamepad current makes no session-setting writes through cleanup and re-embed\nFAIL gamepad historical retains native and saved session through embed\nFAIL gamepad historical makes no session-setting writes through embed\nFAIL gamepad historical retains native and saved session through 500 relayouts\nFAIL gamepad historical makes no session-setting writes through 500 relayouts\nFAIL gamepad historical retains native and saved session through tab hide and reveal\nFAIL gamepad historical makes no session-setting writes through tab hide and reveal\nFAIL gamepad historical retains native and saved session through display-type change\nFAIL gamepad historical makes no session-setting writes through display-type change\nFAIL gamepad historical retains native and saved session through combat-deferred layout\nFAIL gamepad historical makes no session-setting writes through combat-deferred layout\nFAIL gamepad historical retains native and saved session through cleanup and re-embed\nFAIL gamepad historical makes no session-setting writes through cleanup and re-embed\nmeter visibility: policyWrites=0 setterCalls=0 nativeEvents=4032 timerDispatches=4032 repeatedAddonRootShows=0 timerWrites=8064 pinnedNative=false\nnative backgrounds: updates=2000 skinCalls=2052\nmeter tab transitions: cycles=4000 threatResurrections=0 rootResurrections=0\nFAIL retail layout owns display type while the native menu owns its session choice\nFAIL forever layout owns display type while the native menu owns its session choice\nFAIL era layout owns display type while the native menu owns its session choice\nFAIL anniversary layout owns display type while the native menu owns its session choice\nFAIL mists layout owns display type while the native menu owns its session choice\nFAIL forever-gamepad layout owns display type while the native menu owns its session choice\nnative meter ownership: 561 checks, 54 failures; geometry typeCalls=0 sessionCalls=0 entryWalks=0 gamepadPatchTimers=0\n"
+    },
+    {
+      "pair": 3,
+      "variant": "baseline",
+      "script": "tests/native_threat_layout.lua",
+      "command": [
+        "lua",
+        "tests/native_threat_layout.lua",
+        "C:\\Users\\mario\\.codex\\visualizations\\2026\\10\\29\\01a186ea-e332-79a1-9cdc-8e340df7e22b\\meter-session-choice-20261106\\baseline\\Battlezonemap\\FluxBlizzardMeter.lua"
+      ],
+      "exit": 1,
+      "wallSeconds": 0.10003589998814277,
+      "output": "FAIL four-pane embed retains Current and historical choices plus the new native Overall default\nFAIL 500 four-pane layouts never overwrite saved native session choices\nFAIL threat-only layout and cleanup preserve native session choices on return\nnative threat layout: 71 checks, 3 failures; nativeMax=3 ownedFrames=1 permanentEntryHooks=1\nlua: tests/native_threat_layout.lua:308: native threat layout regressions\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/native_threat_layout.lua:308: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "pair": 3,
+      "variant": "candidate",
+      "script": "tests/native_meter_ownership.lua",
+      "command": [
+        "lua",
+        "tests/native_meter_ownership.lua"
+      ],
+      "exit": 0,
+      "wallSeconds": 0.20318910002242774,
+      "output": "meter visibility: policyWrites=0 setterCalls=0 nativeEvents=4032 timerDispatches=4032 repeatedAddonRootShows=0 timerWrites=8064 pinnedNative=false\nnative backgrounds: updates=2000 skinCalls=2052\nmeter tab transitions: cycles=4000 threatResurrections=0 rootResurrections=0\nnative meter ownership: 561 checks, 0 failures; geometry typeCalls=0 sessionCalls=0 entryWalks=0 gamepadPatchTimers=0\n"
+    },
+    {
+      "pair": 3,
+      "variant": "candidate",
+      "script": "tests/native_threat_layout.lua",
+      "command": [
+        "lua",
+        "tests/native_threat_layout.lua"
+      ],
+      "exit": 0,
+      "wallSeconds": 0.09197939999285154,
+      "output": "native threat layout: 71 checks, 0 failures; nativeMax=3 ownedFrames=1 permanentEntryHooks=1\n"
+    },
+    {
+      "pair": 4,
+      "variant": "candidate",
+      "script": "tests/native_meter_ownership.lua",
+      "command": [
+        "lua",
+        "tests/native_meter_ownership.lua"
+      ],
+      "exit": 0,
+      "wallSeconds": 0.20748000001185574,
+      "output": "meter visibility: policyWrites=0 setterCalls=0 nativeEvents=4032 timerDispatches=4032 repeatedAddonRootShows=0 timerWrites=8064 pinnedNative=false\nnative backgrounds: updates=2000 skinCalls=2052\nmeter tab transitions: cycles=4000 threatResurrections=0 rootResurrections=0\nnative meter ownership: 561 checks, 0 failures; geometry typeCalls=0 sessionCalls=0 entryWalks=0 gamepadPatchTimers=0\n"
+    },
+    {
+      "pair": 4,
+      "variant": "candidate",
+      "script": "tests/native_threat_layout.lua",
+      "command": [
+        "lua",
+        "tests/native_threat_layout.lua"
+      ],
+      "exit": 0,
+      "wallSeconds": 0.10753889998886734,
+      "output": "native threat layout: 71 checks, 0 failures; nativeMax=3 ownedFrames=1 permanentEntryHooks=1\n"
+    },
+    {
+      "pair": 4,
+      "variant": "baseline",
+      "script": "tests/native_meter_ownership.lua",
+      "command": [
+        "lua",
+        "tests/native_meter_ownership.lua",
+        "C:\\Users\\mario\\.codex\\visualizations\\2026\\10\\29\\01a186ea-e332-79a1-9cdc-8e340df7e22b\\meter-session-choice-20261106\\baseline\\Battlezonemap\\FluxBlizzardMeter.lua"
+      ],
+      "exit": 1,
+      "wallSeconds": 0.20861279999371618,
+      "output": "FAIL ordinary current retains native and saved session through embed\nFAIL ordinary current makes no session-setting writes through embed\nFAIL ordinary current retains native and saved session through 500 relayouts\nFAIL ordinary current makes no session-setting writes through 500 relayouts\nFAIL ordinary current retains native and saved session through tab hide and reveal\nFAIL ordinary current makes no session-setting writes through tab hide and reveal\nFAIL ordinary current retains native and saved session through display-type change\nFAIL ordinary current makes no session-setting writes through display-type change\nFAIL ordinary current retains native and saved session through combat-deferred layout\nFAIL ordinary current makes no session-setting writes through combat-deferred layout\nFAIL ordinary current retains native and saved session through cleanup and re-embed\nFAIL ordinary current makes no session-setting writes through cleanup and re-embed\nFAIL ordinary historical retains native and saved session through embed\nFAIL ordinary historical makes no session-setting writes through embed\nFAIL ordinary historical retains native and saved session through 500 relayouts\nFAIL ordinary historical makes no session-setting writes through 500 relayouts\nFAIL ordinary historical retains native and saved session through tab hide and reveal\nFAIL ordinary historical makes no session-setting writes through tab hide and reveal\nFAIL ordinary historical retains native and saved session through display-type change\nFAIL ordinary historical makes no session-setting writes through display-type change\nFAIL ordinary historical retains native and saved session through combat-deferred layout\nFAIL ordinary historical makes no session-setting writes through combat-deferred layout\nFAIL ordinary historical retains native and saved session through cleanup and re-embed\nFAIL ordinary historical makes no session-setting writes through cleanup and re-embed\nFAIL gamepad current retains native and saved session through embed\nFAIL gamepad current makes no session-setting writes through embed\nFAIL gamepad current retains native and saved session through 500 relayouts\nFAIL gamepad current makes no session-setting writes through 500 relayouts\nFAIL gamepad current retains native and saved session through tab hide and reveal\nFAIL gamepad current makes no session-setting writes through tab hide and reveal\nFAIL gamepad current retains native and saved session through display-type change\nFAIL gamepad current makes no session-setting writes through display-type change\nFAIL gamepad current retains native and saved session through combat-deferred layout\nFAIL gamepad current makes no session-setting writes through combat-deferred layout\nFAIL gamepad current retains native and saved session through cleanup and re-embed\nFAIL gamepad current makes no session-setting writes through cleanup and re-embed\nFAIL gamepad historical retains native and saved session through embed\nFAIL gamepad historical makes no session-setting writes through embed\nFAIL gamepad historical retains native and saved session through 500 relayouts\nFAIL gamepad historical makes no session-setting writes through 500 relayouts\nFAIL gamepad historical retains native and saved session through tab hide and reveal\nFAIL gamepad historical makes no session-setting writes through tab hide and reveal\nFAIL gamepad historical retains native and saved session through display-type change\nFAIL gamepad historical makes no session-setting writes through display-type change\nFAIL gamepad historical retains native and saved session through combat-deferred layout\nFAIL gamepad historical makes no session-setting writes through combat-deferred layout\nFAIL gamepad historical retains native and saved session through cleanup and re-embed\nFAIL gamepad historical makes no session-setting writes through cleanup and re-embed\nmeter visibility: policyWrites=0 setterCalls=0 nativeEvents=4032 timerDispatches=4032 repeatedAddonRootShows=0 timerWrites=8064 pinnedNative=false\nnative backgrounds: updates=2000 skinCalls=2052\nmeter tab transitions: cycles=4000 threatResurrections=0 rootResurrections=0\nFAIL retail layout owns display type while the native menu owns its session choice\nFAIL forever layout owns display type while the native menu owns its session choice\nFAIL era layout owns display type while the native menu owns its session choice\nFAIL anniversary layout owns display type while the native menu owns its session choice\nFAIL mists layout owns display type while the native menu owns its session choice\nFAIL forever-gamepad layout owns display type while the native menu owns its session choice\nnative meter ownership: 561 checks, 54 failures; geometry typeCalls=0 sessionCalls=0 entryWalks=0 gamepadPatchTimers=0\n"
+    },
+    {
+      "pair": 4,
+      "variant": "baseline",
+      "script": "tests/native_threat_layout.lua",
+      "command": [
+        "lua",
+        "tests/native_threat_layout.lua",
+        "C:\\Users\\mario\\.codex\\visualizations\\2026\\10\\29\\01a186ea-e332-79a1-9cdc-8e340df7e22b\\meter-session-choice-20261106\\baseline\\Battlezonemap\\FluxBlizzardMeter.lua"
+      ],
+      "exit": 1,
+      "wallSeconds": 0.09861040001851507,
+      "output": "FAIL four-pane embed retains Current and historical choices plus the new native Overall default\nFAIL 500 four-pane layouts never overwrite saved native session choices\nFAIL threat-only layout and cleanup preserve native session choices on return\nnative threat layout: 71 checks, 3 failures; nativeMax=3 ownedFrames=1 permanentEntryHooks=1\nlua: tests/native_threat_layout.lua:308: native threat layout regressions\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/native_threat_layout.lua:308: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "pair": 5,
+      "variant": "baseline",
+      "script": "tests/native_meter_ownership.lua",
+      "command": [
+        "lua",
+        "tests/native_meter_ownership.lua",
+        "C:\\Users\\mario\\.codex\\visualizations\\2026\\10\\29\\01a186ea-e332-79a1-9cdc-8e340df7e22b\\meter-session-choice-20261106\\baseline\\Battlezonemap\\FluxBlizzardMeter.lua"
+      ],
+      "exit": 1,
+      "wallSeconds": 0.2260367999842856,
+      "output": "FAIL ordinary current retains native and saved session through embed\nFAIL ordinary current makes no session-setting writes through embed\nFAIL ordinary current retains native and saved session through 500 relayouts\nFAIL ordinary current makes no session-setting writes through 500 relayouts\nFAIL ordinary current retains native and saved session through tab hide and reveal\nFAIL ordinary current makes no session-setting writes through tab hide and reveal\nFAIL ordinary current retains native and saved session through display-type change\nFAIL ordinary current makes no session-setting writes through display-type change\nFAIL ordinary current retains native and saved session through combat-deferred layout\nFAIL ordinary current makes no session-setting writes through combat-deferred layout\nFAIL ordinary current retains native and saved session through cleanup and re-embed\nFAIL ordinary current makes no session-setting writes through cleanup and re-embed\nFAIL ordinary historical retains native and saved session through embed\nFAIL ordinary historical makes no session-setting writes through embed\nFAIL ordinary historical retains native and saved session through 500 relayouts\nFAIL ordinary historical makes no session-setting writes through 500 relayouts\nFAIL ordinary historical retains native and saved session through tab hide and reveal\nFAIL ordinary historical makes no session-setting writes through tab hide and reveal\nFAIL ordinary historical retains native and saved session through display-type change\nFAIL ordinary historical makes no session-setting writes through display-type change\nFAIL ordinary historical retains native and saved session through combat-deferred layout\nFAIL ordinary historical makes no session-setting writes through combat-deferred layout\nFAIL ordinary historical retains native and saved session through cleanup and re-embed\nFAIL ordinary historical makes no session-setting writes through cleanup and re-embed\nFAIL gamepad current retains native and saved session through embed\nFAIL gamepad current makes no session-setting writes through embed\nFAIL gamepad current retains native and saved session through 500 relayouts\nFAIL gamepad current makes no session-setting writes through 500 relayouts\nFAIL gamepad current retains native and saved session through tab hide and reveal\nFAIL gamepad current makes no session-setting writes through tab hide and reveal\nFAIL gamepad current retains native and saved session through display-type change\nFAIL gamepad current makes no session-setting writes through display-type change\nFAIL gamepad current retains native and saved session through combat-deferred layout\nFAIL gamepad current makes no session-setting writes through combat-deferred layout\nFAIL gamepad current retains native and saved session through cleanup and re-embed\nFAIL gamepad current makes no session-setting writes through cleanup and re-embed\nFAIL gamepad historical retains native and saved session through embed\nFAIL gamepad historical makes no session-setting writes through embed\nFAIL gamepad historical retains native and saved session through 500 relayouts\nFAIL gamepad historical makes no session-setting writes through 500 relayouts\nFAIL gamepad historical retains native and saved session through tab hide and reveal\nFAIL gamepad historical makes no session-setting writes through tab hide and reveal\nFAIL gamepad historical retains native and saved session through display-type change\nFAIL gamepad historical makes no session-setting writes through display-type change\nFAIL gamepad historical retains native and saved session through combat-deferred layout\nFAIL gamepad historical makes no session-setting writes through combat-deferred layout\nFAIL gamepad historical retains native and saved session through cleanup and re-embed\nFAIL gamepad historical makes no session-setting writes through cleanup and re-embed\nmeter visibility: policyWrites=0 setterCalls=0 nativeEvents=4032 timerDispatches=4032 repeatedAddonRootShows=0 timerWrites=8064 pinnedNative=false\nnative backgrounds: updates=2000 skinCalls=2052\nmeter tab transitions: cycles=4000 threatResurrections=0 rootResurrections=0\nFAIL retail layout owns display type while the native menu owns its session choice\nFAIL forever layout owns display type while the native menu owns its session choice\nFAIL era layout owns display type while the native menu owns its session choice\nFAIL anniversary layout owns display type while the native menu owns its session choice\nFAIL mists layout owns display type while the native menu owns its session choice\nFAIL forever-gamepad layout owns display type while the native menu owns its session choice\nnative meter ownership: 561 checks, 54 failures; geometry typeCalls=0 sessionCalls=0 entryWalks=0 gamepadPatchTimers=0\n"
+    },
+    {
+      "pair": 5,
+      "variant": "baseline",
+      "script": "tests/native_threat_layout.lua",
+      "command": [
+        "lua",
+        "tests/native_threat_layout.lua",
+        "C:\\Users\\mario\\.codex\\visualizations\\2026\\10\\29\\01a186ea-e332-79a1-9cdc-8e340df7e22b\\meter-session-choice-20261106\\baseline\\Battlezonemap\\FluxBlizzardMeter.lua"
+      ],
+      "exit": 1,
+      "wallSeconds": 0.10162169998511672,
+      "output": "FAIL four-pane embed retains Current and historical choices plus the new native Overall default\nFAIL 500 four-pane layouts never overwrite saved native session choices\nFAIL threat-only layout and cleanup preserve native session choices on return\nnative threat layout: 71 checks, 3 failures; nativeMax=3 ownedFrames=1 permanentEntryHooks=1\nlua: tests/native_threat_layout.lua:308: native threat layout regressions\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/native_threat_layout.lua:308: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "pair": 5,
+      "variant": "candidate",
+      "script": "tests/native_meter_ownership.lua",
+      "command": [
+        "lua",
+        "tests/native_meter_ownership.lua"
+      ],
+      "exit": 0,
+      "wallSeconds": 0.2226041000103578,
+      "output": "meter visibility: policyWrites=0 setterCalls=0 nativeEvents=4032 timerDispatches=4032 repeatedAddonRootShows=0 timerWrites=8064 pinnedNative=false\nnative backgrounds: updates=2000 skinCalls=2052\nmeter tab transitions: cycles=4000 threatResurrections=0 rootResurrections=0\nnative meter ownership: 561 checks, 0 failures; geometry typeCalls=0 sessionCalls=0 entryWalks=0 gamepadPatchTimers=0\n"
+    },
+    {
+      "pair": 5,
+      "variant": "candidate",
+      "script": "tests/native_threat_layout.lua",
+      "command": [
+        "lua",
+        "tests/native_threat_layout.lua"
+      ],
+      "exit": 0,
+      "wallSeconds": 0.10682810001890175,
+      "output": "native threat layout: 71 checks, 0 failures; nativeMax=3 ownedFrames=1 permanentEntryHooks=1\n"
+    }
+  ],
+  "variation": {
+    "baseline/tests/native_meter_ownership.lua": {
+      "exits": [
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "wallRange": [
+        0.1902027000032831,
+        0.22689650001120754
+      ],
+      "wallMedian": 0.20861279999371618
+    },
+    "baseline/tests/native_threat_layout.lua": {
+      "exits": [
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "wallRange": [
+        0.0898039999883622,
+        0.10770000002230518
+      ],
+      "wallMedian": 0.10003589998814277
+    },
+    "candidate/tests/native_meter_ownership.lua": {
+      "exits": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "wallRange": [
+        0.20318910002242774,
+        0.2226041000103578
+      ],
+      "wallMedian": 0.21292930000345223
+    },
+    "candidate/tests/native_threat_layout.lua": {
+      "exits": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "wallRange": [
+        0.09065599998575635,
+        0.10753889998886734
+      ],
+      "wallMedian": 0.10264370002551004
+    }
+  },
+  "mutants": [
+    {
+      "name": "force-overall",
+      "exit": 1,
+      "rejected": true,
+      "output": "FAIL ordinary current retains native and saved session through embed\nFAIL ordinary current makes no session-setting writes through embed\nFAIL ordinary current retains native and saved session through 500 relayouts\nFAIL ordinary current makes no session-setting writes through 500 relayouts\nFAIL ordinary current retains native and saved session through tab hide and reveal\nFAIL ordinary current makes no session-setting writes through tab hide and reveal\nFAIL ordinary current retains native and saved session through display-type change\nFAIL ordinary current makes no session-setting writes through display-type change\nFAIL ordinary current retains native and saved session through combat-deferred layout\nFAIL ordinary current makes no session-setting writes through combat-deferred layout\nFAIL ordinary current retains native and saved session through cleanup and re-embed\nFAIL ordinary current makes no session-setting writes through cleanup and re-embed\nFAIL ordinary historical retains native and saved session through embed\nFAIL ordinary historical makes no session-setting writes through embed\nFAIL ordinary historical retains native and saved session through 500 relayouts\nFAIL ordinary historical makes no session-setting writes through 500 relayouts\nFAIL ordinary historical retains native and saved session through tab hide and reveal\nFAIL ordinary historical makes no session-setting writes through tab hide and reveal\nFAIL ordinary historical retains native and saved session through display-type change\nFAIL ordinary historical makes no session-setting writes through display-type change\nFAIL ordinary historical retains native and saved session through combat-deferred layout\nFAIL ordinary historical makes no session-setting writes through combat-deferred layout\nFAIL ordinary historical retains native and saved session through cleanup and re-embed\nFAIL ordinary historical makes no session-setting writes through cleanup and re-embed\nFAIL ordinary overall makes no session-setting writes through embed\nFAIL ordinary overall makes no session-setting writes through 500 relayouts\nFAIL ordinary overall makes no session-setting writes through tab hide and reveal\nFAIL ordinary overall makes no session-setting writes through display-type change\nFAIL ordinary overall makes no session-setting writes through combat-deferred layout\nFAIL ordinary overall makes no session-setting writes through cleanup and re-embed\nFAIL gamepad current retains native and saved session through embed\nFAIL gamepad current makes no session-setting writes through embed\nFAIL gamepad current retains native and saved session through 500 relayouts\nFAIL gamepad current makes no session-setting writes through 500 relayouts\nFAIL gamepad current retains native and saved session through tab hide and reveal\nFAIL gamepad current makes no session-setting writes through tab hide and reveal\nFAIL gamepad current retains native and saved session through display-type change\nFAIL gamepad current makes no session-setting writes through display-type change\nFAIL gamepad current retains native and saved session through combat-deferred layout\nFAIL gamepad current makes no session-setting writes through combat-deferred layout\nFAIL gamepad current retains native and saved session through cleanup and re-embed\nFAIL gamepad current makes no session-setting writes through cleanup and re-embed\nFAIL gamepad historical retains native and saved session through embed\nFAIL gamepad historical makes no session-setting writes through embed\nFAIL gamepad historical retains native and saved session through 500 relayouts\nFAIL gamepad historical makes no session-setting writes through 500 relayouts\nFAIL gamepad historical retains native and saved session through tab hide and reveal\nFAIL gamepad historical makes no session-setting writes through tab hide and reveal\nFAIL gamepad historical retains native and saved session through display-type change\nFAIL gamepad historical makes no session-setting writes through display-type change\nFAIL gamepad historical retains native and saved session through combat-deferred layout\nFAIL gamepad historical makes no session-setting writes through combat-deferred layout\nFAIL gamepad historical retains native and saved session through cleanup and re-embed\nFAIL gamepad historical makes no session-setting writes through cleanup and re-embed\nFAIL gamepad overall makes no session-setting writes through embed\nFAIL gamepad overall makes no session-setting writes through 500 relayouts\nFAIL gamepad overall makes no session-setting writes through tab hide and reveal\nFAIL gamepad overall makes no session-setting writes through display-type change\nFAIL gamepad overall makes no session-setting writes through combat-deferred layout\nFAIL gamepad overall makes no session-setting writes through cleanup and re-embed\nmeter visibility: policyWrites=0 setterCalls=0 nativeEvents=4032 timerDispatches=4032 repeatedAddonRootShows=0 timerWrites=8064 pinnedNative=false\nnative backgrounds: updates=2000 skinCalls=2052\nFAIL tab hide gamepad=false threatOnly=false policy=0 repeated tab transitions reuse frames without timers or content rebuilds\nFAIL tab hide gamepad=false threatOnly=false policy=2 repeated tab transitions reuse frames without timers or content rebuilds\nFAIL tab hide gamepad=true threatOnly=false policy=0 repeated tab transitions reuse frames without timers or content rebuilds\nFAIL tab hide gamepad=true threatOnly=false policy=2 repeated tab transitions reuse frames without timers or content rebuilds\nmeter tab transitions: cycles=4000 threatResurrections=0 rootResurrections=0\nFAIL retail geometry avoids native content rebuilds\nFAIL retail layout owns display type while the native menu owns its session choice\nFAIL retail reopen retains current content without extra rebuilds\nFAIL forever geometry avoids native content rebuilds\nFAIL forever layout owns display type while the native menu owns its session choice\nFAIL forever reopen retains current content without extra rebuilds\nFAIL era geometry avoids native content rebuilds\nFAIL era layout owns display type while the native menu owns its session choice\nFAIL era reopen retains current content without extra rebuilds\nFAIL anniversary geometry avoids native content rebuilds\nFAIL anniversary layout owns display type while the native menu owns its session choice\nFAIL anniversary reopen retains current content without extra rebuilds\nFAIL mists geometry avoids native content rebuilds\nFAIL mists layout owns display type while the native menu owns its session choice\nFAIL mists reopen retains current content without extra rebuilds\nFAIL forever-gamepad geometry avoids native content rebuilds\nFAIL forever-gamepad layout owns display type while the native menu owns its session choice\nFAIL forever-gamepad reopen retains current content without extra rebuilds\nnative meter ownership: 561 checks, 82 failures; geometry typeCalls=0 sessionCalls=1000 entryWalks=0 gamepadPatchTimers=0\n"
+    },
+    {
+      "name": "force-current",
+      "exit": 1,
+      "rejected": true,
+      "output": "FAIL ordinary current makes no session-setting writes through embed\nFAIL ordinary current makes no session-setting writes through 500 relayouts\nFAIL ordinary current makes no session-setting writes through tab hide and reveal\nFAIL ordinary current makes no session-setting writes through display-type change\nFAIL ordinary current makes no session-setting writes through combat-deferred layout\nFAIL ordinary current makes no session-setting writes through cleanup and re-embed\nFAIL ordinary current preserves the native Overall default of another pane\nFAIL ordinary historical retains native and saved session through embed\nFAIL ordinary historical makes no session-setting writes through embed\nFAIL ordinary historical retains native and saved session through 500 relayouts\nFAIL ordinary historical makes no session-setting writes through 500 relayouts\nFAIL ordinary historical retains native and saved session through tab hide and reveal\nFAIL ordinary historical makes no session-setting writes through tab hide and reveal\nFAIL ordinary historical retains native and saved session through display-type change\nFAIL ordinary historical makes no session-setting writes through display-type change\nFAIL ordinary historical retains native and saved session through combat-deferred layout\nFAIL ordinary historical makes no session-setting writes through combat-deferred layout\nFAIL ordinary historical retains native and saved session through cleanup and re-embed\nFAIL ordinary historical makes no session-setting writes through cleanup and re-embed\nFAIL ordinary historical preserves the native Overall default of another pane\nFAIL ordinary overall retains native and saved session through embed\nFAIL ordinary overall makes no session-setting writes through embed\nFAIL ordinary overall retains native and saved session through 500 relayouts\nFAIL ordinary overall makes no session-setting writes through 500 relayouts\nFAIL ordinary overall retains native and saved session through tab hide and reveal\nFAIL ordinary overall makes no session-setting writes through tab hide and reveal\nFAIL ordinary overall retains native and saved session through display-type change\nFAIL ordinary overall makes no session-setting writes through display-type change\nFAIL ordinary overall retains native and saved session through combat-deferred layout\nFAIL ordinary overall makes no session-setting writes through combat-deferred layout\nFAIL ordinary overall retains native and saved session through cleanup and re-embed\nFAIL ordinary overall makes no session-setting writes through cleanup and re-embed\nFAIL ordinary overall preserves the native Overall default of another pane\nFAIL gamepad current makes no session-setting writes through embed\nFAIL gamepad current makes no session-setting writes through 500 relayouts\nFAIL gamepad current makes no session-setting writes through tab hide and reveal\nFAIL gamepad current makes no session-setting writes through display-type change\nFAIL gamepad current makes no session-setting writes through combat-deferred layout\nFAIL gamepad current makes no session-setting writes through cleanup and re-embed\nFAIL gamepad current preserves the native Overall default of another pane\nFAIL gamepad historical retains native and saved session through embed\nFAIL gamepad historical makes no session-setting writes through embed\nFAIL gamepad historical retains native and saved session through 500 relayouts\nFAIL gamepad historical makes no session-setting writes through 500 relayouts\nFAIL gamepad historical retains native and saved session through tab hide and reveal\nFAIL gamepad historical makes no session-setting writes through tab hide and reveal\nFAIL gamepad historical retains native and saved session through display-type change\nFAIL gamepad historical makes no session-setting writes through display-type change\nFAIL gamepad historical retains native and saved session through combat-deferred layout\nFAIL gamepad historical makes no session-setting writes through combat-deferred layout\nFAIL gamepad historical retains native and saved session through cleanup and re-embed\nFAIL gamepad historical makes no session-setting writes through cleanup and re-embed\nFAIL gamepad historical preserves the native Overall default of another pane\nFAIL gamepad overall retains native and saved session through embed\nFAIL gamepad overall makes no session-setting writes through embed\nFAIL gamepad overall retains native and saved session through 500 relayouts\nFAIL gamepad overall makes no session-setting writes through 500 relayouts\nFAIL gamepad overall retains native and saved session through tab hide and reveal\nFAIL gamepad overall makes no session-setting writes through tab hide and reveal\nFAIL gamepad overall retains native and saved session through display-type change\nFAIL gamepad overall makes no session-setting writes through display-type change\nFAIL gamepad overall retains native and saved session through combat-deferred layout\nFAIL gamepad overall makes no session-setting writes through combat-deferred layout\nFAIL gamepad overall retains native and saved session through cleanup and re-embed\nFAIL gamepad overall makes no session-setting writes through cleanup and re-embed\nFAIL gamepad overall preserves the native Overall default of another pane\nmeter visibility: policyWrites=0 setterCalls=0 nativeEvents=4032 timerDispatches=4032 repeatedAddonRootShows=0 timerWrites=8064 pinnedNative=false\nFAIL native session and existing source receive skin after native configuration\nFAIL native session and existing source receive skin after native configuration\nFAIL native session and existing source receive skin after native configuration\nFAIL native session and existing source receive skin after native configuration\nnative backgrounds: updates=2000 skinCalls=2052\nFAIL tab hide gamepad=false threatOnly=false policy=0 repeated tab transitions reuse frames without timers or content rebuilds\nFAIL tab hide gamepad=false threatOnly=false policy=2 repeated tab transitions reuse frames without timers or content rebuilds\nFAIL tab hide gamepad=true threatOnly=false policy=0 repeated tab transitions reuse frames without timers or content rebuilds\nFAIL tab hide gamepad=true threatOnly=false policy=2 repeated tab transitions reuse frames without timers or content rebuilds\nmeter tab transitions: cycles=4000 threatResurrections=0 rootResurrections=0\nFAIL retail initial pane type and Overall selection retained\nFAIL retail geometry avoids native content rebuilds\nFAIL retail layout owns display type while the native menu owns its session choice\nFAIL retail reopen retains current content without extra rebuilds\nFAIL forever initial pane type and Overall selection retained\nFAIL forever geometry avoids native content rebuilds\nFAIL forever layout owns display type while the native menu owns its session choice\nFAIL forever reopen retains current content without extra rebuilds\nFAIL era initial pane type and Overall selection retained\nFAIL era geometry avoids native content rebuilds\nFAIL era layout owns display type while the native menu owns its session choice\nFAIL era reopen retains current content without extra rebuilds\nFAIL anniversary initial pane type and Overall selection retained\nFAIL anniversary geometry avoids native content rebuilds\nFAIL anniversary layout owns display type while the native menu owns its session choice\nFAIL anniversary reopen retains current content without extra rebuilds\nFAIL mists initial pane type and Overall selection retained\nFAIL mists geometry avoids native content rebuilds\nFAIL mists layout owns display type while the native menu owns its session choice\nFAIL mists reopen retains current content without extra rebuilds\nFAIL forever-gamepad initial pane type and Overall selection retained\nFAIL forever-gamepad geometry avoids native content rebuilds\nFAIL forever-gamepad layout owns display type while the native menu owns its session choice\nFAIL forever-gamepad reopen retains current content without extra rebuilds\nnative meter ownership: 561 checks, 98 failures; geometry typeCalls=0 sessionCalls=1000 entryWalks=0 gamepadPatchTimers=0\n"
+    },
+    {
+      "name": "clear-history",
+      "exit": 1,
+      "rejected": true,
+      "output": "FAIL ordinary historical retains native and saved session through embed\nFAIL ordinary historical makes no session-setting writes through embed\nFAIL ordinary historical retains native and saved session through 500 relayouts\nFAIL ordinary historical makes no session-setting writes through 500 relayouts\nFAIL ordinary historical retains native and saved session through tab hide and reveal\nFAIL ordinary historical makes no session-setting writes through tab hide and reveal\nFAIL ordinary historical retains native and saved session through display-type change\nFAIL ordinary historical makes no session-setting writes through display-type change\nFAIL ordinary historical retains native and saved session through combat-deferred layout\nFAIL ordinary historical makes no session-setting writes through combat-deferred layout\nFAIL ordinary historical retains native and saved session through cleanup and re-embed\nFAIL ordinary historical makes no session-setting writes through cleanup and re-embed\nFAIL gamepad historical retains native and saved session through embed\nFAIL gamepad historical makes no session-setting writes through embed\nFAIL gamepad historical retains native and saved session through 500 relayouts\nFAIL gamepad historical makes no session-setting writes through 500 relayouts\nFAIL gamepad historical retains native and saved session through tab hide and reveal\nFAIL gamepad historical makes no session-setting writes through tab hide and reveal\nFAIL gamepad historical retains native and saved session through display-type change\nFAIL gamepad historical makes no session-setting writes through display-type change\nFAIL gamepad historical retains native and saved session through combat-deferred layout\nFAIL gamepad historical makes no session-setting writes through combat-deferred layout\nFAIL gamepad historical retains native and saved session through cleanup and re-embed\nFAIL gamepad historical makes no session-setting writes through cleanup and re-embed\nmeter visibility: policyWrites=0 setterCalls=0 nativeEvents=4032 timerDispatches=4032 repeatedAddonRootShows=0 timerWrites=8064 pinnedNative=false\nnative backgrounds: updates=2000 skinCalls=2052\nmeter tab transitions: cycles=4000 threatResurrections=0 rootResurrections=0\nFAIL retail layout owns display type while the native menu owns its session choice\nFAIL forever layout owns display type while the native menu owns its session choice\nFAIL era layout owns display type while the native menu owns its session choice\nFAIL anniversary layout owns display type while the native menu owns its session choice\nFAIL mists layout owns display type while the native menu owns its session choice\nFAIL forever-gamepad layout owns display type while the native menu owns its session choice\nnative meter ownership: 561 checks, 30 failures; geometry typeCalls=0 sessionCalls=0 entryWalks=0 gamepadPatchTimers=0\n"
+    },
+    {
+      "name": "rewrite-unchanged",
+      "exit": 1,
+      "rejected": true,
+      "output": "FAIL ordinary current makes no session-setting writes through embed\nFAIL ordinary current makes no session-setting writes through 500 relayouts\nFAIL ordinary current makes no session-setting writes through tab hide and reveal\nFAIL ordinary current makes no session-setting writes through display-type change\nFAIL ordinary current makes no session-setting writes through combat-deferred layout\nFAIL ordinary current makes no session-setting writes through cleanup and re-embed\nFAIL ordinary historical makes no session-setting writes through embed\nFAIL ordinary historical makes no session-setting writes through 500 relayouts\nFAIL ordinary historical makes no session-setting writes through tab hide and reveal\nFAIL ordinary historical makes no session-setting writes through display-type change\nFAIL ordinary historical makes no session-setting writes through combat-deferred layout\nFAIL ordinary historical makes no session-setting writes through cleanup and re-embed\nFAIL ordinary overall makes no session-setting writes through embed\nFAIL ordinary overall makes no session-setting writes through 500 relayouts\nFAIL ordinary overall makes no session-setting writes through tab hide and reveal\nFAIL ordinary overall makes no session-setting writes through display-type change\nFAIL ordinary overall makes no session-setting writes through combat-deferred layout\nFAIL ordinary overall makes no session-setting writes through cleanup and re-embed\nFAIL gamepad current makes no session-setting writes through embed\nFAIL gamepad current makes no session-setting writes through 500 relayouts\nFAIL gamepad current makes no session-setting writes through tab hide and reveal\nFAIL gamepad current makes no session-setting writes through display-type change\nFAIL gamepad current makes no session-setting writes through combat-deferred layout\nFAIL gamepad current makes no session-setting writes through cleanup and re-embed\nFAIL gamepad historical makes no session-setting writes through embed\nFAIL gamepad historical makes no session-setting writes through 500 relayouts\nFAIL gamepad historical makes no session-setting writes through tab hide and reveal\nFAIL gamepad historical makes no session-setting writes through display-type change\nFAIL gamepad historical makes no session-setting writes through combat-deferred layout\nFAIL gamepad historical makes no session-setting writes through cleanup and re-embed\nFAIL gamepad overall makes no session-setting writes through embed\nFAIL gamepad overall makes no session-setting writes through 500 relayouts\nFAIL gamepad overall makes no session-setting writes through tab hide and reveal\nFAIL gamepad overall makes no session-setting writes through display-type change\nFAIL gamepad overall makes no session-setting writes through combat-deferred layout\nFAIL gamepad overall makes no session-setting writes through cleanup and re-embed\nmeter visibility: policyWrites=0 setterCalls=0 nativeEvents=4032 timerDispatches=4032 repeatedAddonRootShows=0 timerWrites=8064 pinnedNative=false\nnative backgrounds: updates=2000 skinCalls=2052\nFAIL tab hide gamepad=false threatOnly=false policy=0 repeated tab transitions reuse frames without timers or content rebuilds\nFAIL tab hide gamepad=false threatOnly=false policy=2 repeated tab transitions reuse frames without timers or content rebuilds\nFAIL tab hide gamepad=true threatOnly=false policy=0 repeated tab transitions reuse frames without timers or content rebuilds\nFAIL tab hide gamepad=true threatOnly=false policy=2 repeated tab transitions reuse frames without timers or content rebuilds\nmeter tab transitions: cycles=4000 threatResurrections=0 rootResurrections=0\nFAIL retail geometry avoids native content rebuilds\nFAIL retail layout owns display type while the native menu owns its session choice\nFAIL retail reopen retains current content without extra rebuilds\nFAIL forever geometry avoids native content rebuilds\nFAIL forever layout owns display type while the native menu owns its session choice\nFAIL forever reopen retains current content without extra rebuilds\nFAIL era geometry avoids native content rebuilds\nFAIL era layout owns display type while the native menu owns its session choice\nFAIL era reopen retains current content without extra rebuilds\nFAIL anniversary geometry avoids native content rebuilds\nFAIL anniversary layout owns display type while the native menu owns its session choice\nFAIL anniversary reopen retains current content without extra rebuilds\nFAIL mists geometry avoids native content rebuilds\nFAIL mists layout owns display type while the native menu owns its session choice\nFAIL mists reopen retains current content without extra rebuilds\nFAIL forever-gamepad geometry avoids native content rebuilds\nFAIL forever-gamepad layout owns display type while the native menu owns its session choice\nFAIL forever-gamepad reopen retains current content without extra rebuilds\nnative meter ownership: 561 checks, 58 failures; geometry typeCalls=0 sessionCalls=1000 entryWalks=0 gamepadPatchTimers=0\n"
+    }
+  ],
+  "candidatePass": true,
+  "baselineRejected": true,
+  "allMutantsRejected": true
+}

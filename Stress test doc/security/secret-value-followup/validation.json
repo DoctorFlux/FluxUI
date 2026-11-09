@@ -1,0 +1,28 @@
+{
+  "scope": "Focused artifact/consumed-source validation; expected conditional failures remain findings; native taint and whole-current-addon acceptance NOT RUN",
+  "checks": {
+    "python": 3,
+    "luaHarnesses": 3,
+    "json": 7,
+    "csv": 3,
+    "localLinks": 24
+  },
+  "consumedSourceCurrentDrift": [],
+  "priorFullSuiteSourceDrift": [
+    "Core/Engine/MouseoverCast.lua",
+    "Core/Engine/Range.lua",
+    "ExtraButtonSystem/Engine/Action.lua",
+    "ExtraButtonSystem/Engine/Range.lua",
+    "ExtraButtonSystem/Engine/Widget.lua",
+    "ExtraButtonSystem/NonCombatGrid/UtilitySlots/Manager.lua",
+    "tests/mouseover_native.lua",
+    "tests/utility_mixed_faces.lua",
+    "tests/utility_secure_input.lua"
+  ],
+  "otherLuaChangesDuringFollowup": [
+    "Core/Engine/MouseoverCast.lua",
+    "tests/mouseover_native.lua"
+  ],
+  "errors": [],
+  "pass": true
+}

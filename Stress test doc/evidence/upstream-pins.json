@@ -1,0 +1,75 @@
+{
+  "retrievedUTC": "2026-11-07",
+  "provider": "GitHub plugin read-only GET; web API endpoint failed, local sandbox DNS failed; connector succeeded",
+  "repository": "Gethe/wow-ui-source",
+  "pins": {
+    "retail": {
+      "branch": "live",
+      "sha": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "version": "12.1.5.70783"
+    },
+    "forever": {
+      "branch": "forever",
+      "sha": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "version": "1.60.1.70862"
+    },
+    "era": {
+      "branch": "classic_era",
+      "sha": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "version": "1.15.9.70576"
+    },
+    "anniversary": {
+      "branch": "classic_anniversary",
+      "sha": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "version": "2.5.6.70577"
+    }
+  },
+  "files": [
+    {
+      "target": "retail",
+      "path": "Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureStateDriver.lua",
+      "gitBlobSHA": "4861b5fd4a3249c97f1a2fea45a4c13833d5117c",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureStateDriver.lua",
+      "contract": "Global registration APIs operate through SecureStateDriverManager; no Flux name ownership policy in Blizzard implementation."
+    },
+    {
+      "target": "forever",
+      "path": "Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureStateDriver.lua",
+      "gitBlobSHA": "4861b5fd4a3249c97f1a2fea45a4c13833d5117c",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureStateDriver.lua",
+      "contract": "Global registration APIs operate through SecureStateDriverManager; no Flux name ownership policy in Blizzard implementation."
+    },
+    {
+      "target": "era",
+      "path": "Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureStateDriver.lua",
+      "gitBlobSHA": "4861b5fd4a3249c97f1a2fea45a4c13833d5117c",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureStateDriver.lua",
+      "contract": "Global registration APIs operate through SecureStateDriverManager; no Flux name ownership policy in Blizzard implementation."
+    },
+    {
+      "target": "anniversary",
+      "path": "Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureStateDriver.lua",
+      "gitBlobSHA": "8e210c10fe046a264cba54e04f7458d995f8ad6a",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureStateDriver.lua",
+      "contract": "Global registration APIs operate through SecureStateDriverManager; no Flux name ownership policy in Blizzard implementation."
+    },
+    {
+      "target": "forever",
+      "path": "Interface/AddOns/Blizzard_ProjectConstants/Blizzard_ProjectConstants.toc",
+      "gitBlobSHA": "f151c7c8d9234fc834d1db68cdad6f9342d8bb8f",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_ProjectConstants/Blizzard_ProjectConstants.toc"
+    },
+    {
+      "target": "forever",
+      "path": "Interface/AddOns/Blizzard_ProjectConstants/Camelot/ProjectConstants.lua",
+      "gitBlobSHA": "c6e0065736c29c02b49b3fbc5cc3c8a57d775ea4",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_ProjectConstants/Camelot/ProjectConstants.lua"
+    },
+    {
+      "target": "forever",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleFrameAPIDocumentation.lua",
+      "gitBlobSHA": "07debf919e8b4d43087306d2eccfb8e18e8f2c82",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleFrameAPIDocumentation.lua"
+    }
+  ]
+}

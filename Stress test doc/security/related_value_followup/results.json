@@ -1,0 +1,348 @@
+{
+  "captured_at_utc": "2026-11-07T12:15:22.198641+00:00",
+  "scope": "Exact production helper/painter fragments and complete existing secret helpers, with narrow frame/API mocks and artificial opaque table traps. No native secret number, taint VM or attribution of USER-001. Getter contracts match current root-fetched pinned Forever blobs.",
+  "client": "Forever source 1.60.1.70862; actual user runtime build/context unobserved",
+  "command": "python 'Stress test doc/security/related_value_followup/run_related_values.py'",
+  "all_processes_passed": true,
+  "metrics_identical_across_five_repetitions": true,
+  "expected_conditional_failures_per_sample": 1,
+  "contained_conditional_failures_per_sample": 1,
+  "native_errors_observed": 0,
+  "contracts": [
+    {
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleScriptRegionAPIDocumentation.lua",
+      "gitBlob": "e244d9eba05238cd1260a10ce34a14d07f7a6ae9",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleScriptRegionAPIDocumentation.lua",
+      "target": "Forever",
+      "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "sourceVersion": "1.60.1.70862",
+      "normalizedLocalGitBlob": "e244d9eba05238cd1260a10ce34a14d07f7a6ae9",
+      "localMatchesPinnedBlob": true
+    },
+    {
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleScriptRegionResizingAPIDocumentation.lua",
+      "gitBlob": "6425c8deefe565688f200fbff9d46c364a8f539b",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleScriptRegionResizingAPIDocumentation.lua",
+      "target": "Forever",
+      "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "sourceVersion": "1.60.1.70862",
+      "normalizedLocalGitBlob": "6425c8deefe565688f200fbff9d46c364a8f539b",
+      "localMatchesPinnedBlob": true
+    },
+    {
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleFrameAPIDocumentation.lua",
+      "gitBlob": "07debf919e8b4d43087306d2eccfb8e18e8f2c82",
+      "target": "Forever",
+      "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "sourceVersion": "1.60.1.70862",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleFrameAPIDocumentation.lua",
+      "normalizedLocalGitBlob": "07debf919e8b4d43087306d2eccfb8e18e8f2c82",
+      "localMatchesPinnedBlob": true
+    }
+  ],
+  "sources_before": {
+    "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\UnitFrames\\FluxUnitFrames_Shared.lua": "79d1d123ee4c628b706b6c8e6f0a102ebe0a87084e0908501f95d493042cb20f",
+    "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\Battlezonemap\\FluxMeterSkin.lua": "151cf7bb0279d5e48e08c0db671095d9919d2fbfc58bd075a6f61724379ee76e",
+    "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\Core\\API\\Secrets.lua": "471a54aeb783e922ed7dccbe64d3a10c679a27e27a15bdaf3db4697400afccce",
+    "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\Core\\API\\Secrets_Midnight.lua": "346563ff74f64ff32da99561cb6130bcf61bfea08a6a193ac90814bd850b303a",
+    "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\Core\\FluxAPI\\Secrets.lua": "847f629f15fe596cf072a4bcac6ded4496700a702c4748f6869bf14279ae9faa",
+    "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\Stress test doc\\security\\related_value_followup\\related_values.lua.txt": "ff68d5b66d8dd81659db01705148dfd2f2be90182e64a407a27bfcb822c6db9d",
+    "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\__AddonsForRef\\wow-ui-source-forever\\Interface\\AddOns\\Blizzard_APIDocumentationGenerated\\SimpleScriptRegionAPIDocumentation.lua": "3718e5f81b99525819264d2f50e473080541d655978f88ca85582acc4073fd82",
+    "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\__AddonsForRef\\wow-ui-source-forever\\Interface\\AddOns\\Blizzard_APIDocumentationGenerated\\SimpleScriptRegionResizingAPIDocumentation.lua": "0763ec5e3bb560b94ad7d1b12439fc5c53ea5de33290ffb8fd8de2737225f9af",
+    "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\__AddonsForRef\\wow-ui-source-forever\\Interface\\AddOns\\Blizzard_APIDocumentationGenerated\\SimpleFrameAPIDocumentation.lua": "c00bc77ee27f8fd81ba8b8d1bfd85fbd0ad817b22457adbe5adca6876a1d604a"
+  },
+  "sources_after": {
+    "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\UnitFrames\\FluxUnitFrames_Shared.lua": "79d1d123ee4c628b706b6c8e6f0a102ebe0a87084e0908501f95d493042cb20f",
+    "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\Battlezonemap\\FluxMeterSkin.lua": "151cf7bb0279d5e48e08c0db671095d9919d2fbfc58bd075a6f61724379ee76e",
+    "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\Core\\API\\Secrets.lua": "471a54aeb783e922ed7dccbe64d3a10c679a27e27a15bdaf3db4697400afccce",
+    "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\Core\\API\\Secrets_Midnight.lua": "346563ff74f64ff32da99561cb6130bcf61bfea08a6a193ac90814bd850b303a",
+    "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\Core\\FluxAPI\\Secrets.lua": "847f629f15fe596cf072a4bcac6ded4496700a702c4748f6869bf14279ae9faa",
+    "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\Stress test doc\\security\\related_value_followup\\related_values.lua.txt": "ff68d5b66d8dd81659db01705148dfd2f2be90182e64a407a27bfcb822c6db9d",
+    "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\__AddonsForRef\\wow-ui-source-forever\\Interface\\AddOns\\Blizzard_APIDocumentationGenerated\\SimpleScriptRegionAPIDocumentation.lua": "3718e5f81b99525819264d2f50e473080541d655978f88ca85582acc4073fd82",
+    "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\__AddonsForRef\\wow-ui-source-forever\\Interface\\AddOns\\Blizzard_APIDocumentationGenerated\\SimpleScriptRegionResizingAPIDocumentation.lua": "0763ec5e3bb560b94ad7d1b12439fc5c53ea5de33290ffb8fd8de2737225f9af",
+    "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\__AddonsForRef\\wow-ui-source-forever\\Interface\\AddOns\\Blizzard_APIDocumentationGenerated\\SimpleFrameAPIDocumentation.lua": "c00bc77ee27f8fd81ba8b8d1bfd85fbd0ad817b22457adbe5adca6876a1d604a"
+  },
+  "consumed_source_drift": [],
+  "tests": [
+    {
+      "sample": 1,
+      "exit_code": 0,
+      "metrics": [
+        {
+          "case": "secret_helper_controls",
+          "checks": 6,
+          "opaque_operations": 0,
+          "canaccessvalue_true_is_not_enough": true
+        },
+        {
+          "case": "heal_prediction_width",
+          "readable_control": "PASS",
+          "zero_control": "PASS",
+          "missing_owner_control": "PASS",
+          "disabled_control": "PASS",
+          "conditional_comparison_failure": 1,
+          "native_failure": "NOT_OBSERVED"
+        },
+        {
+          "case": "tiled_overlay_geometry",
+          "plain_control": "PASS",
+          "stable_cache_control": "PASS",
+          "hidden_control": "PASS",
+          "missing_control": "PASS",
+          "contained_conditional_arithmetic_failure": 1,
+          "subsequent_public_recovery": "PASS"
+        },
+        {
+          "case": "meter_guard_controls",
+          "opaque_header_restore": "PASS",
+          "secret_height_rejected": "PASS",
+          "secret_point_rejected": "PASS",
+          "secret_timer_alpha_rejected": "PASS",
+          "opaque_menu_alpha_forwarded": "PASS",
+          "opaque_operations": 0
+        },
+        {
+          "case": "portrait_alpha_guard_control",
+          "opaque_alpha": "PASS",
+          "plain_alpha": "PASS",
+          "missing_getter": "PASS",
+          "opaque_operations": 0
+        },
+        {
+          "case": "SUMMARY",
+          "checks": 35,
+          "failed": 0,
+          "conditional_failures": 1,
+          "contained_conditional_failures": 1,
+          "native_errors_observed": 0
+        }
+      ],
+      "stdout": "RESULT|secret_helper_controls|checks=6|opaque_operations=0|canaccessvalue_true_is_not_enough=true\nEXPECTED_CONDITIONAL_FAILURE|GEO-01|UnitFrames/FluxUnitFrames_Shared.lua:2564: MODELED_OPAQUE_COMPARE | stack traceback: | \t[C]: in function 'error' | \t...c\\security\\related_value_followup\\related_values.lua.txt:19: in metamethod 'lt' | \tUnitFrames/FluxUnitFrames_Shared.lua:2564: in field 'UpdateHealPrediction' | \t...c\\security\\related_value_followup\\related_values.lua.txt:75: in function <...c\\security\\related_value_followup\\related_values.lua.txt:75> | \t[C]: in function 'xpcall' | \t...c\\security\\related_value_followup\\related_values.lua.txt:75: in main chunk | \t[C]: in ?\nRESULT|heal_prediction_width|readable_control=PASS|zero_control=PASS|missing_owner_control=PASS|disabled_control=PASS|conditional_comparison_failure=1|native_failure=NOT_OBSERVED\nRESULT|tiled_overlay_geometry|plain_control=PASS|stable_cache_control=PASS|hidden_control=PASS|missing_control=PASS|contained_conditional_arithmetic_failure=1|subsequent_public_recovery=PASS\nRESULT|meter_guard_controls|opaque_header_restore=PASS|secret_height_rejected=PASS|secret_point_rejected=PASS|secret_timer_alpha_rejected=PASS|opaque_menu_alpha_forwarded=PASS|opaque_operations=0\nRESULT|portrait_alpha_guard_control|opaque_alpha=PASS|plain_alpha=PASS|missing_getter=PASS|opaque_operations=0\nRESULT|SUMMARY|checks=35|failed=0|conditional_failures=1|contained_conditional_failures=1|native_errors_observed=0\n",
+      "stderr": ""
+    },
+    {
+      "sample": 2,
+      "exit_code": 0,
+      "metrics": [
+        {
+          "case": "secret_helper_controls",
+          "checks": 6,
+          "opaque_operations": 0,
+          "canaccessvalue_true_is_not_enough": true
+        },
+        {
+          "case": "heal_prediction_width",
+          "readable_control": "PASS",
+          "zero_control": "PASS",
+          "missing_owner_control": "PASS",
+          "disabled_control": "PASS",
+          "conditional_comparison_failure": 1,
+          "native_failure": "NOT_OBSERVED"
+        },
+        {
+          "case": "tiled_overlay_geometry",
+          "plain_control": "PASS",
+          "stable_cache_control": "PASS",
+          "hidden_control": "PASS",
+          "missing_control": "PASS",
+          "contained_conditional_arithmetic_failure": 1,
+          "subsequent_public_recovery": "PASS"
+        },
+        {
+          "case": "meter_guard_controls",
+          "opaque_header_restore": "PASS",
+          "secret_height_rejected": "PASS",
+          "secret_point_rejected": "PASS",
+          "secret_timer_alpha_rejected": "PASS",
+          "opaque_menu_alpha_forwarded": "PASS",
+          "opaque_operations": 0
+        },
+        {
+          "case": "portrait_alpha_guard_control",
+          "opaque_alpha": "PASS",
+          "plain_alpha": "PASS",
+          "missing_getter": "PASS",
+          "opaque_operations": 0
+        },
+        {
+          "case": "SUMMARY",
+          "checks": 35,
+          "failed": 0,
+          "conditional_failures": 1,
+          "contained_conditional_failures": 1,
+          "native_errors_observed": 0
+        }
+      ],
+      "stdout": "RESULT|secret_helper_controls|checks=6|opaque_operations=0|canaccessvalue_true_is_not_enough=true\nEXPECTED_CONDITIONAL_FAILURE|GEO-01|UnitFrames/FluxUnitFrames_Shared.lua:2564: MODELED_OPAQUE_COMPARE | stack traceback: | \t[C]: in function 'error' | \t...c\\security\\related_value_followup\\related_values.lua.txt:19: in metamethod 'lt' | \tUnitFrames/FluxUnitFrames_Shared.lua:2564: in field 'UpdateHealPrediction' | \t...c\\security\\related_value_followup\\related_values.lua.txt:75: in function <...c\\security\\related_value_followup\\related_values.lua.txt:75> | \t[C]: in function 'xpcall' | \t...c\\security\\related_value_followup\\related_values.lua.txt:75: in main chunk | \t[C]: in ?\nRESULT|heal_prediction_width|readable_control=PASS|zero_control=PASS|missing_owner_control=PASS|disabled_control=PASS|conditional_comparison_failure=1|native_failure=NOT_OBSERVED\nRESULT|tiled_overlay_geometry|plain_control=PASS|stable_cache_control=PASS|hidden_control=PASS|missing_control=PASS|contained_conditional_arithmetic_failure=1|subsequent_public_recovery=PASS\nRESULT|meter_guard_controls|opaque_header_restore=PASS|secret_height_rejected=PASS|secret_point_rejected=PASS|secret_timer_alpha_rejected=PASS|opaque_menu_alpha_forwarded=PASS|opaque_operations=0\nRESULT|portrait_alpha_guard_control|opaque_alpha=PASS|plain_alpha=PASS|missing_getter=PASS|opaque_operations=0\nRESULT|SUMMARY|checks=35|failed=0|conditional_failures=1|contained_conditional_failures=1|native_errors_observed=0\n",
+      "stderr": ""
+    },
+    {
+      "sample": 3,
+      "exit_code": 0,
+      "metrics": [
+        {
+          "case": "secret_helper_controls",
+          "checks": 6,
+          "opaque_operations": 0,
+          "canaccessvalue_true_is_not_enough": true
+        },
+        {
+          "case": "heal_prediction_width",
+          "readable_control": "PASS",
+          "zero_control": "PASS",
+          "missing_owner_control": "PASS",
+          "disabled_control": "PASS",
+          "conditional_comparison_failure": 1,
+          "native_failure": "NOT_OBSERVED"
+        },
+        {
+          "case": "tiled_overlay_geometry",
+          "plain_control": "PASS",
+          "stable_cache_control": "PASS",
+          "hidden_control": "PASS",
+          "missing_control": "PASS",
+          "contained_conditional_arithmetic_failure": 1,
+          "subsequent_public_recovery": "PASS"
+        },
+        {
+          "case": "meter_guard_controls",
+          "opaque_header_restore": "PASS",
+          "secret_height_rejected": "PASS",
+          "secret_point_rejected": "PASS",
+          "secret_timer_alpha_rejected": "PASS",
+          "opaque_menu_alpha_forwarded": "PASS",
+          "opaque_operations": 0
+        },
+        {
+          "case": "portrait_alpha_guard_control",
+          "opaque_alpha": "PASS",
+          "plain_alpha": "PASS",
+          "missing_getter": "PASS",
+          "opaque_operations": 0
+        },
+        {
+          "case": "SUMMARY",
+          "checks": 35,
+          "failed": 0,
+          "conditional_failures": 1,
+          "contained_conditional_failures": 1,
+          "native_errors_observed": 0
+        }
+      ],
+      "stdout": "RESULT|secret_helper_controls|checks=6|opaque_operations=0|canaccessvalue_true_is_not_enough=true\nEXPECTED_CONDITIONAL_FAILURE|GEO-01|UnitFrames/FluxUnitFrames_Shared.lua:2564: MODELED_OPAQUE_COMPARE | stack traceback: | \t[C]: in function 'error' | \t...c\\security\\related_value_followup\\related_values.lua.txt:19: in metamethod 'lt' | \tUnitFrames/FluxUnitFrames_Shared.lua:2564: in field 'UpdateHealPrediction' | \t...c\\security\\related_value_followup\\related_values.lua.txt:75: in function <...c\\security\\related_value_followup\\related_values.lua.txt:75> | \t[C]: in function 'xpcall' | \t...c\\security\\related_value_followup\\related_values.lua.txt:75: in main chunk | \t[C]: in ?\nRESULT|heal_prediction_width|readable_control=PASS|zero_control=PASS|missing_owner_control=PASS|disabled_control=PASS|conditional_comparison_failure=1|native_failure=NOT_OBSERVED\nRESULT|tiled_overlay_geometry|plain_control=PASS|stable_cache_control=PASS|hidden_control=PASS|missing_control=PASS|contained_conditional_arithmetic_failure=1|subsequent_public_recovery=PASS\nRESULT|meter_guard_controls|opaque_header_restore=PASS|secret_height_rejected=PASS|secret_point_rejected=PASS|secret_timer_alpha_rejected=PASS|opaque_menu_alpha_forwarded=PASS|opaque_operations=0\nRESULT|portrait_alpha_guard_control|opaque_alpha=PASS|plain_alpha=PASS|missing_getter=PASS|opaque_operations=0\nRESULT|SUMMARY|checks=35|failed=0|conditional_failures=1|contained_conditional_failures=1|native_errors_observed=0\n",
+      "stderr": ""
+    },
+    {
+      "sample": 4,
+      "exit_code": 0,
+      "metrics": [
+        {
+          "case": "secret_helper_controls",
+          "checks": 6,
+          "opaque_operations": 0,
+          "canaccessvalue_true_is_not_enough": true
+        },
+        {
+          "case": "heal_prediction_width",
+          "readable_control": "PASS",
+          "zero_control": "PASS",
+          "missing_owner_control": "PASS",
+          "disabled_control": "PASS",
+          "conditional_comparison_failure": 1,
+          "native_failure": "NOT_OBSERVED"
+        },
+        {
+          "case": "tiled_overlay_geometry",
+          "plain_control": "PASS",
+          "stable_cache_control": "PASS",
+          "hidden_control": "PASS",
+          "missing_control": "PASS",
+          "contained_conditional_arithmetic_failure": 1,
+          "subsequent_public_recovery": "PASS"
+        },
+        {
+          "case": "meter_guard_controls",
+          "opaque_header_restore": "PASS",
+          "secret_height_rejected": "PASS",
+          "secret_point_rejected": "PASS",
+          "secret_timer_alpha_rejected": "PASS",
+          "opaque_menu_alpha_forwarded": "PASS",
+          "opaque_operations": 0
+        },
+        {
+          "case": "portrait_alpha_guard_control",
+          "opaque_alpha": "PASS",
+          "plain_alpha": "PASS",
+          "missing_getter": "PASS",
+          "opaque_operations": 0
+        },
+        {
+          "case": "SUMMARY",
+          "checks": 35,
+          "failed": 0,
+          "conditional_failures": 1,
+          "contained_conditional_failures": 1,
+          "native_errors_observed": 0
+        }
+      ],
+      "stdout": "RESULT|secret_helper_controls|checks=6|opaque_operations=0|canaccessvalue_true_is_not_enough=true\nEXPECTED_CONDITIONAL_FAILURE|GEO-01|UnitFrames/FluxUnitFrames_Shared.lua:2564: MODELED_OPAQUE_COMPARE | stack traceback: | \t[C]: in function 'error' | \t...c\\security\\related_value_followup\\related_values.lua.txt:19: in metamethod 'lt' | \tUnitFrames/FluxUnitFrames_Shared.lua:2564: in field 'UpdateHealPrediction' | \t...c\\security\\related_value_followup\\related_values.lua.txt:75: in function <...c\\security\\related_value_followup\\related_values.lua.txt:75> | \t[C]: in function 'xpcall' | \t...c\\security\\related_value_followup\\related_values.lua.txt:75: in main chunk | \t[C]: in ?\nRESULT|heal_prediction_width|readable_control=PASS|zero_control=PASS|missing_owner_control=PASS|disabled_control=PASS|conditional_comparison_failure=1|native_failure=NOT_OBSERVED\nRESULT|tiled_overlay_geometry|plain_control=PASS|stable_cache_control=PASS|hidden_control=PASS|missing_control=PASS|contained_conditional_arithmetic_failure=1|subsequent_public_recovery=PASS\nRESULT|meter_guard_controls|opaque_header_restore=PASS|secret_height_rejected=PASS|secret_point_rejected=PASS|secret_timer_alpha_rejected=PASS|opaque_menu_alpha_forwarded=PASS|opaque_operations=0\nRESULT|portrait_alpha_guard_control|opaque_alpha=PASS|plain_alpha=PASS|missing_getter=PASS|opaque_operations=0\nRESULT|SUMMARY|checks=35|failed=0|conditional_failures=1|contained_conditional_failures=1|native_errors_observed=0\n",
+      "stderr": ""
+    },
+    {
+      "sample": 5,
+      "exit_code": 0,
+      "metrics": [
+        {
+          "case": "secret_helper_controls",
+          "checks": 6,
+          "opaque_operations": 0,
+          "canaccessvalue_true_is_not_enough": true
+        },
+        {
+          "case": "heal_prediction_width",
+          "readable_control": "PASS",
+          "zero_control": "PASS",
+          "missing_owner_control": "PASS",
+          "disabled_control": "PASS",
+          "conditional_comparison_failure": 1,
+          "native_failure": "NOT_OBSERVED"
+        },
+        {
+          "case": "tiled_overlay_geometry",
+          "plain_control": "PASS",
+          "stable_cache_control": "PASS",
+          "hidden_control": "PASS",
+          "missing_control": "PASS",
+          "contained_conditional_arithmetic_failure": 1,
+          "subsequent_public_recovery": "PASS"
+        },
+        {
+          "case": "meter_guard_controls",
+          "opaque_header_restore": "PASS",
+          "secret_height_rejected": "PASS",
+          "secret_point_rejected": "PASS",
+          "secret_timer_alpha_rejected": "PASS",
+          "opaque_menu_alpha_forwarded": "PASS",
+          "opaque_operations": 0
+        },
+        {
+          "case": "portrait_alpha_guard_control",
+          "opaque_alpha": "PASS",
+          "plain_alpha": "PASS",
+          "missing_getter": "PASS",
+          "opaque_operations": 0
+        },
+        {
+          "case": "SUMMARY",
+          "checks": 35,
+          "failed": 0,
+          "conditional_failures": 1,
+          "contained_conditional_failures": 1,
+          "native_errors_observed": 0
+        }
+      ],
+      "stdout": "RESULT|secret_helper_controls|checks=6|opaque_operations=0|canaccessvalue_true_is_not_enough=true\nEXPECTED_CONDITIONAL_FAILURE|GEO-01|UnitFrames/FluxUnitFrames_Shared.lua:2564: MODELED_OPAQUE_COMPARE | stack traceback: | \t[C]: in function 'error' | \t...c\\security\\related_value_followup\\related_values.lua.txt:19: in metamethod 'lt' | \tUnitFrames/FluxUnitFrames_Shared.lua:2564: in field 'UpdateHealPrediction' | \t...c\\security\\related_value_followup\\related_values.lua.txt:75: in function <...c\\security\\related_value_followup\\related_values.lua.txt:75> | \t[C]: in function 'xpcall' | \t...c\\security\\related_value_followup\\related_values.lua.txt:75: in main chunk | \t[C]: in ?\nRESULT|heal_prediction_width|readable_control=PASS|zero_control=PASS|missing_owner_control=PASS|disabled_control=PASS|conditional_comparison_failure=1|native_failure=NOT_OBSERVED\nRESULT|tiled_overlay_geometry|plain_control=PASS|stable_cache_control=PASS|hidden_control=PASS|missing_control=PASS|contained_conditional_arithmetic_failure=1|subsequent_public_recovery=PASS\nRESULT|meter_guard_controls|opaque_header_restore=PASS|secret_height_rejected=PASS|secret_point_rejected=PASS|secret_timer_alpha_rejected=PASS|opaque_menu_alpha_forwarded=PASS|opaque_operations=0\nRESULT|portrait_alpha_guard_control|opaque_alpha=PASS|plain_alpha=PASS|missing_getter=PASS|opaque_operations=0\nRESULT|SUMMARY|checks=35|failed=0|conditional_failures=1|contained_conditional_failures=1|native_errors_observed=0\n",
+      "stderr": ""
+    }
+  ]
+}

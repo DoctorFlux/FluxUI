@@ -1,0 +1,51 @@
+--- baseline/tests/raid_party_frames.lua
++++ current/tests/raid_party_frames.lua
+@@ -64,7 +64,7 @@
+             SetTexCoord=function(s,...)s.uv={...}end,
+             SetSize=function(s,w,h)s.width,s.height=w,h end,SetHeight=function(s,h)s.height=h end,
+             SetColorTexture=function(s,...)s.color={...}end,SetPoint=function(s,...)s.point={...}end,
+-            ClearAllPoints=function(s)s.point=nil end,SetDrawLayer=function()end,SetAtlas=function(s,a)s.atlas=a end,
++            ClearAllPoints=function(s)s.point=nil end,SetDrawLayer=function()end,SetAtlas=function(s,a,use)s.atlas=a;s.useAtlasSize=use end,
+             Show=function(s)s.shown=true end,Hide=function(s)s.shown=false end,IsShown=function(s)return s.shown end}
+     end
+     function methods:HookScript(key,fn)
+@@ -105,7 +105,7 @@
+     UF.CreatePortrait=function(f)f.PortraitFrame=e.CreateFrame("Frame",nil,f);f.Portrait={}end
+     UF.CreateAtlasBorder=function(f)f.atlasBorderFrame=e.CreateFrame("Frame",nil,f)end
+     UF.CreateOuterBorder=function(f)
+-        f.outerBorderFrame=e.CreateFrame("Button",nil,f);f.nameText=text();f.levelText=text()
++        f.outerBorderFrame=e.CreateFrame("Button",nil,f);f.nameText=text();f.levelText=text();f.pvpTimer=text()
+         for _,key in ipairs({"classIcon","specIcon","pvpIcon","raidIcon","leaderIcon","assistantIcon","mainTankIcon","mainAssistIcon","masterLooterIcon"})do
+             f[key]=f.outerBorderFrame:CreateTexture();f[key]:Hide()
+         end
+@@ -178,6 +178,30 @@
+     db.partyAsRaid=false
+     check(P.ApplyOptions()and P.ready and #P.members==4 and #P.pets==4,"all four owners and pets prepared before exposure")
+     local member=P.members[1]
++    check(member._fluxPartyPvpLayer.level<member._fluxPartyIndicatorLayer.level,"native PvP badge is behind the level layer")
++    e.GetPVPTimer=function()error("another member must never use the player's PvP timer")end
++    e.UnitIsPVPFreeForAll=function()return false end;e.UnitIsPVP=function()return true end
++    e.UnitFactionGroup=function()return "Horde"end
++    e.UnitFrameUtil=nil;e.C_Texture=nil
++    P.UpdatePvpBadge(member)
++    check(member.pvpIcon.width==64 and member.pvpIcon.height==64 and member.pvpIcon.texture=="Interface\\TargetingFrame\\UI-PVP-Horde",
++        "legacy uses the client's full64x64 faction badge")
++    check(member.pvpIcon.point[2]==member.levelText and member.pvpTimer.points[1][2]==member.levelText
++        and member.pvpTimer.points[1][3]=="BOTTOM"and not member.pvpTimer.shown,"badge behind level and empty timer slot below it")
++    e.UnitIsPVPFreeForAll=function()return true end;P.UpdatePvpBadge(member)
++    check(member.pvpIcon.texture=="Interface\\TargetingFrame\\UI-PVP-FFA","native legacy FFA art retained")
++    e.UnitIsPVPFreeForAll=function()return opaque end;P.UpdatePvpBadge(member)
++    check(not member.pvpIcon.shown,"fallback cannot branch on opaque PvP flags")
++    local delegates=0
++    e.UnitFrameUtil={UpdateUnitPvPIndicator=function(elements,unit,mercenary)
++        delegates=delegates+1;check(unit=="party1"and mercenary==false,"native PvP renderer receives actual party token")
++        elements.pvpIcon:SetAtlas("native-client-pvp",true);elements.pvpIcon:Show()
++    end}
++    P.UpdatePvpBadge(member)
++    check(delegates==1 and member.pvpIcon.useAtlasSize,"modern path uses native renderer/atlas dimensions despite opaque flags")
++    check(member._fluxPartyPrestigePortrait.width==50 and member._fluxPartyPrestigePortrait.height==52
++        and member._fluxPartyPrestigeBadge.width==30,"prestige textures retain native player XML dimensions")
++    e.UnitFrameUtil=nil;e.UnitIsPVPFreeForAll=function()return false end;e.UnitIsPVP=function()return false end
+     check(member._fluxAuraLayer.level>member._fluxPartyIndicatorLayer.level and member._fluxAuraLayer.level<member.CastBar.level,
+         "party aura host is above portrait indicators and below cast header")
+     check(member.classIcon.shown and member.classIcon.width==36 and member.classIcon.point[2]==member.outerBorderFrame,

@@ -1,0 +1,64 @@
+{
+  "changeID": "PARTY-DEBUFF-BORDER-20261108",
+  "requirement": "REQ-RF-89",
+  "scope": "Normal player-style party member debuff icons and their preview; retain raid cell and focus appearance.",
+  "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\06\\01a1b0ac-547f-7972-8df9-fa26882e0e03\\party-debuff-borders-20261108T071313Z\\checkpoint.json",
+  "before": {
+    "RaidFrame/FluxRaidVisuals.lua": "33a52cc172d63d9cd8da8b122d3ea7335bac48ad18af4fc149a812a97da80d8d",
+    "RaidFrame/FluxRaidAuras.lua": "be3b9703545c97c499731f3c2ef17605f84d8e40d53b808b60f31d2d97393e07",
+    "RaidFrame/FluxRaidPreview.lua": "e5894ebc5df34ccb459fdc86d24c5d17c677e339f496bb1635c4823fc006ea4c"
+  },
+  "after": {
+    "RaidFrame/FluxRaidVisuals.lua": "556e57dcbb7127abbb3e28496c1a614e0942f855491b343d88479fc125a58b71",
+    "RaidFrame/FluxRaidAuras.lua": "5e2185bc0d5cbabbaf79215a6932cf6aa452bc06f9a60e7f333085cdfc716569",
+    "RaidFrame/FluxRaidPreview.lua": "aa0e7647f05f282cb7cc54f36ca98d23dc791e612365f931ddeaa90e6d312032"
+  },
+  "nativeSource": {
+    "ref": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+    "blob": "9e373b9e44e352e77771eef30f058217151dbdb7",
+    "url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_AuraContainer/Blizzard_CustomAuraButton.lua",
+    "contract": "Existing CustomAuraButton AddDispelTypeTexture native color/visibility ownership; party-created decoration is prepared before restriction. No new native API."
+  },
+  "implementation": [
+    "Every party left-side aura category gets an inner solid red rim and dark inner backing on the existing text host above the cooldown swipe. Non-dispellable/plain mode still has a visible edge.",
+    "Existing native dispel-color texture moves above the party cooldown; native owner still controls its color/visibility. Ordinary raid decoration retains its old parent/draw layer.",
+    "Readable fallback and party preview use the same prepared edges and public DebuffTypeColor. Borders stay inside icons; preserve zero gaps, dimensions, aura alpha, timers, counts, strict filtering and Flux input."
+  ],
+  "tests": {
+    "auraOwnerSuite": 12776,
+    "partyFocusIntegration": 1010,
+    "externalPartyStyleProbe": 3310,
+    "probe": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\06\\01a1b0ac-547f-7972-8df9-fa26882e0e03\\party-debuff-borders-20261108T071313Z\\party-border-smoke.lua",
+    "scriptsPass": 249,
+    "scriptsFail": 0,
+    "syntaxFiles": 913,
+    "syntaxFailures": [],
+    "ownedManifestDrift": []
+  },
+  "fullReport": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\06\\01a1b0ac-547f-7972-8df9-fa26882e0e03\\party-debuff-borders-20261108T071313Z\\full.json",
+  "resources": "8 textures per prepared party debuff icon; reuse existing above-cooldown text host. No added frame/event/hook/ticker/timer or per-frame work. Readable/preview color refreshes reuse edges. No native timing/performance claim.",
+  "nativePending": "Current-client pixels, perceived contrast, actual secret/protected VM, taint and performance unverified. Desktop fixture checks establish construction/layer/filter ownership only.",
+  "recovery": "Dated selected before-source.zip and verified all-history bundle outside AddOns;45 settings metadata entries read-only; prior full source/private recovery retained. No foreground/input/WTF/profiler/settings writes, manual sync, branch/commit/push.",
+  "copies": [
+    {
+      "client": "_retail_",
+      "mismatches": []
+    },
+    {
+      "client": "_forever_",
+      "mismatches": []
+    },
+    {
+      "client": "_classic_",
+      "mismatches": []
+    },
+    {
+      "client": "_classic_era_",
+      "mismatches": []
+    },
+    {
+      "client": "_anniversary_",
+      "mismatches": []
+    }
+  ]
+}

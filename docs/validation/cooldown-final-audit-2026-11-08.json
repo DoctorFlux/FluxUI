@@ -1,0 +1,80 @@
+{
+  "changeID": "COOLDOWN-FINAL-AUDIT-20261108",
+  "previousGoalTurn": "PROGRESS: actual missing-profile patch;202checks and native Forever creation changed authoritative state",
+  "thisTurn": "PROGRESS: full validation refreshed against current928Lua/261scripts; prior unrelated inventory/verification drift addressed; completion gaps enumerated",
+  "head": "1fd463f4de4bbff659f4e402c6f31138c49765b4 plus preserved current local work",
+  "referenceImages": "All four original accepted images re-opened and compared with requirements table; no design substituted",
+  "requirements": [
+    {
+      "id": "CDV-01",
+      "requirement": "Native Edit Mode save and unreplaced native systems remain functional",
+      "implementation": "Existing native-event/selector/tooltip ownership fixes;295focused checks; user Forever save/viewer pass",
+      "completion": "INCOMPLETE native before/after saved metadata and Retail/mixed-system checks pending"
+    },
+    {
+      "id": "CDV-02",
+      "requirement": "Default four viewer bottoms above player and available class resources",
+      "implementation": "Public scaled OOC geometry; four managed anchors; class/form shared requests",
+      "completion": "PARTIAL: Forever current player-bound rectangles and offsets PASS; class-resource characters and other native clients pending"
+    },
+    {
+      "id": "CDV-03",
+      "requirement": "Use all four accepted screenshots settings and placement",
+      "implementation": "All screenshots re-inspected; native encoded setting model matches requirement table",
+      "completion": "PARTIAL: all four native active saved setting groups PASS; matched rendered previews pending"
+    },
+    {
+      "id": "CDV-04",
+      "requirement": "Preserve custom profiles and edits; no repeated resets",
+      "implementation": "Actual owner202checks cover existing names/custom selection/native-save handoff/recovery",
+      "completion": "PARTIAL: native automatic reload preserves exactly one profile; native custom edit/save/reload pending"
+    },
+    {
+      "id": "CDV-05",
+      "requirement": "Only supported native clients; no new polling/private aura reads or feature loss",
+      "implementation": "Retail/Forever capabilities; unavailable progression/Era/Anniversary contracts skip; full261checks PASS",
+      "completion": "Native unavailable-client/retail cases pending; source/model guards verified"
+    },
+    {
+      "id": "CDV-06",
+      "requirement": "Exact source identities and useful before/after evidence",
+      "implementation": "Dated external checkpoint; archived baseline rejects; five matched pairs; current full manifest stable",
+      "completion": "Desktop/source evidence PASS; native visual/taint/performance scopes remain separately unverified"
+    },
+    {
+      "id": "CDV-07",
+      "requirement": "Create one FluxUI profile if absent; keep existing profile unchanged",
+      "implementation": "Actual existence check and shared readiness job; old stage marker no longer blocks; no duplicate on20events",
+      "completion": "Forever creation and second reload PASS exactly one selected FluxUI withBugTabs0; custom edited-profile preservation remains desktop-only"
+    }
+  ],
+  "nativeAttempts": [
+    {
+      "utc": "2026-11-08T22:53:15Z",
+      "operation": "Guarded safe reload",
+      "result": "REFUSED before input; Forever foreground"
+    },
+    {
+      "utc": "2026-11-08T22:53:55Z",
+      "operation": "Read-only exact-window screenshot",
+      "result": "Captured without input/focus change; user playing; does not prove settings/reload"
+    },
+    {
+      "utc": "2026-11-08T22:55:15Z",
+      "operation": "Read public active-layout cooldown settings",
+      "result": "REFUSED before first key; no command sent"
+    }
+  ],
+  "safeNextAction": "Keep browser/chat active with Forever open behind it for guarded native settings/geometry/reload. Actual native Edit Mode/custom-save/combat tests need native UI interactions; do not call internal setters to bypass restrictions.",
+  "goal": "ACTIVE; full objective is not proven complete",
+  "runtimeChangesThisTurn": false,
+  "preferences": "No profiling/enable/settings changes; no new frames/timers or diagnostic runtime additions; no foreground/mouse/physical keyboard/clipboard control; no gameplay; no commit/push",
+  "evidence": [
+    "docs/validation/cooldown-final-current-full-2026-11-08.json",
+    "docs/validation/cooldown-final-current-source-guard-2026-11-08.json",
+    "docs/validation/cooldown-presence-comparison-2026-11-08.json",
+    "docs/validation/cooldown-presence-native-2026-11-08.json"
+  ],
+  "followup": "Native reload/settings/current player bounds PASS; see cooldown-native-acceptance-2026-11-09.json. Remaining entries are narrowed by this evidence, not dismissed.",
+  "latestNativeEvidence": "cooldown-native-acceptance-2026-11-09.json"
+}

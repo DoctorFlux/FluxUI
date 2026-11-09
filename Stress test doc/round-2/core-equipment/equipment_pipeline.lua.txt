@@ -1,0 +1,121 @@
+-- COMPLETE current Compat/Inv/Includes/EquipmentSets/Equipment/Apply modules. Only native
+-- inventory, public Flux.Inventory facts, event delivery and clocks are modeled.
+local checks=0
+local function check(v,msg)checks=checks+1;assert(v,msg)end
+local clients={"classic_era","classic_anniversary","classic","live","forever"}
+local function boot(client,mode)
+    local s={combat=mode=="cancel-pending",equipped={[1]=1001,[3]=1003},bags={},events={},warnings={},frames={},timers={},store={},pickups=0,equips=0,checkpointClears=0,allowEquip=mode~="cancel-active"}
+    local profile={equipment={[1]={itemID=2001}}}
+    if mode=="missing"then s.bags={} elseif mode=="partial"then profile.equipment[3]={itemID=2003};s.bags[1]=2001
+    elseif mode=="matched"then s.equipped[1]=2001
+    elseif mode=="disabled"then profile.includes={equipment=false}
+    elseif mode=="uncaptured"then profile.equipment=nil
+    else s.bags[1]=2001 end
+    local e=setmetatable({},{__index=_G});e._G=e
+    local R={GetProfile=function()return profile end,GetStore=function()return s.store end,
+        On=function()end,ApplyInfoFrameForProfile=function()end,LinkProfilePresets=function()end,
+        Warn=function(message)s.warnings[#s.warnings+1]=message end,Print=function()end,
+        SetLoadCheckpoint=function(name,step)s.checkpoint={name=name,step=step}end,
+        ClearLoadCheckpoint=function()s.checkpoint=nil;s.checkpointClears=s.checkpointClears+1 end,
+        Fire=function(...)s.events[#s.events+1]={...}end}
+    e.FluxRespec=R;e.FLUX_API={isRetail=client=="live"or client=="forever",isV12=client=="live",isClassicEra=client=="classic_era"}
+    e.time=function()return 100 end;e.GetTime=function()return 100 end
+    e.InCombatLockdown=function()return s.combat end
+    e.GetInventoryItemLink=function(_,slot)local id=s.equipped[slot];return id and("item:"..id..":")end
+    e.GetInventoryItemID=function(_,slot)return s.equipped[slot]end
+    e.GetItemInfo=function(id)return"Item"..tostring(id),nil,nil,nil,nil,nil,nil,nil,"INVTYPE_HEAD"end
+    e.IsInventoryItemLocked=function()return false end
+    e.ClearCursor=function()s.cursor=nil end
+    e.GetCursorInfo=function()return s.cursor and"item"end
+    e.EquipCursorItem=function(slot)
+        check(not s.combat,"no gear mutation while modeled combat lock remains")
+        s.equips=s.equips+1
+        if s.allowEquip and s.cursor then local old=s.equipped[slot];s.equipped[slot]=s.cursor.id;s.bags[s.cursor.slot]=old end
+    end
+    e.C_Container={GetContainerNumSlots=function(bag)return bag==0 and 4 or 0 end,
+        GetContainerItemID=function(bag,slot)return bag==0 and s.bags[slot]or nil end,
+        GetContainerItemLink=function(bag,slot)local id=bag==0 and s.bags[slot];return id and("item:"..id..":")end,
+        GetContainerItemInfo=function()return {isLocked=false}end,
+        PickupContainerItem=function(bag,slot)
+            check(not s.combat,"no bag pickup during modeled combat")
+            s.pickups=s.pickups+1
+            if bag==0 and s.bags[slot]then s.cursor={id=s.bags[slot],slot=slot}end
+        end}
+    e.CreateFrame=function()
+        local f={events={},scripts={}}
+        function f:RegisterEvent(event)self.events[event]=true end
+        function f:UnregisterAllEvents()self.events={}end
+        function f:SetScript(key,fn)self.scripts[key]=fn end
+        s.frames[#s.frames+1]=f;return f
+    end
+    e.C_Timer={After=function(delay,fn)s.timers[#s.timers+1]={delay=delay,fn=fn}end}
+    if client=="live"or client=="forever"or client=="classic"then
+        e.C_EquipmentSet={CanUseEquipmentSets=function()return true end,GetEquipmentSetIDs=function()return {}end,
+            GetEquipmentSetID=function()return nil end,UseEquipmentSet=function()error("unlinked native set must not be used")end}
+    end
+    local flux={Inventory={Containers={GetCarriedBagIDs=function()return {0}end},IsReady=function()return true end,
+        IsBankOpen=function()return false end,CanTakeFromBank=function()return false end,
+        Find=function(id,opts)
+            local list={};if opts.bags then for slot,item in pairs(s.bags)do if item==id then list[#list+1]={bag=0,slot=slot,itemID=id,region="bags"}end end end;return list
+        end}}
+    local ns={Flux=flux};e.Flux=flux
+    for _,path in ipairs({"Respec/FluxRespec_Compat.lua","Respec/FluxRespec_Inv.lua","Respec/FluxRespec_Includes.lua","Respec/FluxRespec_EquipmentSets.lua","Respec/FluxRespec_Equipment.lua","Respec/FluxRespec_Apply.lua"})do
+        assert(loadfile(path,"t",e))("_FluxUI",ns)
+    end
+    check(type(R.EquipmentSets.TryApply)=="function","complete production equipment-set bridge is present")
+    function s.done()local out={};for _,event in ipairs(s.events)do if event[1]=="APPLY_DONE"then out[#out+1]=event end end;return out end
+    function s.regen()
+        for _,f in ipairs(s.frames)do local fn=f.scripts.OnEvent;if f.events.PLAYER_REGEN_ENABLED and fn then fn(f,"PLAYER_REGEN_ENABLED")end end
+    end
+    function s.flush()
+        local work=s.timers;s.timers={};for _,t in ipairs(work)do t.fn()end
+    end
+    return s,R,profile,e
+end
+local missingFailures,cancelWrites,activeWrites=0,0,0
+for _,client in ipairs(clients)do
+    for _,mode in ipairs({"missing","partial"})do
+        local s,R,p=boot(client,mode)
+        check(R.Equipment.AnyGearChangeNeeded(p.equipment),"real equipment owner sees initial mismatch")
+        R.Apply.Run("RequestedGear")
+        local done=s.done()
+        check(#done==1 and done[1][2]==true and done[1][3]=="DONE","missing gear currently reports full success")
+        check(R.Equipment.AnyGearChangeNeeded(p.equipment)and not R.Apply.IsProfileFullyApplied("RequestedGear"),"real owner still proves requested gear mismatch after success")
+        check(s.checkpoint==nil and s.checkpointClears==1,"false success cleared recovery checkpoint")
+        check(#s.warnings==1,"missing gear warning does not prevent success")
+        if mode=="partial"then check(s.equipped[1]==2001 and s.equipped[3]==1003,"available item moves while missing requested item remains")end
+        missingFailures=missingFailures+1
+        print(string.format("METRIC CORE04 %s mode=%s done=true mismatch=true checkpoint=false pickups=%d warnings=%d",client,mode,s.pickups,#s.warnings))
+    end
+    do
+        local s,R,p=boot(client,"cancel-pending")
+        R.Apply.Run("CancelledGear")
+        check(R.Apply.IsRunning()and R.Equipment._pending~=nil and #s.done()==0,"combat queues real Equipment request")
+        R.Apply.Cancel()
+        check(not R.Apply.IsRunning()and #s.done()==1 and not s.done()[1][2]and s.done()[1][3]=="CANCELLED","orchestrator confirms cancellation")
+        check(R.Equipment._pending~=nil,"cancellation leaves real gear pending request")
+        s.combat=false;s.regen();s.flush()
+        check(s.equipped[1]==2001 and s.pickups==1 and s.equips==1,"cancelled gear request still mutates equipment after regen")
+        check(#s.done()==1 and not s.done()[1][2],"stale callback guard prevents second success but does not prevent gear mutation")
+        cancelWrites=cancelWrites+s.equips
+        print(string.format("METRIC CORE05 %s mode=pending cancelled=true gearWritesAfterCancel=%d applyDoneCount=%d",client,s.equips,#s.done()))
+    end
+    do
+        local s,R=boot(client,"cancel-active")
+        R.Apply.Run("ActiveCancelledGear")
+        check(R.Apply.IsRunning()and R.Equipment._active and #s.timers==1,"real active gear swap waits on scheduled continuation")
+        local before=s.equips;R.Apply.Cancel();s.allowEquip=true;s.flush()
+        check(s.equipped[1]==2001 and s.equips==before+1,"active gear work also survives cancellation")
+        check(#s.done()==1 and not s.done()[1][2],"active stale equipment callback cannot mark apply success")
+        activeWrites=activeWrites+s.equips-before
+        print(string.format("METRIC CORE05 %s mode=active cancelled=true gearWritesAfterCancel=%d",client,s.equips-before))
+    end
+    for _,mode in ipairs({"ordinary","matched","disabled","uncaptured"})do
+        local s,R,p=boot(client,mode);R.Apply.Run("PositiveControl")
+        check(#s.done()==1 and s.done()[1][2]and not R.Apply.IsRunning(),"ordinary/matched/disabled/uncaptured profile positive control")
+        if mode=="ordinary"then check(s.equipped[1]==2001 and s.pickups==1,"ordinary available gear equips exactly once")
+        elseif mode=="matched"then check(s.pickups==0,"already matched gear does not move")
+        else check(s.pickups==0 and s.equipped[1]==1001,"disabled/uncaptured gear stays untouched")end
+    end
+end
+print(string.format("SUMMARY checks=%d clients=5 CORE04_falseSuccessCases=%d CORE05_pendingWritesAfterCancel=%d CORE05_activeWritesAfterCancel=%d native=false",checks,missingFailures,cancelWrites,activeWrites))

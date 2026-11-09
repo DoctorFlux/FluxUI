@@ -1,0 +1,343 @@
+{
+  "capturedUTC": "2026-11-07T19:19:31.999570+00:00",
+  "baseline": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\07\\01a1b5b8-1789-7050-b49c-88d0a742e874\\roadmap-fixes-20261107T184559Z\\binding-baseline",
+  "scope": "Actual production binding/painter/range/state owners under desktop public/opaque mocks; native VM/hardware/rendering/taint/FPS pending.",
+  "hashNormalization": "CRLF to LF only",
+  "sources": [
+    {
+      "path": "Binding/Core/Apply.lua",
+      "sha256": "da591fba6a7cae61ee332f809e9256ea7f52a96229f33fbd85d0f67d839f51e6"
+    },
+    {
+      "path": "Binding/Core/ChordMap.lua",
+      "sha256": "883e642161779ac80ffeb5d79c1343d0f4e84d36096bd8f1c8a4509545aa126c"
+    },
+    {
+      "path": "Binding/Core/PushPress.lua",
+      "sha256": "bba24f6b17a3ee969159607232ceae7bf23727bc046e640da2122d9a5d5ec031"
+    },
+    {
+      "path": "Binding/Respec.lua",
+      "sha256": "a16b88e9f0a6dd1ec59cbc75abd956935c188783c95d9139f14a573079d23033"
+    },
+    {
+      "path": "Bars/SlotProgram.lua",
+      "sha256": "10d60916231ca661c671c855eb03a67b2c737bcdb21eb6e4b34cb84713a3ed2a"
+    },
+    {
+      "path": "Bars/Hosts.lua",
+      "sha256": "b560ada112381b34057426ccfc5b9d900a169fc330956e45746433f687239ea9"
+    },
+    {
+      "path": "Bars/State.lua",
+      "sha256": "52f005c429b03e4d04495a6183f200323fa71e71ecd0127296b29f4aa0a9dfef"
+    },
+    {
+      "path": "Bars/Watch.lua",
+      "sha256": "2a5e85c6a99a579d566f9728552cec22120dbf363a2e9fa1a4f0cbe9e76eb564"
+    },
+    {
+      "path": "Bars/Paint.lua",
+      "sha256": "7885acc887459081f924384e12baeca79bf5a8722f090cdb70423859274154a1"
+    },
+    {
+      "path": "ExtraButtonSystem/Engine/Paint.lua",
+      "sha256": "5a763a9b7153b84580a3c9bbc776626a7f470c1d922fb0304a22bdb808f0461b"
+    },
+    {
+      "path": "Core/Engine/Range.lua",
+      "sha256": "cbd2f7c0e57ac2cee3d99e4f1c3e8fc778773e9d3a1926500fc6099db3f4b778"
+    },
+    {
+      "path": "tests/binding_roadmap_regression.lua",
+      "sha256": "c316dd2c0942b1f2a34f82299bb762703b6fe5a89e267cc813e6ac7c645d8c00"
+    }
+  ],
+  "runs": [
+    {
+      "finding": "BIND-01",
+      "variant": "checkpoint-baseline",
+      "command": [
+        "lua",
+        "tests/binding_roadmap_regression.lua",
+        "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\07\\01a1b5b8-1789-7050-b49c-88d0a742e874\\roadmap-fixes-20261107T184559Z\\binding-baseline",
+        "BIND-01"
+      ],
+      "exit": 1,
+      "expectedOutcome": "reject",
+      "matchesExpectation": true,
+      "output": "lua: tests/binding_roadmap_regression.lua:5: overlapping columns retain independent hold owners\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/binding_roadmap_regression.lua:5: in local 'check'\n\ttests/binding_roadmap_regression.lua:92: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "finding": "BIND-01",
+      "variant": "fixed",
+      "command": [
+        "lua",
+        "tests/binding_roadmap_regression.lua",
+        "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI",
+        "BIND-01"
+      ],
+      "exit": 0,
+      "expectedOutcome": "pass",
+      "matchesExpectation": true,
+      "output": "binding roadmap: 365 checks passed (BIND-01; native acceptance pending)\n"
+    },
+    {
+      "finding": "BIND-02",
+      "variant": "checkpoint-baseline",
+      "command": [
+        "lua",
+        "tests/binding_roadmap_regression.lua",
+        "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\07\\01a1b5b8-1789-7050-b49c-88d0a742e874\\roadmap-fixes-20261107T184559Z\\binding-baseline",
+        "BIND-02"
+      ],
+      "exit": 1,
+      "expectedOutcome": "reject",
+      "matchesExpectation": true,
+      "output": "lua: tests/binding_roadmap_regression.lua:5: modifier/base key round-trip including delimiter\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/binding_roadmap_regression.lua:5: in local 'check'\n\ttests/binding_roadmap_regression.lua:131: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "finding": "BIND-02",
+      "variant": "fixed",
+      "command": [
+        "lua",
+        "tests/binding_roadmap_regression.lua",
+        "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI",
+        "BIND-02"
+      ],
+      "exit": 0,
+      "expectedOutcome": "pass",
+      "matchesExpectation": true,
+      "output": "binding roadmap: 645 checks passed (BIND-02; native acceptance pending)\n"
+    },
+    {
+      "finding": "BIND-03",
+      "variant": "checkpoint-baseline",
+      "command": [
+        "lua",
+        "tests/binding_roadmap_regression.lua",
+        "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\07\\01a1b5b8-1789-7050-b49c-88d0a742e874\\roadmap-fixes-20261107T184559Z\\binding-baseline",
+        "BIND-03"
+      ],
+      "exit": 1,
+      "expectedOutcome": "reject",
+      "matchesExpectation": true,
+      "output": "lua: tests/binding_roadmap_regression.lua:5: reentrant newest snapshot survives outer return\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/binding_roadmap_regression.lua:5: in local 'check'\n\ttests/binding_roadmap_regression.lua:206: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "finding": "BIND-03",
+      "variant": "fixed",
+      "command": [
+        "lua",
+        "tests/binding_roadmap_regression.lua",
+        "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI",
+        "BIND-03"
+      ],
+      "exit": 0,
+      "expectedOutcome": "pass",
+      "matchesExpectation": true,
+      "output": "binding roadmap: 25 checks passed (BIND-03; native acceptance pending)\n"
+    },
+    {
+      "finding": "BIND-04",
+      "variant": "checkpoint-baseline",
+      "command": [
+        "lua",
+        "tests/binding_roadmap_regression.lua",
+        "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\07\\01a1b5b8-1789-7050-b49c-88d0a742e874\\roadmap-fixes-20261107T184559Z\\binding-baseline",
+        "BIND-04"
+      ],
+      "exit": 1,
+      "expectedOutcome": "reject",
+      "matchesExpectation": true,
+      "output": "lua: tests/binding_roadmap_regression.lua:5: nil/denied color cannot abort actual press hook\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/binding_roadmap_regression.lua:5: in local 'check'\n\ttests/binding_roadmap_regression.lua:140: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "finding": "BIND-04",
+      "variant": "fixed",
+      "command": [
+        "lua",
+        "tests/binding_roadmap_regression.lua",
+        "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI",
+        "BIND-04"
+      ],
+      "exit": 0,
+      "expectedOutcome": "pass",
+      "matchesExpectation": true,
+      "output": "binding roadmap: 115 checks passed (BIND-04; native acceptance pending)\n"
+    },
+    {
+      "finding": "BIND-05",
+      "variant": "checkpoint-baseline",
+      "command": [
+        "lua",
+        "tests/binding_roadmap_regression.lua",
+        "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\07\\01a1b5b8-1789-7050-b49c-88d0a742e874\\roadmap-fixes-20261107T184559Z\\binding-baseline",
+        "BIND-05"
+      ],
+      "exit": 1,
+      "expectedOutcome": "reject",
+      "matchesExpectation": true,
+      "output": "lua: tests/binding_roadmap_regression.lua:5: regen clears removed final logical entry\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/binding_roadmap_regression.lua:5: in local 'check'\n\ttests/binding_roadmap_regression.lua:233: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "finding": "BIND-05",
+      "variant": "fixed",
+      "command": [
+        "lua",
+        "tests/binding_roadmap_regression.lua",
+        "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI",
+        "BIND-05"
+      ],
+      "exit": 0,
+      "expectedOutcome": "pass",
+      "matchesExpectation": true,
+      "output": "binding roadmap: 155 checks passed (BIND-05; native acceptance pending)\n"
+    },
+    {
+      "finding": "BIND-06",
+      "variant": "checkpoint-baseline",
+      "command": [
+        "lua",
+        "tests/binding_roadmap_regression.lua",
+        "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\07\\01a1b5b8-1789-7050-b49c-88d0a742e874\\roadmap-fixes-20261107T184559Z\\binding-baseline",
+        "BIND-06"
+      ],
+      "exit": 1,
+      "expectedOutcome": "reject",
+      "matchesExpectation": true,
+      "output": "lua: tests/binding_roadmap_regression.lua:5: bijective chord frame identity including literal escape patterns\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/binding_roadmap_regression.lua:5: in local 'check'\n\ttests/binding_roadmap_regression.lua:298: in main chunk\n\t[C]: in ?\n",
+      "dependencyVerifiedFromCheckpoint": {
+        "path": "Binding/Core/SecurePool.lua",
+        "sha256": "e25ce53f03c1122ed9a2e367e42807f01a4a74ab87e6e71c06f3d05b12d06fb2"
+      }
+    },
+    {
+      "finding": "BIND-06",
+      "variant": "fixed",
+      "command": [
+        "lua",
+        "tests/binding_roadmap_regression.lua",
+        "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI",
+        "BIND-06"
+      ],
+      "exit": 0,
+      "expectedOutcome": "pass",
+      "matchesExpectation": true,
+      "output": "binding roadmap: 1729 checks passed (BIND-06; native acceptance pending)\n"
+    },
+    {
+      "finding": "MOD-01",
+      "variant": "checkpoint-baseline",
+      "command": [
+        "lua",
+        "tests/binding_roadmap_regression.lua",
+        "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\07\\01a1b5b8-1789-7050-b49c-88d0a742e874\\roadmap-fixes-20261107T184559Z\\binding-baseline",
+        "MOD-01"
+      ],
+      "exit": 1,
+      "expectedOutcome": "reject",
+      "matchesExpectation": true,
+      "output": "lua: tests/binding_roadmap_regression.lua:5: unchanged combat index does not remove/reinsert or repaint stable memberships\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/binding_roadmap_regression.lua:5: in local 'check'\n\ttests/binding_roadmap_regression.lua:267: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "finding": "MOD-01",
+      "variant": "fixed",
+      "command": [
+        "lua",
+        "tests/binding_roadmap_regression.lua",
+        "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI",
+        "MOD-01"
+      ],
+      "exit": 0,
+      "expectedOutcome": "pass",
+      "matchesExpectation": true,
+      "output": "binding roadmap: 176 checks passed (MOD-01; native acceptance pending)\n"
+    },
+    {
+      "finding": "all",
+      "sample": 1,
+      "variant": "fixed",
+      "command": [
+        "lua",
+        "tests/binding_roadmap_regression.lua"
+      ],
+      "exit": 0,
+      "output": "binding roadmap: 3210 checks passed (BIND-01..06; native acceptance pending)\n",
+      "matchesExpectation": true
+    },
+    {
+      "finding": "all",
+      "sample": 2,
+      "variant": "fixed",
+      "command": [
+        "lua",
+        "tests/binding_roadmap_regression.lua"
+      ],
+      "exit": 0,
+      "output": "binding roadmap: 3210 checks passed (BIND-01..06; native acceptance pending)\n",
+      "matchesExpectation": true
+    },
+    {
+      "finding": "all",
+      "sample": 3,
+      "variant": "fixed",
+      "command": [
+        "lua",
+        "tests/binding_roadmap_regression.lua"
+      ],
+      "exit": 0,
+      "output": "binding roadmap: 3210 checks passed (BIND-01..06; native acceptance pending)\n",
+      "matchesExpectation": true
+    }
+  ],
+  "allExpected": true,
+  "baselineChecksVerified": "All seven reject at named behavioral assertions, not missing dependencies.",
+  "baselineSources": [
+    {
+      "path": "Binding/Core/Apply.lua",
+      "sha256": "311a9bd42f833c7c6ba63762427de45ab99db664ce008a6afda576d64b431c5a"
+    },
+    {
+      "path": "Binding/Core/ChordMap.lua",
+      "sha256": "0b3328c9ff5f8d26b209617b3fd339ba7c8733c20afce8b76c0516427a566945"
+    },
+    {
+      "path": "Binding/Core/PushPress.lua",
+      "sha256": "558d9171fddb980bb497c7d9a58447eaa169467cd3c457c20248ef0248d86f92"
+    },
+    {
+      "path": "Binding/Respec.lua",
+      "sha256": "75e606330ab71c70881f13bbac29b6b515c3d7847b12c3df444a03859ecca417"
+    },
+    {
+      "path": "Bars/SlotProgram.lua",
+      "sha256": "2bd7a8c44660718d475fe510dd2b70e22f021cc6c332291083949e6eee1e28d4"
+    },
+    {
+      "path": "Bars/Hosts.lua",
+      "sha256": "de7ca45aa37e19b8e6a1a7f17e990a7de577e80efd832160cc65396eea83aabf"
+    },
+    {
+      "path": "Bars/State.lua",
+      "sha256": "52f005c429b03e4d04495a6183f200323fa71e71ecd0127296b29f4aa0a9dfef"
+    },
+    {
+      "path": "Bars/Watch.lua",
+      "sha256": "2a5e85c6a99a579d566f9728552cec22120dbf363a2e9fa1a4f0cbe9e76eb564"
+    },
+    {
+      "path": "Bars/Paint.lua",
+      "sha256": "cb77672bd86298536558b0486b13680360dfd6e86ae134fe207a0bbeafee4224"
+    },
+    {
+      "path": "ExtraButtonSystem/Engine/Paint.lua",
+      "sha256": "7edf1f76d4a0994fa3d84f11bd7c3cf0ff41297b8ae17b83e1f0fbac2d15428b"
+    },
+    {
+      "path": "Core/Engine/Range.lua",
+      "sha256": "f9035ada5900185e94a890f558e2eda546dbf1d33fd091a21ae9b73d1d521ea6"
+    }
+  ],
+  "sourcePreservedAtReport": true
+}

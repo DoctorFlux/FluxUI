@@ -1,0 +1,44 @@
+{
+  "capturedUTC": "2026-11-07T14:26:05.063Z",
+  "repository": "Gethe/wow-ui-source",
+  "scope": "Fresh source pins; these versions are not runtime build captures",
+  "pins": [
+    {
+      "branch": "live",
+      "sha": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "commitDate": "2026-11-04T00:46:01Z",
+      "versionMessage": "12.1.5 (70783)",
+      "source": "https://github.com/Gethe/wow-ui-source/commit/297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "version": "12.1.5.70783",
+      "versionBlob": "61a71eb0d9c435ad6f9f9701ab4d9c072cd3237e"
+    },
+    {
+      "branch": "forever",
+      "sha": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "commitDate": "2026-11-07T04:46:13Z",
+      "versionMessage": "1.60.1 (70862)",
+      "source": "https://github.com/Gethe/wow-ui-source/commit/9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "version": "1.60.1.70862",
+      "versionBlob": "e02268eacf9b586ec969cf13403a15b8dd136ae8"
+    },
+    {
+      "branch": "classic_era",
+      "sha": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "commitDate": "2026-10-26T23:16:08Z",
+      "versionMessage": "1.15.9 (70576)",
+      "source": "https://github.com/Gethe/wow-ui-source/commit/4192ac60067fc55566182291bc67c85dd9b6794d",
+      "version": "1.15.9.70576",
+      "versionBlob": "66bc5d3c31ec0d4ac300d1ba18ffd9490ac424d9"
+    },
+    {
+      "branch": "classic_anniversary",
+      "sha": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "commitDate": "2026-10-26T23:16:20Z",
+      "versionMessage": "2.5.6 (70577)",
+      "source": "https://github.com/Gethe/wow-ui-source/commit/68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "version": "2.5.6.70577",
+      "versionBlob": "f81737db88bfda2cd085cc09b18ca8ce764efc42"
+    }
+  ]
+}
+

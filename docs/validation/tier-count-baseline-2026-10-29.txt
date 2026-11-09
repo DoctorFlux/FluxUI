@@ -1,0 +1,16 @@
+FAIL classic_era initial counts skip unrelated usability
+METRIC classic_era initial_checks=1350 repeat_checks=33750 bank_reads=19500
+FAIL classic_era 25 reconciliations skip unrelated usability
+FAIL classic_anniversary initial counts skip unrelated usability
+METRIC classic_anniversary initial_checks=1350 repeat_checks=33750 bank_reads=19500
+FAIL classic_anniversary 25 reconciliations skip unrelated usability
+FAIL classic initial counts skip unrelated usability
+METRIC classic initial_checks=1350 repeat_checks=33750 bank_reads=19500
+FAIL classic 25 reconciliations skip unrelated usability
+FAIL live initial counts skip unrelated usability
+METRIC live initial_checks=1500 repeat_checks=37500 bank_reads=23400
+FAIL live 25 reconciliations skip unrelated usability
+FAIL forever initial counts skip unrelated usability
+METRIC forever initial_checks=1500 repeat_checks=37500 bank_reads=23400
+FAIL forever 25 reconciliations skip unrelated usability
+Tier count work: 1710 checks, 10 failures

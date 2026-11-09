@@ -1,0 +1,10 @@
+{
+  "commit": "9e17e28310e14f571208c8ecddfa0e36ae616a13",
+  "tree": "69c039054c7d522a741ca6bb3a72682f1ca04b43",
+  "reusedFullReport": "docs/validation/vendor-stock-full-2026-10-29.json",
+  "verifiedLuaFiles": 727,
+  "tests": 86,
+  "fail": 0,
+  "sourceSha256": "14a6e640fb37140aca38b25812ac4151500a7986da5ec044876e45756acd7117",
+  "normalization": "Full Lua hashes normalize CRLF to LF only"
+}

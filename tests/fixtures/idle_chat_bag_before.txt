@@ -1,0 +1,19 @@
+    local bagCountTimer
+    local events = CreateFrame("Frame")
+    events:RegisterEvent("PLAYER_ENTERING_WORLD")
+    events:RegisterEvent("BAG_UPDATE")
+    events:RegisterEvent("BAG_UPDATE_DELAYED")
+    events:SetScript("OnEvent", function()
+        if bagCountTimer and bagCountTimer.Cancel then
+            bagCountTimer:Cancel()
+            bagCountTimer = nil
+        end
+        if C_Timer and C_Timer.After then
+            bagCountTimer = C_Timer.After(0.2, function()
+                bagCountTimer = nil
+                SyncCount()
+            end)
+        else
+            SyncCount()
+        end
+    end)

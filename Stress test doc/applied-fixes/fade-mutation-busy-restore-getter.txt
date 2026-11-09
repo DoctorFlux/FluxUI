@@ -1,0 +1,7 @@
+lua: OPAQUE_ALPHA_GETTER
+stack traceback:
+	[C]: in function 'error'
+	Stress test doc/fix-proposals/fades/verify.lua.txt:190: in method 'GetAlpha'
+	production-busy:8: in function <production-busy:1>
+	Stress test doc/fix-proposals/fades/verify.lua.txt:192: in main chunk
+	[C]: in ?

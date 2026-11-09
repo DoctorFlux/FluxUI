@@ -1,0 +1,49 @@
+{
+  "scope": "Read-only bounded final sweep; existing safe alpha forwarding/guards were not modified. Local source identities retained; no native certification.",
+  "new_actionable_alpha_errors_found": 0,
+  "fade_endpoint_controls": 20,
+  "native_default_and_combo_cases": [
+    {
+      "branch_folder": "live",
+      "path": "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\__AddonsForRef\\wow-ui-source-live\\Interface\\AddOns\\Blizzard_SharedXMLBase\\FrameUtil.lua",
+      "sha256": "4e880bcae1be51dff89d80ca6b90613b494a236ab0804add4ed3b3d91d3baf46",
+      "exit": 0,
+      "output": "4 explicit/default fade endpoint controls PASS\n"
+    },
+    {
+      "branch_folder": "forever",
+      "path": "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\__AddonsForRef\\wow-ui-source-forever\\Interface\\AddOns\\Blizzard_SharedXMLBase\\FrameUtil.lua",
+      "sha256": "77a7590313e95a6926160aca1e9ca0e50001e5cc0d8b128c461e82203d2a6b5f",
+      "exit": 0,
+      "output": "4 explicit/default fade endpoint controls PASS\n"
+    },
+    {
+      "branch_folder": "classic_era",
+      "path": "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\__AddonsForRef\\wow-ui-source-classic_era\\Interface\\AddOns\\Blizzard_SharedXMLBase\\FrameUtil.lua",
+      "sha256": "e5f462f8032741ad17be8c9508f4ce37c82d3d07412c33646adcdda49f923fb1",
+      "exit": 0,
+      "output": "4 explicit/default fade endpoint controls PASS\n"
+    },
+    {
+      "branch_folder": "classic_anniversary",
+      "path": "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\__AddonsForRef\\wow-ui-source-classic_anniversary\\Interface\\AddOns\\Blizzard_SharedXMLBase\\FrameUtil.lua",
+      "sha256": "18c9831e58e7ef3b239388a0cefbb064d2d8165a7b1aead68fdb8907c31b4269",
+      "exit": 0,
+      "output": "4 explicit/default fade endpoint controls PASS\n"
+    },
+    {
+      "branch_folder": "classic_era",
+      "callback_source": "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\__AddonsForRef\\wow-ui-source-classic_era\\Interface\\AddOns\\Blizzard_UnitFrame\\Classic\\ComboFrame.lua",
+      "sha256": "09ccb3caac3ee1ceb45d86c5ec82dfcb9b1b3b5a8e2341734b2cbd6fe1aa10e9",
+      "exit": 0,
+      "output": "2 Classic shine callback public-default controls PASS\n"
+    },
+    {
+      "branch_folder": "classic_anniversary",
+      "callback_source": "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\__AddonsForRef\\wow-ui-source-classic_anniversary\\Interface\\AddOns\\Blizzard_UnitFrame\\Classic\\ComboFrame.lua",
+      "sha256": "1c011eb589a2a4fde5aa85b4c082e0ed0a322419088bced2c4f57828f87ea0cb",
+      "exit": 0,
+      "output": "2 Classic shine callback public-default controls PASS\n"
+    }
+  ]
+}

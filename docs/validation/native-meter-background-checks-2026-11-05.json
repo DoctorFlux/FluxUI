@@ -1,0 +1,492 @@
+{
+  "schema": 1,
+  "updatedUtc": "2026-11-05T22:10:13.4907447Z",
+  "status": "Completed final native reload/font/wrapping/tab-handoff checks; latest user layout7 preserved. Live threat rows/combat safety coverage remains inconclusive.",
+  "transport": {
+    "commands": "Targeted Win32 PostMessage to exact verified client HWND, via existing slash command UI",
+    "capture": "PrintWindow, read only",
+    "physicalInputOrClipboardOrActivation": false,
+    "sameNonGameForegroundBeforeEveryPostedMessage": true,
+    "completedCommandBatchForegroundUnchanged": true,
+    "focusGuardInterruptions": "Two read-only command batches were interrupted mid-draft after focus changed; one after selection8, another after first font query post-second-reload. Later fresh screenshots showed each draft closed by normal user/client action. No Escape or draft-clear command was sent. Earlier helper failure messages alone did not establish zero commands executed; screenshots corrected the record. Progress metadata was added for future interruptions.",
+    "windowStateGuard": "Minimized, hung, identity mismatch or foreground game refuses input; read-only capture may observe foreground game. No window restore/activation attempted."
+  },
+  "sourceIdentities": {
+    "loadedFontCandidateAfterReload": {
+      "FluxThreatMeter.lua": "478d82e865a9b49ccf720e60b50b7aa66154c9eabd44c2f0ab41a4be268f7cc7",
+      "FluxBlizzardMeter.lua": "a630525aa4fdd0cf8bc9bd05f969d6f68fd2fd0f8fcfb21626edb08074194d94",
+      "note": "Root froze these files for both baseline reloads; threat hash verified against Forever on disk before first reload; both hashes read before final handoff fix."
+    },
+    "loadedFinalCandidateAfterReload": {
+      "FluxMeterSkin.lua": "f8bbb7a0e690ca100c6f6bd3842fa30570191d7aba68edf73bed6db4f7f3f9da",
+      "FluxThreatMeter.lua": "798afff478257b71e276c0e70a87d5fdca5fc16f1ef91f5c6b0c32382cd997c1",
+      "FluxBlizzardMeter.lua": "cdd1408c9d2cc2e3eb682bbcc24098c394622cac617c4979206b027fb71a5dca",
+      "note": "All three Forever on-disk SHA256 hashes matched root's frozen candidate before normal /reload at22:06:45.5117511Z. No runtime edits by this native executor."
+    }
+  },
+  "phases": [
+    {
+      "utc": "2026-11-05T21:37:03.2290408Z",
+      "capture": "marker-before-reload.png",
+      "result": "Executed visible harmless marker FLUX_METER_BG_CHECK_20261105_213701 while game remained background."
+    },
+    {
+      "utc": "2026-11-05T21:41:45.4700290Z",
+      "capture": "read-state-before-reload.png",
+      "activeTab": "Meter",
+      "layout": "builtin:1",
+      "scriptProfile": "0",
+      "detailsLoaded": false,
+      "bugTabsSessionTotal": 1,
+      "result": "Captured exact original state; no _FluxUI or Blizzard_DamageMeter entry printed by guarded exact-addon query."
+    },
+    {
+      "utc": "2026-11-05T21:42:32.5468529Z",
+      "capture": "map-before-reload.png",
+      "result": "Normal Map switch printed FXMAP Map false false: DamageMeter root hidden and no combat."
+    },
+    {
+      "utc": "2026-11-05T21:42:48.1742556Z",
+      "capture": "reload-from-map.png",
+      "result": "Normal /reload from Map, visible loading screen."
+    },
+    {
+      "utc": "2026-11-05T21:45:24.6112934Z",
+      "capture": "after-map-reload-state.png",
+      "activeTab": "Map",
+      "layout": "builtin:1",
+      "scriptProfile": "0",
+      "detailsLoaded": false,
+      "bugTabsSessionTotal": 0,
+      "result": "Map stayed selected after reload; native DamageMeter root hidden; no floating meters visible."
+    },
+    {
+      "utc": "2026-11-05T21:47:16.6413476Z",
+      "capture": "layout8-read-native.png",
+      "activeTab": "Meter",
+      "layout": "builtin:8",
+      "scriptProfile": "0",
+      "bugTabsSessionTotal": 0,
+      "result": "Standalone threat available/shown/Body created without Details. Font Fonts\\ARIALN.TTF, size15, OUTLINE. Threat plus three native panes rendered within Flux outer chrome."
+    },
+    {
+      "utc": "2026-11-05T21:48:03.6530826Z",
+      "capture": "tab-map-hide.png",
+      "activeTab": "Map",
+      "result": "FAIL: native root hidden but standalone Threat still shown and visibly overlays Map. FXTAB Map false true."
+    },
+    {
+      "utc": "2026-11-05T21:48:47.2785479Z",
+      "capture": "pane-geometry-map.png",
+      "bugTabsSessionTotal": 0,
+      "result": "Bounded parent/pane geometry captured; native children IsShown true under hidden root; threat sibling remains visible."
+    },
+    {
+      "utc": "2026-11-05T21:49:15.2595283Z",
+      "capture": "tab-respec-hide.png",
+      "activeTab": "Respec",
+      "result": "FAIL: native root hidden but standalone Threat remains shown. FXTAB Respec false true."
+    },
+    {
+      "utc": "2026-11-05T21:49:35.8378413Z",
+      "capture": "tab-buttons-hide.png",
+      "activeTab": "Buttons",
+      "result": "FAIL: native root hidden but standalone Threat visibly overlays Buttons. FXTAB Buttons false true."
+    },
+    {
+      "utc": "2026-11-05T21:50:44.2082727Z",
+      "capture": "meter-before-second-reload.png",
+      "activeTab": "Meter",
+      "layout": "builtin:8",
+      "scriptProfile": "0",
+      "result": "Native root and Threat shown on return to Meter."
+    },
+    {
+      "utc": "2026-11-05T21:51:02.1343829Z",
+      "capture": "reload-from-meter-layout8.png",
+      "result": "Second normal /reload with Meter/builtin:8 active."
+    },
+    {
+      "utc": "2026-11-05T21:51:50.9253805Z",
+      "capture": "meter-after-second-reload-world-retry.png",
+      "activeTab": "Meter",
+      "layout": "builtin:8",
+      "result": "Visual pass: Meter retained after startup, Threat and three native panes docked. Subsequent read-only batch executed first font query then focus guard interrupted second command; later fresh screenshot established its partial execution."
+    },
+    {
+      "utc": "2026-11-05T21:53:19.2565262Z",
+      "capture": "final-candidate-preflight.png",
+      "result": "Read-only capture, game foreground: post-second-reload first font query visibly succeeded (available/shown/Body true, Arial15OUTLINE); owned second geometry draft still visible. No input sent by this capture. Final handoff file07ac verified on disk but not reloaded."
+    },
+    {
+      "utc": "2026-11-05T21:54:09.7957517Z",
+      "capture": "fight-observer-01.png",
+      "result": "User outside Ironforge; own prior draft already closed; Meter8 docked, empty Threat, no combat observed."
+    },
+    {
+      "utc": "2026-11-05T21:54:42.0315728Z",
+      "capture": "fight-observer-02.png",
+      "result": "User targeted Large Crag Boar at120health; no active combat captured."
+    },
+    {
+      "utc": "2026-11-05T21:55:06.5309979Z",
+      "capture": "fight-observer-03.png",
+      "result": "Boar dead, native damage total advanced9991to10123; Threat empty after fight. User opened BugTabs showing HISTORY rows dated22:21/22:25/22:27/22:26, not fresh current-time errors. Actual live threat row missed between captures."
+    },
+    {
+      "utc": "2026-11-05T21:55:34.3699953Z",
+      "capture": "fight-observer-04.png",
+      "result": "User again out of combat with no target; native meter current damage198 visible, Threat empty."
+    },
+    {
+      "utcStart": "2026-11-05T21:56:16.1652507Z",
+      "utcEnd": "2026-11-05T21:56:26.4666744Z",
+      "captureBasenames": "fight-burst-00.png through fight-burst-09.png",
+      "result": "Ten read-only screenshots about1.12seconds apart, exact identity refreshed each. User changing Flux layout in settings; no combat captured in inspected first/middle/last frames. Preserve user's newer preset7."
+    },
+    {
+      "utc": "2026-11-05T21:57:10.3636067Z",
+      "capture": "current-user-state-before-final-reload.png",
+      "activeTab": "Meter",
+      "layout": "builtin:7",
+      "scriptProfile": "0",
+      "combatLockdown": false,
+      "bugTabsSessionTotal": 0,
+      "result": "Read-only current-state proof after short user fight: no new session errors, preserve newest user selection7. Held further reload for root's skin patch."
+    },
+    {
+      "utc": "2026-11-05T22:06:26.7417159Z",
+      "capture": "final-before-reload-current.png",
+      "activeTab": "Meter",
+      "layout": "builtin:7",
+      "scriptProfile": "0",
+      "combatLockdown": false,
+      "bugTabsSessionTotal": 0,
+      "result": "Fresh final pre-reload state; user idle at Stormwind auctioneer, quantity0/Post disabled. Candidate hashes verified on disk."
+    },
+    {
+      "utc": "2026-11-05T22:06:45.5117511Z",
+      "capture": "final-skin-reload-meter7.png",
+      "result": "Normal final-candidate /reload from user's Meter/builtin:7, same background foreground before/after."
+    },
+    {
+      "utc": "2026-11-05T22:06:59.9107356Z",
+      "capture": "final-skin-world-meter7.png",
+      "result": "PASS: final candidate returned inworld with Meter/builtin:7 still docked, native and owned Threat shared header/fill appearance; no floating meters."
+    },
+    {
+      "utc": "2026-11-05T22:08:11.2645193Z",
+      "capture": "final-shared-skin-interruption-readonly.png",
+      "activeTab": "Meter",
+      "layout": "builtin:7",
+      "scriptProfile": "0",
+      "combatLockdown": false,
+      "bugTabsSessionTotal": 0,
+      "result": "PASS: Threat available/shown/Body true; title Fonts\\FRIZQT__.TTF size15OUTLINE. Native Name font Fonts\\ARIALN.TTF size17.500001907349OUTLINE. Native Name/Value CanWordWrap false/false. First3 read-only probes completed; guard refused before fourth Enter, currentCharacter0, so no draft left."
+    },
+    {
+      "utc": "2026-11-05T22:08:39.5574867Z",
+      "capture": "final-tab-map-hide.png",
+      "activeTab": "Map",
+      "result": "PASS: normal tab handoff, FXTAB Map false false; no threat overlay or native floating meters."
+    },
+    {
+      "utc": "2026-11-05T22:08:58.6881650Z",
+      "capture": "final-tab-respec-hide.png",
+      "activeTab": "Respec",
+      "result": "PASS: normal tab handoff, FXTAB Respec false false."
+    },
+    {
+      "utc": "2026-11-05T22:09:18.4184239Z",
+      "capture": "final-tab-buttons-hide.png",
+      "activeTab": "Buttons",
+      "result": "PASS: normal tab handoff, FXTAB Buttons false false; threat overlay gone."
+    },
+    {
+      "utc": "2026-11-05T22:09:39.1978425Z",
+      "capture": "final-return-meter7.png",
+      "activeTab": "Meter",
+      "layout": "builtin:7",
+      "scriptProfile": "0",
+      "result": "PASS: normal return to Meter, FXTAB Meter true true0; no direct frame show/hide calls by tester."
+    },
+    {
+      "utc": "2026-11-05T22:10:13.4907447Z",
+      "capture": "final-summary-meter7.png",
+      "activeTab": "Meter",
+      "layout": "builtin:7",
+      "scriptProfile": "0",
+      "detailsLoaded": false,
+      "bugTabsSessionTotal": 0,
+      "result": "Final proof: FluxUI loaded, Details not loaded, FXERR0, latest user Meter/builtin:7 preserved, profiler0 unchanged. No further input required."
+    }
+  ],
+  "geometry": {
+    "content": {
+      "scale": 0.75,
+      "rect": [
+        1564.0030517578,
+        38.000003814697,
+        365.00006103516,
+        230.00003051758
+      ],
+      "name": null,
+      "parentName": "FluxWindowFrame"
+    },
+    "nativeRoot": {
+      "scale": 0.60000002384186,
+      "rect": [
+        1925.2536621094,
+        30.249965667725,
+        511.00018310547,
+        322
+      ]
+    },
+    "standaloneThreat": {
+      "scale": 0.60000002384186,
+      "rect": [
+        1925.2536621094,
+        160.24998474121,
+        229.95007324219,
+        192
+      ]
+    },
+    "nativePanes": [
+      {
+        "index": 1,
+        "scale": 0.60000002384186,
+        "rect": [
+          2155.2036132812,
+          160.24998474121,
+          281.0500793457,
+          192
+        ]
+      },
+      {
+        "index": 2,
+        "scale": 0.60000002384186,
+        "rect": [
+          1925.2536621094,
+          30.249965667725,
+          229.95007324219,
+          128.00001525879
+        ]
+      },
+      {
+        "index": 3,
+        "scale": 0.60000002384186,
+        "rect": [
+          2155.2036132812,
+          30.249965667725,
+          281.0500793457,
+          128.00001525879
+        ]
+      }
+    ],
+    "interpretation": "Existing expanded native canvas retained. Screenshot visual containment checked separately; no exact Details skin or pixel-parity claim."
+  },
+  "pending": [
+    "Actual live hostile-target threat rows and combat timer/secret-value coverage inconclusive: user fought, captures caught pre/post only; final skin candidate tested outside combat",
+    "Retail and other client native checks",
+    "Exact Details pixel parity not claimed; shared Flux/Blizzard assets used"
+  ],
+  "finalLatestUserUiPreserved": true,
+  "gameplayActionsSent": false,
+  "cvarOrProfilingChanges": false,
+  "newDiagnosticSavedVariableRoots": false,
+  "client": {
+    "name": "Forever",
+    "version": "1.60.1",
+    "build": "70790",
+    "interface": 16001
+  },
+  "finalUi": {
+    "activeTab": "Meter",
+    "activeLayout": "builtin:7",
+    "scriptProfile": "0",
+    "detailsLoaded": false,
+    "bugTabsSessionTotal": 0
+  },
+  "newerUserChoice": "User changed builtin:1 to builtin:7 during testing; preserve the newer selection.",
+  "scope": "Native Forever checks only at the recorded states; screenshots kept externally. Not exact Details pixel parity, other-client certification or a CPU/memory/FPS benchmark.",
+  "fullSourceManifest": "meter-theme-consistency-2026-11-05.json",
+  "hardware": {
+    "cpu": "Intel Core i7-12700F",
+    "physicalCores": 12,
+    "logicalProcessors": 20,
+    "physicalMemoryBytes": 34164105216,
+    "gpu": "NVIDIA GeForce RTX 3060",
+    "gpuDriver": "32.0.16.2114",
+    "otherDisplayAdapter": "Parsec Virtual Display Adapter 0.45.0.0"
+  },
+  "captureIntegrity": [
+    {
+      "file": "marker-before-reload.png",
+      "sha256": "abcbe20a7761bf45f4405a55188bf9686002f940d0ad92d8358127918e1fb3dd",
+      "width": 1906,
+      "height": 1032
+    },
+    {
+      "file": "read-state-before-reload.png",
+      "sha256": "dc85e97b244cecdb54f61a3dcadcfd6e0f747112f03ff5e53142968eba02d0f1",
+      "width": 1906,
+      "height": 1032
+    },
+    {
+      "file": "map-before-reload.png",
+      "sha256": "c7a1eb45972ba1e2a1dc824ea6d492f35ea3eb3e7460c459d57a08c955ff96cd",
+      "width": 1906,
+      "height": 1032
+    },
+    {
+      "file": "reload-from-map.png",
+      "sha256": "198ba8ced88abed8ad5ff9cc8303021dc60a509d0585ccf2588e0cb1d197055b",
+      "width": 1906,
+      "height": 1032
+    },
+    {
+      "file": "after-map-reload-state.png",
+      "sha256": "921e21caace20f9ad9eb85aff840a3cb89a2fdbfec87aaabd34f6952de34a5d0",
+      "width": 1906,
+      "height": 1032
+    },
+    {
+      "file": "layout8-read-native.png",
+      "sha256": "53390bcd367ed3ea25c0b9ca5a44475e28b9d3e4ca7c96775c7a0fa64918476c",
+      "width": 1906,
+      "height": 1032
+    },
+    {
+      "file": "tab-map-hide.png",
+      "sha256": "f960d4c2ad4d90baec4b517d3bfbfab3675acfae00cbb0d74402451ab4f01486",
+      "width": 1906,
+      "height": 1032
+    },
+    {
+      "file": "pane-geometry-map.png",
+      "sha256": "e6d377570691ec6a2a9db5f7b7f02db23959415aa80332ba1caaa7c0b15bbc48",
+      "width": 1906,
+      "height": 1032
+    },
+    {
+      "file": "tab-respec-hide.png",
+      "sha256": "593948ab52c963b8b9e9f918a172a3fe35fb09573db26517ed7402d96caa43da",
+      "width": 1906,
+      "height": 1032
+    },
+    {
+      "file": "tab-buttons-hide.png",
+      "sha256": "dfe9213101ed179f9b2bd9d329d2b17ca967c41d50b7a6d972d7b2116387ecdd",
+      "width": 1906,
+      "height": 1032
+    },
+    {
+      "file": "meter-before-second-reload.png",
+      "sha256": "a4417f9d811d11984172aaa51cffe0f18b18514da4d0e89f7f8f04d8e83bcfd0",
+      "width": 1906,
+      "height": 1032
+    },
+    {
+      "file": "reload-from-meter-layout8.png",
+      "sha256": "c11b1e9cb19d5fa7736bd1b7981e2508c987ff1f2b2b2c10b921864f391bfbf5",
+      "width": 1906,
+      "height": 1032
+    },
+    {
+      "file": "meter-after-second-reload-world-retry.png",
+      "sha256": "709c526545abedfd13edb84c726057045dbac09401e179ecdb22eaf32ae74709",
+      "width": 1906,
+      "height": 1032
+    },
+    {
+      "file": "final-candidate-preflight.png",
+      "sha256": "6ac24650fc5c53c18964d250ea93b541027e717c55abdd81a468393fa9da0b27",
+      "width": 1906,
+      "height": 1032
+    },
+    {
+      "file": "fight-observer-01.png",
+      "sha256": "c4d5a62c3d746d1ec34aeaa9b8e0a5aab8d753ce29cb8a1cbc283ed06475df3e",
+      "width": 1906,
+      "height": 1032
+    },
+    {
+      "file": "fight-observer-02.png",
+      "sha256": "7d748cd75973b251e3c2d175dde3def9d076e7b796c10eabeb0d9150dd765112",
+      "width": 1906,
+      "height": 1032
+    },
+    {
+      "file": "fight-observer-03.png",
+      "sha256": "38315e79c06b2a0d2d2682cbfcefa16e92754468cad991dcf30a66a0afbb41cc",
+      "width": 1906,
+      "height": 1032
+    },
+    {
+      "file": "fight-observer-04.png",
+      "sha256": "9f68a3fff5c4f37787546a4ea8ede0f8ced644617453b0008d9953434c900d1a",
+      "width": 1906,
+      "height": 1032
+    },
+    {
+      "file": "current-user-state-before-final-reload.png",
+      "sha256": "48c945bb0fb7d0bd72e7e96538e3796492340313b7971263aa9202b895933dd4",
+      "width": 1906,
+      "height": 1032
+    },
+    {
+      "file": "final-before-reload-current.png",
+      "sha256": "b427acb4461b3e771a0dc111b0aea9c18b4f611813a7039a903804bdfb82c1fd",
+      "width": 1906,
+      "height": 1032
+    },
+    {
+      "file": "final-skin-reload-meter7.png",
+      "sha256": "198ba8ced88abed8ad5ff9cc8303021dc60a509d0585ccf2588e0cb1d197055b",
+      "width": 1906,
+      "height": 1032
+    },
+    {
+      "file": "final-skin-world-meter7.png",
+      "sha256": "d5eb82e90220d4ce52dff62557e381aa620687abe0ec0c022cd5f2cb8bb90a84",
+      "width": 1906,
+      "height": 1032
+    },
+    {
+      "file": "final-shared-skin-interruption-readonly.png",
+      "sha256": "5ec8556bfdaec07c6e4569303894dfa0c54be2dab3337fa41dc41d43a066a69e",
+      "width": 1906,
+      "height": 1032
+    },
+    {
+      "file": "final-tab-map-hide.png",
+      "sha256": "fe8f71d55cf609f88d77bbe53649151c508910e165c659facb41d65623585aa6",
+      "width": 1906,
+      "height": 1032
+    },
+    {
+      "file": "final-tab-respec-hide.png",
+      "sha256": "f893d7f2fc2c8669bf38f68582e212576a338e759942047ad33c23d01cce3f03",
+      "width": 1906,
+      "height": 1032
+    },
+    {
+      "file": "final-tab-buttons-hide.png",
+      "sha256": "c2505cdbb9351e4438500a2ff54b9074ec733338a3919d00a327f4dc8299028b",
+      "width": 1906,
+      "height": 1032
+    },
+    {
+      "file": "final-return-meter7.png",
+      "sha256": "266dbe0ac50590219002e615cc0425fd72eb8e1302ba870aefe34c894d1c233f",
+      "width": 1906,
+      "height": 1032
+    },
+    {
+      "file": "final-summary-meter7.png",
+      "sha256": "35546854ef3d817423f9106949e47e50ee0bf31df4b67706c322440b459ab86f",
+      "width": 1906,
+      "height": 1032
+    }
+  ]
+}

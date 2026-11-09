@@ -1,0 +1,41 @@
+path,line,text
+Bars/BadgeHost.lua,1228,if w and w.GetAlpha then
+Bars/BadgeHost.lua,1229,"local ok, a = pcall(w.GetAlpha, w)"
+Bars/Blizzard.lua,1030,"if type(frame) == ""table"" and frame.GetAlpha and frame.SetAlpha and frame:GetAlpha() > 0 then"
+Battlezonemap/FluxDetailsWoWSkinTint.lua,13,local function GetAlpha(inst)
+Battlezonemap/FluxDetailsWoWSkinTint.lua,74,local a = GetAlpha(inst)
+Battlezonemap/FluxMeterSkin.lua,181,if header.GetAlpha then state.headerAlpha = header:GetAlpha()
+Battlezonemap/FluxMeterSkin.lua,640,if texture.GetAlpha then alpha = texture:GetAlpha() end
+Battlezonemap/FluxMeterSkin.lua,765,if not (timer and timer.GetAlpha and timer.SetAlpha) then return end
+Battlezonemap/FluxMeterSkin.lua,766,local alpha = timer:GetAlpha()
+Blizzard/Hide.lua,259,originalAlpha[frame] = frame.GetAlpha and frame:GetAlpha() or 1
+Core/ButtonFX/Cast.lua,497,if widget.GetAlpha then
+Core/ButtonFX/Cast.lua,498,"local ok, a = pcall(widget.GetAlpha, widget)"
+Core/ButtonFX/Charges.lua,129,if cd.GetEffectiveAlpha then
+Core/ButtonFX/Charges.lua,130,local a = cd:GetEffectiveAlpha()
+ExtraButtonSystem/Engine/Button.lua,2266,local alpha = (cd.GetEffectiveAlpha and cd:GetEffectiveAlpha()) or 1
+ExtraButtonSystem/Engine/Button.lua,2609,local alpha = (cd.GetEffectiveAlpha and cd:GetEffectiveAlpha()) or 1
+ExtraButtonSystem/Engine/Style.lua,277,if tex.GetAlpha then
+ExtraButtonSystem/Engine/Style.lua,278,local a = tex:GetAlpha()
+Inventory/Builtin/FluxClassicCombinedBank.lua,132,"width = texture:GetWidth(), height = texture:GetHeight(), alpha = texture:GetAlpha(), points = points }"
+Inventory/Builtin/FluxClassicCombinedBank.lua,261,"ghosted[container] = { alpha = container:GetAlpha(), mouse = container:IsMouseEnabled() }"
+Inventory/Builtin/FluxClassicCombinedBank.lua,379,if slotHighlightAlpha[highlight] == nil then slotHighlightAlpha[highlight] = highlight:GetAlpha() end
+Inventory/Builtin/FluxClassicCombinedBank.lua,467,"bankAlpha, bankMouse = bank:GetAlpha(), bank:IsMouseEnabled()"
+libs/LibActionButton-1.02/LibActionButton-1.0.lua,4469,self.cooldown:SetDrawBling(self.cooldown:GetEffectiveAlpha() > 0.5)
+libs/LibCustomGlow-1.0/LibCustomGlow-1.0.lua,717,"local alpha = math.min(f[texture]:GetAlpha()/noZero(f.color and f.color[4] or 1), 1)"
+libs/LibCustomGlow-1.0/LibCustomGlow-1.0.lua,726,"local alpha = math.min(f[texture]:GetAlpha()/noZero(f.color and f.color[4] or 1)*color[4], 1)"
+Other/FluxInputDebug.lua,34,"clicks = ""IsMouseClickEnabled"", motion = ""IsMouseMotionEnabled"", alpha = ""GetAlpha"","
+Other/FluxPerfCapture.lua,165,"local alpha = Method(frame, ""GetEffectiveAlpha"")"
+RaidFrame/FluxRaidLayout.lua,920,if not region or not region.GetAlpha or not region.SetAlpha then return end
+RaidFrame/FluxRaidLayout.lua,931,local alpha=region:GetAlpha()
+RaidFrame/FluxRaidLayout.lua,978,local current=region:GetAlpha()
+UnitFrames/FluxCastBar.lua,1291,"UIFrameFadeOut(self, fadeDur, self:GetAlpha(), 0)"
+UnitFrames/FluxCastBarThemes.lua,617,"v.source, v.sourceAlpha = source, source:GetAlpha()"
+UnitFrames/FluxCastBarThemes.lua,847,"v.source,v.sourceAlpha=source,source:GetAlpha()"
+UnitFrames/FluxSwingTimer.lua,917,if not castBar:IsShown() or castBar:GetAlpha() <= 0.01 then
+UnitFrames/FluxSwingTimer.lua,1167,"UIFrameFadeOut(swingFrame, SWING_FADE_DURATION, swingFrame:GetAlpha(), 0)"
+UnitFrames/FluxUnitFrames_Party.lua,137,local alpha = label.GetAlpha and label:GetAlpha()
+UnitFrames/FluxUnitFrames_Party.lua,729,"""dockAlpha="" .. read(state.containerFrame,""GetAlpha"")}"
+UnitFrames/FluxUnitFrames_Party.lua,733,".. ""/a"" .. read(frame,""GetAlpha"") .. ""/x"" .. read(frame,""GetLeft"") .. ""/y"" .. read(frame,""GetTop"")"
+UnitFrames/FluxUnitFrames_Shared.lua,3977,if self.GetAlpha then
+UnitFrames/FluxUnitFrames_Shared.lua,3978,local alpha = self:GetAlpha()

@@ -1,0 +1,38 @@
+{
+  "scope": "Static current consumer ownership trace, no native consumer execution claim",
+  "allMatchRound2Baseline": true,
+  "sources": [
+    {
+      "path": "Bars/Effects.lua",
+      "sha256": "7157f719602a74eb3912077c0b63ed6e4e1eb8f8892dc857e214983968bf286e"
+    },
+    {
+      "path": "Bars/ProgramFace.lua",
+      "sha256": "40d7bc0133f68f38cace6a464503ca2d98185f1df96b4be3b279cfa4528cf4a1"
+    },
+    {
+      "path": "Bars/Watch.lua",
+      "sha256": "2a5e85c6a99a579d566f9728552cec22120dbf363a2e9fa1a4f0cbe9e76eb564"
+    },
+    {
+      "path": "Bars/BadgeHost.lua",
+      "sha256": "c4fc487f45cda62e8a93932777f5478d08a9543658c456a5c6a67fb76bcf4616"
+    },
+    {
+      "path": "ExtraButtonSystem/Engine/Events.lua",
+      "sha256": "f8b962b310a0bb2eefc693ab85af1d720049bb1040b3f2660067496733905d9d"
+    },
+    {
+      "path": "ExtraButtonSystem/NonCombatGrid/UtilitySlots/Manager.lua",
+      "sha256": "46d841979af9c6a7210734b7c55ee4fe80ead39c392a1666025083bfdff2e6b4"
+    },
+    {
+      "path": "ExtraButtonSystem/Shared/FluxModifierTracker.lua",
+      "sha256": "1371d7817c2f03c2a9a3ff600d1b6bdfe908bc162e0fc997c79630fdad6bd98b"
+    },
+    {
+      "path": "Core/Engine/Context.lua",
+      "sha256": "14c6f41ab314604661b1c089196cd6095606c3b75c6dcd1ae4ec66eb740c22c2"
+    }
+  ]
+}

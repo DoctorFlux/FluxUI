@@ -1,0 +1,511 @@
+-- Retained production bodies for the 2026-10-23 desktop operation-count baseline.
+-- No FPS or native secure/rendering result is implied. Loaded as Lua data by idle_hud.lua.
+return {
+    clock = [==[
+    self._infoBarFrame = infoBar
+    if not self._clockTicker and C_Timer and C_Timer.NewTicker then
+        local function _tickClock()
+            if self.InfoBar and self.InfoBar.TimeText and C_DateAndTime and C_DateAndTime.GetCurrentCalendarTime then
+                local date = C_DateAndTime.GetCurrentCalendarTime()
+                local hour, minute = date and date.hour, date and date.minute
+                if hour and minute then
+                    self.InfoBar.TimeText:SetText(string.format("%02d:%02d", hour, minute))
+                end
+            end
+        end
+        _tickClock()
+        self._clockTicker = C_Timer.NewTicker(1, _tickClock)
+    end
+    
+]==],
+    marquee = [==[
+function FluxMinimap:ApplyInfoBarZoneTextFit(fullText, r, g, b)
+    local ib = self.InfoBar
+    if not ib or not ib.ZoneText then return end
+    ib._fullZoneText = fullText or ""
+    ib._lastZoneR, ib._lastZoneG, ib._lastZoneB = r, g, b
+    local w = ib:GetWidth()
+    if not w or w <= 0 then
+        w = CONFIG.Size
+    end
+    local maxWidth = math.max(1, w - ZONE_TEXT_PAD_LEFT - ZONE_TEXT_PAD_RIGHT)
+    local ft = ib.ZoneText
+    local clip = ib.ZoneScrollClip
+    if clip then
+        clip:SetWidth(maxWidth)
+    end
+    ib._zoneScrollActive = false
+    ib._zoneScrollPos = nil
+    ib._zoneScrollDir = nil
+    ft:ClearAllPoints()
+    if clip then
+        ft:SetPoint("TOPLEFT", clip, "TOPLEFT", 0, 0)
+        ft:SetPoint("BOTTOMLEFT", clip, "BOTTOMLEFT", 0, 0)
+    else
+        ft:SetPoint("TOPLEFT", ib, "TOPLEFT", ZONE_TEXT_PAD_LEFT, 0)
+        ft:SetPoint("BOTTOMLEFT", ib, "BOTTOMLEFT", ZONE_TEXT_PAD_LEFT, 0)
+    end
+    ft:SetWidth(maxWidth)
+    local _, truncated = TruncateFontStringToWidth(ft, fullText or "", maxWidth)
+    ib._zoneTextTruncated = truncated
+    ft:SetTextColor(r, g, b)
+end
+
+function FluxMinimap:OnInfoBarZoneHitEnter()
+    local ib = self.InfoBar
+    if not ib or not ib.ZoneText or not ib.ZoneScrollClip then return end
+    if not ib._fullZoneText or ib._fullZoneText == "" then return end
+    local clip = ib.ZoneScrollClip
+    local ft = ib.ZoneText
+    local clipW = clip:GetWidth()
+    if not clipW or clipW <= 0 then return end
+    ft:SetText(ib._fullZoneText)
+    if ft.SetWidth then
+        ft:SetWidth(0)
+    end
+    local fullW = ft:GetStringWidth()
+    -- Scroll whenever the full label is wider than the clip (not only when ellipsis was used).
+    if fullW <= clipW + 1 then
+        return
+    end
+    ib._zoneScrollActive = true
+    ib._zoneScrollPos = 0
+    ib._zoneScrollDir = -1
+    ft:ClearAllPoints()
+    ft:SetPoint("LEFT", clip, "LEFT", 0, 0)
+    local r, g, b = ib._lastZoneR or 1, ib._lastZoneG or 1, ib._lastZoneB or 1
+    ft:SetTextColor(r, g, b)
+
+    -- Flux perf T2.7: attach the marquee OnUpdate only while scrolling is active.
+    local bar = self._infoBarFrame
+    if bar then
+        bar:SetScript("OnUpdate", function(_, elapsed)
+            self:UpdateInfoBarZoneScroll(elapsed)
+        end)
+    end
+end
+
+function FluxMinimap:OnInfoBarZoneHitLeave()
+    local ib = self.InfoBar
+    if not ib then return end
+    if ib._zoneScrollActive then
+        ib._zoneScrollActive = false
+        ib._zoneScrollPos = nil
+        ib._zoneScrollDir = nil
+    end
+    -- Flux perf T2.7: detach the marquee OnUpdate when no longer needed.
+    local bar = self._infoBarFrame
+    if bar then
+        bar:SetScript("OnUpdate", nil)
+    end
+    self:UpdateInfoBarZone()
+end
+
+function FluxMinimap:UpdateInfoBarZoneScroll(elapsed)
+    local ib = self.InfoBar
+    if not ib or not ib._zoneScrollActive or not ib.ZoneText or not ib.ZoneScrollClip then return end
+    local clip = ib.ZoneScrollClip
+    local ft = ib.ZoneText
+    local clipW = clip:GetWidth()
+    if not clipW or clipW <= 0 then return end
+    ft:SetText(ib._fullZoneText or "")
+    if ft.SetWidth then
+        ft:SetWidth(0)
+    end
+    local fullW = ft:GetStringWidth()
+    local maxScroll = math.max(0, fullW - clipW)
+    if maxScroll <= 0 then
+        ib._zoneScrollActive = false
+        ib._zoneScrollPos = nil
+        ib._zoneScrollDir = nil
+        -- Flux perf T2.7: zone now fits; stop the marquee OnUpdate.
+        local bar = self._infoBarFrame
+        if bar then
+            bar:SetScript("OnUpdate", nil)
+        end
+        self:UpdateInfoBarZone()
+        return
+    end
+    local pos = ib._zoneScrollPos or 0
+    local dir = ib._zoneScrollDir or -1
+    pos = pos + dir * ZONE_SCROLL_PX_PER_SEC * elapsed
+    if pos > 0 then
+        pos = 0
+        ib._zoneScrollDir = -1
+    elseif pos < -maxScroll then
+        pos = -maxScroll
+        ib._zoneScrollDir = 1
+    end
+    ib._zoneScrollPos = pos
+    ft:ClearAllPoints()
+    ft:SetPoint("LEFT", clip, "LEFT", pos, 0)
+    local r, g, b = ib._lastZoneR or 1, ib._lastZoneG or 1, ib._lastZoneB or 1
+    ft:SetTextColor(r, g, b)
+end
+
+function FluxMinimap:RefreshInfoBarZoneFit()
+    self:UpdateInfoBarZone()
+end
+
+function FluxMinimap:UpdateInfoBarZone()
+    if not self.InfoBar then return end
+
+    local zoneName = GetZoneText() or ""
+    local subZoneName = GetSubZoneText() or ""
+    local fullText
+    if subZoneName ~= "" and subZoneName ~= zoneName then
+        fullText = zoneName .. " - " .. subZoneName
+    else
+        fullText = zoneName
+    end
+
+    local pvpType
+    if C_PvP and C_PvP.GetZonePVPInfo then
+        pvpType = C_PvP.GetZonePVPInfo()
+    elseif GetZonePVPInfo then
+        pvpType = GetZonePVPInfo()
+    end
+    local r, g, b = 1, 1, 1
+    if pvpType == "sanctuary" then
+        r, g, b = 0.41, 0.8, 0.94
+    elseif pvpType == "arena" then
+        r, g, b = 1, 0.1, 0.1
+    elseif pvpType == "friendly" then
+        r, g, b = 0.1, 1, 0.1
+    elseif pvpType == "hostile" then
+        r, g, b = 1, 0.1, 0.1
+    elseif pvpType == "contested" then
+        r, g, b = 1, 0.7, 0
+    end
+    self:ApplyInfoBarZoneTextFit(fullText, r, g, b)
+end
+
+]==],
+    statCache = [==[
+function _RebuildTooltipStatFrameCache()
+    _tooltipKeyToStatFrame = {}
+    _tooltipKeyToStatFrameList = {}
+    _tooltipKeyToStatFrameAt = GetTime() or 0
+    local function registerStatKey(c, key)
+        key = _CanonicalIlvlGsRegistryKey(key) or key
+        key = InfoFrame._CamelotCombatStatKey(key)
+        if not key or not c then return end
+        if not _tooltipKeyToStatFrame[key] then
+            _tooltipKeyToStatFrame[key] = c
+        end
+        local L = _tooltipKeyToStatFrameList[key]
+        if not L then
+            L = {}
+            _tooltipKeyToStatFrameList[key] = L
+        end
+        for i = 1, #L do
+            if L[i] == c then return end
+        end
+        L[#L + 1] = c
+    end
+    local pane = _G.CharacterStatsPane
+    if pane and pane.statsFramePool then
+        for statFrame in pane.statsFramePool:EnumerateActive() do
+            registerStatKey(statFrame, statFrame._FluxInfoStatKey)
+        end
+    end
+    local foreverRoot = _G.CharacterStatsPaneScrollBox
+    if foreverRoot and foreverRoot ~= _G.CharacterStatsPanePetScrollBox then
+        local box = foreverRoot.ScrollBox
+        local view = box and box.GetView and box:GetView()
+        local frames = view and view.GetFrames and view:GetFrames()
+        if type(frames) == "table" then
+            for i = 1, #frames do
+                local f = frames[i]
+                if f then
+                    registerStatKey(f, f._FluxInfoStatKey)
+                end
+            end
+        end
+    end
+    local root = _G.CharacterFrame or pane
+    if root and root.GetChildren then
+        local queue = { root }
+        local qi = 1
+        while qi <= #queue do
+            local node = queue[qi]
+            qi = qi + 1
+            if node and node.GetChildren then
+                local kids = { node:GetChildren() }
+                for i = 1, #kids do
+                    local c = kids[i]
+                    if c then
+                        queue[#queue + 1] = c
+                        registerStatKey(c, c._FluxInfoStatKey)
+                    end
+                end
+            end
+        end
+    end
+end
+
+]==],
+    statResolver = [==[
+function InfoFrame.ResolveStatFramesForTooltip(statKey, allowRetry)
+    statKey = _CanonicalIlvlGsRegistryKey(statKey) or statKey
+    statKey = InfoFrame._CamelotCombatStatKey(statKey)
+    if not statKey then return {} end
+    if allowRetry == nil then allowRetry = true end
+    local now = GetTime() or 0
+    if (now - (_tooltipKeyToStatFrameAt or 0)) > 0.25 then
+        _RebuildTooltipStatFrameCache()
+    end
+    local seen = {}
+    local out = {}
+    local function addFrame(f)
+        if not f or seen[f] then return end
+        seen[f] = true
+        out[#out + 1] = f
+    end
+    local L = _tooltipKeyToStatFrameList[statKey]
+    if type(L) == "table" then
+        for i = 1, #L do
+            addFrame(L[i])
+        end
+    end
+    local one = _tooltipKeyToStatFrame[statKey]
+    if one then
+        addFrame(one)
+    end
+
+    local function resolvedKeyForFrame(c)
+        local k = c._FluxInfoStatKey
+        if k then
+            return InfoFrame._CamelotCombatStatKey(_CanonicalIlvlGsRegistryKey(k) or k)
+        end
+        if FLUX_API and FLUX_API.isRetail then
+            k = GetRetailStatKey(c)
+        end
+        if not k then
+            k = GetClassicStatKey(c)
+        end
+        return InfoFrame._CamelotCombatStatKey(_CanonicalIlvlGsRegistryKey(k) or k)
+    end
+
+    local qSeen = {}
+    local q = {}
+    local function push(x)
+        if x and not qSeen[x] then
+            qSeen[x] = true
+            q[#q + 1] = x
+        end
+    end
+    push(_G.CharacterFrame)
+    push(_G.CharacterStatsPane)
+    push(_G.PaperDollFrame)
+    push(_G.CharacterStatsPaneScrollBox)
+    local qi = 1
+    while qi <= #q do
+        local node = q[qi]
+        qi = qi + 1
+        local _, labelText = _GetStatLabelRegionAndText(node)
+        if labelText and _StatFrameHasValueRegion(node) then
+            if resolvedKeyForFrame(node) == statKey then
+                addFrame(node)
+            end
+        end
+        if node.GetChildren then
+            local kids = { node:GetChildren() }
+            for i = 1, #kids do
+                push(kids[i])
+            end
+        end
+    end
+
+    table.sort(out, function(a, b)
+        local sa = (a.IsShown and a:IsShown()) and 1 or 0
+        local sb = (b.IsShown and b:IsShown()) and 1 or 0
+        if sa ~= sb then
+            return sa > sb
+        end
+        return tostring(a) < tostring(b)
+    end)
+
+    if #out == 0 and allowRetry and (now - (_lastTooltipCacheFlushPinsAt or 0)) > 0.2 then
+        _lastTooltipCacheFlushPinsAt = now
+        if type(RefreshAllPinIndicators) == "function" then
+            RefreshAllPinIndicators()
+        end
+        _tooltipKeyToStatFrameAt = 0
+        _RebuildTooltipStatFrameCache()
+        return InfoFrame.ResolveStatFramesForTooltip(statKey, false)
+    end
+    return out
+end
+
+]==],
+    colorHelper = [==[
+local function _GetSpellPowerTopSchoolColorNoTie()
+    local cscFn = _G.CSC_InfoFrame_BuildSpellPowerData
+    if type(cscFn) == "function" then
+        local ok, maxDmg, _, _, values, relevant = pcall(cscFn)
+        if ok and type(maxDmg) == "number" and maxDmg > 0 and type(values) == "table" and type(relevant) == "table" then
+            local topCount = 0
+            local topSchool = nil
+            for school = 2, 7 do
+                if relevant[school] and type(values[school]) == "number" and values[school] == maxDmg then
+                    topCount = topCount + 1
+                    topSchool = school
+                end
+            end
+            if topCount == 1 then
+                return _SCHOOL_COLOR_BY_ID[topSchool]
+            end
+            return nil -- tie or no clear top -> white
+        end
+    end
+    if InfoFrame._ClassicSpellDamageColorHex then
+        return InfoFrame._ClassicSpellDamageColorHex()
+    end
+    return nil
+end
+
+]==],
+    color = [==[
+function InfoFrame._ClassicSpellDamageColorHex()
+    local maxD, _, _, bonus = InfoFrame._CamelotSpellBonus()
+    local tops = {}
+    for school = 2, 7 do
+        if bonus[school] == maxD then
+            tops[#tops + 1] = school
+        end
+    end
+    if #tops == 1 then
+        return _SCHOOL_COLOR_BY_ID[tops[1]] or "ffffff"
+    end
+    local _, _, classId = UnitClass("player")
+    local tab
+    if type(GetNumTalentTabs) == "function" and type(GetTalentTabInfo) == "function" then
+        local best, bestPts = nil, -1
+        for i = 1, GetNumTalentTabs() do
+            local _, _, pts = GetTalentTabInfo(i)
+            pts = tonumber(pts) or 0
+            if pts > bestPts then
+                bestPts = pts
+                best = i
+            end
+        end
+        if bestPts > 0 then
+            tab = best
+        end
+    end
+    local dominant
+    if classId == 8 then
+        if tab == 1 then dominant = 7 elseif tab == 2 then dominant = 3 elseif tab == 3 then dominant = 5 end
+    elseif classId == 5 then
+        if tab == 2 then dominant = 2 elseif tab == 3 then dominant = 6 end
+    elseif classId == 9 then
+        if tab == 1 then dominant = 6 elseif tab == 3 then dominant = 3 end
+    elseif classId == 2 then
+        if tab == 1 then dominant = 2 end
+    elseif classId == 11 then
+        if tab == 1 then dominant = 4 end
+    elseif classId == 7 then
+        if tab == 1 then dominant = 4 end
+    end
+    if dominant then
+        for i = 1, #tops do
+            if tops[i] == dominant then
+                return _SCHOOL_COLOR_BY_ID[dominant] or "ffffff"
+            end
+        end
+    end
+    return "ffffff"
+end
+
+]==],
+    spellLine = [==[
+STAT_REGISTRY["spellPower"] = {
+    label = "Spell",
+    order = 50,
+    -- getText returns (fullText, compactText) so the combined Dmg / Heal line
+    -- can be formatted and colored before _GetKeyText sees it.
+    getText = function()
+        if InfoFrame._UseClassicSpellPowerLine() then
+            -- Forever Spell Damage / Spell Healing are Classic Era spell power.
+            -- Pin damage -> S.P.  Pin healing -> Heal.  Pin both -> Spell: dmg / heal.
+            local mode = GetInfoFrameCharDB().spellDisplayMode or "off"
+            local maxD, heal, _, bonus = InfoFrame._CamelotSpellBonus()
+            local haveSchools = false
+            for school = 2, 7 do
+                if bonus[school] ~= nil then
+                    haveSchools = true
+                    break
+                end
+            end
+            local snap = InfoFrame._camelotSpellSnapshot
+            local dmgHex = _GetSpellPowerTopSchoolColorNoTie() or "ffffff"
+            local dmgStr
+            if haveSchools or not (snap and type(snap.shownText) == "string" and snap.shownText ~= "") then
+                dmgStr = string.format("|cff%s%d|r", dmgHex, maxD or 0)
+            else
+                dmgStr = snap.shownText
+            end
+            local healStr
+            if heal ~= 0 or not (snap and type(snap.healText) == "string" and snap.healText ~= "") then
+                healStr = string.format("|cff20ff20%d|r", heal or 0)
+            else
+                healStr = "|cff20ff20" .. snap.healText .. "|r"
+            end
+            local showDmg = mode == "sp" or mode == "both"
+            local showHeal = mode == "heal" or mode == "both"
+            if showDmg and showHeal then
+                local full = "Spell: " .. dmgStr .. " / " .. healStr
+                local compact = "Spell: " .. dmgStr .. "/" .. healStr
+                return full, compact
+            end
+            if showHeal then
+                local one = "Heal: " .. healStr
+                return one, one
+            end
+            local one = "S.P.: " .. dmgStr
+            return one, one
+        end
+        local cscFn = _G.CSC_InfoFrame_BuildSpellPowerData
+        if type(cscFn) == "function" then
+            local ok, maxDmg, heal, _, values, relevant = pcall(cscFn)
+            if ok and type(maxDmg) == "number" and maxDmg > 0 then
+                local colorFn = _G.CSC_InfoFrame_GetDisplayColorForTop
+                local colorHex = "ffffff"
+                if type(colorFn) == "function" then
+                    colorHex = _NormalizeHexColor(colorFn(values, relevant, maxDmg, false)) or "ffffff"
+                end
+                local dmgStr  = string.format("|cff%s%d|r", colorHex, maxDmg)
+                if type(heal) == "number" and heal > 0 then
+                    local healStr = string.format("|cff20ff20%d|r", heal)
+                    local full    = "Spell: " .. dmgStr .. " / " .. healStr
+                    local compact = "Spell: " .. dmgStr .. "/" .. healStr
+                    return full, compact
+                end
+                local one = "Spell: " .. dmgStr
+                return one, one
+            end
+        end
+        -- Retail / fallback: best school damage only.
+        if type(GetSpellBonusDamage) == "function" then
+            local best = 0
+            for i = 2, 7 do
+                local v = _SafeCall(GetSpellBonusDamage, i)
+                if v and v > best then best = v end
+            end
+            if best > 0 then
+                local s = string.format("|cffffffff%d|r", best)
+                local one = "Spell: " .. s
+                return one, one
+            end
+        end
+        local na = "|cff888888--|r"
+        local one = "Spell: " .. na
+        return one, one
+    end,
+    get = function() return nil end,
+    fmt = "%d",
+}
+
+]==],
+}

@@ -1,0 +1,222 @@
+{
+  "changeID": "UTILITY-MODIFIER-VFX-20261107",
+  "dateUTC": "2026-11-07T10:56:52.622065+00:00",
+  "requirement": "UTL-VFX-07",
+  "checkpoint": {
+    "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\07\\01a1b54c-d8ad-7fb2-8983-8450144d40ed\\Utility-vfx-20261107",
+    "sourceFiles": 1770,
+    "sourceZIP": "03ebe52e228e64a4dab7946746478b07a0c83a952dd72f08cccf60015e782565",
+    "history": "Existing external Utility-mixed-20261107 history.bundle verified before edits",
+    "settings": "121 on-disk metadata files preserved externally; no live WTF/profiler writes; prior recovery remains"
+  },
+  "baseline": {
+    "Core/ButtonFX/Cast.lua": "c4fe5de883fa4973703f12eb96c7f40b80c9f8edd055fb8eb8ea5681c06d0480",
+    "ExtraButtonSystem/Engine/Action.lua": "725c28de19c629a506938f4be0538ce70f6af428a1b370987009aa5ba0a80780",
+    "ExtraButtonSystem/Engine/Paint.lua": "2755d01c2bfcc13d05e4b1e5cfe97f0335f177b6a1e45475e7c45bcb9add6c12"
+  },
+  "candidate": {
+    "Core/ButtonFX/Cast.lua": "77e189a80d832523145c464164db894155573388affa6dec8045f9966e50fbc1",
+    "ExtraButtonSystem/Engine/Action.lua": "9ab016161dc7c3a9a98470121069668e6fead9d187d190960e030afaa4ec5a86",
+    "ExtraButtonSystem/Engine/Paint.lua": "896f65547ecedfac7342d16de6d773369a927875c18f6068a6825e2ed7a542bc"
+  },
+  "pairs": [
+    {
+      "pair": 1,
+      "kind": "baseline",
+      "exit": 1,
+      "wallSeconds": 0.08569,
+      "output": "lua: tests/utility_modifier_vfx.lua:5: item modifier clears prior spell cast\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/utility_modifier_vfx.lua:5: in local 'check'\n\ttests/utility_modifier_vfx.lua:149: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "pair": 1,
+      "kind": "candidate",
+      "exit": 0,
+      "wallSeconds": 0.13914,
+      "output": "Utility modifier VFX: 578 checks; five clients; cast/channel/empower/reticle/burst/interrupt/proc lifecycle PASS\n"
+    },
+    {
+      "pair": 2,
+      "kind": "baseline",
+      "exit": 1,
+      "wallSeconds": 0.02867,
+      "output": "lua: tests/utility_modifier_vfx.lua:5: item modifier clears prior spell cast\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/utility_modifier_vfx.lua:5: in local 'check'\n\ttests/utility_modifier_vfx.lua:149: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "pair": 2,
+      "kind": "candidate",
+      "exit": 0,
+      "wallSeconds": 0.14016,
+      "output": "Utility modifier VFX: 578 checks; five clients; cast/channel/empower/reticle/burst/interrupt/proc lifecycle PASS\n"
+    },
+    {
+      "pair": 3,
+      "kind": "baseline",
+      "exit": 1,
+      "wallSeconds": 0.02544,
+      "output": "lua: tests/utility_modifier_vfx.lua:5: item modifier clears prior spell cast\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/utility_modifier_vfx.lua:5: in local 'check'\n\ttests/utility_modifier_vfx.lua:149: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "pair": 3,
+      "kind": "candidate",
+      "exit": 0,
+      "wallSeconds": 0.13916,
+      "output": "Utility modifier VFX: 578 checks; five clients; cast/channel/empower/reticle/burst/interrupt/proc lifecycle PASS\n"
+    },
+    {
+      "pair": 4,
+      "kind": "baseline",
+      "exit": 1,
+      "wallSeconds": 0.02957,
+      "output": "lua: tests/utility_modifier_vfx.lua:5: item modifier clears prior spell cast\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/utility_modifier_vfx.lua:5: in local 'check'\n\ttests/utility_modifier_vfx.lua:149: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "pair": 4,
+      "kind": "candidate",
+      "exit": 0,
+      "wallSeconds": 0.14321,
+      "output": "Utility modifier VFX: 578 checks; five clients; cast/channel/empower/reticle/burst/interrupt/proc lifecycle PASS\n"
+    },
+    {
+      "pair": 5,
+      "kind": "baseline",
+      "exit": 1,
+      "wallSeconds": 0.03076,
+      "output": "lua: tests/utility_modifier_vfx.lua:5: item modifier clears prior spell cast\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/utility_modifier_vfx.lua:5: in local 'check'\n\ttests/utility_modifier_vfx.lua:149: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "pair": 5,
+      "kind": "candidate",
+      "exit": 0,
+      "wallSeconds": 0.15204,
+      "output": "Utility modifier VFX: 578 checks; five clients; cast/channel/empower/reticle/burst/interrupt/proc lifecycle PASS\n"
+    }
+  ],
+  "mutations": [
+    {
+      "name": "lost-cast-settle",
+      "exit": 1,
+      "output": "lua: tests/utility_modifier_vfx.lua:5: item modifier clears prior spell cast\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/utility_modifier_vfx.lua:5: in local 'check'\n\ttests/utility_modifier_vfx.lua:149: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "lost-item-proc",
+      "exit": 1,
+      "output": "lua: tests/utility_modifier_vfx.lua:5: item proc follows known use spell despite different item art\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/utility_modifier_vfx.lua:5: in local 'check'\n\ttests/utility_modifier_vfx.lua:180: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "lost-owner-clear",
+      "exit": 1,
+      "output": "lua: tests/utility_modifier_vfx.lua:5: item modifier clears prior spell cast\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/utility_modifier_vfx.lua:5: in local 'check'\n\ttests/utility_modifier_vfx.lua:149: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "wrong-item-art-filter",
+      "exit": 1,
+      "output": "lua: tests/utility_modifier_vfx.lua:5: item proc follows known use spell despite different item art\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/utility_modifier_vfx.lua:5: in local 'check'\n\ttests/utility_modifier_vfx.lua:180: in main chunk\n\t[C]: in ?\n"
+    }
+  ],
+  "focused": "578 VFX state checks across five client models;7329 modifier/count checks;11015 native-source input checks",
+  "ownership": "Existing Cast/Overlay/Glow owners only. Targeted registered RANK_EBS player-widget settle on actual utility identity change; no additional event/frame/timer/ticker/poll/secure write; prune only departed widget from player owner bags; strip/pet controls retained; existing shared proc event lane unchanged.",
+  "sourceEvidence": "Existing addon services and previously recorded source-pinned contracts only; no new native API or copied reference implementation; five installed targets retained.",
+  "native": "Not run: no connected Witchcraft/background-safe native input tool; modeled Overlay/Glow drawing and native unit data do not certify native rendering/taint/combat/FPS. No foreground/mouse/keyboard/clipboard/gameplay control.",
+  "scope": "Cast/channel/empower/reticle/finish/interrupt/proc ownership across spell/item/empty/modifier release; item usespell identity over item texture; active-progress resume via existing Overlay.SyncCast; expiration; duplicate context no settle; repeated cycles no resource growth; existing pre-DF VFX off preference.",
+  "fullValidation": {
+    "report": "docs/validation/utility-modifier-vfx-full-2026-11-07.json",
+    "syntaxFiles": 885,
+    "pass": 222,
+    "fail": 0,
+    "postRunDrift": []
+  },
+  "installedCopies": [
+    {
+      "client": "_retail_",
+      "source": "Core/ButtonFX/Cast.lua",
+      "sha256": "77e189a80d832523145c464164db894155573388affa6dec8045f9966e50fbc1",
+      "matches": true
+    },
+    {
+      "client": "_retail_",
+      "source": "ExtraButtonSystem/Engine/Action.lua",
+      "sha256": "9ab016161dc7c3a9a98470121069668e6fead9d187d190960e030afaa4ec5a86",
+      "matches": true
+    },
+    {
+      "client": "_retail_",
+      "source": "ExtraButtonSystem/Engine/Paint.lua",
+      "sha256": "896f65547ecedfac7342d16de6d773369a927875c18f6068a6825e2ed7a542bc",
+      "matches": true
+    },
+    {
+      "client": "_forever_",
+      "source": "Core/ButtonFX/Cast.lua",
+      "sha256": "77e189a80d832523145c464164db894155573388affa6dec8045f9966e50fbc1",
+      "matches": true
+    },
+    {
+      "client": "_forever_",
+      "source": "ExtraButtonSystem/Engine/Action.lua",
+      "sha256": "9ab016161dc7c3a9a98470121069668e6fead9d187d190960e030afaa4ec5a86",
+      "matches": true
+    },
+    {
+      "client": "_forever_",
+      "source": "ExtraButtonSystem/Engine/Paint.lua",
+      "sha256": "896f65547ecedfac7342d16de6d773369a927875c18f6068a6825e2ed7a542bc",
+      "matches": true
+    },
+    {
+      "client": "_classic_",
+      "source": "Core/ButtonFX/Cast.lua",
+      "sha256": "77e189a80d832523145c464164db894155573388affa6dec8045f9966e50fbc1",
+      "matches": true
+    },
+    {
+      "client": "_classic_",
+      "source": "ExtraButtonSystem/Engine/Action.lua",
+      "sha256": "9ab016161dc7c3a9a98470121069668e6fead9d187d190960e030afaa4ec5a86",
+      "matches": true
+    },
+    {
+      "client": "_classic_",
+      "source": "ExtraButtonSystem/Engine/Paint.lua",
+      "sha256": "896f65547ecedfac7342d16de6d773369a927875c18f6068a6825e2ed7a542bc",
+      "matches": true
+    },
+    {
+      "client": "_classic_era_",
+      "source": "Core/ButtonFX/Cast.lua",
+      "sha256": "77e189a80d832523145c464164db894155573388affa6dec8045f9966e50fbc1",
+      "matches": true
+    },
+    {
+      "client": "_classic_era_",
+      "source": "ExtraButtonSystem/Engine/Action.lua",
+      "sha256": "9ab016161dc7c3a9a98470121069668e6fead9d187d190960e030afaa4ec5a86",
+      "matches": true
+    },
+    {
+      "client": "_classic_era_",
+      "source": "ExtraButtonSystem/Engine/Paint.lua",
+      "sha256": "896f65547ecedfac7342d16de6d773369a927875c18f6068a6825e2ed7a542bc",
+      "matches": true
+    },
+    {
+      "client": "_anniversary_",
+      "source": "Core/ButtonFX/Cast.lua",
+      "sha256": "77e189a80d832523145c464164db894155573388affa6dec8045f9966e50fbc1",
+      "matches": true
+    },
+    {
+      "client": "_anniversary_",
+      "source": "ExtraButtonSystem/Engine/Action.lua",
+      "sha256": "9ab016161dc7c3a9a98470121069668e6fead9d187d190960e030afaa4ec5a86",
+      "matches": true
+    },
+    {
+      "client": "_anniversary_",
+      "source": "ExtraButtonSystem/Engine/Paint.lua",
+      "sha256": "896f65547ecedfac7342d16de6d773369a927875c18f6068a6825e2ed7a542bc",
+      "matches": true
+    }
+  ],
+  "documentationValidation": "PASS:918 classified sources;598 TOC/XML reachable;415 setting definitions;24 SavedVariables;15101 local links; source inventory/evidence current",
+  "finalAudit": "Three utility runtime owners and full tested Lua corpus unchanged;15 installed runtime copies match; no manual sync/input/settings changes."
+}

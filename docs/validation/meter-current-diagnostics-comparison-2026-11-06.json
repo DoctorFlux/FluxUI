@@ -1,0 +1,165 @@
+{
+  "utc": "2026-11-06T08:07:34.396292+00:00",
+  "baselineCommit": "b6cb2c7bdff70e88b3bdca4bc2de7d753352eac9",
+  "baselineSHA256": "ad0d3b1db751ce3b606dd37787ebe16eca3c9820410a5355b60ef799694d1df7",
+  "sourceIdentities": {
+    "Battlezonemap/FluxBlizzardMeter.lua": "48b18bcfada6b9c96208fc4afa0922152633a7d69de84682e59802b2699d2eb6",
+    "tests/native_meter_writer_provenance.lua": "228e5cd73f4d1fec8bb507133aaa4d148b35f9eb5a533de651dc72f5263fba32",
+    "tests/native_meter_ownership.lua": "8d33fb9163d3ad528074a27963501d961004a0b89721b985300d126a0e6d4af3"
+  },
+  "scope": "Desktop production-backend/provenance/diagnostic checks only; no native secure VM or in-game reset/taint/render/FPS certification.",
+  "scenario": "Mapped native Overall/Current/historical/Expired/opaque choices; status instructions; copied results; native ownership through layouts and handoff.",
+  "configuration": "Lua5.4.6, fresh fixture/process per run; no extra warmup; 500-layout lifecycle bursts; five alternating pairs; no game input/profiler/settings writes.",
+  "interpretation": "Diagnostics make retained Overall explicit. They do not automatically change the native display or prove per-fight native reset. Original native Current must be selected through its own UI; native acceptance pending.",
+  "resources": "No new frames/events/hooks/timers. Each on-demand status query reads at most three mapped native configuration records; no actor/text/duration queries.",
+  "pairs": [
+    {
+      "pair": 1,
+      "order": [
+        "baseline",
+        "candidate"
+      ],
+      "baseline": {
+        "exitCode": 1,
+        "wallSeconds": 0.06195009997463785,
+        "stdout": "FAIL mapped native Overall choices are reported as needing Current for a per-fight view\nFAIL session diagnostics do not alias native configuration or another status result\nFAIL status explains native Current setup without changing sessions or resetting history\nFAIL each pane reports its own native session selection\nFAIL all native Current choices clear setup guidance without an addon configuration write\nFAIL a selected historical session is diagnosed and preserved rather than silently switched\nFAIL the source-pinned Expired session enum is reported without modifying the native choice\nFAIL opaque session selection is reported unavailable without comparison or formatting\nFAIL mapped native Overall choices are reported as needing Current for a per-fight view\nFAIL session diagnostics do not alias native configuration or another status result\nFAIL status explains native Current setup without changing sessions or resetting history\nFAIL each pane reports its own native session selection\nFAIL all native Current choices clear setup guidance without an addon configuration write\nFAIL a selected historical session is diagnosed and preserved rather than silently switched\nFAIL the source-pinned Expired session enum is reported without modifying the native choice\nFAIL opaque session selection is reported unavailable without comparison or formatting\nnative writer provenance: 42 checks, 16 failures; explicit model, native secure VM unverified\n",
+        "stderr": "lua: ...\\AddOns\\_FluxUI\\tests\\native_meter_writer_provenance.lua:162: native data ownership regressions\nstack traceback:\n\t[C]: in function 'assert'\n\t...\\AddOns\\_FluxUI\\tests\\native_meter_writer_provenance.lua:162: in main chunk\n\t[C]: in ?\n"
+      },
+      "candidate": {
+        "exitCode": 0,
+        "wallSeconds": 0.05254539998713881,
+        "stdout": "native writer provenance: 42 checks, 0 failures; explicit model, native secure VM unverified\n",
+        "stderr": ""
+      }
+    },
+    {
+      "pair": 2,
+      "order": [
+        "candidate",
+        "baseline"
+      ],
+      "candidate": {
+        "exitCode": 0,
+        "wallSeconds": 0.04922169999917969,
+        "stdout": "native writer provenance: 42 checks, 0 failures; explicit model, native secure VM unverified\n",
+        "stderr": ""
+      },
+      "baseline": {
+        "exitCode": 1,
+        "wallSeconds": 0.04266969999298453,
+        "stdout": "FAIL mapped native Overall choices are reported as needing Current for a per-fight view\nFAIL session diagnostics do not alias native configuration or another status result\nFAIL status explains native Current setup without changing sessions or resetting history\nFAIL each pane reports its own native session selection\nFAIL all native Current choices clear setup guidance without an addon configuration write\nFAIL a selected historical session is diagnosed and preserved rather than silently switched\nFAIL the source-pinned Expired session enum is reported without modifying the native choice\nFAIL opaque session selection is reported unavailable without comparison or formatting\nFAIL mapped native Overall choices are reported as needing Current for a per-fight view\nFAIL session diagnostics do not alias native configuration or another status result\nFAIL status explains native Current setup without changing sessions or resetting history\nFAIL each pane reports its own native session selection\nFAIL all native Current choices clear setup guidance without an addon configuration write\nFAIL a selected historical session is diagnosed and preserved rather than silently switched\nFAIL the source-pinned Expired session enum is reported without modifying the native choice\nFAIL opaque session selection is reported unavailable without comparison or formatting\nnative writer provenance: 42 checks, 16 failures; explicit model, native secure VM unverified\n",
+        "stderr": "lua: ...\\AddOns\\_FluxUI\\tests\\native_meter_writer_provenance.lua:162: native data ownership regressions\nstack traceback:\n\t[C]: in function 'assert'\n\t...\\AddOns\\_FluxUI\\tests\\native_meter_writer_provenance.lua:162: in main chunk\n\t[C]: in ?\n"
+      }
+    },
+    {
+      "pair": 3,
+      "order": [
+        "baseline",
+        "candidate"
+      ],
+      "baseline": {
+        "exitCode": 1,
+        "wallSeconds": 0.04412939999019727,
+        "stdout": "FAIL mapped native Overall choices are reported as needing Current for a per-fight view\nFAIL session diagnostics do not alias native configuration or another status result\nFAIL status explains native Current setup without changing sessions or resetting history\nFAIL each pane reports its own native session selection\nFAIL all native Current choices clear setup guidance without an addon configuration write\nFAIL a selected historical session is diagnosed and preserved rather than silently switched\nFAIL the source-pinned Expired session enum is reported without modifying the native choice\nFAIL opaque session selection is reported unavailable without comparison or formatting\nFAIL mapped native Overall choices are reported as needing Current for a per-fight view\nFAIL session diagnostics do not alias native configuration or another status result\nFAIL status explains native Current setup without changing sessions or resetting history\nFAIL each pane reports its own native session selection\nFAIL all native Current choices clear setup guidance without an addon configuration write\nFAIL a selected historical session is diagnosed and preserved rather than silently switched\nFAIL the source-pinned Expired session enum is reported without modifying the native choice\nFAIL opaque session selection is reported unavailable without comparison or formatting\nnative writer provenance: 42 checks, 16 failures; explicit model, native secure VM unverified\n",
+        "stderr": "lua: ...\\AddOns\\_FluxUI\\tests\\native_meter_writer_provenance.lua:162: native data ownership regressions\nstack traceback:\n\t[C]: in function 'assert'\n\t...\\AddOns\\_FluxUI\\tests\\native_meter_writer_provenance.lua:162: in main chunk\n\t[C]: in ?\n"
+      },
+      "candidate": {
+        "exitCode": 0,
+        "wallSeconds": 0.04206420000991784,
+        "stdout": "native writer provenance: 42 checks, 0 failures; explicit model, native secure VM unverified\n",
+        "stderr": ""
+      }
+    },
+    {
+      "pair": 4,
+      "order": [
+        "candidate",
+        "baseline"
+      ],
+      "candidate": {
+        "exitCode": 0,
+        "wallSeconds": 0.04004530000383966,
+        "stdout": "native writer provenance: 42 checks, 0 failures; explicit model, native secure VM unverified\n",
+        "stderr": ""
+      },
+      "baseline": {
+        "exitCode": 1,
+        "wallSeconds": 0.04426289998809807,
+        "stdout": "FAIL mapped native Overall choices are reported as needing Current for a per-fight view\nFAIL session diagnostics do not alias native configuration or another status result\nFAIL status explains native Current setup without changing sessions or resetting history\nFAIL each pane reports its own native session selection\nFAIL all native Current choices clear setup guidance without an addon configuration write\nFAIL a selected historical session is diagnosed and preserved rather than silently switched\nFAIL the source-pinned Expired session enum is reported without modifying the native choice\nFAIL opaque session selection is reported unavailable without comparison or formatting\nFAIL mapped native Overall choices are reported as needing Current for a per-fight view\nFAIL session diagnostics do not alias native configuration or another status result\nFAIL status explains native Current setup without changing sessions or resetting history\nFAIL each pane reports its own native session selection\nFAIL all native Current choices clear setup guidance without an addon configuration write\nFAIL a selected historical session is diagnosed and preserved rather than silently switched\nFAIL the source-pinned Expired session enum is reported without modifying the native choice\nFAIL opaque session selection is reported unavailable without comparison or formatting\nnative writer provenance: 42 checks, 16 failures; explicit model, native secure VM unverified\n",
+        "stderr": "lua: ...\\AddOns\\_FluxUI\\tests\\native_meter_writer_provenance.lua:162: native data ownership regressions\nstack traceback:\n\t[C]: in function 'assert'\n\t...\\AddOns\\_FluxUI\\tests\\native_meter_writer_provenance.lua:162: in main chunk\n\t[C]: in ?\n"
+      }
+    },
+    {
+      "pair": 5,
+      "order": [
+        "baseline",
+        "candidate"
+      ],
+      "baseline": {
+        "exitCode": 1,
+        "wallSeconds": 0.04232760000741109,
+        "stdout": "FAIL mapped native Overall choices are reported as needing Current for a per-fight view\nFAIL session diagnostics do not alias native configuration or another status result\nFAIL status explains native Current setup without changing sessions or resetting history\nFAIL each pane reports its own native session selection\nFAIL all native Current choices clear setup guidance without an addon configuration write\nFAIL a selected historical session is diagnosed and preserved rather than silently switched\nFAIL the source-pinned Expired session enum is reported without modifying the native choice\nFAIL opaque session selection is reported unavailable without comparison or formatting\nFAIL mapped native Overall choices are reported as needing Current for a per-fight view\nFAIL session diagnostics do not alias native configuration or another status result\nFAIL status explains native Current setup without changing sessions or resetting history\nFAIL each pane reports its own native session selection\nFAIL all native Current choices clear setup guidance without an addon configuration write\nFAIL a selected historical session is diagnosed and preserved rather than silently switched\nFAIL the source-pinned Expired session enum is reported without modifying the native choice\nFAIL opaque session selection is reported unavailable without comparison or formatting\nnative writer provenance: 42 checks, 16 failures; explicit model, native secure VM unverified\n",
+        "stderr": "lua: ...\\AddOns\\_FluxUI\\tests\\native_meter_writer_provenance.lua:162: native data ownership regressions\nstack traceback:\n\t[C]: in function 'assert'\n\t...\\AddOns\\_FluxUI\\tests\\native_meter_writer_provenance.lua:162: in main chunk\n\t[C]: in ?\n"
+      },
+      "candidate": {
+        "exitCode": 0,
+        "wallSeconds": 0.043567499989876524,
+        "stdout": "native writer provenance: 42 checks, 0 failures; explicit model, native secure VM unverified\n",
+        "stderr": ""
+      }
+    }
+  ],
+  "mutants": [
+    {
+      "name": "overall-as-current",
+      "exitCode": 1,
+      "wallSeconds": 0.06258580001303926,
+      "stdout": "FAIL mapped native Overall choices are reported as needing Current for a per-fight view\nFAIL session diagnostics do not alias native configuration or another status result\nFAIL status explains native Current setup without changing sessions or resetting history\nFAIL each pane reports its own native session selection\nFAIL mapped native Overall choices are reported as needing Current for a per-fight view\nFAIL session diagnostics do not alias native configuration or another status result\nFAIL status explains native Current setup without changing sessions or resetting history\nFAIL each pane reports its own native session selection\nnative writer provenance: 42 checks, 8 failures; explicit model, native secure VM unverified\n",
+      "stderr": "lua: ...\\AddOns\\_FluxUI\\tests\\native_meter_writer_provenance.lua:162: native data ownership regressions\nstack traceback:\n\t[C]: in function 'assert'\n\t...\\AddOns\\_FluxUI\\tests\\native_meter_writer_provenance.lua:162: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "expired-as-current",
+      "exitCode": 1,
+      "wallSeconds": 0.057441199984168634,
+      "stdout": "FAIL the source-pinned Expired session enum is reported without modifying the native choice\nFAIL the source-pinned Expired session enum is reported without modifying the native choice\nnative writer provenance: 42 checks, 2 failures; explicit model, native secure VM unverified\n",
+      "stderr": "lua: ...\\AddOns\\_FluxUI\\tests\\native_meter_writer_provenance.lua:162: native data ownership regressions\nstack traceback:\n\t[C]: in function 'assert'\n\t...\\AddOns\\_FluxUI\\tests\\native_meter_writer_provenance.lua:162: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "history-as-current",
+      "exitCode": 1,
+      "wallSeconds": 0.056150799995521083,
+      "stdout": "FAIL a selected historical session is diagnosed and preserved rather than silently switched\nFAIL a selected historical session is diagnosed and preserved rather than silently switched\nnative writer provenance: 42 checks, 2 failures; explicit model, native secure VM unverified\n",
+      "stderr": "lua: ...\\AddOns\\_FluxUI\\tests\\native_meter_writer_provenance.lua:162: native data ownership regressions\nstack traceback:\n\t[C]: in function 'assert'\n\t...\\AddOns\\_FluxUI\\tests\\native_meter_writer_provenance.lua:162: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "ignore-noncurrent-setup",
+      "exitCode": 1,
+      "wallSeconds": 0.055996400013100356,
+      "stdout": "FAIL mapped native Overall choices are reported as needing Current for a per-fight view\nFAIL status explains native Current setup without changing sessions or resetting history\nFAIL each pane reports its own native session selection\nFAIL a selected historical session is diagnosed and preserved rather than silently switched\nFAIL the source-pinned Expired session enum is reported without modifying the native choice\nFAIL mapped native Overall choices are reported as needing Current for a per-fight view\nFAIL status explains native Current setup without changing sessions or resetting history\nFAIL each pane reports its own native session selection\nFAIL a selected historical session is diagnosed and preserved rather than silently switched\nFAIL the source-pinned Expired session enum is reported without modifying the native choice\nnative writer provenance: 42 checks, 10 failures; explicit model, native secure VM unverified\n",
+      "stderr": "lua: ...\\AddOns\\_FluxUI\\tests\\native_meter_writer_provenance.lua:162: native data ownership regressions\nstack traceback:\n\t[C]: in function 'assert'\n\t...\\AddOns\\_FluxUI\\tests\\native_meter_writer_provenance.lua:162: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "hide-current-instruction",
+      "exitCode": 1,
+      "wallSeconds": 0.0549821000022348,
+      "stdout": "FAIL status explains native Current setup without changing sessions or resetting history\nFAIL status explains native Current setup without changing sessions or resetting history\nnative writer provenance: 42 checks, 2 failures; explicit model, native secure VM unverified\n",
+      "stderr": "lua: ...\\AddOns\\_FluxUI\\tests\\native_meter_writer_provenance.lua:162: native data ownership regressions\nstack traceback:\n\t[C]: in function 'assert'\n\t...\\AddOns\\_FluxUI\\tests\\native_meter_writer_provenance.lua:162: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "private-session-write",
+      "exitCode": 1,
+      "wallSeconds": 0.05961260001640767,
+      "stdout": "FAIL mapped native Overall choices are reported as needing Current for a per-fight view\nFAIL session diagnostics do not alias native configuration or another status result\nFAIL status explains native Current setup without changing sessions or resetting history\nFAIL 500 layouts and reopening retain native settings without refreshing native data\nFAIL each pane reports its own native session selection\nFAIL a selected historical session is diagnosed and preserved rather than silently switched\nFAIL the source-pinned Expired session enum is reported without modifying the native choice\nFAIL opaque session selection is reported unavailable without comparison or formatting\nFAIL cleanup, handoff and deferred cleanup never restore private configuration\nFAIL mapped native Overall choices are reported as needing Current for a per-fight view\nFAIL session diagnostics do not alias native configuration or another status result\nFAIL status explains native Current setup without changing sessions or resetting history\nFAIL 500 layouts and reopening retain native settings without refreshing native data\nFAIL each pane reports its own native session selection\nFAIL a selected historical session is diagnosed and preserved rather than silently switched\nFAIL the source-pinned Expired session enum is reported without modifying the native choice\nFAIL opaque session selection is reported unavailable without comparison or formatting\nFAIL cleanup, handoff and deferred cleanup never restore private configuration\nnative writer provenance: 42 checks, 18 failures; explicit model, native secure VM unverified\n",
+      "stderr": "lua: ...\\AddOns\\_FluxUI\\tests\\native_meter_writer_provenance.lua:162: native data ownership regressions\nstack traceback:\n\t[C]: in function 'assert'\n\t...\\AddOns\\_FluxUI\\tests\\native_meter_writer_provenance.lua:162: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "unsafe-reset-all",
+      "exitCode": 1,
+      "wallSeconds": 0.034732300002360716,
+      "stdout": "",
+      "stderr": "lua: ...\\AddOns\\_FluxUI\\tests\\native_meter_writer_provenance.lua:60: unexpected native combat-data reset\nstack traceback:\n\t[C]: in function 'error'\n\t...\\AddOns\\_FluxUI\\tests\\native_meter_writer_provenance.lua:60: in field 'ResetAllCombatSessions'\n\t...\\meter-current-diagnostics-20261106\\unsafe-reset-all.lua:1023: in method 'GetLayoutStatus'\n\t...\\AddOns\\_FluxUI\\tests\\native_meter_writer_provenance.lua:75: in main chunk\n\t[C]: in ?\n"
+    }
+  ],
+  "sourceDriftGuard": true,
+  "result": "PASS"
+}

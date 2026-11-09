@@ -1,0 +1,42 @@
+-- Reuse the current complete-module fixture, ending before its test scenario.
+-- Overlay's real VfxAllowed+PlayReticle guard is executed when disabled.
+local function read(p)local f=assert(io.open(p,"rb"));local s=f:read("*a"):gsub("\r\n","\n");f:close();return s end
+local function part(s,a,b)local i=assert(s:find(a,1,true));return s:sub(i,assert(s:find(b,i+#a,true))-1)end
+local fixture=read("tests/utility_modifier_vfx.lua")
+local anchor="    manager.UpdateButton(b, map)"
+fixture=fixture:sub(1,assert(fixture:find(anchor,1,true))+#anchor-1)
+local overlay=read("Core/ButtonFX/Overlay.lua")
+local realGuard=part(overlay,"local function VfxAllowed()","local function NativeCastFrame(widget)")
+local realPlay=part(overlay,"function Overlay.PlayReticle(widget)","local function StopReticleHighlight(widget)")
+local addition=[=[
+    if not flux.Client.isPostDF then
+        local sidCalls,alphaCalls=0,0
+        for i=1,60 do
+            local kid={shown=true}
+            function kid:IsShown()return true end
+            function kid:GetAlpha()alphaCalls=alphaCalls+1;return 1 end
+            cast.Register(kid,function()sidCalls=sidCalls+1;return 101 end,cast.RANK_EBS)
+        end
+        s.targeting=true
+        cast.NoteTargeting(w)
+        check(s.tickers["buttonfx.reticle"]~=nil,"active reticle demand control arms one shared ticker")
+        env.FluxOptions={GetActionbarsDB=function()return {spellCastVFX=false}end}
+        -- Hold exact Overlay guard/function in a narrow environment. Its early
+        -- false guard means no other renderer helper is touched.
+        local renderEnv=setmetatable({ButtonFX=flux.ButtonFX,Overlay=ov},{__index=env})
+        assert(load(__REAL_GUARD..__REAL_PLAY,"@production-disabled-reticle-guard","t",renderEnv))()
+        cast.RefreshFromOptions()
+        local sidBefore,alphaBefore=sidCalls,alphaCalls
+        for i=1,600 do s.tickers["buttonfx.reticle"](.05)end
+        check(s.tickers["buttonfx.reticle"]~=nil,"disabled rendering retains active reticle ticker")
+        check(sidCalls>sidBefore and alphaCalls>alphaBefore,"disabled renderer still searches every shown face")
+        check(w.mode==nil,"real Overlay guard prevents disabled reticle from becoming visible")
+        print(string.format("METRIC %s ticks=600 extraEntries=60 spellReads=%d alphaReads=%d rendererVisible=false",family,sidCalls-sidBefore,alphaCalls-alphaBefore))
+        s.targeting=false;s.tickers["buttonfx.reticle"](.05)
+        check(s.tickers["buttonfx.reticle"]==nil,"native targeting cancellation demand disarms ticker")
+    end
+end
+print("Reticle disabled audit: "..checks.." fixture/control checks; 3 Classic models measured; modern option intentionally always enabled")
+]=]
+local e=setmetatable({__REAL_GUARD=realGuard,__REAL_PLAY=realPlay},{__index=_G});e._G=_G
+assert(load(fixture..addition,"@current-fixture-disabled-reticle","t",e))()

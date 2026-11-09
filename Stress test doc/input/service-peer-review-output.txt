@@ -1,0 +1,6 @@
+PEER scheduler initial=8 old=8 nested=1 new_token=true pending=false
+PEER scheduler initial=9 old=9 nested=0 new_token=false pending=false
+PEER events mutation=none first=ABC second=ABC
+PEER events mutation=remove_self first=AC second=BC
+PEER events mutation=remove_next first=AC second=AC
+PEER SUMMARY source-proven anomalies confirmed; feature reachability requires separate caller evidence

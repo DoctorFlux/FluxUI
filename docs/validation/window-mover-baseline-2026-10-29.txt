@@ -1,0 +1,113 @@
+METRIC disabled_start catalog=24 resolves=2546 hooks=7 polls=60 updates=60 attached=2
+FAIL disabled startup skips catalog discovery
+FAIL disabled startup leaves native hooks alone
+FAIL disabled startup has no panel polling
+FAIL disabled startup creates no attachments
+METRIC disabled_after_enable catalog=20 resolves=2120 polls=100 updates=100 writes=0
+FAIL disabled options stop event-driven discovery
+FAIL disabled options disarm panel watcher
+FAIL cycle disables watcher 1
+FAIL cycle disables watcher 2
+FAIL cycle disables watcher 3
+FAIL cycle disables watcher 4
+FAIL cycle disables watcher 5
+FAIL cycle disables watcher 6
+FAIL cycle disables watcher 7
+FAIL cycle disables watcher 8
+FAIL cycle disables watcher 9
+FAIL cycle disables watcher 10
+FAIL cycle disables watcher 11
+FAIL cycle disables watcher 12
+FAIL cycle disables watcher 13
+FAIL cycle disables watcher 14
+FAIL cycle disables watcher 15
+FAIL cycle disables watcher 16
+FAIL cycle disables watcher 17
+FAIL cycle disables watcher 18
+FAIL cycle disables watcher 19
+FAIL cycle disables watcher 20
+FAIL cycle disables watcher 21
+FAIL cycle disables watcher 22
+FAIL cycle disables watcher 23
+FAIL cycle disables watcher 24
+FAIL cycle disables watcher 25
+FAIL cycle disables watcher 26
+FAIL cycle disables watcher 27
+FAIL cycle disables watcher 28
+FAIL cycle disables watcher 29
+FAIL cycle disables watcher 30
+FAIL cycle disables watcher 31
+FAIL cycle disables watcher 32
+FAIL cycle disables watcher 33
+FAIL cycle disables watcher 34
+FAIL cycle disables watcher 35
+FAIL cycle disables watcher 36
+FAIL cycle disables watcher 37
+FAIL cycle disables watcher 38
+FAIL cycle disables watcher 39
+FAIL cycle disables watcher 40
+FAIL cycle disables watcher 41
+FAIL cycle disables watcher 42
+FAIL cycle disables watcher 43
+FAIL cycle disables watcher 44
+FAIL cycle disables watcher 45
+FAIL cycle disables watcher 46
+FAIL cycle disables watcher 47
+FAIL cycle disables watcher 48
+FAIL cycle disables watcher 49
+FAIL cycle disables watcher 50
+FAIL cycle disables watcher 51
+FAIL cycle disables watcher 52
+FAIL cycle disables watcher 53
+FAIL cycle disables watcher 54
+FAIL cycle disables watcher 55
+FAIL cycle disables watcher 56
+FAIL cycle disables watcher 57
+FAIL cycle disables watcher 58
+FAIL cycle disables watcher 59
+FAIL cycle disables watcher 60
+FAIL cycle disables watcher 61
+FAIL cycle disables watcher 62
+FAIL cycle disables watcher 63
+FAIL cycle disables watcher 64
+FAIL cycle disables watcher 65
+FAIL cycle disables watcher 66
+FAIL cycle disables watcher 67
+FAIL cycle disables watcher 68
+FAIL cycle disables watcher 69
+FAIL cycle disables watcher 70
+FAIL cycle disables watcher 71
+FAIL cycle disables watcher 72
+FAIL cycle disables watcher 73
+FAIL cycle disables watcher 74
+FAIL cycle disables watcher 75
+FAIL cycle disables watcher 76
+FAIL cycle disables watcher 77
+FAIL cycle disables watcher 78
+FAIL cycle disables watcher 79
+FAIL cycle disables watcher 80
+FAIL cycle disables watcher 81
+FAIL cycle disables watcher 82
+FAIL cycle disables watcher 83
+FAIL cycle disables watcher 84
+FAIL cycle disables watcher 85
+FAIL cycle disables watcher 86
+FAIL cycle disables watcher 87
+FAIL cycle disables watcher 88
+FAIL cycle disables watcher 89
+FAIL cycle disables watcher 90
+FAIL cycle disables watcher 91
+FAIL cycle disables watcher 92
+FAIL cycle disables watcher 93
+FAIL cycle disables watcher 94
+FAIL cycle disables watcher 95
+FAIL cycle disables watcher 96
+FAIL cycle disables watcher 97
+FAIL cycle disables watcher 98
+FAIL cycle disables watcher 99
+FAIL cycle disables watcher 100
+METRIC cycles frames=7 hooks=7 saved_scale=1.2
+METRIC disabled_api polls=10 updates=20 saved_changes=1
+FAIL public disable ends gesture before further saved writes
+FAIL public disable hides active driver and watcher
+Window mover disabled: 220 checks, 108 failures

@@ -1,0 +1,215 @@
+{
+  "scope": "Actual production owners under desktop API/event fixtures; native VM, taint, pixels and hardware CPU/FPS not tested.",
+  "before": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\07\\01a1b5b8-1789-7050-b49c-88d0a742e874\\apply-fixes-20261107T125749Z\\before",
+  "checkpoint": "20261107T125749Z",
+  "runs": [
+    {
+      "script": "tests/shared_service_integrity.lua",
+      "repeat": 1,
+      "exit": 0,
+      "raw": "shared_service_integrity-run-1.txt"
+    },
+    {
+      "script": "tests/context_invalidation_stress.lua",
+      "repeat": 1,
+      "exit": 0,
+      "raw": "context_invalidation_stress-run-1.txt"
+    },
+    {
+      "script": "tests/hover_children_varargs.lua",
+      "repeat": 1,
+      "exit": 0,
+      "raw": "hover_children_varargs-run-1.txt"
+    },
+    {
+      "script": "Stress test doc/performance/stress_auction_sustained.lua.txt",
+      "repeat": 1,
+      "exit": 0,
+      "raw": "stress_auction_sustained-run-1.txt"
+    },
+    {
+      "script": "tests/shared_service_integrity.lua",
+      "repeat": 2,
+      "exit": 0,
+      "raw": "shared_service_integrity-run-2.txt"
+    },
+    {
+      "script": "tests/context_invalidation_stress.lua",
+      "repeat": 2,
+      "exit": 0,
+      "raw": "context_invalidation_stress-run-2.txt"
+    },
+    {
+      "script": "tests/hover_children_varargs.lua",
+      "repeat": 2,
+      "exit": 0,
+      "raw": "hover_children_varargs-run-2.txt"
+    },
+    {
+      "script": "Stress test doc/performance/stress_auction_sustained.lua.txt",
+      "repeat": 2,
+      "exit": 0,
+      "raw": "stress_auction_sustained-run-2.txt"
+    },
+    {
+      "script": "tests/shared_service_integrity.lua",
+      "repeat": 3,
+      "exit": 0,
+      "raw": "shared_service_integrity-run-3.txt"
+    },
+    {
+      "script": "tests/context_invalidation_stress.lua",
+      "repeat": 3,
+      "exit": 0,
+      "raw": "context_invalidation_stress-run-3.txt"
+    },
+    {
+      "script": "tests/hover_children_varargs.lua",
+      "repeat": 3,
+      "exit": 0,
+      "raw": "hover_children_varargs-run-3.txt"
+    },
+    {
+      "script": "Stress test doc/performance/stress_auction_sustained.lua.txt",
+      "repeat": 3,
+      "exit": 0,
+      "raw": "stress_auction_sustained-run-3.txt"
+    },
+    {
+      "script": "tests/shared_service_integrity.lua",
+      "expectedBaselineFailure": true,
+      "exit": 1,
+      "raw": "shared_service_integrity-baseline-rejection.txt",
+      "expectedMarkerFound": true
+    },
+    {
+      "script": "tests/context_invalidation_stress.lua",
+      "expectedBaselineFailure": true,
+      "exit": 1,
+      "raw": "context_invalidation_stress-baseline-rejection.txt",
+      "expectedMarkerFound": true
+    },
+    {
+      "script": "tests/hover_children_varargs.lua",
+      "expectedBaselineFailure": true,
+      "exit": 1,
+      "raw": "hover_children_varargs-baseline-rejection.txt",
+      "expectedMarkerFound": true
+    },
+    {
+      "script": "Stress test doc/fix-proposals/fades/verify.lua.txt",
+      "repeat": 1,
+      "exit": 0,
+      "raw": "fade-ownership-run-1.txt"
+    },
+    {
+      "script": "Stress test doc/fix-proposals/fades/verify.lua.txt",
+      "repeat": 2,
+      "exit": 0,
+      "raw": "fade-ownership-run-2.txt"
+    },
+    {
+      "script": "Stress test doc/fix-proposals/fades/verify.lua.txt",
+      "repeat": 3,
+      "exit": 0,
+      "raw": "fade-ownership-run-3.txt"
+    },
+    {
+      "script": "Stress test doc/fix-proposals/fades/verify.lua.txt",
+      "mutation": "swing-force-one",
+      "expectedBaselineFailure": true,
+      "exit": 1,
+      "raw": "fade-mutation-swing-force-one.txt",
+      "expectedMarkerFound": true
+    },
+    {
+      "script": "Stress test doc/fix-proposals/fades/verify.lua.txt",
+      "mutation": "swing-drop-record",
+      "expectedBaselineFailure": true,
+      "exit": 1,
+      "raw": "fade-mutation-swing-drop-record.txt",
+      "expectedMarkerFound": true
+    },
+    {
+      "script": "Stress test doc/fix-proposals/fades/verify.lua.txt",
+      "mutation": "cast-restore-getter",
+      "expectedBaselineFailure": true,
+      "exit": 1,
+      "raw": "fade-mutation-cast-restore-getter.txt",
+      "expectedMarkerFound": true
+    },
+    {
+      "script": "Stress test doc/fix-proposals/fades/verify.lua.txt",
+      "mutation": "busy-restore-getter",
+      "expectedBaselineFailure": true,
+      "exit": 1,
+      "raw": "fade-mutation-busy-restore-getter.txt",
+      "expectedMarkerFound": true
+    },
+    {
+      "script": "Stress test doc/fix-proposals/fades/verify.lua.txt",
+      "mutation": "swing-stale-timer",
+      "expectedBaselineFailure": true,
+      "exit": 1,
+      "raw": "fade-mutation-swing-stale-timer.txt",
+      "expectedMarkerFound": true
+    }
+  ],
+  "sources": [
+    {
+      "path": "Core/Engine/Context.lua",
+      "beforeSHA256": "67b4063ebd6c71ef2724dd8d4a19bf30480a40320475240da832e79e3f112ef7",
+      "appliedSHA256": "14c6f41ab314604661b1c089196cd6095606c3b75c6dcd1ae4ec66eb740c22c2"
+    },
+    {
+      "path": "Core/Engine/Modifier.lua",
+      "beforeSHA256": "f546dd7e98f541af680722b5ea54da2762445ac03f30d6ef7f6059c776cbad1b",
+      "appliedSHA256": "f546dd7e98f541af680722b5ea54da2762445ac03f30d6ef7f6059c776cbad1b"
+    },
+    {
+      "path": "Core/Engine/Events.lua",
+      "beforeSHA256": "294aae31712948ebd6cf22167f2c53912797fb00949b3487e571fd8ca1e6ebbc",
+      "appliedSHA256": "7fa3aacf4e40ed32bdf474704b3b2c5e3149c9aafc7b5b655260393d7c91ae53"
+    },
+    {
+      "path": "Core/Engine/Scheduler.lua",
+      "beforeSHA256": "b7f171cb84de3c28d7a68735fafdf1aeb52f677cd81c84ad78687d30e94b2a16",
+      "appliedSHA256": "a524afb69135af4e7aaefddfe7ab97527b5292380949f0786b6f1ffa94008d11"
+    },
+    {
+      "path": "Core/Engine/Range.lua",
+      "beforeSHA256": "fa8a5320521fee4ba8913f7446726e92a28dec727ea3505a1a07a5bfc2babc1d",
+      "appliedSHA256": "f9035ada5900185e94a890f558e2eda546dbf1d33fd091a21ae9b73d1d521ea6"
+    },
+    {
+      "path": "Core/Engine/Combat.lua",
+      "beforeSHA256": "2eaf940e92498af507f9d4afb5b88e552b3217169d03956d091e6d025cc09092",
+      "appliedSHA256": "f36daa512a9f778db28c272ec19a092b188d83a170270fb6fa41bcd2bd728a7a"
+    },
+    {
+      "path": "Core/Engine/Ticker.lua",
+      "beforeSHA256": "5f60091407bdc9b77c4257c50f3aecc344e4c81f8ae7915b235b8fac71726881",
+      "appliedSHA256": "5f60091407bdc9b77c4257c50f3aecc344e4c81f8ae7915b235b8fac71726881"
+    },
+    {
+      "path": "Binding/Input/FluxMouseoverKeybind.lua",
+      "beforeSHA256": "74c5614f71f18e14e3d050a12691a3ff2c725b325928d2c73e333784754314cb",
+      "appliedSHA256": "cba37032fa6ce6dbd97e6533dceda584338e37707a3b45f9b7b72bff97082092"
+    },
+    {
+      "path": "Inventory/Builtin/Auctions.lua",
+      "beforeSHA256": "ec02d39d3e83815e57775596272854f967a0183a39009efaa547a61c972aee6a",
+      "appliedSHA256": "dfac0adb95bcd180721129b9c30c8c147c6762d8a31ffc39fae4cbcfad1ccdcb"
+    },
+    {
+      "path": "UnitFrames/FluxCastBar.lua",
+      "beforeSHA256": "03193b8406cf145398a983e0ac2478c97549c74d4bb7e9a86a466572c528f0a6",
+      "appliedSHA256": "02bf1b0acf018ab419ac9ca11ef51f33866d37145380817b9999f1726ec0be92"
+    },
+    {
+      "path": "UnitFrames/FluxSwingTimer.lua",
+      "beforeSHA256": "517529257035f41cc06ffa46086fe2b23a5ac3c3c7f41bcd3f1ae617a05b4814",
+      "appliedSHA256": "d1de753065397599bed540a6d99d739f0419c9108ec681fe7b64e3f690a92289"
+    }
+  ]
+}

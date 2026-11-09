@@ -1,0 +1,1126 @@
+{
+  "capturedUTC": "2026-11-07T14:30:24.198170+00:00",
+  "scope": "Actual Lua in desktop mocks; no native gameplay/input/taint/pixels/FPS.",
+  "sourceNormalization": "raw bytes",
+  "before": {
+    "Bars/BadgeHost.lua": "c4fc487f45cda62e8a93932777f5478d08a9543658c456a5c6a67fb76bcf4616",
+    "Core/ButtonFX/Cast.lua": "ea8f5cc521d734e2010ea807c7ac1abc002a8938e4dcf00d0dae8f05c75d819b",
+    "Core/ButtonFX/Charges.lua": "7911a8cde0f2e8855a0f22a3a6bc791f4f5cf391354e978405774bed974e1df3",
+    "Core/ButtonFX/Click.lua": "b7e774a04297d86905eaf20a72b5be5a14eb9cbe87b4f8fc8a415debb0c8017d",
+    "Core/ButtonFX/Click2.lua": "7ca891b3b7be25d0d1a92c50f2784518dcb3a9612a95a1890201dd17875124e0",
+    "Core/ButtonFX/Flash.lua": "6f8a64cddc732c0b7a4459744c8ee507dcf0b2b15c6b4ad7bf8624abe9c277a4",
+    "Core/ButtonFX/Glow.lua": "d4be8ec4e8fc1ae26236dc58dfa4a53b87599e1ffbb4fbb77c145b7e7c5b4a57",
+    "Core/ButtonFX/Overlay.lua": "50dc114bcd3fbd0a2ff51eef289ea9d599df331f55caf453a0c57f49a2f5eeab",
+    "Core/ButtonFX/ThreatGlow.lua": "9e08ba85e8eaf5868bbf14b2403097d4aedf3bbef6181369b64d9eb47a5ec4e1",
+    "ExtraButtonSystem/Combat/Kind.lua": "98126d19012cb05fd393a21aea855b57dcd40ac3f96d71035b1b4309cd9d6b2f",
+    "ExtraButtonSystem/CombatGrid/Buttons/_tmp_ammosmoke.lua": "0e28f4b3c74bbd698aa307d938abcf7afd03524ffff6f7067a4b9504e180c741",
+    "ExtraButtonSystem/CombatGrid/Buttons/Ammo.lua": "287ca33a6a04730891aa01409714abf03d17e4fe0d8f5129c50b5fef6202c3be",
+    "ExtraButtonSystem/CombatGrid/Buttons/Bandage.lua": "c1a60b84320f9caa2ec444e52ae42f54b5c0018c050d0682ab630bbff0b95597",
+    "ExtraButtonSystem/CombatGrid/Buttons/HealPotion.lua": "9fce2630be5cc5a16e30cb73d0eeb1bbf18ea792d3deebf1a1932b538b019639",
+    "ExtraButtonSystem/CombatGrid/Buttons/Healthstone.lua": "3b8e33adebdcda476de7ea4426daa46ceaecb39076c248c1c8eee202bcc2f003",
+    "ExtraButtonSystem/CombatGrid/Buttons/ManaGem.lua": "cf9c94790c6d70615ea279ffd59993de82d7d61b2192ba43e7fb39a18acd15fd",
+    "ExtraButtonSystem/CombatGrid/Buttons/ManaPotion.lua": "fc47f8deefd8e030a8948f09d146045b7276cc6e96f2a2e71085c943b001dfb3",
+    "ExtraButtonSystem/CombatGrid/Grid.lua": "5b06b4f65545f08c455f2a828d5d85509a7c73b707c6596d9a532274b89510bd",
+    "ExtraButtonSystem/CombatGrid/GridManager.lua": "b72c5438e91d8883cf2ff05c29811ba66edd4bd9f231f794c5aa21f0947795b9",
+    "ExtraButtonSystem/Engine/_tmp_consumablesmoke.lua": "aefbd9e3042ac31366977881034dd243ad0509ce289ed43174e4c51755e8c42d",
+    "ExtraButtonSystem/Engine/Action.lua": "3daab1f50817b31545eff92d0e1ec834e6e00c0765f9a31c14520a5d7550379c",
+    "ExtraButtonSystem/Engine/Badge.lua": "713c2d1b6e27664d0a56a0a76bdde6e6d07bce4fbbcff461a3e9d207d236a58c",
+    "ExtraButtonSystem/Engine/Button.lua": "e209f9794ce1e48cd2841bd7b5eed3e0cb679c08646004dc3e37771083c4cc27",
+    "ExtraButtonSystem/Engine/ConsumableBind.lua": "bafe27593a9c17fb601b160b07607a77c530e3cbc450c5d6d559ac9f80e33522",
+    "ExtraButtonSystem/Engine/Core.lua": "7f34d573ccebed949fb977f2a5f1d0fe6fba2211ca6a9fb63c879dd8875363b5",
+    "ExtraButtonSystem/Engine/Events.lua": "f8b962b310a0bb2eefc693ab85af1d720049bb1040b3f2660067496733905d9d",
+    "ExtraButtonSystem/Engine/FluxBtn.lua": "c1a29f89a26dd8afd4041e16e2e48b5998f8688b63f98c98dddd817984e56c2d",
+    "ExtraButtonSystem/Engine/FluxBtn_Compat.lua": "97df2314a2f557ec92bf7c7e9e1ce8ccb71b4e389062ba6da821bef054f780fe",
+    "ExtraButtonSystem/Engine/FluxBtn_Flyout.lua": "41a8e764dd12329953b26c1623c3c657a8eeabdd66adaa0b55df4b3d22b0454f",
+    "ExtraButtonSystem/Engine/Paint.lua": "afb48689d07cd9b315894e984c0217a524e55ed056319d374e58c24c2038ffd4",
+    "ExtraButtonSystem/Engine/Range.lua": "7d498b3e56616dc4e6189f518d401fdc14bbd4706700abb4504253e8ea3a4e4b",
+    "ExtraButtonSystem/Engine/Style.lua": "0cc2decc08090e6fbbeb32cf2b299ab4752ae27235832423ccd6aa8f55602e66",
+    "ExtraButtonSystem/Engine/Usability.lua": "5b12b7f277acade9df7b51634800a1a6c02c3fb78702a80d4700de43fb8b6129",
+    "ExtraButtonSystem/Engine/Util.lua": "3cd7fa1d08137074aca1450990a195d7f5839a1272caefb86ebf05ccd7b7ef54",
+    "ExtraButtonSystem/Engine/VFX.lua": "8a820d83d5c06abe289455779612ad2dc9047d3fd5e5347ba7af8f0627bd56c9",
+    "ExtraButtonSystem/Engine/Watch.lua": "4e22b2fde9ff08ff2fb62f96e595921fef508fbfcd16bb96997daa2e1257a04f",
+    "ExtraButtonSystem/Engine/Widget.lua": "5458e613ae80fa7e750db36432cfb929f52fe3cf1aba642b870e77b046cd99a0",
+    "ExtraButtonSystem/ExtraButtons/Buttons.lua": "7e35133aad83a52c2bd17ed403b23fa275966f65b478cf0dcbf1523b53358179",
+    "ExtraButtonSystem/ExtraButtons/Categories.lua": "1e6053c5bfd7350628747cbbec1a735ed37d72d7cf66f654bc2bf8ddfb7f34e2",
+    "ExtraButtonSystem/ExtraButtons/Core.lua": "de23b44cbfe351430395cdc79e61b5f3b27f328badf5b4d4a916d24532e83234",
+    "ExtraButtonSystem/ExtraButtons/UI.lua": "839e769dfec007dcb0594637a9c3614134345bd6d8df1d127d0ed067781b5073",
+    "ExtraButtonSystem/Flyout/FluxFlyoutCore.lua": "97872fd6a2980c49bcf1427dbe7f236a6ebe32858e7433b608fe601a2178ced4",
+    "ExtraButtonSystem/Flyout/FluxFlyoutData.lua": "593232684d46635aca920cf29c3b531b93b280f23cad8b7c8ca5fecd28751b55",
+    "ExtraButtonSystem/Flyout/FluxFlyoutFavorites.lua": "d6691f83881ba81af3e7ef8d2700cb7ecc7021d4244ba52eef744b03a49cfc64",
+    "ExtraButtonSystem/Flyout/FluxFlyoutFrame.lua": "fc777bafbbdb2660d2dca69fa30ab2c9f276cc9de2887b6f4907b5ba67b6d3e7",
+    "ExtraButtonSystem/Flyout/FluxFlyoutGenerators.lua": "6f26325b1dd0d6497a5c828cc8318f45d6d1a3ee431c77107e6e30979295f5d0",
+    "ExtraButtonSystem/Flyout/FluxFlyoutParser.lua": "67bb8ad809f1e702461017d6d0f1bc0819ad34da68a242934628b39c3d9fe0bb",
+    "ExtraButtonSystem/Flyout/FluxGridFlyoutBind.lua": "737ef30cba5af7ff7069f319c8225df033718be53be3759363b611ce4d5c3148",
+    "ExtraButtonSystem/FlyoutEngine/Arrow.lua": "b08a0bd955f0d207190517fbbc5c233d9ea5d41471f051c096ff6c7e04896d45",
+    "ExtraButtonSystem/FlyoutEngine/Attach.lua": "8304c1a87fd3501a08f2d2cfffe82ddde779ad1b237a2c6a70ada298ef39161a",
+    "ExtraButtonSystem/FlyoutEngine/Chrome.lua": "fb7b757ce0a421daa0fdeff22ddc7bb162c0ddc84c127693949df240f0cb91d7",
+    "ExtraButtonSystem/FlyoutEngine/Def.lua": "8e3d1b5594f168db63ff14b48b840a1a79d68a83f5ddabecdb5170eb204d9c24",
+    "ExtraButtonSystem/FlyoutEngine/Favorites.lua": "b0da8901468065abeae2fb203fb65de243af460a17119293435a81dc4646618b",
+    "ExtraButtonSystem/FlyoutEngine/HostCompat.lua": "8840bdf6d3b92180de641cedbe4d1722c48da64722dd0daa3cda81ddfe26c122",
+    "ExtraButtonSystem/FlyoutEngine/Init.lua": "de82ae67050ea4c83b8dea0d9ce8545f87b79999128c507405ecdb62294f74cd",
+    "ExtraButtonSystem/FlyoutEngine/Popup.lua": "0d79e1a96cc62c3f446052978ba9735fadd123760a443f3801aff965e7cdf49c",
+    "ExtraButtonSystem/FlyoutEngine/Secure.lua": "f3310026cb806e223d85bdeca93e09e44789166d3eaeb8dc352a565e0dd63f3d",
+    "ExtraButtonSystem/Init.lua": "fa7e2334fa9d0595d4c9db208c66d4fa792781a0f3ac42e74249a52f621f3dc6",
+    "ExtraButtonSystem/Layout.lua": "06ea068ba997a81cef3bf68cdda51b498dfb45f7b7b527a88b301926d0524f9d",
+    "ExtraButtonSystem/NonCombat/Food.lua": "c65a91ca12d6b6f390800b62490e499bac063cd97484d3fef0a92c18df98e1f3",
+    "ExtraButtonSystem/NonCombat/Mount/Init.lua": "c1d6034fe468ea13e54fb78b7db15ccb77c12a8aa07190f7d480a8b96c181a13",
+    "ExtraButtonSystem/NonCombat/Roles.lua": "ee939ac2866cb4ac5c66de865b81c6098c530fea5b49d5b238fa6d92938413fe",
+    "ExtraButtonSystem/NonCombatGrid/Buttons/_tmp_mountitemsmoke.lua": "f3a956ea76ae28527fd9a64e4145756b96f6e42e823646a2b9b3fd1d337991a4",
+    "ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua": "7dcc07e54cd27ba1f93559c79e3c173b0eee83872a6691dbe2ead1da8334d7a1",
+    "ExtraButtonSystem/NonCombatGrid/Buttons/ConsumablesConfig.lua": "694a0badbb554bc637f2eea3fb752f1e76965a99e8f4644adef49112134d160b",
+    "ExtraButtonSystem/NonCombatGrid/Buttons/Food.lua": "842edde076d64f5a96f73ebfa48327ac614d91695d98ca550fc5070489c4872b",
+    "ExtraButtonSystem/NonCombatGrid/Buttons/Hearthstone.lua": "f57aaecade0460a9f3ce9ac5889035d217e2375fefbd0ff9f01eaed72925bd22",
+    "ExtraButtonSystem/NonCombatGrid/Buttons/Mount.lua": "728fe5df4975dd635f7be7bc03a9ec6444d211969328b3f0d5d08c2493bbc52c",
+    "ExtraButtonSystem/NonCombatGrid/Buttons/MountCollection.lua": "3794c4f876452d44a9af7ec7ae6a9cc54c0f81453218415f559b94b85dabe408",
+    "ExtraButtonSystem/NonCombatGrid/Buttons/MountItems.lua": "769cd51db2c54fad2b97b9d7e744720d56d02e13712aa52f6352499f26120a2e",
+    "ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua": "0b05706c352a4b608b80e6cfb8376d1e600f78259e999e84ac4a6defb83e73a1",
+    "ExtraButtonSystem/NonCombatGrid/Buttons/Water.lua": "36537724d48a94b2c14543087937d9985d240b2a45537fcd37675eb6f84bfa9b",
+    "ExtraButtonSystem/NonCombatGrid/FluxSmartHearthConfig.lua": "f00f16ff9428b78ef9e57056c12047d6fcb948718471d34d4035f21f30e9582c",
+    "ExtraButtonSystem/NonCombatGrid/FluxSmartMountConfig.lua": "51465e9627786935c4e825c65ade111c2bdd79c7352080225d1d59569d14188f",
+    "ExtraButtonSystem/NonCombatGrid/Grid.lua": "c77a19abbe02794c95b644c0ab83dfc8906f77910c59e50a39700fe2cc385676",
+    "ExtraButtonSystem/NonCombatGrid/GridInit.lua": "f6ed9d293f4aad3c9bf9d8767c6e708679101bf73b1e1529a7cb00f931186af4",
+    "ExtraButtonSystem/NonCombatGrid/UtilitySlots/Assign.lua": "a1a706068cb335050e314e092fa8ff07d7ae0dd9e88f4e6dbcf6a51dbe3f1a12",
+    "ExtraButtonSystem/NonCombatGrid/UtilitySlots/Manager.lua": "46d841979af9c6a7210734b7c55ee4fe80ead39c392a1666025083bfdff2e6b4",
+    "ExtraButtonSystem/Shared/FluxConsumablesGridUI.lua": "a444bc60318885cdd833f72f39dab26a56c561e475839e1692e4b37c4ea9c28f",
+    "ExtraButtonSystem/Shared/FluxEBSButtonRefresh.lua": "c459c840fd01c85ab2448c9072a65be60be9430cde8318d0f01b5c67ba5dba92",
+    "ExtraButtonSystem/Shared/FluxEBSConsumableBridge.lua": "9cf26af2d56f28508558e8279ce4e6ff552ac4d0594e030f91ae90acf8012f71",
+    "ExtraButtonSystem/Shared/FluxExtraButtonVisibility.lua": "3d8ce758fa7567db7780c74b1a2210ac080de1dde95ae3ccdfde8a09ab8926dc",
+    "ExtraButtonSystem/Shared/FluxMacroClickProxies.lua": "09378df03d1ecdafc2aeead0384d7f958a17d6132f817d5d78175b3e5c139a4f",
+    "ExtraButtonSystem/Shared/FluxModifierTracker.lua": "1371d7817c2f03c2a9a3ff600d1b6bdfe908bc162e0fc997c79630fdad6bd98b",
+    "ExtraButtonSystem/Shared/FluxMouseoverRefresh.lua": "804c5e887e4d87ef95c8958ab3ba11d48f7aae7faee708bb450a17c70f63ec4f",
+    "ExtraButtonSystem/Shared/FluxNCFlyoutOptions.lua": "c392c3942fd69ec1ffde64632b5afb2012bd047b996aeba46d5177bce1d4b9cd",
+    "ExtraButtonSystem/Shared/FluxRange.lua": "78d783cab717bf473ca58abafa5e79d733bb92766470261dc2540f7fc9973a85",
+    "ExtraButtonSystem/Shared/FluxTooltipGuard.lua": "9c02edb3ffe10e689c926e16d1e340708c48b09de63a243b8168a904b340d9aa",
+    "ExtraButtonSystem/Shared/HotkeyUtil.lua": "cd00b19b51c9411fa27f2e06805c45d5dae28e2d2b614b88a2e374c1237e210c",
+    "ExtraButtonSystem/Shared/QtyPopover.lua": "4ba76898b77a60f488cc255396432df5652cea0b60a27be1b4922bfdbc2bf432",
+    "ExtraButtonSystem/TrinketMenu/FluxTrinketMenu.lua": "3ab177e4885568df30d2a1a813e4412194e73af4344ba42be29468e53e21d355",
+    "ExtraButtonSystem/TrinketMenu/FluxTrinketMenuManager.lua": "61bf359abbf0cdd9ae4bca9389344e903466adf47d09753a82c8f1f1833cf7f0",
+    "Stress test doc/round-2/extra-buttons/ebs_round2.lua.txt": "9d7595dc6b6b029cb184826aa0b25f55757468729c1b16ecb569f99c8ecf9dac",
+    "tests/alpha_reader_safety.lua": "8ea11a384e3d587881f739f6b7a76f368d5f4d1e9f9d0fe92b76db9d3d3723a3",
+    "tests/badge_cooldown_secrets.lua": "ba9e4f22be6f22940b9922c4abf4ba3e3fa43e0616d38ee199960f84e0b031b2",
+    "tests/consumable_aura_advance.lua": "fb3366dfeed3852875751a78aad8f5fdb7e7d06297047374bd3805efeebaecba",
+    "tests/consumable_config_visibility.lua": "52dc1dfd67aa1bb283c982d5846503beadf183ad76fb83cbb5c2ec8fc34e14b9",
+    "tests/consumable_refresh_timer.lua": "c47cf1b9cc29c5722a7e2ca9810cbecfb7356d8683e352aacb05febc1afbc540",
+    "tests/consumable_restock_clicks.lua": "2d0bc7f84eb04e3b25f691386c4414ef075d05842d27d96374cd9ba971586ce4",
+    "tests/consumable_weapon_targets.lua": "3abefb0e1e87c5f3272f928ed92756ed9b515de24dae8d7f84787c5028a812e8",
+    "tests/consumable_zero_reset.lua": "b4fdee9947d3d7f78fcf780802159f579807563b461f8f57aa443d6a0aa001a9",
+    "tests/extra_startup.lua": "3833c20dd506c43262f2cd956996f9e9f18da9cb45b01d815c6fee31216bcb94",
+    "tests/fixtures/alpha_reader_before.txt": "d96a31e00981f337303da5937359a5043925614f999fa897e4f4b62303009489",
+    "tests/fixtures/assisted_highlight_before.txt": "cbe5a28c5bd84bd7d0db88374720d0166b4ede129702c7424832d73386092a75",
+    "tests/fixtures/auction_scan_provider_before.txt": "f27ba6a4ec4d0616508cc121f4fc5ae2bacd10c3d7ce15f9a391019622d63302",
+    "tests/fixtures/chat_column_alignment_before.txt": "234f0822e547da404a30a0e726fb280fc55e13650ad99070629a310199b41af9",
+    "tests/fixtures/chat_quickjoin_before.txt": "eabf816ad4caf03396444fe8f571f027fe8ef599d222234e2c2ace07164a7b29",
+    "tests/fixtures/chat_retries_before.txt": "9b90d76f1d27ce7d458e87a72a099459bfd050bcb47dda58e00a532b5bf4fa4a",
+    "tests/fixtures/combat_queue_before.txt": "623e16e2fa43cdc47784b68a3b4810f279633bb1affc5f30264c735b0c989180",
+    "tests/fixtures/currency_provider_before.txt": "b52d85ab69ee982c4cc396f4e3d0c6e4dceb50caedf5f855983b9b2bcb6c3a8e",
+    "tests/fixtures/idle_chat_bag_before.txt": "4fc6d674ac2492f861308b60cdfc1151df0bf586ba7df2a9ea8ae7ced30ab155",
+    "tests/fixtures/idle_hud_before.txt": "e383b3b6da2f0f2cac2efa8dc4792cebb292f6f33d4998b92b1448180386dc13",
+    "tests/fixtures/idle_map_before.txt": "3e74b88b5ceea4d51724a0fbe524b43afa912d6d7c976857ac7107cbaeca9d98",
+    "tests/fixtures/loot_roll_position_before.txt": "8879f37bf9c2dfcd183b66102e42f394643bc40ad688c1f81c63778ab50b1c91",
+    "tests/fixtures/mail_scan_provider_before.txt": "416ac0674bfc6738cf96857c0ac24efbe08cd1b2a2f5e3e419e57d60be2479df",
+    "tests/fixtures/map_initialization_before.txt": "5fc8f60df149bcd78a1bad92dd6f7e3aef2d720e02fa6234b24050c9630cf313",
+    "tests/fixtures/map_tab_watch_before.txt": "ae70f5b1c250be7348aae7e1326f572b6dd4660d59487783f3687675872f09c1",
+    "tests/fixtures/nameplate_countdown_before.txt": "449fe74cbd55e8488fd511a9cad20c9e8a9aafd1b7976001cdc08c9a0208fbc8",
+    "tests/fixtures/pending_mail_provider_before.txt": "07a67dc6f3b485083c22c7831a34e838f79862eaa5ce05a3f8e9dd1686f8ca71",
+    "tests/fixtures/perf_capture_retention_before.txt": "e29200378c73be645919e76ecd63af2908d3bbf1ebdea6123692732547f27a07",
+    "tests/fixtures/power_cost_watchers_before.txt": "4f80dc7c2668f64266fc06d22e08f585f2dfbe5a844b407904cdb27a32cc6941",
+    "tests/fixtures/resource_spark_before.txt": "3a08b805987d9568248cd79524f9a7944b3e36bbb2283f4db2edc382ad0633b0",
+    "tests/fixtures/teleport_cast_before.txt": "dedea8c43d47f150888993bc54e2a0445e94ceacb53b141b3c6b3d3cf57b20a6",
+    "tests/fixtures/tier_count_match_before.txt": "12881a7104409df884973ab24c41817a83d7a76aefc379c71ad285fa013c196f",
+    "tests/fixtures/tier_owned_before.txt": "284e6c512997fa6f207a7d6fadca1809b21d84502c58130ccd7cece0d8c06da1",
+    "tests/fixtures/trinket_push_before.txt": "821f36878905b45394de5584ddcb31db2c28e22f6e2262e4dade97906e8ebadc",
+    "tests/fixtures/unit_overlay_geometry_before.txt": "b8daaa3f6c99ab6dde08f22645c5ca58cb863ff6363326e8228f9e8b4c8d02b1",
+    "tests/fixtures/unit_portrait_geometry_before.txt": "167e6128b2131250b69df9e47471340043a2fb3d377f5e60613d70b4d0078453",
+    "tests/fixtures/unit_prediction_geometry_before.txt": "d360ecc1a9da39cac705924c7a485ce0c6855d1bbe8dc18cec1f604d864098bd",
+    "tests/fixtures/vendor_buy_slot_before.txt": "a5daa9465a124b6c2ee4268f4e3b11eafc11f33a422ddd44b14ce36d5dd98da8",
+    "tests/fixtures/vendor_open_junk_before.txt": "14a6e640fb37140aca38b25812ac4151500a7986da5ec044876e45756acd7117",
+    "tests/fixtures/vendor_stock_before.txt": "e9ce58c2d97709a18eb784d98b6f560258964b6ebf67c057452b8ffceeff564a",
+    "tests/fixtures/vendor_tier_match_before.txt": "aca3e913864e21a9abed31dfff50e95105ae17e8c6471e442f3ea249f28cd814",
+    "tests/fixtures/vendor_tier_status_before.txt": "08db6ac1b8641b99dd30d34c8a4333dfb16389500b8d5c08785de042f7962e16",
+    "tests/fixtures/window_mover_engine_before.txt": "9e17d5d680d8b8cdeff4a05592e995e669e653258cc3470c93b216cf88308255",
+    "tests/fixtures/window_mover_init_before.txt": "0b2c0b63a0aa6620cce45f276ea355e7cff407481a43cdba85d383f284d4663b",
+    "tests/forever_badge_combat_row_swap.lua": "fbff81cce33d2e54b020ca72136653c379b961967c406c01b617e68ed59be997",
+    "tests/forever_sao_badge_preparation.lua": "f6015f078e2a4410f91228c1b33a7a47a7bc18e1d056e422f079b550b57604d6",
+    "tests/idle_bars.lua": "6f69569822142d5deeb73f0fedb4f049636036d3a830e4a22ab6f374f507cb5e",
+    "tests/restock_charge_bank_iterator.lua": "9af96b7b6eeb7fca78cbbec26ca2ac8eba54b5c16f43a5f052b73f3d9e29da5b",
+    "tests/syndicator_consumable_updates.lua": "09b65f6366d59fba7595f69a9c6eeffb602f61399b2deb0f59f728c565773edd",
+    "tests/teleport_cast_work.lua": "7842024ac5441f7f3298f77d8dc32c6820b45c074946ff30147a0248f5c02e8e",
+    "tests/utility_mixed_faces.lua": "d7362e6c96584deed8754e80d910a02feae4e61719844592a363c9b23f3ad8bb",
+    "tests/utility_modifier_vfx.lua": "08bd90ffc3c1dd1459171b840b6fdd429f667015ee789243d1a37c121ec6d9f5",
+    "tests/utility_pet_faces.lua": "d63b90a8322d0d9830ffe73338003fb96ddf8fddde443ff7581a887f6e8d97c7",
+    "tests/utility_secure_input.lua": "1272d4a17df8acaad9858ce76ab071544e233b61b19d42db25275e136b6ff103"
+  },
+  "after": {
+    "Bars/BadgeHost.lua": "c4fc487f45cda62e8a93932777f5478d08a9543658c456a5c6a67fb76bcf4616",
+    "Core/ButtonFX/Cast.lua": "ea8f5cc521d734e2010ea807c7ac1abc002a8938e4dcf00d0dae8f05c75d819b",
+    "Core/ButtonFX/Charges.lua": "7911a8cde0f2e8855a0f22a3a6bc791f4f5cf391354e978405774bed974e1df3",
+    "Core/ButtonFX/Click.lua": "b7e774a04297d86905eaf20a72b5be5a14eb9cbe87b4f8fc8a415debb0c8017d",
+    "Core/ButtonFX/Click2.lua": "7ca891b3b7be25d0d1a92c50f2784518dcb3a9612a95a1890201dd17875124e0",
+    "Core/ButtonFX/Flash.lua": "6f8a64cddc732c0b7a4459744c8ee507dcf0b2b15c6b4ad7bf8624abe9c277a4",
+    "Core/ButtonFX/Glow.lua": "d4be8ec4e8fc1ae26236dc58dfa4a53b87599e1ffbb4fbb77c145b7e7c5b4a57",
+    "Core/ButtonFX/Overlay.lua": "50dc114bcd3fbd0a2ff51eef289ea9d599df331f55caf453a0c57f49a2f5eeab",
+    "Core/ButtonFX/ThreatGlow.lua": "9e08ba85e8eaf5868bbf14b2403097d4aedf3bbef6181369b64d9eb47a5ec4e1",
+    "ExtraButtonSystem/Combat/Kind.lua": "98126d19012cb05fd393a21aea855b57dcd40ac3f96d71035b1b4309cd9d6b2f",
+    "ExtraButtonSystem/CombatGrid/Buttons/_tmp_ammosmoke.lua": "0e28f4b3c74bbd698aa307d938abcf7afd03524ffff6f7067a4b9504e180c741",
+    "ExtraButtonSystem/CombatGrid/Buttons/Ammo.lua": "287ca33a6a04730891aa01409714abf03d17e4fe0d8f5129c50b5fef6202c3be",
+    "ExtraButtonSystem/CombatGrid/Buttons/Bandage.lua": "c1a60b84320f9caa2ec444e52ae42f54b5c0018c050d0682ab630bbff0b95597",
+    "ExtraButtonSystem/CombatGrid/Buttons/HealPotion.lua": "9fce2630be5cc5a16e30cb73d0eeb1bbf18ea792d3deebf1a1932b538b019639",
+    "ExtraButtonSystem/CombatGrid/Buttons/Healthstone.lua": "3b8e33adebdcda476de7ea4426daa46ceaecb39076c248c1c8eee202bcc2f003",
+    "ExtraButtonSystem/CombatGrid/Buttons/ManaGem.lua": "cf9c94790c6d70615ea279ffd59993de82d7d61b2192ba43e7fb39a18acd15fd",
+    "ExtraButtonSystem/CombatGrid/Buttons/ManaPotion.lua": "fc47f8deefd8e030a8948f09d146045b7276cc6e96f2a2e71085c943b001dfb3",
+    "ExtraButtonSystem/CombatGrid/Grid.lua": "5b06b4f65545f08c455f2a828d5d85509a7c73b707c6596d9a532274b89510bd",
+    "ExtraButtonSystem/CombatGrid/GridManager.lua": "b72c5438e91d8883cf2ff05c29811ba66edd4bd9f231f794c5aa21f0947795b9",
+    "ExtraButtonSystem/Engine/_tmp_consumablesmoke.lua": "aefbd9e3042ac31366977881034dd243ad0509ce289ed43174e4c51755e8c42d",
+    "ExtraButtonSystem/Engine/Action.lua": "3daab1f50817b31545eff92d0e1ec834e6e00c0765f9a31c14520a5d7550379c",
+    "ExtraButtonSystem/Engine/Badge.lua": "713c2d1b6e27664d0a56a0a76bdde6e6d07bce4fbbcff461a3e9d207d236a58c",
+    "ExtraButtonSystem/Engine/Button.lua": "e209f9794ce1e48cd2841bd7b5eed3e0cb679c08646004dc3e37771083c4cc27",
+    "ExtraButtonSystem/Engine/ConsumableBind.lua": "bafe27593a9c17fb601b160b07607a77c530e3cbc450c5d6d559ac9f80e33522",
+    "ExtraButtonSystem/Engine/Core.lua": "7f34d573ccebed949fb977f2a5f1d0fe6fba2211ca6a9fb63c879dd8875363b5",
+    "ExtraButtonSystem/Engine/Events.lua": "f8b962b310a0bb2eefc693ab85af1d720049bb1040b3f2660067496733905d9d",
+    "ExtraButtonSystem/Engine/FluxBtn.lua": "c1a29f89a26dd8afd4041e16e2e48b5998f8688b63f98c98dddd817984e56c2d",
+    "ExtraButtonSystem/Engine/FluxBtn_Compat.lua": "97df2314a2f557ec92bf7c7e9e1ce8ccb71b4e389062ba6da821bef054f780fe",
+    "ExtraButtonSystem/Engine/FluxBtn_Flyout.lua": "41a8e764dd12329953b26c1623c3c657a8eeabdd66adaa0b55df4b3d22b0454f",
+    "ExtraButtonSystem/Engine/Paint.lua": "afb48689d07cd9b315894e984c0217a524e55ed056319d374e58c24c2038ffd4",
+    "ExtraButtonSystem/Engine/Range.lua": "7d498b3e56616dc4e6189f518d401fdc14bbd4706700abb4504253e8ea3a4e4b",
+    "ExtraButtonSystem/Engine/Style.lua": "0cc2decc08090e6fbbeb32cf2b299ab4752ae27235832423ccd6aa8f55602e66",
+    "ExtraButtonSystem/Engine/Usability.lua": "5b12b7f277acade9df7b51634800a1a6c02c3fb78702a80d4700de43fb8b6129",
+    "ExtraButtonSystem/Engine/Util.lua": "3cd7fa1d08137074aca1450990a195d7f5839a1272caefb86ebf05ccd7b7ef54",
+    "ExtraButtonSystem/Engine/VFX.lua": "8a820d83d5c06abe289455779612ad2dc9047d3fd5e5347ba7af8f0627bd56c9",
+    "ExtraButtonSystem/Engine/Watch.lua": "4e22b2fde9ff08ff2fb62f96e595921fef508fbfcd16bb96997daa2e1257a04f",
+    "ExtraButtonSystem/Engine/Widget.lua": "5458e613ae80fa7e750db36432cfb929f52fe3cf1aba642b870e77b046cd99a0",
+    "ExtraButtonSystem/ExtraButtons/Buttons.lua": "7e35133aad83a52c2bd17ed403b23fa275966f65b478cf0dcbf1523b53358179",
+    "ExtraButtonSystem/ExtraButtons/Categories.lua": "1e6053c5bfd7350628747cbbec1a735ed37d72d7cf66f654bc2bf8ddfb7f34e2",
+    "ExtraButtonSystem/ExtraButtons/Core.lua": "de23b44cbfe351430395cdc79e61b5f3b27f328badf5b4d4a916d24532e83234",
+    "ExtraButtonSystem/ExtraButtons/UI.lua": "839e769dfec007dcb0594637a9c3614134345bd6d8df1d127d0ed067781b5073",
+    "ExtraButtonSystem/Flyout/FluxFlyoutCore.lua": "97872fd6a2980c49bcf1427dbe7f236a6ebe32858e7433b608fe601a2178ced4",
+    "ExtraButtonSystem/Flyout/FluxFlyoutData.lua": "593232684d46635aca920cf29c3b531b93b280f23cad8b7c8ca5fecd28751b55",
+    "ExtraButtonSystem/Flyout/FluxFlyoutFavorites.lua": "d6691f83881ba81af3e7ef8d2700cb7ecc7021d4244ba52eef744b03a49cfc64",
+    "ExtraButtonSystem/Flyout/FluxFlyoutFrame.lua": "fc777bafbbdb2660d2dca69fa30ab2c9f276cc9de2887b6f4907b5ba67b6d3e7",
+    "ExtraButtonSystem/Flyout/FluxFlyoutGenerators.lua": "6f26325b1dd0d6497a5c828cc8318f45d6d1a3ee431c77107e6e30979295f5d0",
+    "ExtraButtonSystem/Flyout/FluxFlyoutParser.lua": "67bb8ad809f1e702461017d6d0f1bc0819ad34da68a242934628b39c3d9fe0bb",
+    "ExtraButtonSystem/Flyout/FluxGridFlyoutBind.lua": "737ef30cba5af7ff7069f319c8225df033718be53be3759363b611ce4d5c3148",
+    "ExtraButtonSystem/FlyoutEngine/Arrow.lua": "b08a0bd955f0d207190517fbbc5c233d9ea5d41471f051c096ff6c7e04896d45",
+    "ExtraButtonSystem/FlyoutEngine/Attach.lua": "8304c1a87fd3501a08f2d2cfffe82ddde779ad1b237a2c6a70ada298ef39161a",
+    "ExtraButtonSystem/FlyoutEngine/Chrome.lua": "fb7b757ce0a421daa0fdeff22ddc7bb162c0ddc84c127693949df240f0cb91d7",
+    "ExtraButtonSystem/FlyoutEngine/Def.lua": "8e3d1b5594f168db63ff14b48b840a1a79d68a83f5ddabecdb5170eb204d9c24",
+    "ExtraButtonSystem/FlyoutEngine/Favorites.lua": "b0da8901468065abeae2fb203fb65de243af460a17119293435a81dc4646618b",
+    "ExtraButtonSystem/FlyoutEngine/HostCompat.lua": "8840bdf6d3b92180de641cedbe4d1722c48da64722dd0daa3cda81ddfe26c122",
+    "ExtraButtonSystem/FlyoutEngine/Init.lua": "de82ae67050ea4c83b8dea0d9ce8545f87b79999128c507405ecdb62294f74cd",
+    "ExtraButtonSystem/FlyoutEngine/Popup.lua": "0d79e1a96cc62c3f446052978ba9735fadd123760a443f3801aff965e7cdf49c",
+    "ExtraButtonSystem/FlyoutEngine/Secure.lua": "f3310026cb806e223d85bdeca93e09e44789166d3eaeb8dc352a565e0dd63f3d",
+    "ExtraButtonSystem/Init.lua": "fa7e2334fa9d0595d4c9db208c66d4fa792781a0f3ac42e74249a52f621f3dc6",
+    "ExtraButtonSystem/Layout.lua": "06ea068ba997a81cef3bf68cdda51b498dfb45f7b7b527a88b301926d0524f9d",
+    "ExtraButtonSystem/NonCombat/Food.lua": "c65a91ca12d6b6f390800b62490e499bac063cd97484d3fef0a92c18df98e1f3",
+    "ExtraButtonSystem/NonCombat/Mount/Init.lua": "c1d6034fe468ea13e54fb78b7db15ccb77c12a8aa07190f7d480a8b96c181a13",
+    "ExtraButtonSystem/NonCombat/Roles.lua": "ee939ac2866cb4ac5c66de865b81c6098c530fea5b49d5b238fa6d92938413fe",
+    "ExtraButtonSystem/NonCombatGrid/Buttons/_tmp_mountitemsmoke.lua": "f3a956ea76ae28527fd9a64e4145756b96f6e42e823646a2b9b3fd1d337991a4",
+    "ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua": "7dcc07e54cd27ba1f93559c79e3c173b0eee83872a6691dbe2ead1da8334d7a1",
+    "ExtraButtonSystem/NonCombatGrid/Buttons/ConsumablesConfig.lua": "694a0badbb554bc637f2eea3fb752f1e76965a99e8f4644adef49112134d160b",
+    "ExtraButtonSystem/NonCombatGrid/Buttons/Food.lua": "842edde076d64f5a96f73ebfa48327ac614d91695d98ca550fc5070489c4872b",
+    "ExtraButtonSystem/NonCombatGrid/Buttons/Hearthstone.lua": "f57aaecade0460a9f3ce9ac5889035d217e2375fefbd0ff9f01eaed72925bd22",
+    "ExtraButtonSystem/NonCombatGrid/Buttons/Mount.lua": "728fe5df4975dd635f7be7bc03a9ec6444d211969328b3f0d5d08c2493bbc52c",
+    "ExtraButtonSystem/NonCombatGrid/Buttons/MountCollection.lua": "3794c4f876452d44a9af7ec7ae6a9cc54c0f81453218415f559b94b85dabe408",
+    "ExtraButtonSystem/NonCombatGrid/Buttons/MountItems.lua": "769cd51db2c54fad2b97b9d7e744720d56d02e13712aa52f6352499f26120a2e",
+    "ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua": "0b05706c352a4b608b80e6cfb8376d1e600f78259e999e84ac4a6defb83e73a1",
+    "ExtraButtonSystem/NonCombatGrid/Buttons/Water.lua": "36537724d48a94b2c14543087937d9985d240b2a45537fcd37675eb6f84bfa9b",
+    "ExtraButtonSystem/NonCombatGrid/FluxSmartHearthConfig.lua": "f00f16ff9428b78ef9e57056c12047d6fcb948718471d34d4035f21f30e9582c",
+    "ExtraButtonSystem/NonCombatGrid/FluxSmartMountConfig.lua": "51465e9627786935c4e825c65ade111c2bdd79c7352080225d1d59569d14188f",
+    "ExtraButtonSystem/NonCombatGrid/Grid.lua": "c77a19abbe02794c95b644c0ab83dfc8906f77910c59e50a39700fe2cc385676",
+    "ExtraButtonSystem/NonCombatGrid/GridInit.lua": "f6ed9d293f4aad3c9bf9d8767c6e708679101bf73b1e1529a7cb00f931186af4",
+    "ExtraButtonSystem/NonCombatGrid/UtilitySlots/Assign.lua": "a1a706068cb335050e314e092fa8ff07d7ae0dd9e88f4e6dbcf6a51dbe3f1a12",
+    "ExtraButtonSystem/NonCombatGrid/UtilitySlots/Manager.lua": "46d841979af9c6a7210734b7c55ee4fe80ead39c392a1666025083bfdff2e6b4",
+    "ExtraButtonSystem/Shared/FluxConsumablesGridUI.lua": "a444bc60318885cdd833f72f39dab26a56c561e475839e1692e4b37c4ea9c28f",
+    "ExtraButtonSystem/Shared/FluxEBSButtonRefresh.lua": "c459c840fd01c85ab2448c9072a65be60be9430cde8318d0f01b5c67ba5dba92",
+    "ExtraButtonSystem/Shared/FluxEBSConsumableBridge.lua": "9cf26af2d56f28508558e8279ce4e6ff552ac4d0594e030f91ae90acf8012f71",
+    "ExtraButtonSystem/Shared/FluxExtraButtonVisibility.lua": "3d8ce758fa7567db7780c74b1a2210ac080de1dde95ae3ccdfde8a09ab8926dc",
+    "ExtraButtonSystem/Shared/FluxMacroClickProxies.lua": "09378df03d1ecdafc2aeead0384d7f958a17d6132f817d5d78175b3e5c139a4f",
+    "ExtraButtonSystem/Shared/FluxModifierTracker.lua": "1371d7817c2f03c2a9a3ff600d1b6bdfe908bc162e0fc997c79630fdad6bd98b",
+    "ExtraButtonSystem/Shared/FluxMouseoverRefresh.lua": "804c5e887e4d87ef95c8958ab3ba11d48f7aae7faee708bb450a17c70f63ec4f",
+    "ExtraButtonSystem/Shared/FluxNCFlyoutOptions.lua": "c392c3942fd69ec1ffde64632b5afb2012bd047b996aeba46d5177bce1d4b9cd",
+    "ExtraButtonSystem/Shared/FluxRange.lua": "78d783cab717bf473ca58abafa5e79d733bb92766470261dc2540f7fc9973a85",
+    "ExtraButtonSystem/Shared/FluxTooltipGuard.lua": "9c02edb3ffe10e689c926e16d1e340708c48b09de63a243b8168a904b340d9aa",
+    "ExtraButtonSystem/Shared/HotkeyUtil.lua": "cd00b19b51c9411fa27f2e06805c45d5dae28e2d2b614b88a2e374c1237e210c",
+    "ExtraButtonSystem/Shared/QtyPopover.lua": "4ba76898b77a60f488cc255396432df5652cea0b60a27be1b4922bfdbc2bf432",
+    "ExtraButtonSystem/TrinketMenu/FluxTrinketMenu.lua": "3ab177e4885568df30d2a1a813e4412194e73af4344ba42be29468e53e21d355",
+    "ExtraButtonSystem/TrinketMenu/FluxTrinketMenuManager.lua": "61bf359abbf0cdd9ae4bca9389344e903466adf47d09753a82c8f1f1833cf7f0",
+    "Stress test doc/round-2/extra-buttons/ebs_round2.lua.txt": "9d7595dc6b6b029cb184826aa0b25f55757468729c1b16ecb569f99c8ecf9dac",
+    "tests/alpha_reader_safety.lua": "8ea11a384e3d587881f739f6b7a76f368d5f4d1e9f9d0fe92b76db9d3d3723a3",
+    "tests/badge_cooldown_secrets.lua": "ba9e4f22be6f22940b9922c4abf4ba3e3fa43e0616d38ee199960f84e0b031b2",
+    "tests/consumable_aura_advance.lua": "fb3366dfeed3852875751a78aad8f5fdb7e7d06297047374bd3805efeebaecba",
+    "tests/consumable_config_visibility.lua": "52dc1dfd67aa1bb283c982d5846503beadf183ad76fb83cbb5c2ec8fc34e14b9",
+    "tests/consumable_refresh_timer.lua": "c47cf1b9cc29c5722a7e2ca9810cbecfb7356d8683e352aacb05febc1afbc540",
+    "tests/consumable_restock_clicks.lua": "2d0bc7f84eb04e3b25f691386c4414ef075d05842d27d96374cd9ba971586ce4",
+    "tests/consumable_weapon_targets.lua": "3abefb0e1e87c5f3272f928ed92756ed9b515de24dae8d7f84787c5028a812e8",
+    "tests/consumable_zero_reset.lua": "b4fdee9947d3d7f78fcf780802159f579807563b461f8f57aa443d6a0aa001a9",
+    "tests/extra_startup.lua": "3833c20dd506c43262f2cd956996f9e9f18da9cb45b01d815c6fee31216bcb94",
+    "tests/fixtures/alpha_reader_before.txt": "d96a31e00981f337303da5937359a5043925614f999fa897e4f4b62303009489",
+    "tests/fixtures/assisted_highlight_before.txt": "cbe5a28c5bd84bd7d0db88374720d0166b4ede129702c7424832d73386092a75",
+    "tests/fixtures/auction_scan_provider_before.txt": "f27ba6a4ec4d0616508cc121f4fc5ae2bacd10c3d7ce15f9a391019622d63302",
+    "tests/fixtures/chat_column_alignment_before.txt": "234f0822e547da404a30a0e726fb280fc55e13650ad99070629a310199b41af9",
+    "tests/fixtures/chat_quickjoin_before.txt": "eabf816ad4caf03396444fe8f571f027fe8ef599d222234e2c2ace07164a7b29",
+    "tests/fixtures/chat_retries_before.txt": "9b90d76f1d27ce7d458e87a72a099459bfd050bcb47dda58e00a532b5bf4fa4a",
+    "tests/fixtures/combat_queue_before.txt": "623e16e2fa43cdc47784b68a3b4810f279633bb1affc5f30264c735b0c989180",
+    "tests/fixtures/currency_provider_before.txt": "b52d85ab69ee982c4cc396f4e3d0c6e4dceb50caedf5f855983b9b2bcb6c3a8e",
+    "tests/fixtures/idle_chat_bag_before.txt": "4fc6d674ac2492f861308b60cdfc1151df0bf586ba7df2a9ea8ae7ced30ab155",
+    "tests/fixtures/idle_hud_before.txt": "e383b3b6da2f0f2cac2efa8dc4792cebb292f6f33d4998b92b1448180386dc13",
+    "tests/fixtures/idle_map_before.txt": "3e74b88b5ceea4d51724a0fbe524b43afa912d6d7c976857ac7107cbaeca9d98",
+    "tests/fixtures/loot_roll_position_before.txt": "8879f37bf9c2dfcd183b66102e42f394643bc40ad688c1f81c63778ab50b1c91",
+    "tests/fixtures/mail_scan_provider_before.txt": "416ac0674bfc6738cf96857c0ac24efbe08cd1b2a2f5e3e419e57d60be2479df",
+    "tests/fixtures/map_initialization_before.txt": "5fc8f60df149bcd78a1bad92dd6f7e3aef2d720e02fa6234b24050c9630cf313",
+    "tests/fixtures/map_tab_watch_before.txt": "ae70f5b1c250be7348aae7e1326f572b6dd4660d59487783f3687675872f09c1",
+    "tests/fixtures/nameplate_countdown_before.txt": "449fe74cbd55e8488fd511a9cad20c9e8a9aafd1b7976001cdc08c9a0208fbc8",
+    "tests/fixtures/pending_mail_provider_before.txt": "07a67dc6f3b485083c22c7831a34e838f79862eaa5ce05a3f8e9dd1686f8ca71",
+    "tests/fixtures/perf_capture_retention_before.txt": "e29200378c73be645919e76ecd63af2908d3bbf1ebdea6123692732547f27a07",
+    "tests/fixtures/power_cost_watchers_before.txt": "4f80dc7c2668f64266fc06d22e08f585f2dfbe5a844b407904cdb27a32cc6941",
+    "tests/fixtures/resource_spark_before.txt": "3a08b805987d9568248cd79524f9a7944b3e36bbb2283f4db2edc382ad0633b0",
+    "tests/fixtures/teleport_cast_before.txt": "dedea8c43d47f150888993bc54e2a0445e94ceacb53b141b3c6b3d3cf57b20a6",
+    "tests/fixtures/tier_count_match_before.txt": "12881a7104409df884973ab24c41817a83d7a76aefc379c71ad285fa013c196f",
+    "tests/fixtures/tier_owned_before.txt": "284e6c512997fa6f207a7d6fadca1809b21d84502c58130ccd7cece0d8c06da1",
+    "tests/fixtures/trinket_push_before.txt": "821f36878905b45394de5584ddcb31db2c28e22f6e2262e4dade97906e8ebadc",
+    "tests/fixtures/unit_overlay_geometry_before.txt": "b8daaa3f6c99ab6dde08f22645c5ca58cb863ff6363326e8228f9e8b4c8d02b1",
+    "tests/fixtures/unit_portrait_geometry_before.txt": "167e6128b2131250b69df9e47471340043a2fb3d377f5e60613d70b4d0078453",
+    "tests/fixtures/unit_prediction_geometry_before.txt": "d360ecc1a9da39cac705924c7a485ce0c6855d1bbe8dc18cec1f604d864098bd",
+    "tests/fixtures/vendor_buy_slot_before.txt": "a5daa9465a124b6c2ee4268f4e3b11eafc11f33a422ddd44b14ce36d5dd98da8",
+    "tests/fixtures/vendor_open_junk_before.txt": "14a6e640fb37140aca38b25812ac4151500a7986da5ec044876e45756acd7117",
+    "tests/fixtures/vendor_stock_before.txt": "e9ce58c2d97709a18eb784d98b6f560258964b6ebf67c057452b8ffceeff564a",
+    "tests/fixtures/vendor_tier_match_before.txt": "aca3e913864e21a9abed31dfff50e95105ae17e8c6471e442f3ea249f28cd814",
+    "tests/fixtures/vendor_tier_status_before.txt": "08db6ac1b8641b99dd30d34c8a4333dfb16389500b8d5c08785de042f7962e16",
+    "tests/fixtures/window_mover_engine_before.txt": "9e17d5d680d8b8cdeff4a05592e995e669e653258cc3470c93b216cf88308255",
+    "tests/fixtures/window_mover_init_before.txt": "0b2c0b63a0aa6620cce45f276ea355e7cff407481a43cdba85d383f284d4663b",
+    "tests/forever_badge_combat_row_swap.lua": "fbff81cce33d2e54b020ca72136653c379b961967c406c01b617e68ed59be997",
+    "tests/forever_sao_badge_preparation.lua": "f6015f078e2a4410f91228c1b33a7a47a7bc18e1d056e422f079b550b57604d6",
+    "tests/idle_bars.lua": "6f69569822142d5deeb73f0fedb4f049636036d3a830e4a22ab6f374f507cb5e",
+    "tests/restock_charge_bank_iterator.lua": "9af96b7b6eeb7fca78cbbec26ca2ac8eba54b5c16f43a5f052b73f3d9e29da5b",
+    "tests/syndicator_consumable_updates.lua": "09b65f6366d59fba7595f69a9c6eeffb602f61399b2deb0f59f728c565773edd",
+    "tests/teleport_cast_work.lua": "7842024ac5441f7f3298f77d8dc32c6820b45c074946ff30147a0248f5c02e8e",
+    "tests/utility_mixed_faces.lua": "d7362e6c96584deed8754e80d910a02feae4e61719844592a363c9b23f3ad8bb",
+    "tests/utility_modifier_vfx.lua": "08bd90ffc3c1dd1459171b840b6fdd429f667015ee789243d1a37c121ec6d9f5",
+    "tests/utility_pet_faces.lua": "d63b90a8322d0d9830ffe73338003fb96ddf8fddde443ff7581a887f6e8d97c7",
+    "tests/utility_secure_input.lua": "1272d4a17df8acaad9858ce76ab071544e233b61b19d42db25275e136b6ff103"
+  },
+  "drift": [],
+  "uniqueTestScripts": 23,
+  "repeats": 3,
+  "executionCount": 69,
+  "pass": 69,
+  "fail": 0,
+  "stdoutDeterministic": false,
+  "records": [
+    {
+      "repeat": 1,
+      "path": "tests/utility_secure_input.lua",
+      "exit": 0,
+      "seconds": 0.510332,
+      "stdout": "Utility secure input: 41255 checks; five Blizzard dispatchers; mouse + both keys; all chords; combat; both CVar edges PASS\n",
+      "stderr": ""
+    },
+    {
+      "repeat": 1,
+      "path": "tests/utility_mixed_faces.lua",
+      "exit": 0,
+      "seconds": 0.073457,
+      "stdout": "Utility mixed faces: 12634 checks, 0 failures\nModifier work: transitions=320 icon=120 count=120 usable=140 checked=120 duplicate=0\nUtility consumable aura queries: 0\n",
+      "stderr": ""
+    },
+    {
+      "repeat": 1,
+      "path": "tests/utility_pet_faces.lua",
+      "exit": 0,
+      "seconds": 0.038791,
+      "stdout": "Utility pet faces: 2584 checks, 0 failures\n",
+      "stderr": ""
+    },
+    {
+      "repeat": 1,
+      "path": "tests/utility_modifier_vfx.lua",
+      "exit": 0,
+      "seconds": 0.078504,
+      "stdout": "Utility modifier VFX: 1473 checks; five clients; cast/channel/empower/reticle/burst/interrupt/proc lifecycle PASS\n",
+      "stderr": ""
+    },
+    {
+      "repeat": 1,
+      "path": "tests/consumable_zero_reset.lua",
+      "exit": 0,
+      "seconds": 0.446323,
+      "stdout": "Consumable zero reset: 375 checks, 0 failures\n",
+      "stderr": ""
+    },
+    {
+      "repeat": 1,
+      "path": "tests/consumable_restock_clicks.lua",
+      "exit": 0,
+      "seconds": 0.067881,
+      "stdout": "Consumable restock clicks: 784 checks across seven client models; native secure VM unverified\n",
+      "stderr": ""
+    },
+    {
+      "repeat": 1,
+      "path": "tests/consumable_weapon_targets.lua",
+      "exit": 0,
+      "seconds": 0.018787,
+      "stdout": "Consumable weapon targets: 30 checks passed\n",
+      "stderr": ""
+    },
+    {
+      "repeat": 1,
+      "path": "tests/consumable_aura_advance.lua",
+      "exit": 0,
+      "seconds": 0.035496,
+      "stdout": "Consumable aura advance: 66 checks passed\n",
+      "stderr": ""
+    },
+    {
+      "repeat": 1,
+      "path": "tests/consumable_config_visibility.lua",
+      "exit": 0,
+      "seconds": 0.015117,
+      "stdout": "Consumable config visibility: 8 checks passed\n",
+      "stderr": ""
+    },
+    {
+      "repeat": 1,
+      "path": "tests/consumable_refresh_timer.lua",
+      "exit": 0,
+      "seconds": 0.027556,
+      "stdout": "Consumable refresh timer: 35 checks passed\n",
+      "stderr": ""
+    },
+    {
+      "repeat": 1,
+      "path": "tests/syndicator_consumable_updates.lua",
+      "exit": 0,
+      "seconds": 0.559092,
+      "stdout": "Syndicator consumable updates: 400 checks, 0 failures\n",
+      "stderr": ""
+    },
+    {
+      "repeat": 1,
+      "path": "tests/restock_charge_bank_iterator.lua",
+      "exit": 0,
+      "seconds": 0.019303,
+      "stdout": "Restock charge bank iterator: 12 checks passed\n",
+      "stderr": ""
+    },
+    {
+      "repeat": 1,
+      "path": "tests/extra_startup.lua",
+      "exit": 0,
+      "seconds": 0.05452,
+      "stdout": "PASS: 348 extra-startup checks (five labelled client fixtures; real clients still require testing)\n",
+      "stderr": ""
+    },
+    {
+      "repeat": 1,
+      "path": "tests/alpha_reader_safety.lua",
+      "exit": 0,
+      "seconds": 1.870472,
+      "stdout": "REJECTION ALPHA-01 baseline=false candidate=true\nREJECTION ALPHA-03 baseline=false candidate=true\nREJECTION ALPHA-04-cast baseline=false candidate=true\nREJECTION ALPHA-04-badge baseline=false candidate=true\nREJECTION ALPHA-05-numeric baseline=false candidate=true\nREJECTION ALPHA-05-duration baseline=false candidate=true\nHANDLED getter_call_denied=grid\nHANDLED getter_call_denied=bling\nHANDLED getter_call_denied=extra-numeric\nHANDLED getter_call_denied=extra-duration\nMETRIC grid rounds=100 requests_per_round=1000 public_zero_reads=3600 public_zero_writes=0 opaque_reads=3600 opaque_writes=3600 excluded_stance_alpha=1\nMETRIC glow cycles=10 snapshots=80 baseline_public_reads=120 candidate_reads=0 frames_created=1 pool_releases=20 owned_ledger_tables=1 ledger_entries=6\nSUMMARY checks=647 failures=0 baseline_rejections=8\n",
+      "stderr": ""
+    },
+    {
+      "repeat": 1,
+      "path": "tests/badge_cooldown_secrets.lua",
+      "exit": 0,
+      "seconds": 0.184805,
+      "stdout": "Badge cooldown secrets: 80 checks passed (desktop boundary only)\n",
+      "stderr": ""
+    },
+    {
+      "repeat": 1,
+      "path": "tests/forever_badge_combat_row_swap.lua",
+      "exit": 0,
+      "seconds": 0.020708,
+      "stdout": "Forever badge combat row swap: 7 checks passed\n",
+      "stderr": ""
+    },
+    {
+      "repeat": 1,
+      "path": "tests/forever_sao_badge_preparation.lua",
+      "exit": 0,
+      "seconds": 0.023979,
+      "stdout": "Forever SAO badge preparation: 25 checks passed\n",
+      "stderr": ""
+    },
+    {
+      "repeat": 1,
+      "path": "tests/idle_bars.lua",
+      "exit": 0,
+      "seconds": 0.365172,
+      "stdout": "Forever fallback: 14400 frame callbacks, 900 parses, 0 unit queries\nidle bars: 153 checks passed; 7 production mutations rejected\n",
+      "stderr": ""
+    },
+    {
+      "repeat": 1,
+      "path": "tests/teleport_cast_work.lua",
+      "exit": 0,
+      "seconds": 0.029449,
+      "stdout": "modern scans=0 popup_rebuilds=0\nlegacy scans=4 popup_rebuilds=0\nintegrated scans=0 popup_rebuilds=0\nteleport cast: 527 checks, 0 failures\n",
+      "stderr": ""
+    },
+    {
+      "repeat": 1,
+      "path": "ExtraButtonSystem/Engine/_tmp_consumablesmoke.lua",
+      "exit": 0,
+      "seconds": 0.668297,
+      "stdout": "anniversary consumables passed\nretail consumables passed\nmists consumables passed\nforever consumables passed\ncata consumables passed\nwrath consumables passed\nera consumables passed\nforever burst: 100 unrelated updates, 0 scans/selections/classifications/binds\nretail burst: 100 unrelated updates, 0 scans/selections/classifications/binds\nera burst: 100 unrelated updates, 0 scans/selections/classifications/binds\nanniversary burst: 100 unrelated updates, 0 scans/selections/classifications/binds\nmists burst: 100 unrelated updates, 0 scans/selections/classifications/binds\nConsumable smoke passed: 1473 checks\n",
+      "stderr": ""
+    },
+    {
+      "repeat": 1,
+      "path": "ExtraButtonSystem/NonCombatGrid/Buttons/_tmp_mountitemsmoke.lua",
+      "exit": 0,
+      "seconds": 0.022622,
+      "stdout": "Mount item smoke passed: 30 checks\n",
+      "stderr": ""
+    },
+    {
+      "repeat": 1,
+      "path": "ExtraButtonSystem/CombatGrid/Buttons/_tmp_ammosmoke.lua",
+      "exit": 0,
+      "seconds": 0.030609,
+      "stdout": "Ammo OK: Forever durability + repairs + combat ticks; count survives current Paint; bright display-only icon; real stack/ammo counts and other clients preserved\n",
+      "stderr": ""
+    },
+    {
+      "repeat": 1,
+      "path": "Stress test doc/round-2/extra-buttons/ebs_round2.lua.txt",
+      "exit": 0,
+      "seconds": 0.364671,
+      "stdout": "RESULT {\"checks\":20029,\"clients\":5,\"findings\":{\"failedSetter\":{\"applyCalls\":2002,\"classification\":\"conditional setter-failure model\",\"failed\":{\"attempts\":1,\"cachedShown\":true,\"duration\":0,\"successes\":0},\"id\":\"R2-EBS-04\",\"publicControlWrites\":1,\"recoveryAfterExplicitClear\":{\"attempts\":2,\"successes\":1}},\"macro\":{\"id\":\"R2-EBS-01\",\"inventorySlotMismatches\":5,\"mismatches\":5000,\"pairs\":10000,\"proposalOnlyParserCalls\":10010},\"vendorLocale\":{\"id\":\"R2-EBS-02\",\"models\":{\"english\":{\"collectionFirstQueries\":1000,\"collectionQueriesPer100\":0,\"configFirstQueries\":2000,\"configName\":\"Grand Expedition Yak\",\"configQueriesPer100\":200000,\"detected\":true},\"localized\":{\"collectionFirstQueries\":1000,\"collectionQueriesPer100\":0,\"configFirstQueries\":3000,\"configName\":false,\"configQueriesPer100\":300000,\"detected\":false},\"none\":{\"collectionFirstQueries\":1000,\"collectionQueriesPer100\":0,\"configFirstQueries\":3000,\"configName\":false,\"configQueriesPer100\":300000,\"detected\":false}}},\"vendorWork\":{\"id\":\"R2-EBS-03\",\"models\":{\"english\":{\"collectionFirstQueries\":1000,\"collectionQueriesPer100\":0,\"configFirstQueries\":2000,\"configName\":\"Grand Expedition Yak\",\"configQueriesPer100\":200000,\"detected\":true},\"localized\":{\"collectionFirstQueries\":1000,\"collectionQueriesPer100\":0,\"configFirstQueries\":3000,\"configName\":false,\"configQueriesPer100\":300000,\"detected\":false},\"none\":{\"collectionFirstQueries\":1000,\"collectionQueriesPer100\":0,\"configFirstQueries\":3000,\"configName\":false,\"configQueriesPer100\":300000,\"detected\":false}}}},\"scope\":\"actual Lua with native/API stubs; no game/taint/pixels/FPS claims\"}\n",
+      "stderr": "",
+      "semanticResults": {
+        "checks": 20029,
+        "clients": 5,
+        "findings": {
+          "failedSetter": {
+            "applyCalls": 2002,
+            "classification": "conditional setter-failure model",
+            "failed": {
+              "attempts": 1,
+              "cachedShown": true,
+              "duration": 0,
+              "successes": 0
+            },
+            "id": "R2-EBS-04",
+            "publicControlWrites": 1,
+            "recoveryAfterExplicitClear": {
+              "attempts": 2,
+              "successes": 1
+            }
+          },
+          "macro": {
+            "id": "R2-EBS-01",
+            "inventorySlotMismatches": 5,
+            "mismatches": 5000,
+            "pairs": 10000,
+            "proposalOnlyParserCalls": 10010
+          },
+          "vendorLocale": {
+            "id": "R2-EBS-02",
+            "models": {
+              "english": {
+                "collectionFirstQueries": 1000,
+                "collectionQueriesPer100": 0,
+                "configFirstQueries": 2000,
+                "configName": "Grand Expedition Yak",
+                "configQueriesPer100": 200000,
+                "detected": true
+              },
+              "localized": {
+                "collectionFirstQueries": 1000,
+                "collectionQueriesPer100": 0,
+                "configFirstQueries": 3000,
+                "configName": false,
+                "configQueriesPer100": 300000,
+                "detected": false
+              },
+              "none": {
+                "collectionFirstQueries": 1000,
+                "collectionQueriesPer100": 0,
+                "configFirstQueries": 3000,
+                "configName": false,
+                "configQueriesPer100": 300000,
+                "detected": false
+              }
+            }
+          },
+          "vendorWork": {
+            "id": "R2-EBS-03",
+            "models": {
+              "english": {
+                "collectionFirstQueries": 1000,
+                "collectionQueriesPer100": 0,
+                "configFirstQueries": 2000,
+                "configName": "Grand Expedition Yak",
+                "configQueriesPer100": 200000,
+                "detected": true
+              },
+              "localized": {
+                "collectionFirstQueries": 1000,
+                "collectionQueriesPer100": 0,
+                "configFirstQueries": 3000,
+                "configName": false,
+                "configQueriesPer100": 300000,
+                "detected": false
+              },
+              "none": {
+                "collectionFirstQueries": 1000,
+                "collectionQueriesPer100": 0,
+                "configFirstQueries": 3000,
+                "configName": false,
+                "configQueriesPer100": 300000,
+                "detected": false
+              }
+            }
+          }
+        },
+        "scope": "actual Lua with native/API stubs; no game/taint/pixels/FPS claims"
+      }
+    },
+    {
+      "repeat": 2,
+      "path": "tests/utility_secure_input.lua",
+      "exit": 0,
+      "seconds": 1.225019,
+      "stdout": "Utility secure input: 41255 checks; five Blizzard dispatchers; mouse + both keys; all chords; combat; both CVar edges PASS\n",
+      "stderr": ""
+    },
+    {
+      "repeat": 2,
+      "path": "tests/utility_mixed_faces.lua",
+      "exit": 0,
+      "seconds": 0.064744,
+      "stdout": "Utility mixed faces: 12634 checks, 0 failures\nModifier work: transitions=320 icon=120 count=120 usable=140 checked=120 duplicate=0\nUtility consumable aura queries: 0\n",
+      "stderr": ""
+    },
+    {
+      "repeat": 2,
+      "path": "tests/utility_pet_faces.lua",
+      "exit": 0,
+      "seconds": 0.035735,
+      "stdout": "Utility pet faces: 2584 checks, 0 failures\n",
+      "stderr": ""
+    },
+    {
+      "repeat": 2,
+      "path": "tests/utility_modifier_vfx.lua",
+      "exit": 0,
+      "seconds": 0.075559,
+      "stdout": "Utility modifier VFX: 1473 checks; five clients; cast/channel/empower/reticle/burst/interrupt/proc lifecycle PASS\n",
+      "stderr": ""
+    },
+    {
+      "repeat": 2,
+      "path": "tests/consumable_zero_reset.lua",
+      "exit": 0,
+      "seconds": 0.388034,
+      "stdout": "Consumable zero reset: 375 checks, 0 failures\n",
+      "stderr": ""
+    },
+    {
+      "repeat": 2,
+      "path": "tests/consumable_restock_clicks.lua",
+      "exit": 0,
+      "seconds": 0.069067,
+      "stdout": "Consumable restock clicks: 784 checks across seven client models; native secure VM unverified\n",
+      "stderr": ""
+    },
+    {
+      "repeat": 2,
+      "path": "tests/consumable_weapon_targets.lua",
+      "exit": 0,
+      "seconds": 0.033619,
+      "stdout": "Consumable weapon targets: 30 checks passed\n",
+      "stderr": ""
+    },
+    {
+      "repeat": 2,
+      "path": "tests/consumable_aura_advance.lua",
+      "exit": 0,
+      "seconds": 0.038792,
+      "stdout": "Consumable aura advance: 66 checks passed\n",
+      "stderr": ""
+    },
+    {
+      "repeat": 2,
+      "path": "tests/consumable_config_visibility.lua",
+      "exit": 0,
+      "seconds": 0.015384,
+      "stdout": "Consumable config visibility: 8 checks passed\n",
+      "stderr": ""
+    },
+    {
+      "repeat": 2,
+      "path": "tests/consumable_refresh_timer.lua",
+      "exit": 0,
+      "seconds": 0.028604,
+      "stdout": "Consumable refresh timer: 35 checks passed\n",
+      "stderr": ""
+    },
+    {
+      "repeat": 2,
+      "path": "tests/syndicator_consumable_updates.lua",
+      "exit": 0,
+      "seconds": 0.542498,
+      "stdout": "Syndicator consumable updates: 400 checks, 0 failures\n",
+      "stderr": ""
+    },
+    {
+      "repeat": 2,
+      "path": "tests/restock_charge_bank_iterator.lua",
+      "exit": 0,
+      "seconds": 0.023873,
+      "stdout": "Restock charge bank iterator: 12 checks passed\n",
+      "stderr": ""
+    },
+    {
+      "repeat": 2,
+      "path": "tests/extra_startup.lua",
+      "exit": 0,
+      "seconds": 0.041979,
+      "stdout": "PASS: 348 extra-startup checks (five labelled client fixtures; real clients still require testing)\n",
+      "stderr": ""
+    },
+    {
+      "repeat": 2,
+      "path": "tests/alpha_reader_safety.lua",
+      "exit": 0,
+      "seconds": 1.745739,
+      "stdout": "REJECTION ALPHA-01 baseline=false candidate=true\nREJECTION ALPHA-03 baseline=false candidate=true\nREJECTION ALPHA-04-cast baseline=false candidate=true\nREJECTION ALPHA-04-badge baseline=false candidate=true\nREJECTION ALPHA-05-numeric baseline=false candidate=true\nREJECTION ALPHA-05-duration baseline=false candidate=true\nHANDLED getter_call_denied=grid\nHANDLED getter_call_denied=bling\nHANDLED getter_call_denied=extra-numeric\nHANDLED getter_call_denied=extra-duration\nMETRIC grid rounds=100 requests_per_round=1000 public_zero_reads=3600 public_zero_writes=0 opaque_reads=3600 opaque_writes=3600 excluded_stance_alpha=1\nMETRIC glow cycles=10 snapshots=80 baseline_public_reads=120 candidate_reads=0 frames_created=1 pool_releases=20 owned_ledger_tables=1 ledger_entries=6\nSUMMARY checks=647 failures=0 baseline_rejections=8\n",
+      "stderr": ""
+    },
+    {
+      "repeat": 2,
+      "path": "tests/badge_cooldown_secrets.lua",
+      "exit": 0,
+      "seconds": 0.163188,
+      "stdout": "Badge cooldown secrets: 80 checks passed (desktop boundary only)\n",
+      "stderr": ""
+    },
+    {
+      "repeat": 2,
+      "path": "tests/forever_badge_combat_row_swap.lua",
+      "exit": 0,
+      "seconds": 0.019745,
+      "stdout": "Forever badge combat row swap: 7 checks passed\n",
+      "stderr": ""
+    },
+    {
+      "repeat": 2,
+      "path": "tests/forever_sao_badge_preparation.lua",
+      "exit": 0,
+      "seconds": 0.015665,
+      "stdout": "Forever SAO badge preparation: 25 checks passed\n",
+      "stderr": ""
+    },
+    {
+      "repeat": 2,
+      "path": "tests/idle_bars.lua",
+      "exit": 0,
+      "seconds": 0.324555,
+      "stdout": "Forever fallback: 14400 frame callbacks, 900 parses, 0 unit queries\nidle bars: 153 checks passed; 7 production mutations rejected\n",
+      "stderr": ""
+    },
+    {
+      "repeat": 2,
+      "path": "tests/teleport_cast_work.lua",
+      "exit": 0,
+      "seconds": 0.024764,
+      "stdout": "modern scans=0 popup_rebuilds=0\nlegacy scans=4 popup_rebuilds=0\nintegrated scans=0 popup_rebuilds=0\nteleport cast: 527 checks, 0 failures\n",
+      "stderr": ""
+    },
+    {
+      "repeat": 2,
+      "path": "ExtraButtonSystem/Engine/_tmp_consumablesmoke.lua",
+      "exit": 0,
+      "seconds": 0.660007,
+      "stdout": "wrath consumables passed\nera consumables passed\nforever consumables passed\ncata consumables passed\nanniversary consumables passed\nretail consumables passed\nmists consumables passed\nforever burst: 100 unrelated updates, 0 scans/selections/classifications/binds\nretail burst: 100 unrelated updates, 0 scans/selections/classifications/binds\nera burst: 100 unrelated updates, 0 scans/selections/classifications/binds\nanniversary burst: 100 unrelated updates, 0 scans/selections/classifications/binds\nmists burst: 100 unrelated updates, 0 scans/selections/classifications/binds\nConsumable smoke passed: 1473 checks\n",
+      "stderr": ""
+    },
+    {
+      "repeat": 2,
+      "path": "ExtraButtonSystem/NonCombatGrid/Buttons/_tmp_mountitemsmoke.lua",
+      "exit": 0,
+      "seconds": 0.018143,
+      "stdout": "Mount item smoke passed: 30 checks\n",
+      "stderr": ""
+    },
+    {
+      "repeat": 2,
+      "path": "ExtraButtonSystem/CombatGrid/Buttons/_tmp_ammosmoke.lua",
+      "exit": 0,
+      "seconds": 0.030289,
+      "stdout": "Ammo OK: Forever durability + repairs + combat ticks; count survives current Paint; bright display-only icon; real stack/ammo counts and other clients preserved\n",
+      "stderr": ""
+    },
+    {
+      "repeat": 2,
+      "path": "Stress test doc/round-2/extra-buttons/ebs_round2.lua.txt",
+      "exit": 0,
+      "seconds": 0.356545,
+      "stdout": "RESULT {\"checks\":20029,\"clients\":5,\"findings\":{\"failedSetter\":{\"applyCalls\":2002,\"classification\":\"conditional setter-failure model\",\"failed\":{\"attempts\":1,\"cachedShown\":true,\"duration\":0,\"successes\":0},\"id\":\"R2-EBS-04\",\"publicControlWrites\":1,\"recoveryAfterExplicitClear\":{\"attempts\":2,\"successes\":1}},\"macro\":{\"id\":\"R2-EBS-01\",\"inventorySlotMismatches\":5,\"mismatches\":5000,\"pairs\":10000,\"proposalOnlyParserCalls\":10010},\"vendorLocale\":{\"id\":\"R2-EBS-02\",\"models\":{\"english\":{\"collectionFirstQueries\":1000,\"collectionQueriesPer100\":0,\"configFirstQueries\":2000,\"configName\":\"Grand Expedition Yak\",\"configQueriesPer100\":200000,\"detected\":true},\"localized\":{\"collectionFirstQueries\":1000,\"collectionQueriesPer100\":0,\"configFirstQueries\":3000,\"configName\":false,\"configQueriesPer100\":300000,\"detected\":false},\"none\":{\"collectionFirstQueries\":1000,\"collectionQueriesPer100\":0,\"configFirstQueries\":3000,\"configName\":false,\"configQueriesPer100\":300000,\"detected\":false}}},\"vendorWork\":{\"id\":\"R2-EBS-03\",\"models\":{\"english\":{\"collectionFirstQueries\":1000,\"collectionQueriesPer100\":0,\"configFirstQueries\":2000,\"configName\":\"Grand Expedition Yak\",\"configQueriesPer100\":200000,\"detected\":true},\"localized\":{\"collectionFirstQueries\":1000,\"collectionQueriesPer100\":0,\"configFirstQueries\":3000,\"configName\":false,\"configQueriesPer100\":300000,\"detected\":false},\"none\":{\"collectionFirstQueries\":1000,\"collectionQueriesPer100\":0,\"configFirstQueries\":3000,\"configName\":false,\"configQueriesPer100\":300000,\"detected\":false}}}},\"scope\":\"actual Lua with native/API stubs; no game/taint/pixels/FPS claims\"}\n",
+      "stderr": "",
+      "semanticResults": {
+        "checks": 20029,
+        "clients": 5,
+        "findings": {
+          "failedSetter": {
+            "applyCalls": 2002,
+            "classification": "conditional setter-failure model",
+            "failed": {
+              "attempts": 1,
+              "cachedShown": true,
+              "duration": 0,
+              "successes": 0
+            },
+            "id": "R2-EBS-04",
+            "publicControlWrites": 1,
+            "recoveryAfterExplicitClear": {
+              "attempts": 2,
+              "successes": 1
+            }
+          },
+          "macro": {
+            "id": "R2-EBS-01",
+            "inventorySlotMismatches": 5,
+            "mismatches": 5000,
+            "pairs": 10000,
+            "proposalOnlyParserCalls": 10010
+          },
+          "vendorLocale": {
+            "id": "R2-EBS-02",
+            "models": {
+              "english": {
+                "collectionFirstQueries": 1000,
+                "collectionQueriesPer100": 0,
+                "configFirstQueries": 2000,
+                "configName": "Grand Expedition Yak",
+                "configQueriesPer100": 200000,
+                "detected": true
+              },
+              "localized": {
+                "collectionFirstQueries": 1000,
+                "collectionQueriesPer100": 0,
+                "configFirstQueries": 3000,
+                "configName": false,
+                "configQueriesPer100": 300000,
+                "detected": false
+              },
+              "none": {
+                "collectionFirstQueries": 1000,
+                "collectionQueriesPer100": 0,
+                "configFirstQueries": 3000,
+                "configName": false,
+                "configQueriesPer100": 300000,
+                "detected": false
+              }
+            }
+          },
+          "vendorWork": {
+            "id": "R2-EBS-03",
+            "models": {
+              "english": {
+                "collectionFirstQueries": 1000,
+                "collectionQueriesPer100": 0,
+                "configFirstQueries": 2000,
+                "configName": "Grand Expedition Yak",
+                "configQueriesPer100": 200000,
+                "detected": true
+              },
+              "localized": {
+                "collectionFirstQueries": 1000,
+                "collectionQueriesPer100": 0,
+                "configFirstQueries": 3000,
+                "configName": false,
+                "configQueriesPer100": 300000,
+                "detected": false
+              },
+              "none": {
+                "collectionFirstQueries": 1000,
+                "collectionQueriesPer100": 0,
+                "configFirstQueries": 3000,
+                "configName": false,
+                "configQueriesPer100": 300000,
+                "detected": false
+              }
+            }
+          }
+        },
+        "scope": "actual Lua with native/API stubs; no game/taint/pixels/FPS claims"
+      }
+    },
+    {
+      "repeat": 3,
+      "path": "tests/utility_secure_input.lua",
+      "exit": 0,
+      "seconds": 0.501014,
+      "stdout": "Utility secure input: 41255 checks; five Blizzard dispatchers; mouse + both keys; all chords; combat; both CVar edges PASS\n",
+      "stderr": ""
+    },
+    {
+      "repeat": 3,
+      "path": "tests/utility_mixed_faces.lua",
+      "exit": 0,
+      "seconds": 0.060797,
+      "stdout": "Utility mixed faces: 12634 checks, 0 failures\nModifier work: transitions=320 icon=120 count=120 usable=140 checked=120 duplicate=0\nUtility consumable aura queries: 0\n",
+      "stderr": ""
+    },
+    {
+      "repeat": 3,
+      "path": "tests/utility_pet_faces.lua",
+      "exit": 0,
+      "seconds": 0.036856,
+      "stdout": "Utility pet faces: 2584 checks, 0 failures\n",
+      "stderr": ""
+    },
+    {
+      "repeat": 3,
+      "path": "tests/utility_modifier_vfx.lua",
+      "exit": 0,
+      "seconds": 0.067881,
+      "stdout": "Utility modifier VFX: 1473 checks; five clients; cast/channel/empower/reticle/burst/interrupt/proc lifecycle PASS\n",
+      "stderr": ""
+    },
+    {
+      "repeat": 3,
+      "path": "tests/consumable_zero_reset.lua",
+      "exit": 0,
+      "seconds": 0.395539,
+      "stdout": "Consumable zero reset: 375 checks, 0 failures\n",
+      "stderr": ""
+    },
+    {
+      "repeat": 3,
+      "path": "tests/consumable_restock_clicks.lua",
+      "exit": 0,
+      "seconds": 0.060823,
+      "stdout": "Consumable restock clicks: 784 checks across seven client models; native secure VM unverified\n",
+      "stderr": ""
+    },
+    {
+      "repeat": 3,
+      "path": "tests/consumable_weapon_targets.lua",
+      "exit": 0,
+      "seconds": 0.023154,
+      "stdout": "Consumable weapon targets: 30 checks passed\n",
+      "stderr": ""
+    },
+    {
+      "repeat": 3,
+      "path": "tests/consumable_aura_advance.lua",
+      "exit": 0,
+      "seconds": 0.03511,
+      "stdout": "Consumable aura advance: 66 checks passed\n",
+      "stderr": ""
+    },
+    {
+      "repeat": 3,
+      "path": "tests/consumable_config_visibility.lua",
+      "exit": 0,
+      "seconds": 0.014689,
+      "stdout": "Consumable config visibility: 8 checks passed\n",
+      "stderr": ""
+    },
+    {
+      "repeat": 3,
+      "path": "tests/consumable_refresh_timer.lua",
+      "exit": 0,
+      "seconds": 0.020793,
+      "stdout": "Consumable refresh timer: 35 checks passed\n",
+      "stderr": ""
+    },
+    {
+      "repeat": 3,
+      "path": "tests/syndicator_consumable_updates.lua",
+      "exit": 0,
+      "seconds": 0.520331,
+      "stdout": "Syndicator consumable updates: 400 checks, 0 failures\n",
+      "stderr": ""
+    },
+    {
+      "repeat": 3,
+      "path": "tests/restock_charge_bank_iterator.lua",
+      "exit": 0,
+      "seconds": 0.015792,
+      "stdout": "Restock charge bank iterator: 12 checks passed\n",
+      "stderr": ""
+    },
+    {
+      "repeat": 3,
+      "path": "tests/extra_startup.lua",
+      "exit": 0,
+      "seconds": 0.0461,
+      "stdout": "PASS: 348 extra-startup checks (five labelled client fixtures; real clients still require testing)\n",
+      "stderr": ""
+    },
+    {
+      "repeat": 3,
+      "path": "tests/alpha_reader_safety.lua",
+      "exit": 0,
+      "seconds": 1.814534,
+      "stdout": "REJECTION ALPHA-01 baseline=false candidate=true\nREJECTION ALPHA-03 baseline=false candidate=true\nREJECTION ALPHA-04-cast baseline=false candidate=true\nREJECTION ALPHA-04-badge baseline=false candidate=true\nREJECTION ALPHA-05-numeric baseline=false candidate=true\nREJECTION ALPHA-05-duration baseline=false candidate=true\nHANDLED getter_call_denied=grid\nHANDLED getter_call_denied=bling\nHANDLED getter_call_denied=extra-numeric\nHANDLED getter_call_denied=extra-duration\nMETRIC grid rounds=100 requests_per_round=1000 public_zero_reads=3600 public_zero_writes=0 opaque_reads=3600 opaque_writes=3600 excluded_stance_alpha=1\nMETRIC glow cycles=10 snapshots=80 baseline_public_reads=120 candidate_reads=0 frames_created=1 pool_releases=20 owned_ledger_tables=1 ledger_entries=6\nSUMMARY checks=647 failures=0 baseline_rejections=8\n",
+      "stderr": ""
+    },
+    {
+      "repeat": 3,
+      "path": "tests/badge_cooldown_secrets.lua",
+      "exit": 0,
+      "seconds": 0.170819,
+      "stdout": "Badge cooldown secrets: 80 checks passed (desktop boundary only)\n",
+      "stderr": ""
+    },
+    {
+      "repeat": 3,
+      "path": "tests/forever_badge_combat_row_swap.lua",
+      "exit": 0,
+      "seconds": 0.015935,
+      "stdout": "Forever badge combat row swap: 7 checks passed\n",
+      "stderr": ""
+    },
+    {
+      "repeat": 3,
+      "path": "tests/forever_sao_badge_preparation.lua",
+      "exit": 0,
+      "seconds": 0.015843,
+      "stdout": "Forever SAO badge preparation: 25 checks passed\n",
+      "stderr": ""
+    },
+    {
+      "repeat": 3,
+      "path": "tests/idle_bars.lua",
+      "exit": 0,
+      "seconds": 0.396627,
+      "stdout": "Forever fallback: 14400 frame callbacks, 900 parses, 0 unit queries\nidle bars: 153 checks passed; 7 production mutations rejected\n",
+      "stderr": ""
+    },
+    {
+      "repeat": 3,
+      "path": "tests/teleport_cast_work.lua",
+      "exit": 0,
+      "seconds": 0.028386,
+      "stdout": "modern scans=0 popup_rebuilds=0\nlegacy scans=4 popup_rebuilds=0\nintegrated scans=0 popup_rebuilds=0\nteleport cast: 527 checks, 0 failures\n",
+      "stderr": ""
+    },
+    {
+      "repeat": 3,
+      "path": "ExtraButtonSystem/Engine/_tmp_consumablesmoke.lua",
+      "exit": 0,
+      "seconds": 0.710041,
+      "stdout": "cata consumables passed\nforever consumables passed\nanniversary consumables passed\nmists consumables passed\nwrath consumables passed\nera consumables passed\nretail consumables passed\nforever burst: 100 unrelated updates, 0 scans/selections/classifications/binds\nretail burst: 100 unrelated updates, 0 scans/selections/classifications/binds\nera burst: 100 unrelated updates, 0 scans/selections/classifications/binds\nanniversary burst: 100 unrelated updates, 0 scans/selections/classifications/binds\nmists burst: 100 unrelated updates, 0 scans/selections/classifications/binds\nConsumable smoke passed: 1473 checks\n",
+      "stderr": ""
+    },
+    {
+      "repeat": 3,
+      "path": "ExtraButtonSystem/NonCombatGrid/Buttons/_tmp_mountitemsmoke.lua",
+      "exit": 0,
+      "seconds": 0.018884,
+      "stdout": "Mount item smoke passed: 30 checks\n",
+      "stderr": ""
+    },
+    {
+      "repeat": 3,
+      "path": "ExtraButtonSystem/CombatGrid/Buttons/_tmp_ammosmoke.lua",
+      "exit": 0,
+      "seconds": 0.038318,
+      "stdout": "Ammo OK: Forever durability + repairs + combat ticks; count survives current Paint; bright display-only icon; real stack/ammo counts and other clients preserved\n",
+      "stderr": ""
+    },
+    {
+      "repeat": 3,
+      "path": "Stress test doc/round-2/extra-buttons/ebs_round2.lua.txt",
+      "exit": 0,
+      "seconds": 0.351321,
+      "stdout": "RESULT {\"checks\":20029,\"clients\":5,\"findings\":{\"failedSetter\":{\"applyCalls\":2002,\"classification\":\"conditional setter-failure model\",\"failed\":{\"attempts\":1,\"cachedShown\":true,\"duration\":0,\"successes\":0},\"id\":\"R2-EBS-04\",\"publicControlWrites\":1,\"recoveryAfterExplicitClear\":{\"attempts\":2,\"successes\":1}},\"macro\":{\"id\":\"R2-EBS-01\",\"inventorySlotMismatches\":5,\"mismatches\":5000,\"pairs\":10000,\"proposalOnlyParserCalls\":10010},\"vendorLocale\":{\"id\":\"R2-EBS-02\",\"models\":{\"english\":{\"collectionFirstQueries\":1000,\"collectionQueriesPer100\":0,\"configFirstQueries\":2000,\"configName\":\"Grand Expedition Yak\",\"configQueriesPer100\":200000,\"detected\":true},\"localized\":{\"collectionFirstQueries\":1000,\"collectionQueriesPer100\":0,\"configFirstQueries\":3000,\"configName\":false,\"configQueriesPer100\":300000,\"detected\":false},\"none\":{\"collectionFirstQueries\":1000,\"collectionQueriesPer100\":0,\"configFirstQueries\":3000,\"configName\":false,\"configQueriesPer100\":300000,\"detected\":false}}},\"vendorWork\":{\"id\":\"R2-EBS-03\",\"models\":{\"english\":{\"collectionFirstQueries\":1000,\"collectionQueriesPer100\":0,\"configFirstQueries\":2000,\"configName\":\"Grand Expedition Yak\",\"configQueriesPer100\":200000,\"detected\":true},\"localized\":{\"collectionFirstQueries\":1000,\"collectionQueriesPer100\":0,\"configFirstQueries\":3000,\"configName\":false,\"configQueriesPer100\":300000,\"detected\":false},\"none\":{\"collectionFirstQueries\":1000,\"collectionQueriesPer100\":0,\"configFirstQueries\":3000,\"configName\":false,\"configQueriesPer100\":300000,\"detected\":false}}}},\"scope\":\"actual Lua with native/API stubs; no game/taint/pixels/FPS claims\"}\n",
+      "stderr": "",
+      "semanticResults": {
+        "checks": 20029,
+        "clients": 5,
+        "findings": {
+          "failedSetter": {
+            "applyCalls": 2002,
+            "classification": "conditional setter-failure model",
+            "failed": {
+              "attempts": 1,
+              "cachedShown": true,
+              "duration": 0,
+              "successes": 0
+            },
+            "id": "R2-EBS-04",
+            "publicControlWrites": 1,
+            "recoveryAfterExplicitClear": {
+              "attempts": 2,
+              "successes": 1
+            }
+          },
+          "macro": {
+            "id": "R2-EBS-01",
+            "inventorySlotMismatches": 5,
+            "mismatches": 5000,
+            "pairs": 10000,
+            "proposalOnlyParserCalls": 10010
+          },
+          "vendorLocale": {
+            "id": "R2-EBS-02",
+            "models": {
+              "english": {
+                "collectionFirstQueries": 1000,
+                "collectionQueriesPer100": 0,
+                "configFirstQueries": 2000,
+                "configName": "Grand Expedition Yak",
+                "configQueriesPer100": 200000,
+                "detected": true
+              },
+              "localized": {
+                "collectionFirstQueries": 1000,
+                "collectionQueriesPer100": 0,
+                "configFirstQueries": 3000,
+                "configName": false,
+                "configQueriesPer100": 300000,
+                "detected": false
+              },
+              "none": {
+                "collectionFirstQueries": 1000,
+                "collectionQueriesPer100": 0,
+                "configFirstQueries": 3000,
+                "configName": false,
+                "configQueriesPer100": 300000,
+                "detected": false
+              }
+            }
+          },
+          "vendorWork": {
+            "id": "R2-EBS-03",
+            "models": {
+              "english": {
+                "collectionFirstQueries": 1000,
+                "collectionQueriesPer100": 0,
+                "configFirstQueries": 2000,
+                "configName": "Grand Expedition Yak",
+                "configQueriesPer100": 200000,
+                "detected": true
+              },
+              "localized": {
+                "collectionFirstQueries": 1000,
+                "collectionQueriesPer100": 0,
+                "configFirstQueries": 3000,
+                "configName": false,
+                "configQueriesPer100": 300000,
+                "detected": false
+              },
+              "none": {
+                "collectionFirstQueries": 1000,
+                "collectionQueriesPer100": 0,
+                "configFirstQueries": 3000,
+                "configName": false,
+                "configQueriesPer100": 300000,
+                "detected": false
+              }
+            }
+          }
+        },
+        "scope": "actual Lua with native/API stubs; no game/taint/pixels/FPS claims"
+      }
+    }
+  ]
+}

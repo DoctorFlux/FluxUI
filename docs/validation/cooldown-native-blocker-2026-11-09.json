@@ -1,0 +1,54 @@
+{
+  "changeID": "COOLDOWN-NATIVE-BLOCKER-20261109",
+  "previousGoalTurn": "PROGRESS: native reload/settings/current player geometry and security samples changed the acceptance evidence; full261/928 and documentation passed",
+  "currentTurn": "Native slash/escape source ownership inspected; readiness alias refused before first key; bounded35second availability watch completed with no stable non-game foreground and no input",
+  "recurringBlockingCondition": "AGENTS.md background-only requirement; Windows continues to report Forever foreground during remaining native test opportunities",
+  "consecutiveTurnsWithCondition": [
+    {
+      "turn": "User-triggered profile turn",
+      "utc": "2026-11-08T22:47:51.4410232Z",
+      "result": "Game is foreground; refusing background test",
+      "inputSent": false
+    },
+    {
+      "turn": "Prior goal continuation",
+      "utc": "2026-11-08T23:07:05.9185315Z",
+      "result": "Game is foreground; refusing background test",
+      "inputSent": false
+    },
+    {
+      "turn": "Current goal continuation",
+      "utc": "2026-11-08T23:10:59.2192001Z",
+      "result": "Game is foreground; refusing background test",
+      "inputSent": false
+    }
+  ],
+  "blockedAudit": "Condition recurred in three consecutive goal turns. Prior progress is retained; it did not complete the remaining editor/visual/resource/client tests. No evidenced runtime change or necessary independent check remains that can replace native acceptance. Cannot complete these checks without a stable background opportunity and suitable native client/character interactions.",
+  "sourceEvidence": {
+    "slashEntry": "Native SlashCommandsOverrides.lua registers SLASH_COMMAND.EDITMODE and checks CanEnterEditMode before ShowUIPanel",
+    "exit": "Native EditModeManagerFrame_EscapePressed uses its own close callback and checks unsaved changes",
+    "implementationRule": "Read actual native slash alias first; use native chat/Escape event path. Do not invoke internal manager setters/Enter/Exit/Save from addon Lua to route around taint."
+  },
+  "verified": [
+    "One FluxUI created if absent and preserved through reload",
+    "Four active native setting groups match request",
+    "Four offsets/current player-bound clearance match within0.001UIunits",
+    "BugTabs0 and four sampled native aura-map metadata fields secure",
+    "Full261scripts/928Lua PASS with no current source drift",
+    "Documentation961sources/602reachable/415settings/24SavedVariables/15606links PASS"
+  ],
+  "stillRequired": [
+    "Normal native Edit Mode preview and custom edit/save/reload",
+    "Matched rendered preview comparison",
+    "Visible class-resource characters/forms",
+    "Other supported native clients/mixed replacement states",
+    "Actual sustained combat/taint and appropriate native performance scope"
+  ],
+  "resume": "Keep browser/chat continuously foreground with Forever open behind it until checks are confirmed complete; then resume the goal. Coordinate suitable resource characters and Retail rather than displacing active gameplay.",
+  "currentSourceDrift": [],
+  "runtimeChanges": false,
+  "settingsOrProfilerWrites": false,
+  "gameplayOrForegroundControl": false,
+  "publication": false,
+  "status": "BLOCKED pending goal status update; not complete"
+}

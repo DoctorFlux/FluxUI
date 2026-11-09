@@ -1,0 +1,217 @@
+{
+  "baselineCommit": "8006494fd5f10b54818471933467b9bb867c6543",
+  "candidateIdentity": "Exact raw-byte SHA256 runtime/test files; complete candidate identity in full validation report",
+  "sourceHashes": {
+    "Battlezonemap/FluxBlizzardMeter.lua": "3c84a9cd3f3352d8fb47c034ecc7f06f211d73973cd2c029744d242620d80ebf",
+    "Battlezonemap/FluxMeterLayout.lua": "11e03a12e33b90a35b01909343e4db08621781357e9efd81505aa879930ef896",
+    "Battlezonemap/FluxWindowFrame.lua": "221d4c52f0727d4e20d768b11c140270075ded0777725c3f27719d4b80d37d2b",
+    "tests/native_meter_ownership.lua": "57b69e3ba0e96a3ffbfaeece42ab5db4e4c24c642481618f1c9cfd42e63ba4bd",
+    "tests/native_threat_layout.lua": "8f577a8da23e699e4110f7f26d3c0bd85a99756405c7ef033c58c93a26cbecd0"
+  },
+  "baselineSourceHashes": {
+    "meter": "a5b6f556fac9af76f12b1572515b9268b680dce0d00cfc602fa6c2fcda46026c",
+    "layout": "8ea8f74027f4abdda95f40d1c590892e4fcf05268b1f75e2fb7e8054a67296d4",
+    "window": "1795747f9beb829501d24f1f45c385d0fdc78467fe9d4eacb9d389c600f0e62e"
+  },
+  "sourceDrift": false,
+  "checkpoint": "Mail-auction-publication-20261105T203228Z;1537actualfiles/122on-disksettings/all-refhistory;sourceZIPefe44322cd86f787161b91509af8f63cf4709fdfdeaef72e6f6f750c51b5a537",
+  "method": "Real production FluxMeterLayout/FluxBlizzardMeter and extracted actual RegisterMeterTab controller, using exported existing meter harness. Native API/data/widget behavior, skin and standalone threat APIs are explicitly mocked here. First Embed warm-up;100reflows preserve one owned Embed/entryhook and frame/timer counts. Five alternating fresh-process matched pairs. Covers original6presetIDs/defaults;appended7-9;3native+1owned/full-threat/editor/savedprovider-absent facts/Details/scale/visibility lifecycle; public CVar first-use/readonly/secure/locked/missing/unsupported/Details/combat queue+cancel; manually modeled later native availability/addon event/retry. Does not claim CVar change causes native UI loading; pinned meter TOC is not load-on-demand.",
+  "host": {
+    "platform": "Windows-10-10.0.26200-SP0",
+    "processor": "Intel64 Family 6 Model 151 Stepping 2, GenuineIntel",
+    "logicalCPUs": 20,
+    "lua": "Lua 5.4.6  Copyright (C) 1994-2023 Lua.org, PUC-Rio"
+  },
+  "nativeMeasurements": "No new native candidate build/graphics/hardware/settings/addon-list/profile/screenshots/CPU/memory/allocation/frame-time/FPS capture. Existing source pins are source evidence, not loaded operation acceptance. No foreground/input/clipboard/profiling/preference control.",
+  "pairs": [
+    {
+      "repetition": 1,
+      "order": [
+        "baseline",
+        "candidate"
+      ],
+      "baseline": {
+        "exitCode": 1,
+        "processSeconds": 0.08635140000842512,
+        "stdout": "FAIL available owned pane adds one slot and appended presets\nFAIL native catalog includes the available owned threat provider once\nFAIL editor makes the added fourth slot owned threat\nFAIL editor refuses replacing the fourth owned pane with a fourth native pane\nFAIL moving the unique threat slot preserves three native panes\nFAIL saved four-pane layout restores without replacing its ID or slots\nFAIL owned pane is a scaled Content child\nFAIL three native windows follow their own types without mapping threat to damage\nFAIL owned top-left shares the native canvas\nFAIL owned top-right pane uses the selected fractional width and row height\nFAIL native panes start after the owned column at coherent scale\nFAIL native window and entry skin runs at accepted scale\nFAIL skin ownership and entry hooks do not multiply on relayout\nFAIL geometry reuses the existing owned pane without re-embedding\nFAIL entry skin follows existing green local-player paint\nFAIL threat-only layout hides native root but keeps the owned pane visible\nFAIL threat-only pane covers the entire existing canvas\nFAIL native visibility events cannot reveal unused native panes\nFAIL combat reopen preserves threat-only ownership\nFAIL hidden host suppresses owned threat\nFAIL combat host reveal can restore owned threat\nFAIL native Hidden policy does not hide independent owned threat\nFAIL cleanup releases owned lifecycle and active native skin owners\nFAIL re-embed reactivates skin without another permanent entry hook\nFAIL Details handoff stops native and owned presentation\nFAIL unavailable provider does not erase saved four-pane facts\nFAIL unavailable owned slot is omitted while native saved types remain\nFAIL unavailable saved threat preset retains its stable ID\nFAIL unavailable threat-only slot never silently becomes Damage\nFAIL gamepad retains native parent while owned pane stays a Content child\nFAIL gamepad native and owned panes compensate the same host scale\nFAIL requesting the native backend enables its public feature setting once\nFAIL native setting update can reveal the requested meter\nFAIL enabled feature is not rewritten and Flux never loads native UI directly\nFAIL combat Show defers a disabled feature write\nFAIL existing combat-exit queue enables without changing the native cache\nFAIL native visibility resumes after deferred feature enable\nFAIL leaving the Meter tab cancels deferred feature enable\nFAIL actual first Meter tab selection enables before checking unloaded native readiness\nFAIL native bootstrap and the existing Meter retry recover without addon LoadAddOn\nFAIL deferred first embed enables on combat exit\nnative threat layout: 68 checks, 41 failures; nativeMax=3 ownedFrames=0 permanentEntryHooks=1\n",
+        "stderr": "lua: tests/native_threat_layout.lua:293: native threat layout regressions\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/native_threat_layout.lua:293: in main chunk\n\t[C]: in ?\n"
+      },
+      "candidate": {
+        "exitCode": 0,
+        "processSeconds": 0.08701689998270012,
+        "stdout": "native threat layout: 68 checks, 0 failures; nativeMax=3 ownedFrames=1 permanentEntryHooks=1\n",
+        "stderr": ""
+      }
+    },
+    {
+      "repetition": 2,
+      "order": [
+        "candidate",
+        "baseline"
+      ],
+      "candidate": {
+        "exitCode": 0,
+        "processSeconds": 0.0917790999810677,
+        "stdout": "native threat layout: 68 checks, 0 failures; nativeMax=3 ownedFrames=1 permanentEntryHooks=1\n",
+        "stderr": ""
+      },
+      "baseline": {
+        "exitCode": 1,
+        "processSeconds": 0.09452370001235977,
+        "stdout": "FAIL available owned pane adds one slot and appended presets\nFAIL native catalog includes the available owned threat provider once\nFAIL editor makes the added fourth slot owned threat\nFAIL editor refuses replacing the fourth owned pane with a fourth native pane\nFAIL moving the unique threat slot preserves three native panes\nFAIL saved four-pane layout restores without replacing its ID or slots\nFAIL owned pane is a scaled Content child\nFAIL three native windows follow their own types without mapping threat to damage\nFAIL owned top-left shares the native canvas\nFAIL owned top-right pane uses the selected fractional width and row height\nFAIL native panes start after the owned column at coherent scale\nFAIL native window and entry skin runs at accepted scale\nFAIL skin ownership and entry hooks do not multiply on relayout\nFAIL geometry reuses the existing owned pane without re-embedding\nFAIL entry skin follows existing green local-player paint\nFAIL threat-only layout hides native root but keeps the owned pane visible\nFAIL threat-only pane covers the entire existing canvas\nFAIL native visibility events cannot reveal unused native panes\nFAIL combat reopen preserves threat-only ownership\nFAIL hidden host suppresses owned threat\nFAIL combat host reveal can restore owned threat\nFAIL native Hidden policy does not hide independent owned threat\nFAIL cleanup releases owned lifecycle and active native skin owners\nFAIL re-embed reactivates skin without another permanent entry hook\nFAIL Details handoff stops native and owned presentation\nFAIL unavailable provider does not erase saved four-pane facts\nFAIL unavailable owned slot is omitted while native saved types remain\nFAIL unavailable saved threat preset retains its stable ID\nFAIL unavailable threat-only slot never silently becomes Damage\nFAIL gamepad retains native parent while owned pane stays a Content child\nFAIL gamepad native and owned panes compensate the same host scale\nFAIL requesting the native backend enables its public feature setting once\nFAIL native setting update can reveal the requested meter\nFAIL enabled feature is not rewritten and Flux never loads native UI directly\nFAIL combat Show defers a disabled feature write\nFAIL existing combat-exit queue enables without changing the native cache\nFAIL native visibility resumes after deferred feature enable\nFAIL leaving the Meter tab cancels deferred feature enable\nFAIL actual first Meter tab selection enables before checking unloaded native readiness\nFAIL native bootstrap and the existing Meter retry recover without addon LoadAddOn\nFAIL deferred first embed enables on combat exit\nnative threat layout: 68 checks, 41 failures; nativeMax=3 ownedFrames=0 permanentEntryHooks=1\n",
+        "stderr": "lua: tests/native_threat_layout.lua:293: native threat layout regressions\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/native_threat_layout.lua:293: in main chunk\n\t[C]: in ?\n"
+      }
+    },
+    {
+      "repetition": 3,
+      "order": [
+        "baseline",
+        "candidate"
+      ],
+      "baseline": {
+        "exitCode": 1,
+        "processSeconds": 0.08417139999801293,
+        "stdout": "FAIL available owned pane adds one slot and appended presets\nFAIL native catalog includes the available owned threat provider once\nFAIL editor makes the added fourth slot owned threat\nFAIL editor refuses replacing the fourth owned pane with a fourth native pane\nFAIL moving the unique threat slot preserves three native panes\nFAIL saved four-pane layout restores without replacing its ID or slots\nFAIL owned pane is a scaled Content child\nFAIL three native windows follow their own types without mapping threat to damage\nFAIL owned top-left shares the native canvas\nFAIL owned top-right pane uses the selected fractional width and row height\nFAIL native panes start after the owned column at coherent scale\nFAIL native window and entry skin runs at accepted scale\nFAIL skin ownership and entry hooks do not multiply on relayout\nFAIL geometry reuses the existing owned pane without re-embedding\nFAIL entry skin follows existing green local-player paint\nFAIL threat-only layout hides native root but keeps the owned pane visible\nFAIL threat-only pane covers the entire existing canvas\nFAIL native visibility events cannot reveal unused native panes\nFAIL combat reopen preserves threat-only ownership\nFAIL hidden host suppresses owned threat\nFAIL combat host reveal can restore owned threat\nFAIL native Hidden policy does not hide independent owned threat\nFAIL cleanup releases owned lifecycle and active native skin owners\nFAIL re-embed reactivates skin without another permanent entry hook\nFAIL Details handoff stops native and owned presentation\nFAIL unavailable provider does not erase saved four-pane facts\nFAIL unavailable owned slot is omitted while native saved types remain\nFAIL unavailable saved threat preset retains its stable ID\nFAIL unavailable threat-only slot never silently becomes Damage\nFAIL gamepad retains native parent while owned pane stays a Content child\nFAIL gamepad native and owned panes compensate the same host scale\nFAIL requesting the native backend enables its public feature setting once\nFAIL native setting update can reveal the requested meter\nFAIL enabled feature is not rewritten and Flux never loads native UI directly\nFAIL combat Show defers a disabled feature write\nFAIL existing combat-exit queue enables without changing the native cache\nFAIL native visibility resumes after deferred feature enable\nFAIL leaving the Meter tab cancels deferred feature enable\nFAIL actual first Meter tab selection enables before checking unloaded native readiness\nFAIL native bootstrap and the existing Meter retry recover without addon LoadAddOn\nFAIL deferred first embed enables on combat exit\nnative threat layout: 68 checks, 41 failures; nativeMax=3 ownedFrames=0 permanentEntryHooks=1\n",
+        "stderr": "lua: tests/native_threat_layout.lua:293: native threat layout regressions\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/native_threat_layout.lua:293: in main chunk\n\t[C]: in ?\n"
+      },
+      "candidate": {
+        "exitCode": 0,
+        "processSeconds": 0.10107710000011139,
+        "stdout": "native threat layout: 68 checks, 0 failures; nativeMax=3 ownedFrames=1 permanentEntryHooks=1\n",
+        "stderr": ""
+      }
+    },
+    {
+      "repetition": 4,
+      "order": [
+        "candidate",
+        "baseline"
+      ],
+      "candidate": {
+        "exitCode": 0,
+        "processSeconds": 0.0904302999842912,
+        "stdout": "native threat layout: 68 checks, 0 failures; nativeMax=3 ownedFrames=1 permanentEntryHooks=1\n",
+        "stderr": ""
+      },
+      "baseline": {
+        "exitCode": 1,
+        "processSeconds": 0.08875769999576733,
+        "stdout": "FAIL available owned pane adds one slot and appended presets\nFAIL native catalog includes the available owned threat provider once\nFAIL editor makes the added fourth slot owned threat\nFAIL editor refuses replacing the fourth owned pane with a fourth native pane\nFAIL moving the unique threat slot preserves three native panes\nFAIL saved four-pane layout restores without replacing its ID or slots\nFAIL owned pane is a scaled Content child\nFAIL three native windows follow their own types without mapping threat to damage\nFAIL owned top-left shares the native canvas\nFAIL owned top-right pane uses the selected fractional width and row height\nFAIL native panes start after the owned column at coherent scale\nFAIL native window and entry skin runs at accepted scale\nFAIL skin ownership and entry hooks do not multiply on relayout\nFAIL geometry reuses the existing owned pane without re-embedding\nFAIL entry skin follows existing green local-player paint\nFAIL threat-only layout hides native root but keeps the owned pane visible\nFAIL threat-only pane covers the entire existing canvas\nFAIL native visibility events cannot reveal unused native panes\nFAIL combat reopen preserves threat-only ownership\nFAIL hidden host suppresses owned threat\nFAIL combat host reveal can restore owned threat\nFAIL native Hidden policy does not hide independent owned threat\nFAIL cleanup releases owned lifecycle and active native skin owners\nFAIL re-embed reactivates skin without another permanent entry hook\nFAIL Details handoff stops native and owned presentation\nFAIL unavailable provider does not erase saved four-pane facts\nFAIL unavailable owned slot is omitted while native saved types remain\nFAIL unavailable saved threat preset retains its stable ID\nFAIL unavailable threat-only slot never silently becomes Damage\nFAIL gamepad retains native parent while owned pane stays a Content child\nFAIL gamepad native and owned panes compensate the same host scale\nFAIL requesting the native backend enables its public feature setting once\nFAIL native setting update can reveal the requested meter\nFAIL enabled feature is not rewritten and Flux never loads native UI directly\nFAIL combat Show defers a disabled feature write\nFAIL existing combat-exit queue enables without changing the native cache\nFAIL native visibility resumes after deferred feature enable\nFAIL leaving the Meter tab cancels deferred feature enable\nFAIL actual first Meter tab selection enables before checking unloaded native readiness\nFAIL native bootstrap and the existing Meter retry recover without addon LoadAddOn\nFAIL deferred first embed enables on combat exit\nnative threat layout: 68 checks, 41 failures; nativeMax=3 ownedFrames=0 permanentEntryHooks=1\n",
+        "stderr": "lua: tests/native_threat_layout.lua:293: native threat layout regressions\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/native_threat_layout.lua:293: in main chunk\n\t[C]: in ?\n"
+      }
+    },
+    {
+      "repetition": 5,
+      "order": [
+        "baseline",
+        "candidate"
+      ],
+      "baseline": {
+        "exitCode": 1,
+        "processSeconds": 0.08212269999785349,
+        "stdout": "FAIL available owned pane adds one slot and appended presets\nFAIL native catalog includes the available owned threat provider once\nFAIL editor makes the added fourth slot owned threat\nFAIL editor refuses replacing the fourth owned pane with a fourth native pane\nFAIL moving the unique threat slot preserves three native panes\nFAIL saved four-pane layout restores without replacing its ID or slots\nFAIL owned pane is a scaled Content child\nFAIL three native windows follow their own types without mapping threat to damage\nFAIL owned top-left shares the native canvas\nFAIL owned top-right pane uses the selected fractional width and row height\nFAIL native panes start after the owned column at coherent scale\nFAIL native window and entry skin runs at accepted scale\nFAIL skin ownership and entry hooks do not multiply on relayout\nFAIL geometry reuses the existing owned pane without re-embedding\nFAIL entry skin follows existing green local-player paint\nFAIL threat-only layout hides native root but keeps the owned pane visible\nFAIL threat-only pane covers the entire existing canvas\nFAIL native visibility events cannot reveal unused native panes\nFAIL combat reopen preserves threat-only ownership\nFAIL hidden host suppresses owned threat\nFAIL combat host reveal can restore owned threat\nFAIL native Hidden policy does not hide independent owned threat\nFAIL cleanup releases owned lifecycle and active native skin owners\nFAIL re-embed reactivates skin without another permanent entry hook\nFAIL Details handoff stops native and owned presentation\nFAIL unavailable provider does not erase saved four-pane facts\nFAIL unavailable owned slot is omitted while native saved types remain\nFAIL unavailable saved threat preset retains its stable ID\nFAIL unavailable threat-only slot never silently becomes Damage\nFAIL gamepad retains native parent while owned pane stays a Content child\nFAIL gamepad native and owned panes compensate the same host scale\nFAIL requesting the native backend enables its public feature setting once\nFAIL native setting update can reveal the requested meter\nFAIL enabled feature is not rewritten and Flux never loads native UI directly\nFAIL combat Show defers a disabled feature write\nFAIL existing combat-exit queue enables without changing the native cache\nFAIL native visibility resumes after deferred feature enable\nFAIL leaving the Meter tab cancels deferred feature enable\nFAIL actual first Meter tab selection enables before checking unloaded native readiness\nFAIL native bootstrap and the existing Meter retry recover without addon LoadAddOn\nFAIL deferred first embed enables on combat exit\nnative threat layout: 68 checks, 41 failures; nativeMax=3 ownedFrames=0 permanentEntryHooks=1\n",
+        "stderr": "lua: tests/native_threat_layout.lua:293: native threat layout regressions\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/native_threat_layout.lua:293: in main chunk\n\t[C]: in ?\n"
+      },
+      "candidate": {
+        "exitCode": 0,
+        "processSeconds": 0.10152490000473335,
+        "stdout": "native threat layout: 68 checks, 0 failures; nativeMax=3 ownedFrames=1 permanentEntryHooks=1\n",
+        "stderr": ""
+      }
+    }
+  ],
+  "mutants": [
+    {
+      "name": "editor-original-cap",
+      "component": "layout",
+      "sha256": "c8d10fc5d00493ce6e6194e804aa85f9cc8d87e9c3ada41f76cf42fe835bc04a",
+      "exitCode": 1,
+      "processSeconds": 0.21979529998498037,
+      "stdout": "FAIL available owned pane adds one slot and appended presets\nFAIL editor makes the added fourth slot owned threat\nFAIL editor refuses replacing the fourth owned pane with a fourth native pane\nFAIL moving the unique threat slot preserves three native panes\nFAIL saved four-pane layout restores without replacing its ID or slots\nFAIL unavailable provider does not erase saved four-pane facts\nnative threat layout: 68 checks, 6 failures; nativeMax=3 ownedFrames=1 permanentEntryHooks=1\n",
+      "stderr": "lua: tests/native_threat_layout.lua:293: native threat layout regressions\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/native_threat_layout.lua:293: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "fourth-native-allowed",
+      "component": "layout",
+      "sha256": "20a7fafbf149c100df74947bfc2235d158556deab612d8fcf8cd0090759b4334",
+      "exitCode": 1,
+      "processSeconds": 0.12001289997715503,
+      "stdout": "FAIL editor refuses replacing the fourth owned pane with a fourth native pane\nnative threat layout: 68 checks, 1 failures; nativeMax=3 ownedFrames=1 permanentEntryHooks=1\n",
+      "stderr": "lua: tests/native_threat_layout.lua:293: native threat layout regressions\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/native_threat_layout.lua:293: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "threat-routed-as-native",
+      "component": "meter",
+      "sha256": "af71175f5c183a3bd653ceb60ac29db091b763c01d2f5c28a9a00fd8faba17db",
+      "exitCode": 1,
+      "processSeconds": 0.04400840000016615,
+      "stdout": "FAIL owned pane is a scaled Content child\nFAIL three native windows follow their own types without mapping threat to damage\nFAIL owned top-left shares the native canvas\nFAIL owned top-right pane uses the selected fractional width and row height\n",
+      "stderr": "lua: tests/native_threat_layout.lua:127: attempt to index a nil value (field 'integer index')\nstack traceback:\n\ttests/native_threat_layout.lua:127: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "owned-parent-is-native",
+      "component": "meter",
+      "sha256": "9b15e6189e26605050bf7d3416f1e5226a3129e4e6b7d615113e92d4376dc23d",
+      "exitCode": 1,
+      "processSeconds": 0.1054897999856621,
+      "stdout": "FAIL owned pane is a scaled Content child\nFAIL threat-only layout hides native root but keeps the owned pane visible\nFAIL native visibility events cannot reveal unused native panes\nFAIL combat reopen preserves threat-only ownership\nFAIL combat host reveal can restore owned threat\nFAIL native Hidden policy does not hide independent owned threat\nFAIL gamepad retains native parent while owned pane stays a Content child\nnative threat layout: 68 checks, 7 failures; nativeMax=3 ownedFrames=1 permanentEntryHooks=1\n",
+      "stderr": "lua: tests/native_threat_layout.lua:293: native threat layout regressions\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/native_threat_layout.lua:293: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "unused-native-reappears",
+      "component": "meter",
+      "sha256": "3fd8849f52d64a4be37cc3e6de49f2efb2391ef8a51477319ba3ece2255749cd",
+      "exitCode": 1,
+      "processSeconds": 0.11768489997484721,
+      "stdout": "FAIL native visibility events cannot reveal unused native panes\nnative threat layout: 68 checks, 1 failures; nativeMax=3 ownedFrames=1 permanentEntryHooks=1\n",
+      "stderr": "lua: tests/native_threat_layout.lua:293: native threat layout regressions\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/native_threat_layout.lua:293: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "permanent-hooks-grow",
+      "component": "meter",
+      "sha256": "f9d73d1489bbf9b89ae940104c71d9362f95ab5fecbca0cdc287010eaa3ca538",
+      "exitCode": 1,
+      "processSeconds": 0.11590889998478815,
+      "stdout": "FAIL re-embed reactivates skin without another permanent entry hook\nnative threat layout: 68 checks, 1 failures; nativeMax=3 ownedFrames=1 permanentEntryHooks=2\n",
+      "stderr": "lua: tests/native_threat_layout.lua:293: native threat layout regressions\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/native_threat_layout.lua:293: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "combat-cvar-write",
+      "component": "meter",
+      "sha256": "fbfb2fa30610bc9c9929a1531d8a914a11f1e1b750467cb3cf12c917cc380c38",
+      "exitCode": 1,
+      "processSeconds": 0.07001980001223274,
+      "stdout": "",
+      "stderr": "lua: tests/native_threat_layout.lua:207: CVar write preconditions\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/native_threat_layout.lua:207: in field 'SetCVar'\n\t...e22b\\native-threat-layout-20261105\\combat-cvar-write.lua:185: in upvalue 'EnsureNativeEnabled'\n\t...e22b\\native-threat-layout-20261105\\combat-cvar-write.lua:1087: in method 'Show'\n\ttests/native_threat_layout.lua:231: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "missing-first-tab-enable",
+      "component": "window",
+      "sha256": "cc4b71819a4a19b815ffa41dedbfb45e6f358de0eb1afba0ab085b7ccd0f9d17",
+      "exitCode": 1,
+      "processSeconds": 0.1026177000021562,
+      "stdout": "FAIL actual first Meter tab selection enables before checking unloaded native readiness\nnative threat layout: 68 checks, 1 failures; nativeMax=3 ownedFrames=1 permanentEntryHooks=1\n",
+      "stderr": "lua: tests/native_threat_layout.lua:293: native threat layout regressions\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/native_threat_layout.lua:293: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "addon-timer-refresh",
+      "component": "meter",
+      "sha256": "103b1c716f5cdfacf603f95dc35053917a1433064eaf980ee8cfe03a9601e3f9",
+      "exitCode": 1,
+      "processSeconds": 0.11617429999751039,
+      "stdout": "FAIL enabling leaves native cached policy and timer dispatch to the native event\nFAIL native setting update can reveal the requested meter\nnative threat layout: 68 checks, 2 failures; nativeMax=3 ownedFrames=1 permanentEntryHooks=1\n",
+      "stderr": "lua: tests/native_threat_layout.lua:293: native threat layout regressions\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/native_threat_layout.lua:293: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "feature-left-disabled",
+      "component": "meter",
+      "sha256": "03dc967924938807ab09ec84b97e0f4be8313ded4b955ede64bc5e8e70a8484c",
+      "exitCode": 1,
+      "processSeconds": 0.12666509998962283,
+      "stdout": "FAIL requesting the native backend enables its public feature setting once\nFAIL native setting update can reveal the requested meter\nFAIL enabled feature is not rewritten and Flux never loads native UI directly\nFAIL combat Show defers a disabled feature write\nFAIL existing combat-exit queue enables without changing the native cache\nFAIL native visibility resumes after deferred feature enable\nFAIL leaving the Meter tab cancels deferred feature enable\nFAIL actual first Meter tab selection enables before checking unloaded native readiness\nFAIL native bootstrap and the existing Meter retry recover without addon LoadAddOn\nFAIL deferred first embed enables on combat exit\nnative threat layout: 68 checks, 10 failures; nativeMax=3 ownedFrames=1 permanentEntryHooks=1\n",
+      "stderr": "lua: tests/native_threat_layout.lua:293: native threat layout regressions\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/native_threat_layout.lua:293: in main chunk\n\t[C]: in ?\n"
+    }
+  ],
+  "variation": "Deterministic assertion/resource counts across five pairs. Whole-process timing includes startup/assertions and is not native latency.",
+  "scope": "PASS for stated desktop feature and control-flow contracts; native secret safety/taint/rendering/pixel parity/performance pending. This fixture models owned/skin API handoff; their actual production modules have separate focused regressions. One fake owned frame versus zero baseline is an intentional feature-resource addition, not whole-addon native memory measurement. Three native windows and one existing entry hook remain bounded."
+}

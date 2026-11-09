@@ -1,0 +1,125 @@
+{
+  "changeID": "FOCUS-PARTY-PRESENTATION-20261107",
+  "requirements": [
+    "REQ-RF-78",
+    "REQ-RF-79"
+  ],
+  "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\06\\01a1b0ac-547f-7972-8df9-fa26882e0e03\\focus-party-style-20261107T155350Z\\checkpoint.json",
+  "sources": {
+    "live": {
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "playerXMLBlob": "f2e106ab9da91fb7b32cfa2bf067c69aff6ca31e",
+      "path": "Interface/AddOns/Blizzard_UnitFrame/Mainline/PlayerFrame.xml"
+    },
+    "forever": {
+      "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "playerXMLBlob": "410ca1307eba91401aacbc64e5389426d870cfa7",
+      "path": "Interface/AddOns/Blizzard_UnitFrame/Mainline/PlayerFrame.xml"
+    },
+    "classic": {
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "playerXMLBlob": "c48b3e6e8dea4059dea6847f522c23a3023e3d0c",
+      "path": "Interface/AddOns/Blizzard_UnitFrame/Classic/PlayerFrame.xml"
+    },
+    "classic_era": {
+      "commit": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "playerXMLBlob": "c48b3e6e8dea4059dea6847f522c23a3023e3d0c",
+      "path": "Interface/AddOns/Blizzard_UnitFrame/Classic/PlayerFrame.xml"
+    },
+    "classic_anniversary": {
+      "commit": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "playerXMLBlob": "f03ed39542ccf4e61f717c845625c1c2aff63e0d",
+      "path": "Interface/AddOns/Blizzard_UnitFrame/Classic/PlayerFrame.xml"
+    },
+    "nativeRenderers": {
+      "live": "e4d36ab0dca70d28e56d38edaea16aad20a34e42",
+      "forever": "60d5da8b429c3ac397a39fa576ab939b1a6b08ab",
+      "path": "Interface/AddOns/Blizzard_UnitFrame/Shared/UnitFrameUtil.lua"
+    },
+    "timerAPI": {
+      "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "blob": "acc0ec3d9eaae7854a8e688bddde0850d0623274",
+      "contract": "GetPVPTimer has no unit argument; native player frame uses it only for player countdown."
+    },
+    "nativePlayerLua": {
+      "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "path": "Interface/AddOns/Blizzard_UnitFrame/Mainline/PlayerFrame.lua",
+      "blob": "ec49779f9bb6e54dab747518ac46f329f461b360",
+      "contract": "native PlayerFrame_UpdatePvPStatus passes checkMercenary=true for player"
+    },
+    "nativeTargetLua": {
+      "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "path": "Interface/AddOns/Blizzard_UnitFrame/Mainline/TargetFrame.lua",
+      "blob": "9132e790f0e354a9bec81093bf3b20c434c0f6eb",
+      "contract": "native target uses UpdateUnitPvPIndicator for self.unit without mercenary override"
+    }
+  },
+  "after": {
+    "UnitFrames/FluxUnitFrames_Shared.lua": "edc5028102ec75b4477d7ee294473eb81a13b140c471645915969fa25fe0d0b7",
+    "UnitFrames/FluxUnitFrames_Party.lua": "2c674a210c9e98f16a75658bea8906642f337baa7c355f0c6ae92ac0c9c82656",
+    "UnitFrames/FluxUnitFrames_Focus.lua": "4bcc9654a83b287993bc57e7c8051c317f12c179d7283394fb1d3627a8a2ed02",
+    "UnitFrames/FluxUnitFrames_FocusTarget.lua": "69a5e9d4ff2208c970c63763a555c6e5d684868f358ba972913da4a36a02c666",
+    "UnitFrames/FluxUnitFrames_OptionsBridge.lua": "da202b847314e9122114c4b2eb97e5d6cc81288cb07c3dfeb825288875ec268a",
+    "tests/raid_party_frames.lua": "cdd5ac7fd9e4427b6aff01b2bb9247acc0abb13fac4b4236e3a1b01b26a3031c",
+    "tests/unit_indicator_layout.lua": "fec0c2aafafa70aa431c3b1e7ff0faa6b8a945763764373d562761bfc9cfbb59",
+    "tests/unit_frame_whole_scale.lua": "c40a3e259fba871efec93fac4712675a524fe9671400b1c4c8ca2c746ed3e733",
+    "UnitFrames/FluxCastBar.lua": "9b1374adc578d16ff5aa2aaa622ac7662a4d28eab3c2e5e30cc802d8e3ece6a8",
+    "AddonOptions/FluxOptionsUnitFrames.lua": "f36b14499d2a989206178e3ed8c1300b4a84595961d2e85545aad4fffb85fce6"
+  },
+  "originalFocusPositionFunctionIdentical": true,
+  "focusPositionFunctionSha256": "d288261b2ea79bd98884dbf29e3015d719fd092854e38693c8478f23614ba230",
+  "requested": [
+    "Increase existing full native PvP badge another35 percent",
+    "Focus uses normal party visual presentation; external aura panels above",
+    "User selects vertical party-style focus target HP bar on right",
+    "User requires previous focus location"
+  ],
+  "implementation": [
+    "Scaled noninteractive PvP art host1.35 below level; native dimensions/private texture routing retained; normal party reuses same host",
+    "Focus shares party text hosts/portrait-left/class-spec/status layers/target separator/cast header; no party membership, slot driver or raid aura setup",
+    "Party-sized focus baseline and independent stored119x50-relative focus proportions/whole-frame scale; no saved dimension rewrite/reset",
+    "Existing focus position function is identical; auraFrameAboveUnit=true remains; external panel scale compensates party baseline so its existing screen-size settings remain meaningful",
+    "Focus status/group icons reuse party helpers; existing focus watched-unit visibility/capability and Flux binding unit token retained",
+    "Focus target uses existing secure focustarget frame with vertical HP-only fill to right; size/anchor OOC and partition defers via existing DeferProtected in combat",
+    "Old focus-only small fonts bypassed for compact presentation, including cast name/timer",
+    "Focus target/name-host geometry uses recorded public dimensions before native geometry fallback; secret fallback values are rejected"
+  ],
+  "tests": {
+    "partyAndFocus": 970,
+    "badge": 319,
+    "wholeScale": 28,
+    "publicGeometry": 80,
+    "binding": 310,
+    "restrictedContracts": 78,
+    "scriptsPass": 232,
+    "scriptsFail": 0,
+    "syntaxFiles": 896,
+    "syntaxFailures": [],
+    "ownedManifestDrift": []
+  },
+  "resources": "One generic PvP art host/shared outer frame, reused by party; four extra focus text/indicator hosts plus three status textures and divider. Existing cast/status helpers and10 indicator-event registrations plus3 frame hooks; no new timer/ticker/global hook. Existing aura panels retained. No native performance claim.",
+  "nativePending": "Actual focus position/pixels/aura sizes/vertical target/portraits/flag/prestige changes; combat/taint/input and CPU/FPS. No foreground/game/WTF/profiler action.",
+  "settings": "45 settings metadata entries inspected read-only; history bundle verified and prior complete source/settings archive retained externally.",
+  "copies": [
+    {
+      "client": "_retail_",
+      "mismatches": []
+    },
+    {
+      "client": "_forever_",
+      "mismatches": []
+    },
+    {
+      "client": "_classic_",
+      "mismatches": []
+    },
+    {
+      "client": "_classic_era_",
+      "mismatches": []
+    },
+    {
+      "client": "_anniversary_",
+      "mismatches": []
+    }
+  ]
+}

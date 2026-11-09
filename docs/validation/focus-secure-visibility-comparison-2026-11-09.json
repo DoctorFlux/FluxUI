@@ -1,0 +1,181 @@
+{
+  "changeID": "FOCUS-SECURE-VISIBILITY-20261109",
+  "checkpoint": {
+    "utc": "20261108T232048Z",
+    "baseline": "1fd463f4de4bbff659f4e402c6f31138c49765b4",
+    "sourceFiles": 2329,
+    "settingsFiles": 188,
+    "sha256": {
+      "source.zip": "4c5fe6dabcb2953d9588f4fc10d7012a8514c409ace55a9cbcd475e66c050d16",
+      "settings.zip": "a5b2a11031045dc7d360d82a25b96fbc819e9af5e3f39cf176a9bc20aea15d4a",
+      "history.bundle": "c6099a681d691877d75af89beafec696bf3f6cedb883780b0c5c8b0895b8770a"
+    },
+    "zipIntegrity": "PASS",
+    "bundleVerification": "PASS",
+    "gameMemory": "Unsaved game memory excluded; no game input, settings mutation or foreground control"
+  },
+  "baseline": {
+    "UnitFrames/FluxUnitFrames_Shared.lua": "78c8bb770b8ea9b53ed7dbd512379d7a0f328fe6e2a5a1fe067690c70d63a1ca",
+    "UnitFrames/FluxUnitFrames_Focus.lua": "81c780cb8d9c761c39874adfa84d9f6971cca683d0ef248af35fba72d0707a91",
+    "UnitFrames/FluxUnitFrames_FocusTarget.lua": "04554400ec9ae6aa9fd282d7bfda12bff085c4f4d78da6f74ed6fee69c84297a"
+  },
+  "candidate": {
+    "UnitFrames/FluxUnitFrames_Shared.lua": "cf7ca23d31685de195d40c4e6bc20942c4f5a28963b51c080cf2cc8ddb1f4ec3",
+    "UnitFrames/FluxUnitFrames_Focus.lua": "8468017146219705e8500a88db42ce04cc49e73c7364f344b674a912567e2901",
+    "UnitFrames/FluxUnitFrames_FocusTarget.lua": "89d8a8753f3369242e102a8fc2cf420d6fb557be733916e04ad284ff1ebf7031"
+  },
+  "test": "540cf48f86d0de932c807f6180973c383c366c0d5bfb6a2fd3753620a5682e9f",
+  "sourcePins": [
+    {
+      "branch": "live",
+      "sha": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "date": "2026-11-04T00:46:01Z",
+      "message": "12.1.5 (70783)"
+    },
+    {
+      "branch": "forever",
+      "sha": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "date": "2026-11-07T04:46:13Z",
+      "message": "1.60.1 (70862)"
+    },
+    {
+      "branch": "classic",
+      "sha": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "date": "2026-10-27T14:16:09Z",
+      "message": "5.5.4 (70631)"
+    },
+    {
+      "branch": "classic_era",
+      "sha": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "date": "2026-10-26T23:16:08Z",
+      "message": "1.15.9 (70576)"
+    },
+    {
+      "branch": "classic_anniversary",
+      "sha": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "date": "2026-10-26T23:16:20Z",
+      "message": "2.5.6 (70577)"
+    }
+  ],
+  "scenario": {
+    "runtime": "Lua 5.4.6  Copyright (C) 1994-2023 Lua.org, PUC-Rio",
+    "scope": "Actual owned registration/visibility/runtime toggles + pinned native driver code; widgets/macro parser/trusted dispatch modeled. Not native combat, mouse routing or taint proof.",
+    "sequence": "Five client contracts; present focus->combat clear->combat set->dead focus->20clear/set cycles->disable->event tick->reenable;20stable setting requests.",
+    "warmup": "One excluded pair; five alternating baseline/candidate pairs",
+    "profiling": "None. Native CPU/allocation/latency/frame-time/hardware/settings/addon-list-matched performance unavailable; no preference changes.",
+    "resources": "Existing native state manager and repaired-handler probe reused. No new timers/events/OnUpdates/caches/native API overrides. Bounded2visibility registrations; stable20requests add none. Full frame counts unchanged in replay.",
+    "interpretation": "Baseline alpha-zero focus retains combat hit region in Forever, dead focus target leaks on all modeled clients, and disabled watchers resurrect. Candidate is real-hidden by native state ownership; prepared clicks return on combat focus gain. No FPS/CPU improvement claim."
+  },
+  "samples": [
+    {
+      "exit": 0,
+      "wallSeconds": 0.03600940000615083,
+      "stdout": "FAIL live dependent cannot outlive a missing focus\nFAIL live dead focus does not leave invisible dependent hit region\nFAIL live disabled replacements stay absent after driver tick\nFAIL forever missing focus is truly hidden rather than faded\nFAIL forever clearing focus in combat releases the covered world\nFAIL forever clearing focus releases dependent hit region\nFAIL forever dependent cannot outlive a missing focus\nFAIL forever dead focus does not leave invisible dependent hit region\nFAIL forever disabled replacements stay absent after driver tick\nFAIL classic dependent cannot outlive a missing focus\nFAIL classic dead focus does not leave invisible dependent hit region\nFAIL classic disabled replacements stay absent after driver tick\nFAIL classic_era dependent cannot outlive a missing focus\nFAIL classic_era dead focus does not leave invisible dependent hit region\nFAIL classic_era disabled replacements stay absent after driver tick\nFAIL classic_anniversary dependent cannot outlive a missing focus\nFAIL classic_anniversary dead focus does not leave invisible dependent hit region\nFAIL classic_anniversary disabled replacements stay absent after driver tick\nFocus secure visibility: 60 checks; failures=18; 5 pinned driver replays; native combat/taint/hit testing pending\nlive: frames=5 registrations=0 protectedFailures=0\nforever: frames=6 registrations=0 protectedFailures=0\nclassic: frames=5 registrations=0 protectedFailures=0\nclassic_era: frames=5 registrations=0 protectedFailures=0\nclassic_anniversary: frames=5 registrations=0 protectedFailures=0\n",
+      "stderr": "",
+      "trial": 1,
+      "variant": "baseline"
+    },
+    {
+      "exit": 0,
+      "wallSeconds": 0.03675170001224615,
+      "stdout": "Focus secure visibility: 70 checks; failures=0; 5 pinned driver replays; native combat/taint/hit testing pending\nlive: frames=5 registrations=4 protectedFailures=0\nforever: frames=6 registrations=4 protectedFailures=0\nclassic: frames=5 registrations=4 protectedFailures=0\nclassic_era: frames=5 registrations=4 protectedFailures=0\nclassic_anniversary: frames=5 registrations=4 protectedFailures=0\n",
+      "stderr": "",
+      "trial": 1,
+      "variant": "candidate"
+    },
+    {
+      "exit": 0,
+      "wallSeconds": 0.035187300003599375,
+      "stdout": "FAIL live dependent cannot outlive a missing focus\nFAIL live dead focus does not leave invisible dependent hit region\nFAIL live disabled replacements stay absent after driver tick\nFAIL forever missing focus is truly hidden rather than faded\nFAIL forever clearing focus in combat releases the covered world\nFAIL forever clearing focus releases dependent hit region\nFAIL forever dependent cannot outlive a missing focus\nFAIL forever dead focus does not leave invisible dependent hit region\nFAIL forever disabled replacements stay absent after driver tick\nFAIL classic dependent cannot outlive a missing focus\nFAIL classic dead focus does not leave invisible dependent hit region\nFAIL classic disabled replacements stay absent after driver tick\nFAIL classic_era dependent cannot outlive a missing focus\nFAIL classic_era dead focus does not leave invisible dependent hit region\nFAIL classic_era disabled replacements stay absent after driver tick\nFAIL classic_anniversary dependent cannot outlive a missing focus\nFAIL classic_anniversary dead focus does not leave invisible dependent hit region\nFAIL classic_anniversary disabled replacements stay absent after driver tick\nFocus secure visibility: 60 checks; failures=18; 5 pinned driver replays; native combat/taint/hit testing pending\nlive: frames=5 registrations=0 protectedFailures=0\nforever: frames=6 registrations=0 protectedFailures=0\nclassic: frames=5 registrations=0 protectedFailures=0\nclassic_era: frames=5 registrations=0 protectedFailures=0\nclassic_anniversary: frames=5 registrations=0 protectedFailures=0\n",
+      "stderr": "",
+      "trial": 2,
+      "variant": "baseline"
+    },
+    {
+      "exit": 0,
+      "wallSeconds": 0.03896430000895634,
+      "stdout": "Focus secure visibility: 70 checks; failures=0; 5 pinned driver replays; native combat/taint/hit testing pending\nlive: frames=5 registrations=4 protectedFailures=0\nforever: frames=6 registrations=4 protectedFailures=0\nclassic: frames=5 registrations=4 protectedFailures=0\nclassic_era: frames=5 registrations=4 protectedFailures=0\nclassic_anniversary: frames=5 registrations=4 protectedFailures=0\n",
+      "stderr": "",
+      "trial": 2,
+      "variant": "candidate"
+    },
+    {
+      "exit": 0,
+      "wallSeconds": 0.03716279999935068,
+      "stdout": "FAIL live dependent cannot outlive a missing focus\nFAIL live dead focus does not leave invisible dependent hit region\nFAIL live disabled replacements stay absent after driver tick\nFAIL forever missing focus is truly hidden rather than faded\nFAIL forever clearing focus in combat releases the covered world\nFAIL forever clearing focus releases dependent hit region\nFAIL forever dependent cannot outlive a missing focus\nFAIL forever dead focus does not leave invisible dependent hit region\nFAIL forever disabled replacements stay absent after driver tick\nFAIL classic dependent cannot outlive a missing focus\nFAIL classic dead focus does not leave invisible dependent hit region\nFAIL classic disabled replacements stay absent after driver tick\nFAIL classic_era dependent cannot outlive a missing focus\nFAIL classic_era dead focus does not leave invisible dependent hit region\nFAIL classic_era disabled replacements stay absent after driver tick\nFAIL classic_anniversary dependent cannot outlive a missing focus\nFAIL classic_anniversary dead focus does not leave invisible dependent hit region\nFAIL classic_anniversary disabled replacements stay absent after driver tick\nFocus secure visibility: 60 checks; failures=18; 5 pinned driver replays; native combat/taint/hit testing pending\nlive: frames=5 registrations=0 protectedFailures=0\nforever: frames=6 registrations=0 protectedFailures=0\nclassic: frames=5 registrations=0 protectedFailures=0\nclassic_era: frames=5 registrations=0 protectedFailures=0\nclassic_anniversary: frames=5 registrations=0 protectedFailures=0\n",
+      "stderr": "",
+      "trial": 3,
+      "variant": "baseline"
+    },
+    {
+      "exit": 0,
+      "wallSeconds": 0.03773059998638928,
+      "stdout": "Focus secure visibility: 70 checks; failures=0; 5 pinned driver replays; native combat/taint/hit testing pending\nlive: frames=5 registrations=4 protectedFailures=0\nforever: frames=6 registrations=4 protectedFailures=0\nclassic: frames=5 registrations=4 protectedFailures=0\nclassic_era: frames=5 registrations=4 protectedFailures=0\nclassic_anniversary: frames=5 registrations=4 protectedFailures=0\n",
+      "stderr": "",
+      "trial": 3,
+      "variant": "candidate"
+    },
+    {
+      "exit": 0,
+      "wallSeconds": 0.03516249998938292,
+      "stdout": "FAIL live dependent cannot outlive a missing focus\nFAIL live dead focus does not leave invisible dependent hit region\nFAIL live disabled replacements stay absent after driver tick\nFAIL forever missing focus is truly hidden rather than faded\nFAIL forever clearing focus in combat releases the covered world\nFAIL forever clearing focus releases dependent hit region\nFAIL forever dependent cannot outlive a missing focus\nFAIL forever dead focus does not leave invisible dependent hit region\nFAIL forever disabled replacements stay absent after driver tick\nFAIL classic dependent cannot outlive a missing focus\nFAIL classic dead focus does not leave invisible dependent hit region\nFAIL classic disabled replacements stay absent after driver tick\nFAIL classic_era dependent cannot outlive a missing focus\nFAIL classic_era dead focus does not leave invisible dependent hit region\nFAIL classic_era disabled replacements stay absent after driver tick\nFAIL classic_anniversary dependent cannot outlive a missing focus\nFAIL classic_anniversary dead focus does not leave invisible dependent hit region\nFAIL classic_anniversary disabled replacements stay absent after driver tick\nFocus secure visibility: 60 checks; failures=18; 5 pinned driver replays; native combat/taint/hit testing pending\nlive: frames=5 registrations=0 protectedFailures=0\nforever: frames=6 registrations=0 protectedFailures=0\nclassic: frames=5 registrations=0 protectedFailures=0\nclassic_era: frames=5 registrations=0 protectedFailures=0\nclassic_anniversary: frames=5 registrations=0 protectedFailures=0\n",
+      "stderr": "",
+      "trial": 4,
+      "variant": "baseline"
+    },
+    {
+      "exit": 0,
+      "wallSeconds": 0.03542629998992197,
+      "stdout": "Focus secure visibility: 70 checks; failures=0; 5 pinned driver replays; native combat/taint/hit testing pending\nlive: frames=5 registrations=4 protectedFailures=0\nforever: frames=6 registrations=4 protectedFailures=0\nclassic: frames=5 registrations=4 protectedFailures=0\nclassic_era: frames=5 registrations=4 protectedFailures=0\nclassic_anniversary: frames=5 registrations=4 protectedFailures=0\n",
+      "stderr": "",
+      "trial": 4,
+      "variant": "candidate"
+    },
+    {
+      "exit": 0,
+      "wallSeconds": 0.033883500000229105,
+      "stdout": "FAIL live dependent cannot outlive a missing focus\nFAIL live dead focus does not leave invisible dependent hit region\nFAIL live disabled replacements stay absent after driver tick\nFAIL forever missing focus is truly hidden rather than faded\nFAIL forever clearing focus in combat releases the covered world\nFAIL forever clearing focus releases dependent hit region\nFAIL forever dependent cannot outlive a missing focus\nFAIL forever dead focus does not leave invisible dependent hit region\nFAIL forever disabled replacements stay absent after driver tick\nFAIL classic dependent cannot outlive a missing focus\nFAIL classic dead focus does not leave invisible dependent hit region\nFAIL classic disabled replacements stay absent after driver tick\nFAIL classic_era dependent cannot outlive a missing focus\nFAIL classic_era dead focus does not leave invisible dependent hit region\nFAIL classic_era disabled replacements stay absent after driver tick\nFAIL classic_anniversary dependent cannot outlive a missing focus\nFAIL classic_anniversary dead focus does not leave invisible dependent hit region\nFAIL classic_anniversary disabled replacements stay absent after driver tick\nFocus secure visibility: 60 checks; failures=18; 5 pinned driver replays; native combat/taint/hit testing pending\nlive: frames=5 registrations=0 protectedFailures=0\nforever: frames=6 registrations=0 protectedFailures=0\nclassic: frames=5 registrations=0 protectedFailures=0\nclassic_era: frames=5 registrations=0 protectedFailures=0\nclassic_anniversary: frames=5 registrations=0 protectedFailures=0\n",
+      "stderr": "",
+      "trial": 5,
+      "variant": "baseline"
+    },
+    {
+      "exit": 0,
+      "wallSeconds": 0.034659900004044175,
+      "stdout": "Focus secure visibility: 70 checks; failures=0; 5 pinned driver replays; native combat/taint/hit testing pending\nlive: frames=5 registrations=4 protectedFailures=0\nforever: frames=6 registrations=4 protectedFailures=0\nclassic: frames=5 registrations=4 protectedFailures=0\nclassic_era: frames=5 registrations=4 protectedFailures=0\nclassic_anniversary: frames=5 registrations=4 protectedFailures=0\n",
+      "stderr": "",
+      "trial": 5,
+      "variant": "candidate"
+    }
+  ],
+  "oldOwnerControls": [
+    {
+      "exit": 1,
+      "wallSeconds": 0.019601899984991178,
+      "stdout": "",
+      "stderr": "lua: tests/focus_secure_visibility.lua:8: live dependent cannot outlive a missing focus\nstack traceback:\n\t[C]: in function 'error'\n\ttests/focus_secure_visibility.lua:8: in local 'check'\n\ttests/focus_secure_visibility.lua:131: in main chunk\n\t[C]: in ?\n",
+      "restoredOwner": "UnitFrames/FluxUnitFrames_Shared.lua"
+    },
+    {
+      "exit": 1,
+      "wallSeconds": 0.023123799997847527,
+      "stdout": "",
+      "stderr": "lua: tests/focus_secure_visibility.lua:8: live disabled replacements stay absent after driver tick\nstack traceback:\n\t[C]: in function 'error'\n\ttests/focus_secure_visibility.lua:8: in local 'check'\n\ttests/focus_secure_visibility.lua:152: in main chunk\n\t[C]: in ?\n",
+      "restoredOwner": "UnitFrames/FluxUnitFrames_Focus.lua"
+    },
+    {
+      "exit": 1,
+      "wallSeconds": 0.02400649999617599,
+      "stdout": "",
+      "stderr": "lua: tests/focus_secure_visibility.lua:8: live disabled replacements stay absent after driver tick\nstack traceback:\n\t[C]: in function 'error'\n\ttests/focus_secure_visibility.lua:8: in local 'check'\n\ttests/focus_secure_visibility.lua:152: in main chunk\n\t[C]: in ?\n",
+      "restoredOwner": "UnitFrames/FluxUnitFrames_FocusTarget.lua"
+    }
+  ],
+  "foreverBaselineNormalFailure": {
+    "exit": 1,
+    "wallSeconds": 0.020932399987941608,
+    "stdout": "",
+    "stderr": "lua: tests/focus_secure_visibility.lua:8: forever missing focus is truly hidden rather than faded\nstack traceback:\n\t[C]: in function 'error'\n\ttests/focus_secure_visibility.lua:8: in local 'check'\n\ttests/focus_secure_visibility.lua:127: in main chunk\n\t[C]: in ?\n"
+  },
+  "native": "Forever70862 guarded reload and out-of-combat native macro set/clear PASS; user reports player menu and combat focus/clear macro PASS. Other clients, group menus and physical pointer routing remain pending. Old unrepaired Forever engine is not certified fixed."
+}

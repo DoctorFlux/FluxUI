@@ -1,0 +1,193 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.blizzard.com/wow/ui/ ..\FrameXML\UI.xsd">
+
+	<Script file="FluxRaidCompat.lua"/>
+	<Script file="FluxRaidVisuals.lua"/>
+	<Script file="FluxRaidLayout.lua"/>
+	<Script file="FluxRaidAuras.lua"/>
+	<Script file="FluxRaidPrediction.lua"/>
+	<Script file="FluxRaidHealerExtras.lua"/>
+	<Script file="FluxRaidHoTs.lua"/>
+	<Script file="FluxRaidSecure.lua"/>
+	<Script file="FluxRaidUnit.lua"/>
+	<Script file="FluxRaidFrame.lua"/>
+	<Script file="FluxRaidPreview.lua"/>
+	<Script file="FluxRaidFrame_BigDebuffs.lua"/>
+
+	<!-- Native CustomAuraButtonTemplate supplies the secure aura owner. This
+	     supplemental template supplies only independently authored display sinks. -->
+	<Frame name="FluxRaidAuraIconTemplate" virtual="true" enableMouse="false">
+		<Size x="11" y="11"/>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture setAllPoints="true"><Color r="0.05" g="0.04" b="0.03" a="1"/></Texture>
+			</Layer>
+			<Layer level="ARTWORK">
+				<Texture parentKey="Icon" setAllPoints="true"><TexCoords left="0.08" right="0.92" top="0.08" bottom="0.92"/></Texture>
+			</Layer>
+			<Layer level="OVERLAY">
+				<FontString parentKey="Count" inherits="NumberFontNormal" justifyH="RIGHT">
+					<Anchors><Anchor point="BOTTOMRIGHT" x="-2" y="2"/></Anchors>
+				</FontString>
+				<FontString parentKey="Duration" inherits="GameFontNormalSmall" justifyH="CENTER" wordwrap="false">
+					<Anchors><Anchor point="CENTER"/></Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Cooldown parentKey="Cooldown" inherits="CooldownFrameTemplate" hideCountdownNumbers="false" drawEdge="false" reverse="true" enableMouse="false">
+				<Anchors><Anchor point="TOPLEFT"/><Anchor point="BOTTOMRIGHT"/></Anchors>
+			</Cooldown>
+			<Frame parentKey="AuraTextLayer" enableMouse="false">
+				<Anchors><Anchor point="TOPLEFT"/><Anchor point="BOTTOMRIGHT"/></Anchors>
+			</Frame>
+		</Frames>
+	</Frame>
+
+	<!-- Bare display host for native dispel-color sinks outside clipped icons. -->
+	<Frame name="FluxRaidDispelBorderTemplate" virtual="true" enableMouse="false"/>
+
+	<!-- Flux-owned compact cell. Does not inherit CompactUnitFrameTemplate. -->
+	<Button name="FluxRaidCellVisualTemplate" frameStrata="LOW" virtual="true" hidden="true">
+		<Size x="72" y="36"/>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture parentKey="background" setAllPoints="true"/>
+			</Layer>
+			<Layer level="ARTWORK">
+				<FontString parentKey="name" inherits="GameFontHighlightSmall" wordwrap="false"/>
+				<FontString parentKey="statusText" inherits="GameFontDisable" wordwrap="false"/>
+				<Texture parentKey="roleIcon" hidden="true">
+					<Size x="17" y="17"/>
+				</Texture>
+			</Layer>
+			<Layer level="OVERLAY">
+				<Texture parentKey="aggroHighlight" setAllPoints="true" hidden="true"/>
+				<Texture parentKey="selectionHighlight" setAllPoints="true" ignoreParentAlpha="true" hidden="true"/>
+			</Layer>
+			<Layer level="OVERLAY" textureSubLevel="5">
+				<Texture parentKey="leaderIcon" hidden="true" ignoreParentAlpha="true">
+					<Size x="11" y="11"/>
+					<Anchors><Anchor point="TOPLEFT" x="-2" y="2"/></Anchors>
+				</Texture>
+				<Texture parentKey="raidTargetIcon" hidden="true" ignoreParentAlpha="true">
+					<Size x="11" y="11"/>
+					<Anchors><Anchor point="TOP" x="0" y="4"/></Anchors>
+				</Texture>
+				<Texture parentKey="masterLooterIcon" hidden="true" ignoreParentAlpha="true">
+					<Size x="11" y="11"/>
+					<Anchors><Anchor point="TOPRIGHT" x="2" y="2"/></Anchors>
+				</Texture>
+				<Texture parentKey="mouseOverHighlight" setAllPoints="true" ignoreParentAlpha="true" hidden="true"/>
+			</Layer>
+		</Layers>
+		<Frames>
+			<StatusBar parentKey="healthBar" useParentLevel="true">
+				<Layers>
+					<Layer level="BACKGROUND" textureSubLevel="2">
+						<Texture parentKey="background" setAllPoints="true"/>
+					</Layer>
+				</Layers>
+				<Frames>
+					<StatusBar parentKey="myHealPrediction" hidden="true"/>
+					<StatusBar parentKey="otherHealPrediction" hidden="true"/>
+					<StatusBar parentKey="totalAbsorb" hidden="true"/>
+					<StatusBar parentKey="healAbsorb" hidden="true"/>
+				</Frames>
+			</StatusBar>
+			<StatusBar parentKey="powerBar" useParentLevel="true">
+				<Layers>
+					<Layer level="BACKGROUND" textureSubLevel="2">
+						<Texture parentKey="background" setAllPoints="true"/>
+					</Layer>
+				</Layers>
+			</StatusBar>
+			<Frame parentKey="centerStatusIcon" enableMouse="false">
+				<Size x="22" y="22"/>
+				<Layers>
+					<Layer level="OVERLAY">
+						<Texture parentKey="texture" setAllPoints="true"/>
+					</Layer>
+				</Layers>
+			</Frame>
+			<Frame parentKey="readyCheckIcon" enableMouse="false" hidden="true">
+				<Size x="20" y="20"/>
+				<Layers>
+					<Layer level="OVERLAY">
+						<Texture parentKey="texture" setAllPoints="true"/>
+					</Layer>
+				</Layers>
+			</Frame>
+			<Frame parentKey="auraHost" enableMouse="false">
+				<Anchors>
+					<Anchor point="TOPLEFT"/>
+					<Anchor point="BOTTOMRIGHT"/>
+				</Anchors>
+			</Frame>
+		</Frames>
+
+	</Button>
+
+	<Button name="FluxRaidUnitTemplate" inherits="FluxRaidCellVisualTemplate,SecureUnitButtonTemplate" virtual="true" hidden="true">
+		<Scripts>
+			<OnLoad function="FluxRaidUnit_OnLoad"/>
+			<OnShow function="FluxRaidUnit_OnShow"/>
+			<OnHide function="FluxRaidUnit_OnHide"/>
+			<OnEnter function="FluxRaidUnit_OnEnter"/>
+			<OnLeave function="FluxRaidUnit_OnLeave"/>
+		</Scripts>
+	</Button>
+
+	<Button name="FluxRaidMiniUnitTemplate" inherits="FluxRaidUnitTemplate" virtual="true">
+		<KeyValues><KeyValue key="_fluxRaidMini" value="true" type="boolean"/></KeyValues>
+	</Button>
+	<Button name="FluxRaidPetUnitTemplate" inherits="FluxRaidMiniUnitTemplate" virtual="true">
+		<KeyValues>
+			<KeyValue key="_fluxRaidMini" value="true" type="boolean"/>
+			<KeyValue key="_fluxExtraPet" value="true" type="boolean"/>
+		</KeyValues>
+	</Button>
+
+	<!-- Non-secure preview clone (sizing/art only). -->
+	<Button name="FluxRaidPreviewUnitTemplate" inherits="FluxRaidCellVisualTemplate" virtual="true" hidden="true">
+		<Scripts>
+			<OnLoad function="FluxRaidPreviewUnit_OnLoad"/>
+			<OnEnter function="FluxRaidPreviewUnit_OnEnter"/>
+			<OnLeave function="FluxRaidPreviewUnit_OnLeave"/>
+		</Scripts>
+	</Button>
+
+	<Button name="FluxRaidMiniPreviewTemplate" inherits="FluxRaidPreviewUnitTemplate" virtual="true">
+		<KeyValues><KeyValue key="_fluxRaidMini" value="true" type="boolean"/></KeyValues>
+	</Button>
+
+	<Frame name="FluxRaidGroupHeaderTemplate" inherits="SecureRaidGroupHeaderTemplate"
+	       frameStrata="LOW" virtual="true" hidden="true">
+		<Size x="72" y="10"/>
+		<Attributes>
+			<Attribute name="template" type="string" value="FluxRaidUnitTemplate"/>
+		</Attributes>
+	</Frame>
+
+	<Frame name="FluxRaidContainer" parent="UIParent" inherits="SecureFrameTemplate" hidden="true">
+		<Size x="1" y="1"/>
+		<Anchors>
+			<Anchor point="BOTTOMLEFT"/>
+		</Anchors>
+	</Frame>
+
+	<!-- Secure headers are created by the secure startup phase after saved
+	     configuration and the Forever gamepad barrier, never during lockdown. -->
+
+	<Frame name="FluxRaidEventFrame" parent="UIParent" hidden="true">
+		<Anchors>
+			<Anchor point="TOPLEFT"/>
+			<Anchor point="BOTTOMRIGHT"/>
+		</Anchors>
+		<Scripts>
+			<OnLoad function="FluxRaid_OnLoad"/>
+			<OnEvent function="FluxRaid_OnEvent"/>
+		</Scripts>
+	</Frame>
+
+</Ui>

@@ -1,0 +1,81 @@
+{
+  "changeID": "PARTY-BLIZZARD-DEBUFF-BORDER-20261108",
+  "requirement": "REQ-RF-90",
+  "supersedes": "REQ-RF-89 custom rim/conditional icon color only; preserve above-cooldown layering and existing layout/control behavior.",
+  "scope": "Normal party member debuff icons and party preview; replace previous custom rim with actual client Blizzard art/type colors.",
+  "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\06\\01a1b0ac-547f-7972-8df9-fa26882e0e03\\blizzard-party-borders-20261108T072639Z\\checkpoint.json",
+  "before": {
+    "RaidFrame/FluxRaidVisuals.lua": "556e57dcbb7127abbb3e28496c1a614e0942f855491b343d88479fc125a58b71",
+    "RaidFrame/FluxRaidAuras.lua": "5e2185bc0d5cbabbaf79215a6932cf6aa452bc06f9a60e7f333085cdfc716569",
+    "RaidFrame/FluxRaidPreview.lua": "aa0e7647f05f282cb7cc54f36ca98d23dc791e612365f931ddeaa90e6d312032"
+  },
+  "after": {
+    "RaidFrame/FluxRaidVisuals.lua": "8478fd7be77f476e8447845d59acbf6c68fee5b980b54b53ed3ad8c6b2cf4f25",
+    "RaidFrame/FluxRaidAuras.lua": "4d2b2728567e793d39f6f6d211f9f146cce97a6755c8e0270e99b0985fa5aaf6",
+    "RaidFrame/FluxRaidPreview.lua": "5a55b3c8554ada938f56a7fb507a672ae67b4c037139722f566f69aa0e5f1955"
+  },
+  "nativeSources": [
+    {
+      "blob": "9e373b9e44e352e77771eef30f058217151dbdb7",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_AuraContainer/Blizzard_CustomAuraButton.lua"
+    },
+    {
+      "blob": "5bef54952bb4607796fe77c7d65a7e3d3e668227",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_FrameXMLUtil/Mainline/AuraUtil.lua"
+    },
+    {
+      "client": "forever",
+      "blob": "a28788fd0e14df2ecbb77e9170f099ac4b6a8a52",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_APIDocumentationGenerated/AuraContainerUtilDocumentation.lua"
+    },
+    {
+      "client": "classic_era",
+      "blob": "9971749d1521edd08ff2d676f59573f34de02120",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_FrameXMLUtil/Classic/AuraUtil.lua"
+    }
+  ],
+  "implementation": [
+    "Single Blizzard border texture on the existing above-cooldown text host; delete the eight custom red/black edge textures.",
+    "Retail/Forever native AddDispelTypeTexture Border style selects colored no-icon atlas. Classic PreserveAsset retains UI-Debuff-Overlays with native AuraUtil type tint; avoids Border style white reset on Classic. showWithoutDispelType enables Blizzard default for untyped harmful auras.",
+    "Readable fallback and preview call client AuraUtil.SetAuraBorderAtlas for the same art/color mapping. Type colors do not depend on whole-frame dispel highlighting. Buff-like boss helpful auras do not get a harmful border in readable fallback.",
+    "No raw restricted dispel type reads or comparisons in native renderer. Preserve icon sizing, opacity, zero gaps, timers, strict filters, native binding and input."
+  ],
+  "tests": {
+    "auraOwner": 12776,
+    "partyFocusIntegration": 1010,
+    "auraLayout": 2944,
+    "externalNativeBorderProbe": 1580,
+    "probe": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\06\\01a1b0ac-547f-7972-8df9-fa26882e0e03\\blizzard-party-borders-20261108T072639Z\\blizzard-border-smoke.lua",
+    "scriptsPass": 250,
+    "scriptsFail": 0,
+    "syntaxFiles": 914,
+    "syntaxFailures": [],
+    "ownedManifestDrift": []
+  },
+  "fullReport": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\06\\01a1b0ac-547f-7972-8df9-fa26882e0e03\\blizzard-party-borders-20261108T072639Z\\full.json",
+  "resources": "One prepared border texture per party debuff, replacing eight custom edges and removing duplicate party dispel overlay. Existing text host reused. No new frame/event/hook/ticker/timer/polling; no native CPU/FPS claim.",
+  "nativePending": "Native client pixels, secret/protected VM, combat taint and performance unverified; desktop atlas/color routing and ownership checks only.",
+  "recovery": "Dated before-source.zip and verified all-history bundle outside AddOns;45 settings metadata entries read-only. No foreground/game/input/settings/WTF/profiler writes, manual sync, branch/commit/push.",
+  "copies": [
+    {
+      "client": "_retail_",
+      "mismatches": []
+    },
+    {
+      "client": "_forever_",
+      "mismatches": []
+    },
+    {
+      "client": "_classic_",
+      "mismatches": []
+    },
+    {
+      "client": "_classic_era_",
+      "mismatches": []
+    },
+    {
+      "client": "_anniversary_",
+      "mismatches": []
+    }
+  ]
+}

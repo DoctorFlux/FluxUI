@@ -1,0 +1,256 @@
+{
+  "dateUtc": "2026-11-05T21:53:28.704418+00:00",
+  "baselineCommit": "db42efb10efb0d39cf991dacc27db606000ad7b3",
+  "baselineRuntimeRawSHA256": "a630525aa4fdd0cf8bc9bd05f969d6f68fd2fd0f8fcfb21626edb08074194d94",
+  "candidateHashes": {
+    "Battlezonemap\\FluxBlizzardMeter.lua": "07acfae4ed9090c8e6226e140062e254cfef9ec8ca6fca64033ee71228750a8a",
+    "tests\\native_meter_ownership.lua": "f4e906aae7439623e9c874f55dfeef6ec822e029b920b37add485def8d3525f7",
+    "Battlezonemap\\FluxThreatMeter.lua": "478d82e865a9b49ccf720e60b50b7aa66154c9eabd44c2f0ab41a4be268f7cc7",
+    "tests\\standalone_threat_meter.lua": "8254fa92c49c6535995d482e047ce8876fe0e0991ac5007a86011442da52e009"
+  },
+  "host": "Windows-10-10.0.26200-SP0",
+  "method": "Production native meter source replayed through ordinary frame/native-method ownership mocks. Exact FluxWindowFrame order: old Meter onHide before activeTab change; native UpdateShownState inserted while old tab identity remains Meter. Eight mixed/threat-only, normal/gamepad, Always/Hidden configurations;500 cycles each. Five fresh-process alternating original/candidate runs. No warm-up beyond fixture creation and timer draining. CPU, allocation bytes, native resource objects, FPS, taint, secrets and pixel parity are not measured. Wall time includes assertions and differing resource work, not native latency. No game input/settings changes.",
+  "pairs": [
+    {
+      "repetition": 1,
+      "order": [
+        "baseline",
+        "candidate"
+      ],
+      "baseline": {
+        "regression": {
+          "exitCode": 1,
+          "processSeconds": 0.15374470001552254,
+          "stdout": "meter visibility: policyWrites=0 setterCalls=0 nativeEvents=4032 timerDispatches=4032 repeatedAddonRootShows=0 timerWrites=8064 pinnedNative=false\nFAIL tab hide gamepad=false threatOnly=false policy=0 onHide hides both panes before activeTab changes\nFAIL tab hide gamepad=false threatOnly=false policy=0 native refresh cannot undo explicit Hide during tab transition\nFAIL tab hide gamepad=false threatOnly=false policy=0 repeated tab transitions reuse frames without timers or content rebuilds\nFAIL tab hide gamepad=false threatOnly=false policy=2 onHide hides both panes before activeTab changes\nFAIL tab hide gamepad=false threatOnly=false policy=2 native refresh cannot undo explicit Hide during tab transition\nFAIL tab hide gamepad=false threatOnly=true policy=0 onHide hides both panes before activeTab changes\nFAIL tab hide gamepad=false threatOnly=true policy=0 native refresh cannot undo explicit Hide during tab transition\nFAIL tab hide gamepad=false threatOnly=true policy=2 onHide hides both panes before activeTab changes\nFAIL tab hide gamepad=false threatOnly=true policy=2 native refresh cannot undo explicit Hide during tab transition\nFAIL tab hide gamepad=true threatOnly=false policy=0 onHide hides both panes before activeTab changes\nFAIL tab hide gamepad=true threatOnly=false policy=0 native refresh cannot undo explicit Hide during tab transition\nFAIL tab hide gamepad=true threatOnly=false policy=0 repeated tab transitions reuse frames without timers or content rebuilds\nFAIL tab hide gamepad=true threatOnly=false policy=2 onHide hides both panes before activeTab changes\nFAIL tab hide gamepad=true threatOnly=false policy=2 native refresh cannot undo explicit Hide during tab transition\nFAIL tab hide gamepad=true threatOnly=true policy=0 onHide hides both panes before activeTab changes\nFAIL tab hide gamepad=true threatOnly=true policy=0 native refresh cannot undo explicit Hide during tab transition\nFAIL tab hide gamepad=true threatOnly=true policy=2 onHide hides both panes before activeTab changes\nFAIL tab hide gamepad=true threatOnly=true policy=2 native refresh cannot undo explicit Hide during tab transition\nFAIL explicit Hide prevents all repeated pane resurrections before activeTab changes\nmeter tab transitions: cycles=4000 threatResurrections=4000 rootResurrections=1000\nnative meter ownership: 429 checks, 19 failures; geometry typeCalls=0 sessionCalls=0 entryWalks=0 gamepadPatchTimers=0\n",
+          "stderr": ""
+        },
+        "resources": {
+          "exitCode": 0,
+          "processSeconds": 0.11894130002474412,
+          "stdout": "TRANSITION gamepad=false threatOnly=false policy=0 cycles=500 threatResurrections=500 rootResurrections=500 frameGrowth=0 timerCreates=500 typeCalls=0 sessionCalls=0 entryWalks=0 nativePolicyWrites=0 nativeTimerDispatches=1000 extraRootShows=1500\nTRANSITION gamepad=false threatOnly=false policy=2 cycles=500 threatResurrections=500 rootResurrections=0 frameGrowth=0 timerCreates=0 typeCalls=0 sessionCalls=0 entryWalks=0 nativePolicyWrites=0 nativeTimerDispatches=1000 extraRootShows=0\nTRANSITION gamepad=false threatOnly=true policy=0 cycles=500 threatResurrections=500 rootResurrections=0 frameGrowth=0 timerCreates=0 typeCalls=0 sessionCalls=0 entryWalks=0 nativePolicyWrites=0 nativeTimerDispatches=1000 extraRootShows=1000\nTRANSITION gamepad=false threatOnly=true policy=2 cycles=500 threatResurrections=500 rootResurrections=0 frameGrowth=0 timerCreates=0 typeCalls=0 sessionCalls=0 entryWalks=0 nativePolicyWrites=0 nativeTimerDispatches=1000 extraRootShows=0\nTRANSITION gamepad=true threatOnly=false policy=0 cycles=500 threatResurrections=500 rootResurrections=500 frameGrowth=0 timerCreates=500 typeCalls=0 sessionCalls=0 entryWalks=0 nativePolicyWrites=0 nativeTimerDispatches=1000 extraRootShows=1500\nTRANSITION gamepad=true threatOnly=false policy=2 cycles=500 threatResurrections=500 rootResurrections=0 frameGrowth=0 timerCreates=0 typeCalls=0 sessionCalls=0 entryWalks=0 nativePolicyWrites=0 nativeTimerDispatches=1000 extraRootShows=0\nTRANSITION gamepad=true threatOnly=true policy=0 cycles=500 threatResurrections=500 rootResurrections=0 frameGrowth=0 timerCreates=0 typeCalls=0 sessionCalls=0 entryWalks=0 nativePolicyWrites=0 nativeTimerDispatches=1000 extraRootShows=1000\nTRANSITION gamepad=true threatOnly=true policy=2 cycles=500 threatResurrections=500 rootResurrections=0 frameGrowth=0 timerCreates=0 typeCalls=0 sessionCalls=0 entryWalks=0 nativePolicyWrites=0 nativeTimerDispatches=1000 extraRootShows=0\n",
+          "stderr": ""
+        }
+      },
+      "candidate": {
+        "regression": {
+          "exitCode": 0,
+          "processSeconds": 0.15670540000428446,
+          "stdout": "meter visibility: policyWrites=0 setterCalls=0 nativeEvents=4032 timerDispatches=4032 repeatedAddonRootShows=0 timerWrites=8064 pinnedNative=false\nmeter tab transitions: cycles=4000 threatResurrections=0 rootResurrections=0\nnative meter ownership: 429 checks, 0 failures; geometry typeCalls=0 sessionCalls=0 entryWalks=0 gamepadPatchTimers=0\n",
+          "stderr": ""
+        },
+        "resources": {
+          "exitCode": 0,
+          "processSeconds": 0.09171200002310798,
+          "stdout": "TRANSITION gamepad=false threatOnly=false policy=0 cycles=500 threatResurrections=0 rootResurrections=0 frameGrowth=0 timerCreates=0 typeCalls=0 sessionCalls=0 entryWalks=0 nativePolicyWrites=0 nativeTimerDispatches=1000 extraRootShows=1500\nTRANSITION gamepad=false threatOnly=false policy=2 cycles=500 threatResurrections=0 rootResurrections=0 frameGrowth=0 timerCreates=0 typeCalls=0 sessionCalls=0 entryWalks=0 nativePolicyWrites=0 nativeTimerDispatches=1000 extraRootShows=0\nTRANSITION gamepad=false threatOnly=true policy=0 cycles=500 threatResurrections=0 rootResurrections=0 frameGrowth=0 timerCreates=0 typeCalls=0 sessionCalls=0 entryWalks=0 nativePolicyWrites=0 nativeTimerDispatches=1000 extraRootShows=1000\nTRANSITION gamepad=false threatOnly=true policy=2 cycles=500 threatResurrections=0 rootResurrections=0 frameGrowth=0 timerCreates=0 typeCalls=0 sessionCalls=0 entryWalks=0 nativePolicyWrites=0 nativeTimerDispatches=1000 extraRootShows=0\nTRANSITION gamepad=true threatOnly=false policy=0 cycles=500 threatResurrections=0 rootResurrections=0 frameGrowth=0 timerCreates=0 typeCalls=0 sessionCalls=0 entryWalks=0 nativePolicyWrites=0 nativeTimerDispatches=1000 extraRootShows=1500\nTRANSITION gamepad=true threatOnly=false policy=2 cycles=500 threatResurrections=0 rootResurrections=0 frameGrowth=0 timerCreates=0 typeCalls=0 sessionCalls=0 entryWalks=0 nativePolicyWrites=0 nativeTimerDispatches=1000 extraRootShows=0\nTRANSITION gamepad=true threatOnly=true policy=0 cycles=500 threatResurrections=0 rootResurrections=0 frameGrowth=0 timerCreates=0 typeCalls=0 sessionCalls=0 entryWalks=0 nativePolicyWrites=0 nativeTimerDispatches=1000 extraRootShows=1000\nTRANSITION gamepad=true threatOnly=true policy=2 cycles=500 threatResurrections=0 rootResurrections=0 frameGrowth=0 timerCreates=0 typeCalls=0 sessionCalls=0 entryWalks=0 nativePolicyWrites=0 nativeTimerDispatches=1000 extraRootShows=0\n",
+          "stderr": ""
+        }
+      }
+    },
+    {
+      "repetition": 2,
+      "order": [
+        "candidate",
+        "baseline"
+      ],
+      "candidate": {
+        "regression": {
+          "exitCode": 0,
+          "processSeconds": 0.15938340002321638,
+          "stdout": "meter visibility: policyWrites=0 setterCalls=0 nativeEvents=4032 timerDispatches=4032 repeatedAddonRootShows=0 timerWrites=8064 pinnedNative=false\nmeter tab transitions: cycles=4000 threatResurrections=0 rootResurrections=0\nnative meter ownership: 429 checks, 0 failures; geometry typeCalls=0 sessionCalls=0 entryWalks=0 gamepadPatchTimers=0\n",
+          "stderr": ""
+        },
+        "resources": {
+          "exitCode": 0,
+          "processSeconds": 0.09897160000400618,
+          "stdout": "TRANSITION gamepad=false threatOnly=false policy=0 cycles=500 threatResurrections=0 rootResurrections=0 frameGrowth=0 timerCreates=0 typeCalls=0 sessionCalls=0 entryWalks=0 nativePolicyWrites=0 nativeTimerDispatches=1000 extraRootShows=1500\nTRANSITION gamepad=false threatOnly=false policy=2 cycles=500 threatResurrections=0 rootResurrections=0 frameGrowth=0 timerCreates=0 typeCalls=0 sessionCalls=0 entryWalks=0 nativePolicyWrites=0 nativeTimerDispatches=1000 extraRootShows=0\nTRANSITION gamepad=false threatOnly=true policy=0 cycles=500 threatResurrections=0 rootResurrections=0 frameGrowth=0 timerCreates=0 typeCalls=0 sessionCalls=0 entryWalks=0 nativePolicyWrites=0 nativeTimerDispatches=1000 extraRootShows=1000\nTRANSITION gamepad=false threatOnly=true policy=2 cycles=500 threatResurrections=0 rootResurrections=0 frameGrowth=0 timerCreates=0 typeCalls=0 sessionCalls=0 entryWalks=0 nativePolicyWrites=0 nativeTimerDispatches=1000 extraRootShows=0\nTRANSITION gamepad=true threatOnly=false policy=0 cycles=500 threatResurrections=0 rootResurrections=0 frameGrowth=0 timerCreates=0 typeCalls=0 sessionCalls=0 entryWalks=0 nativePolicyWrites=0 nativeTimerDispatches=1000 extraRootShows=1500\nTRANSITION gamepad=true threatOnly=false policy=2 cycles=500 threatResurrections=0 rootResurrections=0 frameGrowth=0 timerCreates=0 typeCalls=0 sessionCalls=0 entryWalks=0 nativePolicyWrites=0 nativeTimerDispatches=1000 extraRootShows=0\nTRANSITION gamepad=true threatOnly=true policy=0 cycles=500 threatResurrections=0 rootResurrections=0 frameGrowth=0 timerCreates=0 typeCalls=0 sessionCalls=0 entryWalks=0 nativePolicyWrites=0 nativeTimerDispatches=1000 extraRootShows=1000\nTRANSITION gamepad=true threatOnly=true policy=2 cycles=500 threatResurrections=0 rootResurrections=0 frameGrowth=0 timerCreates=0 typeCalls=0 sessionCalls=0 entryWalks=0 nativePolicyWrites=0 nativeTimerDispatches=1000 extraRootShows=0\n",
+          "stderr": ""
+        }
+      },
+      "baseline": {
+        "regression": {
+          "exitCode": 1,
+          "processSeconds": 0.15562859998317435,
+          "stdout": "meter visibility: policyWrites=0 setterCalls=0 nativeEvents=4032 timerDispatches=4032 repeatedAddonRootShows=0 timerWrites=8064 pinnedNative=false\nFAIL tab hide gamepad=false threatOnly=false policy=0 onHide hides both panes before activeTab changes\nFAIL tab hide gamepad=false threatOnly=false policy=0 native refresh cannot undo explicit Hide during tab transition\nFAIL tab hide gamepad=false threatOnly=false policy=0 repeated tab transitions reuse frames without timers or content rebuilds\nFAIL tab hide gamepad=false threatOnly=false policy=2 onHide hides both panes before activeTab changes\nFAIL tab hide gamepad=false threatOnly=false policy=2 native refresh cannot undo explicit Hide during tab transition\nFAIL tab hide gamepad=false threatOnly=true policy=0 onHide hides both panes before activeTab changes\nFAIL tab hide gamepad=false threatOnly=true policy=0 native refresh cannot undo explicit Hide during tab transition\nFAIL tab hide gamepad=false threatOnly=true policy=2 onHide hides both panes before activeTab changes\nFAIL tab hide gamepad=false threatOnly=true policy=2 native refresh cannot undo explicit Hide during tab transition\nFAIL tab hide gamepad=true threatOnly=false policy=0 onHide hides both panes before activeTab changes\nFAIL tab hide gamepad=true threatOnly=false policy=0 native refresh cannot undo explicit Hide during tab transition\nFAIL tab hide gamepad=true threatOnly=false policy=0 repeated tab transitions reuse frames without timers or content rebuilds\nFAIL tab hide gamepad=true threatOnly=false policy=2 onHide hides both panes before activeTab changes\nFAIL tab hide gamepad=true threatOnly=false policy=2 native refresh cannot undo explicit Hide during tab transition\nFAIL tab hide gamepad=true threatOnly=true policy=0 onHide hides both panes before activeTab changes\nFAIL tab hide gamepad=true threatOnly=true policy=0 native refresh cannot undo explicit Hide during tab transition\nFAIL tab hide gamepad=true threatOnly=true policy=2 onHide hides both panes before activeTab changes\nFAIL tab hide gamepad=true threatOnly=true policy=2 native refresh cannot undo explicit Hide during tab transition\nFAIL explicit Hide prevents all repeated pane resurrections before activeTab changes\nmeter tab transitions: cycles=4000 threatResurrections=4000 rootResurrections=1000\nnative meter ownership: 429 checks, 19 failures; geometry typeCalls=0 sessionCalls=0 entryWalks=0 gamepadPatchTimers=0\n",
+          "stderr": ""
+        },
+        "resources": {
+          "exitCode": 0,
+          "processSeconds": 0.1038064000022132,
+          "stdout": "TRANSITION gamepad=false threatOnly=false policy=0 cycles=500 threatResurrections=500 rootResurrections=500 frameGrowth=0 timerCreates=500 typeCalls=0 sessionCalls=0 entryWalks=0 nativePolicyWrites=0 nativeTimerDispatches=1000 extraRootShows=1500\nTRANSITION gamepad=false threatOnly=false policy=2 cycles=500 threatResurrections=500 rootResurrections=0 frameGrowth=0 timerCreates=0 typeCalls=0 sessionCalls=0 entryWalks=0 nativePolicyWrites=0 nativeTimerDispatches=1000 extraRootShows=0\nTRANSITION gamepad=false threatOnly=true policy=0 cycles=500 threatResurrections=500 rootResurrections=0 frameGrowth=0 timerCreates=0 typeCalls=0 sessionCalls=0 entryWalks=0 nativePolicyWrites=0 nativeTimerDispatches=1000 extraRootShows=1000\nTRANSITION gamepad=false threatOnly=true policy=2 cycles=500 threatResurrections=500 rootResurrections=0 frameGrowth=0 timerCreates=0 typeCalls=0 sessionCalls=0 entryWalks=0 nativePolicyWrites=0 nativeTimerDispatches=1000 extraRootShows=0\nTRANSITION gamepad=true threatOnly=false policy=0 cycles=500 threatResurrections=500 rootResurrections=500 frameGrowth=0 timerCreates=500 typeCalls=0 sessionCalls=0 entryWalks=0 nativePolicyWrites=0 nativeTimerDispatches=1000 extraRootShows=1500\nTRANSITION gamepad=true threatOnly=false policy=2 cycles=500 threatResurrections=500 rootResurrections=0 frameGrowth=0 timerCreates=0 typeCalls=0 sessionCalls=0 entryWalks=0 nativePolicyWrites=0 nativeTimerDispatches=1000 extraRootShows=0\nTRANSITION gamepad=true threatOnly=true policy=0 cycles=500 threatResurrections=500 rootResurrections=0 frameGrowth=0 timerCreates=0 typeCalls=0 sessionCalls=0 entryWalks=0 nativePolicyWrites=0 nativeTimerDispatches=1000 extraRootShows=1000\nTRANSITION gamepad=true threatOnly=true policy=2 cycles=500 threatResurrections=500 rootResurrections=0 frameGrowth=0 timerCreates=0 typeCalls=0 sessionCalls=0 entryWalks=0 nativePolicyWrites=0 nativeTimerDispatches=1000 extraRootShows=0\n",
+          "stderr": ""
+        }
+      }
+    },
+    {
+      "repetition": 3,
+      "order": [
+        "baseline",
+        "candidate"
+      ],
+      "baseline": {
+        "regression": {
+          "exitCode": 1,
+          "processSeconds": 0.160457200021483,
+          "stdout": "meter visibility: policyWrites=0 setterCalls=0 nativeEvents=4032 timerDispatches=4032 repeatedAddonRootShows=0 timerWrites=8064 pinnedNative=false\nFAIL tab hide gamepad=false threatOnly=false policy=0 onHide hides both panes before activeTab changes\nFAIL tab hide gamepad=false threatOnly=false policy=0 native refresh cannot undo explicit Hide during tab transition\nFAIL tab hide gamepad=false threatOnly=false policy=0 repeated tab transitions reuse frames without timers or content rebuilds\nFAIL tab hide gamepad=false threatOnly=false policy=2 onHide hides both panes before activeTab changes\nFAIL tab hide gamepad=false threatOnly=false policy=2 native refresh cannot undo explicit Hide during tab transition\nFAIL tab hide gamepad=false threatOnly=true policy=0 onHide hides both panes before activeTab changes\nFAIL tab hide gamepad=false threatOnly=true policy=0 native refresh cannot undo explicit Hide during tab transition\nFAIL tab hide gamepad=false threatOnly=true policy=2 onHide hides both panes before activeTab changes\nFAIL tab hide gamepad=false threatOnly=true policy=2 native refresh cannot undo explicit Hide during tab transition\nFAIL tab hide gamepad=true threatOnly=false policy=0 onHide hides both panes before activeTab changes\nFAIL tab hide gamepad=true threatOnly=false policy=0 native refresh cannot undo explicit Hide during tab transition\nFAIL tab hide gamepad=true threatOnly=false policy=0 repeated tab transitions reuse frames without timers or content rebuilds\nFAIL tab hide gamepad=true threatOnly=false policy=2 onHide hides both panes before activeTab changes\nFAIL tab hide gamepad=true threatOnly=false policy=2 native refresh cannot undo explicit Hide during tab transition\nFAIL tab hide gamepad=true threatOnly=true policy=0 onHide hides both panes before activeTab changes\nFAIL tab hide gamepad=true threatOnly=true policy=0 native refresh cannot undo explicit Hide during tab transition\nFAIL tab hide gamepad=true threatOnly=true policy=2 onHide hides both panes before activeTab changes\nFAIL tab hide gamepad=true threatOnly=true policy=2 native refresh cannot undo explicit Hide during tab transition\nFAIL explicit Hide prevents all repeated pane resurrections before activeTab changes\nmeter tab transitions: cycles=4000 threatResurrections=4000 rootResurrections=1000\nnative meter ownership: 429 checks, 19 failures; geometry typeCalls=0 sessionCalls=0 entryWalks=0 gamepadPatchTimers=0\n",
+          "stderr": ""
+        },
+        "resources": {
+          "exitCode": 0,
+          "processSeconds": 0.10462480000569485,
+          "stdout": "TRANSITION gamepad=false threatOnly=false policy=0 cycles=500 threatResurrections=500 rootResurrections=500 frameGrowth=0 timerCreates=500 typeCalls=0 sessionCalls=0 entryWalks=0 nativePolicyWrites=0 nativeTimerDispatches=1000 extraRootShows=1500\nTRANSITION gamepad=false threatOnly=false policy=2 cycles=500 threatResurrections=500 rootResurrections=0 frameGrowth=0 timerCreates=0 typeCalls=0 sessionCalls=0 entryWalks=0 nativePolicyWrites=0 nativeTimerDispatches=1000 extraRootShows=0\nTRANSITION gamepad=false threatOnly=true policy=0 cycles=500 threatResurrections=500 rootResurrections=0 frameGrowth=0 timerCreates=0 typeCalls=0 sessionCalls=0 entryWalks=0 nativePolicyWrites=0 nativeTimerDispatches=1000 extraRootShows=1000\nTRANSITION gamepad=false threatOnly=true policy=2 cycles=500 threatResurrections=500 rootResurrections=0 frameGrowth=0 timerCreates=0 typeCalls=0 sessionCalls=0 entryWalks=0 nativePolicyWrites=0 nativeTimerDispatches=1000 extraRootShows=0\nTRANSITION gamepad=true threatOnly=false policy=0 cycles=500 threatResurrections=500 rootResurrections=500 frameGrowth=0 timerCreates=500 typeCalls=0 sessionCalls=0 entryWalks=0 nativePolicyWrites=0 nativeTimerDispatches=1000 extraRootShows=1500\nTRANSITION gamepad=true threatOnly=false policy=2 cycles=500 threatResurrections=500 rootResurrections=0 frameGrowth=0 timerCreates=0 typeCalls=0 sessionCalls=0 entryWalks=0 nativePolicyWrites=0 nativeTimerDispatches=1000 extraRootShows=0\nTRANSITION gamepad=true threatOnly=true policy=0 cycles=500 threatResurrections=500 rootResurrections=0 frameGrowth=0 timerCreates=0 typeCalls=0 sessionCalls=0 entryWalks=0 nativePolicyWrites=0 nativeTimerDispatches=1000 extraRootShows=1000\nTRANSITION gamepad=true threatOnly=true policy=2 cycles=500 threatResurrections=500 rootResurrections=0 frameGrowth=0 timerCreates=0 typeCalls=0 sessionCalls=0 entryWalks=0 nativePolicyWrites=0 nativeTimerDispatches=1000 extraRootShows=0\n",
+          "stderr": ""
+        }
+      },
+      "candidate": {
+        "regression": {
+          "exitCode": 0,
+          "processSeconds": 0.14727009998750873,
+          "stdout": "meter visibility: policyWrites=0 setterCalls=0 nativeEvents=4032 timerDispatches=4032 repeatedAddonRootShows=0 timerWrites=8064 pinnedNative=false\nmeter tab transitions: cycles=4000 threatResurrections=0 rootResurrections=0\nnative meter ownership: 429 checks, 0 failures; geometry typeCalls=0 sessionCalls=0 entryWalks=0 gamepadPatchTimers=0\n",
+          "stderr": ""
+        },
+        "resources": {
+          "exitCode": 0,
+          "processSeconds": 0.09220670000649989,
+          "stdout": "TRANSITION gamepad=false threatOnly=false policy=0 cycles=500 threatResurrections=0 rootResurrections=0 frameGrowth=0 timerCreates=0 typeCalls=0 sessionCalls=0 entryWalks=0 nativePolicyWrites=0 nativeTimerDispatches=1000 extraRootShows=1500\nTRANSITION gamepad=false threatOnly=false policy=2 cycles=500 threatResurrections=0 rootResurrections=0 frameGrowth=0 timerCreates=0 typeCalls=0 sessionCalls=0 entryWalks=0 nativePolicyWrites=0 nativeTimerDispatches=1000 extraRootShows=0\nTRANSITION gamepad=false threatOnly=true policy=0 cycles=500 threatResurrections=0 rootResurrections=0 frameGrowth=0 timerCreates=0 typeCalls=0 sessionCalls=0 entryWalks=0 nativePolicyWrites=0 nativeTimerDispatches=1000 extraRootShows=1000\nTRANSITION gamepad=false threatOnly=true policy=2 cycles=500 threatResurrections=0 rootResurrections=0 frameGrowth=0 timerCreates=0 typeCalls=0 sessionCalls=0 entryWalks=0 nativePolicyWrites=0 nativeTimerDispatches=1000 extraRootShows=0\nTRANSITION gamepad=true threatOnly=false policy=0 cycles=500 threatResurrections=0 rootResurrections=0 frameGrowth=0 timerCreates=0 typeCalls=0 sessionCalls=0 entryWalks=0 nativePolicyWrites=0 nativeTimerDispatches=1000 extraRootShows=1500\nTRANSITION gamepad=true threatOnly=false policy=2 cycles=500 threatResurrections=0 rootResurrections=0 frameGrowth=0 timerCreates=0 typeCalls=0 sessionCalls=0 entryWalks=0 nativePolicyWrites=0 nativeTimerDispatches=1000 extraRootShows=0\nTRANSITION gamepad=true threatOnly=true policy=0 cycles=500 threatResurrections=0 rootResurrections=0 frameGrowth=0 timerCreates=0 typeCalls=0 sessionCalls=0 entryWalks=0 nativePolicyWrites=0 nativeTimerDispatches=1000 extraRootShows=1000\nTRANSITION gamepad=true threatOnly=true policy=2 cycles=500 threatResurrections=0 rootResurrections=0 frameGrowth=0 timerCreates=0 typeCalls=0 sessionCalls=0 entryWalks=0 nativePolicyWrites=0 nativeTimerDispatches=1000 extraRootShows=0\n",
+          "stderr": ""
+        }
+      }
+    },
+    {
+      "repetition": 4,
+      "order": [
+        "candidate",
+        "baseline"
+      ],
+      "candidate": {
+        "regression": {
+          "exitCode": 0,
+          "processSeconds": 0.15584379999199882,
+          "stdout": "meter visibility: policyWrites=0 setterCalls=0 nativeEvents=4032 timerDispatches=4032 repeatedAddonRootShows=0 timerWrites=8064 pinnedNative=false\nmeter tab transitions: cycles=4000 threatResurrections=0 rootResurrections=0\nnative meter ownership: 429 checks, 0 failures; geometry typeCalls=0 sessionCalls=0 entryWalks=0 gamepadPatchTimers=0\n",
+          "stderr": ""
+        },
+        "resources": {
+          "exitCode": 0,
+          "processSeconds": 0.10827170000993647,
+          "stdout": "TRANSITION gamepad=false threatOnly=false policy=0 cycles=500 threatResurrections=0 rootResurrections=0 frameGrowth=0 timerCreates=0 typeCalls=0 sessionCalls=0 entryWalks=0 nativePolicyWrites=0 nativeTimerDispatches=1000 extraRootShows=1500\nTRANSITION gamepad=false threatOnly=false policy=2 cycles=500 threatResurrections=0 rootResurrections=0 frameGrowth=0 timerCreates=0 typeCalls=0 sessionCalls=0 entryWalks=0 nativePolicyWrites=0 nativeTimerDispatches=1000 extraRootShows=0\nTRANSITION gamepad=false threatOnly=true policy=0 cycles=500 threatResurrections=0 rootResurrections=0 frameGrowth=0 timerCreates=0 typeCalls=0 sessionCalls=0 entryWalks=0 nativePolicyWrites=0 nativeTimerDispatches=1000 extraRootShows=1000\nTRANSITION gamepad=false threatOnly=true policy=2 cycles=500 threatResurrections=0 rootResurrections=0 frameGrowth=0 timerCreates=0 typeCalls=0 sessionCalls=0 entryWalks=0 nativePolicyWrites=0 nativeTimerDispatches=1000 extraRootShows=0\nTRANSITION gamepad=true threatOnly=false policy=0 cycles=500 threatResurrections=0 rootResurrections=0 frameGrowth=0 timerCreates=0 typeCalls=0 sessionCalls=0 entryWalks=0 nativePolicyWrites=0 nativeTimerDispatches=1000 extraRootShows=1500\nTRANSITION gamepad=true threatOnly=false policy=2 cycles=500 threatResurrections=0 rootResurrections=0 frameGrowth=0 timerCreates=0 typeCalls=0 sessionCalls=0 entryWalks=0 nativePolicyWrites=0 nativeTimerDispatches=1000 extraRootShows=0\nTRANSITION gamepad=true threatOnly=true policy=0 cycles=500 threatResurrections=0 rootResurrections=0 frameGrowth=0 timerCreates=0 typeCalls=0 sessionCalls=0 entryWalks=0 nativePolicyWrites=0 nativeTimerDispatches=1000 extraRootShows=1000\nTRANSITION gamepad=true threatOnly=true policy=2 cycles=500 threatResurrections=0 rootResurrections=0 frameGrowth=0 timerCreates=0 typeCalls=0 sessionCalls=0 entryWalks=0 nativePolicyWrites=0 nativeTimerDispatches=1000 extraRootShows=0\n",
+          "stderr": ""
+        }
+      },
+      "baseline": {
+        "regression": {
+          "exitCode": 1,
+          "processSeconds": 0.157581699982984,
+          "stdout": "meter visibility: policyWrites=0 setterCalls=0 nativeEvents=4032 timerDispatches=4032 repeatedAddonRootShows=0 timerWrites=8064 pinnedNative=false\nFAIL tab hide gamepad=false threatOnly=false policy=0 onHide hides both panes before activeTab changes\nFAIL tab hide gamepad=false threatOnly=false policy=0 native refresh cannot undo explicit Hide during tab transition\nFAIL tab hide gamepad=false threatOnly=false policy=0 repeated tab transitions reuse frames without timers or content rebuilds\nFAIL tab hide gamepad=false threatOnly=false policy=2 onHide hides both panes before activeTab changes\nFAIL tab hide gamepad=false threatOnly=false policy=2 native refresh cannot undo explicit Hide during tab transition\nFAIL tab hide gamepad=false threatOnly=true policy=0 onHide hides both panes before activeTab changes\nFAIL tab hide gamepad=false threatOnly=true policy=0 native refresh cannot undo explicit Hide during tab transition\nFAIL tab hide gamepad=false threatOnly=true policy=2 onHide hides both panes before activeTab changes\nFAIL tab hide gamepad=false threatOnly=true policy=2 native refresh cannot undo explicit Hide during tab transition\nFAIL tab hide gamepad=true threatOnly=false policy=0 onHide hides both panes before activeTab changes\nFAIL tab hide gamepad=true threatOnly=false policy=0 native refresh cannot undo explicit Hide during tab transition\nFAIL tab hide gamepad=true threatOnly=false policy=0 repeated tab transitions reuse frames without timers or content rebuilds\nFAIL tab hide gamepad=true threatOnly=false policy=2 onHide hides both panes before activeTab changes\nFAIL tab hide gamepad=true threatOnly=false policy=2 native refresh cannot undo explicit Hide during tab transition\nFAIL tab hide gamepad=true threatOnly=true policy=0 onHide hides both panes before activeTab changes\nFAIL tab hide gamepad=true threatOnly=true policy=0 native refresh cannot undo explicit Hide during tab transition\nFAIL tab hide gamepad=true threatOnly=true policy=2 onHide hides both panes before activeTab changes\nFAIL tab hide gamepad=true threatOnly=true policy=2 native refresh cannot undo explicit Hide during tab transition\nFAIL explicit Hide prevents all repeated pane resurrections before activeTab changes\nmeter tab transitions: cycles=4000 threatResurrections=4000 rootResurrections=1000\nnative meter ownership: 429 checks, 19 failures; geometry typeCalls=0 sessionCalls=0 entryWalks=0 gamepadPatchTimers=0\n",
+          "stderr": ""
+        },
+        "resources": {
+          "exitCode": 0,
+          "processSeconds": 0.10379530000500381,
+          "stdout": "TRANSITION gamepad=false threatOnly=false policy=0 cycles=500 threatResurrections=500 rootResurrections=500 frameGrowth=0 timerCreates=500 typeCalls=0 sessionCalls=0 entryWalks=0 nativePolicyWrites=0 nativeTimerDispatches=1000 extraRootShows=1500\nTRANSITION gamepad=false threatOnly=false policy=2 cycles=500 threatResurrections=500 rootResurrections=0 frameGrowth=0 timerCreates=0 typeCalls=0 sessionCalls=0 entryWalks=0 nativePolicyWrites=0 nativeTimerDispatches=1000 extraRootShows=0\nTRANSITION gamepad=false threatOnly=true policy=0 cycles=500 threatResurrections=500 rootResurrections=0 frameGrowth=0 timerCreates=0 typeCalls=0 sessionCalls=0 entryWalks=0 nativePolicyWrites=0 nativeTimerDispatches=1000 extraRootShows=1000\nTRANSITION gamepad=false threatOnly=true policy=2 cycles=500 threatResurrections=500 rootResurrections=0 frameGrowth=0 timerCreates=0 typeCalls=0 sessionCalls=0 entryWalks=0 nativePolicyWrites=0 nativeTimerDispatches=1000 extraRootShows=0\nTRANSITION gamepad=true threatOnly=false policy=0 cycles=500 threatResurrections=500 rootResurrections=500 frameGrowth=0 timerCreates=500 typeCalls=0 sessionCalls=0 entryWalks=0 nativePolicyWrites=0 nativeTimerDispatches=1000 extraRootShows=1500\nTRANSITION gamepad=true threatOnly=false policy=2 cycles=500 threatResurrections=500 rootResurrections=0 frameGrowth=0 timerCreates=0 typeCalls=0 sessionCalls=0 entryWalks=0 nativePolicyWrites=0 nativeTimerDispatches=1000 extraRootShows=0\nTRANSITION gamepad=true threatOnly=true policy=0 cycles=500 threatResurrections=500 rootResurrections=0 frameGrowth=0 timerCreates=0 typeCalls=0 sessionCalls=0 entryWalks=0 nativePolicyWrites=0 nativeTimerDispatches=1000 extraRootShows=1000\nTRANSITION gamepad=true threatOnly=true policy=2 cycles=500 threatResurrections=500 rootResurrections=0 frameGrowth=0 timerCreates=0 typeCalls=0 sessionCalls=0 entryWalks=0 nativePolicyWrites=0 nativeTimerDispatches=1000 extraRootShows=0\n",
+          "stderr": ""
+        }
+      }
+    },
+    {
+      "repetition": 5,
+      "order": [
+        "baseline",
+        "candidate"
+      ],
+      "baseline": {
+        "regression": {
+          "exitCode": 1,
+          "processSeconds": 1.0238002999976743,
+          "stdout": "meter visibility: policyWrites=0 setterCalls=0 nativeEvents=4032 timerDispatches=4032 repeatedAddonRootShows=0 timerWrites=8064 pinnedNative=false\nFAIL tab hide gamepad=false threatOnly=false policy=0 onHide hides both panes before activeTab changes\nFAIL tab hide gamepad=false threatOnly=false policy=0 native refresh cannot undo explicit Hide during tab transition\nFAIL tab hide gamepad=false threatOnly=false policy=0 repeated tab transitions reuse frames without timers or content rebuilds\nFAIL tab hide gamepad=false threatOnly=false policy=2 onHide hides both panes before activeTab changes\nFAIL tab hide gamepad=false threatOnly=false policy=2 native refresh cannot undo explicit Hide during tab transition\nFAIL tab hide gamepad=false threatOnly=true policy=0 onHide hides both panes before activeTab changes\nFAIL tab hide gamepad=false threatOnly=true policy=0 native refresh cannot undo explicit Hide during tab transition\nFAIL tab hide gamepad=false threatOnly=true policy=2 onHide hides both panes before activeTab changes\nFAIL tab hide gamepad=false threatOnly=true policy=2 native refresh cannot undo explicit Hide during tab transition\nFAIL tab hide gamepad=true threatOnly=false policy=0 onHide hides both panes before activeTab changes\nFAIL tab hide gamepad=true threatOnly=false policy=0 native refresh cannot undo explicit Hide during tab transition\nFAIL tab hide gamepad=true threatOnly=false policy=0 repeated tab transitions reuse frames without timers or content rebuilds\nFAIL tab hide gamepad=true threatOnly=false policy=2 onHide hides both panes before activeTab changes\nFAIL tab hide gamepad=true threatOnly=false policy=2 native refresh cannot undo explicit Hide during tab transition\nFAIL tab hide gamepad=true threatOnly=true policy=0 onHide hides both panes before activeTab changes\nFAIL tab hide gamepad=true threatOnly=true policy=0 native refresh cannot undo explicit Hide during tab transition\nFAIL tab hide gamepad=true threatOnly=true policy=2 onHide hides both panes before activeTab changes\nFAIL tab hide gamepad=true threatOnly=true policy=2 native refresh cannot undo explicit Hide during tab transition\nFAIL explicit Hide prevents all repeated pane resurrections before activeTab changes\nmeter tab transitions: cycles=4000 threatResurrections=4000 rootResurrections=1000\nnative meter ownership: 429 checks, 19 failures; geometry typeCalls=0 sessionCalls=0 entryWalks=0 gamepadPatchTimers=0\n",
+          "stderr": ""
+        },
+        "resources": {
+          "exitCode": 0,
+          "processSeconds": 0.09870809997664765,
+          "stdout": "TRANSITION gamepad=false threatOnly=false policy=0 cycles=500 threatResurrections=500 rootResurrections=500 frameGrowth=0 timerCreates=500 typeCalls=0 sessionCalls=0 entryWalks=0 nativePolicyWrites=0 nativeTimerDispatches=1000 extraRootShows=1500\nTRANSITION gamepad=false threatOnly=false policy=2 cycles=500 threatResurrections=500 rootResurrections=0 frameGrowth=0 timerCreates=0 typeCalls=0 sessionCalls=0 entryWalks=0 nativePolicyWrites=0 nativeTimerDispatches=1000 extraRootShows=0\nTRANSITION gamepad=false threatOnly=true policy=0 cycles=500 threatResurrections=500 rootResurrections=0 frameGrowth=0 timerCreates=0 typeCalls=0 sessionCalls=0 entryWalks=0 nativePolicyWrites=0 nativeTimerDispatches=1000 extraRootShows=1000\nTRANSITION gamepad=false threatOnly=true policy=2 cycles=500 threatResurrections=500 rootResurrections=0 frameGrowth=0 timerCreates=0 typeCalls=0 sessionCalls=0 entryWalks=0 nativePolicyWrites=0 nativeTimerDispatches=1000 extraRootShows=0\nTRANSITION gamepad=true threatOnly=false policy=0 cycles=500 threatResurrections=500 rootResurrections=500 frameGrowth=0 timerCreates=500 typeCalls=0 sessionCalls=0 entryWalks=0 nativePolicyWrites=0 nativeTimerDispatches=1000 extraRootShows=1500\nTRANSITION gamepad=true threatOnly=false policy=2 cycles=500 threatResurrections=500 rootResurrections=0 frameGrowth=0 timerCreates=0 typeCalls=0 sessionCalls=0 entryWalks=0 nativePolicyWrites=0 nativeTimerDispatches=1000 extraRootShows=0\nTRANSITION gamepad=true threatOnly=true policy=0 cycles=500 threatResurrections=500 rootResurrections=0 frameGrowth=0 timerCreates=0 typeCalls=0 sessionCalls=0 entryWalks=0 nativePolicyWrites=0 nativeTimerDispatches=1000 extraRootShows=1000\nTRANSITION gamepad=true threatOnly=true policy=2 cycles=500 threatResurrections=500 rootResurrections=0 frameGrowth=0 timerCreates=0 typeCalls=0 sessionCalls=0 entryWalks=0 nativePolicyWrites=0 nativeTimerDispatches=1000 extraRootShows=0\n",
+          "stderr": ""
+        }
+      },
+      "candidate": {
+        "regression": {
+          "exitCode": 0,
+          "processSeconds": 0.1413716000097338,
+          "stdout": "meter visibility: policyWrites=0 setterCalls=0 nativeEvents=4032 timerDispatches=4032 repeatedAddonRootShows=0 timerWrites=8064 pinnedNative=false\nmeter tab transitions: cycles=4000 threatResurrections=0 rootResurrections=0\nnative meter ownership: 429 checks, 0 failures; geometry typeCalls=0 sessionCalls=0 entryWalks=0 gamepadPatchTimers=0\n",
+          "stderr": ""
+        },
+        "resources": {
+          "exitCode": 0,
+          "processSeconds": 0.0947026000067126,
+          "stdout": "TRANSITION gamepad=false threatOnly=false policy=0 cycles=500 threatResurrections=0 rootResurrections=0 frameGrowth=0 timerCreates=0 typeCalls=0 sessionCalls=0 entryWalks=0 nativePolicyWrites=0 nativeTimerDispatches=1000 extraRootShows=1500\nTRANSITION gamepad=false threatOnly=false policy=2 cycles=500 threatResurrections=0 rootResurrections=0 frameGrowth=0 timerCreates=0 typeCalls=0 sessionCalls=0 entryWalks=0 nativePolicyWrites=0 nativeTimerDispatches=1000 extraRootShows=0\nTRANSITION gamepad=false threatOnly=true policy=0 cycles=500 threatResurrections=0 rootResurrections=0 frameGrowth=0 timerCreates=0 typeCalls=0 sessionCalls=0 entryWalks=0 nativePolicyWrites=0 nativeTimerDispatches=1000 extraRootShows=1000\nTRANSITION gamepad=false threatOnly=true policy=2 cycles=500 threatResurrections=0 rootResurrections=0 frameGrowth=0 timerCreates=0 typeCalls=0 sessionCalls=0 entryWalks=0 nativePolicyWrites=0 nativeTimerDispatches=1000 extraRootShows=0\nTRANSITION gamepad=true threatOnly=false policy=0 cycles=500 threatResurrections=0 rootResurrections=0 frameGrowth=0 timerCreates=0 typeCalls=0 sessionCalls=0 entryWalks=0 nativePolicyWrites=0 nativeTimerDispatches=1000 extraRootShows=1500\nTRANSITION gamepad=true threatOnly=false policy=2 cycles=500 threatResurrections=0 rootResurrections=0 frameGrowth=0 timerCreates=0 typeCalls=0 sessionCalls=0 entryWalks=0 nativePolicyWrites=0 nativeTimerDispatches=1000 extraRootShows=0\nTRANSITION gamepad=true threatOnly=true policy=0 cycles=500 threatResurrections=0 rootResurrections=0 frameGrowth=0 timerCreates=0 typeCalls=0 sessionCalls=0 entryWalks=0 nativePolicyWrites=0 nativeTimerDispatches=1000 extraRootShows=1000\nTRANSITION gamepad=true threatOnly=true policy=2 cycles=500 threatResurrections=0 rootResurrections=0 frameGrowth=0 timerCreates=0 typeCalls=0 sessionCalls=0 entryWalks=0 nativePolicyWrites=0 nativeTimerDispatches=1000 extraRootShows=0\n",
+          "stderr": ""
+        }
+      }
+    }
+  ],
+  "mutants": [
+    {
+      "name": "ignore_hide_request",
+      "sourceRawSHA256": "2d25c9ca4d48981aba4db8dd11ef4bd9fc303f89c13c6a978dd4c0f653c6b611",
+      "exitCode": 1,
+      "processSeconds": 0.19179320000694133,
+      "stdout": "meter visibility: policyWrites=0 setterCalls=0 nativeEvents=4032 timerDispatches=4032 repeatedAddonRootShows=0 timerWrites=8064 pinnedNative=false\nFAIL tab hide gamepad=false threatOnly=false policy=0 onHide hides both panes before activeTab changes\nFAIL tab hide gamepad=false threatOnly=false policy=0 native refresh cannot undo explicit Hide during tab transition\nFAIL tab hide gamepad=false threatOnly=false policy=0 repeated tab transitions reuse frames without timers or content rebuilds\nFAIL tab hide gamepad=false threatOnly=false policy=2 onHide hides both panes before activeTab changes\nFAIL tab hide gamepad=false threatOnly=false policy=2 native refresh cannot undo explicit Hide during tab transition\nFAIL tab hide gamepad=false threatOnly=true policy=0 onHide hides both panes before activeTab changes\nFAIL tab hide gamepad=false threatOnly=true policy=0 native refresh cannot undo explicit Hide during tab transition\nFAIL tab hide gamepad=false threatOnly=true policy=2 onHide hides both panes before activeTab changes\nFAIL tab hide gamepad=false threatOnly=true policy=2 native refresh cannot undo explicit Hide during tab transition\nFAIL tab hide gamepad=true threatOnly=false policy=0 onHide hides both panes before activeTab changes\nFAIL tab hide gamepad=true threatOnly=false policy=0 native refresh cannot undo explicit Hide during tab transition\nFAIL tab hide gamepad=true threatOnly=false policy=0 repeated tab transitions reuse frames without timers or content rebuilds\nFAIL tab hide gamepad=true threatOnly=false policy=2 onHide hides both panes before activeTab changes\nFAIL tab hide gamepad=true threatOnly=false policy=2 native refresh cannot undo explicit Hide during tab transition\nFAIL tab hide gamepad=true threatOnly=true policy=0 onHide hides both panes before activeTab changes\nFAIL tab hide gamepad=true threatOnly=true policy=0 native refresh cannot undo explicit Hide during tab transition\nFAIL tab hide gamepad=true threatOnly=true policy=2 onHide hides both panes before activeTab changes\nFAIL tab hide gamepad=true threatOnly=true policy=2 native refresh cannot undo explicit Hide during tab transition\nFAIL explicit Hide prevents all repeated pane resurrections before activeTab changes\nmeter tab transitions: cycles=4000 threatResurrections=4000 rootResurrections=1000\nnative meter ownership: 429 checks, 19 failures; geometry typeCalls=0 sessionCalls=0 entryWalks=0 gamepadPatchTimers=0\n",
+      "stderr": ""
+    },
+    {
+      "name": "ignore_hidden_visibility_guard",
+      "sourceRawSHA256": "416ab10221bac3364de1ee5d8bfd3c98b0fb2c64225ec8ff35f779bb5f622aa6",
+      "exitCode": 1,
+      "processSeconds": 0.21783599999616854,
+      "stdout": "meter visibility: policyWrites=0 setterCalls=0 nativeEvents=4032 timerDispatches=4032 repeatedAddonRootShows=0 timerWrites=8064 pinnedNative=false\nFAIL tab hide gamepad=false threatOnly=false policy=0 onHide hides both panes before activeTab changes\nFAIL tab hide gamepad=false threatOnly=false policy=0 native refresh cannot undo explicit Hide during tab transition\nFAIL tab hide gamepad=false threatOnly=false policy=0 repeated tab transitions reuse frames without timers or content rebuilds\nFAIL tab hide gamepad=false threatOnly=false policy=2 onHide hides both panes before activeTab changes\nFAIL tab hide gamepad=false threatOnly=false policy=2 native refresh cannot undo explicit Hide during tab transition\nFAIL tab hide gamepad=false threatOnly=true policy=0 onHide hides both panes before activeTab changes\nFAIL tab hide gamepad=false threatOnly=true policy=0 native refresh cannot undo explicit Hide during tab transition\nFAIL tab hide gamepad=false threatOnly=true policy=2 onHide hides both panes before activeTab changes\nFAIL tab hide gamepad=false threatOnly=true policy=2 native refresh cannot undo explicit Hide during tab transition\nFAIL tab hide gamepad=true threatOnly=false policy=0 onHide hides both panes before activeTab changes\nFAIL tab hide gamepad=true threatOnly=false policy=0 native refresh cannot undo explicit Hide during tab transition\nFAIL tab hide gamepad=true threatOnly=false policy=0 repeated tab transitions reuse frames without timers or content rebuilds\nFAIL tab hide gamepad=true threatOnly=false policy=2 onHide hides both panes before activeTab changes\nFAIL tab hide gamepad=true threatOnly=false policy=2 native refresh cannot undo explicit Hide during tab transition\nFAIL tab hide gamepad=true threatOnly=true policy=0 onHide hides both panes before activeTab changes\nFAIL tab hide gamepad=true threatOnly=true policy=0 native refresh cannot undo explicit Hide during tab transition\nFAIL tab hide gamepad=true threatOnly=true policy=2 onHide hides both panes before activeTab changes\nFAIL tab hide gamepad=true threatOnly=true policy=2 native refresh cannot undo explicit Hide during tab transition\nFAIL explicit Hide prevents all repeated pane resurrections before activeTab changes\nmeter tab transitions: cycles=4000 threatResurrections=4000 rootResurrections=1000\nnative meter ownership: 429 checks, 19 failures; geometry typeCalls=0 sessionCalls=0 entryWalks=0 gamepadPatchTimers=0\n",
+      "stderr": ""
+    },
+    {
+      "name": "never_resume_show",
+      "sourceRawSHA256": "642657abcde557b5e7cde7d041cf324170ed6b309de205ad56403f0ac6fff392",
+      "exitCode": 1,
+      "processSeconds": 0.18654950000927784,
+      "stdout": "FAIL policy=0 setter=false active combat tab can reopen under native policy\nFAIL policy=0 setter=false native combat exit restores configured policy\nFAIL policy=0 setter=false native group policy remains available\nFAIL policy=0 setter=true active combat tab can reopen under native policy\nFAIL policy=0 setter=true native combat exit restores configured policy\nFAIL policy=0 setter=true native group policy remains available\nFAIL policy=1 setter=false active combat tab can reopen under native policy\nFAIL policy=1 setter=true active combat tab can reopen under native policy\nFAIL policy=3 setter=false native group policy remains available\nFAIL policy=3 setter=true native group policy remains available\nmeter visibility: policyWrites=0 setterCalls=0 nativeEvents=4032 timerDispatches=4032 repeatedAddonRootShows=0 timerWrites=8064 pinnedNative=false\nFAIL tab hide gamepad=false threatOnly=false policy=0 explicit Show restores the selected panes\nFAIL tab hide gamepad=false threatOnly=false policy=2 explicit Show restores the selected panes\nFAIL tab hide gamepad=false threatOnly=true policy=0 explicit Show restores the selected panes\nFAIL tab hide gamepad=false threatOnly=true policy=2 explicit Show restores the selected panes\nFAIL tab hide gamepad=true threatOnly=false policy=0 explicit Show restores the selected panes\nFAIL tab hide gamepad=true threatOnly=false policy=2 explicit Show restores the selected panes\nFAIL tab hide gamepad=true threatOnly=true policy=0 explicit Show restores the selected panes\nFAIL tab hide gamepad=true threatOnly=true policy=2 explicit Show restores the selected panes\nmeter tab transitions: cycles=4000 threatResurrections=0 rootResurrections=0\nnative meter ownership: 429 checks, 18 failures; geometry typeCalls=0 sessionCalls=0 entryWalks=0 gamepadPatchTimers=0\n",
+      "stderr": ""
+    },
+    {
+      "name": "never_resume_embed",
+      "sourceRawSHA256": "2a0e6f0e6b49484e259f27306b77c64d086c4650d48e57eb425836572673a467",
+      "exitCode": 1,
+      "processSeconds": 0.20428940001875162,
+      "stdout": "meter visibility: policyWrites=0 setterCalls=0 nativeEvents=4032 timerDispatches=4032 repeatedAddonRootShows=0 timerWrites=8064 pinnedNative=false\nFAIL tab hide gamepad=false threatOnly=false policy=0 a new Embed resumes explicit display\nFAIL tab hide gamepad=false threatOnly=false policy=0 re-embed after cleanup restores owned threat\nFAIL tab hide gamepad=false threatOnly=false policy=2 a new Embed resumes explicit display\nFAIL tab hide gamepad=false threatOnly=false policy=2 re-embed after cleanup restores owned threat\nFAIL tab hide gamepad=false threatOnly=true policy=0 a new Embed resumes explicit display\nFAIL tab hide gamepad=false threatOnly=true policy=0 re-embed after cleanup restores owned threat\nFAIL tab hide gamepad=false threatOnly=true policy=2 a new Embed resumes explicit display\nFAIL tab hide gamepad=false threatOnly=true policy=2 re-embed after cleanup restores owned threat\nFAIL tab hide gamepad=true threatOnly=false policy=0 a new Embed resumes explicit display\nFAIL tab hide gamepad=true threatOnly=false policy=0 re-embed after cleanup restores owned threat\nFAIL tab hide gamepad=true threatOnly=false policy=2 a new Embed resumes explicit display\nFAIL tab hide gamepad=true threatOnly=false policy=2 re-embed after cleanup restores owned threat\nFAIL tab hide gamepad=true threatOnly=true policy=0 a new Embed resumes explicit display\nFAIL tab hide gamepad=true threatOnly=true policy=0 re-embed after cleanup restores owned threat\nFAIL tab hide gamepad=true threatOnly=true policy=2 a new Embed resumes explicit display\nFAIL tab hide gamepad=true threatOnly=true policy=2 re-embed after cleanup restores owned threat\nmeter tab transitions: cycles=4000 threatResurrections=0 rootResurrections=0\nnative meter ownership: 429 checks, 16 failures; geometry typeCalls=0 sessionCalls=0 entryWalks=0 gamepadPatchTimers=0\n",
+      "stderr": ""
+    }
+  ],
+  "candidateHashesAfter": {
+    "Battlezonemap\\FluxBlizzardMeter.lua": "07acfae4ed9090c8e6226e140062e254cfef9ec8ca6fca64033ee71228750a8a",
+    "tests\\native_meter_ownership.lua": "f4e906aae7439623e9c874f55dfeef6ec822e029b920b37add485def8d3525f7",
+    "Battlezonemap\\FluxThreatMeter.lua": "478d82e865a9b49ccf720e60b50b7aa66154c9eabd44c2f0ab41a4be268f7cc7",
+    "tests\\standalone_threat_meter.lua": "8254fa92c49c6535995d482e047ce8876fe0e0991ac5007a86011442da52e009"
+  },
+  "sourceUnchanged": true,
+  "result": "PASS:429 checks in every candidate;baseline19 failures;five matched pairs;four rejected mutants;4000 transition resurrections reduced to zero",
+  "baselineProcessSeconds": {
+    "raw": [
+      0.15374470001552254,
+      0.15562859998317435,
+      0.160457200021483,
+      0.157581699982984,
+      1.0238002999976743
+    ],
+    "median": 0.157581699982984,
+    "min": 0.15374470001552254,
+    "max": 1.0238002999976743
+  },
+  "candidateProcessSeconds": {
+    "raw": [
+      0.15670540000428446,
+      0.15938340002321638,
+      0.14727009998750873,
+      0.15584379999199882,
+      0.1413716000097338
+    ],
+    "median": 0.15584379999199882,
+    "min": 0.1413716000097338,
+    "max": 0.15938340002321638
+  }
+}

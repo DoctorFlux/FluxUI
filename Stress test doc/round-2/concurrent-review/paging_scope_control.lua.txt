@@ -1,0 +1,18 @@
+-- Correct the old work probe's client-label assumption without changing its
+-- historical evidence. Reuse its fixture, then vary PagingWorks independently.
+local file=assert(io.open("Stress test doc/round-2/modifier-storm/consumer_budgets.lua.txt","rb"));local source=file:read("*a");file:close()
+local at=assert(source:find("local totals=",1,true));local prefix=source:sub(1,at-1)
+local before="    return s\nend\n"
+local pos=assert(prefix:find(before,1,true))
+prefix=prefix:sub(1,pos-1).."    s.flux=flux;return s\nend\n"..prefix:sub(pos+#before)
+local fixture=assert(load(prefix.."\nreturn barsFixture","@existing-consumer-fixture-export","t",_G))()
+local checks=0;local function check(v,why)checks=checks+1;assert(v,why)end
+for _,supported in ipairs({false,true})do for _,combat in ipairs({false,true})do
+    local s=fixture("forever",combat,57)
+    s.flux.Restricted.PagingWorks=function()return supported end
+    for i=1,256 do s.mask=i%8;s.event("MODIFIER_STATE_CHANGED")end
+    check(s.hostVisits==((combat or not supported)and 57*256 or 0),"Watch selects by paging capability, not the Forever label")
+    check(s.writes==((not combat and not supported)and 57*256*26 or 0),"supported out-of-combat paging avoids insecure restamp")
+    print(("PAGING_SCOPE|supported=%s|combat=%s|events=256|host_visits=%d|SetAttribute_calls=%d"):format(tostring(supported),tostring(combat),s.hostVisits,s.writes))
+end end
+print("CHECKS|"..checks.."|native_paging_capability_capture=NOT_RUN")

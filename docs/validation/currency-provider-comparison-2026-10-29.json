@@ -1,0 +1,3020 @@
+{
+  "change": "BUG-001 / PERF-001",
+  "baselineCommit": "7436820453d2248c84c99fff71507553efc47c19",
+  "baselineTree": "6e3af8d646a09ce2182ffd6d2cc287890584825a",
+  "candidateIdentity": "runtime commit and tree below; later audit documentation commits do not change runtime",
+  "sourceHashes": {
+    "tests/fixtures/currency_provider_before.txt": "bc8efcd0265113188f5fff9268dd7656f8c41345adaf6627e9f27f28dc5736c5",
+    "Inventory/Builtin/Currency.lua": "05f58413f8733b481d2784c37a9fe1bc301341e64a6f02692bd940b58c6daa31",
+    "Inventory/Store.lua": "2e6cb7e3e5235287dd7de590882a333866c0ddcce09c44f0755e5fc344ba35a2",
+    "Inventory/Syndicator/Adapter.lua": "6484933439a0830fb1c652054bc1384b9e66a824e58f684427ba31cc91f3d078",
+    "tests/currency_provider_handoff.lua": "cabde189544c785e8bdc6ba5b375119cd43ae7fe923f52583f1d165611449752"
+  },
+  "environment": {
+    "os": "Windows-10-10.0.26200-SP0",
+    "cpu": "12th Gen Intel Core i7-12700F",
+    "logicalProcessors": 20,
+    "ramGpu": "unavailable: sandbox CIM denied",
+    "lua": "5.4.6",
+    "python": "3.10.6",
+    "client": "desktop capability mocks; no native build running",
+    "addons": "production Store/Currency/Syndicator adapter with mocked unrelated regions; no native addon list",
+    "settings": "fixed synthetic fixtures, private settings unused",
+    "profiler": "off; deterministic counters, process wall time advisory only",
+    "warmup": "fresh harness startup, builtin synchronous money, pending provider and currency refresh before measured burst",
+    "duration": "100 rounds x 4 events, 5 repetitions per model in each fresh process",
+    "pairOrder": "B,C repeated 5 times",
+    "metricsUnavailable": [
+      "native addon CPU",
+      "attributed allocations/memory",
+      "native operation latency",
+      "frame times/FPS",
+      "screenshots"
+    ],
+    "resourceException": "4 gated shared event callbacks retained; no new frames or timers in changed code"
+  },
+  "status": "PASS desktop correctness and operation budget; native performance/parity pending",
+  "samples": [
+    {
+      "pair": 1,
+      "variant": "baseline",
+      "command": [
+        "lua",
+        "tests/currency_provider_handoff.lua",
+        "--source",
+        "tests/fixtures/currency_provider_before.txt",
+        "--measure"
+      ],
+      "elapsedProcessSeconds": 0.026165299997956026,
+      "exit": 0,
+      "measurements": [
+        {
+          "clientModel": "era",
+          "repetition": 1,
+          "events": 400,
+          "moneyReads": 100,
+          "requests": 300,
+          "scans": 0,
+          "money": 654,
+          "generationDelta": 100
+        },
+        {
+          "clientModel": "era",
+          "repetition": 2,
+          "events": 400,
+          "moneyReads": 100,
+          "requests": 300,
+          "scans": 0,
+          "money": 654,
+          "generationDelta": 100
+        },
+        {
+          "clientModel": "era",
+          "repetition": 3,
+          "events": 400,
+          "moneyReads": 100,
+          "requests": 300,
+          "scans": 0,
+          "money": 654,
+          "generationDelta": 100
+        },
+        {
+          "clientModel": "era",
+          "repetition": 4,
+          "events": 400,
+          "moneyReads": 100,
+          "requests": 300,
+          "scans": 0,
+          "money": 654,
+          "generationDelta": 100
+        },
+        {
+          "clientModel": "era",
+          "repetition": 5,
+          "events": 400,
+          "moneyReads": 100,
+          "requests": 300,
+          "scans": 0,
+          "money": 654,
+          "generationDelta": 100
+        },
+        {
+          "clientModel": "anniversary",
+          "repetition": 1,
+          "events": 400,
+          "moneyReads": 100,
+          "requests": 300,
+          "scans": 0,
+          "money": 654,
+          "generationDelta": 100
+        },
+        {
+          "clientModel": "anniversary",
+          "repetition": 2,
+          "events": 400,
+          "moneyReads": 100,
+          "requests": 300,
+          "scans": 0,
+          "money": 654,
+          "generationDelta": 100
+        },
+        {
+          "clientModel": "anniversary",
+          "repetition": 3,
+          "events": 400,
+          "moneyReads": 100,
+          "requests": 300,
+          "scans": 0,
+          "money": 654,
+          "generationDelta": 100
+        },
+        {
+          "clientModel": "anniversary",
+          "repetition": 4,
+          "events": 400,
+          "moneyReads": 100,
+          "requests": 300,
+          "scans": 0,
+          "money": 654,
+          "generationDelta": 100
+        },
+        {
+          "clientModel": "anniversary",
+          "repetition": 5,
+          "events": 400,
+          "moneyReads": 100,
+          "requests": 300,
+          "scans": 0,
+          "money": 654,
+          "generationDelta": 100
+        },
+        {
+          "clientModel": "mists",
+          "repetition": 1,
+          "events": 400,
+          "moneyReads": 100,
+          "requests": 300,
+          "scans": 0,
+          "money": 654,
+          "generationDelta": 100
+        },
+        {
+          "clientModel": "mists",
+          "repetition": 2,
+          "events": 400,
+          "moneyReads": 100,
+          "requests": 300,
+          "scans": 0,
+          "money": 654,
+          "generationDelta": 100
+        },
+        {
+          "clientModel": "mists",
+          "repetition": 3,
+          "events": 400,
+          "moneyReads": 100,
+          "requests": 300,
+          "scans": 0,
+          "money": 654,
+          "generationDelta": 100
+        },
+        {
+          "clientModel": "mists",
+          "repetition": 4,
+          "events": 400,
+          "moneyReads": 100,
+          "requests": 300,
+          "scans": 0,
+          "money": 654,
+          "generationDelta": 100
+        },
+        {
+          "clientModel": "mists",
+          "repetition": 5,
+          "events": 400,
+          "moneyReads": 100,
+          "requests": 300,
+          "scans": 0,
+          "money": 654,
+          "generationDelta": 100
+        },
+        {
+          "clientModel": "retail",
+          "repetition": 1,
+          "events": 400,
+          "moneyReads": 100,
+          "requests": 400,
+          "scans": 0,
+          "money": 654,
+          "generationDelta": 100
+        },
+        {
+          "clientModel": "retail",
+          "repetition": 2,
+          "events": 400,
+          "moneyReads": 100,
+          "requests": 400,
+          "scans": 0,
+          "money": 654,
+          "generationDelta": 100
+        },
+        {
+          "clientModel": "retail",
+          "repetition": 3,
+          "events": 400,
+          "moneyReads": 100,
+          "requests": 400,
+          "scans": 0,
+          "money": 654,
+          "generationDelta": 100
+        },
+        {
+          "clientModel": "retail",
+          "repetition": 4,
+          "events": 400,
+          "moneyReads": 100,
+          "requests": 400,
+          "scans": 0,
+          "money": 654,
+          "generationDelta": 100
+        },
+        {
+          "clientModel": "retail",
+          "repetition": 5,
+          "events": 400,
+          "moneyReads": 100,
+          "requests": 400,
+          "scans": 0,
+          "money": 654,
+          "generationDelta": 100
+        },
+        {
+          "clientModel": "forever",
+          "repetition": 1,
+          "events": 400,
+          "moneyReads": 100,
+          "requests": 400,
+          "scans": 0,
+          "money": 654,
+          "generationDelta": 100
+        },
+        {
+          "clientModel": "forever",
+          "repetition": 2,
+          "events": 400,
+          "moneyReads": 100,
+          "requests": 400,
+          "scans": 0,
+          "money": 654,
+          "generationDelta": 100
+        },
+        {
+          "clientModel": "forever",
+          "repetition": 3,
+          "events": 400,
+          "moneyReads": 100,
+          "requests": 400,
+          "scans": 0,
+          "money": 654,
+          "generationDelta": 100
+        },
+        {
+          "clientModel": "forever",
+          "repetition": 4,
+          "events": 400,
+          "moneyReads": 100,
+          "requests": 400,
+          "scans": 0,
+          "money": 654,
+          "generationDelta": 100
+        },
+        {
+          "clientModel": "forever",
+          "repetition": 5,
+          "events": 400,
+          "moneyReads": 100,
+          "requests": 400,
+          "scans": 0,
+          "money": 654,
+          "generationDelta": 100
+        }
+      ],
+      "stdout": "era repetition=1 events=400 moneyReads=100 requests=300 scans=0 money=654 generationDelta=100\nera repetition=2 events=400 moneyReads=100 requests=300 scans=0 money=654 generationDelta=100\nera repetition=3 events=400 moneyReads=100 requests=300 scans=0 money=654 generationDelta=100\nera repetition=4 events=400 moneyReads=100 requests=300 scans=0 money=654 generationDelta=100\nera repetition=5 events=400 moneyReads=100 requests=300 scans=0 money=654 generationDelta=100\nanniversary repetition=1 events=400 moneyReads=100 requests=300 scans=0 money=654 generationDelta=100\nanniversary repetition=2 events=400 moneyReads=100 requests=300 scans=0 money=654 generationDelta=100\nanniversary repetition=3 events=400 moneyReads=100 requests=300 scans=0 money=654 generationDelta=100\nanniversary repetition=4 events=400 moneyReads=100 requests=300 scans=0 money=654 generationDelta=100\nanniversary repetition=5 events=400 moneyReads=100 requests=300 scans=0 money=654 generationDelta=100\nmists repetition=1 events=400 moneyReads=100 requests=300 scans=0 money=654 generationDelta=100\nmists repetition=2 events=400 moneyReads=100 requests=300 scans=0 money=654 generationDelta=100\nmists repetition=3 events=400 moneyReads=100 requests=300 scans=0 money=654 generationDelta=100\nmists repetition=4 events=400 moneyReads=100 requests=300 scans=0 money=654 generationDelta=100\nmists repetition=5 events=400 moneyReads=100 requests=300 scans=0 money=654 generationDelta=100\nretail repetition=1 events=400 moneyReads=100 requests=400 scans=0 money=654 generationDelta=100\nretail repetition=2 events=400 moneyReads=100 requests=400 scans=0 money=654 generationDelta=100\nretail repetition=3 events=400 moneyReads=100 requests=400 scans=0 money=654 generationDelta=100\nretail repetition=4 events=400 moneyReads=100 requests=400 scans=0 money=654 generationDelta=100\nretail repetition=5 events=400 moneyReads=100 requests=400 scans=0 money=654 generationDelta=100\nforever repetition=1 events=400 moneyReads=100 requests=400 scans=0 money=654 generationDelta=100\nforever repetition=2 events=400 moneyReads=100 requests=400 scans=0 money=654 generationDelta=100\nforever repetition=3 events=400 moneyReads=100 requests=400 scans=0 money=654 generationDelta=100\nforever repetition=4 events=400 moneyReads=100 requests=400 scans=0 money=654 generationDelta=100\nforever repetition=5 events=400 moneyReads=100 requests=400 scans=0 money=654 generationDelta=100\ncurrency provider handoff: 150 checks, 50 failures; desktop operation counts only\nFAIL era handed-off builtin events perform no currency work (run 1)\nFAIL era builtin events preserve provider snapshots (run 1)\nFAIL era handed-off builtin events perform no currency work (run 2)\nFAIL era builtin events preserve provider snapshots (run 2)\nFAIL era handed-off builtin events perform no currency work (run 3)\nFAIL era builtin events preserve provider snapshots (run 3)\nFAIL era handed-off builtin events perform no currency work (run 4)\nFAIL era builtin events preserve provider snapshots (run 4)\nFAIL era handed-off builtin events perform no currency work (run 5)\nFAIL era builtin events preserve provider snapshots (run 5)\nFAIL anniversary handed-off builtin events perform no currency work (run 1)\nFAIL anniversary builtin events preserve provider snapshots (run 1)\nFAIL anniversary handed-off builtin events perform no currency work (run 2)\nFAIL anniversary builtin events preserve provider snapshots (run 2)\nFAIL anniversary handed-off builtin events perform no currency work (run 3)\nFAIL anniversary builtin events preserve provider snapshots (run 3)\nFAIL anniversary handed-off builtin events perform no currency work (run 4)\nFAIL anniversary builtin events preserve provider snapshots (run 4)\nFAIL anniversary handed-off builtin events perform no currency work (run 5)\nFAIL anniversary builtin events preserve provider snapshots (run 5)\nFAIL mists handed-off builtin events perform no currency work (run 1)\nFAIL mists builtin events preserve provider snapshots (run 1)\nFAIL mists handed-off builtin events perform no currency work (run 2)\nFAIL mists builtin events preserve provider snapshots (run 2)\nFAIL mists handed-off builtin events perform no currency work (run 3)\nFAIL mists builtin events preserve provider snapshots (run 3)\nFAIL mists handed-off builtin events perform no currency work (run 4)\nFAIL mists builtin events preserve provider snapshots (run 4)\nFAIL mists handed-off builtin events perform no currency work (run 5)\nFAIL mists builtin events preserve provider snapshots (run 5)\nFAIL retail handed-off builtin events perform no currency work (run 1)\nFAIL retail builtin events preserve provider snapshots (run 1)\nFAIL retail handed-off builtin events perform no currency work (run 2)\nFAIL retail builtin events preserve provider snapshots (run 2)\nFAIL retail handed-off builtin events perform no currency work (run 3)\nFAIL retail builtin events preserve provider snapshots (run 3)\nFAIL retail handed-off builtin events perform no currency work (run 4)\nFAIL retail builtin events preserve provider snapshots (run 4)\nFAIL retail handed-off builtin events perform no currency work (run 5)\nFAIL retail builtin events preserve provider snapshots (run 5)\nFAIL forever handed-off builtin events perform no currency work (run 1)\nFAIL forever builtin events preserve provider snapshots (run 1)\nFAIL forever handed-off builtin events perform no currency work (run 2)\nFAIL forever builtin events preserve provider snapshots (run 2)\nFAIL forever handed-off builtin events perform no currency work (run 3)\nFAIL forever builtin events preserve provider snapshots (run 3)\nFAIL forever handed-off builtin events perform no currency work (run 4)\nFAIL forever builtin events preserve provider snapshots (run 4)\nFAIL forever handed-off builtin events perform no currency work (run 5)\nFAIL forever builtin events preserve provider snapshots (run 5)\n",
+      "stderr": ""
+    },
+    {
+      "pair": 1,
+      "variant": "candidate",
+      "command": [
+        "lua",
+        "tests/currency_provider_handoff.lua"
+      ],
+      "elapsedProcessSeconds": 0.025562599999830127,
+      "exit": 0,
+      "measurements": [
+        {
+          "clientModel": "era",
+          "repetition": 1,
+          "events": 400,
+          "moneyReads": 0,
+          "requests": 0,
+          "scans": 0,
+          "money": 999,
+          "generationDelta": 0
+        },
+        {
+          "clientModel": "era",
+          "repetition": 2,
+          "events": 400,
+          "moneyReads": 0,
+          "requests": 0,
+          "scans": 0,
+          "money": 999,
+          "generationDelta": 0
+        },
+        {
+          "clientModel": "era",
+          "repetition": 3,
+          "events": 400,
+          "moneyReads": 0,
+          "requests": 0,
+          "scans": 0,
+          "money": 999,
+          "generationDelta": 0
+        },
+        {
+          "clientModel": "era",
+          "repetition": 4,
+          "events": 400,
+          "moneyReads": 0,
+          "requests": 0,
+          "scans": 0,
+          "money": 999,
+          "generationDelta": 0
+        },
+        {
+          "clientModel": "era",
+          "repetition": 5,
+          "events": 400,
+          "moneyReads": 0,
+          "requests": 0,
+          "scans": 0,
+          "money": 999,
+          "generationDelta": 0
+        },
+        {
+          "clientModel": "anniversary",
+          "repetition": 1,
+          "events": 400,
+          "moneyReads": 0,
+          "requests": 0,
+          "scans": 0,
+          "money": 999,
+          "generationDelta": 0
+        },
+        {
+          "clientModel": "anniversary",
+          "repetition": 2,
+          "events": 400,
+          "moneyReads": 0,
+          "requests": 0,
+          "scans": 0,
+          "money": 999,
+          "generationDelta": 0
+        },
+        {
+          "clientModel": "anniversary",
+          "repetition": 3,
+          "events": 400,
+          "moneyReads": 0,
+          "requests": 0,
+          "scans": 0,
+          "money": 999,
+          "generationDelta": 0
+        },
+        {
+          "clientModel": "anniversary",
+          "repetition": 4,
+          "events": 400,
+          "moneyReads": 0,
+          "requests": 0,
+          "scans": 0,
+          "money": 999,
+          "generationDelta": 0
+        },
+        {
+          "clientModel": "anniversary",
+          "repetition": 5,
+          "events": 400,
+          "moneyReads": 0,
+          "requests": 0,
+          "scans": 0,
+          "money": 999,
+          "generationDelta": 0
+        },
+        {
+          "clientModel": "mists",
+          "repetition": 1,
+          "events": 400,
+          "moneyReads": 0,
+          "requests": 0,
+          "scans": 0,
+          "money": 999,
+          "generationDelta": 0
+        },
+        {
+          "clientModel": "mists",
+          "repetition": 2,
+          "events": 400,
+          "moneyReads": 0,
+          "requests": 0,
+          "scans": 0,
+          "money": 999,
+          "generationDelta": 0
+        },
+        {
+          "clientModel": "mists",
+          "repetition": 3,
+          "events": 400,
+          "moneyReads": 0,
+          "requests": 0,
+          "scans": 0,
+          "money": 999,
+          "generationDelta": 0
+        },
+        {
+          "clientModel": "mists",
+          "repetition": 4,
+          "events": 400,
+          "moneyReads": 0,
+          "requests": 0,
+          "scans": 0,
+          "money": 999,
+          "generationDelta": 0
+        },
+        {
+          "clientModel": "mists",
+          "repetition": 5,
+          "events": 400,
+          "moneyReads": 0,
+          "requests": 0,
+          "scans": 0,
+          "money": 999,
+          "generationDelta": 0
+        },
+        {
+          "clientModel": "retail",
+          "repetition": 1,
+          "events": 400,
+          "moneyReads": 0,
+          "requests": 0,
+          "scans": 0,
+          "money": 999,
+          "generationDelta": 0
+        },
+        {
+          "clientModel": "retail",
+          "repetition": 2,
+          "events": 400,
+          "moneyReads": 0,
+          "requests": 0,
+          "scans": 0,
+          "money": 999,
+          "generationDelta": 0
+        },
+        {
+          "clientModel": "retail",
+          "repetition": 3,
+          "events": 400,
+          "moneyReads": 0,
+          "requests": 0,
+          "scans": 0,
+          "money": 999,
+          "generationDelta": 0
+        },
+        {
+          "clientModel": "retail",
+          "repetition": 4,
+          "events": 400,
+          "moneyReads": 0,
+          "requests": 0,
+          "scans": 0,
+          "money": 999,
+          "generationDelta": 0
+        },
+        {
+          "clientModel": "retail",
+          "repetition": 5,
+          "events": 400,
+          "moneyReads": 0,
+          "requests": 0,
+          "scans": 0,
+          "money": 999,
+          "generationDelta": 0
+        },
+        {
+          "clientModel": "forever",
+          "repetition": 1,
+          "events": 400,
+          "moneyReads": 0,
+          "requests": 0,
+          "scans": 0,
+          "money": 999,
+          "generationDelta": 0
+        },
+        {
+          "clientModel": "forever",
+          "repetition": 2,
+          "events": 400,
+          "moneyReads": 0,
+          "requests": 0,
+          "scans": 0,
+          "money": 999,
+          "generationDelta": 0
+        },
+        {
+          "clientModel": "forever",
+          "repetition": 3,
+          "events": 400,
+          "moneyReads": 0,
+          "requests": 0,
+          "scans": 0,
+          "money": 999,
+          "generationDelta": 0
+        },
+        {
+          "clientModel": "forever",
+          "repetition": 4,
+          "events": 400,
+          "moneyReads": 0,
+          "requests": 0,
+          "scans": 0,
+          "money": 999,
+          "generationDelta": 0
+        },
+        {
+          "clientModel": "forever",
+          "repetition": 5,
+          "events": 400,
+          "moneyReads": 0,
+          "requests": 0,
+          "scans": 0,
+          "money": 999,
+          "generationDelta": 0
+        }
+      ],
+      "stdout": "era repetition=1 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nera repetition=2 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nera repetition=3 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nera repetition=4 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nera repetition=5 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nanniversary repetition=1 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nanniversary repetition=2 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nanniversary repetition=3 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nanniversary repetition=4 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nanniversary repetition=5 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nmists repetition=1 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nmists repetition=2 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nmists repetition=3 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nmists repetition=4 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nmists repetition=5 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nretail repetition=1 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nretail repetition=2 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nretail repetition=3 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nretail repetition=4 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nretail repetition=5 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nforever repetition=1 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nforever repetition=2 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nforever repetition=3 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nforever repetition=4 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nforever repetition=5 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\ncurrency provider handoff: 150 checks, 0 failures; desktop operation counts only\n",
+      "stderr": ""
+    },
+    {
+      "pair": 2,
+      "variant": "baseline",
+      "command": [
+        "lua",
+        "tests/currency_provider_handoff.lua",
+        "--source",
+        "tests/fixtures/currency_provider_before.txt",
+        "--measure"
+      ],
+      "elapsedProcessSeconds": 0.024485900001309346,
+      "exit": 0,
+      "measurements": [
+        {
+          "clientModel": "era",
+          "repetition": 1,
+          "events": 400,
+          "moneyReads": 100,
+          "requests": 300,
+          "scans": 0,
+          "money": 654,
+          "generationDelta": 100
+        },
+        {
+          "clientModel": "era",
+          "repetition": 2,
+          "events": 400,
+          "moneyReads": 100,
+          "requests": 300,
+          "scans": 0,
+          "money": 654,
+          "generationDelta": 100
+        },
+        {
+          "clientModel": "era",
+          "repetition": 3,
+          "events": 400,
+          "moneyReads": 100,
+          "requests": 300,
+          "scans": 0,
+          "money": 654,
+          "generationDelta": 100
+        },
+        {
+          "clientModel": "era",
+          "repetition": 4,
+          "events": 400,
+          "moneyReads": 100,
+          "requests": 300,
+          "scans": 0,
+          "money": 654,
+          "generationDelta": 100
+        },
+        {
+          "clientModel": "era",
+          "repetition": 5,
+          "events": 400,
+          "moneyReads": 100,
+          "requests": 300,
+          "scans": 0,
+          "money": 654,
+          "generationDelta": 100
+        },
+        {
+          "clientModel": "anniversary",
+          "repetition": 1,
+          "events": 400,
+          "moneyReads": 100,
+          "requests": 300,
+          "scans": 0,
+          "money": 654,
+          "generationDelta": 100
+        },
+        {
+          "clientModel": "anniversary",
+          "repetition": 2,
+          "events": 400,
+          "moneyReads": 100,
+          "requests": 300,
+          "scans": 0,
+          "money": 654,
+          "generationDelta": 100
+        },
+        {
+          "clientModel": "anniversary",
+          "repetition": 3,
+          "events": 400,
+          "moneyReads": 100,
+          "requests": 300,
+          "scans": 0,
+          "money": 654,
+          "generationDelta": 100
+        },
+        {
+          "clientModel": "anniversary",
+          "repetition": 4,
+          "events": 400,
+          "moneyReads": 100,
+          "requests": 300,
+          "scans": 0,
+          "money": 654,
+          "generationDelta": 100
+        },
+        {
+          "clientModel": "anniversary",
+          "repetition": 5,
+          "events": 400,
+          "moneyReads": 100,
+          "requests": 300,
+          "scans": 0,
+          "money": 654,
+          "generationDelta": 100
+        },
+        {
+          "clientModel": "mists",
+          "repetition": 1,
+          "events": 400,
+          "moneyReads": 100,
+          "requests": 300,
+          "scans": 0,
+          "money": 654,
+          "generationDelta": 100
+        },
+        {
+          "clientModel": "mists",
+          "repetition": 2,
+          "events": 400,
+          "moneyReads": 100,
+          "requests": 300,
+          "scans": 0,
+          "money": 654,
+          "generationDelta": 100
+        },
+        {
+          "clientModel": "mists",
+          "repetition": 3,
+          "events": 400,
+          "moneyReads": 100,
+          "requests": 300,
+          "scans": 0,
+          "money": 654,
+          "generationDelta": 100
+        },
+        {
+          "clientModel": "mists",
+          "repetition": 4,
+          "events": 400,
+          "moneyReads": 100,
+          "requests": 300,
+          "scans": 0,
+          "money": 654,
+          "generationDelta": 100
+        },
+        {
+          "clientModel": "mists",
+          "repetition": 5,
+          "events": 400,
+          "moneyReads": 100,
+          "requests": 300,
+          "scans": 0,
+          "money": 654,
+          "generationDelta": 100
+        },
+        {
+          "clientModel": "retail",
+          "repetition": 1,
+          "events": 400,
+          "moneyReads": 100,
+          "requests": 400,
+          "scans": 0,
+          "money": 654,
+          "generationDelta": 100
+        },
+        {
+          "clientModel": "retail",
+          "repetition": 2,
+          "events": 400,
+          "moneyReads": 100,
+          "requests": 400,
+          "scans": 0,
+          "money": 654,
+          "generationDelta": 100
+        },
+        {
+          "clientModel": "retail",
+          "repetition": 3,
+          "events": 400,
+          "moneyReads": 100,
+          "requests": 400,
+          "scans": 0,
+          "money": 654,
+          "generationDelta": 100
+        },
+        {
+          "clientModel": "retail",
+          "repetition": 4,
+          "events": 400,
+          "moneyReads": 100,
+          "requests": 400,
+          "scans": 0,
+          "money": 654,
+          "generationDelta": 100
+        },
+        {
+          "clientModel": "retail",
+          "repetition": 5,
+          "events": 400,
+          "moneyReads": 100,
+          "requests": 400,
+          "scans": 0,
+          "money": 654,
+          "generationDelta": 100
+        },
+        {
+          "clientModel": "forever",
+          "repetition": 1,
+          "events": 400,
+          "moneyReads": 100,
+          "requests": 400,
+          "scans": 0,
+          "money": 654,
+          "generationDelta": 100
+        },
+        {
+          "clientModel": "forever",
+          "repetition": 2,
+          "events": 400,
+          "moneyReads": 100,
+          "requests": 400,
+          "scans": 0,
+          "money": 654,
+          "generationDelta": 100
+        },
+        {
+          "clientModel": "forever",
+          "repetition": 3,
+          "events": 400,
+          "moneyReads": 100,
+          "requests": 400,
+          "scans": 0,
+          "money": 654,
+          "generationDelta": 100
+        },
+        {
+          "clientModel": "forever",
+          "repetition": 4,
+          "events": 400,
+          "moneyReads": 100,
+          "requests": 400,
+          "scans": 0,
+          "money": 654,
+          "generationDelta": 100
+        },
+        {
+          "clientModel": "forever",
+          "repetition": 5,
+          "events": 400,
+          "moneyReads": 100,
+          "requests": 400,
+          "scans": 0,
+          "money": 654,
+          "generationDelta": 100
+        }
+      ],
+      "stdout": "era repetition=1 events=400 moneyReads=100 requests=300 scans=0 money=654 generationDelta=100\nera repetition=2 events=400 moneyReads=100 requests=300 scans=0 money=654 generationDelta=100\nera repetition=3 events=400 moneyReads=100 requests=300 scans=0 money=654 generationDelta=100\nera repetition=4 events=400 moneyReads=100 requests=300 scans=0 money=654 generationDelta=100\nera repetition=5 events=400 moneyReads=100 requests=300 scans=0 money=654 generationDelta=100\nanniversary repetition=1 events=400 moneyReads=100 requests=300 scans=0 money=654 generationDelta=100\nanniversary repetition=2 events=400 moneyReads=100 requests=300 scans=0 money=654 generationDelta=100\nanniversary repetition=3 events=400 moneyReads=100 requests=300 scans=0 money=654 generationDelta=100\nanniversary repetition=4 events=400 moneyReads=100 requests=300 scans=0 money=654 generationDelta=100\nanniversary repetition=5 events=400 moneyReads=100 requests=300 scans=0 money=654 generationDelta=100\nmists repetition=1 events=400 moneyReads=100 requests=300 scans=0 money=654 generationDelta=100\nmists repetition=2 events=400 moneyReads=100 requests=300 scans=0 money=654 generationDelta=100\nmists repetition=3 events=400 moneyReads=100 requests=300 scans=0 money=654 generationDelta=100\nmists repetition=4 events=400 moneyReads=100 requests=300 scans=0 money=654 generationDelta=100\nmists repetition=5 events=400 moneyReads=100 requests=300 scans=0 money=654 generationDelta=100\nretail repetition=1 events=400 moneyReads=100 requests=400 scans=0 money=654 generationDelta=100\nretail repetition=2 events=400 moneyReads=100 requests=400 scans=0 money=654 generationDelta=100\nretail repetition=3 events=400 moneyReads=100 requests=400 scans=0 money=654 generationDelta=100\nretail repetition=4 events=400 moneyReads=100 requests=400 scans=0 money=654 generationDelta=100\nretail repetition=5 events=400 moneyReads=100 requests=400 scans=0 money=654 generationDelta=100\nforever repetition=1 events=400 moneyReads=100 requests=400 scans=0 money=654 generationDelta=100\nforever repetition=2 events=400 moneyReads=100 requests=400 scans=0 money=654 generationDelta=100\nforever repetition=3 events=400 moneyReads=100 requests=400 scans=0 money=654 generationDelta=100\nforever repetition=4 events=400 moneyReads=100 requests=400 scans=0 money=654 generationDelta=100\nforever repetition=5 events=400 moneyReads=100 requests=400 scans=0 money=654 generationDelta=100\ncurrency provider handoff: 150 checks, 50 failures; desktop operation counts only\nFAIL era handed-off builtin events perform no currency work (run 1)\nFAIL era builtin events preserve provider snapshots (run 1)\nFAIL era handed-off builtin events perform no currency work (run 2)\nFAIL era builtin events preserve provider snapshots (run 2)\nFAIL era handed-off builtin events perform no currency work (run 3)\nFAIL era builtin events preserve provider snapshots (run 3)\nFAIL era handed-off builtin events perform no currency work (run 4)\nFAIL era builtin events preserve provider snapshots (run 4)\nFAIL era handed-off builtin events perform no currency work (run 5)\nFAIL era builtin events preserve provider snapshots (run 5)\nFAIL anniversary handed-off builtin events perform no currency work (run 1)\nFAIL anniversary builtin events preserve provider snapshots (run 1)\nFAIL anniversary handed-off builtin events perform no currency work (run 2)\nFAIL anniversary builtin events preserve provider snapshots (run 2)\nFAIL anniversary handed-off builtin events perform no currency work (run 3)\nFAIL anniversary builtin events preserve provider snapshots (run 3)\nFAIL anniversary handed-off builtin events perform no currency work (run 4)\nFAIL anniversary builtin events preserve provider snapshots (run 4)\nFAIL anniversary handed-off builtin events perform no currency work (run 5)\nFAIL anniversary builtin events preserve provider snapshots (run 5)\nFAIL mists handed-off builtin events perform no currency work (run 1)\nFAIL mists builtin events preserve provider snapshots (run 1)\nFAIL mists handed-off builtin events perform no currency work (run 2)\nFAIL mists builtin events preserve provider snapshots (run 2)\nFAIL mists handed-off builtin events perform no currency work (run 3)\nFAIL mists builtin events preserve provider snapshots (run 3)\nFAIL mists handed-off builtin events perform no currency work (run 4)\nFAIL mists builtin events preserve provider snapshots (run 4)\nFAIL mists handed-off builtin events perform no currency work (run 5)\nFAIL mists builtin events preserve provider snapshots (run 5)\nFAIL retail handed-off builtin events perform no currency work (run 1)\nFAIL retail builtin events preserve provider snapshots (run 1)\nFAIL retail handed-off builtin events perform no currency work (run 2)\nFAIL retail builtin events preserve provider snapshots (run 2)\nFAIL retail handed-off builtin events perform no currency work (run 3)\nFAIL retail builtin events preserve provider snapshots (run 3)\nFAIL retail handed-off builtin events perform no currency work (run 4)\nFAIL retail builtin events preserve provider snapshots (run 4)\nFAIL retail handed-off builtin events perform no currency work (run 5)\nFAIL retail builtin events preserve provider snapshots (run 5)\nFAIL forever handed-off builtin events perform no currency work (run 1)\nFAIL forever builtin events preserve provider snapshots (run 1)\nFAIL forever handed-off builtin events perform no currency work (run 2)\nFAIL forever builtin events preserve provider snapshots (run 2)\nFAIL forever handed-off builtin events perform no currency work (run 3)\nFAIL forever builtin events preserve provider snapshots (run 3)\nFAIL forever handed-off builtin events perform no currency work (run 4)\nFAIL forever builtin events preserve provider snapshots (run 4)\nFAIL forever handed-off builtin events perform no currency work (run 5)\nFAIL forever builtin events preserve provider snapshots (run 5)\n",
+      "stderr": ""
+    },
+    {
+      "pair": 2,
+      "variant": "candidate",
+      "command": [
+        "lua",
+        "tests/currency_provider_handoff.lua"
+      ],
+      "elapsedProcessSeconds": 0.024224200002208818,
+      "exit": 0,
+      "measurements": [
+        {
+          "clientModel": "era",
+          "repetition": 1,
+          "events": 400,
+          "moneyReads": 0,
+          "requests": 0,
+          "scans": 0,
+          "money": 999,
+          "generationDelta": 0
+        },
+        {
+          "clientModel": "era",
+          "repetition": 2,
+          "events": 400,
+          "moneyReads": 0,
+          "requests": 0,
+          "scans": 0,
+          "money": 999,
+          "generationDelta": 0
+        },
+        {
+          "clientModel": "era",
+          "repetition": 3,
+          "events": 400,
+          "moneyReads": 0,
+          "requests": 0,
+          "scans": 0,
+          "money": 999,
+          "generationDelta": 0
+        },
+        {
+          "clientModel": "era",
+          "repetition": 4,
+          "events": 400,
+          "moneyReads": 0,
+          "requests": 0,
+          "scans": 0,
+          "money": 999,
+          "generationDelta": 0
+        },
+        {
+          "clientModel": "era",
+          "repetition": 5,
+          "events": 400,
+          "moneyReads": 0,
+          "requests": 0,
+          "scans": 0,
+          "money": 999,
+          "generationDelta": 0
+        },
+        {
+          "clientModel": "anniversary",
+          "repetition": 1,
+          "events": 400,
+          "moneyReads": 0,
+          "requests": 0,
+          "scans": 0,
+          "money": 999,
+          "generationDelta": 0
+        },
+        {
+          "clientModel": "anniversary",
+          "repetition": 2,
+          "events": 400,
+          "moneyReads": 0,
+          "requests": 0,
+          "scans": 0,
+          "money": 999,
+          "generationDelta": 0
+        },
+        {
+          "clientModel": "anniversary",
+          "repetition": 3,
+          "events": 400,
+          "moneyReads": 0,
+          "requests": 0,
+          "scans": 0,
+          "money": 999,
+          "generationDelta": 0
+        },
+        {
+          "clientModel": "anniversary",
+          "repetition": 4,
+          "events": 400,
+          "moneyReads": 0,
+          "requests": 0,
+          "scans": 0,
+          "money": 999,
+          "generationDelta": 0
+        },
+        {
+          "clientModel": "anniversary",
+          "repetition": 5,
+          "events": 400,
+          "moneyReads": 0,
+          "requests": 0,
+          "scans": 0,
+          "money": 999,
+          "generationDelta": 0
+        },
+        {
+          "clientModel": "mists",
+          "repetition": 1,
+          "events": 400,
+          "moneyReads": 0,
+          "requests": 0,
+          "scans": 0,
+          "money": 999,
+          "generationDelta": 0
+        },
+        {
+          "clientModel": "mists",
+          "repetition": 2,
+          "events": 400,
+          "moneyReads": 0,
+          "requests": 0,
+          "scans": 0,
+          "money": 999,
+          "generationDelta": 0
+        },
+        {
+          "clientModel": "mists",
+          "repetition": 3,
+          "events": 400,
+          "moneyReads": 0,
+          "requests": 0,
+          "scans": 0,
+          "money": 999,
+          "generationDelta": 0
+        },
+        {
+          "clientModel": "mists",
+          "repetition": 4,
+          "events": 400,
+          "moneyReads": 0,
+          "requests": 0,
+          "scans": 0,
+          "money": 999,
+          "generationDelta": 0
+        },
+        {
+          "clientModel": "mists",
+          "repetition": 5,
+          "events": 400,
+          "moneyReads": 0,
+          "requests": 0,
+          "scans": 0,
+          "money": 999,
+          "generationDelta": 0
+        },
+        {
+          "clientModel": "retail",
+          "repetition": 1,
+          "events": 400,
+          "moneyReads": 0,
+          "requests": 0,
+          "scans": 0,
+          "money": 999,
+          "generationDelta": 0
+        },
+        {
+          "clientModel": "retail",
+          "repetition": 2,
+          "events": 400,
+          "moneyReads": 0,
+          "requests": 0,
+          "scans": 0,
+          "money": 999,
+          "generationDelta": 0
+        },
+        {
+          "clientModel": "retail",
+          "repetition": 3,
+          "events": 400,
+          "moneyReads": 0,
+          "requests": 0,
+          "scans": 0,
+          "money": 999,
+          "generationDelta": 0
+        },
+        {
+          "clientModel": "retail",
+          "repetition": 4,
+          "events": 400,
+          "moneyReads": 0,
+          "requests": 0,
+          "scans": 0,
+          "money": 999,
+          "generationDelta": 0
+        },
+        {
+          "clientModel": "retail",
+          "repetition": 5,
+          "events": 400,
+          "moneyReads": 0,
+          "requests": 0,
+          "scans": 0,
+          "money": 999,
+          "generationDelta": 0
+        },
+        {
+          "clientModel": "forever",
+          "repetition": 1,
+          "events": 400,
+          "moneyReads": 0,
+          "requests": 0,
+          "scans": 0,
+          "money": 999,
+          "generationDelta": 0
+        },
+        {
+          "clientModel": "forever",
+          "repetition": 2,
+          "events": 400,
+          "moneyReads": 0,
+          "requests": 0,
+          "scans": 0,
+          "money": 999,
+          "generationDelta": 0
+        },
+        {
+          "clientModel": "forever",
+          "repetition": 3,
+          "events": 400,
+          "moneyReads": 0,
+          "requests": 0,
+          "scans": 0,
+          "money": 999,
+          "generationDelta": 0
+        },
+        {
+          "clientModel": "forever",
+          "repetition": 4,
+          "events": 400,
+          "moneyReads": 0,
+          "requests": 0,
+          "scans": 0,
+          "money": 999,
+          "generationDelta": 0
+        },
+        {
+          "clientModel": "forever",
+          "repetition": 5,
+          "events": 400,
+          "moneyReads": 0,
+          "requests": 0,
+          "scans": 0,
+          "money": 999,
+          "generationDelta": 0
+        }
+      ],
+      "stdout": "era repetition=1 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nera repetition=2 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nera repetition=3 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nera repetition=4 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nera repetition=5 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nanniversary repetition=1 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nanniversary repetition=2 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nanniversary repetition=3 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nanniversary repetition=4 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nanniversary repetition=5 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nmists repetition=1 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nmists repetition=2 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nmists repetition=3 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nmists repetition=4 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nmists repetition=5 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nretail repetition=1 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nretail repetition=2 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nretail repetition=3 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nretail repetition=4 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nretail repetition=5 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nforever repetition=1 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nforever repetition=2 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nforever repetition=3 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nforever repetition=4 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nforever repetition=5 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\ncurrency provider handoff: 150 checks, 0 failures; desktop operation counts only\n",
+      "stderr": ""
+    },
+    {
+      "pair": 3,
+      "variant": "baseline",
+      "command": [
+        "lua",
+        "tests/currency_provider_handoff.lua",
+        "--source",
+        "tests/fixtures/currency_provider_before.txt",
+        "--measure"
+      ],
+      "elapsedProcessSeconds": 0.024742399997194298,
+      "exit": 0,
+      "measurements": [
+        {
+          "clientModel": "era",
+          "repetition": 1,
+          "events": 400,
+          "moneyReads": 100,
+          "requests": 300,
+          "scans": 0,
+          "money": 654,
+          "generationDelta": 100
+        },
+        {
+          "clientModel": "era",
+          "repetition": 2,
+          "events": 400,
+          "moneyReads": 100,
+          "requests": 300,
+          "scans": 0,
+          "money": 654,
+          "generationDelta": 100
+        },
+        {
+          "clientModel": "era",
+          "repetition": 3,
+          "events": 400,
+          "moneyReads": 100,
+          "requests": 300,
+          "scans": 0,
+          "money": 654,
+          "generationDelta": 100
+        },
+        {
+          "clientModel": "era",
+          "repetition": 4,
+          "events": 400,
+          "moneyReads": 100,
+          "requests": 300,
+          "scans": 0,
+          "money": 654,
+          "generationDelta": 100
+        },
+        {
+          "clientModel": "era",
+          "repetition": 5,
+          "events": 400,
+          "moneyReads": 100,
+          "requests": 300,
+          "scans": 0,
+          "money": 654,
+          "generationDelta": 100
+        },
+        {
+          "clientModel": "anniversary",
+          "repetition": 1,
+          "events": 400,
+          "moneyReads": 100,
+          "requests": 300,
+          "scans": 0,
+          "money": 654,
+          "generationDelta": 100
+        },
+        {
+          "clientModel": "anniversary",
+          "repetition": 2,
+          "events": 400,
+          "moneyReads": 100,
+          "requests": 300,
+          "scans": 0,
+          "money": 654,
+          "generationDelta": 100
+        },
+        {
+          "clientModel": "anniversary",
+          "repetition": 3,
+          "events": 400,
+          "moneyReads": 100,
+          "requests": 300,
+          "scans": 0,
+          "money": 654,
+          "generationDelta": 100
+        },
+        {
+          "clientModel": "anniversary",
+          "repetition": 4,
+          "events": 400,
+          "moneyReads": 100,
+          "requests": 300,
+          "scans": 0,
+          "money": 654,
+          "generationDelta": 100
+        },
+        {
+          "clientModel": "anniversary",
+          "repetition": 5,
+          "events": 400,
+          "moneyReads": 100,
+          "requests": 300,
+          "scans": 0,
+          "money": 654,
+          "generationDelta": 100
+        },
+        {
+          "clientModel": "mists",
+          "repetition": 1,
+          "events": 400,
+          "moneyReads": 100,
+          "requests": 300,
+          "scans": 0,
+          "money": 654,
+          "generationDelta": 100
+        },
+        {
+          "clientModel": "mists",
+          "repetition": 2,
+          "events": 400,
+          "moneyReads": 100,
+          "requests": 300,
+          "scans": 0,
+          "money": 654,
+          "generationDelta": 100
+        },
+        {
+          "clientModel": "mists",
+          "repetition": 3,
+          "events": 400,
+          "moneyReads": 100,
+          "requests": 300,
+          "scans": 0,
+          "money": 654,
+          "generationDelta": 100
+        },
+        {
+          "clientModel": "mists",
+          "repetition": 4,
+          "events": 400,
+          "moneyReads": 100,
+          "requests": 300,
+          "scans": 0,
+          "money": 654,
+          "generationDelta": 100
+        },
+        {
+          "clientModel": "mists",
+          "repetition": 5,
+          "events": 400,
+          "moneyReads": 100,
+          "requests": 300,
+          "scans": 0,
+          "money": 654,
+          "generationDelta": 100
+        },
+        {
+          "clientModel": "retail",
+          "repetition": 1,
+          "events": 400,
+          "moneyReads": 100,
+          "requests": 400,
+          "scans": 0,
+          "money": 654,
+          "generationDelta": 100
+        },
+        {
+          "clientModel": "retail",
+          "repetition": 2,
+          "events": 400,
+          "moneyReads": 100,
+          "requests": 400,
+          "scans": 0,
+          "money": 654,
+          "generationDelta": 100
+        },
+        {
+          "clientModel": "retail",
+          "repetition": 3,
+          "events": 400,
+          "moneyReads": 100,
+          "requests": 400,
+          "scans": 0,
+          "money": 654,
+          "generationDelta": 100
+        },
+        {
+          "clientModel": "retail",
+          "repetition": 4,
+          "events": 400,
+          "moneyReads": 100,
+          "requests": 400,
+          "scans": 0,
+          "money": 654,
+          "generationDelta": 100
+        },
+        {
+          "clientModel": "retail",
+          "repetition": 5,
+          "events": 400,
+          "moneyReads": 100,
+          "requests": 400,
+          "scans": 0,
+          "money": 654,
+          "generationDelta": 100
+        },
+        {
+          "clientModel": "forever",
+          "repetition": 1,
+          "events": 400,
+          "moneyReads": 100,
+          "requests": 400,
+          "scans": 0,
+          "money": 654,
+          "generationDelta": 100
+        },
+        {
+          "clientModel": "forever",
+          "repetition": 2,
+          "events": 400,
+          "moneyReads": 100,
+          "requests": 400,
+          "scans": 0,
+          "money": 654,
+          "generationDelta": 100
+        },
+        {
+          "clientModel": "forever",
+          "repetition": 3,
+          "events": 400,
+          "moneyReads": 100,
+          "requests": 400,
+          "scans": 0,
+          "money": 654,
+          "generationDelta": 100
+        },
+        {
+          "clientModel": "forever",
+          "repetition": 4,
+          "events": 400,
+          "moneyReads": 100,
+          "requests": 400,
+          "scans": 0,
+          "money": 654,
+          "generationDelta": 100
+        },
+        {
+          "clientModel": "forever",
+          "repetition": 5,
+          "events": 400,
+          "moneyReads": 100,
+          "requests": 400,
+          "scans": 0,
+          "money": 654,
+          "generationDelta": 100
+        }
+      ],
+      "stdout": "era repetition=1 events=400 moneyReads=100 requests=300 scans=0 money=654 generationDelta=100\nera repetition=2 events=400 moneyReads=100 requests=300 scans=0 money=654 generationDelta=100\nera repetition=3 events=400 moneyReads=100 requests=300 scans=0 money=654 generationDelta=100\nera repetition=4 events=400 moneyReads=100 requests=300 scans=0 money=654 generationDelta=100\nera repetition=5 events=400 moneyReads=100 requests=300 scans=0 money=654 generationDelta=100\nanniversary repetition=1 events=400 moneyReads=100 requests=300 scans=0 money=654 generationDelta=100\nanniversary repetition=2 events=400 moneyReads=100 requests=300 scans=0 money=654 generationDelta=100\nanniversary repetition=3 events=400 moneyReads=100 requests=300 scans=0 money=654 generationDelta=100\nanniversary repetition=4 events=400 moneyReads=100 requests=300 scans=0 money=654 generationDelta=100\nanniversary repetition=5 events=400 moneyReads=100 requests=300 scans=0 money=654 generationDelta=100\nmists repetition=1 events=400 moneyReads=100 requests=300 scans=0 money=654 generationDelta=100\nmists repetition=2 events=400 moneyReads=100 requests=300 scans=0 money=654 generationDelta=100\nmists repetition=3 events=400 moneyReads=100 requests=300 scans=0 money=654 generationDelta=100\nmists repetition=4 events=400 moneyReads=100 requests=300 scans=0 money=654 generationDelta=100\nmists repetition=5 events=400 moneyReads=100 requests=300 scans=0 money=654 generationDelta=100\nretail repetition=1 events=400 moneyReads=100 requests=400 scans=0 money=654 generationDelta=100\nretail repetition=2 events=400 moneyReads=100 requests=400 scans=0 money=654 generationDelta=100\nretail repetition=3 events=400 moneyReads=100 requests=400 scans=0 money=654 generationDelta=100\nretail repetition=4 events=400 moneyReads=100 requests=400 scans=0 money=654 generationDelta=100\nretail repetition=5 events=400 moneyReads=100 requests=400 scans=0 money=654 generationDelta=100\nforever repetition=1 events=400 moneyReads=100 requests=400 scans=0 money=654 generationDelta=100\nforever repetition=2 events=400 moneyReads=100 requests=400 scans=0 money=654 generationDelta=100\nforever repetition=3 events=400 moneyReads=100 requests=400 scans=0 money=654 generationDelta=100\nforever repetition=4 events=400 moneyReads=100 requests=400 scans=0 money=654 generationDelta=100\nforever repetition=5 events=400 moneyReads=100 requests=400 scans=0 money=654 generationDelta=100\ncurrency provider handoff: 150 checks, 50 failures; desktop operation counts only\nFAIL era handed-off builtin events perform no currency work (run 1)\nFAIL era builtin events preserve provider snapshots (run 1)\nFAIL era handed-off builtin events perform no currency work (run 2)\nFAIL era builtin events preserve provider snapshots (run 2)\nFAIL era handed-off builtin events perform no currency work (run 3)\nFAIL era builtin events preserve provider snapshots (run 3)\nFAIL era handed-off builtin events perform no currency work (run 4)\nFAIL era builtin events preserve provider snapshots (run 4)\nFAIL era handed-off builtin events perform no currency work (run 5)\nFAIL era builtin events preserve provider snapshots (run 5)\nFAIL anniversary handed-off builtin events perform no currency work (run 1)\nFAIL anniversary builtin events preserve provider snapshots (run 1)\nFAIL anniversary handed-off builtin events perform no currency work (run 2)\nFAIL anniversary builtin events preserve provider snapshots (run 2)\nFAIL anniversary handed-off builtin events perform no currency work (run 3)\nFAIL anniversary builtin events preserve provider snapshots (run 3)\nFAIL anniversary handed-off builtin events perform no currency work (run 4)\nFAIL anniversary builtin events preserve provider snapshots (run 4)\nFAIL anniversary handed-off builtin events perform no currency work (run 5)\nFAIL anniversary builtin events preserve provider snapshots (run 5)\nFAIL mists handed-off builtin events perform no currency work (run 1)\nFAIL mists builtin events preserve provider snapshots (run 1)\nFAIL mists handed-off builtin events perform no currency work (run 2)\nFAIL mists builtin events preserve provider snapshots (run 2)\nFAIL mists handed-off builtin events perform no currency work (run 3)\nFAIL mists builtin events preserve provider snapshots (run 3)\nFAIL mists handed-off builtin events perform no currency work (run 4)\nFAIL mists builtin events preserve provider snapshots (run 4)\nFAIL mists handed-off builtin events perform no currency work (run 5)\nFAIL mists builtin events preserve provider snapshots (run 5)\nFAIL retail handed-off builtin events perform no currency work (run 1)\nFAIL retail builtin events preserve provider snapshots (run 1)\nFAIL retail handed-off builtin events perform no currency work (run 2)\nFAIL retail builtin events preserve provider snapshots (run 2)\nFAIL retail handed-off builtin events perform no currency work (run 3)\nFAIL retail builtin events preserve provider snapshots (run 3)\nFAIL retail handed-off builtin events perform no currency work (run 4)\nFAIL retail builtin events preserve provider snapshots (run 4)\nFAIL retail handed-off builtin events perform no currency work (run 5)\nFAIL retail builtin events preserve provider snapshots (run 5)\nFAIL forever handed-off builtin events perform no currency work (run 1)\nFAIL forever builtin events preserve provider snapshots (run 1)\nFAIL forever handed-off builtin events perform no currency work (run 2)\nFAIL forever builtin events preserve provider snapshots (run 2)\nFAIL forever handed-off builtin events perform no currency work (run 3)\nFAIL forever builtin events preserve provider snapshots (run 3)\nFAIL forever handed-off builtin events perform no currency work (run 4)\nFAIL forever builtin events preserve provider snapshots (run 4)\nFAIL forever handed-off builtin events perform no currency work (run 5)\nFAIL forever builtin events preserve provider snapshots (run 5)\n",
+      "stderr": ""
+    },
+    {
+      "pair": 3,
+      "variant": "candidate",
+      "command": [
+        "lua",
+        "tests/currency_provider_handoff.lua"
+      ],
+      "elapsedProcessSeconds": 0.024098400004731957,
+      "exit": 0,
+      "measurements": [
+        {
+          "clientModel": "era",
+          "repetition": 1,
+          "events": 400,
+          "moneyReads": 0,
+          "requests": 0,
+          "scans": 0,
+          "money": 999,
+          "generationDelta": 0
+        },
+        {
+          "clientModel": "era",
+          "repetition": 2,
+          "events": 400,
+          "moneyReads": 0,
+          "requests": 0,
+          "scans": 0,
+          "money": 999,
+          "generationDelta": 0
+        },
+        {
+          "clientModel": "era",
+          "repetition": 3,
+          "events": 400,
+          "moneyReads": 0,
+          "requests": 0,
+          "scans": 0,
+          "money": 999,
+          "generationDelta": 0
+        },
+        {
+          "clientModel": "era",
+          "repetition": 4,
+          "events": 400,
+          "moneyReads": 0,
+          "requests": 0,
+          "scans": 0,
+          "money": 999,
+          "generationDelta": 0
+        },
+        {
+          "clientModel": "era",
+          "repetition": 5,
+          "events": 400,
+          "moneyReads": 0,
+          "requests": 0,
+          "scans": 0,
+          "money": 999,
+          "generationDelta": 0
+        },
+        {
+          "clientModel": "anniversary",
+          "repetition": 1,
+          "events": 400,
+          "moneyReads": 0,
+          "requests": 0,
+          "scans": 0,
+          "money": 999,
+          "generationDelta": 0
+        },
+        {
+          "clientModel": "anniversary",
+          "repetition": 2,
+          "events": 400,
+          "moneyReads": 0,
+          "requests": 0,
+          "scans": 0,
+          "money": 999,
+          "generationDelta": 0
+        },
+        {
+          "clientModel": "anniversary",
+          "repetition": 3,
+          "events": 400,
+          "moneyReads": 0,
+          "requests": 0,
+          "scans": 0,
+          "money": 999,
+          "generationDelta": 0
+        },
+        {
+          "clientModel": "anniversary",
+          "repetition": 4,
+          "events": 400,
+          "moneyReads": 0,
+          "requests": 0,
+          "scans": 0,
+          "money": 999,
+          "generationDelta": 0
+        },
+        {
+          "clientModel": "anniversary",
+          "repetition": 5,
+          "events": 400,
+          "moneyReads": 0,
+          "requests": 0,
+          "scans": 0,
+          "money": 999,
+          "generationDelta": 0
+        },
+        {
+          "clientModel": "mists",
+          "repetition": 1,
+          "events": 400,
+          "moneyReads": 0,
+          "requests": 0,
+          "scans": 0,
+          "money": 999,
+          "generationDelta": 0
+        },
+        {
+          "clientModel": "mists",
+          "repetition": 2,
+          "events": 400,
+          "moneyReads": 0,
+          "requests": 0,
+          "scans": 0,
+          "money": 999,
+          "generationDelta": 0
+        },
+        {
+          "clientModel": "mists",
+          "repetition": 3,
+          "events": 400,
+          "moneyReads": 0,
+          "requests": 0,
+          "scans": 0,
+          "money": 999,
+          "generationDelta": 0
+        },
+        {
+          "clientModel": "mists",
+          "repetition": 4,
+          "events": 400,
+          "moneyReads": 0,
+          "requests": 0,
+          "scans": 0,
+          "money": 999,
+          "generationDelta": 0
+        },
+        {
+          "clientModel": "mists",
+          "repetition": 5,
+          "events": 400,
+          "moneyReads": 0,
+          "requests": 0,
+          "scans": 0,
+          "money": 999,
+          "generationDelta": 0
+        },
+        {
+          "clientModel": "retail",
+          "repetition": 1,
+          "events": 400,
+          "moneyReads": 0,
+          "requests": 0,
+          "scans": 0,
+          "money": 999,
+          "generationDelta": 0
+        },
+        {
+          "clientModel": "retail",
+          "repetition": 2,
+          "events": 400,
+          "moneyReads": 0,
+          "requests": 0,
+          "scans": 0,
+          "money": 999,
+          "generationDelta": 0
+        },
+        {
+          "clientModel": "retail",
+          "repetition": 3,
+          "events": 400,
+          "moneyReads": 0,
+          "requests": 0,
+          "scans": 0,
+          "money": 999,
+          "generationDelta": 0
+        },
+        {
+          "clientModel": "retail",
+          "repetition": 4,
+          "events": 400,
+          "moneyReads": 0,
+          "requests": 0,
+          "scans": 0,
+          "money": 999,
+          "generationDelta": 0
+        },
+        {
+          "clientModel": "retail",
+          "repetition": 5,
+          "events": 400,
+          "moneyReads": 0,
+          "requests": 0,
+          "scans": 0,
+          "money": 999,
+          "generationDelta": 0
+        },
+        {
+          "clientModel": "forever",
+          "repetition": 1,
+          "events": 400,
+          "moneyReads": 0,
+          "requests": 0,
+          "scans": 0,
+          "money": 999,
+          "generationDelta": 0
+        },
+        {
+          "clientModel": "forever",
+          "repetition": 2,
+          "events": 400,
+          "moneyReads": 0,
+          "requests": 0,
+          "scans": 0,
+          "money": 999,
+          "generationDelta": 0
+        },
+        {
+          "clientModel": "forever",
+          "repetition": 3,
+          "events": 400,
+          "moneyReads": 0,
+          "requests": 0,
+          "scans": 0,
+          "money": 999,
+          "generationDelta": 0
+        },
+        {
+          "clientModel": "forever",
+          "repetition": 4,
+          "events": 400,
+          "moneyReads": 0,
+          "requests": 0,
+          "scans": 0,
+          "money": 999,
+          "generationDelta": 0
+        },
+        {
+          "clientModel": "forever",
+          "repetition": 5,
+          "events": 400,
+          "moneyReads": 0,
+          "requests": 0,
+          "scans": 0,
+          "money": 999,
+          "generationDelta": 0
+        }
+      ],
+      "stdout": "era repetition=1 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nera repetition=2 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nera repetition=3 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nera repetition=4 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nera repetition=5 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nanniversary repetition=1 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nanniversary repetition=2 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nanniversary repetition=3 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nanniversary repetition=4 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nanniversary repetition=5 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nmists repetition=1 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nmists repetition=2 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nmists repetition=3 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nmists repetition=4 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nmists repetition=5 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nretail repetition=1 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nretail repetition=2 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nretail repetition=3 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nretail repetition=4 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nretail repetition=5 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nforever repetition=1 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nforever repetition=2 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nforever repetition=3 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nforever repetition=4 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nforever repetition=5 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\ncurrency provider handoff: 150 checks, 0 failures; desktop operation counts only\n",
+      "stderr": ""
+    },
+    {
+      "pair": 4,
+      "variant": "baseline",
+      "command": [
+        "lua",
+        "tests/currency_provider_handoff.lua",
+        "--source",
+        "tests/fixtures/currency_provider_before.txt",
+        "--measure"
+      ],
+      "elapsedProcessSeconds": 0.02441779999935534,
+      "exit": 0,
+      "measurements": [
+        {
+          "clientModel": "era",
+          "repetition": 1,
+          "events": 400,
+          "moneyReads": 100,
+          "requests": 300,
+          "scans": 0,
+          "money": 654,
+          "generationDelta": 100
+        },
+        {
+          "clientModel": "era",
+          "repetition": 2,
+          "events": 400,
+          "moneyReads": 100,
+          "requests": 300,
+          "scans": 0,
+          "money": 654,
+          "generationDelta": 100
+        },
+        {
+          "clientModel": "era",
+          "repetition": 3,
+          "events": 400,
+          "moneyReads": 100,
+          "requests": 300,
+          "scans": 0,
+          "money": 654,
+          "generationDelta": 100
+        },
+        {
+          "clientModel": "era",
+          "repetition": 4,
+          "events": 400,
+          "moneyReads": 100,
+          "requests": 300,
+          "scans": 0,
+          "money": 654,
+          "generationDelta": 100
+        },
+        {
+          "clientModel": "era",
+          "repetition": 5,
+          "events": 400,
+          "moneyReads": 100,
+          "requests": 300,
+          "scans": 0,
+          "money": 654,
+          "generationDelta": 100
+        },
+        {
+          "clientModel": "anniversary",
+          "repetition": 1,
+          "events": 400,
+          "moneyReads": 100,
+          "requests": 300,
+          "scans": 0,
+          "money": 654,
+          "generationDelta": 100
+        },
+        {
+          "clientModel": "anniversary",
+          "repetition": 2,
+          "events": 400,
+          "moneyReads": 100,
+          "requests": 300,
+          "scans": 0,
+          "money": 654,
+          "generationDelta": 100
+        },
+        {
+          "clientModel": "anniversary",
+          "repetition": 3,
+          "events": 400,
+          "moneyReads": 100,
+          "requests": 300,
+          "scans": 0,
+          "money": 654,
+          "generationDelta": 100
+        },
+        {
+          "clientModel": "anniversary",
+          "repetition": 4,
+          "events": 400,
+          "moneyReads": 100,
+          "requests": 300,
+          "scans": 0,
+          "money": 654,
+          "generationDelta": 100
+        },
+        {
+          "clientModel": "anniversary",
+          "repetition": 5,
+          "events": 400,
+          "moneyReads": 100,
+          "requests": 300,
+          "scans": 0,
+          "money": 654,
+          "generationDelta": 100
+        },
+        {
+          "clientModel": "mists",
+          "repetition": 1,
+          "events": 400,
+          "moneyReads": 100,
+          "requests": 300,
+          "scans": 0,
+          "money": 654,
+          "generationDelta": 100
+        },
+        {
+          "clientModel": "mists",
+          "repetition": 2,
+          "events": 400,
+          "moneyReads": 100,
+          "requests": 300,
+          "scans": 0,
+          "money": 654,
+          "generationDelta": 100
+        },
+        {
+          "clientModel": "mists",
+          "repetition": 3,
+          "events": 400,
+          "moneyReads": 100,
+          "requests": 300,
+          "scans": 0,
+          "money": 654,
+          "generationDelta": 100
+        },
+        {
+          "clientModel": "mists",
+          "repetition": 4,
+          "events": 400,
+          "moneyReads": 100,
+          "requests": 300,
+          "scans": 0,
+          "money": 654,
+          "generationDelta": 100
+        },
+        {
+          "clientModel": "mists",
+          "repetition": 5,
+          "events": 400,
+          "moneyReads": 100,
+          "requests": 300,
+          "scans": 0,
+          "money": 654,
+          "generationDelta": 100
+        },
+        {
+          "clientModel": "retail",
+          "repetition": 1,
+          "events": 400,
+          "moneyReads": 100,
+          "requests": 400,
+          "scans": 0,
+          "money": 654,
+          "generationDelta": 100
+        },
+        {
+          "clientModel": "retail",
+          "repetition": 2,
+          "events": 400,
+          "moneyReads": 100,
+          "requests": 400,
+          "scans": 0,
+          "money": 654,
+          "generationDelta": 100
+        },
+        {
+          "clientModel": "retail",
+          "repetition": 3,
+          "events": 400,
+          "moneyReads": 100,
+          "requests": 400,
+          "scans": 0,
+          "money": 654,
+          "generationDelta": 100
+        },
+        {
+          "clientModel": "retail",
+          "repetition": 4,
+          "events": 400,
+          "moneyReads": 100,
+          "requests": 400,
+          "scans": 0,
+          "money": 654,
+          "generationDelta": 100
+        },
+        {
+          "clientModel": "retail",
+          "repetition": 5,
+          "events": 400,
+          "moneyReads": 100,
+          "requests": 400,
+          "scans": 0,
+          "money": 654,
+          "generationDelta": 100
+        },
+        {
+          "clientModel": "forever",
+          "repetition": 1,
+          "events": 400,
+          "moneyReads": 100,
+          "requests": 400,
+          "scans": 0,
+          "money": 654,
+          "generationDelta": 100
+        },
+        {
+          "clientModel": "forever",
+          "repetition": 2,
+          "events": 400,
+          "moneyReads": 100,
+          "requests": 400,
+          "scans": 0,
+          "money": 654,
+          "generationDelta": 100
+        },
+        {
+          "clientModel": "forever",
+          "repetition": 3,
+          "events": 400,
+          "moneyReads": 100,
+          "requests": 400,
+          "scans": 0,
+          "money": 654,
+          "generationDelta": 100
+        },
+        {
+          "clientModel": "forever",
+          "repetition": 4,
+          "events": 400,
+          "moneyReads": 100,
+          "requests": 400,
+          "scans": 0,
+          "money": 654,
+          "generationDelta": 100
+        },
+        {
+          "clientModel": "forever",
+          "repetition": 5,
+          "events": 400,
+          "moneyReads": 100,
+          "requests": 400,
+          "scans": 0,
+          "money": 654,
+          "generationDelta": 100
+        }
+      ],
+      "stdout": "era repetition=1 events=400 moneyReads=100 requests=300 scans=0 money=654 generationDelta=100\nera repetition=2 events=400 moneyReads=100 requests=300 scans=0 money=654 generationDelta=100\nera repetition=3 events=400 moneyReads=100 requests=300 scans=0 money=654 generationDelta=100\nera repetition=4 events=400 moneyReads=100 requests=300 scans=0 money=654 generationDelta=100\nera repetition=5 events=400 moneyReads=100 requests=300 scans=0 money=654 generationDelta=100\nanniversary repetition=1 events=400 moneyReads=100 requests=300 scans=0 money=654 generationDelta=100\nanniversary repetition=2 events=400 moneyReads=100 requests=300 scans=0 money=654 generationDelta=100\nanniversary repetition=3 events=400 moneyReads=100 requests=300 scans=0 money=654 generationDelta=100\nanniversary repetition=4 events=400 moneyReads=100 requests=300 scans=0 money=654 generationDelta=100\nanniversary repetition=5 events=400 moneyReads=100 requests=300 scans=0 money=654 generationDelta=100\nmists repetition=1 events=400 moneyReads=100 requests=300 scans=0 money=654 generationDelta=100\nmists repetition=2 events=400 moneyReads=100 requests=300 scans=0 money=654 generationDelta=100\nmists repetition=3 events=400 moneyReads=100 requests=300 scans=0 money=654 generationDelta=100\nmists repetition=4 events=400 moneyReads=100 requests=300 scans=0 money=654 generationDelta=100\nmists repetition=5 events=400 moneyReads=100 requests=300 scans=0 money=654 generationDelta=100\nretail repetition=1 events=400 moneyReads=100 requests=400 scans=0 money=654 generationDelta=100\nretail repetition=2 events=400 moneyReads=100 requests=400 scans=0 money=654 generationDelta=100\nretail repetition=3 events=400 moneyReads=100 requests=400 scans=0 money=654 generationDelta=100\nretail repetition=4 events=400 moneyReads=100 requests=400 scans=0 money=654 generationDelta=100\nretail repetition=5 events=400 moneyReads=100 requests=400 scans=0 money=654 generationDelta=100\nforever repetition=1 events=400 moneyReads=100 requests=400 scans=0 money=654 generationDelta=100\nforever repetition=2 events=400 moneyReads=100 requests=400 scans=0 money=654 generationDelta=100\nforever repetition=3 events=400 moneyReads=100 requests=400 scans=0 money=654 generationDelta=100\nforever repetition=4 events=400 moneyReads=100 requests=400 scans=0 money=654 generationDelta=100\nforever repetition=5 events=400 moneyReads=100 requests=400 scans=0 money=654 generationDelta=100\ncurrency provider handoff: 150 checks, 50 failures; desktop operation counts only\nFAIL era handed-off builtin events perform no currency work (run 1)\nFAIL era builtin events preserve provider snapshots (run 1)\nFAIL era handed-off builtin events perform no currency work (run 2)\nFAIL era builtin events preserve provider snapshots (run 2)\nFAIL era handed-off builtin events perform no currency work (run 3)\nFAIL era builtin events preserve provider snapshots (run 3)\nFAIL era handed-off builtin events perform no currency work (run 4)\nFAIL era builtin events preserve provider snapshots (run 4)\nFAIL era handed-off builtin events perform no currency work (run 5)\nFAIL era builtin events preserve provider snapshots (run 5)\nFAIL anniversary handed-off builtin events perform no currency work (run 1)\nFAIL anniversary builtin events preserve provider snapshots (run 1)\nFAIL anniversary handed-off builtin events perform no currency work (run 2)\nFAIL anniversary builtin events preserve provider snapshots (run 2)\nFAIL anniversary handed-off builtin events perform no currency work (run 3)\nFAIL anniversary builtin events preserve provider snapshots (run 3)\nFAIL anniversary handed-off builtin events perform no currency work (run 4)\nFAIL anniversary builtin events preserve provider snapshots (run 4)\nFAIL anniversary handed-off builtin events perform no currency work (run 5)\nFAIL anniversary builtin events preserve provider snapshots (run 5)\nFAIL mists handed-off builtin events perform no currency work (run 1)\nFAIL mists builtin events preserve provider snapshots (run 1)\nFAIL mists handed-off builtin events perform no currency work (run 2)\nFAIL mists builtin events preserve provider snapshots (run 2)\nFAIL mists handed-off builtin events perform no currency work (run 3)\nFAIL mists builtin events preserve provider snapshots (run 3)\nFAIL mists handed-off builtin events perform no currency work (run 4)\nFAIL mists builtin events preserve provider snapshots (run 4)\nFAIL mists handed-off builtin events perform no currency work (run 5)\nFAIL mists builtin events preserve provider snapshots (run 5)\nFAIL retail handed-off builtin events perform no currency work (run 1)\nFAIL retail builtin events preserve provider snapshots (run 1)\nFAIL retail handed-off builtin events perform no currency work (run 2)\nFAIL retail builtin events preserve provider snapshots (run 2)\nFAIL retail handed-off builtin events perform no currency work (run 3)\nFAIL retail builtin events preserve provider snapshots (run 3)\nFAIL retail handed-off builtin events perform no currency work (run 4)\nFAIL retail builtin events preserve provider snapshots (run 4)\nFAIL retail handed-off builtin events perform no currency work (run 5)\nFAIL retail builtin events preserve provider snapshots (run 5)\nFAIL forever handed-off builtin events perform no currency work (run 1)\nFAIL forever builtin events preserve provider snapshots (run 1)\nFAIL forever handed-off builtin events perform no currency work (run 2)\nFAIL forever builtin events preserve provider snapshots (run 2)\nFAIL forever handed-off builtin events perform no currency work (run 3)\nFAIL forever builtin events preserve provider snapshots (run 3)\nFAIL forever handed-off builtin events perform no currency work (run 4)\nFAIL forever builtin events preserve provider snapshots (run 4)\nFAIL forever handed-off builtin events perform no currency work (run 5)\nFAIL forever builtin events preserve provider snapshots (run 5)\n",
+      "stderr": ""
+    },
+    {
+      "pair": 4,
+      "variant": "candidate",
+      "command": [
+        "lua",
+        "tests/currency_provider_handoff.lua"
+      ],
+      "elapsedProcessSeconds": 0.024805000000924338,
+      "exit": 0,
+      "measurements": [
+        {
+          "clientModel": "era",
+          "repetition": 1,
+          "events": 400,
+          "moneyReads": 0,
+          "requests": 0,
+          "scans": 0,
+          "money": 999,
+          "generationDelta": 0
+        },
+        {
+          "clientModel": "era",
+          "repetition": 2,
+          "events": 400,
+          "moneyReads": 0,
+          "requests": 0,
+          "scans": 0,
+          "money": 999,
+          "generationDelta": 0
+        },
+        {
+          "clientModel": "era",
+          "repetition": 3,
+          "events": 400,
+          "moneyReads": 0,
+          "requests": 0,
+          "scans": 0,
+          "money": 999,
+          "generationDelta": 0
+        },
+        {
+          "clientModel": "era",
+          "repetition": 4,
+          "events": 400,
+          "moneyReads": 0,
+          "requests": 0,
+          "scans": 0,
+          "money": 999,
+          "generationDelta": 0
+        },
+        {
+          "clientModel": "era",
+          "repetition": 5,
+          "events": 400,
+          "moneyReads": 0,
+          "requests": 0,
+          "scans": 0,
+          "money": 999,
+          "generationDelta": 0
+        },
+        {
+          "clientModel": "anniversary",
+          "repetition": 1,
+          "events": 400,
+          "moneyReads": 0,
+          "requests": 0,
+          "scans": 0,
+          "money": 999,
+          "generationDelta": 0
+        },
+        {
+          "clientModel": "anniversary",
+          "repetition": 2,
+          "events": 400,
+          "moneyReads": 0,
+          "requests": 0,
+          "scans": 0,
+          "money": 999,
+          "generationDelta": 0
+        },
+        {
+          "clientModel": "anniversary",
+          "repetition": 3,
+          "events": 400,
+          "moneyReads": 0,
+          "requests": 0,
+          "scans": 0,
+          "money": 999,
+          "generationDelta": 0
+        },
+        {
+          "clientModel": "anniversary",
+          "repetition": 4,
+          "events": 400,
+          "moneyReads": 0,
+          "requests": 0,
+          "scans": 0,
+          "money": 999,
+          "generationDelta": 0
+        },
+        {
+          "clientModel": "anniversary",
+          "repetition": 5,
+          "events": 400,
+          "moneyReads": 0,
+          "requests": 0,
+          "scans": 0,
+          "money": 999,
+          "generationDelta": 0
+        },
+        {
+          "clientModel": "mists",
+          "repetition": 1,
+          "events": 400,
+          "moneyReads": 0,
+          "requests": 0,
+          "scans": 0,
+          "money": 999,
+          "generationDelta": 0
+        },
+        {
+          "clientModel": "mists",
+          "repetition": 2,
+          "events": 400,
+          "moneyReads": 0,
+          "requests": 0,
+          "scans": 0,
+          "money": 999,
+          "generationDelta": 0
+        },
+        {
+          "clientModel": "mists",
+          "repetition": 3,
+          "events": 400,
+          "moneyReads": 0,
+          "requests": 0,
+          "scans": 0,
+          "money": 999,
+          "generationDelta": 0
+        },
+        {
+          "clientModel": "mists",
+          "repetition": 4,
+          "events": 400,
+          "moneyReads": 0,
+          "requests": 0,
+          "scans": 0,
+          "money": 999,
+          "generationDelta": 0
+        },
+        {
+          "clientModel": "mists",
+          "repetition": 5,
+          "events": 400,
+          "moneyReads": 0,
+          "requests": 0,
+          "scans": 0,
+          "money": 999,
+          "generationDelta": 0
+        },
+        {
+          "clientModel": "retail",
+          "repetition": 1,
+          "events": 400,
+          "moneyReads": 0,
+          "requests": 0,
+          "scans": 0,
+          "money": 999,
+          "generationDelta": 0
+        },
+        {
+          "clientModel": "retail",
+          "repetition": 2,
+          "events": 400,
+          "moneyReads": 0,
+          "requests": 0,
+          "scans": 0,
+          "money": 999,
+          "generationDelta": 0
+        },
+        {
+          "clientModel": "retail",
+          "repetition": 3,
+          "events": 400,
+          "moneyReads": 0,
+          "requests": 0,
+          "scans": 0,
+          "money": 999,
+          "generationDelta": 0
+        },
+        {
+          "clientModel": "retail",
+          "repetition": 4,
+          "events": 400,
+          "moneyReads": 0,
+          "requests": 0,
+          "scans": 0,
+          "money": 999,
+          "generationDelta": 0
+        },
+        {
+          "clientModel": "retail",
+          "repetition": 5,
+          "events": 400,
+          "moneyReads": 0,
+          "requests": 0,
+          "scans": 0,
+          "money": 999,
+          "generationDelta": 0
+        },
+        {
+          "clientModel": "forever",
+          "repetition": 1,
+          "events": 400,
+          "moneyReads": 0,
+          "requests": 0,
+          "scans": 0,
+          "money": 999,
+          "generationDelta": 0
+        },
+        {
+          "clientModel": "forever",
+          "repetition": 2,
+          "events": 400,
+          "moneyReads": 0,
+          "requests": 0,
+          "scans": 0,
+          "money": 999,
+          "generationDelta": 0
+        },
+        {
+          "clientModel": "forever",
+          "repetition": 3,
+          "events": 400,
+          "moneyReads": 0,
+          "requests": 0,
+          "scans": 0,
+          "money": 999,
+          "generationDelta": 0
+        },
+        {
+          "clientModel": "forever",
+          "repetition": 4,
+          "events": 400,
+          "moneyReads": 0,
+          "requests": 0,
+          "scans": 0,
+          "money": 999,
+          "generationDelta": 0
+        },
+        {
+          "clientModel": "forever",
+          "repetition": 5,
+          "events": 400,
+          "moneyReads": 0,
+          "requests": 0,
+          "scans": 0,
+          "money": 999,
+          "generationDelta": 0
+        }
+      ],
+      "stdout": "era repetition=1 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nera repetition=2 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nera repetition=3 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nera repetition=4 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nera repetition=5 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nanniversary repetition=1 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nanniversary repetition=2 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nanniversary repetition=3 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nanniversary repetition=4 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nanniversary repetition=5 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nmists repetition=1 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nmists repetition=2 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nmists repetition=3 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nmists repetition=4 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nmists repetition=5 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nretail repetition=1 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nretail repetition=2 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nretail repetition=3 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nretail repetition=4 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nretail repetition=5 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nforever repetition=1 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nforever repetition=2 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nforever repetition=3 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nforever repetition=4 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nforever repetition=5 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\ncurrency provider handoff: 150 checks, 0 failures; desktop operation counts only\n",
+      "stderr": ""
+    },
+    {
+      "pair": 5,
+      "variant": "baseline",
+      "command": [
+        "lua",
+        "tests/currency_provider_handoff.lua",
+        "--source",
+        "tests/fixtures/currency_provider_before.txt",
+        "--measure"
+      ],
+      "elapsedProcessSeconds": 0.024648599995998666,
+      "exit": 0,
+      "measurements": [
+        {
+          "clientModel": "era",
+          "repetition": 1,
+          "events": 400,
+          "moneyReads": 100,
+          "requests": 300,
+          "scans": 0,
+          "money": 654,
+          "generationDelta": 100
+        },
+        {
+          "clientModel": "era",
+          "repetition": 2,
+          "events": 400,
+          "moneyReads": 100,
+          "requests": 300,
+          "scans": 0,
+          "money": 654,
+          "generationDelta": 100
+        },
+        {
+          "clientModel": "era",
+          "repetition": 3,
+          "events": 400,
+          "moneyReads": 100,
+          "requests": 300,
+          "scans": 0,
+          "money": 654,
+          "generationDelta": 100
+        },
+        {
+          "clientModel": "era",
+          "repetition": 4,
+          "events": 400,
+          "moneyReads": 100,
+          "requests": 300,
+          "scans": 0,
+          "money": 654,
+          "generationDelta": 100
+        },
+        {
+          "clientModel": "era",
+          "repetition": 5,
+          "events": 400,
+          "moneyReads": 100,
+          "requests": 300,
+          "scans": 0,
+          "money": 654,
+          "generationDelta": 100
+        },
+        {
+          "clientModel": "anniversary",
+          "repetition": 1,
+          "events": 400,
+          "moneyReads": 100,
+          "requests": 300,
+          "scans": 0,
+          "money": 654,
+          "generationDelta": 100
+        },
+        {
+          "clientModel": "anniversary",
+          "repetition": 2,
+          "events": 400,
+          "moneyReads": 100,
+          "requests": 300,
+          "scans": 0,
+          "money": 654,
+          "generationDelta": 100
+        },
+        {
+          "clientModel": "anniversary",
+          "repetition": 3,
+          "events": 400,
+          "moneyReads": 100,
+          "requests": 300,
+          "scans": 0,
+          "money": 654,
+          "generationDelta": 100
+        },
+        {
+          "clientModel": "anniversary",
+          "repetition": 4,
+          "events": 400,
+          "moneyReads": 100,
+          "requests": 300,
+          "scans": 0,
+          "money": 654,
+          "generationDelta": 100
+        },
+        {
+          "clientModel": "anniversary",
+          "repetition": 5,
+          "events": 400,
+          "moneyReads": 100,
+          "requests": 300,
+          "scans": 0,
+          "money": 654,
+          "generationDelta": 100
+        },
+        {
+          "clientModel": "mists",
+          "repetition": 1,
+          "events": 400,
+          "moneyReads": 100,
+          "requests": 300,
+          "scans": 0,
+          "money": 654,
+          "generationDelta": 100
+        },
+        {
+          "clientModel": "mists",
+          "repetition": 2,
+          "events": 400,
+          "moneyReads": 100,
+          "requests": 300,
+          "scans": 0,
+          "money": 654,
+          "generationDelta": 100
+        },
+        {
+          "clientModel": "mists",
+          "repetition": 3,
+          "events": 400,
+          "moneyReads": 100,
+          "requests": 300,
+          "scans": 0,
+          "money": 654,
+          "generationDelta": 100
+        },
+        {
+          "clientModel": "mists",
+          "repetition": 4,
+          "events": 400,
+          "moneyReads": 100,
+          "requests": 300,
+          "scans": 0,
+          "money": 654,
+          "generationDelta": 100
+        },
+        {
+          "clientModel": "mists",
+          "repetition": 5,
+          "events": 400,
+          "moneyReads": 100,
+          "requests": 300,
+          "scans": 0,
+          "money": 654,
+          "generationDelta": 100
+        },
+        {
+          "clientModel": "retail",
+          "repetition": 1,
+          "events": 400,
+          "moneyReads": 100,
+          "requests": 400,
+          "scans": 0,
+          "money": 654,
+          "generationDelta": 100
+        },
+        {
+          "clientModel": "retail",
+          "repetition": 2,
+          "events": 400,
+          "moneyReads": 100,
+          "requests": 400,
+          "scans": 0,
+          "money": 654,
+          "generationDelta": 100
+        },
+        {
+          "clientModel": "retail",
+          "repetition": 3,
+          "events": 400,
+          "moneyReads": 100,
+          "requests": 400,
+          "scans": 0,
+          "money": 654,
+          "generationDelta": 100
+        },
+        {
+          "clientModel": "retail",
+          "repetition": 4,
+          "events": 400,
+          "moneyReads": 100,
+          "requests": 400,
+          "scans": 0,
+          "money": 654,
+          "generationDelta": 100
+        },
+        {
+          "clientModel": "retail",
+          "repetition": 5,
+          "events": 400,
+          "moneyReads": 100,
+          "requests": 400,
+          "scans": 0,
+          "money": 654,
+          "generationDelta": 100
+        },
+        {
+          "clientModel": "forever",
+          "repetition": 1,
+          "events": 400,
+          "moneyReads": 100,
+          "requests": 400,
+          "scans": 0,
+          "money": 654,
+          "generationDelta": 100
+        },
+        {
+          "clientModel": "forever",
+          "repetition": 2,
+          "events": 400,
+          "moneyReads": 100,
+          "requests": 400,
+          "scans": 0,
+          "money": 654,
+          "generationDelta": 100
+        },
+        {
+          "clientModel": "forever",
+          "repetition": 3,
+          "events": 400,
+          "moneyReads": 100,
+          "requests": 400,
+          "scans": 0,
+          "money": 654,
+          "generationDelta": 100
+        },
+        {
+          "clientModel": "forever",
+          "repetition": 4,
+          "events": 400,
+          "moneyReads": 100,
+          "requests": 400,
+          "scans": 0,
+          "money": 654,
+          "generationDelta": 100
+        },
+        {
+          "clientModel": "forever",
+          "repetition": 5,
+          "events": 400,
+          "moneyReads": 100,
+          "requests": 400,
+          "scans": 0,
+          "money": 654,
+          "generationDelta": 100
+        }
+      ],
+      "stdout": "era repetition=1 events=400 moneyReads=100 requests=300 scans=0 money=654 generationDelta=100\nera repetition=2 events=400 moneyReads=100 requests=300 scans=0 money=654 generationDelta=100\nera repetition=3 events=400 moneyReads=100 requests=300 scans=0 money=654 generationDelta=100\nera repetition=4 events=400 moneyReads=100 requests=300 scans=0 money=654 generationDelta=100\nera repetition=5 events=400 moneyReads=100 requests=300 scans=0 money=654 generationDelta=100\nanniversary repetition=1 events=400 moneyReads=100 requests=300 scans=0 money=654 generationDelta=100\nanniversary repetition=2 events=400 moneyReads=100 requests=300 scans=0 money=654 generationDelta=100\nanniversary repetition=3 events=400 moneyReads=100 requests=300 scans=0 money=654 generationDelta=100\nanniversary repetition=4 events=400 moneyReads=100 requests=300 scans=0 money=654 generationDelta=100\nanniversary repetition=5 events=400 moneyReads=100 requests=300 scans=0 money=654 generationDelta=100\nmists repetition=1 events=400 moneyReads=100 requests=300 scans=0 money=654 generationDelta=100\nmists repetition=2 events=400 moneyReads=100 requests=300 scans=0 money=654 generationDelta=100\nmists repetition=3 events=400 moneyReads=100 requests=300 scans=0 money=654 generationDelta=100\nmists repetition=4 events=400 moneyReads=100 requests=300 scans=0 money=654 generationDelta=100\nmists repetition=5 events=400 moneyReads=100 requests=300 scans=0 money=654 generationDelta=100\nretail repetition=1 events=400 moneyReads=100 requests=400 scans=0 money=654 generationDelta=100\nretail repetition=2 events=400 moneyReads=100 requests=400 scans=0 money=654 generationDelta=100\nretail repetition=3 events=400 moneyReads=100 requests=400 scans=0 money=654 generationDelta=100\nretail repetition=4 events=400 moneyReads=100 requests=400 scans=0 money=654 generationDelta=100\nretail repetition=5 events=400 moneyReads=100 requests=400 scans=0 money=654 generationDelta=100\nforever repetition=1 events=400 moneyReads=100 requests=400 scans=0 money=654 generationDelta=100\nforever repetition=2 events=400 moneyReads=100 requests=400 scans=0 money=654 generationDelta=100\nforever repetition=3 events=400 moneyReads=100 requests=400 scans=0 money=654 generationDelta=100\nforever repetition=4 events=400 moneyReads=100 requests=400 scans=0 money=654 generationDelta=100\nforever repetition=5 events=400 moneyReads=100 requests=400 scans=0 money=654 generationDelta=100\ncurrency provider handoff: 150 checks, 50 failures; desktop operation counts only\nFAIL era handed-off builtin events perform no currency work (run 1)\nFAIL era builtin events preserve provider snapshots (run 1)\nFAIL era handed-off builtin events perform no currency work (run 2)\nFAIL era builtin events preserve provider snapshots (run 2)\nFAIL era handed-off builtin events perform no currency work (run 3)\nFAIL era builtin events preserve provider snapshots (run 3)\nFAIL era handed-off builtin events perform no currency work (run 4)\nFAIL era builtin events preserve provider snapshots (run 4)\nFAIL era handed-off builtin events perform no currency work (run 5)\nFAIL era builtin events preserve provider snapshots (run 5)\nFAIL anniversary handed-off builtin events perform no currency work (run 1)\nFAIL anniversary builtin events preserve provider snapshots (run 1)\nFAIL anniversary handed-off builtin events perform no currency work (run 2)\nFAIL anniversary builtin events preserve provider snapshots (run 2)\nFAIL anniversary handed-off builtin events perform no currency work (run 3)\nFAIL anniversary builtin events preserve provider snapshots (run 3)\nFAIL anniversary handed-off builtin events perform no currency work (run 4)\nFAIL anniversary builtin events preserve provider snapshots (run 4)\nFAIL anniversary handed-off builtin events perform no currency work (run 5)\nFAIL anniversary builtin events preserve provider snapshots (run 5)\nFAIL mists handed-off builtin events perform no currency work (run 1)\nFAIL mists builtin events preserve provider snapshots (run 1)\nFAIL mists handed-off builtin events perform no currency work (run 2)\nFAIL mists builtin events preserve provider snapshots (run 2)\nFAIL mists handed-off builtin events perform no currency work (run 3)\nFAIL mists builtin events preserve provider snapshots (run 3)\nFAIL mists handed-off builtin events perform no currency work (run 4)\nFAIL mists builtin events preserve provider snapshots (run 4)\nFAIL mists handed-off builtin events perform no currency work (run 5)\nFAIL mists builtin events preserve provider snapshots (run 5)\nFAIL retail handed-off builtin events perform no currency work (run 1)\nFAIL retail builtin events preserve provider snapshots (run 1)\nFAIL retail handed-off builtin events perform no currency work (run 2)\nFAIL retail builtin events preserve provider snapshots (run 2)\nFAIL retail handed-off builtin events perform no currency work (run 3)\nFAIL retail builtin events preserve provider snapshots (run 3)\nFAIL retail handed-off builtin events perform no currency work (run 4)\nFAIL retail builtin events preserve provider snapshots (run 4)\nFAIL retail handed-off builtin events perform no currency work (run 5)\nFAIL retail builtin events preserve provider snapshots (run 5)\nFAIL forever handed-off builtin events perform no currency work (run 1)\nFAIL forever builtin events preserve provider snapshots (run 1)\nFAIL forever handed-off builtin events perform no currency work (run 2)\nFAIL forever builtin events preserve provider snapshots (run 2)\nFAIL forever handed-off builtin events perform no currency work (run 3)\nFAIL forever builtin events preserve provider snapshots (run 3)\nFAIL forever handed-off builtin events perform no currency work (run 4)\nFAIL forever builtin events preserve provider snapshots (run 4)\nFAIL forever handed-off builtin events perform no currency work (run 5)\nFAIL forever builtin events preserve provider snapshots (run 5)\n",
+      "stderr": ""
+    },
+    {
+      "pair": 5,
+      "variant": "candidate",
+      "command": [
+        "lua",
+        "tests/currency_provider_handoff.lua"
+      ],
+      "elapsedProcessSeconds": 0.02390439999726368,
+      "exit": 0,
+      "measurements": [
+        {
+          "clientModel": "era",
+          "repetition": 1,
+          "events": 400,
+          "moneyReads": 0,
+          "requests": 0,
+          "scans": 0,
+          "money": 999,
+          "generationDelta": 0
+        },
+        {
+          "clientModel": "era",
+          "repetition": 2,
+          "events": 400,
+          "moneyReads": 0,
+          "requests": 0,
+          "scans": 0,
+          "money": 999,
+          "generationDelta": 0
+        },
+        {
+          "clientModel": "era",
+          "repetition": 3,
+          "events": 400,
+          "moneyReads": 0,
+          "requests": 0,
+          "scans": 0,
+          "money": 999,
+          "generationDelta": 0
+        },
+        {
+          "clientModel": "era",
+          "repetition": 4,
+          "events": 400,
+          "moneyReads": 0,
+          "requests": 0,
+          "scans": 0,
+          "money": 999,
+          "generationDelta": 0
+        },
+        {
+          "clientModel": "era",
+          "repetition": 5,
+          "events": 400,
+          "moneyReads": 0,
+          "requests": 0,
+          "scans": 0,
+          "money": 999,
+          "generationDelta": 0
+        },
+        {
+          "clientModel": "anniversary",
+          "repetition": 1,
+          "events": 400,
+          "moneyReads": 0,
+          "requests": 0,
+          "scans": 0,
+          "money": 999,
+          "generationDelta": 0
+        },
+        {
+          "clientModel": "anniversary",
+          "repetition": 2,
+          "events": 400,
+          "moneyReads": 0,
+          "requests": 0,
+          "scans": 0,
+          "money": 999,
+          "generationDelta": 0
+        },
+        {
+          "clientModel": "anniversary",
+          "repetition": 3,
+          "events": 400,
+          "moneyReads": 0,
+          "requests": 0,
+          "scans": 0,
+          "money": 999,
+          "generationDelta": 0
+        },
+        {
+          "clientModel": "anniversary",
+          "repetition": 4,
+          "events": 400,
+          "moneyReads": 0,
+          "requests": 0,
+          "scans": 0,
+          "money": 999,
+          "generationDelta": 0
+        },
+        {
+          "clientModel": "anniversary",
+          "repetition": 5,
+          "events": 400,
+          "moneyReads": 0,
+          "requests": 0,
+          "scans": 0,
+          "money": 999,
+          "generationDelta": 0
+        },
+        {
+          "clientModel": "mists",
+          "repetition": 1,
+          "events": 400,
+          "moneyReads": 0,
+          "requests": 0,
+          "scans": 0,
+          "money": 999,
+          "generationDelta": 0
+        },
+        {
+          "clientModel": "mists",
+          "repetition": 2,
+          "events": 400,
+          "moneyReads": 0,
+          "requests": 0,
+          "scans": 0,
+          "money": 999,
+          "generationDelta": 0
+        },
+        {
+          "clientModel": "mists",
+          "repetition": 3,
+          "events": 400,
+          "moneyReads": 0,
+          "requests": 0,
+          "scans": 0,
+          "money": 999,
+          "generationDelta": 0
+        },
+        {
+          "clientModel": "mists",
+          "repetition": 4,
+          "events": 400,
+          "moneyReads": 0,
+          "requests": 0,
+          "scans": 0,
+          "money": 999,
+          "generationDelta": 0
+        },
+        {
+          "clientModel": "mists",
+          "repetition": 5,
+          "events": 400,
+          "moneyReads": 0,
+          "requests": 0,
+          "scans": 0,
+          "money": 999,
+          "generationDelta": 0
+        },
+        {
+          "clientModel": "retail",
+          "repetition": 1,
+          "events": 400,
+          "moneyReads": 0,
+          "requests": 0,
+          "scans": 0,
+          "money": 999,
+          "generationDelta": 0
+        },
+        {
+          "clientModel": "retail",
+          "repetition": 2,
+          "events": 400,
+          "moneyReads": 0,
+          "requests": 0,
+          "scans": 0,
+          "money": 999,
+          "generationDelta": 0
+        },
+        {
+          "clientModel": "retail",
+          "repetition": 3,
+          "events": 400,
+          "moneyReads": 0,
+          "requests": 0,
+          "scans": 0,
+          "money": 999,
+          "generationDelta": 0
+        },
+        {
+          "clientModel": "retail",
+          "repetition": 4,
+          "events": 400,
+          "moneyReads": 0,
+          "requests": 0,
+          "scans": 0,
+          "money": 999,
+          "generationDelta": 0
+        },
+        {
+          "clientModel": "retail",
+          "repetition": 5,
+          "events": 400,
+          "moneyReads": 0,
+          "requests": 0,
+          "scans": 0,
+          "money": 999,
+          "generationDelta": 0
+        },
+        {
+          "clientModel": "forever",
+          "repetition": 1,
+          "events": 400,
+          "moneyReads": 0,
+          "requests": 0,
+          "scans": 0,
+          "money": 999,
+          "generationDelta": 0
+        },
+        {
+          "clientModel": "forever",
+          "repetition": 2,
+          "events": 400,
+          "moneyReads": 0,
+          "requests": 0,
+          "scans": 0,
+          "money": 999,
+          "generationDelta": 0
+        },
+        {
+          "clientModel": "forever",
+          "repetition": 3,
+          "events": 400,
+          "moneyReads": 0,
+          "requests": 0,
+          "scans": 0,
+          "money": 999,
+          "generationDelta": 0
+        },
+        {
+          "clientModel": "forever",
+          "repetition": 4,
+          "events": 400,
+          "moneyReads": 0,
+          "requests": 0,
+          "scans": 0,
+          "money": 999,
+          "generationDelta": 0
+        },
+        {
+          "clientModel": "forever",
+          "repetition": 5,
+          "events": 400,
+          "moneyReads": 0,
+          "requests": 0,
+          "scans": 0,
+          "money": 999,
+          "generationDelta": 0
+        }
+      ],
+      "stdout": "era repetition=1 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nera repetition=2 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nera repetition=3 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nera repetition=4 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nera repetition=5 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nanniversary repetition=1 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nanniversary repetition=2 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nanniversary repetition=3 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nanniversary repetition=4 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nanniversary repetition=5 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nmists repetition=1 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nmists repetition=2 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nmists repetition=3 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nmists repetition=4 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nmists repetition=5 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nretail repetition=1 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nretail repetition=2 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nretail repetition=3 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nretail repetition=4 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nretail repetition=5 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nforever repetition=1 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nforever repetition=2 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nforever repetition=3 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nforever repetition=4 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nforever repetition=5 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\ncurrency provider handoff: 150 checks, 0 failures; desktop operation counts only\n",
+      "stderr": ""
+    }
+  ],
+  "summary": [
+    {
+      "clientModel": "era",
+      "variant": "baseline",
+      "repetitions": 25,
+      "metrics": {
+        "moneyReads": {
+          "median": 100,
+          "min": 100,
+          "max": 100
+        },
+        "requests": {
+          "median": 300,
+          "min": 300,
+          "max": 300
+        },
+        "scans": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "money": {
+          "median": 654,
+          "min": 654,
+          "max": 654
+        },
+        "generationDelta": {
+          "median": 100,
+          "min": 100,
+          "max": 100
+        }
+      }
+    },
+    {
+      "clientModel": "era",
+      "variant": "candidate",
+      "repetitions": 25,
+      "metrics": {
+        "moneyReads": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "requests": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "scans": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "money": {
+          "median": 999,
+          "min": 999,
+          "max": 999
+        },
+        "generationDelta": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        }
+      }
+    },
+    {
+      "clientModel": "anniversary",
+      "variant": "baseline",
+      "repetitions": 25,
+      "metrics": {
+        "moneyReads": {
+          "median": 100,
+          "min": 100,
+          "max": 100
+        },
+        "requests": {
+          "median": 300,
+          "min": 300,
+          "max": 300
+        },
+        "scans": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "money": {
+          "median": 654,
+          "min": 654,
+          "max": 654
+        },
+        "generationDelta": {
+          "median": 100,
+          "min": 100,
+          "max": 100
+        }
+      }
+    },
+    {
+      "clientModel": "anniversary",
+      "variant": "candidate",
+      "repetitions": 25,
+      "metrics": {
+        "moneyReads": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "requests": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "scans": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "money": {
+          "median": 999,
+          "min": 999,
+          "max": 999
+        },
+        "generationDelta": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        }
+      }
+    },
+    {
+      "clientModel": "mists",
+      "variant": "baseline",
+      "repetitions": 25,
+      "metrics": {
+        "moneyReads": {
+          "median": 100,
+          "min": 100,
+          "max": 100
+        },
+        "requests": {
+          "median": 300,
+          "min": 300,
+          "max": 300
+        },
+        "scans": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "money": {
+          "median": 654,
+          "min": 654,
+          "max": 654
+        },
+        "generationDelta": {
+          "median": 100,
+          "min": 100,
+          "max": 100
+        }
+      }
+    },
+    {
+      "clientModel": "mists",
+      "variant": "candidate",
+      "repetitions": 25,
+      "metrics": {
+        "moneyReads": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "requests": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "scans": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "money": {
+          "median": 999,
+          "min": 999,
+          "max": 999
+        },
+        "generationDelta": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        }
+      }
+    },
+    {
+      "clientModel": "retail",
+      "variant": "baseline",
+      "repetitions": 25,
+      "metrics": {
+        "moneyReads": {
+          "median": 100,
+          "min": 100,
+          "max": 100
+        },
+        "requests": {
+          "median": 400,
+          "min": 400,
+          "max": 400
+        },
+        "scans": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "money": {
+          "median": 654,
+          "min": 654,
+          "max": 654
+        },
+        "generationDelta": {
+          "median": 100,
+          "min": 100,
+          "max": 100
+        }
+      }
+    },
+    {
+      "clientModel": "retail",
+      "variant": "candidate",
+      "repetitions": 25,
+      "metrics": {
+        "moneyReads": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "requests": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "scans": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "money": {
+          "median": 999,
+          "min": 999,
+          "max": 999
+        },
+        "generationDelta": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        }
+      }
+    },
+    {
+      "clientModel": "forever",
+      "variant": "baseline",
+      "repetitions": 25,
+      "metrics": {
+        "moneyReads": {
+          "median": 100,
+          "min": 100,
+          "max": 100
+        },
+        "requests": {
+          "median": 400,
+          "min": 400,
+          "max": 400
+        },
+        "scans": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "money": {
+          "median": 654,
+          "min": 654,
+          "max": 654
+        },
+        "generationDelta": {
+          "median": 100,
+          "min": 100,
+          "max": 100
+        }
+      }
+    },
+    {
+      "clientModel": "forever",
+      "variant": "candidate",
+      "repetitions": 25,
+      "metrics": {
+        "moneyReads": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "requests": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "scans": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "money": {
+          "median": 999,
+          "min": 999,
+          "max": 999
+        },
+        "generationDelta": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        }
+      }
+    }
+  ],
+  "candidateCommit": "2a7de26052e1b9662deef1b606b5ec95ebefe3aa",
+  "candidateTree": "86ed71c06dc9bc2117fb60e30d5417976506912a",
+  "candidateLuaCorpusSha256": "e904d08aa492459e4b2b2807dbde197f2528ad3c230ac68079d8dc6efacf8141",
+  "baselineLuaCorpusSha256": "041e24f8fa2282afc6cc4fc344a8dc334777c995339568141dc0ecfc8041da36"
+}

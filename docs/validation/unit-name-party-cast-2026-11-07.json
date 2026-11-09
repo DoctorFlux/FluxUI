@@ -1,0 +1,121 @@
+{
+  "changeID": "UNIT-NAME-PARTY-CAST-20261107",
+  "requirements": [
+    "REQ-RF-87",
+    "REQ-RF-88"
+  ],
+  "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\06\\01a1b0ac-547f-7972-8df9-fa26882e0e03\\unit-text-cast-20261107T223150Z\\checkpoint.json",
+  "before": {
+    "UnitFrames/FluxUnitFrames_Shared.lua": "97c7897c16ecd384013dedd8b5fef6e33b91a1b82677163ddbf636e29c62f0da",
+    "UnitFrames/FluxCastBar.lua": "9b1374adc578d16ff5aa2aaa622ac7662a4d28eab3c2e5e30cc802d8e3ece6a8",
+    "UnitFrames/FluxUnitFrames_Party.lua": "65fe5516a327727121f4b21a6bffafe96b6fec3de3cff7f7df119d5305c86efd",
+    "tests/unit_name_fit_lifecycle.lua": "new",
+    "tests/party_cast_lifecycle.lua": "new",
+    "tests/raid_party_frames.lua": "ee9d0543e1db56176f193dc497543a8c63f2dd796590fe5a448d0d1ac381f6b9"
+  },
+  "after": {
+    "UnitFrames/FluxUnitFrames_Shared.lua": "58ee0dd7b6b6f48d5b3ab347076d5bc221440cbf01aaa149457e57a342fe17e3",
+    "UnitFrames/FluxCastBar.lua": "852aa3f0c6ccf13982d45d768c7e861e76a56e5c7d4055e867ed71e2acf7d6c5",
+    "UnitFrames/FluxUnitFrames_Party.lua": "91104dbef11924601b098fce4d2c1c1c23b1ea594137098317ec23ed1484be66",
+    "tests/unit_name_fit_lifecycle.lua": "3bb90bc93a084df0e1fa750d6f3e7da7b950f9cefaf1355d10434d85e0ed924d",
+    "tests/party_cast_lifecycle.lua": "ba5bdf80d39ea80a48ebfb567dd43d86cb649e083e8b26b5ce5b78fc807be955",
+    "tests/raid_party_frames.lua": "fcd9639679260ef6e0d84f8b6994d720f0d77a9aba6038604f39ba3daeb8264a"
+  },
+  "sources": {
+    "sources": [
+      {
+        "client": "live",
+        "ref": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+        "path": "Interface/AddOns/Blizzard_UIPanels_Game/Shared/CastingBarFrame.lua",
+        "blob": "6648bf2520d05266952b71fe4cd5a13b68b6d9d9",
+        "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_UIPanels_Game/Shared/CastingBarFrame.lua"
+      },
+      {
+        "client": "live",
+        "ref": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+        "path": "Interface/AddOns/Blizzard_UnitFrame/Mainline/UnitFrame.lua",
+        "blob": "b0c5302b4770a59e7910ce9fc131a3af0b666f03",
+        "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_UnitFrame/Mainline/UnitFrame.lua"
+      },
+      {
+        "client": "forever",
+        "ref": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+        "path": "Interface/AddOns/Blizzard_UIPanels_Game/Shared/CastingBarFrame.lua",
+        "blob": "763660ff16fd063bf36c37ac87f7d2e93ab4a3a8",
+        "url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_UIPanels_Game/Shared/CastingBarFrame.lua"
+      },
+      {
+        "client": "forever",
+        "ref": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+        "path": "Interface/AddOns/Blizzard_UnitFrame/Mainline/UnitFrame.lua",
+        "blob": "a2f83aa0770c947555a305166611c097ef75b3a8",
+        "url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_UnitFrame/Mainline/UnitFrame.lua"
+      },
+      {
+        "client": "forever",
+        "ref": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+        "path": "Interface/AddOns/Blizzard_FrameXMLUtil/Camelot/NameUtil.lua",
+        "blob": "3df83e3301f0141b2c7747bd469fb99b83b0c0a1",
+        "url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_FrameXMLUtil/Camelot/NameUtil.lua"
+      }
+    ],
+    "branchRefresh": "Attempted current live/forever branch-head resolution via api.github.com. Web fetch unavailable; sandbox DNS unavailable. Revalidated exact existing pins through GitHub file connector; no latest-build claim."
+  },
+  "implementation": [
+    "Current restricted unit names and Forever surnames flow to native SetFormattedText; do not keep a previous occupant name or use private labels as fit keys. Existing name service and saved-name formats unchanged.",
+    "Main/ToT fit caches retain the final public text/font and replay those after full-name repaints. Use unbounded string measurements, safe public metric guards, exact compact header width and owned party text scale; restricted metrics keep the prior font and native clipping.",
+    "Party member hide clears shared cast/hold/fade/timing/icon/text state; show and roster-slot updates sample the actual current cast. Existing normal completion/interruption timing, presentation and hover bindings retained.",
+    "Scoped terminal cast events accept unavailable GUIDs; distinct readable GUIDs and older spell IDs still reject stale events. No secret identity comparisons or new polling."
+  ],
+  "tests": {
+    "nameToTLifecycle": 681,
+    "partyCastLifecycle": 215,
+    "partyFocusIntegration": 1010,
+    "castTimerSynchronization": 379,
+    "playerNameSecrets": 55,
+    "castSchoolLifecycle": 13942,
+    "scriptsPass": 249,
+    "scriptsFail": 0,
+    "syntaxFiles": 913,
+    "syntaxFailures": [],
+    "ownedManifestDrift": [],
+    "baselineRejections": [
+      {
+        "test": "tests/unit_name_fit_lifecycle.lua",
+        "baselineRejected": true,
+        "failure": "lua: tests/unit_name_fit_lifecycle.lua:6: long names are fitted using unclipped width"
+      },
+      {
+        "test": "tests/party_cast_lifecycle.lua",
+        "baselineRejected": true,
+        "failure": "lua: tests/party_cast_lifecycle.lua:4: routed terminal event clears Aimed Shot with unavailable GUID"
+      }
+    ]
+  },
+  "fullReport": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\06\\01a1b0ac-547f-7972-8df9-fa26882e0e03\\unit-text-cast-20261107T223150Z\\full.json",
+  "resources": "No new frames, textures, tickers, cast OnUpdate loops, event registrations or settings. Reuse existing member show/hide hooks and roster event. Cache final public fitted strings/font sizes; stable fitting avoids repeated measurement. Existing zero-delay show callback samples cast once. Cast reset cancels owned fade timer. No native CPU/FPS claim.",
+  "nativePending": "Real Retail/Forever text appearance, secret/protected VM, cast delivery, secure input, taint and native performance are not tested. Desktop five-client fixtures preserve Classic compatibility; no latest-client certification.",
+  "recovery": "Verified dated current-source.zip (1991 files) and --all history.bundle;45 read-only settings metadata entries. Prior recovery retained. No foreground/game/WTF/profiler writes, manual client sync, branch, commit or push.",
+  "copies": [
+    {
+      "client": "_retail_",
+      "mismatches": []
+    },
+    {
+      "client": "_forever_",
+      "mismatches": []
+    },
+    {
+      "client": "_classic_",
+      "mismatches": []
+    },
+    {
+      "client": "_classic_era_",
+      "mismatches": []
+    },
+    {
+      "client": "_anniversary_",
+      "mismatches": []
+    }
+  ]
+}

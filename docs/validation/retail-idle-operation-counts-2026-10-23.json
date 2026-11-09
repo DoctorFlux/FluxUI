@@ -1,0 +1,111 @@
+{
+  "scope": "Observed two user-operated Retail profile captures and deterministic Lua replays. Endpoint map/character/tab state and reported CVars agree; no independent spatial/focus trace or unprofiled A/B. Inclusive rows overlap, do not sum. No FPS gain demonstrated.",
+  "beforeCapturedAt": "2026-10-23 16:58:25",
+  "afterCapturedAt": "2026-10-23 17:11:13",
+  "beforeFluxMsPerSecond": 13.775095,
+  "afterFluxMsPerSecond": 5.5627068646567,
+  "beforeAverageFPS": 288.81782455444,
+  "afterAverageFPS": 285.49463653564,
+  "uiStateMatches": true,
+  "cvarsMatch": true,
+  "functions": [
+    {
+      "label": "trinket press watcher",
+      "beforeMsPerSecond": 6.360965,
+      "afterMsPerSecond": 1.2295085245738,
+      "beforeCalls": 5590,
+      "afterCalls": 5447
+    },
+    {
+      "label": "FluxRestockTiers.GetBagOwnedTier",
+      "beforeMsPerSecond": 6.25646,
+      "afterMsPerSecond": 1.0955302234888,
+      "beforeCalls": 20,
+      "afterCalls": 20
+    },
+    {
+      "label": "FluxRestockTiers.RememberOwnedTiers",
+      "beforeMsPerSecond": 6.299715,
+      "afterMsPerSecond": 1.1240987950602,
+      "beforeCalls": 4,
+      "afterCalls": 4
+    },
+    {
+      "label": "FluxRestockTiers.RecomputeInferior",
+      "beforeMsPerSecond": 6.023465,
+      "afterMsPerSecond": 3.3387880605969,
+      "beforeCalls": 8,
+      "afterCalls": 9
+    },
+    {
+      "label": "FluxItemClass.GetTooltipText",
+      "beforeMsPerSecond": 3.09492,
+      "afterMsPerSecond": 1.2997050147492,
+      "beforeCalls": 740,
+      "afterCalls": 320
+    }
+  ],
+  "commands": [
+    {
+      "command": [
+        "lua",
+        "tests/idle_trinkets.lua"
+      ],
+      "exit": 0,
+      "output": "idle trinkets: 1563 checks; five client models; 4 mutations rejected; 4800 frames binding queries 9600 -> 0; Lua heap 1275.09KB -> 0.00KB (GC paused in fixture only)\n"
+    },
+    {
+      "command": [
+        "lua",
+        "tests/idle_tiers.lua"
+      ],
+      "exit": 0,
+      "output": "tier candidate checks per five-kind scan: 600 -> 8\nidle tiers: 16527 checks; five client/adapter models; 3 mutations rejected; live usability, async data, references and fallbacks retained\n"
+    },
+    {
+      "command": [
+        "lua",
+        "tests/idle_layout_retries.lua"
+      ],
+      "exit": 0,
+      "output": "idle layout retries: 5869 checks across five clients; 6 mutations rejected\nsame-frame chat burst: 903 -> 3 timers; 102 login/world events: 104 -> 1 watcher frames\n"
+    }
+  ],
+  "normalizedSourceHashes": {
+    "ExtraButtonSystem/TrinketMenu/FluxTrinketMenu.lua": "3ab177e4885568df30d2a1a813e4412194e73af4344ba42be29468e53e21d355",
+    "Inventory/Restock/Core/Tiers/FluxRestockTiers_Match.lua": "aca3e913864e21a9abed31dfff50e95105ae17e8c6471e442f3ea249f28cd814",
+    "tests/idle_trinkets.lua": "fd34be659eab5073cb3d51fbfb285b460b053ec5a626b18edec13e04cb7d0172",
+    "tests/idle_tiers.lua": "5c756f0239ea2c3668239b1b05f915f24b4bdd13948655ba042135607b468a96",
+    "tests/fixtures/trinket_push_before.txt": "821f36878905b45394de5584ddcb31db2c28e22f6e2262e4dade97906e8ebadc",
+    "tests/fixtures/tier_owned_before.txt": "284e6c512997fa6f207a7d6fadca1809b21d84502c58130ccd7cece0d8c06da1"
+  },
+  "layoutRetries": {
+    "scope": "Desktop fixture operation counts only, not native FPS/CPU. One setup plus 300 same-frame native chat hooks; 102 login/world events and the initial discovery window. Actual production bodies replayed against retained earlier bodies on five client models.",
+    "chatTimersBefore": 903,
+    "chatTimersAfter": 3,
+    "mapWatcherFramesBefore": 104,
+    "mapWatcherFramesAfter": 1,
+    "files": [
+      {
+        "path": "Other/FluxChatFrame.lua",
+        "sha256": "e253b9157dc10b7b946a6d3999080f62c559eabe2c9ba5583fb42ff07054c6d4"
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldMap.lua",
+        "sha256": "b992e25f854cf0262df43ed9e1ae0ebaf0e2c52f39673396b6923f71a6194cde"
+      },
+      {
+        "path": "tests/idle_layout_retries.lua",
+        "sha256": "c83952077a1a4e122319ba4095556432741fb81de9de9445aa1701c84c174706"
+      },
+      {
+        "path": "tests/fixtures/chat_retries_before.txt",
+        "sha256": "9b90d76f1d27ce7d458e87a72a099459bfd050bcb47dda58e00a532b5bf4fa4a"
+      },
+      {
+        "path": "tests/fixtures/map_tab_watch_before.txt",
+        "sha256": "ae70f5b1c250be7348aae7e1326f572b6dd4660d59487783f3687675872f09c1"
+      }
+    ]
+  }
+}

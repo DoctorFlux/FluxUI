@@ -1,0 +1,261 @@
+{
+  "dateUtc": "2026-11-05T22:06:09.530586+00:00",
+  "baselineCommit": "db42efb10efb0d39cf991dacc27db606000ad7b3",
+  "baselineRuntimeRawSHA256": "07acfae4ed9090c8e6226e140062e254cfef9ec8ca6fca64033ee71228750a8a",
+  "baselineNote": "Exact prior tested tab-visibility candidate07ac;saved before this stage. Both variants retain earlier threat/tab fixes.",
+  "candidateHashes": {
+    "Battlezonemap\\FluxBlizzardMeter.lua": "cdd1408c9d2cc2e3eb682bbcc24098c394622cac617c4979206b027fb71a5dca",
+    "tests\\native_meter_ownership.lua": "13f32f1452c244818a72b48264fb45db407d291dc710e8c09834272d13d4989a"
+  },
+  "host": "Windows-10-10.0.26200-SP0",
+  "method": "463-check production native meter ownership suite and separate mocked native background replay. Normal/gamepad capability fixtures;two sessions and existing source windows. Native session UpdateBackground sets native alpha0, after-hooks execute.500 alternating updates/session;then cleanup callbacks and20 reembeds. Five fresh-process AB/BA pairs, no warm-up beyond fixture construction/drain. CPU,memory/allocation bytes,native latency,secureVM,taint,FPS andpixel parity not measured;process time includes assertions and extra corrected paint. No game input or preferences changed.",
+  "pairs": [
+    {
+      "repetition": 1,
+      "order": [
+        "baseline",
+        "candidate"
+      ],
+      "baseline": {
+        "regression": {
+          "exitCode": 1,
+          "processSeconds": 0.14062019999255426,
+          "stdout": "meter visibility: policyWrites=0 setterCalls=0 nativeEvents=4032 timerDispatches=4032 repeatedAddonRootShows=0 timerWrites=8064 pinnedNative=false\nFAIL native session and existing source receive skin after native configuration\nFAIL one native background posthook is installed per session\nFAIL native session and existing source receive skin after native configuration\nFAIL one native background posthook is installed per session\nFAIL late native alpha refreshes regain shared presentation\nFAIL re-embed resumes one existing background hook\nFAIL cleanup and re-embed keep background hook registration bounded\nFAIL native session and existing source receive skin after native configuration\nFAIL one native background posthook is installed per session\nFAIL native session and existing source receive skin after native configuration\nFAIL one native background posthook is installed per session\nFAIL late native alpha refreshes regain shared presentation\nFAIL re-embed resumes one existing background hook\nFAIL cleanup and re-embed keep background hook registration bounded\nnative backgrounds: updates=2000 skinCalls=24\nmeter tab transitions: cycles=4000 threatResurrections=0 rootResurrections=0\nnative meter ownership: 463 checks, 14 failures; geometry typeCalls=0 sessionCalls=0 entryWalks=0 gamepadPatchTimers=0\n",
+          "stderr": ""
+        },
+        "resources": {
+          "exitCode": 0,
+          "processSeconds": 0.0376817999931518,
+          "stdout": "BACKGROUND gamepad=false configuredPanes=0/4 nativeUpdates=1000 posthookPaints=0 restoredSessions=0/2 frameGrowth=0 timerCreates=0 typeCalls=0 sessionCalls=0 entryWalks=0 nativePolicyWrites=0\nBACKGROUND_RETIRE gamepad=false cleanupCallbackPaints=0 permanentHooksAfter20Reembeds=0 nativeMethodsIntact=true\nBACKGROUND gamepad=true configuredPanes=0/4 nativeUpdates=1000 posthookPaints=0 restoredSessions=0/2 frameGrowth=0 timerCreates=0 typeCalls=0 sessionCalls=0 entryWalks=0 nativePolicyWrites=0\nBACKGROUND_RETIRE gamepad=true cleanupCallbackPaints=0 permanentHooksAfter20Reembeds=0 nativeMethodsIntact=true\n",
+          "stderr": ""
+        }
+      },
+      "candidate": {
+        "regression": {
+          "exitCode": 0,
+          "processSeconds": 0.14503749998402782,
+          "stdout": "meter visibility: policyWrites=0 setterCalls=0 nativeEvents=4032 timerDispatches=4032 repeatedAddonRootShows=0 timerWrites=8064 pinnedNative=false\nnative backgrounds: updates=2000 skinCalls=2028\nmeter tab transitions: cycles=4000 threatResurrections=0 rootResurrections=0\nnative meter ownership: 463 checks, 0 failures; geometry typeCalls=0 sessionCalls=0 entryWalks=0 gamepadPatchTimers=0\n",
+          "stderr": ""
+        },
+        "resources": {
+          "exitCode": 0,
+          "processSeconds": 0.022956700006034225,
+          "stdout": "BACKGROUND gamepad=false configuredPanes=4/4 nativeUpdates=1000 posthookPaints=1000 restoredSessions=2/2 frameGrowth=0 timerCreates=0 typeCalls=0 sessionCalls=0 entryWalks=0 nativePolicyWrites=0\nBACKGROUND_RETIRE gamepad=false cleanupCallbackPaints=0 permanentHooksAfter20Reembeds=2 nativeMethodsIntact=true\nBACKGROUND gamepad=true configuredPanes=4/4 nativeUpdates=1000 posthookPaints=1000 restoredSessions=2/2 frameGrowth=0 timerCreates=0 typeCalls=0 sessionCalls=0 entryWalks=0 nativePolicyWrites=0\nBACKGROUND_RETIRE gamepad=true cleanupCallbackPaints=0 permanentHooksAfter20Reembeds=2 nativeMethodsIntact=true\n",
+          "stderr": ""
+        }
+      }
+    },
+    {
+      "repetition": 2,
+      "order": [
+        "candidate",
+        "baseline"
+      ],
+      "candidate": {
+        "regression": {
+          "exitCode": 0,
+          "processSeconds": 0.1367065999947954,
+          "stdout": "meter visibility: policyWrites=0 setterCalls=0 nativeEvents=4032 timerDispatches=4032 repeatedAddonRootShows=0 timerWrites=8064 pinnedNative=false\nnative backgrounds: updates=2000 skinCalls=2028\nmeter tab transitions: cycles=4000 threatResurrections=0 rootResurrections=0\nnative meter ownership: 463 checks, 0 failures; geometry typeCalls=0 sessionCalls=0 entryWalks=0 gamepadPatchTimers=0\n",
+          "stderr": ""
+        },
+        "resources": {
+          "exitCode": 0,
+          "processSeconds": 0.01903880000463687,
+          "stdout": "BACKGROUND gamepad=false configuredPanes=4/4 nativeUpdates=1000 posthookPaints=1000 restoredSessions=2/2 frameGrowth=0 timerCreates=0 typeCalls=0 sessionCalls=0 entryWalks=0 nativePolicyWrites=0\nBACKGROUND_RETIRE gamepad=false cleanupCallbackPaints=0 permanentHooksAfter20Reembeds=2 nativeMethodsIntact=true\nBACKGROUND gamepad=true configuredPanes=4/4 nativeUpdates=1000 posthookPaints=1000 restoredSessions=2/2 frameGrowth=0 timerCreates=0 typeCalls=0 sessionCalls=0 entryWalks=0 nativePolicyWrites=0\nBACKGROUND_RETIRE gamepad=true cleanupCallbackPaints=0 permanentHooksAfter20Reembeds=2 nativeMethodsIntact=true\n",
+          "stderr": ""
+        }
+      },
+      "baseline": {
+        "regression": {
+          "exitCode": 1,
+          "processSeconds": 0.14369969998369925,
+          "stdout": "meter visibility: policyWrites=0 setterCalls=0 nativeEvents=4032 timerDispatches=4032 repeatedAddonRootShows=0 timerWrites=8064 pinnedNative=false\nFAIL native session and existing source receive skin after native configuration\nFAIL one native background posthook is installed per session\nFAIL native session and existing source receive skin after native configuration\nFAIL one native background posthook is installed per session\nFAIL late native alpha refreshes regain shared presentation\nFAIL re-embed resumes one existing background hook\nFAIL cleanup and re-embed keep background hook registration bounded\nFAIL native session and existing source receive skin after native configuration\nFAIL one native background posthook is installed per session\nFAIL native session and existing source receive skin after native configuration\nFAIL one native background posthook is installed per session\nFAIL late native alpha refreshes regain shared presentation\nFAIL re-embed resumes one existing background hook\nFAIL cleanup and re-embed keep background hook registration bounded\nnative backgrounds: updates=2000 skinCalls=24\nmeter tab transitions: cycles=4000 threatResurrections=0 rootResurrections=0\nnative meter ownership: 463 checks, 14 failures; geometry typeCalls=0 sessionCalls=0 entryWalks=0 gamepadPatchTimers=0\n",
+          "stderr": ""
+        },
+        "resources": {
+          "exitCode": 0,
+          "processSeconds": 0.020117900014156476,
+          "stdout": "BACKGROUND gamepad=false configuredPanes=0/4 nativeUpdates=1000 posthookPaints=0 restoredSessions=0/2 frameGrowth=0 timerCreates=0 typeCalls=0 sessionCalls=0 entryWalks=0 nativePolicyWrites=0\nBACKGROUND_RETIRE gamepad=false cleanupCallbackPaints=0 permanentHooksAfter20Reembeds=0 nativeMethodsIntact=true\nBACKGROUND gamepad=true configuredPanes=0/4 nativeUpdates=1000 posthookPaints=0 restoredSessions=0/2 frameGrowth=0 timerCreates=0 typeCalls=0 sessionCalls=0 entryWalks=0 nativePolicyWrites=0\nBACKGROUND_RETIRE gamepad=true cleanupCallbackPaints=0 permanentHooksAfter20Reembeds=0 nativeMethodsIntact=true\n",
+          "stderr": ""
+        }
+      }
+    },
+    {
+      "repetition": 3,
+      "order": [
+        "baseline",
+        "candidate"
+      ],
+      "baseline": {
+        "regression": {
+          "exitCode": 1,
+          "processSeconds": 0.14383169999928214,
+          "stdout": "meter visibility: policyWrites=0 setterCalls=0 nativeEvents=4032 timerDispatches=4032 repeatedAddonRootShows=0 timerWrites=8064 pinnedNative=false\nFAIL native session and existing source receive skin after native configuration\nFAIL one native background posthook is installed per session\nFAIL native session and existing source receive skin after native configuration\nFAIL one native background posthook is installed per session\nFAIL late native alpha refreshes regain shared presentation\nFAIL re-embed resumes one existing background hook\nFAIL cleanup and re-embed keep background hook registration bounded\nFAIL native session and existing source receive skin after native configuration\nFAIL one native background posthook is installed per session\nFAIL native session and existing source receive skin after native configuration\nFAIL one native background posthook is installed per session\nFAIL late native alpha refreshes regain shared presentation\nFAIL re-embed resumes one existing background hook\nFAIL cleanup and re-embed keep background hook registration bounded\nnative backgrounds: updates=2000 skinCalls=24\nmeter tab transitions: cycles=4000 threatResurrections=0 rootResurrections=0\nnative meter ownership: 463 checks, 14 failures; geometry typeCalls=0 sessionCalls=0 entryWalks=0 gamepadPatchTimers=0\n",
+          "stderr": ""
+        },
+        "resources": {
+          "exitCode": 0,
+          "processSeconds": 0.020477899990510195,
+          "stdout": "BACKGROUND gamepad=false configuredPanes=0/4 nativeUpdates=1000 posthookPaints=0 restoredSessions=0/2 frameGrowth=0 timerCreates=0 typeCalls=0 sessionCalls=0 entryWalks=0 nativePolicyWrites=0\nBACKGROUND_RETIRE gamepad=false cleanupCallbackPaints=0 permanentHooksAfter20Reembeds=0 nativeMethodsIntact=true\nBACKGROUND gamepad=true configuredPanes=0/4 nativeUpdates=1000 posthookPaints=0 restoredSessions=0/2 frameGrowth=0 timerCreates=0 typeCalls=0 sessionCalls=0 entryWalks=0 nativePolicyWrites=0\nBACKGROUND_RETIRE gamepad=true cleanupCallbackPaints=0 permanentHooksAfter20Reembeds=0 nativeMethodsIntact=true\n",
+          "stderr": ""
+        }
+      },
+      "candidate": {
+        "regression": {
+          "exitCode": 0,
+          "processSeconds": 0.15064979999442585,
+          "stdout": "meter visibility: policyWrites=0 setterCalls=0 nativeEvents=4032 timerDispatches=4032 repeatedAddonRootShows=0 timerWrites=8064 pinnedNative=false\nnative backgrounds: updates=2000 skinCalls=2028\nmeter tab transitions: cycles=4000 threatResurrections=0 rootResurrections=0\nnative meter ownership: 463 checks, 0 failures; geometry typeCalls=0 sessionCalls=0 entryWalks=0 gamepadPatchTimers=0\n",
+          "stderr": ""
+        },
+        "resources": {
+          "exitCode": 0,
+          "processSeconds": 0.024235799995949492,
+          "stdout": "BACKGROUND gamepad=false configuredPanes=4/4 nativeUpdates=1000 posthookPaints=1000 restoredSessions=2/2 frameGrowth=0 timerCreates=0 typeCalls=0 sessionCalls=0 entryWalks=0 nativePolicyWrites=0\nBACKGROUND_RETIRE gamepad=false cleanupCallbackPaints=0 permanentHooksAfter20Reembeds=2 nativeMethodsIntact=true\nBACKGROUND gamepad=true configuredPanes=4/4 nativeUpdates=1000 posthookPaints=1000 restoredSessions=2/2 frameGrowth=0 timerCreates=0 typeCalls=0 sessionCalls=0 entryWalks=0 nativePolicyWrites=0\nBACKGROUND_RETIRE gamepad=true cleanupCallbackPaints=0 permanentHooksAfter20Reembeds=2 nativeMethodsIntact=true\n",
+          "stderr": ""
+        }
+      }
+    },
+    {
+      "repetition": 4,
+      "order": [
+        "candidate",
+        "baseline"
+      ],
+      "candidate": {
+        "regression": {
+          "exitCode": 0,
+          "processSeconds": 0.16641899998649023,
+          "stdout": "meter visibility: policyWrites=0 setterCalls=0 nativeEvents=4032 timerDispatches=4032 repeatedAddonRootShows=0 timerWrites=8064 pinnedNative=false\nnative backgrounds: updates=2000 skinCalls=2028\nmeter tab transitions: cycles=4000 threatResurrections=0 rootResurrections=0\nnative meter ownership: 463 checks, 0 failures; geometry typeCalls=0 sessionCalls=0 entryWalks=0 gamepadPatchTimers=0\n",
+          "stderr": ""
+        },
+        "resources": {
+          "exitCode": 0,
+          "processSeconds": 0.021561500005191192,
+          "stdout": "BACKGROUND gamepad=false configuredPanes=4/4 nativeUpdates=1000 posthookPaints=1000 restoredSessions=2/2 frameGrowth=0 timerCreates=0 typeCalls=0 sessionCalls=0 entryWalks=0 nativePolicyWrites=0\nBACKGROUND_RETIRE gamepad=false cleanupCallbackPaints=0 permanentHooksAfter20Reembeds=2 nativeMethodsIntact=true\nBACKGROUND gamepad=true configuredPanes=4/4 nativeUpdates=1000 posthookPaints=1000 restoredSessions=2/2 frameGrowth=0 timerCreates=0 typeCalls=0 sessionCalls=0 entryWalks=0 nativePolicyWrites=0\nBACKGROUND_RETIRE gamepad=true cleanupCallbackPaints=0 permanentHooksAfter20Reembeds=2 nativeMethodsIntact=true\n",
+          "stderr": ""
+        }
+      },
+      "baseline": {
+        "regression": {
+          "exitCode": 1,
+          "processSeconds": 0.16309260000707582,
+          "stdout": "meter visibility: policyWrites=0 setterCalls=0 nativeEvents=4032 timerDispatches=4032 repeatedAddonRootShows=0 timerWrites=8064 pinnedNative=false\nFAIL native session and existing source receive skin after native configuration\nFAIL one native background posthook is installed per session\nFAIL native session and existing source receive skin after native configuration\nFAIL one native background posthook is installed per session\nFAIL late native alpha refreshes regain shared presentation\nFAIL re-embed resumes one existing background hook\nFAIL cleanup and re-embed keep background hook registration bounded\nFAIL native session and existing source receive skin after native configuration\nFAIL one native background posthook is installed per session\nFAIL native session and existing source receive skin after native configuration\nFAIL one native background posthook is installed per session\nFAIL late native alpha refreshes regain shared presentation\nFAIL re-embed resumes one existing background hook\nFAIL cleanup and re-embed keep background hook registration bounded\nnative backgrounds: updates=2000 skinCalls=24\nmeter tab transitions: cycles=4000 threatResurrections=0 rootResurrections=0\nnative meter ownership: 463 checks, 14 failures; geometry typeCalls=0 sessionCalls=0 entryWalks=0 gamepadPatchTimers=0\n",
+          "stderr": ""
+        },
+        "resources": {
+          "exitCode": 0,
+          "processSeconds": 0.025297899992438033,
+          "stdout": "BACKGROUND gamepad=false configuredPanes=0/4 nativeUpdates=1000 posthookPaints=0 restoredSessions=0/2 frameGrowth=0 timerCreates=0 typeCalls=0 sessionCalls=0 entryWalks=0 nativePolicyWrites=0\nBACKGROUND_RETIRE gamepad=false cleanupCallbackPaints=0 permanentHooksAfter20Reembeds=0 nativeMethodsIntact=true\nBACKGROUND gamepad=true configuredPanes=0/4 nativeUpdates=1000 posthookPaints=0 restoredSessions=0/2 frameGrowth=0 timerCreates=0 typeCalls=0 sessionCalls=0 entryWalks=0 nativePolicyWrites=0\nBACKGROUND_RETIRE gamepad=true cleanupCallbackPaints=0 permanentHooksAfter20Reembeds=0 nativeMethodsIntact=true\n",
+          "stderr": ""
+        }
+      }
+    },
+    {
+      "repetition": 5,
+      "order": [
+        "baseline",
+        "candidate"
+      ],
+      "baseline": {
+        "regression": {
+          "exitCode": 1,
+          "processSeconds": 0.17562680001719855,
+          "stdout": "meter visibility: policyWrites=0 setterCalls=0 nativeEvents=4032 timerDispatches=4032 repeatedAddonRootShows=0 timerWrites=8064 pinnedNative=false\nFAIL native session and existing source receive skin after native configuration\nFAIL one native background posthook is installed per session\nFAIL native session and existing source receive skin after native configuration\nFAIL one native background posthook is installed per session\nFAIL late native alpha refreshes regain shared presentation\nFAIL re-embed resumes one existing background hook\nFAIL cleanup and re-embed keep background hook registration bounded\nFAIL native session and existing source receive skin after native configuration\nFAIL one native background posthook is installed per session\nFAIL native session and existing source receive skin after native configuration\nFAIL one native background posthook is installed per session\nFAIL late native alpha refreshes regain shared presentation\nFAIL re-embed resumes one existing background hook\nFAIL cleanup and re-embed keep background hook registration bounded\nnative backgrounds: updates=2000 skinCalls=24\nmeter tab transitions: cycles=4000 threatResurrections=0 rootResurrections=0\nnative meter ownership: 463 checks, 14 failures; geometry typeCalls=0 sessionCalls=0 entryWalks=0 gamepadPatchTimers=0\n",
+          "stderr": ""
+        },
+        "resources": {
+          "exitCode": 0,
+          "processSeconds": 0.02497399999992922,
+          "stdout": "BACKGROUND gamepad=false configuredPanes=0/4 nativeUpdates=1000 posthookPaints=0 restoredSessions=0/2 frameGrowth=0 timerCreates=0 typeCalls=0 sessionCalls=0 entryWalks=0 nativePolicyWrites=0\nBACKGROUND_RETIRE gamepad=false cleanupCallbackPaints=0 permanentHooksAfter20Reembeds=0 nativeMethodsIntact=true\nBACKGROUND gamepad=true configuredPanes=0/4 nativeUpdates=1000 posthookPaints=0 restoredSessions=0/2 frameGrowth=0 timerCreates=0 typeCalls=0 sessionCalls=0 entryWalks=0 nativePolicyWrites=0\nBACKGROUND_RETIRE gamepad=true cleanupCallbackPaints=0 permanentHooksAfter20Reembeds=0 nativeMethodsIntact=true\n",
+          "stderr": ""
+        }
+      },
+      "candidate": {
+        "regression": {
+          "exitCode": 0,
+          "processSeconds": 0.15289880000636913,
+          "stdout": "meter visibility: policyWrites=0 setterCalls=0 nativeEvents=4032 timerDispatches=4032 repeatedAddonRootShows=0 timerWrites=8064 pinnedNative=false\nnative backgrounds: updates=2000 skinCalls=2028\nmeter tab transitions: cycles=4000 threatResurrections=0 rootResurrections=0\nnative meter ownership: 463 checks, 0 failures; geometry typeCalls=0 sessionCalls=0 entryWalks=0 gamepadPatchTimers=0\n",
+          "stderr": ""
+        },
+        "resources": {
+          "exitCode": 0,
+          "processSeconds": 0.020793199975742027,
+          "stdout": "BACKGROUND gamepad=false configuredPanes=4/4 nativeUpdates=1000 posthookPaints=1000 restoredSessions=2/2 frameGrowth=0 timerCreates=0 typeCalls=0 sessionCalls=0 entryWalks=0 nativePolicyWrites=0\nBACKGROUND_RETIRE gamepad=false cleanupCallbackPaints=0 permanentHooksAfter20Reembeds=2 nativeMethodsIntact=true\nBACKGROUND gamepad=true configuredPanes=4/4 nativeUpdates=1000 posthookPaints=1000 restoredSessions=2/2 frameGrowth=0 timerCreates=0 typeCalls=0 sessionCalls=0 entryWalks=0 nativePolicyWrites=0\nBACKGROUND_RETIRE gamepad=true cleanupCallbackPaints=0 permanentHooksAfter20Reembeds=2 nativeMethodsIntact=true\n",
+          "stderr": ""
+        }
+      }
+    }
+  ],
+  "mutants": [
+    {
+      "name": "no_background_posthook",
+      "sourceRawSHA256": "97a9641615709d2daf3e079560133956611f7675903107d7db5e67c4f3564bf2",
+      "exitCode": 1,
+      "processSeconds": 0.18700549998902716,
+      "stdout": "meter visibility: policyWrites=0 setterCalls=0 nativeEvents=4032 timerDispatches=4032 repeatedAddonRootShows=0 timerWrites=8064 pinnedNative=false\nFAIL one native background posthook is installed per session\nFAIL one native background posthook is installed per session\nFAIL late native alpha refreshes regain shared presentation\nFAIL re-embed resumes one existing background hook\nFAIL cleanup and re-embed keep background hook registration bounded\nFAIL one native background posthook is installed per session\nFAIL one native background posthook is installed per session\nFAIL late native alpha refreshes regain shared presentation\nFAIL re-embed resumes one existing background hook\nFAIL cleanup and re-embed keep background hook registration bounded\nnative backgrounds: updates=2000 skinCalls=24\nmeter tab transitions: cycles=4000 threatResurrections=0 rootResurrections=0\nnative meter ownership: 463 checks, 10 failures; geometry typeCalls=0 sessionCalls=0 entryWalks=0 gamepadPatchTimers=0\n",
+      "stderr": ""
+    },
+    {
+      "name": "repaint_released_members",
+      "sourceRawSHA256": "feb12aca18e4a21ef545ea252745cc07065d4a6d05ed1446f308f4b691eca8bb",
+      "exitCode": 1,
+      "processSeconds": 0.16399130001082085,
+      "stdout": "meter visibility: policyWrites=0 setterCalls=0 nativeEvents=4032 timerDispatches=4032 repeatedAddonRootShows=0 timerWrites=8064 pinnedNative=false\nFAIL Details handoff retires active skin membership\nFAIL Details handoff retires active skin membership\nnative backgrounds: updates=2000 skinCalls=2030\nmeter tab transitions: cycles=4000 threatResurrections=0 rootResurrections=0\nnative meter ownership: 463 checks, 2 failures; geometry typeCalls=0 sessionCalls=0 entryWalks=0 gamepadPatchTimers=0\n",
+      "stderr": ""
+    },
+    {
+      "name": "repaint_unavailable_backend",
+      "sourceRawSHA256": "07a314502df9b78f0c51d46daf2bfe054db33e8dc8a37435f0149b3d73551897",
+      "exitCode": 1,
+      "processSeconds": 0.15736979999928735,
+      "stdout": "meter visibility: policyWrites=0 setterCalls=0 nativeEvents=4032 timerDispatches=4032 repeatedAddonRootShows=0 timerWrites=8064 pinnedNative=false\nFAIL Details availability immediately stops native skin callbacks\nFAIL Details handoff retires active skin membership\nFAIL Details availability immediately stops native skin callbacks\nFAIL Details handoff retires active skin membership\nnative backgrounds: updates=2000 skinCalls=2030\nmeter tab transitions: cycles=4000 threatResurrections=0 rootResurrections=0\nnative meter ownership: 463 checks, 4 failures; geometry typeCalls=0 sessionCalls=0 entryWalks=0 gamepadPatchTimers=0\n",
+      "stderr": ""
+    },
+    {
+      "name": "multiply_permanent_hooks",
+      "sourceRawSHA256": "3a3d3acec012e51b53ac6313562d57da7b60403fa82d919b6bf3c3e3c76c4d51",
+      "exitCode": 1,
+      "processSeconds": 0.19689999998081475,
+      "stdout": "meter visibility: policyWrites=0 setterCalls=0 nativeEvents=4032 timerDispatches=4032 repeatedAddonRootShows=0 timerWrites=8064 pinnedNative=false\nFAIL re-embed resumes one existing background hook\nFAIL cleanup and re-embed keep background hook registration bounded\nFAIL re-embed resumes one existing background hook\nFAIL cleanup and re-embed keep background hook registration bounded\nnative backgrounds: updates=2000 skinCalls=2034\nmeter tab transitions: cycles=4000 threatResurrections=0 rootResurrections=0\nFAIL retail geometry does not walk native entry pools\nFAIL retail row-style hooks do not multiply across re-embed\nFAIL forever geometry does not walk native entry pools\nFAIL forever row-style hooks do not multiply across re-embed\nFAIL era geometry does not walk native entry pools\nFAIL era row-style hooks do not multiply across re-embed\nFAIL anniversary geometry does not walk native entry pools\nFAIL anniversary row-style hooks do not multiply across re-embed\nFAIL mists geometry does not walk native entry pools\nFAIL mists row-style hooks do not multiply across re-embed\nFAIL forever-gamepad geometry does not walk native entry pools\nFAIL forever-gamepad row-style hooks do not multiply across re-embed\nnative meter ownership: 463 checks, 16 failures; geometry typeCalls=0 sessionCalls=0 entryWalks=2000 gamepadPatchTimers=0\n",
+      "stderr": ""
+    },
+    {
+      "name": "paint_before_native_configuration",
+      "sourceRawSHA256": "24c638d5621bbe60f35af289cdd972ec643bb552eed814ac220c324871bbb537",
+      "exitCode": 1,
+      "processSeconds": 0.20843990001594648,
+      "stdout": "meter visibility: policyWrites=0 setterCalls=0 nativeEvents=4032 timerDispatches=4032 repeatedAddonRootShows=0 timerWrites=8064 pinnedNative=false\nFAIL native session and existing source receive skin after native configuration\nFAIL native session and existing source receive skin after native configuration\nFAIL native session and existing source receive skin after native configuration\nFAIL native session and existing source receive skin after native configuration\nnative backgrounds: updates=2000 skinCalls=2028\nmeter tab transitions: cycles=4000 threatResurrections=0 rootResurrections=0\nnative meter ownership: 463 checks, 4 failures; geometry typeCalls=0 sessionCalls=0 entryWalks=0 gamepadPatchTimers=0\n",
+      "stderr": ""
+    }
+  ],
+  "candidateHashesAfter": {
+    "Battlezonemap\\FluxBlizzardMeter.lua": "cdd1408c9d2cc2e3eb682bbcc24098c394622cac617c4979206b027fb71a5dca",
+    "tests\\native_meter_ownership.lua": "13f32f1452c244818a72b48264fb45db407d291dc710e8c09834272d13d4989a"
+  },
+  "sourceUnchanged": true,
+  "baselineProcessSeconds": {
+    "raw": [
+      0.14062019999255426,
+      0.14369969998369925,
+      0.14383169999928214,
+      0.16309260000707582,
+      0.17562680001719855
+    ],
+    "median": 0.14383169999928214,
+    "min": 0.14062019999255426,
+    "max": 0.17562680001719855
+  },
+  "candidateProcessSeconds": {
+    "raw": [
+      0.14503749998402782,
+      0.1367065999947954,
+      0.15064979999442585,
+      0.16641899998649023,
+      0.15289880000636913
+    ],
+    "median": 0.15064979999442585,
+    "min": 0.1367065999947954,
+    "max": 0.16641899998649023
+  },
+  "result": "PASS:463 checks in every candidate;baseline14 failures;five matched pairs;five rejected mutants;native background paint restored without method replacement"
+}

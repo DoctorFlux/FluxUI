@@ -1,0 +1,566 @@
+{
+  "checkpoint": "Random-spike-resume-20261106T170042Z, parent verified1660files/190settings/allrefs",
+  "scope": "Full actual FluxBattlefieldMapProviders module. Explicit native lifecycle fixtures model pinned Quest/Waypoint callback omissions. Active quest+feature behavior, preserved native WorldMap owner, partial add failure, retained map pointer, stale queued/throttled timer cases. Native source actual taint/graphics/timing not modeled.",
+  "sourceSHA256": {
+    "baseline": "94df2a8c65e5cc76b98b0f2f53084f74df498d7dd958c7ccfe3683c329862913",
+    "candidate": "9a66d5e6c1ff14e377c7948b0340262fb1a67f31f53bf5d37c299b30ce152718",
+    "test": "b848fc4b3727df5952f4510d7c93c007aa156f65d12a82e1b70c036bb42a73fa",
+    "unchangedAcquireGuard": "798b25674c1ae34cb217189f89722aa9b931acd5306ac7509d17a53df5bf7563"
+  },
+  "regression": {
+    "candidateChecks": 31,
+    "baselineExit": 1,
+    "baselineOutput": "lua: ...22b\\map-provider-detach-20261106\\map_provider_detach.lua:5: discarded clone callbacks are released and native world owner remains\nstack traceback:\n\t[C]: in function 'assert'\n\t...22b\\map-provider-detach-20261106\\map_provider_detach.lua:5: in local 'check'\n\t...22b\\map-provider-detach-20261106\\map_provider_detach.lua:162: in main chunk\n\t[C]: in ?\n",
+    "mutants": [
+      {
+        "name": "callback-leak",
+        "exit": 1,
+        "output": "lua: ...22b\\map-provider-detach-20261106\\map_provider_detach.lua:5: discarded clone callbacks are released and native world owner remains\nstack traceback:\n\t[C]: in function 'assert'\n\t...22b\\map-provider-detach-20261106\\map_provider_detach.lua:5: in local 'check'\n\t...22b\\map-provider-detach-20261106\\map_provider_detach.lua:164: in main chunk\n\t[C]: in ?\n"
+      },
+      {
+        "name": "canvas-handler-leak",
+        "exit": 1,
+        "output": "lua: ...22b\\map-provider-detach-20261106\\map_provider_detach.lua:5: discarded waypoint input handlers are released\nstack traceback:\n\t[C]: in function 'assert'\n\t...22b\\map-provider-detach-20261106\\map_provider_detach.lua:5: in local 'check'\n\t...22b\\map-provider-detach-20261106\\map_provider_detach.lua:166: in main chunk\n\t[C]: in ?\n"
+      },
+      {
+        "name": "toggle-callback-leak",
+        "exit": 1,
+        "output": "lua: ...22b\\map-provider-detach-20261106\\map_provider_detach.lua:5: discarded waypoint toggle callback is released\nstack traceback:\n\t[C]: in function 'assert'\n\t...22b\\map-provider-detach-20261106\\map_provider_detach.lua:5: in local 'check'\n\t...22b\\map-provider-detach-20261106\\map_provider_detach.lua:168: in main chunk\n\t[C]: in ?\n"
+      },
+      {
+        "name": "queued-owner-check",
+        "exit": 1,
+        "output": "lua: ...22b\\map-provider-detach-20261106\\map_provider_detach.lua:5: queued discarded quest refresh cannot run with a stale map reference\nstack traceback:\n\t[C]: in function 'assert'\n\t...22b\\map-provider-detach-20261106\\map_provider_detach.lua:5: in local 'check'\n\t...22b\\map-provider-detach-20261106\\map_provider_detach.lua:189: in main chunk\n\t[C]: in ?\n"
+      },
+      {
+        "name": "throttled-owner-check",
+        "exit": 1,
+        "output": "lua: ...22b\\map-provider-detach-20261106\\map_provider_detach.lua:5: discarded throttled callback cannot queue a new timer\nstack traceback:\n\t[C]: in function 'assert'\n\t...22b\\map-provider-detach-20261106\\map_provider_detach.lua:5: in local 'check'\n\t...22b\\map-provider-detach-20261106\\map_provider_detach.lua:205: in main chunk\n\t[C]: in ?\n"
+      }
+    ]
+  },
+  "scenario": "Resource captures1/10/100/1000 Attach/Detach cycles with fixed simulated GetTime=1second, drain only timers due by1s, then one Supertracking event inside old0.25s throttle windows. Timing10warm-up cycles then1000matched cycles,5alternating pairs. No GC/profiler/settings changes. Slower real cycles may invoke stale callbacks without queueing the modeled timer count.",
+  "hostClockLimit": "Uncalibrated Windows Lua os.clock interval; not native CPU or FPS. File load excluded. Native acceptance pending.",
+  "samples": [
+    {
+      "pair": 1,
+      "variant": "baseline",
+      "hostClockMs": 33.0,
+      "counts": [
+        {
+          "cycles": 1,
+          "retainedCallbacks": 1,
+          "retainedCanvasHandlers": 1,
+          "retainedPinHandlers": 1,
+          "retainedCursorHandlers": 0,
+          "attachedProviders": 0,
+          "timersAfterSupertracking": 1,
+          "callbacksBeforeSupertracking": 1,
+          "retainedToggleCallbacks": 1
+        },
+        {
+          "cycles": 10,
+          "retainedCallbacks": 10,
+          "retainedCanvasHandlers": 10,
+          "retainedPinHandlers": 10,
+          "retainedCursorHandlers": 0,
+          "attachedProviders": 0,
+          "timersAfterSupertracking": 10,
+          "callbacksBeforeSupertracking": 10,
+          "retainedToggleCallbacks": 10
+        },
+        {
+          "cycles": 100,
+          "retainedCallbacks": 100,
+          "retainedCanvasHandlers": 100,
+          "retainedPinHandlers": 100,
+          "retainedCursorHandlers": 0,
+          "attachedProviders": 0,
+          "timersAfterSupertracking": 100,
+          "callbacksBeforeSupertracking": 100,
+          "retainedToggleCallbacks": 100
+        },
+        {
+          "cycles": 1000,
+          "retainedCallbacks": 1000,
+          "retainedCanvasHandlers": 1000,
+          "retainedPinHandlers": 1000,
+          "retainedCursorHandlers": 0,
+          "attachedProviders": 0,
+          "timersAfterSupertracking": 1000,
+          "callbacksBeforeSupertracking": 1000,
+          "retainedToggleCallbacks": 1000
+        }
+      ],
+      "stdout": "1\t1\t1\t1\t0\t0\t1\t1\t1\n10\t10\t10\t10\t0\t0\t10\t10\t10\n100\t100\t100\t100\t0\t0\t100\t100\t100\n1000\t1000\t1000\t1000\t0\t0\t1000\t1000\t1000\nHOST_CLOCK_MS\t33.0\n"
+    },
+    {
+      "pair": 1,
+      "variant": "candidate",
+      "hostClockMs": 30.0,
+      "counts": [
+        {
+          "cycles": 1,
+          "retainedCallbacks": 0,
+          "retainedCanvasHandlers": 0,
+          "retainedPinHandlers": 0,
+          "retainedCursorHandlers": 0,
+          "attachedProviders": 0,
+          "timersAfterSupertracking": 0,
+          "callbacksBeforeSupertracking": 0,
+          "retainedToggleCallbacks": 0
+        },
+        {
+          "cycles": 10,
+          "retainedCallbacks": 0,
+          "retainedCanvasHandlers": 0,
+          "retainedPinHandlers": 0,
+          "retainedCursorHandlers": 0,
+          "attachedProviders": 0,
+          "timersAfterSupertracking": 0,
+          "callbacksBeforeSupertracking": 0,
+          "retainedToggleCallbacks": 0
+        },
+        {
+          "cycles": 100,
+          "retainedCallbacks": 0,
+          "retainedCanvasHandlers": 0,
+          "retainedPinHandlers": 0,
+          "retainedCursorHandlers": 0,
+          "attachedProviders": 0,
+          "timersAfterSupertracking": 0,
+          "callbacksBeforeSupertracking": 0,
+          "retainedToggleCallbacks": 0
+        },
+        {
+          "cycles": 1000,
+          "retainedCallbacks": 0,
+          "retainedCanvasHandlers": 0,
+          "retainedPinHandlers": 0,
+          "retainedCursorHandlers": 0,
+          "attachedProviders": 0,
+          "timersAfterSupertracking": 0,
+          "callbacksBeforeSupertracking": 0,
+          "retainedToggleCallbacks": 0
+        }
+      ],
+      "stdout": "1\t0\t0\t0\t0\t0\t0\t0\t0\n10\t0\t0\t0\t0\t0\t0\t0\t0\n100\t0\t0\t0\t0\t0\t0\t0\t0\n1000\t0\t0\t0\t0\t0\t0\t0\t0\nHOST_CLOCK_MS\t30.0\n"
+    },
+    {
+      "pair": 2,
+      "variant": "candidate",
+      "hostClockMs": 32.0,
+      "counts": [
+        {
+          "cycles": 1,
+          "retainedCallbacks": 0,
+          "retainedCanvasHandlers": 0,
+          "retainedPinHandlers": 0,
+          "retainedCursorHandlers": 0,
+          "attachedProviders": 0,
+          "timersAfterSupertracking": 0,
+          "callbacksBeforeSupertracking": 0,
+          "retainedToggleCallbacks": 0
+        },
+        {
+          "cycles": 10,
+          "retainedCallbacks": 0,
+          "retainedCanvasHandlers": 0,
+          "retainedPinHandlers": 0,
+          "retainedCursorHandlers": 0,
+          "attachedProviders": 0,
+          "timersAfterSupertracking": 0,
+          "callbacksBeforeSupertracking": 0,
+          "retainedToggleCallbacks": 0
+        },
+        {
+          "cycles": 100,
+          "retainedCallbacks": 0,
+          "retainedCanvasHandlers": 0,
+          "retainedPinHandlers": 0,
+          "retainedCursorHandlers": 0,
+          "attachedProviders": 0,
+          "timersAfterSupertracking": 0,
+          "callbacksBeforeSupertracking": 0,
+          "retainedToggleCallbacks": 0
+        },
+        {
+          "cycles": 1000,
+          "retainedCallbacks": 0,
+          "retainedCanvasHandlers": 0,
+          "retainedPinHandlers": 0,
+          "retainedCursorHandlers": 0,
+          "attachedProviders": 0,
+          "timersAfterSupertracking": 0,
+          "callbacksBeforeSupertracking": 0,
+          "retainedToggleCallbacks": 0
+        }
+      ],
+      "stdout": "1\t0\t0\t0\t0\t0\t0\t0\t0\n10\t0\t0\t0\t0\t0\t0\t0\t0\n100\t0\t0\t0\t0\t0\t0\t0\t0\n1000\t0\t0\t0\t0\t0\t0\t0\t0\nHOST_CLOCK_MS\t32.0\n"
+    },
+    {
+      "pair": 2,
+      "variant": "baseline",
+      "hostClockMs": 34.0,
+      "counts": [
+        {
+          "cycles": 1,
+          "retainedCallbacks": 1,
+          "retainedCanvasHandlers": 1,
+          "retainedPinHandlers": 1,
+          "retainedCursorHandlers": 0,
+          "attachedProviders": 0,
+          "timersAfterSupertracking": 1,
+          "callbacksBeforeSupertracking": 1,
+          "retainedToggleCallbacks": 1
+        },
+        {
+          "cycles": 10,
+          "retainedCallbacks": 10,
+          "retainedCanvasHandlers": 10,
+          "retainedPinHandlers": 10,
+          "retainedCursorHandlers": 0,
+          "attachedProviders": 0,
+          "timersAfterSupertracking": 10,
+          "callbacksBeforeSupertracking": 10,
+          "retainedToggleCallbacks": 10
+        },
+        {
+          "cycles": 100,
+          "retainedCallbacks": 100,
+          "retainedCanvasHandlers": 100,
+          "retainedPinHandlers": 100,
+          "retainedCursorHandlers": 0,
+          "attachedProviders": 0,
+          "timersAfterSupertracking": 100,
+          "callbacksBeforeSupertracking": 100,
+          "retainedToggleCallbacks": 100
+        },
+        {
+          "cycles": 1000,
+          "retainedCallbacks": 1000,
+          "retainedCanvasHandlers": 1000,
+          "retainedPinHandlers": 1000,
+          "retainedCursorHandlers": 0,
+          "attachedProviders": 0,
+          "timersAfterSupertracking": 1000,
+          "callbacksBeforeSupertracking": 1000,
+          "retainedToggleCallbacks": 1000
+        }
+      ],
+      "stdout": "1\t1\t1\t1\t0\t0\t1\t1\t1\n10\t10\t10\t10\t0\t0\t10\t10\t10\n100\t100\t100\t100\t0\t0\t100\t100\t100\n1000\t1000\t1000\t1000\t0\t0\t1000\t1000\t1000\nHOST_CLOCK_MS\t34.0\n"
+    },
+    {
+      "pair": 3,
+      "variant": "baseline",
+      "hostClockMs": 32.0,
+      "counts": [
+        {
+          "cycles": 1,
+          "retainedCallbacks": 1,
+          "retainedCanvasHandlers": 1,
+          "retainedPinHandlers": 1,
+          "retainedCursorHandlers": 0,
+          "attachedProviders": 0,
+          "timersAfterSupertracking": 1,
+          "callbacksBeforeSupertracking": 1,
+          "retainedToggleCallbacks": 1
+        },
+        {
+          "cycles": 10,
+          "retainedCallbacks": 10,
+          "retainedCanvasHandlers": 10,
+          "retainedPinHandlers": 10,
+          "retainedCursorHandlers": 0,
+          "attachedProviders": 0,
+          "timersAfterSupertracking": 10,
+          "callbacksBeforeSupertracking": 10,
+          "retainedToggleCallbacks": 10
+        },
+        {
+          "cycles": 100,
+          "retainedCallbacks": 100,
+          "retainedCanvasHandlers": 100,
+          "retainedPinHandlers": 100,
+          "retainedCursorHandlers": 0,
+          "attachedProviders": 0,
+          "timersAfterSupertracking": 100,
+          "callbacksBeforeSupertracking": 100,
+          "retainedToggleCallbacks": 100
+        },
+        {
+          "cycles": 1000,
+          "retainedCallbacks": 1000,
+          "retainedCanvasHandlers": 1000,
+          "retainedPinHandlers": 1000,
+          "retainedCursorHandlers": 0,
+          "attachedProviders": 0,
+          "timersAfterSupertracking": 1000,
+          "callbacksBeforeSupertracking": 1000,
+          "retainedToggleCallbacks": 1000
+        }
+      ],
+      "stdout": "1\t1\t1\t1\t0\t0\t1\t1\t1\n10\t10\t10\t10\t0\t0\t10\t10\t10\n100\t100\t100\t100\t0\t0\t100\t100\t100\n1000\t1000\t1000\t1000\t0\t0\t1000\t1000\t1000\nHOST_CLOCK_MS\t32.0\n"
+    },
+    {
+      "pair": 3,
+      "variant": "candidate",
+      "hostClockMs": 31.0,
+      "counts": [
+        {
+          "cycles": 1,
+          "retainedCallbacks": 0,
+          "retainedCanvasHandlers": 0,
+          "retainedPinHandlers": 0,
+          "retainedCursorHandlers": 0,
+          "attachedProviders": 0,
+          "timersAfterSupertracking": 0,
+          "callbacksBeforeSupertracking": 0,
+          "retainedToggleCallbacks": 0
+        },
+        {
+          "cycles": 10,
+          "retainedCallbacks": 0,
+          "retainedCanvasHandlers": 0,
+          "retainedPinHandlers": 0,
+          "retainedCursorHandlers": 0,
+          "attachedProviders": 0,
+          "timersAfterSupertracking": 0,
+          "callbacksBeforeSupertracking": 0,
+          "retainedToggleCallbacks": 0
+        },
+        {
+          "cycles": 100,
+          "retainedCallbacks": 0,
+          "retainedCanvasHandlers": 0,
+          "retainedPinHandlers": 0,
+          "retainedCursorHandlers": 0,
+          "attachedProviders": 0,
+          "timersAfterSupertracking": 0,
+          "callbacksBeforeSupertracking": 0,
+          "retainedToggleCallbacks": 0
+        },
+        {
+          "cycles": 1000,
+          "retainedCallbacks": 0,
+          "retainedCanvasHandlers": 0,
+          "retainedPinHandlers": 0,
+          "retainedCursorHandlers": 0,
+          "attachedProviders": 0,
+          "timersAfterSupertracking": 0,
+          "callbacksBeforeSupertracking": 0,
+          "retainedToggleCallbacks": 0
+        }
+      ],
+      "stdout": "1\t0\t0\t0\t0\t0\t0\t0\t0\n10\t0\t0\t0\t0\t0\t0\t0\t0\n100\t0\t0\t0\t0\t0\t0\t0\t0\n1000\t0\t0\t0\t0\t0\t0\t0\t0\nHOST_CLOCK_MS\t31.0\n"
+    },
+    {
+      "pair": 4,
+      "variant": "candidate",
+      "hostClockMs": 30.0,
+      "counts": [
+        {
+          "cycles": 1,
+          "retainedCallbacks": 0,
+          "retainedCanvasHandlers": 0,
+          "retainedPinHandlers": 0,
+          "retainedCursorHandlers": 0,
+          "attachedProviders": 0,
+          "timersAfterSupertracking": 0,
+          "callbacksBeforeSupertracking": 0,
+          "retainedToggleCallbacks": 0
+        },
+        {
+          "cycles": 10,
+          "retainedCallbacks": 0,
+          "retainedCanvasHandlers": 0,
+          "retainedPinHandlers": 0,
+          "retainedCursorHandlers": 0,
+          "attachedProviders": 0,
+          "timersAfterSupertracking": 0,
+          "callbacksBeforeSupertracking": 0,
+          "retainedToggleCallbacks": 0
+        },
+        {
+          "cycles": 100,
+          "retainedCallbacks": 0,
+          "retainedCanvasHandlers": 0,
+          "retainedPinHandlers": 0,
+          "retainedCursorHandlers": 0,
+          "attachedProviders": 0,
+          "timersAfterSupertracking": 0,
+          "callbacksBeforeSupertracking": 0,
+          "retainedToggleCallbacks": 0
+        },
+        {
+          "cycles": 1000,
+          "retainedCallbacks": 0,
+          "retainedCanvasHandlers": 0,
+          "retainedPinHandlers": 0,
+          "retainedCursorHandlers": 0,
+          "attachedProviders": 0,
+          "timersAfterSupertracking": 0,
+          "callbacksBeforeSupertracking": 0,
+          "retainedToggleCallbacks": 0
+        }
+      ],
+      "stdout": "1\t0\t0\t0\t0\t0\t0\t0\t0\n10\t0\t0\t0\t0\t0\t0\t0\t0\n100\t0\t0\t0\t0\t0\t0\t0\t0\n1000\t0\t0\t0\t0\t0\t0\t0\t0\nHOST_CLOCK_MS\t30.0\n"
+    },
+    {
+      "pair": 4,
+      "variant": "baseline",
+      "hostClockMs": 33.0,
+      "counts": [
+        {
+          "cycles": 1,
+          "retainedCallbacks": 1,
+          "retainedCanvasHandlers": 1,
+          "retainedPinHandlers": 1,
+          "retainedCursorHandlers": 0,
+          "attachedProviders": 0,
+          "timersAfterSupertracking": 1,
+          "callbacksBeforeSupertracking": 1,
+          "retainedToggleCallbacks": 1
+        },
+        {
+          "cycles": 10,
+          "retainedCallbacks": 10,
+          "retainedCanvasHandlers": 10,
+          "retainedPinHandlers": 10,
+          "retainedCursorHandlers": 0,
+          "attachedProviders": 0,
+          "timersAfterSupertracking": 10,
+          "callbacksBeforeSupertracking": 10,
+          "retainedToggleCallbacks": 10
+        },
+        {
+          "cycles": 100,
+          "retainedCallbacks": 100,
+          "retainedCanvasHandlers": 100,
+          "retainedPinHandlers": 100,
+          "retainedCursorHandlers": 0,
+          "attachedProviders": 0,
+          "timersAfterSupertracking": 100,
+          "callbacksBeforeSupertracking": 100,
+          "retainedToggleCallbacks": 100
+        },
+        {
+          "cycles": 1000,
+          "retainedCallbacks": 1000,
+          "retainedCanvasHandlers": 1000,
+          "retainedPinHandlers": 1000,
+          "retainedCursorHandlers": 0,
+          "attachedProviders": 0,
+          "timersAfterSupertracking": 1000,
+          "callbacksBeforeSupertracking": 1000,
+          "retainedToggleCallbacks": 1000
+        }
+      ],
+      "stdout": "1\t1\t1\t1\t0\t0\t1\t1\t1\n10\t10\t10\t10\t0\t0\t10\t10\t10\n100\t100\t100\t100\t0\t0\t100\t100\t100\n1000\t1000\t1000\t1000\t0\t0\t1000\t1000\t1000\nHOST_CLOCK_MS\t33.0\n"
+    },
+    {
+      "pair": 5,
+      "variant": "baseline",
+      "hostClockMs": 33.0,
+      "counts": [
+        {
+          "cycles": 1,
+          "retainedCallbacks": 1,
+          "retainedCanvasHandlers": 1,
+          "retainedPinHandlers": 1,
+          "retainedCursorHandlers": 0,
+          "attachedProviders": 0,
+          "timersAfterSupertracking": 1,
+          "callbacksBeforeSupertracking": 1,
+          "retainedToggleCallbacks": 1
+        },
+        {
+          "cycles": 10,
+          "retainedCallbacks": 10,
+          "retainedCanvasHandlers": 10,
+          "retainedPinHandlers": 10,
+          "retainedCursorHandlers": 0,
+          "attachedProviders": 0,
+          "timersAfterSupertracking": 10,
+          "callbacksBeforeSupertracking": 10,
+          "retainedToggleCallbacks": 10
+        },
+        {
+          "cycles": 100,
+          "retainedCallbacks": 100,
+          "retainedCanvasHandlers": 100,
+          "retainedPinHandlers": 100,
+          "retainedCursorHandlers": 0,
+          "attachedProviders": 0,
+          "timersAfterSupertracking": 100,
+          "callbacksBeforeSupertracking": 100,
+          "retainedToggleCallbacks": 100
+        },
+        {
+          "cycles": 1000,
+          "retainedCallbacks": 1000,
+          "retainedCanvasHandlers": 1000,
+          "retainedPinHandlers": 1000,
+          "retainedCursorHandlers": 0,
+          "attachedProviders": 0,
+          "timersAfterSupertracking": 1000,
+          "callbacksBeforeSupertracking": 1000,
+          "retainedToggleCallbacks": 1000
+        }
+      ],
+      "stdout": "1\t1\t1\t1\t0\t0\t1\t1\t1\n10\t10\t10\t10\t0\t0\t10\t10\t10\n100\t100\t100\t100\t0\t0\t100\t100\t100\n1000\t1000\t1000\t1000\t0\t0\t1000\t1000\t1000\nHOST_CLOCK_MS\t33.0\n"
+    },
+    {
+      "pair": 5,
+      "variant": "candidate",
+      "hostClockMs": 31.0,
+      "counts": [
+        {
+          "cycles": 1,
+          "retainedCallbacks": 0,
+          "retainedCanvasHandlers": 0,
+          "retainedPinHandlers": 0,
+          "retainedCursorHandlers": 0,
+          "attachedProviders": 0,
+          "timersAfterSupertracking": 0,
+          "callbacksBeforeSupertracking": 0,
+          "retainedToggleCallbacks": 0
+        },
+        {
+          "cycles": 10,
+          "retainedCallbacks": 0,
+          "retainedCanvasHandlers": 0,
+          "retainedPinHandlers": 0,
+          "retainedCursorHandlers": 0,
+          "attachedProviders": 0,
+          "timersAfterSupertracking": 0,
+          "callbacksBeforeSupertracking": 0,
+          "retainedToggleCallbacks": 0
+        },
+        {
+          "cycles": 100,
+          "retainedCallbacks": 0,
+          "retainedCanvasHandlers": 0,
+          "retainedPinHandlers": 0,
+          "retainedCursorHandlers": 0,
+          "attachedProviders": 0,
+          "timersAfterSupertracking": 0,
+          "callbacksBeforeSupertracking": 0,
+          "retainedToggleCallbacks": 0
+        },
+        {
+          "cycles": 1000,
+          "retainedCallbacks": 0,
+          "retainedCanvasHandlers": 0,
+          "retainedPinHandlers": 0,
+          "retainedCursorHandlers": 0,
+          "attachedProviders": 0,
+          "timersAfterSupertracking": 0,
+          "callbacksBeforeSupertracking": 0,
+          "retainedToggleCallbacks": 0
+        }
+      ],
+      "stdout": "1\t0\t0\t0\t0\t0\t0\t0\t0\n10\t0\t0\t0\t0\t0\t0\t0\t0\n100\t0\t0\t0\t0\t0\t0\t0\t0\n1000\t0\t0\t0\t0\t0\t0\t0\t0\nHOST_CLOCK_MS\t31.0\n"
+    }
+  ]
+}

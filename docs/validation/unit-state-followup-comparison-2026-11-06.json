@@ -1,0 +1,1772 @@
+{
+  "capturedUTC": "2026-11-06T22:58:38.461381+00:00",
+  "scope": "Actual-module desktop models with explicit boundary/sink fixtures; no native secret VM, taint, render, FPS or whole-addon performance acceptance.",
+  "baselineHead": "75cf2bcba83adfea0501934f4eeb2a980c46fdf8",
+  "checkpoint": {
+    "id": "Unit-secret-followup-20261106T224752Z",
+    "actualFiles": 1683,
+    "availableOnDiskSettings": 179,
+    "sha256": {
+      "source.zip": "48c920f15f6e7027958499c902e88f1aade3a4b484ae3b18bdfa28bbe216de75",
+      "settings.zip": "925e67b1f169a8889c94967af244ae863b4f6d3529ef3c8ae1e97ed568d62ba0",
+      "history.bundle": "ffe7ac00d6fa78f49aac4822eb30997ed2c34878633dc429fa3a5b169dec069f"
+    },
+    "integrity": "Source/settings ZIPs and all-ref history verified outside AddOns"
+  },
+  "sourceSHA256": {
+    "Bars/BadgeHost.lua": {
+      "baseline": "f6472f1113f315c2ed45c8965cfb3a58884c0aa5a080f0ca90afdb9dbeb3ee6c",
+      "candidate": "414f79c0c635503bc0491f77fd1fe4731f93c5e551c4c30b40ad834e882aa6bf"
+    },
+    "Core/API/Action.lua": {
+      "baseline": "89d559136339c1242ea3753fd5fde3e068edfe735a21f1fbe649b1b142adad7c",
+      "candidate": "4960e2a389ba20203d400b12dffc2a67c11370dfb7fe5b3fcf12faf03e4a960a"
+    },
+    "Core/API/Spell.lua": {
+      "baseline": "f85bee3dc04a5fb283a612d5f2d60371cbf1daf68e80357836f6837210b84132",
+      "candidate": "ee5c59aa2082aa5a66caf5215c859dcddce739958a5668853db4e791f4f0edb8"
+    },
+    "UnitFrames/FluxPowerCostOverlay.lua": {
+      "baseline": "d6e7075d4e99c2e59b341b2685f1110c68225fc0f64b2a4d49255cecc680fcc5",
+      "candidate": "8fdb80e0a66abd5eafe574de2d36147bb43208bfe58020bba0374accbdeaab18"
+    },
+    "UnitFrames/FluxUnitFrames_Shared.lua": {
+      "baseline": "5af2611deb25af01e561ff59c0a9680fa02ce3ad50dd5defcb0e9974ebbdc8c0",
+      "candidate": "cc5e0bdb4751378d3c2f444865fedd68f8f38c5b56c8ccab5ff0ff24e08318c4"
+    }
+  },
+  "components": {
+    "badgeCooldown": {
+      "capturedUTC": "2026-11-06T22:54:10.199064+00:00",
+      "checkpoint": "Unit-secret-followup-20261106T224752Z",
+      "sourceSHA256": {
+        "Bars/BadgeHost.lua": {
+          "baseline": "f6472f1113f315c2ed45c8965cfb3a58884c0aa5a080f0ca90afdb9dbeb3ee6c",
+          "candidate": "414f79c0c635503bc0491f77fd1fe4731f93c5e551c4c30b40ad834e882aa6bf"
+        },
+        "Core/API/Action.lua": {
+          "baseline": "89d559136339c1242ea3753fd5fde3e068edfe735a21f1fbe649b1b142adad7c",
+          "candidate": "4960e2a389ba20203d400b12dffc2a67c11370dfb7fe5b3fcf12faf03e4a960a"
+        },
+        "Core/API/Spell.lua": {
+          "baseline": "f85bee3dc04a5fb283a612d5f2d60371cbf1daf68e80357836f6837210b84132",
+          "candidate": "ee5c59aa2082aa5a66caf5215c859dcddce739958a5668853db4e791f4f0edb8"
+        },
+        "test": "ba9e4f22be6f22940b9922c4abf4ba3e3fa43e0616d38ee199960f84e0b031b2"
+      },
+      "privateHarnessSHA256": "c715055b473075270cb67573cc14e639d4f476a8724ae1259b370331922a783a",
+      "scope": "Actual BadgeHost and Action/Spell modules; explicit API/rendering/secret-boundary fixtures. Source-declared all-five-client capability models, not native execution or real secret VM acceptance.",
+      "regression": {
+        "checks": 80,
+        "rejectedMutants": 6,
+        "runs": [
+          {
+            "label": "baseline",
+            "exit": 1,
+            "output": "lua: ...nterface\\AddOns\\_FluxUI\\tests\\badge_cooldown_secrets.lua:21: opaque cooldown operation\nstack traceback:\n\t[C]: in function 'error'\n\t...nterface\\AddOns\\_FluxUI\\tests\\badge_cooldown_secrets.lua:21: in metamethod 'lt'\n\t...2b\\badge-cooldown-secret-20261106\\baseline-BadgeHost.lua:117: in upvalue 'SlotOnCooldown'\n\t...2b\\badge-cooldown-secret-20261106\\baseline-BadgeHost.lua:270: in upvalue 'ShouldShow'\n\t...2b\\badge-cooldown-secret-20261106\\baseline-BadgeHost.lua:689: in upvalue 'PaintCorners'\n\t...2b\\badge-cooldown-secret-20261106\\baseline-BadgeHost.lua:765: in upvalue 'SyncHost'\n\t...2b\\badge-cooldown-secret-20261106\\baseline-BadgeHost.lua:779: in upvalue 'SyncSlot'\n\t...2b\\badge-cooldown-secret-20261106\\baseline-BadgeHost.lua:833: in field 'SetSlotBadges'\n\t...nterface\\AddOns\\_FluxUI\\tests\\badge_cooldown_secrets.lua:61: in field 'install'\n\t...nterface\\AddOns\\_FluxUI\\tests\\badge_cooldown_secrets.lua:78: in main chunk\n\t[C]: in ?\n"
+          },
+          {
+            "label": "candidate",
+            "exit": 0,
+            "output": "Badge cooldown secrets: 80 checks passed (desktop boundary only)\n"
+          },
+          {
+            "label": "missing-secret-guard",
+            "exit": 1,
+            "output": "lua: ...nterface\\AddOns\\_FluxUI\\tests\\badge_cooldown_secrets.lua:21: opaque cooldown operation\nstack traceback:\n\t[C]: in function 'error'\n\t...nterface\\AddOns\\_FluxUI\\tests\\badge_cooldown_secrets.lua:21: in metamethod 'lt'\n\t...\\badge-cooldown-secret-20261106\\missing-secret-guard.lua:120: in function <...\\badge-cooldown-secret-20261106\\missing-secret-guard.lua:116>\n\t(...tail calls...)\n\t...\\badge-cooldown-secret-20261106\\missing-secret-guard.lua:290: in upvalue 'ShouldShow'\n\t...\\badge-cooldown-secret-20261106\\missing-secret-guard.lua:709: in upvalue 'PaintCorners'\n\t...\\badge-cooldown-secret-20261106\\missing-secret-guard.lua:785: in upvalue 'SyncHost'\n\t...\\badge-cooldown-secret-20261106\\missing-secret-guard.lua:799: in upvalue 'SyncSlot'\n\t...\\badge-cooldown-secret-20261106\\missing-secret-guard.lua:853: in field 'SetSlotBadges'\n\t...nterface\\AddOns\\_FluxUI\\tests\\badge_cooldown_secrets.lua:61: in field 'install'\n\t...nterface\\AddOns\\_FluxUI\\tests\\badge_cooldown_secrets.lua:78: in main chunk\n\t[C]: in ?\n"
+          },
+          {
+            "label": "missing-gcd-flag",
+            "exit": 1,
+            "output": "lua: ...nterface\\AddOns\\_FluxUI\\tests\\badge_cooldown_secrets.lua:7: action: public GCD flag excludes opaque timers\nstack traceback:\n\t[C]: in function 'assert'\n\t...nterface\\AddOns\\_FluxUI\\tests\\badge_cooldown_secrets.lua:7: in local 'check'\n\t...nterface\\AddOns\\_FluxUI\\tests\\badge_cooldown_secrets.lua:120: in main chunk\n\t[C]: in ?\n"
+          },
+          {
+            "label": "opaque-hidden",
+            "exit": 1,
+            "output": "lua: ...nterface\\AddOns\\_FluxUI\\tests\\badge_cooldown_secrets.lua:7: opaque non-GCD slot cooldown keeps the badge without inspection\nstack traceback:\n\t[C]: in function 'assert'\n\t...nterface\\AddOns\\_FluxUI\\tests\\badge_cooldown_secrets.lua:7: in local 'check'\n\t...nterface\\AddOns\\_FluxUI\\tests\\badge_cooldown_secrets.lua:79: in main chunk\n\t[C]: in ?\n"
+          },
+          {
+            "label": "lost-action-sixth-field",
+            "exit": 1,
+            "output": "lua: ...nterface\\AddOns\\_FluxUI\\tests\\badge_cooldown_secrets.lua:7: action: public GCD flag excludes opaque timers\nstack traceback:\n\t[C]: in function 'assert'\n\t...nterface\\AddOns\\_FluxUI\\tests\\badge_cooldown_secrets.lua:7: in local 'check'\n\t...nterface\\AddOns\\_FluxUI\\tests\\badge_cooldown_secrets.lua:120: in main chunk\n\t[C]: in ?\n"
+          },
+          {
+            "label": "lost-spell-sixth-field",
+            "exit": 1,
+            "output": "lua: ...nterface\\AddOns\\_FluxUI\\tests\\badge_cooldown_secrets.lua:7: spell: public GCD flag excludes opaque timers\nstack traceback:\n\t[C]: in function 'assert'\n\t...nterface\\AddOns\\_FluxUI\\tests\\badge_cooldown_secrets.lua:7: in local 'check'\n\t...nterface\\AddOns\\_FluxUI\\tests\\badge_cooldown_secrets.lua:120: in main chunk\n\t[C]: in ?\n"
+          },
+          {
+            "label": "lost-false-enabled",
+            "exit": 1,
+            "output": "lua: ...nterface\\AddOns\\_FluxUI\\tests\\badge_cooldown_secrets.lua:7: action: disabled opaque timers do not show\nstack traceback:\n\t[C]: in function 'assert'\n\t...nterface\\AddOns\\_FluxUI\\tests\\badge_cooldown_secrets.lua:7: in local 'check'\n\t...nterface\\AddOns\\_FluxUI\\tests\\badge_cooldown_secrets.lua:124: in main chunk\n\t[C]: in ?\n"
+          }
+        ]
+      },
+      "intent": "Preserve readable numeric/string timer cutoff and slot-or-badge-spell behavior. Only opaque timing uses public enabled/active/isOnGCD metadata; unknown opaque timers keep the badge. Return positions1..5 unchanged; field6 carries isOnGCD. No new charge scans or settings.",
+      "performance": {
+        "status": "PASS for equal public workload counts and bounded fixture resources; native performance pending",
+        "warmup": 100,
+        "cyclesPerModel": 5000,
+        "modelsPerProcess": 5,
+        "repetitions": 5,
+        "order": "Five alternating matched baseline/candidate pairs",
+        "scenario": "Each cycle rotates ready, GCD-only, unique slot cooldown and badge-spell-only cooldown; calls actual NotifyDisplay and GetVisibleBadgesForButton. Nine reusable badge instances. Module load/setup/warmup excluded from per-model hostClockMs.",
+        "clockLimit": "Uncalibrated Windows Lua5.4 os.clock interval; Windows GetProcessTimes CPU and Python wall cover the whole child. No native CPU/FPS/taint/rendering/latency claim. Heap delta is global net Lua KB, not allocation or leak proof. No forced GC, game input, profiling/settings changes.",
+        "summary": {
+          "retail": {
+            "baseline": {
+              "rawHostClockMs": [
+                16.0,
+                17.0,
+                17.0,
+                17.0,
+                18.0
+              ],
+              "median": 17.0,
+              "min": 16.0,
+              "max": 18.0
+            },
+            "candidate": {
+              "rawHostClockMs": [
+                23.0,
+                24.0,
+                21.0,
+                23.0,
+                22.0
+              ],
+              "median": 23.0,
+              "min": 21.0,
+              "max": 24.0
+            }
+          },
+          "forever": {
+            "baseline": {
+              "rawHostClockMs": [
+                16.0,
+                16.0,
+                16.0,
+                17.0,
+                17.0
+              ],
+              "median": 16.0,
+              "min": 16.0,
+              "max": 17.0
+            },
+            "candidate": {
+              "rawHostClockMs": [
+                22.0,
+                22.0,
+                23.0,
+                23.0,
+                24.0
+              ],
+              "median": 23.0,
+              "min": 22.0,
+              "max": 24.0
+            }
+          },
+          "era": {
+            "baseline": {
+              "rawHostClockMs": [
+                17.0,
+                17.0,
+                16.0,
+                17.0,
+                18.0
+              ],
+              "median": 17.0,
+              "min": 16.0,
+              "max": 18.0
+            },
+            "candidate": {
+              "rawHostClockMs": [
+                22.0,
+                21.0,
+                21.0,
+                21.0,
+                21.0
+              ],
+              "median": 21.0,
+              "min": 21.0,
+              "max": 22.0
+            }
+          },
+          "anniversary": {
+            "baseline": {
+              "rawHostClockMs": [
+                16.0,
+                17.0,
+                16.0,
+                17.0,
+                16.0
+              ],
+              "median": 16.0,
+              "min": 16.0,
+              "max": 17.0
+            },
+            "candidate": {
+              "rawHostClockMs": [
+                23.0,
+                22.0,
+                22.0,
+                22.0,
+                21.0
+              ],
+              "median": 22.0,
+              "min": 21.0,
+              "max": 23.0
+            }
+          },
+          "classic": {
+            "baseline": {
+              "rawHostClockMs": [
+                17.0,
+                17.0,
+                18.0,
+                17.0,
+                17.0
+              ],
+              "median": 17.0,
+              "min": 17.0,
+              "max": 18.0
+            },
+            "candidate": {
+              "rawHostClockMs": [
+                23.0,
+                22.0,
+                22.0,
+                21.0,
+                21.0
+              ],
+              "median": 22.0,
+              "min": 21.0,
+              "max": 23.0
+            }
+          }
+        },
+        "samples": [
+          {
+            "pair": 1,
+            "variant": "baseline",
+            "models": [
+              {
+                "clientModel": "retail",
+                "hostClockMs": 16.0,
+                "heapNetDeltaKB": -32.056641,
+                "visibleResults": 2500,
+                "actionReads": 10000,
+                "spellReads": 7500,
+                "chargeReads": 0,
+                "secretReads": 0,
+                "badgesBefore": 9,
+                "badgesAfter": 9,
+                "opaqueOperations": 0
+              },
+              {
+                "clientModel": "forever",
+                "hostClockMs": 16.0,
+                "heapNetDeltaKB": -11.433594,
+                "visibleResults": 2500,
+                "actionReads": 10000,
+                "spellReads": 7500,
+                "chargeReads": 0,
+                "secretReads": 0,
+                "badgesBefore": 9,
+                "badgesAfter": 9,
+                "opaqueOperations": 0
+              },
+              {
+                "clientModel": "era",
+                "hostClockMs": 17.0,
+                "heapNetDeltaKB": 17.841797,
+                "visibleResults": 2500,
+                "actionReads": 10000,
+                "spellReads": 7500,
+                "chargeReads": 0,
+                "secretReads": 0,
+                "badgesBefore": 9,
+                "badgesAfter": 9,
+                "opaqueOperations": 0
+              },
+              {
+                "clientModel": "anniversary",
+                "hostClockMs": 16.0,
+                "heapNetDeltaKB": 18.445312,
+                "visibleResults": 2500,
+                "actionReads": 10000,
+                "spellReads": 7500,
+                "chargeReads": 0,
+                "secretReads": 0,
+                "badgesBefore": 9,
+                "badgesAfter": 9,
+                "opaqueOperations": 0
+              },
+              {
+                "clientModel": "classic",
+                "hostClockMs": 17.0,
+                "heapNetDeltaKB": 7.621094,
+                "visibleResults": 2500,
+                "actionReads": 10000,
+                "spellReads": 7500,
+                "chargeReads": 0,
+                "secretReads": 0,
+                "badgesBefore": 9,
+                "badgesAfter": 9,
+                "opaqueOperations": 0
+              }
+            ],
+            "wholeProcessWindowsCPUMs": 109.375,
+            "wholeProcessWallMs": 117.6408999999694,
+            "stdout": "BADGE_PUBLIC\tretail\t16.000000\t-32.056641\t2500\t10000\t7500\t0\t0\t9\t9\t0\nBADGE_PUBLIC\tforever\t16.000000\t-11.433594\t2500\t10000\t7500\t0\t0\t9\t9\t0\nBADGE_PUBLIC\tera\t17.000000\t17.841797\t2500\t10000\t7500\t0\t0\t9\t9\t0\nBADGE_PUBLIC\tanniversary\t16.000000\t18.445312\t2500\t10000\t7500\t0\t0\t9\t9\t0\nBADGE_PUBLIC\tclassic\t17.000000\t7.621094\t2500\t10000\t7500\t0\t0\t9\t9\t0\n",
+            "stderr": ""
+          },
+          {
+            "pair": 1,
+            "variant": "candidate",
+            "models": [
+              {
+                "clientModel": "retail",
+                "hostClockMs": 23.0,
+                "heapNetDeltaKB": -9.881836,
+                "visibleResults": 2500,
+                "actionReads": 10000,
+                "spellReads": 7500,
+                "chargeReads": 0,
+                "secretReads": 35000,
+                "badgesBefore": 9,
+                "badgesAfter": 9,
+                "opaqueOperations": 0
+              },
+              {
+                "clientModel": "forever",
+                "hostClockMs": 22.0,
+                "heapNetDeltaKB": 12.5,
+                "visibleResults": 2500,
+                "actionReads": 10000,
+                "spellReads": 7500,
+                "chargeReads": 0,
+                "secretReads": 35000,
+                "badgesBefore": 9,
+                "badgesAfter": 9,
+                "opaqueOperations": 0
+              },
+              {
+                "clientModel": "era",
+                "hostClockMs": 22.0,
+                "heapNetDeltaKB": 22.162109,
+                "visibleResults": 2500,
+                "actionReads": 10000,
+                "spellReads": 7500,
+                "chargeReads": 0,
+                "secretReads": 35000,
+                "badgesBefore": 9,
+                "badgesAfter": 9,
+                "opaqueOperations": 0
+              },
+              {
+                "clientModel": "anniversary",
+                "hostClockMs": 23.0,
+                "heapNetDeltaKB": 21.0625,
+                "visibleResults": 2500,
+                "actionReads": 10000,
+                "spellReads": 7500,
+                "chargeReads": 0,
+                "secretReads": 35000,
+                "badgesBefore": 9,
+                "badgesAfter": 9,
+                "opaqueOperations": 0
+              },
+              {
+                "clientModel": "classic",
+                "hostClockMs": 23.0,
+                "heapNetDeltaKB": -141.486328,
+                "visibleResults": 2500,
+                "actionReads": 10000,
+                "spellReads": 7500,
+                "chargeReads": 0,
+                "secretReads": 35000,
+                "badgesBefore": 9,
+                "badgesAfter": 9,
+                "opaqueOperations": 0
+              }
+            ],
+            "wholeProcessWindowsCPUMs": 125.0,
+            "wholeProcessWallMs": 139.24749999932828,
+            "stdout": "BADGE_PUBLIC\tretail\t23.000000\t-9.881836\t2500\t10000\t7500\t0\t35000\t9\t9\t0\nBADGE_PUBLIC\tforever\t22.000000\t12.500000\t2500\t10000\t7500\t0\t35000\t9\t9\t0\nBADGE_PUBLIC\tera\t22.000000\t22.162109\t2500\t10000\t7500\t0\t35000\t9\t9\t0\nBADGE_PUBLIC\tanniversary\t23.000000\t21.062500\t2500\t10000\t7500\t0\t35000\t9\t9\t0\nBADGE_PUBLIC\tclassic\t23.000000\t-141.486328\t2500\t10000\t7500\t0\t35000\t9\t9\t0\n",
+            "stderr": ""
+          },
+          {
+            "pair": 2,
+            "variant": "candidate",
+            "models": [
+              {
+                "clientModel": "retail",
+                "hostClockMs": 24.0,
+                "heapNetDeltaKB": -9.881836,
+                "visibleResults": 2500,
+                "actionReads": 10000,
+                "spellReads": 7500,
+                "chargeReads": 0,
+                "secretReads": 35000,
+                "badgesBefore": 9,
+                "badgesAfter": 9,
+                "opaqueOperations": 0
+              },
+              {
+                "clientModel": "forever",
+                "hostClockMs": 22.0,
+                "heapNetDeltaKB": 12.5,
+                "visibleResults": 2500,
+                "actionReads": 10000,
+                "spellReads": 7500,
+                "chargeReads": 0,
+                "secretReads": 35000,
+                "badgesBefore": 9,
+                "badgesAfter": 9,
+                "opaqueOperations": 0
+              },
+              {
+                "clientModel": "era",
+                "hostClockMs": 21.0,
+                "heapNetDeltaKB": 22.162109,
+                "visibleResults": 2500,
+                "actionReads": 10000,
+                "spellReads": 7500,
+                "chargeReads": 0,
+                "secretReads": 35000,
+                "badgesBefore": 9,
+                "badgesAfter": 9,
+                "opaqueOperations": 0
+              },
+              {
+                "clientModel": "anniversary",
+                "hostClockMs": 22.0,
+                "heapNetDeltaKB": 21.0625,
+                "visibleResults": 2500,
+                "actionReads": 10000,
+                "spellReads": 7500,
+                "chargeReads": 0,
+                "secretReads": 35000,
+                "badgesBefore": 9,
+                "badgesAfter": 9,
+                "opaqueOperations": 0
+              },
+              {
+                "clientModel": "classic",
+                "hostClockMs": 22.0,
+                "heapNetDeltaKB": -141.486328,
+                "visibleResults": 2500,
+                "actionReads": 10000,
+                "spellReads": 7500,
+                "chargeReads": 0,
+                "secretReads": 35000,
+                "badgesBefore": 9,
+                "badgesAfter": 9,
+                "opaqueOperations": 0
+              }
+            ],
+            "wholeProcessWindowsCPUMs": 125.0,
+            "wholeProcessWallMs": 138.7968999988516,
+            "stdout": "BADGE_PUBLIC\tretail\t24.000000\t-9.881836\t2500\t10000\t7500\t0\t35000\t9\t9\t0\nBADGE_PUBLIC\tforever\t22.000000\t12.500000\t2500\t10000\t7500\t0\t35000\t9\t9\t0\nBADGE_PUBLIC\tera\t21.000000\t22.162109\t2500\t10000\t7500\t0\t35000\t9\t9\t0\nBADGE_PUBLIC\tanniversary\t22.000000\t21.062500\t2500\t10000\t7500\t0\t35000\t9\t9\t0\nBADGE_PUBLIC\tclassic\t22.000000\t-141.486328\t2500\t10000\t7500\t0\t35000\t9\t9\t0\n",
+            "stderr": ""
+          },
+          {
+            "pair": 2,
+            "variant": "baseline",
+            "models": [
+              {
+                "clientModel": "retail",
+                "hostClockMs": 17.0,
+                "heapNetDeltaKB": -32.056641,
+                "visibleResults": 2500,
+                "actionReads": 10000,
+                "spellReads": 7500,
+                "chargeReads": 0,
+                "secretReads": 0,
+                "badgesBefore": 9,
+                "badgesAfter": 9,
+                "opaqueOperations": 0
+              },
+              {
+                "clientModel": "forever",
+                "hostClockMs": 16.0,
+                "heapNetDeltaKB": -11.433594,
+                "visibleResults": 2500,
+                "actionReads": 10000,
+                "spellReads": 7500,
+                "chargeReads": 0,
+                "secretReads": 0,
+                "badgesBefore": 9,
+                "badgesAfter": 9,
+                "opaqueOperations": 0
+              },
+              {
+                "clientModel": "era",
+                "hostClockMs": 17.0,
+                "heapNetDeltaKB": 17.841797,
+                "visibleResults": 2500,
+                "actionReads": 10000,
+                "spellReads": 7500,
+                "chargeReads": 0,
+                "secretReads": 0,
+                "badgesBefore": 9,
+                "badgesAfter": 9,
+                "opaqueOperations": 0
+              },
+              {
+                "clientModel": "anniversary",
+                "hostClockMs": 17.0,
+                "heapNetDeltaKB": 18.445312,
+                "visibleResults": 2500,
+                "actionReads": 10000,
+                "spellReads": 7500,
+                "chargeReads": 0,
+                "secretReads": 0,
+                "badgesBefore": 9,
+                "badgesAfter": 9,
+                "opaqueOperations": 0
+              },
+              {
+                "clientModel": "classic",
+                "hostClockMs": 17.0,
+                "heapNetDeltaKB": 7.621094,
+                "visibleResults": 2500,
+                "actionReads": 10000,
+                "spellReads": 7500,
+                "chargeReads": 0,
+                "secretReads": 0,
+                "badgesBefore": 9,
+                "badgesAfter": 9,
+                "opaqueOperations": 0
+              }
+            ],
+            "wholeProcessWindowsCPUMs": 93.75,
+            "wholeProcessWallMs": 108.13099999722908,
+            "stdout": "BADGE_PUBLIC\tretail\t17.000000\t-32.056641\t2500\t10000\t7500\t0\t0\t9\t9\t0\nBADGE_PUBLIC\tforever\t16.000000\t-11.433594\t2500\t10000\t7500\t0\t0\t9\t9\t0\nBADGE_PUBLIC\tera\t17.000000\t17.841797\t2500\t10000\t7500\t0\t0\t9\t9\t0\nBADGE_PUBLIC\tanniversary\t17.000000\t18.445312\t2500\t10000\t7500\t0\t0\t9\t9\t0\nBADGE_PUBLIC\tclassic\t17.000000\t7.621094\t2500\t10000\t7500\t0\t0\t9\t9\t0\n",
+            "stderr": ""
+          },
+          {
+            "pair": 3,
+            "variant": "baseline",
+            "models": [
+              {
+                "clientModel": "retail",
+                "hostClockMs": 17.0,
+                "heapNetDeltaKB": -32.056641,
+                "visibleResults": 2500,
+                "actionReads": 10000,
+                "spellReads": 7500,
+                "chargeReads": 0,
+                "secretReads": 0,
+                "badgesBefore": 9,
+                "badgesAfter": 9,
+                "opaqueOperations": 0
+              },
+              {
+                "clientModel": "forever",
+                "hostClockMs": 16.0,
+                "heapNetDeltaKB": -11.433594,
+                "visibleResults": 2500,
+                "actionReads": 10000,
+                "spellReads": 7500,
+                "chargeReads": 0,
+                "secretReads": 0,
+                "badgesBefore": 9,
+                "badgesAfter": 9,
+                "opaqueOperations": 0
+              },
+              {
+                "clientModel": "era",
+                "hostClockMs": 16.0,
+                "heapNetDeltaKB": 17.841797,
+                "visibleResults": 2500,
+                "actionReads": 10000,
+                "spellReads": 7500,
+                "chargeReads": 0,
+                "secretReads": 0,
+                "badgesBefore": 9,
+                "badgesAfter": 9,
+                "opaqueOperations": 0
+              },
+              {
+                "clientModel": "anniversary",
+                "hostClockMs": 16.0,
+                "heapNetDeltaKB": 18.445312,
+                "visibleResults": 2500,
+                "actionReads": 10000,
+                "spellReads": 7500,
+                "chargeReads": 0,
+                "secretReads": 0,
+                "badgesBefore": 9,
+                "badgesAfter": 9,
+                "opaqueOperations": 0
+              },
+              {
+                "clientModel": "classic",
+                "hostClockMs": 18.0,
+                "heapNetDeltaKB": 7.691406,
+                "visibleResults": 2500,
+                "actionReads": 10000,
+                "spellReads": 7500,
+                "chargeReads": 0,
+                "secretReads": 0,
+                "badgesBefore": 9,
+                "badgesAfter": 9,
+                "opaqueOperations": 0
+              }
+            ],
+            "wholeProcessWindowsCPUMs": 93.75,
+            "wholeProcessWallMs": 108.30569999961881,
+            "stdout": "BADGE_PUBLIC\tretail\t17.000000\t-32.056641\t2500\t10000\t7500\t0\t0\t9\t9\t0\nBADGE_PUBLIC\tforever\t16.000000\t-11.433594\t2500\t10000\t7500\t0\t0\t9\t9\t0\nBADGE_PUBLIC\tera\t16.000000\t17.841797\t2500\t10000\t7500\t0\t0\t9\t9\t0\nBADGE_PUBLIC\tanniversary\t16.000000\t18.445312\t2500\t10000\t7500\t0\t0\t9\t9\t0\nBADGE_PUBLIC\tclassic\t18.000000\t7.691406\t2500\t10000\t7500\t0\t0\t9\t9\t0\n",
+            "stderr": ""
+          },
+          {
+            "pair": 3,
+            "variant": "candidate",
+            "models": [
+              {
+                "clientModel": "retail",
+                "hostClockMs": 21.0,
+                "heapNetDeltaKB": -9.881836,
+                "visibleResults": 2500,
+                "actionReads": 10000,
+                "spellReads": 7500,
+                "chargeReads": 0,
+                "secretReads": 35000,
+                "badgesBefore": 9,
+                "badgesAfter": 9,
+                "opaqueOperations": 0
+              },
+              {
+                "clientModel": "forever",
+                "hostClockMs": 23.0,
+                "heapNetDeltaKB": 12.5,
+                "visibleResults": 2500,
+                "actionReads": 10000,
+                "spellReads": 7500,
+                "chargeReads": 0,
+                "secretReads": 35000,
+                "badgesBefore": 9,
+                "badgesAfter": 9,
+                "opaqueOperations": 0
+              },
+              {
+                "clientModel": "era",
+                "hostClockMs": 21.0,
+                "heapNetDeltaKB": 22.162109,
+                "visibleResults": 2500,
+                "actionReads": 10000,
+                "spellReads": 7500,
+                "chargeReads": 0,
+                "secretReads": 35000,
+                "badgesBefore": 9,
+                "badgesAfter": 9,
+                "opaqueOperations": 0
+              },
+              {
+                "clientModel": "anniversary",
+                "hostClockMs": 22.0,
+                "heapNetDeltaKB": 21.0625,
+                "visibleResults": 2500,
+                "actionReads": 10000,
+                "spellReads": 7500,
+                "chargeReads": 0,
+                "secretReads": 35000,
+                "badgesBefore": 9,
+                "badgesAfter": 9,
+                "opaqueOperations": 0
+              },
+              {
+                "clientModel": "classic",
+                "hostClockMs": 22.0,
+                "heapNetDeltaKB": -141.389648,
+                "visibleResults": 2500,
+                "actionReads": 10000,
+                "spellReads": 7500,
+                "chargeReads": 0,
+                "secretReads": 35000,
+                "badgesBefore": 9,
+                "badgesAfter": 9,
+                "opaqueOperations": 0
+              }
+            ],
+            "wholeProcessWindowsCPUMs": 125.0,
+            "wholeProcessWallMs": 135.5816000032064,
+            "stdout": "BADGE_PUBLIC\tretail\t21.000000\t-9.881836\t2500\t10000\t7500\t0\t35000\t9\t9\t0\nBADGE_PUBLIC\tforever\t23.000000\t12.500000\t2500\t10000\t7500\t0\t35000\t9\t9\t0\nBADGE_PUBLIC\tera\t21.000000\t22.162109\t2500\t10000\t7500\t0\t35000\t9\t9\t0\nBADGE_PUBLIC\tanniversary\t22.000000\t21.062500\t2500\t10000\t7500\t0\t35000\t9\t9\t0\nBADGE_PUBLIC\tclassic\t22.000000\t-141.389648\t2500\t10000\t7500\t0\t35000\t9\t9\t0\n",
+            "stderr": ""
+          },
+          {
+            "pair": 4,
+            "variant": "candidate",
+            "models": [
+              {
+                "clientModel": "retail",
+                "hostClockMs": 23.0,
+                "heapNetDeltaKB": -9.881836,
+                "visibleResults": 2500,
+                "actionReads": 10000,
+                "spellReads": 7500,
+                "chargeReads": 0,
+                "secretReads": 35000,
+                "badgesBefore": 9,
+                "badgesAfter": 9,
+                "opaqueOperations": 0
+              },
+              {
+                "clientModel": "forever",
+                "hostClockMs": 23.0,
+                "heapNetDeltaKB": 12.5,
+                "visibleResults": 2500,
+                "actionReads": 10000,
+                "spellReads": 7500,
+                "chargeReads": 0,
+                "secretReads": 35000,
+                "badgesBefore": 9,
+                "badgesAfter": 9,
+                "opaqueOperations": 0
+              },
+              {
+                "clientModel": "era",
+                "hostClockMs": 21.0,
+                "heapNetDeltaKB": 22.162109,
+                "visibleResults": 2500,
+                "actionReads": 10000,
+                "spellReads": 7500,
+                "chargeReads": 0,
+                "secretReads": 35000,
+                "badgesBefore": 9,
+                "badgesAfter": 9,
+                "opaqueOperations": 0
+              },
+              {
+                "clientModel": "anniversary",
+                "hostClockMs": 22.0,
+                "heapNetDeltaKB": 21.0625,
+                "visibleResults": 2500,
+                "actionReads": 10000,
+                "spellReads": 7500,
+                "chargeReads": 0,
+                "secretReads": 35000,
+                "badgesBefore": 9,
+                "badgesAfter": 9,
+                "opaqueOperations": 0
+              },
+              {
+                "clientModel": "classic",
+                "hostClockMs": 21.0,
+                "heapNetDeltaKB": -141.486328,
+                "visibleResults": 2500,
+                "actionReads": 10000,
+                "spellReads": 7500,
+                "chargeReads": 0,
+                "secretReads": 35000,
+                "badgesBefore": 9,
+                "badgesAfter": 9,
+                "opaqueOperations": 0
+              }
+            ],
+            "wholeProcessWindowsCPUMs": 125.0,
+            "wholeProcessWallMs": 134.86240000202088,
+            "stdout": "BADGE_PUBLIC\tretail\t23.000000\t-9.881836\t2500\t10000\t7500\t0\t35000\t9\t9\t0\nBADGE_PUBLIC\tforever\t23.000000\t12.500000\t2500\t10000\t7500\t0\t35000\t9\t9\t0\nBADGE_PUBLIC\tera\t21.000000\t22.162109\t2500\t10000\t7500\t0\t35000\t9\t9\t0\nBADGE_PUBLIC\tanniversary\t22.000000\t21.062500\t2500\t10000\t7500\t0\t35000\t9\t9\t0\nBADGE_PUBLIC\tclassic\t21.000000\t-141.486328\t2500\t10000\t7500\t0\t35000\t9\t9\t0\n",
+            "stderr": ""
+          },
+          {
+            "pair": 4,
+            "variant": "baseline",
+            "models": [
+              {
+                "clientModel": "retail",
+                "hostClockMs": 17.0,
+                "heapNetDeltaKB": -32.056641,
+                "visibleResults": 2500,
+                "actionReads": 10000,
+                "spellReads": 7500,
+                "chargeReads": 0,
+                "secretReads": 0,
+                "badgesBefore": 9,
+                "badgesAfter": 9,
+                "opaqueOperations": 0
+              },
+              {
+                "clientModel": "forever",
+                "hostClockMs": 17.0,
+                "heapNetDeltaKB": -11.433594,
+                "visibleResults": 2500,
+                "actionReads": 10000,
+                "spellReads": 7500,
+                "chargeReads": 0,
+                "secretReads": 0,
+                "badgesBefore": 9,
+                "badgesAfter": 9,
+                "opaqueOperations": 0
+              },
+              {
+                "clientModel": "era",
+                "hostClockMs": 17.0,
+                "heapNetDeltaKB": 17.841797,
+                "visibleResults": 2500,
+                "actionReads": 10000,
+                "spellReads": 7500,
+                "chargeReads": 0,
+                "secretReads": 0,
+                "badgesBefore": 9,
+                "badgesAfter": 9,
+                "opaqueOperations": 0
+              },
+              {
+                "clientModel": "anniversary",
+                "hostClockMs": 17.0,
+                "heapNetDeltaKB": 18.445312,
+                "visibleResults": 2500,
+                "actionReads": 10000,
+                "spellReads": 7500,
+                "chargeReads": 0,
+                "secretReads": 0,
+                "badgesBefore": 9,
+                "badgesAfter": 9,
+                "opaqueOperations": 0
+              },
+              {
+                "clientModel": "classic",
+                "hostClockMs": 17.0,
+                "heapNetDeltaKB": 7.621094,
+                "visibleResults": 2500,
+                "actionReads": 10000,
+                "spellReads": 7500,
+                "chargeReads": 0,
+                "secretReads": 0,
+                "badgesBefore": 9,
+                "badgesAfter": 9,
+                "opaqueOperations": 0
+              }
+            ],
+            "wholeProcessWindowsCPUMs": 109.375,
+            "wholeProcessWallMs": 110.42989999987185,
+            "stdout": "BADGE_PUBLIC\tretail\t17.000000\t-32.056641\t2500\t10000\t7500\t0\t0\t9\t9\t0\nBADGE_PUBLIC\tforever\t17.000000\t-11.433594\t2500\t10000\t7500\t0\t0\t9\t9\t0\nBADGE_PUBLIC\tera\t17.000000\t17.841797\t2500\t10000\t7500\t0\t0\t9\t9\t0\nBADGE_PUBLIC\tanniversary\t17.000000\t18.445312\t2500\t10000\t7500\t0\t0\t9\t9\t0\nBADGE_PUBLIC\tclassic\t17.000000\t7.621094\t2500\t10000\t7500\t0\t0\t9\t9\t0\n",
+            "stderr": ""
+          },
+          {
+            "pair": 5,
+            "variant": "baseline",
+            "models": [
+              {
+                "clientModel": "retail",
+                "hostClockMs": 18.0,
+                "heapNetDeltaKB": -32.056641,
+                "visibleResults": 2500,
+                "actionReads": 10000,
+                "spellReads": 7500,
+                "chargeReads": 0,
+                "secretReads": 0,
+                "badgesBefore": 9,
+                "badgesAfter": 9,
+                "opaqueOperations": 0
+              },
+              {
+                "clientModel": "forever",
+                "hostClockMs": 17.0,
+                "heapNetDeltaKB": -11.433594,
+                "visibleResults": 2500,
+                "actionReads": 10000,
+                "spellReads": 7500,
+                "chargeReads": 0,
+                "secretReads": 0,
+                "badgesBefore": 9,
+                "badgesAfter": 9,
+                "opaqueOperations": 0
+              },
+              {
+                "clientModel": "era",
+                "hostClockMs": 18.0,
+                "heapNetDeltaKB": 17.841797,
+                "visibleResults": 2500,
+                "actionReads": 10000,
+                "spellReads": 7500,
+                "chargeReads": 0,
+                "secretReads": 0,
+                "badgesBefore": 9,
+                "badgesAfter": 9,
+                "opaqueOperations": 0
+              },
+              {
+                "clientModel": "anniversary",
+                "hostClockMs": 16.0,
+                "heapNetDeltaKB": 18.445312,
+                "visibleResults": 2500,
+                "actionReads": 10000,
+                "spellReads": 7500,
+                "chargeReads": 0,
+                "secretReads": 0,
+                "badgesBefore": 9,
+                "badgesAfter": 9,
+                "opaqueOperations": 0
+              },
+              {
+                "clientModel": "classic",
+                "hostClockMs": 17.0,
+                "heapNetDeltaKB": 7.621094,
+                "visibleResults": 2500,
+                "actionReads": 10000,
+                "spellReads": 7500,
+                "chargeReads": 0,
+                "secretReads": 0,
+                "badgesBefore": 9,
+                "badgesAfter": 9,
+                "opaqueOperations": 0
+              }
+            ],
+            "wholeProcessWindowsCPUMs": 109.375,
+            "wholeProcessWallMs": 112.20329999923706,
+            "stdout": "BADGE_PUBLIC\tretail\t18.000000\t-32.056641\t2500\t10000\t7500\t0\t0\t9\t9\t0\nBADGE_PUBLIC\tforever\t17.000000\t-11.433594\t2500\t10000\t7500\t0\t0\t9\t9\t0\nBADGE_PUBLIC\tera\t18.000000\t17.841797\t2500\t10000\t7500\t0\t0\t9\t9\t0\nBADGE_PUBLIC\tanniversary\t16.000000\t18.445312\t2500\t10000\t7500\t0\t0\t9\t9\t0\nBADGE_PUBLIC\tclassic\t17.000000\t7.621094\t2500\t10000\t7500\t0\t0\t9\t9\t0\n",
+            "stderr": ""
+          },
+          {
+            "pair": 5,
+            "variant": "candidate",
+            "models": [
+              {
+                "clientModel": "retail",
+                "hostClockMs": 22.0,
+                "heapNetDeltaKB": -9.881836,
+                "visibleResults": 2500,
+                "actionReads": 10000,
+                "spellReads": 7500,
+                "chargeReads": 0,
+                "secretReads": 35000,
+                "badgesBefore": 9,
+                "badgesAfter": 9,
+                "opaqueOperations": 0
+              },
+              {
+                "clientModel": "forever",
+                "hostClockMs": 24.0,
+                "heapNetDeltaKB": 12.5,
+                "visibleResults": 2500,
+                "actionReads": 10000,
+                "spellReads": 7500,
+                "chargeReads": 0,
+                "secretReads": 35000,
+                "badgesBefore": 9,
+                "badgesAfter": 9,
+                "opaqueOperations": 0
+              },
+              {
+                "clientModel": "era",
+                "hostClockMs": 21.0,
+                "heapNetDeltaKB": 22.162109,
+                "visibleResults": 2500,
+                "actionReads": 10000,
+                "spellReads": 7500,
+                "chargeReads": 0,
+                "secretReads": 35000,
+                "badgesBefore": 9,
+                "badgesAfter": 9,
+                "opaqueOperations": 0
+              },
+              {
+                "clientModel": "anniversary",
+                "hostClockMs": 21.0,
+                "heapNetDeltaKB": 21.0625,
+                "visibleResults": 2500,
+                "actionReads": 10000,
+                "spellReads": 7500,
+                "chargeReads": 0,
+                "secretReads": 35000,
+                "badgesBefore": 9,
+                "badgesAfter": 9,
+                "opaqueOperations": 0
+              },
+              {
+                "clientModel": "classic",
+                "hostClockMs": 21.0,
+                "heapNetDeltaKB": -141.486328,
+                "visibleResults": 2500,
+                "actionReads": 10000,
+                "spellReads": 7500,
+                "chargeReads": 0,
+                "secretReads": 35000,
+                "badgesBefore": 9,
+                "badgesAfter": 9,
+                "opaqueOperations": 0
+              }
+            ],
+            "wholeProcessWindowsCPUMs": 109.375,
+            "wholeProcessWallMs": 134.03859999743872,
+            "stdout": "BADGE_PUBLIC\tretail\t22.000000\t-9.881836\t2500\t10000\t7500\t0\t35000\t9\t9\t0\nBADGE_PUBLIC\tforever\t24.000000\t12.500000\t2500\t10000\t7500\t0\t35000\t9\t9\t0\nBADGE_PUBLIC\tera\t21.000000\t22.162109\t2500\t10000\t7500\t0\t35000\t9\t9\t0\nBADGE_PUBLIC\tanniversary\t21.000000\t21.062500\t2500\t10000\t7500\t0\t35000\t9\t9\t0\nBADGE_PUBLIC\tclassic\t21.000000\t-141.486328\t2500\t10000\t7500\t0\t35000\t9\t9\t0\n",
+            "stderr": ""
+          }
+        ]
+      },
+      "nativeAcceptance": "Pending; tests do not reproduce WoW native secret restrictions, combat rendering or all-client input.",
+      "pendingAdjacentFinding": "Stance.GetActivePetSpell uses unguarded UnitCreatureFamily table keys and raw UnitName:find; source-declared restricted strings. No stance edits or native failure claim in this batch."
+    },
+    "powerSnapshot": {
+      "scope": "Actual Shared primary updater and actual PCO secondary before/value/after boundary; 2 warm-up primes +10000 paint/flush cycles/process/scenario. This model does not certify native rendering/secure behavior/FPS or blame random lag. Secondary full Shared updater not executed; removed call is source-checked.",
+      "checkpoint": "Unit-secret-followup-20261106T224752Z",
+      "git_head": "75cf2bcba83adfea0501934f4eeb2a980c46fdf8",
+      "identities": {
+        "before": {
+          "FluxPowerCostOverlay.lua": "d6e7075d4e99c2e59b341b2685f1110c68225fc0f64b2a4d49255cecc680fcc5",
+          "FluxUnitFrames_Shared.lua": "5af2611deb25af01e561ff59c0a9680fa02ce3ad50dd5defcb0e9974ebbdc8c0"
+        },
+        "candidate": {
+          "FluxPowerCostOverlay.lua": "8fdb80e0a66abd5eafe574de2d36147bb43208bfe58020bba0374accbdeaab18",
+          "FluxUnitFrames_Shared.lua": "cc5e0bdb4751378d3c2f444865fedd68f8f38c5b56c8ccab5ff0ff24e08318c4"
+        },
+        "test": "42d8c3963e65f69e3739655394ec7161c70c2e24e9e3a15a713946251c752384",
+        "dependencies": {
+          "tests/unit_overlay_secret_identity.lua": "8c26f1773cfea140b4f061da46fbec16e0cfe4b5f63339135bb266d9cbd15691",
+          "tests/mp5_mana_ticks.lua": "498625e8ac91d076e5290a5b768dd30d0c74b3c5067ac3e0fbdd7365e70f3a20",
+          "UnitFrames/FluxHealthLossOverlay.lua": "586e382d9b342983f134a4509721e03a5cd6f3a803866f06b66bd0207dc5153a"
+        }
+      },
+      "live_bodies_unchanged": {
+        "secretSlice": "eb257596101f4770f260a38e8377eaf169723f6f625832d37b0d81d4d49db157",
+        "ghostSpender": "7f7929224cc661f9a35319b82845ba6665e85c9118de27679a358501d2e7e03b",
+        "afterPower": "185e3f4cba19a67603d606f0e75e9c4216d7b91155b7a6319bbfe2a10c4036df",
+        "ghostCommit": "bfd1325144062816c566e702af7dc2d3706fd6cce589edf92c50f824c61dbc55",
+        "secretAnimations": "206ca56b3c827ef0f7a4b1998317cca4e3a4ead4695e9cd14f9ad86e9979c035"
+      },
+      "regression": {
+        "baseline": {
+          "exit": 1,
+          "stdout": "",
+          "stderr": "lua: tests/power_snapshot_cleanup.lua:10: both Shared painters drop the unused snapshot callback\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/power_snapshot_cleanup.lua:10: in upvalue 'check'\n\ttests/power_snapshot_cleanup.lua:87: in local 'exercise'\n\ttests/power_snapshot_cleanup.lua:144: in main chunk\n\t[C]: in ?"
+        },
+        "candidate": {
+          "exit": 0,
+          "stdout": "Power snapshot cleanup: 70 checks passed (native secure/rendering/performance pending)",
+          "stderr": ""
+        }
+      },
+      "samples": [
+        {
+          "pair": 1,
+          "stage": "before",
+          "value_mode": "plain",
+          "bar": "primary",
+          "host_lua_ms": 94.0,
+          "frames": 5,
+          "snapshot_writes": 10002,
+          "restricted_size_attempts": 0,
+          "bar_value_writes": 10002,
+          "opaque_operations": 0,
+          "live_state": "100|100|100|true|false|1|nil|true|false",
+          "raw": "SNAPSHOT_MODEL\tplain\tprimary\t94.000000\t5\t10002\t0\t10002\t0\t100|100|100|true|false|1|nil|true|false"
+        },
+        {
+          "pair": 1,
+          "stage": "before",
+          "value_mode": "plain",
+          "bar": "secondary",
+          "host_lua_ms": 67.0,
+          "frames": 5,
+          "snapshot_writes": 10002,
+          "restricted_size_attempts": 0,
+          "bar_value_writes": 10002,
+          "opaque_operations": 0,
+          "live_state": "100|100|100|true|false|1|nil|true|false",
+          "raw": "SNAPSHOT_MODEL\tplain\tsecondary\t67.000000\t5\t10002\t0\t10002\t0\t100|100|100|true|false|1|nil|true|false"
+        },
+        {
+          "pair": 1,
+          "stage": "before",
+          "value_mode": "opaque",
+          "bar": "primary",
+          "host_lua_ms": 81.0,
+          "frames": 4,
+          "snapshot_writes": 10002,
+          "restricted_size_attempts": 10001,
+          "bar_value_writes": 10002,
+          "opaque_operations": 0,
+          "live_state": "opaque|opaque|100|true|false|1|nil|nil|nil",
+          "raw": "SNAPSHOT_MODEL\topaque\tprimary\t81.000000\t4\t10002\t10001\t10002\t0\topaque|opaque|100|true|false|1|nil|nil|nil"
+        },
+        {
+          "pair": 1,
+          "stage": "before",
+          "value_mode": "opaque",
+          "bar": "secondary",
+          "host_lua_ms": 71.0,
+          "frames": 4,
+          "snapshot_writes": 10002,
+          "restricted_size_attempts": 10001,
+          "bar_value_writes": 10002,
+          "opaque_operations": 0,
+          "live_state": "opaque|opaque|100|true|false|1|nil|nil|nil",
+          "raw": "SNAPSHOT_MODEL\topaque\tsecondary\t71.000000\t4\t10002\t10001\t10002\t0\topaque|opaque|100|true|false|1|nil|nil|nil"
+        },
+        {
+          "pair": 1,
+          "stage": "candidate",
+          "value_mode": "plain",
+          "bar": "primary",
+          "host_lua_ms": 76.0,
+          "frames": 4,
+          "snapshot_writes": 0,
+          "restricted_size_attempts": 0,
+          "bar_value_writes": 10002,
+          "opaque_operations": 0,
+          "live_state": "100|100|100|true|false|1|nil|true|false",
+          "raw": "SNAPSHOT_MODEL\tplain\tprimary\t76.000000\t4\t0\t0\t10002\t0\t100|100|100|true|false|1|nil|true|false"
+        },
+        {
+          "pair": 1,
+          "stage": "candidate",
+          "value_mode": "plain",
+          "bar": "secondary",
+          "host_lua_ms": 65.0,
+          "frames": 4,
+          "snapshot_writes": 0,
+          "restricted_size_attempts": 0,
+          "bar_value_writes": 10002,
+          "opaque_operations": 0,
+          "live_state": "100|100|100|true|false|1|nil|true|false",
+          "raw": "SNAPSHOT_MODEL\tplain\tsecondary\t65.000000\t4\t0\t0\t10002\t0\t100|100|100|true|false|1|nil|true|false"
+        },
+        {
+          "pair": 1,
+          "stage": "candidate",
+          "value_mode": "opaque",
+          "bar": "primary",
+          "host_lua_ms": 58.0,
+          "frames": 3,
+          "snapshot_writes": 0,
+          "restricted_size_attempts": 0,
+          "bar_value_writes": 10002,
+          "opaque_operations": 0,
+          "live_state": "opaque|opaque|100|true|false|1|nil|nil|nil",
+          "raw": "SNAPSHOT_MODEL\topaque\tprimary\t58.000000\t3\t0\t0\t10002\t0\topaque|opaque|100|true|false|1|nil|nil|nil"
+        },
+        {
+          "pair": 1,
+          "stage": "candidate",
+          "value_mode": "opaque",
+          "bar": "secondary",
+          "host_lua_ms": 45.0,
+          "frames": 3,
+          "snapshot_writes": 0,
+          "restricted_size_attempts": 0,
+          "bar_value_writes": 10002,
+          "opaque_operations": 0,
+          "live_state": "opaque|opaque|100|true|false|1|nil|nil|nil",
+          "raw": "SNAPSHOT_MODEL\topaque\tsecondary\t45.000000\t3\t0\t0\t10002\t0\topaque|opaque|100|true|false|1|nil|nil|nil"
+        },
+        {
+          "pair": 2,
+          "stage": "candidate",
+          "value_mode": "plain",
+          "bar": "primary",
+          "host_lua_ms": 76.0,
+          "frames": 4,
+          "snapshot_writes": 0,
+          "restricted_size_attempts": 0,
+          "bar_value_writes": 10002,
+          "opaque_operations": 0,
+          "live_state": "100|100|100|true|false|1|nil|true|false",
+          "raw": "SNAPSHOT_MODEL\tplain\tprimary\t76.000000\t4\t0\t0\t10002\t0\t100|100|100|true|false|1|nil|true|false"
+        },
+        {
+          "pair": 2,
+          "stage": "candidate",
+          "value_mode": "plain",
+          "bar": "secondary",
+          "host_lua_ms": 62.0,
+          "frames": 4,
+          "snapshot_writes": 0,
+          "restricted_size_attempts": 0,
+          "bar_value_writes": 10002,
+          "opaque_operations": 0,
+          "live_state": "100|100|100|true|false|1|nil|true|false",
+          "raw": "SNAPSHOT_MODEL\tplain\tsecondary\t62.000000\t4\t0\t0\t10002\t0\t100|100|100|true|false|1|nil|true|false"
+        },
+        {
+          "pair": 2,
+          "stage": "candidate",
+          "value_mode": "opaque",
+          "bar": "primary",
+          "host_lua_ms": 56.0,
+          "frames": 3,
+          "snapshot_writes": 0,
+          "restricted_size_attempts": 0,
+          "bar_value_writes": 10002,
+          "opaque_operations": 0,
+          "live_state": "opaque|opaque|100|true|false|1|nil|nil|nil",
+          "raw": "SNAPSHOT_MODEL\topaque\tprimary\t56.000000\t3\t0\t0\t10002\t0\topaque|opaque|100|true|false|1|nil|nil|nil"
+        },
+        {
+          "pair": 2,
+          "stage": "candidate",
+          "value_mode": "opaque",
+          "bar": "secondary",
+          "host_lua_ms": 43.0,
+          "frames": 3,
+          "snapshot_writes": 0,
+          "restricted_size_attempts": 0,
+          "bar_value_writes": 10002,
+          "opaque_operations": 0,
+          "live_state": "opaque|opaque|100|true|false|1|nil|nil|nil",
+          "raw": "SNAPSHOT_MODEL\topaque\tsecondary\t43.000000\t3\t0\t0\t10002\t0\topaque|opaque|100|true|false|1|nil|nil|nil"
+        },
+        {
+          "pair": 2,
+          "stage": "before",
+          "value_mode": "plain",
+          "bar": "primary",
+          "host_lua_ms": 84.0,
+          "frames": 5,
+          "snapshot_writes": 10002,
+          "restricted_size_attempts": 0,
+          "bar_value_writes": 10002,
+          "opaque_operations": 0,
+          "live_state": "100|100|100|true|false|1|nil|true|false",
+          "raw": "SNAPSHOT_MODEL\tplain\tprimary\t84.000000\t5\t10002\t0\t10002\t0\t100|100|100|true|false|1|nil|true|false"
+        },
+        {
+          "pair": 2,
+          "stage": "before",
+          "value_mode": "plain",
+          "bar": "secondary",
+          "host_lua_ms": 67.0,
+          "frames": 5,
+          "snapshot_writes": 10002,
+          "restricted_size_attempts": 0,
+          "bar_value_writes": 10002,
+          "opaque_operations": 0,
+          "live_state": "100|100|100|true|false|1|nil|true|false",
+          "raw": "SNAPSHOT_MODEL\tplain\tsecondary\t67.000000\t5\t10002\t0\t10002\t0\t100|100|100|true|false|1|nil|true|false"
+        },
+        {
+          "pair": 2,
+          "stage": "before",
+          "value_mode": "opaque",
+          "bar": "primary",
+          "host_lua_ms": 77.0,
+          "frames": 4,
+          "snapshot_writes": 10002,
+          "restricted_size_attempts": 10001,
+          "bar_value_writes": 10002,
+          "opaque_operations": 0,
+          "live_state": "opaque|opaque|100|true|false|1|nil|nil|nil",
+          "raw": "SNAPSHOT_MODEL\topaque\tprimary\t77.000000\t4\t10002\t10001\t10002\t0\topaque|opaque|100|true|false|1|nil|nil|nil"
+        },
+        {
+          "pair": 2,
+          "stage": "before",
+          "value_mode": "opaque",
+          "bar": "secondary",
+          "host_lua_ms": 64.0,
+          "frames": 4,
+          "snapshot_writes": 10002,
+          "restricted_size_attempts": 10001,
+          "bar_value_writes": 10002,
+          "opaque_operations": 0,
+          "live_state": "opaque|opaque|100|true|false|1|nil|nil|nil",
+          "raw": "SNAPSHOT_MODEL\topaque\tsecondary\t64.000000\t4\t10002\t10001\t10002\t0\topaque|opaque|100|true|false|1|nil|nil|nil"
+        },
+        {
+          "pair": 3,
+          "stage": "before",
+          "value_mode": "plain",
+          "bar": "primary",
+          "host_lua_ms": 78.0,
+          "frames": 5,
+          "snapshot_writes": 10002,
+          "restricted_size_attempts": 0,
+          "bar_value_writes": 10002,
+          "opaque_operations": 0,
+          "live_state": "100|100|100|true|false|1|nil|true|false",
+          "raw": "SNAPSHOT_MODEL\tplain\tprimary\t78.000000\t5\t10002\t0\t10002\t0\t100|100|100|true|false|1|nil|true|false"
+        },
+        {
+          "pair": 3,
+          "stage": "before",
+          "value_mode": "plain",
+          "bar": "secondary",
+          "host_lua_ms": 68.0,
+          "frames": 5,
+          "snapshot_writes": 10002,
+          "restricted_size_attempts": 0,
+          "bar_value_writes": 10002,
+          "opaque_operations": 0,
+          "live_state": "100|100|100|true|false|1|nil|true|false",
+          "raw": "SNAPSHOT_MODEL\tplain\tsecondary\t68.000000\t5\t10002\t0\t10002\t0\t100|100|100|true|false|1|nil|true|false"
+        },
+        {
+          "pair": 3,
+          "stage": "before",
+          "value_mode": "opaque",
+          "bar": "primary",
+          "host_lua_ms": 81.0,
+          "frames": 4,
+          "snapshot_writes": 10002,
+          "restricted_size_attempts": 10001,
+          "bar_value_writes": 10002,
+          "opaque_operations": 0,
+          "live_state": "opaque|opaque|100|true|false|1|nil|nil|nil",
+          "raw": "SNAPSHOT_MODEL\topaque\tprimary\t81.000000\t4\t10002\t10001\t10002\t0\topaque|opaque|100|true|false|1|nil|nil|nil"
+        },
+        {
+          "pair": 3,
+          "stage": "before",
+          "value_mode": "opaque",
+          "bar": "secondary",
+          "host_lua_ms": 72.0,
+          "frames": 4,
+          "snapshot_writes": 10002,
+          "restricted_size_attempts": 10001,
+          "bar_value_writes": 10002,
+          "opaque_operations": 0,
+          "live_state": "opaque|opaque|100|true|false|1|nil|nil|nil",
+          "raw": "SNAPSHOT_MODEL\topaque\tsecondary\t72.000000\t4\t10002\t10001\t10002\t0\topaque|opaque|100|true|false|1|nil|nil|nil"
+        },
+        {
+          "pair": 3,
+          "stage": "candidate",
+          "value_mode": "plain",
+          "bar": "primary",
+          "host_lua_ms": 80.0,
+          "frames": 4,
+          "snapshot_writes": 0,
+          "restricted_size_attempts": 0,
+          "bar_value_writes": 10002,
+          "opaque_operations": 0,
+          "live_state": "100|100|100|true|false|1|nil|true|false",
+          "raw": "SNAPSHOT_MODEL\tplain\tprimary\t80.000000\t4\t0\t0\t10002\t0\t100|100|100|true|false|1|nil|true|false"
+        },
+        {
+          "pair": 3,
+          "stage": "candidate",
+          "value_mode": "plain",
+          "bar": "secondary",
+          "host_lua_ms": 67.0,
+          "frames": 4,
+          "snapshot_writes": 0,
+          "restricted_size_attempts": 0,
+          "bar_value_writes": 10002,
+          "opaque_operations": 0,
+          "live_state": "100|100|100|true|false|1|nil|true|false",
+          "raw": "SNAPSHOT_MODEL\tplain\tsecondary\t67.000000\t4\t0\t0\t10002\t0\t100|100|100|true|false|1|nil|true|false"
+        },
+        {
+          "pair": 3,
+          "stage": "candidate",
+          "value_mode": "opaque",
+          "bar": "primary",
+          "host_lua_ms": 57.0,
+          "frames": 3,
+          "snapshot_writes": 0,
+          "restricted_size_attempts": 0,
+          "bar_value_writes": 10002,
+          "opaque_operations": 0,
+          "live_state": "opaque|opaque|100|true|false|1|nil|nil|nil",
+          "raw": "SNAPSHOT_MODEL\topaque\tprimary\t57.000000\t3\t0\t0\t10002\t0\topaque|opaque|100|true|false|1|nil|nil|nil"
+        },
+        {
+          "pair": 3,
+          "stage": "candidate",
+          "value_mode": "opaque",
+          "bar": "secondary",
+          "host_lua_ms": 46.0,
+          "frames": 3,
+          "snapshot_writes": 0,
+          "restricted_size_attempts": 0,
+          "bar_value_writes": 10002,
+          "opaque_operations": 0,
+          "live_state": "opaque|opaque|100|true|false|1|nil|nil|nil",
+          "raw": "SNAPSHOT_MODEL\topaque\tsecondary\t46.000000\t3\t0\t0\t10002\t0\topaque|opaque|100|true|false|1|nil|nil|nil"
+        },
+        {
+          "pair": 4,
+          "stage": "candidate",
+          "value_mode": "plain",
+          "bar": "primary",
+          "host_lua_ms": 74.0,
+          "frames": 4,
+          "snapshot_writes": 0,
+          "restricted_size_attempts": 0,
+          "bar_value_writes": 10002,
+          "opaque_operations": 0,
+          "live_state": "100|100|100|true|false|1|nil|true|false",
+          "raw": "SNAPSHOT_MODEL\tplain\tprimary\t74.000000\t4\t0\t0\t10002\t0\t100|100|100|true|false|1|nil|true|false"
+        },
+        {
+          "pair": 4,
+          "stage": "candidate",
+          "value_mode": "plain",
+          "bar": "secondary",
+          "host_lua_ms": 63.0,
+          "frames": 4,
+          "snapshot_writes": 0,
+          "restricted_size_attempts": 0,
+          "bar_value_writes": 10002,
+          "opaque_operations": 0,
+          "live_state": "100|100|100|true|false|1|nil|true|false",
+          "raw": "SNAPSHOT_MODEL\tplain\tsecondary\t63.000000\t4\t0\t0\t10002\t0\t100|100|100|true|false|1|nil|true|false"
+        },
+        {
+          "pair": 4,
+          "stage": "candidate",
+          "value_mode": "opaque",
+          "bar": "primary",
+          "host_lua_ms": 58.0,
+          "frames": 3,
+          "snapshot_writes": 0,
+          "restricted_size_attempts": 0,
+          "bar_value_writes": 10002,
+          "opaque_operations": 0,
+          "live_state": "opaque|opaque|100|true|false|1|nil|nil|nil",
+          "raw": "SNAPSHOT_MODEL\topaque\tprimary\t58.000000\t3\t0\t0\t10002\t0\topaque|opaque|100|true|false|1|nil|nil|nil"
+        },
+        {
+          "pair": 4,
+          "stage": "candidate",
+          "value_mode": "opaque",
+          "bar": "secondary",
+          "host_lua_ms": 52.0,
+          "frames": 3,
+          "snapshot_writes": 0,
+          "restricted_size_attempts": 0,
+          "bar_value_writes": 10002,
+          "opaque_operations": 0,
+          "live_state": "opaque|opaque|100|true|false|1|nil|nil|nil",
+          "raw": "SNAPSHOT_MODEL\topaque\tsecondary\t52.000000\t3\t0\t0\t10002\t0\topaque|opaque|100|true|false|1|nil|nil|nil"
+        },
+        {
+          "pair": 4,
+          "stage": "before",
+          "value_mode": "plain",
+          "bar": "primary",
+          "host_lua_ms": 82.0,
+          "frames": 5,
+          "snapshot_writes": 10002,
+          "restricted_size_attempts": 0,
+          "bar_value_writes": 10002,
+          "opaque_operations": 0,
+          "live_state": "100|100|100|true|false|1|nil|true|false",
+          "raw": "SNAPSHOT_MODEL\tplain\tprimary\t82.000000\t5\t10002\t0\t10002\t0\t100|100|100|true|false|1|nil|true|false"
+        },
+        {
+          "pair": 4,
+          "stage": "before",
+          "value_mode": "plain",
+          "bar": "secondary",
+          "host_lua_ms": 65.0,
+          "frames": 5,
+          "snapshot_writes": 10002,
+          "restricted_size_attempts": 0,
+          "bar_value_writes": 10002,
+          "opaque_operations": 0,
+          "live_state": "100|100|100|true|false|1|nil|true|false",
+          "raw": "SNAPSHOT_MODEL\tplain\tsecondary\t65.000000\t5\t10002\t0\t10002\t0\t100|100|100|true|false|1|nil|true|false"
+        },
+        {
+          "pair": 4,
+          "stage": "before",
+          "value_mode": "opaque",
+          "bar": "primary",
+          "host_lua_ms": 77.0,
+          "frames": 4,
+          "snapshot_writes": 10002,
+          "restricted_size_attempts": 10001,
+          "bar_value_writes": 10002,
+          "opaque_operations": 0,
+          "live_state": "opaque|opaque|100|true|false|1|nil|nil|nil",
+          "raw": "SNAPSHOT_MODEL\topaque\tprimary\t77.000000\t4\t10002\t10001\t10002\t0\topaque|opaque|100|true|false|1|nil|nil|nil"
+        },
+        {
+          "pair": 4,
+          "stage": "before",
+          "value_mode": "opaque",
+          "bar": "secondary",
+          "host_lua_ms": 68.0,
+          "frames": 4,
+          "snapshot_writes": 10002,
+          "restricted_size_attempts": 10001,
+          "bar_value_writes": 10002,
+          "opaque_operations": 0,
+          "live_state": "opaque|opaque|100|true|false|1|nil|nil|nil",
+          "raw": "SNAPSHOT_MODEL\topaque\tsecondary\t68.000000\t4\t10002\t10001\t10002\t0\topaque|opaque|100|true|false|1|nil|nil|nil"
+        },
+        {
+          "pair": 5,
+          "stage": "before",
+          "value_mode": "plain",
+          "bar": "primary",
+          "host_lua_ms": 82.0,
+          "frames": 5,
+          "snapshot_writes": 10002,
+          "restricted_size_attempts": 0,
+          "bar_value_writes": 10002,
+          "opaque_operations": 0,
+          "live_state": "100|100|100|true|false|1|nil|true|false",
+          "raw": "SNAPSHOT_MODEL\tplain\tprimary\t82.000000\t5\t10002\t0\t10002\t0\t100|100|100|true|false|1|nil|true|false"
+        },
+        {
+          "pair": 5,
+          "stage": "before",
+          "value_mode": "plain",
+          "bar": "secondary",
+          "host_lua_ms": 72.0,
+          "frames": 5,
+          "snapshot_writes": 10002,
+          "restricted_size_attempts": 0,
+          "bar_value_writes": 10002,
+          "opaque_operations": 0,
+          "live_state": "100|100|100|true|false|1|nil|true|false",
+          "raw": "SNAPSHOT_MODEL\tplain\tsecondary\t72.000000\t5\t10002\t0\t10002\t0\t100|100|100|true|false|1|nil|true|false"
+        },
+        {
+          "pair": 5,
+          "stage": "before",
+          "value_mode": "opaque",
+          "bar": "primary",
+          "host_lua_ms": 77.0,
+          "frames": 4,
+          "snapshot_writes": 10002,
+          "restricted_size_attempts": 10001,
+          "bar_value_writes": 10002,
+          "opaque_operations": 0,
+          "live_state": "opaque|opaque|100|true|false|1|nil|nil|nil",
+          "raw": "SNAPSHOT_MODEL\topaque\tprimary\t77.000000\t4\t10002\t10001\t10002\t0\topaque|opaque|100|true|false|1|nil|nil|nil"
+        },
+        {
+          "pair": 5,
+          "stage": "before",
+          "value_mode": "opaque",
+          "bar": "secondary",
+          "host_lua_ms": 68.0,
+          "frames": 4,
+          "snapshot_writes": 10002,
+          "restricted_size_attempts": 10001,
+          "bar_value_writes": 10002,
+          "opaque_operations": 0,
+          "live_state": "opaque|opaque|100|true|false|1|nil|nil|nil",
+          "raw": "SNAPSHOT_MODEL\topaque\tsecondary\t68.000000\t4\t10002\t10001\t10002\t0\topaque|opaque|100|true|false|1|nil|nil|nil"
+        },
+        {
+          "pair": 5,
+          "stage": "candidate",
+          "value_mode": "plain",
+          "bar": "primary",
+          "host_lua_ms": 78.0,
+          "frames": 4,
+          "snapshot_writes": 0,
+          "restricted_size_attempts": 0,
+          "bar_value_writes": 10002,
+          "opaque_operations": 0,
+          "live_state": "100|100|100|true|false|1|nil|true|false",
+          "raw": "SNAPSHOT_MODEL\tplain\tprimary\t78.000000\t4\t0\t0\t10002\t0\t100|100|100|true|false|1|nil|true|false"
+        },
+        {
+          "pair": 5,
+          "stage": "candidate",
+          "value_mode": "plain",
+          "bar": "secondary",
+          "host_lua_ms": 63.0,
+          "frames": 4,
+          "snapshot_writes": 0,
+          "restricted_size_attempts": 0,
+          "bar_value_writes": 10002,
+          "opaque_operations": 0,
+          "live_state": "100|100|100|true|false|1|nil|true|false",
+          "raw": "SNAPSHOT_MODEL\tplain\tsecondary\t63.000000\t4\t0\t0\t10002\t0\t100|100|100|true|false|1|nil|true|false"
+        },
+        {
+          "pair": 5,
+          "stage": "candidate",
+          "value_mode": "opaque",
+          "bar": "primary",
+          "host_lua_ms": 56.0,
+          "frames": 3,
+          "snapshot_writes": 0,
+          "restricted_size_attempts": 0,
+          "bar_value_writes": 10002,
+          "opaque_operations": 0,
+          "live_state": "opaque|opaque|100|true|false|1|nil|nil|nil",
+          "raw": "SNAPSHOT_MODEL\topaque\tprimary\t56.000000\t3\t0\t0\t10002\t0\topaque|opaque|100|true|false|1|nil|nil|nil"
+        },
+        {
+          "pair": 5,
+          "stage": "candidate",
+          "value_mode": "opaque",
+          "bar": "secondary",
+          "host_lua_ms": 46.0,
+          "frames": 3,
+          "snapshot_writes": 0,
+          "restricted_size_attempts": 0,
+          "bar_value_writes": 10002,
+          "opaque_operations": 0,
+          "live_state": "opaque|opaque|100|true|false|1|nil|nil|nil",
+          "raw": "SNAPSHOT_MODEL\topaque\tsecondary\t46.000000\t3\t0\t0\t10002\t0\topaque|opaque|100|true|false|1|nil|nil|nil"
+        }
+      ],
+      "summary": {
+        "plain-primary": {
+          "before": {
+            "median_ms": 82.0,
+            "range_ms": [
+              78.0,
+              94.0
+            ],
+            "frames": 5,
+            "snapshot_writes": 10002,
+            "restricted_size_attempts": 0,
+            "bar_value_writes": 10002
+          },
+          "candidate": {
+            "median_ms": 76.0,
+            "range_ms": [
+              74.0,
+              80.0
+            ],
+            "frames": 4,
+            "snapshot_writes": 0,
+            "restricted_size_attempts": 0,
+            "bar_value_writes": 10002
+          }
+        },
+        "plain-secondary": {
+          "before": {
+            "median_ms": 67.0,
+            "range_ms": [
+              65.0,
+              72.0
+            ],
+            "frames": 5,
+            "snapshot_writes": 10002,
+            "restricted_size_attempts": 0,
+            "bar_value_writes": 10002
+          },
+          "candidate": {
+            "median_ms": 63.0,
+            "range_ms": [
+              62.0,
+              67.0
+            ],
+            "frames": 4,
+            "snapshot_writes": 0,
+            "restricted_size_attempts": 0,
+            "bar_value_writes": 10002
+          }
+        },
+        "opaque-primary": {
+          "before": {
+            "median_ms": 77.0,
+            "range_ms": [
+              77.0,
+              81.0
+            ],
+            "frames": 4,
+            "snapshot_writes": 10002,
+            "restricted_size_attempts": 10001,
+            "bar_value_writes": 10002
+          },
+          "candidate": {
+            "median_ms": 57.0,
+            "range_ms": [
+              56.0,
+              58.0
+            ],
+            "frames": 3,
+            "snapshot_writes": 0,
+            "restricted_size_attempts": 0,
+            "bar_value_writes": 10002
+          }
+        },
+        "opaque-secondary": {
+          "before": {
+            "median_ms": 68.0,
+            "range_ms": [
+              64.0,
+              72.0
+            ],
+            "frames": 4,
+            "snapshot_writes": 10002,
+            "restricted_size_attempts": 10001,
+            "bar_value_writes": 10002
+          },
+          "candidate": {
+            "median_ms": 46.0,
+            "range_ms": [
+              43.0,
+              52.0
+            ],
+            "frames": 3,
+            "snapshot_writes": 0,
+            "restricted_size_attempts": 0,
+            "bar_value_writes": 10002
+          }
+        }
+      },
+      "mutations": [
+        {
+          "name": "restore-unused-snapshot-chain",
+          "rejected_by": "nonzero snapshot writes/restricted sink attempts",
+          "result": {
+            "exit": 0,
+            "stdout": "SNAPSHOT_MODEL\tplain\tprimary\t83.000000\t5\t10002\t0\t10002\t0\t100|100|100|true|false|1|nil|true|false\nSNAPSHOT_MODEL\tplain\tsecondary\t68.000000\t5\t10002\t0\t10002\t0\t100|100|100|true|false|1|nil|true|false\nSNAPSHOT_MODEL\topaque\tprimary\t80.000000\t4\t10002\t10001\t10002\t0\topaque|opaque|100|true|false|1|nil|nil|nil\nSNAPSHOT_MODEL\topaque\tsecondary\t66.000000\t4\t10002\t10001\t10002\t0\topaque|opaque|100|true|false|1|nil|nil|nil",
+            "stderr": ""
+          }
+        },
+        {
+          "name": "remove-live-ghost",
+          "rejected_by": "live feature assertions",
+          "result": {
+            "exit": 1,
+            "stdout": "",
+            "stderr": "lua: tests/power_snapshot_cleanup.lua:10: restricted cast-completion feedback retains both live ghost-based animations\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/power_snapshot_cleanup.lua:10: in upvalue 'check'\n\ttests/power_snapshot_cleanup.lua:119: in local 'exercise'\n\ttests/power_snapshot_cleanup.lua:144: in main chunk\n\t[C]: in ?"
+          }
+        },
+        {
+          "name": "remove-live-slice-anchor",
+          "rejected_by": "live feature assertions",
+          "result": {
+            "exit": 1,
+            "stdout": "",
+            "stderr": "lua: tests/power_snapshot_cleanup.lua:121: attempt to index a nil value (field 'point')\nstack traceback:\n\ttests/power_snapshot_cleanup.lua:121: in local 'exercise'\n\ttests/power_snapshot_cleanup.lua:144: in main chunk\n\t[C]: in ?"
+          }
+        },
+        {
+          "name": "remove-first-preview",
+          "rejected_by": "live feature assertions",
+          "result": {
+            "exit": 1,
+            "stdout": "",
+            "stderr": "lua: tests/power_snapshot_cleanup.lua:10: cost-shortened value and its preview remain visible\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/power_snapshot_cleanup.lua:10: in upvalue 'check'\n\ttests/power_snapshot_cleanup.lua:127: in local 'exercise'\n\ttests/power_snapshot_cleanup.lua:144: in main chunk\n\t[C]: in ?"
+          }
+        }
+      ],
+      "native_status": "pending for this cleanup; no settings/profiler/native input changed",
+      "result": "PASS candidate70checks, live state parity and repeated resource/operation comparison; desktop wall times descriptive only",
+      "environment": {
+        "runtime": "Lua 5.4.6  Copyright (C) 1994-2023 Lua.org, PUC-Rio",
+        "host": "Windows-10-10.0.26200-SP0",
+        "machine": "AMD64",
+        "processor": "Intel64 Family 6 Model 151 Stepping 2, GenuineIntel",
+        "native_client": "No cleanup native run; source-contract investigation pinned Forever1.60.1.70790/eac30af597e5aaa43a60f6675ef5fdcea100375f",
+        "native_hardware_settings_addon_list": "unavailable for this desktop model",
+        "settings": "same fixture; primary/secondary100maximum, HUD resource cadence, optional effect flags unchanged; enabled/disabled both regression-tested",
+        "profiler": "Lua os.clock, no native CPU profiler, no forced GC; model setter and frame counters active in both variants",
+        "warmup": "2 paint/flush primes per scenario before timed10000cycles",
+        "captures": "5 alternating process pairs; 4 scenarios/process; startup resource count includes fixture+prime frames; no steady native frame-time or memory-leak claim"
+      }
+    }
+  },
+  "host": {
+    "CPU": "12th Gen Intel Core i7-12700F",
+    "cores": 12,
+    "logicalProcessors": 20,
+    "RAMBytes": 34164105216,
+    "OS": "Windows10/AMD64",
+    "Lua": "5.4.6"
+  },
+  "nativeBaseline": "Earlier unit-state fixes verified loaded in Forever; two bounded name-probe error samples0; current batch not yet loaded.",
+  "requirements": "Preserve public cooldown rules, all existing return positions, action attributes, badge/main/mini swaps, live power preview/ghost/feedback, cadence and settings. Unknown opaque cooldown keeps badge visible when public flags unavailable.",
+  "linkedEvidence": [
+    "unit-state-followup-safety-2026-11-06.json",
+    "unit-state-native-followup-2026-11-06.json"
+  ],
+  "interpretation": "Badge explicit guards add desktop overhead. Snapshot cleanup removes unused ownership/work; native frame time and random-freeze causality unresolved.",
+  "nativeCandidate": "Forever user reload/ordinary combat; removed-method marker=nil and session errors0 at23:09:18UTC. Direct restricted badge cases; swaps; matched pixels/performance/other clients pending."
+}

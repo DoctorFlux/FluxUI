@@ -1,0 +1,43 @@
+-- Execute existing Core secret helpers/backend; no addon implementation edits.
+-- Opaque tokens and API access predicates are explicitly desktop stand-ins.
+local function read(path)
+ local f=assert(io.open(path,'rb'));local s=f:read('*a');f:close();return s
+end
+local checks=0
+local function check(v,label) checks=checks+1;assert(v,label) end
+for _,client in ipairs({'retail','forever'})do
+ for _,policy in ipairs({'secret-denied','secret-access-true','access-denied','predicate-error'})do
+  local operations=0
+  local function trap()operations=operations+1;error('OPAQUE_VALUE_OPERATION',2)end
+  local token=setmetatable({}, {__lt=trap,__le=trap,__add=trap,__sub=trap,__mul=trap,__div=trap})
+  local e=setmetatable({}, {__index=_G});e._G=e
+  e.issecretvalue=function(v)
+   if policy=='predicate-error'then error('INJECTED_PREDICATE_FAILURE')end
+   return rawequal(v,token) and policy~='access-denied'
+  end
+  e.canaccessvalue=function(v)
+   if policy=='predicate-error'then error('INJECTED_PREDICATE_FAILURE')end
+   return not rawequal(v,token) or policy=='secret-access-true'
+  end
+  e.canaccesssecrets=function()return false end
+  local ns={Flux={Client={isRetail=true,isCamelot=client=='forever'}}}
+  assert(load(read('Core/API/Secrets.lua'),'@Core/API/Secrets.lua','t',e))('_FluxUI',ns)
+  assert(load(read('Core/API/Secrets_Midnight.lua'),'@Core/API/Secrets_Midnight.lua','t',e))('_FluxUI',ns)
+  local S=ns.Flux.Secrets
+  check(ns._secretsBackendKind=='midnight','actual modern backend selected')
+  check(S.SafeCompare(token,.4,'>')==nil,'unavailable alpha comparison is unknown')
+  check(S.SafeCompare(token,0,'<=')==nil,'unavailable hidden-alpha comparison is unknown')
+  check(S.SafeGetNumber(token,.4)==.4,'explicit caller fallback retained')
+  check(S.KeepLastNumber(token,.4,1)==.4,'known public range alpha retained')
+  check(S.KeepLastNumber(token,nil,1)==1,'explicit public default retained')
+  check(operations==0,'no arithmetic/comparison on opaque value attempted')
+  if policy~='predicate-error'then
+   check(S.SafeCompare(.6,.4,'>')==true,'readable positive threshold control')
+   check(S.SafeCompare(.2,.4,'>')==false,'readable negative threshold control')
+   check(S.SafeGetNumber('.6',.4)==.6,'readable numeric conversion control')
+   check(S.KeepLastNumber(.6,.4,1)==.6,'readable value updates known public state')
+  end
+  print(('CONTROL client=%s policy=%s opaque_operations=%d'):format(client,policy,operations))
+ end
+end
+print('SUMMARY checks='..checks..' failures=0; actual Core helpers; native secrets/taint NOT RUN')

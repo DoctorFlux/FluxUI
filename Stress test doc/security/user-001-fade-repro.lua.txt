@@ -1,0 +1,67 @@
+-- USER-001: real production fade-start fragments plus exact pinned native fade
+-- manager; secret-number arithmetic represented by an explicitly artificial trap.
+-- Does not recreate the native secret/taint VM or identify the user's real frame.
+local checks=0
+local function check(v,label)checks=checks+1;assert(v,label)end
+local function read(path)local f=assert(io.open(path,"rb"));local s=f:read("*a"):gsub("\r\n","\n");f:close();return s end
+local function slice(text,first,last)local a=assert(text:find(first,1,true));local b=assert(text:find(last,a+#first,true));return text:sub(a,b-1),select(2,text:sub(1,a-1):gsub("\n",""))end
+local native=read("../__AddonsForRef/wow-ui-source-forever/Interface/AddOns/Blizzard_SharedXMLBase/FrameUtil.lua")
+local fadeSource,offset=slice(native,'local frameFadeManager = CreateFrame("FRAME");','local frameFlashManager = CreateFrame("FRAME");')
+local castSource=slice(read("UnitFrames/FluxCastBar.lua"),"local function StartCastBarFadeOut(self)","local function CastStop(self, failed)")
+local swingSource=slice(read("UnitFrames/FluxSwingTimer.lua"),"local function StartSwingFadeOut()","local function ShowSwing()")
+local function fixture(kind,secret,interrupted,experiment)
+ local s={frames={},timers={},reads=0}
+ local opaque=setmetatable({}, {__sub=function()error("SIMULATED_SECRET_ALPHA_ARITHMETIC",2)end})
+ local e=setmetatable({}, {__index=_G});e._G=e;e.FADEFRAMES={};e.tinsert=table.insert
+ e.securecallfunction=function(fn,...)return fn(...)end
+ e.tDeleteItem=function(t,v)for i=#t,1,-1 do if t[i]==v then table.remove(t,i)end end end
+ e.CreateFrame=function()local f={};function f:SetScript(k,v)self[k]=v end;s.frames[#s.frames+1]=f;return f end
+ e.C_Timer={NewTimer=function(delay,fn)local t={delay=delay,fn=fn};function t:Cancel()self.cancelled=true end;s.timers[#s.timers+1]=t;return t end}
+ e.FLUX_CASTBAR_FADE_DURATION=.75;e.FLUX_CASTBAR_FADE_INTERRUPT=.30;e.SWING_FADE_DURATION=1
+ e.FinishCastBarFade=function()end;e.FinishSwingFade=function()end
+ local frame={alpha=.35,shown=true,interrupted=interrupted}
+ function frame:SetAlpha(alpha)self.alpha=alpha end
+ function frame:GetAlpha()s.reads=s.reads+1;if secret then return opaque end;return self.alpha end
+ function frame:Show()self.shown=true end
+ function frame:IsShown()return self.shown end
+ s.frame=frame;s.env=e;s.manager=s.frames[1]
+ assert(load(string.rep("\n",offset)..fadeSource,"@Interface/AddOns/Blizzard_SharedXMLBase/FrameUtil.lua","t",e))()
+ s.manager=s.frames[1]
+ e.swingFrame=frame;e.trackedSwingAlpha=.35
+ local source=kind=="cast" and castSource or swingSource
+ if experiment then
+  if kind=="cast"then source=source:gsub("self:GetAlpha%(%)","1")
+  else source=source:gsub("swingFrame:GetAlpha%(%)","trackedSwingAlpha")end
+ end
+ local start=assert(load(source.."\nreturn "..(kind=="cast" and "StartCastBarFadeOut" or "StartSwingFadeOut"),"@production-fade-start-"..kind,"t",e))()
+ if kind=="cast"then start(frame)else start()end
+ check(frame.fadeInfo and frame.fadeInfo.mode=="OUT","native OUT fade recorded")
+ local duration=kind=="cast" and (interrupted and .3 or .75) or 1
+ check(frame.fadeInfo.timeToFade==duration and s.timers[1].delay==duration,"production duration and completion timer preserved")
+ return s,duration
+end
+for _,kind in ipairs({"cast","swing"})do
+ for _,interrupted in ipairs(kind=="cast" and {false,true} or {false})do
+  local plain,duration=fixture(kind,false,interrupted,false)
+  plain.manager.OnUpdate(plain.manager,.05)
+  local start=kind=="cast" and 1 or .35
+  check(math.abs(plain.frame.alpha-start*(1-.05/duration))<.000001,"readable alpha control interpolates normally")
+  local bad=fixture(kind,true,interrupted,false)
+  for repeatIndex=1,2 do
+   local ok,err=xpcall(function()bad.manager.OnUpdate(bad.manager,.05)end,debug.traceback)
+   check(not ok and err:find("SIMULATED_SECRET_ALPHA_ARITHMETIC",1,true) and err:find("FrameUtil.lua:427",1,true),"modeled opaque alpha reproduces exact native OUT sink")
+   print("EXPECTED MODELED FAILURE "..kind.." interrupted="..tostring(interrupted).." repeat="..repeatIndex.."\n"..err)
+  end
+  local fixed=fixture(kind,true,interrupted,true)
+  fixed.manager.OnUpdate(fixed.manager,.05)
+  check(fixed.reads==0 and type(fixed.frame.alpha)=="number","experiment-only public endpoint avoids getter and native arithmetic trap")
+  print("CONTROL "..kind.." interrupted="..tostring(interrupted).." duration="..duration.." public endpoint experiment PASS")
+ end
+end
+-- A bad shared-manager row aborts processing of later rows for that update.
+local blocked=fixture("cast",true,false,false)
+local later={alpha=1};function later:SetAlpha(v)self.alpha=v end;function later:Show()end
+blocked.env.UIFrameFadeOut(later,.75,1,0)
+local ok=pcall(blocked.manager.OnUpdate,blocked.manager,.05)
+check(not ok and later.alpha==1 and later.fadeInfo.fadeTimer==nil,"earlier bad fade can prevent a later shared row from updating")
+print("USER-001 CONDITIONAL REPRO COMPLETE assertions="..checks.."; exact native427 reached for both production suppliers; actual frame and native secrecy cause unresolved")

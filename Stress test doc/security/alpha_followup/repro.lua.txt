@@ -1,0 +1,184 @@
+-- Conditional alpha consumers. Actual production function fragments are used.
+-- A trapped table plus a scoped type() model represents unreadable numbers;
+-- this is NOT the native WoW secret-number/taint VM or real frame provenance.
+local checks,expectedFailures=0,0
+local function check(v,label)checks=checks+1;assert(v,label)end
+local function read(path)local f=assert(io.open(path,"rb"));local s=f:read("*a"):gsub("\r\n","\n");f:close();return s end
+local function part(path,first,last)
+ local text=read(path);local a=assert(text:find(first,1,true),first);local b=last and assert(text:find(last,a+#first,true),last) or (#text+1)
+ return text:sub(a,b-1),select(2,text:sub(1,a-1):gsub("\n",""))
+end
+local opaque=setmetatable({}, {
+ __lt=function()error("SIMULATED_SECRET_ALPHA_ORDER",2)end,
+ __le=function()error("SIMULATED_SECRET_ALPHA_ORDER",2)end,
+ __div=function()error("SIMULATED_SECRET_ALPHA_DIVISION",2)end,
+ __sub=function()error("SIMULATED_SECRET_ALPHA_SUBTRACTION",2)end,
+})
+local function environment(values)
+ local e=setmetatable(values or {},{__index=_G});e._G=e
+ e.type=function(v)if rawequal(v,opaque)then return "number"end;return type(v)end
+ e.issecretvalue=function(v)return rawequal(v,opaque)end
+ e.canaccessvalue=function(v)return not rawequal(v,opaque)end
+ return e
+end
+local function compile(path,first,last,suffix,e)
+ local source,offset=part(path,first,last)
+ return assert(load(string.rep("\n",offset)..source.."\n"..(suffix or ""),"@"..path,"t",e))()
+end
+local function frame(alpha)
+ local f={alpha=alpha,shown=true,reads=0}
+ function f:GetAlpha()self.reads=self.reads+1;return self.alpha end
+ function f:GetEffectiveAlpha()self.reads=self.reads+1;return self.alpha end
+ function f:SetAlpha(v)self.alpha=v end
+ function f:IsShown()return self.shown end
+ function f:GetTexture()return "art"end
+ function f:SetDrawBling(v)self.bling=v end
+ function f:SetDrawEdge(v)self.edge=v end
+ function f:SetDrawSwipe(v)self.swipe=v end
+ function f:SetSwipeColor()end
+ function f:SetCooldownFromDurationObject()end
+ function f:Hide()self.shown=false end
+ return f
+end
+local cases={}
+cases[#cases+1]={id="ALPHA-02",path="UnitFrames/FluxSwingTimer.lua",first="local function CastBarIsBusy()",last="local function SwingTimerFeatureWanted()",suffix="return CastBarIsBusy",factory=function(alpha)
+ local e=environment({castBar=frame(alpha)});local fn=compile("UnitFrames/FluxSwingTimer.lua","local function CastBarIsBusy()","local function SwingTimerFeatureWanted()","return CastBarIsBusy",e)
+ return function()return fn()end,e
+end}
+cases[#cases+1]={id="ALPHA-03",factory=function(alpha)
+ local e=environment();local f=frame(alpha);local fn=compile("Core/ButtonFX/Charges.lua","local function SetBling(cd, on)","-- ButtonForge Classic:","return SetBling",e)
+ return function()return fn(f,true)end,e
+end}
+cases[#cases+1]={id="ALPHA-04-core",factory=function(alpha)
+ local e=environment();local f=frame(alpha);local fn=compile("Core/ButtonFX/Cast.lua","local function WidgetShown(widget)","local function SpellOf(entry)","return WidgetShown",e)
+ return function()return fn(f)end,e
+end}
+cases[#cases+1]={id="ALPHA-05-duration",factory=function(alpha)
+ local e=environment({FluxButton={},GetTime=function()return 1 end})
+ compile("ExtraButtonSystem/Engine/Button.lua","function FluxButton:CooldownFrame_SetFromDurationObject(durationObject, isCharge)","--- Apply spell cooldown:","",e)
+ return function()return e.FluxButton.CooldownFrame_SetFromDurationObject({WCooldown=frame(alpha)},{},false)end,e
+end}
+cases[#cases+1]={id="ALPHA-04-badge",factory=function(alpha)
+ local widget=frame(alpha);local host={};local button={_fluxHost=host};local badge={Widget=widget}
+ local e=environment({BadgeHost={},instances={[button]={[1]={badge}}},slotBadges={[1]={{}}},LiveSlotOf=function()return 1 end,ShouldShow=function()return true end})
+ compile("Bars/BadgeHost.lua","function BadgeHost.GetVisibleBadgesForButton(button)","function BadgeHost.RefreshLayout()","",e)
+ return function()return e.BadgeHost.GetVisibleBadgesForButton(button)end,e
+end}
+cases[#cases+1]={id="ALPHA-01",factory=function(alpha)
+ local f=frame(alpha)
+ local e=environment({Bars={secureReady=true,NUM_NATIVE=1},Blizzard={GetActionButton=function()return f end},MULTI_BARS={}})
+ compile("Bars/Blizzard.lua","function Blizzard.QuietGrid()",nil,"",e)
+ return function()return e.Blizzard.QuietGrid()end,e
+end}
+cases[#cases+1]={id="ALPHA-05-numeric",factory=function(alpha)
+ local e=environment();local f=frame(alpha)
+ local source,offset=part("ExtraButtonSystem/Engine/Button.lua","            local alpha = (cd.GetEffectiveAlpha and cd:GetEffectiveAlpha()) or 1","            if cd.SetCooldown then")
+ local fn=assert(load(string.rep("\n",offset-2).."return function(cd)\nlocal drawEdge,forceShowDrawEdge,isCharge=false,false,false\n"..source.."\nend","@ExtraButtonSystem/Engine/Button.lua","t",e))()
+ return function()return fn(f)end,e
+end}
+-- This helper belongs to the pre-DF/Classic quickslot path. Current Forever
+-- Style.UseQuickslotRing explicitly excludes Forever; it is not USER-001 proof.
+cases[#cases+1]={id="ALPHA-LEGACY-ONLY",factory=function(alpha)
+ local e=environment();local fn=compile("ExtraButtonSystem/Engine/Style.lua","local function NormalRingVisible(tex)","local function HideOverlayRing(widget)","return NormalRingVisible",e)
+ return function()return fn(frame(alpha))end,e
+end}
+for _,color in ipairs({false,true})do
+ cases[#cases+1]={id=color and "ALPHA-06-colored" or "ALPHA-06-uncolored",factory=function(alpha)
+  local noop=function()end;local tex=frame(alpha);tex.SetDesaturated=noop;tex.SetVertexColor=noop;tex.SetSize=noop
+  local f={ants=tex,innerGlow=tex,color=false,animIn={},animOut={IsPlaying=function()return false end},SetFrameLevel=noop,SetSize=noop,SetPoint=noop}
+  local r={_ButtonGlow=f,GetSize=function()return 36,36 end,GetFrameLevel=function()return 1 end}
+  local e=environment({lib={},ButtonGlowTextures={innerGlow=true},AnimIn_OnFinished=noop,updateAlphaAnim=noop})
+  compile("libs/LibCustomGlow-1.0/LibCustomGlow-1.0.lua","local function noZero(num)","function lib.ButtonGlow_Stop(r)","",e)
+  return function()return e.lib.ButtonGlow_Start(r,color and {1,.2,.1,.4} or nil,.25,16)end,e
+ end}
+end
+for _,case in ipairs(cases)do
+ local plain=case.factory(.75);check(pcall(plain),case.id.." public-number control")
+ local blocked=case.factory(opaque)
+ local ok,err=xpcall(blocked,debug.traceback)
+ check(not ok and err:find("SIMULATED_SECRET_ALPHA",1,true),case.id.." conditional unreadable-alpha operation fails")
+ expectedFailures=expectedFailures+1
+ print("EXPECTED CONDITIONAL FAILURE "..case.id.."\n"..err)
+end
+
+-- The actual threat-glow caller suppresses a library failure with pcall and
+-- commits its same-band cache first. This tests the conditional retry consequence.
+do
+ local noop=function()end;local tex=frame(opaque);tex.SetDesaturated=noop;tex.SetVertexColor=noop;tex.SetSize=noop
+ local glow={ants=tex,innerGlow=tex,color=false,animIn={},animOut={IsPlaying=function()return false end},SetFrameLevel=noop,SetSize=noop,SetPoint=noop}
+ local shell={_ButtonGlow=glow,GetSize=function()return 36,36 end,GetFrameLevel=function()return 1 end}
+ local e=environment({lib={},ButtonGlowTextures={innerGlow=true},AnimIn_OnFinished=noop,updateAlphaAnim=noop,
+  ThreatBarGlowBandKey=function()return "red"end,ThreatBarRaiseGlowAboveBorder=noop,ThreatBarStopGlow=noop})
+ compile("libs/LibCustomGlow-1.0/LibCustomGlow-1.0.lua","local function noZero(num)","function lib.ButtonGlow_Stop(r)","",e)
+ e.lib.ButtonGlow_Stop=noop
+ local attempts=0;local start=e.lib.ButtonGlow_Start
+ e.lib.ButtonGlow_Start=function(...)attempts=attempts+1;return start(...)end
+ e.LibStub=function(name)if name=="LibCustomGlow-1.0"then return e.lib end end
+ local update=compile("UnitFrames/FluxUnitFrames_Shared.lua","local function ThreatBarUpdateGlow(shell, color)","--- Same side as auras","return ThreatBarUpdateGlow",e)
+ check(pcall(update,shell,{1,0,0,1}) and attempts==1 and shell._fluxThreatGlowBand=="red" and glow.color==false,
+  "threat caller conditionally suppresses library alpha error after committing band")
+ update(shell,{1,0,0,1})
+ check(attempts==1 and glow.color==false,"same-band retry skipped while incomplete glow state persists")
+ print("CONDITIONAL CONSEQUENCE ALPHA-06 threat caller pcall returns normally; cached band suppresses same-band retry")
+end
+
+-- CastBarIsBusy alpha checks are return-redundant. Remove them only in an
+-- in-memory candidate and compare all public controls; no production file edit.
+local busySource=part("UnitFrames/FluxSwingTimer.lua","local function CastBarIsBusy()","local function SwingTimerFeatureWanted()")
+local guardStart=assert(busySource:find("    -- Only block when the cast bar is actually on-screen.",1,true))
+local candidate=busySource:sub(1,guardStart-1).."    return false\nend\nreturn CastBarIsBusy"
+for _,shown in ipairs({false,true})do
+ for _,alpha in ipairs({0,.005,.01,.4,.75,1})do
+  for flag=0,6 do
+   local bar=frame(alpha);bar.shown=shown
+   local field=({"casting","channeling","customTimer","preInterrupt","holdTime","fadeOut"})[flag]
+   if field then bar[field]=field=="holdTime" and .2 or true end
+   local e=environment({castBar=bar})
+   local original=assert(load(busySource.."\nreturn CastBarIsBusy","@busy-original","t",e))()
+   local improved=assert(load(candidate,"@busy-public-state-experiment","t",e))()
+   check(original()==improved(),"busy public control retains exact result")
+  end
+ end
+end
+local bar=frame(opaque);local e=environment({castBar=bar})
+local improved=assert(load(candidate,"@busy-public-state-experiment","t",e))()
+check(improved()==false and bar.reads==0,"busy candidate preserves no-active-cast result without alpha read")
+
+-- An existing correctly guarded consumer is a positive control.
+local e=environment({IsSecretValue=function(v)return rawequal(v,opaque)end,UF={}})
+local portrait=compile("UnitFrames/FluxUnitFrames_Shared.lua","local function PortraitFrameIsVisuallyShown(self)","-- OOR \"?\" only while","return PortraitFrameIsVisuallyShown",e)
+check(portrait(frame(opaque))==true,"guarded portrait alpha consumer avoids secret comparison")
+
+-- Native fade family: defaults, IN/OUT opaque endpoints, and finite retirement.
+local nativePath="../__AddonsForRef/wow-ui-source-forever/Interface/AddOns/Blizzard_SharedXMLBase/FrameUtil.lua"
+local function nativeFixture()
+ local s={managers={}};local e=environment({FADEFRAMES={},FLASHFRAMES={},tinsert=table.insert})
+ e.securecallfunction=function(fn,...)return fn(...)end
+ e.secureexecuterange=function(t,fn,...)for key,value in pairs(t)do fn(key,value,...)end end
+ e.tDeleteItem=function(t,v)for i=#t,1,-1 do if t[i]==v then table.remove(t,i)end end end
+ e.CreateFrame=function()local f={SetScript=function(self,k,v)self[k]=v end};s.managers[#s.managers+1]=f;return f end
+ local source,offset=part(nativePath,'local frameFadeManager = CreateFrame("FRAME");','-- Sets a frame parent, but retains old frame strata and frame level')
+ assert(load(string.rep("\n",offset)..source,"@Interface/AddOns/Blizzard_SharedXMLBase/FrameUtil.lua","t",e))()
+ return e,s.managers[1],s.managers[2]
+end
+for _,mode in ipairs({"IN","OUT"})do
+ local e,m=nativeFixture();local f=frame(1);f.Show=function()end
+ if mode=="IN"then e.UIFrameFadeIn(f,.30)else e.UIFrameFadeOut(f,.30)end
+ check(f.fadeInfo.startAlpha==(mode=="IN" and 0 or 1) and f.fadeInfo.endAlpha==(mode=="IN" and 1 or 0),mode.." omitted endpoints use public defaults")
+ for i=1,20 do e.UIFrameFade_OnUpdate(m,.05)end
+ check(#e.FADEFRAMES==0 and m.OnUpdate==nil,mode.." default fade retires")
+ local e,m=nativeFixture();local f=frame(1);f.Show=function()end
+ if mode=="IN"then e.UIFrameFadeIn(f,.30,opaque,1)else e.UIFrameFadeOut(f,.30,opaque,0)end
+ local failures=0
+ for i=1,20 do
+  local ok,err=pcall(e.UIFrameFade_OnUpdate,m,.05)
+  if not ok then failures=failures+1;check(err:find("SIMULATED_SECRET_ALPHA",1,true),"only expected endpoint trap")end
+ end
+ check(failures>0 and #e.FADEFRAMES==0 and m.OnUpdate==nil,mode.." bad endpoint errors are finite without requeue")
+ print("FINITE NATIVE FADE "..mode.." errors="..failures.." elapsed=1.0s duration=.30s remaining=0")
+end
+local e,m,flash=nativeFixture();local f=frame(1);f.Show=function()end
+e.UIFrameFlash(f,.10,.10,.50,true,0,0)
+for i=1,20 do e.UIFrameFlash_OnUpdate(flash,.05)end
+check(#e.FLASHFRAMES==0 and flash.OnUpdate==nil,"public-duration native flash completes; no addon direct flash callers found by source scan")
+print("ALPHA FOLLOWUP COMPLETE assertions="..checks.." conditional_consumer_failures="..expectedFailures.."; type-number predicate modeled; no native taint/frame attribution")

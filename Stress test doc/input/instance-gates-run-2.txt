@@ -1,0 +1,6 @@
+METRIC branch=live instance_load_cases=2496 actual_zone_transitions=2496 event_frames=2 physical_state_reads=0
+METRIC branch=forever instance_load_cases=2496 actual_zone_transitions=2496 event_frames=2 physical_state_reads=0
+METRIC branch=classic_era instance_load_cases=2496 actual_zone_transitions=2496 event_frames=2 physical_state_reads=0
+METRIC branch=classic_anniversary instance_load_cases=2496 actual_zone_transitions=2496 event_frames=2 physical_state_reads=0
+METRIC branch=classic instance_load_cases=2496 actual_zone_transitions=2496 event_frames=2 physical_state_reads=0
+SUMMARY checks=37905 failures=0 instance_load_cases=12480 transitions=12480

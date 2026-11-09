@@ -1,0 +1,43 @@
+stat_key,native_source,combat_presentation,limitations,desktop_result,native_result
+crit,Prior native crit/haste providers,Retain readable source category; query live; native text sink,No new category maximum while comparison restricted,Audited; real display-path regression PASS,NOT RUN
+meleeCrit,Prior native crit/haste providers,Retain readable source category; query live; native text sink,No new category maximum while comparison restricted,Audited; real display-path regression PASS,NOT RUN
+rangedCrit,Prior native crit/haste providers,Retain readable source category; query live; native text sink,No new category maximum while comparison restricted,Audited; real display-path regression PASS,NOT RUN
+haste,Prior native crit/haste providers,Retain readable source category; query live; native text sink,No new category maximum while comparison restricted,Audited; real display-path regression PASS,NOT RUN
+spellHit,Rating plus matching spell/mainhand/ranged/offhand modifier,Current native total or live contributions,Forever aliases fold to shared selected category,Audited; real display-path regression PASS,NOT RUN
+meleeHit,Rating plus matching spell/mainhand/ranged/offhand modifier,Current native total or live contributions,Forever aliases fold to shared selected category,Audited; real display-path regression PASS,NOT RUN
+rangedHit,Rating plus matching spell/mainhand/ranged/offhand modifier,Current native total or live contributions,Forever aliases fold to shared selected category,Audited; real display-path regression PASS,NOT RUN
+spellPower,GetSpellBonusDamage(school),Highest public school; same school read live during restrictions,No initial readable school means unavailable; no stale snapshots,Audited; real display-path regression PASS,NOT RUN
+spellPowerOnly,GetSpellBonusDamage(school),Highest public school; same school read live during restrictions,No initial readable school means unavailable; no stale snapshots,Audited; real display-path regression PASS,NOT RUN
+healPower,GetSpellBonusHealing,Current native healing including valid zero,Combined spell/heal retains available component,Audited; real display-path regression PASS,NOT RUN
+mastery,GetMasteryEffect,Current native effect percent,Only if API exists,Audited; real display-path regression PASS,NOT RUN
+versatility,GetCombatRatingBonus plus GetVersatilityBonus,Full public total; native visible total or signed live contributions,Restricted addition unavailable,Audited; real display-path regression PASS,NOT RUN
+spellPenetration,GetSpellPenetration,Live scalar,Only if API exists,Audited; real display-path regression PASS,NOT RUN
+weaponDamage,UnitDamage / UnitRangedDamage,Live main/offhand/ranged ranges,Restricted zero offhand range may stay visible,Audited; real display-path regression PASS,NOT RUN
+rangedWeaponDamage,UnitDamage / UnitRangedDamage,Live main/offhand/ranged ranges,Restricted zero offhand range may stay visible,Audited; real display-path regression PASS,NOT RUN
+attackPower,UnitAttackPower / UnitRangedAttackPower; native AP-from-SP conversion,Signed public total or live components; converted source and factor,No known restricted conversion source means unavailable,Audited; real display-path regression PASS,NOT RUN
+rangedAttackPower,UnitAttackPower / UnitRangedAttackPower; native AP-from-SP conversion,Signed public total or live components; converted source and factor,No known restricted conversion source means unavailable,Audited; real display-path regression PASS,NOT RUN
+armor,UnitArmor effective result,Current native effective armor,Only if API exists,Audited; real display-path regression PASS,NOT RUN
+dodge,GetDodgeChance / GetParryChance / GetBlockChance,Current native percentage,Only if API exists,Audited; real display-path regression PASS,NOT RUN
+parry,GetDodgeChance / GetParryChance / GetBlockChance,Current native percentage,Only if API exists,Audited; real display-path regression PASS,NOT RUN
+block,GetDodgeChance / GetParryChance / GetBlockChance,Current native percentage,Only if API exists,Audited; real display-path regression PASS,NOT RUN
+mp5,GetManaRegen casting result,Public rate times five; restricted live rate times five expression,Exact restricted product needs visible native total,Audited; real display-path regression PASS,NOT RUN
+meleeArmorPenetration,GetArmorPenetration,Current native percentage,Only if API exists,Audited; real display-path regression PASS,NOT RUN
+rangedArmorPenetration,GetArmorPenetration,Current native percentage,Only if API exists,Audited; real display-path regression PASS,NOT RUN
+expertise,GetExpertise first result,Current native mainhand value as existing pin,Other expertise channels are not this pin,Audited; real display-path regression PASS,NOT RUN
+defense,UnitDefenseSkill or legacy native getter,Public total or signed live components,Only if API exists,Audited; real display-path regression PASS,NOT RUN
+resilience,GetCombatRating selected resilience index,Current native rating,Only if API and index exist,Audited; real display-path regression PASS,NOT RUN
+speed,GetUnitSpeed selected movement mode,Public percent; restricted current yards per second or visible native text,No restricted percent arithmetic,Audited; real display-path regression PASS,NOT RUN
+moveSpeed,GetUnitSpeed selected movement mode,Public percent; restricted current yards per second or visible native text,No restricted percent arithmetic,Audited; real display-path regression PASS,NOT RUN
+health,UnitHealthMax / UnitPowerMax,Current native maximum; genuine zero allowed,Native unit-access restriction applies,Audited; real display-path regression PASS,NOT RUN
+power,UnitHealthMax / UnitPowerMax,Current native maximum; genuine zero allowed,Native unit-access restriction applies,Audited; real display-path regression PASS,NOT RUN
+weaponSpeed,UnitAttackSpeed / UnitRangedDamage first result,Current native seconds; main/offhand slots,Optional absent offhand omitted,Audited; real display-path regression PASS,NOT RUN
+rangedWeaponSpeed,UnitAttackSpeed / UnitRangedDamage first result,Current native seconds; main/offhand slots,Optional absent offhand omitted,Audited; real display-path regression PASS,NOT RUN
+leech,GetLifesteal / GetAvoidance,Full native total percent,Uses total getter instead of rating-only bonus,Audited; real display-path regression PASS,NOT RUN
+avoidance,GetLifesteal / GetAvoidance,Full native total percent,Uses total getter instead of rating-only bonus,Audited; real display-path regression PASS,NOT RUN
+strength,UnitStat effective result,Current native effective stat,Only if client has the stat/API,Audited; real display-path regression PASS,NOT RUN
+agility,UnitStat effective result,Current native effective stat,Only if client has the stat/API,Audited; real display-path regression PASS,NOT RUN
+stamina,UnitStat effective result,Current native effective stat,Only if client has the stat/API,Audited; real display-path regression PASS,NOT RUN
+intellect,UnitStat effective result,Current native effective stat,Only if client has the stat/API,Audited; real display-path regression PASS,NOT RUN
+spirit,UnitStat effective result,Current native effective stat,Only if client has the stat/API,Audited; real display-path regression PASS,NOT RUN
+itemLevel,Existing public inventory/CSC provider,Existing gear-derived display unchanged,Inventory-derived values; no combat-value reconstruction,Audited; real display-path regression PASS,NOT RUN
+gearScore,Existing public inventory/CSC provider,Existing gear-derived display unchanged,Inventory-derived values; no combat-value reconstruction,Audited; real display-path regression PASS,NOT RUN

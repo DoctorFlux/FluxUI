@@ -1,0 +1,88 @@
+{
+  "recovery": {
+    "directory": "C:\\Users\\mario\\.codex\\visualizations\\2026\\10\\29\\01a186ea-e332-79a1-9cdc-8e340df7e22b\\Forever-rep-apply-20261105T091230Z",
+    "head": "e36c14e5c1cdc442839666de69e3d24cddad2af6",
+    "sourceFiles": 1443,
+    "settingsFiles": 123,
+    "sourceSha256": "3d7b9beb5802a357cf22c7b3fa100b6f4b21c9be58b05f406a6a45e3305ff999"
+  },
+  "baselineCommit": "e36c14e5c1cdc442839666de69e3d24cddad2af6",
+  "runtimeSha256": "b8254e6e10d01cb2f09d27197dad85d3181f78a8ebab7d06e6032dbadbab00ed",
+  "hashNormalization": "CRLF to LF",
+  "scenario": "production click block;5 client labels;XP and Rep;closed/PaperDoll/Reputation initial states;left/right;combat;native API missing",
+  "profile": "5 alternating fresh-process pairs;no warmup;no native profiler;wall times include startup/asserts, not game latency",
+  "native": "User reports /run ToggleCharacter(\"ReputationFrame\") opens Reputation out of combat in Forever, after the usual custom-script confirmation; native bar click/taint/combat/gamepad/screenshots still pending; no automatic game input",
+  "initialFullFailure": "Core smoke expected Character Info proxy and Forever early return; removed those obsolete source-string assertions, preserving gold-bar guards; behavior tested by status_reputation_clicks.lua",
+  "runs": [
+    {
+      "pair": 1,
+      "variant": "baseline",
+      "seconds": 0.030637299991212785,
+      "exit": 1,
+      "raw": "FAIL forever/closed left click selects reputation\nFAIL native toggle semantics retained\nFAIL missing native function does not open a different panel\nFAIL forever/closed left click selects reputation\nFAIL native toggle semantics retained\nFAIL missing native function does not open a different panel\nFAIL forever/PaperDollFrame left click selects reputation\nFAIL native toggle semantics retained\nFAIL missing native function does not open a different panel\nFAIL forever/PaperDollFrame left click selects reputation\nFAIL native toggle semantics retained\nFAIL missing native function does not open a different panel\nFAIL forever/ReputationFrame left click selects reputation\nFAIL native toggle semantics retained\nFAIL missing native function does not open a different panel\nFAIL forever/ReputationFrame left click selects reputation\nFAIL native toggle semantics retained\nFAIL missing native function does not open a different panel\nstatus reputation clicks: 180 checks, 18 failures\n"
+    },
+    {
+      "pair": 1,
+      "variant": "candidate",
+      "seconds": 0.017956399999093264,
+      "exit": 0,
+      "raw": "status reputation clicks: 180 checks, 0 failures\n"
+    },
+    {
+      "pair": 2,
+      "variant": "baseline",
+      "seconds": 0.014692199998535216,
+      "exit": 1,
+      "raw": "FAIL forever/closed left click selects reputation\nFAIL native toggle semantics retained\nFAIL missing native function does not open a different panel\nFAIL forever/closed left click selects reputation\nFAIL native toggle semantics retained\nFAIL missing native function does not open a different panel\nFAIL forever/PaperDollFrame left click selects reputation\nFAIL native toggle semantics retained\nFAIL missing native function does not open a different panel\nFAIL forever/PaperDollFrame left click selects reputation\nFAIL native toggle semantics retained\nFAIL missing native function does not open a different panel\nFAIL forever/ReputationFrame left click selects reputation\nFAIL native toggle semantics retained\nFAIL missing native function does not open a different panel\nFAIL forever/ReputationFrame left click selects reputation\nFAIL native toggle semantics retained\nFAIL missing native function does not open a different panel\nstatus reputation clicks: 180 checks, 18 failures\n"
+    },
+    {
+      "pair": 2,
+      "variant": "candidate",
+      "seconds": 0.014039999994565733,
+      "exit": 0,
+      "raw": "status reputation clicks: 180 checks, 0 failures\n"
+    },
+    {
+      "pair": 3,
+      "variant": "baseline",
+      "seconds": 0.014541900003678165,
+      "exit": 1,
+      "raw": "FAIL forever/closed left click selects reputation\nFAIL native toggle semantics retained\nFAIL missing native function does not open a different panel\nFAIL forever/closed left click selects reputation\nFAIL native toggle semantics retained\nFAIL missing native function does not open a different panel\nFAIL forever/PaperDollFrame left click selects reputation\nFAIL native toggle semantics retained\nFAIL missing native function does not open a different panel\nFAIL forever/PaperDollFrame left click selects reputation\nFAIL native toggle semantics retained\nFAIL missing native function does not open a different panel\nFAIL forever/ReputationFrame left click selects reputation\nFAIL native toggle semantics retained\nFAIL missing native function does not open a different panel\nFAIL forever/ReputationFrame left click selects reputation\nFAIL native toggle semantics retained\nFAIL missing native function does not open a different panel\nstatus reputation clicks: 180 checks, 18 failures\n"
+    },
+    {
+      "pair": 3,
+      "variant": "candidate",
+      "seconds": 0.013887500012060627,
+      "exit": 0,
+      "raw": "status reputation clicks: 180 checks, 0 failures\n"
+    },
+    {
+      "pair": 4,
+      "variant": "baseline",
+      "seconds": 0.014359299995703623,
+      "exit": 1,
+      "raw": "FAIL forever/closed left click selects reputation\nFAIL native toggle semantics retained\nFAIL missing native function does not open a different panel\nFAIL forever/closed left click selects reputation\nFAIL native toggle semantics retained\nFAIL missing native function does not open a different panel\nFAIL forever/PaperDollFrame left click selects reputation\nFAIL native toggle semantics retained\nFAIL missing native function does not open a different panel\nFAIL forever/PaperDollFrame left click selects reputation\nFAIL native toggle semantics retained\nFAIL missing native function does not open a different panel\nFAIL forever/ReputationFrame left click selects reputation\nFAIL native toggle semantics retained\nFAIL missing native function does not open a different panel\nFAIL forever/ReputationFrame left click selects reputation\nFAIL native toggle semantics retained\nFAIL missing native function does not open a different panel\nstatus reputation clicks: 180 checks, 18 failures\n"
+    },
+    {
+      "pair": 4,
+      "variant": "candidate",
+      "seconds": 0.015364899998530746,
+      "exit": 0,
+      "raw": "status reputation clicks: 180 checks, 0 failures\n"
+    },
+    {
+      "pair": 5,
+      "variant": "baseline",
+      "seconds": 0.015058600009069778,
+      "exit": 1,
+      "raw": "FAIL forever/closed left click selects reputation\nFAIL native toggle semantics retained\nFAIL missing native function does not open a different panel\nFAIL forever/closed left click selects reputation\nFAIL native toggle semantics retained\nFAIL missing native function does not open a different panel\nFAIL forever/PaperDollFrame left click selects reputation\nFAIL native toggle semantics retained\nFAIL missing native function does not open a different panel\nFAIL forever/PaperDollFrame left click selects reputation\nFAIL native toggle semantics retained\nFAIL missing native function does not open a different panel\nFAIL forever/ReputationFrame left click selects reputation\nFAIL native toggle semantics retained\nFAIL missing native function does not open a different panel\nFAIL forever/ReputationFrame left click selects reputation\nFAIL native toggle semantics retained\nFAIL missing native function does not open a different panel\nstatus reputation clicks: 180 checks, 18 failures\n"
+    },
+    {
+      "pair": 5,
+      "variant": "candidate",
+      "seconds": 0.014143000007607043,
+      "exit": 0,
+      "raw": "status reputation clicks: 180 checks, 0 failures\n"
+    }
+  ]
+}

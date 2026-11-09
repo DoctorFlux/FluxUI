@@ -1,0 +1,1169 @@
+{
+  "capture": {
+    "spellRanks": "0",
+    "presentationBefore": {
+      "visibleRegions": 2914,
+      "frames": 13962,
+      "models": [
+        {
+          "kind": "PlayerModel",
+          "label": "FluxUnitFrame_player.PortraitFrame.1694726a730",
+          "creationSource": "Interface/AddOns/_FluxUI/UnitFrames/FluxUnitFrames_Shared.lua:3602",
+          "alpha": 1
+        },
+        {
+          "kind": "ModelScene",
+          "label": "GlobalFXBackgroundModelScene",
+          "creationSource": "Interface/AddOns/Blizzard_GlobalFXModelScenes/GlobalFXModelScenes.xml:5",
+          "alpha": 1
+        },
+        {
+          "kind": "ModelScene",
+          "label": "GlobalFXMediumModelScene",
+          "creationSource": "Interface/AddOns/Blizzard_GlobalFXModelScenes/GlobalFXModelScenes.xml:4",
+          "alpha": 1
+        },
+        {
+          "kind": "ModelScene",
+          "label": "GlobalFXDialogModelScene",
+          "creationSource": "Interface/AddOns/Blizzard_GlobalFXModelScenes/GlobalFXModelScenes.xml:3",
+          "alpha": 1
+        },
+        {
+          "kind": "ModelScene",
+          "label": "ObjectiveTrackerUIWidgetContainer.BackModelScene",
+          "creationSource": "Interface/AddOns/Blizzard_UIWidgets/Blizzard_UIWidgetManager.xml:46",
+          "alpha": 0
+        },
+        {
+          "kind": "ModelScene",
+          "label": "ObjectiveTrackerUIWidgetContainer.FrontModelScene",
+          "creationSource": "Interface/AddOns/Blizzard_UIWidgets/Blizzard_UIWidgetManager.xml:33",
+          "alpha": 0
+        },
+        {
+          "kind": "ModelScene",
+          "label": "UIWidgetCenterScreenContainerFrame.BackModelScene",
+          "creationSource": "Interface/AddOns/Blizzard_UIWidgets/Blizzard_UIWidgetManager.xml:46",
+          "alpha": 1
+        },
+        {
+          "kind": "ModelScene",
+          "label": "UIWidgetCenterScreenContainerFrame.FrontModelScene",
+          "creationSource": "Interface/AddOns/Blizzard_UIWidgets/Blizzard_UIWidgetManager.xml:33",
+          "alpha": 1
+        },
+        {
+          "kind": "ModelScene",
+          "label": "UIWidgetPowerBarContainerFrame.BackModelScene",
+          "creationSource": "Interface/AddOns/Blizzard_UIWidgets/Blizzard_UIWidgetManager.xml:46",
+          "alpha": 1
+        },
+        {
+          "kind": "ModelScene",
+          "label": "UIWidgetPowerBarContainerFrame.FrontModelScene",
+          "creationSource": "Interface/AddOns/Blizzard_UIWidgets/Blizzard_UIWidgetManager.xml:33",
+          "alpha": 1
+        },
+        {
+          "kind": "ModelScene",
+          "label": "UIWidgetBelowMinimapContainerFrame.BackModelScene",
+          "creationSource": "Interface/AddOns/Blizzard_UIWidgets/Blizzard_UIWidgetManager.xml:46",
+          "alpha": 1
+        },
+        {
+          "kind": "ModelScene",
+          "label": "UIWidgetBelowMinimapContainerFrame.FrontModelScene",
+          "creationSource": "Interface/AddOns/Blizzard_UIWidgets/Blizzard_UIWidgetManager.xml:33",
+          "alpha": 1
+        },
+        {
+          "kind": "ModelScene",
+          "label": "UIWidgetTopCenterContainerFrame.BackModelScene",
+          "creationSource": "Interface/AddOns/Blizzard_UIWidgets/Blizzard_UIWidgetManager.xml:46",
+          "alpha": 1
+        },
+        {
+          "kind": "ModelScene",
+          "label": "UIWidgetTopCenterContainerFrame.FrontModelScene",
+          "creationSource": "Interface/AddOns/Blizzard_UIWidgets/Blizzard_UIWidgetManager.xml:33",
+          "alpha": 1
+        }
+      ],
+      "visibleFrames": 943
+    },
+    "passes": [
+      {
+        "calls": 2,
+        "msPerSecond": 0.13361499998719,
+        "label": "bars.paint.lane",
+        "ms": 2.6722999997437
+      }
+    ],
+    "cvars": "maxFPS=120 maxFPSBk=30 maxFPSLoading=10 vsync=0 targetFPS=60 useTargetFPS=0 gxMaxFrameLatency=2",
+    "seconds": 20,
+    "capturedAt": "2026-10-23 16:58:25",
+    "subscribers": {},
+    "uiAfter": {
+      "worldMap": "shown=false/visible=false",
+      "fluxTab": "Map",
+      "character": "shown=false/visible=false",
+      "battlefieldMap": "shown=true/visible=true"
+    },
+    "version": "12.1.5",
+    "functions": [
+      {
+        "owners": [
+          "16945712030 (shown=true/visible=true)"
+        ],
+        "msPerSecond": 11.736005,
+        "visibleOwners": 1,
+        "ms": 234.7201,
+        "ownerCount": 1,
+        "ownerSources": [
+          {
+            "creationSource": "Interface/AddOns/Blizzard_SharedXMLBase/GlobalCallbackRegistry.lua:9",
+            "label": "16945712030"
+          }
+        ],
+        "label": "16945712030:OnUpdate",
+        "calls": 5590
+      },
+      {
+        "owners": [
+          "BattlefieldMapFrame.ScrollContainer.Child.1688e282720 (shown=true/visible=true)",
+          "WorldMapFrame.ScrollContainer.Child.1691ed87000 (shown=true/visible=false)"
+        ],
+        "msPerSecond": 7.0352,
+        "visibleOwners": 1,
+        "ms": 140.704,
+        "ownerCount": 2,
+        "ownerSources": [
+          {
+            "creationSource": "Interface/AddOns/Blizzard_MapCanvas/Blizzard_MapCanvas.lua:257",
+            "label": "BattlefieldMapFrame.ScrollContainer.Child.1688e282720"
+          },
+          {
+            "creationSource": "Interface/AddOns/Blizzard_MapCanvas/Blizzard_MapCanvas.lua:257",
+            "label": "WorldMapFrame.ScrollContainer.Child.1691ed87000"
+          }
+        ],
+        "label": "BattlefieldMapFrame.ScrollContainer.Child.1688e282720:OnUpdate",
+        "calls": 5590
+      },
+      {
+        "owners": [
+          "1694bd76fe0 (shown=true/visible=true)"
+        ],
+        "msPerSecond": 6.360965,
+        "visibleOwners": 1,
+        "ms": 127.2193,
+        "ownerCount": 1,
+        "ownerSources": [
+          {
+            "creationSource": "Interface/AddOns/_FluxUI/ExtraButtonSystem/TrinketMenu/FluxTrinketMenu.lua:534",
+            "label": "1694bd76fe0"
+          }
+        ],
+        "label": "1694bd76fe0:OnUpdate",
+        "calls": 5590
+      },
+      {
+        "calls": 4,
+        "msPerSecond": 6.299715,
+        "label": "FluxRestockTiers.RememberOwnedTiers",
+        "ms": 125.9943
+      },
+      {
+        "calls": 20,
+        "msPerSecond": 6.29625,
+        "label": "FluxRestockTiers.GetReferenceTier",
+        "ms": 125.925
+      },
+      {
+        "calls": 20,
+        "msPerSecond": 6.25646,
+        "label": "FluxRestockTiers.GetBagOwnedTier",
+        "ms": 125.1292
+      },
+      {
+        "calls": 8,
+        "msPerSecond": 6.023465,
+        "label": "FluxRestockTiers.RecomputeInferior",
+        "ms": 120.4693
+      },
+      {
+        "owners": [
+          "BattlefieldMapFrame.ScrollContainer (shown=true/visible=true)",
+          "WorldMapFrame.ScrollContainer (shown=true/visible=false)"
+        ],
+        "msPerSecond": 5.12743,
+        "visibleOwners": 1,
+        "ms": 102.5486,
+        "ownerCount": 2,
+        "ownerSources": [
+          {
+            "creationSource": "Interface/AddOns/Blizzard_BattlefieldMap/Mainline/Blizzard_BattlefieldMap.xml:62",
+            "label": "BattlefieldMapFrame.ScrollContainer"
+          },
+          {
+            "creationSource": "Interface/AddOns/Blizzard_WorldMap/Blizzard_WorldMap.xml:12",
+            "label": "WorldMapFrame.ScrollContainer"
+          }
+        ],
+        "label": "BattlefieldMapFrame.ScrollContainer:OnUpdate",
+        "calls": 5590
+      },
+      {
+        "calls": 540,
+        "msPerSecond": 5.002785,
+        "label": "FluxConsumableBest.Score.IsUsable",
+        "ms": 100.0557
+      },
+      {
+        "owners": [
+          "BattlefieldMapFrame (shown=true/visible=true)"
+        ],
+        "msPerSecond": 4.330145,
+        "visibleOwners": 1,
+        "ms": 86.6029,
+        "ownerCount": 1,
+        "ownerSources": [
+          {
+            "creationSource": "Interface/AddOns/Blizzard_BattlefieldMap/Mainline/Blizzard_BattlefieldMap.xml:56",
+            "label": "BattlefieldMapFrame"
+          }
+        ],
+        "label": "BattlefieldMapFrame:OnUpdate",
+        "calls": 5590
+      },
+      {
+        "owners": [
+          "WorldMapFrame (shown=false/visible=false)"
+        ],
+        "msPerSecond": 3.95256,
+        "visibleOwners": 0,
+        "ms": 79.0512,
+        "ownerCount": 1,
+        "ownerSources": [
+          {
+            "creationSource": "Interface/AddOns/Blizzard_WorldMap/Blizzard_WorldMap.xml:28",
+            "label": "WorldMapFrame"
+          }
+        ],
+        "label": "WorldMapFrame:OnUpdate",
+        "calls": 5590
+      },
+      {
+        "calls": 740,
+        "msPerSecond": 3.09492,
+        "label": "FluxItemClass.GetTooltipText",
+        "ms": 61.8984
+      },
+      {
+        "owners": [
+          "PlayerFrame (shown=true/visible=true)"
+        ],
+        "msPerSecond": 2.77282,
+        "visibleOwners": 1,
+        "ms": 55.4564,
+        "ownerCount": 1,
+        "ownerSources": [
+          {
+            "creationSource": "Interface/AddOns/Blizzard_UnitFrame/Mainline/PlayerFrame.xml:14",
+            "label": "PlayerFrame"
+          }
+        ],
+        "label": "PlayerFrame:OnUpdate",
+        "calls": 5590
+      },
+      {
+        "owners": [
+          "169457155f0 (shown=true/visible=true)"
+        ],
+        "msPerSecond": 2.74424,
+        "visibleOwners": 1,
+        "ms": 54.8848,
+        "ownerCount": 1,
+        "ownerSources": [
+          {
+            "creationSource": "Interface/AddOns/Blizzard_SharedXMLBase/FrameUtil.lua:428",
+            "label": "169457155f0"
+          }
+        ],
+        "label": "169457155f0:OnUpdate",
+        "calls": 5590
+      },
+      {
+        "owners": [
+          "GameTooltip (shown=true/visible=true)",
+          "EmbeddedItemTooltip (shown=false/visible=false)"
+        ],
+        "msPerSecond": 2.433005,
+        "visibleOwners": 1,
+        "ms": 48.6601,
+        "ownerCount": 2,
+        "ownerSources": [
+          {
+            "creationSource": "Interface/AddOns/Blizzard_GameTooltip/Mainline/GameTooltip.xml:249",
+            "label": "GameTooltip"
+          },
+          {
+            "creationSource": "Interface/AddOns/Blizzard_GameTooltip/Mainline/GameTooltip.xml:276",
+            "label": "EmbeddedItemTooltip"
+          }
+        ],
+        "label": "GameTooltip:OnUpdate",
+        "calls": 2234
+      },
+      {
+        "calls": 30,
+        "msPerSecond": 2.382245,
+        "label": "Flux.Bars.Hosts.UpdateTooltip",
+        "ms": 47.6449
+      },
+      {
+        "calls": 644,
+        "msPerSecond": 2.077,
+        "label": "FluxConsumableClassify.Classify",
+        "ms": 41.54
+      },
+      {
+        "owners": [
+          "MainStatusTrackingBarContainer.1692e47e110.StatusBar (shown=true/visible=true)",
+          "MainStatusTrackingBarContainer.1692e47d120.StatusBar (shown=true/visible=false)",
+          "MainStatusTrackingBarContainer.1692e47d620.StatusBar (shown=true/visible=false)",
+          "MainStatusTrackingBarContainer.1692e47db20.StatusBar (shown=true/visible=false)",
+          "MainStatusTrackingBarContainer.1692e47e930.StatusBar (shown=true/visible=false)"
+        ],
+        "msPerSecond": 1.843665,
+        "visibleOwners": 1,
+        "ms": 36.8733,
+        "ownerCount": 12,
+        "ownerSources": [
+          {
+            "creationSource": "Interface/AddOns/Blizzard_ActionBar/Mainline/StatusTrackingBarTemplate.xml:9",
+            "label": "MainStatusTrackingBarContainer.1692e47e110.StatusBar"
+          },
+          {
+            "creationSource": "Interface/AddOns/Blizzard_ActionBar/Mainline/StatusTrackingBarTemplate.xml:9",
+            "label": "MainStatusTrackingBarContainer.1692e47d120.StatusBar"
+          },
+          {
+            "creationSource": "Interface/AddOns/Blizzard_ActionBar/Mainline/StatusTrackingBarTemplate.xml:9",
+            "label": "MainStatusTrackingBarContainer.1692e47d620.StatusBar"
+          },
+          {
+            "creationSource": "Interface/AddOns/Blizzard_ActionBar/Mainline/StatusTrackingBarTemplate.xml:9",
+            "label": "MainStatusTrackingBarContainer.1692e47db20.StatusBar"
+          },
+          {
+            "creationSource": "Interface/AddOns/Blizzard_ActionBar/Mainline/StatusTrackingBarTemplate.xml:9",
+            "label": "MainStatusTrackingBarContainer.1692e47e930.StatusBar"
+          }
+        ],
+        "label": "MainStatusTrackingBarContainer.1692e47e110.StatusBar:OnUpdate",
+        "calls": 5590
+      },
+      {
+        "calls": 120,
+        "msPerSecond": 1.81363,
+        "label": "FluxBindingTooltip.AppendForButton",
+        "ms": 36.2726
+      },
+      {
+        "calls": 288,
+        "msPerSecond": 1.63247,
+        "label": "FluxRestockTiers._Private.ClassifyItem",
+        "ms": 32.6494
+      },
+      {
+        "calls": 98,
+        "msPerSecond": 1.564835,
+        "label": "UnitFrames.UpdateHealth",
+        "ms": 31.2967
+      },
+      {
+        "calls": 72,
+        "msPerSecond": 1.287295,
+        "label": "FluxItemClass.RequestLoad",
+        "ms": 25.7459
+      },
+      {
+        "owners": [
+          "FPSMSMonitorFrame (shown=true/visible=true)"
+        ],
+        "msPerSecond": 1.27196,
+        "visibleOwners": 1,
+        "ms": 25.4392,
+        "ownerCount": 1,
+        "ownerSources": [
+          {
+            "creationSource": "Interface/AddOns/FPS_MS_Monitor/FPS_MS_Monitor.lua:19",
+            "label": "FPSMSMonitorFrame"
+          }
+        ],
+        "label": "FPSMSMonitorFrame:OnUpdate",
+        "calls": 5590
+      },
+      {
+        "owners": [
+          "GlobalFXBackgroundModelScene (shown=true/visible=true)",
+          "GlobalFXMediumModelScene (shown=true/visible=true)",
+          "GlobalFXDialogModelScene (shown=true/visible=true)",
+          "ObjectiveTrackerUIWidgetContainer.BackModelScene (shown=true/visible=true)",
+          "ObjectiveTrackerUIWidgetContainer.FrontModelScene (shown=true/visible=true)"
+        ],
+        "msPerSecond": 1.23957,
+        "visibleOwners": 13,
+        "ms": 24.7914,
+        "ownerCount": 25,
+        "ownerSources": [
+          {
+            "creationSource": "Interface/AddOns/Blizzard_GlobalFXModelScenes/GlobalFXModelScenes.xml:5",
+            "label": "GlobalFXBackgroundModelScene"
+          },
+          {
+            "creationSource": "Interface/AddOns/Blizzard_GlobalFXModelScenes/GlobalFXModelScenes.xml:4",
+            "label": "GlobalFXMediumModelScene"
+          },
+          {
+            "creationSource": "Interface/AddOns/Blizzard_GlobalFXModelScenes/GlobalFXModelScenes.xml:3",
+            "label": "GlobalFXDialogModelScene"
+          },
+          {
+            "creationSource": "Interface/AddOns/Blizzard_UIWidgets/Blizzard_UIWidgetManager.xml:46",
+            "label": "ObjectiveTrackerUIWidgetContainer.BackModelScene"
+          },
+          {
+            "creationSource": "Interface/AddOns/Blizzard_UIWidgets/Blizzard_UIWidgetManager.xml:33",
+            "label": "ObjectiveTrackerUIWidgetContainer.FrontModelScene"
+          }
+        ],
+        "label": "GlobalFXBackgroundModelScene:OnUpdate",
+        "calls": 72670
+      },
+      {
+        "calls": 240,
+        "msPerSecond": 1.22932,
+        "label": "FluxBindingPlacement.DescribeBarSlot",
+        "ms": 24.5864
+      },
+      {
+        "calls": 72,
+        "msPerSecond": 1.207945,
+        "label": "1693bf08230:OnEvent",
+        "ms": 24.1589
+      },
+      {
+        "calls": 72,
+        "msPerSecond": 1.2063,
+        "label": "FluxItemClass.OnItemDataLoaded",
+        "ms": 24.126
+      },
+      {
+        "calls": 2,
+        "msPerSecond": 1.18289,
+        "label": "FluxMicroMenuConfig.MergeNewDiscoveriesIntoUnifiedOrder",
+        "ms": 23.6578
+      },
+      {
+        "calls": 2,
+        "msPerSecond": 1.182765,
+        "label": "FluxMicroMenuConfig.MergeNewDiscoveriesIntoUnifiedOrderUnlocked",
+        "ms": 23.6553
+      },
+      {
+        "calls": 80,
+        "msPerSecond": 1.167875,
+        "label": "FluxRestockTiers._Private.ClassificationForTierCount",
+        "ms": 23.3575
+      },
+      {
+        "calls": 72,
+        "msPerSecond": 1.1168,
+        "label": "FluxJunk.OnItemDataLoaded",
+        "ms": 22.336
+      },
+      {
+        "calls": 72,
+        "msPerSecond": 1.096345,
+        "label": "FluxJunk.NotifyVisualRefresh",
+        "ms": 21.9269
+      },
+      {
+        "calls": 216,
+        "msPerSecond": 1.00898,
+        "label": "FluxRestock.Inv.Bank.IsOpen",
+        "ms": 20.1796
+      },
+      {
+        "calls": 460,
+        "msPerSecond": 0.986255,
+        "label": "FluxIsItemUsable",
+        "ms": 19.7251
+      },
+      {
+        "calls": 218,
+        "msPerSecond": 0.91429,
+        "label": "FluxRestock.Inv.IsBankOpen",
+        "ms": 18.2858
+      },
+      {
+        "owners": [
+          "GameTooltipTooltipStatusBar (shown=false/visible=false)",
+          "EmbeddedItemTooltipStatusBar (shown=false/visible=false)",
+          "EmbeddedItemTooltipTooltipStatusBar (shown=false/visible=false)",
+          "GameNoHeaderTooltipStatusBar (shown=false/visible=false)",
+          "GameSmallHeaderTooltipStatusBar (shown=false/visible=false)"
+        ],
+        "msPerSecond": 0.906925,
+        "visibleOwners": 0,
+        "ms": 18.1385,
+        "ownerCount": 14,
+        "ownerSources": [
+          {
+            "creationSource": "Interface/AddOns/Blizzard_GameTooltip/Mainline/GameTooltip.xml:9",
+            "label": "GameTooltipTooltipStatusBar"
+          },
+          {
+            "creationSource": "Interface/AddOns/Blizzard_GameTooltip/Mainline/GameTooltip.xml:9",
+            "label": "EmbeddedItemTooltipStatusBar"
+          },
+          {
+            "creationSource": "Interface/AddOns/Blizzard_GameTooltip/Mainline/GameTooltip.xml:9",
+            "label": "EmbeddedItemTooltipTooltipStatusBar"
+          },
+          {
+            "creationSource": "Interface/AddOns/Blizzard_GameTooltip/Mainline/GameTooltip.xml:9",
+            "label": "GameNoHeaderTooltipStatusBar"
+          },
+          {
+            "creationSource": "Interface/AddOns/Blizzard_GameTooltip/Mainline/GameTooltip.xml:9",
+            "label": "GameSmallHeaderTooltipStatusBar"
+          }
+        ],
+        "label": "GameTooltipTooltipStatusBar:OnUpdate",
+        "calls": 746
+      },
+      {
+        "owners": [
+          "ChatFrame1 (shown=true/visible=true)",
+          "ChatFrame2 (shown=false/visible=false)",
+          "ChatFrame3 (shown=false/visible=false)",
+          "ChatFrame4 (shown=false/visible=false)",
+          "ChatFrame5 (shown=false/visible=false)"
+        ],
+        "msPerSecond": 0.84698,
+        "visibleOwners": 1,
+        "ms": 16.9396,
+        "ownerCount": 10,
+        "ownerSources": [
+          {
+            "creationSource": "Interface/AddOns/Blizzard_ChatFrameBase/Mainline/FloatingChatFrame.xml:698",
+            "label": "ChatFrame1"
+          },
+          {
+            "creationSource": "Interface/AddOns/Blizzard_ChatFrameBase/Mainline/FloatingChatFrame.xml:729",
+            "label": "ChatFrame2"
+          },
+          {
+            "creationSource": "Interface/AddOns/Blizzard_ChatFrameBase/Mainline/FloatingChatFrame.xml:737",
+            "label": "ChatFrame3"
+          },
+          {
+            "creationSource": "Interface/AddOns/Blizzard_ChatFrameBase/Mainline/FloatingChatFrame.xml:739",
+            "label": "ChatFrame4"
+          },
+          {
+            "creationSource": "Interface/AddOns/Blizzard_ChatFrameBase/Mainline/FloatingChatFrame.xml:741",
+            "label": "ChatFrame5"
+          }
+        ],
+        "label": "ChatFrame1:OnUpdate",
+        "calls": 5590
+      },
+      {
+        "owners": [
+          "1689eab5ae0 (shown=true/visible=true)"
+        ],
+        "msPerSecond": 0.824415,
+        "visibleOwners": 1,
+        "ms": 16.4883,
+        "ownerCount": 1,
+        "ownerSources": [
+          {
+            "creationSource": "Interface/AddOns/Blizzard_SharedXMLBase/GlobalCallbackRegistry.lua:9",
+            "label": "1689eab5ae0"
+          }
+        ],
+        "label": "1689eab5ae0:OnUpdate",
+        "calls": 5590
+      },
+      {
+        "calls": 288,
+        "msPerSecond": 0.79868,
+        "label": "FluxItemClass.ClassifyConsumable",
+        "ms": 15.9736
+      },
+      {
+        "calls": 28,
+        "msPerSecond": 0.78748,
+        "label": "FluxConsumableClassify.ResolveCombatTierAxes",
+        "ms": 15.7496
+      },
+      {
+        "calls": 495,
+        "msPerSecond": 0.758905,
+        "label": "Flux.Inventory.Containers.IsBankReadable",
+        "ms": 15.1781
+      },
+      {
+        "calls": 131592,
+        "msPerSecond": 0.73177,
+        "label": "FluxAPICompat.API.IsSecretValue",
+        "ms": 14.6354
+      },
+      {
+        "calls": 98,
+        "msPerSecond": 0.729595,
+        "label": "UnitFrames.UpdateHealPrediction",
+        "ms": 14.5919
+      },
+      {
+        "calls": 840,
+        "msPerSecond": 0.67855,
+        "label": "FluxBindingChordMap3.SlotsForChord",
+        "ms": 13.571
+      },
+      {
+        "owners": [
+          "BattlefieldMapFrame.ScrollContainer.Child.1688e27f040 (shown=true/visible=true)",
+          "WorldMapFrame.ScrollContainer.Child.1691ed82be0 (shown=true/visible=false)"
+        ],
+        "msPerSecond": 0.63461,
+        "visibleOwners": 1,
+        "ms": 12.6922,
+        "ownerCount": 2,
+        "ownerSources": [
+          {
+            "creationSource": "Interface/AddOns/Blizzard_MapCanvas/Blizzard_MapCanvas.lua:257",
+            "label": "BattlefieldMapFrame.ScrollContainer.Child.1688e27f040"
+          },
+          {
+            "creationSource": "Interface/AddOns/Blizzard_MapCanvas/Blizzard_MapCanvas.lua:257",
+            "label": "WorldMapFrame.ScrollContainer.Child.1691ed82be0"
+          }
+        ],
+        "label": "BattlefieldMapFrame.ScrollContainer.Child.1688e27f040:OnUpdate",
+        "calls": 5590
+      },
+      {
+        "calls": 277,
+        "msPerSecond": 0.607125,
+        "label": "Flux.Inventory.IsBankOpen",
+        "ms": 12.1425
+      },
+      {
+        "calls": 840,
+        "msPerSecond": 0.577035,
+        "label": "FluxBindingChordMap3.Route",
+        "ms": 11.5407
+      },
+      {
+        "calls": 98,
+        "msPerSecond": 0.508405,
+        "label": "UnitFrames.UpdatePower",
+        "ms": 10.1681
+      },
+      {
+        "owners": [
+          "SecureStateDriverManager (shown=true/visible=true)"
+        ],
+        "msPerSecond": 0.506905,
+        "visibleOwners": 1,
+        "ms": 10.1381,
+        "ownerCount": 1,
+        "ownerSources": [
+          {
+            "creationSource": "Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureStateDriver.lua:178",
+            "label": "SecureStateDriverManager"
+          }
+        ],
+        "label": "SecureStateDriverManager:OnUpdate",
+        "calls": 5590
+      },
+      {
+        "calls": 20,
+        "msPerSecond": 0.49584,
+        "label": "FluxEBSConsumableBridge.GetBestOwned",
+        "ms": 9.9168
+      }
+    ],
+    "recentProfiler": {
+      "applicationMs": 3.4258333333333,
+      "overallMs": 0.090917583333333,
+      "count": 20,
+      "addonMs": 0.083939
+    },
+    "client": "Midnight",
+    "fpsMin": 239.99998474121,
+    "gameType": "live",
+    "build": "70529",
+    "presentationAfter": {
+      "visibleRegions": 2954,
+      "frames": 13964,
+      "models": [
+        {
+          "kind": "PlayerModel",
+          "label": "FluxUnitFrame_player.PortraitFrame.1694726a730",
+          "creationSource": "Interface/AddOns/_FluxUI/UnitFrames/FluxUnitFrames_Shared.lua:3602",
+          "alpha": 1
+        },
+        {
+          "kind": "ModelScene",
+          "label": "GlobalFXBackgroundModelScene",
+          "creationSource": "Interface/AddOns/Blizzard_GlobalFXModelScenes/GlobalFXModelScenes.xml:5",
+          "alpha": 1
+        },
+        {
+          "kind": "ModelScene",
+          "label": "GlobalFXMediumModelScene",
+          "creationSource": "Interface/AddOns/Blizzard_GlobalFXModelScenes/GlobalFXModelScenes.xml:4",
+          "alpha": 1
+        },
+        {
+          "kind": "ModelScene",
+          "label": "GlobalFXDialogModelScene",
+          "creationSource": "Interface/AddOns/Blizzard_GlobalFXModelScenes/GlobalFXModelScenes.xml:3",
+          "alpha": 1
+        },
+        {
+          "kind": "ModelScene",
+          "label": "ObjectiveTrackerUIWidgetContainer.BackModelScene",
+          "creationSource": "Interface/AddOns/Blizzard_UIWidgets/Blizzard_UIWidgetManager.xml:46",
+          "alpha": 0
+        },
+        {
+          "kind": "ModelScene",
+          "label": "ObjectiveTrackerUIWidgetContainer.FrontModelScene",
+          "creationSource": "Interface/AddOns/Blizzard_UIWidgets/Blizzard_UIWidgetManager.xml:33",
+          "alpha": 0
+        },
+        {
+          "kind": "ModelScene",
+          "label": "UIWidgetCenterScreenContainerFrame.BackModelScene",
+          "creationSource": "Interface/AddOns/Blizzard_UIWidgets/Blizzard_UIWidgetManager.xml:46",
+          "alpha": 1
+        },
+        {
+          "kind": "ModelScene",
+          "label": "UIWidgetCenterScreenContainerFrame.FrontModelScene",
+          "creationSource": "Interface/AddOns/Blizzard_UIWidgets/Blizzard_UIWidgetManager.xml:33",
+          "alpha": 1
+        },
+        {
+          "kind": "ModelScene",
+          "label": "UIWidgetPowerBarContainerFrame.BackModelScene",
+          "creationSource": "Interface/AddOns/Blizzard_UIWidgets/Blizzard_UIWidgetManager.xml:46",
+          "alpha": 1
+        },
+        {
+          "kind": "ModelScene",
+          "label": "UIWidgetPowerBarContainerFrame.FrontModelScene",
+          "creationSource": "Interface/AddOns/Blizzard_UIWidgets/Blizzard_UIWidgetManager.xml:33",
+          "alpha": 1
+        },
+        {
+          "kind": "ModelScene",
+          "label": "UIWidgetBelowMinimapContainerFrame.BackModelScene",
+          "creationSource": "Interface/AddOns/Blizzard_UIWidgets/Blizzard_UIWidgetManager.xml:46",
+          "alpha": 1
+        },
+        {
+          "kind": "ModelScene",
+          "label": "UIWidgetBelowMinimapContainerFrame.FrontModelScene",
+          "creationSource": "Interface/AddOns/Blizzard_UIWidgets/Blizzard_UIWidgetManager.xml:33",
+          "alpha": 1
+        },
+        {
+          "kind": "ModelScene",
+          "label": "UIWidgetTopCenterContainerFrame.BackModelScene",
+          "creationSource": "Interface/AddOns/Blizzard_UIWidgets/Blizzard_UIWidgetManager.xml:46",
+          "alpha": 1
+        },
+        {
+          "kind": "ModelScene",
+          "label": "UIWidgetTopCenterContainerFrame.FrontModelScene",
+          "creationSource": "Interface/AddOns/Blizzard_UIWidgets/Blizzard_UIWidgetManager.xml:33",
+          "alpha": 1
+        }
+      ],
+      "visibleFrames": 944
+    },
+    "liveBefore": 34,
+    "frames": [
+      {
+        "msPerSecond": 19.472365,
+        "calls": 3,
+        "ms": 389.4473,
+        "creationSource": "Interface/AddOns/Blizzard_ChatFrameBase/Mainline/FloatingChatFrame.xml:540",
+        "label": "ChatFrame10EditBox"
+      },
+      {
+        "msPerSecond": 19.472365,
+        "calls": 3,
+        "ms": 389.4473,
+        "creationSource": "Interface/AddOns/Blizzard_ChatFrameBase/Mainline/FloatingChatFrame.xml:540",
+        "label": "ChatFrame4EditBox"
+      },
+      {
+        "msPerSecond": 19.472365,
+        "calls": 3,
+        "ms": 389.4473,
+        "creationSource": "Interface/AddOns/Blizzard_ChatFrameBase/Mainline/FloatingChatFrame.xml:540",
+        "label": "ChatFrame9EditBox"
+      },
+      {
+        "msPerSecond": 19.472365,
+        "calls": 3,
+        "ms": 389.4473,
+        "creationSource": "Interface/AddOns/Blizzard_ChatFrameBase/Mainline/FloatingChatFrame.xml:540",
+        "label": "ChatFrame1EditBox"
+      },
+      {
+        "msPerSecond": 19.472365,
+        "calls": 3,
+        "ms": 389.4473,
+        "creationSource": "Interface/AddOns/Blizzard_ChatFrameBase/Mainline/FloatingChatFrame.xml:540",
+        "label": "ChatFrame7EditBox"
+      },
+      {
+        "msPerSecond": 19.472365,
+        "calls": 3,
+        "ms": 389.4473,
+        "creationSource": "Interface/AddOns/Blizzard_ChatFrameBase/Mainline/FloatingChatFrame.xml:540",
+        "label": "ChatFrame6EditBox"
+      },
+      {
+        "msPerSecond": 19.472365,
+        "calls": 3,
+        "ms": 389.4473,
+        "creationSource": "Interface/AddOns/Blizzard_ChatFrameBase/Mainline/FloatingChatFrame.xml:540",
+        "label": "ChatFrame2EditBox"
+      },
+      {
+        "msPerSecond": 19.472365,
+        "calls": 3,
+        "ms": 389.4473,
+        "creationSource": "Interface/AddOns/Blizzard_ChatFrameBase/Mainline/FloatingChatFrame.xml:540",
+        "label": "ChatFrame3EditBox"
+      },
+      {
+        "msPerSecond": 19.472365,
+        "calls": 3,
+        "ms": 389.4473,
+        "creationSource": "Interface/AddOns/Blizzard_ChatFrameBase/Mainline/FloatingChatFrame.xml:540",
+        "label": "ChatFrame8EditBox"
+      },
+      {
+        "msPerSecond": 19.472365,
+        "calls": 3,
+        "ms": 389.4473,
+        "creationSource": "Interface/AddOns/Blizzard_ChatFrameBase/Mainline/FloatingChatFrame.xml:540",
+        "label": "ChatFrame5EditBox"
+      },
+      {
+        "msPerSecond": 11.736005,
+        "calls": 5590,
+        "ms": 234.7201,
+        "creationSource": "Interface/AddOns/Blizzard_SharedXMLBase/GlobalCallbackRegistry.lua:9",
+        "label": "16945712030"
+      },
+      {
+        "msPerSecond": 7.0352,
+        "calls": 5590,
+        "ms": 140.704,
+        "creationSource": "Interface/AddOns/Blizzard_MapCanvas/Blizzard_MapCanvas.lua:257",
+        "label": "BattlefieldMapFrame.ScrollContainer.Child.1688e282720"
+      },
+      {
+        "msPerSecond": 7.0352,
+        "calls": 5590,
+        "ms": 140.704,
+        "creationSource": "Interface/AddOns/Blizzard_MapCanvas/Blizzard_MapCanvas.lua:257",
+        "label": "WorldMapFrame.ScrollContainer.Child.1691ed87000"
+      },
+      {
+        "msPerSecond": 6.360965,
+        "calls": 5590,
+        "ms": 127.2193,
+        "creationSource": "Interface/AddOns/_FluxUI/ExtraButtonSystem/TrinketMenu/FluxTrinketMenu.lua:534",
+        "label": "1694bd76fe0"
+      },
+      {
+        "msPerSecond": 5.12743,
+        "calls": 5590,
+        "ms": 102.5486,
+        "creationSource": "Interface/AddOns/Blizzard_WorldMap/Blizzard_WorldMap.xml:12",
+        "label": "WorldMapFrame.ScrollContainer"
+      },
+      {
+        "msPerSecond": 5.12743,
+        "calls": 5590,
+        "ms": 102.5486,
+        "creationSource": "Interface/AddOns/Blizzard_BattlefieldMap/Mainline/Blizzard_BattlefieldMap.xml:62",
+        "label": "BattlefieldMapFrame.ScrollContainer"
+      },
+      {
+        "msPerSecond": 4.330145,
+        "calls": 5590,
+        "ms": 86.6029,
+        "creationSource": "Interface/AddOns/Blizzard_BattlefieldMap/Mainline/Blizzard_BattlefieldMap.xml:56",
+        "label": "BattlefieldMapFrame"
+      },
+      {
+        "msPerSecond": 3.95256,
+        "calls": 5590,
+        "ms": 79.0512,
+        "creationSource": "Interface/AddOns/Blizzard_WorldMap/Blizzard_WorldMap.xml:28",
+        "label": "WorldMapFrame"
+      },
+      {
+        "msPerSecond": 2.77282,
+        "calls": 5590,
+        "ms": 55.4564,
+        "creationSource": "Interface/AddOns/Blizzard_UnitFrame/Mainline/PlayerFrame.xml:14",
+        "label": "PlayerFrame"
+      },
+      {
+        "msPerSecond": 2.74424,
+        "calls": 5590,
+        "ms": 54.8848,
+        "creationSource": "Interface/AddOns/Blizzard_SharedXMLBase/FrameUtil.lua:428",
+        "label": "169457155f0"
+      },
+      {
+        "msPerSecond": 2.511485,
+        "calls": 2291,
+        "ms": 50.2297,
+        "creationSource": "Interface/AddOns/Blizzard_GameTooltip/Mainline/GameTooltip.xml:249",
+        "label": "GameTooltip"
+      },
+      {
+        "msPerSecond": 2.44441,
+        "calls": 2319,
+        "ms": 48.8882,
+        "creationSource": "Interface/AddOns/Blizzard_GameTooltip/Mainline/GameTooltip.xml:276",
+        "label": "EmbeddedItemTooltip"
+      },
+      {
+        "msPerSecond": 2.23812,
+        "calls": 11220,
+        "ms": 44.7624,
+        "creationSource": "Interface/AddOns/Blizzard_ChatFrameBase/Mainline/FloatingChatFrame.xml:741",
+        "label": "ChatFrame5"
+      },
+      {
+        "msPerSecond": 2.23812,
+        "calls": 11220,
+        "ms": 44.7624,
+        "creationSource": "Interface/AddOns/Blizzard_ChatFrameBase/Mainline/FloatingChatFrame.xml:737",
+        "label": "ChatFrame3"
+      },
+      {
+        "msPerSecond": 2.23812,
+        "calls": 11220,
+        "ms": 44.7624,
+        "creationSource": "Interface/AddOns/Blizzard_ChatFrameBase/Mainline/FloatingChatFrame.xml:743",
+        "label": "ChatFrame6"
+      },
+      {
+        "msPerSecond": 2.23812,
+        "calls": 11220,
+        "ms": 44.7624,
+        "creationSource": "Interface/AddOns/Blizzard_ChatFrameBase/Mainline/FloatingChatFrame.xml:729",
+        "label": "ChatFrame2"
+      },
+      {
+        "msPerSecond": 2.23812,
+        "calls": 11220,
+        "ms": 44.7624,
+        "creationSource": "Interface/AddOns/Blizzard_ChatFrameBase/Mainline/FloatingChatFrame.xml:745",
+        "label": "ChatFrame7"
+      },
+      {
+        "msPerSecond": 2.23812,
+        "calls": 11220,
+        "ms": 44.7624,
+        "creationSource": "Interface/AddOns/Blizzard_ChatFrameBase/Mainline/FloatingChatFrame.xml:747",
+        "label": "ChatFrame8"
+      },
+      {
+        "msPerSecond": 2.23812,
+        "calls": 11220,
+        "ms": 44.7624,
+        "creationSource": "Interface/AddOns/Blizzard_ChatFrameBase/Mainline/FloatingChatFrame.xml:698",
+        "label": "ChatFrame1"
+      },
+      {
+        "msPerSecond": 2.23812,
+        "calls": 11220,
+        "ms": 44.7624,
+        "creationSource": "Interface/AddOns/Blizzard_ChatFrameBase/Mainline/FloatingChatFrame.xml:739",
+        "label": "ChatFrame4"
+      },
+      {
+        "msPerSecond": 2.23812,
+        "calls": 11220,
+        "ms": 44.7624,
+        "creationSource": "Interface/AddOns/Blizzard_ChatFrameBase/Mainline/FloatingChatFrame.xml:749",
+        "label": "ChatFrame9"
+      },
+      {
+        "msPerSecond": 2.23812,
+        "calls": 11220,
+        "ms": 44.7624,
+        "creationSource": "Interface/AddOns/Blizzard_ChatFrameBase/Mainline/FloatingChatFrame.xml:751",
+        "label": "ChatFrame10"
+      },
+      {
+        "msPerSecond": 1.843665,
+        "calls": 5590,
+        "ms": 36.8733,
+        "creationSource": "Interface/AddOns/Blizzard_ActionBar/Mainline/StatusTrackingBarTemplate.xml:9",
+        "label": "MainStatusTrackingBarContainer.1692e47d120.StatusBar"
+      },
+      {
+        "msPerSecond": 1.843665,
+        "calls": 5590,
+        "ms": 36.8733,
+        "creationSource": "Interface/AddOns/Blizzard_ActionBar/Mainline/StatusTrackingBarTemplate.xml:9",
+        "label": "MainStatusTrackingBarContainer.1692e47d620.StatusBar"
+      },
+      {
+        "msPerSecond": 1.843665,
+        "calls": 5590,
+        "ms": 36.8733,
+        "creationSource": "Interface/AddOns/Blizzard_ActionBar/Mainline/StatusTrackingBarTemplate.xml:9",
+        "label": "SecondaryStatusTrackingBarContainer.1692e480a50.StatusBar"
+      },
+      {
+        "msPerSecond": 1.843665,
+        "calls": 5590,
+        "ms": 36.8733,
+        "creationSource": "Interface/AddOns/Blizzard_ActionBar/Mainline/StatusTrackingBarTemplate.xml:9",
+        "label": "SecondaryStatusTrackingBarContainer.1692e481040.StatusBar"
+      },
+      {
+        "msPerSecond": 1.843665,
+        "calls": 5590,
+        "ms": 36.8733,
+        "creationSource": "Interface/AddOns/Blizzard_ActionBar/Mainline/StatusTrackingBarTemplate.xml:9",
+        "label": "SecondaryStatusTrackingBarContainer.1692e480050.StatusBar"
+      },
+      {
+        "msPerSecond": 1.843665,
+        "calls": 5590,
+        "ms": 36.8733,
+        "creationSource": "Interface/AddOns/Blizzard_ActionBar/Mainline/StatusTrackingBarTemplate.xml:9",
+        "label": "MainStatusTrackingBarContainer.1692e47e930.StatusBar"
+      },
+      {
+        "msPerSecond": 1.843665,
+        "calls": 5590,
+        "ms": 36.8733,
+        "creationSource": "Interface/AddOns/Blizzard_ActionBar/Mainline/StatusTrackingBarTemplate.xml:9",
+        "label": "SecondaryStatusTrackingBarContainer.1692e481c70.StatusBar"
+      },
+      {
+        "msPerSecond": 1.843665,
+        "calls": 5590,
+        "ms": 36.8733,
+        "creationSource": "Interface/AddOns/Blizzard_ActionBar/Mainline/StatusTrackingBarTemplate.xml:9",
+        "label": "SecondaryStatusTrackingBarContainer.1692e480550.StatusBar"
+      },
+      {
+        "msPerSecond": 1.843665,
+        "calls": 5590,
+        "ms": 36.8733,
+        "creationSource": "Interface/AddOns/Blizzard_ActionBar/Mainline/StatusTrackingBarTemplate.xml:9",
+        "label": "MainStatusTrackingBarContainer.1692e47ee30.StatusBar"
+      },
+      {
+        "msPerSecond": 1.843665,
+        "calls": 5590,
+        "ms": 36.8733,
+        "creationSource": "Interface/AddOns/Blizzard_ActionBar/Mainline/StatusTrackingBarTemplate.xml:9",
+        "label": "MainStatusTrackingBarContainer.1692e47db20.StatusBar"
+      },
+      {
+        "msPerSecond": 1.843665,
+        "calls": 5590,
+        "ms": 36.8733,
+        "creationSource": "Interface/AddOns/Blizzard_ActionBar/Mainline/StatusTrackingBarTemplate.xml:9",
+        "label": "SecondaryStatusTrackingBarContainer.1692e481770.StatusBar"
+      },
+      {
+        "msPerSecond": 1.843665,
+        "calls": 5590,
+        "ms": 36.8733,
+        "creationSource": "Interface/AddOns/Blizzard_ActionBar/Mainline/StatusTrackingBarTemplate.xml:9",
+        "label": "MainStatusTrackingBarContainer.1692e47e110.StatusBar"
+      },
+      {
+        "msPerSecond": 1.30238,
+        "calls": 5610,
+        "ms": 26.0476,
+        "creationSource": "Interface/AddOns/Blizzard_Communities/CommunitiesChatFrame.xml:7",
+        "label": "CommunitiesFrame.Chat.MessageFrame"
+      },
+      {
+        "msPerSecond": 1.30238,
+        "calls": 5610,
+        "ms": 26.0476,
+        "creationSource": "Interface/AddOns/Blizzard_Console/Blizzard_Console.xml:262",
+        "label": "DeveloperConsole.MessageFrame"
+      },
+      {
+        "msPerSecond": 1.27196,
+        "calls": 5590,
+        "ms": 25.4392,
+        "creationSource": "Interface/AddOns/FPS_MS_Monitor/FPS_MS_Monitor.lua:19",
+        "label": "FPSMSMonitorFrame"
+      },
+      {
+        "msPerSecond": 1.23957,
+        "calls": 72670,
+        "ms": 24.7914,
+        "creationSource": "Interface/AddOns/Blizzard_UIWidgets/Blizzard_UIWidgetManager.xml:46",
+        "label": "ScenarioObjectiveTracker.ContentsFrame.1691edf3f90.WidgetContainer.BackModelScene"
+      },
+      {
+        "msPerSecond": 1.23957,
+        "calls": 72670,
+        "ms": 24.7914,
+        "creationSource": "Interface/AddOns/Blizzard_UIWidgets/Blizzard_UIWidgetManager.xml:33",
+        "label": "ScenarioObjectiveTracker.ContentsFrame.1691edf3f90.WidgetContainer.FrontModelScene"
+      },
+      {
+        "msPerSecond": 1.23957,
+        "calls": 72670,
+        "ms": 24.7914,
+        "creationSource": "Interface/AddOns/Blizzard_UIWidgets/Blizzard_UIWidgetManager.xml:33",
+        "label": "UIWidgetTopCenterContainerFrame.FrontModelScene"
+      }
+    ],
+    "liveAfter": 34,
+    "addonMsPerSecond": 13.775095,
+    "fpsAverage": 288.81782455444,
+    "scriptProfile": "1",
+    "uiBefore": {
+      "worldMap": "shown=false/visible=false",
+      "fluxTab": "Map",
+      "character": "shown=false/visible=false",
+      "battlefieldMap": "shown=true/visible=true"
+    }
+  },
+  "evidence": "User requested Retail idle capture with scriptProfile=1, normal reload persisted it; exported only FluxPerfCaptureDB. Not a matched disabled-addon comparison or five-client performance result."
+}

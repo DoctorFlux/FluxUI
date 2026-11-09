@@ -1,0 +1,11 @@
+{
+  "commit": "07b11ce66c1b9efd70752f70f15a8e3f88fa63eb",
+  "tree": "ddd388fb8c69d8650efb485f1d9b95d0512f7e3e",
+  "reusedReport": "docs/validation/editorial-cleanup-full-2026-10-29.json",
+  "verifiedLuaFiles": 726,
+  "tests": 85,
+  "fail": 0,
+  "normalization": "CRLF to LF only",
+  "runtimeSource": "Inventory/Restock/Vendor/FluxVendorBuy.lua",
+  "runtimeSha256": "a5daa9465a124b6c2ee4268f4e3b11eafc11f33a422ddd44b14ce36d5dd98da8"
+}

@@ -1,0 +1,776 @@
+{
+  "captured_at_utc": "2026-11-06T14:54:03.083156+00:00",
+  "purpose": "Optional owned-dispatch observer seam cost and deterministic resource/callback invariants; not the full watch and not an optimization/FPS claim.",
+  "baseline_checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\10\\29\\01a186ea-e332-79a1-9cdc-8e340df7e22b\\Random-spike-diagnosis-20261106T143953Z",
+  "baseline_checkpoint_manifest": {
+    "directory": "C:\\Users\\mario\\.codex\\visualizations\\2026\\10\\29\\01a186ea-e332-79a1-9cdc-8e340df7e22b\\Random-spike-diagnosis-20261106T143953Z",
+    "utc": "20261106T143953Z",
+    "baseline": "ef813e0738fa69927bc4694123aea59c8dc2add6",
+    "status": "M AddonOptions/FluxOptionsRaidFrame.lua\n M Bars/_tmp_barsmoke.lua\n M Binding/Input/FluxMouseoverKeybind.lua\n M Blizzard/Hide.lua\n M ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua\n M NEXT_SESSION.md\n M RaidFrame/FluxRaidCompat.lua\n M RaidFrame/FluxRaidFrame.lua\n M RaidFrame/FluxRaidFrame.xml\n M RaidFrame/FluxRaidFrame_BigDebuffs.lua\n M RaidFrame/FluxRaidLayout.lua\n M RaidFrame/FluxRaidPreview.lua\n M RaidFrame/FluxRaidUnit.lua\n M RaidFrame/FluxRaidVisuals.lua\n M RaidFrame/_tmp_raidaurassmoke.lua\n M _FluxUI.toc\n M docs/15-raid-frames.md\n M docs/30-source-coverage.md\n M docs/90-reference-inspirations.md\n M docs/CLIENT_MATRIX.csv\n M docs/CLIENT_VALIDATION.md\n M docs/DECISIONS.md\n M docs/FEATURE_PARITY.csv\n M docs/PERFORMANCE_AUDIT.csv\n M docs/PERFORMANCE_PROTOCOL.md\n M docs/PERFORMANCE_RESULTS.csv\n M docs/REFERENCE_MANIFEST.csv\n M docs/STATUS.md\n M docs/WORK_LOG.md\n M docs/performance-driver-inventory.md\n M docs/reference/declarations.md\n M docs/reference/interfaces.md\n M docs/reference/inventory.json\n M docs/reference/settings-details.md\n M docs/reference/verification.json\n M tests/raid_header_precreation.lua\n M tests/unit_power_visibility.lua\n?? RaidFrame/FluxRaidAuras.lua\n?? RaidFrame/FluxRaidHealerExtras.lua\n?? RaidFrame/FluxRaidHoTs.lua\n?? RaidFrame/FluxRaidPrediction.lua\n?? RaidFrame/FluxRaidSecure.lua\n?? docs/RAID_HEALKIT_REWORK.md\n?? docs/validation/raid-blizzard-aura-followup-2026-11-06.json\n?? docs/validation/raid-healkit-rework-2026-11-06.json\n?? tests/consumable_aura_advance.lua\n?? tests/raid_aura_native_filters.lua\n?? tests/raid_aura_options.lua\n?? tests/raid_big_debuff_boundary.lua\n?? tests/raid_binding_cast.lua\n?? tests/raid_connected_grid.lua\n?? tests/raid_healer_auras.lua\n?? tests/raid_healer_extras.lua\n?? tests/raid_healer_hots.lua\n?? tests/raid_healer_prediction.lua\n?? tests/raid_healer_runtime.lua\n?? tests/raid_healer_secure.lua\n?? tests/raid_healer_visuals.lua\n?? tests/raid_hidden_buff_event.lua\n?? tests/raid_manager_ghost.lua\n?? tests/raid_native_member_order.lua",
+    "sourceFiles": 1620,
+    "settingsFiles": 184,
+    "sha256": {
+      "source.zip": "7e395bf312be1262cfdc28d884f4297327cb234e7745aadf25e6f2c61b034d4c",
+      "settings.zip": "c2e7ad93456619ffe4689eaf2cee7e85cb04b85c72a7c7aa29be03ac111eef12",
+      "history.bundle": "59024dc3fc2eb8085b0720d1f4fa44cd71643ba87b6650062c2a86aa2ed73dea"
+    },
+    "zipIntegrity": "PASS",
+    "bundleVerification": "PASS",
+    "gameMemory": "Unsaved game memory excluded; no game input, settings mutation or foreground control"
+  },
+  "candidate_source_sha256": {
+    "Core/Engine/Events.lua": "294aae31712948ebd6cf22167f2c53912797fb00949b3487e571fd8ca1e6ebbc",
+    "Core/Engine/Ticker.lua": "5f60091407bdc9b77c4257c50f3aecc344e4c81f8ae7915b235b8fac71726881",
+    "Core/Engine/Scheduler.lua": "b7f171cb84de3c28d7a68735fafdf1aeb52f677cd81c84ad78687d30e94b2a16"
+  },
+  "baseline_source_sha256": {
+    "Core/Engine/Events.lua": "9c8d593abc270abe4f5e6d403e9f0c93eb3c593c2f1c2b4acc3a4556ae813454",
+    "Core/Engine/Ticker.lua": "65bbbdd8fb42997f610f4799bba68c44447df9a0a0e720019b6d17e3e79ead0b",
+    "Core/Engine/Scheduler.lua": "2d33fe5938a0075636761b14312681ce7feb656c748cd796dbf42398099723a4"
+  },
+  "fixture_sha256": "3ec9799b1d65c5e8035c10a2863440af2ca6c1dc8f47e87421ad19f5a3ae5393",
+  "model_sha256": "f28bcbf981f55bc933f959e4fc0a58c1999103b9f1d21800a6ba1e320b1d8ac3",
+  "environment": {
+    "host": "Windows-10-10.0.26200-SP0",
+    "python": "3.10.6",
+    "lua": "Lua 5.4.6  Copyright (C) 1994-2023 Lua.org, PUC-Rio",
+    "native_client": "Not involved; standalone Lua5.4 harness",
+    "profiler": "Modeled debugprofilestop uses process os.clock()*1000; os.clock loop CPU and Python perf_counter full-process wall separately recorded. No native scriptProfile setting changed.",
+    "cpu_hardware": "Not pinned; concurrent desktop/game activity uncontrolled."
+  },
+  "scenario": {
+    "iterations": 50000,
+    "callbacks_per_iteration": 4,
+    "sequence": [
+      "shared event handler",
+      "shared ticker subscriber",
+      "eval callback",
+      "eval listener"
+    ],
+    "warmup_iterations_per_case": 1000,
+    "pairs_per_case": 5,
+    "order": "Baseline/candidate alternate on odd pairs; candidate/baseline on even pairs",
+    "memory": "Standalone Lua full GC outside timed loop before/after; normal GC during timed workload. Not WoW memory or allocation bytes."
+  },
+  "comparability": "Feature workloads identical. Baseline lacks ObserveTiming; observe case baseline is an explicitly unsupported-capability reference, not equivalent instrumentation. Candidate observe timing is a lower bound for dispatch-seam overhead, not the full watch cost.",
+  "warmup": [
+    {
+      "mode": "off",
+      "available": false,
+      "iterations": 1000,
+      "cpuSeconds": 0.001,
+      "clockReads": 0,
+      "observedCallbacks": 0,
+      "featureCalls": 4000,
+      "framesBefore": 3,
+      "framesAfter": 3,
+      "reportedErrors": 0,
+      "retainedKiB": 1.382812,
+      "pending": false,
+      "version": "baseline",
+      "wallSeconds": 0.0624664000060875,
+      "raw": "RESULT mode=off available=false iterations=1000 cpuSeconds=0.001000000 clockReads=0 observedCallbacks=0 featureCalls=4000 framesBefore=3 framesAfter=3 reportedErrors=0 retainedKiB=1.382812 pending=false"
+    },
+    {
+      "mode": "off",
+      "available": true,
+      "iterations": 1000,
+      "cpuSeconds": 0.002,
+      "clockReads": 0,
+      "observedCallbacks": 0,
+      "featureCalls": 4000,
+      "framesBefore": 3,
+      "framesAfter": 3,
+      "reportedErrors": 0,
+      "retainedKiB": 1.289062,
+      "pending": false,
+      "version": "candidate",
+      "wallSeconds": 0.07691080000950024,
+      "raw": "RESULT mode=off available=true iterations=1000 cpuSeconds=0.002000000 clockReads=0 observedCallbacks=0 featureCalls=4000 framesBefore=3 framesAfter=3 reportedErrors=0 retainedKiB=1.289062 pending=false"
+    },
+    {
+      "mode": "observe",
+      "available": true,
+      "iterations": 1000,
+      "cpuSeconds": 0.004,
+      "clockReads": 8000,
+      "observedCallbacks": 4000,
+      "featureCalls": 4000,
+      "framesBefore": 3,
+      "framesAfter": 3,
+      "reportedErrors": 0,
+      "retainedKiB": 0.734375,
+      "pending": false,
+      "version": "candidate",
+      "wallSeconds": 0.02329839998856187,
+      "raw": "RESULT mode=observe available=true iterations=1000 cpuSeconds=0.004000000 clockReads=8000 observedCallbacks=4000 featureCalls=4000 framesBefore=3 framesAfter=3 reportedErrors=0 retainedKiB=0.734375 pending=false"
+    }
+  ],
+  "samples": [
+    {
+      "mode": "off",
+      "available": false,
+      "iterations": 50000,
+      "cpuSeconds": 0.075,
+      "clockReads": 0,
+      "observedCallbacks": 0,
+      "featureCalls": 200000,
+      "framesBefore": 3,
+      "framesAfter": 3,
+      "reportedErrors": 0,
+      "retainedKiB": 1.382812,
+      "pending": false,
+      "version": "baseline",
+      "wallSeconds": 0.09287019999464974,
+      "raw": "RESULT mode=off available=false iterations=50000 cpuSeconds=0.075000000 clockReads=0 observedCallbacks=0 featureCalls=200000 framesBefore=3 framesAfter=3 reportedErrors=0 retainedKiB=1.382812 pending=false",
+      "pair": 1,
+      "scenario": "off",
+      "order": [
+        "baseline",
+        "candidate"
+      ]
+    },
+    {
+      "mode": "off",
+      "available": true,
+      "iterations": 50000,
+      "cpuSeconds": 0.08,
+      "clockReads": 0,
+      "observedCallbacks": 0,
+      "featureCalls": 200000,
+      "framesBefore": 3,
+      "framesAfter": 3,
+      "reportedErrors": 0,
+      "retainedKiB": 1.289062,
+      "pending": false,
+      "version": "candidate",
+      "wallSeconds": 0.09918039999320172,
+      "raw": "RESULT mode=off available=true iterations=50000 cpuSeconds=0.080000000 clockReads=0 observedCallbacks=0 featureCalls=200000 framesBefore=3 framesAfter=3 reportedErrors=0 retainedKiB=1.289062 pending=false",
+      "pair": 1,
+      "scenario": "off",
+      "order": [
+        "baseline",
+        "candidate"
+      ]
+    },
+    {
+      "mode": "off",
+      "available": true,
+      "iterations": 50000,
+      "cpuSeconds": 0.078,
+      "clockReads": 0,
+      "observedCallbacks": 0,
+      "featureCalls": 200000,
+      "framesBefore": 3,
+      "framesAfter": 3,
+      "reportedErrors": 0,
+      "retainedKiB": 1.289062,
+      "pending": false,
+      "version": "candidate",
+      "wallSeconds": 0.10417939999024384,
+      "raw": "RESULT mode=off available=true iterations=50000 cpuSeconds=0.078000000 clockReads=0 observedCallbacks=0 featureCalls=200000 framesBefore=3 framesAfter=3 reportedErrors=0 retainedKiB=1.289062 pending=false",
+      "pair": 2,
+      "scenario": "off",
+      "order": [
+        "candidate",
+        "baseline"
+      ]
+    },
+    {
+      "mode": "off",
+      "available": false,
+      "iterations": 50000,
+      "cpuSeconds": 0.076,
+      "clockReads": 0,
+      "observedCallbacks": 0,
+      "featureCalls": 200000,
+      "framesBefore": 3,
+      "framesAfter": 3,
+      "reportedErrors": 0,
+      "retainedKiB": 1.382812,
+      "pending": false,
+      "version": "baseline",
+      "wallSeconds": 0.09205909998854622,
+      "raw": "RESULT mode=off available=false iterations=50000 cpuSeconds=0.076000000 clockReads=0 observedCallbacks=0 featureCalls=200000 framesBefore=3 framesAfter=3 reportedErrors=0 retainedKiB=1.382812 pending=false",
+      "pair": 2,
+      "scenario": "off",
+      "order": [
+        "candidate",
+        "baseline"
+      ]
+    },
+    {
+      "mode": "off",
+      "available": false,
+      "iterations": 50000,
+      "cpuSeconds": 0.078,
+      "clockReads": 0,
+      "observedCallbacks": 0,
+      "featureCalls": 200000,
+      "framesBefore": 3,
+      "framesAfter": 3,
+      "reportedErrors": 0,
+      "retainedKiB": 1.382812,
+      "pending": false,
+      "version": "baseline",
+      "wallSeconds": 0.09374949999619275,
+      "raw": "RESULT mode=off available=false iterations=50000 cpuSeconds=0.078000000 clockReads=0 observedCallbacks=0 featureCalls=200000 framesBefore=3 framesAfter=3 reportedErrors=0 retainedKiB=1.382812 pending=false",
+      "pair": 3,
+      "scenario": "off",
+      "order": [
+        "baseline",
+        "candidate"
+      ]
+    },
+    {
+      "mode": "off",
+      "available": true,
+      "iterations": 50000,
+      "cpuSeconds": 0.083,
+      "clockReads": 0,
+      "observedCallbacks": 0,
+      "featureCalls": 200000,
+      "framesBefore": 3,
+      "framesAfter": 3,
+      "reportedErrors": 0,
+      "retainedKiB": 1.289062,
+      "pending": false,
+      "version": "candidate",
+      "wallSeconds": 0.0991490000160411,
+      "raw": "RESULT mode=off available=true iterations=50000 cpuSeconds=0.083000000 clockReads=0 observedCallbacks=0 featureCalls=200000 framesBefore=3 framesAfter=3 reportedErrors=0 retainedKiB=1.289062 pending=false",
+      "pair": 3,
+      "scenario": "off",
+      "order": [
+        "baseline",
+        "candidate"
+      ]
+    },
+    {
+      "mode": "off",
+      "available": true,
+      "iterations": 50000,
+      "cpuSeconds": 0.08,
+      "clockReads": 0,
+      "observedCallbacks": 0,
+      "featureCalls": 200000,
+      "framesBefore": 3,
+      "framesAfter": 3,
+      "reportedErrors": 0,
+      "retainedKiB": 1.289062,
+      "pending": false,
+      "version": "candidate",
+      "wallSeconds": 0.09664279999560677,
+      "raw": "RESULT mode=off available=true iterations=50000 cpuSeconds=0.080000000 clockReads=0 observedCallbacks=0 featureCalls=200000 framesBefore=3 framesAfter=3 reportedErrors=0 retainedKiB=1.289062 pending=false",
+      "pair": 4,
+      "scenario": "off",
+      "order": [
+        "candidate",
+        "baseline"
+      ]
+    },
+    {
+      "mode": "off",
+      "available": false,
+      "iterations": 50000,
+      "cpuSeconds": 0.085,
+      "clockReads": 0,
+      "observedCallbacks": 0,
+      "featureCalls": 200000,
+      "framesBefore": 3,
+      "framesAfter": 3,
+      "reportedErrors": 0,
+      "retainedKiB": 1.382812,
+      "pending": false,
+      "version": "baseline",
+      "wallSeconds": 0.10355010000057518,
+      "raw": "RESULT mode=off available=false iterations=50000 cpuSeconds=0.085000000 clockReads=0 observedCallbacks=0 featureCalls=200000 framesBefore=3 framesAfter=3 reportedErrors=0 retainedKiB=1.382812 pending=false",
+      "pair": 4,
+      "scenario": "off",
+      "order": [
+        "candidate",
+        "baseline"
+      ]
+    },
+    {
+      "mode": "off",
+      "available": false,
+      "iterations": 50000,
+      "cpuSeconds": 0.086,
+      "clockReads": 0,
+      "observedCallbacks": 0,
+      "featureCalls": 200000,
+      "framesBefore": 3,
+      "framesAfter": 3,
+      "reportedErrors": 0,
+      "retainedKiB": 1.382812,
+      "pending": false,
+      "version": "baseline",
+      "wallSeconds": 0.1018569000007119,
+      "raw": "RESULT mode=off available=false iterations=50000 cpuSeconds=0.086000000 clockReads=0 observedCallbacks=0 featureCalls=200000 framesBefore=3 framesAfter=3 reportedErrors=0 retainedKiB=1.382812 pending=false",
+      "pair": 5,
+      "scenario": "off",
+      "order": [
+        "baseline",
+        "candidate"
+      ]
+    },
+    {
+      "mode": "off",
+      "available": true,
+      "iterations": 50000,
+      "cpuSeconds": 0.09,
+      "clockReads": 0,
+      "observedCallbacks": 0,
+      "featureCalls": 200000,
+      "framesBefore": 3,
+      "framesAfter": 3,
+      "reportedErrors": 0,
+      "retainedKiB": 1.289062,
+      "pending": false,
+      "version": "candidate",
+      "wallSeconds": 0.10950679998495616,
+      "raw": "RESULT mode=off available=true iterations=50000 cpuSeconds=0.090000000 clockReads=0 observedCallbacks=0 featureCalls=200000 framesBefore=3 framesAfter=3 reportedErrors=0 retainedKiB=1.289062 pending=false",
+      "pair": 5,
+      "scenario": "off",
+      "order": [
+        "baseline",
+        "candidate"
+      ]
+    },
+    {
+      "mode": "observe",
+      "available": false,
+      "iterations": 50000,
+      "cpuSeconds": 0.08,
+      "clockReads": 0,
+      "observedCallbacks": 0,
+      "featureCalls": 200000,
+      "framesBefore": 3,
+      "framesAfter": 3,
+      "reportedErrors": 0,
+      "retainedKiB": 1.382812,
+      "pending": false,
+      "version": "baseline",
+      "wallSeconds": 0.09884829999646172,
+      "raw": "RESULT mode=observe available=false iterations=50000 cpuSeconds=0.080000000 clockReads=0 observedCallbacks=0 featureCalls=200000 framesBefore=3 framesAfter=3 reportedErrors=0 retainedKiB=1.382812 pending=false",
+      "pair": 1,
+      "scenario": "observe",
+      "order": [
+        "baseline",
+        "candidate"
+      ]
+    },
+    {
+      "mode": "observe",
+      "available": true,
+      "iterations": 50000,
+      "cpuSeconds": 0.213,
+      "clockReads": 400000,
+      "observedCallbacks": 200000,
+      "featureCalls": 200000,
+      "framesBefore": 3,
+      "framesAfter": 3,
+      "reportedErrors": 0,
+      "retainedKiB": 0.734375,
+      "pending": false,
+      "version": "candidate",
+      "wallSeconds": 0.2314874999865424,
+      "raw": "RESULT mode=observe available=true iterations=50000 cpuSeconds=0.213000000 clockReads=400000 observedCallbacks=200000 featureCalls=200000 framesBefore=3 framesAfter=3 reportedErrors=0 retainedKiB=0.734375 pending=false",
+      "pair": 1,
+      "scenario": "observe",
+      "order": [
+        "baseline",
+        "candidate"
+      ]
+    },
+    {
+      "mode": "observe",
+      "available": true,
+      "iterations": 50000,
+      "cpuSeconds": 0.2,
+      "clockReads": 400000,
+      "observedCallbacks": 200000,
+      "featureCalls": 200000,
+      "framesBefore": 3,
+      "framesAfter": 3,
+      "reportedErrors": 0,
+      "retainedKiB": 0.734375,
+      "pending": false,
+      "version": "candidate",
+      "wallSeconds": 0.21740290001616813,
+      "raw": "RESULT mode=observe available=true iterations=50000 cpuSeconds=0.200000000 clockReads=400000 observedCallbacks=200000 featureCalls=200000 framesBefore=3 framesAfter=3 reportedErrors=0 retainedKiB=0.734375 pending=false",
+      "pair": 2,
+      "scenario": "observe",
+      "order": [
+        "candidate",
+        "baseline"
+      ]
+    },
+    {
+      "mode": "observe",
+      "available": false,
+      "iterations": 50000,
+      "cpuSeconds": 0.077,
+      "clockReads": 0,
+      "observedCallbacks": 0,
+      "featureCalls": 200000,
+      "framesBefore": 3,
+      "framesAfter": 3,
+      "reportedErrors": 0,
+      "retainedKiB": 1.382812,
+      "pending": false,
+      "version": "baseline",
+      "wallSeconds": 0.09314830001676455,
+      "raw": "RESULT mode=observe available=false iterations=50000 cpuSeconds=0.077000000 clockReads=0 observedCallbacks=0 featureCalls=200000 framesBefore=3 framesAfter=3 reportedErrors=0 retainedKiB=1.382812 pending=false",
+      "pair": 2,
+      "scenario": "observe",
+      "order": [
+        "candidate",
+        "baseline"
+      ]
+    },
+    {
+      "mode": "observe",
+      "available": false,
+      "iterations": 50000,
+      "cpuSeconds": 0.078,
+      "clockReads": 0,
+      "observedCallbacks": 0,
+      "featureCalls": 200000,
+      "framesBefore": 3,
+      "framesAfter": 3,
+      "reportedErrors": 0,
+      "retainedKiB": 1.382812,
+      "pending": false,
+      "version": "baseline",
+      "wallSeconds": 0.0946364999981597,
+      "raw": "RESULT mode=observe available=false iterations=50000 cpuSeconds=0.078000000 clockReads=0 observedCallbacks=0 featureCalls=200000 framesBefore=3 framesAfter=3 reportedErrors=0 retainedKiB=1.382812 pending=false",
+      "pair": 3,
+      "scenario": "observe",
+      "order": [
+        "baseline",
+        "candidate"
+      ]
+    },
+    {
+      "mode": "observe",
+      "available": true,
+      "iterations": 50000,
+      "cpuSeconds": 0.196,
+      "clockReads": 400000,
+      "observedCallbacks": 200000,
+      "featureCalls": 200000,
+      "framesBefore": 3,
+      "framesAfter": 3,
+      "reportedErrors": 0,
+      "retainedKiB": 0.734375,
+      "pending": false,
+      "version": "candidate",
+      "wallSeconds": 0.21395110001321882,
+      "raw": "RESULT mode=observe available=true iterations=50000 cpuSeconds=0.196000000 clockReads=400000 observedCallbacks=200000 featureCalls=200000 framesBefore=3 framesAfter=3 reportedErrors=0 retainedKiB=0.734375 pending=false",
+      "pair": 3,
+      "scenario": "observe",
+      "order": [
+        "baseline",
+        "candidate"
+      ]
+    },
+    {
+      "mode": "observe",
+      "available": true,
+      "iterations": 50000,
+      "cpuSeconds": 0.208,
+      "clockReads": 400000,
+      "observedCallbacks": 200000,
+      "featureCalls": 200000,
+      "framesBefore": 3,
+      "framesAfter": 3,
+      "reportedErrors": 0,
+      "retainedKiB": 0.734375,
+      "pending": false,
+      "version": "candidate",
+      "wallSeconds": 0.22412179998354986,
+      "raw": "RESULT mode=observe available=true iterations=50000 cpuSeconds=0.208000000 clockReads=400000 observedCallbacks=200000 featureCalls=200000 framesBefore=3 framesAfter=3 reportedErrors=0 retainedKiB=0.734375 pending=false",
+      "pair": 4,
+      "scenario": "observe",
+      "order": [
+        "candidate",
+        "baseline"
+      ]
+    },
+    {
+      "mode": "observe",
+      "available": false,
+      "iterations": 50000,
+      "cpuSeconds": 0.084,
+      "clockReads": 0,
+      "observedCallbacks": 0,
+      "featureCalls": 200000,
+      "framesBefore": 3,
+      "framesAfter": 3,
+      "reportedErrors": 0,
+      "retainedKiB": 1.382812,
+      "pending": false,
+      "version": "baseline",
+      "wallSeconds": 0.1015962999954354,
+      "raw": "RESULT mode=observe available=false iterations=50000 cpuSeconds=0.084000000 clockReads=0 observedCallbacks=0 featureCalls=200000 framesBefore=3 framesAfter=3 reportedErrors=0 retainedKiB=1.382812 pending=false",
+      "pair": 4,
+      "scenario": "observe",
+      "order": [
+        "candidate",
+        "baseline"
+      ]
+    },
+    {
+      "mode": "observe",
+      "available": false,
+      "iterations": 50000,
+      "cpuSeconds": 0.09,
+      "clockReads": 0,
+      "observedCallbacks": 0,
+      "featureCalls": 200000,
+      "framesBefore": 3,
+      "framesAfter": 3,
+      "reportedErrors": 0,
+      "retainedKiB": 1.382812,
+      "pending": false,
+      "version": "baseline",
+      "wallSeconds": 0.10867220000363886,
+      "raw": "RESULT mode=observe available=false iterations=50000 cpuSeconds=0.090000000 clockReads=0 observedCallbacks=0 featureCalls=200000 framesBefore=3 framesAfter=3 reportedErrors=0 retainedKiB=1.382812 pending=false",
+      "pair": 5,
+      "scenario": "observe",
+      "order": [
+        "baseline",
+        "candidate"
+      ]
+    },
+    {
+      "mode": "observe",
+      "available": true,
+      "iterations": 50000,
+      "cpuSeconds": 0.212,
+      "clockReads": 400000,
+      "observedCallbacks": 200000,
+      "featureCalls": 200000,
+      "framesBefore": 3,
+      "framesAfter": 3,
+      "reportedErrors": 0,
+      "retainedKiB": 0.734375,
+      "pending": false,
+      "version": "candidate",
+      "wallSeconds": 0.2301856999984011,
+      "raw": "RESULT mode=observe available=true iterations=50000 cpuSeconds=0.212000000 clockReads=400000 observedCallbacks=200000 featureCalls=200000 framesBefore=3 framesAfter=3 reportedErrors=0 retainedKiB=0.734375 pending=false",
+      "pair": 5,
+      "scenario": "observe",
+      "order": [
+        "baseline",
+        "candidate"
+      ]
+    }
+  ],
+  "summary": [
+    {
+      "scenario": "off",
+      "version": "baseline",
+      "metric": "cpuSeconds",
+      "median": 0.078,
+      "minimum": 0.075,
+      "maximum": 0.086,
+      "stdev": 0.005147815070493501
+    },
+    {
+      "scenario": "off",
+      "version": "baseline",
+      "metric": "wallSeconds",
+      "median": 0.09374949999619275,
+      "minimum": 0.09205909998854622,
+      "maximum": 0.10355010000057518,
+      "stdev": 0.005439660526666846
+    },
+    {
+      "scenario": "off",
+      "version": "baseline",
+      "metric": "retainedKiB",
+      "median": 1.382812,
+      "minimum": 1.382812,
+      "maximum": 1.382812,
+      "stdev": 0.0
+    },
+    {
+      "scenario": "off",
+      "version": "candidate",
+      "metric": "cpuSeconds",
+      "median": 0.08,
+      "minimum": 0.078,
+      "maximum": 0.09,
+      "stdev": 0.004711687595755897
+    },
+    {
+      "scenario": "off",
+      "version": "candidate",
+      "metric": "wallSeconds",
+      "median": 0.09918039999320172,
+      "minimum": 0.09664279999560677,
+      "maximum": 0.10950679998495616,
+      "stdev": 0.005136141285119789
+    },
+    {
+      "scenario": "off",
+      "version": "candidate",
+      "metric": "retainedKiB",
+      "median": 1.289062,
+      "minimum": 1.289062,
+      "maximum": 1.289062,
+      "stdev": 0.0
+    },
+    {
+      "scenario": "observe",
+      "version": "baseline",
+      "metric": "cpuSeconds",
+      "median": 0.08,
+      "minimum": 0.077,
+      "maximum": 0.09,
+      "stdev": 0.0053103672189407005
+    },
+    {
+      "scenario": "observe",
+      "version": "baseline",
+      "metric": "wallSeconds",
+      "median": 0.09884829999646172,
+      "minimum": 0.09314830001676455,
+      "maximum": 0.10867220000363886,
+      "stdev": 0.006182122368322721
+    },
+    {
+      "scenario": "observe",
+      "version": "baseline",
+      "metric": "retainedKiB",
+      "median": 1.382812,
+      "minimum": 1.382812,
+      "maximum": 1.382812,
+      "stdev": 0.0
+    },
+    {
+      "scenario": "observe",
+      "version": "candidate",
+      "metric": "cpuSeconds",
+      "median": 0.208,
+      "minimum": 0.196,
+      "maximum": 0.213,
+      "stdev": 0.0074966659255965165
+    },
+    {
+      "scenario": "observe",
+      "version": "candidate",
+      "metric": "wallSeconds",
+      "median": 0.22412179998354986,
+      "minimum": 0.21395110001321882,
+      "maximum": 0.2314874999865424,
+      "stdev": 0.00770092291049054
+    },
+    {
+      "scenario": "observe",
+      "version": "candidate",
+      "metric": "retainedKiB",
+      "median": 0.734375,
+      "minimum": 0.734375,
+      "maximum": 0.734375,
+      "stdev": 0.0
+    }
+  ],
+  "results": {
+    "functional_resource_invariants": "PASS",
+    "off_clock_reads": "0 on both sources",
+    "candidate_observed_callbacks": "200000 per run",
+    "candidate_clock_reads": "400000 per observed run",
+    "frames": "3 before/after all runs",
+    "callback_errors": "0 all runs",
+    "pending_work": "false after all workloads",
+    "hardware_timing": "INCONCLUSIVE for native overhead/FPS and uncontrolled host comparisons",
+    "native_acceptance": "PENDING: no native CPU/memory/FPS/secure/secret behavior certified.",
+    "mutations": "10/10 rejected with expected behavioral failure"
+  },
+  "mutations": [
+    {
+      "name": "off-path-clock",
+      "source": "Events.lua",
+      "result": "REJECTED",
+      "expectedFailure": "unobserved services do not query clocks",
+      "exitCode": 1,
+      "output": "lua: ...r-comparison-20261106\\mutants\\off-path-clock\\fixture.lua:9: live: unobserved services do not query clocks\nstack traceback:\n\t[C]: in function 'assert'\n\t...r-comparison-20261106\\mutants\\off-path-clock\\fixture.lua:9: in local 'check'\n\t...r-comparison-20261106\\mutants\\off-path-clock\\fixture.lua:85: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "stale-owner-cleanup",
+      "source": "Ticker.lua",
+      "result": "REJECTED",
+      "expectedFailure": "old cleanup cannot detach",
+      "exitCode": 1,
+      "output": "lua: ...parison-20261106\\mutants\\stale-owner-cleanup\\fixture.lua:9: old cleanup cannot detach a new registration of the same observer\nstack traceback:\n\t[C]: in function 'assert'\n\t...parison-20261106\\mutants\\stale-owner-cleanup\\fixture.lua:9: in local 'check'\n\t...parison-20261106\\mutants\\stale-owner-cleanup\\fixture.lua:135: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "same-function-generation",
+      "source": "Events.lua",
+      "result": "REJECTED",
+      "expectedFailure": "replacing an observer mid-callback",
+      "exitCode": 1,
+      "output": "lua: ...on-20261106\\mutants\\same-function-generation\\fixture.lua:9: replacing an observer mid-callback cannot attribute a partial interval to either registration\nstack traceback:\n\t[C]: in function 'assert'\n\t...on-20261106\\mutants\\same-function-generation\\fixture.lua:9: in local 'check'\n\t...on-20261106\\mutants\\same-function-generation\\fixture.lua:178: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "observer-error-escapes",
+      "source": "Ticker.lua",
+      "result": "REJECTED",
+      "expectedFailure": "observer failure is visibly reported",
+      "exitCode": 1,
+      "output": "lua: ...ison-20261106\\mutants\\observer-error-escapes\\fixture.lua:9: observer failure is visibly reported without breaking feature dispatch\nstack traceback:\n\t[C]: in function 'assert'\n\t...ison-20261106\\mutants\\observer-error-escapes\\fixture.lua:9: in local 'check'\n\t...ison-20261106\\mutants\\observer-error-escapes\\fixture.lua:265: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "missing-inventory-observation",
+      "source": "Scheduler.lua",
+      "result": "REJECTED",
+      "expectedFailure": "all scheduler callback and listener sites",
+      "exitCode": 1,
+      "output": "lua: ...261106\\mutants\\missing-inventory-observation\\fixture.lua:9: all scheduler callback and listener sites are observed\nstack traceback:\n\t[C]: in function 'assert'\n\t...261106\\mutants\\missing-inventory-observation\\fixture.lua:9: in local 'check'\n\t...261106\\mutants\\missing-inventory-observation\\fixture.lua:119: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "legacy-mid-dispatch-race",
+      "source": "Events.lua",
+      "result": "REJECTED",
+      "expectedFailure": "mid-dispatch legacy trace attachment",
+      "exitCode": 1,
+      "output": "lua: ...on-20261106\\mutants\\legacy-mid-dispatch-race\\fixture.lua:9: mid-dispatch legacy trace attachment starts with the next invocation\nstack traceback:\n\t[C]: in function 'assert'\n\t...on-20261106\\mutants\\legacy-mid-dispatch-race\\fixture.lua:9: in local 'check'\n\t...on-20261106\\mutants\\legacy-mid-dispatch-race\\fixture.lua:150: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "unit-errors-swallowed",
+      "source": "Events.lua",
+      "result": "REJECTED",
+      "expectedFailure": "unit failures retain direct propagation",
+      "exitCode": 1,
+      "output": "lua: ...rison-20261106\\mutants\\unit-errors-swallowed\\fixture.lua:9: unit failures retain direct propagation; unsuccessful unit calls are outside timing coverage\nstack traceback:\n\t[C]: in function 'assert'\n\t...rison-20261106\\mutants\\unit-errors-swallowed\\fixture.lua:9: in local 'check'\n\t...rison-20261106\\mutants\\unit-errors-swallowed\\fixture.lua:200: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "inventory-budget-changed",
+      "source": "Scheduler.lua",
+      "result": "REJECTED",
+      "expectedFailure": "inventory retains its eight-callback budget",
+      "exitCode": 1,
+      "output": "lua: ...on-20261106\\mutants\\inventory-budget-changed\\fixture.lua:9: inventory retains its eight-callback budget and observes the listener separately\nstack traceback:\n\t[C]: in function 'assert'\n\t...on-20261106\\mutants\\inventory-budget-changed\\fixture.lua:9: in local 'check'\n\t...on-20261106\\mutants\\inventory-budget-changed\\fixture.lua:239: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "secret-clock-inspected",
+      "source": "Events.lua",
+      "result": "REJECTED",
+      "expectedFailure": "secret clock compared",
+      "exitCode": 1,
+      "output": "lua: ...ison-20261106\\mutants\\secret-clock-inspected\\fixture.lua:17: secret clock compared\nstack traceback:\n\t[C]: in function 'error'\n\t...ison-20261106\\mutants\\secret-clock-inspected\\fixture.lua:17: in metamethod 'le'\n\tCore/Engine/Events.lua:130: in field 'OnEvent'\n\t...ison-20261106\\mutants\\secret-clock-inspected\\fixture.lua:58: in method 'fire'\n\t...ison-20261106\\mutants\\secret-clock-inspected\\fixture.lua:227: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "observer-error-hidden",
+      "source": "Events.lua",
+      "result": "REJECTED",
+      "expectedFailure": "observer failure is visibly reported",
+      "exitCode": 1,
+      "output": "lua: ...rison-20261106\\mutants\\observer-error-hidden\\fixture.lua:9: observer failure is visibly reported without breaking feature dispatch\nstack traceback:\n\t[C]: in function 'assert'\n\t...rison-20261106\\mutants\\observer-error-hidden\\fixture.lua:9: in local 'check'\n\t...rison-20261106\\mutants\\observer-error-hidden\\fixture.lua:265: in main chunk\n\t[C]: in ?\n"
+    }
+  ],
+  "clockSemanticsNote": "Lua os.clock readings from a Windows host are preserved as captured host-clock measurements; they are not evidence of native WoW CPU time, frame time, FPS, allocation bytes or causal spike removal."
+}

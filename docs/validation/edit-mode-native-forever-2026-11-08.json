@@ -1,0 +1,23 @@
+{
+  "source": "User-performed Forever operation and pasted metadata; no tool-operated save",
+  "userMetadata": {
+    "EditModeManagerFrame": {
+      "layoutInfo": true,
+      "isEditing": true,
+      "flowSortFunc": true
+    },
+    "CompactPartyFrame": {
+      "layoutInfo": true,
+      "isEditing": true,
+      "flowSortFunc": true
+    },
+    "BuffIconCooldownViewer": {
+      "layoutInfo": true,
+      "isEditing": true,
+      "flowSortFunc": true
+    }
+  },
+  "userResult": "Saved successfully - no new errors",
+  "limits": "No editModeDebug snapshots found on disk; loaded GetBuildInfo/profile/addon list not captured. Other clients/combat/performance pending.",
+  "toolInput": "Two background attempts refused before first input. Read-only capture retained focus. No automated save/reload/setting/profiler/gameplay operation."
+}

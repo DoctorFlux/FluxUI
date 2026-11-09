@@ -1,0 +1,206 @@
+{
+  "scope": "Desktop actual production owners with simulated APIs/frames; no native secure VM, real secrets, rendering, keyboard, CPU or FPS acceptance.",
+  "before": {
+    "Core/Engine/Modifier.lua": "f546dd7e98f541af680722b5ea54da2762445ac03f30d6ef7f6059c776cbad1b",
+    "Core/Engine/Context.lua": "1c7cb31b199343039af7b38171481382991708adb9447c35d66d6c980fc78121",
+    "Core/Engine/Range.lua": "cbd2f7c0e57ac2cee3d99e4f1c3e8fc778773e9d3a1926500fc6099db3f4b778",
+    "Bars/Paint.lua": "7885acc887459081f924384e12baeca79bf5a8722f090cdb70423859274154a1",
+    "Bars/ProgramFace.lua": "40d7bc0133f68f38cace6a464503ca2d98185f1df96b4be3b279cfa4528cf4a1",
+    "ExtraButtonSystem/Engine/Action.lua": "05f4db93f2d81ee8cbfaf0aee772218c49a96cdd6b6268b10532db4118b9fffc",
+    "ExtraButtonSystem/Engine/Paint.lua": "5a763a9b7153b84580a3c9bbc776626a7f470c1d922fb0304a22bdb808f0461b",
+    "AddonOptions/AceGUIWidget-FluxRestockPanel.lua": "a21217b48b11f3866df64ed19bcbaf0f3922821bb32fad7af3e0b11ca7978baf"
+  },
+  "after": {
+    "Core/Engine/Modifier.lua": "f546dd7e98f541af680722b5ea54da2762445ac03f30d6ef7f6059c776cbad1b",
+    "Core/Engine/Context.lua": "1c7cb31b199343039af7b38171481382991708adb9447c35d66d6c980fc78121",
+    "Core/Engine/Range.lua": "cbd2f7c0e57ac2cee3d99e4f1c3e8fc778773e9d3a1926500fc6099db3f4b778",
+    "Bars/Paint.lua": "7885acc887459081f924384e12baeca79bf5a8722f090cdb70423859274154a1",
+    "Bars/ProgramFace.lua": "40d7bc0133f68f38cace6a464503ca2d98185f1df96b4be3b279cfa4528cf4a1",
+    "ExtraButtonSystem/Engine/Action.lua": "05f4db93f2d81ee8cbfaf0aee772218c49a96cdd6b6268b10532db4118b9fffc",
+    "ExtraButtonSystem/Engine/Paint.lua": "5a763a9b7153b84580a3c9bbc776626a7f470c1d922fb0304a22bdb808f0461b",
+    "AddonOptions/AceGUIWidget-FluxRestockPanel.lua": "a21217b48b11f3866df64ed19bcbaf0f3922821bb32fad7af3e0b11ca7978baf"
+  },
+  "sourceStable": true,
+  "baseline": {
+    "Core/Engine/Modifier.lua": "f546dd7e98f541af680722b5ea54da2762445ac03f30d6ef7f6059c776cbad1b",
+    "Core/Engine/Context.lua": "14c6f41ab314604661b1c089196cd6095606c3b75c6dcd1ae4ec66eb740c22c2",
+    "Core/Engine/Range.lua": "f9035ada5900185e94a890f558e2eda546dbf1d33fd091a21ae9b73d1d521ea6",
+    "Bars/Paint.lua": "cb77672bd86298536558b0486b13680360dfd6e86ae134fe207a0bbeafee4224",
+    "Bars/ProgramFace.lua": "40d7bc0133f68f38cace6a464503ca2d98185f1df96b4be3b279cfa4528cf4a1",
+    "ExtraButtonSystem/Engine/Action.lua": "05f4db93f2d81ee8cbfaf0aee772218c49a96cdd6b6268b10532db4118b9fffc",
+    "ExtraButtonSystem/Engine/Paint.lua": "7edf1f76d4a0994fa3d84f11bd7c3cf0ff41297b8ae17b83e1f0fbac2d15428b",
+    "AddonOptions/AceGUIWidget-FluxRestockPanel.lua": "2236f84f66725ed4ebf4e8e666508c65fdae20e3cee49da2e6b9bf339bdbabb8"
+  },
+  "candidate": [
+    {
+      "trial": 1,
+      "command": [
+        "lua",
+        "tests/range_usability_stress.lua"
+      ],
+      "exit": 0,
+      "wallSeconds": 1.5328,
+      "stdout": "RANGE_USABILITY client=live rapid_edges=135168 hop_sweeps=19 checks=21718 failures=0\nRANGE_USABILITY client=forever rapid_edges=135168 hop_sweeps=19 checks=43436 failures=0\nRANGE_USABILITY client=classic_era rapid_edges=135168 hop_sweeps=19 checks=65154 failures=0\nRANGE_USABILITY client=classic_anniversary rapid_edges=135168 hop_sweeps=19 checks=86872 failures=0\nRANGE_USABILITY SUMMARY checks=86872 failures=0 modeled_edges=540672 native_VM_pixels_FPS=NOT_RUN\n",
+      "stderr": ""
+    },
+    {
+      "trial": 1,
+      "command": [
+        "lua",
+        "tests/restock_panel_timer_ownership.lua"
+      ],
+      "exit": 0,
+      "wallSeconds": 0.0327,
+      "stdout": "RESTOCK_TIMER checks=84 failures=0\n",
+      "stderr": ""
+    },
+    {
+      "trial": 1,
+      "command": [
+        "lua",
+        "Stress test doc/roadmap-fixes/modifier_bus.lua.txt"
+      ],
+      "exit": 0,
+      "wallSeconds": 2.783,
+      "stdout": "RESULT client=live initial_combat=false storm_physical_edges=1052673 storm_events=1085442 matrix_cases=384 max_timers=0 max_notices_per_frame=1 frames_created_during_storm=0\nRESULT client=live initial_combat=true storm_physical_edges=1052673 storm_events=1085442 matrix_cases=384 max_timers=0 max_notices_per_frame=1 frames_created_during_storm=0\nRESULT client=forever initial_combat=false storm_physical_edges=1052673 storm_events=1085442 matrix_cases=384 max_timers=0 max_notices_per_frame=1 frames_created_during_storm=0\nRESULT client=forever initial_combat=true storm_physical_edges=1052673 storm_events=1085442 matrix_cases=384 max_timers=0 max_notices_per_frame=1 frames_created_during_storm=0\nRESULT client=classic_era initial_combat=false storm_physical_edges=1052673 storm_events=1085442 matrix_cases=384 max_timers=0 max_notices_per_frame=1 frames_created_during_storm=0\nRESULT client=classic_era initial_combat=true storm_physical_edges=1052673 storm_events=1085442 matrix_cases=384 max_timers=0 max_notices_per_frame=1 frames_created_during_storm=0\nRESULT client=classic_anniversary initial_combat=false storm_physical_edges=1052673 storm_events=1085442 matrix_cases=384 max_timers=0 max_notices_per_frame=1 frames_created_during_storm=0\nRESULT client=classic_anniversary initial_combat=true storm_physical_edges=1052673 storm_events=1085442 matrix_cases=384 max_timers=0 max_notices_per_frame=1 frames_created_during_storm=0\nRESULT client=classic initial_combat=false storm_physical_edges=1052673 storm_events=1085442 matrix_cases=384 max_timers=0 max_notices_per_frame=1 frames_created_during_storm=0\nRESULT client=classic initial_combat=true storm_physical_edges=1052673 storm_events=1085442 matrix_cases=384 max_timers=0 max_notices_per_frame=1 frames_created_during_storm=0\nOBSERVATION client=live mixed_frames=1200 simulated_seconds=10 full_context_deliveries_during_storm=1200 deliveries_after_quiet=0 max_latency=ONE_MODELED_FRAME\nOBSERVATION client=forever mixed_frames=1200 simulated_seconds=10 full_context_deliveries_during_storm=1200 deliveries_after_quiet=0 max_latency=ONE_MODELED_FRAME\nOBSERVATION client=classic_era mixed_frames=1200 simulated_seconds=10 full_context_deliveries_during_storm=1200 deliveries_after_quiet=0 max_latency=ONE_MODELED_FRAME\nOBSERVATION client=classic_anniversary mixed_frames=1200 simulated_seconds=10 full_context_deliveries_during_storm=1200 deliveries_after_quiet=0 max_latency=ONE_MODELED_FRAME\nOBSERVATION client=classic mixed_frames=1200 simulated_seconds=10 full_context_deliveries_during_storm=1200 deliveries_after_quiet=0 max_latency=ONE_MODELED_FRAME\nMODIFIER BUS SUMMARY checks=96850 physical_edges=10544220 modifier_events=10883400 ordered_transition_cases=3840 bounded_mixed_cases=5 native_VM_input_FPS=NOT_RUN\n",
+      "stderr": ""
+    },
+    {
+      "trial": 1,
+      "command": [
+        "lua",
+        "tests/context_program_face_stress.lua"
+      ],
+      "exit": 0,
+      "wallSeconds": 0.936,
+      "stdout": "CONTEXT_PROGRAM client=live frames=1200 same_slot=1 paints=1201\nCONTEXT_PROGRAM client=forever frames=1200 same_slot=1 paints=1201\nCONTEXT_PROGRAM client=classic_era frames=1200 same_slot=1 paints=1201\nCONTEXT_PROGRAM client=classic_anniversary frames=1200 same_slot=1 paints=1201\nCONTEXT_PROGRAM SUMMARY checks=14412 failures=0 native_VM_FPS=NOT_RUN\n",
+      "stderr": ""
+    },
+    {
+      "trial": 2,
+      "command": [
+        "lua",
+        "tests/range_usability_stress.lua"
+      ],
+      "exit": 0,
+      "wallSeconds": 1.0455,
+      "stdout": "RANGE_USABILITY client=live rapid_edges=135168 hop_sweeps=19 checks=21718 failures=0\nRANGE_USABILITY client=forever rapid_edges=135168 hop_sweeps=19 checks=43436 failures=0\nRANGE_USABILITY client=classic_era rapid_edges=135168 hop_sweeps=19 checks=65154 failures=0\nRANGE_USABILITY client=classic_anniversary rapid_edges=135168 hop_sweeps=19 checks=86872 failures=0\nRANGE_USABILITY SUMMARY checks=86872 failures=0 modeled_edges=540672 native_VM_pixels_FPS=NOT_RUN\n",
+      "stderr": ""
+    },
+    {
+      "trial": 2,
+      "command": [
+        "lua",
+        "tests/restock_panel_timer_ownership.lua"
+      ],
+      "exit": 0,
+      "wallSeconds": 0.0251,
+      "stdout": "RESTOCK_TIMER checks=84 failures=0\n",
+      "stderr": ""
+    },
+    {
+      "trial": 2,
+      "command": [
+        "lua",
+        "Stress test doc/roadmap-fixes/modifier_bus.lua.txt"
+      ],
+      "exit": 0,
+      "wallSeconds": 2.2285,
+      "stdout": "RESULT client=live initial_combat=false storm_physical_edges=1052673 storm_events=1085442 matrix_cases=384 max_timers=0 max_notices_per_frame=1 frames_created_during_storm=0\nRESULT client=live initial_combat=true storm_physical_edges=1052673 storm_events=1085442 matrix_cases=384 max_timers=0 max_notices_per_frame=1 frames_created_during_storm=0\nRESULT client=forever initial_combat=false storm_physical_edges=1052673 storm_events=1085442 matrix_cases=384 max_timers=0 max_notices_per_frame=1 frames_created_during_storm=0\nRESULT client=forever initial_combat=true storm_physical_edges=1052673 storm_events=1085442 matrix_cases=384 max_timers=0 max_notices_per_frame=1 frames_created_during_storm=0\nRESULT client=classic_era initial_combat=false storm_physical_edges=1052673 storm_events=1085442 matrix_cases=384 max_timers=0 max_notices_per_frame=1 frames_created_during_storm=0\nRESULT client=classic_era initial_combat=true storm_physical_edges=1052673 storm_events=1085442 matrix_cases=384 max_timers=0 max_notices_per_frame=1 frames_created_during_storm=0\nRESULT client=classic_anniversary initial_combat=false storm_physical_edges=1052673 storm_events=1085442 matrix_cases=384 max_timers=0 max_notices_per_frame=1 frames_created_during_storm=0\nRESULT client=classic_anniversary initial_combat=true storm_physical_edges=1052673 storm_events=1085442 matrix_cases=384 max_timers=0 max_notices_per_frame=1 frames_created_during_storm=0\nRESULT client=classic initial_combat=false storm_physical_edges=1052673 storm_events=1085442 matrix_cases=384 max_timers=0 max_notices_per_frame=1 frames_created_during_storm=0\nRESULT client=classic initial_combat=true storm_physical_edges=1052673 storm_events=1085442 matrix_cases=384 max_timers=0 max_notices_per_frame=1 frames_created_during_storm=0\nOBSERVATION client=live mixed_frames=1200 simulated_seconds=10 full_context_deliveries_during_storm=1200 deliveries_after_quiet=0 max_latency=ONE_MODELED_FRAME\nOBSERVATION client=forever mixed_frames=1200 simulated_seconds=10 full_context_deliveries_during_storm=1200 deliveries_after_quiet=0 max_latency=ONE_MODELED_FRAME\nOBSERVATION client=classic_era mixed_frames=1200 simulated_seconds=10 full_context_deliveries_during_storm=1200 deliveries_after_quiet=0 max_latency=ONE_MODELED_FRAME\nOBSERVATION client=classic_anniversary mixed_frames=1200 simulated_seconds=10 full_context_deliveries_during_storm=1200 deliveries_after_quiet=0 max_latency=ONE_MODELED_FRAME\nOBSERVATION client=classic mixed_frames=1200 simulated_seconds=10 full_context_deliveries_during_storm=1200 deliveries_after_quiet=0 max_latency=ONE_MODELED_FRAME\nMODIFIER BUS SUMMARY checks=96850 physical_edges=10544220 modifier_events=10883400 ordered_transition_cases=3840 bounded_mixed_cases=5 native_VM_input_FPS=NOT_RUN\n",
+      "stderr": ""
+    },
+    {
+      "trial": 2,
+      "command": [
+        "lua",
+        "tests/context_program_face_stress.lua"
+      ],
+      "exit": 0,
+      "wallSeconds": 0.9384,
+      "stdout": "CONTEXT_PROGRAM client=live frames=1200 same_slot=1 paints=1201\nCONTEXT_PROGRAM client=forever frames=1200 same_slot=1 paints=1201\nCONTEXT_PROGRAM client=classic_era frames=1200 same_slot=1 paints=1201\nCONTEXT_PROGRAM client=classic_anniversary frames=1200 same_slot=1 paints=1201\nCONTEXT_PROGRAM SUMMARY checks=14412 failures=0 native_VM_FPS=NOT_RUN\n",
+      "stderr": ""
+    },
+    {
+      "trial": 3,
+      "command": [
+        "lua",
+        "tests/range_usability_stress.lua"
+      ],
+      "exit": 0,
+      "wallSeconds": 0.9674,
+      "stdout": "RANGE_USABILITY client=live rapid_edges=135168 hop_sweeps=19 checks=21718 failures=0\nRANGE_USABILITY client=forever rapid_edges=135168 hop_sweeps=19 checks=43436 failures=0\nRANGE_USABILITY client=classic_era rapid_edges=135168 hop_sweeps=19 checks=65154 failures=0\nRANGE_USABILITY client=classic_anniversary rapid_edges=135168 hop_sweeps=19 checks=86872 failures=0\nRANGE_USABILITY SUMMARY checks=86872 failures=0 modeled_edges=540672 native_VM_pixels_FPS=NOT_RUN\n",
+      "stderr": ""
+    },
+    {
+      "trial": 3,
+      "command": [
+        "lua",
+        "tests/restock_panel_timer_ownership.lua"
+      ],
+      "exit": 0,
+      "wallSeconds": 0.023,
+      "stdout": "RESTOCK_TIMER checks=84 failures=0\n",
+      "stderr": ""
+    },
+    {
+      "trial": 3,
+      "command": [
+        "lua",
+        "Stress test doc/roadmap-fixes/modifier_bus.lua.txt"
+      ],
+      "exit": 0,
+      "wallSeconds": 2.1189,
+      "stdout": "RESULT client=live initial_combat=false storm_physical_edges=1052673 storm_events=1085442 matrix_cases=384 max_timers=0 max_notices_per_frame=1 frames_created_during_storm=0\nRESULT client=live initial_combat=true storm_physical_edges=1052673 storm_events=1085442 matrix_cases=384 max_timers=0 max_notices_per_frame=1 frames_created_during_storm=0\nRESULT client=forever initial_combat=false storm_physical_edges=1052673 storm_events=1085442 matrix_cases=384 max_timers=0 max_notices_per_frame=1 frames_created_during_storm=0\nRESULT client=forever initial_combat=true storm_physical_edges=1052673 storm_events=1085442 matrix_cases=384 max_timers=0 max_notices_per_frame=1 frames_created_during_storm=0\nRESULT client=classic_era initial_combat=false storm_physical_edges=1052673 storm_events=1085442 matrix_cases=384 max_timers=0 max_notices_per_frame=1 frames_created_during_storm=0\nRESULT client=classic_era initial_combat=true storm_physical_edges=1052673 storm_events=1085442 matrix_cases=384 max_timers=0 max_notices_per_frame=1 frames_created_during_storm=0\nRESULT client=classic_anniversary initial_combat=false storm_physical_edges=1052673 storm_events=1085442 matrix_cases=384 max_timers=0 max_notices_per_frame=1 frames_created_during_storm=0\nRESULT client=classic_anniversary initial_combat=true storm_physical_edges=1052673 storm_events=1085442 matrix_cases=384 max_timers=0 max_notices_per_frame=1 frames_created_during_storm=0\nRESULT client=classic initial_combat=false storm_physical_edges=1052673 storm_events=1085442 matrix_cases=384 max_timers=0 max_notices_per_frame=1 frames_created_during_storm=0\nRESULT client=classic initial_combat=true storm_physical_edges=1052673 storm_events=1085442 matrix_cases=384 max_timers=0 max_notices_per_frame=1 frames_created_during_storm=0\nOBSERVATION client=live mixed_frames=1200 simulated_seconds=10 full_context_deliveries_during_storm=1200 deliveries_after_quiet=0 max_latency=ONE_MODELED_FRAME\nOBSERVATION client=forever mixed_frames=1200 simulated_seconds=10 full_context_deliveries_during_storm=1200 deliveries_after_quiet=0 max_latency=ONE_MODELED_FRAME\nOBSERVATION client=classic_era mixed_frames=1200 simulated_seconds=10 full_context_deliveries_during_storm=1200 deliveries_after_quiet=0 max_latency=ONE_MODELED_FRAME\nOBSERVATION client=classic_anniversary mixed_frames=1200 simulated_seconds=10 full_context_deliveries_during_storm=1200 deliveries_after_quiet=0 max_latency=ONE_MODELED_FRAME\nOBSERVATION client=classic mixed_frames=1200 simulated_seconds=10 full_context_deliveries_during_storm=1200 deliveries_after_quiet=0 max_latency=ONE_MODELED_FRAME\nMODIFIER BUS SUMMARY checks=96850 physical_edges=10544220 modifier_events=10883400 ordered_transition_cases=3840 bounded_mixed_cases=5 native_VM_input_FPS=NOT_RUN\n",
+      "stderr": ""
+    },
+    {
+      "trial": 3,
+      "command": [
+        "lua",
+        "tests/context_program_face_stress.lua"
+      ],
+      "exit": 0,
+      "wallSeconds": 0.9558,
+      "stdout": "CONTEXT_PROGRAM client=live frames=1200 same_slot=1 paints=1201\nCONTEXT_PROGRAM client=forever frames=1200 same_slot=1 paints=1201\nCONTEXT_PROGRAM client=classic_era frames=1200 same_slot=1 paints=1201\nCONTEXT_PROGRAM client=classic_anniversary frames=1200 same_slot=1 paints=1201\nCONTEXT_PROGRAM SUMMARY checks=14412 failures=0 native_VM_FPS=NOT_RUN\n",
+      "stderr": ""
+    }
+  ],
+  "baselineRejections": [
+    {
+      "command": [
+        "lua",
+        "tests/range_usability_stress.lua",
+        "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\07\\01a1b5b8-1789-7050-b49c-88d0a742e874\\roadmap-fixes-20261107T184559Z\\baseline"
+      ],
+      "exit": 1,
+      "stdout": "FAIL live same-frame invalidation refreshes memo\nFAIL live shared bar memo refreshes same frame\nFAIL live ordinary self macro ignores stale hovercast hub unit\nFAIL live native target range payload does not overwrite hovercast range\nFAIL live new blocked item does not inherit previous action range\nFAIL live new target does not inherit blocked previous-target range\nFAIL live new unknown spell does not inherit dark state\nFAIL live world rapid final bar state\nFAIL live world rapid final bar state\nFAIL live world rapid final bar state\nFAIL live world rapid final bar state\nFAIL live world rapid final bar state\nFAIL live world rapid final bar state\nFAIL live world rapid final bar state\nFAIL live world rapid final bar state\nFAIL live world rapid final bar state\nFAIL live world rapid final bar state\nFAIL live world rapid final bar state\nFAIL live world rapid final bar state\nFAIL live world rapid final bar state\nFAIL live world rapid final bar state\nFAIL live world rapid final bar state\nFAIL live world rapid final bar state\nFAIL live world rapid final bar state\nFAIL live world rapid final bar state\nFAIL live world rapid final bar state\nFAIL live world rapid final bar state\nFAIL live world rapid final bar state\nFAIL live world rapid final bar state\nFAIL live world rapid final bar state\n",
+      "stderr": "lua: tests/range_usability_stress.lua:156: range ticker must stay armed during visible hop stream\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/range_usability_stress.lua:156: in main chunk\n\t[C]: in ?\n",
+      "expectedFailureMarker": "same-frame invalidation refreshes memo",
+      "markerFound": true
+    },
+    {
+      "command": [
+        "lua",
+        "tests/restock_panel_timer_ownership.lua",
+        "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\07\\01a1b5b8-1789-7050-b49c-88d0a742e874\\roadmap-fixes-20261107T184559Z\\baseline"
+      ],
+      "exit": 1,
+      "stdout": "FAIL live full refresh dominates later partial context\nFAIL live hide/reopen rejects obsolete callback even for same widget\nFAIL live replacement widget rejects old owner\nFAIL live hidden panel suppresses heavy work\nFAIL live one scheduled operation for burst 10\nFAIL live bounded callback delivery\nFAIL live merged first and last dirty item\nFAIL live hide/reopen rejects obsolete callback even for same widget\nFAIL live replacement widget rejects old owner\nFAIL live hidden panel suppresses heavy work\nFAIL live one scheduled operation for burst 1000\nFAIL live bounded callback delivery\nFAIL live merged first and last dirty item\nFAIL live hide/reopen rejects obsolete callback even for same widget\nFAIL live replacement widget rejects old owner\nFAIL live hidden panel suppresses heavy work\nFAIL forever full refresh dominates later partial context\nFAIL forever hide/reopen rejects obsolete callback even for same widget\nFAIL forever replacement widget rejects old owner\nFAIL forever hidden panel suppresses heavy work\nFAIL forever one scheduled operation for burst 10\nFAIL forever bounded callback delivery\nFAIL forever merged first and last dirty item\nFAIL forever hide/reopen rejects obsolete callback even for same widget\nFAIL forever replacement widget rejects old owner\nFAIL forever hidden panel suppresses heavy work\nFAIL forever one scheduled operation for burst 1000\nFAIL forever bounded callback delivery\nFAIL forever merged first and last dirty item\nFAIL forever hide/reopen rejects obsolete callback even for same widget\nFAIL forever replacement widget rejects old owner\nFAIL forever hidden panel suppresses heavy work\nFAIL classic_era full refresh dominates later partial context\nFAIL classic_era hide/reopen rejects obsolete callback even for same widget\nFAIL classic_era replacement widget rejects old owner\nFAIL classic_era hidden panel suppresses heavy work\nFAIL classic_era one scheduled operation for burst 10\nFAIL classic_era bounded callback delivery\nFAIL classic_era merged first and last dirty item\nFAIL classic_era hide/reopen rejects obsolete callback even for same widget\nFAIL classic_era replacement widget rejects old owner\nFAIL classic_era hidden panel suppresses heavy work\nFAIL classic_era one scheduled operation for burst 1000\nFAIL classic_era bounded callback delivery\nFAIL classic_era merged first and last dirty item\nFAIL classic_era hide/reopen rejects obsolete callback even for same widget\nFAIL classic_era replacement widget rejects old owner\nFAIL classic_era hidden panel suppresses heavy work\nFAIL classic_anniversary full refresh dominates later partial context\nFAIL classic_anniversary hide/reopen rejects obsolete callback even for same widget\nFAIL classic_anniversary replacement widget rejects old owner\nFAIL classic_anniversary hidden panel suppresses heavy work\nFAIL classic_anniversary one scheduled operation for burst 10\nFAIL classic_anniversary bounded callback delivery\nFAIL classic_anniversary merged first and last dirty item\nFAIL classic_anniversary hide/reopen rejects obsolete callback even for same widget\nFAIL classic_anniversary replacement widget rejects old owner\nFAIL classic_anniversary hidden panel suppresses heavy work\nFAIL classic_anniversary one scheduled operation for burst 1000\nFAIL classic_anniversary bounded callback delivery\nFAIL classic_anniversary merged first and last dirty item\nFAIL classic_anniversary hide/reopen rejects obsolete callback even for same widget\nFAIL classic_anniversary replacement widget rejects old owner\nFAIL classic_anniversary hidden panel suppresses heavy work\nRESTOCK_TIMER checks=84 failures=64\n",
+      "stderr": "",
+      "expectedFailureMarker": "one scheduled operation for burst 10",
+      "markerFound": true
+    },
+    {
+      "command": [
+        "lua",
+        "tests/context_program_face_stress.lua",
+        "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\07\\01a1b5b8-1789-7050-b49c-88d0a742e874\\roadmap-fixes-20261107T184559Z\\baseline"
+      ],
+      "exit": 1,
+      "stdout": "FAIL live indexed same-slot face receives final mod/combat/mouseover truth every frame\nFAIL live changed identity paints once through actual subscriber route\nFAIL live indexed same-slot face receives final mod/combat/mouseover truth every frame\nFAIL live changed identity paints once through actual subscriber route\nFAIL live indexed same-slot face receives final mod/combat/mouseover truth every frame\nFAIL live changed identity paints once through actual subscriber route\nFAIL live indexed same-slot face receives final mod/combat/mouseover truth every frame\nFAIL live changed identity paints once through actual subscriber route\nFAIL live indexed same-slot face receives final mod/combat/mouseover truth every frame\nFAIL live changed identity paints once through actual subscriber route\nFAIL live indexed same-slot face receives final mod/combat/mouseover truth every frame\nCONTEXT_PROGRAM client=live frames=1200 same_slot=1 paints=1\nCONTEXT_PROGRAM client=forever frames=1200 same_slot=1 paints=1\nCONTEXT_PROGRAM client=classic_era frames=1200 same_slot=1 paints=1\nCONTEXT_PROGRAM client=classic_anniversary frames=1200 same_slot=1 paints=1\nCONTEXT_PROGRAM SUMMARY checks=14412 failures=9296 native_VM_FPS=NOT_RUN\n",
+      "stderr": "",
+      "expectedFailureMarker": "indexed same-slot face receives final",
+      "markerFound": true
+    }
+  ]
+}

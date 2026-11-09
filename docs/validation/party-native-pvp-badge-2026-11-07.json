@@ -1,0 +1,93 @@
+{
+  "changeID": "PARTY-NATIVE-PVP-BADGE-20261107",
+  "requirement": "REQ-RF-76",
+  "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\06\\01a1b0ac-547f-7972-8df9-fa26882e0e03\\party-pvp-badge-20261107T151814Z\\checkpoint.json",
+  "existingRecovery": "Raid-rewrite-20261107T082357Z external complete history/settings retained; no game/WTF/profiler writes",
+  "after": {
+    "UnitFrames/FluxUnitFrames_Party.lua": "cbbb33f733af41322e13ed576dc691058c8a03a0cdcb65fe7b0f36f6064d67b8",
+    "UnitFrames/FluxUnitFrames_Shared.lua": "78c236391a5f0dba71fa2e4dd6fd4a0894384eb404cac4556094939d9053c323",
+    "tests/raid_party_frames.lua": "782653db576b29b4e52c57c92c785c39547931de442d1246851a90a86f9b0f12"
+  },
+  "sources": {
+    "live": {
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "playerXMLBlob": "f2e106ab9da91fb7b32cfa2bf067c69aff6ca31e",
+      "path": "Interface/AddOns/Blizzard_UnitFrame/Mainline/PlayerFrame.xml"
+    },
+    "forever": {
+      "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "playerXMLBlob": "410ca1307eba91401aacbc64e5389426d870cfa7",
+      "path": "Interface/AddOns/Blizzard_UnitFrame/Mainline/PlayerFrame.xml"
+    },
+    "classic": {
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "playerXMLBlob": "c48b3e6e8dea4059dea6847f522c23a3023e3d0c",
+      "path": "Interface/AddOns/Blizzard_UnitFrame/Classic/PlayerFrame.xml"
+    },
+    "classic_era": {
+      "commit": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "playerXMLBlob": "c48b3e6e8dea4059dea6847f522c23a3023e3d0c",
+      "path": "Interface/AddOns/Blizzard_UnitFrame/Classic/PlayerFrame.xml"
+    },
+    "classic_anniversary": {
+      "commit": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "playerXMLBlob": "f03ed39542ccf4e61f717c845625c1c2aff63e0d",
+      "path": "Interface/AddOns/Blizzard_UnitFrame/Classic/PlayerFrame.xml"
+    },
+    "nativeRenderers": {
+      "live": "e4d36ab0dca70d28e56d38edaea16aad20a34e42",
+      "forever": "60d5da8b429c3ac397a39fa576ab939b1a6b08ab",
+      "path": "Interface/AddOns/Blizzard_UnitFrame/Shared/UnitFrameUtil.lua"
+    },
+    "timerAPI": {
+      "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "blob": "acc0ec3d9eaae7854a8e688bddde0850d0623274",
+      "contract": "GetPVPTimer has no unit argument; native player frame uses it only for player countdown."
+    }
+  },
+  "requirements": [
+    "Native full-size party PvP badge behind the level; timer text anchor below level",
+    "User chooses Leave it empty for other members when client does not expose countdown; no status substitute or fabricated clock"
+  ],
+  "implementation": [
+    "Badge layer owner+20 behind level+80 and auras+90; noninteractive frame; native crest extends below level top",
+    "Modern UnitFrameUtil.UpdateUnitPvPIndicator receives owned icon/prestige textures and actual party token, handling private PvP identity inside the client secure renderer",
+    "Prestige portrait50x52 and badge30x30 from native player XML; faction atlas uses natural size; Classic fallback full64x64 UI-PVP faction/FFA texture",
+    "Shared header skips party PvP square packing and secret visibility/width reads; existing other status icons retained",
+    "Existing pvpTimer is anchored under level but hidden for party tokens; GetPVPTimer has no unit argument and is never used as another member countdown",
+    "Layout-only refresh does not repeat native PvP data rendering; existing PvP/outer-frame paint cadence retained"
+  ],
+  "tests": {
+    "party": 905,
+    "indicator": 59,
+    "restrictedContracts": 78,
+    "identity": 206,
+    "whole": "232/232 scripts PASS; 896 syntax files/0 failures.",
+    "failures": [],
+    "corpusDrift": []
+  },
+  "resources": "One badge layer and two prestige textures per member (same in pooled preview); existing icon/timer reused. No new timer/ticker/event subscription or global hook. No native CPU/FPS claim.",
+  "nativePending": "Actual client badge artwork/placement/flag changes/secret delegate operation/combat/taint/FPS. Mock delegate tests verify routing/ownership, not native secure execution.",
+  "copies": [
+    {
+      "client": "_retail_",
+      "mismatches": []
+    },
+    {
+      "client": "_forever_",
+      "mismatches": []
+    },
+    {
+      "client": "_classic_",
+      "mismatches": []
+    },
+    {
+      "client": "_classic_era_",
+      "mismatches": []
+    },
+    {
+      "client": "_anniversary_",
+      "mismatches": []
+    }
+  ]
+}

@@ -1,0 +1,152 @@
+{
+  "changeID": "COMBAT-NUMERIC-TINT-CAPABILITY-20261108",
+  "requirement": "REQ-RF-96",
+  "result": "Requested universal restricted-combat numeric recoloring remains unavailable through the verified exposed APIs; no runtime fix claimed",
+  "clients": [
+    {
+      "client": "live",
+      "ref": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "version": "12.1.5 (70783)"
+    },
+    {
+      "client": "forever",
+      "ref": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "version": "1.60.1 (70862)"
+    },
+    {
+      "client": "classic",
+      "ref": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "version": "5.5.4 (70631)"
+    },
+    {
+      "client": "classic_era",
+      "ref": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "version": "1.15.9 (70576)"
+    },
+    {
+      "client": "classic_anniversary",
+      "ref": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "version": "2.5.6 (70577)"
+    }
+  ],
+  "nativeSources": [
+    {
+      "client": "live",
+      "ref": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_AuraContainer/Blizzard_CustomAuraButton.lua",
+      "blob": "9e373b9e44e352e77771eef30f058217151dbdb7",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_AuraContainer/Blizzard_CustomAuraButton.lua"
+    },
+    {
+      "client": "live",
+      "ref": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_AuraContainer/Blizzard_AuraContainerShared.lua",
+      "blob": "380e34c925445dbd0dc48ae3d67febf7a78de3da",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_AuraContainer/Blizzard_AuraContainerShared.lua"
+    },
+    {
+      "client": "live",
+      "ref": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_AuraContainer/Blizzard_AuraContainerUtil.lua",
+      "blob": "23acba9cee7f6917df343dd4ccfef3a8a9c9729d",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_AuraContainer/Blizzard_AuraContainerUtil.lua"
+    },
+    {
+      "client": "live",
+      "ref": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/AuraContainerUtilDocumentation.lua",
+      "blob": "a28788fd0e14df2ecbb77e9170f099ac4b6a8a52",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_APIDocumentationGenerated/AuraContainerUtilDocumentation.lua"
+    },
+    {
+      "client": "live",
+      "ref": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/UnitAuraDocumentation.lua",
+      "blob": "16ed37f4a4d187e8656c8b85b07db943e70d774d",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_APIDocumentationGenerated/UnitAuraDocumentation.lua"
+    },
+    {
+      "client": "forever",
+      "ref": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "path": "Interface/AddOns/Blizzard_AuraContainer/Blizzard_CustomAuraButton.lua",
+      "blob": "9e373b9e44e352e77771eef30f058217151dbdb7",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_AuraContainer/Blizzard_CustomAuraButton.lua"
+    },
+    {
+      "client": "forever",
+      "ref": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "path": "Interface/AddOns/Blizzard_AuraContainer/Blizzard_AuraContainerShared.lua",
+      "blob": "380e34c925445dbd0dc48ae3d67febf7a78de3da",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_AuraContainer/Blizzard_AuraContainerShared.lua"
+    },
+    {
+      "client": "forever",
+      "ref": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "path": "Interface/AddOns/Blizzard_AuraContainer/Blizzard_AuraContainerUtil.lua",
+      "blob": "23acba9cee7f6917df343dd4ccfef3a8a9c9729d",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_AuraContainer/Blizzard_AuraContainerUtil.lua"
+    },
+    {
+      "client": "forever",
+      "ref": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/AuraContainerUtilDocumentation.lua",
+      "blob": "a28788fd0e14df2ecbb77e9170f099ac4b6a8a52",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_APIDocumentationGenerated/AuraContainerUtilDocumentation.lua"
+    },
+    {
+      "client": "forever",
+      "ref": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/UnitAuraDocumentation.lua",
+      "blob": "a4535a55bb32a9106a40f2a84753c4c0bf2d6494",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_APIDocumentationGenerated/UnitAuraDocumentation.lua"
+    },
+    {
+      "client": "classic",
+      "ref": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/UnitAuraDocumentation.lua",
+      "blob": "3ea8c147b890ca43a1d48985de5b4b80898b70e4",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_APIDocumentationGenerated/UnitAuraDocumentation.lua"
+    },
+    {
+      "client": "classic_era",
+      "ref": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/UnitAuraDocumentation.lua",
+      "blob": "3ea8c147b890ca43a1d48985de5b4b80898b70e4",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_APIDocumentationGenerated/UnitAuraDocumentation.lua"
+    },
+    {
+      "client": "classic_anniversary",
+      "ref": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/UnitAuraDocumentation.lua",
+      "blob": "3ea8c147b890ca43a1d48985de5b4b80898b70e4",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_APIDocumentationGenerated/UnitAuraDocumentation.lua"
+    }
+  ],
+  "sourceExecution": {
+    "nativeProbe": {
+      "exit": 0,
+      "output": "Native combat numeric-text capability: 106 checks; descendant Texture accepts type color, FontString rejected; type-text binding replaces numbers; no generic numeric color binding verified\n"
+    },
+    "existingRegression": {
+      "exit": 0,
+      "output": "Friendly debuff tint: 13230 checks PASS across five clients/current and legacy aura providers; native game checks pending\n"
+    },
+    "runtimeUnchanged": {
+      "UnitFrames/FluxUnitFrames_DebuffTint.lua": "e302df314b366274f33c016ad6f86c6fc42e8269e46dcf986b924870592c76c0",
+      "UnitFrames/FluxUnitFrames_Shared.lua": "78c8bb770b8ea9b53ed7dbd512379d7a0f328fe6e2a5a1fe067690c70d63a1ca",
+      "UnitFrames/FluxUnitFrames_Party.lua": "0733dd73ff6daf71ae48df78a432e37634f34c4cbf3bb9302d50709ecf303b47"
+    }
+  },
+  "artifactRoot": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\06\\01a1b0ac-547f-7972-8df9-fa26882e0e03\\combat-text-capability-20261108T195927Z",
+  "findings": [
+    "Current Retail/Forever AddDispelTypeTexture accepts descendant Texture objects only; actual object-type validator rejects FontString",
+    "Private aura children use DenyTaintedAccessWhenAurasAreSecret. Existing numeric labels cannot be registered as an external color sink or read private texture state.",
+    "SetDispelTypeText displays a symbol/custom static label and overwrites/hides the supplied text. It is not a binding for arbitrary live HP/resource font color.",
+    "UnitAura enumeration and GetAuraDispelTypeColor require UnitAuraAccess. Secret colors do not grant permission to obtain an aura instance or inspect the private object.",
+    "Player, target, focus and party1-4 share the same verified native widget contracts. Unrestricted combat data already uses public numeric type colors; private-type combat resets numeric text to its normal color.",
+    "No new cache, polling, taint/provenance wrapper, type spoofing, private child reads, hidden-color inference or runtime changes added. Existing strict checkbox/type filtering, unit isolation and roster optimization retained."
+  ],
+  "validationScope": "106 assertions execute pinned native type validator and ApplyDispelTypeText across seven unit tokens/two restricted client source versions with owned mock FontStrings.13230existing public/restricted lifecycle checks pass. No native game/profiler/input used; no new full-suite result claimed.",
+  "pending": "All-client restricted-combat numeric color requirement remains unimplemented. Revisit when a supported native font-color display sink or equivalent documented binding is exposed.",
+  "documentationValidation": "PASS:956classified sources;600TOC/XML reachable;415setting definitions;24SavedVariables;15502local links; source inventory/evidence current"
+}

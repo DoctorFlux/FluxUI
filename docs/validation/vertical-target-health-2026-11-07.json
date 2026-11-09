@@ -1,0 +1,122 @@
+{
+  "changeID": "VERTICAL-TARGET-HEALTH-20261107",
+  "requirement": "REQ-RF-86",
+  "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\06\\01a1b0ac-547f-7972-8df9-fa26882e0e03\\vertical-target-health-20261107T180151Z\\checkpoint.json",
+  "before": {
+    "UnitFrames/FluxHealthLossOverlay.lua": "586e382d9b342983f134a4509721e03a5cd6f3a803866f06b66bd0207dc5153a",
+    "UnitFrames/FluxUnitFrames_Shared.lua": "57300a94442154365bde9c40dd18d108c8b645ce94266871a6e3136d6807861a",
+    "UnitFrames/FluxUnitFrames_Party.lua": "0eb7baf0e7ba03f256b50898a197ab0d80262e3ecf3cab1506cc114f26c9452f",
+    "UnitFrames/FluxUnitFrames_FocusTarget.lua": "69a5e9d4ff2208c970c63763a555c6e5d684868f358ba972913da4a36a02c666",
+    "UnitFrames/FluxUnitFrames_PetTarget.lua": "49dcc47fc6d6f93073c8f06d182f8a981657573e5bbeece29b6434276099bb7c",
+    "tests/raid_party_frames.lua": "12925d10fd3cf68384798e746b7a9c3cc5e5c8c97fef2c6b548d79dbc1634e22",
+    "tests/unit_overlay_secret_identity.lua": "8c26f1773cfea140b4f061da46fbec16e0cfe4b5f63339135bb266d9cbd15691"
+  },
+  "after": {
+    "UnitFrames/FluxHealthLossOverlay.lua": "cb8731379edb3f010b4b6c602974e96bf98ef767bb84528faf611a7fcf88defc",
+    "UnitFrames/FluxUnitFrames_Shared.lua": "0cbe380abe20791c0566b918eacb3d57a58255a7a956a510fe8e26de2e72a4e2",
+    "UnitFrames/FluxUnitFrames_Party.lua": "65fe5516a327727121f4b21a6bffafe96b6fec3de3cff7f7df119d5305c86efd",
+    "UnitFrames/FluxUnitFrames_FocusTarget.lua": "04554400ec9ae6aa9fd282d7bfda12bff085c4f4d78da6f74ed6fee69c84297a",
+    "UnitFrames/FluxUnitFrames_PetTarget.lua": "b6b2bd919b5797632ad25f0bd65e01d0777516bf5080d8309e837165b78a1061",
+    "tests/raid_party_frames.lua": "ee9d0543e1db56176f193dc497543a8c63f2dd796590fe5a448d0d1ac381f6b9",
+    "tests/unit_vertical_target_health.lua": "9a1ec9831ae215dcbf29efd005b5af423fb9b477f0dfdb5375890243003bc35b"
+  },
+  "sources": [
+    {
+      "client": "live",
+      "sha": "b0c5302b4770a59e7910ce9fc131a3af0b666f03",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_UnitFrame/Mainline/UnitFrame.lua",
+      "animationLine": 659,
+      "cadence": ".25s; .1s start; .05s pause/postpone"
+    },
+    {
+      "client": "forever",
+      "sha": "a2f83aa0770c947555a305166611c097ef75b3a8",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_UnitFrame/Mainline/UnitFrame.lua",
+      "animationLine": 666,
+      "cadence": ".25s; .1s start; .05s pause/postpone"
+    },
+    {
+      "client": "classic",
+      "sha": "2eed0ece999e00d26f6ae80dce06cc80d0426e2d",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_UnitFrame/Classic/UnitFrame.lua",
+      "animationLine": 582,
+      "cadence": ".25s; .1s start; .05s pause/postpone"
+    },
+    {
+      "client": "classic_era",
+      "sha": "2eed0ece999e00d26f6ae80dce06cc80d0426e2d",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_UnitFrame/Classic/UnitFrame.lua",
+      "animationLine": 582,
+      "cadence": ".25s; .1s start; .05s pause/postpone"
+    },
+    {
+      "client": "classic_anniversary",
+      "sha": "4312737b49f7608a1b26a5d0f4442c2554128378",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_UnitFrame/Classic/UnitFrame.lua",
+      "animationLine": 582,
+      "cadence": ".25s; .1s start; .05s pause/postpone"
+    }
+  ],
+  "implementation": [
+    "Party/focus/pet target strips share HP sinks, rotated fill, common insets, status/class colors and loss lifecycle. No resource bar or target layout setting changed. Trough/loss/fill levels are explicit above the target frame background.",
+    "Readable damage uses height and bottom anchors; repeated hits retain the trailing edge. Clear on healing, max-health change, empty target, resize, hide or identity replacement. Horizontal HUD path preserved; Classic repeated-hit edge correction shared.",
+    "Restricted health/max/GUID/status samples never enter arithmetic or boolean tests. Existing native SetValue catch-up supports vertical orientation; generations cancel stale callbacks on rebind/hide/disable.",
+    "Effects precreated outside combat even when disabled; existing secure visibility, Flux hover bindings and option gates retained. Target geometry defers during combat. Focus horizontal fallback remains horizontal on noncompact presentation."
+  ],
+  "tests": {
+    "verticalTargetHealth": 1243,
+    "partyFocus": 995,
+    "publicGeometryWriters": 80,
+    "secretOverlayIdentity": 46,
+    "identityFeedback": 206,
+    "scriptsPass": 236,
+    "scriptsFail": 0,
+    "syntaxFiles": 900,
+    "syntaxFailures": [],
+    "ownedManifestDrift": [],
+    "mutationRejections": [
+      {
+        "name": "wrong-axis",
+        "rejected": true,
+        "firstError": "lua: tests/unit_vertical_target_health.lua:69: attempt to index a nil value (local 'loss')"
+      },
+      {
+        "name": "lost-repeated-hit-edge",
+        "rejected": true,
+        "firstError": "lua: tests/unit_vertical_target_health.lua:7: in-flight hit resumes from edge, not gap size"
+      },
+      {
+        "name": "no-hide-reset",
+        "rejected": true,
+        "firstError": "lua: tests/unit_vertical_target_health.lua:7: hide cancels animation"
+      }
+    ],
+    "baselineRegression": "The before-checkpoint overlay is rejected: missing prepared vertical loss bar."
+  },
+  "fullReport": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\06\\01a1b0ac-547f-7972-8df9-fa26882e0e03\\vertical-target-health-20261107T180151Z\\release-full.json",
+  "resources": "Simple vertical strip prewarms one trough, one native loss StatusBar, one red-gap host/texture and one parked driver; reuses existing focus trough/loss when present. One hide cleanup hook per strip. No ticker, settings write, combat allocation or idle animation loop. Existing delayed native catch-up cadence retained; added target status events are unit filtered. No native CPU/FPS claim.",
+  "nativePending": "Real client rendering, restricted/protected VM, hover input, taint, combat target changes and performance require in-game validation. Five client fixtures do not establish those results.",
+  "recovery": "Fresh verified external history bundle and before-source copies;45 read-only settings metadata entries and prior complete private/source recovery retained. No foreground/game/WTF/profiler write, manual sync, branch or push.",
+  "copies": [
+    {
+      "client": "_retail_",
+      "mismatches": []
+    },
+    {
+      "client": "_forever_",
+      "mismatches": []
+    },
+    {
+      "client": "_classic_",
+      "mismatches": []
+    },
+    {
+      "client": "_classic_era_",
+      "mismatches": []
+    },
+    {
+      "client": "_anniversary_",
+      "mismatches": []
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "capturedUTC": "2026-11-07T11:34:46.388466+00:00",
+  "origin": "Observed concurrent source changes; no audit write issued to these paths",
+  "files": [
+    {
+      "path": "ExtraButtonSystem/Engine/Paint.lua",
+      "sha256Raw": "afb48689d07cd9b315894e984c0217a524e55ed056319d374e58c24c2038ffd4",
+      "sha256LF": "afb48689d07cd9b315894e984c0217a524e55ed056319d374e58c24c2038ffd4",
+      "lastWriteUTC": "2026-11-07T11:28:43.822219+00:00"
+    },
+    {
+      "path": "tests/utility_mixed_faces.lua",
+      "sha256Raw": "115a564869d1c847cd646493d32dad09c6fb8748a574620fd3806b79470fb35b",
+      "sha256LF": "115a564869d1c847cd646493d32dad09c6fb8748a574620fd3806b79470fb35b",
+      "lastWriteUTC": "2026-11-07T11:29:20.203160+00:00"
+    }
+  ]
+}

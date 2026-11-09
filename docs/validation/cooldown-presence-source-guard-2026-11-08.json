@@ -1,0 +1,14 @@
+{
+  "fullReport": "cooldown-presence-full-2026-11-08.json",
+  "normalization": "CRLF to LF; all other bytes preserved",
+  "fullManifestCurrent": false,
+  "drift": [
+    "StatusBars/FluxInfoFrame.lua"
+  ],
+  "addedAfterCapture": [
+    "StatusBars/FluxInfoFrameStats.lua",
+    "tests/info_all_stats.lua"
+  ],
+  "ownedSourceCurrent": true,
+  "unrelatedWork": "Newer parallel FluxInfoFrame/refactor work preserved; current FluxInfoFrame234focused checks PASS. Full capture remains evidence for its exact recorded tree."
+}

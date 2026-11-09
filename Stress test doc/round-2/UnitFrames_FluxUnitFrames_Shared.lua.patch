@@ -1,0 +1,31 @@
+--- baseline/UnitFrames/FluxUnitFrames_Shared.lua
++++ current/UnitFrames/FluxUnitFrames_Shared.lua
+@@ -5992,7 +5992,7 @@
+     pushStatus(self.mainAssistIcon)
+     pushStatus(self.masterLooterIcon)
+ 
+-    local hasPvp = self.pvpIcon and self.pvpIcon:IsShown()
++    local hasPvp = not self._fluxPartyMember and self.pvpIcon and self.pvpIcon:IsShown()
+     if not hasPvp and #statusChain == 0 then
+         self._fluxStatusClusterWidth = nil
+         self._fluxStatusIconsOnRight = nil
+@@ -6113,7 +6113,7 @@
+             sidePad = sidePad + SN(self.specIcon:GetWidth(), 0)
+         end
+     end
+-    if self.pvpIcon and self.pvpIcon:IsShown() then
++    if not self._fluxPartyMember and self.pvpIcon and self.pvpIcon:IsShown() then
+         sidePad = sidePad + SN(self.pvpIcon:GetWidth(), 0) + 8
+     end
+     local maxWidth = math.max(24, w - sidePad)
+@@ -6691,7 +6691,9 @@
+     -- Update PvP/WarMode icon + group status icons (leader / assist / MT / MA / ML)
+     -- Laid out opposite the level/type corner so they never cover mob metadata.
+     if self.pvpIcon then
+-        if self.unit == "targettarget" or self.unit == "focustarget" or self.unit == "pet"
++        if self._fluxPartyMember and ns.PartyFrames and ns.PartyFrames.UpdatePvpBadge then
++            ns.PartyFrames.UpdatePvpBadge(self)
++        elseif self.unit == "targettarget" or self.unit == "focustarget" or self.unit == "pet"
+             or (FluxUnitFrames_ShouldShowPvp and not FluxUnitFrames_ShouldShowPvp(self.unit)) then
+             self.pvpIcon:Hide()
+             if self.pvpTimer then self.pvpTimer:Hide() end

@@ -1,0 +1,160 @@
+{
+  "changeID": "FRIENDLY-DISPEL-ISOLATION-20261108",
+  "requirement": "REQ-RF-93",
+  "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\06\\01a1b0ac-547f-7972-8df9-fa26882e0e03\\friendly-dispel-isolation-20261108T104913Z\\checkpoint.json",
+  "before": {
+    "UnitFrames/FluxUnitFrames_DebuffTint.lua": "abc5c2e858778bf1f1afe86234d056b2826ac61715a6a7f71e553838c49d87dd",
+    "tests/friendly_debuff_tint.lua": "fdfaf98984d8fcb698a34885b4b127567ef0a6c01b6755862131d421a838fd32"
+  },
+  "after": {
+    "UnitFrames/FluxUnitFrames_DebuffTint.lua": "2b08b4bf99e009d6bc292833fc4cd42dccda7848e79e753c7d447b22f9b7c8db",
+    "tests/friendly_debuff_tint.lua": "57564104adec972bb0a189c5be81660729d11b4fca7e57fc728e87ccf8d8d704"
+  },
+  "priorEvidence": "docs/validation/friendly-debuff-tint-2026-11-08.json",
+  "nativeSources": [
+    {
+      "client": "live",
+      "ref": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_AuraContainer/Blizzard_AuraContainer.lua",
+      "blob": "10cb45503c3f38435dcff7c3c6f24510a21fe69c",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_AuraContainer/Blizzard_AuraContainer.lua"
+    },
+    {
+      "client": "forever",
+      "ref": "eac30af597e5aaa43a60f6675ef5fdcea100375f",
+      "path": "Interface/AddOns/Blizzard_AuraContainer/Blizzard_AuraContainer.lua",
+      "blob": "10cb45503c3f38435dcff7c3c6f24510a21fe69c",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/eac30af597e5aaa43a60f6675ef5fdcea100375f/Interface/AddOns/Blizzard_AuraContainer/Blizzard_AuraContainer.lua"
+    }
+  ],
+  "sourceScope": [
+    {
+      "client": "live",
+      "replayedSetUnitMatchesPin": true,
+      "eventDispatcherMatchesPin": true,
+      "staticEventsExcludeTargetFocus": true,
+      "staticSourceBodyIdentical": false
+    },
+    {
+      "client": "forever",
+      "replayedSetUnitMatchesPin": true,
+      "eventDispatcherMatchesPin": true,
+      "staticEventsExcludeTargetFocus": true,
+      "staticSourceBodyIdentical": true
+    }
+  ],
+  "fixes": [
+    "Remove ordinary HARMFUL fallback entirely; only HARMFUL|RAID can tint live borders or numbers, regardless of whether ordinary debuff icons are enabled",
+    "No shared strict/color state; per-frame owner and per-unit public lookup",
+    "Refresh native public owners explicitly on target/focus changes; native SetUnit skips unchanged token and native owners do not register identity events",
+    "Refresh roster/world/show/options/native-restriction transitions; route UNIT events only to same unit or verified UnitIsUnit alias",
+    "Keep unknown types normal, restrict to friendly enabled frames, preserve backdrops/fills and public-only numeric tint"
+  ],
+  "tests": {
+    "focused": {
+      "path": "tests/friendly_debuff_tint.lua",
+      "exit": 0,
+      "wallSeconds": 0.0633,
+      "output": "Friendly debuff tint: 9686 checks PASS across five clients/current and legacy aura providers; native game checks pending\n"
+    },
+    "full": {
+      "pass": 255,
+      "fail": 0,
+      "syntaxFiles": 920,
+      "syntaxFailures": []
+    },
+    "sourceGuard": "Owned raw hashes match candidate and LF-normalized Lua hashes match full manifest",
+    "controls": [
+      {
+        "variant": "baseline",
+        "rejected": true,
+        "output": "lua: tests/friendly_debuff_tint.lua:7: one native dispellable slot per chrome part\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/friendly_debuff_tint.lua:7: in local 'check'\n\ttests/friendly_debuff_tint.lua:186: in main chunk\n\t[C]: in ?\n",
+        "sha256": "abc5c2e858778bf1f1afe86234d056b2826ac61715a6a7f71e553838c49d87dd"
+      },
+      {
+        "variant": "skip-native-identity-refresh",
+        "rejected": true,
+        "output": "lua: tests/friendly_debuff_tint.lua:7: ordinary debuff does not color native slot\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/friendly_debuff_tint.lua:7: in local 'check'\n\ttests/friendly_debuff_tint.lua:201: in main chunk\n\t[C]: in ?\n",
+        "sha256": "73a98a76465d8d697c7b8b6c9646c4802aa3de7ab9da4647bba57859638d80ac"
+      },
+      {
+        "variant": "ordinary-native-filter",
+        "rejected": true,
+        "output": "lua: tests/friendly_debuff_tint.lua:7: native never binds ordinary harmful fallback\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/friendly_debuff_tint.lua:7: in local 'check'\n\ttests/friendly_debuff_tint.lua:190: in main chunk\n\t[C]: in ?\n",
+        "sha256": "8a906d08691f8b4bd4c23f4f0158b145cbc25c0003f049f88b1cff26bee0565c"
+      },
+      {
+        "variant": "ordinary-public-fallback",
+        "rejected": true,
+        "output": "lua: tests/friendly_debuff_tint.lua:7: exact normal text restored\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/friendly_debuff_tint.lua:7: in upvalue 'check'\n\ttests/friendly_debuff_tint.lua:180: in local 'restored'\n\ttests/friendly_debuff_tint.lua:198: in main chunk\n\t[C]: in ?\n",
+        "sha256": "2cf91251fa317b24a13bb750411de692d8c7a428bf6f229d0a8d3b4de1049182"
+      },
+      {
+        "variant": "share-player-text",
+        "rejected": true,
+        "output": "lua: tests/friendly_debuff_tint.lua:7: HP/resource values and percent match client type\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/friendly_debuff_tint.lua:7: in upvalue 'check'\n\ttests/friendly_debuff_tint.lua:177: in local 'paintMatches'\n\ttests/friendly_debuff_tint.lua:267: in main chunk\n\t[C]: in ?\n",
+        "sha256": "ab51349688022120b73b342e8939e7c2c93fbd0b655d4d97f035f4802d9d55cd"
+      },
+      {
+        "variant": "player-event-broadcast",
+        "rejected": true,
+        "output": "lua: tests/friendly_debuff_tint.lua:7: unrelated target/focus not read on player-only aura event\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/friendly_debuff_tint.lua:7: in local 'check'\n\ttests/friendly_debuff_tint.lua:281: in main chunk\n\t[C]: in ?\n",
+        "sha256": "bf0c65bd55a26a8345807185d1f921349069cdafad0fee83c7aa308bcc1641b2"
+      },
+      {
+        "variant": "untyped-native",
+        "rejected": true,
+        "output": "lua: tests/friendly_debuff_tint.lua:7: one native dispellable slot per chrome part\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/friendly_debuff_tint.lua:7: in local 'check'\n\ttests/friendly_debuff_tint.lua:186: in main chunk\n\t[C]: in ?\n",
+        "sha256": "568503dc2a8abe8365725030c76d154850fd088f474ad2cd0d9c58e0db927031"
+      }
+    ],
+    "matchedPairs": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\06\\01a1b0ac-547f-7972-8df9-fa26882e0e03\\friendly-dispel-isolation-20261108T104913Z\\matched-correctness.json",
+    "fullReport": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\06\\01a1b0ac-547f-7972-8df9-fa26882e0e03\\friendly-dispel-isolation-20261108T104913Z\\full.json",
+    "independence": "Simultaneous distinct player/target/focus/party data, player-only UNIT_AURA routing, same-token target/focus swaps with no UNIT_AURA, party roster swap, hostile transition, target=self alias then target=other, combat no-allocation; exact native SetUnit replay",
+    "documentation": "PASS:953classified sources;600TOC/XML reachable;415setting definitions;24SavedVariables;15446local links; inventory/evidence current"
+  },
+  "resources": {
+    "nativeOwnersPerEligibleFrameBefore": 6,
+    "nativeOwnersPerEligibleFrameAfter": 3,
+    "addonEventFrames": 1,
+    "addonTickers": 0,
+    "addonOnUpdate": 0,
+    "timer": "Existing coalesced After0 batch; no new driver",
+    "nativeUpdatePolicy": "Native owners handle UNIT_AURA; addon only forces full refresh on identity/show/world/roster/options/CVar/restriction invalidation",
+    "performance": "No native ms/memory/FPS claimed; native internal updates and actual combat taint/appearance remain pending",
+    "eventFrameTextureAllocations": 0
+  },
+  "limitations": [
+    "Retail/Forever numeric FontStrings stay normal when aura type is private; native Textures can color privately",
+    "Desktop source replay/mocks do not establish native protected VM or pixels",
+    "Local live AuraContainer full blob differs from pin: replayed SetUnit/event dispatcher identical; static event representation differs but excludes target/focus in both"
+  ],
+  "recovery": {
+    "head": "1fd463f4de4bbff659f4e402c6f31138c49765b4",
+    "historyVerified": true,
+    "settingsMetadata": 47,
+    "sideEffects": "No game input, settings/profiler writes, manual sync, branch, commit or push"
+  },
+  "copies": [
+    {
+      "client": "_retail_",
+      "mismatches": []
+    },
+    {
+      "client": "_forever_",
+      "mismatches": []
+    },
+    {
+      "client": "_classic_",
+      "mismatches": []
+    },
+    {
+      "client": "_classic_era_",
+      "mismatches": []
+    },
+    {
+      "client": "_anniversary_",
+      "mismatches": []
+    }
+  ]
+}

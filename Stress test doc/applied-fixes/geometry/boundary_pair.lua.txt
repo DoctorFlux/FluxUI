@@ -1,0 +1,60 @@
+-- Identical controls execute the checkpoint/applied production painter/helpers.
+-- The opaque stand-in is not WoW's native secret-value VM.
+local function read(path)local f=assert(io.open(path,"rb"));local s=f:read("*a"):gsub("\r\n","\n");f:close();return s end
+local source=read(assert(arg[1],"Shared source path"));local applied=arg[2]=="applied"
+local function cut(a,b)local i=assert(source:find(a,1,true),a);return source:sub(i,assert(source:find(b,i+#a,true),b)-1)end
+local checks=0;local function check(v,why)checks=checks+1;assert(v,why)end
+local function boot()
+    local s={traps=0,sets=0};local function denied()s.traps=s.traps+1;error("OPAQUE_DENIED")end
+    s.opaque=setmetatable({},{__lt=denied,__le=denied,__add=denied,__sub=denied,__mul=denied,__div=denied})
+    local e=setmetatable({},{__index=_G});e._G=e
+    local uf={UsesHudUnitBars=function()return true end};local api={isMidnight=true,IsSecretValue=function(v)return v==s.opaque end,
+        CanAccessValue=function()return true end,UnitGetDetailedHealPrediction=function()end}
+    local ns={UnitFrames=uf,API=api}
+    local code="local _,ns=...;local UF,API=ns.UnitFrames,ns.API\n"
+        ..cut("local function ValueIsSecret(value)","local function PlayerDeadOrGhost(unit)")
+        ..cut("local MAX_INCOMING_HEAL_OVERFLOW","-- AFK: safe boolean + display rules")
+        .."\nreturn {tile=RefreshTiledOverlayTexCoords,anchor=AnchorOverlayToStatusBarFill}"
+    local m={SetClipsChildren=function()end,EnableMouse=function()end,SetFrameLevel=function()end,ClearAllPoints=function()end,SetPoint=function()end}
+    e.CreateFrame=function()return setmetatable({},{__index=m})end
+    e.UnitIsDeadOrGhost=function()return false end
+    local exports=assert(load(code,"@actual-"..arg[2].."-geometry","t",e))("_FluxUI",ns)
+    s.uf,s.api,s.exports=uf,api,exports
+    function s.frame(width)
+        local health={GetWidth=function()return width end,GetHeight=function()return s.opaque end,GetStatusBarTexture=function()return{}end,
+            GetMinMaxValues=function()return 0,100 end,GetValue=function()return 60 end}
+        health.healCalc={GetIncomingHeals=function()return 0,0,0,false end,GetHealAbsorbs=function()return 0,false end,
+            SetDamageAbsorbClampMode=function()end,GetDamageAbsorbs=function()return 15 end}
+        local bar={Hide=function(self)self.shown=false end,Show=function(self)self.shown=true end,ClearAllPoints=function()end,SetPoint=function()end,
+            SetValue=function(self,v)self.value=v end,SetMinMaxValues=function()end,SetWidth=function(self,v)self.width=v;s.sets=s.sets+1 end}
+        local frame={unit="player",Health=health,myHealPredictionBar={Hide=function()end},totalAbsorbBar=bar,_fluxHasMainPower=false}
+        if uf.RecordFrameDimensions then uf.RecordFrameDimensions(frame,124,40);uf.SyncPublicHealthGeometry(frame)end
+        return frame,bar,health
+    end
+    return s
+end
+do
+    local s=boot();local frame,bar=s.frame(120);check(pcall(s.uf.UpdateHealPrediction,frame),"public full painter works")
+    check(bar.shown and bar.width==120,"same public absorb geometry")
+    local opaqueFrame,opaqueBar=s.frame(s.opaque);local ok=pcall(s.uf.UpdateHealPrediction,opaqueFrame)
+    if applied then check(ok and s.traps==0 and opaqueBar.shown and opaqueBar.width==120,"opaque native width uses original public dimensions without denied operation")
+    else check(not ok and s.traps==1 and not opaqueBar.shown,"checkpoint reproduces unguarded width comparison")end
+    print("RESULT|GEO-01|applied="..tostring(applied).."|opaque_operations="..s.traps.."|visible="..tostring(opaqueBar.shown==true))
+end
+do
+    local s=boot();local frame,bar,health=s.frame(120);bar._fluxPredictionHealth=health
+    local o={width=96,height=32,shown=true,writes=0,coords={0,3,0,1},SetParent=function()end,ClearAllPoints=function()end,SetPoint=function()end,
+        IsShown=function(self)return self.shown end,GetWidth=function(self)return self.width end,GetHeight=function(self)return self.height end,
+        SetSize=function(self,w,h)self.canvasWidth,self.canvasHeight=w,h end,
+        SetTexCoord=function(self,...)self.coords={...};self.writes=self.writes+1 end}
+    if applied then s.exports.anchor(bar,o)end
+    s.exports.tile(o,32);check(o.writes==1,"public tile write")
+    check(math.abs(o.coords[2]*(96/(o.canvasWidth or o.width))-3)<1e-8,"cropped visible96px keeps three32px tiles")
+    s.exports.tile(o,32);check(o.writes==1,"stable tile cache")
+    o.width=s.opaque;o._fluxTileWidth=nil
+    check(pcall(s.exports.tile,o,32),"helper contains or avoids denied operation")
+    if applied then check(s.traps==0 and o.writes==2 and o.canvasWidth==120,"opaque fill uses readable public canvas")
+    else check(s.traps==1 and o.writes==1,"checkpoint contains denied arithmetic and leaves old coordinates")end
+    print("RESULT|GEO-02|applied="..tostring(applied).."|opaque_operations="..s.traps.."|uv_writes="..o.writes)
+end
+print("PAIR_CHECKS|"..checks)

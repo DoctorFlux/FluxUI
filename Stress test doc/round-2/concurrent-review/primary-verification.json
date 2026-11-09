@@ -1,0 +1,24 @@
+{
+  "scope": "Fresh remote primary blobs match concurrent-review local identities; Forever pinned tree only, actual Live helper equivalence/native operation not asserted",
+  "contracts": [
+    {
+      "path": "Interface/AddOns/Blizzard_UnitFrame/Shared/UnitFrameUtil.lua",
+      "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "blob": "60d5da8b429c3ac397a39fa576ab939b1a6b08ab",
+      "source": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_UnitFrame/Shared/UnitFrameUtil.lua"
+    },
+    {
+      "path": "Interface/AddOns/Blizzard_UnitFrame/Camelot/UnitFramePvPIndicatorStyle.lua",
+      "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "blob": "8ff587eea815a5aa2cdbbfa6f11977b630ccf074",
+      "source": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_UnitFrame/Camelot/UnitFramePvPIndicatorStyle.lua"
+    },
+    {
+      "path": "Interface/AddOns/Blizzard_UnitFrame/Mainline/UnitFramePvPIndicatorStyle.lua",
+      "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "blob": "e5a493a35b1c3f70af9587618ae0d8d3fb5d11b7",
+      "source": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_UnitFrame/Mainline/UnitFramePvPIndicatorStyle.lua"
+    }
+  ]
+}
+

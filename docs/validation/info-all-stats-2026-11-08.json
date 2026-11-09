@@ -1,0 +1,336 @@
+{
+  "changeID": "INFO-ALL-STATS-20261108",
+  "capturedUTC": "2026-11-08T22:59:01.659941+00:00",
+  "requirement": "Every Info Frame stat live in combat; Retail and Forever; spell power explicitly requested",
+  "status": "Built-in provider implementation complete; native acceptance OPEN; exact restricted composite totals and hidden row-only custom values remain capability limits",
+  "priorUserChoice": "Keep same stat category live during restrictions",
+  "builtInKeys": 42,
+  "additionalKeys": 35,
+  "focusedChecks": 645,
+  "priorCombatChecks": 234,
+  "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\08\\01a1bae3-9896-7f00-9582-aa792ba29df4\\info-all-stats-20261108\\checkpoint.json",
+  "checkpointSourceFiles": 2310,
+  "historyVerified": true,
+  "readOnlySettingsMetadata": 52,
+  "baselineHEAD": "1fd463f4de4bbff659f4e402c6f31138c49765b4",
+  "beforeRawSHA256": {
+    "StatusBars/FluxInfoFrame.lua": "8e5b912ce21a7a7ebcb6ec97eac8563b2ea38095a854da43ad7f4220d7fea375",
+    "StatusBars/FluxInfoFrameStats.lua": null,
+    "tests/info_all_stats.lua": null,
+    "_FluxUI.toc": "cf3620b2e0da9876c1bb97688decc6d565367b563b674ba6f807aa53deff436b"
+  },
+  "afterNormalizedSHA256": {
+    "StatusBars/FluxInfoFrame.lua": "a48788c81e801ee1771f3d4597591885f33b56166a06fdb91c2300c5ed923477",
+    "StatusBars/FluxInfoFrameStats.lua": "6db21ac275734d98fb6cf24cf94da42ae5042f2068279cf31f190b2b003faa2d",
+    "tests/info_all_stats.lua": "d75d700b8d6d0cdc23a418b55dba02fcd844fc2c47cf6d9534151fb68fb6a2a3",
+    "_FluxUI.toc": "8c70f3adde23169b1c3144955b5eaa5ead4542fb7fa5c3ef96ea2f8ac2743af9"
+  },
+  "nativeSources": [
+    {
+      "client": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/PlayerScriptDocumentation.lua",
+      "blob": "e00006d8dba2b9f61ea463604047460a8d502cc8",
+      "externalFile": "live-PlayerScriptDocumentation.lua.txt",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_APIDocumentationGenerated/PlayerScriptDocumentation.lua"
+    },
+    {
+      "client": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/UnitDocumentation.lua",
+      "blob": "6fa1024ea0b4881edbd14ddf43508c6a99075340",
+      "externalFile": "live-UnitDocumentation.lua.txt",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_APIDocumentationGenerated/UnitDocumentation.lua"
+    },
+    {
+      "client": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/CurveUtilDocumentation.lua",
+      "blob": "e6ddae258fbcf69fd65bf0b0c0949bac263d97c7",
+      "externalFile": "live-CurveUtilDocumentation.lua.txt",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_APIDocumentationGenerated/CurveUtilDocumentation.lua"
+    },
+    {
+      "client": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/LuaCurveObjectAPIDocumentation.lua",
+      "blob": "2b9fa34363b721fe6a80dbc1d63bfbdfb196fd1e",
+      "externalFile": "live-LuaCurveObjectAPIDocumentation.lua.txt",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_APIDocumentationGenerated/LuaCurveObjectAPIDocumentation.lua"
+    },
+    {
+      "client": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_UIPanels_Game/Mainline/PaperDollFrame.lua",
+      "blob": "d2d657d8671475d6063a761d95e28a8b3ad5be27",
+      "externalFile": "live-PaperDollFrame.lua.txt",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_UIPanels_Game/Mainline/PaperDollFrame.lua"
+    },
+    {
+      "client": "forever",
+      "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/PlayerScriptDocumentation.lua",
+      "blob": "acc0ec3d9eaae7854a8e688bddde0850d0623274",
+      "externalFile": "forever-PlayerScriptDocumentation.lua.txt",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_APIDocumentationGenerated/PlayerScriptDocumentation.lua"
+    },
+    {
+      "client": "forever",
+      "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/UnitDocumentation.lua",
+      "blob": "620b28ad0cc57c13501a196a42c37b8398703a84",
+      "externalFile": "forever-UnitDocumentation.lua.txt",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_APIDocumentationGenerated/UnitDocumentation.lua"
+    },
+    {
+      "client": "forever",
+      "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/CurveUtilDocumentation.lua",
+      "blob": "e6ddae258fbcf69fd65bf0b0c0949bac263d97c7",
+      "externalFile": "forever-CurveUtilDocumentation.lua.txt",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_APIDocumentationGenerated/CurveUtilDocumentation.lua"
+    },
+    {
+      "client": "forever",
+      "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/LuaCurveObjectAPIDocumentation.lua",
+      "blob": "2b9fa34363b721fe6a80dbc1d63bfbdfb196fd1e",
+      "externalFile": "forever-LuaCurveObjectAPIDocumentation.lua.txt",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_APIDocumentationGenerated/LuaCurveObjectAPIDocumentation.lua"
+    },
+    {
+      "client": "forever",
+      "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "path": "Interface/AddOns/Blizzard_UIPanels_Game/Camelot/PaperDollFrameStats.lua",
+      "blob": "73d794850dad40a4206353bb07ffe745f162b148",
+      "externalFile": "forever-PaperDollFrameStats.lua.txt",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_UIPanels_Game/Camelot/PaperDollFrameStats.lua"
+    },
+    {
+      "client": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleFontStringAPIDocumentation.lua",
+      "blob": "97448b164fc7e86d17178c832134f3744b449af8",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleFontStringAPIDocumentation.lua"
+    },
+    {
+      "client": "forever",
+      "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleFontStringAPIDocumentation.lua",
+      "blob": "97448b164fc7e86d17178c832134f3744b449af8",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleFontStringAPIDocumentation.lua"
+    }
+  ],
+  "comparison": {
+    "scope": "Desktop correctness; opaque tokens do not emulate native secrets/taint/rendering; uncontrolled wall times are not native performance metrics",
+    "pairs": [
+      {
+        "baseline": {
+          "exit": 1,
+          "output": "lua: tests/info_all_stats.lua:28: power combat value froze\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/info_all_stats.lua:28: in local 'check'\n\ttests/info_all_stats.lua:116: in main chunk\n\t[C]: in ?\n",
+          "wallSeconds": 0.03952059999573976
+        },
+        "candidate": {
+          "exit": 0,
+          "output": "all info stats: 645 checks PASS; 35 additional built-in keys; Retail/Forever desktop, native pending\n",
+          "wallSeconds": 0.0540863000205718
+        }
+      },
+      {
+        "baseline": {
+          "exit": 1,
+          "output": "lua: tests/info_all_stats.lua:28: versatility public native total: Vers: |cffffffff1.00%|r\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/info_all_stats.lua:28: in local 'check'\n\ttests/info_all_stats.lua:107: in main chunk\n\t[C]: in ?\n",
+          "wallSeconds": 0.022021800017682835
+        },
+        "candidate": {
+          "exit": 0,
+          "output": "all info stats: 645 checks PASS; 35 additional built-in keys; Retail/Forever desktop, native pending\n",
+          "wallSeconds": 0.05240609997417778
+        }
+      },
+      {
+        "baseline": {
+          "exit": 1,
+          "output": "lua: tests/info_all_stats.lua:39: secret stringify\nstack traceback:\n\t[C]: in function 'error'\n\ttests/info_all_stats.lua:39: in function <tests/info_all_stats.lua:39>\n\t[C]: in function 'tostring'\n\t[string \"Forever shared stats fixture\"]:2769: in upvalue 'keyText'\n\ttests/info_all_stats.lua:76: in local 'draw'\n\ttests/info_all_stats.lua:110: in main chunk\n\t[C]: in ?\n",
+          "wallSeconds": 0.02061949999188073
+        },
+        "candidate": {
+          "exit": 0,
+          "output": "all info stats: 645 checks PASS; 35 additional built-in keys; Retail/Forever desktop, native pending\n",
+          "wallSeconds": 0.051112999994074926
+        }
+      },
+      {
+        "baseline": {
+          "exit": 1,
+          "output": "lua: tests/info_all_stats.lua:28: rangedWeaponDamage combat value froze\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/info_all_stats.lua:28: in local 'check'\n\ttests/info_all_stats.lua:116: in main chunk\n\t[C]: in ?\n",
+          "wallSeconds": 0.022180200001457706
+        },
+        "candidate": {
+          "exit": 0,
+          "output": "all info stats: 645 checks PASS; 35 additional built-in keys; Retail/Forever desktop, native pending\n",
+          "wallSeconds": 0.04997480000020005
+        }
+      },
+      {
+        "baseline": {
+          "exit": 1,
+          "output": "lua: tests/info_all_stats.lua:39: secret stringify\nstack traceback:\n\t[C]: in function 'error'\n\ttests/info_all_stats.lua:39: in function <tests/info_all_stats.lua:39>\n\t[C]: in function 'tostring'\n\t[string \"Forever shared stats fixture\"]:2769: in upvalue 'keyText'\n\ttests/info_all_stats.lua:76: in local 'draw'\n\ttests/info_all_stats.lua:110: in main chunk\n\t[C]: in ?\n",
+          "wallSeconds": 0.019394699978874996
+        },
+        "candidate": {
+          "exit": 0,
+          "output": "all info stats: 645 checks PASS; 35 additional built-in keys; Retail/Forever desktop, native pending\n",
+          "wallSeconds": 0.05014610002399422
+        }
+      }
+    ],
+    "negativeControls": [
+      {
+        "name": "staleSpell",
+        "exit": 1,
+        "output": "lua: tests/info_all_stats.lua:28: spellPowerOnly public native total: S.P.: |cffffffff9999|r\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/info_all_stats.lua:28: in local 'check'\n\ttests/info_all_stats.lua:107: in main chunk\n\t[C]: in ?\n",
+        "wallSeconds": 0.0367285999818705
+      },
+      {
+        "name": "unsignedAP",
+        "exit": 1,
+        "output": "lua: tests/info_all_stats.lua:28: attackPower public native total: M.AP: |cffffffff120|r\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/info_all_stats.lua:28: in local 'check'\n\ttests/info_all_stats.lua:107: in main chunk\n\t[C]: in ?\n",
+        "wallSeconds": 0.03777059999993071
+      },
+      {
+        "name": "gearOnlyLeech",
+        "exit": 1,
+        "output": "lua: tests/info_all_stats.lua:28: leech public native total: Leech: |cffffffff1.00%|r\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/info_all_stats.lua:28: in local 'check'\n\ttests/info_all_stats.lua:107: in main chunk\n\t[C]: in ?\n",
+        "wallSeconds": 0.03858719998970628
+      },
+      {
+        "name": "compactFreeze",
+        "exit": 1,
+        "output": "lua: tests/info_all_stats.lua:28: compact merged spell/heal text was not replaced\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/info_all_stats.lua:28: in local 'check'\n\ttests/info_all_stats.lua:128: in main chunk\n\t[C]: in ?\n",
+        "wallSeconds": 0.037074699997901917
+      }
+    ],
+    "ownedNormalizedSHA256": {
+      "StatusBars/FluxInfoFrame.lua": "a48788c81e801ee1771f3d4597591885f33b56166a06fdb91c2300c5ed923477",
+      "StatusBars/FluxInfoFrameStats.lua": "6db21ac275734d98fb6cf24cf94da42ae5042f2068279cf31f190b2b003faa2d",
+      "tests/info_all_stats.lua": "d75d700b8d6d0cdc23a418b55dba02fcd844fc2c47cf6d9534151fb68fb6a2a3",
+      "_FluxUI.toc": "8c70f3adde23169b1c3144955b5eaa5ead4542fb7fa5c3ef96ea2f8ac2743af9"
+    }
+  },
+  "fullValidation": {
+    "pass": 261,
+    "fail": 0,
+    "syntaxFiles": 928,
+    "syntaxFailures": 0,
+    "sourceDrift": [],
+    "externalRawReport": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\08\\01a1bae3-9896-7f00-9582-aa792ba29df4\\info-all-stats-20261108\\final-validation.json"
+  },
+  "clientCopiesReadOnly": [
+    {
+      "client": "_retail_",
+      "path": "StatusBars/FluxInfoFrame.lua",
+      "present": true,
+      "matches": true
+    },
+    {
+      "client": "_retail_",
+      "path": "StatusBars/FluxInfoFrameStats.lua",
+      "present": true,
+      "matches": true
+    },
+    {
+      "client": "_retail_",
+      "path": "_FluxUI.toc",
+      "present": true,
+      "matches": true
+    },
+    {
+      "client": "_forever_",
+      "path": "StatusBars/FluxInfoFrame.lua",
+      "present": true,
+      "matches": true
+    },
+    {
+      "client": "_forever_",
+      "path": "StatusBars/FluxInfoFrameStats.lua",
+      "present": true,
+      "matches": true
+    },
+    {
+      "client": "_forever_",
+      "path": "_FluxUI.toc",
+      "present": true,
+      "matches": true
+    },
+    {
+      "client": "_classic_",
+      "path": "StatusBars/FluxInfoFrame.lua",
+      "present": true,
+      "matches": true
+    },
+    {
+      "client": "_classic_",
+      "path": "StatusBars/FluxInfoFrameStats.lua",
+      "present": true,
+      "matches": true
+    },
+    {
+      "client": "_classic_",
+      "path": "_FluxUI.toc",
+      "present": true,
+      "matches": true
+    },
+    {
+      "client": "_classic_era_",
+      "path": "StatusBars/FluxInfoFrame.lua",
+      "present": true,
+      "matches": true
+    },
+    {
+      "client": "_classic_era_",
+      "path": "StatusBars/FluxInfoFrameStats.lua",
+      "present": true,
+      "matches": true
+    },
+    {
+      "client": "_classic_era_",
+      "path": "_FluxUI.toc",
+      "present": true,
+      "matches": true
+    },
+    {
+      "client": "_anniversary_",
+      "path": "StatusBars/FluxInfoFrame.lua",
+      "present": true,
+      "matches": true
+    },
+    {
+      "client": "_anniversary_",
+      "path": "StatusBars/FluxInfoFrameStats.lua",
+      "present": true,
+      "matches": true
+    },
+    {
+      "client": "_anniversary_",
+      "path": "_FluxUI.toc",
+      "present": true,
+      "matches": true
+    }
+  ],
+  "coverageLedger": "docs/INFO_STAT_COVERAGE.csv",
+  "resourceChange": "No added frame/timer/ticker/hook/saved root; 10 unit and 3 secondary event registrations on existing driver; 100-to-1 coalescer fixture",
+  "nativeTesting": "NOT RUN; no connected Witchcraft/UIForever/computer-use tool; prior UIForever preference retained; no game input or settings/profiler/diagnostic-root writes",
+  "intentionalCorrections": [
+    "Native spell/healing reads replace snapshots/partial CSC paths",
+    "Signed negative AP buff is added rather than subtracted",
+    "Versatility includes native bonus; leech and avoidance use native totals"
+  ],
+  "limitations": [
+    "Exact restricted sums/scaling are native visible totals or live component expressions",
+    "Movement uses live yards/second during restricted conversion",
+    "Initial unknown restricted source is unavailable",
+    "Unknown custom rows need visible native player source",
+    "Mirror contracts and opaque desktop tokens do not certify native VM/taint/pixels/CPU/FPS"
+  ]
+}

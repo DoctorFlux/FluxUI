@@ -1,0 +1,29 @@
+-- Reuse the repository's complete real-module strict native mock; extend its
+-- scenarios from hidden-in-combat to visible-before-combat and secure-show.
+local f=assert(io.open("tests/salvage_overlay.lua","rb"));local fixtureSource=f:read("*a"):gsub("\r\n","\n");f:close()
+local prefix=fixtureSource:sub(1,assert(fixtureSource:find("local function exercise(branch, options, code)",1,true))-1)
+local fixture=assert(load(prefix.."\nreturn fixture","@existing-strict-salvage-fixture","t",_G))()
+local checks=0;local function check(v,why)checks=checks+1;assert(v,why)end
+for _,client in ipairs({"classic_era","classic_anniversary","classic","live","forever"})do
+    local e,S,o=fixture(client,{atlas=false})
+    check(not o:IsShown(),"hidden initial overlay")
+    e.combat=true
+    check(pcall(o.RunScript,o,"OnUpdate",.04),"hidden control has no armed OnUpdate")
+    e.combat=false
+    S.ApplySpellToBagSlot(0,2,1804,e.CreateColor(1,0,0),e.owner)
+    check(o:IsShown()and o.scripts.OnUpdate,"real production action arms visible overlay driver")
+    check(pcall(o.RunScript,o,"OnUpdate",.04),"visible out-of-combat control reanchors normally")
+    e.combat=true
+    local ok,err=xpcall(function()o:RunScript("OnUpdate",.04)end,debug.traceback)
+    check(not ok and err:find("protected frame mutation during combat",1,true),"visible-before-combat update attempts protected geometry write")
+    check(err:find("FluxSalvage_Overlay.lua",1,true)~=nil,"failure comes through actual production owner")
+    local modifierOK,modifierErr=xpcall(function()e.fire("MODIFIER_STATE_CHANGED")end,debug.traceback)
+    check(not modifierOK and modifierErr:find("protected frame mutation during combat",1,true),"modifier event also reanchors protected overlay in combat")
+    local errors=0
+    for i=1,1000 do if not pcall(o.RunScript,o,"OnUpdate",.04)then errors=errors+1 end end
+    check(errors==1000,"permitted visible driver repeats denied protected mutation attempts")
+    e.combat=false;S.HideOverlay();check(not o:IsShown()and o.scripts.OnUpdate==nil,"ordinary postcombat hide stops owned driver")
+    print("OBSERVATION|R2-DOM-03|"..client.."|visible_before_combat_update_denied=true|modifier_event_denied=true|1000_ticks_errors="..errors.."|hidden_control=PASS|out_of_combat_control=PASS|post_combat_cleanup=PASS")
+    print("TRACE|"..client.."|"..err:gsub("\n"," | "))
+end
+print("CHECKS|"..checks)

@@ -1,0 +1,44 @@
+function UF.UpdateResourceSpark(bar, sparkInfo)
+    local spark = bar and bar.Spark
+    if not spark then return end
+    if not UF.UsesHudUnitBars() or not sparkInfo or not sparkInfo.atlas or not AtlasExists(sparkInfo.atlas) then
+        spark:Hide()
+        spark.isActive = false
+        spark.visualInfo = nil
+        return
+    end
+    spark.isActive = true
+    spark.visualInfo = sparkInfo
+    local fill = bar:GetStatusBarTexture()
+    spark:ClearAllPoints()
+    if fill then
+        spark:SetPoint("RIGHT", fill, "RIGHT", sparkInfo.xOffset or 0, 0)
+    else
+        spark:SetPoint("RIGHT", bar, "LEFT", sparkInfo.xOffset or 0, 0)
+    end
+    spark:SetAtlas(sparkInfo.atlas, true)
+    if sparkInfo.barHeight and sparkInfo.barHeight > 0 and fill then
+        local okH, h = pcall(function()
+            return fill:GetHeight() + 0
+        end)
+        if okH and type(h) == "number" and h > 0 then
+            spark:SetScale(h / sparkInfo.barHeight)
+        end
+    end
+    local show = false
+    local okShow, result = pcall(function()
+        local fw = fill and (fill:GetWidth() + 0) or 0
+        local bw = bar:GetWidth() + 0
+        if fw <= 1 or bw <= 0 then return false end
+        if sparkInfo.showAtMax then return true end
+        return fw < (bw - 1)
+    end)
+    if okShow then
+        show = result and true or false
+    end
+    if show then
+        spark:Show()
+    else
+        spark:Hide()
+    end
+end

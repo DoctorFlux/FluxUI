@@ -1,0 +1,153 @@
+{
+  "date": "2026-11-07",
+  "scope": "Desktop production-module geometry/lifecycle; native pixels/input/taint/FPS not run",
+  "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\07\\01a1b56a-52d3-7b42-9f20-a029dcfe3bde\\bank-restock-icon\\checkpoint.json",
+  "sources": {
+    "Inventory/Restock/Bank/FluxBankRestockButton.lua": {
+      "baseline": "4a91c379533726a7e81d517645a06c02ad85d05f24dc811ce723e3e09c919c71",
+      "candidate": "8fe2741bcc5736ec8b398e9d7023e99b79943c262976efc258a37439d8b0656d"
+    },
+    "Inventory/Restock/Vendor/FluxVendorAutoMerchantUI.lua": {
+      "baseline": "8ce45eb7d6550e1546d56705715852b4f48d015c54619eee3041973a48b462da",
+      "candidate": "8ce45eb7d6550e1546d56705715852b4f48d015c54619eee3041973a48b462da"
+    }
+  },
+  "comparisons": [
+    {
+      "variant": "baseline",
+      "exit": 1,
+      "output": "lua: tests/bank_restock_icon.lua:4: retail icon has two local anchors\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/bank_restock_icon.lua:4: in upvalue 'check'\n\ttests/bank_restock_icon.lua:90: in local 'iconFits'\n\ttests/bank_restock_icon.lua:96: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "variant": "candidate",
+      "exit": 0,
+      "output": "bank restock icon: 312 checks passed (five clients; native/Baganator; cold/warm merchant)\n"
+    }
+  ],
+  "nativeSourceEvidence": {
+    "freshLookup": "GitHub commits live/forever/classic unavailable via web on 2026-11-07; no new API or template selected",
+    "localSnapshots": [
+      {
+        "branch": "live",
+        "version": "12.1.0.69283",
+        "path": "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\__AddonsForRef\\wow-ui-source-live\\Interface\\AddOns\\Blizzard_UIPanels_Game\\Mainline\\MerchantFrame.xml",
+        "sha256": "1fb1db72c4496de05cc47ccbfd07dbbaaa38fe5aaa1cbc007819e35b7bf7d893",
+        "scope": "Local read-only source snapshot; loaded flavor/build not newly certified"
+      },
+      {
+        "branch": "forever",
+        "version": "1.60.1.70425",
+        "path": "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\__AddonsForRef\\wow-ui-source-forever\\Interface\\AddOns\\Blizzard_UIPanels_Game\\Mainline\\MerchantFrame.xml",
+        "sha256": "17b50e69043f4b0abf7409e44d924b547595eb3f7499b40ef38cc7033b4e263d",
+        "scope": "Local read-only source snapshot; loaded flavor/build not newly certified"
+      },
+      {
+        "branch": "forever",
+        "version": "1.60.1.70425",
+        "path": "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\__AddonsForRef\\wow-ui-source-forever\\Interface\\AddOns\\Blizzard_UIPanels_Game\\Vanilla\\MerchantFrame.xml",
+        "sha256": "12b7d42c6d3fb8734d7f49c179ff358678eb158fc39a99d2b347b0679eb66db8",
+        "scope": "Local read-only source snapshot; loaded flavor/build not newly certified"
+      },
+      {
+        "branch": "classic",
+        "version": "5.5.4.69155",
+        "path": "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\__AddonsForRef\\wow-ui-source-classic\\Interface\\AddOns\\Blizzard_UIPanels_Game\\Vanilla\\MerchantFrame.xml",
+        "sha256": "ce8cf3bcb2c401b438a9587237e200b6d61049bb1fa0f6ae136d70d6b77329ac",
+        "scope": "Local read-only source snapshot; loaded flavor/build not newly certified"
+      },
+      {
+        "branch": "classic",
+        "version": "5.5.4.69155",
+        "path": "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\__AddonsForRef\\wow-ui-source-classic\\Interface\\AddOns\\Blizzard_UIPanels_Game\\TBC\\MerchantFrame.xml",
+        "sha256": "ce8cf3bcb2c401b438a9587237e200b6d61049bb1fa0f6ae136d70d6b77329ac",
+        "scope": "Local read-only source snapshot; loaded flavor/build not newly certified"
+      },
+      {
+        "branch": "classic_era",
+        "version": "1.15.9.68808",
+        "path": "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\__AddonsForRef\\wow-ui-source-classic_era\\Interface\\AddOns\\Blizzard_UIPanels_Game\\Vanilla\\MerchantFrame.xml",
+        "sha256": "ce8cf3bcb2c401b438a9587237e200b6d61049bb1fa0f6ae136d70d6b77329ac",
+        "scope": "Local read-only source snapshot; loaded flavor/build not newly certified"
+      },
+      {
+        "branch": "classic_era",
+        "version": "1.15.9.68808",
+        "path": "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\__AddonsForRef\\wow-ui-source-classic_era\\Interface\\AddOns\\Blizzard_UIPanels_Game\\TBC\\MerchantFrame.xml",
+        "sha256": "ce8cf3bcb2c401b438a9587237e200b6d61049bb1fa0f6ae136d70d6b77329ac",
+        "scope": "Local read-only source snapshot; loaded flavor/build not newly certified"
+      },
+      {
+        "branch": "classic_anniversary",
+        "version": "2.5.6.68775",
+        "path": "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\__AddonsForRef\\wow-ui-source-classic_anniversary\\Interface\\AddOns\\Blizzard_UIPanels_Game\\Vanilla\\MerchantFrame.xml",
+        "sha256": "dd93f64d656fc85be77337b462d34505b74fb5845e4e0d3a0fd578ec4f40068f",
+        "scope": "Local read-only source snapshot; loaded flavor/build not newly certified"
+      },
+      {
+        "branch": "classic_anniversary",
+        "version": "2.5.6.68775",
+        "path": "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\__AddonsForRef\\wow-ui-source-classic_anniversary\\Interface\\AddOns\\Blizzard_UIPanels_Game\\TBC\\MerchantFrame.xml",
+        "sha256": "dd93f64d656fc85be77337b462d34505b74fb5845e4e0d3a0fd578ec4f40068f",
+        "scope": "Local read-only source snapshot; loaded flavor/build not newly certified"
+      }
+    ]
+  },
+  "checks": {
+    "bankIcon": 312,
+    "nativeOwnership": 168,
+    "classicCombinedEra": 33,
+    "classicCombinedAnniversary": 33,
+    "restockCharge": 12,
+    "consumableClicks": 784
+  },
+  "nativeValidation": "User supplied Forever screenshot; candidate screenshot comparison/manual input/taint/FPS pending. No Witchcraft/UIForever tools available; no foreground or game input.",
+  "sourceIdentity": "SHA-256 raw bytes; external checkpoint includes current unrelated work. Only bank button runtime owner changed.",
+  "fullValidation": {
+    "scriptsPass": 218,
+    "scriptsFail": 0,
+    "syntaxFiles": 881,
+    "syntaxFailures": 0,
+    "currentCorpusDrift": [
+      "AddonOptions/FluxOptionsRaidFrame.lua",
+      "RaidFrame/FluxRaidSecure.lua",
+      "UnitFrames/FluxUnitFrames_Party.lua"
+    ]
+  },
+  "installedCopies": [
+    {
+      "client": "_retail_",
+      "present": true,
+      "matches": true
+    },
+    {
+      "client": "_forever_",
+      "present": true,
+      "matches": true
+    },
+    {
+      "client": "_classic_",
+      "present": true,
+      "matches": true
+    },
+    {
+      "client": "_classic_era_",
+      "present": true,
+      "matches": true
+    },
+    {
+      "client": "_anniversary_",
+      "present": true,
+      "matches": true
+    }
+  ],
+  "userBaselineScreenshot": {
+    "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\07\\01a1b56a-52d3-7b42-9f20-a029dcfe3bde\\bank-restock-icon\\user-forever-before.png",
+    "sha256": "adfea689b2a9bb07d3d6a9909c028b3a10d75d1764c4e10ebdf8203bd1b6bc1d",
+    "candidateComparison": "not run"
+  },
+  "documentationValidation": {
+    "exit": 1,
+    "issues": 9,
+    "scope": "Only concurrent raid/party source inventory/interfaces/verification drift; no bank owner issues; bank focused checks312/168 re-run PASS; whitespace PASS"
+  }
+}

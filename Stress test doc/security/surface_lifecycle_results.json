@@ -1,0 +1,50 @@
+{
+  "captured_at_utc": "2026-11-07T11:27:25.354758+00:00",
+  "status": "MOCK_INVARIANTS_PASSED",
+  "scope": "Existing production-executing fixture extension; client labels do not introduce unmodeled client or instance semantics. Native taint/CPU/FPS/input/secure VM NOT RUN.",
+  "mail_cycles_per_sample": 20000,
+  "salvage_cycles_per_sample": 5000,
+  "assertions_per_sample": 100000,
+  "sources_before": {
+    "Mail/Settings.lua": "cbc59e8bf494691d977b400befa24cb411cec53928bff016b8741312dec29df9",
+    "Mail/Select.lua": "c116d05970af885553d15010599c40f9c320e4a8a2cc7e56edc9fd77e460709c",
+    "Mail/OpenAll.lua": "d05a08c3afbcebc43861417cb204e85aa44259c9988b959563c8efa365520c4b",
+    "Salvage/FluxSalvage_Overlay.lua": "e95924b5cb5caa1640eca8327a0fd5bd629b5e539079259dda22e06be59b2405",
+    "tests/mail_job_lifecycle.lua": "0f7fd5cb567df611a8e297632ff876c37bb8af518fd4a0abd24a3a9b5baa48e3",
+    "tests/salvage_overlay.lua": "25f401d25a325f5245320e8c8751fa3c84edc080371dc11df66116370939bc98",
+    "Stress test doc/security/surface_lifecycle_stress.lua.txt": "9762ee2218d9bd34be5adca42d9757a9165aee7358a5fa53bcadfd5f0d47c891"
+  },
+  "sources_after": {
+    "Mail/Settings.lua": "cbc59e8bf494691d977b400befa24cb411cec53928bff016b8741312dec29df9",
+    "Mail/Select.lua": "c116d05970af885553d15010599c40f9c320e4a8a2cc7e56edc9fd77e460709c",
+    "Mail/OpenAll.lua": "d05a08c3afbcebc43861417cb204e85aa44259c9988b959563c8efa365520c4b",
+    "Salvage/FluxSalvage_Overlay.lua": "e95924b5cb5caa1640eca8327a0fd5bd629b5e539079259dda22e06be59b2405",
+    "tests/mail_job_lifecycle.lua": "0f7fd5cb567df611a8e297632ff876c37bb8af518fd4a0abd24a3a9b5baa48e3",
+    "tests/salvage_overlay.lua": "25f401d25a325f5245320e8c8751fa3c84edc080371dc11df66116370939bc98",
+    "Stress test doc/security/surface_lifecycle_stress.lua.txt": "9762ee2218d9bd34be5adca42d9757a9165aee7358a5fa53bcadfd5f0d47c891"
+  },
+  "changed_sources": [],
+  "samples": [
+    {
+      "sample": 1,
+      "exit": 0,
+      "desktop_process_seconds": 0.497709,
+      "stdout": "MAIL lifecycle cycles=20000; models label shared API fixtures; close/ack/20s stale deadlines; controls reused\nSALVAGE lifecycle cycles=5000; strict modeled protected mutations; OOC arm/hide/combat/regen repeated\nSURFACE LIFECYCLE COMPLETE assertions=100000; desktop mocked boundaries only; native taint/input/FPS pending\n",
+      "stderr": ""
+    },
+    {
+      "sample": 2,
+      "exit": 0,
+      "desktop_process_seconds": 0.489023,
+      "stdout": "MAIL lifecycle cycles=20000; models label shared API fixtures; close/ack/20s stale deadlines; controls reused\nSALVAGE lifecycle cycles=5000; strict modeled protected mutations; OOC arm/hide/combat/regen repeated\nSURFACE LIFECYCLE COMPLETE assertions=100000; desktop mocked boundaries only; native taint/input/FPS pending\n",
+      "stderr": ""
+    },
+    {
+      "sample": 3,
+      "exit": 0,
+      "desktop_process_seconds": 0.715748,
+      "stdout": "MAIL lifecycle cycles=20000; models label shared API fixtures; close/ack/20s stale deadlines; controls reused\nSALVAGE lifecycle cycles=5000; strict modeled protected mutations; OOC arm/hide/combat/regen repeated\nSURFACE LIFECYCLE COMPLETE assertions=100000; desktop mocked boundaries only; native taint/input/FPS pending\n",
+      "stderr": ""
+    }
+  ]
+}

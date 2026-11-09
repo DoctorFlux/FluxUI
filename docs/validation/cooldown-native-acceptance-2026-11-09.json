@@ -1,0 +1,171 @@
+{
+  "changeID": "COOLDOWN-NATIVE-ACCEPTANCE-20261109",
+  "client": {
+    "version": "1.60.1",
+    "build": 70862,
+    "interface": 16001,
+    "family": "Forever"
+  },
+  "identities": {
+    "head": "1fd463f4de4bbff659f4e402c6f31138c49765b4 plus current preserved local work",
+    "ownerLF": "d2c449ddde42935b169eb87670801664758f2161ca8e60b1d20f20fb3b9841cd",
+    "classPowerLF": "91f5108f0eddc2278cb80280bad88b61ee2eb9c103db787974b51b0f5cc98527"
+  },
+  "nativeSystemID": 20,
+  "discardedProbe": "The initial private read-only probe used synthetic test ID13 and printed a different native system. That sample is excluded. The runtime uses Enum.EditModeSystem.CooldownViewer; no runtime ID was hardcoded or changed.",
+  "settings": {
+    "Essential": {
+      "rawPairs": "0:1 1:20 2:1 3:5 4:2 5:50 6:0 8:1 9:1 10:1",
+      "decodedNativeValues": {
+        "Orientation": 1,
+        "IconLimit": 20,
+        "IconDirection": 1,
+        "IconSize": 5,
+        "IconPadding": 2,
+        "Opacity": 50,
+        "VisibleSetting": 0,
+        "HideWhenInactive": 1,
+        "ShowTimer": 1,
+        "ShowTooltips": 1
+      },
+      "requiredValuesMatch": true
+    },
+    "Utility": {
+      "rawPairs": "0:1 1:20 2:1 3:5 4:2 5:50 6:0 8:1 9:1 10:1",
+      "decodedNativeValues": {
+        "Orientation": 1,
+        "IconLimit": 20,
+        "IconDirection": 1,
+        "IconSize": 5,
+        "IconPadding": 2,
+        "Opacity": 50,
+        "VisibleSetting": 0,
+        "HideWhenInactive": 1,
+        "ShowTimer": 1,
+        "ShowTooltips": 1
+      },
+      "requiredValuesMatch": true
+    },
+    "BuffIcon": {
+      "rawPairs": "0:1 1:1 2:1 3:5 4:0 5:50 6:0 8:1 9:1 10:1",
+      "decodedNativeValues": {
+        "Orientation": 1,
+        "IconLimit": 1,
+        "IconDirection": 1,
+        "IconSize": 5,
+        "IconPadding": 0,
+        "Opacity": 50,
+        "VisibleSetting": 0,
+        "HideWhenInactive": 1,
+        "ShowTimer": 1,
+        "ShowTooltips": 1
+      },
+      "requiredValuesMatch": true
+    },
+    "BuffBar": {
+      "rawPairs": "0:1 1:1 2:0 3:4 4:0 5:50 6:0 7:0 8:1 9:1 10:1 11:107",
+      "decodedNativeValues": {
+        "Orientation": 1,
+        "IconLimit": 1,
+        "IconDirection": 0,
+        "IconSize": 4,
+        "IconPadding": 0,
+        "Opacity": 50,
+        "VisibleSetting": 0,
+        "BarContent": 0,
+        "HideWhenInactive": 1,
+        "ShowTimer": 1,
+        "ShowTooltips": 1,
+        "BarWidthScale": 107
+      },
+      "requiredValuesMatch": true
+    }
+  },
+  "settingsSource": "Transcribed from native chat capture23:02:55Z after reload; enum names decoded against installed read-only generated documentation",
+  "geometry": {
+    "rectColumns": [
+      "left",
+      "bottom",
+      "width",
+      "height",
+      "effectiveScale"
+    ],
+    "rectanglesBeforeReload": {
+      "BuffBar": [
+        654.43896484375,
+        239.36003112793,
+        310.86001586914,
+        52.199966430664,
+        0.75
+      ],
+      "BuffIcon": [
+        610.43896484375,
+        239.36003112793,
+        40.000003814697,
+        75.999992370605,
+        0.75
+      ],
+      "Utility": [
+        576.43890380859,
+        239.36003112793,
+        30,
+        57.999996185303,
+        0.75
+      ],
+      "Essential": [
+        522.43890380859,
+        239.36003112793,
+        50.000003814697,
+        98.000030517578,
+        0.75
+      ]
+    },
+    "publicPlayerBoundsAfterReload": {
+      "left": 654.43891654577,
+      "top": 235.36002319647,
+      "UIParentEffectiveScale": 0.75
+    },
+    "toleranceUIUnits": 0.001,
+    "offsetsMatch": true,
+    "scope": "Current mage without visible class-resource bar. Four-unit clearance; wider class/form cases remain pending. No screenshot-pixel or rendering certificate."
+  },
+  "reload": {
+    "utc": "2026-11-08T23:00:45.9846320Z",
+    "nativeLoadingScreenObserved": true,
+    "postReloadReadUTC": "2026-11-08T23:01:01.7386550Z",
+    "layouts": [
+      "Modern",
+      "Classic",
+      "Gamepad",
+      "FluxUI"
+    ],
+    "FluxUICount": 1,
+    "FluxUIType": 2,
+    "active": "FluxUI",
+    "BugTabsSessionErrors": 0,
+    "auraMapFieldSecurity": {
+      "BuffBar": true,
+      "BuffIcon": true,
+      "Utility": true,
+      "Essential": true
+    },
+    "result": "PASS profile persists without duplicate; sampled native metadata remains secure"
+  },
+  "validation": {
+    "fullScripts": 261,
+    "luaSyntaxFiles": 928,
+    "currentManifestMatches": true,
+    "documentation": "PASS961sources/602reachable/415settings/24SavedVariables/15601links before this evidence addition"
+  },
+  "tooling": "Exact PID/path/HWND verified; per-message background guard; guarded reload checks combat/editor/transaction panels. Screenshots and command metadata private outside AddOns. No foreground, mouse, physical-keyboard or clipboard control; no gameplay.",
+  "runtimeChangesThisContinuation": false,
+  "preferences": "No profiler/viewer-enable commands sent. Final optional preference/enum query refused before input when game foreground.",
+  "remaining": [
+    "Native editor preview/matched pixels",
+    "Native custom edit/save/reload with metadata snapshots",
+    "Arcane/combo/other class-resource geometry cases",
+    "Other native clients and mixed Flux/native-system cases",
+    "Sustained combat/taint and matched native performance if required"
+  ],
+  "goal": "ACTIVE; these exercised checks do not prove the entire multi-client objective complete"
+}

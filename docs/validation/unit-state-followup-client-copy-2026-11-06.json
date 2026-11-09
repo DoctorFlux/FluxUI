@@ -1,0 +1,165 @@
+{
+  "capturedUTC": "2026-11-06T22:58:43.945667+00:00",
+  "scope": "Only the five tested runtime files copied to four existing client addon folders; destination archives verified outside AddOns. No mirror, TOC, settings or profiler changes. No game input.",
+  "checkpoint": "Unit-secret-followup-20261106T224752Z",
+  "externalDestinationBackup": {
+    "id": "Unit-followup-client-copy-20261106T225843Z",
+    "sha256": "de3b74337598fbf283009181385bfd1b18bbb14709ecddc9e5debd3d90c47d14",
+    "files": 20,
+    "integrity": "PASS"
+  },
+  "sourceGuard": {
+    "unchanged": true,
+    "beforeCount": 861,
+    "afterCount": 861,
+    "changed": [],
+    "added": [],
+    "removed": [],
+    "afterMatchesManifest": true,
+    "beforeSHA256": "644b16f4d622b147421db0320146b82cecbe7af60551a2f860736ed2954bcc19",
+    "afterSHA256": "644b16f4d622b147421db0320146b82cecbe7af60551a2f860736ed2954bcc19"
+  },
+  "copies": [
+    {
+      "client": "_classic_",
+      "path": "Bars/BadgeHost.lua",
+      "beforeSHA256": "f6472f1113f315c2ed45c8965cfb3a58884c0aa5a080f0ca90afdb9dbeb3ee6c",
+      "afterSHA256": "414f79c0c635503bc0491f77fd1fe4731f93c5e551c4c30b40ad834e882aa6bf",
+      "matchesTestedSource": true
+    },
+    {
+      "client": "_classic_",
+      "path": "Core/API/Action.lua",
+      "beforeSHA256": "89d559136339c1242ea3753fd5fde3e068edfe735a21f1fbe649b1b142adad7c",
+      "afterSHA256": "4960e2a389ba20203d400b12dffc2a67c11370dfb7fe5b3fcf12faf03e4a960a",
+      "matchesTestedSource": true
+    },
+    {
+      "client": "_classic_",
+      "path": "Core/API/Spell.lua",
+      "beforeSHA256": "f85bee3dc04a5fb283a612d5f2d60371cbf1daf68e80357836f6837210b84132",
+      "afterSHA256": "ee5c59aa2082aa5a66caf5215c859dcddce739958a5668853db4e791f4f0edb8",
+      "matchesTestedSource": true
+    },
+    {
+      "client": "_classic_",
+      "path": "UnitFrames/FluxPowerCostOverlay.lua",
+      "beforeSHA256": "d6e7075d4e99c2e59b341b2685f1110c68225fc0f64b2a4d49255cecc680fcc5",
+      "afterSHA256": "8fdb80e0a66abd5eafe574de2d36147bb43208bfe58020bba0374accbdeaab18",
+      "matchesTestedSource": true
+    },
+    {
+      "client": "_classic_",
+      "path": "UnitFrames/FluxUnitFrames_Shared.lua",
+      "beforeSHA256": "5af2611deb25af01e561ff59c0a9680fa02ce3ad50dd5defcb0e9974ebbdc8c0",
+      "afterSHA256": "cc5e0bdb4751378d3c2f444865fedd68f8f38c5b56c8ccab5ff0ff24e08318c4",
+      "matchesTestedSource": true
+    },
+    {
+      "client": "_anniversary_",
+      "path": "Bars/BadgeHost.lua",
+      "beforeSHA256": "f6472f1113f315c2ed45c8965cfb3a58884c0aa5a080f0ca90afdb9dbeb3ee6c",
+      "afterSHA256": "414f79c0c635503bc0491f77fd1fe4731f93c5e551c4c30b40ad834e882aa6bf",
+      "matchesTestedSource": true
+    },
+    {
+      "client": "_anniversary_",
+      "path": "Core/API/Action.lua",
+      "beforeSHA256": "89d559136339c1242ea3753fd5fde3e068edfe735a21f1fbe649b1b142adad7c",
+      "afterSHA256": "4960e2a389ba20203d400b12dffc2a67c11370dfb7fe5b3fcf12faf03e4a960a",
+      "matchesTestedSource": true
+    },
+    {
+      "client": "_anniversary_",
+      "path": "Core/API/Spell.lua",
+      "beforeSHA256": "f85bee3dc04a5fb283a612d5f2d60371cbf1daf68e80357836f6837210b84132",
+      "afterSHA256": "ee5c59aa2082aa5a66caf5215c859dcddce739958a5668853db4e791f4f0edb8",
+      "matchesTestedSource": true
+    },
+    {
+      "client": "_anniversary_",
+      "path": "UnitFrames/FluxPowerCostOverlay.lua",
+      "beforeSHA256": "d6e7075d4e99c2e59b341b2685f1110c68225fc0f64b2a4d49255cecc680fcc5",
+      "afterSHA256": "8fdb80e0a66abd5eafe574de2d36147bb43208bfe58020bba0374accbdeaab18",
+      "matchesTestedSource": true
+    },
+    {
+      "client": "_anniversary_",
+      "path": "UnitFrames/FluxUnitFrames_Shared.lua",
+      "beforeSHA256": "5af2611deb25af01e561ff59c0a9680fa02ce3ad50dd5defcb0e9974ebbdc8c0",
+      "afterSHA256": "cc5e0bdb4751378d3c2f444865fedd68f8f38c5b56c8ccab5ff0ff24e08318c4",
+      "matchesTestedSource": true
+    },
+    {
+      "client": "_classic_era_",
+      "path": "Bars/BadgeHost.lua",
+      "beforeSHA256": "f6472f1113f315c2ed45c8965cfb3a58884c0aa5a080f0ca90afdb9dbeb3ee6c",
+      "afterSHA256": "414f79c0c635503bc0491f77fd1fe4731f93c5e551c4c30b40ad834e882aa6bf",
+      "matchesTestedSource": true
+    },
+    {
+      "client": "_classic_era_",
+      "path": "Core/API/Action.lua",
+      "beforeSHA256": "89d559136339c1242ea3753fd5fde3e068edfe735a21f1fbe649b1b142adad7c",
+      "afterSHA256": "4960e2a389ba20203d400b12dffc2a67c11370dfb7fe5b3fcf12faf03e4a960a",
+      "matchesTestedSource": true
+    },
+    {
+      "client": "_classic_era_",
+      "path": "Core/API/Spell.lua",
+      "beforeSHA256": "f85bee3dc04a5fb283a612d5f2d60371cbf1daf68e80357836f6837210b84132",
+      "afterSHA256": "ee5c59aa2082aa5a66caf5215c859dcddce739958a5668853db4e791f4f0edb8",
+      "matchesTestedSource": true
+    },
+    {
+      "client": "_classic_era_",
+      "path": "UnitFrames/FluxPowerCostOverlay.lua",
+      "beforeSHA256": "d6e7075d4e99c2e59b341b2685f1110c68225fc0f64b2a4d49255cecc680fcc5",
+      "afterSHA256": "8fdb80e0a66abd5eafe574de2d36147bb43208bfe58020bba0374accbdeaab18",
+      "matchesTestedSource": true
+    },
+    {
+      "client": "_classic_era_",
+      "path": "UnitFrames/FluxUnitFrames_Shared.lua",
+      "beforeSHA256": "5af2611deb25af01e561ff59c0a9680fa02ce3ad50dd5defcb0e9974ebbdc8c0",
+      "afterSHA256": "cc5e0bdb4751378d3c2f444865fedd68f8f38c5b56c8ccab5ff0ff24e08318c4",
+      "matchesTestedSource": true
+    },
+    {
+      "client": "_forever_",
+      "path": "Bars/BadgeHost.lua",
+      "beforeSHA256": "f6472f1113f315c2ed45c8965cfb3a58884c0aa5a080f0ca90afdb9dbeb3ee6c",
+      "afterSHA256": "414f79c0c635503bc0491f77fd1fe4731f93c5e551c4c30b40ad834e882aa6bf",
+      "matchesTestedSource": true
+    },
+    {
+      "client": "_forever_",
+      "path": "Core/API/Action.lua",
+      "beforeSHA256": "89d559136339c1242ea3753fd5fde3e068edfe735a21f1fbe649b1b142adad7c",
+      "afterSHA256": "4960e2a389ba20203d400b12dffc2a67c11370dfb7fe5b3fcf12faf03e4a960a",
+      "matchesTestedSource": true
+    },
+    {
+      "client": "_forever_",
+      "path": "Core/API/Spell.lua",
+      "beforeSHA256": "f85bee3dc04a5fb283a612d5f2d60371cbf1daf68e80357836f6837210b84132",
+      "afterSHA256": "ee5c59aa2082aa5a66caf5215c859dcddce739958a5668853db4e791f4f0edb8",
+      "matchesTestedSource": true
+    },
+    {
+      "client": "_forever_",
+      "path": "UnitFrames/FluxPowerCostOverlay.lua",
+      "beforeSHA256": "d6e7075d4e99c2e59b341b2685f1110c68225fc0f64b2a4d49255cecc680fcc5",
+      "afterSHA256": "8fdb80e0a66abd5eafe574de2d36147bb43208bfe58020bba0374accbdeaab18",
+      "matchesTestedSource": true
+    },
+    {
+      "client": "_forever_",
+      "path": "UnitFrames/FluxUnitFrames_Shared.lua",
+      "beforeSHA256": "5af2611deb25af01e561ff59c0a9680fa02ce3ad50dd5defcb0e9974ebbdc8c0",
+      "afterSHA256": "cc5e0bdb4751378d3c2f444865fedd68f8f38c5b56c8ccab5ff0ff24e08318c4",
+      "matchesTestedSource": true
+    }
+  ],
+  "nativeAcceptance": "Pending; copying files does not reload the client."
+}

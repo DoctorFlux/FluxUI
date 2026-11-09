@@ -1,0 +1,29 @@
+{
+  "finding": {
+    "id": "R2-MOD-01",
+    "priority": "P2 optimization candidate",
+    "classification": "Confirmed raw modifier consumer work before downstream coalescing; native performance unmeasured",
+    "sources": ["Bars/Watch.lua:843", "Bars/State.lua:993", "Bars/State.lua:1015", "Bars/State.lua:1039", "Bars/Hosts.lua:117"],
+    "trigger": "Very rapid or duplicate MODIFIER_STATE_CHANGED delivery with active action-bar hosts, including the no-secure-paging fallback out of combat.",
+    "evidence": "57 hosts and5120 raw modifier callbacks cause291840 host visits and index remove/reinsert operations. Combat makes0 attribute writes; fallback out of combat restamps7587840 attributes,26/host/edge. Duplicate-held and8-state chord sequences have identical direct call counts. Four downstream paint tokens remain bounded.",
+    "futureFix": "Avoid unchanged host-index churn after checking slot/action/membership consistency; separate stable prepared click-set generations from changed live faces in the fallback. Preserve click-time chord correctness and same-frame visual ownership; do not blindly delay all setters.",
+    "acceptance": "Same-frame key press/release and modifier precedence, page/form/occupancy/program edits, keyer/macros/clickbuttons, combat entry/exit, native OnAttributeChanged behavior, failed layout retries, exact VFX/face timing and stable saved data. Match native profiling before claiming CPU/FPS improvement.",
+    "scopeLimits": "Counts omit native keyers and native OnAttributeChanged side effects. No actual client input/protected VM/pixel/FPS test. Repeated consumer dispatches are not unique physical key edges.",
+    "probe": "consumer_budgets.lua.txt",
+    "results": "consumer-results.json"
+  },
+  "control": {
+    "owner": "ExtraButtonSystem/Shared/HotkeyUtil.lua:446",
+    "result": "Native no-return After plus an independent boolean keeps peak pending timers1;30721 raw events/60 labels result20 flushes,1200 text writes and10800 style calls, with one frame and final release/backlog cleanup. Bounded repeated styling is not a new leak finding."
+  },
+  "relatedCoreFinding": {
+    "id": "R2-CORE-06",
+    "rootProof": "../modifier_bus.lua.txt",
+    "consumerTrace": "CONSUMER_REPORT.md",
+    "strongestConditionalConsumer": "An unchanged-slot bar SlotProgram/ProgramFace overlay whose modifier/target/combat translation waits on Context, while an indexed keyboard mouseover macro keeps the trailing deadline moving.",
+    "qualifiedBadgeImpact": "Context-owned BadgeHost column visibility/SyncShownFaces refresh waits; independent EBS badge conditional translation can still run.",
+    "bypasses": ["Native slot changes/rebinding", "EBS generic and badge modifier/target/focus Conditional paths except paging-latch qualifications", "UtilityManager direct FluxModifierTracker callbacks", "separate UF hover-only70ms route"],
+    "nativeConsumerFailureObserved": false,
+    "wholeAddonStuckClaim": false
+  }
+}

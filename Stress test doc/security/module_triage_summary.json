@@ -1,0 +1,146 @@
+{
+  "captured_at_utc": "2026-11-07T11:31:38.531467+00:00",
+  "lua_files_screened": 663,
+  "toc_xml_reachable_lua": 575,
+  "manual_boundary_reviewed": 62,
+  "manual_boundary_reviewed_reachable": 62,
+  "limitations": "Lexical inventory includes strings/comments. TOC/XML reachability preserves declared conditions but does not model every client loader branch or dynamic loading. Manual review is of named boundaries, not proof of every statement. Test references are lexical associations only. No safety PASS is assigned.",
+  "scope_exclusions": "Guild-bank and void-storage callback review remains excluded by AGENTS.md. Their presence in a scanned file is not a reviewed or executed callback.",
+  "groups": {
+    "AddonOptions": {
+      "files": 39,
+      "reachable": 38,
+      "boundary_reviewed": 5
+    },
+    "BaganatorCompat": {
+      "files": 12,
+      "reachable": 12,
+      "boundary_reviewed": 5
+    },
+    "Bars": {
+      "files": 31,
+      "reachable": 31,
+      "boundary_reviewed": 0
+    },
+    "Battlezonemap": {
+      "files": 15,
+      "reachable": 14,
+      "boundary_reviewed": 0
+    },
+    "Binding": {
+      "files": 37,
+      "reachable": 37,
+      "boundary_reviewed": 2
+    },
+    "Blizzard": {
+      "files": 1,
+      "reachable": 1,
+      "boundary_reviewed": 1
+    },
+    "BlizzardSettings": {
+      "files": 3,
+      "reachable": 3,
+      "boundary_reviewed": 0
+    },
+    "CharacterInfo": {
+      "files": 24,
+      "reachable": 24,
+      "boundary_reviewed": 8
+    },
+    "ConsoleportCompat": {
+      "files": 4,
+      "reachable": 4,
+      "boundary_reviewed": 0
+    },
+    "Core": {
+      "files": 63,
+      "reachable": 62,
+      "boundary_reviewed": 3
+    },
+    "ExtraButtonSystem": {
+      "files": 80,
+      "reachable": 53,
+      "boundary_reviewed": 0
+    },
+    "FluxBorder.lua": {
+      "files": 1,
+      "reachable": 1,
+      "boundary_reviewed": 0
+    },
+    "FluxDefaultSettings.lua": {
+      "files": 1,
+      "reachable": 1,
+      "boundary_reviewed": 0
+    },
+    "Inventory": {
+      "files": 96,
+      "reachable": 83,
+      "boundary_reviewed": 10
+    },
+    "Layout": {
+      "files": 1,
+      "reachable": 1,
+      "boundary_reviewed": 0
+    },
+    "Mail": {
+      "files": 9,
+      "reachable": 9,
+      "boundary_reviewed": 9
+    },
+    "MicroMenu": {
+      "files": 13,
+      "reachable": 13,
+      "boundary_reviewed": 0
+    },
+    "Minimap": {
+      "files": 5,
+      "reachable": 5,
+      "boundary_reviewed": 4
+    },
+    "NamePlates": {
+      "files": 6,
+      "reachable": 6,
+      "boundary_reviewed": 2
+    },
+    "Other": {
+      "files": 40,
+      "reachable": 18,
+      "boundary_reviewed": 6
+    },
+    "RaidFrame": {
+      "files": 12,
+      "reachable": 12,
+      "boundary_reviewed": 0
+    },
+    "Respec": {
+      "files": 30,
+      "reachable": 30,
+      "boundary_reviewed": 2
+    },
+    "Salvage": {
+      "files": 16,
+      "reachable": 16,
+      "boundary_reviewed": 2
+    },
+    "StatusBars": {
+      "files": 6,
+      "reachable": 6,
+      "boundary_reviewed": 0
+    },
+    "UnitFrames": {
+      "files": 38,
+      "reachable": 38,
+      "boundary_reviewed": 0
+    },
+    "WindowMover": {
+      "files": 4,
+      "reachable": 4,
+      "boundary_reviewed": 3
+    },
+    "libs": {
+      "files": 76,
+      "reachable": 53,
+      "boundary_reviewed": 0
+    }
+  }
+}

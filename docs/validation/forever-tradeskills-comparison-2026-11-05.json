@@ -1,0 +1,91 @@
+{
+  "baselineCommit": "0602a31a1ba5d36b04a9a197715ffd0ac5e4c029",
+  "recovery": {
+    "directory": "C:\\Users\\mario\\.codex\\visualizations\\2026\\10\\29\\01a186ea-e332-79a1-9cdc-8e340df7e22b\\Forever-tradeskills-20261105T101715Z",
+    "head": "0602a31a1ba5d36b04a9a197715ffd0ac5e4c029",
+    "sourceFiles": 1451,
+    "settingsFiles": 123,
+    "sourceSha256": "daba71d80494274317e19100d4a3259f557aaac906cdcb42ae3037d853e58904"
+  },
+  "runtimeSha256": {
+    "MicroMenu/FluxTradeSkillMicro.lua": "ffbb245801e69b9d6a9ae991dc3c68afaa69ac6caae4bfb0f9cf319d98742aa2",
+    "MicroMenu/FluxMicroMenu.lua": "e5d02b4e9bac75fc451d8b3e7b0c30c1db0dd617e98d849e4d6b52cd41d60bb9",
+    "AddonOptions/FluxOptionsMicroMenu.lua": "16bcb5b7a84362340a61090c00b1d2087d64b4295a94643143786d481df571d2"
+  },
+  "normalization": "CRLF to LF",
+  "scenario": "full trade-skill startup and options module;real menu eligibility;2 Forever aliases and4 other client labels;mocked frames and APIs",
+  "profile": "5 alternating fresh-process pairs;zero warmup;resource counts only;wall includes startup/asserts;no native profiler",
+  "runs": [
+    {
+      "pair": 1,
+      "variant": "baseline",
+      "seconds": 0.07256620000407565,
+      "exit": 1,
+      "raw": "FAIL forever module visibility\nFAIL forever startup frame ownership\nFAIL forever startup events/timer ownership\nFAIL forever native profession row\nFAIL forever trade options availability\nFAIL camelot module visibility\nFAIL camelot startup frame ownership\nFAIL camelot startup events/timer ownership\nFAIL camelot native profession row\nFAIL camelot trade options availability\ntrade micro scope: 48 checks, 10 failures; startup frames across models=24\n"
+    },
+    {
+      "pair": 1,
+      "variant": "candidate",
+      "seconds": 0.02432859998953063,
+      "exit": 0,
+      "raw": "trade micro scope: 48 checks, 0 failures; startup frames across models=16\n"
+    },
+    {
+      "pair": 2,
+      "variant": "baseline",
+      "seconds": 0.024252100003650412,
+      "exit": 1,
+      "raw": "FAIL forever module visibility\nFAIL forever startup frame ownership\nFAIL forever startup events/timer ownership\nFAIL forever native profession row\nFAIL forever trade options availability\nFAIL camelot module visibility\nFAIL camelot startup frame ownership\nFAIL camelot startup events/timer ownership\nFAIL camelot native profession row\nFAIL camelot trade options availability\ntrade micro scope: 48 checks, 10 failures; startup frames across models=24\n"
+    },
+    {
+      "pair": 2,
+      "variant": "candidate",
+      "seconds": 0.024589300010120496,
+      "exit": 0,
+      "raw": "trade micro scope: 48 checks, 0 failures; startup frames across models=16\n"
+    },
+    {
+      "pair": 3,
+      "variant": "baseline",
+      "seconds": 0.026342299999669194,
+      "exit": 1,
+      "raw": "FAIL forever module visibility\nFAIL forever startup frame ownership\nFAIL forever startup events/timer ownership\nFAIL forever native profession row\nFAIL forever trade options availability\nFAIL camelot module visibility\nFAIL camelot startup frame ownership\nFAIL camelot startup events/timer ownership\nFAIL camelot native profession row\nFAIL camelot trade options availability\ntrade micro scope: 48 checks, 10 failures; startup frames across models=24\n"
+    },
+    {
+      "pair": 3,
+      "variant": "candidate",
+      "seconds": 0.023812299987184815,
+      "exit": 0,
+      "raw": "trade micro scope: 48 checks, 0 failures; startup frames across models=16\n"
+    },
+    {
+      "pair": 4,
+      "variant": "baseline",
+      "seconds": 0.024699200002942234,
+      "exit": 1,
+      "raw": "FAIL forever module visibility\nFAIL forever startup frame ownership\nFAIL forever startup events/timer ownership\nFAIL forever native profession row\nFAIL forever trade options availability\nFAIL camelot module visibility\nFAIL camelot startup frame ownership\nFAIL camelot startup events/timer ownership\nFAIL camelot native profession row\nFAIL camelot trade options availability\ntrade micro scope: 48 checks, 10 failures; startup frames across models=24\n"
+    },
+    {
+      "pair": 4,
+      "variant": "candidate",
+      "seconds": 0.022993299993686378,
+      "exit": 0,
+      "raw": "trade micro scope: 48 checks, 0 failures; startup frames across models=16\n"
+    },
+    {
+      "pair": 5,
+      "variant": "baseline",
+      "seconds": 0.024602999998023733,
+      "exit": 1,
+      "raw": "FAIL forever module visibility\nFAIL forever startup frame ownership\nFAIL forever startup events/timer ownership\nFAIL forever native profession row\nFAIL forever trade options availability\nFAIL camelot module visibility\nFAIL camelot startup frame ownership\nFAIL camelot startup events/timer ownership\nFAIL camelot native profession row\nFAIL camelot trade options availability\ntrade micro scope: 48 checks, 10 failures; startup frames across models=24\n"
+    },
+    {
+      "pair": 5,
+      "variant": "candidate",
+      "seconds": 0.023168200001236983,
+      "exit": 0,
+      "raw": "trade micro scope: 48 checks, 0 failures; startup frames across models=16\n"
+    }
+  ],
+  "native": "Reload/compact menu/config/flyout/gamepad/pixels/taint pending. No foreground or input used."
+}

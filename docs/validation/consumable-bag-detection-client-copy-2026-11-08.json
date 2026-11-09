@@ -1,0 +1,109 @@
+{
+  "capturedUTC": "2026-11-08T07:47:45.107824+00:00",
+  "scope": "Read-only verification: four tested runtime files already installed by existing user continuous sync across four existing client copies; Retail remains working source. Three read passes verify16matches. No manual file copy or second overwrite; no settings/profiler/game input change.",
+  "sourceGuard": {
+    "unchanged": true,
+    "changed": [],
+    "added": [],
+    "removed": []
+  },
+  "copies": [
+    {
+      "client": "_classic_",
+      "path": "Inventory/FluxItemClass.lua",
+      "sha256": "fc6a585b34e37c3614761aca4a1e47880782e509f678747e5d3b9f5413c382ec",
+      "matchesTestedSource": true
+    },
+    {
+      "client": "_classic_",
+      "path": "Inventory/FluxConsumableBest/Scan.lua",
+      "sha256": "8667683b3caed9475e584343f3e891ef73c25d8e74fa06bc1f2cc4a08d4e5cc8",
+      "matchesTestedSource": true
+    },
+    {
+      "client": "_classic_",
+      "path": "Inventory/Craft.lua",
+      "sha256": "56d8b5371cab76b44f146bc3e2315991c64a5e6bf2aae2599dec1bcbe13f6170",
+      "matchesTestedSource": true
+    },
+    {
+      "client": "_classic_",
+      "path": "ExtraButtonSystem/Engine/ConsumableBind.lua",
+      "sha256": "d73b7cce494dfa38919a250564329bee9adfe5d028998fc724b470e598d3b234",
+      "matchesTestedSource": true
+    },
+    {
+      "client": "_anniversary_",
+      "path": "Inventory/FluxItemClass.lua",
+      "sha256": "fc6a585b34e37c3614761aca4a1e47880782e509f678747e5d3b9f5413c382ec",
+      "matchesTestedSource": true
+    },
+    {
+      "client": "_anniversary_",
+      "path": "Inventory/FluxConsumableBest/Scan.lua",
+      "sha256": "8667683b3caed9475e584343f3e891ef73c25d8e74fa06bc1f2cc4a08d4e5cc8",
+      "matchesTestedSource": true
+    },
+    {
+      "client": "_anniversary_",
+      "path": "Inventory/Craft.lua",
+      "sha256": "56d8b5371cab76b44f146bc3e2315991c64a5e6bf2aae2599dec1bcbe13f6170",
+      "matchesTestedSource": true
+    },
+    {
+      "client": "_anniversary_",
+      "path": "ExtraButtonSystem/Engine/ConsumableBind.lua",
+      "sha256": "d73b7cce494dfa38919a250564329bee9adfe5d028998fc724b470e598d3b234",
+      "matchesTestedSource": true
+    },
+    {
+      "client": "_classic_era_",
+      "path": "Inventory/FluxItemClass.lua",
+      "sha256": "fc6a585b34e37c3614761aca4a1e47880782e509f678747e5d3b9f5413c382ec",
+      "matchesTestedSource": true
+    },
+    {
+      "client": "_classic_era_",
+      "path": "Inventory/FluxConsumableBest/Scan.lua",
+      "sha256": "8667683b3caed9475e584343f3e891ef73c25d8e74fa06bc1f2cc4a08d4e5cc8",
+      "matchesTestedSource": true
+    },
+    {
+      "client": "_classic_era_",
+      "path": "Inventory/Craft.lua",
+      "sha256": "56d8b5371cab76b44f146bc3e2315991c64a5e6bf2aae2599dec1bcbe13f6170",
+      "matchesTestedSource": true
+    },
+    {
+      "client": "_classic_era_",
+      "path": "ExtraButtonSystem/Engine/ConsumableBind.lua",
+      "sha256": "d73b7cce494dfa38919a250564329bee9adfe5d028998fc724b470e598d3b234",
+      "matchesTestedSource": true
+    },
+    {
+      "client": "_forever_",
+      "path": "Inventory/FluxItemClass.lua",
+      "sha256": "fc6a585b34e37c3614761aca4a1e47880782e509f678747e5d3b9f5413c382ec",
+      "matchesTestedSource": true
+    },
+    {
+      "client": "_forever_",
+      "path": "Inventory/FluxConsumableBest/Scan.lua",
+      "sha256": "8667683b3caed9475e584343f3e891ef73c25d8e74fa06bc1f2cc4a08d4e5cc8",
+      "matchesTestedSource": true
+    },
+    {
+      "client": "_forever_",
+      "path": "Inventory/Craft.lua",
+      "sha256": "56d8b5371cab76b44f146bc3e2315991c64a5e6bf2aae2599dec1bcbe13f6170",
+      "matchesTestedSource": true
+    },
+    {
+      "client": "_forever_",
+      "path": "ExtraButtonSystem/Engine/ConsumableBind.lua",
+      "sha256": "d73b7cce494dfa38919a250564329bee9adfe5d028998fc724b470e598d3b234",
+      "matchesTestedSource": true
+    }
+  ],
+  "nativeAcceptance": "Pending: installed files do not certify reloaded/native behavior."
+}

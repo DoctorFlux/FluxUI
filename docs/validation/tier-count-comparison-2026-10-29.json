@@ -1,0 +1,663 @@
+{
+  "baseline": {
+    "commit": "d3bce5baa01d8dff2aa6372de27afe1680da7b31",
+    "tree": "c9a97bf07e7b267925d3b63bc8a827ea8ad99ebc",
+    "reusedFullReport": "docs/validation/vendor-tier-full-2026-10-29.json",
+    "verifiedLuaFiles": 729,
+    "tests": 88,
+    "fail": 0,
+    "sourceSha256": "735ba5e4c50b5311790ea85b37535f9f87b532b8e4e45b590139865262910e81",
+    "normalization": "Test loader normalizes CRLF to LF only; sourceSha256 records raw archived bytes; actual pre-edit archive verified",
+    "sourceSha256Normalization": "raw captured bytes",
+    "normalizedSourceSha256": "12881a7104409df884973ab24c41817a83d7a76aefc379c71ad285fa013c196f"
+  },
+  "candidate": {
+    "commit": "013bf40db1d5b57c238ac3ac377e8ced98446fd1",
+    "tree": "4f0d827bb26bba3ee8b20e21de891596fad0e98b",
+    "sources": {
+      "Inventory/Restock/Core/Tiers/FluxRestockTiers_Match.lua": "e61bd163b614f5c6aaa3c59a72a9fb0d1469dc7d7733223156a27dda372da7a5",
+      "tests/tier_count_work.lua": "f8d98bc0dfcaab6895dd77f4037c68c7824e4795892baf137c81983ab3b1a43f"
+    },
+    "sourceHashNormalization": "sources: raw working-file bytes; normalizedSources: CRLF to LF only",
+    "normalizedSources": {
+      "Inventory/Restock/Core/Tiers/FluxRestockTiers_Match.lua": "5a8ca01692212b66f1841bb341dce345b46591b3fc5c536f4426d580e089eccc",
+      "tests/tier_count_work.lua": "f8d98bc0dfcaab6895dd77f4037c68c7824e4795892baf137c81983ab3b1a43f"
+    }
+  },
+  "configuration": {
+    "scope": "Production full Match module and existing tier fixture; native tooltip VM modeled; character/warband cached counts, live fallback and shared IDs tested",
+    "models": [
+      "classic_era",
+      "classic_anniversary",
+      "classic",
+      "live",
+      "forever"
+    ],
+    "scenario": "120 bag IDs, 150 personal-bank IDs; modern fixtures add warband IDs/overlap; first reconciliation then 25 generation changes; parity under live usability, thresholds, protections, late facts, vendor-first and unavailable stores",
+    "warmup": "first reconciliation captured separately before 25 repeats",
+    "profiling": "off; deterministic live usability and bank read counters",
+    "repetitions": "5 alternating fresh-process baseline/candidate pairs",
+    "nativeEvidence": "Separate actual Era pilot and five alternating background function pairs; no native after whole-window/FPS acceptance"
+  },
+  "configSha256": "12704285694425d6165bf49365685d5292119a7203f58b0f1925caaa65bd4aac",
+  "samples": [
+    {
+      "trial": 1,
+      "variant": "baseline",
+      "command": [
+        "lua",
+        "tests/tier_count_work.lua",
+        "--source",
+        "tests/fixtures/tier_count_match_before.txt",
+        "--measure"
+      ],
+      "wallSeconds": 0.6730243999991217,
+      "metrics": {
+        "classic_era": {
+          "initial_checks": 1350,
+          "repeat_checks": 33750,
+          "bank_reads": 19500
+        },
+        "classic_anniversary": {
+          "initial_checks": 1350,
+          "repeat_checks": 33750,
+          "bank_reads": 19500
+        },
+        "classic": {
+          "initial_checks": 1350,
+          "repeat_checks": 33750,
+          "bank_reads": 19500
+        },
+        "live": {
+          "initial_checks": 1500,
+          "repeat_checks": 37500,
+          "bank_reads": 23400
+        },
+        "forever": {
+          "initial_checks": 1500,
+          "repeat_checks": 37500,
+          "bank_reads": 23400
+        }
+      },
+      "output": "FAIL classic_era initial counts skip unrelated usability\nMETRIC classic_era initial_checks=1350 repeat_checks=33750 bank_reads=19500\nFAIL classic_era 25 reconciliations skip unrelated usability\nFAIL classic_anniversary initial counts skip unrelated usability\nMETRIC classic_anniversary initial_checks=1350 repeat_checks=33750 bank_reads=19500\nFAIL classic_anniversary 25 reconciliations skip unrelated usability\nFAIL classic initial counts skip unrelated usability\nMETRIC classic initial_checks=1350 repeat_checks=33750 bank_reads=19500\nFAIL classic 25 reconciliations skip unrelated usability\nFAIL live initial counts skip unrelated usability\nMETRIC live initial_checks=1500 repeat_checks=37500 bank_reads=23400\nFAIL live 25 reconciliations skip unrelated usability\nFAIL forever initial counts skip unrelated usability\nMETRIC forever initial_checks=1500 repeat_checks=37500 bank_reads=23400\nFAIL forever 25 reconciliations skip unrelated usability\nTier count work: 1710 checks, 10 failures\n"
+    },
+    {
+      "trial": 1,
+      "variant": "candidate",
+      "command": [
+        "lua",
+        "tests/tier_count_work.lua"
+      ],
+      "wallSeconds": 0.5486753000004683,
+      "metrics": {
+        "classic_era": {
+          "initial_checks": 17,
+          "repeat_checks": 425,
+          "bank_reads": 19500
+        },
+        "classic_anniversary": {
+          "initial_checks": 17,
+          "repeat_checks": 425,
+          "bank_reads": 19500
+        },
+        "classic": {
+          "initial_checks": 17,
+          "repeat_checks": 425,
+          "bank_reads": 19500
+        },
+        "live": {
+          "initial_checks": 18,
+          "repeat_checks": 450,
+          "bank_reads": 23400
+        },
+        "forever": {
+          "initial_checks": 18,
+          "repeat_checks": 450,
+          "bank_reads": 23400
+        }
+      },
+      "output": "METRIC classic_era initial_checks=17 repeat_checks=425 bank_reads=19500\nMETRIC classic_anniversary initial_checks=17 repeat_checks=425 bank_reads=19500\nMETRIC classic initial_checks=17 repeat_checks=425 bank_reads=19500\nMETRIC live initial_checks=18 repeat_checks=450 bank_reads=23400\nMETRIC forever initial_checks=18 repeat_checks=450 bank_reads=23400\nTier count work: 1710 checks, 0 failures\n"
+    },
+    {
+      "trial": 2,
+      "variant": "baseline",
+      "command": [
+        "lua",
+        "tests/tier_count_work.lua",
+        "--source",
+        "tests/fixtures/tier_count_match_before.txt",
+        "--measure"
+      ],
+      "wallSeconds": 0.5703577000022051,
+      "metrics": {
+        "classic_era": {
+          "initial_checks": 1350,
+          "repeat_checks": 33750,
+          "bank_reads": 19500
+        },
+        "classic_anniversary": {
+          "initial_checks": 1350,
+          "repeat_checks": 33750,
+          "bank_reads": 19500
+        },
+        "classic": {
+          "initial_checks": 1350,
+          "repeat_checks": 33750,
+          "bank_reads": 19500
+        },
+        "live": {
+          "initial_checks": 1500,
+          "repeat_checks": 37500,
+          "bank_reads": 23400
+        },
+        "forever": {
+          "initial_checks": 1500,
+          "repeat_checks": 37500,
+          "bank_reads": 23400
+        }
+      },
+      "output": "FAIL classic_era initial counts skip unrelated usability\nMETRIC classic_era initial_checks=1350 repeat_checks=33750 bank_reads=19500\nFAIL classic_era 25 reconciliations skip unrelated usability\nFAIL classic_anniversary initial counts skip unrelated usability\nMETRIC classic_anniversary initial_checks=1350 repeat_checks=33750 bank_reads=19500\nFAIL classic_anniversary 25 reconciliations skip unrelated usability\nFAIL classic initial counts skip unrelated usability\nMETRIC classic initial_checks=1350 repeat_checks=33750 bank_reads=19500\nFAIL classic 25 reconciliations skip unrelated usability\nFAIL live initial counts skip unrelated usability\nMETRIC live initial_checks=1500 repeat_checks=37500 bank_reads=23400\nFAIL live 25 reconciliations skip unrelated usability\nFAIL forever initial counts skip unrelated usability\nMETRIC forever initial_checks=1500 repeat_checks=37500 bank_reads=23400\nFAIL forever 25 reconciliations skip unrelated usability\nTier count work: 1710 checks, 10 failures\n"
+    },
+    {
+      "trial": 2,
+      "variant": "candidate",
+      "command": [
+        "lua",
+        "tests/tier_count_work.lua"
+      ],
+      "wallSeconds": 0.44923019999987446,
+      "metrics": {
+        "classic_era": {
+          "initial_checks": 17,
+          "repeat_checks": 425,
+          "bank_reads": 19500
+        },
+        "classic_anniversary": {
+          "initial_checks": 17,
+          "repeat_checks": 425,
+          "bank_reads": 19500
+        },
+        "classic": {
+          "initial_checks": 17,
+          "repeat_checks": 425,
+          "bank_reads": 19500
+        },
+        "live": {
+          "initial_checks": 18,
+          "repeat_checks": 450,
+          "bank_reads": 23400
+        },
+        "forever": {
+          "initial_checks": 18,
+          "repeat_checks": 450,
+          "bank_reads": 23400
+        }
+      },
+      "output": "METRIC classic_era initial_checks=17 repeat_checks=425 bank_reads=19500\nMETRIC classic_anniversary initial_checks=17 repeat_checks=425 bank_reads=19500\nMETRIC classic initial_checks=17 repeat_checks=425 bank_reads=19500\nMETRIC live initial_checks=18 repeat_checks=450 bank_reads=23400\nMETRIC forever initial_checks=18 repeat_checks=450 bank_reads=23400\nTier count work: 1710 checks, 0 failures\n"
+    },
+    {
+      "trial": 3,
+      "variant": "baseline",
+      "command": [
+        "lua",
+        "tests/tier_count_work.lua",
+        "--source",
+        "tests/fixtures/tier_count_match_before.txt",
+        "--measure"
+      ],
+      "wallSeconds": 0.5537947999982862,
+      "metrics": {
+        "classic_era": {
+          "initial_checks": 1350,
+          "repeat_checks": 33750,
+          "bank_reads": 19500
+        },
+        "classic_anniversary": {
+          "initial_checks": 1350,
+          "repeat_checks": 33750,
+          "bank_reads": 19500
+        },
+        "classic": {
+          "initial_checks": 1350,
+          "repeat_checks": 33750,
+          "bank_reads": 19500
+        },
+        "live": {
+          "initial_checks": 1500,
+          "repeat_checks": 37500,
+          "bank_reads": 23400
+        },
+        "forever": {
+          "initial_checks": 1500,
+          "repeat_checks": 37500,
+          "bank_reads": 23400
+        }
+      },
+      "output": "FAIL classic_era initial counts skip unrelated usability\nMETRIC classic_era initial_checks=1350 repeat_checks=33750 bank_reads=19500\nFAIL classic_era 25 reconciliations skip unrelated usability\nFAIL classic_anniversary initial counts skip unrelated usability\nMETRIC classic_anniversary initial_checks=1350 repeat_checks=33750 bank_reads=19500\nFAIL classic_anniversary 25 reconciliations skip unrelated usability\nFAIL classic initial counts skip unrelated usability\nMETRIC classic initial_checks=1350 repeat_checks=33750 bank_reads=19500\nFAIL classic 25 reconciliations skip unrelated usability\nFAIL live initial counts skip unrelated usability\nMETRIC live initial_checks=1500 repeat_checks=37500 bank_reads=23400\nFAIL live 25 reconciliations skip unrelated usability\nFAIL forever initial counts skip unrelated usability\nMETRIC forever initial_checks=1500 repeat_checks=37500 bank_reads=23400\nFAIL forever 25 reconciliations skip unrelated usability\nTier count work: 1710 checks, 10 failures\n"
+    },
+    {
+      "trial": 3,
+      "variant": "candidate",
+      "command": [
+        "lua",
+        "tests/tier_count_work.lua"
+      ],
+      "wallSeconds": 0.46385600000212435,
+      "metrics": {
+        "classic_era": {
+          "initial_checks": 17,
+          "repeat_checks": 425,
+          "bank_reads": 19500
+        },
+        "classic_anniversary": {
+          "initial_checks": 17,
+          "repeat_checks": 425,
+          "bank_reads": 19500
+        },
+        "classic": {
+          "initial_checks": 17,
+          "repeat_checks": 425,
+          "bank_reads": 19500
+        },
+        "live": {
+          "initial_checks": 18,
+          "repeat_checks": 450,
+          "bank_reads": 23400
+        },
+        "forever": {
+          "initial_checks": 18,
+          "repeat_checks": 450,
+          "bank_reads": 23400
+        }
+      },
+      "output": "METRIC classic_era initial_checks=17 repeat_checks=425 bank_reads=19500\nMETRIC classic_anniversary initial_checks=17 repeat_checks=425 bank_reads=19500\nMETRIC classic initial_checks=17 repeat_checks=425 bank_reads=19500\nMETRIC live initial_checks=18 repeat_checks=450 bank_reads=23400\nMETRIC forever initial_checks=18 repeat_checks=450 bank_reads=23400\nTier count work: 1710 checks, 0 failures\n"
+    },
+    {
+      "trial": 4,
+      "variant": "baseline",
+      "command": [
+        "lua",
+        "tests/tier_count_work.lua",
+        "--source",
+        "tests/fixtures/tier_count_match_before.txt",
+        "--measure"
+      ],
+      "wallSeconds": 0.47959329999866895,
+      "metrics": {
+        "classic_era": {
+          "initial_checks": 1350,
+          "repeat_checks": 33750,
+          "bank_reads": 19500
+        },
+        "classic_anniversary": {
+          "initial_checks": 1350,
+          "repeat_checks": 33750,
+          "bank_reads": 19500
+        },
+        "classic": {
+          "initial_checks": 1350,
+          "repeat_checks": 33750,
+          "bank_reads": 19500
+        },
+        "live": {
+          "initial_checks": 1500,
+          "repeat_checks": 37500,
+          "bank_reads": 23400
+        },
+        "forever": {
+          "initial_checks": 1500,
+          "repeat_checks": 37500,
+          "bank_reads": 23400
+        }
+      },
+      "output": "FAIL classic_era initial counts skip unrelated usability\nMETRIC classic_era initial_checks=1350 repeat_checks=33750 bank_reads=19500\nFAIL classic_era 25 reconciliations skip unrelated usability\nFAIL classic_anniversary initial counts skip unrelated usability\nMETRIC classic_anniversary initial_checks=1350 repeat_checks=33750 bank_reads=19500\nFAIL classic_anniversary 25 reconciliations skip unrelated usability\nFAIL classic initial counts skip unrelated usability\nMETRIC classic initial_checks=1350 repeat_checks=33750 bank_reads=19500\nFAIL classic 25 reconciliations skip unrelated usability\nFAIL live initial counts skip unrelated usability\nMETRIC live initial_checks=1500 repeat_checks=37500 bank_reads=23400\nFAIL live 25 reconciliations skip unrelated usability\nFAIL forever initial counts skip unrelated usability\nMETRIC forever initial_checks=1500 repeat_checks=37500 bank_reads=23400\nFAIL forever 25 reconciliations skip unrelated usability\nTier count work: 1710 checks, 10 failures\n"
+    },
+    {
+      "trial": 4,
+      "variant": "candidate",
+      "command": [
+        "lua",
+        "tests/tier_count_work.lua"
+      ],
+      "wallSeconds": 0.4389939000029699,
+      "metrics": {
+        "classic_era": {
+          "initial_checks": 17,
+          "repeat_checks": 425,
+          "bank_reads": 19500
+        },
+        "classic_anniversary": {
+          "initial_checks": 17,
+          "repeat_checks": 425,
+          "bank_reads": 19500
+        },
+        "classic": {
+          "initial_checks": 17,
+          "repeat_checks": 425,
+          "bank_reads": 19500
+        },
+        "live": {
+          "initial_checks": 18,
+          "repeat_checks": 450,
+          "bank_reads": 23400
+        },
+        "forever": {
+          "initial_checks": 18,
+          "repeat_checks": 450,
+          "bank_reads": 23400
+        }
+      },
+      "output": "METRIC classic_era initial_checks=17 repeat_checks=425 bank_reads=19500\nMETRIC classic_anniversary initial_checks=17 repeat_checks=425 bank_reads=19500\nMETRIC classic initial_checks=17 repeat_checks=425 bank_reads=19500\nMETRIC live initial_checks=18 repeat_checks=450 bank_reads=23400\nMETRIC forever initial_checks=18 repeat_checks=450 bank_reads=23400\nTier count work: 1710 checks, 0 failures\n"
+    },
+    {
+      "trial": 5,
+      "variant": "baseline",
+      "command": [
+        "lua",
+        "tests/tier_count_work.lua",
+        "--source",
+        "tests/fixtures/tier_count_match_before.txt",
+        "--measure"
+      ],
+      "wallSeconds": 0.6444931000005454,
+      "metrics": {
+        "classic_era": {
+          "initial_checks": 1350,
+          "repeat_checks": 33750,
+          "bank_reads": 19500
+        },
+        "classic_anniversary": {
+          "initial_checks": 1350,
+          "repeat_checks": 33750,
+          "bank_reads": 19500
+        },
+        "classic": {
+          "initial_checks": 1350,
+          "repeat_checks": 33750,
+          "bank_reads": 19500
+        },
+        "live": {
+          "initial_checks": 1500,
+          "repeat_checks": 37500,
+          "bank_reads": 23400
+        },
+        "forever": {
+          "initial_checks": 1500,
+          "repeat_checks": 37500,
+          "bank_reads": 23400
+        }
+      },
+      "output": "FAIL classic_era initial counts skip unrelated usability\nMETRIC classic_era initial_checks=1350 repeat_checks=33750 bank_reads=19500\nFAIL classic_era 25 reconciliations skip unrelated usability\nFAIL classic_anniversary initial counts skip unrelated usability\nMETRIC classic_anniversary initial_checks=1350 repeat_checks=33750 bank_reads=19500\nFAIL classic_anniversary 25 reconciliations skip unrelated usability\nFAIL classic initial counts skip unrelated usability\nMETRIC classic initial_checks=1350 repeat_checks=33750 bank_reads=19500\nFAIL classic 25 reconciliations skip unrelated usability\nFAIL live initial counts skip unrelated usability\nMETRIC live initial_checks=1500 repeat_checks=37500 bank_reads=23400\nFAIL live 25 reconciliations skip unrelated usability\nFAIL forever initial counts skip unrelated usability\nMETRIC forever initial_checks=1500 repeat_checks=37500 bank_reads=23400\nFAIL forever 25 reconciliations skip unrelated usability\nTier count work: 1710 checks, 10 failures\n"
+    },
+    {
+      "trial": 5,
+      "variant": "candidate",
+      "command": [
+        "lua",
+        "tests/tier_count_work.lua"
+      ],
+      "wallSeconds": 0.49382750000222586,
+      "metrics": {
+        "classic_era": {
+          "initial_checks": 17,
+          "repeat_checks": 425,
+          "bank_reads": 19500
+        },
+        "classic_anniversary": {
+          "initial_checks": 17,
+          "repeat_checks": 425,
+          "bank_reads": 19500
+        },
+        "classic": {
+          "initial_checks": 17,
+          "repeat_checks": 425,
+          "bank_reads": 19500
+        },
+        "live": {
+          "initial_checks": 18,
+          "repeat_checks": 450,
+          "bank_reads": 23400
+        },
+        "forever": {
+          "initial_checks": 18,
+          "repeat_checks": 450,
+          "bank_reads": 23400
+        }
+      },
+      "output": "METRIC classic_era initial_checks=17 repeat_checks=425 bank_reads=19500\nMETRIC classic_anniversary initial_checks=17 repeat_checks=425 bank_reads=19500\nMETRIC classic initial_checks=17 repeat_checks=425 bank_reads=19500\nMETRIC live initial_checks=18 repeat_checks=450 bank_reads=23400\nMETRIC forever initial_checks=18 repeat_checks=450 bank_reads=23400\nTier count work: 1710 checks, 0 failures\n"
+    }
+  ],
+  "summary": {
+    "classic_era": {
+      "initial_checks": {
+        "baseline": {
+          "median": 1350,
+          "min": 1350,
+          "max": 1350
+        },
+        "candidate": {
+          "median": 17,
+          "min": 17,
+          "max": 17
+        }
+      },
+      "repeat_checks": {
+        "baseline": {
+          "median": 33750,
+          "min": 33750,
+          "max": 33750
+        },
+        "candidate": {
+          "median": 425,
+          "min": 425,
+          "max": 425
+        }
+      },
+      "bank_reads": {
+        "baseline": {
+          "median": 19500,
+          "min": 19500,
+          "max": 19500
+        },
+        "candidate": {
+          "median": 19500,
+          "min": 19500,
+          "max": 19500
+        }
+      }
+    },
+    "classic_anniversary": {
+      "initial_checks": {
+        "baseline": {
+          "median": 1350,
+          "min": 1350,
+          "max": 1350
+        },
+        "candidate": {
+          "median": 17,
+          "min": 17,
+          "max": 17
+        }
+      },
+      "repeat_checks": {
+        "baseline": {
+          "median": 33750,
+          "min": 33750,
+          "max": 33750
+        },
+        "candidate": {
+          "median": 425,
+          "min": 425,
+          "max": 425
+        }
+      },
+      "bank_reads": {
+        "baseline": {
+          "median": 19500,
+          "min": 19500,
+          "max": 19500
+        },
+        "candidate": {
+          "median": 19500,
+          "min": 19500,
+          "max": 19500
+        }
+      }
+    },
+    "classic": {
+      "initial_checks": {
+        "baseline": {
+          "median": 1350,
+          "min": 1350,
+          "max": 1350
+        },
+        "candidate": {
+          "median": 17,
+          "min": 17,
+          "max": 17
+        }
+      },
+      "repeat_checks": {
+        "baseline": {
+          "median": 33750,
+          "min": 33750,
+          "max": 33750
+        },
+        "candidate": {
+          "median": 425,
+          "min": 425,
+          "max": 425
+        }
+      },
+      "bank_reads": {
+        "baseline": {
+          "median": 19500,
+          "min": 19500,
+          "max": 19500
+        },
+        "candidate": {
+          "median": 19500,
+          "min": 19500,
+          "max": 19500
+        }
+      }
+    },
+    "live": {
+      "initial_checks": {
+        "baseline": {
+          "median": 1500,
+          "min": 1500,
+          "max": 1500
+        },
+        "candidate": {
+          "median": 18,
+          "min": 18,
+          "max": 18
+        }
+      },
+      "repeat_checks": {
+        "baseline": {
+          "median": 37500,
+          "min": 37500,
+          "max": 37500
+        },
+        "candidate": {
+          "median": 450,
+          "min": 450,
+          "max": 450
+        }
+      },
+      "bank_reads": {
+        "baseline": {
+          "median": 23400,
+          "min": 23400,
+          "max": 23400
+        },
+        "candidate": {
+          "median": 23400,
+          "min": 23400,
+          "max": 23400
+        }
+      }
+    },
+    "forever": {
+      "initial_checks": {
+        "baseline": {
+          "median": 1500,
+          "min": 1500,
+          "max": 1500
+        },
+        "candidate": {
+          "median": 18,
+          "min": 18,
+          "max": 18
+        }
+      },
+      "repeat_checks": {
+        "baseline": {
+          "median": 37500,
+          "min": 37500,
+          "max": 37500
+        },
+        "candidate": {
+          "median": 450,
+          "min": 450,
+          "max": 450
+        }
+      },
+      "bank_reads": {
+        "baseline": {
+          "median": 23400,
+          "min": 23400,
+          "max": 23400
+        },
+        "candidate": {
+          "median": 23400,
+          "min": 23400,
+          "max": 23400
+        }
+      }
+    }
+  },
+  "finalVerification": {
+    "luaSyntaxFiles": 730,
+    "scriptsPassed": 89,
+    "scriptsFailed": 0,
+    "luaHashMismatches": [],
+    "hashNormalization": "CRLF to LF only, matching validation runner",
+    "protectedFilesByteIdentical": 361,
+    "missingCheckpointFiles": [],
+    "unexpectedChanges": [],
+    "newFiles": [
+      "docs/TIER_COUNT_WORK.md",
+      "docs/validation/tier-count-baseline-2026-10-29.txt",
+      "docs/validation/tier-count-baseline-identity-2026-10-29.json",
+      "docs/validation/tier-count-candidate-2026-10-29.txt",
+      "docs/validation/tier-count-comparison-2026-10-29.json",
+      "docs/validation/tier-count-full-2026-10-29.json",
+      "docs/validation/tier-count-native-2026-10-29.json",
+      "docs/validation/tier-count-native-probe-2026-10-29.txt",
+      "tests/tier_count_work.lua",
+      "tests/fixtures/tier_count_match_before.txt"
+    ],
+    "actualFilesOutsideGit": 1244,
+    "explicitDevelopmentToolMarkerFiles": [],
+    "ledgerRows": {
+      "FEATURE_PARITY.csv": 1384,
+      "MODULE_OWNERSHIP.csv": 35,
+      "API_MIGRATION.csv": 24,
+      "CLIENT_MATRIX.csv": 8,
+      "REFERENCE_MANIFEST.csv": 77,
+      "PERFORMANCE_RESULTS.csv": 242
+    },
+    "documentation": {
+      "status": "PASS",
+      "classifiedSources": 763,
+      "reachableFiles": 577,
+      "settingDefinitions": 361,
+      "literalDefaults": 519,
+      "savedVariableRoots": 23,
+      "localLinks": 12824
+    }
+  }
+}

@@ -1,0 +1,83 @@
+{
+  "capturedUTC": "2026-11-07T14:47:28.974580+00:00",
+  "scope": "Complete production Lua with public inventory/native-operation mocks; no actual gear/game/input/settings changes",
+  "sourceNormalization": "raw bytes",
+  "before": {
+    "Respec/FluxRespec_Compat.lua": "e6596e41c5b9541125bc5d38cf6321e6d57ce8a3dfad02737e60f3787da9db32",
+    "Respec/FluxRespec_Includes.lua": "338b79a197f90952fbb7aab5a466d45d56e21d892cb6674471044b7195307a0e",
+    "Respec/FluxRespec_Inv.lua": "e503b361a46b6aaed71eba763e20db228ece4f6a85801ee126e81438962bcac1",
+    "Respec/FluxRespec_Equipment.lua": "b5e878a30a774c5d120f094a3ff20b496c53a5b32ee71c0bf94ded43663fdd66",
+    "Respec/FluxRespec_EquipmentSets.lua": "63ebd97206a3d65eb2352558df2f0f2430ab2ac7c4359d85e9253714cd067831",
+    "Respec/FluxRespec_Apply.lua": "891c77da3faf71d66204a47eb452dc0952c919c28beb9d63e5cb0370bed10ba3",
+    "Respec/FluxRespec_Core.lua": "f951f6c4879dd40355f75f58165ee4a21d6904734feb00dd92d98b6350b8454e",
+    "Respec/FluxRespec_UI.lua": "535bffd25b69b8637d3b4d09cd35b29ba06788a2c02b5901f3e387ad8756abe4",
+    "Respec/FluxRespec_EquipmentPresets.lua": "b0828d5f20fdba53641b0ac04f777b7a045563bc758f866df92ecc9e6d567704",
+    "_FluxUI.toc": "f0bcf5503e7d09f3aadf2a351755747a2bdc47f95a1c4fc6ca72a9258996f54e",
+    "Stress test doc/round-2/core-equipment/equipment_pipeline.lua.txt": "fff7c00774a8b525a4ead17a6b3dc6757b5b3dea7e6dbe26f8d107c575ab8f84",
+    "Stress test doc/round-2/core-equipment/run_equipment.py": "daf4e340b3105c213132df6a3470048e44252907155df50413df6f8e4c8a9c08"
+  },
+  "after": {
+    "Respec/FluxRespec_Compat.lua": "e6596e41c5b9541125bc5d38cf6321e6d57ce8a3dfad02737e60f3787da9db32",
+    "Respec/FluxRespec_Includes.lua": "338b79a197f90952fbb7aab5a466d45d56e21d892cb6674471044b7195307a0e",
+    "Respec/FluxRespec_Inv.lua": "e503b361a46b6aaed71eba763e20db228ece4f6a85801ee126e81438962bcac1",
+    "Respec/FluxRespec_Equipment.lua": "b5e878a30a774c5d120f094a3ff20b496c53a5b32ee71c0bf94ded43663fdd66",
+    "Respec/FluxRespec_EquipmentSets.lua": "63ebd97206a3d65eb2352558df2f0f2430ab2ac7c4359d85e9253714cd067831",
+    "Respec/FluxRespec_Apply.lua": "891c77da3faf71d66204a47eb452dc0952c919c28beb9d63e5cb0370bed10ba3",
+    "Respec/FluxRespec_Core.lua": "f951f6c4879dd40355f75f58165ee4a21d6904734feb00dd92d98b6350b8454e",
+    "Respec/FluxRespec_UI.lua": "535bffd25b69b8637d3b4d09cd35b29ba06788a2c02b5901f3e387ad8756abe4",
+    "Respec/FluxRespec_EquipmentPresets.lua": "b0828d5f20fdba53641b0ac04f777b7a045563bc758f866df92ecc9e6d567704",
+    "_FluxUI.toc": "f0bcf5503e7d09f3aadf2a351755747a2bdc47f95a1c4fc6ca72a9258996f54e",
+    "Stress test doc/round-2/core-equipment/equipment_pipeline.lua.txt": "fff7c00774a8b525a4ead17a6b3dc6757b5b3dea7e6dbe26f8d107c575ab8f84",
+    "Stress test doc/round-2/core-equipment/run_equipment.py": "daf4e340b3105c213132df6a3470048e44252907155df50413df6f8e4c8a9c08"
+  },
+  "drift": [],
+  "uniqueHarnesses": 1,
+  "repeats": 3,
+  "executions": 3,
+  "checksPerRun": 225,
+  "totalChecks": 675,
+  "stdoutDeterministic": true,
+  "pass": 3,
+  "fail": 0,
+  "records": [
+    {
+      "repeat": 1,
+      "exit": 0,
+      "counts": {
+        "checks": 225,
+        "clients": 5,
+        "CORE04_falseSuccessCases": 10,
+        "CORE05_pendingWritesAfterCancel": 5,
+        "CORE05_activeWritesAfterCancel": 5
+      },
+      "stdout": "METRIC CORE04 classic_era mode=missing done=true mismatch=true checkpoint=false pickups=0 warnings=1\nMETRIC CORE04 classic_era mode=partial done=true mismatch=true checkpoint=false pickups=1 warnings=1\nMETRIC CORE05 classic_era mode=pending cancelled=true gearWritesAfterCancel=1 applyDoneCount=1\nMETRIC CORE05 classic_era mode=active cancelled=true gearWritesAfterCancel=1\nMETRIC CORE04 classic_anniversary mode=missing done=true mismatch=true checkpoint=false pickups=0 warnings=1\nMETRIC CORE04 classic_anniversary mode=partial done=true mismatch=true checkpoint=false pickups=1 warnings=1\nMETRIC CORE05 classic_anniversary mode=pending cancelled=true gearWritesAfterCancel=1 applyDoneCount=1\nMETRIC CORE05 classic_anniversary mode=active cancelled=true gearWritesAfterCancel=1\nMETRIC CORE04 classic mode=missing done=true mismatch=true checkpoint=false pickups=0 warnings=1\nMETRIC CORE04 classic mode=partial done=true mismatch=true checkpoint=false pickups=1 warnings=1\nMETRIC CORE05 classic mode=pending cancelled=true gearWritesAfterCancel=1 applyDoneCount=1\nMETRIC CORE05 classic mode=active cancelled=true gearWritesAfterCancel=1\nMETRIC CORE04 live mode=missing done=true mismatch=true checkpoint=false pickups=0 warnings=1\nMETRIC CORE04 live mode=partial done=true mismatch=true checkpoint=false pickups=1 warnings=1\nMETRIC CORE05 live mode=pending cancelled=true gearWritesAfterCancel=1 applyDoneCount=1\nMETRIC CORE05 live mode=active cancelled=true gearWritesAfterCancel=1\nMETRIC CORE04 forever mode=missing done=true mismatch=true checkpoint=false pickups=0 warnings=1\nMETRIC CORE04 forever mode=partial done=true mismatch=true checkpoint=false pickups=1 warnings=1\nMETRIC CORE05 forever mode=pending cancelled=true gearWritesAfterCancel=1 applyDoneCount=1\nMETRIC CORE05 forever mode=active cancelled=true gearWritesAfterCancel=1\nSUMMARY checks=225 clients=5 CORE04_falseSuccessCases=10 CORE05_pendingWritesAfterCancel=5 CORE05_activeWritesAfterCancel=5 native=false\n",
+      "stderr": ""
+    },
+    {
+      "repeat": 2,
+      "exit": 0,
+      "counts": {
+        "checks": 225,
+        "clients": 5,
+        "CORE04_falseSuccessCases": 10,
+        "CORE05_pendingWritesAfterCancel": 5,
+        "CORE05_activeWritesAfterCancel": 5
+      },
+      "stdout": "METRIC CORE04 classic_era mode=missing done=true mismatch=true checkpoint=false pickups=0 warnings=1\nMETRIC CORE04 classic_era mode=partial done=true mismatch=true checkpoint=false pickups=1 warnings=1\nMETRIC CORE05 classic_era mode=pending cancelled=true gearWritesAfterCancel=1 applyDoneCount=1\nMETRIC CORE05 classic_era mode=active cancelled=true gearWritesAfterCancel=1\nMETRIC CORE04 classic_anniversary mode=missing done=true mismatch=true checkpoint=false pickups=0 warnings=1\nMETRIC CORE04 classic_anniversary mode=partial done=true mismatch=true checkpoint=false pickups=1 warnings=1\nMETRIC CORE05 classic_anniversary mode=pending cancelled=true gearWritesAfterCancel=1 applyDoneCount=1\nMETRIC CORE05 classic_anniversary mode=active cancelled=true gearWritesAfterCancel=1\nMETRIC CORE04 classic mode=missing done=true mismatch=true checkpoint=false pickups=0 warnings=1\nMETRIC CORE04 classic mode=partial done=true mismatch=true checkpoint=false pickups=1 warnings=1\nMETRIC CORE05 classic mode=pending cancelled=true gearWritesAfterCancel=1 applyDoneCount=1\nMETRIC CORE05 classic mode=active cancelled=true gearWritesAfterCancel=1\nMETRIC CORE04 live mode=missing done=true mismatch=true checkpoint=false pickups=0 warnings=1\nMETRIC CORE04 live mode=partial done=true mismatch=true checkpoint=false pickups=1 warnings=1\nMETRIC CORE05 live mode=pending cancelled=true gearWritesAfterCancel=1 applyDoneCount=1\nMETRIC CORE05 live mode=active cancelled=true gearWritesAfterCancel=1\nMETRIC CORE04 forever mode=missing done=true mismatch=true checkpoint=false pickups=0 warnings=1\nMETRIC CORE04 forever mode=partial done=true mismatch=true checkpoint=false pickups=1 warnings=1\nMETRIC CORE05 forever mode=pending cancelled=true gearWritesAfterCancel=1 applyDoneCount=1\nMETRIC CORE05 forever mode=active cancelled=true gearWritesAfterCancel=1\nSUMMARY checks=225 clients=5 CORE04_falseSuccessCases=10 CORE05_pendingWritesAfterCancel=5 CORE05_activeWritesAfterCancel=5 native=false\n",
+      "stderr": ""
+    },
+    {
+      "repeat": 3,
+      "exit": 0,
+      "counts": {
+        "checks": 225,
+        "clients": 5,
+        "CORE04_falseSuccessCases": 10,
+        "CORE05_pendingWritesAfterCancel": 5,
+        "CORE05_activeWritesAfterCancel": 5
+      },
+      "stdout": "METRIC CORE04 classic_era mode=missing done=true mismatch=true checkpoint=false pickups=0 warnings=1\nMETRIC CORE04 classic_era mode=partial done=true mismatch=true checkpoint=false pickups=1 warnings=1\nMETRIC CORE05 classic_era mode=pending cancelled=true gearWritesAfterCancel=1 applyDoneCount=1\nMETRIC CORE05 classic_era mode=active cancelled=true gearWritesAfterCancel=1\nMETRIC CORE04 classic_anniversary mode=missing done=true mismatch=true checkpoint=false pickups=0 warnings=1\nMETRIC CORE04 classic_anniversary mode=partial done=true mismatch=true checkpoint=false pickups=1 warnings=1\nMETRIC CORE05 classic_anniversary mode=pending cancelled=true gearWritesAfterCancel=1 applyDoneCount=1\nMETRIC CORE05 classic_anniversary mode=active cancelled=true gearWritesAfterCancel=1\nMETRIC CORE04 classic mode=missing done=true mismatch=true checkpoint=false pickups=0 warnings=1\nMETRIC CORE04 classic mode=partial done=true mismatch=true checkpoint=false pickups=1 warnings=1\nMETRIC CORE05 classic mode=pending cancelled=true gearWritesAfterCancel=1 applyDoneCount=1\nMETRIC CORE05 classic mode=active cancelled=true gearWritesAfterCancel=1\nMETRIC CORE04 live mode=missing done=true mismatch=true checkpoint=false pickups=0 warnings=1\nMETRIC CORE04 live mode=partial done=true mismatch=true checkpoint=false pickups=1 warnings=1\nMETRIC CORE05 live mode=pending cancelled=true gearWritesAfterCancel=1 applyDoneCount=1\nMETRIC CORE05 live mode=active cancelled=true gearWritesAfterCancel=1\nMETRIC CORE04 forever mode=missing done=true mismatch=true checkpoint=false pickups=0 warnings=1\nMETRIC CORE04 forever mode=partial done=true mismatch=true checkpoint=false pickups=1 warnings=1\nMETRIC CORE05 forever mode=pending cancelled=true gearWritesAfterCancel=1 applyDoneCount=1\nMETRIC CORE05 forever mode=active cancelled=true gearWritesAfterCancel=1\nSUMMARY checks=225 clients=5 CORE04_falseSuccessCases=10 CORE05_pendingWritesAfterCancel=5 CORE05_activeWritesAfterCancel=5 native=false\n",
+      "stderr": ""
+    }
+  ]
+}

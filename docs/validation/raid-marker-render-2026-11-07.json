@@ -1,0 +1,150 @@
+{
+  "changeID": "RAID-MARKER-RENDER-20261107",
+  "requirement": "REQ-RF-70",
+  "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\06\\01a1b0ac-547f-7972-8df9-fa26882e0e03\\raid-marker-20261107T102741Z\\checkpoint.json",
+  "existingRecovery": "Raid-rewrite-20261107T082357Z complete external source/history/settings checkpoint retained and available; no settings/profiler writes",
+  "after": {
+    "UnitFrames/FluxUnitFrames_Shared.lua": "de27025d35171ba9468761ccb886f44920880c93621b1497f1c2e6eee11e7300",
+    "RaidFrame/FluxRaidUnit.lua": "4f697b75a768a83ce13de423cc96b6c339fd58dc0f52b4b5ddfbb834e2b3d165",
+    "tests/raid_marker_secret.lua": "8cc7c2a84332d58196ed65563e24956e43ced3dff782258a654787ce7248b4fb"
+  },
+  "sources": [
+    {
+      "client": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "blob": "adc0caeaeba3c941e9c2d31c9fa644d102054edf",
+      "section": "Name = \"SetSpriteSheetCell\",\n\t\t\tType = \"Function\",\n\t\t\tSecretArgumentsAddAspect = { Enum.SecretAspect.TexCoords },\n\t\t\tSecretArguments = \"AllowedWhenTainted\",\n\n\t\t\tArguments =\n\t\t\t{\n\t\t\t\t{ Name = \"cell\", Type = \"luaIndex\", Nilable = false, ConditionalSecret = true },\n\t\t\t\t{ Name = \"numRows\", Type = \"number\", Nilable = false, NeverSecret = true },\n\t\t\t\t{ Name = \"numColumns\", Type = \"number\", Nilable = false, NeverSecret = true },\n\t\t\t\t{ Name = \"cellWidth\", Type = \"number\", Nilable = true, NeverSecret = true },\n\t\t\t\t{ Name = \"cellHeight\", Type = \"number\", Nilable = true, NeverSecret = true },\n\t\t\t},\n\t\t},\n\t\t{\n\t\t\tName = \"SetTexCoord\",\n\t\t\tType = \"Function\","
+    },
+    {
+      "client": "forever",
+      "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "blob": "adc0caeaeba3c941e9c2d31c9fa644d102054edf",
+      "section": "Name = \"SetSpriteSheetCell\",\n\t\t\tType = \"Function\",\n\t\t\tSecretArgumentsAddAspect = { Enum.SecretAspect.TexCoords },\n\t\t\tSecretArguments = \"AllowedWhenTainted\",\n\n\t\t\tArguments =\n\t\t\t{\n\t\t\t\t{ Name = \"cell\", Type = \"luaIndex\", Nilable = false, ConditionalSecret = true },\n\t\t\t\t{ Name = \"numRows\", Type = \"number\", Nilable = false, NeverSecret = true },\n\t\t\t\t{ Name = \"numColumns\", Type = \"number\", Nilable = false, NeverSecret = true },\n\t\t\t\t{ Name = \"cellWidth\", Type = \"number\", Nilable = true, NeverSecret = true },\n\t\t\t\t{ Name = \"cellHeight\", Type = \"number\", Nilable = true, NeverSecret = true },\n\t\t\t},\n\t\t},\n\t\t{\n\t\t\tName = \"SetTexCoord\",\n\t\t\tType = \"Function\","
+    },
+    {
+      "client": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "blob": "730eb03e46b89d047b457a55920fb46e847dcc24",
+      "section": "Name = \"SetSpriteSheetCell\",\n\t\t\tType = \"Function\",\n\n\t\t\tArguments =\n\t\t\t{\n\t\t\t\t{ Name = \"cell\", Type = \"luaIndex\", Nilable = false },\n\t\t\t\t{ Name = \"numRows\", Type = \"number\", Nilable = false },\n\t\t\t\t{ Name = \"numColumns\", Type = \"number\", Nilable = false },\n\t\t\t\t{ Name = \"cellWidth\", Type = \"number\", Nilable = true },\n\t\t\t\t{ Name = \"cellHeight\", Type = \"number\", Nilable = true },\n\t\t\t},\n\t\t},\n\t\t{\n\t\t\tName = \"SetTexCoord\",\n\t\t\tType = \"Function\",\n\n\t\t\tArguments =\n\t\t\t{\n\t\t\t\t{ Name = \"left\", Type = \"number\", Nilable = false },\n\t\t\t\t{ Name = \"right\", Type = \"number\", Nilable = false },\n\t\t\t\t{ Name = \"bottom\", Type = \"number\", Nilable = false },\n\t\t\t\t{ Name = \"to"
+    },
+    {
+      "client": "classic_era",
+      "commit": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "blob": "730eb03e46b89d047b457a55920fb46e847dcc24",
+      "section": "Name = \"SetSpriteSheetCell\",\n\t\t\tType = \"Function\",\n\n\t\t\tArguments =\n\t\t\t{\n\t\t\t\t{ Name = \"cell\", Type = \"luaIndex\", Nilable = false },\n\t\t\t\t{ Name = \"numRows\", Type = \"number\", Nilable = false },\n\t\t\t\t{ Name = \"numColumns\", Type = \"number\", Nilable = false },\n\t\t\t\t{ Name = \"cellWidth\", Type = \"number\", Nilable = true },\n\t\t\t\t{ Name = \"cellHeight\", Type = \"number\", Nilable = true },\n\t\t\t},\n\t\t},\n\t\t{\n\t\t\tName = \"SetTexCoord\",\n\t\t\tType = \"Function\",\n\n\t\t\tArguments =\n\t\t\t{\n\t\t\t\t{ Name = \"left\", Type = \"number\", Nilable = false },\n\t\t\t\t{ Name = \"right\", Type = \"number\", Nilable = false },\n\t\t\t\t{ Name = \"bottom\", Type = \"number\", Nilable = false },\n\t\t\t\t{ Name = \"to"
+    },
+    {
+      "client": "classic_anniversary",
+      "commit": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "blob": "730eb03e46b89d047b457a55920fb46e847dcc24",
+      "section": "Name = \"SetSpriteSheetCell\",\n\t\t\tType = \"Function\",\n\n\t\t\tArguments =\n\t\t\t{\n\t\t\t\t{ Name = \"cell\", Type = \"luaIndex\", Nilable = false },\n\t\t\t\t{ Name = \"numRows\", Type = \"number\", Nilable = false },\n\t\t\t\t{ Name = \"numColumns\", Type = \"number\", Nilable = false },\n\t\t\t\t{ Name = \"cellWidth\", Type = \"number\", Nilable = true },\n\t\t\t\t{ Name = \"cellHeight\", Type = \"number\", Nilable = true },\n\t\t\t},\n\t\t},\n\t\t{\n\t\t\tName = \"SetTexCoord\",\n\t\t\tType = \"Function\",\n\n\t\t\tArguments =\n\t\t\t{\n\t\t\t\t{ Name = \"left\", Type = \"number\", Nilable = false },\n\t\t\t\t{ Name = \"right\", Type = \"number\", Nilable = false },\n\t\t\t\t{ Name = \"bottom\", Type = \"number\", Nilable = false },\n\t\t\t\t{ Name = \"to"
+    }
+  ],
+  "contracts": {
+    "markerReturn": "Forever RaidMarkersDocumentation.GetRaidTargetIndex: SecretReturns true; nilable luaIndex; blob70f01983b6b644eabf75a43f6b17b13b6a621607",
+    "renderer": "Retail/Forever SimpleTextureBase.SetSpriteSheetCell: AllowedWhenTainted; conditional-secret cell; four rows/four columns; public texture sheet supplied first.",
+    "fallback": "Readable indices may use existing legacy helper when native sprite method unavailable; opaque values never enter legacy Lua arithmetic."
+  },
+  "causes": [
+    "Raid icon texture had no base sheet; SetRaidTargetIconTexture changes only cell coordinates on current clients",
+    "Raid/party updater rejected every opaque index and hid its texture; ordinary UFs used unsafe index truth tests"
+  ],
+  "tests": {
+    "markerChecks": 2730,
+    "existingRaidRuntime": 428,
+    "existingParty": 810,
+    "existingIndicators": 59,
+    "fivePairs": [
+      {
+        "before": {
+          "exit": 1,
+          "wallSeconds": 0.041420200002903584,
+          "output": "lua: tests/raid_marker_secret.lua:5: live raid path sets sheet and cell for all eight marks\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/raid_marker_secret.lua:5: in local 'check'\n\ttests/raid_marker_secret.lua:32: in main chunk\n\t[C]: in ?\n"
+        },
+        "after": {
+          "exit": 0,
+          "wallSeconds": 0.02974739999626763,
+          "output": "Raid markers: 2730 checks; readable/restricted/all-eight/removal on five source-client models; native pixels/taint pending\n"
+        }
+      },
+      {
+        "after": {
+          "exit": 0,
+          "wallSeconds": 0.02615450000303099,
+          "output": "Raid markers: 2730 checks; readable/restricted/all-eight/removal on five source-client models; native pixels/taint pending\n"
+        },
+        "before": {
+          "exit": 1,
+          "wallSeconds": 0.022335100002237596,
+          "output": "lua: tests/raid_marker_secret.lua:5: live raid path sets sheet and cell for all eight marks\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/raid_marker_secret.lua:5: in local 'check'\n\ttests/raid_marker_secret.lua:32: in main chunk\n\t[C]: in ?\n"
+        }
+      },
+      {
+        "before": {
+          "exit": 1,
+          "wallSeconds": 0.020629799997550435,
+          "output": "lua: tests/raid_marker_secret.lua:5: live raid path sets sheet and cell for all eight marks\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/raid_marker_secret.lua:5: in local 'check'\n\ttests/raid_marker_secret.lua:32: in main chunk\n\t[C]: in ?\n"
+        },
+        "after": {
+          "exit": 0,
+          "wallSeconds": 0.022577000003366265,
+          "output": "Raid markers: 2730 checks; readable/restricted/all-eight/removal on five source-client models; native pixels/taint pending\n"
+        }
+      },
+      {
+        "after": {
+          "exit": 0,
+          "wallSeconds": 0.022825500003818888,
+          "output": "Raid markers: 2730 checks; readable/restricted/all-eight/removal on five source-client models; native pixels/taint pending\n"
+        },
+        "before": {
+          "exit": 1,
+          "wallSeconds": 0.02035980000073323,
+          "output": "lua: tests/raid_marker_secret.lua:5: live raid path sets sheet and cell for all eight marks\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/raid_marker_secret.lua:5: in local 'check'\n\ttests/raid_marker_secret.lua:32: in main chunk\n\t[C]: in ?\n"
+        }
+      },
+      {
+        "before": {
+          "exit": 1,
+          "wallSeconds": 0.021285900002112612,
+          "output": "lua: tests/raid_marker_secret.lua:5: live raid path sets sheet and cell for all eight marks\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/raid_marker_secret.lua:5: in local 'check'\n\ttests/raid_marker_secret.lua:32: in main chunk\n\t[C]: in ?\n"
+        },
+        "after": {
+          "exit": 0,
+          "wallSeconds": 0.021759999995992985,
+          "output": "Raid markers: 2730 checks; readable/restricted/all-eight/removal on five source-client models; native pixels/taint pending\n"
+        }
+      }
+    ],
+    "whole": "220/220 scripts PASS; 883 syntax files/0 failures.",
+    "failures": [],
+    "corpusDrift": [
+      "Inventory/Restock/Bank/FluxBankRestockButton.lua",
+      "tests/bank_restock_icon.lua"
+    ]
+  },
+  "resources": "Existing marker textures/events/anchors reused; no new frame/event/hook/timer/ticker/driver; extra constant sheet assignment before cell paint. No native CPU/FPS claim.",
+  "nativePending": "Actual in-game symbols/removal/secret renderer operation/combat/taint/pixels/FPS across each client; desktop sentinels are not native secrecy certification.",
+  "copies": [
+    {
+      "client": "_retail_",
+      "mismatches": []
+    },
+    {
+      "client": "_forever_",
+      "mismatches": []
+    },
+    {
+      "client": "_classic_",
+      "mismatches": []
+    },
+    {
+      "client": "_classic_era_",
+      "mismatches": []
+    },
+    {
+      "client": "_anniversary_",
+      "mismatches": []
+    }
+  ]
+}

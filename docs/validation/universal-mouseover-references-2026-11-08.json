@@ -1,0 +1,117 @@
+{
+  "pins": [
+    [
+      "live",
+      "297d7aaaa736f346b3e036f38ee088eaf7f8c07f"
+    ],
+    [
+      "forever",
+      "9dc84f0d3bbae1768ac3405b3716000bd93eda06"
+    ],
+    [
+      "classic",
+      "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf"
+    ],
+    [
+      "classic_era",
+      "4192ac60067fc55566182291bc67c85dd9b6794d"
+    ],
+    [
+      "classic_anniversary",
+      "68e0a2ec559d9761dfc4e7f864c3944f9d758a49"
+    ]
+  ],
+  "sources": [
+    {
+      "name": "secure_0",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_FrameXML/SecureTemplates.lua",
+      "gitBlob": "0b7ba234696b5f1c551e7d84375900e50c824cbb",
+      "savedLFsha256": "5c5baa3d1f611fab2bf520d11d63e086df7efec3b23c0b1cfeea3dd390c211f6"
+    },
+    {
+      "name": "secure_1",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_FrameXML/SecureTemplates.lua",
+      "gitBlob": "66f203e31a819f383ea3c6920be8d4f6556848eb",
+      "savedLFsha256": "d36f02df62d1e5dff7a6da1e51b788ce723c0810c3dddb0eab02a17bc2a53158"
+    },
+    {
+      "name": "secure_2",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_FrameXML/SecureTemplates.lua",
+      "gitBlob": "e35a52fa79f9cbc38452b6b529d8734ded0938ea",
+      "savedLFsha256": "09f3677c9bad74a612feb4c110755c7525d4e01f10e75d7265b4e1fcf261f792"
+    },
+    {
+      "name": "restricted_0",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/RestrictedEnvironment.lua",
+      "gitBlob": "ccfc372959f2195809b804f816a3f65442cd2cfc",
+      "savedLFsha256": "73966d95bcdb2902beffa593ff84bdee3569dd777962a728bbf5e7160a5363ab"
+    },
+    {
+      "name": "restricted_1",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/RestrictedEnvironment.lua",
+      "gitBlob": "ccfc372959f2195809b804f816a3f65442cd2cfc",
+      "savedLFsha256": "73966d95bcdb2902beffa593ff84bdee3569dd777962a728bbf5e7160a5363ab"
+    },
+    {
+      "name": "restricted_2",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/RestrictedEnvironment.lua",
+      "gitBlob": "ccfc372959f2195809b804f816a3f65442cd2cfc",
+      "savedLFsha256": "73966d95bcdb2902beffa593ff84bdee3569dd777962a728bbf5e7160a5363ab"
+    },
+    {
+      "name": "restricted_classic_era",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/RestrictedEnvironment.lua",
+      "gitBlob": "ccfc372959f2195809b804f816a3f65442cd2cfc",
+      "savedLFsha256": "73966d95bcdb2902beffa593ff84bdee3569dd777962a728bbf5e7160a5363ab"
+    },
+    {
+      "name": "restricted_classic_anniversary",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/RestrictedEnvironment.lua",
+      "gitBlob": "b5b0be0758a58b7eb72b1fb7ca3a251f4b5df18b",
+      "savedLFsha256": "73966d95bcdb2902beffa593ff84bdee3569dd777962a728bbf5e7160a5363ab"
+    },
+    {
+      "name": "retail_support",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_SettingsDefinitions_Frame/Mainline/CombatOverrides.lua",
+      "gitBlob": "7d617f47ff01c47c4b2a3cea5e0cb2518971ccc3",
+      "savedLFsha256": "8664c794f730e94d070b78b6bc5c91a43149953697624630b3e63eeb1edd062b"
+    },
+    {
+      "name": "era_support",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_SettingsDefinitions_Frame/Classic/CombatOverrides.lua",
+      "gitBlob": "3a6e77ea57877fe3b4a02a5d26dcd18497fbc3c5",
+      "savedLFsha256": "b9cc09c75f2f4793bed6a15749f8a7e861be3d4922b63a1db456cd380cd59671"
+    },
+    {
+      "name": "anniversary_support",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_SettingsDefinitions_Frame/Classic/CombatOverrides.lua",
+      "gitBlob": "152031b80979c194fbb9817e32ada45b89c88650",
+      "savedLFsha256": "b9cc09c75f2f4793bed6a15749f8a7e861be3d4922b63a1db456cd380cd59671"
+    },
+    {
+      "name": "forever_click",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_ClickBindingUI/Blizzard_ClickBindingUI.lua",
+      "gitBlob": "d7185dcb5a7ec1fcee0bfb56e5bb4c2dc9ad3047",
+      "savedLFsha256": "8b5a3f45c547ebfc1fe7392be7c954049506cd03b145dc48a3e355c2aa1bbf3a"
+    },
+    {
+      "name": "support_1",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_SettingsDefinitions_Frame/Mainline/CombatOverrides.lua",
+      "gitBlob": "a1f8d4cecab66c0f32fe45fd8453f063e622642a",
+      "savedLFsha256": "79f3ca08e68cbb4c5bb75c5bc8eebfbd4815d59824a0d9cc764bc51192367c51"
+    },
+    {
+      "name": "support_2",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_SettingsDefinitions_Frame/Classic/CombatOverrides.lua",
+      "gitBlob": "3a6e77ea57877fe3b4a02a5d26dcd18497fbc3c5",
+      "savedLFsha256": "b9cc09c75f2f4793bed6a15749f8a7e861be3d4922b63a1db456cd380cd59671"
+    },
+    {
+      "name": "forever_slash",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_ChatFrameBase/Shared/SlashCommands.lua",
+      "gitBlob": "0799acd4509c6b2b701a55afb4efcc76438f73eb",
+      "savedLFsha256": "f1ebf68b370ca2b8c1d550349cbcbd45d0f39cd963ba8a9566fc1ebceb6da1d6"
+    }
+  ],
+  "scope": "Fetched from pinned Gethe primary source; references read-only; no Blizzard implementation/assets copied to runtime."
+}

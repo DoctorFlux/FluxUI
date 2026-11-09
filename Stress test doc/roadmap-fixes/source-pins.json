@@ -1,0 +1,38 @@
+{
+  "capturedUTC": "2026-11-07",
+  "pins": [
+    {
+      "branch": "live",
+      "sha": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "date": "2026-11-04T00:46:01Z",
+      "version": "12.1.5 (70783)",
+      "url": "https://github.com/Gethe/wow-ui-source/commit/297d7aaaa736f346b3e036f38ee088eaf7f8c07f"
+    },
+    {
+      "branch": "forever",
+      "sha": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "date": "2026-11-07T04:46:13Z",
+      "version": "1.60.1 (70862)",
+      "url": "https://github.com/Gethe/wow-ui-source/commit/9dc84f0d3bbae1768ac3405b3716000bd93eda06"
+    },
+    {
+      "branch": "classic_era",
+      "sha": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "date": "2026-10-26T23:16:08Z",
+      "version": "1.15.9 (70576)",
+      "url": "https://github.com/Gethe/wow-ui-source/commit/4192ac60067fc55566182291bc67c85dd9b6794d"
+    },
+    {
+      "branch": "classic_anniversary",
+      "sha": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "date": "2026-10-26T23:16:20Z",
+      "version": "2.5.6 (70577)",
+      "url": "https://github.com/Gethe/wow-ui-source/commit/68e0a2ec559d9761dfc4e7f864c3944f9d758a49"
+    }
+  ],
+  "rangeContract": {
+    "sha": "06ea2e9b6998f88e2a33905e6caebfce54f44157",
+    "url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_APIDocumentationGenerated/ActionBarFrameDocumentation.lua",
+    "excerpt": "Name = \"ActionRangeCheckUpdate\",\n\t\t\tType = \"Event\",\n\t\t\tLiteralName = \"ACTION_RANGE_CHECK_UPDATE\",\n\t\t\tSynchronousEvent = true,\n\t\t\tDocumentation = { \"Used in conjunction with EnableActionRangeCheck to inform the UI when an action goes in or out of range with its current target.\" },\n\t\t\tPayload =\n\t\t\t{\n\t\t\t\t{ Name = \"slot\", Type = \"luaIndex\", Nilable = false },\n\t\t\t\t{ Name = \"isInRange\", Type = \"bool\", Nilable = false, Documentation = { \"Whether or not the current target is in range of the action. Should not be used if the 'checksRange' parameter is false.\" } },\n\t\t\t\t{ Name = \"checksRange\", Type = \"bool\", Nilable = false, Documentation = { \"Can be false if a range check was not made for any reason, for example there is not a current target.\" } },\n\t\t\t},\n\t\t},\n\t\t{\n\t\t\tName = \"ActionUsableChanged\",\n\t\t\tType = \"Event\",\n\t\t\tLiteralName = \"ACTION_USABLE_CHANGED\",\n\t\t\tSynchronousEvent = true,\n\t\t\tPayload =\n\t\t\t{\n\t\t\t\t{ Name = \"changes\", Type = \"table\", InnerType = \"ActionUsableState\", Nilable = false },\n\t\t\t}"
+  }
+}

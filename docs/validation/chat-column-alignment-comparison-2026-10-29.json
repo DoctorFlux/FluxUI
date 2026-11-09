@@ -1,0 +1,1077 @@
+{
+  "baseline": {
+    "head": "30464782f39a435c3b402048387a1a47ac0acb0c",
+    "tree": "df72b2c48996012c89257a42352271738d2a981c",
+    "actualFileCheckpoint": "Chat-alignment-recovery-20261029T153201Z",
+    "sourceArchiveSha256": "1990f076ce8c8fcc6dfacfac14e2ae137ea57db0e49d39b342870b94213eed13",
+    "includesUncommittedTrackerAndAuditDocs": true,
+    "fixtureNormalizedSha256": "234f0822e547da404a30a0e726fb280fc55e13650ad99070629a310199b41af9"
+  },
+  "candidate": {
+    "commit": "7f13000e99be9e7e2e2f98f52c9589dbe03787bc",
+    "tree": "b6fa7e9f63df7d5d6bcc168daeafce030cfdcdc2",
+    "sources": {
+      "Other/FluxChatCopyPaste.lua": "11a619bb94789b6a224c73437fb68f7524f0d895ed051493b57c9b548f285a2c",
+      "tests/chat_column_layout.lua": "b304c5d1c43c537a88ced827605561f5ab9b7d6aba20499e78710e8a0ce0ba5a"
+    }
+  },
+  "configuration": {
+    "scope": "Actual column/social callbacks; five branches/both sides; 190 alignment/scale/startup/all-tab checks plus1819 retained checks",
+    "scenario": "100 stable layouts plus3 scale probes per branch/side; before/candidate same fixture; scale0.65/1/1.4 with UIParent0.75; preserved combat/overflow/control paths",
+    "trials": "5 alternating fresh-process pairs",
+    "profiling": "off; deterministic position writes/frame allocations/shared tab-height getter counts",
+    "native": "Matched actual Retail UI geometry, untouched reload screenshot and seven native tab selections; no full dynamic-pixel/FPS/other-client acceptance",
+    "finalSharedInsetUiUnits": 8,
+    "startup": "Place column against provisional chat top then move chat to settled rectangle with no tab/layout callback; relative tab-height inset remains correct",
+    "tabs": "Primary dock anchor retained while General, Global, Combat Log and custom tabs have different rectangles/scales; selected Copy target unchanged"
+  },
+  "configSha256": "143aa3d5348c0ffc0aa3da569ebc6acba4955070d0970b91dddb49e52f2b1b47",
+  "samples": [
+    {
+      "pair": 1,
+      "variant": "baseline",
+      "command": [
+        "lua",
+        "tests/chat_column_layout.lua",
+        "--column-source",
+        "tests/fixtures/chat_column_alignment_before.txt",
+        "--measure"
+      ],
+      "wallSeconds": 0.09781140000268351,
+      "metrics": {
+        "live_left": {
+          "shared_tab_reads": 0,
+          "layout_points": 900,
+          "new_frames": 0
+        },
+        "live_right": {
+          "shared_tab_reads": 0,
+          "layout_points": 900,
+          "new_frames": 0
+        },
+        "classic_era_left": {
+          "shared_tab_reads": 0,
+          "layout_points": 1000,
+          "new_frames": 0
+        },
+        "classic_era_right": {
+          "shared_tab_reads": 0,
+          "layout_points": 1000,
+          "new_frames": 0
+        },
+        "classic_anniversary_left": {
+          "shared_tab_reads": 0,
+          "layout_points": 1000,
+          "new_frames": 0
+        },
+        "classic_anniversary_right": {
+          "shared_tab_reads": 0,
+          "layout_points": 1000,
+          "new_frames": 0
+        },
+        "classic_left": {
+          "shared_tab_reads": 0,
+          "layout_points": 900,
+          "new_frames": 0
+        },
+        "classic_right": {
+          "shared_tab_reads": 0,
+          "layout_points": 900,
+          "new_frames": 0
+        },
+        "forever_left": {
+          "shared_tab_reads": 0,
+          "layout_points": 900,
+          "new_frames": 0
+        },
+        "forever_right": {
+          "shared_tab_reads": 0,
+          "layout_points": 900,
+          "new_frames": 0
+        }
+      },
+      "output": "chat column: 1311 checks across five branches, both sides; 4 regressions rejected\nMETRIC live_left hook_timers=3 burst_cycles=0 burst_new_frames=0 combat_waiters=1\nMETRIC live_right hook_timers=3 burst_cycles=0 burst_new_frames=0 combat_waiters=1\nMETRIC forever_left hook_timers=3 burst_cycles=0 burst_new_frames=0 combat_waiters=1\nMETRIC forever_right hook_timers=3 burst_cycles=0 burst_new_frames=0 combat_waiters=1\nQuickJoin column ownership: 508 checks, 0 failures\nFAIL live: beside-chat top matches reference inset\nFAIL live: Social keeps its primary-dock offset on tab 2\nFAIL live: Social keeps its primary-dock offset on tab 3\nFAIL live: Social keeps its primary-dock offset on tab 4\nFAIL live: Social keeps its primary-dock offset on tab 1\nFAIL live: shared top follows layout resize\nFAIL live: late login chat pin settles without switching tabs\nFAIL live: shared physical top survives saved chat scale 0.65\nFAIL live: shared physical top survives saved chat scale 1\nFAIL live: shared physical top survives saved chat scale 1.4\nALIGN_METRIC live_left shared_tab_reads=0 layout_points=900 new_frames=0\nFAIL live: beside-chat top matches reference inset\nFAIL live: Social keeps its primary-dock offset on tab 2\nFAIL live: Social keeps its primary-dock offset on tab 3\nFAIL live: Social keeps its primary-dock offset on tab 4\nFAIL live: Social keeps its primary-dock offset on tab 1\nFAIL live: shared top follows layout resize\nFAIL live: late login chat pin settles without switching tabs\nFAIL live: shared physical top survives saved chat scale 0.65\nFAIL live: shared physical top survives saved chat scale 1\nFAIL live: shared physical top survives saved chat scale 1.4\nALIGN_METRIC live_right shared_tab_reads=0 layout_points=900 new_frames=0\nFAIL classic_era: beside-chat top matches reference inset\nFAIL classic_era: Social keeps its primary-dock offset on tab 2\nFAIL classic_era: Social keeps its primary-dock offset on tab 3\nFAIL classic_era: Social keeps its primary-dock offset on tab 4\nFAIL classic_era: Social keeps its primary-dock offset on tab 1\nFAIL classic_era: shared top follows layout resize\nFAIL classic_era: late login chat pin settles without switching tabs\nFAIL classic_era: shared physical top survives saved chat scale 0.65\nFAIL classic_era: shared physical top survives saved chat scale 1\nFAIL classic_era: shared physical top survives saved chat scale 1.4\nALIGN_METRIC classic_era_left shared_tab_reads=0 layout_points=1000 new_frames=0\nFAIL classic_era: beside-chat top matches reference inset\nFAIL classic_era: Social keeps its primary-dock offset on tab 2\nFAIL classic_era: Social keeps its primary-dock offset on tab 3\nFAIL classic_era: Social keeps its primary-dock offset on tab 4\nFAIL classic_era: Social keeps its primary-dock offset on tab 1\nFAIL classic_era: shared top follows layout resize\nFAIL classic_era: late login chat pin settles without switching tabs\nFAIL classic_era: shared physical top survives saved chat scale 0.65\nFAIL classic_era: shared physical top survives saved chat scale 1\nFAIL classic_era: shared physical top survives saved chat scale 1.4\nALIGN_METRIC classic_era_right shared_tab_reads=0 layout_points=1000 new_frames=0\nFAIL classic_anniversary: beside-chat top matches reference inset\nFAIL classic_anniversary: Social keeps its primary-dock offset on tab 2\nFAIL classic_anniversary: Social keeps its primary-dock offset on tab 3\nFAIL classic_anniversary: Social keeps its primary-dock offset on tab 4\nFAIL classic_anniversary: Social keeps its primary-dock offset on tab 1\nFAIL classic_anniversary: shared top follows layout resize\nFAIL classic_anniversary: late login chat pin settles without switching tabs\nFAIL classic_anniversary: shared physical top survives saved chat scale 0.65\nFAIL classic_anniversary: shared physical top survives saved chat scale 1\nFAIL classic_anniversary: shared physical top survives saved chat scale 1.4\nALIGN_METRIC classic_anniversary_left shared_tab_reads=0 layout_points=1000 new_frames=0\nFAIL classic_anniversary: beside-chat top matches reference inset\nFAIL classic_anniversary: Social keeps its primary-dock offset on tab 2\nFAIL classic_anniversary: Social keeps its primary-dock offset on tab 3\nFAIL classic_anniversary: Social keeps its primary-dock offset on tab 4\nFAIL classic_anniversary: Social keeps its primary-dock offset on tab 1\nFAIL classic_anniversary: shared top follows layout resize\nFAIL classic_anniversary: late login chat pin settles without switching tabs\nFAIL classic_anniversary: shared physical top survives saved chat scale 0.65\nFAIL classic_anniversary: shared physical top survives saved chat scale 1\nFAIL classic_anniversary: shared physical top survives saved chat scale 1.4\nALIGN_METRIC classic_anniversary_right shared_tab_reads=0 layout_points=1000 new_frames=0\nFAIL classic: beside-chat top matches reference inset\nFAIL classic: Social keeps its primary-dock offset on tab 2\nFAIL classic: Social keeps its primary-dock offset on tab 3\nFAIL classic: Social keeps its primary-dock offset on tab 4\nFAIL classic: Social keeps its primary-dock offset on tab 1\nFAIL classic: shared top follows layout resize\nFAIL classic: late login chat pin settles without switching tabs\nFAIL classic: shared physical top survives saved chat scale 0.65\nFAIL classic: shared physical top survives saved chat scale 1\nFAIL classic: shared physical top survives saved chat scale 1.4\nALIGN_METRIC classic_left shared_tab_reads=0 layout_points=900 new_frames=0\nFAIL classic: beside-chat top matches reference inset\nFAIL classic: Social keeps its primary-dock offset on tab 2\nFAIL classic: Social keeps its primary-dock offset on tab 3\nFAIL classic: Social keeps its primary-dock offset on tab 4\nFAIL classic: Social keeps its primary-dock offset on tab 1\nFAIL classic: shared top follows layout resize\nFAIL classic: late login chat pin settles without switching tabs\nFAIL classic: shared physical top survives saved chat scale 0.65\nFAIL classic: shared physical top survives saved chat scale 1\nFAIL classic: shared physical top survives saved chat scale 1.4\nALIGN_METRIC classic_right shared_tab_reads=0 layout_points=900 new_frames=0\nFAIL forever: beside-chat top matches reference inset\nFAIL forever: Social keeps its primary-dock offset on tab 2\nFAIL forever: Social keeps its primary-dock offset on tab 3\nFAIL forever: Social keeps its primary-dock offset on tab 4\nFAIL forever: Social keeps its primary-dock offset on tab 1\nFAIL forever: shared top follows layout resize\nFAIL forever: late login chat pin settles without switching tabs\nFAIL forever: shared physical top survives saved chat scale 0.65\nFAIL forever: shared physical top survives saved chat scale 1\nFAIL forever: shared physical top survives saved chat scale 1.4\nALIGN_METRIC forever_left shared_tab_reads=0 layout_points=900 new_frames=0\nFAIL forever: beside-chat top matches reference inset\nFAIL forever: Social keeps its primary-dock offset on tab 2\nFAIL forever: Social keeps its primary-dock offset on tab 3\nFAIL forever: Social keeps its primary-dock offset on tab 4\nFAIL forever: Social keeps its primary-dock offset on tab 1\nFAIL forever: shared top follows layout resize\nFAIL forever: late login chat pin settles without switching tabs\nFAIL forever: shared physical top survives saved chat scale 0.65\nFAIL forever: shared physical top survives saved chat scale 1\nFAIL forever: shared physical top survives saved chat scale 1.4\nALIGN_METRIC forever_right shared_tab_reads=0 layout_points=900 new_frames=0\nChat column reference alignment: 190 checks, 100 failures\n"
+    },
+    {
+      "pair": 1,
+      "variant": "candidate",
+      "command": [
+        "lua",
+        "tests/chat_column_layout.lua"
+      ],
+      "wallSeconds": 0.10493750000023283,
+      "metrics": {
+        "live_left": {
+          "shared_tab_reads": 103,
+          "layout_points": 900,
+          "new_frames": 0
+        },
+        "live_right": {
+          "shared_tab_reads": 103,
+          "layout_points": 900,
+          "new_frames": 0
+        },
+        "classic_era_left": {
+          "shared_tab_reads": 203,
+          "layout_points": 1000,
+          "new_frames": 0
+        },
+        "classic_era_right": {
+          "shared_tab_reads": 203,
+          "layout_points": 1000,
+          "new_frames": 0
+        },
+        "classic_anniversary_left": {
+          "shared_tab_reads": 203,
+          "layout_points": 1000,
+          "new_frames": 0
+        },
+        "classic_anniversary_right": {
+          "shared_tab_reads": 203,
+          "layout_points": 1000,
+          "new_frames": 0
+        },
+        "classic_left": {
+          "shared_tab_reads": 203,
+          "layout_points": 900,
+          "new_frames": 0
+        },
+        "classic_right": {
+          "shared_tab_reads": 203,
+          "layout_points": 900,
+          "new_frames": 0
+        },
+        "forever_left": {
+          "shared_tab_reads": 103,
+          "layout_points": 900,
+          "new_frames": 0
+        },
+        "forever_right": {
+          "shared_tab_reads": 103,
+          "layout_points": 900,
+          "new_frames": 0
+        }
+      },
+      "output": "chat column: 1311 checks across five branches, both sides; 4 regressions rejected\nMETRIC live_left hook_timers=3 burst_cycles=0 burst_new_frames=0 combat_waiters=1\nMETRIC live_right hook_timers=3 burst_cycles=0 burst_new_frames=0 combat_waiters=1\nMETRIC forever_left hook_timers=3 burst_cycles=0 burst_new_frames=0 combat_waiters=1\nMETRIC forever_right hook_timers=3 burst_cycles=0 burst_new_frames=0 combat_waiters=1\nQuickJoin column ownership: 508 checks, 0 failures\nALIGN_METRIC live_left shared_tab_reads=103 layout_points=900 new_frames=0\nALIGN_METRIC live_right shared_tab_reads=103 layout_points=900 new_frames=0\nALIGN_METRIC classic_era_left shared_tab_reads=203 layout_points=1000 new_frames=0\nALIGN_METRIC classic_era_right shared_tab_reads=203 layout_points=1000 new_frames=0\nALIGN_METRIC classic_anniversary_left shared_tab_reads=203 layout_points=1000 new_frames=0\nALIGN_METRIC classic_anniversary_right shared_tab_reads=203 layout_points=1000 new_frames=0\nALIGN_METRIC classic_left shared_tab_reads=203 layout_points=900 new_frames=0\nALIGN_METRIC classic_right shared_tab_reads=203 layout_points=900 new_frames=0\nALIGN_METRIC forever_left shared_tab_reads=103 layout_points=900 new_frames=0\nALIGN_METRIC forever_right shared_tab_reads=103 layout_points=900 new_frames=0\nChat column reference alignment: 190 checks, 0 failures\n"
+    },
+    {
+      "pair": 2,
+      "variant": "candidate",
+      "command": [
+        "lua",
+        "tests/chat_column_layout.lua"
+      ],
+      "wallSeconds": 0.10514879999391269,
+      "metrics": {
+        "live_left": {
+          "shared_tab_reads": 103,
+          "layout_points": 900,
+          "new_frames": 0
+        },
+        "live_right": {
+          "shared_tab_reads": 103,
+          "layout_points": 900,
+          "new_frames": 0
+        },
+        "classic_era_left": {
+          "shared_tab_reads": 203,
+          "layout_points": 1000,
+          "new_frames": 0
+        },
+        "classic_era_right": {
+          "shared_tab_reads": 203,
+          "layout_points": 1000,
+          "new_frames": 0
+        },
+        "classic_anniversary_left": {
+          "shared_tab_reads": 203,
+          "layout_points": 1000,
+          "new_frames": 0
+        },
+        "classic_anniversary_right": {
+          "shared_tab_reads": 203,
+          "layout_points": 1000,
+          "new_frames": 0
+        },
+        "classic_left": {
+          "shared_tab_reads": 203,
+          "layout_points": 900,
+          "new_frames": 0
+        },
+        "classic_right": {
+          "shared_tab_reads": 203,
+          "layout_points": 900,
+          "new_frames": 0
+        },
+        "forever_left": {
+          "shared_tab_reads": 103,
+          "layout_points": 900,
+          "new_frames": 0
+        },
+        "forever_right": {
+          "shared_tab_reads": 103,
+          "layout_points": 900,
+          "new_frames": 0
+        }
+      },
+      "output": "chat column: 1311 checks across five branches, both sides; 4 regressions rejected\nMETRIC live_left hook_timers=3 burst_cycles=0 burst_new_frames=0 combat_waiters=1\nMETRIC live_right hook_timers=3 burst_cycles=0 burst_new_frames=0 combat_waiters=1\nMETRIC forever_left hook_timers=3 burst_cycles=0 burst_new_frames=0 combat_waiters=1\nMETRIC forever_right hook_timers=3 burst_cycles=0 burst_new_frames=0 combat_waiters=1\nQuickJoin column ownership: 508 checks, 0 failures\nALIGN_METRIC live_left shared_tab_reads=103 layout_points=900 new_frames=0\nALIGN_METRIC live_right shared_tab_reads=103 layout_points=900 new_frames=0\nALIGN_METRIC classic_era_left shared_tab_reads=203 layout_points=1000 new_frames=0\nALIGN_METRIC classic_era_right shared_tab_reads=203 layout_points=1000 new_frames=0\nALIGN_METRIC classic_anniversary_left shared_tab_reads=203 layout_points=1000 new_frames=0\nALIGN_METRIC classic_anniversary_right shared_tab_reads=203 layout_points=1000 new_frames=0\nALIGN_METRIC classic_left shared_tab_reads=203 layout_points=900 new_frames=0\nALIGN_METRIC classic_right shared_tab_reads=203 layout_points=900 new_frames=0\nALIGN_METRIC forever_left shared_tab_reads=103 layout_points=900 new_frames=0\nALIGN_METRIC forever_right shared_tab_reads=103 layout_points=900 new_frames=0\nChat column reference alignment: 190 checks, 0 failures\n"
+    },
+    {
+      "pair": 2,
+      "variant": "baseline",
+      "command": [
+        "lua",
+        "tests/chat_column_layout.lua",
+        "--column-source",
+        "tests/fixtures/chat_column_alignment_before.txt",
+        "--measure"
+      ],
+      "wallSeconds": 0.11997499999415595,
+      "metrics": {
+        "live_left": {
+          "shared_tab_reads": 0,
+          "layout_points": 900,
+          "new_frames": 0
+        },
+        "live_right": {
+          "shared_tab_reads": 0,
+          "layout_points": 900,
+          "new_frames": 0
+        },
+        "classic_era_left": {
+          "shared_tab_reads": 0,
+          "layout_points": 1000,
+          "new_frames": 0
+        },
+        "classic_era_right": {
+          "shared_tab_reads": 0,
+          "layout_points": 1000,
+          "new_frames": 0
+        },
+        "classic_anniversary_left": {
+          "shared_tab_reads": 0,
+          "layout_points": 1000,
+          "new_frames": 0
+        },
+        "classic_anniversary_right": {
+          "shared_tab_reads": 0,
+          "layout_points": 1000,
+          "new_frames": 0
+        },
+        "classic_left": {
+          "shared_tab_reads": 0,
+          "layout_points": 900,
+          "new_frames": 0
+        },
+        "classic_right": {
+          "shared_tab_reads": 0,
+          "layout_points": 900,
+          "new_frames": 0
+        },
+        "forever_left": {
+          "shared_tab_reads": 0,
+          "layout_points": 900,
+          "new_frames": 0
+        },
+        "forever_right": {
+          "shared_tab_reads": 0,
+          "layout_points": 900,
+          "new_frames": 0
+        }
+      },
+      "output": "chat column: 1311 checks across five branches, both sides; 4 regressions rejected\nMETRIC live_left hook_timers=3 burst_cycles=0 burst_new_frames=0 combat_waiters=1\nMETRIC live_right hook_timers=3 burst_cycles=0 burst_new_frames=0 combat_waiters=1\nMETRIC forever_left hook_timers=3 burst_cycles=0 burst_new_frames=0 combat_waiters=1\nMETRIC forever_right hook_timers=3 burst_cycles=0 burst_new_frames=0 combat_waiters=1\nQuickJoin column ownership: 508 checks, 0 failures\nFAIL live: beside-chat top matches reference inset\nFAIL live: Social keeps its primary-dock offset on tab 2\nFAIL live: Social keeps its primary-dock offset on tab 3\nFAIL live: Social keeps its primary-dock offset on tab 4\nFAIL live: Social keeps its primary-dock offset on tab 1\nFAIL live: shared top follows layout resize\nFAIL live: late login chat pin settles without switching tabs\nFAIL live: shared physical top survives saved chat scale 0.65\nFAIL live: shared physical top survives saved chat scale 1\nFAIL live: shared physical top survives saved chat scale 1.4\nALIGN_METRIC live_left shared_tab_reads=0 layout_points=900 new_frames=0\nFAIL live: beside-chat top matches reference inset\nFAIL live: Social keeps its primary-dock offset on tab 2\nFAIL live: Social keeps its primary-dock offset on tab 3\nFAIL live: Social keeps its primary-dock offset on tab 4\nFAIL live: Social keeps its primary-dock offset on tab 1\nFAIL live: shared top follows layout resize\nFAIL live: late login chat pin settles without switching tabs\nFAIL live: shared physical top survives saved chat scale 0.65\nFAIL live: shared physical top survives saved chat scale 1\nFAIL live: shared physical top survives saved chat scale 1.4\nALIGN_METRIC live_right shared_tab_reads=0 layout_points=900 new_frames=0\nFAIL classic_era: beside-chat top matches reference inset\nFAIL classic_era: Social keeps its primary-dock offset on tab 2\nFAIL classic_era: Social keeps its primary-dock offset on tab 3\nFAIL classic_era: Social keeps its primary-dock offset on tab 4\nFAIL classic_era: Social keeps its primary-dock offset on tab 1\nFAIL classic_era: shared top follows layout resize\nFAIL classic_era: late login chat pin settles without switching tabs\nFAIL classic_era: shared physical top survives saved chat scale 0.65\nFAIL classic_era: shared physical top survives saved chat scale 1\nFAIL classic_era: shared physical top survives saved chat scale 1.4\nALIGN_METRIC classic_era_left shared_tab_reads=0 layout_points=1000 new_frames=0\nFAIL classic_era: beside-chat top matches reference inset\nFAIL classic_era: Social keeps its primary-dock offset on tab 2\nFAIL classic_era: Social keeps its primary-dock offset on tab 3\nFAIL classic_era: Social keeps its primary-dock offset on tab 4\nFAIL classic_era: Social keeps its primary-dock offset on tab 1\nFAIL classic_era: shared top follows layout resize\nFAIL classic_era: late login chat pin settles without switching tabs\nFAIL classic_era: shared physical top survives saved chat scale 0.65\nFAIL classic_era: shared physical top survives saved chat scale 1\nFAIL classic_era: shared physical top survives saved chat scale 1.4\nALIGN_METRIC classic_era_right shared_tab_reads=0 layout_points=1000 new_frames=0\nFAIL classic_anniversary: beside-chat top matches reference inset\nFAIL classic_anniversary: Social keeps its primary-dock offset on tab 2\nFAIL classic_anniversary: Social keeps its primary-dock offset on tab 3\nFAIL classic_anniversary: Social keeps its primary-dock offset on tab 4\nFAIL classic_anniversary: Social keeps its primary-dock offset on tab 1\nFAIL classic_anniversary: shared top follows layout resize\nFAIL classic_anniversary: late login chat pin settles without switching tabs\nFAIL classic_anniversary: shared physical top survives saved chat scale 0.65\nFAIL classic_anniversary: shared physical top survives saved chat scale 1\nFAIL classic_anniversary: shared physical top survives saved chat scale 1.4\nALIGN_METRIC classic_anniversary_left shared_tab_reads=0 layout_points=1000 new_frames=0\nFAIL classic_anniversary: beside-chat top matches reference inset\nFAIL classic_anniversary: Social keeps its primary-dock offset on tab 2\nFAIL classic_anniversary: Social keeps its primary-dock offset on tab 3\nFAIL classic_anniversary: Social keeps its primary-dock offset on tab 4\nFAIL classic_anniversary: Social keeps its primary-dock offset on tab 1\nFAIL classic_anniversary: shared top follows layout resize\nFAIL classic_anniversary: late login chat pin settles without switching tabs\nFAIL classic_anniversary: shared physical top survives saved chat scale 0.65\nFAIL classic_anniversary: shared physical top survives saved chat scale 1\nFAIL classic_anniversary: shared physical top survives saved chat scale 1.4\nALIGN_METRIC classic_anniversary_right shared_tab_reads=0 layout_points=1000 new_frames=0\nFAIL classic: beside-chat top matches reference inset\nFAIL classic: Social keeps its primary-dock offset on tab 2\nFAIL classic: Social keeps its primary-dock offset on tab 3\nFAIL classic: Social keeps its primary-dock offset on tab 4\nFAIL classic: Social keeps its primary-dock offset on tab 1\nFAIL classic: shared top follows layout resize\nFAIL classic: late login chat pin settles without switching tabs\nFAIL classic: shared physical top survives saved chat scale 0.65\nFAIL classic: shared physical top survives saved chat scale 1\nFAIL classic: shared physical top survives saved chat scale 1.4\nALIGN_METRIC classic_left shared_tab_reads=0 layout_points=900 new_frames=0\nFAIL classic: beside-chat top matches reference inset\nFAIL classic: Social keeps its primary-dock offset on tab 2\nFAIL classic: Social keeps its primary-dock offset on tab 3\nFAIL classic: Social keeps its primary-dock offset on tab 4\nFAIL classic: Social keeps its primary-dock offset on tab 1\nFAIL classic: shared top follows layout resize\nFAIL classic: late login chat pin settles without switching tabs\nFAIL classic: shared physical top survives saved chat scale 0.65\nFAIL classic: shared physical top survives saved chat scale 1\nFAIL classic: shared physical top survives saved chat scale 1.4\nALIGN_METRIC classic_right shared_tab_reads=0 layout_points=900 new_frames=0\nFAIL forever: beside-chat top matches reference inset\nFAIL forever: Social keeps its primary-dock offset on tab 2\nFAIL forever: Social keeps its primary-dock offset on tab 3\nFAIL forever: Social keeps its primary-dock offset on tab 4\nFAIL forever: Social keeps its primary-dock offset on tab 1\nFAIL forever: shared top follows layout resize\nFAIL forever: late login chat pin settles without switching tabs\nFAIL forever: shared physical top survives saved chat scale 0.65\nFAIL forever: shared physical top survives saved chat scale 1\nFAIL forever: shared physical top survives saved chat scale 1.4\nALIGN_METRIC forever_left shared_tab_reads=0 layout_points=900 new_frames=0\nFAIL forever: beside-chat top matches reference inset\nFAIL forever: Social keeps its primary-dock offset on tab 2\nFAIL forever: Social keeps its primary-dock offset on tab 3\nFAIL forever: Social keeps its primary-dock offset on tab 4\nFAIL forever: Social keeps its primary-dock offset on tab 1\nFAIL forever: shared top follows layout resize\nFAIL forever: late login chat pin settles without switching tabs\nFAIL forever: shared physical top survives saved chat scale 0.65\nFAIL forever: shared physical top survives saved chat scale 1\nFAIL forever: shared physical top survives saved chat scale 1.4\nALIGN_METRIC forever_right shared_tab_reads=0 layout_points=900 new_frames=0\nChat column reference alignment: 190 checks, 100 failures\n"
+    },
+    {
+      "pair": 3,
+      "variant": "baseline",
+      "command": [
+        "lua",
+        "tests/chat_column_layout.lua",
+        "--column-source",
+        "tests/fixtures/chat_column_alignment_before.txt",
+        "--measure"
+      ],
+      "wallSeconds": 0.09691100000054576,
+      "metrics": {
+        "live_left": {
+          "shared_tab_reads": 0,
+          "layout_points": 900,
+          "new_frames": 0
+        },
+        "live_right": {
+          "shared_tab_reads": 0,
+          "layout_points": 900,
+          "new_frames": 0
+        },
+        "classic_era_left": {
+          "shared_tab_reads": 0,
+          "layout_points": 1000,
+          "new_frames": 0
+        },
+        "classic_era_right": {
+          "shared_tab_reads": 0,
+          "layout_points": 1000,
+          "new_frames": 0
+        },
+        "classic_anniversary_left": {
+          "shared_tab_reads": 0,
+          "layout_points": 1000,
+          "new_frames": 0
+        },
+        "classic_anniversary_right": {
+          "shared_tab_reads": 0,
+          "layout_points": 1000,
+          "new_frames": 0
+        },
+        "classic_left": {
+          "shared_tab_reads": 0,
+          "layout_points": 900,
+          "new_frames": 0
+        },
+        "classic_right": {
+          "shared_tab_reads": 0,
+          "layout_points": 900,
+          "new_frames": 0
+        },
+        "forever_left": {
+          "shared_tab_reads": 0,
+          "layout_points": 900,
+          "new_frames": 0
+        },
+        "forever_right": {
+          "shared_tab_reads": 0,
+          "layout_points": 900,
+          "new_frames": 0
+        }
+      },
+      "output": "chat column: 1311 checks across five branches, both sides; 4 regressions rejected\nMETRIC live_left hook_timers=3 burst_cycles=0 burst_new_frames=0 combat_waiters=1\nMETRIC live_right hook_timers=3 burst_cycles=0 burst_new_frames=0 combat_waiters=1\nMETRIC forever_left hook_timers=3 burst_cycles=0 burst_new_frames=0 combat_waiters=1\nMETRIC forever_right hook_timers=3 burst_cycles=0 burst_new_frames=0 combat_waiters=1\nQuickJoin column ownership: 508 checks, 0 failures\nFAIL live: beside-chat top matches reference inset\nFAIL live: Social keeps its primary-dock offset on tab 2\nFAIL live: Social keeps its primary-dock offset on tab 3\nFAIL live: Social keeps its primary-dock offset on tab 4\nFAIL live: Social keeps its primary-dock offset on tab 1\nFAIL live: shared top follows layout resize\nFAIL live: late login chat pin settles without switching tabs\nFAIL live: shared physical top survives saved chat scale 0.65\nFAIL live: shared physical top survives saved chat scale 1\nFAIL live: shared physical top survives saved chat scale 1.4\nALIGN_METRIC live_left shared_tab_reads=0 layout_points=900 new_frames=0\nFAIL live: beside-chat top matches reference inset\nFAIL live: Social keeps its primary-dock offset on tab 2\nFAIL live: Social keeps its primary-dock offset on tab 3\nFAIL live: Social keeps its primary-dock offset on tab 4\nFAIL live: Social keeps its primary-dock offset on tab 1\nFAIL live: shared top follows layout resize\nFAIL live: late login chat pin settles without switching tabs\nFAIL live: shared physical top survives saved chat scale 0.65\nFAIL live: shared physical top survives saved chat scale 1\nFAIL live: shared physical top survives saved chat scale 1.4\nALIGN_METRIC live_right shared_tab_reads=0 layout_points=900 new_frames=0\nFAIL classic_era: beside-chat top matches reference inset\nFAIL classic_era: Social keeps its primary-dock offset on tab 2\nFAIL classic_era: Social keeps its primary-dock offset on tab 3\nFAIL classic_era: Social keeps its primary-dock offset on tab 4\nFAIL classic_era: Social keeps its primary-dock offset on tab 1\nFAIL classic_era: shared top follows layout resize\nFAIL classic_era: late login chat pin settles without switching tabs\nFAIL classic_era: shared physical top survives saved chat scale 0.65\nFAIL classic_era: shared physical top survives saved chat scale 1\nFAIL classic_era: shared physical top survives saved chat scale 1.4\nALIGN_METRIC classic_era_left shared_tab_reads=0 layout_points=1000 new_frames=0\nFAIL classic_era: beside-chat top matches reference inset\nFAIL classic_era: Social keeps its primary-dock offset on tab 2\nFAIL classic_era: Social keeps its primary-dock offset on tab 3\nFAIL classic_era: Social keeps its primary-dock offset on tab 4\nFAIL classic_era: Social keeps its primary-dock offset on tab 1\nFAIL classic_era: shared top follows layout resize\nFAIL classic_era: late login chat pin settles without switching tabs\nFAIL classic_era: shared physical top survives saved chat scale 0.65\nFAIL classic_era: shared physical top survives saved chat scale 1\nFAIL classic_era: shared physical top survives saved chat scale 1.4\nALIGN_METRIC classic_era_right shared_tab_reads=0 layout_points=1000 new_frames=0\nFAIL classic_anniversary: beside-chat top matches reference inset\nFAIL classic_anniversary: Social keeps its primary-dock offset on tab 2\nFAIL classic_anniversary: Social keeps its primary-dock offset on tab 3\nFAIL classic_anniversary: Social keeps its primary-dock offset on tab 4\nFAIL classic_anniversary: Social keeps its primary-dock offset on tab 1\nFAIL classic_anniversary: shared top follows layout resize\nFAIL classic_anniversary: late login chat pin settles without switching tabs\nFAIL classic_anniversary: shared physical top survives saved chat scale 0.65\nFAIL classic_anniversary: shared physical top survives saved chat scale 1\nFAIL classic_anniversary: shared physical top survives saved chat scale 1.4\nALIGN_METRIC classic_anniversary_left shared_tab_reads=0 layout_points=1000 new_frames=0\nFAIL classic_anniversary: beside-chat top matches reference inset\nFAIL classic_anniversary: Social keeps its primary-dock offset on tab 2\nFAIL classic_anniversary: Social keeps its primary-dock offset on tab 3\nFAIL classic_anniversary: Social keeps its primary-dock offset on tab 4\nFAIL classic_anniversary: Social keeps its primary-dock offset on tab 1\nFAIL classic_anniversary: shared top follows layout resize\nFAIL classic_anniversary: late login chat pin settles without switching tabs\nFAIL classic_anniversary: shared physical top survives saved chat scale 0.65\nFAIL classic_anniversary: shared physical top survives saved chat scale 1\nFAIL classic_anniversary: shared physical top survives saved chat scale 1.4\nALIGN_METRIC classic_anniversary_right shared_tab_reads=0 layout_points=1000 new_frames=0\nFAIL classic: beside-chat top matches reference inset\nFAIL classic: Social keeps its primary-dock offset on tab 2\nFAIL classic: Social keeps its primary-dock offset on tab 3\nFAIL classic: Social keeps its primary-dock offset on tab 4\nFAIL classic: Social keeps its primary-dock offset on tab 1\nFAIL classic: shared top follows layout resize\nFAIL classic: late login chat pin settles without switching tabs\nFAIL classic: shared physical top survives saved chat scale 0.65\nFAIL classic: shared physical top survives saved chat scale 1\nFAIL classic: shared physical top survives saved chat scale 1.4\nALIGN_METRIC classic_left shared_tab_reads=0 layout_points=900 new_frames=0\nFAIL classic: beside-chat top matches reference inset\nFAIL classic: Social keeps its primary-dock offset on tab 2\nFAIL classic: Social keeps its primary-dock offset on tab 3\nFAIL classic: Social keeps its primary-dock offset on tab 4\nFAIL classic: Social keeps its primary-dock offset on tab 1\nFAIL classic: shared top follows layout resize\nFAIL classic: late login chat pin settles without switching tabs\nFAIL classic: shared physical top survives saved chat scale 0.65\nFAIL classic: shared physical top survives saved chat scale 1\nFAIL classic: shared physical top survives saved chat scale 1.4\nALIGN_METRIC classic_right shared_tab_reads=0 layout_points=900 new_frames=0\nFAIL forever: beside-chat top matches reference inset\nFAIL forever: Social keeps its primary-dock offset on tab 2\nFAIL forever: Social keeps its primary-dock offset on tab 3\nFAIL forever: Social keeps its primary-dock offset on tab 4\nFAIL forever: Social keeps its primary-dock offset on tab 1\nFAIL forever: shared top follows layout resize\nFAIL forever: late login chat pin settles without switching tabs\nFAIL forever: shared physical top survives saved chat scale 0.65\nFAIL forever: shared physical top survives saved chat scale 1\nFAIL forever: shared physical top survives saved chat scale 1.4\nALIGN_METRIC forever_left shared_tab_reads=0 layout_points=900 new_frames=0\nFAIL forever: beside-chat top matches reference inset\nFAIL forever: Social keeps its primary-dock offset on tab 2\nFAIL forever: Social keeps its primary-dock offset on tab 3\nFAIL forever: Social keeps its primary-dock offset on tab 4\nFAIL forever: Social keeps its primary-dock offset on tab 1\nFAIL forever: shared top follows layout resize\nFAIL forever: late login chat pin settles without switching tabs\nFAIL forever: shared physical top survives saved chat scale 0.65\nFAIL forever: shared physical top survives saved chat scale 1\nFAIL forever: shared physical top survives saved chat scale 1.4\nALIGN_METRIC forever_right shared_tab_reads=0 layout_points=900 new_frames=0\nChat column reference alignment: 190 checks, 100 failures\n"
+    },
+    {
+      "pair": 3,
+      "variant": "candidate",
+      "command": [
+        "lua",
+        "tests/chat_column_layout.lua"
+      ],
+      "wallSeconds": 0.10005680000176653,
+      "metrics": {
+        "live_left": {
+          "shared_tab_reads": 103,
+          "layout_points": 900,
+          "new_frames": 0
+        },
+        "live_right": {
+          "shared_tab_reads": 103,
+          "layout_points": 900,
+          "new_frames": 0
+        },
+        "classic_era_left": {
+          "shared_tab_reads": 203,
+          "layout_points": 1000,
+          "new_frames": 0
+        },
+        "classic_era_right": {
+          "shared_tab_reads": 203,
+          "layout_points": 1000,
+          "new_frames": 0
+        },
+        "classic_anniversary_left": {
+          "shared_tab_reads": 203,
+          "layout_points": 1000,
+          "new_frames": 0
+        },
+        "classic_anniversary_right": {
+          "shared_tab_reads": 203,
+          "layout_points": 1000,
+          "new_frames": 0
+        },
+        "classic_left": {
+          "shared_tab_reads": 203,
+          "layout_points": 900,
+          "new_frames": 0
+        },
+        "classic_right": {
+          "shared_tab_reads": 203,
+          "layout_points": 900,
+          "new_frames": 0
+        },
+        "forever_left": {
+          "shared_tab_reads": 103,
+          "layout_points": 900,
+          "new_frames": 0
+        },
+        "forever_right": {
+          "shared_tab_reads": 103,
+          "layout_points": 900,
+          "new_frames": 0
+        }
+      },
+      "output": "chat column: 1311 checks across five branches, both sides; 4 regressions rejected\nMETRIC live_left hook_timers=3 burst_cycles=0 burst_new_frames=0 combat_waiters=1\nMETRIC live_right hook_timers=3 burst_cycles=0 burst_new_frames=0 combat_waiters=1\nMETRIC forever_left hook_timers=3 burst_cycles=0 burst_new_frames=0 combat_waiters=1\nMETRIC forever_right hook_timers=3 burst_cycles=0 burst_new_frames=0 combat_waiters=1\nQuickJoin column ownership: 508 checks, 0 failures\nALIGN_METRIC live_left shared_tab_reads=103 layout_points=900 new_frames=0\nALIGN_METRIC live_right shared_tab_reads=103 layout_points=900 new_frames=0\nALIGN_METRIC classic_era_left shared_tab_reads=203 layout_points=1000 new_frames=0\nALIGN_METRIC classic_era_right shared_tab_reads=203 layout_points=1000 new_frames=0\nALIGN_METRIC classic_anniversary_left shared_tab_reads=203 layout_points=1000 new_frames=0\nALIGN_METRIC classic_anniversary_right shared_tab_reads=203 layout_points=1000 new_frames=0\nALIGN_METRIC classic_left shared_tab_reads=203 layout_points=900 new_frames=0\nALIGN_METRIC classic_right shared_tab_reads=203 layout_points=900 new_frames=0\nALIGN_METRIC forever_left shared_tab_reads=103 layout_points=900 new_frames=0\nALIGN_METRIC forever_right shared_tab_reads=103 layout_points=900 new_frames=0\nChat column reference alignment: 190 checks, 0 failures\n"
+    },
+    {
+      "pair": 4,
+      "variant": "candidate",
+      "command": [
+        "lua",
+        "tests/chat_column_layout.lua"
+      ],
+      "wallSeconds": 0.09957250001025386,
+      "metrics": {
+        "live_left": {
+          "shared_tab_reads": 103,
+          "layout_points": 900,
+          "new_frames": 0
+        },
+        "live_right": {
+          "shared_tab_reads": 103,
+          "layout_points": 900,
+          "new_frames": 0
+        },
+        "classic_era_left": {
+          "shared_tab_reads": 203,
+          "layout_points": 1000,
+          "new_frames": 0
+        },
+        "classic_era_right": {
+          "shared_tab_reads": 203,
+          "layout_points": 1000,
+          "new_frames": 0
+        },
+        "classic_anniversary_left": {
+          "shared_tab_reads": 203,
+          "layout_points": 1000,
+          "new_frames": 0
+        },
+        "classic_anniversary_right": {
+          "shared_tab_reads": 203,
+          "layout_points": 1000,
+          "new_frames": 0
+        },
+        "classic_left": {
+          "shared_tab_reads": 203,
+          "layout_points": 900,
+          "new_frames": 0
+        },
+        "classic_right": {
+          "shared_tab_reads": 203,
+          "layout_points": 900,
+          "new_frames": 0
+        },
+        "forever_left": {
+          "shared_tab_reads": 103,
+          "layout_points": 900,
+          "new_frames": 0
+        },
+        "forever_right": {
+          "shared_tab_reads": 103,
+          "layout_points": 900,
+          "new_frames": 0
+        }
+      },
+      "output": "chat column: 1311 checks across five branches, both sides; 4 regressions rejected\nMETRIC live_left hook_timers=3 burst_cycles=0 burst_new_frames=0 combat_waiters=1\nMETRIC live_right hook_timers=3 burst_cycles=0 burst_new_frames=0 combat_waiters=1\nMETRIC forever_left hook_timers=3 burst_cycles=0 burst_new_frames=0 combat_waiters=1\nMETRIC forever_right hook_timers=3 burst_cycles=0 burst_new_frames=0 combat_waiters=1\nQuickJoin column ownership: 508 checks, 0 failures\nALIGN_METRIC live_left shared_tab_reads=103 layout_points=900 new_frames=0\nALIGN_METRIC live_right shared_tab_reads=103 layout_points=900 new_frames=0\nALIGN_METRIC classic_era_left shared_tab_reads=203 layout_points=1000 new_frames=0\nALIGN_METRIC classic_era_right shared_tab_reads=203 layout_points=1000 new_frames=0\nALIGN_METRIC classic_anniversary_left shared_tab_reads=203 layout_points=1000 new_frames=0\nALIGN_METRIC classic_anniversary_right shared_tab_reads=203 layout_points=1000 new_frames=0\nALIGN_METRIC classic_left shared_tab_reads=203 layout_points=900 new_frames=0\nALIGN_METRIC classic_right shared_tab_reads=203 layout_points=900 new_frames=0\nALIGN_METRIC forever_left shared_tab_reads=103 layout_points=900 new_frames=0\nALIGN_METRIC forever_right shared_tab_reads=103 layout_points=900 new_frames=0\nChat column reference alignment: 190 checks, 0 failures\n"
+    },
+    {
+      "pair": 4,
+      "variant": "baseline",
+      "command": [
+        "lua",
+        "tests/chat_column_layout.lua",
+        "--column-source",
+        "tests/fixtures/chat_column_alignment_before.txt",
+        "--measure"
+      ],
+      "wallSeconds": 0.09674189999350347,
+      "metrics": {
+        "live_left": {
+          "shared_tab_reads": 0,
+          "layout_points": 900,
+          "new_frames": 0
+        },
+        "live_right": {
+          "shared_tab_reads": 0,
+          "layout_points": 900,
+          "new_frames": 0
+        },
+        "classic_era_left": {
+          "shared_tab_reads": 0,
+          "layout_points": 1000,
+          "new_frames": 0
+        },
+        "classic_era_right": {
+          "shared_tab_reads": 0,
+          "layout_points": 1000,
+          "new_frames": 0
+        },
+        "classic_anniversary_left": {
+          "shared_tab_reads": 0,
+          "layout_points": 1000,
+          "new_frames": 0
+        },
+        "classic_anniversary_right": {
+          "shared_tab_reads": 0,
+          "layout_points": 1000,
+          "new_frames": 0
+        },
+        "classic_left": {
+          "shared_tab_reads": 0,
+          "layout_points": 900,
+          "new_frames": 0
+        },
+        "classic_right": {
+          "shared_tab_reads": 0,
+          "layout_points": 900,
+          "new_frames": 0
+        },
+        "forever_left": {
+          "shared_tab_reads": 0,
+          "layout_points": 900,
+          "new_frames": 0
+        },
+        "forever_right": {
+          "shared_tab_reads": 0,
+          "layout_points": 900,
+          "new_frames": 0
+        }
+      },
+      "output": "chat column: 1311 checks across five branches, both sides; 4 regressions rejected\nMETRIC live_left hook_timers=3 burst_cycles=0 burst_new_frames=0 combat_waiters=1\nMETRIC live_right hook_timers=3 burst_cycles=0 burst_new_frames=0 combat_waiters=1\nMETRIC forever_left hook_timers=3 burst_cycles=0 burst_new_frames=0 combat_waiters=1\nMETRIC forever_right hook_timers=3 burst_cycles=0 burst_new_frames=0 combat_waiters=1\nQuickJoin column ownership: 508 checks, 0 failures\nFAIL live: beside-chat top matches reference inset\nFAIL live: Social keeps its primary-dock offset on tab 2\nFAIL live: Social keeps its primary-dock offset on tab 3\nFAIL live: Social keeps its primary-dock offset on tab 4\nFAIL live: Social keeps its primary-dock offset on tab 1\nFAIL live: shared top follows layout resize\nFAIL live: late login chat pin settles without switching tabs\nFAIL live: shared physical top survives saved chat scale 0.65\nFAIL live: shared physical top survives saved chat scale 1\nFAIL live: shared physical top survives saved chat scale 1.4\nALIGN_METRIC live_left shared_tab_reads=0 layout_points=900 new_frames=0\nFAIL live: beside-chat top matches reference inset\nFAIL live: Social keeps its primary-dock offset on tab 2\nFAIL live: Social keeps its primary-dock offset on tab 3\nFAIL live: Social keeps its primary-dock offset on tab 4\nFAIL live: Social keeps its primary-dock offset on tab 1\nFAIL live: shared top follows layout resize\nFAIL live: late login chat pin settles without switching tabs\nFAIL live: shared physical top survives saved chat scale 0.65\nFAIL live: shared physical top survives saved chat scale 1\nFAIL live: shared physical top survives saved chat scale 1.4\nALIGN_METRIC live_right shared_tab_reads=0 layout_points=900 new_frames=0\nFAIL classic_era: beside-chat top matches reference inset\nFAIL classic_era: Social keeps its primary-dock offset on tab 2\nFAIL classic_era: Social keeps its primary-dock offset on tab 3\nFAIL classic_era: Social keeps its primary-dock offset on tab 4\nFAIL classic_era: Social keeps its primary-dock offset on tab 1\nFAIL classic_era: shared top follows layout resize\nFAIL classic_era: late login chat pin settles without switching tabs\nFAIL classic_era: shared physical top survives saved chat scale 0.65\nFAIL classic_era: shared physical top survives saved chat scale 1\nFAIL classic_era: shared physical top survives saved chat scale 1.4\nALIGN_METRIC classic_era_left shared_tab_reads=0 layout_points=1000 new_frames=0\nFAIL classic_era: beside-chat top matches reference inset\nFAIL classic_era: Social keeps its primary-dock offset on tab 2\nFAIL classic_era: Social keeps its primary-dock offset on tab 3\nFAIL classic_era: Social keeps its primary-dock offset on tab 4\nFAIL classic_era: Social keeps its primary-dock offset on tab 1\nFAIL classic_era: shared top follows layout resize\nFAIL classic_era: late login chat pin settles without switching tabs\nFAIL classic_era: shared physical top survives saved chat scale 0.65\nFAIL classic_era: shared physical top survives saved chat scale 1\nFAIL classic_era: shared physical top survives saved chat scale 1.4\nALIGN_METRIC classic_era_right shared_tab_reads=0 layout_points=1000 new_frames=0\nFAIL classic_anniversary: beside-chat top matches reference inset\nFAIL classic_anniversary: Social keeps its primary-dock offset on tab 2\nFAIL classic_anniversary: Social keeps its primary-dock offset on tab 3\nFAIL classic_anniversary: Social keeps its primary-dock offset on tab 4\nFAIL classic_anniversary: Social keeps its primary-dock offset on tab 1\nFAIL classic_anniversary: shared top follows layout resize\nFAIL classic_anniversary: late login chat pin settles without switching tabs\nFAIL classic_anniversary: shared physical top survives saved chat scale 0.65\nFAIL classic_anniversary: shared physical top survives saved chat scale 1\nFAIL classic_anniversary: shared physical top survives saved chat scale 1.4\nALIGN_METRIC classic_anniversary_left shared_tab_reads=0 layout_points=1000 new_frames=0\nFAIL classic_anniversary: beside-chat top matches reference inset\nFAIL classic_anniversary: Social keeps its primary-dock offset on tab 2\nFAIL classic_anniversary: Social keeps its primary-dock offset on tab 3\nFAIL classic_anniversary: Social keeps its primary-dock offset on tab 4\nFAIL classic_anniversary: Social keeps its primary-dock offset on tab 1\nFAIL classic_anniversary: shared top follows layout resize\nFAIL classic_anniversary: late login chat pin settles without switching tabs\nFAIL classic_anniversary: shared physical top survives saved chat scale 0.65\nFAIL classic_anniversary: shared physical top survives saved chat scale 1\nFAIL classic_anniversary: shared physical top survives saved chat scale 1.4\nALIGN_METRIC classic_anniversary_right shared_tab_reads=0 layout_points=1000 new_frames=0\nFAIL classic: beside-chat top matches reference inset\nFAIL classic: Social keeps its primary-dock offset on tab 2\nFAIL classic: Social keeps its primary-dock offset on tab 3\nFAIL classic: Social keeps its primary-dock offset on tab 4\nFAIL classic: Social keeps its primary-dock offset on tab 1\nFAIL classic: shared top follows layout resize\nFAIL classic: late login chat pin settles without switching tabs\nFAIL classic: shared physical top survives saved chat scale 0.65\nFAIL classic: shared physical top survives saved chat scale 1\nFAIL classic: shared physical top survives saved chat scale 1.4\nALIGN_METRIC classic_left shared_tab_reads=0 layout_points=900 new_frames=0\nFAIL classic: beside-chat top matches reference inset\nFAIL classic: Social keeps its primary-dock offset on tab 2\nFAIL classic: Social keeps its primary-dock offset on tab 3\nFAIL classic: Social keeps its primary-dock offset on tab 4\nFAIL classic: Social keeps its primary-dock offset on tab 1\nFAIL classic: shared top follows layout resize\nFAIL classic: late login chat pin settles without switching tabs\nFAIL classic: shared physical top survives saved chat scale 0.65\nFAIL classic: shared physical top survives saved chat scale 1\nFAIL classic: shared physical top survives saved chat scale 1.4\nALIGN_METRIC classic_right shared_tab_reads=0 layout_points=900 new_frames=0\nFAIL forever: beside-chat top matches reference inset\nFAIL forever: Social keeps its primary-dock offset on tab 2\nFAIL forever: Social keeps its primary-dock offset on tab 3\nFAIL forever: Social keeps its primary-dock offset on tab 4\nFAIL forever: Social keeps its primary-dock offset on tab 1\nFAIL forever: shared top follows layout resize\nFAIL forever: late login chat pin settles without switching tabs\nFAIL forever: shared physical top survives saved chat scale 0.65\nFAIL forever: shared physical top survives saved chat scale 1\nFAIL forever: shared physical top survives saved chat scale 1.4\nALIGN_METRIC forever_left shared_tab_reads=0 layout_points=900 new_frames=0\nFAIL forever: beside-chat top matches reference inset\nFAIL forever: Social keeps its primary-dock offset on tab 2\nFAIL forever: Social keeps its primary-dock offset on tab 3\nFAIL forever: Social keeps its primary-dock offset on tab 4\nFAIL forever: Social keeps its primary-dock offset on tab 1\nFAIL forever: shared top follows layout resize\nFAIL forever: late login chat pin settles without switching tabs\nFAIL forever: shared physical top survives saved chat scale 0.65\nFAIL forever: shared physical top survives saved chat scale 1\nFAIL forever: shared physical top survives saved chat scale 1.4\nALIGN_METRIC forever_right shared_tab_reads=0 layout_points=900 new_frames=0\nChat column reference alignment: 190 checks, 100 failures\n"
+    },
+    {
+      "pair": 5,
+      "variant": "baseline",
+      "command": [
+        "lua",
+        "tests/chat_column_layout.lua",
+        "--column-source",
+        "tests/fixtures/chat_column_alignment_before.txt",
+        "--measure"
+      ],
+      "wallSeconds": 0.09501359998830594,
+      "metrics": {
+        "live_left": {
+          "shared_tab_reads": 0,
+          "layout_points": 900,
+          "new_frames": 0
+        },
+        "live_right": {
+          "shared_tab_reads": 0,
+          "layout_points": 900,
+          "new_frames": 0
+        },
+        "classic_era_left": {
+          "shared_tab_reads": 0,
+          "layout_points": 1000,
+          "new_frames": 0
+        },
+        "classic_era_right": {
+          "shared_tab_reads": 0,
+          "layout_points": 1000,
+          "new_frames": 0
+        },
+        "classic_anniversary_left": {
+          "shared_tab_reads": 0,
+          "layout_points": 1000,
+          "new_frames": 0
+        },
+        "classic_anniversary_right": {
+          "shared_tab_reads": 0,
+          "layout_points": 1000,
+          "new_frames": 0
+        },
+        "classic_left": {
+          "shared_tab_reads": 0,
+          "layout_points": 900,
+          "new_frames": 0
+        },
+        "classic_right": {
+          "shared_tab_reads": 0,
+          "layout_points": 900,
+          "new_frames": 0
+        },
+        "forever_left": {
+          "shared_tab_reads": 0,
+          "layout_points": 900,
+          "new_frames": 0
+        },
+        "forever_right": {
+          "shared_tab_reads": 0,
+          "layout_points": 900,
+          "new_frames": 0
+        }
+      },
+      "output": "chat column: 1311 checks across five branches, both sides; 4 regressions rejected\nMETRIC live_left hook_timers=3 burst_cycles=0 burst_new_frames=0 combat_waiters=1\nMETRIC live_right hook_timers=3 burst_cycles=0 burst_new_frames=0 combat_waiters=1\nMETRIC forever_left hook_timers=3 burst_cycles=0 burst_new_frames=0 combat_waiters=1\nMETRIC forever_right hook_timers=3 burst_cycles=0 burst_new_frames=0 combat_waiters=1\nQuickJoin column ownership: 508 checks, 0 failures\nFAIL live: beside-chat top matches reference inset\nFAIL live: Social keeps its primary-dock offset on tab 2\nFAIL live: Social keeps its primary-dock offset on tab 3\nFAIL live: Social keeps its primary-dock offset on tab 4\nFAIL live: Social keeps its primary-dock offset on tab 1\nFAIL live: shared top follows layout resize\nFAIL live: late login chat pin settles without switching tabs\nFAIL live: shared physical top survives saved chat scale 0.65\nFAIL live: shared physical top survives saved chat scale 1\nFAIL live: shared physical top survives saved chat scale 1.4\nALIGN_METRIC live_left shared_tab_reads=0 layout_points=900 new_frames=0\nFAIL live: beside-chat top matches reference inset\nFAIL live: Social keeps its primary-dock offset on tab 2\nFAIL live: Social keeps its primary-dock offset on tab 3\nFAIL live: Social keeps its primary-dock offset on tab 4\nFAIL live: Social keeps its primary-dock offset on tab 1\nFAIL live: shared top follows layout resize\nFAIL live: late login chat pin settles without switching tabs\nFAIL live: shared physical top survives saved chat scale 0.65\nFAIL live: shared physical top survives saved chat scale 1\nFAIL live: shared physical top survives saved chat scale 1.4\nALIGN_METRIC live_right shared_tab_reads=0 layout_points=900 new_frames=0\nFAIL classic_era: beside-chat top matches reference inset\nFAIL classic_era: Social keeps its primary-dock offset on tab 2\nFAIL classic_era: Social keeps its primary-dock offset on tab 3\nFAIL classic_era: Social keeps its primary-dock offset on tab 4\nFAIL classic_era: Social keeps its primary-dock offset on tab 1\nFAIL classic_era: shared top follows layout resize\nFAIL classic_era: late login chat pin settles without switching tabs\nFAIL classic_era: shared physical top survives saved chat scale 0.65\nFAIL classic_era: shared physical top survives saved chat scale 1\nFAIL classic_era: shared physical top survives saved chat scale 1.4\nALIGN_METRIC classic_era_left shared_tab_reads=0 layout_points=1000 new_frames=0\nFAIL classic_era: beside-chat top matches reference inset\nFAIL classic_era: Social keeps its primary-dock offset on tab 2\nFAIL classic_era: Social keeps its primary-dock offset on tab 3\nFAIL classic_era: Social keeps its primary-dock offset on tab 4\nFAIL classic_era: Social keeps its primary-dock offset on tab 1\nFAIL classic_era: shared top follows layout resize\nFAIL classic_era: late login chat pin settles without switching tabs\nFAIL classic_era: shared physical top survives saved chat scale 0.65\nFAIL classic_era: shared physical top survives saved chat scale 1\nFAIL classic_era: shared physical top survives saved chat scale 1.4\nALIGN_METRIC classic_era_right shared_tab_reads=0 layout_points=1000 new_frames=0\nFAIL classic_anniversary: beside-chat top matches reference inset\nFAIL classic_anniversary: Social keeps its primary-dock offset on tab 2\nFAIL classic_anniversary: Social keeps its primary-dock offset on tab 3\nFAIL classic_anniversary: Social keeps its primary-dock offset on tab 4\nFAIL classic_anniversary: Social keeps its primary-dock offset on tab 1\nFAIL classic_anniversary: shared top follows layout resize\nFAIL classic_anniversary: late login chat pin settles without switching tabs\nFAIL classic_anniversary: shared physical top survives saved chat scale 0.65\nFAIL classic_anniversary: shared physical top survives saved chat scale 1\nFAIL classic_anniversary: shared physical top survives saved chat scale 1.4\nALIGN_METRIC classic_anniversary_left shared_tab_reads=0 layout_points=1000 new_frames=0\nFAIL classic_anniversary: beside-chat top matches reference inset\nFAIL classic_anniversary: Social keeps its primary-dock offset on tab 2\nFAIL classic_anniversary: Social keeps its primary-dock offset on tab 3\nFAIL classic_anniversary: Social keeps its primary-dock offset on tab 4\nFAIL classic_anniversary: Social keeps its primary-dock offset on tab 1\nFAIL classic_anniversary: shared top follows layout resize\nFAIL classic_anniversary: late login chat pin settles without switching tabs\nFAIL classic_anniversary: shared physical top survives saved chat scale 0.65\nFAIL classic_anniversary: shared physical top survives saved chat scale 1\nFAIL classic_anniversary: shared physical top survives saved chat scale 1.4\nALIGN_METRIC classic_anniversary_right shared_tab_reads=0 layout_points=1000 new_frames=0\nFAIL classic: beside-chat top matches reference inset\nFAIL classic: Social keeps its primary-dock offset on tab 2\nFAIL classic: Social keeps its primary-dock offset on tab 3\nFAIL classic: Social keeps its primary-dock offset on tab 4\nFAIL classic: Social keeps its primary-dock offset on tab 1\nFAIL classic: shared top follows layout resize\nFAIL classic: late login chat pin settles without switching tabs\nFAIL classic: shared physical top survives saved chat scale 0.65\nFAIL classic: shared physical top survives saved chat scale 1\nFAIL classic: shared physical top survives saved chat scale 1.4\nALIGN_METRIC classic_left shared_tab_reads=0 layout_points=900 new_frames=0\nFAIL classic: beside-chat top matches reference inset\nFAIL classic: Social keeps its primary-dock offset on tab 2\nFAIL classic: Social keeps its primary-dock offset on tab 3\nFAIL classic: Social keeps its primary-dock offset on tab 4\nFAIL classic: Social keeps its primary-dock offset on tab 1\nFAIL classic: shared top follows layout resize\nFAIL classic: late login chat pin settles without switching tabs\nFAIL classic: shared physical top survives saved chat scale 0.65\nFAIL classic: shared physical top survives saved chat scale 1\nFAIL classic: shared physical top survives saved chat scale 1.4\nALIGN_METRIC classic_right shared_tab_reads=0 layout_points=900 new_frames=0\nFAIL forever: beside-chat top matches reference inset\nFAIL forever: Social keeps its primary-dock offset on tab 2\nFAIL forever: Social keeps its primary-dock offset on tab 3\nFAIL forever: Social keeps its primary-dock offset on tab 4\nFAIL forever: Social keeps its primary-dock offset on tab 1\nFAIL forever: shared top follows layout resize\nFAIL forever: late login chat pin settles without switching tabs\nFAIL forever: shared physical top survives saved chat scale 0.65\nFAIL forever: shared physical top survives saved chat scale 1\nFAIL forever: shared physical top survives saved chat scale 1.4\nALIGN_METRIC forever_left shared_tab_reads=0 layout_points=900 new_frames=0\nFAIL forever: beside-chat top matches reference inset\nFAIL forever: Social keeps its primary-dock offset on tab 2\nFAIL forever: Social keeps its primary-dock offset on tab 3\nFAIL forever: Social keeps its primary-dock offset on tab 4\nFAIL forever: Social keeps its primary-dock offset on tab 1\nFAIL forever: shared top follows layout resize\nFAIL forever: late login chat pin settles without switching tabs\nFAIL forever: shared physical top survives saved chat scale 0.65\nFAIL forever: shared physical top survives saved chat scale 1\nFAIL forever: shared physical top survives saved chat scale 1.4\nALIGN_METRIC forever_right shared_tab_reads=0 layout_points=900 new_frames=0\nChat column reference alignment: 190 checks, 100 failures\n"
+    },
+    {
+      "pair": 5,
+      "variant": "candidate",
+      "command": [
+        "lua",
+        "tests/chat_column_layout.lua"
+      ],
+      "wallSeconds": 0.10060440000961535,
+      "metrics": {
+        "live_left": {
+          "shared_tab_reads": 103,
+          "layout_points": 900,
+          "new_frames": 0
+        },
+        "live_right": {
+          "shared_tab_reads": 103,
+          "layout_points": 900,
+          "new_frames": 0
+        },
+        "classic_era_left": {
+          "shared_tab_reads": 203,
+          "layout_points": 1000,
+          "new_frames": 0
+        },
+        "classic_era_right": {
+          "shared_tab_reads": 203,
+          "layout_points": 1000,
+          "new_frames": 0
+        },
+        "classic_anniversary_left": {
+          "shared_tab_reads": 203,
+          "layout_points": 1000,
+          "new_frames": 0
+        },
+        "classic_anniversary_right": {
+          "shared_tab_reads": 203,
+          "layout_points": 1000,
+          "new_frames": 0
+        },
+        "classic_left": {
+          "shared_tab_reads": 203,
+          "layout_points": 900,
+          "new_frames": 0
+        },
+        "classic_right": {
+          "shared_tab_reads": 203,
+          "layout_points": 900,
+          "new_frames": 0
+        },
+        "forever_left": {
+          "shared_tab_reads": 103,
+          "layout_points": 900,
+          "new_frames": 0
+        },
+        "forever_right": {
+          "shared_tab_reads": 103,
+          "layout_points": 900,
+          "new_frames": 0
+        }
+      },
+      "output": "chat column: 1311 checks across five branches, both sides; 4 regressions rejected\nMETRIC live_left hook_timers=3 burst_cycles=0 burst_new_frames=0 combat_waiters=1\nMETRIC live_right hook_timers=3 burst_cycles=0 burst_new_frames=0 combat_waiters=1\nMETRIC forever_left hook_timers=3 burst_cycles=0 burst_new_frames=0 combat_waiters=1\nMETRIC forever_right hook_timers=3 burst_cycles=0 burst_new_frames=0 combat_waiters=1\nQuickJoin column ownership: 508 checks, 0 failures\nALIGN_METRIC live_left shared_tab_reads=103 layout_points=900 new_frames=0\nALIGN_METRIC live_right shared_tab_reads=103 layout_points=900 new_frames=0\nALIGN_METRIC classic_era_left shared_tab_reads=203 layout_points=1000 new_frames=0\nALIGN_METRIC classic_era_right shared_tab_reads=203 layout_points=1000 new_frames=0\nALIGN_METRIC classic_anniversary_left shared_tab_reads=203 layout_points=1000 new_frames=0\nALIGN_METRIC classic_anniversary_right shared_tab_reads=203 layout_points=1000 new_frames=0\nALIGN_METRIC classic_left shared_tab_reads=203 layout_points=900 new_frames=0\nALIGN_METRIC classic_right shared_tab_reads=203 layout_points=900 new_frames=0\nALIGN_METRIC forever_left shared_tab_reads=103 layout_points=900 new_frames=0\nALIGN_METRIC forever_right shared_tab_reads=103 layout_points=900 new_frames=0\nChat column reference alignment: 190 checks, 0 failures\n"
+    }
+  ],
+  "summary": {
+    "live_left": {
+      "shared_tab_reads": {
+        "baseline": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "candidate": {
+          "median": 103,
+          "min": 103,
+          "max": 103
+        }
+      },
+      "layout_points": {
+        "baseline": {
+          "median": 900,
+          "min": 900,
+          "max": 900
+        },
+        "candidate": {
+          "median": 900,
+          "min": 900,
+          "max": 900
+        }
+      },
+      "new_frames": {
+        "baseline": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "candidate": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        }
+      }
+    },
+    "live_right": {
+      "shared_tab_reads": {
+        "baseline": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "candidate": {
+          "median": 103,
+          "min": 103,
+          "max": 103
+        }
+      },
+      "layout_points": {
+        "baseline": {
+          "median": 900,
+          "min": 900,
+          "max": 900
+        },
+        "candidate": {
+          "median": 900,
+          "min": 900,
+          "max": 900
+        }
+      },
+      "new_frames": {
+        "baseline": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "candidate": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        }
+      }
+    },
+    "classic_era_left": {
+      "shared_tab_reads": {
+        "baseline": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "candidate": {
+          "median": 203,
+          "min": 203,
+          "max": 203
+        }
+      },
+      "layout_points": {
+        "baseline": {
+          "median": 1000,
+          "min": 1000,
+          "max": 1000
+        },
+        "candidate": {
+          "median": 1000,
+          "min": 1000,
+          "max": 1000
+        }
+      },
+      "new_frames": {
+        "baseline": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "candidate": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        }
+      }
+    },
+    "classic_era_right": {
+      "shared_tab_reads": {
+        "baseline": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "candidate": {
+          "median": 203,
+          "min": 203,
+          "max": 203
+        }
+      },
+      "layout_points": {
+        "baseline": {
+          "median": 1000,
+          "min": 1000,
+          "max": 1000
+        },
+        "candidate": {
+          "median": 1000,
+          "min": 1000,
+          "max": 1000
+        }
+      },
+      "new_frames": {
+        "baseline": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "candidate": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        }
+      }
+    },
+    "classic_anniversary_left": {
+      "shared_tab_reads": {
+        "baseline": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "candidate": {
+          "median": 203,
+          "min": 203,
+          "max": 203
+        }
+      },
+      "layout_points": {
+        "baseline": {
+          "median": 1000,
+          "min": 1000,
+          "max": 1000
+        },
+        "candidate": {
+          "median": 1000,
+          "min": 1000,
+          "max": 1000
+        }
+      },
+      "new_frames": {
+        "baseline": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "candidate": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        }
+      }
+    },
+    "classic_anniversary_right": {
+      "shared_tab_reads": {
+        "baseline": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "candidate": {
+          "median": 203,
+          "min": 203,
+          "max": 203
+        }
+      },
+      "layout_points": {
+        "baseline": {
+          "median": 1000,
+          "min": 1000,
+          "max": 1000
+        },
+        "candidate": {
+          "median": 1000,
+          "min": 1000,
+          "max": 1000
+        }
+      },
+      "new_frames": {
+        "baseline": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "candidate": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        }
+      }
+    },
+    "classic_left": {
+      "shared_tab_reads": {
+        "baseline": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "candidate": {
+          "median": 203,
+          "min": 203,
+          "max": 203
+        }
+      },
+      "layout_points": {
+        "baseline": {
+          "median": 900,
+          "min": 900,
+          "max": 900
+        },
+        "candidate": {
+          "median": 900,
+          "min": 900,
+          "max": 900
+        }
+      },
+      "new_frames": {
+        "baseline": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "candidate": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        }
+      }
+    },
+    "classic_right": {
+      "shared_tab_reads": {
+        "baseline": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "candidate": {
+          "median": 203,
+          "min": 203,
+          "max": 203
+        }
+      },
+      "layout_points": {
+        "baseline": {
+          "median": 900,
+          "min": 900,
+          "max": 900
+        },
+        "candidate": {
+          "median": 900,
+          "min": 900,
+          "max": 900
+        }
+      },
+      "new_frames": {
+        "baseline": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "candidate": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        }
+      }
+    },
+    "forever_left": {
+      "shared_tab_reads": {
+        "baseline": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "candidate": {
+          "median": 103,
+          "min": 103,
+          "max": 103
+        }
+      },
+      "layout_points": {
+        "baseline": {
+          "median": 900,
+          "min": 900,
+          "max": 900
+        },
+        "candidate": {
+          "median": 900,
+          "min": 900,
+          "max": 900
+        }
+      },
+      "new_frames": {
+        "baseline": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "candidate": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        }
+      }
+    },
+    "forever_right": {
+      "shared_tab_reads": {
+        "baseline": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "candidate": {
+          "median": 103,
+          "min": 103,
+          "max": 103
+        }
+      },
+      "layout_points": {
+        "baseline": {
+          "median": 900,
+          "min": 900,
+          "max": 900
+        },
+        "candidate": {
+          "median": 900,
+          "min": 900,
+          "max": 900
+        }
+      },
+      "new_frames": {
+        "baseline": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "candidate": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        }
+      }
+    }
+  },
+  "finalVerification": {
+    "scriptsPassed": 92,
+    "scriptsFailed": 0,
+    "luaFiles": 733,
+    "normalizedLuaHashesMatch": true,
+    "protectedFilesByteIdentical": 361,
+    "trackerSourceAndTestPreserved": true,
+    "explicitDevelopmentToolMarkerFiles": [],
+    "actualFilesOutsideGit": 1271,
+    "ledgerRows": {
+      "FEATURE_PARITY.csv": 1384,
+      "MODULE_OWNERSHIP.csv": 35,
+      "API_MIGRATION.csv": 28,
+      "CLIENT_MATRIX.csv": 8,
+      "REFERENCE_MANIFEST.csv": 77,
+      "PERFORMANCE_RESULTS.csv": 308,
+      "PERFORMANCE_AUDIT.csv": 26
+    },
+    "mainUnchanged": true,
+    "documentation": {
+      "status": "PASS",
+      "classifiedSources": 766,
+      "reachableFiles": 577,
+      "settingDefinitions": 361,
+      "literalDefaults": 519,
+      "savedVariableRoots": 23,
+      "localLinks": 12868
+    }
+  }
+}

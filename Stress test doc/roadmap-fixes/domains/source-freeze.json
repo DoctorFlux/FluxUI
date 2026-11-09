@@ -1,0 +1,204 @@
+{
+  "capturedUTC": "2026-11-07T19:14:04.398311+00:00",
+  "ownedRuntimeFiles": [
+    "MicroMenu/FluxMinimapToMicro.lua",
+    "Salvage/FluxSalvage_Overlay.lua",
+    "UnitFrames/FluxUnitFrames_Shared.lua",
+    "Core/ButtonFX/ThreatGlow.lua",
+    "Inventory/Restock/Junk/FluxVendorJunkPanel.lua",
+    "Inventory/Restock/Vendor/FluxVendorRestockPanel.lua",
+    "StatusBars/FluxStatusBar.lua",
+    "StatusBars/FluxInfoFrame.lua",
+    "Battlezonemap/FluxDetails.lua",
+    "Other/FluxEquipSlotFlyout.lua"
+  ],
+  "before": {
+    "Battlezonemap/FluxDetails.lua": {
+      "sha256": "6c1f1db3b470f70e34a3c72ab42b0b2b707b431c806a860a9fe8a360aea809fc",
+      "sha256LF": "6c1f1db3b470f70e34a3c72ab42b0b2b707b431c806a860a9fe8a360aea809fc"
+    },
+    "Core/ButtonFX/ThreatGlow.lua": {
+      "sha256": "a4eee7a9b4b397ebc6a2b8555110f619fac3fd86e9a264b3525f751cac0d00e2",
+      "sha256LF": "a4eee7a9b4b397ebc6a2b8555110f619fac3fd86e9a264b3525f751cac0d00e2"
+    },
+    "Inventory/Restock/Junk/FluxVendorJunkPanel.lua": {
+      "sha256": "ebf169466a60cc0ea80264aa212633b4df69a39a51537f4e8109c5cf3934bb4d",
+      "sha256LF": "ebf169466a60cc0ea80264aa212633b4df69a39a51537f4e8109c5cf3934bb4d"
+    },
+    "Inventory/Restock/Vendor/FluxVendorRestockPanel.lua": {
+      "sha256": "4cef9c67da2b5b16d93aeea00e54bca5b28efaebe7b5040178ef205e8b266b0e",
+      "sha256LF": "4cef9c67da2b5b16d93aeea00e54bca5b28efaebe7b5040178ef205e8b266b0e"
+    },
+    "MicroMenu/FluxMicroMenu.lua": {
+      "sha256": "381ed6a313093defa4addd4ffa90ba7d0622c325a7b1ae24be7129c8fecc2d3a",
+      "sha256LF": "381ed6a313093defa4addd4ffa90ba7d0622c325a7b1ae24be7129c8fecc2d3a"
+    },
+    "MicroMenu/FluxMinimapToMicro.lua": {
+      "sha256": "ef02d02ec1cb3a038de1a5390fb3ac2d7297a8548355965947f923b451e3ef6a",
+      "sha256LF": "ef02d02ec1cb3a038de1a5390fb3ac2d7297a8548355965947f923b451e3ef6a"
+    },
+    "Other/FluxEquipSlotFlyout.lua": {
+      "sha256": "5ce088c1eda8b391e89b08bbaf7d4d2cf53f36c3a4b6f701b3eee8894487fb5b",
+      "sha256LF": "5ce088c1eda8b391e89b08bbaf7d4d2cf53f36c3a4b6f701b3eee8894487fb5b"
+    },
+    "Salvage/FluxSalvage_Overlay.lua": {
+      "sha256": "467978adfa81aecfb6e14e5f1edf7c4fdd55a8e8c57b07ae62a42ea5ff8ba9b6",
+      "sha256LF": "467978adfa81aecfb6e14e5f1edf7c4fdd55a8e8c57b07ae62a42ea5ff8ba9b6"
+    },
+    "StatusBars/FluxInfoFrame.lua": {
+      "sha256": "4d64905379c78797184dfa4b234a418250bebc5dfa470ab3cd32e606c780c024",
+      "sha256LF": "4d64905379c78797184dfa4b234a418250bebc5dfa470ab3cd32e606c780c024"
+    },
+    "StatusBars/FluxStatusBar.lua": {
+      "sha256": "df2811cb97afc0372ede2c74310e5d7340018e82dbc138f89782dd6a9a91a531",
+      "sha256LF": "4d805eb72f8e9a73111c0ecc2fc57db4c570d514fa7e35338adaa710cf8d262d"
+    },
+    "Stress test doc/roadmap-fixes/domains/checkpoint_replay.lua.txt": {
+      "sha256": "5bcff2e45f1ef65a0d9b2dcfc40867f52f50b38f1b6f190aa48c0edcea4e4eb8",
+      "sha256LF": "5bcff2e45f1ef65a0d9b2dcfc40867f52f50b38f1b6f190aa48c0edcea4e4eb8"
+    },
+    "UnitFrames/FluxUnitFrames_Pet.lua": {
+      "sha256": "e2aa8d8f5bd716b0408ad76456d8ec57351e963c8b0e996d28a4f075b8f5306f",
+      "sha256LF": "e2aa8d8f5bd716b0408ad76456d8ec57351e963c8b0e996d28a4f075b8f5306f"
+    },
+    "UnitFrames/FluxUnitFrames_Shared.lua": {
+      "sha256": "97c7897c16ecd384013dedd8b5fef6e33b91a1b82677163ddbf636e29c62f0da",
+      "sha256LF": "97c7897c16ecd384013dedd8b5fef6e33b91a1b82677163ddbf636e29c62f0da"
+    },
+    "UnitFrames/FluxUnitFrames_TargetOfTarget.lua": {
+      "sha256": "55a6d5d8b388b284f20ab711207937710a849bf07cb1dd503bd0eabf498547b4",
+      "sha256LF": "55a6d5d8b388b284f20ab711207937710a849bf07cb1dd503bd0eabf498547b4"
+    },
+    "tests/alpha_reader_safety.lua": {
+      "sha256": "189148244b4195e267b0c553a437a17e800827d6b90968196c04cce0f5258b52",
+      "sha256LF": "ba7e05ead0863925578a8b018e73fa983d4a9c678ea455788e5e622880bf4037"
+    },
+    "tests/domain_lifecycle_fixes.lua": {
+      "sha256": "d38be2036ecf6220b9b03bc58c1402813a2162b47e2f6cb9e020b65ffff138a5",
+      "sha256LF": "d38be2036ecf6220b9b03bc58c1402813a2162b47e2f6cb9e020b65ffff138a5"
+    },
+    "tests/native_timer_ownership.lua": {
+      "sha256": "867548ed615d7ddac089fa121eafa0185a3aca5dad61700e01bc2cd44bfff7fd",
+      "sha256LF": "867548ed615d7ddac089fa121eafa0185a3aca5dad61700e01bc2cd44bfff7fd"
+    },
+    "tests/portrait_camera.lua": {
+      "sha256": "e813ab2748ab3cac8fd9d0ce1d83aac7e2bb0a300635b60810ca5678a96f28e8",
+      "sha256LF": "e813ab2748ab3cac8fd9d0ce1d83aac7e2bb0a300635b60810ca5678a96f28e8"
+    },
+    "tests/prediction_public_geometry.lua": {
+      "sha256": "2ee9cb6c1544d18359015f8c09d7ad0556f6c62eb9cc4c56e36e0ae998bc5d87",
+      "sha256LF": "2ee9cb6c1544d18359015f8c09d7ad0556f6c62eb9cc4c56e36e0ae998bc5d87"
+    },
+    "tests/public_frame_level_safety.lua": {
+      "sha256": "3107f49638ab4b5553502f0c2b4dd86f6025c86fc33035c3f73a73fc0348e329",
+      "sha256LF": "3107f49638ab4b5553502f0c2b4dd86f6025c86fc33035c3f73a73fc0348e329"
+    },
+    "tests/salvage_overlay.lua": {
+      "sha256": "25f401d25a325f5245320e8c8751fa3c84edc080371dc11df66116370939bc98",
+      "sha256LF": "25f401d25a325f5245320e8c8751fa3c84edc080371dc11df66116370939bc98"
+    },
+    "tests/unit_portrait_combat_restore.lua": {
+      "sha256": "8945decd839b8c1dbbd1f6a3e68e89326cdf7924c1cece675bec1c82544c5f3b",
+      "sha256LF": "8945decd839b8c1dbbd1f6a3e68e89326cdf7924c1cece675bec1c82544c5f3b"
+    },
+    "tests/unit_vertical_target_health.lua": {
+      "sha256": "9a1ec9831ae215dcbf29efd005b5af423fb9b477f0dfdb5375890243003bc35b",
+      "sha256LF": "9a1ec9831ae215dcbf29efd005b5af423fb9b477f0dfdb5375890243003bc35b"
+    }
+  },
+  "after": {
+    "Battlezonemap/FluxDetails.lua": {
+      "sha256": "6c1f1db3b470f70e34a3c72ab42b0b2b707b431c806a860a9fe8a360aea809fc",
+      "sha256LF": "6c1f1db3b470f70e34a3c72ab42b0b2b707b431c806a860a9fe8a360aea809fc"
+    },
+    "Core/ButtonFX/ThreatGlow.lua": {
+      "sha256": "a4eee7a9b4b397ebc6a2b8555110f619fac3fd86e9a264b3525f751cac0d00e2",
+      "sha256LF": "a4eee7a9b4b397ebc6a2b8555110f619fac3fd86e9a264b3525f751cac0d00e2"
+    },
+    "Inventory/Restock/Junk/FluxVendorJunkPanel.lua": {
+      "sha256": "ebf169466a60cc0ea80264aa212633b4df69a39a51537f4e8109c5cf3934bb4d",
+      "sha256LF": "ebf169466a60cc0ea80264aa212633b4df69a39a51537f4e8109c5cf3934bb4d"
+    },
+    "Inventory/Restock/Vendor/FluxVendorRestockPanel.lua": {
+      "sha256": "4cef9c67da2b5b16d93aeea00e54bca5b28efaebe7b5040178ef205e8b266b0e",
+      "sha256LF": "4cef9c67da2b5b16d93aeea00e54bca5b28efaebe7b5040178ef205e8b266b0e"
+    },
+    "MicroMenu/FluxMicroMenu.lua": {
+      "sha256": "381ed6a313093defa4addd4ffa90ba7d0622c325a7b1ae24be7129c8fecc2d3a",
+      "sha256LF": "381ed6a313093defa4addd4ffa90ba7d0622c325a7b1ae24be7129c8fecc2d3a"
+    },
+    "MicroMenu/FluxMinimapToMicro.lua": {
+      "sha256": "ef02d02ec1cb3a038de1a5390fb3ac2d7297a8548355965947f923b451e3ef6a",
+      "sha256LF": "ef02d02ec1cb3a038de1a5390fb3ac2d7297a8548355965947f923b451e3ef6a"
+    },
+    "Other/FluxEquipSlotFlyout.lua": {
+      "sha256": "5ce088c1eda8b391e89b08bbaf7d4d2cf53f36c3a4b6f701b3eee8894487fb5b",
+      "sha256LF": "5ce088c1eda8b391e89b08bbaf7d4d2cf53f36c3a4b6f701b3eee8894487fb5b"
+    },
+    "Salvage/FluxSalvage_Overlay.lua": {
+      "sha256": "467978adfa81aecfb6e14e5f1edf7c4fdd55a8e8c57b07ae62a42ea5ff8ba9b6",
+      "sha256LF": "467978adfa81aecfb6e14e5f1edf7c4fdd55a8e8c57b07ae62a42ea5ff8ba9b6"
+    },
+    "StatusBars/FluxInfoFrame.lua": {
+      "sha256": "4d64905379c78797184dfa4b234a418250bebc5dfa470ab3cd32e606c780c024",
+      "sha256LF": "4d64905379c78797184dfa4b234a418250bebc5dfa470ab3cd32e606c780c024"
+    },
+    "StatusBars/FluxStatusBar.lua": {
+      "sha256": "df2811cb97afc0372ede2c74310e5d7340018e82dbc138f89782dd6a9a91a531",
+      "sha256LF": "4d805eb72f8e9a73111c0ecc2fc57db4c570d514fa7e35338adaa710cf8d262d"
+    },
+    "Stress test doc/roadmap-fixes/domains/checkpoint_replay.lua.txt": {
+      "sha256": "5bcff2e45f1ef65a0d9b2dcfc40867f52f50b38f1b6f190aa48c0edcea4e4eb8",
+      "sha256LF": "5bcff2e45f1ef65a0d9b2dcfc40867f52f50b38f1b6f190aa48c0edcea4e4eb8"
+    },
+    "UnitFrames/FluxUnitFrames_Pet.lua": {
+      "sha256": "e2aa8d8f5bd716b0408ad76456d8ec57351e963c8b0e996d28a4f075b8f5306f",
+      "sha256LF": "e2aa8d8f5bd716b0408ad76456d8ec57351e963c8b0e996d28a4f075b8f5306f"
+    },
+    "UnitFrames/FluxUnitFrames_Shared.lua": {
+      "sha256": "97c7897c16ecd384013dedd8b5fef6e33b91a1b82677163ddbf636e29c62f0da",
+      "sha256LF": "97c7897c16ecd384013dedd8b5fef6e33b91a1b82677163ddbf636e29c62f0da"
+    },
+    "UnitFrames/FluxUnitFrames_TargetOfTarget.lua": {
+      "sha256": "55a6d5d8b388b284f20ab711207937710a849bf07cb1dd503bd0eabf498547b4",
+      "sha256LF": "55a6d5d8b388b284f20ab711207937710a849bf07cb1dd503bd0eabf498547b4"
+    },
+    "tests/alpha_reader_safety.lua": {
+      "sha256": "189148244b4195e267b0c553a437a17e800827d6b90968196c04cce0f5258b52",
+      "sha256LF": "ba7e05ead0863925578a8b018e73fa983d4a9c678ea455788e5e622880bf4037"
+    },
+    "tests/domain_lifecycle_fixes.lua": {
+      "sha256": "d38be2036ecf6220b9b03bc58c1402813a2162b47e2f6cb9e020b65ffff138a5",
+      "sha256LF": "d38be2036ecf6220b9b03bc58c1402813a2162b47e2f6cb9e020b65ffff138a5"
+    },
+    "tests/native_timer_ownership.lua": {
+      "sha256": "867548ed615d7ddac089fa121eafa0185a3aca5dad61700e01bc2cd44bfff7fd",
+      "sha256LF": "867548ed615d7ddac089fa121eafa0185a3aca5dad61700e01bc2cd44bfff7fd"
+    },
+    "tests/portrait_camera.lua": {
+      "sha256": "e813ab2748ab3cac8fd9d0ce1d83aac7e2bb0a300635b60810ca5678a96f28e8",
+      "sha256LF": "e813ab2748ab3cac8fd9d0ce1d83aac7e2bb0a300635b60810ca5678a96f28e8"
+    },
+    "tests/prediction_public_geometry.lua": {
+      "sha256": "2ee9cb6c1544d18359015f8c09d7ad0556f6c62eb9cc4c56e36e0ae998bc5d87",
+      "sha256LF": "2ee9cb6c1544d18359015f8c09d7ad0556f6c62eb9cc4c56e36e0ae998bc5d87"
+    },
+    "tests/public_frame_level_safety.lua": {
+      "sha256": "3107f49638ab4b5553502f0c2b4dd86f6025c86fc33035c3f73a73fc0348e329",
+      "sha256LF": "3107f49638ab4b5553502f0c2b4dd86f6025c86fc33035c3f73a73fc0348e329"
+    },
+    "tests/salvage_overlay.lua": {
+      "sha256": "25f401d25a325f5245320e8c8751fa3c84edc080371dc11df66116370939bc98",
+      "sha256LF": "25f401d25a325f5245320e8c8751fa3c84edc080371dc11df66116370939bc98"
+    },
+    "tests/unit_portrait_combat_restore.lua": {
+      "sha256": "8945decd839b8c1dbbd1f6a3e68e89326cdf7924c1cece675bec1c82544c5f3b",
+      "sha256LF": "8945decd839b8c1dbbd1f6a3e68e89326cdf7924c1cece675bec1c82544c5f3b"
+    },
+    "tests/unit_vertical_target_health.lua": {
+      "sha256": "9a1ec9831ae215dcbf29efd005b5af423fb9b477f0dfdb5375890243003bc35b",
+      "sha256LF": "9a1ec9831ae215dcbf29efd005b5af423fb9b477f0dfdb5375890243003bc35b"
+    }
+  },
+  "sourceStable": true
+}

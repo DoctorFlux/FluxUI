@@ -1,0 +1,93 @@
+{
+  "capturedUTC": "2026-11-08T10:36:58.845271+00:00",
+  "mode": "Read-only verification of user continuous sync; no manual destination writes",
+  "checks": [
+    {
+      "client": "_forever_",
+      "path": "Inventory/Restock/Core/Tiers/FluxRestockTiers_Match.lua",
+      "sourceSHA256": "60eafad40bb4982887299ea48a7f21778043dbdb5c9d7ece68158de332b88559",
+      "destinationSHA256": "60eafad40bb4982887299ea48a7f21778043dbdb5c9d7ece68158de332b88559",
+      "matches": true
+    },
+    {
+      "client": "_forever_",
+      "path": "Inventory/Restock/Core/Tiers/FluxRestockTiers_Inferior.lua",
+      "sourceSHA256": "a7b498b4ad00c0c1b40e53a4396750b14593879b706c439f33f152e6419cb873",
+      "destinationSHA256": "a7b498b4ad00c0c1b40e53a4396750b14593879b706c439f33f152e6419cb873",
+      "matches": true
+    },
+    {
+      "client": "_forever_",
+      "path": "Inventory/Restock/Junk/FluxJunk.lua",
+      "sourceSHA256": "9d44088cb1125d7bf7191d04b52e6b31aa1859cf869d74813c46670afa651f45",
+      "destinationSHA256": "9d44088cb1125d7bf7191d04b52e6b31aa1859cf869d74813c46670afa651f45",
+      "matches": true
+    },
+    {
+      "client": "_classic_era_",
+      "path": "Inventory/Restock/Core/Tiers/FluxRestockTiers_Match.lua",
+      "sourceSHA256": "60eafad40bb4982887299ea48a7f21778043dbdb5c9d7ece68158de332b88559",
+      "destinationSHA256": "60eafad40bb4982887299ea48a7f21778043dbdb5c9d7ece68158de332b88559",
+      "matches": true
+    },
+    {
+      "client": "_classic_era_",
+      "path": "Inventory/Restock/Core/Tiers/FluxRestockTiers_Inferior.lua",
+      "sourceSHA256": "a7b498b4ad00c0c1b40e53a4396750b14593879b706c439f33f152e6419cb873",
+      "destinationSHA256": "a7b498b4ad00c0c1b40e53a4396750b14593879b706c439f33f152e6419cb873",
+      "matches": true
+    },
+    {
+      "client": "_classic_era_",
+      "path": "Inventory/Restock/Junk/FluxJunk.lua",
+      "sourceSHA256": "9d44088cb1125d7bf7191d04b52e6b31aa1859cf869d74813c46670afa651f45",
+      "destinationSHA256": "9d44088cb1125d7bf7191d04b52e6b31aa1859cf869d74813c46670afa651f45",
+      "matches": true
+    },
+    {
+      "client": "_anniversary_",
+      "path": "Inventory/Restock/Core/Tiers/FluxRestockTiers_Match.lua",
+      "sourceSHA256": "60eafad40bb4982887299ea48a7f21778043dbdb5c9d7ece68158de332b88559",
+      "destinationSHA256": "60eafad40bb4982887299ea48a7f21778043dbdb5c9d7ece68158de332b88559",
+      "matches": true
+    },
+    {
+      "client": "_anniversary_",
+      "path": "Inventory/Restock/Core/Tiers/FluxRestockTiers_Inferior.lua",
+      "sourceSHA256": "a7b498b4ad00c0c1b40e53a4396750b14593879b706c439f33f152e6419cb873",
+      "destinationSHA256": "a7b498b4ad00c0c1b40e53a4396750b14593879b706c439f33f152e6419cb873",
+      "matches": true
+    },
+    {
+      "client": "_anniversary_",
+      "path": "Inventory/Restock/Junk/FluxJunk.lua",
+      "sourceSHA256": "9d44088cb1125d7bf7191d04b52e6b31aa1859cf869d74813c46670afa651f45",
+      "destinationSHA256": "9d44088cb1125d7bf7191d04b52e6b31aa1859cf869d74813c46670afa651f45",
+      "matches": true
+    },
+    {
+      "client": "_classic_",
+      "path": "Inventory/Restock/Core/Tiers/FluxRestockTiers_Match.lua",
+      "sourceSHA256": "60eafad40bb4982887299ea48a7f21778043dbdb5c9d7ece68158de332b88559",
+      "destinationSHA256": "60eafad40bb4982887299ea48a7f21778043dbdb5c9d7ece68158de332b88559",
+      "matches": true
+    },
+    {
+      "client": "_classic_",
+      "path": "Inventory/Restock/Core/Tiers/FluxRestockTiers_Inferior.lua",
+      "sourceSHA256": "a7b498b4ad00c0c1b40e53a4396750b14593879b706c439f33f152e6419cb873",
+      "destinationSHA256": "a7b498b4ad00c0c1b40e53a4396750b14593879b706c439f33f152e6419cb873",
+      "matches": true
+    },
+    {
+      "client": "_classic_",
+      "path": "Inventory/Restock/Junk/FluxJunk.lua",
+      "sourceSHA256": "9d44088cb1125d7bf7191d04b52e6b31aa1859cf869d74813c46670afa651f45",
+      "destinationSHA256": "9d44088cb1125d7bf7191d04b52e6b31aa1859cf869d74813c46670afa651f45",
+      "matches": true
+    }
+  ],
+  "allMatched": true,
+  "nativeAcceptance": "Not inferred from source copies; no reload/game input",
+  "finalReadUTC": "2026-11-08T10:46:51.339420+00:00"
+}

@@ -1,0 +1,92 @@
+-- Actual shared owners: reentry/mutation, bounded FIFO drain and hover freshness.
+local prefix=arg[1] and (arg[1]:gsub('\\','/'):gsub('/$','')..'/') or ''
+local checks=0
+local function check(v,label)checks=checks+1;assert(v,label)end
+local function boot(names)
+ local h={frames={},timers={},errors={},now=100,locked=false}
+ local e=setmetatable({},{__index=_G});e._G=e
+ e.GetTime=function()return h.now end;e.InCombatLockdown=function()return h.locked end
+ e.geterrorhandler=function()return function(err)h.errors[#h.errors+1]=err end end
+ e.C_EventUtils={IsEventValid=function()return true end}
+ e.wipe=function(t)for k in pairs(t)do t[k]=nil end;return t end
+ e.CreateFrame=function()
+  local f={shown=true,scripts={},events={}}
+  function f:SetScript(k,v)self.scripts[k]=v end
+  function f:Show()self.shown=true end;function f:Hide()self.shown=false end
+  function f:IsShown()return self.shown end
+  function f:RegisterEvent(k)self.events[k]=true end
+  function f:UnregisterEvent(k)self.events[k]=nil end
+  function f:RegisterUnitEvent(k,u)self.events[k]=u end
+  h.frames[#h.frames+1]=f;return f
+ end
+ local flux={Client={},Timer={After=function(_,fn)h.timers[#h.timers+1]=fn end}}
+ flux.Safecall=function(fn,...)local ok,v=pcall(fn,...);if not ok then h.errors[#h.errors+1]=v end;return ok,v end
+ e.UnitExists=function()return true end;e.UnitCanAttack=function()return true end
+ e.UnitCanAssist=function()return false end;e.UnitIsDead=function()return false end
+ flux.Spell={IsInRange=function()return true end}
+ function h.event(name,...)
+  for _,f in ipairs(h.frames)do if f.events[name]and f.scripts.OnEvent then f.scripts.OnEvent(f,name,...)end end
+ end
+ function h.frame(dt)
+  h.now=h.now+(dt or .016)
+  local q=h.timers;h.timers={};for _,fn in ipairs(q)do fn()end
+  for _,f in ipairs(h.frames)do if f.shown and f.scripts.OnUpdate then f.scripts.OnUpdate(f,dt or .016)end end
+ end
+ function h.drain(limit)
+  local n=0;while#h.timers>0 do n=n+1;check(n<(limit or 10000),'queue eventually sleeps');h.frame()end;return n
+ end
+ local ns={Flux=flux}
+ for _,name in ipairs(names)do assert(loadfile(prefix..'Core/Engine/'..name..'.lua','t',e))('_FluxUI',ns)end
+ h.flux=flux;return h
+end
+
+
+-- Independent review: real combat wake interleaved with a scheduled flush.
+do
+ local h=boot({'Scheduler','Combat'});local s=h.flux.Scheduler;local count=0
+ h.locked=true;s.Request('structural','wake',function()end)
+ for i=1,20 do s.Request('inventory',i,function()count=count+1 end)end
+ h.locked=false;h.event('PLAYER_REGEN_ENABLED')
+ local before=count;local timers=#h.timers;h.frame()
+ print('REVIEW inventory regen wake: before='..before..' outstanding timers='..timers..' callbacks next frame='..(count-before))
+end
+-- Independent review: a callback queues newer structural work while entering combat.
+do
+ local h=boot({'Scheduler','Combat'});local s=h.flux.Scheduler;local order={}
+ s.Request('structural','old1',function()
+  order[#order+1]='old1';h.locked=true
+  s.Request('structural','new',function()order[#order+1]='new'end)
+ end)
+ s.Request('structural','old2',function()order[#order+1]='old2'end)
+ h.frame();h.locked=false;h.event('PLAYER_REGEN_ENABLED');h.drain()
+ print('REVIEW structural reentry order='..table.concat(order,','))
+end
+
+-- Deterministic mixed-tier property stress after the reviewed corrections.
+math.randomseed(20261107)
+local issuedTotal=0
+for scenario=1,200 do
+ local h=boot({'Scheduler','Combat'});local sched=h.flux.Scheduler
+ local issued={structural=0,inventory=0};local completed={structural=0,inventory=0}
+ local function request(tier,depth)
+  issued[tier]=issued[tier]+1;local id=issued[tier];issuedTotal=issuedTotal+1
+  sched.Request(tier,tier..id,function()
+   completed[tier]=completed[tier]+1
+   check(completed[tier]==id,'mixed-tier FIFO and exactly-once ownership '..tier)
+   if depth<3 and math.random()<.35 then request(math.random()<.5 and 'inventory'or'structural',depth+1)end
+   if math.random()<.20 then h.locked=true end
+   if math.random()<.10 then sched.Flush()end
+  end)
+ end
+ h.locked=true
+ for i=1,math.random(1,40)do request(math.random()<.5 and 'inventory'or'structural',1)end
+ local steps=0
+ while sched.HasPending()or h.flux.Combat.HasPending()or#h.timers>0 do
+  steps=steps+1;check(steps<2000,'mixed-tier queues eventually retire')
+  if h.locked then h.locked=false;h.event('PLAYER_REGEN_ENABLED')end
+  h.frame()
+ end
+ check(completed.structural==issued.structural and completed.inventory==issued.inventory,'all mixed-tier requests retained')
+ check(#h.errors==0,'no callback errors in mixed-tier property run')
+end
+print('REVIEW mixed-tier stress: 200 scenarios, callbacks='..issuedTotal..', checks='..checks..', FIFO/no lost or duplicate jobs')

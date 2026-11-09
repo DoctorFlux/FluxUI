@@ -1,0 +1,91 @@
+{
+  "baselineCommit": "1fd463f4de4bbff659f4e402c6f31138c49765b4",
+  "baselineSharedLF": "78c8bb770b8ea9b53ed7dbd512379d7a0f328fe6e2a5a1fe067690c70d63a1ca",
+  "candidateSharedLF": "cf7ca23d31685de195d40c4e6bc20942c4f5a28963b51c080cf2cc8ddb1f4ec3",
+  "testLF": "29f5bfdf383cd96af65cd9d9023421fff9722ebcdb2f35a041a546e134731457",
+  "samples": [
+    {
+      "exit": 1,
+      "wallSeconds": 0.016441599989775568,
+      "stdout": "",
+      "stderr": "lua: tests/focus_native_menus.lua:5: live native addon menu action prepared\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/focus_native_menus.lua:5: in local 'check'\n\ttests/focus_native_menus.lua:59: in main chunk\n\t[C]: in ?\n",
+      "trial": 1,
+      "variant": "baseline"
+    },
+    {
+      "exit": 0,
+      "wallSeconds": 0.02580510001280345,
+      "stdout": "Native focus menu routing: 670 checks PASS; native menu action/responders replayed across five clients; actual taint/hardware pending\n",
+      "stderr": "",
+      "trial": 1,
+      "variant": "candidate"
+    },
+    {
+      "exit": 1,
+      "wallSeconds": 0.016403099987655878,
+      "stdout": "",
+      "stderr": "lua: tests/focus_native_menus.lua:5: live native addon menu action prepared\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/focus_native_menus.lua:5: in local 'check'\n\ttests/focus_native_menus.lua:59: in main chunk\n\t[C]: in ?\n",
+      "trial": 2,
+      "variant": "baseline"
+    },
+    {
+      "exit": 0,
+      "wallSeconds": 0.02566739998292178,
+      "stdout": "Native focus menu routing: 670 checks PASS; native menu action/responders replayed across five clients; actual taint/hardware pending\n",
+      "stderr": "",
+      "trial": 2,
+      "variant": "candidate"
+    },
+    {
+      "exit": 1,
+      "wallSeconds": 0.01679259998491034,
+      "stdout": "",
+      "stderr": "lua: tests/focus_native_menus.lua:5: live native addon menu action prepared\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/focus_native_menus.lua:5: in local 'check'\n\ttests/focus_native_menus.lua:59: in main chunk\n\t[C]: in ?\n",
+      "trial": 3,
+      "variant": "baseline"
+    },
+    {
+      "exit": 0,
+      "wallSeconds": 0.029409300012048334,
+      "stdout": "Native focus menu routing: 670 checks PASS; native menu action/responders replayed across five clients; actual taint/hardware pending\n",
+      "stderr": "",
+      "trial": 3,
+      "variant": "candidate"
+    },
+    {
+      "exit": 1,
+      "wallSeconds": 0.018006600002991036,
+      "stdout": "",
+      "stderr": "lua: tests/focus_native_menus.lua:5: live native addon menu action prepared\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/focus_native_menus.lua:5: in local 'check'\n\ttests/focus_native_menus.lua:59: in main chunk\n\t[C]: in ?\n",
+      "trial": 4,
+      "variant": "baseline"
+    },
+    {
+      "exit": 0,
+      "wallSeconds": 0.03205179999349639,
+      "stdout": "Native focus menu routing: 670 checks PASS; native menu action/responders replayed across five clients; actual taint/hardware pending\n",
+      "stderr": "",
+      "trial": 4,
+      "variant": "candidate"
+    },
+    {
+      "exit": 1,
+      "wallSeconds": 0.01805620000232011,
+      "stdout": "",
+      "stderr": "lua: tests/focus_native_menus.lua:5: live native addon menu action prepared\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/focus_native_menus.lua:5: in local 'check'\n\ttests/focus_native_menus.lua:59: in main chunk\n\t[C]: in ?\n",
+      "trial": 5,
+      "variant": "baseline"
+    },
+    {
+      "exit": 0,
+      "wallSeconds": 0.027625199989415705,
+      "stdout": "Native focus menu routing: 670 checks PASS; native menu action/responders replayed across five clients; actual taint/hardware pending\n",
+      "stderr": "",
+      "trial": 5,
+      "variant": "candidate"
+    }
+  ],
+  "warmup": "One excluded pair; five alternating baseline/candidate pairs",
+  "scope": "670 checks per candidate; native actions/responders/secure slash handler source replayed across five clients. Protected C, hardware, macro parser and taint context modeled. Desktop wall time is uncontrolled and is not a native performance benchmark.",
+  "miniFramePolicy": "Preserve dependent-target callback menus; native bindings/macros for focus. Explicit user choice on 9 November. No new bindings or gestures."
+}

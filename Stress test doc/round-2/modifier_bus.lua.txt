@@ -1,0 +1,99 @@
+-- Fresh million-edge modifier replay using the unchanged production Modifier
+-- and Context owners through their existing fixture. No addon writes or input.
+local f=assert(io.open('tests/context_invalidation_stress.lua','rb'));local src=f:read('*a');f:close()
+local boundary=assert(src:find('for _, branch in ipairs(',1,true))
+local boot=assert(load(src:sub(1,boundary-1)..'\nreturn fixture','@existing-context-fixture','t',_G))()
+local checks,edges,events,cases=0,0,0,0
+local function check(v,msg)checks=checks+1;assert(v,msg)end
+local strings,flip={},{}
+for m=0,7 do
+ strings[m]=(m%2==1 and's'or'')..(math.floor(m/2)%2==1 and'c'or'')..(m>=4 and'a'or'')
+ flip[m]={};for _,b in ipairs({1,2,4})do flip[m][b]=math.floor(m/b)%2==1 and m-b or m+b end
+end
+local names={[1]='LSHIFT',[2]='LCTRL',[4]='LALT'}
+local orders={{1,2,4},{1,4,2},{2,1,4},{2,4,1},{4,1,2},{4,2,1}}
+local function attach(s,fx)
+ local mask=0
+ local function event(bit,duplicate)
+  if not duplicate then mask=flip[mask][bit];edges=edges+1 end
+  s.mods=strings[mask];events=events+1
+  local payload=events%2==0 and names[bit]or names[bit==1 and 4 or 1]
+  -- False/reordered payloads are deliberate: production reads real held APIs.
+  s.modFrame.scripts.OnEvent(s.modFrame,'MODIFIER_STATE_CHANGED',payload,events%3)
+ end
+ local function set(target,order)
+  for _,bit in ipairs(order or orders[1])do
+   if math.floor(mask/bit)%2~=math.floor(target/bit)%2 then event(bit,false);event(bit,true)end
+  end
+ end
+ local delivered
+ local listener=function()delivered=fx.Context.Fingerprint(false)end
+ fx.Context.Subscribe(listener)
+ local function settle(delay)s.frame();s.flush(delay or 1/120)end
+ local function state()return mask,delivered end
+ return event,set,settle,state,listener
+end
+for _,client in ipairs({'live','forever','classic_era','classic_anniversary','classic'})do
+ for _,locked in ipairs({false,true})do
+  local s,fx,original=boot(client);s.combat=locked;s.event(locked and'PLAYER_REGEN_DISABLED'or'PLAYER_REGEN_ENABLED');s.flush(.1)
+  local edge,set,settle,state,listener=attach(s,fx)
+  for from=0,7 do for target=0,7 do for _,order in ipairs(orders)do
+   set(from);settle(.1);s.notices={}
+   set(target,order);settle(.1);cases=cases+1
+   local actual,delivered=state()
+   check(actual==target and fx.Context.Fingerprint(false):match('^[^|]*|([^|]*)|')==strings[target],'all8 physical held states follow Shift/Ctrl/Alt truth')
+   check(#s.notices==(from==target and 0 or 1),'each settled state transition is delivered once; same-state bursts coalesce')
+   if from~=target then check(s.notices[1].mods and delivered:match('^[^|]*|([^|]*)|')==strings[target],'delivered state matches final held truth')end
+   check(not fx.Modifier.IsArmed()and#s.timers==0,'settled modifier driver sleeps with no backlog')
+  end end end
+  local beginEdges,beginEvents=edges,events
+  local sequence={1,2,1,4,1,2,1,4}
+  local startFrames=#s.frames;local maxTimers,maxNotices=0,0
+  for frame=1,4096 do
+   for i=1,256 do
+    edge(sequence[(i-1)%8+1],false)
+    if i%32==0 then edge(sequence[(i-1)%8+1],true)end
+   end
+   edge(({1,2,4})[(frame-1)%3+1],false)
+   if frame%1024==0 then
+    s.combat=not s.combat;s.event(s.combat and'PLAYER_REGEN_DISABLED'or'PLAYER_REGEN_ENABLED')
+   end
+   local before=#s.notices;settle()
+   maxTimers=math.max(maxTimers,#s.timers);maxNotices=math.max(maxNotices,#s.notices-before)
+   local mask,delivered=state()
+   check(delivered and delivered:match('^[^|]*|([^|]*)|')==strings[mask],'million-edge settled display observes final held state every frame')
+   check(#s.notices-before<=1 and not fx.Modifier.IsArmed(),'same-frame burst has one delivery and no lingering modifier poll')
+  end
+  set(0);settle(.1)
+  check(fx.Context.Fingerprint(false):match('^[^|]*|([^|]*)|')=='','all keys release without a stuck modifier')
+  check(#s.frames==startFrames and#s.timers==0 and#s.errors==0,'rapid press/release creates no driver growth, callback error or timer tail')
+  fx.Context.Unsubscribe(listener);fx.Context.Unsubscribe(original)
+  check(not fx.Context.HasSubscribers()and not fx.Modifier.IsArmed(),'last subscriber cleanup stays parked')
+  print(('RESULT client=%s initial_combat=%s storm_physical_edges=%d storm_events=%d matrix_cases=384 max_timers=%d max_notices_per_frame=%d frames_created_during_storm=%d')
+   :format(client,tostring(locked),edges-beginEdges,events-beginEvents,maxTimers,maxNotices,#s.frames-startFrames))
+ end
+end
+
+-- Mixed cursor/target/key stress exposes a separate full-refresh freshness gap.
+for _,client in ipairs({'live','forever','classic_era','classic_anniversary','classic'})do
+ local s,fx,original=boot(client);local edge,set,settle,state,listener=attach(s,fx)
+ s.reaction='e';s.event('UPDATE_MOUSEOVER_UNIT') -- narrow delayed timer wins scheduling
+ local before=#s.notices
+ for frame=1,1200 do
+  edge(({1,2,4})[(frame-1)%3+1],false)
+  s.target='target'..frame;s.event('PLAYER_TARGET_CHANGED')
+  s.reaction=frame%2==0 and'f'or'e';s.event('UPDATE_MOUSEOVER_UNIT')
+  if frame==600 then s.combat=true;s.event('PLAYER_REGEN_DISABLED')end
+  settle(1/120)
+ end
+ local during=#s.notices-before
+ check(during==0,'reproducer: continuous mouseover postpones pending full modifier/target/combat delivery')
+ s.flush(.1)
+ check(#s.notices==before+1,'quiet interval finally delivers preserved full invalidation')
+ local info=s.notices[#s.notices]
+ check(info.target and info.combat and not info.mouseoverOnly,'flags survive; this is full-delivery starvation, not old flag loss')
+ set(0);settle(.1);check(#s.errors==0,'mixed storm has no hidden fixture callback failures')
+ print(('OBSERVATION client=%s mixed_frames=1200 simulated_seconds=10 full_context_deliveries_during_storm=%d deliveries_after_quiet=1 desired_max_latency=UNBOUNDED_UNTIL_QUIET'):format(client,during))
+ fx.Context.Unsubscribe(listener);fx.Context.Unsubscribe(original)
+end
+print(('MODIFIER BUS SUMMARY checks=%d physical_edges=%d modifier_events=%d ordered_transition_cases=%d expected_starvation_cases=5 native_VM_input_FPS=NOT_RUN'):format(checks,edges,events,cases))

@@ -1,0 +1,123 @@
+-- Read-only replay of current production owners. C_Timer.After deliberately
+-- returns nil, matching all four freshly pinned generated API contracts.
+local checks=0
+local function check(v,label)checks=checks+1;assert(v,label)end
+local function read(path)local f=assert(io.open(path,'rb'));local s=f:read('*a');f:close();return(s:gsub('\r\n','\n'))end
+local function part(s,a,b)local x=assert(s:find(a,1,true),a);local y=assert(s:find(b,x+#a,true),b);return s:sub(x,y-1)end
+local function fixture(handles)
+ local s={now=0,timers={},frames={},shown={},errors={}}
+ local e=setmetatable({},{__index=_G});e._G=e
+ e.GetTime=function()return s.now end
+ e.C_Timer={After=function(delay,fn)
+  local t={at=s.now+delay,fn=fn};function t:Cancel()self.cancelled=true end
+  s.timers[#s.timers+1]=t
+  if handles then return t end -- Counterfactual fixture control, not a fix.
+ end}
+ e.CreateFrame=function()
+  local f={events={},scripts={}}
+  function f:RegisterEvent(v)self.events[v]=true end
+  function f:UnregisterAllEvents()self.events={} end
+  function f:SetScript(k,v)self.scripts[k]=v end
+  s.frames[#s.frames+1]=f;return f
+ end
+ function s:advance(t)
+  self.now=t;local q=self.timers;self.timers={}
+  for _,timer in ipairs(q)do
+   if timer.at<=self.now and not timer.cancelled then timer.fn()
+   elseif not timer.cancelled then self.timers[#self.timers+1]=timer end
+  end
+ end
+ function s:pending()local n=0;for _,t in ipairs(self.timers)do if not t.cancelled then n=n+1 end end;return n end
+ s.e=e;return s
+end
+
+-- Exact cancellation/enter/leave/hide bodies from both actual picker modules.
+for _,which in ipairs({'Gear','Rune'})do
+ for _,handles in ipairs({false,true})do
+  local text=read('Respec/FluxRespec_'..which..'Picker.lua')
+  local s=fixture(handles);local e=s.e
+  local p={HasAlternatives=function()return true end}
+  e.P=p;e.R={GetActiveName=function()return nil end,UI={SyncRespecScrollForFlyout=function()end}}
+  e.Compat={IsSoD=function()return true end}
+  p.Show=function(anchor,slot)s.shown[#s.shown+1]={anchor,slot}end
+  local cancel=part(text,'local function CancelTimer(t)','function P.IsOpenFor(')
+  local hide=part(text,'function P.Hide()','local function MouseOverAnyDropDownList()')
+  local hover=part(text,'function P.NotifyStripEnter(','function P.Show(')
+  assert(load(cancel..hide..hover,'@production-'..which..'-picker-ownership','t',e))()
+  local anchor={IsMouseOver=function()return false end}
+  p.NotifyStripEnter(anchor,13);p.NotifyStripLeave();s:advance(.06)
+  check(#s.shown==(handles and 0 or 1),which..' leave cancellation follows actual After return contract')
+  print(('RESULT picker=%s handles_control=%s departed_show_requests=%d'):format(which,tostring(handles),#s.shown))
+  s=fixture(handles);e=s.e;p={HasAlternatives=function()return true end}
+  e.P=p;e.R={GetActiveName=function()return nil end,UI={SyncRespecScrollForFlyout=function()end}};e.Compat={IsSoD=function()return true end}
+  p.Show=function(anchor,slot)s.shown[#s.shown+1]={anchor,slot}end
+  assert(load(cancel..hide..hover,'@production-'..which..'-picker-ownership','t',e))()
+  p.NotifyStripEnter(anchor,13);p.Hide();s:advance(.06)
+  check(#s.shown==(handles and 0 or 1),which..' explicit Hide cannot cancel native After closure')
+ end
+end
+
+-- Actual active-panel predicate, cancellation and bag-refresh coalescer.
+local text=read('AddonOptions/AceGUIWidget-FluxRestockPanel.lua')
+local attached=part(text,'local function IsPanelAttached(widget)','local function IsPanelOpenInOptions(widget)')
+local cancel=part(text,'local function CancelPanelTimers()','local function OnPanelHiddenCleanup(')
+local schedule=part(text,'function ScheduleBagCellRefresh()','local function EnsureFrameScripts(frame)')
+for _,handles in ipairs({false,true})do
+ for _,burst in ipairs({1,10,1000})do
+  local s=fixture(handles);local e=s.e;s.active=true;s.refreshes=0
+  e.IsOptionsWindowOpen=function()return s.active end
+  e.ShouldDeferHeavyBagCellRefresh=function()return false end
+  e.FluxRestockPanel_RefreshCellData=function()s.refreshes=s.refreshes+1 end
+  local init='local Timer=C_Timer\nlocal BAG_REFRESH_DEBOUNCE=.25\nlocal bagRefreshTimerHandle,gridRebuildTimer\nlocal panelEngaged=true\nlocal activeWidget={frame={IsVisible=function()return true end}}\n'
+  local fn=assert(load(init..attached..cancel..schedule..'\nreturn ScheduleBagCellRefresh,CancelPanelTimers','@production-restock-panel-coalescer','t',e))
+  local request,stop=fn();for i=1,burst do request()end
+  check(s:pending()==(handles and 1 or burst),'actual panel pending latch count')
+  s:advance(.25)
+  check(s.refreshes==(handles and 1 or burst),'actual visible panel callback fan-out')
+  print(('RESULT restock handles_control=%s requests=%d callbacks=%d'):format(tostring(handles),burst,s.refreshes))
+  request();s.active=false;s:advance(.5);check(s.refreshes==(handles and 1 or burst),'hidden panel guard suppresses heavy refresh')
+  s.active=true;request();stop();s:advance(.75)
+  check(s.refreshes==(handles and 1 or burst)+(handles and 0 or 1),'native After is not cancelled by panel cleanup')
+ end
+end
+
+-- Actual spec-switch watcher ownership. Cancellation invalidates the global
+-- frame reference but cannot settle/cancel the old After callback.
+local talent=read('Respec/FluxRespec_Talents.lua')
+local clear=part(talent,'local function ClearSpecSwitchAwait()','local function ClearSpecSwitchSettleDefer()')
+local await=part(talent,'local function AwaitSpecSwitch(onDone)','--- Inactive talent group')
+for _,handles in ipairs({false,true})do
+ local s=fixture(handles);local e=s.e;local completions={}
+ local init='local specSwitchAwaitTimer,specSwitchAwaitFrame\n'
+ local start,abort=assert(load(init..clear..await..'\nreturn AwaitSpecSwitch,ClearSpecSwitchAwait','@production-spec-await','t',e))()
+ start(function(ok,why)completions[#completions+1]='A:'..tostring(ok)..':'..why end)
+ s.now=4.9;abort();start(function(ok,why)completions[#completions+1]='B:'..tostring(ok)..':'..why end)
+ local newest=s.frames[#s.frames]
+ check(newest.scripts.OnEvent~=nil,'new spec request starts with its event observer')
+ s:advance(5)
+ local survives=newest.scripts.OnEvent~=nil
+ check(survives==handles,'cancelled old spec timeout cannot detach newer watcher when cancellable')
+ s:advance(5.1)
+ if newest.scripts.OnEvent then newest.scripts.OnEvent(newest,'ACTIVE_TALENT_GROUP_CHANGED')end
+ s:advance(9.9)
+ local expected=handles and 'B:true:SPEC_SWITCHED'or'A:false:SPEC_SWITCH_TIMEOUT,B:false:SPEC_SWITCH_TIMEOUT'
+ check(table.concat(completions,',')==expected,'observable independent completion ownership')
+ print(('RESULT spec handles_control=%s newer_watcher_survives=%s completions=%s'):format(tostring(handles),tostring(survives),table.concat(completions,',')))
+end
+
+-- Existing learn callbacks reject a cancelled state: countercontrol prevents
+-- claiming every After assignment necessarily performs stale protected work.
+do
+ local s=fixture(false);local e=s.e;e.Talents={}
+ e.CancelLearnWatchdog=function()end
+ local body=part(talent,'local function ScheduleLearnContinue(state)','--- Sync optimistic state')
+ -- Separate explicit environment makes the read-only callback count inspectable.
+ local env=setmetatable({calls=0},{__index=e});env._G=env
+ local scheduleLearn=assert(load('local LEARN_DEFER_SECONDS=.06\nlocal TryLearnNextPoint=function()calls=calls+1 end\n'..body..'\nreturn ScheduleLearnContinue','@production-learn-timer','t',env))()
+ local state={};e.Talents._state=state
+ for i=1,1000 do scheduleLearn(state)end
+ check(s:pending()==1000,'learn timer cancellation handle unavailable under native After')
+ e.Talents._state=nil;s:advance(.06)
+ check(env.calls==0,'learn state identity guard rejects stale protected work after cancel')
+end
+print(('CORE TIMER SUMMARY checks=%d native_VM_or_pixels=NOT_RUN'):format(checks))

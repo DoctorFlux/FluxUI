@@ -1,0 +1,477 @@
+{
+  "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\07\\01a1b5b8-1789-7050-b49c-88d0a742e874\\apply-fixes-20261107T125749Z",
+  "head": "75cf2bcba83adfea0501934f4eeb2a980c46fdf8",
+  "branch": "main",
+  "originalFiles": 1785,
+  "changed": [
+    {
+      "path": "_FluxUI.toc",
+      "beforeSHA256": "0b02a257c1d65883a9da4068742cc09013d59077b68af2bbb59d388710413cef",
+      "appliedSHA256": "f0bcf5503e7d09f3aadf2a351755747a2bdc47f95a1c4fc6ca72a9258996f54e"
+    },
+    {
+      "path": "Bars/BadgeHost.lua",
+      "beforeSHA256": "414f79c0c635503bc0491f77fd1fe4731f93c5e551c4c30b40ad834e882aa6bf",
+      "appliedSHA256": "c4fc487f45cda62e8a93932777f5478d08a9543658c456a5c6a67fb76bcf4616"
+    },
+    {
+      "path": "Bars/Blizzard.lua",
+      "beforeSHA256": "afea5e7b59d545a6790f1b7520684a05290a5e961369a6d3c7a652f2fa9bbff6",
+      "appliedSHA256": "9b2209f02654001750f85a9ccf3c935ff4b58ef7cf8d42d0b81dfc77b785925f"
+    },
+    {
+      "path": "Bars/Pet/Init.lua",
+      "beforeSHA256": "88b89cfb82937fb85d60a3f482c3445368eaaf85451e97bdacfe561d6e5e9049",
+      "appliedSHA256": "b4cf96cdc52d01ea44576650d138cf38903314c52bf9f411aac1912c4f5d0296"
+    },
+    {
+      "path": "Bars/State.lua",
+      "beforeSHA256": "e8c835034d14fe12ab56535739f96c0d62a5b41f936e357f1aa7ef482d262f1a",
+      "appliedSHA256": "52f005c429b03e4d04495a6183f200323fa71e71ecd0127296b29f4aa0a9dfef"
+    },
+    {
+      "path": "Binding/Core/SecurePool.lua",
+      "beforeSHA256": "4d4d02b879b369f9774dc7b62c8fe7da06f6cd800e2fd8df151d2280a4ead83d",
+      "appliedSHA256": "e25ce53f03c1122ed9a2e367e42807f01a4a74ab87e6e71c06f3d05b12d06fb2"
+    },
+    {
+      "path": "Binding/Input/FluxMouseoverKeybind.lua",
+      "beforeSHA256": "74c5614f71f18e14e3d050a12691a3ff2c725b325928d2c73e333784754314cb",
+      "appliedSHA256": "cba37032fa6ce6dbd97e6533dceda584338e37707a3b45f9b7b72bff97082092"
+    },
+    {
+      "path": "Core/_tmp_coresmoke.lua",
+      "beforeSHA256": "a4f599dd7515dc268f7fa78bba10310f92b1574e99c8f2ca7066234383c71ea8",
+      "appliedSHA256": "ba5a9583d26ceeae072fe20572f94f023a9d127bb2b3657da2c7824802d18d4b"
+    },
+    {
+      "path": "Core/ButtonFX/Cast.lua",
+      "beforeSHA256": "77e189a80d832523145c464164db894155573388affa6dec8045f9966e50fbc1",
+      "appliedSHA256": "ea8f5cc521d734e2010ea807c7ac1abc002a8938e4dcf00d0dae8f05c75d819b"
+    },
+    {
+      "path": "Core/ButtonFX/Charges.lua",
+      "beforeSHA256": "b8b89cbb8cae5b273d369ebefd4e826c5cc455d2245b26f917088f4096fc1cdd",
+      "appliedSHA256": "7911a8cde0f2e8855a0f22a3a6bc791f4f5cf391354e978405774bed974e1df3"
+    },
+    {
+      "path": "Core/ButtonFX/Click.lua",
+      "beforeSHA256": "09614baefe1fbbe85c7dbd006bddea25e2d278290581569d37594825ee5909ab",
+      "appliedSHA256": "b7e774a04297d86905eaf20a72b5be5a14eb9cbe87b4f8fc8a415debb0c8017d",
+      "attribution": "Concurrent utility-key work observed and preserved; not issued by this stress-fix team"
+    },
+    {
+      "path": "Core/Engine/Combat.lua",
+      "beforeSHA256": "2eaf940e92498af507f9d4afb5b88e552b3217169d03956d091e6d025cc09092",
+      "appliedSHA256": "f36daa512a9f778db28c272ec19a092b188d83a170270fb6fa41bcd2bd728a7a"
+    },
+    {
+      "path": "Core/Engine/Context.lua",
+      "beforeSHA256": "67b4063ebd6c71ef2724dd8d4a19bf30480a40320475240da832e79e3f112ef7",
+      "appliedSHA256": "14c6f41ab314604661b1c089196cd6095606c3b75c6dcd1ae4ec66eb740c22c2"
+    },
+    {
+      "path": "Core/Engine/Events.lua",
+      "beforeSHA256": "294aae31712948ebd6cf22167f2c53912797fb00949b3487e571fd8ca1e6ebbc",
+      "appliedSHA256": "7fa3aacf4e40ed32bdf474704b3b2c5e3149c9aafc7b5b655260393d7c91ae53"
+    },
+    {
+      "path": "Core/Engine/MouseoverCast.lua",
+      "beforeSHA256": "c495351ce240f69827a5ab2ae85f0ae77dd821fe6d9ab8de385456996016ac08",
+      "appliedSHA256": "f2599b4f78b9ef1d35316aa3129d68c0a93583a9d559cca8fe8dbc3a14c58531"
+    },
+    {
+      "path": "Core/Engine/Range.lua",
+      "beforeSHA256": "fa8a5320521fee4ba8913f7446726e92a28dec727ea3505a1a07a5bfc2babc1d",
+      "appliedSHA256": "f9035ada5900185e94a890f558e2eda546dbf1d33fd091a21ae9b73d1d521ea6"
+    },
+    {
+      "path": "Core/Engine/Restricted.lua",
+      "beforeSHA256": "ee811112e2be9a9f65f91856ea124f22652d8ada552867b966e44c12c3a7cc44",
+      "appliedSHA256": "73413b82c0dd4c26770d82e3f0524200971a5a04288e6c67bc47b66f20c7f806"
+    },
+    {
+      "path": "Core/Engine/Scheduler.lua",
+      "beforeSHA256": "b7f171cb84de3c28d7a68735fafdf1aeb52f677cd81c84ad78687d30e94b2a16",
+      "appliedSHA256": "a524afb69135af4e7aaefddfe7ab97527b5292380949f0786b6f1ffa94008d11"
+    },
+    {
+      "path": "docs/08-shared-services.md",
+      "beforeSHA256": "cfa0d66d90f4659db5966a8e62dd4188a92f1ea0fcb36c7eaf804e3d6dc18599",
+      "appliedSHA256": "e9022c3f2b493c40586b35379d53cf70fd26e2cd33c15e5a6550ea45a190649b"
+    },
+    {
+      "path": "docs/11-action-bars.md",
+      "beforeSHA256": "fb5cb9039054fdcd7864bc86eec092103675ade1147ca35fdb1d5420898a279b",
+      "appliedSHA256": "54f30ec2efe35fa134534484f5553c044a352eab28e4e0cb75355d8b88704bce"
+    },
+    {
+      "path": "docs/12-extra-button-system.md",
+      "beforeSHA256": "e387fa3736ea752769365b9ee7c719193927c45a8ef8c001eaeed9ba01c92022",
+      "appliedSHA256": "088d1afd4728a628d5d74c931dc713950242fcba9a257819c9ddc6384deec0cd"
+    },
+    {
+      "path": "docs/13-binding-system.md",
+      "beforeSHA256": "ce4aa3de63b2e2f6a96eb792be371ddeb3ebb23190e9c58864cab8c169ab17c0",
+      "appliedSHA256": "b3fbd5049fbd5b059f8030256772f6e86b1f3a63c04e2121c887b300a38cdee6"
+    },
+    {
+      "path": "docs/14-unit-frames.md",
+      "beforeSHA256": "1cc2a1012e2b625dea596ece17ef17e62e1b8674d07b6ee716343f8b5e39ed1e",
+      "appliedSHA256": "1fed814a5fc06a6c31e329c6175e20aef0d8f8648e2edf61dce7e274b19543c0"
+    },
+    {
+      "path": "docs/15-raid-frames.md",
+      "beforeSHA256": "30ee668954796980b405e43d9d669970d582fde032d585ddca9ee357ffa35b8e",
+      "appliedSHA256": "e84ba66746680227b8537c1c10cf0027d8644853979af8024ac0e790db1e52d0"
+    },
+    {
+      "path": "docs/17-micromenu.md",
+      "beforeSHA256": "ca09cf878c6d2dfd1692450b4d6c7331e84ad2553784d334dbf01551937adb63",
+      "appliedSHA256": "7cdad3b3dd55a7ef3a50adf7f255bf15f6aea6ece0c59db20f7c9eab0fce6fbd"
+    },
+    {
+      "path": "docs/19-nameplates.md",
+      "beforeSHA256": "c5b2ef0f18163b1a7d26a689a4df2c4b4ac651b54d76b9ede93d1e9d30e11fcb",
+      "appliedSHA256": "759843a99a3a9cb2f2ea1b01ebd3fe18322faebcec33a0d184fed1bcd329f225"
+    },
+    {
+      "path": "docs/21-inventory-foundation.md",
+      "beforeSHA256": "60c736a4efb55b02b00a5ca3feb2627d510f7aba633dfcdc67a45e7c0e7a71a2",
+      "appliedSHA256": "ef72ba990dc7dcf6c5a3732bbca74e060e5a8bdf118aec5f4fc5cf8f2d3880fb"
+    },
+    {
+      "path": "docs/23-respec.md",
+      "beforeSHA256": "fb3a897d446c80ceaa78e8c1054acd10f5114e809ef062917e21f41fa7dfba2c",
+      "appliedSHA256": "735cd3dea25752288486c807aeb3f714a7e563eecbf1b3e6f7b375f51c49be1f"
+    },
+    {
+      "path": "docs/30-source-coverage.md",
+      "beforeSHA256": "0f0e63b7fd50afcf08db516e86589f6777d8dfd88ebd0e2f85e4c22cf894e54b",
+      "appliedSHA256": "6e6e59580099dc0034b7020f7c36de4016ce1492cf0b09e8a2f7147702e1513b"
+    },
+    {
+      "path": "docs/CLIENT_MATRIX.csv",
+      "beforeSHA256": "c6ea67295ab79d479bc75862e43d730da37ba1fdee8ee3383dfdf45af882ce5e",
+      "appliedSHA256": "6e41cf87c963e62dec00811a4c413eee52195c3520d4ac040ee9d491aa9ea2c1"
+    },
+    {
+      "path": "docs/CLIENT_VALIDATION.md",
+      "beforeSHA256": "e44ec3e24f550afbaf9efef6fe9c41523e621e4e102ddf302aa4f5fde8736a39",
+      "appliedSHA256": "9d957c5caf943a6b2876ba9f9adf0591ecbf95d228f949d9f06ea56f63c0e313"
+    },
+    {
+      "path": "docs/DECISIONS.md",
+      "beforeSHA256": "ad1657304fe808ff0a5c4978a13121735141dfa1deb195376b03d25dd851506d",
+      "appliedSHA256": "800e58feffc497211e2cc8fadbf107cedd08ab43e83c5ece9cea7f133df0d744"
+    },
+    {
+      "path": "docs/FEATURE_PARITY.csv",
+      "beforeSHA256": "888f287c4e7951ea8d80462e9a61cc40b6f56a132ed83a079cca603f7adb62be",
+      "appliedSHA256": "78906de6cde86e90593c2ed5ed23861fee4a7241e70af726b1dba40f76deb1fe"
+    },
+    {
+      "path": "docs/performance-driver-inventory.md",
+      "beforeSHA256": "da700175c671ffb490319c75569e16fd277ad5f053e5513ace4cd240cee3b3e7",
+      "appliedSHA256": "9b011cd42075e459e04f2714ed6c1fb1d239518dbe91936b2802e464543b4dec"
+    },
+    {
+      "path": "docs/PERFORMANCE_AUDIT.csv",
+      "beforeSHA256": "3606e925326682d68f647f71ceb2f3854ca7fe1512200a879b0b69bd8f6b3c2e",
+      "appliedSHA256": "4628a94a7ea48522189e721ba3cb1bbbdbf2e4287f256cceab76a4db61abff31"
+    },
+    {
+      "path": "docs/PERFORMANCE_RESULTS.csv",
+      "beforeSHA256": "7da27e28e844e3c0aead5e58a245bd4a1e5170ff75236af77726bee947bf2ad1",
+      "appliedSHA256": "a56dda928a46a410d4f7b114701cf657ad31d3760d65b42cd95ed900965457c5"
+    },
+    {
+      "path": "docs/RAID_HEALKIT_REWORK.md",
+      "beforeSHA256": "402ab6966bce32fa3b7d4586b88d3d5bb5a4cc2b9477fa003dae9b0a6c0b5932",
+      "appliedSHA256": "778dd42058c651562e4d1aa827813ef41d8714394a6f1d44681482f1d690d894"
+    },
+    {
+      "path": "docs/reference/declarations.md",
+      "beforeSHA256": "fdcb2db78d96e6ba1b0cc9068a6a30066192fba54f8f91f3eee3e659adb90928",
+      "appliedSHA256": "aad2de5cb6d40e6aca4cfbac013990aaac75bac354ec42c3c30237840cd6a240"
+    },
+    {
+      "path": "docs/reference/interfaces.md",
+      "beforeSHA256": "e9cf8ee335b3b0da19eb91854bb17b3ad8aa718e01d758333fc76b4f9ef709bd",
+      "appliedSHA256": "7064deb0814b7ec6ed1c7adfc1ca849c180271153308993448297793bdeb7b11"
+    },
+    {
+      "path": "docs/reference/inventory.json",
+      "beforeSHA256": "2b14866e84b69254eaf9cfe83b5b44382ec3ae4d2e36e1ba9db9517d2b6aa179",
+      "appliedSHA256": "a4d32d4413497f9636f2f08394e05b778c9d3d5a61c2ee9a2c0b96622695d64e"
+    },
+    {
+      "path": "docs/reference/verification.json",
+      "beforeSHA256": "bf05a9ade93203e23a3bde315bbfc0df217bbe4556c352022c5497b76f7992e6",
+      "appliedSHA256": "ad0af7937b7d261ad0cfdd644c6e5fab789c71f070c272346c5ce33a57a6e923"
+    },
+    {
+      "path": "docs/STATUS.md",
+      "beforeSHA256": "1ec1f36f07a36f4ff61f66349ca8146bcc52eb8c39a1f1f21595882cbf799335",
+      "appliedSHA256": "2b234829d1c219fc9859b7223d2d54ed32ff99d697da96ccc059b44644af301e"
+    },
+    {
+      "path": "docs/UTILITY_MIXED_FACES.md",
+      "beforeSHA256": "a8722bea83d23f474f6527ba2a78d2128bff711cc83cc64fb47c89f2f71401c9",
+      "appliedSHA256": "298cfe494821946d55290714c36f41ca2b1c3917b805fd6b192aa36cd3945c37"
+    },
+    {
+      "path": "docs/WORK_LOG.md",
+      "beforeSHA256": "dbd9a32c2fb150cc39e03a5db1d9d0e2c28865290391ea5ead708049a9338558",
+      "appliedSHA256": "515fe04fdd222f12774829bca0973b9cefc75f78de433b90cf099d660fa62449"
+    },
+    {
+      "path": "ExtraButtonSystem/Engine/Action.lua",
+      "beforeSHA256": "b77e290e47badeeb74ac09858cd171267564fb002cf9897d79281bdb48f9db37",
+      "appliedSHA256": "3daab1f50817b31545eff92d0e1ec834e6e00c0765f9a31c14520a5d7550379c",
+      "attribution": "Concurrent utility-key work observed and preserved; not issued by this stress-fix team"
+    },
+    {
+      "path": "ExtraButtonSystem/Engine/Button.lua",
+      "beforeSHA256": "dcba48373be3b5675c25aa3a5671f2364660137951bdf559b0524589f58667ca",
+      "appliedSHA256": "e209f9794ce1e48cd2841bd7b5eed3e0cb679c08646004dc3e37771083c4cc27"
+    },
+    {
+      "path": "ExtraButtonSystem/Engine/Style.lua",
+      "beforeSHA256": "0e9af662ccc436ba60e04c02b152bd4d8e57ab98be537852ff0c688b8c82ad04",
+      "appliedSHA256": "0cc2decc08090e6fbbeb32cf2b299ab4752ae27235832423ccd6aa8f55602e66"
+    },
+    {
+      "path": "ExtraButtonSystem/NonCombatGrid/UtilitySlots/Manager.lua",
+      "beforeSHA256": "8b4f6dc27d11203f4f0c707ee16bf19853cff64f7a86565de7df3fa8b77a70ad",
+      "appliedSHA256": "46d841979af9c6a7210734b7c55ee4fe80ead39c392a1666025083bfdff2e6b4",
+      "attribution": "Concurrent utility-key work observed and preserved; not issued by this stress-fix team"
+    },
+    {
+      "path": "Inventory/Builtin/Auctions.lua",
+      "beforeSHA256": "ec02d39d3e83815e57775596272854f967a0183a39009efaa547a61c972aee6a",
+      "appliedSHA256": "dfac0adb95bcd180721129b9c30c8c147c6762d8a31ffc39fae4cbcfad1ccdcb"
+    },
+    {
+      "path": "NamePlates/Core.lua",
+      "beforeSHA256": "e9fe0c01da0b8c5ddc99277d8cafeac5ed37f790be31f839c69c894d8fe9ba6b",
+      "appliedSHA256": "cea2b96881c2c2789fcffcb48868b099ab20599eb0014451d250bb8ffc1dedf6"
+    },
+    {
+      "path": "NEXT_SESSION.md",
+      "beforeSHA256": "52a19b0110de2d5440446870ba13849a155ee0954cd770e51c130da13e546fc5",
+      "appliedSHA256": "a6ed1da8bbb388f97f2777d4fd0a4037b16fbf5e04e34f6fc01fd295cd4dd3c3"
+    },
+    {
+      "path": "Other/FluxChatColumnMicros.lua",
+      "beforeSHA256": "0f639f3d71cd2fc4095daaeb96e3f0e69ddf728ff1915c486ddfecac6928e830",
+      "appliedSHA256": "daa47b18396b6a293e610f0e9a78bd38c57ef77b48fc644f5b58a767f875a2f0"
+    },
+    {
+      "path": "RaidFrame/FluxRaidLayout.lua",
+      "beforeSHA256": "3acc4de485213b6ffa9d64bf3807a93dbad6c8b6a25e94f6a6736d0ec69111f5",
+      "appliedSHA256": "3ef884cc02da8798cd8475d7978d0e7dee59e2c449c2ceac29fd90ba8e37b4d8"
+    },
+    {
+      "path": "RaidFrame/FluxRaidUnit.lua",
+      "beforeSHA256": "4f697b75a768a83ce13de423cc96b6c339fd58dc0f52b4b5ddfbb834e2b3d165",
+      "appliedSHA256": "16c5ced19d241a56288b7bfef1bab21dcdd3c2cb898a3aa829ddd9a6cbeccfa2"
+    },
+    {
+      "path": "Respec/FluxRespec_ActionBars.lua",
+      "beforeSHA256": "608d64a449ba3110fef900a563edbfe0d470a12faf2039e463f089eae47ae533",
+      "appliedSHA256": "7a91d7944f9710ab51ce150ab44fb5414c62f3269de84d3119aae54a10506162"
+    },
+    {
+      "path": "Respec/FluxRespec_Apply.lua",
+      "beforeSHA256": "16916f21c5b5d91c037b63c2f48b38f57f71a9e2a75e1af14be563b106205a09",
+      "appliedSHA256": "891c77da3faf71d66204a47eb452dc0952c919c28beb9d63e5cb0370bed10ba3"
+    },
+    {
+      "path": "Respec/FluxRespec_Consumables.lua",
+      "beforeSHA256": "f52b3ca1de1dd94bf4a3ea3012c2253d3accf753283aea2a21f491331cb36215",
+      "appliedSHA256": "a24b11f2ddddf372a61d715e9ee8676f4a697ab68cd76adc27d4bfdfd2f2c5d8"
+    },
+    {
+      "path": "Respec/FluxRespec_PresetBundle.lua",
+      "beforeSHA256": "420c5b848aacfdb1675d73c252fd1dfc64d13baaf3b45910c33505a294212da9",
+      "appliedSHA256": "9e7f4b94f46c56cd76f82e5368dddecffbf1307a14b31b7aac15db6b42d39e13"
+    },
+    {
+      "path": "Salvage/FluxSalvage_Overlay.lua",
+      "beforeSHA256": "e95924b5cb5caa1640eca8327a0fd5bd629b5e539079259dda22e06be59b2405",
+      "appliedSHA256": "b4385297cfd5f6534e5eac859f9be05971a1b1235ed7106f0b5e9df648b56be9"
+    },
+    {
+      "path": "tests/idle_unit_geometry.lua",
+      "beforeSHA256": "79ca09db9d0673065014ab39ff3b8d43b328a9c3561a1bf5105be7d3d2aa6b8b",
+      "appliedSHA256": "867f4caa440ee23cc298f31a4c698953439c7a701c23741bf90493775c9b4ff4"
+    },
+    {
+      "path": "tests/portrait_camera.lua",
+      "beforeSHA256": "8773c955a45db7b0514272257e2c11933070a21344d8daf52adbb0183e89ab1a",
+      "appliedSHA256": "e813ab2748ab3cac8fd9d0ce1d83aac7e2bb0a300635b60810ca5678a96f28e8"
+    },
+    {
+      "path": "tests/raid_header_precreation.lua",
+      "beforeSHA256": "f9a0c61a564418411bcf0bfe8af81f0608d66719d2ad71c97d4167b2af6a467f",
+      "appliedSHA256": "e495618107f944eb8f8ee071a7c16e962366a0a7829242d42e1fbed77811442c"
+    },
+    {
+      "path": "tests/raid_party_frames.lua",
+      "beforeSHA256": "4127db055042fe56a687dd3d3c053c558e040d8deee9417204f8156a57c0764a",
+      "appliedSHA256": "0bcaff1bf094aec318612c6243c3e86144318c4d8eb090956d4c0ed695da9411"
+    },
+    {
+      "path": "tests/raid_startup.lua",
+      "beforeSHA256": "9bf812bfb6c35df10a66a3f2baed3e1c46d48e62c12c898efe68042096e7fa54",
+      "appliedSHA256": "cfd4f5bf95b84d69d6b434370739128b5d995edae27ed962bb9fba45d04a94eb"
+    },
+    {
+      "path": "tests/unit_power_visibility.lua",
+      "beforeSHA256": "dbd4f91f699114c8c6a13803aaa07b413759584f5eca15a29be7182a8efe4992",
+      "appliedSHA256": "f82d47da5c113c06ac986dfc233b0b8b22d991370cbfa57ea16439f2283b6beb"
+    },
+    {
+      "path": "tests/utility_secure_input.lua",
+      "beforeSHA256": "99314f81b7b96a7fc4834cf96aa16245a33b962203a061abaae6783484336ea4",
+      "appliedSHA256": "1272d4a17df8acaad9858ce76ab071544e233b61b19d42db25275e136b6ff103",
+      "attribution": "Concurrent utility-key work observed and preserved; not issued by this stress-fix team"
+    },
+    {
+      "path": "UnitFrames/FluxCastBar.lua",
+      "beforeSHA256": "03193b8406cf145398a983e0ac2478c97549c74d4bb7e9a86a466572c528f0a6",
+      "appliedSHA256": "02bf1b0acf018ab419ac9ca11ef51f33866d37145380817b9999f1726ec0be92"
+    },
+    {
+      "path": "UnitFrames/FluxClassPower.lua",
+      "beforeSHA256": "754d04e54dce37078a44ff8e4b9a9fa4927de7006a2a6bea7a045b6c2b5b92e4",
+      "appliedSHA256": "c3442673ba076fd00e99666fd8b499a4e0fa1a8c7b20081d4b26f8d9c843cbf7"
+    },
+    {
+      "path": "UnitFrames/FluxSwingTimer.lua",
+      "beforeSHA256": "517529257035f41cc06ffa46086fe2b23a5ac3c3c7f41bcd3f1ae617a05b4814",
+      "appliedSHA256": "d1de753065397599bed540a6d99d739f0419c9108ec681fe7b64e3f690a92289"
+    },
+    {
+      "path": "UnitFrames/FluxUnitFrames_FocusTarget.lua",
+      "beforeSHA256": "29f23154ff0164e20f46c81eea0c53c0072d9e0c087904c77801fa58a9bdf708",
+      "appliedSHA256": "575aa948b5ae1f66473425464b5b313672ceda70e05813ca08a75284b3217457"
+    },
+    {
+      "path": "UnitFrames/FluxUnitFrames_OptionsBridge.lua",
+      "beforeSHA256": "403a05af2b41b110a0dd0387ddf1c0b0b4461cc5c181d6b6e01edc3b62ffc632",
+      "appliedSHA256": "548965891c6e235e3ee79905b8b7d4988bc148b3a7c050349898dc31654b757b"
+    },
+    {
+      "path": "UnitFrames/FluxUnitFrames_Party.lua",
+      "beforeSHA256": "8e2cba88cd9a23979fc198a754d01494f3b124023a79465dee942b236c2e21aa",
+      "appliedSHA256": "ffbf502561fdbc94924563689d33a87700f116ee84e2fbcc16236e9639fb4568"
+    },
+    {
+      "path": "UnitFrames/FluxUnitFrames_Pet.lua",
+      "beforeSHA256": "5105a0b99b7567bdf8e37f7946f331934606256967346809d9d8248d4f598813",
+      "appliedSHA256": "e2aa8d8f5bd716b0408ad76456d8ec57351e963c8b0e996d28a4f075b8f5306f"
+    },
+    {
+      "path": "UnitFrames/FluxUnitFrames_PetTarget.lua",
+      "beforeSHA256": "51c968e82e879fa3735c7578abb1654aa6805ab8e0b8d610dde9309d736d4660",
+      "appliedSHA256": "49dcc47fc6d6f93073c8f06d182f8a981657573e5bbeece29b6434276099bb7c"
+    },
+    {
+      "path": "UnitFrames/FluxUnitFrames_PlayerTransmogClick.lua",
+      "beforeSHA256": "237adef8656fb58ceb7dbea3cbaf00f96463358c55bf2d5c4046e422a845ee08",
+      "appliedSHA256": "efca0fa1d3366c313d331fb116b1cedb2305ed394c4fe576e562c0b3ac7248e6"
+    },
+    {
+      "path": "UnitFrames/FluxUnitFrames_Shared.lua",
+      "beforeSHA256": "79d1d123ee4c628b706b6c8e6f0a102ebe0a87084e0908501f95d493042cb20f",
+      "appliedSHA256": "8453242b58b9f2261e117a94d83bc8d9eedc76900ceab7b87f14331c43b65db1"
+    },
+    {
+      "path": "UnitFrames/FluxUnitFrames_Target.lua",
+      "beforeSHA256": "c32b482770b0de94a90a3339e04aafa8cabbbce033f7eee15dccfe57a242ded6",
+      "appliedSHA256": "3989533a93747247b2a2a1d42317e14e7db10c006e6bc5ce92f245403a512ff3"
+    },
+    {
+      "path": "UnitFrames/FluxUnitFrames_TargetOfTarget.lua",
+      "beforeSHA256": "6e6ef6ce18c5cc057b32d816ccc413588f1711b839a750a0cf543371834b2df0",
+      "appliedSHA256": "55a6d5d8b388b284f20ab711207937710a849bf07cb1dd503bd0eabf498547b4"
+    }
+  ],
+  "added": [
+    {
+      "path": "Core/ButtonFX/ThreatGlow.lua",
+      "appliedSHA256": "9e08ba85e8eaf5868bbf14b2403097d4aedf3bbef6181369b64d9eb47a5ec4e1"
+    },
+    {
+      "path": "docs/validation/party-aura-portrait-layer-2026-11-07.json",
+      "appliedSHA256": "a63b5fb298516b50dc27a91a209054759205d85ac5dc045c282a7662c26640f5"
+    },
+    {
+      "path": "docs/validation/utility-chord-routing-2026-11-07.json",
+      "appliedSHA256": "5e1d233ba0d7a319fe5b244979ed3e8c83550ffccf2276ec03c1ab89a1b3a5b8"
+    },
+    {
+      "path": "docs/validation/utility-chord-routing-full-2026-11-07.json",
+      "appliedSHA256": "9a3de7ef711771a9d2af2df020b539077dc2911587fd0f98d9b4f29d5a07bc4c"
+    },
+    {
+      "path": "tests/alpha_reader_safety.lua",
+      "appliedSHA256": "8ea11a384e3d587881f739f6b7a76f368d5f4d1e9f9d0fe92b76db9d3d3723a3"
+    },
+    {
+      "path": "tests/context_invalidation_stress.lua",
+      "appliedSHA256": "562b4f1b43980f4431ba7ebe29cbcf77535996002fc968b3b63a4ac3686b9283"
+    },
+    {
+      "path": "tests/hover_children_varargs.lua",
+      "appliedSHA256": "114c309ebb6ebfaa67a0400a64b5820ed6ca3d57a573cf8e966d598042a47cf9"
+    },
+    {
+      "path": "tests/performance_work_budgets.lua",
+      "appliedSHA256": "9f99653477314e0d1ec82001f6bb61dab99207f145026e1d9f42ebe840b6f7ec"
+    },
+    {
+      "path": "tests/prediction_public_geometry.lua",
+      "appliedSHA256": "2ee9cb6c1544d18359015f8c09d7ad0556f6c62eb9cc4c56e36e0ae998bc5d87"
+    },
+    {
+      "path": "tests/public_geometry_writers.lua",
+      "appliedSHA256": "958bafc5e8d9017a3455032279d3b7ee14f7a8330ac3d2aa43451d376faa8494"
+    },
+    {
+      "path": "tests/respec_actionbar_completion.lua",
+      "appliedSHA256": "ed2f82d8c38ec577a68db2ee569e76260d814b0a6ae06f28d8fe11c52bb44246"
+    },
+    {
+      "path": "tests/respec_section_results.lua",
+      "appliedSHA256": "5486bd2245fb7e4ea388e99cf746ecaa368fb982be917a3c57f70b5d211dc158"
+    },
+    {
+      "path": "tests/restricted_driver_ownership.lua",
+      "appliedSHA256": "1846c2883f7847b36d718267d9ba8023ab9fb23289c5b018feff1688858d3a1d"
+    },
+    {
+      "path": "tests/shared_service_integrity.lua",
+      "appliedSHA256": "e198bbc67080a94cce9e9d7437d60fef29dcedd9a161c6f0e24bd2a09fb9a17d"
+    },
+    {
+      "path": "tests/fixtures/alpha_reader_before.txt",
+      "appliedSHA256": "d96a31e00981f337303da5937359a5043925614f999fa897e4f4b62303009489"
+    }
+  ],
+  "missing": [],
+  "postSuiteLuaDrift": [],
+  "postSuiteLuaMembershipMatches": true,
+  "artChanges": [],
+  "tocMetadataIncludingSavedVariablesUnchanged": true,
+  "sharedLibCustomGlowUnchanged": true,
+  "concurrentPreservedSourcePaths": [
+    "Core/ButtonFX/Click.lua",
+    "ExtraButtonSystem/Engine/Action.lua",
+    "ExtraButtonSystem/NonCombatGrid/UtilitySlots/Manager.lua",
+    "tests/utility_secure_input.lua"
+  ],
+  "scope": "Exact raw pre-edit/current identities. Existing dirty work retained; no commit/push or settings copy. Documentation changes are intentional."
+}

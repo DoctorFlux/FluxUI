@@ -1,0 +1,219 @@
+{
+  "dateUtc": "2026-11-06T07:11:29.898571+00:00",
+  "baselineRuntimeRawSHA256": "3e4441c3d61a07aba45e07a69e245292326402be146b9c9b436283f41b29011f",
+  "candidateHashes": {
+    "Battlezonemap\\FluxMeterSkin.lua": "2203e8dad7e9ebe08b0fdef05334803a9e3c4567ee9042e6ea925d63bdc38151",
+    "tests\\native_meter_skin.lua": "b4066b0ece50c355e7b78fcbd905e77aa2aac075845a178de5fbba5ee4f6e12b"
+  },
+  "host": "Windows-10-10.0.26200-SP0",
+  "method": "Exact priorSkin3e444 versus pure native header layer candidate.87checks and native/source/owned role replay;500combat+500OOCmatchedstyles. FiveAB/BAfreshprocesspairs,fixturecreationincluded. BACKGROUND inline native fill0 versusBORDER0 owned header pieces. Tests model semantic draw-layer ordering, not native pixels/taint/secureVM/FPS; pre-existing geometry remains separately pending. No native Lua data/config setters added by this layer change.",
+  "pairs": [
+    {
+      "repetition": 1,
+      "order": [
+        "baseline",
+        "candidate"
+      ],
+      "baseline": {
+        "regression": {
+          "exitCode": 1,
+          "processSeconds": 0.04187450002063997,
+          "stdout": "FAIL 500 combat paints retain header order without allocation or native geometry changes\nFAIL all nine artwork roles retain verified UV coordinates and draw layers\nFAIL native header strips have a guaranteed layer above the inline background\nnative meter skin: 87 checks, 3 failures; no native secrets/rendering/taint emulated\n",
+          "stderr": "lua: ...il_\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_skin.lua:458: native meter skin regressions\nstack traceback:\n\t[C]: in function 'assert'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_skin.lua:458: in main chunk\n\t[C]: in ?\n"
+        },
+        "resources": {
+          "exitCode": 0,
+          "processSeconds": 0.05896369999391027,
+          "stdout": "LAYERS stage=startup nativeBackground=BACKGROUND/0 nativeHeader=BACKGROUND,BACKGROUND,BACKGROUND sourceHeader=BACKGROUND,BACKGROUND,BACKGROUND ownedHeader=BACKGROUND,BACKGROUND,BACKGROUND textures=35 fontWrites=4 frameCreates=0 themeHooks=1\nLAYERS stage=500-combat-paints nativeBackground=BACKGROUND/0 nativeHeader=BACKGROUND,BACKGROUND,BACKGROUND sourceHeader=BACKGROUND,BACKGROUND,BACKGROUND ownedHeader=BACKGROUND,BACKGROUND,BACKGROUND textures=35 fontWrites=4 frameCreates=0 themeHooks=1\nLAYERS stage=500-out-of-combat-paints nativeBackground=BACKGROUND/0 nativeHeader=BACKGROUND,BACKGROUND,BACKGROUND sourceHeader=BACKGROUND,BACKGROUND,BACKGROUND ownedHeader=BACKGROUND,BACKGROUND,BACKGROUND textures=35 fontWrites=4 frameCreates=0 themeHooks=1\n",
+          "stderr": ""
+        }
+      },
+      "candidate": {
+        "regression": {
+          "exitCode": 0,
+          "processSeconds": 0.04290729999775067,
+          "stdout": "native meter skin: 87 checks, 0 failures; no native secrets/rendering/taint emulated\n",
+          "stderr": ""
+        },
+        "resources": {
+          "exitCode": 0,
+          "processSeconds": 0.031136399979004636,
+          "stdout": "LAYERS stage=startup nativeBackground=BACKGROUND/0 nativeHeader=BORDER,BORDER,BORDER sourceHeader=BACKGROUND,BACKGROUND,BACKGROUND ownedHeader=BACKGROUND,BACKGROUND,BACKGROUND textures=35 fontWrites=4 frameCreates=0 themeHooks=1\nLAYERS stage=500-combat-paints nativeBackground=BACKGROUND/0 nativeHeader=BORDER,BORDER,BORDER sourceHeader=BACKGROUND,BACKGROUND,BACKGROUND ownedHeader=BACKGROUND,BACKGROUND,BACKGROUND textures=35 fontWrites=4 frameCreates=0 themeHooks=1\nLAYERS stage=500-out-of-combat-paints nativeBackground=BACKGROUND/0 nativeHeader=BORDER,BORDER,BORDER sourceHeader=BACKGROUND,BACKGROUND,BACKGROUND ownedHeader=BACKGROUND,BACKGROUND,BACKGROUND textures=35 fontWrites=4 frameCreates=0 themeHooks=1\n",
+          "stderr": ""
+        }
+      }
+    },
+    {
+      "repetition": 2,
+      "order": [
+        "candidate",
+        "baseline"
+      ],
+      "candidate": {
+        "regression": {
+          "exitCode": 0,
+          "processSeconds": 0.03963759998441674,
+          "stdout": "native meter skin: 87 checks, 0 failures; no native secrets/rendering/taint emulated\n",
+          "stderr": ""
+        },
+        "resources": {
+          "exitCode": 0,
+          "processSeconds": 0.028447599994251505,
+          "stdout": "LAYERS stage=startup nativeBackground=BACKGROUND/0 nativeHeader=BORDER,BORDER,BORDER sourceHeader=BACKGROUND,BACKGROUND,BACKGROUND ownedHeader=BACKGROUND,BACKGROUND,BACKGROUND textures=35 fontWrites=4 frameCreates=0 themeHooks=1\nLAYERS stage=500-combat-paints nativeBackground=BACKGROUND/0 nativeHeader=BORDER,BORDER,BORDER sourceHeader=BACKGROUND,BACKGROUND,BACKGROUND ownedHeader=BACKGROUND,BACKGROUND,BACKGROUND textures=35 fontWrites=4 frameCreates=0 themeHooks=1\nLAYERS stage=500-out-of-combat-paints nativeBackground=BACKGROUND/0 nativeHeader=BORDER,BORDER,BORDER sourceHeader=BACKGROUND,BACKGROUND,BACKGROUND ownedHeader=BACKGROUND,BACKGROUND,BACKGROUND textures=35 fontWrites=4 frameCreates=0 themeHooks=1\n",
+          "stderr": ""
+        }
+      },
+      "baseline": {
+        "regression": {
+          "exitCode": 1,
+          "processSeconds": 0.04557689998182468,
+          "stdout": "FAIL 500 combat paints retain header order without allocation or native geometry changes\nFAIL all nine artwork roles retain verified UV coordinates and draw layers\nFAIL native header strips have a guaranteed layer above the inline background\nnative meter skin: 87 checks, 3 failures; no native secrets/rendering/taint emulated\n",
+          "stderr": "lua: ...il_\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_skin.lua:458: native meter skin regressions\nstack traceback:\n\t[C]: in function 'assert'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_skin.lua:458: in main chunk\n\t[C]: in ?\n"
+        },
+        "resources": {
+          "exitCode": 0,
+          "processSeconds": 0.03213459998369217,
+          "stdout": "LAYERS stage=startup nativeBackground=BACKGROUND/0 nativeHeader=BACKGROUND,BACKGROUND,BACKGROUND sourceHeader=BACKGROUND,BACKGROUND,BACKGROUND ownedHeader=BACKGROUND,BACKGROUND,BACKGROUND textures=35 fontWrites=4 frameCreates=0 themeHooks=1\nLAYERS stage=500-combat-paints nativeBackground=BACKGROUND/0 nativeHeader=BACKGROUND,BACKGROUND,BACKGROUND sourceHeader=BACKGROUND,BACKGROUND,BACKGROUND ownedHeader=BACKGROUND,BACKGROUND,BACKGROUND textures=35 fontWrites=4 frameCreates=0 themeHooks=1\nLAYERS stage=500-out-of-combat-paints nativeBackground=BACKGROUND/0 nativeHeader=BACKGROUND,BACKGROUND,BACKGROUND sourceHeader=BACKGROUND,BACKGROUND,BACKGROUND ownedHeader=BACKGROUND,BACKGROUND,BACKGROUND textures=35 fontWrites=4 frameCreates=0 themeHooks=1\n",
+          "stderr": ""
+        }
+      }
+    },
+    {
+      "repetition": 3,
+      "order": [
+        "baseline",
+        "candidate"
+      ],
+      "baseline": {
+        "regression": {
+          "exitCode": 1,
+          "processSeconds": 0.041947999998228624,
+          "stdout": "FAIL 500 combat paints retain header order without allocation or native geometry changes\nFAIL all nine artwork roles retain verified UV coordinates and draw layers\nFAIL native header strips have a guaranteed layer above the inline background\nnative meter skin: 87 checks, 3 failures; no native secrets/rendering/taint emulated\n",
+          "stderr": "lua: ...il_\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_skin.lua:458: native meter skin regressions\nstack traceback:\n\t[C]: in function 'assert'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_skin.lua:458: in main chunk\n\t[C]: in ?\n"
+        },
+        "resources": {
+          "exitCode": 0,
+          "processSeconds": 0.032190099998842925,
+          "stdout": "LAYERS stage=startup nativeBackground=BACKGROUND/0 nativeHeader=BACKGROUND,BACKGROUND,BACKGROUND sourceHeader=BACKGROUND,BACKGROUND,BACKGROUND ownedHeader=BACKGROUND,BACKGROUND,BACKGROUND textures=35 fontWrites=4 frameCreates=0 themeHooks=1\nLAYERS stage=500-combat-paints nativeBackground=BACKGROUND/0 nativeHeader=BACKGROUND,BACKGROUND,BACKGROUND sourceHeader=BACKGROUND,BACKGROUND,BACKGROUND ownedHeader=BACKGROUND,BACKGROUND,BACKGROUND textures=35 fontWrites=4 frameCreates=0 themeHooks=1\nLAYERS stage=500-out-of-combat-paints nativeBackground=BACKGROUND/0 nativeHeader=BACKGROUND,BACKGROUND,BACKGROUND sourceHeader=BACKGROUND,BACKGROUND,BACKGROUND ownedHeader=BACKGROUND,BACKGROUND,BACKGROUND textures=35 fontWrites=4 frameCreates=0 themeHooks=1\n",
+          "stderr": ""
+        }
+      },
+      "candidate": {
+        "regression": {
+          "exitCode": 0,
+          "processSeconds": 0.04574650002177805,
+          "stdout": "native meter skin: 87 checks, 0 failures; no native secrets/rendering/taint emulated\n",
+          "stderr": ""
+        },
+        "resources": {
+          "exitCode": 0,
+          "processSeconds": 0.030708700011018664,
+          "stdout": "LAYERS stage=startup nativeBackground=BACKGROUND/0 nativeHeader=BORDER,BORDER,BORDER sourceHeader=BACKGROUND,BACKGROUND,BACKGROUND ownedHeader=BACKGROUND,BACKGROUND,BACKGROUND textures=35 fontWrites=4 frameCreates=0 themeHooks=1\nLAYERS stage=500-combat-paints nativeBackground=BACKGROUND/0 nativeHeader=BORDER,BORDER,BORDER sourceHeader=BACKGROUND,BACKGROUND,BACKGROUND ownedHeader=BACKGROUND,BACKGROUND,BACKGROUND textures=35 fontWrites=4 frameCreates=0 themeHooks=1\nLAYERS stage=500-out-of-combat-paints nativeBackground=BACKGROUND/0 nativeHeader=BORDER,BORDER,BORDER sourceHeader=BACKGROUND,BACKGROUND,BACKGROUND ownedHeader=BACKGROUND,BACKGROUND,BACKGROUND textures=35 fontWrites=4 frameCreates=0 themeHooks=1\n",
+          "stderr": ""
+        }
+      }
+    },
+    {
+      "repetition": 4,
+      "order": [
+        "candidate",
+        "baseline"
+      ],
+      "candidate": {
+        "regression": {
+          "exitCode": 0,
+          "processSeconds": 0.03894709999440238,
+          "stdout": "native meter skin: 87 checks, 0 failures; no native secrets/rendering/taint emulated\n",
+          "stderr": ""
+        },
+        "resources": {
+          "exitCode": 0,
+          "processSeconds": 0.031034299987368286,
+          "stdout": "LAYERS stage=startup nativeBackground=BACKGROUND/0 nativeHeader=BORDER,BORDER,BORDER sourceHeader=BACKGROUND,BACKGROUND,BACKGROUND ownedHeader=BACKGROUND,BACKGROUND,BACKGROUND textures=35 fontWrites=4 frameCreates=0 themeHooks=1\nLAYERS stage=500-combat-paints nativeBackground=BACKGROUND/0 nativeHeader=BORDER,BORDER,BORDER sourceHeader=BACKGROUND,BACKGROUND,BACKGROUND ownedHeader=BACKGROUND,BACKGROUND,BACKGROUND textures=35 fontWrites=4 frameCreates=0 themeHooks=1\nLAYERS stage=500-out-of-combat-paints nativeBackground=BACKGROUND/0 nativeHeader=BORDER,BORDER,BORDER sourceHeader=BACKGROUND,BACKGROUND,BACKGROUND ownedHeader=BACKGROUND,BACKGROUND,BACKGROUND textures=35 fontWrites=4 frameCreates=0 themeHooks=1\n",
+          "stderr": ""
+        }
+      },
+      "baseline": {
+        "regression": {
+          "exitCode": 1,
+          "processSeconds": 0.040084300009766594,
+          "stdout": "FAIL 500 combat paints retain header order without allocation or native geometry changes\nFAIL all nine artwork roles retain verified UV coordinates and draw layers\nFAIL native header strips have a guaranteed layer above the inline background\nnative meter skin: 87 checks, 3 failures; no native secrets/rendering/taint emulated\n",
+          "stderr": "lua: ...il_\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_skin.lua:458: native meter skin regressions\nstack traceback:\n\t[C]: in function 'assert'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_skin.lua:458: in main chunk\n\t[C]: in ?\n"
+        },
+        "resources": {
+          "exitCode": 0,
+          "processSeconds": 0.027847899997141212,
+          "stdout": "LAYERS stage=startup nativeBackground=BACKGROUND/0 nativeHeader=BACKGROUND,BACKGROUND,BACKGROUND sourceHeader=BACKGROUND,BACKGROUND,BACKGROUND ownedHeader=BACKGROUND,BACKGROUND,BACKGROUND textures=35 fontWrites=4 frameCreates=0 themeHooks=1\nLAYERS stage=500-combat-paints nativeBackground=BACKGROUND/0 nativeHeader=BACKGROUND,BACKGROUND,BACKGROUND sourceHeader=BACKGROUND,BACKGROUND,BACKGROUND ownedHeader=BACKGROUND,BACKGROUND,BACKGROUND textures=35 fontWrites=4 frameCreates=0 themeHooks=1\nLAYERS stage=500-out-of-combat-paints nativeBackground=BACKGROUND/0 nativeHeader=BACKGROUND,BACKGROUND,BACKGROUND sourceHeader=BACKGROUND,BACKGROUND,BACKGROUND ownedHeader=BACKGROUND,BACKGROUND,BACKGROUND textures=35 fontWrites=4 frameCreates=0 themeHooks=1\n",
+          "stderr": ""
+        }
+      }
+    },
+    {
+      "repetition": 5,
+      "order": [
+        "baseline",
+        "candidate"
+      ],
+      "baseline": {
+        "regression": {
+          "exitCode": 1,
+          "processSeconds": 0.040362700005061924,
+          "stdout": "FAIL 500 combat paints retain header order without allocation or native geometry changes\nFAIL all nine artwork roles retain verified UV coordinates and draw layers\nFAIL native header strips have a guaranteed layer above the inline background\nnative meter skin: 87 checks, 3 failures; no native secrets/rendering/taint emulated\n",
+          "stderr": "lua: ...il_\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_skin.lua:458: native meter skin regressions\nstack traceback:\n\t[C]: in function 'assert'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_skin.lua:458: in main chunk\n\t[C]: in ?\n"
+        },
+        "resources": {
+          "exitCode": 0,
+          "processSeconds": 0.02727170000434853,
+          "stdout": "LAYERS stage=startup nativeBackground=BACKGROUND/0 nativeHeader=BACKGROUND,BACKGROUND,BACKGROUND sourceHeader=BACKGROUND,BACKGROUND,BACKGROUND ownedHeader=BACKGROUND,BACKGROUND,BACKGROUND textures=35 fontWrites=4 frameCreates=0 themeHooks=1\nLAYERS stage=500-combat-paints nativeBackground=BACKGROUND/0 nativeHeader=BACKGROUND,BACKGROUND,BACKGROUND sourceHeader=BACKGROUND,BACKGROUND,BACKGROUND ownedHeader=BACKGROUND,BACKGROUND,BACKGROUND textures=35 fontWrites=4 frameCreates=0 themeHooks=1\nLAYERS stage=500-out-of-combat-paints nativeBackground=BACKGROUND/0 nativeHeader=BACKGROUND,BACKGROUND,BACKGROUND sourceHeader=BACKGROUND,BACKGROUND,BACKGROUND ownedHeader=BACKGROUND,BACKGROUND,BACKGROUND textures=35 fontWrites=4 frameCreates=0 themeHooks=1\n",
+          "stderr": ""
+        }
+      },
+      "candidate": {
+        "regression": {
+          "exitCode": 0,
+          "processSeconds": 0.039589399995747954,
+          "stdout": "native meter skin: 87 checks, 0 failures; no native secrets/rendering/taint emulated\n",
+          "stderr": ""
+        },
+        "resources": {
+          "exitCode": 0,
+          "processSeconds": 0.03188159997807816,
+          "stdout": "LAYERS stage=startup nativeBackground=BACKGROUND/0 nativeHeader=BORDER,BORDER,BORDER sourceHeader=BACKGROUND,BACKGROUND,BACKGROUND ownedHeader=BACKGROUND,BACKGROUND,BACKGROUND textures=35 fontWrites=4 frameCreates=0 themeHooks=1\nLAYERS stage=500-combat-paints nativeBackground=BACKGROUND/0 nativeHeader=BORDER,BORDER,BORDER sourceHeader=BACKGROUND,BACKGROUND,BACKGROUND ownedHeader=BACKGROUND,BACKGROUND,BACKGROUND textures=35 fontWrites=4 frameCreates=0 themeHooks=1\nLAYERS stage=500-out-of-combat-paints nativeBackground=BACKGROUND/0 nativeHeader=BORDER,BORDER,BORDER sourceHeader=BACKGROUND,BACKGROUND,BACKGROUND ownedHeader=BACKGROUND,BACKGROUND,BACKGROUND textures=35 fontWrites=4 frameCreates=0 themeHooks=1\n",
+          "stderr": ""
+        }
+      }
+    }
+  ],
+  "mutants": [
+    {
+      "name": "no_native_promotion",
+      "sourceRawSHA256": "a5313acde9035587e61402aa219e34c4b43fd03bd20cda0935f8c67ae0012974",
+      "exitCode": 1,
+      "processSeconds": 0.06085389998042956,
+      "stdout": "FAIL 500 combat paints retain header order without allocation or native geometry changes\nFAIL all nine artwork roles retain verified UV coordinates and draw layers\nFAIL native header strips have a guaranteed layer above the inline background\nnative meter skin: 87 checks, 3 failures; no native secrets/rendering/taint emulated\n",
+      "stderr": "lua: ...il_\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_skin.lua:458: native meter skin regressions\nstack traceback:\n\t[C]: in function 'assert'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_skin.lua:458: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "promote_owned_and_source_too",
+      "sourceRawSHA256": "6ce75b3a64e6debab0ca16734ae885b7fd88b9faf816f3ce039e80ea4ae72a0d",
+      "exitCode": 1,
+      "processSeconds": 0.07250720000592992,
+      "stdout": "FAIL headerless source chrome retains the original Details artwork layers\nFAIL owned Threat retains the original Details header layers\nnative meter skin: 87 checks, 2 failures; no native secrets/rendering/taint emulated\n",
+      "stderr": "lua: ...il_\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_skin.lua:458: native meter skin regressions\nstack traceback:\n\t[C]: in function 'assert'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_skin.lua:458: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "leave_native_background_layer",
+      "sourceRawSHA256": "1ba9ba51454cc505fec4756d1ed76527ec687ca673264a29355dfb3cf138de22",
+      "exitCode": 1,
+      "processSeconds": 0.058187699993140996,
+      "stdout": "FAIL 500 combat paints retain header order without allocation or native geometry changes\nFAIL all nine artwork roles retain verified UV coordinates and draw layers\nFAIL native header strips have a guaranteed layer above the inline background\nnative meter skin: 87 checks, 3 failures; no native secrets/rendering/taint emulated\n",
+      "stderr": "lua: ...il_\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_skin.lua:458: native meter skin regressions\nstack traceback:\n\t[C]: in function 'assert'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_skin.lua:458: in main chunk\n\t[C]: in ?\n"
+    }
+  ],
+  "candidateHashesAfter": {
+    "Battlezonemap\\FluxMeterSkin.lua": "2203e8dad7e9ebe08b0fdef05334803a9e3c4567ee9042e6ea925d63bdc38151",
+    "tests\\native_meter_skin.lua": "b4066b0ece50c355e7b78fcbd905e77aa2aac075845a178de5fbba5ee4f6e12b"
+  },
+  "sourceUnchanged": true,
+  "result": "PASS:87checks in everycandidate;baseline3/87 failures;five matchedpairs;three rejectedmutants;no resource growth in1000stylesperpane"
+}

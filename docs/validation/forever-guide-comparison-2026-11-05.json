@@ -1,0 +1,87 @@
+{
+  "baselineCommit": "8574e06716274d6970a79d298ab57637d72b20fe",
+  "recovery": {
+    "directory": "C:\\Users\\mario\\.codex\\visualizations\\2026\\10\\29\\01a186ea-e332-79a1-9cdc-8e340df7e22b\\Forever-guide-20261105T100106Z",
+    "head": "8574e06716274d6970a79d298ab57637d72b20fe",
+    "sourceFiles": 1446,
+    "settingsFiles": 123,
+    "sourceSha256": "24a4540fe6db1afe04e63f17bc6ae11469e6928699ab23b20f5121d9ad972b75"
+  },
+  "runtimeSha256": "381ed6a313093defa4addd4ffa90ba7d0622c325a7b1ae24be7129c8fecc2d3a",
+  "hashNormalization": "CRLF to LF",
+  "scenario": "real local eligibility and existing optional-button parking functions; two Forever aliases and four other client labels; native capability true; repeat parking/re-show/combat; native frames mocked",
+  "profile": "5 alternating fresh-process pairs;no warmup;no native profiler or performance benchmark",
+  "runs": [
+    {
+      "pair": 1,
+      "variant": "baseline",
+      "seconds": 0.017455699999118224,
+      "exit": 1,
+      "raw": "FAIL forever guide eligibility\nFAIL forever parked without layout slot\nFAIL forever existing OnShow hook installed once\nFAIL forever native re-show stays hidden\nFAIL camelot guide eligibility\nFAIL camelot parked without layout slot\nFAIL camelot existing OnShow hook installed once\nFAIL camelot native re-show stays hidden\nguide gate/parking: 34 checks, 8 failures\n"
+    },
+    {
+      "pair": 1,
+      "variant": "candidate",
+      "seconds": 0.016723199994885363,
+      "exit": 0,
+      "raw": "guide gate/parking: 34 checks, 0 failures\n"
+    },
+    {
+      "pair": 2,
+      "variant": "baseline",
+      "seconds": 0.013706800004001707,
+      "exit": 1,
+      "raw": "FAIL forever guide eligibility\nFAIL forever parked without layout slot\nFAIL forever existing OnShow hook installed once\nFAIL forever native re-show stays hidden\nFAIL camelot guide eligibility\nFAIL camelot parked without layout slot\nFAIL camelot existing OnShow hook installed once\nFAIL camelot native re-show stays hidden\nguide gate/parking: 34 checks, 8 failures\n"
+    },
+    {
+      "pair": 2,
+      "variant": "candidate",
+      "seconds": 0.013875099990400486,
+      "exit": 0,
+      "raw": "guide gate/parking: 34 checks, 0 failures\n"
+    },
+    {
+      "pair": 3,
+      "variant": "baseline",
+      "seconds": 0.01514129999850411,
+      "exit": 1,
+      "raw": "FAIL forever guide eligibility\nFAIL forever parked without layout slot\nFAIL forever existing OnShow hook installed once\nFAIL forever native re-show stays hidden\nFAIL camelot guide eligibility\nFAIL camelot parked without layout slot\nFAIL camelot existing OnShow hook installed once\nFAIL camelot native re-show stays hidden\nguide gate/parking: 34 checks, 8 failures\n"
+    },
+    {
+      "pair": 3,
+      "variant": "candidate",
+      "seconds": 0.013944299993454479,
+      "exit": 0,
+      "raw": "guide gate/parking: 34 checks, 0 failures\n"
+    },
+    {
+      "pair": 4,
+      "variant": "baseline",
+      "seconds": 0.01488489999610465,
+      "exit": 1,
+      "raw": "FAIL forever guide eligibility\nFAIL forever parked without layout slot\nFAIL forever existing OnShow hook installed once\nFAIL forever native re-show stays hidden\nFAIL camelot guide eligibility\nFAIL camelot parked without layout slot\nFAIL camelot existing OnShow hook installed once\nFAIL camelot native re-show stays hidden\nguide gate/parking: 34 checks, 8 failures\n"
+    },
+    {
+      "pair": 4,
+      "variant": "candidate",
+      "seconds": 0.015197099986835383,
+      "exit": 0,
+      "raw": "guide gate/parking: 34 checks, 0 failures\n"
+    },
+    {
+      "pair": 5,
+      "variant": "baseline",
+      "seconds": 0.014959199994336814,
+      "exit": 1,
+      "raw": "FAIL forever guide eligibility\nFAIL forever parked without layout slot\nFAIL forever existing OnShow hook installed once\nFAIL forever native re-show stays hidden\nFAIL camelot guide eligibility\nFAIL camelot parked without layout slot\nFAIL camelot existing OnShow hook installed once\nFAIL camelot native re-show stays hidden\nguide gate/parking: 34 checks, 8 failures\n"
+    },
+    {
+      "pair": 5,
+      "variant": "candidate",
+      "seconds": 0.014943799993488938,
+      "exit": 0,
+      "raw": "guide gate/parking: 34 checks, 0 failures\n"
+    }
+  ],
+  "native": "Reload/layout/gap/re-show/gamepad/pixel/taint checks pending; no foreground/input used"
+}

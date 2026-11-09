@@ -1,0 +1,35 @@
+-- Current Mount timer alias, client gate and exact spell/skill handler.
+-- Native C_Timer.After has no return; modeled queued work is explicit.
+local function read(p)local f=assert(io.open(p,"rb"));local s=f:read("*a"):gsub("\r\n","\n");f:close();return s end
+local s=read("ExtraButtonSystem/NonCombatGrid/Buttons/Mount.lua")
+local function cut(a,b)local i=assert(s:find(a,1,true));return s:sub(i,assert(s:find(b,i+#a,true))-1)end
+local alias=cut("local Timer = C_Timer or {}","-- Held modifier helpers")
+local gate=cut("local function HasMountJournalAPI()","Module.HasMountUI = HasMountUI")
+local handler=cut("local function OnSpellBookChanged()","local eventFrame = CreateFrame")
+local configs={{"era",1,true,false},{"anniversary",2,false,true},{"retail",12,false,false},{"forever",1,false,false},{"progression",5,false,false}}
+local checks=0
+local function check(v,msg)checks=checks+1;assert(v,msg)end
+for _,config in ipairs(configs)do
+    for _,combat in ipairs({false,true})do
+        local queued,updates,invalidate={},{n=0},0
+        local e=setmetatable({},{__index=_G});e._G=e
+        e.C_Timer={After=function(delay,fn)queued[#queued+1]={delay=delay,fn=fn}end}
+        e.Module={_registered=true,_isPlaceholder=false,InvalidateRidingSkillCache=function()end,Update=function()updates.n=updates.n+1 end}
+        e.FLUX_API={majorVersion=config[2],isClassicEra=config[3],isTBC=config[4],hasC_MountJournal=true}
+        e.C_MountJournal={GetMountIDs=function()return {}end}
+        e.InCombatLockdown=function()return combat end
+        e.InvalidateAllMountItemCaches=function()invalidate=invalidate+1 end
+        local onChanged=assert(load(alias..gate..handler.."\nreturn OnSpellBookChanged,HasMountUI","@actual-Mount-skill-handler","t",e))()
+        for i=1,100 do onChanged()end
+        local short,long=0,0
+        for _,q in ipairs(queued)do if q.delay==.3 then short=short+1 elseif q.delay==.5 then long=long+1 end end
+        local bag=config[2]<=2
+        check(short==(bag and 100 or 0),"actual client gate and broken latch count")
+        check(long==(combat and 0 or 100),"separate existing half-second refreshes counted independently")
+        check(e.Module._itemInfoTimer==nil,"native void return never arms pending field")
+        for _,q in ipairs(queued)do q.fn()end
+        check(updates.n==(combat and 0 or #queued),"each queued callback reaches full update while eligible")
+        print(string.format("METRIC %s combat=%s eventCalls=100 bagCallbacks=%d halfSecondCallbacks=%d fullUpdateCalls=%d invalidations=%d pending=false",config[1],tostring(combat),short,long,updates.n,invalidate))
+    end
+end
+print("Mount After latch: "..checks.." checks; exact aliases/client gates/handler; native source contract, no native CPU claim")

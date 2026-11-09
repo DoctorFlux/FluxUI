@@ -1,0 +1,148 @@
+-- Read-only production-path audit. Native secure execution/pixels/FPS are not modeled.
+local function read(path)
+    local f=assert(io.open(path,"rb"));local s=f:read("*a");f:close();return s:gsub("\r\n","\n")
+end
+local function cut(s,first,last)
+    local a=assert(s:find(first,1,true),first);return s:sub(a,assert(s:find(last,a+#first,1,true),last)-1)
+end
+local checks=0
+local function check(v,label)checks=checks+1;assert(v,label)end
+local function env()local e=setmetatable({},{__index=_G});e._G=e;return e end
+local findings,controls={},{}
+local clients={"classic_era","classic_anniversary","retail_live","forever","classic_progression"}
+
+-- Execute the COMPLETE current usability module. Only the native option parser
+-- and underlying public usability results are modeled; no secure macro executes.
+local usability=read("ExtraButtonSystem/Engine/Usability.lua")
+local macroFailures,macroPairs,parserCalls=0,0,0
+for _,client in ipairs(clients)do
+    local e=env();e.FLUX_API={isLegacyClient=client:find("classic",1,true)~=nil}
+    local calls=0;local active="ActiveBlocked"
+    e.SecureCmdOptionParse=function(tail)calls=calls+1;return active end
+    e.GetInventoryItemID=function(_,slot)return 10000+slot end
+    assert(load(usability,"@ExtraButtonSystem/Engine/Usability.lua","t",e))()
+    local u=e.FluxButtonUsability
+    u.CheckSpellUsability=function(_,spell)return spell=="ActiveBlocked"and u.STATE_NOT_USABLE or u.STATE_USABLE,false end
+    u.CheckItemUsability=function(_,item)return item==10013 and u.STATE_NOT_USABLE or u.STATE_USABLE,false end
+    local pe=env();pe.FLUX_API=e.FLUX_API;pe.SecureCmdOptionParse=e.SecureCmdOptionParse;pe.GetInventoryItemID=e.GetInventoryItemID
+    -- Isolated proposed typo correction only, held in memory; no addon changes.
+    local proposed,n=usability:gsub('find%("%%%[", 1, true%)','find("[", 1, true)')
+    check(n==2,"exactly two plain-search bracket typos found")
+    assert(load(proposed,"@proposal-only-usability","t",pe))()
+    local p=pe.FluxButtonUsability;p.CheckSpellUsability=u.CheckSpellUsability;p.CheckItemUsability=u.CheckItemUsability
+    for i=1,2000 do
+        active=i%2==0 and"ActiveBlocked"or"ActiveReady"
+        local before=calls
+        local actual=u:CheckMacroUsability("/cast [mod:shift,@mouseover,help] ActiveBlocked; ActiveReady","spell",111)
+        check(calls==before,"current conditional path makes no parser call")
+        local corrected=p:CheckMacroUsability("/cast [mod:shift,@mouseover,help] ActiveBlocked; ActiveReady","spell",111)
+        local expected=active=="ActiveBlocked"and u.STATE_NOT_USABLE or u.STATE_USABLE
+        check(corrected==expected,"isolated typo correction selects active public clause")
+        if actual~=expected then macroFailures=macroFailures+1 end
+        macroPairs=macroPairs+1
+    end
+    active="13"
+    local actual=u:CheckMacroUsability("/use [mod:shift] 13; 14",nil,nil,nil)
+    local corrected=p:CheckMacroUsability("/use [mod:shift] 13; 14",nil,nil,nil)
+    check(actual==u.STATE_USABLE and corrected==u.STATE_NOT_USABLE,"conditional inventory-slot use incorrectly defaults usable")
+    active=nil
+    check(p:CheckMacroUsability("/cast [@mouseover,help] Missing",nil,nil,nil)==u.STATE_USABLE,"no matching clause retains documented neutral peek fallback")
+    check(p:CheckMacroUsability("/cast PlainSpell","spell",111)==u.STATE_USABLE,"plain cast metadata fallback retained")
+    parserCalls=parserCalls+calls
+end
+findings.macro={id="R2-EBS-01",classification="dormant legacy helper; no demonstrated current TOC caller",pairs=macroPairs,mismatches=macroFailures,inventorySlotMismatches=#clients,proposalOnlyParserCalls=parserCalls}
+
+-- Execute COMPLETE collection module and the exact config vendor lookup body.
+local collection=read("ExtraButtonSystem/NonCombatGrid/Buttons/MountCollection.lua")
+local config=read("ExtraButtonSystem/NonCombatGrid/FluxSmartMountConfig.lua")
+local mount=read("ExtraButtonSystem/NonCombatGrid/Buttons/Mount.lua")
+local vendorBody=cut(config,"function Config.GetVendorMount()","function Config.GetVendorMountTexture()")
+local hasConfigVendor=cut(config,"function Config.HasAnyVendorMount()","function Config.GetMountIconTexture(")
+local hasVendorBody=cut(mount,"function Module.HasAnyVendorMount()","-- Get the best vendor mount")
+local middleBody=cut(mount,"function Module.SetupMiddleClick(btn)","-- Set up PreClick hook")
+local updateBody=cut(mount,"function Module.Update()","-- EVENT HANDLING")
+local mountResults={}
+for _,variant in ipairs({"english","localized","none"})do
+    local e=env();local queries=0;local ids={};for i=1,1000 do ids[i]=i end
+    e.FLUX_API={majorVersion=12,hasC_MountJournal=true};e.C_MountJournal={GetMountIDs=function()return ids end,
+        GetMountInfoByID=function(id)
+            queries=queries+1
+            local name="OrdinaryMount"..id
+            if id==1000 and variant~="none"then name=variant=="english"and"Grand Expedition Yak"or"LocalizedVendorMount"end
+            return name,100000+id,"icon",false,true,0,false,false,0,false,true
+        end}
+    local coll=assert(load(collection,"@ExtraButtonSystem/NonCombatGrid/Buttons/MountCollection.lua","t",e))()
+    e.Config={};assert(load(vendorBody..hasConfigVendor,"@actual-Config.GetVendorMount","t",e))()
+    local name=e.Config.GetVendorMount();local configFirst=queries
+    local has=coll.HasAnyVendorMount();local cachedFirst=queries-configFirst
+    local start=queries
+    for i=1,100 do e.Config.GetVendorMount()end
+    local repeated=queries-start
+    local cachedStart=queries
+    for i=1,100 do coll.HasAnyVendorMount()end
+    check(queries==cachedStart,"collection helper reuses its public name map")
+    -- Ground the lookup cost in the COMPLETE real Mount.Update caller plus
+    -- its real SetupMiddleClick and HasAnyVendorMount bodies. Other independent
+    -- painting, riding skill and layout services are quiet public stubs.
+    local noop=function()end
+    e.FluxSmartMountConfig=e.Config;e.InCombatLockdown=function()return false end
+    e.HasMountUI=function()return true end;e.GetCurrentHeldModKey=function()return"nomod"end
+    e.ClearMountButtonCheckedState=noop
+    local attrWrites=0
+    e.Module={_button={Widget={Show=noop,SetAttribute=function()attrWrites=attrWrites+1 end}},_lastJournalMacro="/cast PublicConfiguredMount",
+        HasRidingSkill=function()return true end,UpdateButtonScope=noop,CanDisplayMountButton=function()return true end,
+        GetCurrentMacro=function()return"/cast PublicConfiguredMount"end,UpdateTexture=noop,
+        SetupRightClick=noop,UpdateHotkeyText=noop,UpdateJournalMountIcon=noop,RefreshTooltip=noop,UpdateMountKeybinding=noop}
+    assert(load(hasVendorBody..middleBody..updateBody,"@actual-Mount.Update-vendor-call-path","t",e))()
+    local updateStart=queries
+    for i=1,100 do e.Module.Update()end
+    local updateQueries=queries-updateStart
+    check(updateQueries==repeated and attrWrites==200,"real full-update caller reaches lookup and preserves two middle-click writes")
+    if variant=="english"then check(name=="Grand Expedition Yak"and has,"english journal vendor positive control")
+    elseif variant=="localized"then check(name==nil and not has,"same collected vendor with localized name is not recognized")
+    else check(name==nil and not has,"ordinary mount absence control")end
+    mountResults[variant]={configFirstQueries=configFirst,collectionFirstQueries=cachedFirst,configQueriesPer100=repeated,
+        collectionQueriesPer100=0,actualMountUpdates=100,actualMountUpdateJournalQueries=updateQueries,detected=has,configName=name or false}
+end
+findings.vendorLocale={id="R2-EBS-02",models=mountResults}
+findings.vendorWork={id="R2-EBS-03",models=mountResults}
+
+-- COMPLETE Charges module. Setter failure is explicitly conditional injection,
+-- not a claim that a native public SetCooldown currently fails on any client.
+local chargeSource=read("Core/ButtonFX/Charges.lua")
+local function chargesBoot(failOnce)
+    local e=env();local ns={Flux={Client={isAnyClassic=false},Secrets={IsSecretValue=function()return false end,
+        CanAccessValue=function()return true end,SafeGetNumber=function(v,d)return tonumber(v)or d end}}}
+    local cd={attempts=0,successes=0,shown=true,duration=0}
+    function cd:SetCooldown(start,duration)self.attempts=self.attempts+1;if failOnce and self.attempts==1 then error("INJECTED_TRANSIENT_SETTER_FAILURE")end;self.start,self.duration=start,duration;self.successes=self.successes+1 end
+    function cd:GetEffectiveAlpha()return 1 end
+    function cd:SetDrawBling(v)self.bling=v end
+    function cd:SetDrawEdge(v)self.edge=v end
+    function cd:SetDrawSwipe(v)self.swipe=v end
+    function cd:SetSwipeColor()end
+    function cd:Show()self.shown=true end
+    function cd:Hide()self.shown=false end
+    function cd:IsShown()return self.shown end
+    function cd:Clear()self.duration=0 end
+    assert(load(chargeSource,"@Core/ButtonFX/Charges.lua","t",e))("_FluxUI",ns)
+    return ns.Flux.ButtonFX.Charges,{cooldown=cd},cd
+end
+local opts={start=100,duration=8,enable=1,skipDurationObject=true,chargeIsActive=false,hideWhenIdle=true}
+local fx,w,cd=chargesBoot(true)
+for i=1,1000 do fx.Apply(w,opts)end
+check(cd.attempts==1 and cd.successes==0 and cd.duration==0 and cd._fxSigShown==true,"failed numeric native setter cached as successfully shown")
+local failed={attempts=cd.attempts,successes=cd.successes,cachedShown=cd._fxSigShown,duration=cd.duration}
+fx.ClearCache(w);fx.Apply(w,opts)
+check(cd.attempts==2 and cd.successes==1 and cd.duration==8,"cache invalidation control allows same timer to recover")
+local good,gw,gcd=chargesBoot(false)
+for i=1,1000 do good.Apply(gw,opts)end
+check(gcd.attempts==1 and gcd.successes==1 and gcd.duration==8,"normal unchanged timer retains one native write budget")
+findings.failedSetter={id="R2-EBS-04",classification="conditional setter-failure model",failed=failed,
+    recoveryAfterExplicitClear={attempts=cd.attempts,successes=cd.successes},publicControlWrites=gcd.attempts,applyCalls=2002}
+
+local function json(v)
+    if type(v)=="table"then local keys={};for k in pairs(v)do keys[#keys+1]=k end;table.sort(keys,function(a,b)return tostring(a)<tostring(b)end);local out={};for _,k in ipairs(keys)do out[#out+1]=json(tostring(k))..":"..json(v[k])end;return"{"..table.concat(out,",").."}"
+    elseif type(v)=="string"then return string.format("%q",v):gsub("\n","n")
+    elseif type(v)=="nil"then return"null"else return tostring(v)end
+end
+print("RESULT "..json({checks=checks,clients=5,findings=findings,scope="actual Lua with native/API stubs; no game/taint/pixels/FPS claims"}))

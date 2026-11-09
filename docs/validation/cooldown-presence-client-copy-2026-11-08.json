@@ -1,0 +1,30 @@
+{
+  "copies": [
+    {
+      "client": "_retail_",
+      "path": "Other/FluxCooldownDefaults.lua",
+      "match": true
+    },
+    {
+      "client": "_forever_",
+      "path": "Other/FluxCooldownDefaults.lua",
+      "match": true
+    },
+    {
+      "client": "_classic_",
+      "path": "Other/FluxCooldownDefaults.lua",
+      "match": true
+    },
+    {
+      "client": "_classic_era_",
+      "path": "Other/FluxCooldownDefaults.lua",
+      "match": true
+    },
+    {
+      "client": "_anniversary_",
+      "path": "Other/FluxCooldownDefaults.lua",
+      "match": true
+    }
+  ],
+  "scope": "Read-only verification of user-managed synchronization; no alternate addon created."
+}

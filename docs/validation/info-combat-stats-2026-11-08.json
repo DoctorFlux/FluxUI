@@ -1,0 +1,258 @@
+{
+  "changeID": "INFO-COMBAT-STATS-20261108",
+  "dateUTC": "2026-11-08T11:36:28.592384+00:00",
+  "requirement": "Preserve full native stat source through combat and update live procs; Retail and Forever",
+  "userChoice": "Keep the same stat category live when combined calculation is restricted",
+  "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\08\\01a1bae3-9896-7f00-9582-aa792ba29df4\\info-combat-stats-20261108\\checkpoint.json",
+  "checkpointSourceFiles": 2269,
+  "historyVerified": true,
+  "settingsReadOnlyMetadata": 52,
+  "sourceHEAD": "1fd463f4de4bbff659f4e402c6f31138c49765b4",
+  "before": {
+    "StatusBars/FluxInfoFrame.lua": "4d64905379c78797184dfa4b234a418250bebc5dfa470ab3cd32e606c780c024",
+    "CharacterInfo/_tmp_foreverstatssmoke.lua": "cd54622d6dd9cdf32066b5172895cc8e7499730149cb8e907be8e92679707df6",
+    "tests/info_combat_stats.lua": null
+  },
+  "afterNormalizedSHA256": {
+    "StatusBars/FluxInfoFrame.lua": "8e5b912ce21a7a7ebcb6ec97eac8563b2ea38095a854da43ad7f4220d7fea375",
+    "CharacterInfo/_tmp_foreverstatssmoke.lua": "ae90991555a483a3b55eb791f071ae0a1962ec7f2e0b50c125d0b8dce6011c26",
+    "tests/info_combat_stats.lua": "f40271f54b49e6821fc1d9655a68911b5a8cc4860569e82e4938d716a163bf57"
+  },
+  "nativeSources": [
+    {
+      "client": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/PlayerScriptDocumentation.lua",
+      "blob": "e00006d8dba2b9f61ea463604047460a8d502cc8",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_APIDocumentationGenerated/PlayerScriptDocumentation.lua",
+      "externalFile": "live-PlayerScriptDocumentation.lua.txt"
+    },
+    {
+      "client": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/UnitDocumentation.lua",
+      "blob": "6fa1024ea0b4881edbd14ddf43508c6a99075340",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_APIDocumentationGenerated/UnitDocumentation.lua",
+      "externalFile": "live-UnitDocumentation.lua.txt"
+    },
+    {
+      "client": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleFontStringAPIDocumentation.lua",
+      "blob": "97448b164fc7e86d17178c832134f3744b449af8",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleFontStringAPIDocumentation.lua",
+      "externalFile": "live-SimpleFontStringAPIDocumentation.lua.txt"
+    },
+    {
+      "client": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "version.txt",
+      "blob": "61a71eb0d9c435ad6f9f9701ab4d9c072cd3237e",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/version.txt",
+      "externalFile": "live-version.txt.txt"
+    },
+    {
+      "client": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_UIPanels_Game/Mainline/PaperDollFrame.lua",
+      "blob": "d2d657d8671475d6063a761d95e28a8b3ad5be27",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_UIPanels_Game/Mainline/PaperDollFrame.lua",
+      "externalFile": "live-PaperDollFrame.lua.txt"
+    },
+    {
+      "client": "forever",
+      "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/PlayerScriptDocumentation.lua",
+      "blob": "acc0ec3d9eaae7854a8e688bddde0850d0623274",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_APIDocumentationGenerated/PlayerScriptDocumentation.lua",
+      "externalFile": "forever-PlayerScriptDocumentation.lua.txt"
+    },
+    {
+      "client": "forever",
+      "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/UnitDocumentation.lua",
+      "blob": "620b28ad0cc57c13501a196a42c37b8398703a84",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_APIDocumentationGenerated/UnitDocumentation.lua",
+      "externalFile": "forever-UnitDocumentation.lua.txt"
+    },
+    {
+      "client": "forever",
+      "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleFontStringAPIDocumentation.lua",
+      "blob": "97448b164fc7e86d17178c832134f3744b449af8",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleFontStringAPIDocumentation.lua",
+      "externalFile": "forever-SimpleFontStringAPIDocumentation.lua.txt"
+    },
+    {
+      "client": "forever",
+      "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "path": "version.txt",
+      "blob": "e02268eacf9b586ec969cf13403a15b8dd136ae8",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/version.txt",
+      "externalFile": "forever-version.txt.txt"
+    },
+    {
+      "client": "forever",
+      "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "path": "Interface/AddOns/Blizzard_UIPanels_Game/Camelot/PaperDollFrameStats.lua",
+      "blob": "73d794850dad40a4206353bb07ffe745f162b148",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_UIPanels_Game/Camelot/PaperDollFrameStats.lua",
+      "externalFile": "forever-PaperDollFrameStats.lua.txt"
+    },
+    {
+      "client": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_UIPanels_Game/Blizzard_UIPanels_Game_Mainline.toc",
+      "blob": "4f9ea15807a2cee1c3bec14e83def0c8f60201b7",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_UIPanels_Game/Blizzard_UIPanels_Game_Mainline.toc"
+    },
+    {
+      "client": "forever",
+      "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "path": "Interface/AddOns/Blizzard_UIPanels_Game/Blizzard_UIPanels_Game.toc",
+      "blob": "7b6537794b17e8a2d1c7eef582f1f724c0e180f7",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_UIPanels_Game/Blizzard_UIPanels_Game.toc"
+    }
+  ],
+  "comparison": {
+    "scope": "Desktop correctness only; wall times uncontrolled and not native performance evidence",
+    "pairs": [
+      {
+        "baseline": {
+          "exit": 1,
+          "output": "lua: tests/info_combat_stats.lua:17: combat category changed or proc froze\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/info_combat_stats.lua:17: in local 'check'\n\ttests/info_combat_stats.lua:81: in main chunk\n\t[C]: in ?\n",
+          "wallSeconds": 0.04240040000877343
+        },
+        "candidate": {
+          "exit": 0,
+          "output": "info combat stats: 234 checks PASS (desktop; native secrets/taint/pixels/performance pending)\n",
+          "wallSeconds": 0.09995939998771064
+        }
+      },
+      {
+        "baseline": {
+          "exit": 1,
+          "output": "lua: tests/info_combat_stats.lua:17: combat category changed or proc froze\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/info_combat_stats.lua:17: in local 'check'\n\ttests/info_combat_stats.lua:81: in main chunk\n\t[C]: in ?\n",
+          "wallSeconds": 0.02486710000084713
+        },
+        "candidate": {
+          "exit": 0,
+          "output": "info combat stats: 234 checks PASS (desktop; native secrets/taint/pixels/performance pending)\n",
+          "wallSeconds": 0.09586490000947379
+        }
+      },
+      {
+        "baseline": {
+          "exit": 1,
+          "output": "lua: tests/info_combat_stats.lua:17: combat category changed or proc froze\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/info_combat_stats.lua:17: in local 'check'\n\ttests/info_combat_stats.lua:81: in main chunk\n\t[C]: in ?\n",
+          "wallSeconds": 0.024699200002942234
+        },
+        "candidate": {
+          "exit": 0,
+          "output": "info combat stats: 234 checks PASS (desktop; native secrets/taint/pixels/performance pending)\n",
+          "wallSeconds": 0.10157879997859709
+        }
+      },
+      {
+        "baseline": {
+          "exit": 1,
+          "output": "lua: tests/info_combat_stats.lua:17: combat category changed or proc froze\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/info_combat_stats.lua:17: in local 'check'\n\ttests/info_combat_stats.lua:81: in main chunk\n\t[C]: in ?\n",
+          "wallSeconds": 0.024807399982819334
+        },
+        "candidate": {
+          "exit": 0,
+          "output": "info combat stats: 234 checks PASS (desktop; native secrets/taint/pixels/performance pending)\n",
+          "wallSeconds": 0.09562710000318475
+        }
+      },
+      {
+        "baseline": {
+          "exit": 1,
+          "output": "lua: tests/info_combat_stats.lua:17: combat category changed or proc froze\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/info_combat_stats.lua:17: in local 'check'\n\ttests/info_combat_stats.lua:81: in main chunk\n\t[C]: in ?\n",
+          "wallSeconds": 0.022558600001502782
+        },
+        "candidate": {
+          "exit": 0,
+          "output": "info combat stats: 234 checks PASS (desktop; native secrets/taint/pixels/performance pending)\n",
+          "wallSeconds": 0.09432860001106746
+        }
+      }
+    ],
+    "controls": [
+      {
+        "name": "wrongForeverChannel",
+        "exit": 1,
+        "output": "lua: tests/info_combat_stats.lua:17: combat category changed or proc froze\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/info_combat_stats.lua:17: in local 'check'\n\ttests/info_combat_stats.lua:81: in main chunk\n\t[C]: in ?\n",
+        "wallSeconds": 0.04887940001208335
+      },
+      {
+        "name": "partialRetailProvider",
+        "exit": 1,
+        "output": "lua: tests/info_combat_stats.lua:17: pre-combat total uses native winner\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/info_combat_stats.lua:17: in local 'check'\n\ttests/info_combat_stats.lua:75: in main chunk\n\t[C]: in ?\n",
+        "wallSeconds": 0.05531620001420379
+      },
+      {
+        "name": "wrongHitModifier",
+        "exit": 1,
+        "output": "lua: tests/info_combat_stats.lua:17: hit changed category or lost a contribution\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/info_combat_stats.lua:17: in local 'check'\n\ttests/info_combat_stats.lua:135: in main chunk\n\t[C]: in ?\n",
+        "wallSeconds": 0.10166939999908209
+      },
+      {
+        "name": "lostAmmo",
+        "exit": 1,
+        "output": "lua: tests/info_combat_stats.lua:17: live haste lost its selected channel/ammo\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/info_combat_stats.lua:17: in local 'check'\n\ttests/info_combat_stats.lua:116: in main chunk\n\t[C]: in ?\n",
+        "wallSeconds": 0.06782369999564253
+      }
+    ],
+    "baselineSHA256": "4d64905379c78797184dfa4b234a418250bebc5dfa470ab3cd32e606c780c024",
+    "candidateSHA256": "8e5b912ce21a7a7ebcb6ec97eac8563b2ea38095a854da43ad7f4220d7fea375"
+  },
+  "focused": {
+    "command": "lua tests/info_combat_stats.lua",
+    "checks": 234,
+    "result": "PASS"
+  },
+  "fullSuite": {
+    "scripts": 256,
+    "failures": 0,
+    "syntaxFiles": 921,
+    "syntaxFailures": 0,
+    "sourceDrift": [],
+    "externalReport": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\08\\01a1bae3-9896-7f00-9582-aa792ba29df4\\info-combat-stats-20261108\\final-validation.json"
+  },
+  "clientCopiesReadOnly": [
+    {
+      "client": "_retail_",
+      "present": true,
+      "matches": true
+    },
+    {
+      "client": "_forever_",
+      "present": true,
+      "matches": true
+    },
+    {
+      "client": "_classic_",
+      "present": true,
+      "matches": true
+    },
+    {
+      "client": "_classic_era_",
+      "present": true,
+      "matches": true
+    },
+    {
+      "client": "_anniversary_",
+      "present": true,
+      "matches": true
+    }
+  ],
+  "resources": "Existing visible-only one-second ticker and coalesced refresh reused; Retail adds three registrations on existing event frame; no new frames/timers/hooks/saved roots",
+  "native": "NOT RUN: no connected Witchcraft/UIForever/computer-use tool; prior UIForever preference retained; no game input, settings/profiler/diagnostic-root writes",
+  "limits": [
+    "Source-only getter/native text permissions; opaque desktop tokens do not certify native VM/taint/pixels/CPU/FPS",
+    "Retain the prior winning category until all channels are readable; another restricted category overtaking it is not detected",
+    "Restricted hit and ranged ammo haste retain both live contributions when a native combined total is unavailable",
+    "No previous readable category plus no visible current native row displays unavailable rather than fabricated lower stat"
+  ]
+}

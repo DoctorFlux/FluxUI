@@ -1,0 +1,119 @@
+{
+  "captured_at_utc": "2026-11-07T12:44:18.853271+00:00",
+  "runtime": "Lua 5.4.6  Copyright (C) 1994-2023 Lua.org, PUC-Rio",
+  "scope": "Production-function and complete Charges/Button module simulations only; candidate external and never applied",
+  "per_repeat": {
+    "assertions": 619,
+    "failed": 0,
+    "opaque_baseline_rejections": 7,
+    "public_parity_comparisons": 240,
+    "client_labels": 5,
+    "glow_phase_snapshots": 80,
+    "getter_call_denial_readiness_gates": 4
+  },
+  "repeat_totals": {
+    "assertions": 1857,
+    "opaque_baseline_rejections": 21
+  },
+  "counting": "Three repetitions reuse scenario definitions. Readiness-gate confirmations are not passed native fixes.",
+  "runs": [
+    {
+      "repeat": 1,
+      "exit": 0,
+      "output": "REJECTION ALPHA-01 baseline=false candidate=true\nREJECTION ALPHA-03 baseline=false candidate=true\nREJECTION ALPHA-04-cast baseline=false candidate=true\nREJECTION ALPHA-04-badge baseline=false candidate=true\nREJECTION ALPHA-05-numeric baseline=false candidate=true\nREJECTION ALPHA-05-duration baseline=false candidate=true\nREADINESS_GATE getter_call_denied=grid unresolved=true\nREADINESS_GATE getter_call_denied=bling unresolved=true\nREADINESS_GATE getter_call_denied=extra-numeric unresolved=true\nREADINESS_GATE getter_call_denied=extra-duration unresolved=true\nMETRIC grid rounds=100 requests_per_round=1000 public_zero_reads=3600 public_zero_writes=0 opaque_reads=3600 opaque_writes=3600 excluded_stance_alpha=1\nMETRIC glow cycles=10 snapshots=80 baseline_public_reads=120 candidate_reads=0 frames_created=1 pool_releases=20 owned_ledger_tables=1 ledger_entries=6\nSUMMARY checks=619 failures=0 baseline_rejections=7\n",
+      "log": "candidate-run-1.txt",
+      "log_sha256": "c49c22a9479f9cfb369cbb6196f40b6bbc637aa752720948f42a4e64bb4ba2a4"
+    },
+    {
+      "repeat": 2,
+      "exit": 0,
+      "output": "REJECTION ALPHA-01 baseline=false candidate=true\nREJECTION ALPHA-03 baseline=false candidate=true\nREJECTION ALPHA-04-cast baseline=false candidate=true\nREJECTION ALPHA-04-badge baseline=false candidate=true\nREJECTION ALPHA-05-numeric baseline=false candidate=true\nREJECTION ALPHA-05-duration baseline=false candidate=true\nREADINESS_GATE getter_call_denied=grid unresolved=true\nREADINESS_GATE getter_call_denied=bling unresolved=true\nREADINESS_GATE getter_call_denied=extra-numeric unresolved=true\nREADINESS_GATE getter_call_denied=extra-duration unresolved=true\nMETRIC grid rounds=100 requests_per_round=1000 public_zero_reads=3600 public_zero_writes=0 opaque_reads=3600 opaque_writes=3600 excluded_stance_alpha=1\nMETRIC glow cycles=10 snapshots=80 baseline_public_reads=120 candidate_reads=0 frames_created=1 pool_releases=20 owned_ledger_tables=1 ledger_entries=6\nSUMMARY checks=619 failures=0 baseline_rejections=7\n",
+      "log": "candidate-run-2.txt",
+      "log_sha256": "c49c22a9479f9cfb369cbb6196f40b6bbc637aa752720948f42a4e64bb4ba2a4"
+    },
+    {
+      "repeat": 3,
+      "exit": 0,
+      "output": "REJECTION ALPHA-01 baseline=false candidate=true\nREJECTION ALPHA-03 baseline=false candidate=true\nREJECTION ALPHA-04-cast baseline=false candidate=true\nREJECTION ALPHA-04-badge baseline=false candidate=true\nREJECTION ALPHA-05-numeric baseline=false candidate=true\nREJECTION ALPHA-05-duration baseline=false candidate=true\nREADINESS_GATE getter_call_denied=grid unresolved=true\nREADINESS_GATE getter_call_denied=bling unresolved=true\nREADINESS_GATE getter_call_denied=extra-numeric unresolved=true\nREADINESS_GATE getter_call_denied=extra-duration unresolved=true\nMETRIC grid rounds=100 requests_per_round=1000 public_zero_reads=3600 public_zero_writes=0 opaque_reads=3600 opaque_writes=3600 excluded_stance_alpha=1\nMETRIC glow cycles=10 snapshots=80 baseline_public_reads=120 candidate_reads=0 frames_created=1 pool_releases=20 owned_ledger_tables=1 ledger_entries=6\nSUMMARY checks=619 failures=0 baseline_rejections=7\n",
+      "log": "candidate-run-3.txt",
+      "log_sha256": "c49c22a9479f9cfb369cbb6196f40b6bbc637aa752720948f42a4e64bb4ba2a4"
+    }
+  ],
+  "deterministic_output": true,
+  "all_runs_exit_zero": true,
+  "consumed_sha256_before": {
+    "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\Stress test doc\\fix-proposals\\alpha-readers\\proposal_tests.lua.txt": "93cf0042e567d8dfde21e5b96ccc574f2cec11fc884f694d419cb1e350282c01",
+    "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\07\\01a1b5b8-1789-7050-b49c-88d0a742e874\\fix-proposals-20261107T122821Z\\baseline\\Bars\\Blizzard.lua": "afea5e7b59d545a6790f1b7520684a05290a5e961369a6d3c7a652f2fa9bbff6",
+    "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\07\\01a1b5b8-1789-7050-b49c-88d0a742e874\\fix-proposals-20261107T122821Z\\baseline\\Bars\\BadgeHost.lua": "414f79c0c635503bc0491f77fd1fe4731f93c5e551c4c30b40ad834e882aa6bf",
+    "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\07\\01a1b5b8-1789-7050-b49c-88d0a742e874\\fix-proposals-20261107T122821Z\\baseline\\Core\\ButtonFX\\Cast.lua": "77e189a80d832523145c464164db894155573388affa6dec8045f9966e50fbc1",
+    "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\07\\01a1b5b8-1789-7050-b49c-88d0a742e874\\fix-proposals-20261107T122821Z\\baseline\\Core\\ButtonFX\\Charges.lua": "b8b89cbb8cae5b273d369ebefd4e826c5cc455d2245b26f917088f4096fc1cdd",
+    "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\07\\01a1b5b8-1789-7050-b49c-88d0a742e874\\fix-proposals-20261107T122821Z\\baseline\\ExtraButtonSystem\\Engine\\Button.lua": "dcba48373be3b5675c25aa3a5671f2364660137951bdf559b0524589f58667ca",
+    "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\07\\01a1b5b8-1789-7050-b49c-88d0a742e874\\fix-proposals-20261107T122821Z\\baseline\\libs\\LibCustomGlow-1.0\\LibCustomGlow-1.0.lua": "e5ed4d1f3b5ab4bda75772cda846562cde0b929c8a3f302e91e4c5c47db91bb6",
+    "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\07\\01a1b5b8-1789-7050-b49c-88d0a742e874\\fix-proposals-20261107T122821Z\\candidates\\alpha-readers\\Bars\\Blizzard.lua": "2d32f3636f773d0d824fad0bfda6f76d42fd6d788b1ff63121f7ee84b1b44e94",
+    "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\07\\01a1b5b8-1789-7050-b49c-88d0a742e874\\fix-proposals-20261107T122821Z\\candidates\\alpha-readers\\Bars\\BadgeHost.lua": "c4fc487f45cda62e8a93932777f5478d08a9543658c456a5c6a67fb76bcf4616",
+    "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\07\\01a1b5b8-1789-7050-b49c-88d0a742e874\\fix-proposals-20261107T122821Z\\candidates\\alpha-readers\\Core\\ButtonFX\\Cast.lua": "ea8f5cc521d734e2010ea807c7ac1abc002a8938e4dcf00d0dae8f05c75d819b",
+    "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\07\\01a1b5b8-1789-7050-b49c-88d0a742e874\\fix-proposals-20261107T122821Z\\candidates\\alpha-readers\\Core\\ButtonFX\\Charges.lua": "e72a658b8a63c2b4a8f6064cd574383af9256d2635dac1dfe84a2b9984ad4f85",
+    "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\07\\01a1b5b8-1789-7050-b49c-88d0a742e874\\fix-proposals-20261107T122821Z\\candidates\\alpha-readers\\ExtraButtonSystem\\Engine\\Button.lua": "240f0d8136454dbd1a72647571b98372495cffcd2622e6dc835b38361ba5b796",
+    "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\07\\01a1b5b8-1789-7050-b49c-88d0a742e874\\fix-proposals-20261107T122821Z\\candidates\\alpha-readers\\libs\\LibCustomGlow-1.0\\LibCustomGlow-1.0.lua": "36cf701f99bb2ed2c0313605fd4b006eb3640fd53cfe8cd383bbe314b4a0b952",
+    "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\07\\01a1b5b8-1789-7050-b49c-88d0a742e874\\fix-proposals-20261107T122821Z\\baseline\\Core\\API\\Secrets.lua": "471a54aeb783e922ed7dccbe64d3a10c679a27e27a15bdaf3db4697400afccce",
+    "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\07\\01a1b5b8-1789-7050-b49c-88d0a742e874\\fix-proposals-20261107T122821Z\\baseline\\Bars\\Init.lua": "169e18d2f7b946ed41c1890828ede7ce0cec8a8d3041fccf23e11f5dc85dba38",
+    "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\07\\01a1b5b8-1789-7050-b49c-88d0a742e874\\fix-proposals-20261107T122821Z\\baseline\\libs\\LibCustomGlow-1.0\\LICENSE": "fe1c25533575333ef9934022382659bc0b470cef1fbb69ef0d45a9a52d2e9455"
+  },
+  "consumed_sha256_after": {
+    "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\Stress test doc\\fix-proposals\\alpha-readers\\proposal_tests.lua.txt": "93cf0042e567d8dfde21e5b96ccc574f2cec11fc884f694d419cb1e350282c01",
+    "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\07\\01a1b5b8-1789-7050-b49c-88d0a742e874\\fix-proposals-20261107T122821Z\\baseline\\Bars\\Blizzard.lua": "afea5e7b59d545a6790f1b7520684a05290a5e961369a6d3c7a652f2fa9bbff6",
+    "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\07\\01a1b5b8-1789-7050-b49c-88d0a742e874\\fix-proposals-20261107T122821Z\\baseline\\Bars\\BadgeHost.lua": "414f79c0c635503bc0491f77fd1fe4731f93c5e551c4c30b40ad834e882aa6bf",
+    "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\07\\01a1b5b8-1789-7050-b49c-88d0a742e874\\fix-proposals-20261107T122821Z\\baseline\\Core\\ButtonFX\\Cast.lua": "77e189a80d832523145c464164db894155573388affa6dec8045f9966e50fbc1",
+    "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\07\\01a1b5b8-1789-7050-b49c-88d0a742e874\\fix-proposals-20261107T122821Z\\baseline\\Core\\ButtonFX\\Charges.lua": "b8b89cbb8cae5b273d369ebefd4e826c5cc455d2245b26f917088f4096fc1cdd",
+    "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\07\\01a1b5b8-1789-7050-b49c-88d0a742e874\\fix-proposals-20261107T122821Z\\baseline\\ExtraButtonSystem\\Engine\\Button.lua": "dcba48373be3b5675c25aa3a5671f2364660137951bdf559b0524589f58667ca",
+    "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\07\\01a1b5b8-1789-7050-b49c-88d0a742e874\\fix-proposals-20261107T122821Z\\baseline\\libs\\LibCustomGlow-1.0\\LibCustomGlow-1.0.lua": "e5ed4d1f3b5ab4bda75772cda846562cde0b929c8a3f302e91e4c5c47db91bb6",
+    "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\07\\01a1b5b8-1789-7050-b49c-88d0a742e874\\fix-proposals-20261107T122821Z\\candidates\\alpha-readers\\Bars\\Blizzard.lua": "2d32f3636f773d0d824fad0bfda6f76d42fd6d788b1ff63121f7ee84b1b44e94",
+    "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\07\\01a1b5b8-1789-7050-b49c-88d0a742e874\\fix-proposals-20261107T122821Z\\candidates\\alpha-readers\\Bars\\BadgeHost.lua": "c4fc487f45cda62e8a93932777f5478d08a9543658c456a5c6a67fb76bcf4616",
+    "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\07\\01a1b5b8-1789-7050-b49c-88d0a742e874\\fix-proposals-20261107T122821Z\\candidates\\alpha-readers\\Core\\ButtonFX\\Cast.lua": "ea8f5cc521d734e2010ea807c7ac1abc002a8938e4dcf00d0dae8f05c75d819b",
+    "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\07\\01a1b5b8-1789-7050-b49c-88d0a742e874\\fix-proposals-20261107T122821Z\\candidates\\alpha-readers\\Core\\ButtonFX\\Charges.lua": "e72a658b8a63c2b4a8f6064cd574383af9256d2635dac1dfe84a2b9984ad4f85",
+    "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\07\\01a1b5b8-1789-7050-b49c-88d0a742e874\\fix-proposals-20261107T122821Z\\candidates\\alpha-readers\\ExtraButtonSystem\\Engine\\Button.lua": "240f0d8136454dbd1a72647571b98372495cffcd2622e6dc835b38361ba5b796",
+    "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\07\\01a1b5b8-1789-7050-b49c-88d0a742e874\\fix-proposals-20261107T122821Z\\candidates\\alpha-readers\\libs\\LibCustomGlow-1.0\\LibCustomGlow-1.0.lua": "36cf701f99bb2ed2c0313605fd4b006eb3640fd53cfe8cd383bbe314b4a0b952",
+    "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\07\\01a1b5b8-1789-7050-b49c-88d0a742e874\\fix-proposals-20261107T122821Z\\baseline\\Core\\API\\Secrets.lua": "471a54aeb783e922ed7dccbe64d3a10c679a27e27a15bdaf3db4697400afccce",
+    "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\07\\01a1b5b8-1789-7050-b49c-88d0a742e874\\fix-proposals-20261107T122821Z\\baseline\\Bars\\Init.lua": "169e18d2f7b946ed41c1890828ede7ce0cec8a8d3041fccf23e11f5dc85dba38",
+    "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\07\\01a1b5b8-1789-7050-b49c-88d0a742e874\\fix-proposals-20261107T122821Z\\baseline\\libs\\LibCustomGlow-1.0\\LICENSE": "fe1c25533575333ef9934022382659bc0b470cef1fbb69ef0d45a9a52d2e9455"
+  },
+  "consumed_source_drift": [],
+  "syntax": [
+    {
+      "path": "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\Stress test doc\\fix-proposals\\alpha-readers\\proposal_tests.lua.txt",
+      "exit": 0
+    },
+    {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\07\\01a1b5b8-1789-7050-b49c-88d0a742e874\\fix-proposals-20261107T122821Z\\candidates\\alpha-readers\\Bars\\Blizzard.lua",
+      "exit": 0
+    },
+    {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\07\\01a1b5b8-1789-7050-b49c-88d0a742e874\\fix-proposals-20261107T122821Z\\candidates\\alpha-readers\\Bars\\BadgeHost.lua",
+      "exit": 0
+    },
+    {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\07\\01a1b5b8-1789-7050-b49c-88d0a742e874\\fix-proposals-20261107T122821Z\\candidates\\alpha-readers\\Core\\ButtonFX\\Cast.lua",
+      "exit": 0
+    },
+    {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\07\\01a1b5b8-1789-7050-b49c-88d0a742e874\\fix-proposals-20261107T122821Z\\candidates\\alpha-readers\\Core\\ButtonFX\\Charges.lua",
+      "exit": 0
+    },
+    {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\07\\01a1b5b8-1789-7050-b49c-88d0a742e874\\fix-proposals-20261107T122821Z\\candidates\\alpha-readers\\ExtraButtonSystem\\Engine\\Button.lua",
+      "exit": 0
+    },
+    {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\07\\01a1b5b8-1789-7050-b49c-88d0a742e874\\fix-proposals-20261107T122821Z\\candidates\\alpha-readers\\libs\\LibCustomGlow-1.0\\LibCustomGlow-1.0.lua",
+      "exit": 0
+    }
+  ],
+  "readiness": {
+    "native_secure_vm_taint_pixels_fps": "not run",
+    "getter_operation_denial_grid_core_bling_extra_numeric_extra_duration": "unresolved; return guards cannot grant RequiresScriptObjectAlphaAccess",
+    "exact_unreadable_effective_alpha_appearance": "pending; retain prior appearance and retry existing paint, no invented alpha",
+    "winning_LibStub_owner": "must be the patched embedded minor20; an external winning25 remains unpatched; no arbitrary minor bump/global patch",
+    "glow_memory": "One persistent six-entry Lua alpha ledger per library-owned pooled glow frame, reused across pool lifecycle",
+    "shared_retry_coupled_gate": "Do not apply Shared cache/retry hunk alone while winning renderer is unfixed/unknown; it can repeat failing attempts on ordinary threat paints"
+  }
+}

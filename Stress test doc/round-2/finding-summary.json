@@ -1,0 +1,12 @@
+{
+  "groups": 25,
+  "categories": {
+    "reproduced active-source behavior / contract": 15,
+    "conditional": 4,
+    "API edge / ordinary reach unproved": 2,
+    "measured work / optimization candidate": 3,
+    "dormant legacy": 1
+  },
+  "nativeErrorsObserved": 0,
+  "newFixesApplied": 0
+}

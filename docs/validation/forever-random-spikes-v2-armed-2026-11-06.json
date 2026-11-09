@@ -1,0 +1,21 @@
+{
+  "scope": "Native watch arming proof only; native causal or optimization acceptance not claimed.",
+  "client": "Forever1.60.1 build70790",
+  "utc": "2026-11-06T16:29:31.9522635Z",
+  "durationSeconds": 600,
+  "thresholdMs": 200,
+  "observedChat": [
+    "FluxPerf Watching600s for frame gaps>=200ms and Flux callbacks>=10ms. Play normally; no profiler setting changed.",
+    "FXWATCH_VERSION2 0"
+  ],
+  "scriptProfile": 0,
+  "diagnosticVersion": 2,
+  "foregroundPreserved": true,
+  "captureSHA256": "67b589a8cb7e41670a1332404382d90f1681ca692e7889fd5d84783eec2d67f7",
+  "watchSourceNormalizedSHA256": "c9deea4aaee79e0bfe60e2344200fa238e6cc021f37169d26678d3fd1bf320e0",
+  "knownConfounds": [
+    "One PrintWindow screenshot just after arming; exclude immediate setup frames from causal interpretation.",
+    "Normal user play; not controlled matched baseline/candidate.",
+    "Other concurrent source changes may require loaded-source caution; no source reload requested while watch runs."
+  ]
+}

@@ -1,0 +1,71 @@
+{
+  "scope": "Source retention audit against the optimized main commit, not a native performance result. Changed bag and queue-eye paths are covered by their behavioral fixtures.",
+  "referenceCommit": "72fb194ffc79337a0c8f65591c9579f40be06ce2",
+  "normalization": "CRLF to LF only; selected regions include comments",
+  "regions": [
+    {
+      "path": "Bars/ProgramFace.lua",
+      "startMarker": null,
+      "endMarker": null,
+      "optimizedMainSha256": "af75d537203c436f97949fea6de6c5d8c1213924809b7c47fc741969eebf3ddd",
+      "currentSha256": "af75d537203c436f97949fea6de6c5d8c1213924809b7c47fc741969eebf3ddd",
+      "identical": true
+    },
+    {
+      "path": "Core/Engine/Context.lua",
+      "startMarker": null,
+      "endMarker": null,
+      "optimizedMainSha256": "67b4063ebd6c71ef2724dd8d4a19bf30480a40320475240da832e79e3f112ef7",
+      "currentSha256": "67b4063ebd6c71ef2724dd8d4a19bf30480a40320475240da832e79e3f112ef7",
+      "identical": true
+    },
+    {
+      "path": "Core/Engine/Restricted.lua",
+      "startMarker": null,
+      "endMarker": null,
+      "optimizedMainSha256": "ee811112e2be9a9f65f91856ea124f22652d8ada552867b966e44c12c3a7cc44",
+      "currentSha256": "ee811112e2be9a9f65f91856ea124f22652d8ada552867b966e44c12c3a7cc44",
+      "identical": true
+    },
+    {
+      "path": "StatusBars/FluxInfoFrame.lua",
+      "startMarker": null,
+      "endMarker": null,
+      "optimizedMainSha256": "d335f73a27d320c0281a7ba50e0fcee48c20ff4db01643a43a33b63c971ef456",
+      "currentSha256": "d335f73a27d320c0281a7ba50e0fcee48c20ff4db01643a43a33b63c971ef456",
+      "identical": true
+    },
+    {
+      "path": "Battlezonemap/FluxBattlefieldMap.lua",
+      "startMarker": null,
+      "endMarker": null,
+      "optimizedMainSha256": "cad3541c7d3e980b0f3c97b572c8555dfe08d99bbcfabec735fe27c5ae19b8df",
+      "currentSha256": "cad3541c7d3e980b0f3c97b572c8555dfe08d99bbcfabec735fe27c5ae19b8df",
+      "identical": true
+    },
+    {
+      "path": "UnitFrames/FluxUnitFrames_Shared.lua",
+      "startMarker": "-- UnitFrames/FluxUnitFrames_Shared.lua",
+      "endMarker": "-- Replaced by",
+      "optimizedMainSha256": "f5f57931c77d95d1a142b3b82cdd70f7f68e79151763a03565fe9518c68e4419",
+      "currentSha256": "f5f57931c77d95d1a142b3b82cdd70f7f68e79151763a03565fe9518c68e4419",
+      "identical": true
+    },
+    {
+      "path": "Minimap/FluxMinimap.lua",
+      "startMarker": "local ZONE_TEXT_PAD_RIGHT",
+      "endMarker": null,
+      "optimizedMainSha256": "d6c7ea1a3c9c3eadbbc9f2b0a5049aa1d880292e653fbf8281ec3c8a61e3fdd3",
+      "currentSha256": "d6c7ea1a3c9c3eadbbc9f2b0a5049aa1d880292e653fbf8281ec3c8a61e3fdd3",
+      "identical": true
+    },
+    {
+      "path": "Other/FluxChatColumnMicros.lua",
+      "startMarker": "local function CharacterPanelShown()",
+      "endMarker": "local function WatchCharacterFrame",
+      "optimizedMainSha256": "6abac50a8f4b879941c5cb266f1d5d8104b76b8f22cab1d89bd2a5282fd133be",
+      "currentSha256": "6abac50a8f4b879941c5cb266f1d5d8104b76b8f22cab1d89bd2a5282fd133be",
+      "identical": true
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "changeID": "COOLDOWN-PRESENCE-20261108",
+  "client": "Forever 1.60.1 build70862 interface16001",
+  "source": "User-synchronized Other/FluxCooldownDefaults.lua; hash recorded in comparison and copy reports",
+  "baseline": {
+    "nativeLayouts": [
+      "Modern",
+      "Classic",
+      "Gamepad"
+    ],
+    "active": "Modern",
+    "savedState": "version3 stage applied; FluxUI marker false after deliberate deletion",
+    "errors": 0
+  },
+  "candidate": {
+    "guardedReloadUTC": "2026-11-08T22:46:46.9551933Z",
+    "readOnlyScreenshotUTC": "2026-11-08T22:47:14.8709966Z",
+    "nativeLayouts": [
+      "Modern",
+      "Classic",
+      "Gamepad",
+      "FluxUI"
+    ],
+    "FluxUILayoutType": 2,
+    "active": "FluxUI",
+    "status": "applied; following player/class power until saved in Edit Mode",
+    "BugTabsSessionErrors": 0,
+    "tracker": {
+      "innerClampedToScreen": false,
+      "topGap": 0,
+      "verticalScroll": 0
+    },
+    "result": "PASS exercised missing-after-save creation and selection"
+  },
+  "secondReload": {
+    "result": "PASS",
+    "evidence": "cooldown-native-acceptance-2026-11-09.json",
+    "FluxUICount": 1,
+    "active": "FluxUI",
+    "BugTabsSessionErrors": 0
+  },
+  "input": "Verified Forever HWND/PID/path. Guarded PostMessage diagnostics/reload; no foreground, physical keyboard, mouse or clipboard control. Subsequent screenshot read-only after focus changed; diagnostic output visible.",
+  "preferences": "No profiler or cooldown master-enable preference changed; no saved-root reset",
+  "limits": "Full native combat, editing/custom-save preservation, four-group matched pixels, sustained latency/memory and other clients remain pending. Desktop lifecycle counts do not certify secure execution or FPS.",
+  "privateArtifacts": "Window screenshots and per-command guard metadata retained outside AddOns; account/character settings excluded from repository."
+}

@@ -1,0 +1,64 @@
+{
+  "capturedUTC": "2026-11-07T15:48:27.302156+00:00",
+  "scope": "Four independent Shared/Party PvP and existing-fixture changes preserved; current complete suite stable before/after,7focused commands and DOM04 bodies rechecked. No audit/team code edits.",
+  "currentSuite": "current-suite.json",
+  "testsPass": 232,
+  "testsFail": 0,
+  "syntaxFiles": 896,
+  "knownBeforeAfterCurrentLuaDrift": [],
+  "probeExit": 0,
+  "affectedProbe": "concurrent-review/results.json",
+  "currentSuiteStability": "current-suite-stability.json",
+  "focusedCommandsPassed": 7,
+  "newFaultEstablishedInPvpDelta": false,
+  "DOM04Bodies": [
+    {
+      "body": "portrait",
+      "initialNormalizedSHA256": "9b34f4c031f69154f244e4e1bce3699e10eaea0d9c271bafbf807eff11a4712f",
+      "currentNormalizedSHA256": "9b34f4c031f69154f244e4e1bce3699e10eaea0d9c271bafbf807eff11a4712f",
+      "unchanged": true
+    },
+    {
+      "body": "threatRaise",
+      "initialNormalizedSHA256": "8fe98a8415c7d95cf9d25412a0350a0a6e5bcfe06c3ae0be6468077b4d88e97e",
+      "currentNormalizedSHA256": "8fe98a8415c7d95cf9d25412a0350a0a6e5bcfe06c3ae0be6468077b4d88e97e",
+      "unchanged": true
+    }
+  ],
+  "knownIndependentChanges": [
+    {
+      "path": "UnitFrames/FluxUnitFrames_Party.lua",
+      "baselineSHA256": "ffbf502561fdbc94924563689d33a87700f116ee84e2fbcc16236e9639fb4568",
+      "currentSHA256": "ac0f1b747d7281852a8c2bf7fa9059a073f600869bffd047fa5f55a8feedabbc",
+      "patch": "UnitFrames_FluxUnitFrames_Party.lua-ac0f1b747d72.patch",
+      "attribution": "Independent worktree change, not issued by this audit/team; preserved",
+      "review": "Independent shared/party PvP badge presentation/routing and indicator fixtures changed. Current source review/probes are separate; native visual/secret permission remains untested."
+    },
+    {
+      "path": "UnitFrames/FluxUnitFrames_Shared.lua",
+      "baselineSHA256": "8453242b58b9f2261e117a94d83bc8d9eedc76900ceab7b87f14331c43b65db1",
+      "currentSHA256": "001c9471de765d1a87d112a81210890754c93e0e2c6e9225633e29d9ace66312",
+      "patch": "UnitFrames_FluxUnitFrames_Shared.lua-001c9471de76.patch",
+      "attribution": "Independent worktree change, not issued by this audit/team; preserved",
+      "review": "Independent shared/party PvP badge presentation/routing and indicator fixtures changed. Current source review/probes are separate; native visual/secret permission remains untested."
+    },
+    {
+      "path": "tests/raid_party_frames.lua",
+      "baselineSHA256": "0bcaff1bf094aec318612c6243c3e86144318c4d8eb090956d4c0ed695da9411",
+      "currentSHA256": "b8af0cfde2f043d14d2e868e6ca8f6a43f7c8aaf8fc98d0e798877d92ce96129",
+      "patch": "tests_raid_party_frames.lua-b8af0cfde2f0.patch",
+      "attribution": "Independent worktree change, not issued by this audit/team; preserved",
+      "review": "Independent shared/party PvP badge presentation/routing and indicator fixtures changed. Current source review/probes are separate; native visual/secret permission remains untested."
+    },
+    {
+      "path": "tests/unit_indicator_layout.lua",
+      "baselineSHA256": "83e374263c24e5087babe2585999d0be159957cb47a31b405bcf00b1e7d1d18c",
+      "currentSHA256": "ef558111e9363c5e14618640e905c333d44f66255b01be7c8d5aaf5db7451c69",
+      "patch": "tests_unit_indicator_layout.lua-ef558111e936.patch",
+      "attribution": "Independent worktree change, not issued by this audit/team; preserved",
+      "review": "Independent shared/party PvP badge presentation/routing and indicator fixtures changed. Current source review/probes are separate; native visual/secret permission remains untested."
+    }
+  ],
+  "baselineRetained": true,
+  "nativeLimits": "Native secure delegate/secret wrapping/rendering and Live helper equivalence are not accepted by model results."
+}

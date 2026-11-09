@@ -1,0 +1,75 @@
+{
+  "capturedUTC": "2026-11-07T19:19:08.352645+00:00",
+  "scope": "Actual complete Bars.State and SlotMath plus production Watch callback and Hosts.IndexSlot extracted unmodified; native secure VM/input/FPS not executed. Supported Forever and explicitly unsupported fallback separate.",
+  "sourcesBefore": [
+    {
+      "path": "Bars/Hosts.lua",
+      "sha256": "b560ada112381b34057426ccfc5b9d900a169fc330956e45746433f687239ea9"
+    },
+    {
+      "path": "Bars/State.lua",
+      "sha256": "52f005c429b03e4d04495a6183f200323fa71e71ecd0127296b29f4aa0a9dfef"
+    },
+    {
+      "path": "Bars/Watch.lua",
+      "sha256": "2a5e85c6a99a579d566f9728552cec22120dbf363a2e9fa1a4f0cbe9e76eb564"
+    },
+    {
+      "path": "Bars/SlotMath.lua",
+      "sha256": "b202149ea5bb73adc23124c7bf6b60221e729d42dc381b9f28176404e4042cb8"
+    },
+    {
+      "path": "Stress test doc\\roadmap-fixes\\binding\\consumer-index.lua.txt",
+      "sha256": "508ac2f5b96174d7483ff0c509ed25a4b3deacadb8aa818d1477f0aacddc61f9"
+    }
+  ],
+  "sourcesAfter": [
+    {
+      "path": "Bars/Hosts.lua",
+      "sha256": "b560ada112381b34057426ccfc5b9d900a169fc330956e45746433f687239ea9"
+    },
+    {
+      "path": "Bars/State.lua",
+      "sha256": "52f005c429b03e4d04495a6183f200323fa71e71ecd0127296b29f4aa0a9dfef"
+    },
+    {
+      "path": "Bars/Watch.lua",
+      "sha256": "2a5e85c6a99a579d566f9728552cec22120dbf363a2e9fa1a4f0cbe9e76eb564"
+    },
+    {
+      "path": "Bars/SlotMath.lua",
+      "sha256": "b202149ea5bb73adc23124c7bf6b60221e729d42dc381b9f28176404e4042cb8"
+    },
+    {
+      "path": "Stress test doc\\roadmap-fixes\\binding\\consumer-index.lua.txt",
+      "sha256": "508ac2f5b96174d7483ff0c509ed25a4b3deacadb8aa818d1477f0aacddc61f9"
+    }
+  ],
+  "runs": [
+    {
+      "label": "checkpoint-baseline",
+      "exitCode": 1,
+      "stdout": "CONSUMER|classic_era|paging=true|combat=false|pattern=duplicate-held|edges=1024|visits=0|removes=0|logical_moves=0|attribute_writes=0\nCONSUMER|classic_era|paging=true|combat=false|pattern=gray-chords|edges=1024|visits=0|removes=0|logical_moves=0|attribute_writes=0\n",
+      "stderr": "lua: ...ss test doc\\roadmap-fixes\\binding\\consumer-index.lua.txt:7: only changed memberships are mutated: removes=1024 moves=1\nstack traceback:\n\t[C]: in function 'assert'\n\t...ss test doc\\roadmap-fixes\\binding\\consumer-index.lua.txt:7: in local 'check'\n\t...ss test doc\\roadmap-fixes\\binding\\consumer-index.lua.txt:59: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "label": "fixed-1",
+      "exitCode": 0,
+      "stdout": "CONSUMER|classic_era|paging=true|combat=false|pattern=duplicate-held|edges=1024|visits=0|removes=0|logical_moves=0|attribute_writes=0\nCONSUMER|classic_era|paging=true|combat=false|pattern=gray-chords|edges=1024|visits=0|removes=0|logical_moves=0|attribute_writes=0\nCONSUMER|classic_era|paging=true|combat=true|pattern=duplicate-held|edges=1024|visits=58368|removes=38|logical_moves=38|attribute_writes=0\nCONSUMER|classic_era|paging=true|combat=true|pattern=gray-chords|edges=1024|visits=58368|removes=24320|logical_moves=24320|attribute_writes=0\nCONSUMER|classic_anniversary|paging=true|combat=false|pattern=duplicate-held|edges=1024|visits=0|removes=0|logical_moves=0|attribute_writes=0\nCONSUMER|classic_anniversary|paging=true|combat=false|pattern=gray-chords|edges=1024|visits=0|removes=0|logical_moves=0|attribute_writes=0\nCONSUMER|classic_anniversary|paging=true|combat=true|pattern=duplicate-held|edges=1024|visits=58368|removes=38|logical_moves=38|attribute_writes=0\nCONSUMER|classic_anniversary|paging=true|combat=true|pattern=gray-chords|edges=1024|visits=58368|removes=24320|logical_moves=24320|attribute_writes=0\nCONSUMER|live|paging=true|combat=false|pattern=duplicate-held|edges=1024|visits=0|removes=0|logical_moves=0|attribute_writes=0\nCONSUMER|live|paging=true|combat=false|pattern=gray-chords|edges=1024|visits=0|removes=0|logical_moves=0|attribute_writes=0\nCONSUMER|live|paging=true|combat=true|pattern=duplicate-held|edges=1024|visits=58368|removes=38|logical_moves=38|attribute_writes=0\nCONSUMER|live|paging=true|combat=true|pattern=gray-chords|edges=1024|visits=58368|removes=24320|logical_moves=24320|attribute_writes=0\nCONSUMER|forever|paging=true|combat=false|pattern=duplicate-held|edges=1024|visits=0|removes=0|logical_moves=0|attribute_writes=0\nCONSUMER|forever|paging=true|combat=false|pattern=gray-chords|edges=1024|visits=0|removes=0|logical_moves=0|attribute_writes=0\nCONSUMER|forever|paging=true|combat=true|pattern=duplicate-held|edges=1024|visits=58368|removes=38|logical_moves=38|attribute_writes=0\nCONSUMER|forever|paging=true|combat=true|pattern=gray-chords|edges=1024|visits=58368|removes=24320|logical_moves=24320|attribute_writes=0\nCONSUMER|forever|paging=false|combat=false|pattern=duplicate-held|edges=1024|visits=58368|removes=38|logical_moves=38|attribute_writes=1517568\nCONSUMER|forever|paging=false|combat=false|pattern=gray-chords|edges=1024|visits=58368|removes=24320|logical_moves=24320|attribute_writes=1517568\nCONSUMER|forever|paging=false|combat=true|pattern=duplicate-held|edges=1024|visits=58368|removes=38|logical_moves=38|attribute_writes=0\nCONSUMER|forever|paging=false|combat=true|pattern=gray-chords|edges=1024|visits=58368|removes=24320|logical_moves=24320|attribute_writes=0\nCONSUMER ACCEPTANCE|checks=330|host_visits=712704|membership_mutations=149226|logical_moves=149226|native=not-run\n",
+      "stderr": ""
+    },
+    {
+      "label": "fixed-2",
+      "exitCode": 0,
+      "stdout": "CONSUMER|classic_era|paging=true|combat=false|pattern=duplicate-held|edges=1024|visits=0|removes=0|logical_moves=0|attribute_writes=0\nCONSUMER|classic_era|paging=true|combat=false|pattern=gray-chords|edges=1024|visits=0|removes=0|logical_moves=0|attribute_writes=0\nCONSUMER|classic_era|paging=true|combat=true|pattern=duplicate-held|edges=1024|visits=58368|removes=38|logical_moves=38|attribute_writes=0\nCONSUMER|classic_era|paging=true|combat=true|pattern=gray-chords|edges=1024|visits=58368|removes=24320|logical_moves=24320|attribute_writes=0\nCONSUMER|classic_anniversary|paging=true|combat=false|pattern=duplicate-held|edges=1024|visits=0|removes=0|logical_moves=0|attribute_writes=0\nCONSUMER|classic_anniversary|paging=true|combat=false|pattern=gray-chords|edges=1024|visits=0|removes=0|logical_moves=0|attribute_writes=0\nCONSUMER|classic_anniversary|paging=true|combat=true|pattern=duplicate-held|edges=1024|visits=58368|removes=38|logical_moves=38|attribute_writes=0\nCONSUMER|classic_anniversary|paging=true|combat=true|pattern=gray-chords|edges=1024|visits=58368|removes=24320|logical_moves=24320|attribute_writes=0\nCONSUMER|live|paging=true|combat=false|pattern=duplicate-held|edges=1024|visits=0|removes=0|logical_moves=0|attribute_writes=0\nCONSUMER|live|paging=true|combat=false|pattern=gray-chords|edges=1024|visits=0|removes=0|logical_moves=0|attribute_writes=0\nCONSUMER|live|paging=true|combat=true|pattern=duplicate-held|edges=1024|visits=58368|removes=38|logical_moves=38|attribute_writes=0\nCONSUMER|live|paging=true|combat=true|pattern=gray-chords|edges=1024|visits=58368|removes=24320|logical_moves=24320|attribute_writes=0\nCONSUMER|forever|paging=true|combat=false|pattern=duplicate-held|edges=1024|visits=0|removes=0|logical_moves=0|attribute_writes=0\nCONSUMER|forever|paging=true|combat=false|pattern=gray-chords|edges=1024|visits=0|removes=0|logical_moves=0|attribute_writes=0\nCONSUMER|forever|paging=true|combat=true|pattern=duplicate-held|edges=1024|visits=58368|removes=38|logical_moves=38|attribute_writes=0\nCONSUMER|forever|paging=true|combat=true|pattern=gray-chords|edges=1024|visits=58368|removes=24320|logical_moves=24320|attribute_writes=0\nCONSUMER|forever|paging=false|combat=false|pattern=duplicate-held|edges=1024|visits=58368|removes=38|logical_moves=38|attribute_writes=1517568\nCONSUMER|forever|paging=false|combat=false|pattern=gray-chords|edges=1024|visits=58368|removes=24320|logical_moves=24320|attribute_writes=1517568\nCONSUMER|forever|paging=false|combat=true|pattern=duplicate-held|edges=1024|visits=58368|removes=38|logical_moves=38|attribute_writes=0\nCONSUMER|forever|paging=false|combat=true|pattern=gray-chords|edges=1024|visits=58368|removes=24320|logical_moves=24320|attribute_writes=0\nCONSUMER ACCEPTANCE|checks=330|host_visits=712704|membership_mutations=149226|logical_moves=149226|native=not-run\n",
+      "stderr": ""
+    },
+    {
+      "label": "fixed-3",
+      "exitCode": 0,
+      "stdout": "CONSUMER|classic_era|paging=true|combat=false|pattern=duplicate-held|edges=1024|visits=0|removes=0|logical_moves=0|attribute_writes=0\nCONSUMER|classic_era|paging=true|combat=false|pattern=gray-chords|edges=1024|visits=0|removes=0|logical_moves=0|attribute_writes=0\nCONSUMER|classic_era|paging=true|combat=true|pattern=duplicate-held|edges=1024|visits=58368|removes=38|logical_moves=38|attribute_writes=0\nCONSUMER|classic_era|paging=true|combat=true|pattern=gray-chords|edges=1024|visits=58368|removes=24320|logical_moves=24320|attribute_writes=0\nCONSUMER|classic_anniversary|paging=true|combat=false|pattern=duplicate-held|edges=1024|visits=0|removes=0|logical_moves=0|attribute_writes=0\nCONSUMER|classic_anniversary|paging=true|combat=false|pattern=gray-chords|edges=1024|visits=0|removes=0|logical_moves=0|attribute_writes=0\nCONSUMER|classic_anniversary|paging=true|combat=true|pattern=duplicate-held|edges=1024|visits=58368|removes=38|logical_moves=38|attribute_writes=0\nCONSUMER|classic_anniversary|paging=true|combat=true|pattern=gray-chords|edges=1024|visits=58368|removes=24320|logical_moves=24320|attribute_writes=0\nCONSUMER|live|paging=true|combat=false|pattern=duplicate-held|edges=1024|visits=0|removes=0|logical_moves=0|attribute_writes=0\nCONSUMER|live|paging=true|combat=false|pattern=gray-chords|edges=1024|visits=0|removes=0|logical_moves=0|attribute_writes=0\nCONSUMER|live|paging=true|combat=true|pattern=duplicate-held|edges=1024|visits=58368|removes=38|logical_moves=38|attribute_writes=0\nCONSUMER|live|paging=true|combat=true|pattern=gray-chords|edges=1024|visits=58368|removes=24320|logical_moves=24320|attribute_writes=0\nCONSUMER|forever|paging=true|combat=false|pattern=duplicate-held|edges=1024|visits=0|removes=0|logical_moves=0|attribute_writes=0\nCONSUMER|forever|paging=true|combat=false|pattern=gray-chords|edges=1024|visits=0|removes=0|logical_moves=0|attribute_writes=0\nCONSUMER|forever|paging=true|combat=true|pattern=duplicate-held|edges=1024|visits=58368|removes=38|logical_moves=38|attribute_writes=0\nCONSUMER|forever|paging=true|combat=true|pattern=gray-chords|edges=1024|visits=58368|removes=24320|logical_moves=24320|attribute_writes=0\nCONSUMER|forever|paging=false|combat=false|pattern=duplicate-held|edges=1024|visits=58368|removes=38|logical_moves=38|attribute_writes=1517568\nCONSUMER|forever|paging=false|combat=false|pattern=gray-chords|edges=1024|visits=58368|removes=24320|logical_moves=24320|attribute_writes=1517568\nCONSUMER|forever|paging=false|combat=true|pattern=duplicate-held|edges=1024|visits=58368|removes=38|logical_moves=38|attribute_writes=0\nCONSUMER|forever|paging=false|combat=true|pattern=gray-chords|edges=1024|visits=58368|removes=24320|logical_moves=24320|attribute_writes=0\nCONSUMER ACCEPTANCE|checks=330|host_visits=712704|membership_mutations=149226|logical_moves=149226|native=not-run\n",
+      "stderr": ""
+    }
+  ],
+  "sourcePreserved": true
+}

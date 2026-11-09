@@ -1,0 +1,49 @@
+local zoneLayoutWatcher = nil
+
+local function RefreshEmbeddedMapLayout(mapFrame)
+    if not state.isActive or not mapFrame then
+        return
+    end
+    local mapID = GetPlayerDisplayMapID()
+    if ApplyMapSetMapIDSilent(mapFrame, mapID) and state.parentFrame then
+        ApplyMapScaling(mapFrame, CONFIG.SCALE_X, CONFIG.SCALE_Y, false)
+    end
+end
+
+local function OnZoneLayoutWatcherEvent()
+    if not state.isActive then
+        return
+    end
+    local mapFrame = state.mapFrame
+    if not mapFrame then
+        return
+    end
+    if C_Timer and C_Timer.After then
+        C_Timer.After(0, function()
+            RefreshEmbeddedMapLayout(mapFrame)
+        end)
+    else
+        RefreshEmbeddedMapLayout(mapFrame)
+    end
+end
+
+local function EnsureZoneLayoutWatcher()
+    if zoneLayoutWatcher then
+        return
+    end
+    zoneLayoutWatcher = CreateFrame("Frame")
+    zoneLayoutWatcher:RegisterEvent("PLAYER_ENTERING_WORLD")
+    zoneLayoutWatcher:RegisterEvent("ZONE_CHANGED_NEW_AREA")
+    zoneLayoutWatcher:RegisterEvent("NEW_WMO_CHUNK")
+    zoneLayoutWatcher:SetScript("OnEvent", OnZoneLayoutWatcherEvent)
+end
+
+local function StopZoneLayoutWatcher()
+    if not zoneLayoutWatcher then
+        return
+    end
+    zoneLayoutWatcher:UnregisterAllEvents()
+    zoneLayoutWatcher:SetScript("OnEvent", nil)
+    zoneLayoutWatcher = nil
+end
+

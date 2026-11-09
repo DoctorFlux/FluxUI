@@ -1,0 +1,46 @@
+{
+  "pins": [
+    {
+      "branch": "classic_anniversary",
+      "sha": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49"
+    },
+    {
+      "branch": "classic_era",
+      "sha": "4192ac60067fc55566182291bc67c85dd9b6794d"
+    },
+    {
+      "branch": "forever",
+      "sha": "9dc84f0d3bbae1768ac3405b3716000bd93eda06"
+    },
+    {
+      "branch": "live",
+      "sha": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f"
+    }
+  ],
+  "geometryContracts": [
+    {
+      "name": "UnitHealPredictionCalculatorAPIDocumentation.lua",
+      "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "gitBlob": "9c7649e2d5b0d59a453d98eac14089541b166d2a",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_APIDocumentationGenerated/UnitHealPredictionCalculatorAPIDocumentation.lua"
+    },
+    {
+      "name": "UnitHealPredictionCalculatorSharedDocumentation.lua",
+      "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "gitBlob": "821b84bd32f9a401d8f84d65a9cdd4040604ccbb",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_APIDocumentationGenerated/UnitHealPredictionCalculatorSharedDocumentation.lua"
+    },
+    {
+      "name": "SimpleStatusBarAPIDocumentation.lua",
+      "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "gitBlob": "99dd0b3ad25e5bdf33bfeb9d694652b6badfeb90",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleStatusBarAPIDocumentation.lua"
+    },
+    {
+      "name": "SimpleTextureBaseAPIDocumentation.lua",
+      "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "gitBlob": "adc0caeaeba3c941e9c2d31c9fa644d102054edf",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleTextureBaseAPIDocumentation.lua"
+    }
+  ]
+}

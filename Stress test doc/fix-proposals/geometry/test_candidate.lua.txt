@@ -1,0 +1,210 @@
+-- Source-parametric production painter replay. Candidate assertions are used
+-- unchanged against both baseline (must reject) and proposed source (must pass).
+local sourcePath=assert(arg[1],"source path required")
+local threatOnly=arg[2]=="--threat-only"
+local checks,failures,pending,scenarios=0,0,0,0
+local function check(ok,label)checks=checks+1;if not ok then failures=failures+1;if failures<12 then print("FAIL|"..label)end end end
+local function near(a,b)return type(a)=="number"and math.abs(a-b)<.000001 end
+local file=assert(io.open(sourcePath,"rb"));local source=file:read("*a"):gsub("\r\n","\n");file:close()
+local function section(first,last)
+    local a=assert(source:find(first,1,true),first);local b=assert(source:find(last,a+#first,true),last)
+    return source:sub(a,b-1)
+end
+local function boot(client,width,health,absorb,opaque,layered)
+    local e=setmetatable({},{__index=_G});e._G=e
+    local s={width=width,health=health,maximum=100,absorb=absorb,opaque=opaque,ops=0,reads=0,missingReads=0,
+        forbidden=0,dead=false,createdFrames=0,newTimers=0,newEvents=0,newHooks=0,values={},showHeal=true,showAbsorb=true}
+    local function secret(v)
+        local t=setmetatable({opaque=true},{__lt=function()error("MODEL_OPAQUE_COMPARE",2)end,__le=function()error("MODEL_OPAQUE_COMPARE",2)end,
+            __mul=function()error("MODEL_OPAQUE_ARITHMETIC",2)end,__div=function()error("MODEL_OPAQUE_ARITHMETIC",2)end})
+        s.values[t]=v;return t
+    end
+    local function decode(v)return s.values[v]or v end
+    s.secret=secret;s.decode=decode
+    e.API={isMidnight=client=="live"or client=="forever",IsSecretValue=function(v)return type(v)=="table"and rawget(v,"opaque")==true end,
+        CanAccessValue=function()return true end,SafeGetNumber=function(v,fallback)return type(v)=="number"and v or fallback or 0 end,
+        UnitGetDetailedHealPrediction=function()end,
+        SafeUnitGetIncomingHeals=function(_,who)return layered and(who and 7 or 12)or 0 end,
+        SafeUnitGetTotalAbsorbs=function()return s.absorb end,SafeUnitGetTotalHealAbsorbs=function()return layered and 6 or 0 end}
+    e.UF={};e.SHIELD_OVERLAY_TILE=32;e.ABSORB_OVERLAY_TILE=32;e.MAX_INCOMING_HEAL_OVERFLOW=1
+    e.UnitIsDeadOrGhost=function()return s.dead end;e.UnitGetTotalAbsorbs=function()return s.absorb end
+    e.FluxUnitFrames_ShouldShowHealPrediction=function()return s.showHeal end
+    e.FluxUnitFrames_ShouldShowAbsorbs=function()return s.showAbsorb end
+    e.CreateFrame=function()s.createdFrames=s.createdFrames+1 end
+    e.C_Timer={After=function()s.newTimers=s.newTimers+1 end}
+    e.ValueIsSecret=assert(load(section("local function ValueIsSecret(value)","local function PlayerDeadOrGhost(unit)").."\nreturn ValueIsSecret","@ValueIsSecret","t",e))()
+    local body=section("local function AnchorOverlayToStatusBarFill(bar, overlay)","-- AFK: safe boolean + display rules")
+    assert(load(body,"@"..sourcePath,"t",e))()
+    local methods={}
+    local function object(name,parent)
+        return setmetatable({name=name,parent=parent,points={},shown=true,writes=0,width=nil,height=32},{__index=methods})
+    end
+    local function noSecret(v)
+        if e.API.IsSecretValue(v)then s.forbidden=s.forbidden+1;error("MODEL_SECRET_GEOMETRY_WRITE",3)end
+    end
+    function methods:GetParent()return self.parent end
+    function methods:GetWidth()s.reads=s.reads+1;if self.name=="health"then return s.opaque and secret(s.width)or s.width end;return self.width or s.width end
+    function methods:GetHeight()return self.height end
+    function methods:GetMinMaxValues()return 0,self.name=="health"and s.maximum or self.maximum or s.maximum end
+    function methods:GetValue()return self.name=="health"and(s.drawnHealth or s.health)or self.value end
+    function methods:GetStatusBarTexture()self.texture=self.texture or {owner=self};return self.texture end
+    function methods:SetMinMaxValues(a,b)self.minimum,self.maximum=a,b;self.writes=self.writes+1;s.ops=s.ops+1 end
+    function methods:SetValue(v)self.value=v;self.writes=self.writes+1;s.ops=s.ops+1 end
+    function methods:SetWidth(v)noSecret(v);self.width=v;s.ops=s.ops+1 end
+    function methods:SetHeight(v)noSecret(v);self.height=v;s.ops=s.ops+1 end
+    function methods:ClearAllPoints()self.points={};s.ops=s.ops+1 end
+    function methods:SetPoint(point,relative,rpoint,x,y)noSecret(x);noSecret(y);self.points[point]={relative=relative,rpoint=rpoint,x=x,y=y};s.ops=s.ops+1 end
+    function methods:SetAllPoints(relative)self.allPoints=relative;s.ops=s.ops+1 end
+    function methods:SetShown(v)self.shown=v;s.ops=s.ops+1 end
+    function methods:Show()self.shown=true;s.ops=s.ops+1 end
+    function methods:Hide()self.shown=false;s.ops=s.ops+1 end
+    function methods:IsShown()return self.shown end
+    local h=object("health");local calc={mode=0}
+    function calc:GetIncomingHeals()return layered and 12 or 0,layered and 7 or 0,layered and 5 or 0,false end
+    function calc:GetHealAbsorbs()return layered and 6 or 0,false end
+    function calc:SetDamageAbsorbClampMode(mode)self.mode=mode end
+    function calc:GetDamageAbsorbs()
+        local amount=math.min(s.absorb,self.mode==1 and(s.maximum-s.health)or s.maximum)
+        return s.opaque and secret(amount)or amount,false
+    end
+    function calc:GetMissingHealth()s.missingReads=s.missingReads+1;return s.opaque and secret(s.maximum-s.health)or(s.maximum-s.health)end
+    h.healCalc=calc
+    local frame={unit="player",Health=h,myHealPredictionBar=object("my",h),otherHealPredictionBar=object("other",h),
+        totalAbsorbBar=object("forward",h),absorbOverflow=object("overflow",h),overAbsorbGlow=object("glow",h)}
+    if layered then
+        frame.healAbsorbBar=object("antiheal",h)
+        frame.healAbsorbBar.healAbsorbLeftShadow=object("leftshadow",h)
+        frame.healAbsorbBar.healAbsorbRightShadow=object("rightshadow",h)
+        frame.overHealAbsorbGlow=object("antihealglow",h)
+    end
+    s.frame,s.calc,s.env=frame,calc,e
+    function s.paint()return xpcall(function()e.UF.UpdateHealPrediction(frame)end,debug.traceback)end
+    function s.forwardPixels()
+        local b=frame.totalAbsorbBar
+        if not b.shown or s.width==0 then return 0 end
+        if not e.API.isMidnight then
+            local left=b.points.TOPLEFT;local right=b.points.BOTTOMRIGHT
+            return left and right and(s.width+right.x-left.x)or 0
+        end
+        local span=b.width
+        if b.points.BOTTOMRIGHT and b.points.BOTTOMRIGHT.relative==h then span=s.width*(1-(s.drawnHealth or s.health)/s.maximum)end
+        span=span or 0
+        local max=decode(b.maximum);local value=decode(b.value)
+        if span<=0 or not max or max<=0 then return 0 end
+        return span*math.max(0,math.min(value,max))/max
+    end
+    return s
+end
+
+-- Independent geometric expectation: the forward shield occupies its clamped
+-- amount / maximum health times the full health-bar width. Native engine model
+-- resolves candidate anchor spans; production Lua never decodes opaque values.
+if not threatOnly then
+local publicCases,opaqueCases,opaqueRejected=0,0,0
+for _,client in ipairs({"live","forever"})do
+    for _,width in ipairs({0,35,100,250,960})do
+        for _,health in ipairs({0,1,25,50,99,100})do
+            for _,absorb in ipairs({0,1,10,100,250})do
+                for _,opaque in ipairs({false,true})do
+                    local s=boot(client,width,health,absorb,opaque,false)
+                    local ok,err=s.paint();scenarios=scenarios+1
+                    check(ok,client.." painter must accept "..(opaque and"opaque"or"public").." geometry")
+                    if not ok and scenarios==1 then print("FIRST_PAINTER_ERROR|"..err:gsub("\n"," | "))end
+                    if ok then
+                        local want=width*math.min(absorb,100-health)/100
+                        check(near(s.forwardPixels(),want),"forward filled extent preserved")
+                        check(s.forbidden==0,"no opaque SetWidth/SetPoint/SetHeight")
+                        check(s.createdFrames+s.newTimers+s.newEvents+s.newHooks==0,"no new work owners")
+                        if width==0 and not opaque then check(not s.frame.totalAbsorbBar.shown,"public zero-width visibility preserved")end
+                        if width>0 then
+                            check(s.frame.absorbOverflow.maximum==100,"overflow normalization unchanged")
+                            local ov=s.frame.absorbOverflow.value
+                            check((s.decode(ov)or 0)==math.min(absorb,100),"overflow amount/clamp unchanged")
+                        end
+                    elseif opaque then opaqueRejected=opaqueRejected+1 end
+                    if opaque then opaqueCases=opaqueCases+1 else publicCases=publicCases+1 end
+                end
+            end
+        end
+    end
+end
+print(("RESULT|forward_geometry_grid|public_cases=%d|opaque_cases=%d|opaque_rejections=%d|scenarios=%d"):format(publicCases,opaqueCases,opaqueRejected,scenarios))
+
+-- Public antiheal/heal layers remain live; neither their orientation nor native
+-- values are rewritten by this forward-absorb change. Classic code is unchanged.
+for _,client in ipairs({"era","anniversary","live","forever"})do
+    local s=boot(client,246,50,70,false,true);local ok,err=s.paint()
+    check(ok,"public heal/antiheal layered painter "..client)
+    check(s.frame.myHealPredictionBar.shown and s.frame.otherHealPredictionBar.shown,"incoming heal layers stay shown")
+    check(s.frame.healAbsorbBar.shown==(client=="live"or client=="forever"),"antiheal retains existing client reduction rule")
+    check(s.forbidden==0 and s.createdFrames+s.newTimers+s.newEvents+s.newHooks==0,"layered paint adds no owners or forbidden geometry")
+    s.dead=true;s.paint();check(not s.frame.totalAbsorbBar.shown,"dead absorb hidden")
+    s.dead=false;s.showHeal=false;s.showAbsorb=false;s.paint()
+    check(not s.frame.myHealPredictionBar.shown and not s.frame.totalAbsorbBar.shown,"disabled heal and absorb options clear layers")
+    print("RESULT|layer_controls_"..client.."|layered_public=PASS|dead=PASS|disabled=PASS")
+end
+
+-- Rebind and current health/width changes must not leave a cached geometry.
+do
+    local s=boot("forever",250,50,20,true,false);local all=true
+    for i=1,1000 do
+        s.health=i%101;s.width=35+i%926;s.absorb=i%251;s.frame.unit=i%2==0 and"target"or"focus"
+        local ok=s.paint();if not ok then all=false;break end
+        check(near(s.forwardPixels(),s.width*math.min(s.absorb,100-s.health)/100),"rebind/change native span stays current")
+    end
+    check(all,"1000 current-value/rebind paints accept opaque geometry")
+    print("RESULT|rebind_updates|updates_requested=1000|all_accepted="..tostring(all))
+end
+
+-- Unsupported API is explicit, not replaced with a fabricated max health. The
+-- documented current calculator has this method; native presence is still open.
+do
+    local compatible=boot("forever",250,50,20,false,false);compatible.calc.GetMissingHealth=nil
+    local compatibleOK=compatible.paint()
+    check(compatibleOK and near(compatible.forwardPixels(),50)and compatible.missingReads==0,"missing method retains original public geometry path")
+    print("RESULT|older_public_calculator|original_public_path_preserved="..tostring(compatibleOK))
+    local s=boot("forever",250,50,20,true,false);s.calc.GetMissingHealth=nil
+    local ok,err=s.paint()
+    local missing=not ok and err:find("GetMissingHealth",1,true)~=nil
+    check(missing,"opaque geometry with missing native capability is explicitly unsupported")
+    print("LIMIT|missing_calculator_method|explicit_unsupported="..tostring(missing).."|accepted=false")
+    -- Also retain the older, separately unresolved UpdateFillPosition boundary.
+    s=boot("forever",250,50,20,true,true);ok,err=s.paint()
+    if not ok and err:find("MODEL_SECRET_GEOMETRY_WRITE",1,true)then pending=pending+1 end
+    print("LIMIT|other_prediction_bar_secret_width|still_unresolved="..tostring(not ok))
+end
+end -- geometry scenarios; independently runnable ALPHA-06 follows
+
+-- ALPHA-06 supplied hunk: failed recolor cannot commit a new cache band; a
+-- subsequent identical request retries, nil-return success commits, then skips.
+do
+    local e=setmetatable({},{__index=_G});e._G=e;e.THREAT_GLOW_BAND=5
+    local attempts,fail,raised,stops=0,true,0,0
+    local overlay={SetFrameLevel=function()raised=raised+1 end,IsShown=function()return true end,Hide=function()stops=stops+1 end}
+    local shell={_fluxThreatGlowBand=1,_ButtonGlow=overlay,GetFrameLevel=function()return 10 end}
+    local lcg={ButtonGlow_Start=function(_,color,speed,level)
+        check(speed==.25 and level==16,"threat glow timing and level retained")
+        attempts=attempts+1;if fail then error("injected recolor failure")end
+        -- A successful nil return is the original library contract.
+    end,ButtonGlow_Stop=function()stops=stops+1 end}
+    e.LibStub=function(name)return name=="LibCustomGlow-1.0"and lcg or nil end
+    local fn=assert(load(section("local function ThreatBarGlowBandKey(color)","--- Same side as auras").."\nreturn ThreatBarUpdateGlow","@threat-cache","t",e))()
+    fn(shell,{1,0,0,1});check(shell._fluxThreatGlowBand==1,"failed glow preserves old band")
+    fail=false;fn(shell,{1,0,0,1});check(attempts==2 and shell._fluxThreatGlowBand~=1,"same band retries after failure and commits after success")
+    local before=attempts;fn(shell,{1,0,0,1});check(attempts==before,"successful unchanged band avoids duplicate start")
+    fn(shell,nil);check(shell._fluxThreatGlowBand==nil and stops>0,"no-color stop still clears cache")
+    print(("RESULT|threat_cache_commit|start_attempts=%d|raise_calls=%d|stop_calls=%d"):format(attempts,raised,stops))
+end
+-- A prediction-only event can observe a newer calculator health value while
+-- the already-painted health texture still represents the prior event epoch.
+-- This is a material counterexample to the native-span normalization proposal.
+if not threatOnly then
+do
+    local s=boot("forever",250,40,20,false,false);s.drawnHealth=60
+    local ok=s.paint();local observed=ok and s.forwardPixels()or -1
+    print(("LIMIT|desynchronized_health_fill|drawn_health=60|calculator_health=40|old_filled_extent=50|observed_filled_extent=%.8f|matches_existing=%s")
+        :format(observed,tostring(near(observed,50))))
+end
+end
+print(("RESULT|SUMMARY|checks=%d|failures=%d|pending_geometry_boundaries=%d"):format(checks,failures,pending))
+if failures>0 then os.exit(1)end

@@ -1,0 +1,634 @@
+{
+  "baseline": {
+    "head": "f1a3bc7488a904e075264794e080a00c8fceba23",
+    "tree": "8dbef40c11d122a47d238c0445e936d1894d28a8",
+    "reusedFullValidation": "docs/validation/pending-mail-full-2026-10-29.json",
+    "verifiedLuaFiles": 725,
+    "pass": 84,
+    "fail": 0,
+    "normalization": "CRLF to LF only",
+    "sourceHashes": {
+      "WindowMover/Engine.lua": "9e17d5d680d8b8cdeff4a05592e995e669e653258cc3470c93b216cf88308255",
+      "WindowMover/Init.lua": "0b2c0b63a0aa6620cce45f276ea355e7cff407481a43cdba85d383f284d4663b",
+      "AddonOptions/FluxOptionsWindows.lua": "15b8eab66803b819943ff5d24a4abe04ac7adbe974bea37dad18dac5851f05c4"
+    }
+  },
+  "candidate": {
+    "commit": "19c40a0c84212b24fdf221a9653a4116d32f9020",
+    "tree": "92973edadfdd5ebfc5935621bc2b77f1e0655066",
+    "sources": {
+      "WindowMover/Engine.lua": "18fe804892664cc2e720d44e78ff47aec41b905a48e71a148401dea85395a48c",
+      "WindowMover/Init.lua": "c5228e269f1e7267dc377c21d7f8271797f943b598897dfa8bb002ba579b4cb9",
+      "tests/window_mover_disabled.lua": "13473896b718b9ead7a2ce2830b3c4c04caa2b7593515893a96b68b4aeab7b1d"
+    }
+  },
+  "configuration": {
+    "environment": "Windows-10-10.0.26200-SP0",
+    "client": "none; mocked native frames",
+    "scenario": "real WindowMover Catalog/Engine/Init and Windows options; 20 addon events plus startup timers; 10-second disabled watcher; 100 toggle cycles; public disable during scaling",
+    "warmup": "enabled startup advances 6 modeled seconds before capture",
+    "capture": "operation bounded; 0.1 modeled second per frame",
+    "repetitions": "5 alternating baseline/candidate process pairs",
+    "profilers": "off; harness counters; wall times include process/harness overhead",
+    "nativeMetrics": "CPU/memory/allocations/frame time/FPS/latency not measured; native UI/combat/taint pending",
+    "addonList": "only production files loaded by this isolated harness; no live addon list",
+    "hardware": "Intel Core i7-12700F; 20 logical processors per prior registry evidence; GPU/RAM unavailable"
+  },
+  "configSha256": "c91550bbfadec51bc3187dd9d9ff4d549e36236e8c0e62e54d1018933f51cc1f",
+  "samples": [
+    {
+      "trial": 1,
+      "variant": "baseline",
+      "command": [
+        "lua",
+        "tests/window_mover_disabled.lua",
+        "--baseline",
+        "--measure"
+      ],
+      "wallSeconds": 0.05372440000064671,
+      "metrics": {
+        "disabled_start": {
+          "catalog": 24.0,
+          "resolves": 2546.0,
+          "hooks": 7.0,
+          "polls": 60.0,
+          "updates": 60.0,
+          "attached": 2.0
+        },
+        "disabled_after_enable": {
+          "catalog": 20.0,
+          "resolves": 2120.0,
+          "polls": 100.0,
+          "updates": 100.0,
+          "writes": 0.0
+        },
+        "cycles": {
+          "frames": 7.0,
+          "hooks": 7.0,
+          "saved_scale": 1.2
+        },
+        "disabled_api": {
+          "polls": 10.0,
+          "updates": 20.0,
+          "saved_changes": 1.0
+        }
+      },
+      "output": "METRIC disabled_start catalog=24 resolves=2546 hooks=7 polls=60 updates=60 attached=2\nFAIL disabled startup skips catalog discovery\nFAIL disabled startup leaves native hooks alone\nFAIL disabled startup has no panel polling\nFAIL disabled startup creates no attachments\nMETRIC disabled_after_enable catalog=20 resolves=2120 polls=100 updates=100 writes=0\nFAIL disabled options stop event-driven discovery\nFAIL disabled options disarm panel watcher\nFAIL cycle disables watcher 1\nFAIL cycle disables watcher 2\nFAIL cycle disables watcher 3\nFAIL cycle disables watcher 4\nFAIL cycle disables watcher 5\nFAIL cycle disables watcher 6\nFAIL cycle disables watcher 7\nFAIL cycle disables watcher 8\nFAIL cycle disables watcher 9\nFAIL cycle disables watcher 10\nFAIL cycle disables watcher 11\nFAIL cycle disables watcher 12\nFAIL cycle disables watcher 13\nFAIL cycle disables watcher 14\nFAIL cycle disables watcher 15\nFAIL cycle disables watcher 16\nFAIL cycle disables watcher 17\nFAIL cycle disables watcher 18\nFAIL cycle disables watcher 19\nFAIL cycle disables watcher 20\nFAIL cycle disables watcher 21\nFAIL cycle disables watcher 22\nFAIL cycle disables watcher 23\nFAIL cycle disables watcher 24\nFAIL cycle disables watcher 25\nFAIL cycle disables watcher 26\nFAIL cycle disables watcher 27\nFAIL cycle disables watcher 28\nFAIL cycle disables watcher 29\nFAIL cycle disables watcher 30\nFAIL cycle disables watcher 31\nFAIL cycle disables watcher 32\nFAIL cycle disables watcher 33\nFAIL cycle disables watcher 34\nFAIL cycle disables watcher 35\nFAIL cycle disables watcher 36\nFAIL cycle disables watcher 37\nFAIL cycle disables watcher 38\nFAIL cycle disables watcher 39\nFAIL cycle disables watcher 40\nFAIL cycle disables watcher 41\nFAIL cycle disables watcher 42\nFAIL cycle disables watcher 43\nFAIL cycle disables watcher 44\nFAIL cycle disables watcher 45\nFAIL cycle disables watcher 46\nFAIL cycle disables watcher 47\nFAIL cycle disables watcher 48\nFAIL cycle disables watcher 49\nFAIL cycle disables watcher 50\nFAIL cycle disables watcher 51\nFAIL cycle disables watcher 52\nFAIL cycle disables watcher 53\nFAIL cycle disables watcher 54\nFAIL cycle disables watcher 55\nFAIL cycle disables watcher 56\nFAIL cycle disables watcher 57\nFAIL cycle disables watcher 58\nFAIL cycle disables watcher 59\nFAIL cycle disables watcher 60\nFAIL cycle disables watcher 61\nFAIL cycle disables watcher 62\nFAIL cycle disables watcher 63\nFAIL cycle disables watcher 64\nFAIL cycle disables watcher 65\nFAIL cycle disables watcher 66\nFAIL cycle disables watcher 67\nFAIL cycle disables watcher 68\nFAIL cycle disables watcher 69\nFAIL cycle disables watcher 70\nFAIL cycle disables watcher 71\nFAIL cycle disables watcher 72\nFAIL cycle disables watcher 73\nFAIL cycle disables watcher 74\nFAIL cycle disables watcher 75\nFAIL cycle disables watcher 76\nFAIL cycle disables watcher 77\nFAIL cycle disables watcher 78\nFAIL cycle disables watcher 79\nFAIL cycle disables watcher 80\nFAIL cycle disables watcher 81\nFAIL cycle disables watcher 82\nFAIL cycle disables watcher 83\nFAIL cycle disables watcher 84\nFAIL cycle disables watcher 85\nFAIL cycle disables watcher 86\nFAIL cycle disables watcher 87\nFAIL cycle disables watcher 88\nFAIL cycle disables watcher 89\nFAIL cycle disables watcher 90\nFAIL cycle disables watcher 91\nFAIL cycle disables watcher 92\nFAIL cycle disables watcher 93\nFAIL cycle disables watcher 94\nFAIL cycle disables watcher 95\nFAIL cycle disables watcher 96\nFAIL cycle disables watcher 97\nFAIL cycle disables watcher 98\nFAIL cycle disables watcher 99\nFAIL cycle disables watcher 100\nMETRIC cycles frames=7 hooks=7 saved_scale=1.2\nMETRIC disabled_api polls=10 updates=20 saved_changes=1\nFAIL public disable ends gesture before further saved writes\nFAIL public disable hides active driver and watcher\nWindow mover disabled: 220 checks, 108 failures\n"
+    },
+    {
+      "trial": 1,
+      "variant": "candidate",
+      "command": [
+        "lua",
+        "tests/window_mover_disabled.lua"
+      ],
+      "wallSeconds": 0.03189900000143098,
+      "metrics": {
+        "disabled_start": {
+          "catalog": 0.0,
+          "resolves": 0.0,
+          "hooks": 0.0,
+          "polls": 0.0,
+          "updates": 0.0,
+          "attached": 0.0
+        },
+        "disabled_after_enable": {
+          "catalog": 0.0,
+          "resolves": 0.0,
+          "polls": 0.0,
+          "updates": 0.0,
+          "writes": 0.0
+        },
+        "cycles": {
+          "frames": 7.0,
+          "hooks": 7.0,
+          "saved_scale": 1.2
+        },
+        "disabled_api": {
+          "polls": 0.0,
+          "updates": 0.0,
+          "saved_changes": 0.0
+        }
+      },
+      "output": "METRIC disabled_start catalog=0 resolves=0 hooks=0 polls=0 updates=0 attached=0\nMETRIC disabled_after_enable catalog=0 resolves=0 polls=0 updates=0 writes=0\nMETRIC cycles frames=7 hooks=7 saved_scale=1.2\nMETRIC disabled_api polls=0 updates=0 saved_changes=0\nWindow mover disabled: 220 checks, 0 failures\n"
+    },
+    {
+      "trial": 2,
+      "variant": "baseline",
+      "command": [
+        "lua",
+        "tests/window_mover_disabled.lua",
+        "--baseline",
+        "--measure"
+      ],
+      "wallSeconds": 0.032993499997246545,
+      "metrics": {
+        "disabled_start": {
+          "catalog": 24.0,
+          "resolves": 2546.0,
+          "hooks": 7.0,
+          "polls": 60.0,
+          "updates": 60.0,
+          "attached": 2.0
+        },
+        "disabled_after_enable": {
+          "catalog": 20.0,
+          "resolves": 2120.0,
+          "polls": 100.0,
+          "updates": 100.0,
+          "writes": 0.0
+        },
+        "cycles": {
+          "frames": 7.0,
+          "hooks": 7.0,
+          "saved_scale": 1.2
+        },
+        "disabled_api": {
+          "polls": 10.0,
+          "updates": 20.0,
+          "saved_changes": 1.0
+        }
+      },
+      "output": "METRIC disabled_start catalog=24 resolves=2546 hooks=7 polls=60 updates=60 attached=2\nFAIL disabled startup skips catalog discovery\nFAIL disabled startup leaves native hooks alone\nFAIL disabled startup has no panel polling\nFAIL disabled startup creates no attachments\nMETRIC disabled_after_enable catalog=20 resolves=2120 polls=100 updates=100 writes=0\nFAIL disabled options stop event-driven discovery\nFAIL disabled options disarm panel watcher\nFAIL cycle disables watcher 1\nFAIL cycle disables watcher 2\nFAIL cycle disables watcher 3\nFAIL cycle disables watcher 4\nFAIL cycle disables watcher 5\nFAIL cycle disables watcher 6\nFAIL cycle disables watcher 7\nFAIL cycle disables watcher 8\nFAIL cycle disables watcher 9\nFAIL cycle disables watcher 10\nFAIL cycle disables watcher 11\nFAIL cycle disables watcher 12\nFAIL cycle disables watcher 13\nFAIL cycle disables watcher 14\nFAIL cycle disables watcher 15\nFAIL cycle disables watcher 16\nFAIL cycle disables watcher 17\nFAIL cycle disables watcher 18\nFAIL cycle disables watcher 19\nFAIL cycle disables watcher 20\nFAIL cycle disables watcher 21\nFAIL cycle disables watcher 22\nFAIL cycle disables watcher 23\nFAIL cycle disables watcher 24\nFAIL cycle disables watcher 25\nFAIL cycle disables watcher 26\nFAIL cycle disables watcher 27\nFAIL cycle disables watcher 28\nFAIL cycle disables watcher 29\nFAIL cycle disables watcher 30\nFAIL cycle disables watcher 31\nFAIL cycle disables watcher 32\nFAIL cycle disables watcher 33\nFAIL cycle disables watcher 34\nFAIL cycle disables watcher 35\nFAIL cycle disables watcher 36\nFAIL cycle disables watcher 37\nFAIL cycle disables watcher 38\nFAIL cycle disables watcher 39\nFAIL cycle disables watcher 40\nFAIL cycle disables watcher 41\nFAIL cycle disables watcher 42\nFAIL cycle disables watcher 43\nFAIL cycle disables watcher 44\nFAIL cycle disables watcher 45\nFAIL cycle disables watcher 46\nFAIL cycle disables watcher 47\nFAIL cycle disables watcher 48\nFAIL cycle disables watcher 49\nFAIL cycle disables watcher 50\nFAIL cycle disables watcher 51\nFAIL cycle disables watcher 52\nFAIL cycle disables watcher 53\nFAIL cycle disables watcher 54\nFAIL cycle disables watcher 55\nFAIL cycle disables watcher 56\nFAIL cycle disables watcher 57\nFAIL cycle disables watcher 58\nFAIL cycle disables watcher 59\nFAIL cycle disables watcher 60\nFAIL cycle disables watcher 61\nFAIL cycle disables watcher 62\nFAIL cycle disables watcher 63\nFAIL cycle disables watcher 64\nFAIL cycle disables watcher 65\nFAIL cycle disables watcher 66\nFAIL cycle disables watcher 67\nFAIL cycle disables watcher 68\nFAIL cycle disables watcher 69\nFAIL cycle disables watcher 70\nFAIL cycle disables watcher 71\nFAIL cycle disables watcher 72\nFAIL cycle disables watcher 73\nFAIL cycle disables watcher 74\nFAIL cycle disables watcher 75\nFAIL cycle disables watcher 76\nFAIL cycle disables watcher 77\nFAIL cycle disables watcher 78\nFAIL cycle disables watcher 79\nFAIL cycle disables watcher 80\nFAIL cycle disables watcher 81\nFAIL cycle disables watcher 82\nFAIL cycle disables watcher 83\nFAIL cycle disables watcher 84\nFAIL cycle disables watcher 85\nFAIL cycle disables watcher 86\nFAIL cycle disables watcher 87\nFAIL cycle disables watcher 88\nFAIL cycle disables watcher 89\nFAIL cycle disables watcher 90\nFAIL cycle disables watcher 91\nFAIL cycle disables watcher 92\nFAIL cycle disables watcher 93\nFAIL cycle disables watcher 94\nFAIL cycle disables watcher 95\nFAIL cycle disables watcher 96\nFAIL cycle disables watcher 97\nFAIL cycle disables watcher 98\nFAIL cycle disables watcher 99\nFAIL cycle disables watcher 100\nMETRIC cycles frames=7 hooks=7 saved_scale=1.2\nMETRIC disabled_api polls=10 updates=20 saved_changes=1\nFAIL public disable ends gesture before further saved writes\nFAIL public disable hides active driver and watcher\nWindow mover disabled: 220 checks, 108 failures\n"
+    },
+    {
+      "trial": 2,
+      "variant": "candidate",
+      "command": [
+        "lua",
+        "tests/window_mover_disabled.lua"
+      ],
+      "wallSeconds": 0.031432200004928745,
+      "metrics": {
+        "disabled_start": {
+          "catalog": 0.0,
+          "resolves": 0.0,
+          "hooks": 0.0,
+          "polls": 0.0,
+          "updates": 0.0,
+          "attached": 0.0
+        },
+        "disabled_after_enable": {
+          "catalog": 0.0,
+          "resolves": 0.0,
+          "polls": 0.0,
+          "updates": 0.0,
+          "writes": 0.0
+        },
+        "cycles": {
+          "frames": 7.0,
+          "hooks": 7.0,
+          "saved_scale": 1.2
+        },
+        "disabled_api": {
+          "polls": 0.0,
+          "updates": 0.0,
+          "saved_changes": 0.0
+        }
+      },
+      "output": "METRIC disabled_start catalog=0 resolves=0 hooks=0 polls=0 updates=0 attached=0\nMETRIC disabled_after_enable catalog=0 resolves=0 polls=0 updates=0 writes=0\nMETRIC cycles frames=7 hooks=7 saved_scale=1.2\nMETRIC disabled_api polls=0 updates=0 saved_changes=0\nWindow mover disabled: 220 checks, 0 failures\n"
+    },
+    {
+      "trial": 3,
+      "variant": "baseline",
+      "command": [
+        "lua",
+        "tests/window_mover_disabled.lua",
+        "--baseline",
+        "--measure"
+      ],
+      "wallSeconds": 0.03403000000253087,
+      "metrics": {
+        "disabled_start": {
+          "catalog": 24.0,
+          "resolves": 2546.0,
+          "hooks": 7.0,
+          "polls": 60.0,
+          "updates": 60.0,
+          "attached": 2.0
+        },
+        "disabled_after_enable": {
+          "catalog": 20.0,
+          "resolves": 2120.0,
+          "polls": 100.0,
+          "updates": 100.0,
+          "writes": 0.0
+        },
+        "cycles": {
+          "frames": 7.0,
+          "hooks": 7.0,
+          "saved_scale": 1.2
+        },
+        "disabled_api": {
+          "polls": 10.0,
+          "updates": 20.0,
+          "saved_changes": 1.0
+        }
+      },
+      "output": "METRIC disabled_start catalog=24 resolves=2546 hooks=7 polls=60 updates=60 attached=2\nFAIL disabled startup skips catalog discovery\nFAIL disabled startup leaves native hooks alone\nFAIL disabled startup has no panel polling\nFAIL disabled startup creates no attachments\nMETRIC disabled_after_enable catalog=20 resolves=2120 polls=100 updates=100 writes=0\nFAIL disabled options stop event-driven discovery\nFAIL disabled options disarm panel watcher\nFAIL cycle disables watcher 1\nFAIL cycle disables watcher 2\nFAIL cycle disables watcher 3\nFAIL cycle disables watcher 4\nFAIL cycle disables watcher 5\nFAIL cycle disables watcher 6\nFAIL cycle disables watcher 7\nFAIL cycle disables watcher 8\nFAIL cycle disables watcher 9\nFAIL cycle disables watcher 10\nFAIL cycle disables watcher 11\nFAIL cycle disables watcher 12\nFAIL cycle disables watcher 13\nFAIL cycle disables watcher 14\nFAIL cycle disables watcher 15\nFAIL cycle disables watcher 16\nFAIL cycle disables watcher 17\nFAIL cycle disables watcher 18\nFAIL cycle disables watcher 19\nFAIL cycle disables watcher 20\nFAIL cycle disables watcher 21\nFAIL cycle disables watcher 22\nFAIL cycle disables watcher 23\nFAIL cycle disables watcher 24\nFAIL cycle disables watcher 25\nFAIL cycle disables watcher 26\nFAIL cycle disables watcher 27\nFAIL cycle disables watcher 28\nFAIL cycle disables watcher 29\nFAIL cycle disables watcher 30\nFAIL cycle disables watcher 31\nFAIL cycle disables watcher 32\nFAIL cycle disables watcher 33\nFAIL cycle disables watcher 34\nFAIL cycle disables watcher 35\nFAIL cycle disables watcher 36\nFAIL cycle disables watcher 37\nFAIL cycle disables watcher 38\nFAIL cycle disables watcher 39\nFAIL cycle disables watcher 40\nFAIL cycle disables watcher 41\nFAIL cycle disables watcher 42\nFAIL cycle disables watcher 43\nFAIL cycle disables watcher 44\nFAIL cycle disables watcher 45\nFAIL cycle disables watcher 46\nFAIL cycle disables watcher 47\nFAIL cycle disables watcher 48\nFAIL cycle disables watcher 49\nFAIL cycle disables watcher 50\nFAIL cycle disables watcher 51\nFAIL cycle disables watcher 52\nFAIL cycle disables watcher 53\nFAIL cycle disables watcher 54\nFAIL cycle disables watcher 55\nFAIL cycle disables watcher 56\nFAIL cycle disables watcher 57\nFAIL cycle disables watcher 58\nFAIL cycle disables watcher 59\nFAIL cycle disables watcher 60\nFAIL cycle disables watcher 61\nFAIL cycle disables watcher 62\nFAIL cycle disables watcher 63\nFAIL cycle disables watcher 64\nFAIL cycle disables watcher 65\nFAIL cycle disables watcher 66\nFAIL cycle disables watcher 67\nFAIL cycle disables watcher 68\nFAIL cycle disables watcher 69\nFAIL cycle disables watcher 70\nFAIL cycle disables watcher 71\nFAIL cycle disables watcher 72\nFAIL cycle disables watcher 73\nFAIL cycle disables watcher 74\nFAIL cycle disables watcher 75\nFAIL cycle disables watcher 76\nFAIL cycle disables watcher 77\nFAIL cycle disables watcher 78\nFAIL cycle disables watcher 79\nFAIL cycle disables watcher 80\nFAIL cycle disables watcher 81\nFAIL cycle disables watcher 82\nFAIL cycle disables watcher 83\nFAIL cycle disables watcher 84\nFAIL cycle disables watcher 85\nFAIL cycle disables watcher 86\nFAIL cycle disables watcher 87\nFAIL cycle disables watcher 88\nFAIL cycle disables watcher 89\nFAIL cycle disables watcher 90\nFAIL cycle disables watcher 91\nFAIL cycle disables watcher 92\nFAIL cycle disables watcher 93\nFAIL cycle disables watcher 94\nFAIL cycle disables watcher 95\nFAIL cycle disables watcher 96\nFAIL cycle disables watcher 97\nFAIL cycle disables watcher 98\nFAIL cycle disables watcher 99\nFAIL cycle disables watcher 100\nMETRIC cycles frames=7 hooks=7 saved_scale=1.2\nMETRIC disabled_api polls=10 updates=20 saved_changes=1\nFAIL public disable ends gesture before further saved writes\nFAIL public disable hides active driver and watcher\nWindow mover disabled: 220 checks, 108 failures\n"
+    },
+    {
+      "trial": 3,
+      "variant": "candidate",
+      "command": [
+        "lua",
+        "tests/window_mover_disabled.lua"
+      ],
+      "wallSeconds": 0.030745500000193715,
+      "metrics": {
+        "disabled_start": {
+          "catalog": 0.0,
+          "resolves": 0.0,
+          "hooks": 0.0,
+          "polls": 0.0,
+          "updates": 0.0,
+          "attached": 0.0
+        },
+        "disabled_after_enable": {
+          "catalog": 0.0,
+          "resolves": 0.0,
+          "polls": 0.0,
+          "updates": 0.0,
+          "writes": 0.0
+        },
+        "cycles": {
+          "frames": 7.0,
+          "hooks": 7.0,
+          "saved_scale": 1.2
+        },
+        "disabled_api": {
+          "polls": 0.0,
+          "updates": 0.0,
+          "saved_changes": 0.0
+        }
+      },
+      "output": "METRIC disabled_start catalog=0 resolves=0 hooks=0 polls=0 updates=0 attached=0\nMETRIC disabled_after_enable catalog=0 resolves=0 polls=0 updates=0 writes=0\nMETRIC cycles frames=7 hooks=7 saved_scale=1.2\nMETRIC disabled_api polls=0 updates=0 saved_changes=0\nWindow mover disabled: 220 checks, 0 failures\n"
+    },
+    {
+      "trial": 4,
+      "variant": "baseline",
+      "command": [
+        "lua",
+        "tests/window_mover_disabled.lua",
+        "--baseline",
+        "--measure"
+      ],
+      "wallSeconds": 0.03410579999763286,
+      "metrics": {
+        "disabled_start": {
+          "catalog": 24.0,
+          "resolves": 2546.0,
+          "hooks": 7.0,
+          "polls": 60.0,
+          "updates": 60.0,
+          "attached": 2.0
+        },
+        "disabled_after_enable": {
+          "catalog": 20.0,
+          "resolves": 2120.0,
+          "polls": 100.0,
+          "updates": 100.0,
+          "writes": 0.0
+        },
+        "cycles": {
+          "frames": 7.0,
+          "hooks": 7.0,
+          "saved_scale": 1.2
+        },
+        "disabled_api": {
+          "polls": 10.0,
+          "updates": 20.0,
+          "saved_changes": 1.0
+        }
+      },
+      "output": "METRIC disabled_start catalog=24 resolves=2546 hooks=7 polls=60 updates=60 attached=2\nFAIL disabled startup skips catalog discovery\nFAIL disabled startup leaves native hooks alone\nFAIL disabled startup has no panel polling\nFAIL disabled startup creates no attachments\nMETRIC disabled_after_enable catalog=20 resolves=2120 polls=100 updates=100 writes=0\nFAIL disabled options stop event-driven discovery\nFAIL disabled options disarm panel watcher\nFAIL cycle disables watcher 1\nFAIL cycle disables watcher 2\nFAIL cycle disables watcher 3\nFAIL cycle disables watcher 4\nFAIL cycle disables watcher 5\nFAIL cycle disables watcher 6\nFAIL cycle disables watcher 7\nFAIL cycle disables watcher 8\nFAIL cycle disables watcher 9\nFAIL cycle disables watcher 10\nFAIL cycle disables watcher 11\nFAIL cycle disables watcher 12\nFAIL cycle disables watcher 13\nFAIL cycle disables watcher 14\nFAIL cycle disables watcher 15\nFAIL cycle disables watcher 16\nFAIL cycle disables watcher 17\nFAIL cycle disables watcher 18\nFAIL cycle disables watcher 19\nFAIL cycle disables watcher 20\nFAIL cycle disables watcher 21\nFAIL cycle disables watcher 22\nFAIL cycle disables watcher 23\nFAIL cycle disables watcher 24\nFAIL cycle disables watcher 25\nFAIL cycle disables watcher 26\nFAIL cycle disables watcher 27\nFAIL cycle disables watcher 28\nFAIL cycle disables watcher 29\nFAIL cycle disables watcher 30\nFAIL cycle disables watcher 31\nFAIL cycle disables watcher 32\nFAIL cycle disables watcher 33\nFAIL cycle disables watcher 34\nFAIL cycle disables watcher 35\nFAIL cycle disables watcher 36\nFAIL cycle disables watcher 37\nFAIL cycle disables watcher 38\nFAIL cycle disables watcher 39\nFAIL cycle disables watcher 40\nFAIL cycle disables watcher 41\nFAIL cycle disables watcher 42\nFAIL cycle disables watcher 43\nFAIL cycle disables watcher 44\nFAIL cycle disables watcher 45\nFAIL cycle disables watcher 46\nFAIL cycle disables watcher 47\nFAIL cycle disables watcher 48\nFAIL cycle disables watcher 49\nFAIL cycle disables watcher 50\nFAIL cycle disables watcher 51\nFAIL cycle disables watcher 52\nFAIL cycle disables watcher 53\nFAIL cycle disables watcher 54\nFAIL cycle disables watcher 55\nFAIL cycle disables watcher 56\nFAIL cycle disables watcher 57\nFAIL cycle disables watcher 58\nFAIL cycle disables watcher 59\nFAIL cycle disables watcher 60\nFAIL cycle disables watcher 61\nFAIL cycle disables watcher 62\nFAIL cycle disables watcher 63\nFAIL cycle disables watcher 64\nFAIL cycle disables watcher 65\nFAIL cycle disables watcher 66\nFAIL cycle disables watcher 67\nFAIL cycle disables watcher 68\nFAIL cycle disables watcher 69\nFAIL cycle disables watcher 70\nFAIL cycle disables watcher 71\nFAIL cycle disables watcher 72\nFAIL cycle disables watcher 73\nFAIL cycle disables watcher 74\nFAIL cycle disables watcher 75\nFAIL cycle disables watcher 76\nFAIL cycle disables watcher 77\nFAIL cycle disables watcher 78\nFAIL cycle disables watcher 79\nFAIL cycle disables watcher 80\nFAIL cycle disables watcher 81\nFAIL cycle disables watcher 82\nFAIL cycle disables watcher 83\nFAIL cycle disables watcher 84\nFAIL cycle disables watcher 85\nFAIL cycle disables watcher 86\nFAIL cycle disables watcher 87\nFAIL cycle disables watcher 88\nFAIL cycle disables watcher 89\nFAIL cycle disables watcher 90\nFAIL cycle disables watcher 91\nFAIL cycle disables watcher 92\nFAIL cycle disables watcher 93\nFAIL cycle disables watcher 94\nFAIL cycle disables watcher 95\nFAIL cycle disables watcher 96\nFAIL cycle disables watcher 97\nFAIL cycle disables watcher 98\nFAIL cycle disables watcher 99\nFAIL cycle disables watcher 100\nMETRIC cycles frames=7 hooks=7 saved_scale=1.2\nMETRIC disabled_api polls=10 updates=20 saved_changes=1\nFAIL public disable ends gesture before further saved writes\nFAIL public disable hides active driver and watcher\nWindow mover disabled: 220 checks, 108 failures\n"
+    },
+    {
+      "trial": 4,
+      "variant": "candidate",
+      "command": [
+        "lua",
+        "tests/window_mover_disabled.lua"
+      ],
+      "wallSeconds": 0.029695600002014544,
+      "metrics": {
+        "disabled_start": {
+          "catalog": 0.0,
+          "resolves": 0.0,
+          "hooks": 0.0,
+          "polls": 0.0,
+          "updates": 0.0,
+          "attached": 0.0
+        },
+        "disabled_after_enable": {
+          "catalog": 0.0,
+          "resolves": 0.0,
+          "polls": 0.0,
+          "updates": 0.0,
+          "writes": 0.0
+        },
+        "cycles": {
+          "frames": 7.0,
+          "hooks": 7.0,
+          "saved_scale": 1.2
+        },
+        "disabled_api": {
+          "polls": 0.0,
+          "updates": 0.0,
+          "saved_changes": 0.0
+        }
+      },
+      "output": "METRIC disabled_start catalog=0 resolves=0 hooks=0 polls=0 updates=0 attached=0\nMETRIC disabled_after_enable catalog=0 resolves=0 polls=0 updates=0 writes=0\nMETRIC cycles frames=7 hooks=7 saved_scale=1.2\nMETRIC disabled_api polls=0 updates=0 saved_changes=0\nWindow mover disabled: 220 checks, 0 failures\n"
+    },
+    {
+      "trial": 5,
+      "variant": "baseline",
+      "command": [
+        "lua",
+        "tests/window_mover_disabled.lua",
+        "--baseline",
+        "--measure"
+      ],
+      "wallSeconds": 0.03457260000141105,
+      "metrics": {
+        "disabled_start": {
+          "catalog": 24.0,
+          "resolves": 2546.0,
+          "hooks": 7.0,
+          "polls": 60.0,
+          "updates": 60.0,
+          "attached": 2.0
+        },
+        "disabled_after_enable": {
+          "catalog": 20.0,
+          "resolves": 2120.0,
+          "polls": 100.0,
+          "updates": 100.0,
+          "writes": 0.0
+        },
+        "cycles": {
+          "frames": 7.0,
+          "hooks": 7.0,
+          "saved_scale": 1.2
+        },
+        "disabled_api": {
+          "polls": 10.0,
+          "updates": 20.0,
+          "saved_changes": 1.0
+        }
+      },
+      "output": "METRIC disabled_start catalog=24 resolves=2546 hooks=7 polls=60 updates=60 attached=2\nFAIL disabled startup skips catalog discovery\nFAIL disabled startup leaves native hooks alone\nFAIL disabled startup has no panel polling\nFAIL disabled startup creates no attachments\nMETRIC disabled_after_enable catalog=20 resolves=2120 polls=100 updates=100 writes=0\nFAIL disabled options stop event-driven discovery\nFAIL disabled options disarm panel watcher\nFAIL cycle disables watcher 1\nFAIL cycle disables watcher 2\nFAIL cycle disables watcher 3\nFAIL cycle disables watcher 4\nFAIL cycle disables watcher 5\nFAIL cycle disables watcher 6\nFAIL cycle disables watcher 7\nFAIL cycle disables watcher 8\nFAIL cycle disables watcher 9\nFAIL cycle disables watcher 10\nFAIL cycle disables watcher 11\nFAIL cycle disables watcher 12\nFAIL cycle disables watcher 13\nFAIL cycle disables watcher 14\nFAIL cycle disables watcher 15\nFAIL cycle disables watcher 16\nFAIL cycle disables watcher 17\nFAIL cycle disables watcher 18\nFAIL cycle disables watcher 19\nFAIL cycle disables watcher 20\nFAIL cycle disables watcher 21\nFAIL cycle disables watcher 22\nFAIL cycle disables watcher 23\nFAIL cycle disables watcher 24\nFAIL cycle disables watcher 25\nFAIL cycle disables watcher 26\nFAIL cycle disables watcher 27\nFAIL cycle disables watcher 28\nFAIL cycle disables watcher 29\nFAIL cycle disables watcher 30\nFAIL cycle disables watcher 31\nFAIL cycle disables watcher 32\nFAIL cycle disables watcher 33\nFAIL cycle disables watcher 34\nFAIL cycle disables watcher 35\nFAIL cycle disables watcher 36\nFAIL cycle disables watcher 37\nFAIL cycle disables watcher 38\nFAIL cycle disables watcher 39\nFAIL cycle disables watcher 40\nFAIL cycle disables watcher 41\nFAIL cycle disables watcher 42\nFAIL cycle disables watcher 43\nFAIL cycle disables watcher 44\nFAIL cycle disables watcher 45\nFAIL cycle disables watcher 46\nFAIL cycle disables watcher 47\nFAIL cycle disables watcher 48\nFAIL cycle disables watcher 49\nFAIL cycle disables watcher 50\nFAIL cycle disables watcher 51\nFAIL cycle disables watcher 52\nFAIL cycle disables watcher 53\nFAIL cycle disables watcher 54\nFAIL cycle disables watcher 55\nFAIL cycle disables watcher 56\nFAIL cycle disables watcher 57\nFAIL cycle disables watcher 58\nFAIL cycle disables watcher 59\nFAIL cycle disables watcher 60\nFAIL cycle disables watcher 61\nFAIL cycle disables watcher 62\nFAIL cycle disables watcher 63\nFAIL cycle disables watcher 64\nFAIL cycle disables watcher 65\nFAIL cycle disables watcher 66\nFAIL cycle disables watcher 67\nFAIL cycle disables watcher 68\nFAIL cycle disables watcher 69\nFAIL cycle disables watcher 70\nFAIL cycle disables watcher 71\nFAIL cycle disables watcher 72\nFAIL cycle disables watcher 73\nFAIL cycle disables watcher 74\nFAIL cycle disables watcher 75\nFAIL cycle disables watcher 76\nFAIL cycle disables watcher 77\nFAIL cycle disables watcher 78\nFAIL cycle disables watcher 79\nFAIL cycle disables watcher 80\nFAIL cycle disables watcher 81\nFAIL cycle disables watcher 82\nFAIL cycle disables watcher 83\nFAIL cycle disables watcher 84\nFAIL cycle disables watcher 85\nFAIL cycle disables watcher 86\nFAIL cycle disables watcher 87\nFAIL cycle disables watcher 88\nFAIL cycle disables watcher 89\nFAIL cycle disables watcher 90\nFAIL cycle disables watcher 91\nFAIL cycle disables watcher 92\nFAIL cycle disables watcher 93\nFAIL cycle disables watcher 94\nFAIL cycle disables watcher 95\nFAIL cycle disables watcher 96\nFAIL cycle disables watcher 97\nFAIL cycle disables watcher 98\nFAIL cycle disables watcher 99\nFAIL cycle disables watcher 100\nMETRIC cycles frames=7 hooks=7 saved_scale=1.2\nMETRIC disabled_api polls=10 updates=20 saved_changes=1\nFAIL public disable ends gesture before further saved writes\nFAIL public disable hides active driver and watcher\nWindow mover disabled: 220 checks, 108 failures\n"
+    },
+    {
+      "trial": 5,
+      "variant": "candidate",
+      "command": [
+        "lua",
+        "tests/window_mover_disabled.lua"
+      ],
+      "wallSeconds": 0.03435349999926984,
+      "metrics": {
+        "disabled_start": {
+          "catalog": 0.0,
+          "resolves": 0.0,
+          "hooks": 0.0,
+          "polls": 0.0,
+          "updates": 0.0,
+          "attached": 0.0
+        },
+        "disabled_after_enable": {
+          "catalog": 0.0,
+          "resolves": 0.0,
+          "polls": 0.0,
+          "updates": 0.0,
+          "writes": 0.0
+        },
+        "cycles": {
+          "frames": 7.0,
+          "hooks": 7.0,
+          "saved_scale": 1.2
+        },
+        "disabled_api": {
+          "polls": 0.0,
+          "updates": 0.0,
+          "saved_changes": 0.0
+        }
+      },
+      "output": "METRIC disabled_start catalog=0 resolves=0 hooks=0 polls=0 updates=0 attached=0\nMETRIC disabled_after_enable catalog=0 resolves=0 polls=0 updates=0 writes=0\nMETRIC cycles frames=7 hooks=7 saved_scale=1.2\nMETRIC disabled_api polls=0 updates=0 saved_changes=0\nWindow mover disabled: 220 checks, 0 failures\n"
+    }
+  ],
+  "summary": {
+    "disabled_start": {
+      "catalog": {
+        "baseline": {
+          "median": 24.0,
+          "min": 24.0,
+          "max": 24.0
+        },
+        "candidate": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "resolves": {
+        "baseline": {
+          "median": 2546.0,
+          "min": 2546.0,
+          "max": 2546.0
+        },
+        "candidate": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "hooks": {
+        "baseline": {
+          "median": 7.0,
+          "min": 7.0,
+          "max": 7.0
+        },
+        "candidate": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "polls": {
+        "baseline": {
+          "median": 60.0,
+          "min": 60.0,
+          "max": 60.0
+        },
+        "candidate": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "updates": {
+        "baseline": {
+          "median": 60.0,
+          "min": 60.0,
+          "max": 60.0
+        },
+        "candidate": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "attached": {
+        "baseline": {
+          "median": 2.0,
+          "min": 2.0,
+          "max": 2.0
+        },
+        "candidate": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      }
+    },
+    "disabled_after_enable": {
+      "catalog": {
+        "baseline": {
+          "median": 20.0,
+          "min": 20.0,
+          "max": 20.0
+        },
+        "candidate": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "resolves": {
+        "baseline": {
+          "median": 2120.0,
+          "min": 2120.0,
+          "max": 2120.0
+        },
+        "candidate": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "polls": {
+        "baseline": {
+          "median": 100.0,
+          "min": 100.0,
+          "max": 100.0
+        },
+        "candidate": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "updates": {
+        "baseline": {
+          "median": 100.0,
+          "min": 100.0,
+          "max": 100.0
+        },
+        "candidate": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "writes": {
+        "baseline": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "candidate": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      }
+    },
+    "cycles": {
+      "frames": {
+        "baseline": {
+          "median": 7.0,
+          "min": 7.0,
+          "max": 7.0
+        },
+        "candidate": {
+          "median": 7.0,
+          "min": 7.0,
+          "max": 7.0
+        }
+      },
+      "hooks": {
+        "baseline": {
+          "median": 7.0,
+          "min": 7.0,
+          "max": 7.0
+        },
+        "candidate": {
+          "median": 7.0,
+          "min": 7.0,
+          "max": 7.0
+        }
+      },
+      "saved_scale": {
+        "baseline": {
+          "median": 1.2,
+          "min": 1.2,
+          "max": 1.2
+        },
+        "candidate": {
+          "median": 1.2,
+          "min": 1.2,
+          "max": 1.2
+        }
+      }
+    },
+    "disabled_api": {
+      "polls": {
+        "baseline": {
+          "median": 10.0,
+          "min": 10.0,
+          "max": 10.0
+        },
+        "candidate": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "updates": {
+        "baseline": {
+          "median": 20.0,
+          "min": 20.0,
+          "max": 20.0
+        },
+        "candidate": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "saved_changes": {
+        "baseline": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "candidate": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      }
+    }
+  }
+}

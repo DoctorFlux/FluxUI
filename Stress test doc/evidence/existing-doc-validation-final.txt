@@ -1,0 +1,8 @@
+Documentation validation FAILED:
+- Stale source inventory: ExtraButtonSystem/NonCombatGrid/UtilitySlots/Manager.lua
+- Stale source inventory: tests/utility_secure_input.lua
+- Stale generated view: reference/declarations.md
+- Stale generated view: reference/interfaces.md
+- Recorded verification predates current source: ExtraButtonSystem/NonCombatGrid/UtilitySlots/Manager.lua
+- Recorded verification predates current source: tests/utility_secure_input.lua
+6 issue(s); checker made no edits.

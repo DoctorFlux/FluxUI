@@ -1,0 +1,566 @@
+{
+  "pins": [
+    "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+    "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+    "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+    "4192ac60067fc55566182291bc67c85dd9b6794d",
+    "68e0a2ec559d9761dfc4e7f864c3944f9d758a49"
+  ],
+  "sources": [
+    {
+      "name": "forever_manager",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_EditMode/Shared/EditModeManager.lua",
+      "gitBlob": "6f3c0ebea0574601ac301cf2728ead9628e16979",
+      "savedSHA256": "bcb48f5104656cd4734126da7e259816e47e751956af1864f28d82aa36b1bdae"
+    },
+    {
+      "name": "forever_overrides",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_EditMode/Mainline/EditModeManagerOverrides.lua",
+      "gitBlob": "af4f4d73ef5c55f7e0c0f677232628d6f390942c",
+      "savedSHA256": "f57572749fbd2851589ea588b74e1160fbd61f23c6f65100bd7c05b3d0c4ed63"
+    },
+    {
+      "name": "forever_cuf",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_UnitFrame/Shared/CompactUnitFrame.lua",
+      "gitBlob": "bf81a55c61228133a80394b7f0547bf2758c364e",
+      "savedSHA256": "2bece4ec818dcd0dd5f6ff8627e10f772004a987fd7f1d60798c23cb7c80774c"
+    },
+    {
+      "name": "forever_cooldown",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_CooldownViewer/CooldownViewer.lua",
+      "gitBlob": "f5a27d9b06670ee482fc99d0e74b6acef847642e",
+      "savedSHA256": "8650bfcb9fd7ebb0595c1dad78d6b84454432d0fcdd74bbed1b0202d60db0321"
+    },
+    {
+      "name": "forever_callbacks",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_SharedXMLBase/CallbackRegistry.lua",
+      "gitBlob": "3affcc7a159c9dbf49f301ddc63d94921c7455d5",
+      "savedSHA256": "addf21da5ab881f543779fc1fe612e457a9234ebc08732c7b6f84767b29545bc"
+    },
+    {
+      "name": "forever_managed",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_ManagedFrameSystem/Shared/ManagedFrameSystem.lua",
+      "gitBlob": "98082d0f6fb21e644fbc4b7dacfbfc6cf26acb25",
+      "savedSHA256": "c7cb402150a9d68289be6483358f5ff438c4ece0a4b6d94747818efcc1974659"
+    },
+    {
+      "name": "forever_panels",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_UIParentPanelManager/Shared/UIParentPanelManager.lua",
+      "gitBlob": "50964750c2a5739b4baf5c7333a980362afdf6b6",
+      "savedSHA256": "d7c08ee30dd3dbb37d19bfa6b323f1b8aac221d507f3b668997f80b884f6d7b9"
+    },
+    {
+      "name": "forever_system",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_EditMode/Shared/EditModeSystemTemplates.lua",
+      "gitBlob": "e75aeddd6234b555178c50e7cce358e87a0f2182",
+      "savedSHA256": "f50d022c3848487c8041da42ddfd24566edb8ecfbd8d8ce2e1ec6705a48c92f3"
+    },
+    {
+      "name": "forever_api",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_APIDocumentationGenerated/EditModeManagerDocumentation.lua",
+      "gitBlob": "dc84da78fbc16242847d4874c1fcb52ffe068dc1",
+      "savedSHA256": "3bb6890f0682fc8fe4e7ddcac5b68721fa8fc3bb265e8fc376b6d3ceff88c89d"
+    },
+    {
+      "name": "forever_party",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_UnitFrame/Shared/CompactPartyFrame.lua",
+      "gitBlob": "b9774c560235c5e30325076c10ed015b865bd44d",
+      "savedSHA256": "813d3c370e590be53f7c40068e0d867252a645f72833cc5af9391382d04fff91"
+    },
+    {
+      "name": "forever_toc",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_EditMode/Blizzard_EditMode.toc",
+      "gitBlob": "6ed0a809600e2126bac6e690680e6fb83922e95f",
+      "savedSHA256": "ee8e3bbe1505a3030361e95871b437ac338bd76521f289f8c53523d13e455157"
+    },
+    {
+      "name": "forever_secure",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_CooldownViewer/CooldownViewerSecure.lua",
+      "gitBlob": "720025389b73d1fddd578b4db9f698d22be406c0",
+      "savedSHA256": "e39f31c8eb660a05640fb96a677074469713e7963b0f99dcbfcd97d3972b4b7f"
+    },
+    {
+      "name": "forever_cooldown-api",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_APIDocumentationGenerated/CooldownViewerDocumentation.lua",
+      "gitBlob": "f15e4ef611e1e9f441c1b95e7332882d72a79eb3",
+      "savedSHA256": "46a539d232268f97c6e51f8f60202aef488d089113e76e7dc95e6d890d501b34"
+    },
+    {
+      "name": "forever_cooldown-display",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_EditMode/Shared/EditModeSettingDisplayInfo.lua",
+      "gitBlob": "a339736c56efb0f7274f8bd9dfc5fcdf832aa48d",
+      "savedSHA256": "f83d7c5267ebafaa4dc7af620e30d396374e2dc6de64e95347e6bd446152e786"
+    },
+    {
+      "name": "live_system",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_EditMode/Shared/EditModeSystemTemplates.lua",
+      "gitBlob": "aa524c95fb4306446702428ded1e2e7dfe542a10",
+      "savedSHA256": "be12f9141b5415970b32d872c8202d02691812d5c50604adde9a3299929ab48f"
+    },
+    {
+      "name": "live_manager",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_EditMode/Shared/EditModeManager.lua",
+      "gitBlob": "bb1a73aef507c5f0aa4e05f6946a7008e992e42c",
+      "savedSHA256": "829c1aa53dc42078bb7f3f119d96587d6ed3b6df61ec5ef2cba0e261aebd4c94"
+    },
+    {
+      "name": "classic_system",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_EditMode/Shared/EditModeSystemTemplates.lua",
+      "gitBlob": "07b823c624fec619fbc01a37dcf6909957d7f24f",
+      "savedSHA256": "f6976502f1a970a0af47b4ca153e420b1ba57df39fc2979f91c9a27e10e62539"
+    },
+    {
+      "name": "classic_manager",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_EditMode/Shared/EditModeManager.lua",
+      "gitBlob": "c15f6d4074355c379d209077b2e7e79fac0fba7e",
+      "savedSHA256": "4995f8ed6708281c80bd4dca884b326c5bc1f3034ac7c95b4daa47fb69e48424"
+    },
+    {
+      "name": "classic_era_system",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_EditMode/Shared/EditModeSystemTemplates.lua",
+      "gitBlob": "6fbceaf995e800d2c58bab7007b8902f561d6b58",
+      "savedSHA256": "b47cba336f8ef450daf3dbb762aacda37f8483f73930529453ab2f658087f822"
+    },
+    {
+      "name": "classic_era_manager",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_EditMode/Shared/EditModeManager.lua",
+      "gitBlob": "c15f6d4074355c379d209077b2e7e79fac0fba7e",
+      "savedSHA256": "4995f8ed6708281c80bd4dca884b326c5bc1f3034ac7c95b4daa47fb69e48424"
+    },
+    {
+      "name": "classic_anniversary_system",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_EditMode/Shared/EditModeSystemTemplates.lua",
+      "gitBlob": "42262b13b9d70ff7d28f063eb3a35fdfe5ce6189",
+      "savedSHA256": "b47cba336f8ef450daf3dbb762aacda37f8483f73930529453ab2f658087f822"
+    },
+    {
+      "name": "classic_anniversary_manager",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_EditMode/Shared/EditModeManager.lua",
+      "gitBlob": "ca645482af299d0d4bd4297c53ddc7f6f1bcef85",
+      "savedSHA256": "4995f8ed6708281c80bd4dca884b326c5bc1f3034ac7c95b4daa47fb69e48424"
+    }
+  ],
+  "nativeExcerptChecks": [
+    {
+      "client": "live",
+      "method": "EditModeManagerFrameMixin:OnEditModeSystemAnchorChanged",
+      "match": true,
+      "fetchedSHA256": "d9ece3461f017a2a7241c6e2d28431ea72306443459b663f70a225892fc2054d",
+      "localSHA256": "d9ece3461f017a2a7241c6e2d28431ea72306443459b663f70a225892fc2054d"
+    },
+    {
+      "client": "live",
+      "method": "EditModeManagerFrameMixin:SaveLayouts",
+      "match": true,
+      "fetchedSHA256": "6274d335f84e8ba8bc991a6e9df6ebdccf7f232794f10d4e7c80f57eadf46eb2",
+      "localSHA256": "6274d335f84e8ba8bc991a6e9df6ebdccf7f232794f10d4e7c80f57eadf46eb2"
+    },
+    {
+      "client": "live",
+      "method": "EditModeManagerFrameMixin:PrepareSystemsForSave",
+      "match": true,
+      "fetchedSHA256": "0f5e0fd8f99ef8af6a703a3a33c29ec87830ce377338b521944850b9b0cfa9c8",
+      "localSHA256": "0f5e0fd8f99ef8af6a703a3a33c29ec87830ce377338b521944850b9b0cfa9c8"
+    },
+    {
+      "client": "live",
+      "method": "EditModeManagerFrameMixin:EnterEditMode",
+      "match": true,
+      "fetchedSHA256": "ff1a7e3af1550772c7c50d4560917a4c38233a28e5759db571cc4f73674d0358",
+      "localSHA256": "ff1a7e3af1550772c7c50d4560917a4c38233a28e5759db571cc4f73674d0358"
+    },
+    {
+      "client": "live",
+      "method": "EditModeManagerFrameMixin:ExitEditMode",
+      "match": true,
+      "fetchedSHA256": "87411f2b68bcf9cfd58b589a0bbaea989e5599534ed80c8080ead5f6008d575c",
+      "localSHA256": "87411f2b68bcf9cfd58b589a0bbaea989e5599534ed80c8080ead5f6008d575c"
+    },
+    {
+      "client": "live",
+      "method": "EditModeManagerFrameMixin:IsEditModeActive",
+      "match": true,
+      "fetchedSHA256": "93e46f172c961f0edc159ab9af843a41c49d024b4793cc81ad258740634bc35e",
+      "localSHA256": "93e46f172c961f0edc159ab9af843a41c49d024b4793cc81ad258740634bc35e"
+    },
+    {
+      "client": "live",
+      "method": "EditModeManagerFrameMixin:IsEditModeLocked",
+      "match": true,
+      "fetchedSHA256": "05d736199f0efdc20aec3190042922ad7f81ccf836727d74ff702d18d12e0815",
+      "localSHA256": "05d736199f0efdc20aec3190042922ad7f81ccf836727d74ff702d18d12e0815"
+    },
+    {
+      "client": "live",
+      "method": "EditModeSystemMixin:SetPointOverride",
+      "match": true,
+      "fetchedSHA256": "22934d3c82426d2d016375e0fc31d630ecfd0aa5354a96b488dd64821a41ea00",
+      "localSHA256": "22934d3c82426d2d016375e0fc31d630ecfd0aa5354a96b488dd64821a41ea00"
+    },
+    {
+      "client": "live",
+      "method": "EditModeSystemMixin:ClearAllPointsOverride",
+      "match": true,
+      "fetchedSHA256": "095a29bee310eed9adb5827dfd5260f98b6ade7a3395ba59940ee93d2fc84cb1",
+      "localSHA256": "095a29bee310eed9adb5827dfd5260f98b6ade7a3395ba59940ee93d2fc84cb1"
+    },
+    {
+      "client": "live",
+      "method": "EditModeSystemMixin:SetSnappedToFrame",
+      "match": true,
+      "fetchedSHA256": "9e66f1353249d7ab3ee19da89211a497b1d0001ca6235f075e98e807c976c529",
+      "localSHA256": "9e66f1353249d7ab3ee19da89211a497b1d0001ca6235f075e98e807c976c529"
+    },
+    {
+      "client": "live",
+      "method": "EditModeSystemMixin:ClearFrameSnap",
+      "match": true,
+      "fetchedSHA256": "3778bb14169cbbb2c1618c8f51ae835f44cbb497c8ef5e2c2b75a9ba32d55cb6",
+      "localSHA256": "3778bb14169cbbb2c1618c8f51ae835f44cbb497c8ef5e2c2b75a9ba32d55cb6"
+    },
+    {
+      "client": "live",
+      "method": "EditModeSystemMixin:PrepareForSave",
+      "match": true,
+      "fetchedSHA256": "6466bad1156f80dc317bc167acd5e33a3f5ead00e45917e09676e4b4b1d870c4",
+      "localSHA256": "6466bad1156f80dc317bc167acd5e33a3f5ead00e45917e09676e4b4b1d870c4"
+    },
+    {
+      "client": "forever",
+      "method": "EditModeManagerFrameMixin:OnEditModeSystemAnchorChanged",
+      "match": true,
+      "fetchedSHA256": "d9ece3461f017a2a7241c6e2d28431ea72306443459b663f70a225892fc2054d",
+      "localSHA256": "d9ece3461f017a2a7241c6e2d28431ea72306443459b663f70a225892fc2054d"
+    },
+    {
+      "client": "forever",
+      "method": "EditModeManagerFrameMixin:SaveLayouts",
+      "match": true,
+      "fetchedSHA256": "6274d335f84e8ba8bc991a6e9df6ebdccf7f232794f10d4e7c80f57eadf46eb2",
+      "localSHA256": "6274d335f84e8ba8bc991a6e9df6ebdccf7f232794f10d4e7c80f57eadf46eb2"
+    },
+    {
+      "client": "forever",
+      "method": "EditModeManagerFrameMixin:PrepareSystemsForSave",
+      "match": true,
+      "fetchedSHA256": "0f5e0fd8f99ef8af6a703a3a33c29ec87830ce377338b521944850b9b0cfa9c8",
+      "localSHA256": "0f5e0fd8f99ef8af6a703a3a33c29ec87830ce377338b521944850b9b0cfa9c8"
+    },
+    {
+      "client": "forever",
+      "method": "EditModeManagerFrameMixin:EnterEditMode",
+      "match": true,
+      "fetchedSHA256": "ff1a7e3af1550772c7c50d4560917a4c38233a28e5759db571cc4f73674d0358",
+      "localSHA256": "ff1a7e3af1550772c7c50d4560917a4c38233a28e5759db571cc4f73674d0358"
+    },
+    {
+      "client": "forever",
+      "method": "EditModeManagerFrameMixin:ExitEditMode",
+      "match": true,
+      "fetchedSHA256": "87411f2b68bcf9cfd58b589a0bbaea989e5599534ed80c8080ead5f6008d575c",
+      "localSHA256": "87411f2b68bcf9cfd58b589a0bbaea989e5599534ed80c8080ead5f6008d575c"
+    },
+    {
+      "client": "forever",
+      "method": "EditModeManagerFrameMixin:IsEditModeActive",
+      "match": true,
+      "fetchedSHA256": "93e46f172c961f0edc159ab9af843a41c49d024b4793cc81ad258740634bc35e",
+      "localSHA256": "93e46f172c961f0edc159ab9af843a41c49d024b4793cc81ad258740634bc35e"
+    },
+    {
+      "client": "forever",
+      "method": "EditModeManagerFrameMixin:IsEditModeLocked",
+      "match": true,
+      "fetchedSHA256": "05d736199f0efdc20aec3190042922ad7f81ccf836727d74ff702d18d12e0815",
+      "localSHA256": "05d736199f0efdc20aec3190042922ad7f81ccf836727d74ff702d18d12e0815"
+    },
+    {
+      "client": "forever",
+      "method": "EditModeSystemMixin:SetPointOverride",
+      "match": true,
+      "fetchedSHA256": "22934d3c82426d2d016375e0fc31d630ecfd0aa5354a96b488dd64821a41ea00",
+      "localSHA256": "22934d3c82426d2d016375e0fc31d630ecfd0aa5354a96b488dd64821a41ea00"
+    },
+    {
+      "client": "forever",
+      "method": "EditModeSystemMixin:ClearAllPointsOverride",
+      "match": true,
+      "fetchedSHA256": "095a29bee310eed9adb5827dfd5260f98b6ade7a3395ba59940ee93d2fc84cb1",
+      "localSHA256": "095a29bee310eed9adb5827dfd5260f98b6ade7a3395ba59940ee93d2fc84cb1"
+    },
+    {
+      "client": "forever",
+      "method": "EditModeSystemMixin:SetSnappedToFrame",
+      "match": true,
+      "fetchedSHA256": "9e66f1353249d7ab3ee19da89211a497b1d0001ca6235f075e98e807c976c529",
+      "localSHA256": "9e66f1353249d7ab3ee19da89211a497b1d0001ca6235f075e98e807c976c529"
+    },
+    {
+      "client": "forever",
+      "method": "EditModeSystemMixin:ClearFrameSnap",
+      "match": true,
+      "fetchedSHA256": "3778bb14169cbbb2c1618c8f51ae835f44cbb497c8ef5e2c2b75a9ba32d55cb6",
+      "localSHA256": "3778bb14169cbbb2c1618c8f51ae835f44cbb497c8ef5e2c2b75a9ba32d55cb6"
+    },
+    {
+      "client": "forever",
+      "method": "EditModeSystemMixin:PrepareForSave",
+      "match": true,
+      "fetchedSHA256": "6466bad1156f80dc317bc167acd5e33a3f5ead00e45917e09676e4b4b1d870c4",
+      "localSHA256": "6466bad1156f80dc317bc167acd5e33a3f5ead00e45917e09676e4b4b1d870c4"
+    },
+    {
+      "client": "classic",
+      "method": "EditModeManagerFrameMixin:OnEditModeSystemAnchorChanged",
+      "match": true,
+      "fetchedSHA256": "d9ece3461f017a2a7241c6e2d28431ea72306443459b663f70a225892fc2054d",
+      "localSHA256": "d9ece3461f017a2a7241c6e2d28431ea72306443459b663f70a225892fc2054d"
+    },
+    {
+      "client": "classic",
+      "method": "EditModeManagerFrameMixin:SaveLayouts",
+      "match": true,
+      "fetchedSHA256": "6274d335f84e8ba8bc991a6e9df6ebdccf7f232794f10d4e7c80f57eadf46eb2",
+      "localSHA256": "6274d335f84e8ba8bc991a6e9df6ebdccf7f232794f10d4e7c80f57eadf46eb2"
+    },
+    {
+      "client": "classic",
+      "method": "EditModeManagerFrameMixin:PrepareSystemsForSave",
+      "match": true,
+      "fetchedSHA256": "0f5e0fd8f99ef8af6a703a3a33c29ec87830ce377338b521944850b9b0cfa9c8",
+      "localSHA256": "0f5e0fd8f99ef8af6a703a3a33c29ec87830ce377338b521944850b9b0cfa9c8"
+    },
+    {
+      "client": "classic",
+      "method": "EditModeManagerFrameMixin:EnterEditMode",
+      "match": true,
+      "fetchedSHA256": "ff1a7e3af1550772c7c50d4560917a4c38233a28e5759db571cc4f73674d0358",
+      "localSHA256": "ff1a7e3af1550772c7c50d4560917a4c38233a28e5759db571cc4f73674d0358"
+    },
+    {
+      "client": "classic",
+      "method": "EditModeManagerFrameMixin:ExitEditMode",
+      "match": true,
+      "fetchedSHA256": "87411f2b68bcf9cfd58b589a0bbaea989e5599534ed80c8080ead5f6008d575c",
+      "localSHA256": "87411f2b68bcf9cfd58b589a0bbaea989e5599534ed80c8080ead5f6008d575c"
+    },
+    {
+      "client": "classic",
+      "method": "EditModeManagerFrameMixin:IsEditModeActive",
+      "match": true,
+      "fetchedSHA256": "93e46f172c961f0edc159ab9af843a41c49d024b4793cc81ad258740634bc35e",
+      "localSHA256": "93e46f172c961f0edc159ab9af843a41c49d024b4793cc81ad258740634bc35e"
+    },
+    {
+      "client": "classic",
+      "method": "EditModeManagerFrameMixin:IsEditModeLocked",
+      "match": true,
+      "fetchedSHA256": "05d736199f0efdc20aec3190042922ad7f81ccf836727d74ff702d18d12e0815",
+      "localSHA256": "05d736199f0efdc20aec3190042922ad7f81ccf836727d74ff702d18d12e0815"
+    },
+    {
+      "client": "classic",
+      "method": "EditModeSystemMixin:SetPointOverride",
+      "match": true,
+      "fetchedSHA256": "22934d3c82426d2d016375e0fc31d630ecfd0aa5354a96b488dd64821a41ea00",
+      "localSHA256": "22934d3c82426d2d016375e0fc31d630ecfd0aa5354a96b488dd64821a41ea00"
+    },
+    {
+      "client": "classic",
+      "method": "EditModeSystemMixin:ClearAllPointsOverride",
+      "match": true,
+      "fetchedSHA256": "095a29bee310eed9adb5827dfd5260f98b6ade7a3395ba59940ee93d2fc84cb1",
+      "localSHA256": "095a29bee310eed9adb5827dfd5260f98b6ade7a3395ba59940ee93d2fc84cb1"
+    },
+    {
+      "client": "classic",
+      "method": "EditModeSystemMixin:SetSnappedToFrame",
+      "match": true,
+      "fetchedSHA256": "9e66f1353249d7ab3ee19da89211a497b1d0001ca6235f075e98e807c976c529",
+      "localSHA256": "9e66f1353249d7ab3ee19da89211a497b1d0001ca6235f075e98e807c976c529"
+    },
+    {
+      "client": "classic",
+      "method": "EditModeSystemMixin:ClearFrameSnap",
+      "match": true,
+      "fetchedSHA256": "3778bb14169cbbb2c1618c8f51ae835f44cbb497c8ef5e2c2b75a9ba32d55cb6",
+      "localSHA256": "3778bb14169cbbb2c1618c8f51ae835f44cbb497c8ef5e2c2b75a9ba32d55cb6"
+    },
+    {
+      "client": "classic",
+      "method": "EditModeSystemMixin:PrepareForSave",
+      "match": true,
+      "fetchedSHA256": "6466bad1156f80dc317bc167acd5e33a3f5ead00e45917e09676e4b4b1d870c4",
+      "localSHA256": "6466bad1156f80dc317bc167acd5e33a3f5ead00e45917e09676e4b4b1d870c4"
+    },
+    {
+      "client": "classic_era",
+      "method": "EditModeManagerFrameMixin:OnEditModeSystemAnchorChanged",
+      "match": true,
+      "fetchedSHA256": "d9ece3461f017a2a7241c6e2d28431ea72306443459b663f70a225892fc2054d",
+      "localSHA256": "d9ece3461f017a2a7241c6e2d28431ea72306443459b663f70a225892fc2054d"
+    },
+    {
+      "client": "classic_era",
+      "method": "EditModeManagerFrameMixin:SaveLayouts",
+      "match": true,
+      "fetchedSHA256": "6274d335f84e8ba8bc991a6e9df6ebdccf7f232794f10d4e7c80f57eadf46eb2",
+      "localSHA256": "6274d335f84e8ba8bc991a6e9df6ebdccf7f232794f10d4e7c80f57eadf46eb2"
+    },
+    {
+      "client": "classic_era",
+      "method": "EditModeManagerFrameMixin:PrepareSystemsForSave",
+      "match": true,
+      "fetchedSHA256": "0f5e0fd8f99ef8af6a703a3a33c29ec87830ce377338b521944850b9b0cfa9c8",
+      "localSHA256": "0f5e0fd8f99ef8af6a703a3a33c29ec87830ce377338b521944850b9b0cfa9c8"
+    },
+    {
+      "client": "classic_era",
+      "method": "EditModeManagerFrameMixin:EnterEditMode",
+      "match": true,
+      "fetchedSHA256": "ff1a7e3af1550772c7c50d4560917a4c38233a28e5759db571cc4f73674d0358",
+      "localSHA256": "ff1a7e3af1550772c7c50d4560917a4c38233a28e5759db571cc4f73674d0358"
+    },
+    {
+      "client": "classic_era",
+      "method": "EditModeManagerFrameMixin:ExitEditMode",
+      "match": true,
+      "fetchedSHA256": "87411f2b68bcf9cfd58b589a0bbaea989e5599534ed80c8080ead5f6008d575c",
+      "localSHA256": "87411f2b68bcf9cfd58b589a0bbaea989e5599534ed80c8080ead5f6008d575c"
+    },
+    {
+      "client": "classic_era",
+      "method": "EditModeManagerFrameMixin:IsEditModeActive",
+      "match": true,
+      "fetchedSHA256": "93e46f172c961f0edc159ab9af843a41c49d024b4793cc81ad258740634bc35e",
+      "localSHA256": "93e46f172c961f0edc159ab9af843a41c49d024b4793cc81ad258740634bc35e"
+    },
+    {
+      "client": "classic_era",
+      "method": "EditModeManagerFrameMixin:IsEditModeLocked",
+      "match": true,
+      "fetchedSHA256": "05d736199f0efdc20aec3190042922ad7f81ccf836727d74ff702d18d12e0815",
+      "localSHA256": "05d736199f0efdc20aec3190042922ad7f81ccf836727d74ff702d18d12e0815"
+    },
+    {
+      "client": "classic_era",
+      "method": "EditModeSystemMixin:SetPointOverride",
+      "match": true,
+      "fetchedSHA256": "22934d3c82426d2d016375e0fc31d630ecfd0aa5354a96b488dd64821a41ea00",
+      "localSHA256": "22934d3c82426d2d016375e0fc31d630ecfd0aa5354a96b488dd64821a41ea00"
+    },
+    {
+      "client": "classic_era",
+      "method": "EditModeSystemMixin:ClearAllPointsOverride",
+      "match": true,
+      "fetchedSHA256": "095a29bee310eed9adb5827dfd5260f98b6ade7a3395ba59940ee93d2fc84cb1",
+      "localSHA256": "095a29bee310eed9adb5827dfd5260f98b6ade7a3395ba59940ee93d2fc84cb1"
+    },
+    {
+      "client": "classic_era",
+      "method": "EditModeSystemMixin:SetSnappedToFrame",
+      "match": true,
+      "fetchedSHA256": "9e66f1353249d7ab3ee19da89211a497b1d0001ca6235f075e98e807c976c529",
+      "localSHA256": "9e66f1353249d7ab3ee19da89211a497b1d0001ca6235f075e98e807c976c529"
+    },
+    {
+      "client": "classic_era",
+      "method": "EditModeSystemMixin:ClearFrameSnap",
+      "match": true,
+      "fetchedSHA256": "3778bb14169cbbb2c1618c8f51ae835f44cbb497c8ef5e2c2b75a9ba32d55cb6",
+      "localSHA256": "3778bb14169cbbb2c1618c8f51ae835f44cbb497c8ef5e2c2b75a9ba32d55cb6"
+    },
+    {
+      "client": "classic_era",
+      "method": "EditModeSystemMixin:PrepareForSave",
+      "match": true,
+      "fetchedSHA256": "6466bad1156f80dc317bc167acd5e33a3f5ead00e45917e09676e4b4b1d870c4",
+      "localSHA256": "6466bad1156f80dc317bc167acd5e33a3f5ead00e45917e09676e4b4b1d870c4"
+    },
+    {
+      "client": "classic_anniversary",
+      "method": "EditModeManagerFrameMixin:OnEditModeSystemAnchorChanged",
+      "match": true,
+      "fetchedSHA256": "d9ece3461f017a2a7241c6e2d28431ea72306443459b663f70a225892fc2054d",
+      "localSHA256": "d9ece3461f017a2a7241c6e2d28431ea72306443459b663f70a225892fc2054d"
+    },
+    {
+      "client": "classic_anniversary",
+      "method": "EditModeManagerFrameMixin:SaveLayouts",
+      "match": true,
+      "fetchedSHA256": "6274d335f84e8ba8bc991a6e9df6ebdccf7f232794f10d4e7c80f57eadf46eb2",
+      "localSHA256": "6274d335f84e8ba8bc991a6e9df6ebdccf7f232794f10d4e7c80f57eadf46eb2"
+    },
+    {
+      "client": "classic_anniversary",
+      "method": "EditModeManagerFrameMixin:PrepareSystemsForSave",
+      "match": true,
+      "fetchedSHA256": "0f5e0fd8f99ef8af6a703a3a33c29ec87830ce377338b521944850b9b0cfa9c8",
+      "localSHA256": "0f5e0fd8f99ef8af6a703a3a33c29ec87830ce377338b521944850b9b0cfa9c8"
+    },
+    {
+      "client": "classic_anniversary",
+      "method": "EditModeManagerFrameMixin:EnterEditMode",
+      "match": true,
+      "fetchedSHA256": "ff1a7e3af1550772c7c50d4560917a4c38233a28e5759db571cc4f73674d0358",
+      "localSHA256": "ff1a7e3af1550772c7c50d4560917a4c38233a28e5759db571cc4f73674d0358"
+    },
+    {
+      "client": "classic_anniversary",
+      "method": "EditModeManagerFrameMixin:ExitEditMode",
+      "match": true,
+      "fetchedSHA256": "87411f2b68bcf9cfd58b589a0bbaea989e5599534ed80c8080ead5f6008d575c",
+      "localSHA256": "87411f2b68bcf9cfd58b589a0bbaea989e5599534ed80c8080ead5f6008d575c"
+    },
+    {
+      "client": "classic_anniversary",
+      "method": "EditModeManagerFrameMixin:IsEditModeActive",
+      "match": true,
+      "fetchedSHA256": "93e46f172c961f0edc159ab9af843a41c49d024b4793cc81ad258740634bc35e",
+      "localSHA256": "93e46f172c961f0edc159ab9af843a41c49d024b4793cc81ad258740634bc35e"
+    },
+    {
+      "client": "classic_anniversary",
+      "method": "EditModeManagerFrameMixin:IsEditModeLocked",
+      "match": true,
+      "fetchedSHA256": "05d736199f0efdc20aec3190042922ad7f81ccf836727d74ff702d18d12e0815",
+      "localSHA256": "05d736199f0efdc20aec3190042922ad7f81ccf836727d74ff702d18d12e0815"
+    },
+    {
+      "client": "classic_anniversary",
+      "method": "EditModeSystemMixin:SetPointOverride",
+      "match": true,
+      "fetchedSHA256": "22934d3c82426d2d016375e0fc31d630ecfd0aa5354a96b488dd64821a41ea00",
+      "localSHA256": "22934d3c82426d2d016375e0fc31d630ecfd0aa5354a96b488dd64821a41ea00"
+    },
+    {
+      "client": "classic_anniversary",
+      "method": "EditModeSystemMixin:ClearAllPointsOverride",
+      "match": true,
+      "fetchedSHA256": "095a29bee310eed9adb5827dfd5260f98b6ade7a3395ba59940ee93d2fc84cb1",
+      "localSHA256": "095a29bee310eed9adb5827dfd5260f98b6ade7a3395ba59940ee93d2fc84cb1"
+    },
+    {
+      "client": "classic_anniversary",
+      "method": "EditModeSystemMixin:SetSnappedToFrame",
+      "match": true,
+      "fetchedSHA256": "9e66f1353249d7ab3ee19da89211a497b1d0001ca6235f075e98e807c976c529",
+      "localSHA256": "9e66f1353249d7ab3ee19da89211a497b1d0001ca6235f075e98e807c976c529"
+    },
+    {
+      "client": "classic_anniversary",
+      "method": "EditModeSystemMixin:ClearFrameSnap",
+      "match": true,
+      "fetchedSHA256": "3778bb14169cbbb2c1618c8f51ae835f44cbb497c8ef5e2c2b75a9ba32d55cb6",
+      "localSHA256": "3778bb14169cbbb2c1618c8f51ae835f44cbb497c8ef5e2c2b75a9ba32d55cb6"
+    },
+    {
+      "client": "classic_anniversary",
+      "method": "EditModeSystemMixin:PrepareForSave",
+      "match": true,
+      "fetchedSHA256": "6466bad1156f80dc317bc167acd5e33a3f5ead00e45917e09676e4b4b1d870c4",
+      "localSHA256": "6466bad1156f80dc317bc167acd5e33a3f5ead00e45917e09676e4b4b1d870c4"
+    }
+  ],
+  "scope": "Source declarations/ownership only. Exact selected native method bodies compared against fetched pinned commits. No native secure VM claim."
+}

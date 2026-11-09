@@ -1,0 +1,43 @@
+-- Select existing permanent production fixtures without changing their assertions.
+-- Only reads of this phase's ten owned runtime files may route to checkpoint.
+local sourceRoot, selection = arg[1], assert(arg[2], "probe selection")
+local nativeOpen = io.open
+local owned = {
+    ["MicroMenu/FluxMinimapToMicro.lua"]=true,["Salvage/FluxSalvage_Overlay.lua"]=true,
+    ["UnitFrames/FluxUnitFrames_Shared.lua"]=true,["Core/ButtonFX/ThreatGlow.lua"]=true,
+    ["Inventory/Restock/Junk/FluxVendorJunkPanel.lua"]=true,
+    ["Inventory/Restock/Vendor/FluxVendorRestockPanel.lua"]=true,
+    ["StatusBars/FluxStatusBar.lua"]=true,["StatusBars/FluxInfoFrame.lua"]=true,
+    ["Battlezonemap/FluxDetails.lua"]=true,["Other/FluxEquipSlotFlyout.lua"]=true,
+}
+io.open = function(path, mode)
+    if sourceRoot ~= "." and owned[path] then return nativeOpen(sourceRoot .. "/" .. path, mode) end
+    return nativeOpen(path, mode)
+end
+local function read(path)
+    local f=assert(nativeOpen(path,"rb"));local s=f:read("*a"):gsub("\r\n","\n");f:close();return s
+end
+local source
+if selection=="micro" or selection=="salvage" then
+    source=read("tests/domain_lifecycle_fixes.lua")
+    local split=assert(source:find("-- Reuse the permanent strict full-module fixture",1,true))
+    if selection=="micro"then source=source:sub(1,split-1)
+    else source='local checks=0;local function check(v,why)checks=checks+1;assert(v,why)end\n'..source:sub(split) end
+elseif selection=="levels"then source=read("tests/public_frame_level_safety.lua")
+elseif selection=="glow"then source=read("tests/alpha_reader_safety.lua")
+else
+    source=read("tests/native_timer_ownership.lua")
+    local function replace(a,b)
+        local p=assert(source:find(a,1,true),a);source=source:sub(1,p-1)..b..source:sub(p+#a)
+    end
+    local layouts=(selection=="status"or selection=="info")and'{"'..selection..'"}'or'{}'
+    replace('for _,kind in ipairs({"status","info"})do','for _,kind in ipairs('..layouts..')do')
+    replace('    do\n        local s,e=clock(handles);local parent=',
+        '    if selection=="details"then\n        local s,e=clock(handles);local parent=')
+    replace('    do\n        local s,e=clock(handles);local shown=',
+        '    if selection=="flyout"then\n        local s,e=clock(handles);local shown=')
+    local vendors=(selection=="junk"or selection=="restock")and'{"'..selection..'"}'or'{}'
+    replace('for _,kind in ipairs({"junk","restock"})do','for _,kind in ipairs('..vendors..')do')
+    source='local selection=...\n'..source
+end
+assert(load(source,"@permanent-domain-fixture-"..selection,"t",_G))(selection)

@@ -1,0 +1,53 @@
+-- Actual shared owners: reentry/mutation, bounded FIFO drain and hover freshness.
+local prefix=arg[1] and (arg[1]:gsub('\\','/'):gsub('/$','')..'/') or ''
+local checks=0
+local function check(v,label)checks=checks+1;assert(v,label)end
+local function boot(names)
+ local h={frames={},timers={},errors={},now=100,locked=false}
+ local e=setmetatable({},{__index=_G});e._G=e
+ e.GetTime=function()return h.now end;e.InCombatLockdown=function()return h.locked end
+ e.geterrorhandler=function()return function(err)h.errors[#h.errors+1]=err end end
+ e.C_EventUtils={IsEventValid=function()return true end}
+ e.wipe=function(t)for k in pairs(t)do t[k]=nil end;return t end
+ e.CreateFrame=function()
+  local f={shown=true,scripts={},events={}}
+  function f:SetScript(k,v)self.scripts[k]=v end
+  function f:Show()self.shown=true end;function f:Hide()self.shown=false end
+  function f:IsShown()return self.shown end
+  function f:RegisterEvent(k)self.events[k]=true end
+  function f:UnregisterEvent(k)self.events[k]=nil end
+  function f:RegisterUnitEvent(k,u)self.events[k]=u end
+  h.frames[#h.frames+1]=f;return f
+ end
+ local flux={Client={},Timer={After=function(_,fn)h.timers[#h.timers+1]=fn end}}
+ flux.Safecall=function(fn,...)local ok,v=pcall(fn,...);if not ok then h.errors[#h.errors+1]=v end;return ok,v end
+ e.UnitExists=function()return true end;e.UnitCanAttack=function()return true end
+ e.UnitCanAssist=function()return false end;e.UnitIsDead=function()return false end
+ flux.Spell={IsInRange=function()return true end}
+ function h.event(name,...)
+  for _,f in ipairs(h.frames)do if f.events[name]and f.scripts.OnEvent then f.scripts.OnEvent(f,name,...)end end
+ end
+ function h.frame(dt)
+  h.now=h.now+(dt or .016)
+  local q=h.timers;h.timers={};for _,fn in ipairs(q)do fn()end
+  for _,f in ipairs(h.frames)do if f.shown and f.scripts.OnUpdate then f.scripts.OnUpdate(f,dt or .016)end end
+ end
+ function h.drain(limit)
+  local n=0;while#h.timers>0 do n=n+1;check(n<(limit or 10000),'queue eventually sleeps');h.frame()end;return n
+ end
+ local ns={Flux=flux}
+ for _,name in ipairs(names)do assert(loadfile(prefix..'Core/Engine/'..name..'.lua','t',e))('_FluxUI',ns)end
+ h.flux=flux;return h
+end
+
+
+local h=boot({'Scheduler','Combat'});local s=h.flux.Scheduler;local order={}
+s.Request('structural','old1',function()
+ order[#order+1]='old1';h.locked=true
+ s.Request('structural','new',function()order[#order+1]='new'end)
+end)
+s.Request('structural','old2',function()order[#order+1]='old2';h.locked=true end)
+h.frame();h.locked=false;h.event('PLAYER_REGEN_ENABLED')
+print('AFTER resume-last callback: order='..table.concat(order,',')..' locked='..tostring(h.locked)..' schedPending='..tostring(s.HasPending('structural'))..' combatPending='..tostring(h.flux.Combat.HasPending())..' timers='..#h.timers)
+h.locked=false;h.event('PLAYER_REGEN_ENABLED');h.drain()
+print('AFTER next regen: order='..table.concat(order,',')..' schedPending='..tostring(s.HasPending('structural'))..' combatPending='..tostring(h.flux.Combat.HasPending())..' timers='..#h.timers)

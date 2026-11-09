@@ -1,0 +1,9 @@
+{
+  "capturedUTC": "2026-11-07T15:45:24.517920+00:00",
+  "sources": {
+    "UnitFrames/FluxUnitFrames_Shared.lua": "001c9471de765d1a87d112a81210890754c93e0e2c6e9225633e29d9ace66312",
+    "UnitFrames/FluxUnitFrames_Party.lua": "ac0f1b747d7281852a8c2bf7fa9059a073f600869bffd047fa5f55a8feedabbc",
+    "tests/raid_party_frames.lua": "b8af0cfde2f043d14d2e868e6ca8f6a43f7c8aaf8fc98d0e798877d92ce96129",
+    "tests/unit_indicator_layout.lua": "ef558111e9363c5e14618640e905c333d44f66255b01be7c8d5aaf5db7451c69"
+  }
+}

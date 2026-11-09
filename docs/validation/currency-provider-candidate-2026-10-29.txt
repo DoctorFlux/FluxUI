@@ -1,0 +1,26 @@
+era repetition=1 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0
+era repetition=2 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0
+era repetition=3 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0
+era repetition=4 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0
+era repetition=5 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0
+anniversary repetition=1 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0
+anniversary repetition=2 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0
+anniversary repetition=3 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0
+anniversary repetition=4 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0
+anniversary repetition=5 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0
+mists repetition=1 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0
+mists repetition=2 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0
+mists repetition=3 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0
+mists repetition=4 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0
+mists repetition=5 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0
+retail repetition=1 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0
+retail repetition=2 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0
+retail repetition=3 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0
+retail repetition=4 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0
+retail repetition=5 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0
+forever repetition=1 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0
+forever repetition=2 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0
+forever repetition=3 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0
+forever repetition=4 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0
+forever repetition=5 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0
+currency provider handoff: 150 checks, 0 failures; desktop operation counts only

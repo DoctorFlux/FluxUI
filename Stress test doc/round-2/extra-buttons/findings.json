@@ -1,0 +1,86 @@
+{
+  "scope": "Documentation/proposals only; no addon/runtime/existing-test/TOC/settings modifications",
+  "findings": [
+    {
+      "id": "R2-EBS-05",
+      "priority": 2,
+      "classification": "confirmed active source/API-contract reproduction",
+      "title": "Native After return cannot serve as the mount refresh pending latch",
+      "source": "ExtraButtonSystem/NonCombatGrid/Buttons/Mount.lua",
+      "line": 3095,
+      "activeCallerLine": 3507,
+      "affectedModels": ["classic_era", "classic_anniversary", "forever"],
+      "evidence": "mount_timer.lua.txt; audit-results.json",
+      "perRun": {"handlerCallsPerModelState": 100, "bagCallbacksPerBagClientState": 100, "additionalHalfSecondCallbacksOutOfCombat": 100, "fullUpdatesOutOfCombatPerBagClient": 200},
+      "proposal": "Explicit pending flag before After; clear on delivery and preserve current combat deferral. Consider the separate half-second refresh burst independently.",
+      "nativeTaintObserved": false,
+      "addonWideMechanism": "Same void-After ownership mechanism as other round-2 call sites; do not count every call site as a separate mechanism."
+    },
+    {
+      "id": "R2-EBS-03",
+      "priority": 2,
+      "classification": "confirmed active call budget; no native CPU timing",
+      "title": "Vendor detection re-enumerates the full mount journal on every full mount refresh",
+      "source": "ExtraButtonSystem/NonCombatGrid/FluxSmartMountConfig.lua",
+      "line": 543,
+      "caller": "Mount.lua2940 Update ->3036 SetupMiddleClick ->2103 ->830 HasAnyVendorMount ->Config.HasAnyVendorMount",
+      "evidence": "ebs_round2.lua.txt; audit-results.json",
+      "perRun": {"mountCount": 1000, "fullUpdatesPerVariant": 100, "englishYakLastQueries": 200000, "absentOrLocalizedQueries": 300000, "cachedCollectionHelperQueriesPer100AfterInitialScan": 0},
+      "proposal": "Reuse the existing collection cache/owner with explicit collection/readiness invalidation and preserve vendor priority and late metadata completion.",
+      "nativePerformanceObserved": false
+    },
+    {
+      "id": "R2-EBS-02",
+      "priority": 2,
+      "classification": "confirmed active name-dependent logic; synthetic localized provider name",
+      "title": "Vendor mount recognition depends on English native display names",
+      "source": "ExtraButtonSystem/NonCombatGrid/FluxSmartMountConfig.lua",
+      "line": 545,
+      "relatedSources": ["ExtraButtonSystem/NonCombatGrid/Buttons/MountCollection.lua:12", "ExtraButtonSystem/NonCombatGrid/Buttons/Mount.lua:40"],
+      "evidence": "ebs_round2.lua.txt; English/localized/ordinary mount controls",
+      "proposal": "Verify stable per-client vendor mount/spell identities, use native localized output and retain existing saved assignments. Do not use the dormant duplicate-key ID table as verified data.",
+      "nativeLocaleCapture": false
+    },
+    {
+      "id": "R2-EBS-06",
+      "priority": 3,
+      "classification": "active feature cost / proposed optimization",
+      "title": "Disabled pre-DF reticle VFX still searches all shown face owners every tick",
+      "source": "Core/ButtonFX/Cast.lua",
+      "line": 2253,
+      "relatedSources": ["Core/ButtonFX/Cast.lua:2231", "Core/ButtonFX/Cast.lua:2473"],
+      "evidence": "reticle_disabled.lua.txt; real Overlay disabled guard and complete Cast fixture",
+      "perRunPerClassicModel": {"ticks": 600, "extraEntries": 60, "spellReads": 36000, "alphaReads": 36000, "visibleReticleAfterDisable": false},
+      "proposal": "Retain necessary targeting/cancel observation but skip optional owner/face matching while rendering is disabled. Test checked-state lifecycle and re-enable during targeting.",
+      "nativePerformanceObserved": false
+    },
+    {
+      "id": "R2-EBS-04",
+      "priority": 3,
+      "classification": "conditional injected setter-failure model",
+      "title": "Numeric cooldown signature commits despite failed native setter",
+      "source": "Core/ButtonFX/Charges.lua",
+      "line": 81,
+      "relatedSources": ["Core/ButtonFX/Charges.lua:223", "Core/ButtonFX/Charges.lua:251"],
+      "evidence": "ebs_round2.lua.txt; complete Charges module",
+      "perRun": {"identicalApplyCallsAfterOneInjectedFailure": 1000, "nativeAttempts": 1, "successfulWrites": 0, "cachedShown": true, "explicitCacheClearRecovers": true, "publicSuccessControlWritesPer1000Calls": 1},
+      "proposal": "Commit signatures only after accepted native operations; retry through the existing paint cycle and keep successful unchanged timers at one write.",
+      "nativeOperationFailureObserved": false,
+      "gate": "Capture a real native failure with legal public args before attributing current user errors to this robustness case."
+    },
+    {
+      "id": "R2-EBS-01",
+      "priority": 4,
+      "classification": "reproduced dormant legacy helper defect; no demonstrated current TOC consumer",
+      "title": "Literal percent-bracket search disables legacy active macro-clause selection",
+      "source": "ExtraButtonSystem/Engine/Usability.lua",
+      "line": 539,
+      "relatedSources": ["ExtraButtonSystem/Engine/Usability.lua:598", "ExtraButtonSystem/Engine/Paint.lua:3803", "_FluxUI.toc:118"],
+      "evidence": "ebs_round2.lua.txt; complete dormant module and isolated in-memory typo control",
+      "perRun": {"macroPairs": 10000, "staleClauseMismatches": 5000, "conditionalInventorySlotMismatches": 5},
+      "proposal": "Correct the two literal searches only if legacy helper support is retained. Establish a current caller before promoting this to an active feature fix.",
+      "currentActiveReachabilityEstablished": false
+    }
+  ],
+  "acceptanceDetails": "REPORT.md contains per-finding feature-preserving options and regression/native acceptance gates."
+}

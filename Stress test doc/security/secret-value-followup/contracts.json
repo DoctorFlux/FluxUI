@@ -1,0 +1,22 @@
+[
+  {
+    "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleScriptRegionAPIDocumentation.lua",
+    "gitBlob": "e244d9eba05238cd1260a10ce34a14d07f7a6ae9",
+    "url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleScriptRegionAPIDocumentation.lua",
+    "target": "Forever",
+    "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+    "sourceVersion": "1.60.1.70862",
+    "normalizedLocalGitBlob": "e244d9eba05238cd1260a10ce34a14d07f7a6ae9",
+    "localMatchesPinnedBlob": true
+  },
+  {
+    "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleScriptRegionResizingAPIDocumentation.lua",
+    "gitBlob": "6425c8deefe565688f200fbff9d46c364a8f539b",
+    "url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleScriptRegionResizingAPIDocumentation.lua",
+    "target": "Forever",
+    "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+    "sourceVersion": "1.60.1.70862",
+    "normalizedLocalGitBlob": "6425c8deefe565688f200fbff9d46c364a8f539b",
+    "localMatchesPinnedBlob": true
+  }
+]

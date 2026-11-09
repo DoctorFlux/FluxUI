@@ -1,0 +1,240 @@
+{
+  "changeID": "UTILITY-RANKED-SPELLS-20261107",
+  "requirement": "UTL-RANK-10",
+  "dateUTC": "2026-11-07T11:40:51.036414+00:00",
+  "checkpoint": {
+    "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\07\\01a1b54c-d8ad-7fb2-8983-8450144d40ed\\Utility-ranked-spells-20261107",
+    "sourceZIP": "db966dccff7b786e3a41593e661536b4722d494772ae579a49c7423427af4060",
+    "sourceFiles": 1871,
+    "history": "Prior external complete history bundle verified before runtime edits; history-verification.txt external.",
+    "availableSettingsMetadataFiles": 121,
+    "settings": "Read-only metadata; no WTF or profiler writes. Public saved utility assignment Arcane Intellect(Rank 2) observed on Forever."
+  },
+  "baseline": {
+    "ExtraButtonSystem/NonCombatGrid/UtilitySlots/Manager.lua": "3b14c0156cc6e8d4446078e0b8c906f56239b7fe3818dc6256791cb7c2ec8dd9"
+  },
+  "candidate": {
+    "ExtraButtonSystem/NonCombatGrid/UtilitySlots/Manager.lua": "01aa78a28e9ceee770e9c5363206f06fe6dd30c73539a322ca3ec59683e9ee10",
+    "tests/utility_secure_input.lua": "8d01153c8ac3f883b717b92ead2149f9fb2d66a61a750eab9dc78ebaeb63765d"
+  },
+  "sourceContracts": [
+    {
+      "branch": "live",
+      "version": "12.1.0.69283",
+      "path": "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\__AddonsForRef\\wow-ui-source-live\\Interface\\AddOns\\Blizzard_FrameXML\\SecureTemplates.lua",
+      "sha256": "5fd1efcbfc20b4d426187f55dbee52542d37befd1ef52082db1f466f1049929a",
+      "currentSHA256": "5fd1efcbfc20b4d426187f55dbee52542d37befd1ef52082db1f466f1049929a"
+    },
+    {
+      "branch": "live",
+      "version": "12.1.0.69283",
+      "path": "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\__AddonsForRef\\wow-ui-source-live\\Interface\\AddOns\\Blizzard_ChatFrameBase\\Shared\\SlashCommands.lua",
+      "sha256": "730e612cc460c50420dd7783a374e876249915730bb0986691db52529d9c1a6f",
+      "currentSHA256": "730e612cc460c50420dd7783a374e876249915730bb0986691db52529d9c1a6f"
+    },
+    {
+      "branch": "forever",
+      "version": "1.60.1.70425",
+      "path": "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\__AddonsForRef\\wow-ui-source-forever\\Interface\\AddOns\\Blizzard_FrameXML\\SecureTemplates.lua",
+      "sha256": "b6e91f1d54f269a8bd66312b368e6fd7706028d366eee0167161ace9004cae23",
+      "currentSHA256": "b6e91f1d54f269a8bd66312b368e6fd7706028d366eee0167161ace9004cae23"
+    },
+    {
+      "branch": "forever",
+      "version": "1.60.1.70425",
+      "path": "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\__AddonsForRef\\wow-ui-source-forever\\Interface\\AddOns\\Blizzard_ChatFrameBase\\Shared\\SlashCommands.lua",
+      "sha256": "8c59b81deb2d8ccf9cb9687dfacd7ff7e82d1a8a83f8414843a23b8d58819072",
+      "currentSHA256": "8c59b81deb2d8ccf9cb9687dfacd7ff7e82d1a8a83f8414843a23b8d58819072"
+    },
+    {
+      "branch": "classic",
+      "version": "5.5.4.69155",
+      "path": "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\__AddonsForRef\\wow-ui-source-classic\\Interface\\AddOns\\Blizzard_FrameXML\\SecureTemplates.lua",
+      "sha256": "8bc0c7f6cac0340a00bec729253a6768b1ff4baa7879b70a4fdb6f4f3b287fde",
+      "currentSHA256": "8bc0c7f6cac0340a00bec729253a6768b1ff4baa7879b70a4fdb6f4f3b287fde"
+    },
+    {
+      "branch": "classic",
+      "version": "5.5.4.69155",
+      "path": "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\__AddonsForRef\\wow-ui-source-classic\\Interface\\AddOns\\Blizzard_ChatFrameBase\\Shared\\SlashCommands.lua",
+      "sha256": "6e32cb60340f2808912bdc393223fa3340af45cf02b16c2e8b0cfe023764eb3f",
+      "currentSHA256": "6e32cb60340f2808912bdc393223fa3340af45cf02b16c2e8b0cfe023764eb3f"
+    },
+    {
+      "branch": "classic_era",
+      "version": "1.15.9.68808",
+      "path": "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\__AddonsForRef\\wow-ui-source-classic_era\\Interface\\AddOns\\Blizzard_FrameXML\\SecureTemplates.lua",
+      "sha256": "1c3b956e03752ab9f3bffd62ff7b5b545d57de8d8026f242c69d843cdbe32400",
+      "currentSHA256": "1c3b956e03752ab9f3bffd62ff7b5b545d57de8d8026f242c69d843cdbe32400"
+    },
+    {
+      "branch": "classic_era",
+      "version": "1.15.9.68808",
+      "path": "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\__AddonsForRef\\wow-ui-source-classic_era\\Interface\\AddOns\\Blizzard_ChatFrameBase\\Shared\\SlashCommands.lua",
+      "sha256": "becc39780849b82d071c331980c3ccf4d218d67b278e05720c76e54cf6c88a8b",
+      "currentSHA256": "becc39780849b82d071c331980c3ccf4d218d67b278e05720c76e54cf6c88a8b"
+    },
+    {
+      "branch": "classic_anniversary",
+      "version": "2.5.6.68775",
+      "path": "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\__AddonsForRef\\wow-ui-source-classic_anniversary\\Interface\\AddOns\\Blizzard_FrameXML\\SecureTemplates.lua",
+      "sha256": "45a0e3164c63070f265e22028a829717c262cabecad21a4d090d2b663c22addf",
+      "currentSHA256": "45a0e3164c63070f265e22028a829717c262cabecad21a4d090d2b663c22addf"
+    },
+    {
+      "branch": "classic_anniversary",
+      "version": "2.5.6.68775",
+      "path": "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\__AddonsForRef\\wow-ui-source-classic_anniversary\\Interface\\AddOns\\Blizzard_ChatFrameBase\\Shared\\SlashCommands.lua",
+      "sha256": "7294b6ae2eb7b9613713f0817d273a86d42ee547a85adbbcbf0b88a5bb565631",
+      "currentSHA256": "7294b6ae2eb7b9613713f0817d273a86d42ee547a85adbbcbf0b88a5bb565631"
+    }
+  ],
+  "sourceFreshness": "Current GitHub branch API queries unavailable; retained exact dated local source identities and hashes. Packaged API ledger Forever eac30af597e5aaa43a60f6675ef5fdcea100375f/1.60.1.70790 declares DoesSpellExist(SpellIdentifier)->bool but does not certify ranked-name resolution.",
+  "hypothesis": "Saved name includes rank. Native CAST prechecks DoesSpellExist on full cast string. USE falls back directly to CastSpellByName. Fixture explicitly models rank lookup rejection with native cast accepting exact ranked string; actual client rejection and casting success unobserved.",
+  "policy": "Ranked/subtext strings use native USE; bare spell names retain CAST spell priority; explicit item:ID retained. Mixed ranked/bare slots use mutually exclusive exact-chord command lines within the same stable hidden macro. At most one command selected; no combat action rebuilds. Special macro/pet/outfit handling retained.",
+  "pairs": [
+    {
+      "pair": 1,
+      "kind": "baseline",
+      "exit": 1,
+      "wallSeconds": 0.10914,
+      "output": "lua: tests/utility_secure_input.lua:5: live ranked/bare/item exact action mouse \nstack traceback:\n\t[C]: in function 'assert'\n\ttests/utility_secure_input.lua:5: in local 'check'\n\ttests/utility_secure_input.lua:261: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "pair": 1,
+      "kind": "candidate",
+      "exit": 0,
+      "wallSeconds": 0.44278,
+      "output": "Utility secure input: 15491 checks; five Blizzard dispatchers; mouse + both keys; all chords; combat; both CVar edges PASS\n"
+    },
+    {
+      "pair": 2,
+      "kind": "baseline",
+      "exit": 1,
+      "wallSeconds": 0.08237,
+      "output": "lua: tests/utility_secure_input.lua:5: live ranked/bare/item exact action mouse \nstack traceback:\n\t[C]: in function 'assert'\n\ttests/utility_secure_input.lua:5: in local 'check'\n\ttests/utility_secure_input.lua:261: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "pair": 2,
+      "kind": "candidate",
+      "exit": 0,
+      "wallSeconds": 0.42234,
+      "output": "Utility secure input: 15491 checks; five Blizzard dispatchers; mouse + both keys; all chords; combat; both CVar edges PASS\n"
+    },
+    {
+      "pair": 3,
+      "kind": "baseline",
+      "exit": 1,
+      "wallSeconds": 0.07312,
+      "output": "lua: tests/utility_secure_input.lua:5: live ranked/bare/item exact action mouse \nstack traceback:\n\t[C]: in function 'assert'\n\ttests/utility_secure_input.lua:5: in local 'check'\n\ttests/utility_secure_input.lua:261: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "pair": 3,
+      "kind": "candidate",
+      "exit": 0,
+      "wallSeconds": 0.38825,
+      "output": "Utility secure input: 15491 checks; five Blizzard dispatchers; mouse + both keys; all chords; combat; both CVar edges PASS\n"
+    },
+    {
+      "pair": 4,
+      "kind": "baseline",
+      "exit": 1,
+      "wallSeconds": 0.07285,
+      "output": "lua: tests/utility_secure_input.lua:5: live ranked/bare/item exact action mouse \nstack traceback:\n\t[C]: in function 'assert'\n\ttests/utility_secure_input.lua:5: in local 'check'\n\ttests/utility_secure_input.lua:261: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "pair": 4,
+      "kind": "candidate",
+      "exit": 0,
+      "wallSeconds": 0.40977,
+      "output": "Utility secure input: 15491 checks; five Blizzard dispatchers; mouse + both keys; all chords; combat; both CVar edges PASS\n"
+    },
+    {
+      "pair": 5,
+      "kind": "baseline",
+      "exit": 1,
+      "wallSeconds": 0.07376,
+      "output": "lua: tests/utility_secure_input.lua:5: live ranked/bare/item exact action mouse \nstack traceback:\n\t[C]: in function 'assert'\n\ttests/utility_secure_input.lua:5: in local 'check'\n\ttests/utility_secure_input.lua:261: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "pair": 5,
+      "kind": "candidate",
+      "exit": 0,
+      "wallSeconds": 0.3994,
+      "output": "Utility secure input: 15491 checks; five Blizzard dispatchers; mouse + both keys; all chords; combat; both CVar edges PASS\n"
+    }
+  ],
+  "coverage": "15491 source-dispatch checks across five dated native SecureTemplates and CAST/USE handlers; Arcane Intellect ranks2/1; localized rank text; bare spell/item-name collision; normal/modifier/release; mouse and both keys; combat/noncombat; both CVar edges; cold item token never normal fallback.",
+  "work": "No new events/timers/frames/polling/modifier-time protected writes. Classification happens during out-of-combat macro preparation; existing formatter cache reused.",
+  "fullValidation": {
+    "evidence": "docs/validation/utility-ranked-spells-full-2026-11-07.json",
+    "passed": 222,
+    "failed": 0,
+    "syntaxFiles": 885,
+    "syntaxFailures": [],
+    "postRunSourceDrift": [],
+    "relevantResults": [
+      {
+        "path": "tests/consumable_refresh_timer.lua",
+        "exit": 0,
+        "wallSeconds": 0.0239,
+        "output": "Consumable refresh timer: 35 checks passed\n"
+      },
+      {
+        "path": "tests/transmog_actions.lua",
+        "exit": 0,
+        "wallSeconds": 0.0944,
+        "output": "Transmog actions: 6037 checks; five branches, capability adapters, six negative controls passed\n"
+      },
+      {
+        "path": "tests/utility_mixed_faces.lua",
+        "exit": 0,
+        "wallSeconds": 0.1209,
+        "output": "Utility mixed faces: 6894 checks, 0 failures\nModifier work: transitions=320 icon=120 count=120 usable=140 checked=120 duplicate=0\nUtility consumable aura queries: 0\n"
+      },
+      {
+        "path": "tests/utility_modifier_vfx.lua",
+        "exit": 0,
+        "wallSeconds": 0.1211,
+        "output": "Utility modifier VFX: 488 checks; five clients; cast/channel/empower/reticle/burst/interrupt/proc lifecycle PASS\n"
+      },
+      {
+        "path": "tests/utility_pet_faces.lua",
+        "exit": 0,
+        "wallSeconds": 0.0476,
+        "output": "Utility pet faces: 1752 checks, 0 failures\n"
+      },
+      {
+        "path": "tests/utility_secure_input.lua",
+        "exit": 0,
+        "wallSeconds": 0.4037,
+        "output": "Utility secure input: 15491 checks; five Blizzard dispatchers; mouse + both keys; all chords; combat; both CVar edges PASS\n"
+      }
+    ]
+  },
+  "nativeAcceptance": "Pending user reload/actual ranked Arcane Intellect at assigned rank, mouse/both keys, modifier item and release, target/mouseover, combat/input/taint/visual/FPS.",
+  "clientCopies": {
+    "_retail_": {
+      "exists": true,
+      "sha256": "01aa78a28e9ceee770e9c5363206f06fe6dd30c73539a322ca3ec59683e9ee10"
+    },
+    "_forever_": {
+      "exists": true,
+      "sha256": "01aa78a28e9ceee770e9c5363206f06fe6dd30c73539a322ca3ec59683e9ee10"
+    },
+    "_classic_": {
+      "exists": true,
+      "sha256": "01aa78a28e9ceee770e9c5363206f06fe6dd30c73539a322ca3ec59683e9ee10"
+    },
+    "_classic_era_": {
+      "exists": true,
+      "sha256": "01aa78a28e9ceee770e9c5363206f06fe6dd30c73539a322ca3ec59683e9ee10"
+    },
+    "_anniversary_": {
+      "exists": true,
+      "sha256": "01aa78a28e9ceee770e9c5363206f06fe6dd30c73539a322ca3ec59683e9ee10"
+    }
+  },
+  "documentationValidation": "PASS:918 classified sources;598 TOC/XML reachable;415 setting definitions;24 SavedVariables;15131 local links;source inventory/evidence current.",
+  "diffCheck": "PASS for touched runtime/test/continuity/ledger/generated documentation paths."
+}

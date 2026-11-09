@@ -1,0 +1,56 @@
+-- Documentation-only extension of established production-executing fixtures.
+-- Run from repository root. No native client or addon file changes.
+local checks=0
+local function check(v,label)checks=checks+1;assert(v,label)end
+local function read(path)local f=assert(io.open(path,"rb"));local s=f:read("*a"):gsub("\r\n","\n");f:close();return s end
+local mailText=read("tests/mail_job_lifecycle.lua")
+local mailStop=assert(mailText:find('for _, client in ipairs({"retail",',1,true))
+local mailBoot=assert(load(mailText:sub(1,mailStop-1).."\nreturn boot","@mail-lifecycle-fixture-prefix","t",_G))()
+local mailCycles=0
+for _,client in ipairs({"retail","forever","era","anniversary","mists"})do
+ for _,cancellable in ipairs({false,true})do
+  for _,owner in ipairs({"OpenAll","Select"})do
+   local s=mailBoot(client,cancellable)
+   local frames=#s.frames
+   for cycle=1,1000 do
+    s.inbox={{sender="Friend",subject="Supplies"..cycle,money=100,cod=0,items={205}}}
+    s.env.MailFrame.shown=true;s.commandPending=false;s:event("MAIL_SHOW")
+    local before=#s.calls;s:start(owner)
+    check(s.running and #s.calls==before+1,"one current native action begins")
+    s:closed()
+    check(not s.running,"mail close cancels current job")
+    s:ackMoney();s:advance(20)
+    check(#s.calls==before+1,"closed mailbox rejects stale native acknowledgement and wakes")
+    check(s:activeTimers()==0 and #s.frames==frames,"mail close drains/cancels old wakes and reuses controls")
+    mailCycles=mailCycles+1
+   end
+  end
+ end
+end
+print("MAIL lifecycle cycles="..mailCycles.."; models label shared API fixtures; close/ack/20s stale deadlines; controls reused")
+
+local salvageText=read("tests/salvage_overlay.lua")
+local salvageStop=assert(salvageText:find("local function exercise(branch, options, code)",1,true))
+local salvageFixture=assert(load(salvageText:sub(1,salvageStop-1).."\nreturn fixture","@salvage-fixture-prefix","t",_G))()
+local salvageCycles=0
+for _,client in ipairs({"live","forever","classic_era","classic_anniversary","classic"})do
+ local e,S,overlay=salvageFixture(client,{probe="none"})
+ local frameCount=#e.frames
+ for cycle=1,1000 do
+  e.combat=false;S.ApplySpellToBagSlot(0,2,1804,e.CreateColor(1,0,0),e.owner)
+  check(overlay:IsShown() and overlay:GetAttribute("target-slot")==2,"salvage prepared action follows owned slot")
+  S.HideOverlay()
+  check(not overlay:IsShown() and overlay.scripts.OnUpdate==nil,"salvage hide disarms update")
+  e.combat=true
+  S.HandleTooltip({IsForbidden=function()return false end})
+  S.OnModifierChanged()
+  local ran=0;S.Defer(function()ran=ran+1 end)
+  e.fire("PLAYER_REGEN_ENABLED")
+  check(ran==0 and not overlay:IsShown(),"salvage arming and deferred work wait through combat")
+  e.combat=false;e.fire("PLAYER_REGEN_ENABLED");e.fire("PLAYER_REGEN_ENABLED")
+  check(ran==1 and #e.frames==frameCount and overlay.scripts.OnUpdate==nil,"salvage completes once and reuses resources")
+  salvageCycles=salvageCycles+1
+ end
+end
+print("SALVAGE lifecycle cycles="..salvageCycles.."; strict modeled protected mutations; OOC arm/hide/combat/regen repeated")
+print("SURFACE LIFECYCLE COMPLETE assertions="..checks.."; desktop mocked boundaries only; native taint/input/FPS pending")

@@ -1,0 +1,14 @@
+--- checkpoint/Bars/BadgeHost.lua
++++ applied/Bars/BadgeHost.lua
+@@ -1227,7 +1227,10 @@
+ 					local alphaOk = true
+ 					if w and w.GetAlpha then
+ 						local ok, a = pcall(w.GetAlpha, w)
+-						if ok and type(a) == "number" and a <= 0 then
++						-- The configured owned badge alpha is public even when its
++						-- widget getter is restricted. Hidden/parked flags above win.
++						if not ok or not CanRead(a) then a = badge._fluxBadgeAlpha end
++						if CanRead(a) and type(a) == "number" and a <= 0 then
+ 							alphaOk = false
+ 						end
+ 					end

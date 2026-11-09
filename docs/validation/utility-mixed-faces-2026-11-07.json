@@ -1,0 +1,688 @@
+{
+  "changeID": "UTILITY-MIXED-FACES-20261107",
+  "dateUTC": "2026-11-07T09:25:41.112939+00:00",
+  "checkpoint": {
+    "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\07\\01a1b54c-d8ad-7fb2-8983-8450144d40ed\\Utility-mixed-20261107",
+    "head": "75cf2bcba83adfea0501934f4eeb2a980c46fdf8",
+    "sourceFiles": 1739,
+    "settingsMetadataFiles": 121,
+    "sourceZIP": "b857e4236cb42fb3e128e1313838b25ee9747bbef2680a927e303037e9b37fd2",
+    "historyBundle": "ee862f42f0b9d08e8bebb57df59873a0936860451978bd1202f6d1da064fb762",
+    "historyVerification": "git bundle verify PASS",
+    "settingsRecovery": "Existing external 2026-11-07 settings.zip verified SHA256 1e548bc98b1d597fa3a6ecbf1980c6412738e338e13dffa21beedb15e343456f; metadata only while clients may be running; no WTF writes"
+  },
+  "baseline": {
+    "ExtraButtonSystem/NonCombatGrid/UtilitySlots/Manager.lua": "b596fb3fd8741fd512cfb2868a57ef78475ed669538cf717841fdbb51d31a28d",
+    "Core/API/Spell.lua": "b87837da401e500f3252c00042ef8523def044f42c015b1817c6ae5deee692b5"
+  },
+  "candidate": {
+    "ExtraButtonSystem/NonCombatGrid/UtilitySlots/Manager.lua": "635a9a9e71ddd55cbcef773e79a237608389390af2d8de725bd446fbe46d2fb7",
+    "Core/API/Spell.lua": "982de8ad66e77f052929ccc021e574775cad9220ec861adb67e84b3bdbc81b4a"
+  },
+  "pairs": [
+    {
+      "pair": 1,
+      "kind": "baseline",
+      "exit": 1,
+      "wallSeconds": 0.08468,
+      "output": "e compiled command CTRL-ALT\nFAIL mists selected kind SHIFT-CTRL-ALT\nFAIL selected identity SHIFT-CTRL-ALT\nFAIL selected icon SHIFT-CTRL-ALT\nFAIL selected count SHIFT-CTRL-ALT got 2\nFAIL selected cooldown SHIFT-CTRL-ALT\nFAIL selected tooltip SHIFT-CTRL-ALT\nFAIL selected range query SHIFT-CTRL-ALT\nFAIL prepared click identity SHIFT-CTRL-ALT\nFAIL exactly one compiled command SHIFT-CTRL-ALT\nFAIL combat bag pulse refreshes spell reagent\nFAIL combat bag pulse refreshes item stack\nFAIL depleted item keeps zero\nFAIL single charged item exhausts in combat\nUtility mixed faces: 2549 checks, 720 failures\n"
+    },
+    {
+      "pair": 1,
+      "kind": "candidate",
+      "exit": 0,
+      "wallSeconds": 0.09529,
+      "output": "Utility mixed faces: 3269 checks, 0 failures\n"
+    },
+    {
+      "pair": 2,
+      "kind": "baseline",
+      "exit": 1,
+      "wallSeconds": 0.07906,
+      "output": "e compiled command CTRL-ALT\nFAIL mists selected kind SHIFT-CTRL-ALT\nFAIL selected identity SHIFT-CTRL-ALT\nFAIL selected icon SHIFT-CTRL-ALT\nFAIL selected count SHIFT-CTRL-ALT got 2\nFAIL selected cooldown SHIFT-CTRL-ALT\nFAIL selected tooltip SHIFT-CTRL-ALT\nFAIL selected range query SHIFT-CTRL-ALT\nFAIL prepared click identity SHIFT-CTRL-ALT\nFAIL exactly one compiled command SHIFT-CTRL-ALT\nFAIL combat bag pulse refreshes spell reagent\nFAIL combat bag pulse refreshes item stack\nFAIL depleted item keeps zero\nFAIL single charged item exhausts in combat\nUtility mixed faces: 2549 checks, 720 failures\n"
+    },
+    {
+      "pair": 2,
+      "kind": "candidate",
+      "exit": 0,
+      "wallSeconds": 0.09448,
+      "output": "Utility mixed faces: 3269 checks, 0 failures\n"
+    },
+    {
+      "pair": 3,
+      "kind": "baseline",
+      "exit": 1,
+      "wallSeconds": 0.08293,
+      "output": "e compiled command CTRL-ALT\nFAIL mists selected kind SHIFT-CTRL-ALT\nFAIL selected identity SHIFT-CTRL-ALT\nFAIL selected icon SHIFT-CTRL-ALT\nFAIL selected count SHIFT-CTRL-ALT got 2\nFAIL selected cooldown SHIFT-CTRL-ALT\nFAIL selected tooltip SHIFT-CTRL-ALT\nFAIL selected range query SHIFT-CTRL-ALT\nFAIL prepared click identity SHIFT-CTRL-ALT\nFAIL exactly one compiled command SHIFT-CTRL-ALT\nFAIL combat bag pulse refreshes spell reagent\nFAIL combat bag pulse refreshes item stack\nFAIL depleted item keeps zero\nFAIL single charged item exhausts in combat\nUtility mixed faces: 2549 checks, 720 failures\n"
+    },
+    {
+      "pair": 3,
+      "kind": "candidate",
+      "exit": 0,
+      "wallSeconds": 0.10275,
+      "output": "Utility mixed faces: 3269 checks, 0 failures\n"
+    },
+    {
+      "pair": 4,
+      "kind": "baseline",
+      "exit": 1,
+      "wallSeconds": 0.07814,
+      "output": "e compiled command CTRL-ALT\nFAIL mists selected kind SHIFT-CTRL-ALT\nFAIL selected identity SHIFT-CTRL-ALT\nFAIL selected icon SHIFT-CTRL-ALT\nFAIL selected count SHIFT-CTRL-ALT got 2\nFAIL selected cooldown SHIFT-CTRL-ALT\nFAIL selected tooltip SHIFT-CTRL-ALT\nFAIL selected range query SHIFT-CTRL-ALT\nFAIL prepared click identity SHIFT-CTRL-ALT\nFAIL exactly one compiled command SHIFT-CTRL-ALT\nFAIL combat bag pulse refreshes spell reagent\nFAIL combat bag pulse refreshes item stack\nFAIL depleted item keeps zero\nFAIL single charged item exhausts in combat\nUtility mixed faces: 2549 checks, 720 failures\n"
+    },
+    {
+      "pair": 4,
+      "kind": "candidate",
+      "exit": 0,
+      "wallSeconds": 0.09624,
+      "output": "Utility mixed faces: 3269 checks, 0 failures\n"
+    },
+    {
+      "pair": 5,
+      "kind": "baseline",
+      "exit": 1,
+      "wallSeconds": 0.07604,
+      "output": "e compiled command CTRL-ALT\nFAIL mists selected kind SHIFT-CTRL-ALT\nFAIL selected identity SHIFT-CTRL-ALT\nFAIL selected icon SHIFT-CTRL-ALT\nFAIL selected count SHIFT-CTRL-ALT got 2\nFAIL selected cooldown SHIFT-CTRL-ALT\nFAIL selected tooltip SHIFT-CTRL-ALT\nFAIL selected range query SHIFT-CTRL-ALT\nFAIL prepared click identity SHIFT-CTRL-ALT\nFAIL exactly one compiled command SHIFT-CTRL-ALT\nFAIL combat bag pulse refreshes spell reagent\nFAIL combat bag pulse refreshes item stack\nFAIL depleted item keeps zero\nFAIL single charged item exhausts in combat\nUtility mixed faces: 2549 checks, 720 failures\n"
+    },
+    {
+      "pair": 5,
+      "kind": "candidate",
+      "exit": 0,
+      "wallSeconds": 0.09823,
+      "output": "Utility mixed faces: 3269 checks, 0 failures\n"
+    }
+  ],
+  "native": "Not run. No Witchcraft tool available; no foreground or input control. Pixels/clicks/combat secure VM/taint/secret values/FPS pending for each installed client.",
+  "sourceFreshness": "GitHub branch lookup failed (web inaccessible; shell DNS denied). Bundled source inventory and existing on-disk FrameXML used; no fresh upstream claim.",
+  "mutations": [
+    {
+      "name": "nonexclusive-body",
+      "exit": 1,
+      "output": "SHIFT-CTRL-ALT\nFAIL selected range query SHIFT-CTRL-ALT\nFAIL combat bag pulse refreshes item stack\nFAIL depleted item keeps zero\nFAIL single charged item exhausts in combat\nUtility mixed faces: 3265 checks, 395 failures\n"
+    },
+    {
+      "name": "wrong-combination-prefix",
+      "exit": 1,
+      "output": "ty SHIFT-CTRL\nFAIL prepared click identity SHIFT-CTRL\nFAIL prepared click identity SHIFT-CTRL\nFAIL prepared click identity SHIFT-CTRL\nFAIL prepared click identity SHIFT-CTRL\nUtility mixed faces: 3265 checks, 20 failures\n"
+    },
+    {
+      "name": "combat-count-freeze",
+      "exit": 1,
+      "output": " in combat\nFAIL combat bag pulse refreshes spell reagent\nFAIL combat bag pulse refreshes item stack\nFAIL depleted item keeps zero\nFAIL single charged item exhausts in combat\nUtility mixed faces: 3265 checks, 20 failures\n"
+    }
+  ],
+  "fullValidation": {
+    "report": "docs/validation/utility-mixed-faces-full-2026-11-07.json",
+    "syntaxFiles": 878,
+    "pass": 215,
+    "fail": 0,
+    "drift": [
+      "tests/raid_party_frames.lua",
+      "UnitFrames/FluxUnitFrames_Party.lua"
+    ]
+  },
+  "installedCopies": [
+    {
+      "client": "_retail_",
+      "exists": true,
+      "sha256": "635a9a9e71ddd55cbcef773e79a237608389390af2d8de725bd446fbe46d2fb7"
+    },
+    {
+      "client": "_forever_",
+      "exists": true,
+      "sha256": "635a9a9e71ddd55cbcef773e79a237608389390af2d8de725bd446fbe46d2fb7"
+    },
+    {
+      "client": "_classic_",
+      "exists": true,
+      "sha256": "635a9a9e71ddd55cbcef773e79a237608389390af2d8de725bd446fbe46d2fb7"
+    },
+    {
+      "client": "_classic_era_",
+      "exists": true,
+      "sha256": "635a9a9e71ddd55cbcef773e79a237608389390af2d8de725bd446fbe46d2fb7"
+    },
+    {
+      "client": "_anniversary_",
+      "exists": true,
+      "sha256": "635a9a9e71ddd55cbcef773e79a237608389390af2d8de725bd446fbe46d2fb7"
+    }
+  ],
+  "sourceContracts": [
+    {
+      "target": "retail",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "version": "12.1.5.70783",
+      "evidence": "Source-declared only. Loading, runtime behavior and addon access remain unknown unless a curated reference supplies separate evidence.",
+      "matches": 1,
+      "returned": 1,
+      "truncated": false,
+      "results": [
+        {
+          "id": "function:C_Spell.GetSpellDisplayCount@SpellDocumentation.lua",
+          "kind": "function",
+          "symbol": "C_Spell.GetSpellDisplayCount",
+          "name": "GetSpellDisplayCount",
+          "group": "C_Spell",
+          "namespace": "C_Spell",
+          "environment": "All",
+          "parent": {
+            "name": "Spell",
+            "type": "System",
+            "group": "C_Spell",
+            "section": "Functions",
+            "metadata": {
+              "Name": "Spell",
+              "Type": "System",
+              "Namespace": "C_Spell",
+              "Environment": "All"
+            }
+          },
+          "source": {
+            "file": "SpellDocumentation.lua",
+            "line": 338,
+            "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_APIDocumentationGenerated/SpellDocumentation.lua#L338"
+          },
+          "declaration": {
+            "Name": "GetSpellDisplayCount",
+            "Type": "Function",
+            "SecretWhenCooldownsRestricted": true,
+            "SecretArguments": "AllowedWhenUntainted",
+            "Arguments": [
+              {
+                "Name": "spellIdentifier",
+                "Type": "SpellIdentifier",
+                "Nilable": false
+              },
+              {
+                "Name": "maxDisplayCount",
+                "Type": "number",
+                "Nilable": false,
+                "Default": 9999
+              },
+              {
+                "Name": "replacementString",
+                "Type": "cstring",
+                "Nilable": false,
+                "Default": "*"
+              }
+            ],
+            "Returns": [
+              {
+                "Name": "displayCount",
+                "Type": "string",
+                "Nilable": false
+              }
+            ]
+          },
+          "owner": "wow-api-spells-abilities",
+          "classification": "client-system",
+          "evidence": {
+            "declaration": "source-declared",
+            "loadConditions": "unknown",
+            "runtime": "unknown",
+            "addonAccess": "unknown"
+          }
+        }
+      ]
+    },
+    {
+      "target": "retail",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "version": "12.1.5.70783",
+      "evidence": "Source-declared only. Loading, runtime behavior and addon access remain unknown unless a curated reference supplies separate evidence.",
+      "matches": 1,
+      "returned": 1,
+      "truncated": false,
+      "results": [
+        {
+          "id": "function:C_Spell.GetSpellCharges@SpellDocumentation.lua",
+          "kind": "function",
+          "symbol": "C_Spell.GetSpellCharges",
+          "name": "GetSpellCharges",
+          "group": "C_Spell",
+          "namespace": "C_Spell",
+          "environment": "All",
+          "parent": {
+            "name": "Spell",
+            "type": "System",
+            "group": "C_Spell",
+            "section": "Functions",
+            "metadata": {
+              "Name": "Spell",
+              "Type": "System",
+              "Namespace": "C_Spell",
+              "Environment": "All"
+            }
+          },
+          "source": {
+            "file": "SpellDocumentation.lua",
+            "line": 249,
+            "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_APIDocumentationGenerated/SpellDocumentation.lua#L249"
+          },
+          "declaration": {
+            "Name": "GetSpellCharges",
+            "Type": "Function",
+            "MayReturnNothing": true,
+            "SecretWhenCooldownsRestricted": true,
+            "SecretArguments": "AllowedWhenTainted",
+            "Arguments": [
+              {
+                "Name": "spellIdentifier",
+                "Type": "SpellIdentifier",
+                "Nilable": false
+              }
+            ],
+            "Returns": [
+              {
+                "Name": "chargeInfo",
+                "Type": "SpellChargeInfo",
+                "Nilable": false
+              }
+            ]
+          },
+          "owner": "wow-api-spells-abilities",
+          "classification": "client-system",
+          "evidence": {
+            "declaration": "source-declared",
+            "loadConditions": "unknown",
+            "runtime": "unknown",
+            "addonAccess": "unknown"
+          }
+        }
+      ]
+    },
+    {
+      "target": "forever",
+      "commit": "eac30af597e5aaa43a60f6675ef5fdcea100375f",
+      "version": "1.60.1.70790",
+      "evidence": "Source-declared only. Loading, runtime behavior and addon access remain unknown unless a curated reference supplies separate evidence.",
+      "matches": 1,
+      "returned": 1,
+      "truncated": false,
+      "results": [
+        {
+          "id": "function:C_Spell.GetSpellDisplayCount@SpellDocumentation.lua",
+          "kind": "function",
+          "symbol": "C_Spell.GetSpellDisplayCount",
+          "name": "GetSpellDisplayCount",
+          "group": "C_Spell",
+          "namespace": "C_Spell",
+          "environment": "All",
+          "parent": {
+            "name": "Spell",
+            "type": "System",
+            "group": "C_Spell",
+            "section": "Functions",
+            "metadata": {
+              "Name": "Spell",
+              "Type": "System",
+              "Namespace": "C_Spell",
+              "Environment": "All"
+            }
+          },
+          "source": {
+            "file": "SpellDocumentation.lua",
+            "line": 379,
+            "url": "https://github.com/Gethe/wow-ui-source/blob/eac30af597e5aaa43a60f6675ef5fdcea100375f/Interface/AddOns/Blizzard_APIDocumentationGenerated/SpellDocumentation.lua#L379"
+          },
+          "declaration": {
+            "Name": "GetSpellDisplayCount",
+            "Type": "Function",
+            "SecretWhenCooldownsRestricted": true,
+            "SecretArguments": "AllowedWhenUntainted",
+            "Arguments": [
+              {
+                "Name": "spellIdentifier",
+                "Type": "SpellIdentifier",
+                "Nilable": false
+              },
+              {
+                "Name": "maxDisplayCount",
+                "Type": "number",
+                "Nilable": false,
+                "Default": 9999
+              },
+              {
+                "Name": "replacementString",
+                "Type": "cstring",
+                "Nilable": false,
+                "Default": "*"
+              }
+            ],
+            "Returns": [
+              {
+                "Name": "displayCount",
+                "Type": "string",
+                "Nilable": false
+              }
+            ]
+          },
+          "owner": "wow-api-spells-abilities",
+          "classification": "client-system",
+          "evidence": {
+            "declaration": "source-declared",
+            "loadConditions": "unknown",
+            "runtime": "unknown",
+            "addonAccess": "unknown"
+          }
+        }
+      ]
+    },
+    {
+      "target": "forever",
+      "commit": "eac30af597e5aaa43a60f6675ef5fdcea100375f",
+      "version": "1.60.1.70790",
+      "evidence": "Source-declared only. Loading, runtime behavior and addon access remain unknown unless a curated reference supplies separate evidence.",
+      "matches": 1,
+      "returned": 1,
+      "truncated": false,
+      "results": [
+        {
+          "id": "function:C_Spell.GetSpellCharges@SpellDocumentation.lua",
+          "kind": "function",
+          "symbol": "C_Spell.GetSpellCharges",
+          "name": "GetSpellCharges",
+          "group": "C_Spell",
+          "namespace": "C_Spell",
+          "environment": "All",
+          "parent": {
+            "name": "Spell",
+            "type": "System",
+            "group": "C_Spell",
+            "section": "Functions",
+            "metadata": {
+              "Name": "Spell",
+              "Type": "System",
+              "Namespace": "C_Spell",
+              "Environment": "All"
+            }
+          },
+          "source": {
+            "file": "SpellDocumentation.lua",
+            "line": 290,
+            "url": "https://github.com/Gethe/wow-ui-source/blob/eac30af597e5aaa43a60f6675ef5fdcea100375f/Interface/AddOns/Blizzard_APIDocumentationGenerated/SpellDocumentation.lua#L290"
+          },
+          "declaration": {
+            "Name": "GetSpellCharges",
+            "Type": "Function",
+            "MayReturnNothing": true,
+            "SecretWhenCooldownsRestricted": true,
+            "SecretArguments": "AllowedWhenTainted",
+            "Arguments": [
+              {
+                "Name": "spellIdentifier",
+                "Type": "SpellIdentifier",
+                "Nilable": false
+              }
+            ],
+            "Returns": [
+              {
+                "Name": "chargeInfo",
+                "Type": "SpellChargeInfo",
+                "Nilable": false
+              }
+            ]
+          },
+          "owner": "wow-api-spells-abilities",
+          "classification": "client-system",
+          "evidence": {
+            "declaration": "source-declared",
+            "loadConditions": "unknown",
+            "runtime": "unknown",
+            "addonAccess": "unknown"
+          }
+        }
+      ]
+    },
+    {
+      "target": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "version": "5.5.4.70631",
+      "evidence": "Source-declared only. Loading, runtime behavior and addon access remain unknown unless a curated reference supplies separate evidence.",
+      "matches": 1,
+      "returned": 1,
+      "truncated": false,
+      "results": [
+        {
+          "id": "function:C_Spell.GetSpellDisplayCount@SpellDocumentation.lua",
+          "kind": "function",
+          "symbol": "C_Spell.GetSpellDisplayCount",
+          "name": "GetSpellDisplayCount",
+          "group": "C_Spell",
+          "namespace": "C_Spell",
+          "environment": "All",
+          "parent": {
+            "name": "Spell",
+            "type": "System",
+            "group": "C_Spell",
+            "section": "Functions",
+            "metadata": {
+              "Name": "Spell",
+              "Type": "System",
+              "Namespace": "C_Spell",
+              "Environment": "All"
+            }
+          },
+          "source": {
+            "file": "SpellDocumentation.lua",
+            "line": 156,
+            "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_APIDocumentationGenerated/SpellDocumentation.lua#L156"
+          },
+          "declaration": {
+            "Name": "GetSpellDisplayCount",
+            "Type": "Function",
+            "Arguments": [
+              {
+                "Name": "spellIdentifier",
+                "Type": "SpellIdentifier",
+                "Nilable": false
+              },
+              {
+                "Name": "maxDisplayCount",
+                "Type": "number",
+                "Nilable": false,
+                "Default": 9999
+              },
+              {
+                "Name": "replacementString",
+                "Type": "cstring",
+                "Nilable": false,
+                "Default": "*"
+              }
+            ],
+            "Returns": [
+              {
+                "Name": "displayCount",
+                "Type": "string",
+                "Nilable": false
+              }
+            ]
+          },
+          "owner": "wow-api-spells-abilities",
+          "classification": "client-system",
+          "evidence": {
+            "declaration": "source-declared",
+            "loadConditions": "unknown",
+            "runtime": "unknown",
+            "addonAccess": "unknown"
+          }
+        }
+      ]
+    },
+    {
+      "target": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "version": "5.5.4.70631",
+      "evidence": "Source-declared only. Loading, runtime behavior and addon access remain unknown unless a curated reference supplies separate evidence.",
+      "matches": 1,
+      "returned": 1,
+      "truncated": false,
+      "results": [
+        {
+          "id": "function:C_Spell.GetSpellCharges@SpellDocumentation.lua",
+          "kind": "function",
+          "symbol": "C_Spell.GetSpellCharges",
+          "name": "GetSpellCharges",
+          "group": "C_Spell",
+          "namespace": "C_Spell",
+          "environment": "All",
+          "parent": {
+            "name": "Spell",
+            "type": "System",
+            "group": "C_Spell",
+            "section": "Functions",
+            "metadata": {
+              "Name": "Spell",
+              "Type": "System",
+              "Namespace": "C_Spell",
+              "Environment": "All"
+            }
+          },
+          "source": {
+            "file": "SpellDocumentation.lua",
+            "line": 91,
+            "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_APIDocumentationGenerated/SpellDocumentation.lua#L91"
+          },
+          "declaration": {
+            "Name": "GetSpellCharges",
+            "Type": "Function",
+            "MayReturnNothing": true,
+            "Arguments": [
+              {
+                "Name": "spellIdentifier",
+                "Type": "SpellIdentifier",
+                "Nilable": false
+              }
+            ],
+            "Returns": [
+              {
+                "Name": "chargeInfo",
+                "Type": "SpellChargeInfo",
+                "Nilable": false
+              }
+            ]
+          },
+          "owner": "wow-api-spells-abilities",
+          "classification": "client-system",
+          "evidence": {
+            "declaration": "source-declared",
+            "loadConditions": "unknown",
+            "runtime": "unknown",
+            "addonAccess": "unknown"
+          }
+        }
+      ]
+    }
+  ],
+  "localSecureTemplates": [
+    {
+      "branch": "live",
+      "version": "12.1.0.69283",
+      "path": "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\__AddonsForRef\\wow-ui-source-live\\Interface\\AddOns\\Blizzard_FrameXML\\SecureTemplates.lua",
+      "sha256": "5fd1efcbfc20b4d426187f55dbee52542d37befd1ef52082db1f466f1049929a",
+      "contract": "canonical alt-ctrl-shift- prefix; exact modified type1/macrotext1 lookup; no new API introduced"
+    },
+    {
+      "branch": "forever",
+      "version": "1.60.1.70425",
+      "path": "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\__AddonsForRef\\wow-ui-source-forever\\Interface\\AddOns\\Blizzard_FrameXML\\SecureTemplates.lua",
+      "sha256": "b6e91f1d54f269a8bd66312b368e6fd7706028d366eee0167161ace9004cae23",
+      "contract": "canonical alt-ctrl-shift- prefix; exact modified type1/macrotext1 lookup; no new API introduced"
+    },
+    {
+      "branch": "classic",
+      "version": "5.5.4.69155",
+      "path": "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\__AddonsForRef\\wow-ui-source-classic\\Interface\\AddOns\\Blizzard_FrameXML\\SecureTemplates.lua",
+      "sha256": "8bc0c7f6cac0340a00bec729253a6768b1ff4baa7879b70a4fdb6f4f3b287fde",
+      "contract": "canonical alt-ctrl-shift- prefix; exact modified type1/macrotext1 lookup; no new API introduced"
+    },
+    {
+      "branch": "classic_era",
+      "version": "1.15.9.68808",
+      "path": "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\__AddonsForRef\\wow-ui-source-classic_era\\Interface\\AddOns\\Blizzard_FrameXML\\SecureTemplates.lua",
+      "sha256": "1c3b956e03752ab9f3bffd62ff7b5b545d57de8d8026f242c69d843cdbe32400",
+      "contract": "canonical alt-ctrl-shift- prefix; exact modified type1/macrotext1 lookup; no new API introduced"
+    },
+    {
+      "branch": "classic_anniversary",
+      "version": "2.5.6.68775",
+      "path": "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\__AddonsForRef\\wow-ui-source-classic_anniversary\\Interface\\AddOns\\Blizzard_FrameXML\\SecureTemplates.lua",
+      "sha256": "45a0e3164c63070f265e22028a829717c262cabecad21a4d090d2b663c22addf",
+      "contract": "canonical alt-ctrl-shift- prefix; exact modified type1/macrotext1 lookup; no new API introduced"
+    }
+  ],
+  "compatibility": "Preserved existing optional LibClassicSpellActionCount reagent fallback in shared Spell.GetCount when native modern/legacy count APIs are unavailable;4 production-service precedence/fallback checks.",
+  "focusedChecks": 3269,
+  "installedRuntimeCopies": [
+    {
+      "client": "_retail_",
+      "source": "ExtraButtonSystem/NonCombatGrid/UtilitySlots/Manager.lua",
+      "sha256": "635a9a9e71ddd55cbcef773e79a237608389390af2d8de725bd446fbe46d2fb7",
+      "matches": true
+    },
+    {
+      "client": "_retail_",
+      "source": "Core/API/Spell.lua",
+      "sha256": "982de8ad66e77f052929ccc021e574775cad9220ec861adb67e84b3bdbc81b4a",
+      "matches": true
+    },
+    {
+      "client": "_forever_",
+      "source": "ExtraButtonSystem/NonCombatGrid/UtilitySlots/Manager.lua",
+      "sha256": "635a9a9e71ddd55cbcef773e79a237608389390af2d8de725bd446fbe46d2fb7",
+      "matches": true
+    },
+    {
+      "client": "_forever_",
+      "source": "Core/API/Spell.lua",
+      "sha256": "982de8ad66e77f052929ccc021e574775cad9220ec861adb67e84b3bdbc81b4a",
+      "matches": true
+    },
+    {
+      "client": "_classic_",
+      "source": "ExtraButtonSystem/NonCombatGrid/UtilitySlots/Manager.lua",
+      "sha256": "635a9a9e71ddd55cbcef773e79a237608389390af2d8de725bd446fbe46d2fb7",
+      "matches": true
+    },
+    {
+      "client": "_classic_",
+      "source": "Core/API/Spell.lua",
+      "sha256": "982de8ad66e77f052929ccc021e574775cad9220ec861adb67e84b3bdbc81b4a",
+      "matches": true
+    },
+    {
+      "client": "_classic_era_",
+      "source": "ExtraButtonSystem/NonCombatGrid/UtilitySlots/Manager.lua",
+      "sha256": "635a9a9e71ddd55cbcef773e79a237608389390af2d8de725bd446fbe46d2fb7",
+      "matches": true
+    },
+    {
+      "client": "_classic_era_",
+      "source": "Core/API/Spell.lua",
+      "sha256": "982de8ad66e77f052929ccc021e574775cad9220ec861adb67e84b3bdbc81b4a",
+      "matches": true
+    },
+    {
+      "client": "_anniversary_",
+      "source": "ExtraButtonSystem/NonCombatGrid/UtilitySlots/Manager.lua",
+      "sha256": "635a9a9e71ddd55cbcef773e79a237608389390af2d8de725bd446fbe46d2fb7",
+      "matches": true
+    },
+    {
+      "client": "_anniversary_",
+      "source": "Core/API/Spell.lua",
+      "sha256": "982de8ad66e77f052929ccc021e574775cad9220ec861adb67e84b3bdbc81b4a",
+      "matches": true
+    }
+  ],
+  "utilityRuntimeStable": true,
+  "documentationValidation": {
+    "result": "Pending5 unrelated concurrent party inventory/view/verification issues; no utility source errors",
+    "paths": [
+      "UnitFrames/FluxUnitFrames_Party.lua",
+      "tests/raid_party_frames.lua",
+      "reference/interfaces.md"
+    ],
+    "scope": "Checker made no edits. Preserve newer party source/tests; no whole-current-tree PASS claimed."
+  }
+}

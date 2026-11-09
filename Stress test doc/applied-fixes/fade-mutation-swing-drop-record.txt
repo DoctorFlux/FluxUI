@@ -1,0 +1,8 @@
+lua: Stress test doc/fix-proposals/fades/verify.lua.txt:6: restart has no alpha jump
+stack traceback:
+	[C]: in function 'assert'
+	Stress test doc/fix-proposals/fades/verify.lua.txt:6: in upvalue 'check'
+	Stress test doc/fix-proposals/fades/verify.lua.txt:98: in local 'fn'
+	Stress test doc/fix-proposals/fades/verify.lua.txt:89: in local 'both'
+	Stress test doc/fix-proposals/fades/verify.lua.txt:98: in main chunk
+	[C]: in ?

@@ -1,0 +1,86 @@
+{
+  "scope": "Loaded Lua modules with mocked aura and UI; process wall time is not addon CPU/FPS.",
+  "baselineMain": "2c0e7b89e3faa5b6d551a0130c5d499ed665fc2a",
+  "sourceSha256": {
+    "baselineConsumables": "b4d5100232a8e1e0f86d72145c44faa3e7ef2d9d5ed7ea76a2b1fa551c5586f4",
+    "candidateConsumables": "2cf0e95e831374f6b0f12de4f8e09703ed8816ee8f3a1cd854d884ab8543c6d2",
+    "baselineGrid": "3aacc36ada1de09ee891067cb2cdb77fa82111d309026377fee337ccc5353301",
+    "candidateGrid": "a444bc60318885cdd833f72f39dab26a56c561e475839e1692e4b37c4ea9c28f",
+    "baselineConfig": "6a5620341e7794e454b64dc317a7680d03cdd336cdafc02d47e4d5fb8806ea98",
+    "candidateConfig": "694a0badbb554bc637f2eea3fb752f1e76965a99e8f4644adef49112134d160b",
+    "fixture": "2ecc3e511100e7e2471049018ee671b4b4b13c281220f2bd9c6ba7b85fe15c79"
+  },
+  "rows": [
+    {
+      "trial": 1,
+      "kind": "baseline",
+      "exit": 0,
+      "output": "Consumable refresh timer: 14 checks passed",
+      "wallSeconds": 0.0259
+    },
+    {
+      "trial": 1,
+      "kind": "candidate",
+      "exit": 0,
+      "output": "Consumable refresh timer: 24 checks passed",
+      "wallSeconds": 0.0253
+    },
+    {
+      "trial": 2,
+      "kind": "baseline",
+      "exit": 0,
+      "output": "Consumable refresh timer: 14 checks passed",
+      "wallSeconds": 0.0252
+    },
+    {
+      "trial": 2,
+      "kind": "candidate",
+      "exit": 0,
+      "output": "Consumable refresh timer: 24 checks passed",
+      "wallSeconds": 0.0229
+    },
+    {
+      "trial": 3,
+      "kind": "baseline",
+      "exit": 0,
+      "output": "Consumable refresh timer: 14 checks passed",
+      "wallSeconds": 0.022
+    },
+    {
+      "trial": 3,
+      "kind": "candidate",
+      "exit": 0,
+      "output": "Consumable refresh timer: 24 checks passed",
+      "wallSeconds": 0.0216
+    },
+    {
+      "trial": 4,
+      "kind": "baseline",
+      "exit": 0,
+      "output": "Consumable refresh timer: 14 checks passed",
+      "wallSeconds": 0.0219
+    },
+    {
+      "trial": 4,
+      "kind": "candidate",
+      "exit": 0,
+      "output": "Consumable refresh timer: 24 checks passed",
+      "wallSeconds": 0.0217
+    },
+    {
+      "trial": 5,
+      "kind": "baseline",
+      "exit": 0,
+      "output": "Consumable refresh timer: 14 checks passed",
+      "wallSeconds": 0.0227
+    },
+    {
+      "trial": 5,
+      "kind": "candidate",
+      "exit": 0,
+      "output": "Consumable refresh timer: 24 checks passed",
+      "wallSeconds": 0.0242
+    }
+  ],
+  "worktreeHeadAtCapture": "7f47a566e573a132dcac4a0e67f8b590cee8d08a"
+}

@@ -1,0 +1,119 @@
+{
+  "change": "UF-SPEC-03-20261107",
+  "sourcePin": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+  "externalEvidence": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\07\\01a1b4be-c7d4-7bc0-947c-623d7ec53e3d\\forever-spec-source",
+  "nativeUserObservation": {
+    "specId": 1482,
+    "name": "Mage",
+    "icon": 626001,
+    "pointsSpent": 0,
+    "dualSpec": "not unlocked"
+  },
+  "rootCause": "Forever one-class specialization data is not its talent trees. Earlier signatures/mocks did not model actual Forever data.",
+  "nativeSource": "Camelot/ClassTalents/Blizzard_ClassTalentsFrame.lua RefreshTreeHeaders and ClassTalentTreeHeaderMixin.Setup; Blizzard_PlayerSpells.toc AllowLoadGameType camelot",
+  "contracts": "GetActiveSpecGroup -> GetCombatConfigIDForSpecGroup -> GetConfigInfo.treeIDs -> GetGroupDisplayInfoByTreeID icons/groupIDs -> GetGroupCurrencyInfo/config/groupIDs -> currencyInfos[1].spent; match groups by traitNodeGroupID",
+  "baselineSHA256": "313fea4a372a7960f8d1d9f3d366f5e2f272b3670a669147f3aeeb9860ede847",
+  "candidateSHA256": "18a075cc43edd871f8d2d08a4c9cb89e2a8e5bf5cccf4201078ee01a5d4cfbc4",
+  "checkpoint": "raid-mt-target-2026-11-07 archives all rehashed and bundle verified; available Retail settings files2; no writes",
+  "trials": [
+    {
+      "pair": 1,
+      "source": "baseline",
+      "exit": 1,
+      "wallSeconds": 0.022558399999979883,
+      "output": "lua: tests/unit_spec_icon.lua:4: real client uses most spent tree forever\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/unit_spec_icon.lua:4: in local 'check'\n\ttests/unit_spec_icon.lua:76: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "pair": 1,
+      "source": "candidate",
+      "exit": 0,
+      "wallSeconds": 0.023294599996006582,
+      "output": "PASS 59 player spec selection checks\n"
+    },
+    {
+      "pair": 2,
+      "source": "baseline",
+      "exit": 1,
+      "wallSeconds": 0.019361599996045697,
+      "output": "lua: tests/unit_spec_icon.lua:4: real client uses most spent tree forever\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/unit_spec_icon.lua:4: in local 'check'\n\ttests/unit_spec_icon.lua:76: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "pair": 2,
+      "source": "candidate",
+      "exit": 0,
+      "wallSeconds": 0.020191900002828334,
+      "output": "PASS 59 player spec selection checks\n"
+    },
+    {
+      "pair": 3,
+      "source": "baseline",
+      "exit": 1,
+      "wallSeconds": 0.020343999996839557,
+      "output": "lua: tests/unit_spec_icon.lua:4: real client uses most spent tree forever\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/unit_spec_icon.lua:4: in local 'check'\n\ttests/unit_spec_icon.lua:76: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "pair": 3,
+      "source": "candidate",
+      "exit": 0,
+      "wallSeconds": 0.02119930000480963,
+      "output": "PASS 59 player spec selection checks\n"
+    },
+    {
+      "pair": 4,
+      "source": "baseline",
+      "exit": 1,
+      "wallSeconds": 0.019020899999304675,
+      "output": "lua: tests/unit_spec_icon.lua:4: real client uses most spent tree forever\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/unit_spec_icon.lua:4: in local 'check'\n\ttests/unit_spec_icon.lua:76: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "pair": 4,
+      "source": "candidate",
+      "exit": 0,
+      "wallSeconds": 0.022229700000025332,
+      "output": "PASS 59 player spec selection checks\n"
+    },
+    {
+      "pair": 5,
+      "source": "baseline",
+      "exit": 1,
+      "wallSeconds": 0.01936260000366019,
+      "output": "lua: tests/unit_spec_icon.lua:4: real client uses most spent tree forever\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/unit_spec_icon.lua:4: in local 'check'\n\ttests/unit_spec_icon.lua:76: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "pair": 5,
+      "source": "candidate",
+      "exit": 0,
+      "wallSeconds": 0.021034099998360034,
+      "output": "PASS 59 player spec selection checks\n"
+    }
+  ],
+  "scope": "Desktop logic replay and source/native API observation only; final visuals/combat/taint/FPS pending. No UI LoD required, new events or recurring drivers.",
+  "fullValidation": {
+    "pass": 207,
+    "fail": 1,
+    "syntaxFiles": 870,
+    "syntaxFailures": [],
+    "failedScripts": [
+      "tests/native_meter_writer_provenance.lua"
+    ]
+  },
+  "sourceDrift": [
+    "Battlezonemap/FluxBlizzardMeter.lua",
+    "tests/native_meter_writer_provenance.lua"
+  ],
+  "installedCopies": {
+    "_retail_": true,
+    "_forever_": true,
+    "_classic_": true,
+    "_classic_era_": true,
+    "_anniversary_": true
+  },
+  "runtimeMatchesTestedManifest": true,
+  "finalFullValidation": {
+    "pass": 209,
+    "fail": 0,
+    "syntaxFiles": 871,
+    "syntaxFailures": []
+  },
+  "finalSourceDrift": []
+}

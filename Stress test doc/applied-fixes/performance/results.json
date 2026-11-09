@@ -1,0 +1,217 @@
+{
+  "capturedUTC": "2026-11-07T13:42:06.530890+00:00",
+  "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\07\\01a1b5b8-1789-7050-b49c-88d0a742e874\\apply-fixes-20261107T125749Z",
+  "scope": "Desktop execution of production modules/fragments with public-state/native-visibility mocks; no native secure VM, true secret values, client profiling, rendering or FPS claim.",
+  "hashNormalization": "CRLF to LF only",
+  "sources": [
+    {
+      "path": "RaidFrame/FluxRaidCompat.lua",
+      "checkpointSHA256": "86c1b541a8787f587191b7d44621073a1d715dd3b562afbe7d92b3ebd05e8a66",
+      "appliedSHA256": "86c1b541a8787f587191b7d44621073a1d715dd3b562afbe7d92b3ebd05e8a66"
+    },
+    {
+      "path": "RaidFrame/FluxRaidUnit.lua",
+      "checkpointSHA256": "4f697b75a768a83ce13de423cc96b6c339fd58dc0f52b4b5ddfbb834e2b3d165",
+      "appliedSHA256": "16c5ced19d241a56288b7bfef1bab21dcdd3c2cb898a3aa829ddd9a6cbeccfa2"
+    },
+    {
+      "path": "NamePlates/Core.lua",
+      "checkpointSHA256": "e9fe0c01da0b8c5ddc99277d8cafeac5ed37f790be31f839c69c894d8fe9ba6b",
+      "appliedSHA256": "cea2b96881c2c2789fcffcb48868b099ab20599eb0014451d250bb8ffc1dedf6"
+    },
+    {
+      "path": "Other/FluxChatColumnMicros.lua",
+      "checkpointSHA256": "0f639f3d71cd2fc4095daaeb96e3f0e69ddf728ff1915c486ddfecac6928e830",
+      "appliedSHA256": "daa47b18396b6a293e610f0e9a78bd38c57ef77b48fc644f5b58a767f875a2f0"
+    },
+    {
+      "path": "tests/raid_healer_runtime.lua",
+      "appliedSHA256": "47a9507eac55ae2c2a66edf6d5fd194e832da814dba2e28a94aa37467e2dc288"
+    },
+    {
+      "path": "tests/nameplate_countdown_work.lua",
+      "appliedSHA256": "642161260b4e5444e9ce9d6a0c33b8429bab8b31b039571176db44fb364e87af"
+    },
+    {
+      "path": "tests/performance_work_budgets.lua",
+      "appliedSHA256": "9f99653477314e0d1ec82001f6bb61dab99207f145026e1d9f42ebe840b6f7ec"
+    }
+  ],
+  "tests": [
+    {
+      "finding": "PERF-01",
+      "variant": "checkpoint-baseline",
+      "command": [
+        "lua",
+        "tests/performance_work_budgets.lua",
+        "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\07\\01a1b5b8-1789-7050-b49c-88d0a742e874\\apply-fixes-20261107T125749Z\\performance-baseline-control",
+        "PERF-01"
+      ],
+      "exit": 1,
+      "expected": "reject",
+      "output": "lua: tests/performance_work_budgets.lua:5: PERF-01 one outstanding arm for merged raid burst\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/performance_work_budgets.lua:5: in local 'check'\n\ttests/performance_work_budgets.lua:46: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "finding": "PERF-01",
+      "variant": "applied",
+      "command": [
+        "lua",
+        "tests/performance_work_budgets.lua",
+        "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI",
+        "PERF-01"
+      ],
+      "exit": 0,
+      "expected": "pass",
+      "output": "performance work budgets: 255 checks passed (PERF-01; production code, native timing/taint pending)\n"
+    },
+    {
+      "finding": "PERF-02",
+      "variant": "checkpoint-baseline",
+      "command": [
+        "lua",
+        "tests/performance_work_budgets.lua",
+        "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\07\\01a1b5b8-1789-7050-b49c-88d0a742e874\\apply-fixes-20261107T125749Z\\performance-baseline-control",
+        "PERF-02"
+      ],
+      "exit": 1,
+      "expected": "reject",
+      "output": "lua: tests/performance_work_budgets.lua:5: PERF-02 stable public native state incurs no repeated style writes\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/performance_work_budgets.lua:5: in local 'check'\n\ttests/performance_work_budgets.lua:161: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "finding": "PERF-02",
+      "variant": "applied",
+      "command": [
+        "lua",
+        "tests/performance_work_budgets.lua",
+        "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI",
+        "PERF-02"
+      ],
+      "exit": 0,
+      "expected": "pass",
+      "output": "performance work budgets: 398 checks passed (PERF-02; production code, native timing/taint pending)\n"
+    },
+    {
+      "finding": "PERF-03",
+      "variant": "checkpoint-baseline",
+      "command": [
+        "lua",
+        "tests/performance_work_budgets.lua",
+        "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\07\\01a1b5b8-1789-7050-b49c-88d0a742e874\\apply-fixes-20261107T125749Z\\performance-baseline-control",
+        "PERF-03"
+      ],
+      "exit": 1,
+      "expected": "reject",
+      "output": "lua: tests/performance_work_budgets.lua:5: PERF-03 stable public native state incurs no repeated style writes\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/performance_work_budgets.lua:5: in local 'check'\n\ttests/performance_work_budgets.lua:161: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "finding": "PERF-03",
+      "variant": "applied",
+      "command": [
+        "lua",
+        "tests/performance_work_budgets.lua",
+        "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI",
+        "PERF-03"
+      ],
+      "exit": 0,
+      "expected": "pass",
+      "output": "performance work budgets: 31 checks passed (PERF-03; production code, native timing/taint pending)\n"
+    },
+    {
+      "finding": "PERF-04",
+      "variant": "checkpoint-baseline",
+      "command": [
+        "lua",
+        "tests/performance_work_budgets.lua",
+        "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\07\\01a1b5b8-1789-7050-b49c-88d0a742e874\\apply-fixes-20261107T125749Z\\performance-baseline-control",
+        "PERF-04"
+      ],
+      "exit": 1,
+      "expected": "reject",
+      "output": "lua: tests/performance_work_budgets.lua:5: PERF-04 hidden character button receives zero watch callbacks\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/performance_work_budgets.lua:5: in local 'check'\n\ttests/performance_work_budgets.lua:251: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "finding": "PERF-04",
+      "variant": "applied",
+      "command": [
+        "lua",
+        "tests/performance_work_budgets.lua",
+        "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI",
+        "PERF-04"
+      ],
+      "exit": 0,
+      "expected": "pass",
+      "output": "performance work budgets: 10 checks passed (PERF-04; production code, native timing/taint pending)\n"
+    },
+    {
+      "finding": "all",
+      "variant": "applied",
+      "sample": 1,
+      "command": [
+        "lua",
+        "tests/performance_work_budgets.lua"
+      ],
+      "exit": 0,
+      "expected": "pass",
+      "output": "performance work budgets: 697 checks passed (PERF-01..04; production code, native timing/taint pending)\n"
+    },
+    {
+      "finding": "all",
+      "variant": "applied",
+      "sample": 2,
+      "command": [
+        "lua",
+        "tests/performance_work_budgets.lua"
+      ],
+      "exit": 0,
+      "expected": "pass",
+      "output": "performance work budgets: 697 checks passed (PERF-01..04; production code, native timing/taint pending)\n"
+    },
+    {
+      "finding": "all",
+      "variant": "applied",
+      "sample": 3,
+      "command": [
+        "lua",
+        "tests/performance_work_budgets.lua"
+      ],
+      "exit": 0,
+      "expected": "pass",
+      "output": "performance work budgets: 697 checks passed (PERF-01..04; production code, native timing/taint pending)\n"
+    },
+    {
+      "finding": "existing-control",
+      "variant": "applied",
+      "command": [
+        "lua",
+        "tests/raid_healer_runtime.lua"
+      ],
+      "exit": 0,
+      "expected": "pass",
+      "output": "Raid healer runtime: 428 checks; complete Compat/Unit modules; three rejected negative controls\n"
+    },
+    {
+      "finding": "existing-control",
+      "variant": "applied",
+      "command": [
+        "lua",
+        "tests/nameplate_countdown_work.lua"
+      ],
+      "exit": 0,
+      "expected": "pass",
+      "output": "METRIC era_lifecycle font_reads=200 region_reads=100 level_reads=900 label_writes=300 anchors=300 frames=5\nMETRIC era_modern_startup font_reads=100 region_reads=0 level_reads=300 label_writes=100 anchors=100 frames=102\nMETRIC era_modern font_reads=10000 region_reads=0 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=0.437500 cpu_seconds=0.029000\nMETRIC era_legacy_startup font_reads=0 region_reads=100 level_reads=300 label_writes=100 anchors=100 frames=102\nMETRIC era_legacy font_reads=0 region_reads=10000 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=1015.687500 cpu_seconds=0.032000\nMETRIC anniversary_lifecycle font_reads=200 region_reads=100 level_reads=900 label_writes=300 anchors=300 frames=5\nMETRIC anniversary_modern_startup font_reads=100 region_reads=0 level_reads=300 label_writes=100 anchors=100 frames=102\nMETRIC anniversary_modern font_reads=10000 region_reads=0 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=0.062500 cpu_seconds=0.029000\nMETRIC anniversary_legacy_startup font_reads=0 region_reads=100 level_reads=300 label_writes=100 anchors=100 frames=102\nMETRIC anniversary_legacy font_reads=0 region_reads=10000 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=1015.687500 cpu_seconds=0.030000\nMETRIC progression_lifecycle font_reads=200 region_reads=100 level_reads=900 label_writes=300 anchors=300 frames=5\nMETRIC progression_modern_startup font_reads=100 region_reads=0 level_reads=300 label_writes=100 anchors=100 frames=102\nMETRIC progression_modern font_reads=10000 region_reads=0 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=0.062500 cpu_seconds=0.032000\nMETRIC progression_legacy_startup font_reads=0 region_reads=100 level_reads=300 label_writes=100 anchors=100 frames=102\nMETRIC progression_legacy font_reads=0 region_reads=10000 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=1015.687500 cpu_seconds=0.034000\nMETRIC live_lifecycle font_reads=200 region_reads=100 level_reads=900 label_writes=300 anchors=300 frames=5\nMETRIC live_modern_startup font_reads=100 region_reads=0 level_reads=300 label_writes=100 anchors=100 frames=102\nMETRIC live_modern font_reads=10000 region_reads=0 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=0.062500 cpu_seconds=0.029000\nMETRIC live_legacy_startup font_reads=0 region_reads=100 level_reads=300 label_writes=100 anchors=100 frames=102\nMETRIC live_legacy font_reads=0 region_reads=10000 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=1015.687500 cpu_seconds=0.031000\nMETRIC forever_lifecycle font_reads=200 region_reads=100 level_reads=900 label_writes=300 anchors=300 frames=5\nMETRIC forever_modern_startup font_reads=100 region_reads=0 level_reads=300 label_writes=100 anchors=100 frames=102\nMETRIC forever_modern font_reads=10000 region_reads=0 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=0.062500 cpu_seconds=0.030000\nMETRIC forever_legacy_startup font_reads=0 region_reads=100 level_reads=300 label_writes=100 anchors=100 frames=102\nMETRIC forever_legacy font_reads=0 region_reads=10000 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=1015.687500 cpu_seconds=0.032000\nNameplate countdown work: 1160 checks, 0 failures\n"
+    },
+    {
+      "finding": "existing-control",
+      "variant": "applied",
+      "command": [
+        "lua",
+        "tests/chat_column_layout.lua"
+      ],
+      "exit": 0,
+      "expected": "pass",
+      "output": "chat column: 1311 checks across five branches, both sides; 4 regressions rejected\nMETRIC live_left hook_timers=3 burst_cycles=0 burst_new_frames=0 combat_waiters=1\nMETRIC live_right hook_timers=3 burst_cycles=0 burst_new_frames=0 combat_waiters=1\nMETRIC forever_left hook_timers=3 burst_cycles=0 burst_new_frames=0 combat_waiters=1\nMETRIC forever_right hook_timers=3 burst_cycles=0 burst_new_frames=0 combat_waiters=1\nQuickJoin column ownership: 508 checks, 0 failures\nALIGN_METRIC live_left shared_tab_reads=103 layout_points=900 new_frames=0\nALIGN_METRIC live_right shared_tab_reads=103 layout_points=900 new_frames=0\nALIGN_METRIC classic_era_left shared_tab_reads=203 layout_points=1000 new_frames=0\nALIGN_METRIC classic_era_right shared_tab_reads=203 layout_points=1000 new_frames=0\nALIGN_METRIC classic_anniversary_left shared_tab_reads=203 layout_points=1000 new_frames=0\nALIGN_METRIC classic_anniversary_right shared_tab_reads=203 layout_points=1000 new_frames=0\nALIGN_METRIC classic_left shared_tab_reads=203 layout_points=900 new_frames=0\nALIGN_METRIC classic_right shared_tab_reads=203 layout_points=900 new_frames=0\nALIGN_METRIC forever_left shared_tab_reads=103 layout_points=900 new_frames=0\nALIGN_METRIC forever_right shared_tab_reads=103 layout_points=900 new_frames=0\nChat column reference alignment: 190 checks, 0 failures\n"
+    }
+  ],
+  "expectedOutcomes": 14,
+  "allExpected": true
+}

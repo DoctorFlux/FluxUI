@@ -1,0 +1,147 @@
+{
+  "utc": "2026-11-05T21:14:08.333753+00:00",
+  "baselineCheckpoint": "Mail-auction-publication-20261105T205512Z",
+  "baselineGitHead": "8006494fd5f10b54818471933467b9bb867c6543",
+  "baselineScope": "Actual feature-stage source in recovery ZIP, including uncommitted work, before pre-embed visibility ownership repair. Not relabelled as the published Git source.",
+  "beforeHashes": {
+    "FluxBlizzardMeter.lua": "a630525aa4fdd0cf8bc9bd05f969d6f68fd2fd0f8fcfb21626edb08074194d94",
+    "native_meter_startup.lua": "9b1abdf2432685fce542ddeeca560968e07d8dc66194255d988dbee952038c47",
+    "baseline.lua": "3c84a9cd3f3352d8fb47c034ecc7f06f211d73973cd2c029744d242620d80ebf",
+    "native_meter_ownership.lua": "a5c543333640c4003d7ed3c0856e56a368221e594bfa686d2811fd0de04ff724"
+  },
+  "afterHashes": {
+    "FluxBlizzardMeter.lua": "a630525aa4fdd0cf8bc9bd05f969d6f68fd2fd0f8fcfb21626edb08074194d94",
+    "native_meter_startup.lua": "9b1abdf2432685fce542ddeeca560968e07d8dc66194255d988dbee952038c47",
+    "baseline.lua": "3c84a9cd3f3352d8fb47c034ecc7f06f211d73973cd2c029744d242620d80ebf",
+    "native_meter_ownership.lua": "a5c543333640c4003d7ed3c0856e56a368221e594bfa686d2811fd0de04ff724"
+  },
+  "method": "Lua5.4.6 actual production integration; ordinary/gamepad startup fixtures, explicit widget/native Show dispatch; enabled native meter, saved Map before any Embed. Five alternating fresh-process pairs; durations include startup and assertions, not native latency.",
+  "scope": "No native rendering, secure VM, secret-value or SavedFramePositionCache internals emulated. No game input/profiler/settings changes.",
+  "pairs": [
+    {
+      "repetition": 1,
+      "order": [
+        "baseline",
+        "candidate"
+      ],
+      "baseline": {
+        "exit": 0,
+        "processSeconds": 0.04603510000742972,
+        "stdout": "FAIL ordinary saved Map claims and hides the native root before first Meter click\nFAIL ordinary Map startup events do not configure or embed native sessions\nFAIL ordinary repeated native visibility and Show cannot float outside the active Map tab\nFAIL ordinary startup visibility observers install once\nFAIL ordinary public hide works before the first embed\nFAIL ordinary hidden Flux host suppresses a native reveal\nFAIL ordinary Details priority suppresses floating native panes without embedding them\nFAIL ordinary late native addon is hidden while Map remains selected\nFAIL ordinary late native OnShow obeys pre-embed ownership\nFAIL ordinary late Flux host claims the active Map boundary\nFAIL ordinary combat login holds an unpositioned native meter hidden without configuring it\nFAIL gamepad saved Map claims and hides the native root before first Meter click\nFAIL gamepad Map startup events do not configure or embed native sessions\nFAIL gamepad repeated native visibility and Show cannot float outside the active Map tab\nFAIL gamepad startup visibility observers install once\nFAIL gamepad public hide works before the first embed\nFAIL gamepad hidden Flux host suppresses a native reveal\nFAIL gamepad Details priority suppresses floating native panes without embedding them\nFAIL gamepad late native addon is hidden while Map remains selected\nFAIL gamepad late native OnShow obeys pre-embed ownership\nFAIL gamepad late Flux host claims the active Map boundary\nFAIL gamepad combat login holds an unpositioned native meter hidden without configuring it\nnative meter startup: 64 checks, 22 failures; pre-embed ownership, explicit cleanup and deferred startup mocked\n",
+        "stderr": ""
+      },
+      "candidate": {
+        "exit": 0,
+        "processSeconds": 0.0482612999912817,
+        "stdout": "native meter startup: 64 checks, 0 failures; pre-embed ownership, explicit cleanup and deferred startup mocked\n",
+        "stderr": ""
+      }
+    },
+    {
+      "repetition": 2,
+      "order": [
+        "candidate",
+        "baseline"
+      ],
+      "candidate": {
+        "exit": 0,
+        "processSeconds": 0.04831189999822527,
+        "stdout": "native meter startup: 64 checks, 0 failures; pre-embed ownership, explicit cleanup and deferred startup mocked\n",
+        "stderr": ""
+      },
+      "baseline": {
+        "exit": 0,
+        "processSeconds": 0.04348250001203269,
+        "stdout": "FAIL ordinary saved Map claims and hides the native root before first Meter click\nFAIL ordinary Map startup events do not configure or embed native sessions\nFAIL ordinary repeated native visibility and Show cannot float outside the active Map tab\nFAIL ordinary startup visibility observers install once\nFAIL ordinary public hide works before the first embed\nFAIL ordinary hidden Flux host suppresses a native reveal\nFAIL ordinary Details priority suppresses floating native panes without embedding them\nFAIL ordinary late native addon is hidden while Map remains selected\nFAIL ordinary late native OnShow obeys pre-embed ownership\nFAIL ordinary late Flux host claims the active Map boundary\nFAIL ordinary combat login holds an unpositioned native meter hidden without configuring it\nFAIL gamepad saved Map claims and hides the native root before first Meter click\nFAIL gamepad Map startup events do not configure or embed native sessions\nFAIL gamepad repeated native visibility and Show cannot float outside the active Map tab\nFAIL gamepad startup visibility observers install once\nFAIL gamepad public hide works before the first embed\nFAIL gamepad hidden Flux host suppresses a native reveal\nFAIL gamepad Details priority suppresses floating native panes without embedding them\nFAIL gamepad late native addon is hidden while Map remains selected\nFAIL gamepad late native OnShow obeys pre-embed ownership\nFAIL gamepad late Flux host claims the active Map boundary\nFAIL gamepad combat login holds an unpositioned native meter hidden without configuring it\nnative meter startup: 64 checks, 22 failures; pre-embed ownership, explicit cleanup and deferred startup mocked\n",
+        "stderr": ""
+      }
+    },
+    {
+      "repetition": 3,
+      "order": [
+        "baseline",
+        "candidate"
+      ],
+      "baseline": {
+        "exit": 0,
+        "processSeconds": 0.0419036999810487,
+        "stdout": "FAIL ordinary saved Map claims and hides the native root before first Meter click\nFAIL ordinary Map startup events do not configure or embed native sessions\nFAIL ordinary repeated native visibility and Show cannot float outside the active Map tab\nFAIL ordinary startup visibility observers install once\nFAIL ordinary public hide works before the first embed\nFAIL ordinary hidden Flux host suppresses a native reveal\nFAIL ordinary Details priority suppresses floating native panes without embedding them\nFAIL ordinary late native addon is hidden while Map remains selected\nFAIL ordinary late native OnShow obeys pre-embed ownership\nFAIL ordinary late Flux host claims the active Map boundary\nFAIL ordinary combat login holds an unpositioned native meter hidden without configuring it\nFAIL gamepad saved Map claims and hides the native root before first Meter click\nFAIL gamepad Map startup events do not configure or embed native sessions\nFAIL gamepad repeated native visibility and Show cannot float outside the active Map tab\nFAIL gamepad startup visibility observers install once\nFAIL gamepad public hide works before the first embed\nFAIL gamepad hidden Flux host suppresses a native reveal\nFAIL gamepad Details priority suppresses floating native panes without embedding them\nFAIL gamepad late native addon is hidden while Map remains selected\nFAIL gamepad late native OnShow obeys pre-embed ownership\nFAIL gamepad late Flux host claims the active Map boundary\nFAIL gamepad combat login holds an unpositioned native meter hidden without configuring it\nnative meter startup: 64 checks, 22 failures; pre-embed ownership, explicit cleanup and deferred startup mocked\n",
+        "stderr": ""
+      },
+      "candidate": {
+        "exit": 0,
+        "processSeconds": 0.042399700003443286,
+        "stdout": "native meter startup: 64 checks, 0 failures; pre-embed ownership, explicit cleanup and deferred startup mocked\n",
+        "stderr": ""
+      }
+    },
+    {
+      "repetition": 4,
+      "order": [
+        "candidate",
+        "baseline"
+      ],
+      "candidate": {
+        "exit": 0,
+        "processSeconds": 0.04864999998244457,
+        "stdout": "native meter startup: 64 checks, 0 failures; pre-embed ownership, explicit cleanup and deferred startup mocked\n",
+        "stderr": ""
+      },
+      "baseline": {
+        "exit": 0,
+        "processSeconds": 0.044026599993230775,
+        "stdout": "FAIL ordinary saved Map claims and hides the native root before first Meter click\nFAIL ordinary Map startup events do not configure or embed native sessions\nFAIL ordinary repeated native visibility and Show cannot float outside the active Map tab\nFAIL ordinary startup visibility observers install once\nFAIL ordinary public hide works before the first embed\nFAIL ordinary hidden Flux host suppresses a native reveal\nFAIL ordinary Details priority suppresses floating native panes without embedding them\nFAIL ordinary late native addon is hidden while Map remains selected\nFAIL ordinary late native OnShow obeys pre-embed ownership\nFAIL ordinary late Flux host claims the active Map boundary\nFAIL ordinary combat login holds an unpositioned native meter hidden without configuring it\nFAIL gamepad saved Map claims and hides the native root before first Meter click\nFAIL gamepad Map startup events do not configure or embed native sessions\nFAIL gamepad repeated native visibility and Show cannot float outside the active Map tab\nFAIL gamepad startup visibility observers install once\nFAIL gamepad public hide works before the first embed\nFAIL gamepad hidden Flux host suppresses a native reveal\nFAIL gamepad Details priority suppresses floating native panes without embedding them\nFAIL gamepad late native addon is hidden while Map remains selected\nFAIL gamepad late native OnShow obeys pre-embed ownership\nFAIL gamepad late Flux host claims the active Map boundary\nFAIL gamepad combat login holds an unpositioned native meter hidden without configuring it\nnative meter startup: 64 checks, 22 failures; pre-embed ownership, explicit cleanup and deferred startup mocked\n",
+        "stderr": ""
+      }
+    },
+    {
+      "repetition": 5,
+      "order": [
+        "baseline",
+        "candidate"
+      ],
+      "baseline": {
+        "exit": 0,
+        "processSeconds": 0.04222890001256019,
+        "stdout": "FAIL ordinary saved Map claims and hides the native root before first Meter click\nFAIL ordinary Map startup events do not configure or embed native sessions\nFAIL ordinary repeated native visibility and Show cannot float outside the active Map tab\nFAIL ordinary startup visibility observers install once\nFAIL ordinary public hide works before the first embed\nFAIL ordinary hidden Flux host suppresses a native reveal\nFAIL ordinary Details priority suppresses floating native panes without embedding them\nFAIL ordinary late native addon is hidden while Map remains selected\nFAIL ordinary late native OnShow obeys pre-embed ownership\nFAIL ordinary late Flux host claims the active Map boundary\nFAIL ordinary combat login holds an unpositioned native meter hidden without configuring it\nFAIL gamepad saved Map claims and hides the native root before first Meter click\nFAIL gamepad Map startup events do not configure or embed native sessions\nFAIL gamepad repeated native visibility and Show cannot float outside the active Map tab\nFAIL gamepad startup visibility observers install once\nFAIL gamepad public hide works before the first embed\nFAIL gamepad hidden Flux host suppresses a native reveal\nFAIL gamepad Details priority suppresses floating native panes without embedding them\nFAIL gamepad late native addon is hidden while Map remains selected\nFAIL gamepad late native OnShow obeys pre-embed ownership\nFAIL gamepad late Flux host claims the active Map boundary\nFAIL gamepad combat login holds an unpositioned native meter hidden without configuring it\nnative meter startup: 64 checks, 22 failures; pre-embed ownership, explicit cleanup and deferred startup mocked\n",
+        "stderr": ""
+      },
+      "candidate": {
+        "exit": 0,
+        "processSeconds": 0.04259799999999814,
+        "stdout": "native meter startup: 64 checks, 0 failures; pre-embed ownership, explicit cleanup and deferred startup mocked\n",
+        "stderr": ""
+      }
+    }
+  ],
+  "mutants": [
+    {
+      "name": "no_pre_embed_claim",
+      "exit": 1,
+      "processSeconds": 0.059416100004455075,
+      "stdout": "FAIL ordinary saved Map claims and hides the native root before first Meter click\nFAIL ordinary Map startup events do not configure or embed native sessions\nFAIL ordinary repeated native visibility and Show cannot float outside the active Map tab\nFAIL ordinary public hide works before the first embed\nFAIL ordinary Details priority suppresses floating native panes without embedding them\nFAIL ordinary late native addon is hidden while Map remains selected\nFAIL ordinary late native OnShow obeys pre-embed ownership\nFAIL ordinary late Flux host claims the active Map boundary\nFAIL ordinary combat login holds an unpositioned native meter hidden without configuring it\nFAIL gamepad saved Map claims and hides the native root before first Meter click\nFAIL gamepad Map startup events do not configure or embed native sessions\nFAIL gamepad repeated native visibility and Show cannot float outside the active Map tab\nFAIL gamepad public hide works before the first embed\nFAIL gamepad Details priority suppresses floating native panes without embedding them\nFAIL gamepad late native addon is hidden while Map remains selected\nFAIL gamepad late native OnShow obeys pre-embed ownership\nFAIL gamepad late Flux host claims the active Map boundary\nFAIL gamepad combat login holds an unpositioned native meter hidden without configuring it\nnative meter startup: 64 checks, 18 failures; pre-embed ownership, explicit cleanup and deferred startup mocked\n",
+      "stderr": "lua: ...\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_startup.lua:131: native meter startup regressions\nstack traceback:\n\t[C]: in function 'assert'\n\t...\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_startup.lua:131: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "native_show_bypasses_boundary",
+      "exit": 1,
+      "processSeconds": 0.061956999998074025,
+      "stdout": "FAIL ordinary repeated native visibility and Show cannot float outside the active Map tab\nFAIL ordinary hidden Flux host suppresses a native reveal\nFAIL ordinary Details priority suppresses floating native panes without embedding them\nFAIL ordinary late native OnShow obeys pre-embed ownership\nFAIL gamepad repeated native visibility and Show cannot float outside the active Map tab\nFAIL gamepad hidden Flux host suppresses a native reveal\nFAIL gamepad Details priority suppresses floating native panes without embedding them\nFAIL gamepad late native OnShow obeys pre-embed ownership\nnative meter startup: 64 checks, 8 failures; pre-embed ownership, explicit cleanup and deferred startup mocked\n",
+      "stderr": "lua: ...\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_startup.lua:131: native meter startup regressions\nstack traceback:\n\t[C]: in function 'assert'\n\t...\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_startup.lua:131: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "cleanup_keeps_visibility_claim",
+      "exit": 1,
+      "processSeconds": 0.06286100001307204,
+      "stdout": "FAIL ordinary cleanup releases visibility to the native meter\nFAIL ordinary later startup events do not silently reclaim explicit cleanup\nFAIL gamepad cleanup releases visibility to the native meter\nFAIL gamepad later startup events do not silently reclaim explicit cleanup\nnative meter startup: 64 checks, 4 failures; pre-embed ownership, explicit cleanup and deferred startup mocked\n",
+      "stderr": "lua: ...\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_startup.lua:131: native meter startup regressions\nstack traceback:\n\t[C]: in function 'assert'\n\t...\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_startup.lua:131: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "disabled_tab_still_claimed",
+      "exit": 1,
+      "processSeconds": 0.07016230002045631,
+      "stdout": "FAIL ordinary disabled Meter tab leaves the standalone native meter alone\nFAIL gamepad disabled Meter tab leaves the standalone native meter alone\nnative meter startup: 64 checks, 2 failures; pre-embed ownership, explicit cleanup and deferred startup mocked\n",
+      "stderr": "lua: ...\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_startup.lua:131: native meter startup regressions\nstack traceback:\n\t[C]: in function 'assert'\n\t...\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_startup.lua:131: in main chunk\n\t[C]: in ?\n"
+    }
+  ]
+}

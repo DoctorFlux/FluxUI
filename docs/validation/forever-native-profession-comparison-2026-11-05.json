@@ -1,0 +1,87 @@
+{
+  "baselineCommit": "dfc2781af138105fbfc1388d354b101338ae5162",
+  "recovery": {
+    "directory": "C:\\Users\\mario\\.codex\\visualizations\\2026\\10\\29\\01a186ea-e332-79a1-9cdc-8e340df7e22b\\Forever-native-profession-20261105T103323Z",
+    "head": "dfc2781af138105fbfc1388d354b101338ae5162",
+    "sourceFiles": 1453,
+    "settingsFiles": 123,
+    "sourceSha256": "d2ade9bd109da2577758b9e67f2edbd6ba29e4c8535ab00dbf40a28437354fea"
+  },
+  "runtimeSha256": "381ed6a313093defa4addd4ffa90ba7d0622c325a7b1ae24be7129c8fecc2d3a",
+  "normalization": "CRLF to LF",
+  "scenario": "native profession eligible on all6 models;Forever guide excluded;real custom trade service/options remain disabled on2 Forever aliases;other4 clients/settings retained;mocked native APIs",
+  "profile": "5 alternating fresh-process pairs;zero warmup;no native profiler;wall times not native latency",
+  "runs": [
+    {
+      "pair": 1,
+      "variant": "baseline",
+      "seconds": 0.05704159999731928,
+      "exit": 1,
+      "raw": "FAIL forever native profession row\nFAIL camelot native profession row\ntrade micro scope: 54 checks, 2 failures; startup frames across models=16\n"
+    },
+    {
+      "pair": 1,
+      "variant": "candidate",
+      "seconds": 0.02535599999828264,
+      "exit": 0,
+      "raw": "trade micro scope: 54 checks, 0 failures; startup frames across models=16\n"
+    },
+    {
+      "pair": 2,
+      "variant": "baseline",
+      "seconds": 0.024880400000256486,
+      "exit": 1,
+      "raw": "FAIL forever native profession row\nFAIL camelot native profession row\ntrade micro scope: 54 checks, 2 failures; startup frames across models=16\n"
+    },
+    {
+      "pair": 2,
+      "variant": "candidate",
+      "seconds": 0.022793299998738803,
+      "exit": 0,
+      "raw": "trade micro scope: 54 checks, 0 failures; startup frames across models=16\n"
+    },
+    {
+      "pair": 3,
+      "variant": "baseline",
+      "seconds": 0.024154100014129654,
+      "exit": 1,
+      "raw": "FAIL forever native profession row\nFAIL camelot native profession row\ntrade micro scope: 54 checks, 2 failures; startup frames across models=16\n"
+    },
+    {
+      "pair": 3,
+      "variant": "candidate",
+      "seconds": 0.02350690000457689,
+      "exit": 0,
+      "raw": "trade micro scope: 54 checks, 0 failures; startup frames across models=16\n"
+    },
+    {
+      "pair": 4,
+      "variant": "baseline",
+      "seconds": 0.023710499997832812,
+      "exit": 1,
+      "raw": "FAIL forever native profession row\nFAIL camelot native profession row\ntrade micro scope: 54 checks, 2 failures; startup frames across models=16\n"
+    },
+    {
+      "pair": 4,
+      "variant": "candidate",
+      "seconds": 0.02214240000466816,
+      "exit": 0,
+      "raw": "trade micro scope: 54 checks, 0 failures; startup frames across models=16\n"
+    },
+    {
+      "pair": 5,
+      "variant": "baseline",
+      "seconds": 0.02673779999895487,
+      "exit": 1,
+      "raw": "FAIL forever native profession row\nFAIL camelot native profession row\ntrade micro scope: 54 checks, 2 failures; startup frames across models=16\n"
+    },
+    {
+      "pair": 5,
+      "variant": "candidate",
+      "seconds": 0.027065600006608292,
+      "exit": 0,
+      "raw": "trade micro scope: 54 checks, 0 failures; startup frames across models=16\n"
+    }
+  ],
+  "native": "Bar visibility/interaction/taint/pixel verification pending after reload;no game input/foreground control"
+}

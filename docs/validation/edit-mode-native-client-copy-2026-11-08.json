@@ -1,0 +1,266 @@
+{
+  "utc": "2026-11-08T20:48:46.542821+00:00",
+  "copies": [
+    {
+      "client": "_retail_",
+      "path": "Core/FluxAPI/UI.lua",
+      "source": {
+        "sha256": "218468b7d4ea29b7eab18ab98b312d616819c287b41b5fdfb8475e55be51de3d",
+        "lfSHA256": "218468b7d4ea29b7eab18ab98b312d616819c287b41b5fdfb8475e55be51de3d"
+      },
+      "installed": {
+        "sha256": "218468b7d4ea29b7eab18ab98b312d616819c287b41b5fdfb8475e55be51de3d",
+        "lfSHA256": "218468b7d4ea29b7eab18ab98b312d616819c287b41b5fdfb8475e55be51de3d"
+      },
+      "match": true
+    },
+    {
+      "client": "_retail_",
+      "path": "Other/FluxHUDTooltip.lua",
+      "source": {
+        "sha256": "c4aa49d37b21852e0430db78c944014487e43e28207e8f8d31e778428d3accab",
+        "lfSHA256": "c4aa49d37b21852e0430db78c944014487e43e28207e8f8d31e778428d3accab"
+      },
+      "installed": {
+        "sha256": "c4aa49d37b21852e0430db78c944014487e43e28207e8f8d31e778428d3accab",
+        "lfSHA256": "c4aa49d37b21852e0430db78c944014487e43e28207e8f8d31e778428d3accab"
+      },
+      "match": true
+    },
+    {
+      "client": "_retail_",
+      "path": "Other/FluxInputDebug.lua",
+      "source": {
+        "sha256": "82c423e408ca31a33fa7837ab811b46bde990844546899ed539bff0ad50412c0",
+        "lfSHA256": "82c423e408ca31a33fa7837ab811b46bde990844546899ed539bff0ad50412c0"
+      },
+      "installed": {
+        "sha256": "82c423e408ca31a33fa7837ab811b46bde990844546899ed539bff0ad50412c0",
+        "lfSHA256": "82c423e408ca31a33fa7837ab811b46bde990844546899ed539bff0ad50412c0"
+      },
+      "match": true
+    },
+    {
+      "client": "_retail_",
+      "path": "Other/FluxPerfCapture.lua",
+      "source": {
+        "sha256": "5ca26f6d680c9edfbf827376347e0cec47ae3e05877d1870647c696c527b17e8",
+        "lfSHA256": "5ca26f6d680c9edfbf827376347e0cec47ae3e05877d1870647c696c527b17e8"
+      },
+      "installed": {
+        "sha256": "5ca26f6d680c9edfbf827376347e0cec47ae3e05877d1870647c696c527b17e8",
+        "lfSHA256": "5ca26f6d680c9edfbf827376347e0cec47ae3e05877d1870647c696c527b17e8"
+      },
+      "match": true
+    },
+    {
+      "client": "_forever_",
+      "path": "Core/FluxAPI/UI.lua",
+      "source": {
+        "sha256": "218468b7d4ea29b7eab18ab98b312d616819c287b41b5fdfb8475e55be51de3d",
+        "lfSHA256": "218468b7d4ea29b7eab18ab98b312d616819c287b41b5fdfb8475e55be51de3d"
+      },
+      "installed": {
+        "sha256": "218468b7d4ea29b7eab18ab98b312d616819c287b41b5fdfb8475e55be51de3d",
+        "lfSHA256": "218468b7d4ea29b7eab18ab98b312d616819c287b41b5fdfb8475e55be51de3d"
+      },
+      "match": true
+    },
+    {
+      "client": "_forever_",
+      "path": "Other/FluxHUDTooltip.lua",
+      "source": {
+        "sha256": "c4aa49d37b21852e0430db78c944014487e43e28207e8f8d31e778428d3accab",
+        "lfSHA256": "c4aa49d37b21852e0430db78c944014487e43e28207e8f8d31e778428d3accab"
+      },
+      "installed": {
+        "sha256": "c4aa49d37b21852e0430db78c944014487e43e28207e8f8d31e778428d3accab",
+        "lfSHA256": "c4aa49d37b21852e0430db78c944014487e43e28207e8f8d31e778428d3accab"
+      },
+      "match": true
+    },
+    {
+      "client": "_forever_",
+      "path": "Other/FluxInputDebug.lua",
+      "source": {
+        "sha256": "82c423e408ca31a33fa7837ab811b46bde990844546899ed539bff0ad50412c0",
+        "lfSHA256": "82c423e408ca31a33fa7837ab811b46bde990844546899ed539bff0ad50412c0"
+      },
+      "installed": {
+        "sha256": "82c423e408ca31a33fa7837ab811b46bde990844546899ed539bff0ad50412c0",
+        "lfSHA256": "82c423e408ca31a33fa7837ab811b46bde990844546899ed539bff0ad50412c0"
+      },
+      "match": true
+    },
+    {
+      "client": "_forever_",
+      "path": "Other/FluxPerfCapture.lua",
+      "source": {
+        "sha256": "5ca26f6d680c9edfbf827376347e0cec47ae3e05877d1870647c696c527b17e8",
+        "lfSHA256": "5ca26f6d680c9edfbf827376347e0cec47ae3e05877d1870647c696c527b17e8"
+      },
+      "installed": {
+        "sha256": "5ca26f6d680c9edfbf827376347e0cec47ae3e05877d1870647c696c527b17e8",
+        "lfSHA256": "5ca26f6d680c9edfbf827376347e0cec47ae3e05877d1870647c696c527b17e8"
+      },
+      "match": true
+    },
+    {
+      "client": "_classic_era_",
+      "path": "Core/FluxAPI/UI.lua",
+      "source": {
+        "sha256": "218468b7d4ea29b7eab18ab98b312d616819c287b41b5fdfb8475e55be51de3d",
+        "lfSHA256": "218468b7d4ea29b7eab18ab98b312d616819c287b41b5fdfb8475e55be51de3d"
+      },
+      "installed": {
+        "sha256": "218468b7d4ea29b7eab18ab98b312d616819c287b41b5fdfb8475e55be51de3d",
+        "lfSHA256": "218468b7d4ea29b7eab18ab98b312d616819c287b41b5fdfb8475e55be51de3d"
+      },
+      "match": true
+    },
+    {
+      "client": "_classic_era_",
+      "path": "Other/FluxHUDTooltip.lua",
+      "source": {
+        "sha256": "c4aa49d37b21852e0430db78c944014487e43e28207e8f8d31e778428d3accab",
+        "lfSHA256": "c4aa49d37b21852e0430db78c944014487e43e28207e8f8d31e778428d3accab"
+      },
+      "installed": {
+        "sha256": "c4aa49d37b21852e0430db78c944014487e43e28207e8f8d31e778428d3accab",
+        "lfSHA256": "c4aa49d37b21852e0430db78c944014487e43e28207e8f8d31e778428d3accab"
+      },
+      "match": true
+    },
+    {
+      "client": "_classic_era_",
+      "path": "Other/FluxInputDebug.lua",
+      "source": {
+        "sha256": "82c423e408ca31a33fa7837ab811b46bde990844546899ed539bff0ad50412c0",
+        "lfSHA256": "82c423e408ca31a33fa7837ab811b46bde990844546899ed539bff0ad50412c0"
+      },
+      "installed": {
+        "sha256": "82c423e408ca31a33fa7837ab811b46bde990844546899ed539bff0ad50412c0",
+        "lfSHA256": "82c423e408ca31a33fa7837ab811b46bde990844546899ed539bff0ad50412c0"
+      },
+      "match": true
+    },
+    {
+      "client": "_classic_era_",
+      "path": "Other/FluxPerfCapture.lua",
+      "source": {
+        "sha256": "5ca26f6d680c9edfbf827376347e0cec47ae3e05877d1870647c696c527b17e8",
+        "lfSHA256": "5ca26f6d680c9edfbf827376347e0cec47ae3e05877d1870647c696c527b17e8"
+      },
+      "installed": {
+        "sha256": "5ca26f6d680c9edfbf827376347e0cec47ae3e05877d1870647c696c527b17e8",
+        "lfSHA256": "5ca26f6d680c9edfbf827376347e0cec47ae3e05877d1870647c696c527b17e8"
+      },
+      "match": true
+    },
+    {
+      "client": "_anniversary_",
+      "path": "Core/FluxAPI/UI.lua",
+      "source": {
+        "sha256": "218468b7d4ea29b7eab18ab98b312d616819c287b41b5fdfb8475e55be51de3d",
+        "lfSHA256": "218468b7d4ea29b7eab18ab98b312d616819c287b41b5fdfb8475e55be51de3d"
+      },
+      "installed": {
+        "sha256": "218468b7d4ea29b7eab18ab98b312d616819c287b41b5fdfb8475e55be51de3d",
+        "lfSHA256": "218468b7d4ea29b7eab18ab98b312d616819c287b41b5fdfb8475e55be51de3d"
+      },
+      "match": true
+    },
+    {
+      "client": "_anniversary_",
+      "path": "Other/FluxHUDTooltip.lua",
+      "source": {
+        "sha256": "c4aa49d37b21852e0430db78c944014487e43e28207e8f8d31e778428d3accab",
+        "lfSHA256": "c4aa49d37b21852e0430db78c944014487e43e28207e8f8d31e778428d3accab"
+      },
+      "installed": {
+        "sha256": "c4aa49d37b21852e0430db78c944014487e43e28207e8f8d31e778428d3accab",
+        "lfSHA256": "c4aa49d37b21852e0430db78c944014487e43e28207e8f8d31e778428d3accab"
+      },
+      "match": true
+    },
+    {
+      "client": "_anniversary_",
+      "path": "Other/FluxInputDebug.lua",
+      "source": {
+        "sha256": "82c423e408ca31a33fa7837ab811b46bde990844546899ed539bff0ad50412c0",
+        "lfSHA256": "82c423e408ca31a33fa7837ab811b46bde990844546899ed539bff0ad50412c0"
+      },
+      "installed": {
+        "sha256": "82c423e408ca31a33fa7837ab811b46bde990844546899ed539bff0ad50412c0",
+        "lfSHA256": "82c423e408ca31a33fa7837ab811b46bde990844546899ed539bff0ad50412c0"
+      },
+      "match": true
+    },
+    {
+      "client": "_anniversary_",
+      "path": "Other/FluxPerfCapture.lua",
+      "source": {
+        "sha256": "5ca26f6d680c9edfbf827376347e0cec47ae3e05877d1870647c696c527b17e8",
+        "lfSHA256": "5ca26f6d680c9edfbf827376347e0cec47ae3e05877d1870647c696c527b17e8"
+      },
+      "installed": {
+        "sha256": "5ca26f6d680c9edfbf827376347e0cec47ae3e05877d1870647c696c527b17e8",
+        "lfSHA256": "5ca26f6d680c9edfbf827376347e0cec47ae3e05877d1870647c696c527b17e8"
+      },
+      "match": true
+    },
+    {
+      "client": "_classic_",
+      "path": "Core/FluxAPI/UI.lua",
+      "source": {
+        "sha256": "218468b7d4ea29b7eab18ab98b312d616819c287b41b5fdfb8475e55be51de3d",
+        "lfSHA256": "218468b7d4ea29b7eab18ab98b312d616819c287b41b5fdfb8475e55be51de3d"
+      },
+      "installed": {
+        "sha256": "218468b7d4ea29b7eab18ab98b312d616819c287b41b5fdfb8475e55be51de3d",
+        "lfSHA256": "218468b7d4ea29b7eab18ab98b312d616819c287b41b5fdfb8475e55be51de3d"
+      },
+      "match": true
+    },
+    {
+      "client": "_classic_",
+      "path": "Other/FluxHUDTooltip.lua",
+      "source": {
+        "sha256": "c4aa49d37b21852e0430db78c944014487e43e28207e8f8d31e778428d3accab",
+        "lfSHA256": "c4aa49d37b21852e0430db78c944014487e43e28207e8f8d31e778428d3accab"
+      },
+      "installed": {
+        "sha256": "c4aa49d37b21852e0430db78c944014487e43e28207e8f8d31e778428d3accab",
+        "lfSHA256": "c4aa49d37b21852e0430db78c944014487e43e28207e8f8d31e778428d3accab"
+      },
+      "match": true
+    },
+    {
+      "client": "_classic_",
+      "path": "Other/FluxInputDebug.lua",
+      "source": {
+        "sha256": "82c423e408ca31a33fa7837ab811b46bde990844546899ed539bff0ad50412c0",
+        "lfSHA256": "82c423e408ca31a33fa7837ab811b46bde990844546899ed539bff0ad50412c0"
+      },
+      "installed": {
+        "sha256": "82c423e408ca31a33fa7837ab811b46bde990844546899ed539bff0ad50412c0",
+        "lfSHA256": "82c423e408ca31a33fa7837ab811b46bde990844546899ed539bff0ad50412c0"
+      },
+      "match": true
+    },
+    {
+      "client": "_classic_",
+      "path": "Other/FluxPerfCapture.lua",
+      "source": {
+        "sha256": "5ca26f6d680c9edfbf827376347e0cec47ae3e05877d1870647c696c527b17e8",
+        "lfSHA256": "5ca26f6d680c9edfbf827376347e0cec47ae3e05877d1870647c696c527b17e8"
+      },
+      "installed": {
+        "sha256": "5ca26f6d680c9edfbf827376347e0cec47ae3e05877d1870647c696c527b17e8",
+        "lfSHA256": "5ca26f6d680c9edfbf827376347e0cec47ae3e05877d1870647c696c527b17e8"
+      },
+      "match": true
+    }
+  ],
+  "scope": "Read-only user-sync verification; not loaded-source/native acceptance."
+}

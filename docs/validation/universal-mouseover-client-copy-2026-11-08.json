@@ -1,0 +1,143 @@
+{
+  "utc": "2026-11-08T19:45:37.152654+00:00",
+  "clients": [
+    {
+      "client": "Retail",
+      "fileVersion": "12.1.5.70783",
+      "executable": "F:\\World of Warcraft\\_retail_\\Wow.exe",
+      "loadedGetBuildInfo": "Not captured"
+    },
+    {
+      "client": "Forever",
+      "fileVersion": "1.60.1.70862",
+      "executable": "F:\\World of Warcraft\\_forever_\\Wow.exe",
+      "loadedGetBuildInfo": "Not captured"
+    },
+    {
+      "client": "Classic Era",
+      "fileVersion": "1.15.9.70576",
+      "executable": "F:\\World of Warcraft\\_classic_era_\\WowClassic.exe",
+      "loadedGetBuildInfo": "Not captured"
+    },
+    {
+      "client": "Anniversary",
+      "fileVersion": "2.5.6.70577",
+      "executable": "F:\\World of Warcraft\\_anniversary_\\WowClassic.exe",
+      "loadedGetBuildInfo": "Not captured"
+    },
+    {
+      "client": "Progression",
+      "fileVersion": "5.5.4.70631",
+      "executable": "F:\\World of Warcraft\\_classic_\\WowClassic.exe",
+      "loadedGetBuildInfo": "Not captured"
+    }
+  ],
+  "copies": [
+    {
+      "client": "Retail",
+      "path": "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\Core\\Engine\\MouseoverCast.lua",
+      "sourceSHA256": "47632336a61f354b9c878b01a19d3b2c2375d4b925abacc9d07db38646e93586",
+      "installedSHA256": "47632336a61f354b9c878b01a19d3b2c2375d4b925abacc9d07db38646e93586",
+      "match": true
+    },
+    {
+      "client": "Retail",
+      "path": "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\Binding\\Core\\MacroFactory.lua",
+      "sourceSHA256": "4eae7d8a95f19d7b77c28f480f195089d625e5c9c2848bfd4aa3bb753a529ffd",
+      "installedSHA256": "4eae7d8a95f19d7b77c28f480f195089d625e5c9c2848bfd4aa3bb753a529ffd",
+      "match": true
+    },
+    {
+      "client": "Retail",
+      "path": "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\Binding\\Core\\Apply.lua",
+      "sourceSHA256": "28f80dad58bac03ae94504b87d528b70bf98097c2cfc7c864f3b2f660e77a266",
+      "installedSHA256": "28f80dad58bac03ae94504b87d528b70bf98097c2cfc7c864f3b2f660e77a266",
+      "match": true
+    },
+    {
+      "client": "Forever",
+      "path": "F:\\World of Warcraft\\_forever_\\Interface\\AddOns\\_FluxUI\\Core\\Engine\\MouseoverCast.lua",
+      "sourceSHA256": "47632336a61f354b9c878b01a19d3b2c2375d4b925abacc9d07db38646e93586",
+      "installedSHA256": "47632336a61f354b9c878b01a19d3b2c2375d4b925abacc9d07db38646e93586",
+      "match": true
+    },
+    {
+      "client": "Forever",
+      "path": "F:\\World of Warcraft\\_forever_\\Interface\\AddOns\\_FluxUI\\Binding\\Core\\MacroFactory.lua",
+      "sourceSHA256": "4eae7d8a95f19d7b77c28f480f195089d625e5c9c2848bfd4aa3bb753a529ffd",
+      "installedSHA256": "4eae7d8a95f19d7b77c28f480f195089d625e5c9c2848bfd4aa3bb753a529ffd",
+      "match": true
+    },
+    {
+      "client": "Forever",
+      "path": "F:\\World of Warcraft\\_forever_\\Interface\\AddOns\\_FluxUI\\Binding\\Core\\Apply.lua",
+      "sourceSHA256": "28f80dad58bac03ae94504b87d528b70bf98097c2cfc7c864f3b2f660e77a266",
+      "installedSHA256": "28f80dad58bac03ae94504b87d528b70bf98097c2cfc7c864f3b2f660e77a266",
+      "match": true
+    },
+    {
+      "client": "Classic Era",
+      "path": "F:\\World of Warcraft\\_classic_era_\\Interface\\AddOns\\_FluxUI\\Core\\Engine\\MouseoverCast.lua",
+      "sourceSHA256": "47632336a61f354b9c878b01a19d3b2c2375d4b925abacc9d07db38646e93586",
+      "installedSHA256": "47632336a61f354b9c878b01a19d3b2c2375d4b925abacc9d07db38646e93586",
+      "match": true
+    },
+    {
+      "client": "Classic Era",
+      "path": "F:\\World of Warcraft\\_classic_era_\\Interface\\AddOns\\_FluxUI\\Binding\\Core\\MacroFactory.lua",
+      "sourceSHA256": "4eae7d8a95f19d7b77c28f480f195089d625e5c9c2848bfd4aa3bb753a529ffd",
+      "installedSHA256": "4eae7d8a95f19d7b77c28f480f195089d625e5c9c2848bfd4aa3bb753a529ffd",
+      "match": true
+    },
+    {
+      "client": "Classic Era",
+      "path": "F:\\World of Warcraft\\_classic_era_\\Interface\\AddOns\\_FluxUI\\Binding\\Core\\Apply.lua",
+      "sourceSHA256": "28f80dad58bac03ae94504b87d528b70bf98097c2cfc7c864f3b2f660e77a266",
+      "installedSHA256": "28f80dad58bac03ae94504b87d528b70bf98097c2cfc7c864f3b2f660e77a266",
+      "match": true
+    },
+    {
+      "client": "Anniversary",
+      "path": "F:\\World of Warcraft\\_anniversary_\\Interface\\AddOns\\_FluxUI\\Core\\Engine\\MouseoverCast.lua",
+      "sourceSHA256": "47632336a61f354b9c878b01a19d3b2c2375d4b925abacc9d07db38646e93586",
+      "installedSHA256": "47632336a61f354b9c878b01a19d3b2c2375d4b925abacc9d07db38646e93586",
+      "match": true
+    },
+    {
+      "client": "Anniversary",
+      "path": "F:\\World of Warcraft\\_anniversary_\\Interface\\AddOns\\_FluxUI\\Binding\\Core\\MacroFactory.lua",
+      "sourceSHA256": "4eae7d8a95f19d7b77c28f480f195089d625e5c9c2848bfd4aa3bb753a529ffd",
+      "installedSHA256": "4eae7d8a95f19d7b77c28f480f195089d625e5c9c2848bfd4aa3bb753a529ffd",
+      "match": true
+    },
+    {
+      "client": "Anniversary",
+      "path": "F:\\World of Warcraft\\_anniversary_\\Interface\\AddOns\\_FluxUI\\Binding\\Core\\Apply.lua",
+      "sourceSHA256": "28f80dad58bac03ae94504b87d528b70bf98097c2cfc7c864f3b2f660e77a266",
+      "installedSHA256": "28f80dad58bac03ae94504b87d528b70bf98097c2cfc7c864f3b2f660e77a266",
+      "match": true
+    },
+    {
+      "client": "Progression",
+      "path": "F:\\World of Warcraft\\_classic_\\Interface\\AddOns\\_FluxUI\\Core\\Engine\\MouseoverCast.lua",
+      "sourceSHA256": "47632336a61f354b9c878b01a19d3b2c2375d4b925abacc9d07db38646e93586",
+      "installedSHA256": "47632336a61f354b9c878b01a19d3b2c2375d4b925abacc9d07db38646e93586",
+      "match": true
+    },
+    {
+      "client": "Progression",
+      "path": "F:\\World of Warcraft\\_classic_\\Interface\\AddOns\\_FluxUI\\Binding\\Core\\MacroFactory.lua",
+      "sourceSHA256": "4eae7d8a95f19d7b77c28f480f195089d625e5c9c2848bfd4aa3bb753a529ffd",
+      "installedSHA256": "4eae7d8a95f19d7b77c28f480f195089d625e5c9c2848bfd4aa3bb753a529ffd",
+      "match": true
+    },
+    {
+      "client": "Progression",
+      "path": "F:\\World of Warcraft\\_classic_\\Interface\\AddOns\\_FluxUI\\Binding\\Core\\Apply.lua",
+      "sourceSHA256": "28f80dad58bac03ae94504b87d528b70bf98097c2cfc7c864f3b2f660e77a266",
+      "installedSHA256": "28f80dad58bac03ae94504b87d528b70bf98097c2cfc7c864f3b2f660e77a266",
+      "match": true
+    }
+  ],
+  "scope": "Read-only executable-version and source hashes; installed file equality is not loaded-source or native acceptance."
+}

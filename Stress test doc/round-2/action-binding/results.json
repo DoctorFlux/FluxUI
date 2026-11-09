@@ -1,0 +1,215 @@
+{
+  "capturedUTC": "2026-11-07T14:47:42.455073+00:00",
+  "scope": "Audit-only desktop Lua of production modules or named fragments. Defect reproductions intentionally assert bad behavior; controls pass. Native secure VM, true secrets, protected runtime, rendering and FPS not run.",
+  "assertionsPerReplay": 340,
+  "reproducedGroups": 6,
+  "reproducedObservationsPerReplay": 35,
+  "modeledClients": [
+    "classic_era",
+    "classic_anniversary",
+    "classic",
+    "live",
+    "forever"
+  ],
+  "modifierKeyPressesPerReplay": 10000,
+  "sourcePreserved": true,
+  "changedPaths": [],
+  "consumedHashes": [
+    {
+      "path": "Bars/SlotProgram.lua",
+      "sha256": "2bd7a8c44660718d475fe510dd2b70e22f021cc6c332291083949e6eee1e28d4"
+    },
+    {
+      "path": "Bars/_tmp_barsmoke.lua",
+      "sha256": "38e49d7f47e1663e756c77d99eabce32c448fdb9732d3802cd500259c32bd977"
+    },
+    {
+      "path": "Bars/_tmp_forevercontrolsmoke.lua",
+      "sha256": "887b0290269dd5be6bbea65797c4a144b154174fa53fbc1a88ccd38050aed86e"
+    },
+    {
+      "path": "Binding/Core/Apply.lua",
+      "sha256": "311a9bd42f833c7c6ba63762427de45ab99db664ce008a6afda576d64b431c5a"
+    },
+    {
+      "path": "Binding/Core/ChordMap.lua",
+      "sha256": "0b3328c9ff5f8d26b209617b3fd339ba7c8733c20afce8b76c0516427a566945"
+    },
+    {
+      "path": "Binding/Core/PushPress.lua",
+      "sha256": "558d9171fddb980bb497c7d9a58447eaa169467cd3c457c20248ef0248d86f92"
+    },
+    {
+      "path": "Binding/Core/SecurePool.lua",
+      "sha256": "e25ce53f03c1122ed9a2e367e42807f01a4a74ab87e6e71c06f3d05b12d06fb2"
+    },
+    {
+      "path": "Binding/Respec.lua",
+      "sha256": "75e606330ab71c70881f13bbac29b6b515c3d7847b12c3df444a03859ecca417"
+    },
+    {
+      "path": "Binding/UI/Editor/Widgets/FluxKeyCapture.lua",
+      "sha256": "7c46385147c7606bd4925251cee80e8452df19c89b0582901e13ff22e2360d42"
+    },
+    {
+      "path": "Binding/UI/KeyVisualizer/KeyLayouts.lua",
+      "sha256": "f25be4a5fd0a3465829be528a55f5d1dde3e27243ed354bbce4dc574c5fe0e81"
+    },
+    {
+      "path": "tests/binding_respec_regression.lua",
+      "sha256": "05b118b9be8baf171bbe8e36c531eff4fe07fa6f14af9e048806f1386581a24b"
+    },
+    {
+      "path": "tests/mouseover_native.lua",
+      "sha256": "95fbfacf23677ab97329ccb9067c9eeb7a954620c7a1395a90068934809d3da4"
+    },
+    {
+      "path": "tests/native_mouse_suppression.lua",
+      "sha256": "df78bd69fe2aab87e7572eb1a0c69867c470e30da88b4f57c0bf2c05355f0aa3"
+    },
+    {
+      "path": "tests/raid_binding_cast.lua",
+      "sha256": "a5f04ed27cc4668c0599cdfd11854593d5109b1999a5ec1dffb6a6092237e847"
+    },
+    {
+      "path": "tests/raid_party_binding_cast.lua",
+      "sha256": "9978e68057f35e25761ddf5554ce7b64fe3bfb7e00ad7fd17e60ab942a0b408b"
+    },
+    {
+      "path": "tests/restricted_driver_ownership.lua",
+      "sha256": "1846c2883f7847b36d718267d9ba8023ab9fb23289c5b018feff1688858d3a1d"
+    },
+    {
+      "path": "tests/unit_click_edges.lua",
+      "sha256": "920eadc1a5d54da78c1eccd8d092237b72caa29d608e650184a999e5ee238864"
+    },
+    {
+      "path": "tests/utility_secure_input.lua",
+      "sha256": "cce172b9d7b4881f1e2820275133b34106e291595de6185e884fe84d37ebf6ed"
+    }
+  ],
+  "harnessHash": "7244ace561c0543cea00b005a84fac2fd1d2e0b9bcab8bfef8fcc540f75ad658",
+  "runs": [
+    {
+      "kind": "existing-control",
+      "command": [
+        "lua",
+        "Bars/_tmp_barsmoke.lua"
+      ],
+      "exit": 0,
+      "output": "bars refresh: 17454 checks passed; 19 production mutations rejected\nbars contract regression: 468 production checks across five clients; 13 mutations rejected\nBlizzard script ownership: 26 checks passed; 6 native-owner mutations rejected\nbars smoke OK\n  slot math: rest/shift/ctrl/cat/bear/vehicle/static/promote/xor\n  lockdown: Layout guards, no combat unpack\n  clicks: ButtonForge wrap verbatim; no post-body; PreClick gated on button/down\n  leftover: stock ActionButtons off ActionBarButtonEventsFrame (mixins stay stock),\n            then EnableMouse false on MainActionBar/pager/ActionButton\n  drag: PreClick cursor + L+R without Shift; click fires on mouse up\n  checked: Paint owns SetChecked; gold hilight not mouseover atlas\n  flash: auto-attack/auto-shot/wand red blink on strip + Extra; Classic QuickslotRed, Forever atlas\n  paint: Midnight duration object + Classic GetActionCooldown\n  hotkey: MouseButton3-5 / scroll / space glyphs + S-/C- overlay\n  charges: UnpackCharges table+tuple, dual chargeCooldown\n  vfx: Transfer fill on swap; exclusive appear/clear; finish burst; no stuck fill\n  chrome: checked/pushed follow paging with fill/interrupt\n  glow: Transfer overlay on swap; skipBirth; ungated Set; Era OOC SAO capture; SyncColumn; ClearCache keeps _glowing\n  combat badges: alpha vis (no Hide taint); exclusive VFX/gold on the live Extra face\n  combat button: one FluxButton; Context hops; Binding Apply OOC only; vis after Identity\n  hovercast: TOC Keybind; strip hosts; UF peek only; no [@mouseover] on hover-only tail\n  range: one Flux.Range ticker for strip+Extra+badges; macros range their shown\n         spell against the macro's own @unit; frame-shared memo; 0.2s mouseover\n  mouseover cast: click-time unit only (no static unit=mouseover); factory tails\n         factory mouseover tails idle-stripped; Blizzard range-check gated; hovercast driver on UF hover\n  ebs assistant: GetNextCastSpell(false); rotation overlay; KeyBind override\n  assist morph: strip+EBS poll next-cast whenever the button exists\n  pet/stance: Extra Button surfaces; event-split paint; TOC-loaded\n  ingame: /reload; drag from book without Shift; pickup; click on release;\n          key on press; AOE cancel clears checked; SHIFT mini keeps proc loop;\n          macro condition drop glow when the face leaves; skipBirth on return;\n          VFX continues or appears/clears with the visible face\n"
+    },
+    {
+      "kind": "existing-control",
+      "command": [
+        "lua",
+        "Bars/_tmp_forevercontrolsmoke.lua"
+      ],
+      "exit": 0,
+      "output": "Forever control smoke passed: 25920 native mouse/key/mini actions; combat entry/exit, empty columns, modifiers, promotion, overlay restoration, v8 input, native collectors and failed-engine probe\n"
+    },
+    {
+      "kind": "existing-control",
+      "command": [
+        "lua",
+        "tests/mouseover_native.lua"
+      ],
+      "exit": 0,
+      "output": "native mouseover: 4973 checks passed; native taint/visual/input/FPS pending\n"
+    },
+    {
+      "kind": "existing-control",
+      "command": [
+        "lua",
+        "tests/raid_binding_cast.lua"
+      ],
+      "exit": 0,
+      "output": "Raid binding casting: 182 checks; five native source handlers; four rejected negative controls\n"
+    },
+    {
+      "kind": "existing-control",
+      "command": [
+        "lua",
+        "tests/raid_party_binding_cast.lua"
+      ],
+      "exit": 0,
+      "output": "Party Flux hover casting: 310 checks; twelve party/pet/target tokens on five binding/secure models; native input/taint pending\n"
+    },
+    {
+      "kind": "existing-control",
+      "command": [
+        "lua",
+        "tests/unit_click_edges.lua"
+      ],
+      "exit": 0,
+      "output": "Unit click edges: 41 checks; five native source handlers; negative control passed\n"
+    },
+    {
+      "kind": "existing-control",
+      "command": [
+        "lua",
+        "tests/native_mouse_suppression.lua"
+      ],
+      "exit": 0,
+      "output": "Native mouse suppression/Edit Mode: 2545 checks; five branches; 14 negative controls passed\n"
+    },
+    {
+      "kind": "existing-control",
+      "command": [
+        "lua",
+        "tests/binding_respec_regression.lua"
+      ],
+      "exit": 0,
+      "output": "binding/respec regression: 110 checks passed\n"
+    },
+    {
+      "kind": "existing-control",
+      "command": [
+        "lua",
+        "tests/restricted_driver_ownership.lua"
+      ],
+      "exit": 0,
+      "output": "restricted driver ownership: 264 checks passed (five client models; native taint pending)\n"
+    },
+    {
+      "kind": "existing-control",
+      "command": [
+        "lua",
+        "tests/utility_secure_input.lua"
+      ],
+      "exit": 0,
+      "output": "Utility secure input: 41255 checks; five Blizzard dispatchers; mouse + both keys; all chords; combat; both CVar edges PASS\n"
+    },
+    {
+      "kind": "defect-reproduction",
+      "sample": 1,
+      "command": [
+        "lua",
+        "Stress test doc/round-2/action-binding/replay.lua.txt"
+      ],
+      "exit": 0,
+      "output": "OBSERVED|R2-BIND-01|classic_era Q down then E down: old column remains PUSHED and dim after release+2s; explicit clear recovers\nOBSERVED|R2-BIND-02|classic_era captured \"-\" normalizes empty; \"SHIFT--\" parses base SHIFT; Q control routes normally\nOBSERVED|R2-BIND-04|classic_era modeled GetVertexColor=nil actual HookButton press raises Binding/Core/PushPress.lua:208: attempt to perform arithmetic on a nil value (local 'r')\nOBSERVED|R2-BIND-04|classic_era modeled GetVertexColor=opaque actual HookButton press raises Stress test doc/round-2/action-binding/replay.lua.txt:41: modeled secret color arithmetic\nOBSERVED|R2-BIND-03|classic_era A superseded callback queues C; outer B overwrites C, applies B, never calls C completion\nOBSERVED|R2-BIND-06|classic_era ALT-= and ALT-/ share world+HC pool names; both keys execute one final payload; alphanumeric controls remain independent\nOBSERVED|R2-BIND-05|classic_era direct public SlotProgram.Apply(false) in combat removes model but regen omits protected clear; no ordinary Binding caller reach established\nOBSERVED|R2-BIND-01|classic_anniversary Q down then E down: old column remains PUSHED and dim after release+2s; explicit clear recovers\nOBSERVED|R2-BIND-02|classic_anniversary captured \"-\" normalizes empty; \"SHIFT--\" parses base SHIFT; Q control routes normally\nOBSERVED|R2-BIND-04|classic_anniversary modeled GetVertexColor=nil actual HookButton press raises Binding/Core/PushPress.lua:208: attempt to perform arithmetic on a nil value (local 'r')\nOBSERVED|R2-BIND-04|classic_anniversary modeled GetVertexColor=opaque actual HookButton press raises Stress test doc/round-2/action-binding/replay.lua.txt:41: modeled secret color arithmetic\nOBSERVED|R2-BIND-03|classic_anniversary A superseded callback queues C; outer B overwrites C, applies B, never calls C completion\nOBSERVED|R2-BIND-06|classic_anniversary ALT-= and ALT-/ share world+HC pool names; both keys execute one final payload; alphanumeric controls remain independent\nOBSERVED|R2-BIND-05|classic_anniversary direct public SlotProgram.Apply(false) in combat removes model but regen omits protected clear; no ordinary Binding caller reach established\nOBSERVED|R2-BIND-01|classic Q down then E down: old column remains PUSHED and dim after release+2s; explicit clear recovers\nOBSERVED|R2-BIND-02|classic captured \"-\" normalizes empty; \"SHIFT--\" parses base SHIFT; Q control routes normally\nOBSERVED|R2-BIND-04|classic modeled GetVertexColor=nil actual HookButton press raises Binding/Core/PushPress.lua:208: attempt to perform arithmetic on a nil value (local 'r')\nOBSERVED|R2-BIND-04|classic modeled GetVertexColor=opaque actual HookButton press raises Stress test doc/round-2/action-binding/replay.lua.txt:41: modeled secret color arithmetic\nOBSERVED|R2-BIND-03|classic A superseded callback queues C; outer B overwrites C, applies B, never calls C completion\nOBSERVED|R2-BIND-06|classic ALT-= and ALT-/ share world+HC pool names; both keys execute one final payload; alphanumeric controls remain independent\nOBSERVED|R2-BIND-05|classic direct public SlotProgram.Apply(false) in combat removes model but regen omits protected clear; no ordinary Binding caller reach established\nOBSERVED|R2-BIND-01|live Q down then E down: old column remains PUSHED and dim after release+2s; explicit clear recovers\nOBSERVED|R2-BIND-02|live captured \"-\" normalizes empty; \"SHIFT--\" parses base SHIFT; Q control routes normally\nOBSERVED|R2-BIND-04|live modeled GetVertexColor=nil actual HookButton press raises Binding/Core/PushPress.lua:208: attempt to perform arithmetic on a nil value (local 'r')\nOBSERVED|R2-BIND-04|live modeled GetVertexColor=opaque actual HookButton press raises Stress test doc/round-2/action-binding/replay.lua.txt:41: modeled secret color arithmetic\nOBSERVED|R2-BIND-03|live A superseded callback queues C; outer B overwrites C, applies B, never calls C completion\nOBSERVED|R2-BIND-06|live ALT-= and ALT-/ share world+HC pool names; both keys execute one final payload; alphanumeric controls remain independent\nOBSERVED|R2-BIND-05|live direct public SlotProgram.Apply(false) in combat removes model but regen omits protected clear; no ordinary Binding caller reach established\nOBSERVED|R2-BIND-01|forever Q down then E down: old column remains PUSHED and dim after release+2s; explicit clear recovers\nOBSERVED|R2-BIND-02|forever captured \"-\" normalizes empty; \"SHIFT--\" parses base SHIFT; Q control routes normally\nOBSERVED|R2-BIND-04|forever modeled GetVertexColor=nil actual HookButton press raises Binding/Core/PushPress.lua:208: attempt to perform arithmetic on a nil value (local 'r')\nOBSERVED|R2-BIND-04|forever modeled GetVertexColor=opaque actual HookButton press raises Stress test doc/round-2/action-binding/replay.lua.txt:41: modeled secret color arithmetic\nOBSERVED|R2-BIND-03|forever A superseded callback queues C; outer B overwrites C, applies B, never calls C completion\nOBSERVED|R2-BIND-06|forever ALT-= and ALT-/ share world+HC pool names; both keys execute one final payload; alphanumeric controls remain independent\nOBSERVED|R2-BIND-05|forever direct public SlotProgram.Apply(false) in combat removes model but regen omits protected clear; no ordinary Binding caller reach established\nROUND2 ACTION/BINDING replay assertions=340 reproduced_observations=35; expected defects, native VM not executed\n"
+    },
+    {
+      "kind": "defect-reproduction",
+      "sample": 2,
+      "command": [
+        "lua",
+        "Stress test doc/round-2/action-binding/replay.lua.txt"
+      ],
+      "exit": 0,
+      "output": "OBSERVED|R2-BIND-01|classic_era Q down then E down: old column remains PUSHED and dim after release+2s; explicit clear recovers\nOBSERVED|R2-BIND-02|classic_era captured \"-\" normalizes empty; \"SHIFT--\" parses base SHIFT; Q control routes normally\nOBSERVED|R2-BIND-04|classic_era modeled GetVertexColor=nil actual HookButton press raises Binding/Core/PushPress.lua:208: attempt to perform arithmetic on a nil value (local 'r')\nOBSERVED|R2-BIND-04|classic_era modeled GetVertexColor=opaque actual HookButton press raises Stress test doc/round-2/action-binding/replay.lua.txt:41: modeled secret color arithmetic\nOBSERVED|R2-BIND-03|classic_era A superseded callback queues C; outer B overwrites C, applies B, never calls C completion\nOBSERVED|R2-BIND-06|classic_era ALT-= and ALT-/ share world+HC pool names; both keys execute one final payload; alphanumeric controls remain independent\nOBSERVED|R2-BIND-05|classic_era direct public SlotProgram.Apply(false) in combat removes model but regen omits protected clear; no ordinary Binding caller reach established\nOBSERVED|R2-BIND-01|classic_anniversary Q down then E down: old column remains PUSHED and dim after release+2s; explicit clear recovers\nOBSERVED|R2-BIND-02|classic_anniversary captured \"-\" normalizes empty; \"SHIFT--\" parses base SHIFT; Q control routes normally\nOBSERVED|R2-BIND-04|classic_anniversary modeled GetVertexColor=nil actual HookButton press raises Binding/Core/PushPress.lua:208: attempt to perform arithmetic on a nil value (local 'r')\nOBSERVED|R2-BIND-04|classic_anniversary modeled GetVertexColor=opaque actual HookButton press raises Stress test doc/round-2/action-binding/replay.lua.txt:41: modeled secret color arithmetic\nOBSERVED|R2-BIND-03|classic_anniversary A superseded callback queues C; outer B overwrites C, applies B, never calls C completion\nOBSERVED|R2-BIND-06|classic_anniversary ALT-= and ALT-/ share world+HC pool names; both keys execute one final payload; alphanumeric controls remain independent\nOBSERVED|R2-BIND-05|classic_anniversary direct public SlotProgram.Apply(false) in combat removes model but regen omits protected clear; no ordinary Binding caller reach established\nOBSERVED|R2-BIND-01|classic Q down then E down: old column remains PUSHED and dim after release+2s; explicit clear recovers\nOBSERVED|R2-BIND-02|classic captured \"-\" normalizes empty; \"SHIFT--\" parses base SHIFT; Q control routes normally\nOBSERVED|R2-BIND-04|classic modeled GetVertexColor=nil actual HookButton press raises Binding/Core/PushPress.lua:208: attempt to perform arithmetic on a nil value (local 'r')\nOBSERVED|R2-BIND-04|classic modeled GetVertexColor=opaque actual HookButton press raises Stress test doc/round-2/action-binding/replay.lua.txt:41: modeled secret color arithmetic\nOBSERVED|R2-BIND-03|classic A superseded callback queues C; outer B overwrites C, applies B, never calls C completion\nOBSERVED|R2-BIND-06|classic ALT-= and ALT-/ share world+HC pool names; both keys execute one final payload; alphanumeric controls remain independent\nOBSERVED|R2-BIND-05|classic direct public SlotProgram.Apply(false) in combat removes model but regen omits protected clear; no ordinary Binding caller reach established\nOBSERVED|R2-BIND-01|live Q down then E down: old column remains PUSHED and dim after release+2s; explicit clear recovers\nOBSERVED|R2-BIND-02|live captured \"-\" normalizes empty; \"SHIFT--\" parses base SHIFT; Q control routes normally\nOBSERVED|R2-BIND-04|live modeled GetVertexColor=nil actual HookButton press raises Binding/Core/PushPress.lua:208: attempt to perform arithmetic on a nil value (local 'r')\nOBSERVED|R2-BIND-04|live modeled GetVertexColor=opaque actual HookButton press raises Stress test doc/round-2/action-binding/replay.lua.txt:41: modeled secret color arithmetic\nOBSERVED|R2-BIND-03|live A superseded callback queues C; outer B overwrites C, applies B, never calls C completion\nOBSERVED|R2-BIND-06|live ALT-= and ALT-/ share world+HC pool names; both keys execute one final payload; alphanumeric controls remain independent\nOBSERVED|R2-BIND-05|live direct public SlotProgram.Apply(false) in combat removes model but regen omits protected clear; no ordinary Binding caller reach established\nOBSERVED|R2-BIND-01|forever Q down then E down: old column remains PUSHED and dim after release+2s; explicit clear recovers\nOBSERVED|R2-BIND-02|forever captured \"-\" normalizes empty; \"SHIFT--\" parses base SHIFT; Q control routes normally\nOBSERVED|R2-BIND-04|forever modeled GetVertexColor=nil actual HookButton press raises Binding/Core/PushPress.lua:208: attempt to perform arithmetic on a nil value (local 'r')\nOBSERVED|R2-BIND-04|forever modeled GetVertexColor=opaque actual HookButton press raises Stress test doc/round-2/action-binding/replay.lua.txt:41: modeled secret color arithmetic\nOBSERVED|R2-BIND-03|forever A superseded callback queues C; outer B overwrites C, applies B, never calls C completion\nOBSERVED|R2-BIND-06|forever ALT-= and ALT-/ share world+HC pool names; both keys execute one final payload; alphanumeric controls remain independent\nOBSERVED|R2-BIND-05|forever direct public SlotProgram.Apply(false) in combat removes model but regen omits protected clear; no ordinary Binding caller reach established\nROUND2 ACTION/BINDING replay assertions=340 reproduced_observations=35; expected defects, native VM not executed\n"
+    },
+    {
+      "kind": "defect-reproduction",
+      "sample": 3,
+      "command": [
+        "lua",
+        "Stress test doc/round-2/action-binding/replay.lua.txt"
+      ],
+      "exit": 0,
+      "output": "OBSERVED|R2-BIND-01|classic_era Q down then E down: old column remains PUSHED and dim after release+2s; explicit clear recovers\nOBSERVED|R2-BIND-02|classic_era captured \"-\" normalizes empty; \"SHIFT--\" parses base SHIFT; Q control routes normally\nOBSERVED|R2-BIND-04|classic_era modeled GetVertexColor=nil actual HookButton press raises Binding/Core/PushPress.lua:208: attempt to perform arithmetic on a nil value (local 'r')\nOBSERVED|R2-BIND-04|classic_era modeled GetVertexColor=opaque actual HookButton press raises Stress test doc/round-2/action-binding/replay.lua.txt:41: modeled secret color arithmetic\nOBSERVED|R2-BIND-03|classic_era A superseded callback queues C; outer B overwrites C, applies B, never calls C completion\nOBSERVED|R2-BIND-06|classic_era ALT-= and ALT-/ share world+HC pool names; both keys execute one final payload; alphanumeric controls remain independent\nOBSERVED|R2-BIND-05|classic_era direct public SlotProgram.Apply(false) in combat removes model but regen omits protected clear; no ordinary Binding caller reach established\nOBSERVED|R2-BIND-01|classic_anniversary Q down then E down: old column remains PUSHED and dim after release+2s; explicit clear recovers\nOBSERVED|R2-BIND-02|classic_anniversary captured \"-\" normalizes empty; \"SHIFT--\" parses base SHIFT; Q control routes normally\nOBSERVED|R2-BIND-04|classic_anniversary modeled GetVertexColor=nil actual HookButton press raises Binding/Core/PushPress.lua:208: attempt to perform arithmetic on a nil value (local 'r')\nOBSERVED|R2-BIND-04|classic_anniversary modeled GetVertexColor=opaque actual HookButton press raises Stress test doc/round-2/action-binding/replay.lua.txt:41: modeled secret color arithmetic\nOBSERVED|R2-BIND-03|classic_anniversary A superseded callback queues C; outer B overwrites C, applies B, never calls C completion\nOBSERVED|R2-BIND-06|classic_anniversary ALT-= and ALT-/ share world+HC pool names; both keys execute one final payload; alphanumeric controls remain independent\nOBSERVED|R2-BIND-05|classic_anniversary direct public SlotProgram.Apply(false) in combat removes model but regen omits protected clear; no ordinary Binding caller reach established\nOBSERVED|R2-BIND-01|classic Q down then E down: old column remains PUSHED and dim after release+2s; explicit clear recovers\nOBSERVED|R2-BIND-02|classic captured \"-\" normalizes empty; \"SHIFT--\" parses base SHIFT; Q control routes normally\nOBSERVED|R2-BIND-04|classic modeled GetVertexColor=nil actual HookButton press raises Binding/Core/PushPress.lua:208: attempt to perform arithmetic on a nil value (local 'r')\nOBSERVED|R2-BIND-04|classic modeled GetVertexColor=opaque actual HookButton press raises Stress test doc/round-2/action-binding/replay.lua.txt:41: modeled secret color arithmetic\nOBSERVED|R2-BIND-03|classic A superseded callback queues C; outer B overwrites C, applies B, never calls C completion\nOBSERVED|R2-BIND-06|classic ALT-= and ALT-/ share world+HC pool names; both keys execute one final payload; alphanumeric controls remain independent\nOBSERVED|R2-BIND-05|classic direct public SlotProgram.Apply(false) in combat removes model but regen omits protected clear; no ordinary Binding caller reach established\nOBSERVED|R2-BIND-01|live Q down then E down: old column remains PUSHED and dim after release+2s; explicit clear recovers\nOBSERVED|R2-BIND-02|live captured \"-\" normalizes empty; \"SHIFT--\" parses base SHIFT; Q control routes normally\nOBSERVED|R2-BIND-04|live modeled GetVertexColor=nil actual HookButton press raises Binding/Core/PushPress.lua:208: attempt to perform arithmetic on a nil value (local 'r')\nOBSERVED|R2-BIND-04|live modeled GetVertexColor=opaque actual HookButton press raises Stress test doc/round-2/action-binding/replay.lua.txt:41: modeled secret color arithmetic\nOBSERVED|R2-BIND-03|live A superseded callback queues C; outer B overwrites C, applies B, never calls C completion\nOBSERVED|R2-BIND-06|live ALT-= and ALT-/ share world+HC pool names; both keys execute one final payload; alphanumeric controls remain independent\nOBSERVED|R2-BIND-05|live direct public SlotProgram.Apply(false) in combat removes model but regen omits protected clear; no ordinary Binding caller reach established\nOBSERVED|R2-BIND-01|forever Q down then E down: old column remains PUSHED and dim after release+2s; explicit clear recovers\nOBSERVED|R2-BIND-02|forever captured \"-\" normalizes empty; \"SHIFT--\" parses base SHIFT; Q control routes normally\nOBSERVED|R2-BIND-04|forever modeled GetVertexColor=nil actual HookButton press raises Binding/Core/PushPress.lua:208: attempt to perform arithmetic on a nil value (local 'r')\nOBSERVED|R2-BIND-04|forever modeled GetVertexColor=opaque actual HookButton press raises Stress test doc/round-2/action-binding/replay.lua.txt:41: modeled secret color arithmetic\nOBSERVED|R2-BIND-03|forever A superseded callback queues C; outer B overwrites C, applies B, never calls C completion\nOBSERVED|R2-BIND-06|forever ALT-= and ALT-/ share world+HC pool names; both keys execute one final payload; alphanumeric controls remain independent\nOBSERVED|R2-BIND-05|forever direct public SlotProgram.Apply(false) in combat removes model but regen omits protected clear; no ordinary Binding caller reach established\nROUND2 ACTION/BINDING replay assertions=340 reproduced_observations=35; expected defects, native VM not executed\n"
+    }
+  ],
+  "syntheticZeroDelayCallbacksPerReplay": 10000
+}

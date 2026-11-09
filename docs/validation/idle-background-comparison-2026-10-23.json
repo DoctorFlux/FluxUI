@@ -1,0 +1,914 @@
+{
+  "scope": "Background comparison attempts with an explicitly identified same-scene off/on pair. Not foreground FPS acceptance or an old/new optimization gain. All reloads in this protocol are ordinary native chat commands.",
+  "runs": [
+    {
+      "average": 202.13731842041,
+      "cvars": {
+        "gxMaxFrameLatency": "2",
+        "gxWindowedResolution": "1890x993",
+        "maxFPS": "120",
+        "maxFPSBk": "30",
+        "renderScale": "1",
+        "scriptProfile": "0",
+        "targetFPS": "60",
+        "useTargetFPS": "1",
+        "vsync": "0"
+      },
+      "finish": {
+        "epoch": 1792746094,
+        "facing": 1.4835306406021,
+        "flux": true,
+        "ghost": true,
+        "instance": 0,
+        "speed": 0,
+        "subzone": "",
+        "x": -9299.1005859375,
+        "y": 279.39999389648,
+        "z": 0,
+        "zone": "Elwynn Forest",
+        "zoom": 12.00001335144
+      },
+      "minimum": 174.03915405273,
+      "sampleTimes": [
+        1792746075,
+        1792746076,
+        1792746077,
+        1792746078,
+        1792746079,
+        1792746080,
+        1792746081,
+        1792746082,
+        1792746083,
+        1792746084,
+        1792746085,
+        1792746086,
+        1792746087,
+        1792746088,
+        1792746089,
+        1792746090,
+        1792746091,
+        1792746092,
+        1792746093,
+        1792746094
+      ],
+      "samples": [
+        201.51133728027,
+        202.19038391113,
+        192.15371704102,
+        191.38754272461,
+        188.82768249512,
+        174.03915405273,
+        203.90823364258,
+        207.43299865723,
+        200.5012512207,
+        202.36085510254,
+        216.21618652344,
+        215.43984985352,
+        207.43299865723,
+        201.51133728027,
+        203.73512268066,
+        208.15263366699,
+        197.5308380127,
+        213.52313232422,
+        209.05921936035,
+        205.8318939209
+      ],
+      "seconds": 20.052000000025,
+      "start": {
+        "epoch": 1792746074,
+        "facing": 1.4835306406021,
+        "flux": true,
+        "ghost": true,
+        "instance": 0,
+        "speed": 0,
+        "subzone": "",
+        "x": -9299.1005859375,
+        "y": 279.39999389648,
+        "z": 0,
+        "zone": "Elwynn Forest",
+        "zoom": 12.00001335144
+      },
+      "tag": "background-on-before",
+      "timestamp": "2026-10-23 11:01:14",
+      "version": "1.60.1",
+      "observedForegroundSamples": 0,
+      "observedBackgroundSamples": 0,
+      "median": 203.0479888916
+    },
+    {
+      "average": 273.55496520996,
+      "cvars": {
+        "gxMaxFrameLatency": "2",
+        "gxWindowedResolution": "1890x993",
+        "maxFPS": "120",
+        "maxFPSBk": "30",
+        "renderScale": "1",
+        "scriptProfile": "0",
+        "targetFPS": "60",
+        "useTargetFPS": "1",
+        "vsync": "0"
+      },
+      "finish": {
+        "epoch": 1792746179,
+        "facing": 1.4835306406021,
+        "flux": false,
+        "ghost": true,
+        "instance": 0,
+        "speed": 0,
+        "subzone": "",
+        "x": -9299.7998046875,
+        "y": 279.39999389648,
+        "z": 0,
+        "zone": "Elwynn Forest",
+        "zoom": 12.00001335144
+      },
+      "minimum": 225.56390380859,
+      "sampleTimes": [
+        1792746160,
+        1792746161,
+        1792746162,
+        1792746163,
+        1792746164,
+        1792746165,
+        1792746166,
+        1792746167,
+        1792746168,
+        1792746169,
+        1792746170,
+        1792746171,
+        1792746172,
+        1792746173,
+        1792746174,
+        1792746175,
+        1792746176,
+        1792746177,
+        1792746178,
+        1792746179
+      ],
+      "samples": [
+        271.18643188477,
+        277.13623046875,
+        289.85504150391,
+        271.18643188477,
+        263.44674682617,
+        281.03042602539,
+        279.72024536133,
+        285.03561401367,
+        264.9006652832,
+        225.56390380859,
+        261.15341186523,
+        274.28570556641,
+        272.10882568359,
+        285.37454223633,
+        273.03753662109,
+        282.02111816406,
+        285.37454223633,
+        280.70172119141,
+        276.17950439453,
+        271.80065917969
+      ],
+      "seconds": 20.04999999993,
+      "start": {
+        "epoch": 1792746159,
+        "facing": 1.4835306406021,
+        "flux": false,
+        "ghost": true,
+        "instance": 0,
+        "speed": 0,
+        "subzone": "",
+        "x": -9299.7998046875,
+        "y": 279.39999389648,
+        "z": 0,
+        "zone": "Elwynn Forest",
+        "zoom": 12.00001335144
+      },
+      "tag": "background-off",
+      "timestamp": "2026-10-23 11:02:39",
+      "version": "1.60.1",
+      "observedForegroundSamples": 0,
+      "observedBackgroundSamples": 20,
+      "median": 275.23260498047
+    },
+    {
+      "average": 184.10439501311,
+      "cvars": {
+        "gxMaxFrameLatency": "2",
+        "gxWindowedResolution": "1890x993",
+        "maxFPS": "120",
+        "maxFPSBk": "30",
+        "renderScale": "1",
+        "scriptProfile": "0",
+        "targetFPS": "60",
+        "useTargetFPS": "1",
+        "vsync": "0"
+      },
+      "finish": {
+        "epoch": 1792746221,
+        "facing": 1.4835306406021,
+        "flux": true,
+        "ghost": true,
+        "instance": 0,
+        "speed": 0,
+        "subzone": "",
+        "x": -9299.7998046875,
+        "y": 279.39999389648,
+        "z": 0,
+        "zone": "Elwynn Forest",
+        "zoom": 12.00001335144
+      },
+      "minimum": 151.51513671875,
+      "sampleTimes": [
+        1792746202,
+        1792746203,
+        1792746204,
+        1792746205,
+        1792746206,
+        1792746207,
+        1792746208,
+        1792746209,
+        1792746210,
+        1792746211,
+        1792746212,
+        1792746213,
+        1792746214,
+        1792746215,
+        1792746216,
+        1792746217,
+        1792746218,
+        1792746219,
+        1792746220
+      ],
+      "samples": [
+        203.56233215332,
+        203.73512268066,
+        185.90238952637,
+        196.56019592285,
+        207.97227478027,
+        193.70458984375,
+        183.76721191406,
+        174.1654510498,
+        151.70669555664,
+        183.34605407715,
+        198.18330383301,
+        200.5012512207,
+        204.08163452148,
+        183.06636047363,
+        168.06721496582,
+        171.55110168457,
+        154.63916015625,
+        151.51513671875,
+        181.95602416992
+      ],
+      "seconds": 20.052000000025,
+      "start": {
+        "epoch": 1792746201,
+        "facing": 1.4835306406021,
+        "flux": true,
+        "ghost": true,
+        "instance": 0,
+        "speed": 0,
+        "subzone": "",
+        "x": -9299.7998046875,
+        "y": 279.39999389648,
+        "z": 0,
+        "zone": "Elwynn Forest",
+        "zoom": 12.00001335144
+      },
+      "tag": "background-on-after",
+      "timestamp": "2026-10-23 11:03:21",
+      "version": "1.60.1",
+      "observedForegroundSamples": 0,
+      "observedBackgroundSamples": 20,
+      "median": 183.76721191406
+    }
+  ],
+  "focusTrace": [
+    {
+      "epoch": 1792746100,
+      "foreground": false,
+      "stage": 1
+    },
+    {
+      "epoch": 1792746101,
+      "foreground": false,
+      "stage": 1
+    },
+    {
+      "epoch": 1792746102,
+      "foreground": false,
+      "stage": 1
+    },
+    {
+      "epoch": 1792746103,
+      "foreground": false,
+      "stage": 1
+    },
+    {
+      "epoch": 1792746104,
+      "foreground": false,
+      "stage": 1
+    },
+    {
+      "epoch": 1792746105,
+      "foreground": false,
+      "stage": 1
+    },
+    {
+      "epoch": 1792746106,
+      "foreground": false,
+      "stage": 1
+    },
+    {
+      "epoch": 1792746107,
+      "foreground": false,
+      "stage": 1
+    },
+    {
+      "epoch": 1792746108,
+      "foreground": false,
+      "stage": 1
+    },
+    {
+      "epoch": 1792746109,
+      "foreground": false,
+      "stage": 1
+    },
+    {
+      "epoch": 1792746110,
+      "foreground": false,
+      "stage": 1
+    },
+    {
+      "epoch": 1792746111,
+      "foreground": false,
+      "stage": 1
+    },
+    {
+      "epoch": 1792746112,
+      "foreground": false,
+      "stage": 1
+    },
+    {
+      "epoch": 1792746113,
+      "foreground": false,
+      "stage": 1
+    },
+    {
+      "epoch": 1792746114,
+      "foreground": false,
+      "stage": 1
+    },
+    {
+      "epoch": 1792746115,
+      "foreground": false,
+      "stage": 1
+    },
+    {
+      "epoch": 1792746116,
+      "foreground": false,
+      "stage": 1
+    },
+    {
+      "epoch": 1792746117,
+      "foreground": false,
+      "stage": 1
+    },
+    {
+      "epoch": 1792746118,
+      "foreground": false,
+      "stage": 1
+    },
+    {
+      "epoch": 1792746119,
+      "foreground": false,
+      "stage": 1
+    },
+    {
+      "epoch": 1792746120,
+      "foreground": false,
+      "stage": 1
+    },
+    {
+      "epoch": 1792746121,
+      "foreground": false,
+      "stage": 1
+    },
+    {
+      "epoch": 1792746122,
+      "foreground": false,
+      "stage": 1
+    },
+    {
+      "epoch": 1792746123,
+      "foreground": false,
+      "stage": 1
+    },
+    {
+      "epoch": 1792746124,
+      "foreground": false,
+      "stage": 1
+    },
+    {
+      "epoch": 1792746125,
+      "foreground": false,
+      "stage": 1
+    },
+    {
+      "epoch": 1792746126,
+      "foreground": false,
+      "stage": 1
+    },
+    {
+      "epoch": 1792746127,
+      "foreground": false,
+      "stage": 1
+    },
+    {
+      "epoch": 1792746128,
+      "foreground": false,
+      "stage": 1
+    },
+    {
+      "epoch": 1792746129,
+      "foreground": false,
+      "stage": 1
+    },
+    {
+      "epoch": 1792746130,
+      "foreground": false,
+      "stage": 1
+    },
+    {
+      "epoch": 1792746131,
+      "foreground": false,
+      "stage": 1
+    },
+    {
+      "epoch": 1792746132,
+      "foreground": false,
+      "stage": 1
+    },
+    {
+      "epoch": 1792746133,
+      "foreground": false,
+      "stage": 1
+    },
+    {
+      "epoch": 1792746134,
+      "foreground": false,
+      "stage": 1
+    },
+    {
+      "epoch": 1792746135,
+      "foreground": false,
+      "stage": 1
+    },
+    {
+      "epoch": 1792746136,
+      "foreground": false,
+      "stage": 1
+    },
+    {
+      "epoch": 1792746137,
+      "foreground": false,
+      "stage": 1
+    },
+    {
+      "epoch": 1792746138,
+      "foreground": false,
+      "stage": 1
+    },
+    {
+      "epoch": 1792746139,
+      "foreground": false,
+      "stage": 1
+    },
+    {
+      "epoch": 1792746142,
+      "foreground": false,
+      "stage": 2
+    },
+    {
+      "epoch": 1792746143,
+      "foreground": false,
+      "stage": 2
+    },
+    {
+      "epoch": 1792746144,
+      "foreground": false,
+      "stage": 2
+    },
+    {
+      "epoch": 1792746145,
+      "foreground": false,
+      "stage": 2
+    },
+    {
+      "epoch": 1792746146,
+      "foreground": false,
+      "stage": 2
+    },
+    {
+      "epoch": 1792746147,
+      "foreground": false,
+      "stage": 2
+    },
+    {
+      "epoch": 1792746148,
+      "foreground": false,
+      "stage": 2
+    },
+    {
+      "epoch": 1792746149,
+      "foreground": false,
+      "stage": 2
+    },
+    {
+      "epoch": 1792746150,
+      "foreground": false,
+      "stage": 2
+    },
+    {
+      "epoch": 1792746151,
+      "foreground": false,
+      "stage": 2
+    },
+    {
+      "epoch": 1792746152,
+      "foreground": false,
+      "stage": 2
+    },
+    {
+      "epoch": 1792746153,
+      "foreground": false,
+      "stage": 2
+    },
+    {
+      "epoch": 1792746154,
+      "foreground": false,
+      "stage": 2
+    },
+    {
+      "epoch": 1792746155,
+      "foreground": false,
+      "stage": 2
+    },
+    {
+      "epoch": 1792746156,
+      "foreground": false,
+      "stage": 2
+    },
+    {
+      "epoch": 1792746157,
+      "foreground": false,
+      "stage": 2
+    },
+    {
+      "epoch": 1792746158,
+      "foreground": false,
+      "stage": 2
+    },
+    {
+      "epoch": 1792746159,
+      "foreground": false,
+      "stage": 2
+    },
+    {
+      "epoch": 1792746160,
+      "foreground": false,
+      "stage": 2
+    },
+    {
+      "epoch": 1792746161,
+      "foreground": false,
+      "stage": 2
+    },
+    {
+      "epoch": 1792746162,
+      "foreground": false,
+      "stage": 2
+    },
+    {
+      "epoch": 1792746163,
+      "foreground": false,
+      "stage": 2
+    },
+    {
+      "epoch": 1792746164,
+      "foreground": false,
+      "stage": 2
+    },
+    {
+      "epoch": 1792746165,
+      "foreground": false,
+      "stage": 2
+    },
+    {
+      "epoch": 1792746166,
+      "foreground": false,
+      "stage": 2
+    },
+    {
+      "epoch": 1792746167,
+      "foreground": false,
+      "stage": 2
+    },
+    {
+      "epoch": 1792746168,
+      "foreground": false,
+      "stage": 2
+    },
+    {
+      "epoch": 1792746169,
+      "foreground": false,
+      "stage": 2
+    },
+    {
+      "epoch": 1792746170,
+      "foreground": false,
+      "stage": 2
+    },
+    {
+      "epoch": 1792746171,
+      "foreground": false,
+      "stage": 2
+    },
+    {
+      "epoch": 1792746172,
+      "foreground": false,
+      "stage": 2
+    },
+    {
+      "epoch": 1792746174,
+      "foreground": false,
+      "stage": 2
+    },
+    {
+      "epoch": 1792746175,
+      "foreground": false,
+      "stage": 2
+    },
+    {
+      "epoch": 1792746176,
+      "foreground": false,
+      "stage": 2
+    },
+    {
+      "epoch": 1792746177,
+      "foreground": false,
+      "stage": 2
+    },
+    {
+      "epoch": 1792746178,
+      "foreground": false,
+      "stage": 2
+    },
+    {
+      "epoch": 1792746179,
+      "foreground": false,
+      "stage": 2
+    },
+    {
+      "epoch": 1792746180,
+      "foreground": false,
+      "stage": 2
+    },
+    {
+      "epoch": 1792746181,
+      "foreground": false,
+      "stage": 2
+    },
+    {
+      "epoch": 1792746182,
+      "foreground": false,
+      "stage": 2
+    },
+    {
+      "epoch": 1792746184,
+      "foreground": false,
+      "stage": 3
+    },
+    {
+      "epoch": 1792746185,
+      "foreground": false,
+      "stage": 3
+    },
+    {
+      "epoch": 1792746186,
+      "foreground": false,
+      "stage": 3
+    },
+    {
+      "epoch": 1792746187,
+      "foreground": false,
+      "stage": 3
+    },
+    {
+      "epoch": 1792746188,
+      "foreground": false,
+      "stage": 3
+    },
+    {
+      "epoch": 1792746189,
+      "foreground": false,
+      "stage": 3
+    },
+    {
+      "epoch": 1792746190,
+      "foreground": false,
+      "stage": 3
+    },
+    {
+      "epoch": 1792746191,
+      "foreground": false,
+      "stage": 3
+    },
+    {
+      "epoch": 1792746192,
+      "foreground": false,
+      "stage": 3
+    },
+    {
+      "epoch": 1792746193,
+      "foreground": false,
+      "stage": 3
+    },
+    {
+      "epoch": 1792746194,
+      "foreground": false,
+      "stage": 3
+    },
+    {
+      "epoch": 1792746195,
+      "foreground": false,
+      "stage": 3
+    },
+    {
+      "epoch": 1792746196,
+      "foreground": false,
+      "stage": 3
+    },
+    {
+      "epoch": 1792746197,
+      "foreground": false,
+      "stage": 3
+    },
+    {
+      "epoch": 1792746198,
+      "foreground": false,
+      "stage": 3
+    },
+    {
+      "epoch": 1792746199,
+      "foreground": false,
+      "stage": 3
+    },
+    {
+      "epoch": 1792746200,
+      "foreground": false,
+      "stage": 3
+    },
+    {
+      "epoch": 1792746201,
+      "foreground": false,
+      "stage": 3
+    },
+    {
+      "epoch": 1792746202,
+      "foreground": false,
+      "stage": 3
+    },
+    {
+      "epoch": 1792746203,
+      "foreground": false,
+      "stage": 3
+    },
+    {
+      "epoch": 1792746204,
+      "foreground": false,
+      "stage": 3
+    },
+    {
+      "epoch": 1792746205,
+      "foreground": false,
+      "stage": 3
+    },
+    {
+      "epoch": 1792746206,
+      "foreground": false,
+      "stage": 3
+    },
+    {
+      "epoch": 1792746207,
+      "foreground": false,
+      "stage": 3
+    },
+    {
+      "epoch": 1792746208,
+      "foreground": false,
+      "stage": 3
+    },
+    {
+      "epoch": 1792746209,
+      "foreground": false,
+      "stage": 3
+    },
+    {
+      "epoch": 1792746210,
+      "foreground": false,
+      "stage": 3
+    },
+    {
+      "epoch": 1792746211,
+      "foreground": false,
+      "stage": 3
+    },
+    {
+      "epoch": 1792746212,
+      "foreground": false,
+      "stage": 3
+    },
+    {
+      "epoch": 1792746213,
+      "foreground": false,
+      "stage": 3
+    },
+    {
+      "epoch": 1792746215,
+      "foreground": false,
+      "stage": 3
+    },
+    {
+      "epoch": 1792746216,
+      "foreground": false,
+      "stage": 3
+    },
+    {
+      "epoch": 1792746217,
+      "foreground": false,
+      "stage": 3
+    },
+    {
+      "epoch": 1792746218,
+      "foreground": false,
+      "stage": 3
+    },
+    {
+      "epoch": 1792746219,
+      "foreground": false,
+      "stage": 3
+    },
+    {
+      "epoch": 1792746220,
+      "foreground": false,
+      "stage": 3
+    },
+    {
+      "epoch": 1792746221,
+      "foreground": false,
+      "stage": 3
+    },
+    {
+      "epoch": 1792746222,
+      "foreground": false,
+      "stage": 3
+    },
+    {
+      "epoch": 1792746223,
+      "foreground": false,
+      "stage": 3
+    },
+    {
+      "epoch": 1792746224,
+      "foreground": false,
+      "stage": 3
+    }
+  ],
+  "acceptedPair": {
+    "tags": [
+      "background-off",
+      "background-on-after"
+    ],
+    "mode": "background only",
+    "foregroundAcceptance": false,
+    "optimizationBeforeAfterAcceptance": false,
+    "limitations": [
+      "One 20-second pair; Chrome activity was not controlled.",
+      "First on run lacks contemporaneous focus trace and has a different x coordinate; excluded from the pair.",
+      "This measures full FluxUI presence, not the gain from the two small code changes.",
+      "Character was a ghost; healthy living-character and combat cases remain pending."
+    ],
+    "sceneKeysMatched": [
+      "x",
+      "y",
+      "z",
+      "instance",
+      "facing",
+      "zoom",
+      "zone",
+      "subzone",
+      "ghost",
+      "speed"
+    ]
+  }
+}

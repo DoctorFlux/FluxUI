@@ -1,0 +1,902 @@
+{
+  "scope": "Live GitHub history check plus local source comparison. Read-only GitHub operations; no checkout, reset, cherry-pick or push.",
+  "repository": "DoctorFlux/FluxUI",
+  "branches": [
+    "main"
+  ],
+  "branchPaginationComplete": true,
+  "commitCount": 8,
+  "commits": [
+    {
+      "sha": "72fb194ffc79337a0c8f65591c9579f40be06ce2",
+      "title": "Improve combat-safe startup and reduce idle UI work",
+      "url": "https://github.com/DoctorFlux/FluxUI/commit/72fb194ffc79337a0c8f65591c9579f40be06ce2",
+      "createdAtUTC": "2026-10-23T09:35:59Z"
+    },
+    {
+      "sha": "2cedce8379b27d1bb01bdaa900c7b9bed82792c3",
+      "title": "Document current compatibility behavior and publish addon updates",
+      "url": "https://github.com/DoctorFlux/FluxUI/commit/2cedce8379b27d1bb01bdaa900c7b9bed82792c3",
+      "createdAtUTC": "2026-10-23T04:42:22Z"
+    },
+    {
+      "sha": "788247499f0a75cfa438d6babef84ea20260ef57",
+      "title": "Update addon fixes and rebuild implementation documentation",
+      "url": "https://github.com/DoctorFlux/FluxUI/commit/788247499f0a75cfa438d6babef84ea20260ef57",
+      "createdAtUTC": "2026-10-23T00:54:25Z"
+    },
+    {
+      "sha": "bccfe9fa12ad4fb22555283b6cab95ce2438f20b",
+      "title": "Fix cross-client auras, inventory, unit frames, and combo points",
+      "url": "https://github.com/DoctorFlux/FluxUI/commit/bccfe9fa12ad4fb22555283b6cab95ce2438f20b",
+      "createdAtUTC": "2026-10-16T11:37:43Z"
+    },
+    {
+      "sha": "3a9cdaba9b303cf59f1de748aec0c721380ffd2d",
+      "title": "Remove the local performance tests from the addon.",
+      "url": "https://github.com/DoctorFlux/FluxUI/commit/3a9cdaba9b303cf59f1de748aec0c721380ffd2d",
+      "createdAtUTC": "2026-10-16T00:49:46Z"
+    },
+    {
+      "sha": "000ac6529d4a7e7b2ecee35c2fb65509d911fcd9",
+      "title": "Stop tracking .gitignore so the local ignore list stays off GitHub.",
+      "url": "https://github.com/DoctorFlux/FluxUI/commit/000ac6529d4a7e7b2ecee35c2fb65509d911fcd9",
+      "createdAtUTC": "2026-10-13T09:23:47Z"
+    },
+    {
+      "sha": "0807fd857cc36cc0e06fb8193a5b3eebe7e7acf8",
+      "title": "Move the FLUX_API layer under Core so the addon no longer has a separate Legacy folder.",
+      "url": "https://github.com/DoctorFlux/FluxUI/commit/0807fd857cc36cc0e06fb8193a5b3eebe7e7acf8",
+      "createdAtUTC": "2026-10-13T09:16:59Z"
+    },
+    {
+      "sha": "d0b5bf516ab709357af58c1721d5b85f6667f8c6",
+      "title": "Initial commit of the FluxUI addon.",
+      "url": "https://github.com/DoctorFlux/FluxUI/commit/d0b5bf516ab709357af58c1721d5b85f6667f8c6",
+      "createdAtUTC": "2026-10-13T09:07:12Z"
+    }
+  ],
+  "remoteCompare": {
+    "repository_full_name": "DoctorFlux/FluxUI",
+    "base": "72fb194ffc79337a0c8f65591c9579f40be06ce2",
+    "head": "main",
+    "status": "identical",
+    "ahead_by": 0,
+    "behind_by": 0,
+    "total_commits": 0,
+    "too_large": null,
+    "base_commit": {
+      "sha": "72fb194ffc79337a0c8f65591c9579f40be06ce2",
+      "url": "https://api.github.com/repos/DoctorFlux/FluxUI/commits/72fb194ffc79337a0c8f65591c9579f40be06ce2",
+      "html_url": "https://github.com/DoctorFlux/FluxUI/commit/72fb194ffc79337a0c8f65591c9579f40be06ce2"
+    },
+    "merge_base_commit": {
+      "sha": "72fb194ffc79337a0c8f65591c9579f40be06ce2",
+      "url": "https://api.github.com/repos/DoctorFlux/FluxUI/commits/72fb194ffc79337a0c8f65591c9579f40be06ce2",
+      "html_url": "https://github.com/DoctorFlux/FluxUI/commit/72fb194ffc79337a0c8f65591c9579f40be06ce2"
+    },
+    "files": []
+  },
+  "targetCommit": {
+    "sha": "72fb194ffc79337a0c8f65591c9579f40be06ce2",
+    "url": "https://github.com/DoctorFlux/FluxUI/commit/72fb194ffc79337a0c8f65591c9579f40be06ce2",
+    "message": "Improve combat-safe startup and reduce idle UI work\n\nInitialize secure infrastructure at the earliest legal lifecycle phase,\nretain native controls until replacements are usable, and reconcile queued\nstructural work after combat. Preserve the Forever VARIABLES_LOADED barrier.\n\nProtect customized bindings and respec recovery checkpoints, replace global\nBaganator item overrides with local adapters, and preserve legacy settings\nthrough validated reversible migrations. Make module initialization retryable.\n\nReuse Flux Window content, cancel stale callbacks, defer nonessential startup,\nand reduce redundant bar, unit-frame, stats, map and HUD refresh work. Coalesce\nbag-counter callbacks and avoid unchanged character-button layout writes.\nExtend opt-in startup and idle diagnostics without permanent profiling work.\n\nInclude production-backed regression fixtures, source manifests and measured\noperation counts. Retained baseline fixtures preserve original whitespace.\n\nValidation: 51/51 desktop Lua checks pass; 688 Lua files pass syntax checks.\nDocumentation inventory and 12,231 local links pass validation. Native\nfive-client combat acceptance remains pending, and the remaining Forever\nidle FPS gap is documented as unresolved."
+  },
+  "p0": [
+    {
+      "path": "FluxDefaultSettings.lua",
+      "currentSha256": "353a596d1c38ff6c3e47538ba3b7305fc9a233473301f27488b7821288a1d6a7",
+      "matches72fb194": true,
+      "matchesParentBeforeFix": false,
+      "matchesV9": false,
+      "v9MatchesParentBeforeFix": true,
+      "installations": [
+        {
+          "client": "_retail_",
+          "matchesCurrent": true
+        },
+        {
+          "client": "_classic_era_",
+          "matchesCurrent": true
+        },
+        {
+          "client": "_anniversary_",
+          "matchesCurrent": true
+        },
+        {
+          "client": "_classic_",
+          "matchesCurrent": true
+        },
+        {
+          "client": "_classic_beta_",
+          "matchesCurrent": true
+        }
+      ]
+    },
+    {
+      "path": "Respec/FluxRespec_Apply.lua",
+      "currentSha256": "16916f21c5b5d91c037b63c2f48b38f57f71a9e2a75e1af14be563b106205a09",
+      "matches72fb194": true,
+      "matchesParentBeforeFix": false,
+      "matchesV9": false,
+      "v9MatchesParentBeforeFix": true,
+      "installations": [
+        {
+          "client": "_retail_",
+          "matchesCurrent": true
+        },
+        {
+          "client": "_classic_era_",
+          "matchesCurrent": true
+        },
+        {
+          "client": "_anniversary_",
+          "matchesCurrent": true
+        },
+        {
+          "client": "_classic_",
+          "matchesCurrent": true
+        },
+        {
+          "client": "_classic_beta_",
+          "matchesCurrent": true
+        }
+      ]
+    },
+    {
+      "path": "Binding/Respec.lua",
+      "currentSha256": "75e606330ab71c70881f13bbac29b6b515c3d7847b12c3df444a03859ecca417",
+      "matches72fb194": true,
+      "matchesParentBeforeFix": false,
+      "matchesV9": false,
+      "v9MatchesParentBeforeFix": true,
+      "installations": [
+        {
+          "client": "_retail_",
+          "matchesCurrent": true
+        },
+        {
+          "client": "_classic_era_",
+          "matchesCurrent": true
+        },
+        {
+          "client": "_anniversary_",
+          "matchesCurrent": true
+        },
+        {
+          "client": "_classic_",
+          "matchesCurrent": true
+        },
+        {
+          "client": "_classic_beta_",
+          "matchesCurrent": true
+        }
+      ]
+    },
+    {
+      "path": "BaganatorCompat/Loader.lua",
+      "currentSha256": "95790e2dce5beed1766ce56424bd9323db32e3cdd5460cd9212a0d7c6823e8db",
+      "matches72fb194": true,
+      "matchesParentBeforeFix": false,
+      "matchesV9": false,
+      "v9MatchesParentBeforeFix": true,
+      "installations": [
+        {
+          "client": "_retail_",
+          "matchesCurrent": true
+        },
+        {
+          "client": "_classic_era_",
+          "matchesCurrent": true
+        },
+        {
+          "client": "_anniversary_",
+          "matchesCurrent": true
+        },
+        {
+          "client": "_classic_",
+          "matchesCurrent": true
+        },
+        {
+          "client": "_classic_beta_",
+          "matchesCurrent": true
+        }
+      ]
+    },
+    {
+      "path": "BaganatorCompat/FluxBaganator_GearSets.lua",
+      "currentSha256": "054c95507fcbb5899d2c0369ce49ec76a991ed3e07cd3e0a924e0bdf5f1ac209",
+      "matches72fb194": true,
+      "matchesParentBeforeFix": false,
+      "matchesV9": false,
+      "v9MatchesParentBeforeFix": true,
+      "installations": [
+        {
+          "client": "_retail_",
+          "matchesCurrent": true
+        },
+        {
+          "client": "_classic_era_",
+          "matchesCurrent": true
+        },
+        {
+          "client": "_anniversary_",
+          "matchesCurrent": true
+        },
+        {
+          "client": "_classic_",
+          "matchesCurrent": true
+        },
+        {
+          "client": "_classic_beta_",
+          "matchesCurrent": true
+        }
+      ]
+    },
+    {
+      "path": "Inventory/Restock/Core/FluxRestockSettings.lua",
+      "currentSha256": "18017b1a283bea71acb847f15777545a6d30d0640146c16c5778b478d7349dce",
+      "matches72fb194": true,
+      "matchesParentBeforeFix": false,
+      "matchesV9": false,
+      "v9MatchesParentBeforeFix": true,
+      "installations": [
+        {
+          "client": "_retail_",
+          "matchesCurrent": true
+        },
+        {
+          "client": "_classic_era_",
+          "matchesCurrent": true
+        },
+        {
+          "client": "_anniversary_",
+          "matchesCurrent": true
+        },
+        {
+          "client": "_classic_",
+          "matchesCurrent": true
+        },
+        {
+          "client": "_classic_beta_",
+          "matchesCurrent": true
+        }
+      ]
+    },
+    {
+      "path": "Core/DB.lua",
+      "currentSha256": "e833ac2b21230dfdf3ad55d5f4c7c4a161208356c5090c782767e72be70927c1",
+      "matches72fb194": true,
+      "matchesParentBeforeFix": false,
+      "matchesV9": false,
+      "v9MatchesParentBeforeFix": true,
+      "installations": [
+        {
+          "client": "_retail_",
+          "matchesCurrent": true
+        },
+        {
+          "client": "_classic_era_",
+          "matchesCurrent": true
+        },
+        {
+          "client": "_anniversary_",
+          "matchesCurrent": true
+        },
+        {
+          "client": "_classic_",
+          "matchesCurrent": true
+        },
+        {
+          "client": "_classic_beta_",
+          "matchesCurrent": true
+        }
+      ]
+    }
+  ],
+  "runtimeDelta": [
+    {
+      "path": "AddonOptions/FluxOptions.lua",
+      "status": "retained-identical",
+      "commitSha256": "448ee98dd2aecc31c423f1fa9b3071c31c7c04a97ec07ebdf2d19d0b68c9a248",
+      "currentSha256": "448ee98dd2aecc31c423f1fa9b3071c31c7c04a97ec07ebdf2d19d0b68c9a248"
+    },
+    {
+      "path": "BaganatorCompat/FluxBaganator_GearSets.lua",
+      "status": "retained-identical",
+      "commitSha256": "054c95507fcbb5899d2c0369ce49ec76a991ed3e07cd3e0a924e0bdf5f1ac209",
+      "currentSha256": "054c95507fcbb5899d2c0369ce49ec76a991ed3e07cd3e0a924e0bdf5f1ac209"
+    },
+    {
+      "path": "BaganatorCompat/Loader.lua",
+      "status": "retained-identical",
+      "commitSha256": "95790e2dce5beed1766ce56424bd9323db32e3cdd5460cd9212a0d7c6823e8db",
+      "currentSha256": "95790e2dce5beed1766ce56424bd9323db32e3cdd5460cd9212a0d7c6823e8db"
+    },
+    {
+      "path": "Bars/Blizzard.lua",
+      "status": "modified-after-target",
+      "commitSha256": "52c863594e6da4313ce411a80b473b909a250cdfe4ba681478b07b6c9005b530",
+      "currentSha256": "afea5e7b59d545a6790f1b7520684a05290a5e961369a6d3c7a652f2fa9bbff6"
+    },
+    {
+      "path": "Bars/Clicks.lua",
+      "status": "retained-identical",
+      "commitSha256": "08bcd2bf585d13550d5077a2706ed0abccd589d07ff585951df2e43dedf8726a",
+      "currentSha256": "08bcd2bf585d13550d5077a2706ed0abccd589d07ff585951df2e43dedf8726a"
+    },
+    {
+      "path": "Bars/Hosts.lua",
+      "status": "retained-identical",
+      "commitSha256": "de7ca45aa37e19b8e6a1a7f17e990a7de577e80efd832160cc65396eea83aabf",
+      "currentSha256": "de7ca45aa37e19b8e6a1a7f17e990a7de577e80efd832160cc65396eea83aabf"
+    },
+    {
+      "path": "Bars/Init.lua",
+      "status": "retained-identical",
+      "commitSha256": "169e18d2f7b946ed41c1890828ede7ce0cec8a8d3041fccf23e11f5dc85dba38",
+      "currentSha256": "169e18d2f7b946ed41c1890828ede7ce0cec8a8d3041fccf23e11f5dc85dba38"
+    },
+    {
+      "path": "Bars/Minis.lua",
+      "status": "retained-identical",
+      "commitSha256": "067bec3fbfdcb8b30462d0ba5dd6a391e5408769bfa81f5eff0b4a043e88fbd8",
+      "currentSha256": "067bec3fbfdcb8b30462d0ba5dd6a391e5408769bfa81f5eff0b4a043e88fbd8"
+    },
+    {
+      "path": "Bars/Paint.lua",
+      "status": "retained-identical",
+      "commitSha256": "71738b071210119bf84e3d2d94fec405054a528c5df743022368dfea50fd577e",
+      "currentSha256": "71738b071210119bf84e3d2d94fec405054a528c5df743022368dfea50fd577e"
+    },
+    {
+      "path": "Bars/Pet/Init.lua",
+      "status": "retained-identical",
+      "commitSha256": "88b89cfb82937fb85d60a3f482c3445368eaaf85451e97bdacfe561d6e5e9049",
+      "currentSha256": "88b89cfb82937fb85d60a3f482c3445368eaaf85451e97bdacfe561d6e5e9049"
+    },
+    {
+      "path": "Bars/Pet/Keys.lua",
+      "status": "retained-identical",
+      "commitSha256": "1adf3fec3dc1db0b9c10489896fa1b7353fc269c7494277be9bfd68c240060f7",
+      "currentSha256": "1adf3fec3dc1db0b9c10489896fa1b7353fc269c7494277be9bfd68c240060f7"
+    },
+    {
+      "path": "Bars/ProgramFace.lua",
+      "status": "retained-identical",
+      "commitSha256": "af75d537203c436f97949fea6de6c5d8c1213924809b7c47fc741969eebf3ddd",
+      "currentSha256": "af75d537203c436f97949fea6de6c5d8c1213924809b7c47fc741969eebf3ddd"
+    },
+    {
+      "path": "Bars/Stance/Forms.lua",
+      "status": "retained-identical",
+      "commitSha256": "5d567f4faf5f9424e480e1e58ad66b1264c782a7ec7deac701273aaecb0cf0bc",
+      "currentSha256": "5d567f4faf5f9424e480e1e58ad66b1264c782a7ec7deac701273aaecb0cf0bc"
+    },
+    {
+      "path": "Bars/Stance/Init.lua",
+      "status": "retained-identical",
+      "commitSha256": "489a552c6334f838f4cd3b209103f20ab1babd0e6b42c9f1010e15b0703f3dd7",
+      "currentSha256": "489a552c6334f838f4cd3b209103f20ab1babd0e6b42c9f1010e15b0703f3dd7"
+    },
+    {
+      "path": "Bars/Stance/Layout.lua",
+      "status": "retained-identical",
+      "commitSha256": "076b3eef0dab5126fe81bd524883840d3b6eeceb4403ba35adbf94e38b7026e7",
+      "currentSha256": "076b3eef0dab5126fe81bd524883840d3b6eeceb4403ba35adbf94e38b7026e7"
+    },
+    {
+      "path": "Bars/State.lua",
+      "status": "retained-identical",
+      "commitSha256": "6280cfdcb71bcd299a670f48444e56273ab28b92b92af57e0e463f021ff1139b",
+      "currentSha256": "6280cfdcb71bcd299a670f48444e56273ab28b92b92af57e0e463f021ff1139b"
+    },
+    {
+      "path": "Bars/Strip.lua",
+      "status": "retained-identical",
+      "commitSha256": "024bb26e739300faf2b8ce562c851b11a7baf6361626e6946191b9d6bf8791df",
+      "currentSha256": "024bb26e739300faf2b8ce562c851b11a7baf6361626e6946191b9d6bf8791df"
+    },
+    {
+      "path": "Bars/Vehicle.lua",
+      "status": "retained-identical",
+      "commitSha256": "acd07311dfa84b6afb828f763aee786796c92f734749fda1aeeefe8144349f1c",
+      "currentSha256": "acd07311dfa84b6afb828f763aee786796c92f734749fda1aeeefe8144349f1c"
+    },
+    {
+      "path": "Bars/Watch.lua",
+      "status": "retained-identical",
+      "commitSha256": "2a5e85c6a99a579d566f9728552cec22120dbf363a2e9fa1a4f0cbe9e76eb564",
+      "currentSha256": "2a5e85c6a99a579d566f9728552cec22120dbf363a2e9fa1a4f0cbe9e76eb564"
+    },
+    {
+      "path": "Battlezonemap/FluxBattlefieldMap.lua",
+      "status": "modified-after-target",
+      "commitSha256": "cad3541c7d3e980b0f3c97b572c8555dfe08d99bbcfabec735fe27c5ae19b8df",
+      "currentSha256": "d27d9188e328f21492e179a23cfc6b5cc307c3f8b5ee687688945b01cecb8438"
+    },
+    {
+      "path": "Battlezonemap/FluxBlizzardMeter.lua",
+      "status": "retained-identical",
+      "commitSha256": "10b19b6edaf7b9d209b9ba342d241b5983c10938749d9acdd880a6167b3f24a0",
+      "currentSha256": "10b19b6edaf7b9d209b9ba342d241b5983c10938749d9acdd880a6167b3f24a0"
+    },
+    {
+      "path": "Battlezonemap/FluxDetails.lua",
+      "status": "retained-identical",
+      "commitSha256": "1a46b671a7d57dba3e6a3c8c5833b447abcac4b5855e9f3bf92f87c7ebd9fa5f",
+      "currentSha256": "1a46b671a7d57dba3e6a3c8c5833b447abcac4b5855e9f3bf92f87c7ebd9fa5f"
+    },
+    {
+      "path": "Battlezonemap/FluxDetailsForever.lua",
+      "status": "retained-identical",
+      "commitSha256": "0b8c4f071b9ac8476c9c41ca74da7ae53ebadef68132ce49813af210197834d0",
+      "currentSha256": "0b8c4f071b9ac8476c9c41ca74da7ae53ebadef68132ce49813af210197834d0"
+    },
+    {
+      "path": "Battlezonemap/FluxMeterLayout.lua",
+      "status": "retained-identical",
+      "commitSha256": "8ea8f74027f4abdda95f40d1c590892e4fcf05268b1f75e2fb7e8054a67296d4",
+      "currentSha256": "8ea8f74027f4abdda95f40d1c590892e4fcf05268b1f75e2fb7e8054a67296d4"
+    },
+    {
+      "path": "Battlezonemap/FluxWindowFrame.lua",
+      "status": "retained-identical",
+      "commitSha256": "5b8c275af48f3c28de0c5d3b36e522e899fdee3f6a2cd5544678c5249c042ddb",
+      "currentSha256": "5b8c275af48f3c28de0c5d3b36e522e899fdee3f6a2cd5544678c5249c042ddb"
+    },
+    {
+      "path": "Binding/Boot.lua",
+      "status": "retained-identical",
+      "commitSha256": "4f7a07bacb9fda4b41361752a55d08b3f49f55eefcfb1b6c7ad5ed0a327fe03c",
+      "currentSha256": "4f7a07bacb9fda4b41361752a55d08b3f49f55eefcfb1b6c7ad5ed0a327fe03c"
+    },
+    {
+      "path": "Binding/Core/Apply.lua",
+      "status": "retained-identical",
+      "commitSha256": "ec55e39d113d36513767cf2efde099557e362d92aadd4ba76fa5e310d1ac4ce1",
+      "currentSha256": "ec55e39d113d36513767cf2efde099557e362d92aadd4ba76fa5e310d1ac4ce1"
+    },
+    {
+      "path": "Binding/Core/Conditions.lua",
+      "status": "retained-identical",
+      "commitSha256": "c74e7d1f88b604f207cae1778049ee1b737875345c0692d29e12cf9656fba5ac",
+      "currentSha256": "c74e7d1f88b604f207cae1778049ee1b737875345c0692d29e12cf9656fba5ac"
+    },
+    {
+      "path": "Binding/Respec.lua",
+      "status": "retained-identical",
+      "commitSha256": "75e606330ab71c70881f13bbac29b6b515c3d7847b12c3df444a03859ecca417",
+      "currentSha256": "75e606330ab71c70881f13bbac29b6b515c3d7847b12c3df444a03859ecca417"
+    },
+    {
+      "path": "CharacterInfo/Init.lua",
+      "status": "retained-identical",
+      "commitSha256": "3555cf97545871e2ef562ba22861b1b9a58a5270ab04686c8f4a8c23a8f1828a",
+      "currentSha256": "3555cf97545871e2ef562ba22861b1b9a58a5270ab04686c8f4a8c23a8f1828a"
+    },
+    {
+      "path": "CharacterInfo/PaperDollEquipFlyout.lua",
+      "status": "retained-identical",
+      "commitSha256": "00e321401b1f0fc214884ee787d4c06dfaed2348f9034d1f797bf8ae0bbc6760",
+      "currentSha256": "00e321401b1f0fc214884ee787d4c06dfaed2348f9034d1f797bf8ae0bbc6760"
+    },
+    {
+      "path": "Core/ButtonFX/Click.lua",
+      "status": "retained-identical",
+      "commitSha256": "09614baefe1fbbe85c7dbd006bddea25e2d278290581569d37594825ee5909ab",
+      "currentSha256": "09614baefe1fbbe85c7dbd006bddea25e2d278290581569d37594825ee5909ab"
+    },
+    {
+      "path": "Core/Client.lua",
+      "status": "retained-identical",
+      "commitSha256": "c4fa44c67eefa67642634532177a1faa18d3435765676cd12470e9fc2dc3bc92",
+      "currentSha256": "c4fa44c67eefa67642634532177a1faa18d3435765676cd12470e9fc2dc3bc92"
+    },
+    {
+      "path": "Core/DB.lua",
+      "status": "retained-identical",
+      "commitSha256": "e833ac2b21230dfdf3ad55d5f4c7c4a161208356c5090c782767e72be70927c1",
+      "currentSha256": "e833ac2b21230dfdf3ad55d5f4c7c4a161208356c5090c782767e72be70927c1"
+    },
+    {
+      "path": "Core/Engine/Combat.lua",
+      "status": "modified-after-target",
+      "commitSha256": "623e16e2fa43cdc47784b68a3b4810f279633bb1affc5f30264c735b0c989180",
+      "currentSha256": "2eaf940e92498af507f9d4afb5b88e552b3217169d03956d091e6d025cc09092"
+    },
+    {
+      "path": "Core/Engine/Context.lua",
+      "status": "retained-identical",
+      "commitSha256": "67b4063ebd6c71ef2724dd8d4a19bf30480a40320475240da832e79e3f112ef7",
+      "currentSha256": "67b4063ebd6c71ef2724dd8d4a19bf30480a40320475240da832e79e3f112ef7"
+    },
+    {
+      "path": "Core/Engine/Restricted.lua",
+      "status": "retained-identical",
+      "commitSha256": "ee811112e2be9a9f65f91856ea124f22652d8ada552867b966e44c12c3a7cc44",
+      "currentSha256": "ee811112e2be9a9f65f91856ea124f22652d8ada552867b966e44c12c3a7cc44"
+    },
+    {
+      "path": "Core/Engine/Scheduler.lua",
+      "status": "retained-identical",
+      "commitSha256": "2d33fe5938a0075636761b14312681ce7feb656c748cd796dbf42398099723a4",
+      "currentSha256": "2d33fe5938a0075636761b14312681ce7feb656c748cd796dbf42398099723a4"
+    },
+    {
+      "path": "Core/Engine/Timer.lua",
+      "status": "retained-identical",
+      "commitSha256": "0f3cb48fadc0bafbd91cd20648806fce478db0d0e39dc8bc9ba975e6bc73bfaa",
+      "currentSha256": "0f3cb48fadc0bafbd91cd20648806fce478db0d0e39dc8bc9ba975e6bc73bfaa"
+    },
+    {
+      "path": "Core/Flux.lua",
+      "status": "retained-identical",
+      "commitSha256": "0cb0296f56799542307c50bdf047c5aa53c2b896670dd7cf65e945b4bfcc6125",
+      "currentSha256": "0cb0296f56799542307c50bdf047c5aa53c2b896670dd7cf65e945b4bfcc6125"
+    },
+    {
+      "path": "Core/Module.lua",
+      "status": "retained-identical",
+      "commitSha256": "3a4112552a09b756178a136b1aaae45fc47d040ad2eedd9f79a2898cd203f239",
+      "currentSha256": "3a4112552a09b756178a136b1aaae45fc47d040ad2eedd9f79a2898cd203f239"
+    },
+    {
+      "path": "Core/Optional.lua",
+      "status": "retained-identical",
+      "commitSha256": "cb06588714a86bf612faa0941153f96b774b682bce4c566bbfa23e36978cad10",
+      "currentSha256": "cb06588714a86bf612faa0941153f96b774b682bce4c566bbfa23e36978cad10"
+    },
+    {
+      "path": "Core/SecureClickProxy.lua",
+      "status": "retained-identical",
+      "commitSha256": "33c60c871c04eebe54ef0bc26291a232022b0640d1f0822ad14d1ffaa924f59f",
+      "currentSha256": "33c60c871c04eebe54ef0bc26291a232022b0640d1f0822ad14d1ffaa924f59f"
+    },
+    {
+      "path": "Core/Startup.lua",
+      "status": "retained-identical",
+      "commitSha256": "cd500c189dc43f5bb1d8d8ee274c94f23d1834bae995c18ee354ed7b7ac8c4e2",
+      "currentSha256": "cd500c189dc43f5bb1d8d8ee274c94f23d1834bae995c18ee354ed7b7ac8c4e2"
+    },
+    {
+      "path": "Core/StartupClock.lua",
+      "status": "retained-identical",
+      "commitSha256": "d53bcf729278afe70a0ffe94e0f310a07aa2bc5bb3c074ebb48c44c2a7956a5a",
+      "currentSha256": "d53bcf729278afe70a0ffe94e0f310a07aa2bc5bb3c074ebb48c44c2a7956a5a"
+    },
+    {
+      "path": "ExtraButtonSystem/CombatGrid/Grid.lua",
+      "status": "retained-identical",
+      "commitSha256": "4b33e386d97369a4e1c2ac72a66ba04d4b8debc5654bd771d47cecd28106d88d",
+      "currentSha256": "4b33e386d97369a4e1c2ac72a66ba04d4b8debc5654bd771d47cecd28106d88d"
+    },
+    {
+      "path": "ExtraButtonSystem/CombatGrid/GridManager.lua",
+      "status": "retained-identical",
+      "commitSha256": "1ace8cffcefdedb3b511b44d3b61b184bb569fe02bb83ce196d5a131312f8fd5",
+      "currentSha256": "1ace8cffcefdedb3b511b44d3b61b184bb569fe02bb83ce196d5a131312f8fd5"
+    },
+    {
+      "path": "ExtraButtonSystem/Engine/Watch.lua",
+      "status": "modified-after-target",
+      "commitSha256": "ac906b94f1b33347d26757c6ffd199b29bf397e8e32a96ef1fe66124b8a0dd44",
+      "currentSha256": "4e22b2fde9ff08ff2fb62f96e595921fef508fbfcd16bb96997daa2e1257a04f"
+    },
+    {
+      "path": "ExtraButtonSystem/Engine/Widget.lua",
+      "status": "retained-identical",
+      "commitSha256": "983040afb10f9c4dce6d61e4de9c28b5310b3923ba2c52e39ce643fb5ddd6d30",
+      "currentSha256": "983040afb10f9c4dce6d61e4de9c28b5310b3923ba2c52e39ce643fb5ddd6d30"
+    },
+    {
+      "path": "ExtraButtonSystem/Init.lua",
+      "status": "retained-identical",
+      "commitSha256": "5272a73080d63f3584055c25f469733a786ec31b1b07ef648bd85a5544822a5c",
+      "currentSha256": "5272a73080d63f3584055c25f469733a786ec31b1b07ef648bd85a5544822a5c"
+    },
+    {
+      "path": "ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua",
+      "status": "retained-identical",
+      "commitSha256": "9df32badf43a07265217fa52c124424268f6dbcdfa812b0f320c982e67858962",
+      "currentSha256": "9df32badf43a07265217fa52c124424268f6dbcdfa812b0f320c982e67858962"
+    },
+    {
+      "path": "ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua",
+      "status": "retained-identical",
+      "commitSha256": "af389872182545226b47dfbaab8eaf4ba07471274b4278c2cc9dc6339ef943e6",
+      "currentSha256": "af389872182545226b47dfbaab8eaf4ba07471274b4278c2cc9dc6339ef943e6"
+    },
+    {
+      "path": "ExtraButtonSystem/NonCombatGrid/Grid.lua",
+      "status": "retained-identical",
+      "commitSha256": "c6bddaf5b97d71092ff3d2d7db8ba3ce140ae81d14f928dc0e99e0f76644f6fa",
+      "currentSha256": "c6bddaf5b97d71092ff3d2d7db8ba3ce140ae81d14f928dc0e99e0f76644f6fa"
+    },
+    {
+      "path": "ExtraButtonSystem/NonCombatGrid/GridInit.lua",
+      "status": "retained-identical",
+      "commitSha256": "61f3121d3b5aec937915692364d5a21951ae1f7f10b14ffb84a546a99386a657",
+      "currentSha256": "61f3121d3b5aec937915692364d5a21951ae1f7f10b14ffb84a546a99386a657"
+    },
+    {
+      "path": "ExtraButtonSystem/TrinketMenu/FluxTrinketMenu.lua",
+      "status": "modified-after-target",
+      "commitSha256": "78eddec2f3b0972c7769f7e56facf5d69ed071e76d10e7a4f4c03554a2eeec68",
+      "currentSha256": "3ab177e4885568df30d2a1a813e4412194e73af4344ba42be29468e53e21d355"
+    },
+    {
+      "path": "ExtraButtonSystem/TrinketMenu/FluxTrinketMenuManager.lua",
+      "status": "retained-identical",
+      "commitSha256": "61bf359abbf0cdd9ae4bca9389344e903466adf47d09753a82c8f1f1833cf7f0",
+      "currentSha256": "61bf359abbf0cdd9ae4bca9389344e903466adf47d09753a82c8f1f1833cf7f0"
+    },
+    {
+      "path": "FluxDefaultSettings.lua",
+      "status": "retained-identical",
+      "commitSha256": "353a596d1c38ff6c3e47538ba3b7305fc9a233473301f27488b7821288a1d6a7",
+      "currentSha256": "353a596d1c38ff6c3e47538ba3b7305fc9a233473301f27488b7821288a1d6a7"
+    },
+    {
+      "path": "Inventory/Init.lua",
+      "status": "retained-identical",
+      "commitSha256": "b4e0d9d1c0f8b446d626647a510ccd5fbe1cb5a06b10ceb980135ef2fc90a4e1",
+      "currentSha256": "b4e0d9d1c0f8b446d626647a510ccd5fbe1cb5a06b10ceb980135ef2fc90a4e1"
+    },
+    {
+      "path": "Inventory/Restock/Core/FluxRestockSettings.lua",
+      "status": "retained-identical",
+      "commitSha256": "18017b1a283bea71acb847f15777545a6d30d0640146c16c5778b478d7349dce",
+      "currentSha256": "18017b1a283bea71acb847f15777545a6d30d0640146c16c5778b478d7349dce"
+    },
+    {
+      "path": "Inventory/Syndicator/Adapter.lua",
+      "status": "retained-identical",
+      "commitSha256": "6484933439a0830fb1c652054bc1384b9e66a824e58f684427ba31cc91f3d078",
+      "currentSha256": "6484933439a0830fb1c652054bc1384b9e66a824e58f684427ba31cc91f3d078"
+    },
+    {
+      "path": "Layout/UnifiedBorder.lua",
+      "status": "retained-identical",
+      "commitSha256": "e2b120f6a6808378187967bb638bfcb8e53ebd12746cd0cce6274fabd3a975c3",
+      "currentSha256": "e2b120f6a6808378187967bb638bfcb8e53ebd12746cd0cce6274fabd3a975c3"
+    },
+    {
+      "path": "MicroMenu/FluxMicroMenu.lua",
+      "status": "modified-after-target",
+      "commitSha256": "6ebf7d360e91341277631af88eee894d71d942d044c702a15326fbc74445642e",
+      "currentSha256": "04619b3ee9c4d9e836d389b545679b24313c90b342a025f38276efb1cfab9169"
+    },
+    {
+      "path": "Minimap/FluxMinimap.lua",
+      "status": "modified-after-target",
+      "commitSha256": "8365b3de828202dad6e33ed20ef49388d18830f50be3c23b57723643ae52a56e",
+      "currentSha256": "3b822e92f5145cd8c02af16f732a4ddd1ae079363f76e9a96a7fb4df22f034df"
+    },
+    {
+      "path": "Other/FluxChatColumnMicros.lua",
+      "status": "modified-after-target",
+      "commitSha256": "2f08481f81da3224b0015ba83d0c73ec015b51caabfe718c5ff541dbccaa51b7",
+      "currentSha256": "470ff6192b5a4f512aa673d4c27949ac0f2b28ebcd8044fbf67412d6315c1919"
+    },
+    {
+      "path": "Other/FluxDurationBars.lua",
+      "status": "retained-identical",
+      "commitSha256": "58bd5ab748f3189d9e429a69be3cbd34c410f67fb4a58a92164e8c4ba0160e09",
+      "currentSha256": "58bd5ab748f3189d9e429a69be3cbd34c410f67fb4a58a92164e8c4ba0160e09"
+    },
+    {
+      "path": "Other/FluxExtraAbilityHUD.lua",
+      "status": "retained-identical",
+      "commitSha256": "e01d4b0c24a00018732b9e83148966299cdcfdfcd685ac4c4dd35df62bf16279",
+      "currentSha256": "e01d4b0c24a00018732b9e83148966299cdcfdfcd685ac4c4dd35df62bf16279"
+    },
+    {
+      "path": "Other/FluxPerfCapture.lua",
+      "status": "modified-after-target",
+      "commitSha256": "7464a0bf581fd7c4215cb3844eafd6cc3de93420118fb9ee204a185e350acb72",
+      "currentSha256": "e29200378c73be645919e76ecd63af2908d3bbf1ebdea6123692732547f27a07"
+    },
+    {
+      "path": "Other/FluxVehicleExitButton.lua",
+      "status": "retained-identical",
+      "commitSha256": "070241ffed64059022be9b25b762ca010d6593f4b8bda41b5e993aa3e808cbe4",
+      "currentSha256": "070241ffed64059022be9b25b762ca010d6593f4b8bda41b5e993aa3e808cbe4"
+    },
+    {
+      "path": "RaidFrame/FluxRaidFrame.lua",
+      "status": "retained-identical",
+      "commitSha256": "6b943ec9c88d1497742e7d71e5115eb526bf65659043b8cfdc997ccc8be4e30b",
+      "currentSha256": "6b943ec9c88d1497742e7d71e5115eb526bf65659043b8cfdc997ccc8be4e30b"
+    },
+    {
+      "path": "RaidFrame/FluxRaidFrame.xml",
+      "status": "retained-identical",
+      "commitSha256": "63e66294d48363294a485daf509f6fa064608b4b57e553b97b0248c4d7c4bddc",
+      "currentSha256": "63e66294d48363294a485daf509f6fa064608b4b57e553b97b0248c4d7c4bddc"
+    },
+    {
+      "path": "RaidFrame/FluxRaidLayout.lua",
+      "status": "modified-after-target",
+      "commitSha256": "ecd9db377f12abbfccd1bc989ff572e1aa3aa2aa2206bc33148cc113524da1b9",
+      "currentSha256": "e83d1c0c288d668f414f9af334f9ba10863d319da37e013ebc8208f8b00d1a34"
+    },
+    {
+      "path": "RaidFrame/FluxRaidUnit.lua",
+      "status": "retained-identical",
+      "commitSha256": "cbfdc2a48df89f62abe4ecb541b6b64fcd30e26a786f9dc02d87e9718167d6e8",
+      "currentSha256": "cbfdc2a48df89f62abe4ecb541b6b64fcd30e26a786f9dc02d87e9718167d6e8"
+    },
+    {
+      "path": "Respec/FluxRespec_Apply.lua",
+      "status": "retained-identical",
+      "commitSha256": "16916f21c5b5d91c037b63c2f48b38f57f71a9e2a75e1af14be563b106205a09",
+      "currentSha256": "16916f21c5b5d91c037b63c2f48b38f57f71a9e2a75e1af14be563b106205a09"
+    },
+    {
+      "path": "Salvage/FluxSalvage_Overlay.lua",
+      "status": "retained-identical",
+      "commitSha256": "e95924b5cb5caa1640eca8327a0fd5bd629b5e539079259dda22e06be59b2405",
+      "currentSha256": "e95924b5cb5caa1640eca8327a0fd5bd629b5e539079259dda22e06be59b2405"
+    },
+    {
+      "path": "StatusBars/FluxInfoFrame.lua",
+      "status": "retained-identical",
+      "commitSha256": "d335f73a27d320c0281a7ba50e0fcee48c20ff4db01643a43a33b63c971ef456",
+      "currentSha256": "d335f73a27d320c0281a7ba50e0fcee48c20ff4db01643a43a33b63c971ef456"
+    },
+    {
+      "path": "StatusBars/FluxStatusBar.lua",
+      "status": "modified-after-target",
+      "commitSha256": "419f666fbdfa18b2a4186ce0667e59d95f425d5a968a6883e0ca381a9e3509ff",
+      "currentSha256": "9199393ed286f8761fb7580f164e22c8b0bba61025cd6d10084d560c6e639e94"
+    },
+    {
+      "path": "UnitFrames/FluxUnitFrames_BigDebuffs.lua",
+      "status": "retained-identical",
+      "commitSha256": "918640a42184cbb644644c7fcd28b366543e2ac33304d5b711cf34d1e3f45c48",
+      "currentSha256": "918640a42184cbb644644c7fcd28b366543e2ac33304d5b711cf34d1e3f45c48"
+    },
+    {
+      "path": "UnitFrames/FluxUnitFrames_FluxVsBlizzardRuntime.lua",
+      "status": "modified-after-target",
+      "commitSha256": "4b9db4c697f58cfebec646547093a3b48bfbe7afdca98721d9bf0789961f74d2",
+      "currentSha256": "5fcf4ff5c92ea81f2987319ddb215af6e31ce48dcf91889b61c8b57d9aaf0435"
+    },
+    {
+      "path": "UnitFrames/FluxUnitFrames_Focus.lua",
+      "status": "retained-identical",
+      "commitSha256": "f132185b98eb1848d39ed0c10110077b1d97e81fda5985fa7c63da8538eb9f66",
+      "currentSha256": "f132185b98eb1848d39ed0c10110077b1d97e81fda5985fa7c63da8538eb9f66"
+    },
+    {
+      "path": "UnitFrames/FluxUnitFrames_FocusTarget.lua",
+      "status": "retained-identical",
+      "commitSha256": "29f23154ff0164e20f46c81eea0c53c0072d9e0c087904c77801fa58a9bdf708",
+      "currentSha256": "29f23154ff0164e20f46c81eea0c53c0072d9e0c087904c77801fa58a9bdf708"
+    },
+    {
+      "path": "UnitFrames/FluxUnitFrames_Lifecycle.lua",
+      "status": "retained-identical",
+      "commitSha256": "11aa29be10068eacfe8efa54a270e897ef731916dd18ad22d4be4ab786d0b075",
+      "currentSha256": "11aa29be10068eacfe8efa54a270e897ef731916dd18ad22d4be4ab786d0b075"
+    },
+    {
+      "path": "UnitFrames/FluxUnitFrames_OptionsBridge.lua",
+      "status": "retained-identical",
+      "commitSha256": "533986ba9cfc5fa03cb638e23e9dc7222529885f9bb95d4cfe2c5ffafcb3d6cd",
+      "currentSha256": "533986ba9cfc5fa03cb638e23e9dc7222529885f9bb95d4cfe2c5ffafcb3d6cd"
+    },
+    {
+      "path": "UnitFrames/FluxUnitFrames_Pet.lua",
+      "status": "retained-identical",
+      "commitSha256": "5105a0b99b7567bdf8e37f7946f331934606256967346809d9d8248d4f598813",
+      "currentSha256": "5105a0b99b7567bdf8e37f7946f331934606256967346809d9d8248d4f598813"
+    },
+    {
+      "path": "UnitFrames/FluxUnitFrames_PetTarget.lua",
+      "status": "retained-identical",
+      "commitSha256": "454ec79dceaba8e54f24b248d2db9ef8295ddbd229b375435e2acc20db0c0f57",
+      "currentSha256": "454ec79dceaba8e54f24b248d2db9ef8295ddbd229b375435e2acc20db0c0f57"
+    },
+    {
+      "path": "UnitFrames/FluxUnitFrames_Player.lua",
+      "status": "modified-after-target",
+      "commitSha256": "689e8e644c4b3aa868899a56a186badbf502c22018336b8fb6b3e9ee4bb54d0f",
+      "currentSha256": "5e913be6da5f642af6ac565bb21a49a84b3542fd255bce4a16cc1d50fa452091"
+    },
+    {
+      "path": "UnitFrames/FluxUnitFrames_Shared.lua",
+      "status": "modified-after-target",
+      "commitSha256": "82a2dd27c84078e0deb51f49e66b1e1ca1bcdb6647959238eeccc220ce532e1c",
+      "currentSha256": "ddac979e821a69804608b931e50449893aea7f741cc8e113fc8ce65180265a4e"
+    },
+    {
+      "path": "UnitFrames/FluxUnitFrames_Target.lua",
+      "status": "retained-identical",
+      "commitSha256": "23621aa69f59d6c4899ba3ffb720d327ff7e9970c123a21f3a08aa1ebd09c8b9",
+      "currentSha256": "23621aa69f59d6c4899ba3ffb720d327ff7e9970c123a21f3a08aa1ebd09c8b9"
+    },
+    {
+      "path": "UnitFrames/FluxUnitFrames_TargetOfTarget.lua",
+      "status": "retained-identical",
+      "commitSha256": "14f9668c84eb7683fbd6f0cc3d935a97f0f523fdb22c1bd5ff3603cd4f8d273b",
+      "currentSha256": "14f9668c84eb7683fbd6f0cc3d935a97f0f523fdb22c1bd5ff3603cd4f8d273b"
+    },
+    {
+      "path": "WindowMover/Init.lua",
+      "status": "retained-identical",
+      "commitSha256": "0b2c0b63a0aa6620cce45f276ea355e7cff407481a43cdba85d383f284d4663b",
+      "currentSha256": "0b2c0b63a0aa6620cce45f276ea355e7cff407481a43cdba85d383f284d4663b"
+    },
+    {
+      "path": "_FluxUI.toc",
+      "status": "modified-after-target",
+      "commitSha256": "8cb264fa0f1fbf955cef610f1c7eace5683d0ebce9804a3d32d5bd282be2f9d8",
+      "currentSha256": "aeddf93de699120cc3223441b07ce1f74d2a7046ae74305b83f2e12605f22373"
+    }
+  ],
+  "v9NegativeControls": [
+    {
+      "substitutedSource": "FluxDefaultSettings.lua",
+      "control": "Read-only v9 source substitution confined to this test process; production files unchanged.",
+      "test": "tests/binding_respec_regression.lua",
+      "exit": 1,
+      "output": "lua: tests/binding_respec_regression.lua:6: automatic verification must not write customized bindings\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/binding_respec_regression.lua:6: in local 'check'\n\ttests/binding_respec_regression.lua:81: in main chunk\n\t(command line):11: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "substitutedSource": "Respec/FluxRespec_Apply.lua",
+      "control": "Read-only v9 source substitution confined to this test process; production files unchanged.",
+      "test": "tests/binding_respec_regression.lua",
+      "exit": 1,
+      "output": "lua: tests/binding_respec_regression.lua:6: live: restore failure must emit one failure\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/binding_respec_regression.lua:6: in local 'check'\n\ttests/binding_respec_regression.lua:147: in main chunk\n\t(command line):11: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "substitutedSource": "Binding/Respec.lua",
+      "control": "Read-only v9 source substitution confined to this test process; production files unchanged.",
+      "test": "tests/binding_respec_regression.lua",
+      "exit": 1,
+      "output": "lua: tests/binding_respec_regression.lua:208: request failed\nstack traceback:\n\t[C]: in function 'error'\n\ttests/binding_respec_regression.lua:208: in field 'RequestApplyAll'\n\t../__Backup/v9/Binding/Respec.lua:291: in upvalue 'ApplySnapshotInternal'\n\t../__Backup/v9/Binding/Respec.lua:439: in field 'FluxSpellBindings_ApplySnapshot'\n\ttests/binding_respec_regression.lua:218: in main chunk\n\t(command line):11: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "substitutedSource": "BaganatorCompat/Loader.lua",
+      "control": "Read-only v9 source substitution confined to this test process; production files unchanged.",
+      "test": "tests/data_integrity.lua",
+      "exit": 1,
+      "output": "lua: tests/data_integrity.lua:5: Blizzard item APIs retain native ownership\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/data_integrity.lua:5: in local 'check'\n\ttests/data_integrity.lua:133: in main chunk\n\t(command line):11: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "substitutedSource": "Inventory/Restock/Core/FluxRestockSettings.lua",
+      "control": "Read-only v9 source substitution confined to this test process; production files unchanged.",
+      "test": "tests/data_integrity.lua",
+      "exit": 1,
+      "output": "lua: tests/data_integrity.lua:5: legacy booleans preserved\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/data_integrity.lua:5: in local 'check'\n\ttests/data_integrity.lua:58: in main chunk\n\t(command line):11: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "substitutedSource": "Core/DB.lua",
+      "control": "Read-only v9 source substitution confined to this test process; production files unchanged.",
+      "test": "tests/startup_lifecycle.lua",
+      "exit": 1,
+      "output": "lua: tests/startup_lifecycle.lua:241: attempt to index a nil value (field '__fluxRootRecoveryV1')\nstack traceback:\n\ttests/startup_lifecycle.lua:241: in main chunk\n\t(command line):11: in main chunk\n\t[C]: in ?\n"
+    }
+  ],
+  "auditedAtUTC": "2026-10-23T16:24:20.758652+00:00",
+  "runtimeSummary": {
+    "runtimeFilesInTarget": 90,
+    "identical": 75,
+    "modified": 15,
+    "missing": 0,
+    "whollyRevertedToParent": 0,
+    "limitation": "Whole-file classification does not establish that every individual optimization is preserved; changed bodies and acceptance tests require review."
+  },
+  "additionalCorrection": {
+    "path": "Core/Engine/Combat.lua",
+    "description": "A newer same-key request supersedes an unexecuted job in the detached recovery batch. Keep the latest job for the existing next-frame drain.",
+    "command": [
+      "lua",
+      "tests/combat_queue_supersession.lua"
+    ],
+    "exit": 0,
+    "output": "combat queue supersession: 264 checks; five clients; stale mutation rejected; recovery job executions 4 -> 3 with identical latest result\n"
+  }
+}

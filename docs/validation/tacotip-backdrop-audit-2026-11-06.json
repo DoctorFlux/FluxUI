@@ -1,0 +1,71 @@
+{
+  "capturedAtUTC": "2026-11-06T21:51:41.004879+00:00",
+  "scope": "Read-only source investigation. Exact frame/client at failure and native VM reproduction remain unverified. No runtime files, addons, settings or game state changed.",
+  "userError": {
+    "localTime": "22:42:30",
+    "source": "Blizzard_SharedXML/Backdrop.lua:226",
+    "message": "Arithmetic on secret local width while execution tainted by TacoTip",
+    "stackFunctions": [
+      "SetupTextureCoordinates",
+      "OnBackdropSizeChanged callback"
+    ]
+  },
+  "installedReference": {
+    "clientDirectory": "_forever_",
+    "version": "0.9.4",
+    "author": "AcidBomb",
+    "license": "MIT; bundled libraries separately licensed",
+    "normalizedSHA256": {
+      "TacoTip.toc": "a87eab9f5e0b8c222a8d1510faf0dcfe68e28cd9f19533a19a72372d2b1c1d01",
+      "main.lua": "58ac29569e6586f952f160f95aa8cb2adefcac13938ce81daec0c417a992d9f2",
+      "textures.lua": "8a64fab9e9f235adc841121ca52af6627b36512b32af1332ffec90dedd2dddb4",
+      "LICENSE": "e94e095e25bb5bab2ceb83d4342068093f3f9b262a3249d49e8941bf4a035b55"
+    }
+  },
+  "otherCopies": {
+    "_retail_": "TacoTip absent",
+    "_classic_": "TacoTip absent",
+    "_classic_era_": "0.5.1; different implementation, not certified by this finding",
+    "_anniversary_": "0.5.1; different implementation, not certified by this finding"
+  },
+  "sourceMatchedPath": [
+    "TacoTip main.lua:getOrCreateBackdropFrame creates owned child using BackdropTemplate",
+    "Owned child SetAllPoints inherits tooltip geometry",
+    "applyTooltipBackdrop calls its SetBackdrop",
+    "Native OnBackdropSizeChanged calls SetupTextureCoordinates",
+    "SetupTextureCoordinates performs Lua width arithmetic"
+  ],
+  "FluxScope": "HUD tooltip hooks position the tooltip; TacoTip compatibility hides duplicate PaperDoll labels. No Flux tooltip backdrop arithmetic or global patch identified.",
+  "fixBoundary": "Repair the TacoTip-owned border renderer, preserving artwork/colors/opacity/size/options. Do not patch shared native Backdrop or coerce secret dimensions. SetBackdrop guard alone does not cover subsequent size callbacks.",
+  "authorization": "The user explicitly chose to keep TacoTip read-only. No TacoTip modifications are planned; no scope question remains pending. External reference addons also remain read-only under CONTRIBUTING.md.",
+  "nativeChecks": "Pending; three-frame user stack does not identify the tooltip/frame. Secret-sized owned-border replay is a desktop model only.",
+  "desktopReproduction": {
+    "scope": "Actual installed factory fragment plus pinned native functions; Lua arithmetic-rejecting sentinel models restricted width. This does not reproduce native taint or secure VM behavior.",
+    "factoryNormalizedSHA256": "58ac29569e6586f952f160f95aa8cb2adefcac13938ce81daec0c417a992d9f2",
+    "nativeBackdropNormalizedSHA256": "8b2737f9573350d95a29b1968ec33b1ab19263520f046d202b8c4b95dd855c58",
+    "reproducerSHA256": "012223e740dae9b761dc9f750a4126de700c03610e0431e5b01d47de9cfb3f7e",
+    "cases": [
+      {
+        "case": "public_dimensions",
+        "exit": 0,
+        "result": "PASS"
+      },
+      {
+        "case": "secret_initial_width",
+        "exit": 1,
+        "result": "Existing failure reproduced, unsuppressed native-function arithmetic stack"
+      },
+      {
+        "case": "secret_resize_existing_child",
+        "exit": 1,
+        "result": "Existing failure reproduced after successful public first setup"
+      },
+      {
+        "case": "child_reuse",
+        "exit": 0,
+        "result": "PASS; one child, public resize updates coordinates"
+      }
+    ],
+    "rawEvidence": "Private external tacotip-backdrop-audit-20261106/evidence.json, source fragments, license and subprocess stderr preserved; no private paths included here."
+  }
+}

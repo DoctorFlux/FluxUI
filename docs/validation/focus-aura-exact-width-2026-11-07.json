@@ -1,0 +1,111 @@
+{
+  "changeID": "FOCUS-AURA-EXACT-WIDTH-20261107",
+  "requirement": "REQ-RF-81",
+  "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\06\\01a1b0ac-547f-7972-8df9-fa26882e0e03\\focus-aura-width-20261107T165139Z\\checkpoint.json",
+  "sources": {
+    "live": {
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "playerXMLBlob": "f2e106ab9da91fb7b32cfa2bf067c69aff6ca31e",
+      "path": "Interface/AddOns/Blizzard_UnitFrame/Mainline/PlayerFrame.xml"
+    },
+    "forever": {
+      "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "playerXMLBlob": "410ca1307eba91401aacbc64e5389426d870cfa7",
+      "path": "Interface/AddOns/Blizzard_UnitFrame/Mainline/PlayerFrame.xml"
+    },
+    "classic": {
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "playerXMLBlob": "c48b3e6e8dea4059dea6847f522c23a3023e3d0c",
+      "path": "Interface/AddOns/Blizzard_UnitFrame/Classic/PlayerFrame.xml"
+    },
+    "classic_era": {
+      "commit": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "playerXMLBlob": "c48b3e6e8dea4059dea6847f522c23a3023e3d0c",
+      "path": "Interface/AddOns/Blizzard_UnitFrame/Classic/PlayerFrame.xml"
+    },
+    "classic_anniversary": {
+      "commit": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "playerXMLBlob": "f03ed39542ccf4e61f717c845625c1c2aff63e0d",
+      "path": "Interface/AddOns/Blizzard_UnitFrame/Classic/PlayerFrame.xml"
+    },
+    "nativeRenderers": {
+      "live": "e4d36ab0dca70d28e56d38edaea16aad20a34e42",
+      "forever": "60d5da8b429c3ac397a39fa576ab939b1a6b08ab",
+      "path": "Interface/AddOns/Blizzard_UnitFrame/Shared/UnitFrameUtil.lua"
+    },
+    "timerAPI": {
+      "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "blob": "acc0ec3d9eaae7854a8e688bddde0850d0623274",
+      "contract": "GetPVPTimer has no unit argument; native player frame uses it only for player countdown."
+    },
+    "nativePlayerLua": {
+      "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "path": "Interface/AddOns/Blizzard_UnitFrame/Mainline/PlayerFrame.lua",
+      "blob": "ec49779f9bb6e54dab747518ac46f329f461b360",
+      "contract": "native PlayerFrame_UpdatePvPStatus passes checkMercenary=true for player"
+    },
+    "nativeTargetLua": {
+      "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "path": "Interface/AddOns/Blizzard_UnitFrame/Mainline/TargetFrame.lua",
+      "blob": "9132e790f0e354a9bec81093bf3b20c434c0f6eb",
+      "contract": "native target uses UpdateUnitPvPIndicator for self.unit without mercenary override"
+    }
+  },
+  "after": {
+    "UnitFrames/FluxUnitFrames_Auras.lua": "dd40f6b3678b24ad4409e5bf8f596314317c093504b88af0970882f0ccf0de4f",
+    "tests/focus_aura_geometry.lua": "69146d5bfd906d4bdb09e24fa06666466ffeb5b32ddcdd5a27cc91147dba465b"
+  },
+  "userClarification": "The aura frame is not the same length as the new focus frame. Width correction; no aura/timer rescale requested.",
+  "cause": "Legacy13-unit addition per half and -10 buff offset remained; battlefield border stroke insets at independent panel scale differed from compact focus border.",
+  "implementation": [
+    "Compact focus halves sum exactly to focus outer-frame width with/without portrait; remove legacy13-unit expansion and left offset only for compact focus",
+    "Border artwork uses same body scale and2-unit corner inset/offset geometry as Focus FluxBorder; legacy fallback corners use identical crops/dimensions",
+    "Icons/timer/caption typography retain independent panel scale; caption is owned by container so border-scale correction does not shrink it",
+    "Join the top/bottom border using7 body-scaled nesting units; focus screen anchor and separate vertical target unchanged",
+    "Cache border scale and corner layout; no repeated scale writes on aura refresh; unexpected scale changes are skipped during combat and normal layout refresh applies OOC",
+    "Ordinary target and legacy focus metrics/skin stay unchanged"
+  ],
+  "geometryExample": {
+    "focusVisibleWidth": 138,
+    "beforeEachAuraHalf": 82,
+    "afterEachAuraHalf": 69,
+    "combinedAfter": 138
+  },
+  "tests": {
+    "auraGeometry": 577,
+    "partyFocus": 975,
+    "scaleAnchor": 47,
+    "timerPolicy": 36,
+    "scriptsPass": 233,
+    "scriptsFail": 0,
+    "syntaxFiles": 897,
+    "syntaxFailures": [],
+    "ownedManifestDrift": [],
+    "negativeControl": "Checkpoint aura renderer rejects exact-half-width assertion; baseline-reject.log external"
+  },
+  "resources": "No new runtime frame/texture/event/hook/timer/ticker. Existing border/frame/label reused; constant corner table and cached border scale/anchor flag; no timing/FPS claim.",
+  "nativePending": "Actual pixels/width alignment and native combat/taint/performance unverified; no foreground/game input/WTF/profiler writes.",
+  "recovery": "Fresh external source/history checkpoint verified;45 settings metadata entries inspected read-only; prior complete recovery retained.",
+  "copies": [
+    {
+      "client": "_retail_",
+      "mismatches": []
+    },
+    {
+      "client": "_forever_",
+      "mismatches": []
+    },
+    {
+      "client": "_classic_",
+      "mismatches": []
+    },
+    {
+      "client": "_classic_era_",
+      "mismatches": []
+    },
+    {
+      "client": "_anniversary_",
+      "mismatches": []
+    }
+  ]
+}

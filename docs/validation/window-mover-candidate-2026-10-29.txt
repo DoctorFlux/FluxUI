@@ -1,0 +1,5 @@
+METRIC disabled_start catalog=0 resolves=0 hooks=0 polls=0 updates=0 attached=0
+METRIC disabled_after_enable catalog=0 resolves=0 polls=0 updates=0 writes=0
+METRIC cycles frames=7 hooks=7 saved_scale=1.2
+METRIC disabled_api polls=0 updates=0 saved_changes=0
+Window mover disabled: 220 checks, 0 failures

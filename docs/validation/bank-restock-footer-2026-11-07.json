@@ -1,0 +1,110 @@
+{
+  "date": "2026-11-07",
+  "requirement": "BANK-ICON-03: user requires full-size Baganator restock control inside the window",
+  "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\07\\01a1b56a-52d3-7b42-9f20-a029dcfe3bde\\bank-restock-footer\\checkpoint.json",
+  "sources": {
+    "Inventory/Restock/Bank/FluxBankRestockButton.lua": {
+      "baseline": "46e392c2d7ebbddad6fe87d8ecbed6de52f9ad06cba40ac4ab31373a3f34e302",
+      "candidate": "1a66c27b856cd17553e42f561819ae87946a8f745c9b61d5e95f775d064090bc"
+    },
+    "BaganatorCompat/FluxBaganator_BankRestock.lua": {
+      "baseline": "a98eaa16497dcc79460f91add584597f88a6eca5993e8da534d0ef98d5b000fe",
+      "candidate": "2b5489ee2615dd61d7cd3347373e7ca2e2cd3269b962c4e28e63250afb113dca"
+    }
+  },
+  "comparison": [
+    {
+      "variant": "baseline",
+      "exit": 1,
+      "output": "lua: tests/bank_restock_icon.lua:4: Baganator full-size button inside view\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/bank_restock_icon.lua:4: in local 'check'\n\ttests/bank_restock_icon.lua:123: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "variant": "candidate",
+      "exit": 0,
+      "output": "bank restock icon: 668 checks passed (five clients; native/Baganator; cold/warm merchant)\n"
+    }
+  ],
+  "native": "Latest user screenshot establishes22px toolbar-size rejection. User selected inside window; new36px button in48px owned bottom row. Candidate native pixels/input/taint/FPS pending; no connected in-game tools, no desktop/game input/WTF/profiler writes.",
+  "readOnlyReference": {
+    "version": "843",
+    "license": "All Rights Reserved; interface inspection only; no implementation/art copied",
+    "files": {
+      "Baganator.toc": "164a149c17f1ca959ab4dc8ae1c526a0a72aa97589993254bf62c49a4e6ffac1",
+      "ItemViewCommon/BankView.lua": "578280faf6244ea3d79b527b9bc247c81bf9b342c7926b4d8ed64231a492061d",
+      "ItemViewCommon/Utilities.lua": "55eaf6f80945d3622fd4f52bb2c41a3f5ba1bcac9bdb42c1ac7fb1ba8ba751ae",
+      "ItemViewCommon/BankViewCharacterView.lua": "5b17e1b9fe714a0a003093f4104f1f9a3d269db22ff0b1eb5478984a025f7085",
+      "ItemViewCommon/BankViewWarbandView.lua": "ea403dd5d567693434851361d94d855f00aa115bee910cbbe12ef298e18e22a8",
+      "LICENSE": "8ab1f878ab363dbb42591f062190386662a0aaaae36f90cc518dcf3494bafb7d"
+    },
+    "contract": "OnTabFinished calls UpdateTransferButton then resets root to currentTab:GetSize; existing Flux wrappers reused. Native tab is top-anchored; owned footer extends outer height only unless screen overflow shortens existing tab/ScrollBox. Native FullUpdate immediately refreshes viewport. Ownership-aware height restoration before completion, hide, native handoff or locked tabs."
+  },
+  "scrollbar": "If shortened viewport reveals a scrollbar extending beyond tab, temporarily add its measured spill plus8px to tab/view width; restore owned widths on release.",
+  "installedCopies": [
+    {
+      "client": "_retail_",
+      "owner": "Inventory/Restock/Bank/FluxBankRestockButton.lua",
+      "matches": true
+    },
+    {
+      "client": "_retail_",
+      "owner": "BaganatorCompat/FluxBaganator_BankRestock.lua",
+      "matches": true
+    },
+    {
+      "client": "_forever_",
+      "owner": "Inventory/Restock/Bank/FluxBankRestockButton.lua",
+      "matches": true
+    },
+    {
+      "client": "_forever_",
+      "owner": "BaganatorCompat/FluxBaganator_BankRestock.lua",
+      "matches": true
+    },
+    {
+      "client": "_classic_",
+      "owner": "Inventory/Restock/Bank/FluxBankRestockButton.lua",
+      "matches": true
+    },
+    {
+      "client": "_classic_",
+      "owner": "BaganatorCompat/FluxBaganator_BankRestock.lua",
+      "matches": true
+    },
+    {
+      "client": "_classic_era_",
+      "owner": "Inventory/Restock/Bank/FluxBankRestockButton.lua",
+      "matches": true
+    },
+    {
+      "client": "_classic_era_",
+      "owner": "BaganatorCompat/FluxBaganator_BankRestock.lua",
+      "matches": true
+    },
+    {
+      "client": "_anniversary_",
+      "owner": "Inventory/Restock/Bank/FluxBankRestockButton.lua",
+      "matches": true
+    },
+    {
+      "client": "_anniversary_",
+      "owner": "BaganatorCompat/FluxBaganator_BankRestock.lua",
+      "matches": true
+    }
+  ],
+  "fullValidation": {
+    "pass": 220,
+    "fail": 0,
+    "syntaxFiles": 883,
+    "syntaxFailures": [],
+    "currentCorpusDrift": []
+  },
+  "documentationValidation": {
+    "exit": 0,
+    "sources": 916,
+    "reachable": 598,
+    "settings": 415,
+    "savedVariables": 24,
+    "links": 15059,
+    "whitespace": "PASS"
+  }
+}

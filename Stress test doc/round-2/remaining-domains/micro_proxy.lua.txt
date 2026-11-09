@@ -1,0 +1,92 @@
+-- Complete production proxy creation/rebuild functions, with native frames and
+-- third-party handlers mocked. No addon, global-client or input writes occur.
+local f=assert(io.open("MicroMenu/FluxMinimapToMicro.lua","rb"));local source=f:read("*a"):gsub("\r\n","\n");f:close()
+local begin=assert(source:find("function M:RebuildMicroButtons()",1,true))
+local finish=assert(source:find("-- Integration with FluxAddonMicroButton",begin,true))
+local body=source:sub(begin,finish-1)
+local factoryFile=assert(io.open("MicroMenu/FluxMicroMenu.lua","rb"));local factorySource=factoryFile:read("*a"):gsub("\r\n","\n");factoryFile:close()
+local factoryBegin=assert(factorySource:find("function FluxMicroMenu:CreateMicroButton(",1,true))
+local factoryEnd=assert(factorySource:find("--- Config preview: draw one static frame",factoryBegin,true))
+local checks=0;local function check(v,why)checks=checks+1;assert(v,why)end
+local function boot(client)
+    local s={objects={},proxyCreates=0,hooks=0,iconUpdates=0,rebuilds=0,shown=0,positioned=true,enabled=true}
+    local e=setmetatable({},{__index=_G});e._G=e;e.BUTTON_PRIORITIES={}
+    local methods={}
+    local function object(name,parent)
+        local o=setmetatable({name=name,parent=parent,shown=true,scripts={},hooks={},secureHooks={}},{__index=methods})
+        s.objects[#s.objects+1]=o;return o
+    end
+    function methods:Show()self.shown=true end;function methods:Hide()self.shown=false end
+    function methods:IsShown()return self.shown end;function methods:SetParent(p)self.parent=p end
+    function methods:GetParent()return self.parent end;function methods:GetName()return self.name end
+    function methods:SetScript(k,v)self.scripts[k]=v end;function methods:GetScript(k)return self.scripts[k]end
+    function methods:HookScript(k,v)self.hooks[k]=self.hooks[k]or{};self.hooks[k][#self.hooks[k]+1]=v end
+    function methods:GetLeft()return s.positioned and 100 or nil end;function methods:GetRight()return s.positioned and 132 or nil end
+    function methods:RegisterForClicks()end;function methods:SetTexture()for _,cb in ipairs(self.secureHooks.SetTexture or{})do cb()end end
+    function methods:SetAtlas()for _,cb in ipairs(self.secureHooks.SetAtlas or{})do cb()end end
+    function methods:CreateTexture()return object(nil,self)end
+    function methods:SetNormalTexture()self.normal=object(nil,self)end;function methods:GetNormalTexture()return self.normal end
+    function methods:SetPushedTexture()self.pushed=object(nil,self)end;function methods:GetPushedTexture()return self.pushed end
+    function methods:SetSize()end;function methods:SetPoint()end;function methods:SetTexCoord()end;function methods:SetVertexColor()end
+    e.CreateFrame=function(_,name,parent)
+        if name and name:find("^FluxMinimap2Micro_")then s.proxyCreates=s.proxyCreates+1 end
+        local obj=object(name,parent);if name then e[name]=obj end;return obj
+    end;e.UIParent=object("UIParent");e.unpack=table.unpack
+    e.wipe=function(t)for k in pairs(t)do t[k]=nil end end
+    e.hooksecurefunc=function(o,k,cb)o.secureHooks[k]=o.secureHooks[k]or{};o.secureHooks[k][#o.secureHooks[k]+1]=cb;s.hooks=s.hooks+1 end
+    local tooltip={shown=false}
+    function tooltip:Show()self.shown=true;s.shown=s.shown+1 end;function tooltip:Hide()self.shown=false end
+    function tooltip:SetOwner(o)self.owner=o end;function tooltip:IsOwned(o)return self.owner==o end
+    function tooltip:SetText(t)self.text=t end;function tooltip:ClearLines()end;function tooltip:ClearAllPoints()end
+    function tooltip:SetPoint()end;function tooltip:AddLine()end;function tooltip:AddDoubleLine()end
+    e.GameTooltip=tooltip;s.tooltip=tooltip;s.originalShow=tooltip.Show
+    e.FluxMicroMenu={Rebuild=function()s.rebuilds=s.rebuilds+1 end};e.fixtureHud=client=="live"or client=="forever"
+    assert(load("local UseDfHudMicroButtonShell=function()return fixtureHud end;local ApplyClassicCustomMicroMouseover=function()end;local ApplyDfCustomMicroMouseover=function()end\n"
+        ..factorySource:sub(factoryBegin,factoryEnd-1),"@actual-micro-button-factory","t",e))()
+    local original=object("AddonMapIcon",e.UIParent);original.icon=object(nil,original)
+    local M={createdMicroButtons={},scannedButtons={original},buttonNameMap={Addon=original}}
+    function M:GetEnabledButtonsOrdered()return s.enabled and{"Addon"}or{}end
+    function M:GetButtonIcon()return 123 end;function M:GetFriendlyMinimapButtonName()return"Addon"end
+    function M:GetButtonIconTexture(btn)return btn.icon end
+    function M:UpdateMicroButtonIconFromMinimap()s.iconUpdates=s.iconUpdates+1 end
+    assert(load("local M=...\n"..body,"@actual-minimap-proxy","t",e))(M)
+    function s.tick()
+        local active={};for _,o in ipairs(s.objects)do if o.shown and o.scripts.OnUpdate then active[#active+1]=o end end
+        for _,o in ipairs(active)do o.scripts.OnUpdate(o,.016)end
+    end
+    function s.enter(btn)if btn.scripts.OnEnter then btn.scripts.OnEnter(btn)end;for _,cb in ipairs(btn.hooks.OnEnter or{})do cb(btn)end end
+    function s.leave(btn)if btn.scripts.OnLeave then btn.scripts.OnLeave(btn)end;for _,cb in ipairs(btn.hooks.OnLeave or{})do cb(btn)end end
+    s.M,s.e,s.original=M,e,original;return s
+end
+for _,client in ipairs({"era","anniversary","live","forever"})do
+    -- This owner has no client-specific branch; labels do not emulate native VM.
+    do
+        local s=boot(client);s.original.dataObject={OnTooltipShow=function(tt)tt:SetText("LibDBIcon addon")end}
+        s.positioned=false;s.M:RebuildMicroButtons();local btn=s.M.createdMicroButtons[1]
+        s.enter(btn);s.leave(btn);check(not s.tooltip.shown,"leave hides tooltip before queued callback")
+        s.positioned=true;s.tick()
+        check(s.tooltip.shown and s.tooltip.owner==btn,"R2-DOM-01: delayed LibDBIcon tooltip resurfaces after leave")
+        print("OBSERVATION|R2-DOM-01|"..client.."|libdbicon_stale_after_leave=true")
+    end
+    do
+        local s=boot(client);s.original.scripts.OnEnter=function()s.tooltip:SetText("Standard addon");s.tooltip:Show()end
+        s.M:RebuildMicroButtons();local btn=s.M.createdMicroButtons[1]
+        s.enter(btn);check(s.tooltip.Show~=s.originalShow,"standard capture temporarily replaces the shared tooltip Show method")
+        s.leave(btn);s.tick()
+        check(s.tooltip.shown and s.tooltip.owner==btn,"R2-DOM-01: standard capture resurfaces after leave")
+        check(s.tooltip.Show==s.originalShow,"ordinary callback restores shared Show reference")
+        print("OBSERVATION|R2-DOM-01|"..client.."|standard_stale_after_leave=true|global_Show_restored=true")
+    end
+    do
+        local s=boot(client);local toggles=500
+        for i=1,toggles do s.enabled=true;s.M:RebuildMicroButtons();s.tick();s.enabled=false;s.M:RebuildMicroButtons();s.tick()end
+        check(s.proxyCreates==toggles and s.hooks==toggles*2,"R2-DOM-02: enable cycles recreate proxies and append icon hooks")
+        s.enabled=true;s.M:RebuildMicroButtons();s.tick();s.original.icon:SetTexture(123)
+        check(s.iconUpdates==toggles+1,"every retained icon hook invokes current proxy update after re-enable")
+        local oldProxyCreates=s.proxyCreates
+        for i=1,500 do s.M:RebuildMicroButtons();s.tick()end
+        check(s.proxyCreates==oldProxyCreates,"unchanged-enabled control reuses existing proxy")
+        print("OBSERVATION|R2-DOM-02|"..client.."|cycles="..toggles.."|proxy_creation_requests="..s.proxyCreates.."|icon_hooks="..s.hooks.."|callbacks_per_native_texture_change="..s.iconUpdates.."|rebuild_frame_requests="..s.rebuilds)
+    end
+end
+print("CHECKS|"..checks)

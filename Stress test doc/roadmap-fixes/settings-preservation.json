@@ -1,0 +1,7 @@
+{
+  "policy": "Read-only metadata verification; no private settings values in AddOns; no game/profiler/WTF writes by this work",
+  "availableBefore": 45,
+  "availableAfter": 45,
+  "persistedHashDifferences": 0,
+  "externalMetadata": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\07\\01a1b5b8-1789-7050-b49c-88d0a742e874\\roadmap-fixes-20261107T184559Z\\final-private-settings-metadata.json"
+}

@@ -1,0 +1,13 @@
+RESULT picker=Gear handles_control=false departed_show_requests=1
+RESULT picker=Gear handles_control=true departed_show_requests=0
+RESULT picker=Rune handles_control=false departed_show_requests=1
+RESULT picker=Rune handles_control=true departed_show_requests=0
+RESULT restock handles_control=false requests=1 callbacks=1
+RESULT restock handles_control=false requests=10 callbacks=10
+RESULT restock handles_control=false requests=1000 callbacks=1000
+RESULT restock handles_control=true requests=1 callbacks=1
+RESULT restock handles_control=true requests=10 callbacks=1
+RESULT restock handles_control=true requests=1000 callbacks=1
+RESULT spec handles_control=false newer_watcher_survives=false completions=A:false:SPEC_SWITCH_TIMEOUT,B:false:SPEC_SWITCH_TIMEOUT
+RESULT spec handles_control=true newer_watcher_survives=true completions=B:true:SPEC_SWITCHED
+CORE TIMER SUMMARY checks=40 native_VM_or_pixels=NOT_RUN

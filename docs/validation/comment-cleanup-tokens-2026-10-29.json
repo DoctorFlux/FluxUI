@@ -1,0 +1,281 @@
+{
+  "baselineCommit": "f57fc79b536d23a87666d751135304865571d738",
+  "baselineTree": "9876bb52f688dba175d2b867be038aea0e5cfcb1",
+  "comparison": "Existing Lua lexer; lossless Latin-1 decoding; compare every non-comment token including exact string bytes.",
+  "files": [
+    {
+      "path": "Bars/Paint.lua",
+      "beforeSha256": "71738b071210119bf84e3d2d94fec405054a528c5df743022368dfea50fd577e",
+      "afterSha256": "cbe5a28c5bd84bd7d0db88374720d0166b4ede129702c7424832d73386092a75",
+      "tokens": 12321,
+      "equal": true
+    },
+    {
+      "path": "Battlezonemap/FluxDetails.lua",
+      "beforeSha256": "1a46b671a7d57dba3e6a3c8c5833b447abcac4b5855e9f3bf92f87c7ebd9fa5f",
+      "afterSha256": "3d06c3afa334a3103f3d7f7c5efd712fc011cc2fb9c8f623d4b3c028fc25cd61",
+      "tokens": 9714,
+      "equal": true
+    },
+    {
+      "path": "Battlezonemap/FluxWindowFrame.lua",
+      "beforeSha256": "7a22341c50a86b1905e1152c4d109d79ccfba8d3ee2f1f8169f270d3639736fc",
+      "afterSha256": "dbf1f107333254ef5038f61f57aebbeeb4ec466cdd793918af291ab18562025b",
+      "tokens": 7944,
+      "equal": true
+    },
+    {
+      "path": "Binding/Core/Conditions.lua",
+      "beforeSha256": "c74e7d1f88b604f207cae1778049ee1b737875345c0692d29e12cf9656fba5ac",
+      "afterSha256": "6403b5c3e587b542b40b69a11ac57b859a22d0180a3b65e33fd2ee3c258cc661",
+      "tokens": 3351,
+      "equal": true
+    },
+    {
+      "path": "Core/ButtonFX/Charges.lua",
+      "beforeSha256": "ac86672e7788e35f8fa360ad24915b360faa6489a9ac0be3625fe7d048428029",
+      "afterSha256": "b8b89cbb8cae5b273d369ebefd4e826c5cc455d2245b26f917088f4096fc1cdd",
+      "tokens": 2115,
+      "equal": true
+    },
+    {
+      "path": "Core/Engine/HopLag.lua",
+      "beforeSha256": "575661484dbf11ac171b961246fbfd65177b7cab3b0388cb5cb4055ad121e7ce",
+      "afterSha256": "6071800f1fa6cbe450da7fd7d40cdfc39ee581df8b47dba446da3dec4b54fb79",
+      "tokens": 6331,
+      "equal": true
+    },
+    {
+      "path": "ExtraButtonSystem/CombatGrid/Grid.lua",
+      "beforeSha256": "4b33e386d97369a4e1c2ac72a66ba04d4b8debc5654bd771d47cecd28106d88d",
+      "afterSha256": "5b06b4f65545f08c455f2a828d5d85509a7c73b707c6596d9a532274b89510bd",
+      "tokens": 4194,
+      "equal": true
+    },
+    {
+      "path": "ExtraButtonSystem/Engine/Button.lua",
+      "beforeSha256": "f6c9e27d694e4eefb3d259d9ab04a5480c3c86a62734b15fc8aef903e16c5645",
+      "afterSha256": "dcba48373be3b5675c25aa3a5671f2364660137951bdf559b0524589f58667ca",
+      "tokens": 21866,
+      "equal": true
+    },
+    {
+      "path": "ExtraButtonSystem/Engine/Core.lua",
+      "beforeSha256": "20ff085c62ce8042756618d1d07d25dc13b874ebd36387adba5fee535c773aab",
+      "afterSha256": "7f34d573ccebed949fb977f2a5f1d0fe6fba2211ca6a9fb63c879dd8875363b5",
+      "tokens": 4218,
+      "equal": true
+    },
+    {
+      "path": "ExtraButtonSystem/Engine/Usability.lua",
+      "beforeSha256": "ca279465036a2fb88429fa42f133705737ee394816a4c0115a20d745af45812b",
+      "afterSha256": "5b12b7f277acade9df7b51634800a1a6c02c3fb78702a80d4700de43fb8b6129",
+      "tokens": 7101,
+      "equal": true
+    },
+    {
+      "path": "ExtraButtonSystem/ExtraButtons/UI.lua",
+      "beforeSha256": "62c15dc4c59ff9ae91c90521ca6084fb14b9e87e725af088c5b678da0b561048",
+      "afterSha256": "839e769dfec007dcb0594637a9c3614134345bd6d8df1d127d0ed067781b5073",
+      "tokens": 3500,
+      "equal": true
+    },
+    {
+      "path": "ExtraButtonSystem/Flyout/FluxFlyoutFavorites.lua",
+      "beforeSha256": "50ce83883e51fab73794f478c129fd9e6ceadd771c0ecebe01dae64ce8b76eca",
+      "afterSha256": "d6691f83881ba81af3e7ef8d2700cb7ecc7021d4244ba52eef744b03a49cfc64",
+      "tokens": 6141,
+      "equal": true
+    },
+    {
+      "path": "ExtraButtonSystem/Flyout/FluxFlyoutGenerators.lua",
+      "beforeSha256": "5cefb02191b30dbe4260243a3bd86795b008b8befcaf28d6918c7444e7c991ae",
+      "afterSha256": "6f26325b1dd0d6497a5c828cc8318f45d6d1a3ee431c77107e6e30979295f5d0",
+      "tokens": 4369,
+      "equal": true
+    },
+    {
+      "path": "ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua",
+      "beforeSha256": "9df32badf43a07265217fa52c124424268f6dbcdfa812b0f320c982e67858962",
+      "afterSha256": "1dfe7689915f4416e2463a651d1167c7c0060f44b8a7d539af745f178045419f",
+      "tokens": 28918,
+      "equal": true
+    },
+    {
+      "path": "ExtraButtonSystem/NonCombatGrid/Buttons/Mount.lua",
+      "beforeSha256": "d2669f6dffdcc46c152197b334e8cc5a7a0136c4de67f064ea915ed98cae3e9e",
+      "afterSha256": "728fe5df4975dd635f7be7bc03a9ec6444d211969328b3f0d5d08c2493bbc52c",
+      "tokens": 18544,
+      "equal": true
+    },
+    {
+      "path": "ExtraButtonSystem/NonCombatGrid/Buttons/MountItems.lua",
+      "beforeSha256": "7bb5f44d97dbdc087081b6f372193532fd0f33ddad1185c9eb3d7a4e1d1b0f70",
+      "afterSha256": "769cd51db2c54fad2b97b9d7e744720d56d02e13712aa52f6352499f26120a2e",
+      "tokens": 4044,
+      "equal": true
+    },
+    {
+      "path": "ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua",
+      "beforeSha256": "af389872182545226b47dfbaab8eaf4ba07471274b4278c2cc9dc6339ef943e6",
+      "afterSha256": "dedea8c43d47f150888993bc54e2a0445e94ceacb53b141b3c6b3d3cf57b20a6",
+      "tokens": 14042,
+      "equal": true
+    },
+    {
+      "path": "ExtraButtonSystem/NonCombatGrid/Grid.lua",
+      "beforeSha256": "c6bddaf5b97d71092ff3d2d7db8ba3ce140ae81d14f928dc0e99e0f76644f6fa",
+      "afterSha256": "c77a19abbe02794c95b644c0ab83dfc8906f77910c59e50a39700fe2cc385676",
+      "tokens": 4450,
+      "equal": true
+    },
+    {
+      "path": "FluxDefaultSettings.lua",
+      "beforeSha256": "353a596d1c38ff6c3e47538ba3b7305fc9a233473301f27488b7821288a1d6a7",
+      "afterSha256": "9956821a69cecd565125ce0ab227b74cfc1d9fee0da918c3df34e3444dce7133",
+      "tokens": 12870,
+      "equal": true
+    },
+    {
+      "path": "Inventory/Restock/Bank/FluxBankRestockRules.lua",
+      "beforeSha256": "3144f217057ad8213fb567720675ebdda944a544cefb3cacbe241b49a7799e2b",
+      "afterSha256": "704a0fb38dbd2f75f2048b0f3e08a5d21117be7c7b743ef987e920902385ebdd",
+      "tokens": 5960,
+      "equal": true
+    },
+    {
+      "path": "Layout/UnifiedBorder.lua",
+      "beforeSha256": "e2b120f6a6808378187967bb638bfcb8e53ebd12746cd0cce6274fabd3a975c3",
+      "afterSha256": "c3fa85b68bb03fae488ab2d29d2447bb60cac9ee8c1efa7e8abc2ce887f85f1e",
+      "tokens": 3884,
+      "equal": true
+    },
+    {
+      "path": "MicroMenu/FluxLFGMicroButton.lua",
+      "beforeSha256": "500898d3cfff1886bad22577ac115a471421da5ccd127a1203c306908125fb0a",
+      "afterSha256": "65c682daeeb2f499d99bef9e45a633ca3ff636dbadf7e8b3083eda4fca0c960f",
+      "tokens": 1727,
+      "equal": true
+    },
+    {
+      "path": "MicroMenu/FluxMicroMenu.lua",
+      "beforeSha256": "155fefac96694bfb0f937ddab244b8acd45eddfedcd546f12346d609030f05bc",
+      "afterSha256": "57845579dcc52ac89179ff51e3b4bb30c4c6edbc32405e17945dfc2a1d8d26ec",
+      "tokens": 14839,
+      "equal": true
+    },
+    {
+      "path": "MicroMenu/FluxMinimapToMicro.lua",
+      "beforeSha256": "ba3ada5617561e6b73b2a84382f2461acc4bafd10287e131842002ace0f3fbfd",
+      "afterSha256": "4eb6c29f965158f27f405d3b7583bf33e2304916b8de14b1806f078de890d40e",
+      "tokens": 7811,
+      "equal": true
+    },
+    {
+      "path": "MicroMenu/FluxTradeSkillMicro.lua",
+      "beforeSha256": "b73a0a398d146da54e32ea231100b9c76bb27372462034b09d61dc5515aa2ac3",
+      "afterSha256": "e8dc67cf15fe9c361eda4c29739018b391fb220b496e5a4be556da6545f9cac6",
+      "tokens": 5407,
+      "equal": true
+    },
+    {
+      "path": "Minimap/FluxMinimap.lua",
+      "beforeSha256": "8ce19e3db25c1eb2af0cf9e1be08adaab341e00f41cbf9f54b6db58f3e2a7506",
+      "afterSha256": "081b74b80e6b91610ec9b1bd3e2995b130d683bbb83f0224f5dada601b69baf4",
+      "tokens": 10977,
+      "equal": true
+    },
+    {
+      "path": "Minimap/FluxObjectiveTrackerScroll.lua",
+      "beforeSha256": "7cb238f4a85b5f8a5a5121d2247d639c28a985c7765b7722271716f1f5f25ae8",
+      "afterSha256": "d1ceeb19d001d5b0db3c1bbc7c82f28682165f6a2706be5b8cfef34e943006f3",
+      "tokens": 6285,
+      "equal": true
+    },
+    {
+      "path": "Minimap/FluxQuestie.lua",
+      "beforeSha256": "b43c4eccd3d12a4e47ad0df53a1c83d3054b7534f38a65344781e666a8870016",
+      "afterSha256": "534793c994a163af6a3702690cf2512fbc706cd5da98b8c80f113155cb626569",
+      "tokens": 2731,
+      "equal": true
+    },
+    {
+      "path": "Other/FluxTradeFoodWater.lua",
+      "beforeSha256": "35cee3006a3bb9a8671b4c503b770c41bf511a1ef445766dd3be80465b9da8cf",
+      "afterSha256": "db1cc1b737942ae38905d9663c453ef008f0538e9319a336c6de272657c179f0",
+      "tokens": 2720,
+      "equal": true
+    },
+    {
+      "path": "Other/FluxVehicleExitButton.lua",
+      "beforeSha256": "531291e84e4306f46332bb36788a95c3679484522609370621a7fdbe5c6a43e7",
+      "afterSha256": "deba1a4fadd3eabb8f2cda03f84b2f9748bc214c3e6c1c53bc794b2ce435b2a9",
+      "tokens": 1190,
+      "equal": true
+    },
+    {
+      "path": "Respec/FluxRespec_Talents.lua",
+      "beforeSha256": "6aa416f5eaca19a0fafbc1909d0dd6661703704da947c2dee3a1877443b702a2",
+      "afterSha256": "e8d64c22e3fbef0a97dd4a1ca70cb9768406760d47869770bab6615baefc4d6b",
+      "tokens": 7147,
+      "equal": true
+    },
+    {
+      "path": "Respec/FluxRespec_TalentsRetail.lua",
+      "beforeSha256": "0ee4a08c45a7ac04ecd3c7474f8797600540610c18adafb71741d306f485c2ea",
+      "afterSha256": "90709bdbfe2d215de88ccb82c264120734245920e6f21fbb0a0e2a9e57bf67b6",
+      "tokens": 5002,
+      "equal": true
+    },
+    {
+      "path": "Respec/FluxRespec_UI.lua",
+      "beforeSha256": "934227d88a0997a4255f8f02550e90a9a7e1abad48cbb4abb131278b614dbd41",
+      "afterSha256": "535bffd25b69b8637d3b4d09cd35b29ba06788a2c02b5901f3e387ad8756abe4",
+      "tokens": 21429,
+      "equal": true
+    },
+    {
+      "path": "StatusBars/FluxStatusBar.lua",
+      "beforeSha256": "9199393ed286f8761fb7580f164e22c8b0bba61025cd6d10084d560c6e639e94",
+      "afterSha256": "5357903ec1f56c8ddece792502d3ea00a0753405ea7169debf0f77001f8def2e",
+      "tokens": 15422,
+      "equal": true
+    },
+    {
+      "path": "UnitFrames/FluxCastBar.lua",
+      "beforeSha256": "514be37b54c50503c68896386dbb1b92e0be687717c3f63c38318f97c1e98d1f",
+      "afterSha256": "8d105f70652583b179603caa65424eca0a5c381abd51ba00c6ee759b0ea635c2",
+      "tokens": 16231,
+      "equal": true
+    },
+    {
+      "path": "UnitFrames/FluxPortraitCombatFeedback.lua",
+      "beforeSha256": "3f23a866f699f96970db301119cb02096f75c0e72c704cb5139c20cf939e2716",
+      "afterSha256": "3f9e255f90f02655947236d01b3539275b876c1f80c66fc06a0cc30cc14ad274",
+      "tokens": 904,
+      "equal": true
+    },
+    {
+      "path": "UnitFrames/FluxSwingTimer.lua",
+      "beforeSha256": "6e9f4e28a83f075318f21553f38be50af2e89caff073df3db3d1e5bda625c614",
+      "afterSha256": "81f7ddba75b0b1cc9496acbb4e6280b7fc8dc2fe2fcbc06033adabfe05fba035",
+      "tokens": 10707,
+      "equal": true
+    },
+    {
+      "path": "UnitFrames/FluxUnitFrames_Shared.lua",
+      "beforeSha256": "b9a8bd26280ec952441843f89a08c1cbc9a92d46f697b34e6b5be946e8c046e0",
+      "afterSha256": "5f498b448dbdc94fbaf91a9601bc2bb250630ec99b004d3a57d209db673e4865",
+      "tokens": 47356,
+      "equal": true
+    },
+    {
+      "path": "UnitFrames/FluxUnitFrames_TargetOfTarget.lua",
+      "beforeSha256": "26d9a765e1a69d1bf4acdd63dde6ca2f37ee930d5bf0e732b332a218daea5988",
+      "afterSha256": "a6be21eac99f265ec9edbcb288a5ecba6e450adaad7e3bfa2d01152e52309133",
+      "tokens": 1374,
+      "equal": true
+    }
+  ],
+  "result": "PASS: all changed Lua files retain identical executable tokens."
+}

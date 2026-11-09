@@ -1,0 +1,21 @@
+FAIL live vararg fallback finds hovered second child
+FAIL live vararg fallback finds hovered first child
+FAIL live focus API failure still finds hovered child
+METRIC hover branch=live cases=6 modern_control=pass vararg_fallback=fail
+FAIL forever vararg fallback finds hovered second child
+FAIL forever vararg fallback finds hovered first child
+FAIL forever focus API failure still finds hovered child
+METRIC hover branch=forever cases=6 modern_control=pass vararg_fallback=fail
+FAIL classic_era vararg fallback finds hovered second child
+FAIL classic_era vararg fallback finds hovered first child
+FAIL classic_era focus API failure still finds hovered child
+METRIC hover branch=classic_era cases=6 modern_control=pass vararg_fallback=fail
+FAIL classic_anniversary vararg fallback finds hovered second child
+FAIL classic_anniversary vararg fallback finds hovered first child
+FAIL classic_anniversary focus API failure still finds hovered child
+METRIC hover branch=classic_anniversary cases=6 modern_control=pass vararg_fallback=fail
+FAIL classic vararg fallback finds hovered second child
+FAIL classic vararg fallback finds hovered first child
+FAIL classic focus API failure still finds hovered child
+METRIC hover branch=classic cases=6 modern_control=pass vararg_fallback=fail
+SUMMARY checks=30 failures=15

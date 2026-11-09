@@ -1,0 +1,51 @@
+{
+  "checkedUTC": "2026-11-07T11:43:26.540114+00:00",
+  "originalFiles": 1778,
+  "existingFilesChanged": [
+    "docs/12-extra-button-system.md",
+    "docs/CLIENT_MATRIX.csv",
+    "docs/CLIENT_VALIDATION.md",
+    "docs/DECISIONS.md",
+    "docs/FEATURE_PARITY.csv",
+    "docs/PERFORMANCE_AUDIT.csv",
+    "docs/PERFORMANCE_RESULTS.csv",
+    "docs/reference/declarations.md",
+    "docs/reference/interfaces.md",
+    "docs/reference/inventory.json",
+    "docs/reference/verification.json",
+    "docs/STATUS.md",
+    "docs/UTILITY_MIXED_FACES.md",
+    "docs/validation/utility-conditional-macro-key-2026-11-07.json",
+    "docs/WORK_LOG.md",
+    "ExtraButtonSystem/Engine/Paint.lua",
+    "ExtraButtonSystem/NonCombatGrid/UtilitySlots/Manager.lua",
+    "NEXT_SESSION.md",
+    "tests/utility_mixed_faces.lua",
+    "tests/utility_secure_input.lua"
+  ],
+  "existingFilesMissing": [],
+  "runtimeOrTestSourceChanged": [
+    "ExtraButtonSystem/Engine/Paint.lua",
+    "ExtraButtonSystem/NonCombatGrid/UtilitySlots/Manager.lua",
+    "tests/utility_mixed_faces.lua",
+    "tests/utility_secure_input.lua"
+  ],
+  "runtimeOrTestSourceAddedOutsideStressFolder": [],
+  "newFilesOutsideStressFolder": [
+    "docs/validation/utility-conditional-macro-key-full-2026-11-07.json",
+    "docs/validation/utility-item-cooldown-2026-11-07.json",
+    "docs/validation/utility-item-cooldown-full-2026-11-07.json",
+    "docs/validation/utility-ranked-spells-2026-11-07.json",
+    "docs/validation/utility-ranked-spells-full-2026-11-07.json"
+  ],
+  "headBefore": "75cf2bcba83adfea0501934f4eeb2a980c46fdf8",
+  "headAfter": "75cf2bcba83adfea0501934f4eeb2a980c46fdf8",
+  "branchBefore": "main",
+  "branchAfter": "main",
+  "settingsFilesCompared": 45,
+  "settingsContentsChangedSinceBaseline": 8,
+  "privateSettingsNote": "Only private external metadata was read; no settings content copied to AddOns. A running client/user may independently save settings.",
+  "pass": false,
+  "runtimeAndTestSourceUnchanged": false,
+  "interpretation": "No audit tool wrote outside Stress test doc or the external checkpoint. Existing documentation/settings drift is reported separately, not reverted or attributed to this audit."
+}

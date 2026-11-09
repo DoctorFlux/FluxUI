@@ -1,0 +1,125 @@
+{
+  "copies": [
+    {
+      "client": "_retail_",
+      "path": "UnitFrames/FluxUnitFrames_Shared.lua",
+      "exists": true,
+      "match": true,
+      "sourceLF": "cf7ca23d31685de195d40c4e6bc20942c4f5a28963b51c080cf2cc8ddb1f4ec3",
+      "copyLF": "cf7ca23d31685de195d40c4e6bc20942c4f5a28963b51c080cf2cc8ddb1f4ec3"
+    },
+    {
+      "client": "_retail_",
+      "path": "UnitFrames/FluxUnitFrames_Focus.lua",
+      "exists": true,
+      "match": true,
+      "sourceLF": "8468017146219705e8500a88db42ce04cc49e73c7364f344b674a912567e2901",
+      "copyLF": "8468017146219705e8500a88db42ce04cc49e73c7364f344b674a912567e2901"
+    },
+    {
+      "client": "_retail_",
+      "path": "UnitFrames/FluxUnitFrames_FocusTarget.lua",
+      "exists": true,
+      "match": true,
+      "sourceLF": "89d8a8753f3369242e102a8fc2cf420d6fb557be733916e04ad284ff1ebf7031",
+      "copyLF": "89d8a8753f3369242e102a8fc2cf420d6fb557be733916e04ad284ff1ebf7031"
+    },
+    {
+      "client": "_forever_",
+      "path": "UnitFrames/FluxUnitFrames_Shared.lua",
+      "exists": true,
+      "match": true,
+      "sourceLF": "cf7ca23d31685de195d40c4e6bc20942c4f5a28963b51c080cf2cc8ddb1f4ec3",
+      "copyLF": "cf7ca23d31685de195d40c4e6bc20942c4f5a28963b51c080cf2cc8ddb1f4ec3"
+    },
+    {
+      "client": "_forever_",
+      "path": "UnitFrames/FluxUnitFrames_Focus.lua",
+      "exists": true,
+      "match": true,
+      "sourceLF": "8468017146219705e8500a88db42ce04cc49e73c7364f344b674a912567e2901",
+      "copyLF": "8468017146219705e8500a88db42ce04cc49e73c7364f344b674a912567e2901"
+    },
+    {
+      "client": "_forever_",
+      "path": "UnitFrames/FluxUnitFrames_FocusTarget.lua",
+      "exists": true,
+      "match": true,
+      "sourceLF": "89d8a8753f3369242e102a8fc2cf420d6fb557be733916e04ad284ff1ebf7031",
+      "copyLF": "89d8a8753f3369242e102a8fc2cf420d6fb557be733916e04ad284ff1ebf7031"
+    },
+    {
+      "client": "_classic_",
+      "path": "UnitFrames/FluxUnitFrames_Shared.lua",
+      "exists": true,
+      "match": true,
+      "sourceLF": "cf7ca23d31685de195d40c4e6bc20942c4f5a28963b51c080cf2cc8ddb1f4ec3",
+      "copyLF": "cf7ca23d31685de195d40c4e6bc20942c4f5a28963b51c080cf2cc8ddb1f4ec3"
+    },
+    {
+      "client": "_classic_",
+      "path": "UnitFrames/FluxUnitFrames_Focus.lua",
+      "exists": true,
+      "match": true,
+      "sourceLF": "8468017146219705e8500a88db42ce04cc49e73c7364f344b674a912567e2901",
+      "copyLF": "8468017146219705e8500a88db42ce04cc49e73c7364f344b674a912567e2901"
+    },
+    {
+      "client": "_classic_",
+      "path": "UnitFrames/FluxUnitFrames_FocusTarget.lua",
+      "exists": true,
+      "match": true,
+      "sourceLF": "89d8a8753f3369242e102a8fc2cf420d6fb557be733916e04ad284ff1ebf7031",
+      "copyLF": "89d8a8753f3369242e102a8fc2cf420d6fb557be733916e04ad284ff1ebf7031"
+    },
+    {
+      "client": "_classic_era_",
+      "path": "UnitFrames/FluxUnitFrames_Shared.lua",
+      "exists": true,
+      "match": true,
+      "sourceLF": "cf7ca23d31685de195d40c4e6bc20942c4f5a28963b51c080cf2cc8ddb1f4ec3",
+      "copyLF": "cf7ca23d31685de195d40c4e6bc20942c4f5a28963b51c080cf2cc8ddb1f4ec3"
+    },
+    {
+      "client": "_classic_era_",
+      "path": "UnitFrames/FluxUnitFrames_Focus.lua",
+      "exists": true,
+      "match": true,
+      "sourceLF": "8468017146219705e8500a88db42ce04cc49e73c7364f344b674a912567e2901",
+      "copyLF": "8468017146219705e8500a88db42ce04cc49e73c7364f344b674a912567e2901"
+    },
+    {
+      "client": "_classic_era_",
+      "path": "UnitFrames/FluxUnitFrames_FocusTarget.lua",
+      "exists": true,
+      "match": true,
+      "sourceLF": "89d8a8753f3369242e102a8fc2cf420d6fb557be733916e04ad284ff1ebf7031",
+      "copyLF": "89d8a8753f3369242e102a8fc2cf420d6fb557be733916e04ad284ff1ebf7031"
+    },
+    {
+      "client": "_anniversary_",
+      "path": "UnitFrames/FluxUnitFrames_Shared.lua",
+      "exists": true,
+      "match": true,
+      "sourceLF": "cf7ca23d31685de195d40c4e6bc20942c4f5a28963b51c080cf2cc8ddb1f4ec3",
+      "copyLF": "cf7ca23d31685de195d40c4e6bc20942c4f5a28963b51c080cf2cc8ddb1f4ec3"
+    },
+    {
+      "client": "_anniversary_",
+      "path": "UnitFrames/FluxUnitFrames_Focus.lua",
+      "exists": true,
+      "match": true,
+      "sourceLF": "8468017146219705e8500a88db42ce04cc49e73c7364f344b674a912567e2901",
+      "copyLF": "8468017146219705e8500a88db42ce04cc49e73c7364f344b674a912567e2901"
+    },
+    {
+      "client": "_anniversary_",
+      "path": "UnitFrames/FluxUnitFrames_FocusTarget.lua",
+      "exists": true,
+      "match": true,
+      "sourceLF": "89d8a8753f3369242e102a8fc2cf420d6fb557be733916e04ad284ff1ebf7031",
+      "copyLF": "89d8a8753f3369242e102a8fc2cf420d6fb557be733916e04ad284ff1ebf7031"
+    }
+  ],
+  "scope": "Read-only verification of user-managed continuous synchronization; no alternate addon created or files written in other client trees."
+}

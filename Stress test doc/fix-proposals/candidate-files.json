@@ -1,0 +1,83 @@
+[
+  {
+    "owner": "fades",
+    "source": "UnitFrames/FluxCastBar.lua",
+    "baselineSHA256": "03193b8406cf145398a983e0ac2478c97549c74d4bb7e9a86a466572c528f0a6",
+    "candidateSHA256": "02bf1b0acf018ab419ac9ca11ef51f33866d37145380817b9999f1726ec0be92",
+    "candidatePath": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\07\\01a1b5b8-1789-7050-b49c-88d0a742e874\\fix-proposals-20261107T122821Z\\candidates\\fades\\UnitFrames\\FluxCastBar.lua",
+    "liveStillMatchesBaseline": true,
+    "applied": false
+  },
+  {
+    "owner": "fades",
+    "source": "UnitFrames/FluxSwingTimer.lua",
+    "baselineSHA256": "517529257035f41cc06ffa46086fe2b23a5ac3c3c7f41bcd3f1ae617a05b4814",
+    "candidateSHA256": "d1de753065397599bed540a6d99d739f0419c9108ec681fe7b64e3f690a92289",
+    "candidatePath": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\07\\01a1b5b8-1789-7050-b49c-88d0a742e874\\fix-proposals-20261107T122821Z\\candidates\\fades\\UnitFrames\\FluxSwingTimer.lua",
+    "liveStillMatchesBaseline": true,
+    "applied": false
+  },
+  {
+    "owner": "alpha-readers",
+    "source": "Bars/BadgeHost.lua",
+    "baselineSHA256": "414f79c0c635503bc0491f77fd1fe4731f93c5e551c4c30b40ad834e882aa6bf",
+    "candidateSHA256": "c4fc487f45cda62e8a93932777f5478d08a9543658c456a5c6a67fb76bcf4616",
+    "candidatePath": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\07\\01a1b5b8-1789-7050-b49c-88d0a742e874\\fix-proposals-20261107T122821Z\\candidates\\alpha-readers\\Bars\\BadgeHost.lua",
+    "liveStillMatchesBaseline": true,
+    "applied": false
+  },
+  {
+    "owner": "alpha-readers",
+    "source": "Bars/Blizzard.lua",
+    "baselineSHA256": "afea5e7b59d545a6790f1b7520684a05290a5e961369a6d3c7a652f2fa9bbff6",
+    "candidateSHA256": "2d32f3636f773d0d824fad0bfda6f76d42fd6d788b1ff63121f7ee84b1b44e94",
+    "candidatePath": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\07\\01a1b5b8-1789-7050-b49c-88d0a742e874\\fix-proposals-20261107T122821Z\\candidates\\alpha-readers\\Bars\\Blizzard.lua",
+    "liveStillMatchesBaseline": true,
+    "applied": false
+  },
+  {
+    "owner": "alpha-readers",
+    "source": "Core/ButtonFX/Cast.lua",
+    "baselineSHA256": "77e189a80d832523145c464164db894155573388affa6dec8045f9966e50fbc1",
+    "candidateSHA256": "ea8f5cc521d734e2010ea807c7ac1abc002a8938e4dcf00d0dae8f05c75d819b",
+    "candidatePath": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\07\\01a1b5b8-1789-7050-b49c-88d0a742e874\\fix-proposals-20261107T122821Z\\candidates\\alpha-readers\\Core\\ButtonFX\\Cast.lua",
+    "liveStillMatchesBaseline": true,
+    "applied": false
+  },
+  {
+    "owner": "alpha-readers",
+    "source": "Core/ButtonFX/Charges.lua",
+    "baselineSHA256": "b8b89cbb8cae5b273d369ebefd4e826c5cc455d2245b26f917088f4096fc1cdd",
+    "candidateSHA256": "e72a658b8a63c2b4a8f6064cd574383af9256d2635dac1dfe84a2b9984ad4f85",
+    "candidatePath": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\07\\01a1b5b8-1789-7050-b49c-88d0a742e874\\fix-proposals-20261107T122821Z\\candidates\\alpha-readers\\Core\\ButtonFX\\Charges.lua",
+    "liveStillMatchesBaseline": true,
+    "applied": false
+  },
+  {
+    "owner": "alpha-readers",
+    "source": "ExtraButtonSystem/Engine/Button.lua",
+    "baselineSHA256": "dcba48373be3b5675c25aa3a5671f2364660137951bdf559b0524589f58667ca",
+    "candidateSHA256": "240f0d8136454dbd1a72647571b98372495cffcd2622e6dc835b38361ba5b796",
+    "candidatePath": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\07\\01a1b5b8-1789-7050-b49c-88d0a742e874\\fix-proposals-20261107T122821Z\\candidates\\alpha-readers\\ExtraButtonSystem\\Engine\\Button.lua",
+    "liveStillMatchesBaseline": true,
+    "applied": false
+  },
+  {
+    "owner": "alpha-readers",
+    "source": "libs/LibCustomGlow-1.0/LibCustomGlow-1.0.lua",
+    "baselineSHA256": "e5ed4d1f3b5ab4bda75772cda846562cde0b929c8a3f302e91e4c5c47db91bb6",
+    "candidateSHA256": "36cf701f99bb2ed2c0313605fd4b006eb3640fd53cfe8cd383bbe314b4a0b952",
+    "candidatePath": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\07\\01a1b5b8-1789-7050-b49c-88d0a742e874\\fix-proposals-20261107T122821Z\\candidates\\alpha-readers\\libs\\LibCustomGlow-1.0\\LibCustomGlow-1.0.lua",
+    "liveStillMatchesBaseline": true,
+    "applied": false
+  },
+  {
+    "owner": "geometry",
+    "source": "UnitFrames/FluxUnitFrames_Shared.lua",
+    "baselineSHA256": "79d1d123ee4c628b706b6c8e6f0a102ebe0a87084e0908501f95d493042cb20f",
+    "candidateSHA256": "4ccc5fe4059984cd130b34c37143f658efd64981aa37f7aabea29d8fa90540c8",
+    "candidatePath": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\07\\01a1b5b8-1789-7050-b49c-88d0a742e874\\fix-proposals-20261107T122821Z\\candidates\\geometry\\UnitFrames\\FluxUnitFrames_Shared.lua",
+    "liveStillMatchesBaseline": true,
+    "applied": false
+  }
+]

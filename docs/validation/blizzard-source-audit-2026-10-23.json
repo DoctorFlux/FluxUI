@@ -1,0 +1,340 @@
+{
+  "scope": "Focused primary-source review; source hashes do not establish native gameplay or taint safety.",
+  "files": [
+    {
+      "branch": "live",
+      "path": "Interface/AddOns/Blizzard_EditMode/Shared/EditModeManager.lua",
+      "localBlobSha": "bb1a73aef507c5f0aa4e05f6946a7008e992e42c",
+      "upstreamBlobSha": "bb1a73aef507c5f0aa4e05f6946a7008e992e42c",
+      "matchesUpstream": true
+    },
+    {
+      "branch": "live",
+      "path": "Interface/AddOns/Blizzard_EditMode/Mainline/EditModeManagerOverrides.lua",
+      "localBlobSha": "e4d0d35e60a4a198def3c2361eb25c3e37ce4343",
+      "upstreamBlobSha": "e4d0d35e60a4a198def3c2361eb25c3e37ce4343",
+      "matchesUpstream": true
+    },
+    {
+      "branch": "live",
+      "path": "Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/RestrictedFrames.lua",
+      "localBlobSha": "058dbd2cf0e547867865c0e117df0e11b5fe13ad",
+      "upstreamBlobSha": "058dbd2cf0e547867865c0e117df0e11b5fe13ad",
+      "matchesUpstream": true
+    },
+    {
+      "branch": "live",
+      "path": "Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureHandlerTemplates.xml",
+      "localBlobSha": "1bba76f06b5c737f21c8817b4ed5e81eface2b3c",
+      "upstreamBlobSha": "1bba76f06b5c737f21c8817b4ed5e81eface2b3c",
+      "matchesUpstream": true
+    },
+    {
+      "branch": "live",
+      "path": "Interface/AddOns/Blizzard_UnitFrame/Shared/CompactUnitFrame.lua",
+      "localBlobSha": "abe5717fdfbb676a9af1fdbc74c2ce0b00a8dd19",
+      "upstreamBlobSha": "bb88b9c96c5da24e4782f99948c9001dfae44271",
+      "matchesUpstream": false,
+      "normalizedContentMatchesUpstream": false
+    },
+    {
+      "branch": "live",
+      "path": "Interface/AddOns/Blizzard_UnitFrame/Shared/CompactPartyFrame.lua",
+      "localBlobSha": "b1f0980d022d9db6a913df39d8b45c0d94112532",
+      "upstreamBlobSha": "b1f0980d022d9db6a913df39d8b45c0d94112532",
+      "matchesUpstream": true
+    },
+    {
+      "branch": "live",
+      "path": "Interface/AddOns/Blizzard_UIPanels_Game/Shared/CastingBarFrame.lua",
+      "localBlobSha": "6648bf2520d05266952b71fe4cd5a13b68b6d9d9",
+      "upstreamBlobSha": "6648bf2520d05266952b71fe4cd5a13b68b6d9d9",
+      "matchesUpstream": true
+    },
+    {
+      "branch": "live",
+      "path": "Interface/AddOns/Blizzard_MainMenuBarBagButtons/Shared/MainMenuBarBagManager.lua",
+      "localBlobSha": "713ba389fa3dd69a2849c45d82d2b42ab2aa13d7",
+      "upstreamBlobSha": "713ba389fa3dd69a2849c45d82d2b42ab2aa13d7",
+      "matchesUpstream": true
+    },
+    {
+      "branch": "live",
+      "path": "Interface/AddOns/Blizzard_MicroMenu/Shared/MicroMenuContainer.lua",
+      "localBlobSha": "35c237c66a4c658393dbed94dd90cd931aa42e19",
+      "upstreamBlobSha": "35c237c66a4c658393dbed94dd90cd931aa42e19",
+      "matchesUpstream": true
+    },
+    {
+      "branch": "forever",
+      "path": "Interface/AddOns/Blizzard_EditMode/Shared/EditModeManager.lua",
+      "localBlobSha": "6f3c0ebea0574601ac301cf2728ead9628e16979",
+      "upstreamBlobSha": "6f3c0ebea0574601ac301cf2728ead9628e16979",
+      "matchesUpstream": true
+    },
+    {
+      "branch": "forever",
+      "path": "Interface/AddOns/Blizzard_EditMode/Mainline/EditModeManagerOverrides.lua",
+      "localBlobSha": "af4f4d73ef5c55f7e0c0f677232628d6f390942c",
+      "upstreamBlobSha": "af4f4d73ef5c55f7e0c0f677232628d6f390942c",
+      "matchesUpstream": true
+    },
+    {
+      "branch": "forever",
+      "path": "Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/RestrictedFrames.lua",
+      "localBlobSha": "058dbd2cf0e547867865c0e117df0e11b5fe13ad",
+      "upstreamBlobSha": "058dbd2cf0e547867865c0e117df0e11b5fe13ad",
+      "matchesUpstream": true
+    },
+    {
+      "branch": "forever",
+      "path": "Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureHandlerTemplates.xml",
+      "localBlobSha": "1bba76f06b5c737f21c8817b4ed5e81eface2b3c",
+      "upstreamBlobSha": "1bba76f06b5c737f21c8817b4ed5e81eface2b3c",
+      "matchesUpstream": true
+    },
+    {
+      "branch": "forever",
+      "path": "Interface/AddOns/Blizzard_UnitFrame/Shared/CompactUnitFrame.lua",
+      "localBlobSha": "bf81a55c61228133a80394b7f0547bf2758c364e",
+      "upstreamBlobSha": "bf81a55c61228133a80394b7f0547bf2758c364e",
+      "matchesUpstream": true
+    },
+    {
+      "branch": "forever",
+      "path": "Interface/AddOns/Blizzard_UnitFrame/Shared/CompactPartyFrame.lua",
+      "localBlobSha": "b9774c560235c5e30325076c10ed015b865bd44d",
+      "upstreamBlobSha": "b9774c560235c5e30325076c10ed015b865bd44d",
+      "matchesUpstream": true
+    },
+    {
+      "branch": "forever",
+      "path": "Interface/AddOns/Blizzard_UIPanels_Game/Shared/CastingBarFrame.lua",
+      "localBlobSha": "763660ff16fd063bf36c37ac87f7d2e93ab4a3a8",
+      "upstreamBlobSha": "763660ff16fd063bf36c37ac87f7d2e93ab4a3a8",
+      "matchesUpstream": true
+    },
+    {
+      "branch": "forever",
+      "path": "Interface/AddOns/Blizzard_MainMenuBarBagButtons/Shared/MainMenuBarBagManager.lua",
+      "localBlobSha": "e8a2b4a67f5f167df4315fad08f23dc12bbf0501",
+      "upstreamBlobSha": "e8a2b4a67f5f167df4315fad08f23dc12bbf0501",
+      "matchesUpstream": true
+    },
+    {
+      "branch": "forever",
+      "path": "Interface/AddOns/Blizzard_MicroMenu/Shared/MicroMenuContainer.lua",
+      "localBlobSha": "4e42e4e8c12e5c4fab1161f2e5cff397a1462cdd",
+      "upstreamBlobSha": "4e42e4e8c12e5c4fab1161f2e5cff397a1462cdd",
+      "matchesUpstream": true
+    },
+    {
+      "branch": "classic_era",
+      "path": "Interface/AddOns/Blizzard_EditMode/Shared/EditModeManager.lua",
+      "localBlobSha": "c15f6d4074355c379d209077b2e7e79fac0fba7e",
+      "upstreamBlobSha": "c15f6d4074355c379d209077b2e7e79fac0fba7e",
+      "matchesUpstream": true
+    },
+    {
+      "branch": "classic_era",
+      "path": "Interface/AddOns/Blizzard_EditMode/Mainline/EditModeManagerOverrides.lua",
+      "localBlobSha": "9defb14e50598df0d5994aa9af819e6511c657be",
+      "upstreamBlobSha": "9defb14e50598df0d5994aa9af819e6511c657be",
+      "matchesUpstream": true
+    },
+    {
+      "branch": "classic_era",
+      "path": "Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/RestrictedFrames.lua",
+      "localBlobSha": "e97497dca5d4ffe021764867a620724e1dd53255",
+      "upstreamBlobSha": "e97497dca5d4ffe021764867a620724e1dd53255",
+      "matchesUpstream": true
+    },
+    {
+      "branch": "classic_era",
+      "path": "Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureHandlerTemplates.xml",
+      "localBlobSha": "1bba76f06b5c737f21c8817b4ed5e81eface2b3c",
+      "upstreamBlobSha": "1bba76f06b5c737f21c8817b4ed5e81eface2b3c",
+      "matchesUpstream": true
+    },
+    {
+      "branch": "classic_era",
+      "path": "Interface/AddOns/Blizzard_UnitFrame/Shared/CompactUnitFrame.lua",
+      "localBlobSha": "64b6cc8714a4c728cd8f3e3c2f13ca20c18cce16",
+      "upstreamBlobSha": "64b6cc8714a4c728cd8f3e3c2f13ca20c18cce16",
+      "matchesUpstream": true
+    },
+    {
+      "branch": "classic_era",
+      "path": "Interface/AddOns/Blizzard_UnitFrame/Shared/CompactPartyFrame.lua",
+      "localBlobSha": "b1f0980d022d9db6a913df39d8b45c0d94112532",
+      "upstreamBlobSha": "b1f0980d022d9db6a913df39d8b45c0d94112532",
+      "matchesUpstream": true
+    },
+    {
+      "branch": "classic_era",
+      "path": "Interface/AddOns/Blizzard_UIPanels_Game/Shared/CastingBarFrame.lua",
+      "localBlobSha": "3b125d12414582877dc78dfe403c16ab95e1fe08",
+      "upstreamBlobSha": "3b125d12414582877dc78dfe403c16ab95e1fe08",
+      "matchesUpstream": true
+    },
+    {
+      "branch": "classic_era",
+      "path": "Interface/AddOns/Blizzard_MainMenuBarBagButtons/Shared/MainMenuBarBagManager.lua",
+      "localBlobSha": "713ba389fa3dd69a2849c45d82d2b42ab2aa13d7",
+      "upstreamBlobSha": "713ba389fa3dd69a2849c45d82d2b42ab2aa13d7",
+      "matchesUpstream": true
+    },
+    {
+      "branch": "classic_era",
+      "path": "Interface/AddOns/Blizzard_MicroMenu/Shared/MicroMenuContainer.lua",
+      "localBlobSha": "35c237c66a4c658393dbed94dd90cd931aa42e19",
+      "upstreamBlobSha": "35c237c66a4c658393dbed94dd90cd931aa42e19",
+      "matchesUpstream": true
+    },
+    {
+      "branch": "classic_anniversary",
+      "path": "Interface/AddOns/Blizzard_EditMode/Shared/EditModeManager.lua",
+      "localBlobSha": "c15f6d4074355c379d209077b2e7e79fac0fba7e",
+      "upstreamBlobSha": "ca645482af299d0d4bd4297c53ddc7f6f1bcef85",
+      "matchesUpstream": true,
+      "normalizedContentMatchesUpstream": true
+    },
+    {
+      "branch": "classic_anniversary",
+      "path": "Interface/AddOns/Blizzard_EditMode/Mainline/EditModeManagerOverrides.lua",
+      "localBlobSha": "9defb14e50598df0d5994aa9af819e6511c657be",
+      "upstreamBlobSha": "e1c0b0d38bf1a6013d52b2dada6063e567f1575d",
+      "matchesUpstream": true,
+      "normalizedContentMatchesUpstream": true
+    },
+    {
+      "branch": "classic_anniversary",
+      "path": "Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/RestrictedFrames.lua",
+      "localBlobSha": "e97497dca5d4ffe021764867a620724e1dd53255",
+      "upstreamBlobSha": "a18815f81949a866c37ceb14bbbd85e738748969",
+      "matchesUpstream": true,
+      "normalizedContentMatchesUpstream": true
+    },
+    {
+      "branch": "classic_anniversary",
+      "path": "Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureHandlerTemplates.xml",
+      "localBlobSha": "1bba76f06b5c737f21c8817b4ed5e81eface2b3c",
+      "upstreamBlobSha": "f275edf2500d7e77130eb465e86d130f28be79a7",
+      "matchesUpstream": true,
+      "normalizedContentMatchesUpstream": true
+    },
+    {
+      "branch": "classic_anniversary",
+      "path": "Interface/AddOns/Blizzard_UnitFrame/Shared/CompactUnitFrame.lua",
+      "localBlobSha": "64b6cc8714a4c728cd8f3e3c2f13ca20c18cce16",
+      "upstreamBlobSha": "5e32fb987b9b907125f6fb826ed81be9679f2236",
+      "matchesUpstream": true,
+      "normalizedContentMatchesUpstream": true
+    },
+    {
+      "branch": "classic_anniversary",
+      "path": "Interface/AddOns/Blizzard_UnitFrame/Shared/CompactPartyFrame.lua",
+      "localBlobSha": "b1f0980d022d9db6a913df39d8b45c0d94112532",
+      "upstreamBlobSha": "6be367d3707eb816b1d3d01b889b672c8952d7ee",
+      "matchesUpstream": true,
+      "normalizedContentMatchesUpstream": true
+    },
+    {
+      "branch": "classic_anniversary",
+      "path": "Interface/AddOns/Blizzard_UIPanels_Game/Shared/CastingBarFrame.lua",
+      "localBlobSha": "3b125d12414582877dc78dfe403c16ab95e1fe08",
+      "upstreamBlobSha": "4e283109eb28524109dbece41d4171fdd80898ee",
+      "matchesUpstream": true,
+      "normalizedContentMatchesUpstream": true
+    },
+    {
+      "branch": "classic_anniversary",
+      "path": "Interface/AddOns/Blizzard_MainMenuBarBagButtons/Shared/MainMenuBarBagManager.lua",
+      "localBlobSha": "713ba389fa3dd69a2849c45d82d2b42ab2aa13d7",
+      "upstreamBlobSha": "833411ab09e95e326927bda220d8230371c662c4",
+      "matchesUpstream": true,
+      "normalizedContentMatchesUpstream": true
+    },
+    {
+      "branch": "classic_anniversary",
+      "path": "Interface/AddOns/Blizzard_MicroMenu/Shared/MicroMenuContainer.lua",
+      "localBlobSha": "35c237c66a4c658393dbed94dd90cd931aa42e19",
+      "upstreamBlobSha": "aeab515ac2ebdf080f8fd7bdfcb08d7ed3c70323",
+      "matchesUpstream": true,
+      "normalizedContentMatchesUpstream": true
+    },
+    {
+      "branch": "classic",
+      "path": "Interface/AddOns/Blizzard_EditMode/Shared/EditModeManager.lua",
+      "localBlobSha": "c15f6d4074355c379d209077b2e7e79fac0fba7e",
+      "upstreamBlobSha": "c15f6d4074355c379d209077b2e7e79fac0fba7e",
+      "matchesUpstream": true
+    },
+    {
+      "branch": "classic",
+      "path": "Interface/AddOns/Blizzard_EditMode/Mainline/EditModeManagerOverrides.lua",
+      "localBlobSha": "9defb14e50598df0d5994aa9af819e6511c657be",
+      "upstreamBlobSha": "9defb14e50598df0d5994aa9af819e6511c657be",
+      "matchesUpstream": true
+    },
+    {
+      "branch": "classic",
+      "path": "Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/RestrictedFrames.lua",
+      "localBlobSha": "e97497dca5d4ffe021764867a620724e1dd53255",
+      "upstreamBlobSha": "e97497dca5d4ffe021764867a620724e1dd53255",
+      "matchesUpstream": true
+    },
+    {
+      "branch": "classic",
+      "path": "Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureHandlerTemplates.xml",
+      "localBlobSha": "1bba76f06b5c737f21c8817b4ed5e81eface2b3c",
+      "upstreamBlobSha": "1bba76f06b5c737f21c8817b4ed5e81eface2b3c",
+      "matchesUpstream": true
+    },
+    {
+      "branch": "classic",
+      "path": "Interface/AddOns/Blizzard_UnitFrame/Shared/CompactUnitFrame.lua",
+      "localBlobSha": "64b6cc8714a4c728cd8f3e3c2f13ca20c18cce16",
+      "upstreamBlobSha": "64b6cc8714a4c728cd8f3e3c2f13ca20c18cce16",
+      "matchesUpstream": true
+    },
+    {
+      "branch": "classic",
+      "path": "Interface/AddOns/Blizzard_UnitFrame/Shared/CompactPartyFrame.lua",
+      "localBlobSha": "b1f0980d022d9db6a913df39d8b45c0d94112532",
+      "upstreamBlobSha": "b1f0980d022d9db6a913df39d8b45c0d94112532",
+      "matchesUpstream": true
+    },
+    {
+      "branch": "classic",
+      "path": "Interface/AddOns/Blizzard_UIPanels_Game/Shared/CastingBarFrame.lua",
+      "localBlobSha": "3b125d12414582877dc78dfe403c16ab95e1fe08",
+      "upstreamBlobSha": "3b125d12414582877dc78dfe403c16ab95e1fe08",
+      "matchesUpstream": true
+    },
+    {
+      "branch": "classic",
+      "path": "Interface/AddOns/Blizzard_MainMenuBarBagButtons/Shared/MainMenuBarBagManager.lua",
+      "localBlobSha": "713ba389fa3dd69a2849c45d82d2b42ab2aa13d7",
+      "upstreamBlobSha": "713ba389fa3dd69a2849c45d82d2b42ab2aa13d7",
+      "matchesUpstream": true
+    },
+    {
+      "branch": "classic",
+      "path": "Interface/AddOns/Blizzard_MicroMenu/Shared/MicroMenuContainer.lua",
+      "localBlobSha": "35c237c66a4c658393dbed94dd90cd931aa42e19",
+      "upstreamBlobSha": "35c237c66a4c658393dbed94dd90cd931aa42e19",
+      "matchesUpstream": true
+    }
+  ],
+  "reviewDate": "2026-10-23",
+  "upstreamRepository": "https://github.com/Gethe/wow-ui-source",
+  "matches": 44,
+  "mismatches": [
+    {
+      "branch": "live",
+      "path": "Interface/AddOns/Blizzard_UnitFrame/Shared/CompactUnitFrame.lua"
+    }
+  ],
+  "normalization": "Compare source content after CRLF to LF normalization, preserving BOM. Raw upstream blob SHA is recorded separately; differing blob SHA may reflect upstream CRLF."
+}

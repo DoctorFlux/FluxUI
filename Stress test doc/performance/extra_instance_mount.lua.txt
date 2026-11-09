@@ -1,0 +1,111 @@
+-- Actual instance/geography decisions from complete unchanged MountFlyable.lua.
+-- Desktop API returns are synthetic, explicit scenarios, not client observations.
+local checks,cases,transitions=0,0,0
+local function check(ok,label)checks=checks+1;assert(ok,label)end
+local function boot(client,hasAPI)
+    local e=setmetatable({},{__index=_G});e._G=e
+    local s={now=100,kind="none",map=530,inside=false,outdoors=true,flyable=true,skill=true,cold=true,zone="Outland",uiMap=101,
+        instanceReads=0,mapReads=0,deadReads=0,swimReads=0,combatReads=0}
+    local flags={isEra=client=="era",isClassicEra=client=="era",isTBC=client=="anniversary",isAnniversary=client=="anniversary",
+        isRetail=client=="live"or client=="forever",isForever=client=="forever",majorVersion=client=="live"and 12 or client=="anniversary"and 2 or 1}
+    local flux={Client=flags,Cap={hasIsFlyableArea=hasAPI,hasFlyableMacro=client=="live"or client=="forever"},Inventory={}}
+    e.GetTime=function()return s.now end
+    e.GetInstanceInfo=function()s.instanceReads=s.instanceReads+1;return "SyntheticLocation",s.kind,nil,nil,nil,nil,nil,s.map end
+    e.IsInInstance=function()return s.inside,s.kind end
+    e.IsOutdoors=function()return s.outdoors end
+    if hasAPI then e.IsFlyableArea=function()return s.flyable end end
+    e.GetZoneText=function()return s.zone end
+    e.GetRealZoneText=e.GetZoneText
+    e.C_Map={GetBestMapForUnit=function(unit)check(unit=="player","map queried for player");return s.uiMap end,
+        GetMapInfo=function(id)s.mapReads=s.mapReads+1;return {parentMapID=id==31001 and 101 or 0}end}
+    e.IsPlayerSpell=function(id)return id==54197 and s.cold or (id==90265 or id==34091 or id==34090)and s.skill end
+    -- These real API names are counted to prove this helper does not own the
+    -- player's overall mountability. No expected mount execution is invented.
+    e.UnitIsDeadOrGhost=function()s.deadReads=s.deadReads+1;return s.dead end
+    e.IsSwimming=function()s.swimReads=s.swimReads+1;return s.swimming end
+    e.InCombatLockdown=function()s.combatReads=s.combatReads+1;return s.combat end
+    e.FluxItemClass={GetTooltipText=function(id)
+        if id==1 then return "Flying Mount. Requires Riding 225. Can only be summoned in Outland or Northrend."end
+        return "Summons and dismisses a swift ground mount."end}
+    assert(loadfile("Inventory/MountFlyable.lua","t",e))("_FluxUI",{Flux=flux})
+    s.api,s.env=flux.Inventory.Flyable,e;return s
+end
+local scenarios={
+    {name="outland_world",kind="none",map=530,inside=false,outdoors=true,flyable=true,skill=true,cold=true,zone="Outland",uiMap=101,restricted=false,outland=true,northrend=false,canAPI={era=false,anniversary=true,live=true,forever=true},canFallback={era=false,anniversary=true,live=true,forever=true}},
+    {name="indoor_outland",kind="none",map=530,inside=false,outdoors=false,flyable=true,skill=true,cold=true,zone="Outland",uiMap=101,restricted=false,outland=true,northrend=false,canAPI={era=false,anniversary=true,live=true,forever=true},canFallback={era=false,anniversary=false,live=false,forever=false}},
+    {name="native_nofly_outland",kind="none",map=530,inside=false,outdoors=true,flyable=false,skill=true,cold=true,zone="Outland",uiMap=101,restricted=false,outland=true,northrend=false,canAPI={era=false,anniversary=false,live=false,forever=false},canFallback={era=false,anniversary=true,live=true,forever=true}},
+    {name="no_riding_skill",kind="none",map=530,inside=false,outdoors=true,flyable=true,skill=false,cold=true,zone="Outland",uiMap=101,restricted=false,outland=true,northrend=false,canAPI={era=false,anniversary=false,live=false,forever=false},canFallback={era=false,anniversary=false,live=false,forever=false}},
+    {name="eastern_world",kind="none",map=0,inside=false,outdoors=true,flyable=true,skill=true,cold=true,zone="Eastern Kingdoms",uiMap=13,restricted=false,outland=false,northrend=false,canAPI={era=false,anniversary=false,live=true,forever=true},canFallback={era=false,anniversary=false,live=false,forever=false}},
+    {name="northrend_world",kind="none",map=571,inside=false,outdoors=true,flyable=true,skill=true,cold=true,zone="Northrend",uiMap=113,restricted=false,outland=false,northrend=true,canAPI={era=false,anniversary=false,live=true,forever=true},canFallback={era=false,anniversary=false,live=true,forever=true}},
+    {name="northrend_no_cold_weather",kind="none",map=571,inside=false,outdoors=true,flyable=true,skill=true,cold=false,zone="Northrend",uiMap=113,restricted=false,outland=false,northrend=true,canAPI={era=false,anniversary=false,live=true,forever=true},canFallback={era=false,anniversary=false,live=false,forever=false}},
+    {name="wintergrasp_nofly",kind="none",map=571,inside=false,outdoors=true,flyable=false,skill=true,cold=true,zone="Wintergrasp",uiMap=113,restricted=false,outland=false,northrend=true,canAPI={era=false,anniversary=false,live=false,forever=false},canFallback={era=false,anniversary=false,live=false,forever=false}},
+    {name="outland_map_parent_fallback",kind="none",map=0,inside=false,outdoors=true,flyable=true,skill=true,cold=true,zone="",uiMap=31001,restricted=false,outland=true,northrend=false,canAPI={era=false,anniversary=true,live=true,forever=true},canFallback={era=false,anniversary=true,live=true,forever=true}},
+    {name="unknown_instance_map_conservative",kind="none",map=9000,inside=false,outdoors=true,flyable=true,skill=true,cold=true,zone="Outland",uiMap=101,restricted=true,outland=false,northrend=false,canAPI={era=false,anniversary=false,live=false,forever=false},canFallback={era=false,anniversary=false,live=false,forever=false}},
+}
+for i,kind in ipairs({"party","raid","pvp","arena","scenario"})do
+    scenarios[#scenarios+1]={name=kind.."_restricted",kind=kind,map=9000+i,inside=true,outdoors=true,flyable=false,skill=true,cold=true,zone="Outland",uiMap=101,
+        restricted=true,outland=false,northrend=false,canAPI={era=false,anniversary=false,live=false,forever=false},canFallback={era=false,anniversary=false,live=false,forever=false}}
+end
+-- Independent source-of-truth probes for the instance type and IsInInstance
+-- branch: no novel map ID may short-circuit the branch being tested.
+scenarios[#scenarios+1]={name="raid_type_with_stale_world_id",kind="raid",map=0,inside=false,outdoors=true,flyable=false,skill=true,cold=true,zone="Outland",uiMap=101,
+    restricted=true,outland=false,northrend=false,canAPI={era=false,anniversary=false,live=false,forever=false},canFallback={era=false,anniversary=false,live=false,forever=false}}
+scenarios[#scenarios+1]={name="inside_flag_with_unknown_type",kind="none",map=0,inside=true,outdoors=true,flyable=false,skill=true,cold=true,zone="Outland",uiMap=101,
+    restricted=true,outland=false,northrend=false,canAPI={era=false,anniversary=false,live=false,forever=false},canFallback={era=false,anniversary=false,live=false,forever=false}}
+
+for _,client in ipairs({"era","anniversary","live","forever"})do
+    for _,hasAPI in ipairs({false,true})do
+        local s=boot(client,hasAPI);local api=s.api
+        for _,case in ipairs(scenarios)do
+            for _,key in ipairs({"kind","map","inside","outdoors","flyable","skill","cold","zone","uiMap"})do s[key]=case[key]end
+            local label=client.."/"..tostring(hasAPI).."/"..case.name
+            check(api.IsInMountRestrictedInstance()==case.restricted,label.." restriction")
+            check(api.IsOutlandContinent()==case.outland,label.." Outland")
+            check(api.IsNorthrendContinent()==case.northrend,label.." Northrend")
+            local expected=(hasAPI and case.canAPI or case.canFallback)[client]
+            check(api.CanPreferFlyingMountItem()==expected,label.." flying bag-item preference")
+            local journal=client=="live"or client=="forever"
+            local prefer=journal and hasAPI and case.flyable or expected
+            check(api.PreferFlying()==prefer,label.." icon/macro preference")
+            -- Dead/swim/combat state must not be misreported as overall mount
+            -- execution validation: this file has no such branch.
+            s.dead,s.swimming,s.combat=true,true,true
+            check(api.CanPreferFlyingMountItem()==expected,label.." geography remains same dead/swim/combat")
+            s.dead,s.swimming,s.combat=false,false,false
+            print(("RESULT|instance_%s_%s_%s|restricted=%s|outland=%s|northrend=%s|can_prefer_flying_item=%s|prefer_flying=%s")
+                :format(client,tostring(hasAPI),case.name,tostring(case.restricted),tostring(case.outland),tostring(case.northrend),tostring(expected),tostring(prefer)))
+            cases=cases+1
+        end
+        -- World <-> dungeon transitions read fresh native fixture state every
+        -- call. No preference/geography value is cached across transitions.
+        for i=1,10000 do
+            local world=i%2==1;s.kind=world and"none"or"party";s.map=world and 530 or 9001;s.inside=not world
+            s.flyable=world;s.zone="Outland";s.uiMap=101;s.outdoors=true;s.skill=true;s.cold=true
+            local expected=world and client~="era"
+            check(api.CanPreferFlyingMountItem()==expected,"rapid transition has no stale flying item preference")
+            transitions=transitions+1
+        end
+        -- Stable-settle protocol exercises real key, deadline, and stable polls.
+        s.kind,s.map,s.inside,s.flyable="none",530,false,true
+        api.BeginMountItemLocationSettle(2.5)
+        check(api.IsMountItemLocationSettling(),"settle starts")
+        local key,changed,done=api.UpdateMountItemLocationSettle()
+        check(changed and not done,"first location sample unsettled")
+        if not hasAPI then check(not api.CanPreferFlyingMountItem(),"fallback conservatively waits while settling")end
+        s.now=s.now+.1;local key2,changed2,done2=api.UpdateMountItemLocationSettle()
+        check(key2==key and not changed2 and not done2,"first stable poll before minimum")
+        s.now=s.now+.2;local key3,changed3,done3=api.UpdateMountItemLocationSettle()
+        check(key3==key and not changed3 and done3 and not api.IsMountItemLocationSettling(),"two stable polls and minimum time finish settle")
+        check(api.CanPreferFlyingMountItem()==(client~="era"),"settled world restores preference")
+        s.kind,s.map,s.inside,s.flyable="raid",9002,true,false
+        api.BeginMountItemLocationSettle(2.5)
+        local changedKey=api.GetMountItemLocationKey();check(changedKey~=key,"raid transition changes location key")
+        local _,changed4,done4=api.UpdateMountItemLocationSettle(changedKey)
+        check(changed4 and not done4 and not api.CanPreferFlyingMountItem(),"raid replaces settle and prevents stale flying preference")
+        s.now=s.now+3;check(not api.IsMountItemLocationSettling(),"settle has bounded deadline")
+        check(s.deadReads==0 and s.swimReads==0 and s.combatReads==0,"this helper does not query mount execution restrictions")
+        print(("RESULT|transitions_%s_%s|transitions=10000|instance_reads=%d|map_parent_reads=%d|dead_api_reads=%d|swim_api_reads=%d|combat_api_reads=%d|settle_protocol=PASS")
+            :format(client,tostring(hasAPI),s.instanceReads,s.mapReads,s.deadReads,s.swimReads,s.combatReads))
+    end
+end
+print(("RESULT|SUMMARY|checks=%d|failed=0|instance_scenarios=%d|rapid_transitions=%d"):format(checks,cases,transitions))

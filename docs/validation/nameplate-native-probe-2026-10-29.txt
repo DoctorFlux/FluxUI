@@ -1,0 +1,57 @@
+-- Temporary local diagnostic, executed inside the existing addon environment.
+-- Native widgets stay under a hidden root; no Blizzard API or field is replaced.
+-- BASELINE_SOURCE and CANDIDATE_SOURCE are the exact recorded file strings.
+local A={profile=GetCVar("scriptProfile"),build={GetBuildInfo()},project=WOW_PROJECT_ID,
+ samples={},checks={},originalDB=FluxPerfCaptureDB,started=GetTime()}
+_FNP=A
+local root=CreateFrame("Frame",nil,UIParent);root:Hide();root:SetSize(28,18)
+local aura=CreateFrame("Frame",nil,root);aura:SetSize(28,18);aura:Show()
+local cd=CreateFrame("Cooldown",nil,aura,"CooldownFrameTemplate");cd:SetAllPoints(aura)
+cd:SetCooldown(GetTime()-1,30);cd:Show();aura.Cooldown=cd
+local own=cd:CreateFontString(nil,"OVERLAY","GameFontNormal");own:SetText("28")
+local items={[aura]=true};local uf={AurasFrame={auraItemFramePool={EnumerateActive=function()return next,items,nil end}}}
+local native=Flux.NamePlates
+local function boot(source)
+ local module;local hosts={}
+ local facade=setmetatable({RegisterModule=function(_,m)module=m;return m end,
+ GetParts=function()return uf,root end,activeUnits={fixture=true},
+ CreateHost=function(w,h)local host=native.CreateHost(w,h);hosts[#hosts+1]=host;return host end},{__index=native})
+ assert(loadstring(source))("_FluxUI",{Flux={NamePlates=facade}})
+ return module,hosts
+end
+local before,bh=boot(BASELINE_SOURCE)
+local after,ah=boot(CANDIDATE_SOURCE)
+for i=1,20 do before.Poll();after.Poll()end
+local function geometry(h)
+ local p,r,rp,x,y=h:GetPoint();local font,size,flags=h.text:GetFont()
+ return {point=p,relativeCooldown=r==cd,relativePoint=rp,x=x,y=y,level=h:GetFrameLevel(),
+ width=h:GetWidth(),height=h:GetHeight(),font=font,size=size,flags=flags,parentRoot=h:GetParent()==root,
+ shown=h:IsShown(),visible=h:IsVisible()}
+end
+A.beforeGeometry=geometry(bh[1]);A.afterGeometry=geometry(ah[1])
+local function visibleDigits()
+ local fs=cd.GetCountdownFontString and cd:GetCountdownFontString()
+ if not fs then for _,r in ipairs({cd:GetRegions()})do if r:GetObjectType()=="FontString"then fs=r;break end end end
+ return fs
+end
+local function exercise(module,hosts)
+ local fs=visibleDigits();module.Poll();local _,_,_,alpha=fs:GetTextColor()
+ local result={nativeAlpha=alpha,hosts=#hosts}
+ aura:Hide();module.Poll();result.hidden=not hosts[1]:IsShown()
+ aura:Show();module.Poll();result.reused=#hosts==1 and hosts[1]:IsShown()
+ result.after=geometry(hosts[1]);return result
+end
+A.checks.before=exercise(before,bh);A.checks.after=exercise(after,ah)
+local function run(module)
+ local started=debugprofilestop()
+ for i=1,2000 do module.Poll()end
+ return debugprofilestop()-started
+end
+for i=1,5 do
+ local b,c
+ if i%2==1 then b=run(before);c=run(after)else c=run(after);b=run(before)end
+ A.samples[i]={beforeMs=b,afterMs=c,iterations=2000,order=i%2==1 and "before-after"or"after-before"}
+end
+A.finalBeforeHosts=#bh;A.finalAfterHosts=#ah;A.finished=GetTime()
+root:Hide();A.complete=true
+print("FNP matched widget checks complete",#A.samples)

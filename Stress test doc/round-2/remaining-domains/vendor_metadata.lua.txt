@@ -1,0 +1,50 @@
+-- Actual query/retry owners and tab entrypoints. Metadata remains unavailable
+-- for five timer turns, then arrives. No real item requests/timers are issued.
+local function read(path)local f=assert(io.open(path,"rb"));local v=f:read("*a"):gsub("\r\n","\n");f:close();return v end
+local function cut(s,a,b)local p=assert(s:find(a,1,true),a);return s:sub(p,assert(s:find(b,p+#a,true),b)-1)end
+local checks=0;local function check(v,why)checks=checks+1;assert(v,why)end
+local function boot(kind)
+    local s={queue={},shown=true,loaded=false,reads=0,requests=0,refreshes=0,maxPending=0}
+    local e=setmetatable({},{__index=_G});e._G=e
+    e.C_Item={GetItemInfo=function()s.reads=s.reads+1;return s.loaded and"Resolved item"or nil end,
+        IsItemDataCachedByID=function()return s.loaded end,RequestLoadItemDataByID=function()s.requests=s.requests+1 end}
+    e.C_Timer={After=function(_,callback)s.queue[#s.queue+1]=callback;s.maxPending=math.max(s.maxPending,#s.queue)end}
+    local panel={RefreshList=function()s.refreshes=s.refreshes+1 end,InvalidateListCache=function()end}
+    local frame={IsShown=function()return s.shown end}
+    local source,code
+    if kind=="junk"then
+        source=read("Inventory/Restock/Junk/FluxVendorJunkPanel.lua")
+        e.fixtureFJ={GetUsefulList=function()return{12345}end,GetJunkTabList=function()return{12345}end}
+        code="local Panel,panelFrame=...;local FJ=fixtureFJ;local selectedSubTab=2;local QueryItems\n"
+            ..cut(source,"local function GetItemInfoCompat(id)","local function GetAllListedIds()")
+            ..cut(source,"function Panel:SetSubTab(tabIndex, keepSelection)","local function ScrollListToItem(itemID)")
+            .."\nreturn function(i)Panel:SetSubTab(i)end"
+    else
+        source=read("Inventory/Restock/Vendor/FluxVendorRestockPanel.lua")
+        code="local Panel,panelFrame=...;local QueryItems;local FV;local UpdateScrollChildWidth=function()end;local GetRestockList=function()return{{itemID=12345}}end\n"
+            ..cut(source,"local function GetItemInfoCompat(id)","local function GetItemIdFromCursor()")
+            ..cut(source,"QueryItems = function()","local function OnItemDrop()")
+            .."\nreturn function()Panel:OnTabSelected()end"
+    end
+    local selectTab=assert(load(code,"@production-vendor-"..kind.."-queries","t",e))(panel,frame)
+    function s.turn()local queue=s.queue;s.queue={};for _,callback in ipairs(queue)do callback()end end
+    s.selectTab=selectTab;return s
+end
+for _,kind in ipairs({"junk","restock"})do
+    for _,burst in ipairs({1,50,250})do
+        local s=boot(kind)
+        for i=1,burst do s.selectTab(i%2+1)end
+        if kind=="restock"then s.turn()end -- Existing zero-delay tab refresh.
+        check(#s.queue==burst,"each entrypoint starts a separate retry chain")
+        for i=1,5 do s.turn()end
+        check(s.refreshes==burst*6 and s.requests==burst*6,"R2-DOM-05: duplicate retry chains multiply list refresh and metadata requests")
+        check(#s.queue==burst,"unavailable metadata retains all independent chains")
+        s.loaded=true;s.turn()
+        check(#s.queue==0,"loaded metadata ends every chain")
+        print("OBSERVATION|R2-DOM-05|"..kind.."|tab_entries="..burst.."|six_pass_refreshes="..(burst*6).."|six_pass_requests="..(burst*6).."|max_pending_callbacks="..s.maxPending.."|loaded_recovery=PASS")
+        local hidden=boot(kind);hidden.selectTab(1);if kind=="restock"then hidden.turn()end
+        local before=hidden.requests;hidden.shown=false;hidden.turn()
+        check(hidden.requests==before and #hidden.queue==0,"hidden-panel control stops the retry chain without requests")
+    end
+end
+print("CHECKS|"..checks)

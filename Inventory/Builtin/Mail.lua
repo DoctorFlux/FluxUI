@@ -1,0 +1,366 @@
+-- Inventory/Builtin/Mail.lua — inbox while mailbox is open; outgoing to known alts.
+-- MAIL_INBOX_UPDATE is spammy (open, take, take-all). Scan once after it settles,
+-- skip empty mails, and never call GetInboxItemLink on the hot path.
+local addonName, ns = ...
+local Flux = ns.Flux
+local Inv = Flux.Inventory
+local Builtin = Inv.Builtin
+local Store = Inv.Store
+
+local Mail = {}
+Builtin.Mail = Mail
+
+local started = false
+local mailboxOpen = false
+local pendingOutgoing
+local pendingFrame
+local lastByIndex, lastCount
+local hasCompleted = false
+local scanFrame
+local scan, scanAt, firstQueued
+local retryCount = 0
+local QUIET_TIME, MAX_WAIT = 0.15, 0.6
+local MAX_CALLS_PER_FRAME, BUDGET_MS = 48, 1
+
+local MAIL_EXPIRY = 30 * 24 * 60 * 60
+local MAX_SEND = tonumber(_G.ATTACHMENTS_MAX_SEND) or 12
+
+local function MaxReceiveSlots()
+	local receive = tonumber(_G.ATTACHMENTS_MAX_RECEIVE)
+	local attach = tonumber(_G.ATTACHMENTS_MAX)
+	local n = 12
+	if receive and receive > n then
+		n = receive
+	end
+	if attach and attach > n then
+		n = attach
+	end
+	return n
+end
+
+local function NumericID(value)
+	local n = tonumber(value)
+	if n and n > 0 then
+		return n
+	end
+	if Flux.Secrets and Flux.Secrets.SafeGetNumber then
+		n = Flux.Secrets.SafeGetNumber(value, 0)
+		if n and n > 0 then
+			return n
+		end
+	end
+	return nil
+end
+
+local function MailHasAttachments(hasItem)
+	if hasItem == true then
+		return true
+	end
+	local n = tonumber(hasItem)
+	return n and n > 0
+end
+
+local function DiscardProviderScan()
+	scan, scanAt, firstQueued = nil, nil, nil
+	lastByIndex, lastCount, hasCompleted = nil, nil, false
+	retryCount = 0
+	if scanFrame then scanFrame:SetScript("OnUpdate", nil) end
+end
+
+local function IsCurrentScan(job)
+	if scan ~= job then return false end
+	if Store.UsesSyndicator() then
+		DiscardProviderScan()
+		return false
+	end
+	return true
+end
+
+local function ApplyList(job)
+	local char = Store.EnsureCurrentCharacter()
+	if not IsCurrentScan(job) then return false end
+	local snap = Inv.snapshots.mail
+	if snap then
+		-- No consumer caches the inner mail map. Publish completed maps together;
+		-- normalized rows/counts have already been prepared within the scan budget.
+		snap.byIndex, snap.counts = job.byIndex, job.counts
+		snap.generation = (snap.generation or 0) + 1
+	end
+	if char then
+		char.mail = job.list
+		Store.MarkPending(Store.GetCurrentCharacterName(), "all")
+	end
+	lastByIndex, lastCount, hasCompleted = job.byIndex, #job.list, true
+	return true
+end
+
+-- GetInboxItem only. GetInboxItemLink hitchs the client on a full inbox.
+local function CaptureAttachment(into, mailIndex, attachIndex, expiration, job)
+	if not GetInboxItem then
+		return
+	end
+	local _, itemID, texture, count, quality = GetInboxItem(mailIndex, attachIndex)
+	if job and not IsCurrentScan(job) then return nil, true end
+	itemID = NumericID(itemID)
+	if not itemID then
+		return
+	end
+	-- ID and quantity are sufficient for storage. Asking for item data here
+	-- caused auction mail to continually reload metadata and rescan the inbox.
+	into[#into + 1] = {
+		itemID = itemID,
+		itemCount = tonumber(count) or 1,
+		iconTexture = texture,
+		quality = quality,
+		expirationTime = expiration,
+	}
+	return into[#into]
+end
+
+function Mail.IsOpen()
+	return mailboxOpen and true or false
+end
+
+local function Now()
+	return (GetTime and GetTime()) or 0
+end
+
+local ArmInboxScan
+local function StepScan(self)
+	-- Readiness can transfer ownership while this scan waits or spans frames.
+	if Store.UsesSyndicator() then
+		DiscardProviderScan()
+		return
+	end
+	if Now() < scanAt then return end
+	if not scan then
+		scan = { list = {}, byIndex = {}, counts = {}, previous = lastByIndex,
+			changed = not hasCompleted, index = 1,
+			maxAttach = MaxReceiveSlots(), now = (time and time()) or 0 }
+		firstQueued = nil
+		local job = scan
+		local n = GetInboxNumItems()
+		if not IsCurrentScan(job) then return end
+		job.n = n or 0
+	end
+	local job = scan
+	local calls, startedAt = 0, debugprofilestop and debugprofilestop()
+	while job.index <= job.n and calls < MAX_CALLS_PER_FRAME do
+		if not job.attach then
+			local daysLeft, hasItem
+			if GetInboxHeaderInfo then
+				local _, _, _, _, _, _, days, has = GetInboxHeaderInfo(job.index)
+				if not IsCurrentScan(job) then return end
+				daysLeft, hasItem = days, has
+			end
+			calls = calls + 1
+			if MailHasAttachments(hasItem) then
+				job.expiration = job.now + math.floor((tonumber(daysLeft) or 0) * 86400)
+				job.attach, job.captured = 1, 0
+				job.expected = tonumber(hasItem) or 1
+			else
+				job.index = job.index + 1
+			end
+		else
+			local rec, interrupted = CaptureAttachment(job.list, job.index, job.attach, job.expiration, job)
+			if interrupted then return end
+			if rec then
+				job.captured = job.captured + 1
+				local index = #job.list
+				local old = job.previous and job.previous[index]
+				local matches = old and old.itemID == rec.itemID and old.count == rec.itemCount
+				if not matches then job.changed = true end
+				local row = old
+				if not matches or old.link ~= nil then
+					row = { itemID = rec.itemID, count = rec.itemCount }
+				end
+				job.byIndex[index] = row
+				job.counts[rec.itemID] = (job.counts[rec.itemID] or 0) + rec.itemCount
+			end
+			calls = calls + 1
+			job.attach = job.attach + 1
+			if job.attach > job.maxAttach then
+				if job.captured < math.min(job.expected, job.maxAttach) then job.incomplete = true end
+				job.index, job.attach = job.index + 1, nil
+			end
+		end
+		if startedAt and debugprofilestop() - startedAt >= BUDGET_MS then break end
+	end
+	if job.index <= job.n then return end
+	self:SetScript("OnUpdate", nil)
+	-- Never publish a partial inbox or recurse through Scheduler -> Refresh.
+	-- Truly missing IDs get at most two retries, not an expanding timer tree.
+	if job.incomplete then
+		scan = nil
+		if mailboxOpen and retryCount < 2 then
+			retryCount = retryCount + 1
+			ArmInboxScan(nil, true)
+			scanAt = Now() + 0.5
+		end
+		return
+	end
+	local changed = job.changed or #job.list ~= lastCount
+	if changed and not ApplyList(job) then return end
+	scan = nil
+	if changed then Inv.Notify({ mail = true }) end
+end
+
+ArmInboxScan = function(force, retry)
+	if Store.UsesSyndicator() then DiscardProviderScan(); return end
+	if not GetInboxNumItems or (not mailboxOpen and not force) then return end
+	local now = Now()
+	firstQueued = firstQueued or now
+	scanAt = math.min(now + QUIET_TIME, firstQueued + MAX_WAIT)
+	-- An inbox event can shift every mail index. Discard an interrupted scan;
+	-- only a complete view from one event generation may become the snapshot.
+	scan = nil
+	if not retry then retryCount = 0 end
+	scanFrame = scanFrame or CreateFrame("Frame")
+	scanFrame:SetScript("OnUpdate", StepScan)
+end
+
+--- Queue a bounded scan; publication notifies listeners after the snapshot lands.
+function Mail.Refresh(opts)
+	ArmInboxScan(type(opts) == "table" and opts.force)
+	return false
+end
+
+local function PersistThenClose()
+	if not mailboxOpen then
+		return
+	end
+	-- Finish the last take, even if close arrives before the pending scan starts.
+	ArmInboxScan(true)
+	mailboxOpen = false
+end
+
+local function CaptureSendAttachments()
+	local items = {}
+	if not GetSendMailItem then
+		return items
+	end
+	local expiration = (time and time() or 0) + MAIL_EXPIRY
+	for index = 1, MAX_SEND do
+		local _, itemID, icon, count, quality = GetSendMailItem(index)
+		itemID = NumericID(itemID)
+		if itemID then
+			items[#items + 1] = {
+				itemID = itemID,
+				iconTexture = icon,
+				itemCount = tonumber(count) or 1,
+				quality = quality,
+				expirationTime = expiration,
+			}
+		end
+	end
+	return items
+end
+
+local function EnsurePendingFrame()
+	if pendingFrame then
+		return pendingFrame
+	end
+	pendingFrame = CreateFrame("Frame")
+	pendingFrame:SetScript("OnEvent", function(_, event)
+		-- Completion can arrive after Ready makes Store return provider-owned data.
+		if event == "MAIL_FAILED" or Store.UsesSyndicator() then
+			pendingOutgoing = nil
+			pendingFrame:UnregisterEvent("MAIL_SEND_SUCCESS")
+			pendingFrame:UnregisterEvent("MAIL_FAILED")
+			pendingFrame:UnregisterEvent("MAIL_SUCCESS")
+			return
+		end
+		if (event == "MAIL_SEND_SUCCESS" or event == "MAIL_SUCCESS") and pendingOutgoing then
+			local dest = Store.GetCharacter(pendingOutgoing.recipient)
+			if dest then
+				dest.mail = dest.mail or {}
+				for i = 1, #pendingOutgoing.items do
+					dest.mail[#dest.mail + 1] = pendingOutgoing.items[i]
+				end
+				Store.MarkPending(pendingOutgoing.recipient, "all")
+			end
+			pendingOutgoing = nil
+			pendingFrame:UnregisterEvent("MAIL_SEND_SUCCESS")
+			pendingFrame:UnregisterEvent("MAIL_FAILED")
+			pendingFrame:UnregisterEvent("MAIL_SUCCESS")
+		end
+	end)
+	return pendingFrame
+end
+
+function Mail.Start()
+	if started or Store.UsesSyndicator() then
+		return
+	end
+	started = true
+	if Flux.Events and Flux.Events.Register then
+		Flux.Events.Register("MAIL_SHOW", function()
+			mailboxOpen = true
+			ArmInboxScan()
+		end)
+		Flux.Events.Register("MAIL_INBOX_UPDATE", function()
+			ArmInboxScan()
+		end)
+		Flux.Events.Register("MAIL_CLOSED", PersistThenClose)
+		Flux.Events.Register("PLAYER_INTERACTION_MANAGER_FRAME_SHOW", function(_, kind)
+			local e = Enum and Enum.PlayerInteractionType
+			if e and kind == e.MailInfo then
+				mailboxOpen = true
+				ArmInboxScan()
+			end
+		end)
+		Flux.Events.Register("PLAYER_INTERACTION_MANAGER_FRAME_HIDE", function(_, kind)
+			local e = Enum and Enum.PlayerInteractionType
+			if e and kind == e.MailInfo then
+				PersistThenClose()
+			end
+		end)
+	end
+
+	if hooksecurefunc and SendMail then
+		hooksecurefunc("SendMail", function(recipient)
+			if Store.UsesSyndicator() then
+				return
+			end
+			local full = Store.NormalizeRecipient(recipient)
+			if not full or not Store.HasCharacter(full) then
+				return
+			end
+			local items = CaptureSendAttachments()
+			if #items == 0 then
+				return
+			end
+			pendingOutgoing = { recipient = full, items = items }
+			local f = EnsurePendingFrame()
+			f:RegisterEvent("MAIL_SEND_SUCCESS")
+			f:RegisterEvent("MAIL_FAILED")
+		end)
+	end
+	if hooksecurefunc and ReturnInboxItem then
+		hooksecurefunc("ReturnInboxItem", function(mailIndex)
+			if Store.UsesSyndicator() or not GetInboxHeaderInfo then
+				return
+			end
+			local _, _, recipient, _, _, _, daysLeft, hasItem = GetInboxHeaderInfo(mailIndex)
+			local full = Store.NormalizeRecipient(recipient)
+			if not full or not Store.HasCharacter(full) then
+				return
+			end
+			local items = {}
+			if MailHasAttachments(hasItem) then
+				local expiration = (time and time() or 0) + math.floor((tonumber(daysLeft) or 30) * 24 * 60 * 60)
+				local maxAttach = MaxReceiveSlots()
+				for attachIndex = 1, maxAttach do
+					CaptureAttachment(items, mailIndex, attachIndex, expiration)
+				end
+			end
+			if #items == 0 then
+				return
+			end
+			pendingOutgoing = { recipient = full, items = items }
+			local f = EnsurePendingFrame()
+			f:RegisterEvent("MAIL_SUCCESS")
+			f:RegisterEvent("MAIL_FAILED")
+		end)
+	end
+end

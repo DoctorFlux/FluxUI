@@ -1,0 +1,856 @@
+{
+  "capturedUTC": "2026-11-07T19:14:04.398311+00:00",
+  "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\07\\01a1b5b8-1789-7050-b49c-88d0a742e874\\roadmap-fixes-20261107T184559Z",
+  "head": "1fd463f4de4bbff659f4e402c6f31138c49765b4",
+  "branch": "main",
+  "scope": "Actual production owners in desktop Lua fixtures. No native secure VM, secret-value reachability, pixel parity, taint safety, CPU or FPS certification.",
+  "ownedRuntimeFiles": [
+    "MicroMenu/FluxMinimapToMicro.lua",
+    "Salvage/FluxSalvage_Overlay.lua",
+    "UnitFrames/FluxUnitFrames_Shared.lua",
+    "Core/ButtonFX/ThreatGlow.lua",
+    "Inventory/Restock/Junk/FluxVendorJunkPanel.lua",
+    "Inventory/Restock/Vendor/FluxVendorRestockPanel.lua",
+    "StatusBars/FluxStatusBar.lua",
+    "StatusBars/FluxInfoFrame.lua",
+    "Battlezonemap/FluxDetails.lua",
+    "Other/FluxEquipSlotFlyout.lua"
+  ],
+  "sourceBefore": {
+    "Battlezonemap/FluxDetails.lua": {
+      "sha256": "6c1f1db3b470f70e34a3c72ab42b0b2b707b431c806a860a9fe8a360aea809fc",
+      "sha256LF": "6c1f1db3b470f70e34a3c72ab42b0b2b707b431c806a860a9fe8a360aea809fc"
+    },
+    "Core/ButtonFX/ThreatGlow.lua": {
+      "sha256": "a4eee7a9b4b397ebc6a2b8555110f619fac3fd86e9a264b3525f751cac0d00e2",
+      "sha256LF": "a4eee7a9b4b397ebc6a2b8555110f619fac3fd86e9a264b3525f751cac0d00e2"
+    },
+    "Inventory/Restock/Junk/FluxVendorJunkPanel.lua": {
+      "sha256": "ebf169466a60cc0ea80264aa212633b4df69a39a51537f4e8109c5cf3934bb4d",
+      "sha256LF": "ebf169466a60cc0ea80264aa212633b4df69a39a51537f4e8109c5cf3934bb4d"
+    },
+    "Inventory/Restock/Vendor/FluxVendorRestockPanel.lua": {
+      "sha256": "4cef9c67da2b5b16d93aeea00e54bca5b28efaebe7b5040178ef205e8b266b0e",
+      "sha256LF": "4cef9c67da2b5b16d93aeea00e54bca5b28efaebe7b5040178ef205e8b266b0e"
+    },
+    "MicroMenu/FluxMicroMenu.lua": {
+      "sha256": "381ed6a313093defa4addd4ffa90ba7d0622c325a7b1ae24be7129c8fecc2d3a",
+      "sha256LF": "381ed6a313093defa4addd4ffa90ba7d0622c325a7b1ae24be7129c8fecc2d3a"
+    },
+    "MicroMenu/FluxMinimapToMicro.lua": {
+      "sha256": "ef02d02ec1cb3a038de1a5390fb3ac2d7297a8548355965947f923b451e3ef6a",
+      "sha256LF": "ef02d02ec1cb3a038de1a5390fb3ac2d7297a8548355965947f923b451e3ef6a"
+    },
+    "Other/FluxEquipSlotFlyout.lua": {
+      "sha256": "5ce088c1eda8b391e89b08bbaf7d4d2cf53f36c3a4b6f701b3eee8894487fb5b",
+      "sha256LF": "5ce088c1eda8b391e89b08bbaf7d4d2cf53f36c3a4b6f701b3eee8894487fb5b"
+    },
+    "Salvage/FluxSalvage_Overlay.lua": {
+      "sha256": "467978adfa81aecfb6e14e5f1edf7c4fdd55a8e8c57b07ae62a42ea5ff8ba9b6",
+      "sha256LF": "467978adfa81aecfb6e14e5f1edf7c4fdd55a8e8c57b07ae62a42ea5ff8ba9b6"
+    },
+    "StatusBars/FluxInfoFrame.lua": {
+      "sha256": "4d64905379c78797184dfa4b234a418250bebc5dfa470ab3cd32e606c780c024",
+      "sha256LF": "4d64905379c78797184dfa4b234a418250bebc5dfa470ab3cd32e606c780c024"
+    },
+    "StatusBars/FluxStatusBar.lua": {
+      "sha256": "df2811cb97afc0372ede2c74310e5d7340018e82dbc138f89782dd6a9a91a531",
+      "sha256LF": "4d805eb72f8e9a73111c0ecc2fc57db4c570d514fa7e35338adaa710cf8d262d"
+    },
+    "Stress test doc/roadmap-fixes/domains/checkpoint_replay.lua.txt": {
+      "sha256": "5bcff2e45f1ef65a0d9b2dcfc40867f52f50b38f1b6f190aa48c0edcea4e4eb8",
+      "sha256LF": "5bcff2e45f1ef65a0d9b2dcfc40867f52f50b38f1b6f190aa48c0edcea4e4eb8"
+    },
+    "UnitFrames/FluxUnitFrames_Pet.lua": {
+      "sha256": "e2aa8d8f5bd716b0408ad76456d8ec57351e963c8b0e996d28a4f075b8f5306f",
+      "sha256LF": "e2aa8d8f5bd716b0408ad76456d8ec57351e963c8b0e996d28a4f075b8f5306f"
+    },
+    "UnitFrames/FluxUnitFrames_Shared.lua": {
+      "sha256": "97c7897c16ecd384013dedd8b5fef6e33b91a1b82677163ddbf636e29c62f0da",
+      "sha256LF": "97c7897c16ecd384013dedd8b5fef6e33b91a1b82677163ddbf636e29c62f0da"
+    },
+    "UnitFrames/FluxUnitFrames_TargetOfTarget.lua": {
+      "sha256": "55a6d5d8b388b284f20ab711207937710a849bf07cb1dd503bd0eabf498547b4",
+      "sha256LF": "55a6d5d8b388b284f20ab711207937710a849bf07cb1dd503bd0eabf498547b4"
+    },
+    "tests/alpha_reader_safety.lua": {
+      "sha256": "189148244b4195e267b0c553a437a17e800827d6b90968196c04cce0f5258b52",
+      "sha256LF": "ba7e05ead0863925578a8b018e73fa983d4a9c678ea455788e5e622880bf4037"
+    },
+    "tests/domain_lifecycle_fixes.lua": {
+      "sha256": "d38be2036ecf6220b9b03bc58c1402813a2162b47e2f6cb9e020b65ffff138a5",
+      "sha256LF": "d38be2036ecf6220b9b03bc58c1402813a2162b47e2f6cb9e020b65ffff138a5"
+    },
+    "tests/native_timer_ownership.lua": {
+      "sha256": "867548ed615d7ddac089fa121eafa0185a3aca5dad61700e01bc2cd44bfff7fd",
+      "sha256LF": "867548ed615d7ddac089fa121eafa0185a3aca5dad61700e01bc2cd44bfff7fd"
+    },
+    "tests/portrait_camera.lua": {
+      "sha256": "e813ab2748ab3cac8fd9d0ce1d83aac7e2bb0a300635b60810ca5678a96f28e8",
+      "sha256LF": "e813ab2748ab3cac8fd9d0ce1d83aac7e2bb0a300635b60810ca5678a96f28e8"
+    },
+    "tests/prediction_public_geometry.lua": {
+      "sha256": "2ee9cb6c1544d18359015f8c09d7ad0556f6c62eb9cc4c56e36e0ae998bc5d87",
+      "sha256LF": "2ee9cb6c1544d18359015f8c09d7ad0556f6c62eb9cc4c56e36e0ae998bc5d87"
+    },
+    "tests/public_frame_level_safety.lua": {
+      "sha256": "3107f49638ab4b5553502f0c2b4dd86f6025c86fc33035c3f73a73fc0348e329",
+      "sha256LF": "3107f49638ab4b5553502f0c2b4dd86f6025c86fc33035c3f73a73fc0348e329"
+    },
+    "tests/salvage_overlay.lua": {
+      "sha256": "25f401d25a325f5245320e8c8751fa3c84edc080371dc11df66116370939bc98",
+      "sha256LF": "25f401d25a325f5245320e8c8751fa3c84edc080371dc11df66116370939bc98"
+    },
+    "tests/unit_portrait_combat_restore.lua": {
+      "sha256": "8945decd839b8c1dbbd1f6a3e68e89326cdf7924c1cece675bec1c82544c5f3b",
+      "sha256LF": "8945decd839b8c1dbbd1f6a3e68e89326cdf7924c1cece675bec1c82544c5f3b"
+    },
+    "tests/unit_vertical_target_health.lua": {
+      "sha256": "9a1ec9831ae215dcbf29efd005b5af423fb9b477f0dfdb5375890243003bc35b",
+      "sha256LF": "9a1ec9831ae215dcbf29efd005b5af423fb9b477f0dfdb5375890243003bc35b"
+    }
+  },
+  "sourceAfter": {
+    "Battlezonemap/FluxDetails.lua": {
+      "sha256": "6c1f1db3b470f70e34a3c72ab42b0b2b707b431c806a860a9fe8a360aea809fc",
+      "sha256LF": "6c1f1db3b470f70e34a3c72ab42b0b2b707b431c806a860a9fe8a360aea809fc"
+    },
+    "Core/ButtonFX/ThreatGlow.lua": {
+      "sha256": "a4eee7a9b4b397ebc6a2b8555110f619fac3fd86e9a264b3525f751cac0d00e2",
+      "sha256LF": "a4eee7a9b4b397ebc6a2b8555110f619fac3fd86e9a264b3525f751cac0d00e2"
+    },
+    "Inventory/Restock/Junk/FluxVendorJunkPanel.lua": {
+      "sha256": "ebf169466a60cc0ea80264aa212633b4df69a39a51537f4e8109c5cf3934bb4d",
+      "sha256LF": "ebf169466a60cc0ea80264aa212633b4df69a39a51537f4e8109c5cf3934bb4d"
+    },
+    "Inventory/Restock/Vendor/FluxVendorRestockPanel.lua": {
+      "sha256": "4cef9c67da2b5b16d93aeea00e54bca5b28efaebe7b5040178ef205e8b266b0e",
+      "sha256LF": "4cef9c67da2b5b16d93aeea00e54bca5b28efaebe7b5040178ef205e8b266b0e"
+    },
+    "MicroMenu/FluxMicroMenu.lua": {
+      "sha256": "381ed6a313093defa4addd4ffa90ba7d0622c325a7b1ae24be7129c8fecc2d3a",
+      "sha256LF": "381ed6a313093defa4addd4ffa90ba7d0622c325a7b1ae24be7129c8fecc2d3a"
+    },
+    "MicroMenu/FluxMinimapToMicro.lua": {
+      "sha256": "ef02d02ec1cb3a038de1a5390fb3ac2d7297a8548355965947f923b451e3ef6a",
+      "sha256LF": "ef02d02ec1cb3a038de1a5390fb3ac2d7297a8548355965947f923b451e3ef6a"
+    },
+    "Other/FluxEquipSlotFlyout.lua": {
+      "sha256": "5ce088c1eda8b391e89b08bbaf7d4d2cf53f36c3a4b6f701b3eee8894487fb5b",
+      "sha256LF": "5ce088c1eda8b391e89b08bbaf7d4d2cf53f36c3a4b6f701b3eee8894487fb5b"
+    },
+    "Salvage/FluxSalvage_Overlay.lua": {
+      "sha256": "467978adfa81aecfb6e14e5f1edf7c4fdd55a8e8c57b07ae62a42ea5ff8ba9b6",
+      "sha256LF": "467978adfa81aecfb6e14e5f1edf7c4fdd55a8e8c57b07ae62a42ea5ff8ba9b6"
+    },
+    "StatusBars/FluxInfoFrame.lua": {
+      "sha256": "4d64905379c78797184dfa4b234a418250bebc5dfa470ab3cd32e606c780c024",
+      "sha256LF": "4d64905379c78797184dfa4b234a418250bebc5dfa470ab3cd32e606c780c024"
+    },
+    "StatusBars/FluxStatusBar.lua": {
+      "sha256": "df2811cb97afc0372ede2c74310e5d7340018e82dbc138f89782dd6a9a91a531",
+      "sha256LF": "4d805eb72f8e9a73111c0ecc2fc57db4c570d514fa7e35338adaa710cf8d262d"
+    },
+    "Stress test doc/roadmap-fixes/domains/checkpoint_replay.lua.txt": {
+      "sha256": "5bcff2e45f1ef65a0d9b2dcfc40867f52f50b38f1b6f190aa48c0edcea4e4eb8",
+      "sha256LF": "5bcff2e45f1ef65a0d9b2dcfc40867f52f50b38f1b6f190aa48c0edcea4e4eb8"
+    },
+    "UnitFrames/FluxUnitFrames_Pet.lua": {
+      "sha256": "e2aa8d8f5bd716b0408ad76456d8ec57351e963c8b0e996d28a4f075b8f5306f",
+      "sha256LF": "e2aa8d8f5bd716b0408ad76456d8ec57351e963c8b0e996d28a4f075b8f5306f"
+    },
+    "UnitFrames/FluxUnitFrames_Shared.lua": {
+      "sha256": "97c7897c16ecd384013dedd8b5fef6e33b91a1b82677163ddbf636e29c62f0da",
+      "sha256LF": "97c7897c16ecd384013dedd8b5fef6e33b91a1b82677163ddbf636e29c62f0da"
+    },
+    "UnitFrames/FluxUnitFrames_TargetOfTarget.lua": {
+      "sha256": "55a6d5d8b388b284f20ab711207937710a849bf07cb1dd503bd0eabf498547b4",
+      "sha256LF": "55a6d5d8b388b284f20ab711207937710a849bf07cb1dd503bd0eabf498547b4"
+    },
+    "tests/alpha_reader_safety.lua": {
+      "sha256": "189148244b4195e267b0c553a437a17e800827d6b90968196c04cce0f5258b52",
+      "sha256LF": "ba7e05ead0863925578a8b018e73fa983d4a9c678ea455788e5e622880bf4037"
+    },
+    "tests/domain_lifecycle_fixes.lua": {
+      "sha256": "d38be2036ecf6220b9b03bc58c1402813a2162b47e2f6cb9e020b65ffff138a5",
+      "sha256LF": "d38be2036ecf6220b9b03bc58c1402813a2162b47e2f6cb9e020b65ffff138a5"
+    },
+    "tests/native_timer_ownership.lua": {
+      "sha256": "867548ed615d7ddac089fa121eafa0185a3aca5dad61700e01bc2cd44bfff7fd",
+      "sha256LF": "867548ed615d7ddac089fa121eafa0185a3aca5dad61700e01bc2cd44bfff7fd"
+    },
+    "tests/portrait_camera.lua": {
+      "sha256": "e813ab2748ab3cac8fd9d0ce1d83aac7e2bb0a300635b60810ca5678a96f28e8",
+      "sha256LF": "e813ab2748ab3cac8fd9d0ce1d83aac7e2bb0a300635b60810ca5678a96f28e8"
+    },
+    "tests/prediction_public_geometry.lua": {
+      "sha256": "2ee9cb6c1544d18359015f8c09d7ad0556f6c62eb9cc4c56e36e0ae998bc5d87",
+      "sha256LF": "2ee9cb6c1544d18359015f8c09d7ad0556f6c62eb9cc4c56e36e0ae998bc5d87"
+    },
+    "tests/public_frame_level_safety.lua": {
+      "sha256": "3107f49638ab4b5553502f0c2b4dd86f6025c86fc33035c3f73a73fc0348e329",
+      "sha256LF": "3107f49638ab4b5553502f0c2b4dd86f6025c86fc33035c3f73a73fc0348e329"
+    },
+    "tests/salvage_overlay.lua": {
+      "sha256": "25f401d25a325f5245320e8c8751fa3c84edc080371dc11df66116370939bc98",
+      "sha256LF": "25f401d25a325f5245320e8c8751fa3c84edc080371dc11df66116370939bc98"
+    },
+    "tests/unit_portrait_combat_restore.lua": {
+      "sha256": "8945decd839b8c1dbbd1f6a3e68e89326cdf7924c1cece675bec1c82544c5f3b",
+      "sha256LF": "8945decd839b8c1dbbd1f6a3e68e89326cdf7924c1cece675bec1c82544c5f3b"
+    },
+    "tests/unit_vertical_target_health.lua": {
+      "sha256": "9a1ec9831ae215dcbf29efd005b5af423fb9b477f0dfdb5375890243003bc35b",
+      "sha256LF": "9a1ec9831ae215dcbf29efd005b5af423fb9b477f0dfdb5375890243003bc35b"
+    }
+  },
+  "sourceStable": true,
+  "baselineSources": {
+    "MicroMenu/FluxMinimapToMicro.lua": {
+      "sha256": "4eb6c29f965158f27f405d3b7583bf33e2304916b8de14b1806f078de890d40e",
+      "sha256LF": "4eb6c29f965158f27f405d3b7583bf33e2304916b8de14b1806f078de890d40e"
+    },
+    "Salvage/FluxSalvage_Overlay.lua": {
+      "sha256": "b4385297cfd5f6534e5eac859f9be05971a1b1235ed7106f0b5e9df648b56be9",
+      "sha256LF": "b4385297cfd5f6534e5eac859f9be05971a1b1235ed7106f0b5e9df648b56be9"
+    },
+    "UnitFrames/FluxUnitFrames_Shared.lua": {
+      "sha256": "0cbe380abe20791c0566b918eacb3d57a58255a7a956a510fe8e26de2e72a4e2",
+      "sha256LF": "0cbe380abe20791c0566b918eacb3d57a58255a7a956a510fe8e26de2e72a4e2"
+    },
+    "Core/ButtonFX/ThreatGlow.lua": {
+      "sha256": "9e08ba85e8eaf5868bbf14b2403097d4aedf3bbef6181369b64d9eb47a5ec4e1",
+      "sha256LF": "9e08ba85e8eaf5868bbf14b2403097d4aedf3bbef6181369b64d9eb47a5ec4e1"
+    },
+    "Inventory/Restock/Junk/FluxVendorJunkPanel.lua": {
+      "sha256": "96daeee2d0e852a945a963a38042f7d1fef41558720b7477c3ae857b75c8214c",
+      "sha256LF": "96daeee2d0e852a945a963a38042f7d1fef41558720b7477c3ae857b75c8214c"
+    },
+    "Inventory/Restock/Vendor/FluxVendorRestockPanel.lua": {
+      "sha256": "1e9ee5f71cdd19a73824ae879e8f765d599e0c538d8a2430650ffaa1c005d180",
+      "sha256LF": "1e9ee5f71cdd19a73824ae879e8f765d599e0c538d8a2430650ffaa1c005d180"
+    },
+    "StatusBars/FluxStatusBar.lua": {
+      "sha256": "0e0ab74c148f09d1e41f91a193e61115c5e0241c19a8f0618f60f136e12f3ff8",
+      "sha256LF": "f02653c4a8b509ca9d898168dc51dd1288bf3f970bcb8b01e97c2092eb1785fd"
+    },
+    "StatusBars/FluxInfoFrame.lua": {
+      "sha256": "d335f73a27d320c0281a7ba50e0fcee48c20ff4db01643a43a33b63c971ef456",
+      "sha256LF": "d335f73a27d320c0281a7ba50e0fcee48c20ff4db01643a43a33b63c971ef456"
+    },
+    "Battlezonemap/FluxDetails.lua": {
+      "sha256": "3d06c3afa334a3103f3d7f7c5efd712fc011cc2fb9c8f623d4b3c028fc25cd61",
+      "sha256LF": "3d06c3afa334a3103f3d7f7c5efd712fc011cc2fb9c8f623d4b3c028fc25cd61"
+    },
+    "Other/FluxEquipSlotFlyout.lua": {
+      "sha256": "9ec5a00f229d87dfa98c210515fc0d74d39d6578d505497e598355ddce80f07c",
+      "sha256LF": "9ec5a00f229d87dfa98c210515fc0d74d39d6578d505497e598355ddce80f07c"
+    }
+  },
+  "rejections": [
+    {
+      "finding": "R2-DOM-01/02",
+      "selection": "micro",
+      "marker": "departed broker tooltip cannot reappear",
+      "oldRejectedNewAccepted": true,
+      "checkpoint": {
+        "command": [
+          "lua",
+          "Stress test doc/roadmap-fixes/domains/checkpoint_replay.lua.txt",
+          "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\07\\01a1b5b8-1789-7050-b49c-88d0a742e874\\roadmap-fixes-20261107T184559Z\\baseline",
+          "micro"
+        ],
+        "exit": 1,
+        "desktopWallSeconds": 0.021633,
+        "stdout": "",
+        "stderr": "lua: permanent-domain-fixture-micro:10: departed broker tooltip cannot reappear\nstack traceback:\n\t[C]: in function 'assert'\n\tpermanent-domain-fixture-micro:10: in local 'check'\n\tpermanent-domain-fixture-micro:66: in main chunk\n\t...test doc/roadmap-fixes/domains/checkpoint_replay.lua.txt:43: in main chunk\n\t[C]: in ?\n"
+      },
+      "current": {
+        "command": [
+          "lua",
+          "Stress test doc/roadmap-fixes/domains/checkpoint_replay.lua.txt",
+          ".",
+          "micro"
+        ],
+        "exit": 0,
+        "desktopWallSeconds": 0.037155,
+        "stdout": "Domain proxy lifecycle: 64 checks; actual micro factory/rebuild/hover/click, four policies; native taint/pixels pending\n",
+        "stderr": ""
+      }
+    },
+    {
+      "finding": "R2-DOM-03",
+      "selection": "salvage",
+      "marker": "visible combat tick issues no protected mutation",
+      "oldRejectedNewAccepted": true,
+      "checkpoint": {
+        "command": [
+          "lua",
+          "Stress test doc/roadmap-fixes/domains/checkpoint_replay.lua.txt",
+          "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\07\\01a1b5b8-1789-7050-b49c-88d0a742e874\\roadmap-fixes-20261107T184559Z\\baseline",
+          "salvage"
+        ],
+        "exit": 1,
+        "desktopWallSeconds": 0.019989,
+        "stdout": "",
+        "stderr": "lua: permanent-domain-fixture-salvage:1: visible combat tick issues no protected mutation\nstack traceback:\n\t[C]: in function 'assert'\n\tpermanent-domain-fixture-salvage:1: in local 'check'\n\tpermanent-domain-fixture-salvage:13: in main chunk\n\t...test doc/roadmap-fixes/domains/checkpoint_replay.lua.txt:43: in main chunk\n\t[C]: in ?\n"
+      },
+      "current": {
+        "command": [
+          "lua",
+          "Stress test doc/roadmap-fixes/domains/checkpoint_replay.lua.txt",
+          ".",
+          "salvage"
+        ],
+        "exit": 0,
+        "desktopWallSeconds": 0.023935,
+        "stdout": "Domain lifecycle total: 5040 checks; visible salvage combat transition/secure-show cleanup covered\n",
+        "stderr": ""
+      }
+    },
+    {
+      "finding": "R2-DOM-04",
+      "selection": "levels",
+      "marker": "private portrait getter retains permitted level without arithmetic",
+      "oldRejectedNewAccepted": true,
+      "checkpoint": {
+        "command": [
+          "lua",
+          "Stress test doc/roadmap-fixes/domains/checkpoint_replay.lua.txt",
+          "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\07\\01a1b5b8-1789-7050-b49c-88d0a742e874\\roadmap-fixes-20261107T184559Z\\baseline",
+          "levels"
+        ],
+        "exit": 1,
+        "desktopWallSeconds": 0.023136,
+        "stdout": "",
+        "stderr": "lua: permanent-domain-fixture-levels:5: private portrait getter retains permitted level without arithmetic\nstack traceback:\n\t[C]: in function 'assert'\n\tpermanent-domain-fixture-levels:5: in local 'check'\n\tpermanent-domain-fixture-levels:38: in main chunk\n\t...test doc/roadmap-fixes/domains/checkpoint_replay.lua.txt:43: in main chunk\n\t[C]: in ?\n"
+      },
+      "current": {
+        "command": [
+          "lua",
+          "Stress test doc/roadmap-fixes/domains/checkpoint_replay.lua.txt",
+          ".",
+          "levels"
+        ],
+        "exit": 0,
+        "desktopWallSeconds": 0.021017,
+        "stdout": "Public frame-level safety: 13 checks; actual portrait/private threat consumers, first private geometry/parent moves/unknown preservation\n",
+        "stderr": ""
+      }
+    },
+    {
+      "finding": "R2-DOM-04-glow",
+      "selection": "glow",
+      "marker": "private glow start/recolor handles public/changed/private/missing levels",
+      "oldRejectedNewAccepted": true,
+      "checkpoint": {
+        "command": [
+          "lua",
+          "Stress test doc/roadmap-fixes/domains/checkpoint_replay.lua.txt",
+          "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\07\\01a1b5b8-1789-7050-b49c-88d0a742e874\\roadmap-fixes-20261107T184559Z\\baseline",
+          "glow"
+        ],
+        "exit": 1,
+        "desktopWallSeconds": 1.821445,
+        "stdout": "REJECTION ALPHA-01 baseline=false candidate=true\nREJECTION ALPHA-03 baseline=false candidate=true\nREJECTION ALPHA-04-cast baseline=false candidate=true\nREJECTION ALPHA-04-badge baseline=false candidate=true\nREJECTION ALPHA-05-numeric baseline=false candidate=true\nREJECTION ALPHA-05-duration baseline=false candidate=true\nHANDLED getter_call_denied=grid\nHANDLED getter_call_denied=bling\nHANDLED getter_call_denied=extra-numeric\nHANDLED getter_call_denied=extra-duration\nMETRIC grid rounds=100 requests_per_round=1000 public_zero_reads=3600 public_zero_writes=0 opaque_reads=3600 opaque_writes=3600 excluded_stance_alpha=1\nFAIL private glow start/recolor handles public/changed/private/missing levels private-threat-glow-complete:360: attempt to perform arithmetic on a table value\nMETRIC glow cycles=10 snapshots=80 baseline_public_reads=120 candidate_reads=0 frames_created=1 pool_releases=20 owned_ledger_tables=1 ledger_entries=6\nSUMMARY checks=649 failures=1 baseline_rejections=8\n",
+        "stderr": ""
+      },
+      "current": {
+        "command": [
+          "lua",
+          "Stress test doc/roadmap-fixes/domains/checkpoint_replay.lua.txt",
+          ".",
+          "glow"
+        ],
+        "exit": 0,
+        "desktopWallSeconds": 1.750694,
+        "stdout": "REJECTION ALPHA-01 baseline=false candidate=true\nREJECTION ALPHA-03 baseline=false candidate=true\nREJECTION ALPHA-04-cast baseline=false candidate=true\nREJECTION ALPHA-04-badge baseline=false candidate=true\nREJECTION ALPHA-05-numeric baseline=false candidate=true\nREJECTION ALPHA-05-duration baseline=false candidate=true\nHANDLED getter_call_denied=grid\nHANDLED getter_call_denied=bling\nHANDLED getter_call_denied=extra-numeric\nHANDLED getter_call_denied=extra-duration\nMETRIC grid rounds=100 requests_per_round=1000 public_zero_reads=3600 public_zero_writes=0 opaque_reads=3600 opaque_writes=3600 excluded_stance_alpha=1\nMETRIC glow cycles=10 snapshots=80 baseline_public_reads=120 candidate_reads=0 frames_created=1 pool_releases=20 owned_ledger_tables=1 ledger_entries=6\nSUMMARY checks=655 failures=0 baseline_rejections=8\n",
+        "stderr": ""
+      }
+    },
+    {
+      "finding": "R2-DOM-05-junk",
+      "selection": "junk",
+      "marker": "250 tab/query entries retain one metadata retry",
+      "oldRejectedNewAccepted": true,
+      "checkpoint": {
+        "command": [
+          "lua",
+          "Stress test doc/roadmap-fixes/domains/checkpoint_replay.lua.txt",
+          "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\07\\01a1b5b8-1789-7050-b49c-88d0a742e874\\roadmap-fixes-20261107T184559Z\\baseline",
+          "junk"
+        ],
+        "exit": 1,
+        "desktopWallSeconds": 0.020049,
+        "stdout": "",
+        "stderr": "lua: permanent-domain-fixture-junk:6: 250 tab/query entries retain one metadata retry\nstack traceback:\n\t[C]: in function 'assert'\n\tpermanent-domain-fixture-junk:6: in local 'check'\n\tpermanent-domain-fixture-junk:106: in main chunk\n\t...test doc/roadmap-fixes/domains/checkpoint_replay.lua.txt:43: in main chunk\n\t[C]: in ?\n"
+      },
+      "current": {
+        "command": [
+          "lua",
+          "Stress test doc/roadmap-fixes/domains/checkpoint_replay.lua.txt",
+          ".",
+          "junk"
+        ],
+        "exit": 0,
+        "desktopWallSeconds": 0.021918,
+        "stdout": "Native timer ownership: 10 checks; After/NewTimer cancel/replace, exact cadence, resize/embed/hover/current-list/hide reuse\n",
+        "stderr": ""
+      }
+    },
+    {
+      "finding": "R2-DOM-05-restock",
+      "selection": "restock",
+      "marker": "250 tab/query entries retain one metadata retry",
+      "oldRejectedNewAccepted": true,
+      "checkpoint": {
+        "command": [
+          "lua",
+          "Stress test doc/roadmap-fixes/domains/checkpoint_replay.lua.txt",
+          "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\07\\01a1b5b8-1789-7050-b49c-88d0a742e874\\roadmap-fixes-20261107T184559Z\\baseline",
+          "restock"
+        ],
+        "exit": 1,
+        "desktopWallSeconds": 0.024649,
+        "stdout": "",
+        "stderr": "lua: permanent-domain-fixture-restock:6: 250 tab/query entries retain one metadata retry\nstack traceback:\n\t[C]: in function 'assert'\n\tpermanent-domain-fixture-restock:6: in local 'check'\n\tpermanent-domain-fixture-restock:106: in main chunk\n\t...test doc/roadmap-fixes/domains/checkpoint_replay.lua.txt:43: in main chunk\n\t[C]: in ?\n"
+      },
+      "current": {
+        "command": [
+          "lua",
+          "Stress test doc/roadmap-fixes/domains/checkpoint_replay.lua.txt",
+          ".",
+          "restock"
+        ],
+        "exit": 0,
+        "desktopWallSeconds": 0.022829,
+        "stdout": "Native timer ownership: 10 checks; After/NewTimer cancel/replace, exact cadence, resize/embed/hover/current-list/hide reuse\n",
+        "stderr": ""
+      }
+    },
+    {
+      "finding": "R2-DOM-06-status",
+      "selection": "status",
+      "marker": "layout storm owns one pending timer with either native API",
+      "oldRejectedNewAccepted": true,
+      "checkpoint": {
+        "command": [
+          "lua",
+          "Stress test doc/roadmap-fixes/domains/checkpoint_replay.lua.txt",
+          "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\07\\01a1b5b8-1789-7050-b49c-88d0a742e874\\roadmap-fixes-20261107T184559Z\\baseline",
+          "status"
+        ],
+        "exit": 1,
+        "desktopWallSeconds": 0.017421,
+        "stdout": "",
+        "stderr": "lua: permanent-domain-fixture-status:6: layout storm owns one pending timer with either native API\nstack traceback:\n\t[C]: in function 'assert'\n\tpermanent-domain-fixture-status:6: in local 'check'\n\tpermanent-domain-fixture-status:47: in main chunk\n\t...test doc/roadmap-fixes/domains/checkpoint_replay.lua.txt:43: in main chunk\n\t[C]: in ?\n"
+      },
+      "current": {
+        "command": [
+          "lua",
+          "Stress test doc/roadmap-fixes/domains/checkpoint_replay.lua.txt",
+          ".",
+          "status"
+        ],
+        "exit": 0,
+        "desktopWallSeconds": 0.022502,
+        "stdout": "Native timer ownership: 8 checks; After/NewTimer cancel/replace, exact cadence, resize/embed/hover/current-list/hide reuse\n",
+        "stderr": ""
+      }
+    },
+    {
+      "finding": "R2-DOM-06-info",
+      "selection": "info",
+      "marker": "layout storm owns one pending timer with either native API",
+      "oldRejectedNewAccepted": true,
+      "checkpoint": {
+        "command": [
+          "lua",
+          "Stress test doc/roadmap-fixes/domains/checkpoint_replay.lua.txt",
+          "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\07\\01a1b5b8-1789-7050-b49c-88d0a742e874\\roadmap-fixes-20261107T184559Z\\baseline",
+          "info"
+        ],
+        "exit": 1,
+        "desktopWallSeconds": 0.018974,
+        "stdout": "",
+        "stderr": "lua: permanent-domain-fixture-info:6: layout storm owns one pending timer with either native API\nstack traceback:\n\t[C]: in function 'assert'\n\tpermanent-domain-fixture-info:6: in local 'check'\n\tpermanent-domain-fixture-info:47: in main chunk\n\t...test doc/roadmap-fixes/domains/checkpoint_replay.lua.txt:43: in main chunk\n\t[C]: in ?\n"
+      },
+      "current": {
+        "command": [
+          "lua",
+          "Stress test doc/roadmap-fixes/domains/checkpoint_replay.lua.txt",
+          ".",
+          "info"
+        ],
+        "exit": 0,
+        "desktopWallSeconds": 0.023214,
+        "stdout": "Native timer ownership: 10 checks; After/NewTimer cancel/replace, exact cadence, resize/embed/hover/current-list/hide reuse\n",
+        "stderr": ""
+      }
+    },
+    {
+      "finding": "R2-DOM-06-details",
+      "selection": "details",
+      "marker": "Details resize burst retains one timer even with After fallback",
+      "oldRejectedNewAccepted": true,
+      "checkpoint": {
+        "command": [
+          "lua",
+          "Stress test doc/roadmap-fixes/domains/checkpoint_replay.lua.txt",
+          "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\07\\01a1b5b8-1789-7050-b49c-88d0a742e874\\roadmap-fixes-20261107T184559Z\\baseline",
+          "details"
+        ],
+        "exit": 1,
+        "desktopWallSeconds": 0.018477,
+        "stdout": "",
+        "stderr": "lua: permanent-domain-fixture-details:6: Details resize burst retains one timer even with After fallback\nstack traceback:\n\t[C]: in function 'assert'\n\tpermanent-domain-fixture-details:6: in local 'check'\n\tpermanent-domain-fixture-details:61: in main chunk\n\t...test doc/roadmap-fixes/domains/checkpoint_replay.lua.txt:43: in main chunk\n\t[C]: in ?\n"
+      },
+      "current": {
+        "command": [
+          "lua",
+          "Stress test doc/roadmap-fixes/domains/checkpoint_replay.lua.txt",
+          ".",
+          "details"
+        ],
+        "exit": 0,
+        "desktopWallSeconds": 0.02391,
+        "stdout": "Native timer ownership: 8 checks; After/NewTimer cancel/replace, exact cadence, resize/embed/hover/current-list/hide reuse\n",
+        "stderr": ""
+      }
+    },
+    {
+      "finding": "R2-DOM-06-flyout",
+      "selection": "flyout",
+      "marker": "cancel/replace retains exact60ms show delay",
+      "oldRejectedNewAccepted": true,
+      "checkpoint": {
+        "command": [
+          "lua",
+          "Stress test doc/roadmap-fixes/domains/checkpoint_replay.lua.txt",
+          "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\07\\01a1b5b8-1789-7050-b49c-88d0a742e874\\roadmap-fixes-20261107T184559Z\\baseline",
+          "flyout"
+        ],
+        "exit": 1,
+        "desktopWallSeconds": 0.018184,
+        "stdout": "",
+        "stderr": "lua: permanent-domain-fixture-flyout:6: cancel/replace retains exact60ms show delay\nstack traceback:\n\t[C]: in function 'assert'\n\tpermanent-domain-fixture-flyout:6: in local 'check'\n\tpermanent-domain-fixture-flyout:76: in main chunk\n\t...test doc/roadmap-fixes/domains/checkpoint_replay.lua.txt:43: in main chunk\n\t[C]: in ?\n"
+      },
+      "current": {
+        "command": [
+          "lua",
+          "Stress test doc/roadmap-fixes/domains/checkpoint_replay.lua.txt",
+          ".",
+          "flyout"
+        ],
+        "exit": 0,
+        "desktopWallSeconds": 0.057239,
+        "stdout": "Native timer ownership: 8 checks; After/NewTimer cancel/replace, exact cadence, resize/embed/hover/current-list/hide reuse\n",
+        "stderr": ""
+      }
+    }
+  ],
+  "records": [
+    {
+      "command": [
+        "lua",
+        "tests/domain_lifecycle_fixes.lua"
+      ],
+      "exit": 0,
+      "desktopWallSeconds": 0.045075,
+      "stdout": "Domain proxy lifecycle: 64 checks; actual micro factory/rebuild/hover/click, four policies; native taint/pixels pending\nDomain lifecycle total: 5104 checks; visible salvage combat transition/secure-show cleanup covered\n",
+      "stderr": "",
+      "repeat": 1
+    },
+    {
+      "command": [
+        "lua",
+        "tests/native_timer_ownership.lua"
+      ],
+      "exit": 0,
+      "desktopWallSeconds": 0.074029,
+      "stdout": "Native timer ownership: 54 checks; After/NewTimer cancel/replace, exact cadence, resize/embed/hover/current-list/hide reuse\n",
+      "stderr": "",
+      "repeat": 1
+    },
+    {
+      "command": [
+        "lua",
+        "tests/public_frame_level_safety.lua"
+      ],
+      "exit": 0,
+      "desktopWallSeconds": 0.022614,
+      "stdout": "Public frame-level safety: 13 checks; actual portrait/private threat consumers, first private geometry/parent moves/unknown preservation\n",
+      "stderr": "",
+      "repeat": 1
+    },
+    {
+      "command": [
+        "lua",
+        "tests/alpha_reader_safety.lua"
+      ],
+      "exit": 0,
+      "desktopWallSeconds": 1.832988,
+      "stdout": "REJECTION ALPHA-01 baseline=false candidate=true\nREJECTION ALPHA-03 baseline=false candidate=true\nREJECTION ALPHA-04-cast baseline=false candidate=true\nREJECTION ALPHA-04-badge baseline=false candidate=true\nREJECTION ALPHA-05-numeric baseline=false candidate=true\nREJECTION ALPHA-05-duration baseline=false candidate=true\nHANDLED getter_call_denied=grid\nHANDLED getter_call_denied=bling\nHANDLED getter_call_denied=extra-numeric\nHANDLED getter_call_denied=extra-duration\nMETRIC grid rounds=100 requests_per_round=1000 public_zero_reads=3600 public_zero_writes=0 opaque_reads=3600 opaque_writes=3600 excluded_stance_alpha=1\nMETRIC glow cycles=10 snapshots=80 baseline_public_reads=120 candidate_reads=0 frames_created=1 pool_releases=20 owned_ledger_tables=1 ledger_entries=6\nSUMMARY checks=655 failures=0 baseline_rejections=8\n",
+      "stderr": "",
+      "repeat": 1
+    },
+    {
+      "command": [
+        "lua",
+        "tests/portrait_camera.lua"
+      ],
+      "exit": 0,
+      "desktopWallSeconds": 0.033622,
+      "stdout": "Portrait camera: 1191 checks; five client models; three negative controls passed\n",
+      "stderr": "",
+      "repeat": 1
+    },
+    {
+      "command": [
+        "lua",
+        "tests/unit_portrait_combat_restore.lua"
+      ],
+      "exit": 0,
+      "desktopWallSeconds": 0.025023,
+      "stdout": "Portrait combat restore: 66 actual party/focus tint/backdrop checks; native pixels/taint pending\n",
+      "stderr": "",
+      "repeat": 1
+    },
+    {
+      "command": [
+        "lua",
+        "tests/salvage_overlay.lua"
+      ],
+      "exit": 0,
+      "desktopWallSeconds": 0.056118,
+      "stdout": "salvage overlay: 2033 checks passed (five client fixtures, missing-atlas and mutation coverage)\n",
+      "stderr": "",
+      "repeat": 1
+    },
+    {
+      "command": [
+        "lua",
+        "tests/prediction_public_geometry.lua"
+      ],
+      "exit": 0,
+      "desktopWallSeconds": 0.050528,
+      "stdout": "Prediction public geometry: 8460 checks; modern clips=12 classic clips=8; all layers, first paint, scale dimensions, native clipping/32px math; native pixels/taint pending\n",
+      "stderr": "",
+      "repeat": 1
+    },
+    {
+      "command": [
+        "lua",
+        "tests/unit_vertical_target_health.lua"
+      ],
+      "exit": 0,
+      "desktopWallSeconds": 0.107064,
+      "stdout": "Vertical target health: 1243 checks; five client models, six target tokens; native taint/rendering pending\n",
+      "stderr": "",
+      "repeat": 1
+    },
+    {
+      "command": [
+        "lua",
+        "tests/domain_lifecycle_fixes.lua"
+      ],
+      "exit": 0,
+      "desktopWallSeconds": 0.043903,
+      "stdout": "Domain proxy lifecycle: 64 checks; actual micro factory/rebuild/hover/click, four policies; native taint/pixels pending\nDomain lifecycle total: 5104 checks; visible salvage combat transition/secure-show cleanup covered\n",
+      "stderr": "",
+      "repeat": 2
+    },
+    {
+      "command": [
+        "lua",
+        "tests/native_timer_ownership.lua"
+      ],
+      "exit": 0,
+      "desktopWallSeconds": 0.080203,
+      "stdout": "Native timer ownership: 54 checks; After/NewTimer cancel/replace, exact cadence, resize/embed/hover/current-list/hide reuse\n",
+      "stderr": "",
+      "repeat": 2
+    },
+    {
+      "command": [
+        "lua",
+        "tests/public_frame_level_safety.lua"
+      ],
+      "exit": 0,
+      "desktopWallSeconds": 0.026759,
+      "stdout": "Public frame-level safety: 13 checks; actual portrait/private threat consumers, first private geometry/parent moves/unknown preservation\n",
+      "stderr": "",
+      "repeat": 2
+    },
+    {
+      "command": [
+        "lua",
+        "tests/alpha_reader_safety.lua"
+      ],
+      "exit": 0,
+      "desktopWallSeconds": 1.915569,
+      "stdout": "REJECTION ALPHA-01 baseline=false candidate=true\nREJECTION ALPHA-03 baseline=false candidate=true\nREJECTION ALPHA-04-cast baseline=false candidate=true\nREJECTION ALPHA-04-badge baseline=false candidate=true\nREJECTION ALPHA-05-numeric baseline=false candidate=true\nREJECTION ALPHA-05-duration baseline=false candidate=true\nHANDLED getter_call_denied=grid\nHANDLED getter_call_denied=bling\nHANDLED getter_call_denied=extra-numeric\nHANDLED getter_call_denied=extra-duration\nMETRIC grid rounds=100 requests_per_round=1000 public_zero_reads=3600 public_zero_writes=0 opaque_reads=3600 opaque_writes=3600 excluded_stance_alpha=1\nMETRIC glow cycles=10 snapshots=80 baseline_public_reads=120 candidate_reads=0 frames_created=1 pool_releases=20 owned_ledger_tables=1 ledger_entries=6\nSUMMARY checks=655 failures=0 baseline_rejections=8\n",
+      "stderr": "",
+      "repeat": 2
+    },
+    {
+      "command": [
+        "lua",
+        "tests/portrait_camera.lua"
+      ],
+      "exit": 0,
+      "desktopWallSeconds": 0.026999,
+      "stdout": "Portrait camera: 1191 checks; five client models; three negative controls passed\n",
+      "stderr": "",
+      "repeat": 2
+    },
+    {
+      "command": [
+        "lua",
+        "tests/unit_portrait_combat_restore.lua"
+      ],
+      "exit": 0,
+      "desktopWallSeconds": 0.019937,
+      "stdout": "Portrait combat restore: 66 actual party/focus tint/backdrop checks; native pixels/taint pending\n",
+      "stderr": "",
+      "repeat": 2
+    },
+    {
+      "command": [
+        "lua",
+        "tests/salvage_overlay.lua"
+      ],
+      "exit": 0,
+      "desktopWallSeconds": 0.047684,
+      "stdout": "salvage overlay: 2033 checks passed (five client fixtures, missing-atlas and mutation coverage)\n",
+      "stderr": "",
+      "repeat": 2
+    },
+    {
+      "command": [
+        "lua",
+        "tests/prediction_public_geometry.lua"
+      ],
+      "exit": 0,
+      "desktopWallSeconds": 0.045497,
+      "stdout": "Prediction public geometry: 8460 checks; modern clips=12 classic clips=8; all layers, first paint, scale dimensions, native clipping/32px math; native pixels/taint pending\n",
+      "stderr": "",
+      "repeat": 2
+    },
+    {
+      "command": [
+        "lua",
+        "tests/unit_vertical_target_health.lua"
+      ],
+      "exit": 0,
+      "desktopWallSeconds": 0.084246,
+      "stdout": "Vertical target health: 1243 checks; five client models, six target tokens; native taint/rendering pending\n",
+      "stderr": "",
+      "repeat": 2
+    },
+    {
+      "command": [
+        "lua",
+        "tests/domain_lifecycle_fixes.lua"
+      ],
+      "exit": 0,
+      "desktopWallSeconds": 0.038156,
+      "stdout": "Domain proxy lifecycle: 64 checks; actual micro factory/rebuild/hover/click, four policies; native taint/pixels pending\nDomain lifecycle total: 5104 checks; visible salvage combat transition/secure-show cleanup covered\n",
+      "stderr": "",
+      "repeat": 3
+    },
+    {
+      "command": [
+        "lua",
+        "tests/native_timer_ownership.lua"
+      ],
+      "exit": 0,
+      "desktopWallSeconds": 0.070454,
+      "stdout": "Native timer ownership: 54 checks; After/NewTimer cancel/replace, exact cadence, resize/embed/hover/current-list/hide reuse\n",
+      "stderr": "",
+      "repeat": 3
+    },
+    {
+      "command": [
+        "lua",
+        "tests/public_frame_level_safety.lua"
+      ],
+      "exit": 0,
+      "desktopWallSeconds": 0.018705,
+      "stdout": "Public frame-level safety: 13 checks; actual portrait/private threat consumers, first private geometry/parent moves/unknown preservation\n",
+      "stderr": "",
+      "repeat": 3
+    },
+    {
+      "command": [
+        "lua",
+        "tests/alpha_reader_safety.lua"
+      ],
+      "exit": 0,
+      "desktopWallSeconds": 1.840426,
+      "stdout": "REJECTION ALPHA-01 baseline=false candidate=true\nREJECTION ALPHA-03 baseline=false candidate=true\nREJECTION ALPHA-04-cast baseline=false candidate=true\nREJECTION ALPHA-04-badge baseline=false candidate=true\nREJECTION ALPHA-05-numeric baseline=false candidate=true\nREJECTION ALPHA-05-duration baseline=false candidate=true\nHANDLED getter_call_denied=grid\nHANDLED getter_call_denied=bling\nHANDLED getter_call_denied=extra-numeric\nHANDLED getter_call_denied=extra-duration\nMETRIC grid rounds=100 requests_per_round=1000 public_zero_reads=3600 public_zero_writes=0 opaque_reads=3600 opaque_writes=3600 excluded_stance_alpha=1\nMETRIC glow cycles=10 snapshots=80 baseline_public_reads=120 candidate_reads=0 frames_created=1 pool_releases=20 owned_ledger_tables=1 ledger_entries=6\nSUMMARY checks=655 failures=0 baseline_rejections=8\n",
+      "stderr": "",
+      "repeat": 3
+    },
+    {
+      "command": [
+        "lua",
+        "tests/portrait_camera.lua"
+      ],
+      "exit": 0,
+      "desktopWallSeconds": 0.029724,
+      "stdout": "Portrait camera: 1191 checks; five client models; three negative controls passed\n",
+      "stderr": "",
+      "repeat": 3
+    },
+    {
+      "command": [
+        "lua",
+        "tests/unit_portrait_combat_restore.lua"
+      ],
+      "exit": 0,
+      "desktopWallSeconds": 0.018913,
+      "stdout": "Portrait combat restore: 66 actual party/focus tint/backdrop checks; native pixels/taint pending\n",
+      "stderr": "",
+      "repeat": 3
+    },
+    {
+      "command": [
+        "lua",
+        "tests/salvage_overlay.lua"
+      ],
+      "exit": 0,
+      "desktopWallSeconds": 0.054914,
+      "stdout": "salvage overlay: 2033 checks passed (five client fixtures, missing-atlas and mutation coverage)\n",
+      "stderr": "",
+      "repeat": 3
+    },
+    {
+      "command": [
+        "lua",
+        "tests/prediction_public_geometry.lua"
+      ],
+      "exit": 0,
+      "desktopWallSeconds": 0.051959,
+      "stdout": "Prediction public geometry: 8460 checks; modern clips=12 classic clips=8; all layers, first paint, scale dimensions, native clipping/32px math; native pixels/taint pending\n",
+      "stderr": "",
+      "repeat": 3
+    },
+    {
+      "command": [
+        "lua",
+        "tests/unit_vertical_target_health.lua"
+      ],
+      "exit": 0,
+      "desktopWallSeconds": 0.095082,
+      "stdout": "Vertical target health: 1243 checks; five client models, six target tokens; native taint/rendering pending\n",
+      "stderr": "",
+      "repeat": 3
+    }
+  ],
+  "uniqueScripts": 9,
+  "repeats": 3,
+  "executionCount": 27,
+  "pass": 27,
+  "fail": 0
+}

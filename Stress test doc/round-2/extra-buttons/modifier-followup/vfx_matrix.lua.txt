@@ -1,0 +1,67 @@
+-- Current complete Cast/Manager/Action/Paint fixture; native rendering is modeled.
+local function read(p)local f=assert(io.open(p,"rb"));local s=f:read("*a"):gsub("\r\n","\n");f:close();return s end
+local fixture=read("tests/utility_modifier_vfx.lua")
+fixture=fixture:sub(1,assert(fixture:find('    start("cast", 101);',1,true))-1)
+local extra=[=[
+    local ordered={"","SHIFT","CTRL","ALT","SHIFT-CTRL","SHIFT-ALT","CTRL-ALT","SHIFT-CTRL-ALT"}
+    local choices={{type="spell",id=101},{type="item",id=201},{type="spell",id=102},{type="item",id=202},
+        {type="item",id=203},{type="spell",id=101},{type="spell",id=102},{type="item",id=202}}
+    s.combat=false;map={};for i,chord in ipairs(ordered)do map[chord]=choices[i]end
+    manager.UpdateButton(b,map)
+    local frames,writes,timers=#s.frames,s.writes,#s.timers
+    local phase,spell=__PHASE,__SPELL
+    local function chosen(chord)local i=1;for n,v in ipairs(ordered)do if v==chord then i=n end end;return choices[i]end
+    local function useSpell(entry)return entry.type=="spell"and entry.id or itemSpells[entry.id]end
+    if phase=="reticle"then s.targeting=true;emit("UNIT_SPELLCAST_RETICLE_TARGET",spell)
+    elseif phase=="proc"then s.proc[spell]=true;paint.UpdateGlow(b)
+    else
+        start(phase=="channel"and"channel"or phase=="empower"and"empower"or"cast",spell)
+        if phase=="burst"then s.kind=nil;emit("UNIT_SPELLCAST_SUCCEEDED",spell)
+        elseif phase=="interrupt"then s.kind=nil;emit("UNIT_SPELLCAST_INTERRUPTED",spell)end
+    end
+    local phaseTimers=#s.timers-timers
+    frames,writes,timers=#s.frames,s.writes,#s.timers
+    local edges,deliveries,duplicates=0,0,0
+    local function edge(chord)s.mod=chord;edges=edges+1;bus.scripts.OnEvent(bus,"MODIFIER_STATE_CHANGED")end
+    local function verify(chord)
+        local entry=chosen(chord);local match=useSpell(entry)==spell
+        if phase~="proc"and w.shown==false then match=false end
+        check(b.MacroMode==entry.type and(entry.type=="spell"and b.SpellId or b.ItemId)==entry.id,"exact face under active "..phase)
+        if phase=="proc"then check((w.glow==true)==match,"proc follows only exact current spell/item use-spell")
+        else local expected=match and(phase=="reticle"and"reticle"or phase=="burst"and"finish"or phase=="interrupt"and"interrupt"or"cast")or nil
+            check(w.mode==expected,"no stale "..phase.." after chord "..chord..": "..tostring(w.mode))end
+        check(not b._fluxUtilityPetGUID and b._fluxUtilityOutfitID==nil,"no unrelated utility ownership latch")
+        check(bus.scripts.OnUpdate==nil,"VFX modifier bus parks")
+    end
+    local function frame(chord)if bus.scripts.OnUpdate then bus.scripts.OnUpdate(bus,0)end;deliveries=deliveries+1;verify(chord)end
+    local sequences={{"SHIFT",""},{"CTRL",""},{"ALT",""},{"SHIFT","SHIFT-CTRL","CTRL",""},
+        {"CTRL","SHIFT-CTRL","SHIFT",""},{"SHIFT","SHIFT-ALT","ALT",""},{"ALT","SHIFT-ALT","SHIFT",""},
+        {"CTRL","CTRL-ALT","ALT",""},{"ALT","CTRL-ALT","CTRL",""},
+        {"SHIFT","SHIFT-CTRL","SHIFT-CTRL-ALT","CTRL-ALT","ALT",""},
+        {"ALT","CTRL-ALT","SHIFT-CTRL-ALT","SHIFT-CTRL","SHIFT",""}}
+    for _,combat in ipairs({false,true})do
+        s.combat=combat
+        for cycle=1,20 do
+            for _,seq in ipairs(sequences)do for _,chord in ipairs(seq)do
+                edge(chord);frame(chord)
+                local n=s.follow;edge(chord);frame(chord);duplicates=duplicates+1
+                check(s.follow==n,"duplicate event never redoes Cast.FollowExtra")
+            end end
+            for _,seq in ipairs(sequences)do for _,chord in ipairs(seq)do edge(chord)end end;frame("")
+        end
+    end
+    -- A hidden owner changes face, then reappears and releases the modifier.
+    -- The production consumer receives a real release, rather than a fabricated
+    -- native OnShow or a full renderer promise from the fixture.
+    w.shown=false;edge("SHIFT");frame("SHIFT")
+    if phase~="proc"then check(w.mode==nil,"hidden face has no cast chrome")end
+    w.shown=true;edge("");frame("")
+    check(#s.frames==frames and s.writes==writes and #s.timers==timers,"VFX transitions allocate no frame/timer or secure write")
+    print(string.format("METRIC vfx %s phase=%s spell=%d edges=%d deliveries=%d duplicates=%d followCalls=%d syncCalls=%d phaseStartTimers=%d modifierTimersCreated=0 runtimeFramesCreated=0 secureWrites=0",family,phase,spell,edges,deliveries,duplicates,s.follow,s.sync,phaseTimers))
+end
+print("SUMMARY vfx checks="..checks.." clients=5 phase="..__PHASE.." spell="..__SPELL)
+]=]
+for _,phase in ipairs({"cast","channel","empower","reticle","burst","interrupt","proc"})do
+    local e=setmetatable({__PHASE=phase,__SPELL=phase=="channel"and 301 or phase=="empower"and 102 or 101},{__index=_G})
+    assert(load(fixture..extra,"@current-VFX-fixture-matrix","t",e))()
+end

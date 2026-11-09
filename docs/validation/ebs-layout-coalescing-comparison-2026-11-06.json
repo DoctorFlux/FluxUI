@@ -1,0 +1,239 @@
+{
+  "utc": "2026-11-06T14:48:18.065826+00:00",
+  "id": "EBS-LAYOUT-COALESCING-20261106",
+  "baselineCommit": "ef813e0738fa69927bc4694123aea59c8dc2add6 plus actual dirty checkout covered by Random-spike-diagnosis-20261106T143953Z",
+  "normalizedLayoutSHA256": {
+    "baseline": "cda8ba03e615763054a95744373fc7dadf14d1b7ad570c0b0366601ce0fe7e23",
+    "candidate": "06ea068ba997a81cef3bf68cdda51b498dfb45f7b7b527a88b301926d0524f9d"
+  },
+  "sharedSchedulerSHA256": "2d33fe5938a0075636761b14312681ce7feb656c748cd796dbf42398099723a4",
+  "focusedTestSHA256": "445388864a640f0e12cdae11e5ecc57b9bda8c327c846387f5148567e0bc5fa3",
+  "runtime": "Lua 5.4.6  Copyright (C) 1994-2023 Lua.org, PUC-Rio",
+  "host": {
+    "os": "Windows",
+    "hardware": "not captured; timings are local desktop Lua process CPU, not native WoW hardware telemetry"
+  },
+  "nativeClient": {
+    "build": "not exercised",
+    "addonList": "not exercised",
+    "settings": "unchanged by this desktop test",
+    "profiler": "no native profiling enabled"
+  },
+  "scenario": {
+    "requestsPerBurst": 1000,
+    "warmupBursts": 20,
+    "capturedBurstsPerRun": 100,
+    "pairs": 5,
+    "order": "alternating baseline/candidate, then candidate/baseline",
+    "timing": "os.clock milliseconds around captured bursts, parsing/setup/warm-up excluded",
+    "scope": "Actual frozen production Scheduler and Layout dispatch; four child refreshes and three anchor/pack calls per layout are counted stubs. Child algorithms, native frames and secure behavior are not modeled."
+  },
+  "rawSamples": [
+    {
+      "requests": 1000,
+      "repetitions": 100,
+      "flushes": 100000,
+      "refreshes": 400000,
+      "packs": 300000,
+      "scheduled": 100,
+      "maximumQueue": 1,
+      "milliseconds": 85.0,
+      "heapBeforeKB": 56.688477,
+      "heapAfterKB": 73.211914,
+      "pair": 1,
+      "variant": "baseline",
+      "stdout": "requests=1000 repetitions=100 flushes=100000 refreshes=400000 packs=300000 scheduled=100 maximumQueue=1 milliseconds=85.000000 heapBeforeKB=56.688477 heapAfterKB=73.211914"
+    },
+    {
+      "requests": 1000,
+      "repetitions": 100,
+      "flushes": 100,
+      "refreshes": 400,
+      "packs": 300,
+      "scheduled": 100,
+      "maximumQueue": 1,
+      "milliseconds": 18.0,
+      "heapBeforeKB": 57.115234,
+      "heapAfterKB": 104.115234,
+      "pair": 1,
+      "variant": "candidate",
+      "stdout": "requests=1000 repetitions=100 flushes=100 refreshes=400 packs=300 scheduled=100 maximumQueue=1 milliseconds=18.000000 heapBeforeKB=57.115234 heapAfterKB=104.115234"
+    },
+    {
+      "requests": 1000,
+      "repetitions": 100,
+      "flushes": 100,
+      "refreshes": 400,
+      "packs": 300,
+      "scheduled": 100,
+      "maximumQueue": 1,
+      "milliseconds": 21.0,
+      "heapBeforeKB": 57.115234,
+      "heapAfterKB": 104.115234,
+      "pair": 2,
+      "variant": "candidate",
+      "stdout": "requests=1000 repetitions=100 flushes=100 refreshes=400 packs=300 scheduled=100 maximumQueue=1 milliseconds=21.000000 heapBeforeKB=57.115234 heapAfterKB=104.115234"
+    },
+    {
+      "requests": 1000,
+      "repetitions": 100,
+      "flushes": 100000,
+      "refreshes": 400000,
+      "packs": 300000,
+      "scheduled": 100,
+      "maximumQueue": 1,
+      "milliseconds": 108.0,
+      "heapBeforeKB": 56.688477,
+      "heapAfterKB": 73.211914,
+      "pair": 2,
+      "variant": "baseline",
+      "stdout": "requests=1000 repetitions=100 flushes=100000 refreshes=400000 packs=300000 scheduled=100 maximumQueue=1 milliseconds=108.000000 heapBeforeKB=56.688477 heapAfterKB=73.211914"
+    },
+    {
+      "requests": 1000,
+      "repetitions": 100,
+      "flushes": 100000,
+      "refreshes": 400000,
+      "packs": 300000,
+      "scheduled": 100,
+      "maximumQueue": 1,
+      "milliseconds": 135.0,
+      "heapBeforeKB": 56.688477,
+      "heapAfterKB": 73.211914,
+      "pair": 3,
+      "variant": "baseline",
+      "stdout": "requests=1000 repetitions=100 flushes=100000 refreshes=400000 packs=300000 scheduled=100 maximumQueue=1 milliseconds=135.000000 heapBeforeKB=56.688477 heapAfterKB=73.211914"
+    },
+    {
+      "requests": 1000,
+      "repetitions": 100,
+      "flushes": 100,
+      "refreshes": 400,
+      "packs": 300,
+      "scheduled": 100,
+      "maximumQueue": 1,
+      "milliseconds": 30.0,
+      "heapBeforeKB": 57.115234,
+      "heapAfterKB": 104.115234,
+      "pair": 3,
+      "variant": "candidate",
+      "stdout": "requests=1000 repetitions=100 flushes=100 refreshes=400 packs=300 scheduled=100 maximumQueue=1 milliseconds=30.000000 heapBeforeKB=57.115234 heapAfterKB=104.115234"
+    },
+    {
+      "requests": 1000,
+      "repetitions": 100,
+      "flushes": 100,
+      "refreshes": 400,
+      "packs": 300,
+      "scheduled": 100,
+      "maximumQueue": 1,
+      "milliseconds": 28.0,
+      "heapBeforeKB": 57.115234,
+      "heapAfterKB": 104.115234,
+      "pair": 4,
+      "variant": "candidate",
+      "stdout": "requests=1000 repetitions=100 flushes=100 refreshes=400 packs=300 scheduled=100 maximumQueue=1 milliseconds=28.000000 heapBeforeKB=57.115234 heapAfterKB=104.115234"
+    },
+    {
+      "requests": 1000,
+      "repetitions": 100,
+      "flushes": 100000,
+      "refreshes": 400000,
+      "packs": 300000,
+      "scheduled": 100,
+      "maximumQueue": 1,
+      "milliseconds": 126.0,
+      "heapBeforeKB": 56.688477,
+      "heapAfterKB": 73.211914,
+      "pair": 4,
+      "variant": "baseline",
+      "stdout": "requests=1000 repetitions=100 flushes=100000 refreshes=400000 packs=300000 scheduled=100 maximumQueue=1 milliseconds=126.000000 heapBeforeKB=56.688477 heapAfterKB=73.211914"
+    },
+    {
+      "requests": 1000,
+      "repetitions": 100,
+      "flushes": 100000,
+      "refreshes": 400000,
+      "packs": 300000,
+      "scheduled": 100,
+      "maximumQueue": 1,
+      "milliseconds": 101.0,
+      "heapBeforeKB": 56.688477,
+      "heapAfterKB": 73.211914,
+      "pair": 5,
+      "variant": "baseline",
+      "stdout": "requests=1000 repetitions=100 flushes=100000 refreshes=400000 packs=300000 scheduled=100 maximumQueue=1 milliseconds=101.000000 heapBeforeKB=56.688477 heapAfterKB=73.211914"
+    },
+    {
+      "requests": 1000,
+      "repetitions": 100,
+      "flushes": 100,
+      "refreshes": 400,
+      "packs": 300,
+      "scheduled": 100,
+      "maximumQueue": 1,
+      "milliseconds": 23.0,
+      "heapBeforeKB": 57.115234,
+      "heapAfterKB": 104.115234,
+      "pair": 5,
+      "variant": "candidate",
+      "stdout": "requests=1000 repetitions=100 flushes=100 refreshes=400 packs=300 scheduled=100 maximumQueue=1 milliseconds=23.000000 heapBeforeKB=57.115234 heapAfterKB=104.115234"
+    }
+  ],
+  "timingSummary": {
+    "baseline": {
+      "samplesMS": [
+        85.0,
+        108.0,
+        135.0,
+        126.0,
+        101.0
+      ],
+      "minimumMS": 85.0,
+      "maximumMS": 135.0,
+      "medianMS": 108.0,
+      "meanMS": 111.0,
+      "stdevMS": 19.912307751739878
+    },
+    "candidate": {
+      "samplesMS": [
+        18.0,
+        21.0,
+        30.0,
+        28.0,
+        23.0
+      ],
+      "minimumMS": 18.0,
+      "maximumMS": 30.0,
+      "medianMS": 23.0,
+      "meanMS": 24.0,
+      "stdevMS": 4.949747468305833
+    }
+  },
+  "operationCountsPer1000RequestBurst": {
+    "baseline": {
+      "layoutFlush": 1000,
+      "childRefresh": 4000,
+      "pack": 3000,
+      "scheduledTimer": 1,
+      "maximumPendingTimer": 1
+    },
+    "candidate": {
+      "layoutFlush": 1,
+      "childRefresh": 4,
+      "pack": 3,
+      "scheduledTimer": 1,
+      "maximumPendingTimer": 1
+    }
+  },
+  "resources": "No new events, frames, timers or per-request callback closures in Layout. One permanent queued-flush closure/boolean added. Request tokens/reasons still merge for every event. Heap figures are sampled Lua heap, not allocation-byte or leak proof.",
+  "focusedRegression": "89 checks PASS; four mutations rejected; actual shared Combat queue, reentrant requests, direct Flush timing, child error recovery, immediate scheduler backend and all request reasons covered.",
+  "interpretation": "PASS for duplicate callback elimination in a same-frame EBS layout burst. Host timings have timer resolution/OS/Lua instrumentation variation and do not establish native latency, FPS or the cause of the user random spikes.",
+  "pending": [
+    "Native affected EBS and full-addon matched captures",
+    "Secure/combat layout and pixel/interaction timing",
+    "Random-spike causal attribution",
+    "Native CPU/allocation/frame-time and memory-retention effects"
+  ],
+  "clockSemanticsNote": "Lua os.clock readings from a Windows host are preserved as captured host-clock measurements; they are not evidence of native WoW CPU time, frame time, FPS, allocation bytes or causal spike removal."
+}

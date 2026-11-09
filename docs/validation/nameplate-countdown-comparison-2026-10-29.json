@@ -1,0 +1,4497 @@
+{
+  "change": "PERF-009",
+  "baselineCommit": "38ea2673d2df2b4befe10f91aee85a56ae5e19e1",
+  "baselineTree": "ba965afc85d31707b8db6ef5a0b9328e30dbeac1",
+  "baselineActualFiles": "Nameplate-audit-recovery-20261029T162035Z; includes preserved pending tracker changes",
+  "baselineSha256": "449fe74cbd55e8488fd511a9cad20c9e8a9aafd1b7976001cdc08c9a0208fbc8",
+  "candidateSha256": "e43f0bfb60bb6a66b801cd5d8d6dbe65ce8ff6b452247c39012e3c5ffb073271",
+  "harnessSha256": "642161260b4e5444e9ce9d6a0c33b8429bab8b31b039571176db44fb364e87af",
+  "environment": {
+    "kind": "desktop mocks; no native client execution in this artifact",
+    "lua": "Lua 5.4.6  Copyright (C) 1994-2023 Lua.org, PUC-Rio",
+    "python": "3.10.6",
+    "os": "Windows-10-10.0.26200-SP0",
+    "nativeContext": "separate native report; do not attribute native FPS/taint/pixels to these metrics"
+  },
+  "protocol": {
+    "pairs": 5,
+    "freshProcessEachVariant": true,
+    "order": "alternating before-after / after-before",
+    "startup": "one plate with 100 initialized auras",
+    "warmup": "20 polls at 0.1 simulated seconds after initial Added",
+    "capture": "100 polls at 0.1 simulated seconds; 100 auras (10000 updates), no real-time sleep",
+    "lifecycle": "100 native-identity remove/re-add cycles with three auras, plus hidden controls",
+    "profiler": "scriptProfile absent in desktop; operation counters; os.clock advisory; Lua GC stopped only during steady heap measurement and restored immediately",
+    "heap": "Lua desktop growth with GC stopped, not native allocation bytes or a leak rate",
+    "baselineReplay": "frozen source captured before runtime edit; extended harness and five matched pair capture follow candidate implementation"
+  },
+  "pairs": [
+    {
+      "trial": 1,
+      "order": [
+        "before",
+        "after"
+      ],
+      "before": {
+        "command": [
+          "lua",
+          "tests/nameplate_countdown_work.lua",
+          "--source",
+          "tests/fixtures/nameplate_countdown_before.txt",
+          "--measure"
+        ],
+        "exit": 0,
+        "output": "METRIC era_lifecycle font_reads=400 region_reads=200 level_reads=900 label_writes=300 anchors=300 frames=5\nMETRIC era_modern_startup font_reads=200 region_reads=0 level_reads=300 label_writes=100 anchors=100 frames=102\nFAIL era modern one font-region lookup per visible aura per poll\nFAIL era no per-aura temporary frame-level tables\nMETRIC era_modern font_reads=20000 region_reads=0 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=1016.062500 cpu_seconds=0.042000\nMETRIC era_legacy_startup font_reads=0 region_reads=200 level_reads=300 label_writes=100 anchors=100 frames=102\nFAIL era legacy one font-region lookup per visible aura per poll\nMETRIC era_legacy font_reads=0 region_reads=20000 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=3046.937500 cpu_seconds=0.037000\nMETRIC anniversary_lifecycle font_reads=400 region_reads=200 level_reads=900 label_writes=300 anchors=300 frames=5\nMETRIC anniversary_modern_startup font_reads=200 region_reads=0 level_reads=300 label_writes=100 anchors=100 frames=102\nFAIL anniversary modern one font-region lookup per visible aura per poll\nFAIL anniversary no per-aura temporary frame-level tables\nMETRIC anniversary_modern font_reads=20000 region_reads=0 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=1015.687500 cpu_seconds=0.036000\nMETRIC anniversary_legacy_startup font_reads=0 region_reads=200 level_reads=300 label_writes=100 anchors=100 frames=102\nFAIL anniversary legacy one font-region lookup per visible aura per poll\nMETRIC anniversary_legacy font_reads=0 region_reads=20000 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=3046.937500 cpu_seconds=0.041000\nMETRIC progression_lifecycle font_reads=400 region_reads=200 level_reads=900 label_writes=300 anchors=300 frames=5\nMETRIC progression_modern_startup font_reads=200 region_reads=0 level_reads=300 label_writes=100 anchors=100 frames=102\nFAIL progression modern one font-region lookup per visible aura per poll\nFAIL progression no per-aura temporary frame-level tables\nMETRIC progression_modern font_reads=20000 region_reads=0 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=1015.687500 cpu_seconds=0.034000\nMETRIC progression_legacy_startup font_reads=0 region_reads=200 level_reads=300 label_writes=100 anchors=100 frames=102\nFAIL progression legacy one font-region lookup per visible aura per poll\nMETRIC progression_legacy font_reads=0 region_reads=20000 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=3046.937500 cpu_seconds=0.036000\nMETRIC live_lifecycle font_reads=400 region_reads=200 level_reads=900 label_writes=300 anchors=300 frames=5\nMETRIC live_modern_startup font_reads=200 region_reads=0 level_reads=300 label_writes=100 anchors=100 frames=102\nFAIL live modern one font-region lookup per visible aura per poll\nFAIL live no per-aura temporary frame-level tables\nMETRIC live_modern font_reads=20000 region_reads=0 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=1015.687500 cpu_seconds=0.032000\nMETRIC live_legacy_startup font_reads=0 region_reads=200 level_reads=300 label_writes=100 anchors=100 frames=102\nFAIL live legacy one font-region lookup per visible aura per poll\nMETRIC live_legacy font_reads=0 region_reads=20000 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=3046.937500 cpu_seconds=0.037000\nMETRIC forever_lifecycle font_reads=400 region_reads=200 level_reads=900 label_writes=300 anchors=300 frames=5\nMETRIC forever_modern_startup font_reads=200 region_reads=0 level_reads=300 label_writes=100 anchors=100 frames=102\nFAIL forever modern one font-region lookup per visible aura per poll\nFAIL forever no per-aura temporary frame-level tables\nMETRIC forever_modern font_reads=20000 region_reads=0 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=1015.687500 cpu_seconds=0.031000\nMETRIC forever_legacy_startup font_reads=0 region_reads=200 level_reads=300 label_writes=100 anchors=100 frames=102\nFAIL forever legacy one font-region lookup per visible aura per poll\nMETRIC forever_legacy font_reads=0 region_reads=20000 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=3046.937500 cpu_seconds=0.042000\nNameplate countdown work: 1160 checks, 15 failures\n",
+        "metrics": {
+          "era_lifecycle": {
+            "font_reads": 400,
+            "region_reads": 200,
+            "level_reads": 900,
+            "label_writes": 300,
+            "anchors": 300,
+            "frames": 5
+          },
+          "era_modern_startup": {
+            "font_reads": 200,
+            "region_reads": 0,
+            "level_reads": 300,
+            "label_writes": 100,
+            "anchors": 100,
+            "frames": 102
+          },
+          "era_modern": {
+            "font_reads": 20000,
+            "region_reads": 0,
+            "level_reads": 30000,
+            "label_writes": 10000,
+            "anchors": 10000,
+            "frames": 102,
+            "heap_kib": 1016.0625,
+            "cpu_seconds": 0.042
+          },
+          "era_legacy_startup": {
+            "font_reads": 0,
+            "region_reads": 200,
+            "level_reads": 300,
+            "label_writes": 100,
+            "anchors": 100,
+            "frames": 102
+          },
+          "era_legacy": {
+            "font_reads": 0,
+            "region_reads": 20000,
+            "level_reads": 30000,
+            "label_writes": 10000,
+            "anchors": 10000,
+            "frames": 102,
+            "heap_kib": 3046.9375,
+            "cpu_seconds": 0.037
+          },
+          "anniversary_lifecycle": {
+            "font_reads": 400,
+            "region_reads": 200,
+            "level_reads": 900,
+            "label_writes": 300,
+            "anchors": 300,
+            "frames": 5
+          },
+          "anniversary_modern_startup": {
+            "font_reads": 200,
+            "region_reads": 0,
+            "level_reads": 300,
+            "label_writes": 100,
+            "anchors": 100,
+            "frames": 102
+          },
+          "anniversary_modern": {
+            "font_reads": 20000,
+            "region_reads": 0,
+            "level_reads": 30000,
+            "label_writes": 10000,
+            "anchors": 10000,
+            "frames": 102,
+            "heap_kib": 1015.6875,
+            "cpu_seconds": 0.036
+          },
+          "anniversary_legacy_startup": {
+            "font_reads": 0,
+            "region_reads": 200,
+            "level_reads": 300,
+            "label_writes": 100,
+            "anchors": 100,
+            "frames": 102
+          },
+          "anniversary_legacy": {
+            "font_reads": 0,
+            "region_reads": 20000,
+            "level_reads": 30000,
+            "label_writes": 10000,
+            "anchors": 10000,
+            "frames": 102,
+            "heap_kib": 3046.9375,
+            "cpu_seconds": 0.041
+          },
+          "progression_lifecycle": {
+            "font_reads": 400,
+            "region_reads": 200,
+            "level_reads": 900,
+            "label_writes": 300,
+            "anchors": 300,
+            "frames": 5
+          },
+          "progression_modern_startup": {
+            "font_reads": 200,
+            "region_reads": 0,
+            "level_reads": 300,
+            "label_writes": 100,
+            "anchors": 100,
+            "frames": 102
+          },
+          "progression_modern": {
+            "font_reads": 20000,
+            "region_reads": 0,
+            "level_reads": 30000,
+            "label_writes": 10000,
+            "anchors": 10000,
+            "frames": 102,
+            "heap_kib": 1015.6875,
+            "cpu_seconds": 0.034
+          },
+          "progression_legacy_startup": {
+            "font_reads": 0,
+            "region_reads": 200,
+            "level_reads": 300,
+            "label_writes": 100,
+            "anchors": 100,
+            "frames": 102
+          },
+          "progression_legacy": {
+            "font_reads": 0,
+            "region_reads": 20000,
+            "level_reads": 30000,
+            "label_writes": 10000,
+            "anchors": 10000,
+            "frames": 102,
+            "heap_kib": 3046.9375,
+            "cpu_seconds": 0.036
+          },
+          "live_lifecycle": {
+            "font_reads": 400,
+            "region_reads": 200,
+            "level_reads": 900,
+            "label_writes": 300,
+            "anchors": 300,
+            "frames": 5
+          },
+          "live_modern_startup": {
+            "font_reads": 200,
+            "region_reads": 0,
+            "level_reads": 300,
+            "label_writes": 100,
+            "anchors": 100,
+            "frames": 102
+          },
+          "live_modern": {
+            "font_reads": 20000,
+            "region_reads": 0,
+            "level_reads": 30000,
+            "label_writes": 10000,
+            "anchors": 10000,
+            "frames": 102,
+            "heap_kib": 1015.6875,
+            "cpu_seconds": 0.032
+          },
+          "live_legacy_startup": {
+            "font_reads": 0,
+            "region_reads": 200,
+            "level_reads": 300,
+            "label_writes": 100,
+            "anchors": 100,
+            "frames": 102
+          },
+          "live_legacy": {
+            "font_reads": 0,
+            "region_reads": 20000,
+            "level_reads": 30000,
+            "label_writes": 10000,
+            "anchors": 10000,
+            "frames": 102,
+            "heap_kib": 3046.9375,
+            "cpu_seconds": 0.037
+          },
+          "forever_lifecycle": {
+            "font_reads": 400,
+            "region_reads": 200,
+            "level_reads": 900,
+            "label_writes": 300,
+            "anchors": 300,
+            "frames": 5
+          },
+          "forever_modern_startup": {
+            "font_reads": 200,
+            "region_reads": 0,
+            "level_reads": 300,
+            "label_writes": 100,
+            "anchors": 100,
+            "frames": 102
+          },
+          "forever_modern": {
+            "font_reads": 20000,
+            "region_reads": 0,
+            "level_reads": 30000,
+            "label_writes": 10000,
+            "anchors": 10000,
+            "frames": 102,
+            "heap_kib": 1015.6875,
+            "cpu_seconds": 0.031
+          },
+          "forever_legacy_startup": {
+            "font_reads": 0,
+            "region_reads": 200,
+            "level_reads": 300,
+            "label_writes": 100,
+            "anchors": 100,
+            "frames": 102
+          },
+          "forever_legacy": {
+            "font_reads": 0,
+            "region_reads": 20000,
+            "level_reads": 30000,
+            "label_writes": 10000,
+            "anchors": 10000,
+            "frames": 102,
+            "heap_kib": 3046.9375,
+            "cpu_seconds": 0.042
+          }
+        }
+      },
+      "after": {
+        "command": [
+          "lua",
+          "tests/nameplate_countdown_work.lua"
+        ],
+        "exit": 0,
+        "output": "METRIC era_lifecycle font_reads=200 region_reads=100 level_reads=900 label_writes=300 anchors=300 frames=5\nMETRIC era_modern_startup font_reads=100 region_reads=0 level_reads=300 label_writes=100 anchors=100 frames=102\nMETRIC era_modern font_reads=10000 region_reads=0 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=0.437500 cpu_seconds=0.026000\nMETRIC era_legacy_startup font_reads=0 region_reads=100 level_reads=300 label_writes=100 anchors=100 frames=102\nMETRIC era_legacy font_reads=0 region_reads=10000 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=1015.687500 cpu_seconds=0.036000\nMETRIC anniversary_lifecycle font_reads=200 region_reads=100 level_reads=900 label_writes=300 anchors=300 frames=5\nMETRIC anniversary_modern_startup font_reads=100 region_reads=0 level_reads=300 label_writes=100 anchors=100 frames=102\nMETRIC anniversary_modern font_reads=10000 region_reads=0 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=0.062500 cpu_seconds=0.028000\nMETRIC anniversary_legacy_startup font_reads=0 region_reads=100 level_reads=300 label_writes=100 anchors=100 frames=102\nMETRIC anniversary_legacy font_reads=0 region_reads=10000 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=1015.687500 cpu_seconds=0.033000\nMETRIC progression_lifecycle font_reads=200 region_reads=100 level_reads=900 label_writes=300 anchors=300 frames=5\nMETRIC progression_modern_startup font_reads=100 region_reads=0 level_reads=300 label_writes=100 anchors=100 frames=102\nMETRIC progression_modern font_reads=10000 region_reads=0 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=0.062500 cpu_seconds=0.027000\nMETRIC progression_legacy_startup font_reads=0 region_reads=100 level_reads=300 label_writes=100 anchors=100 frames=102\nMETRIC progression_legacy font_reads=0 region_reads=10000 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=1015.687500 cpu_seconds=0.031000\nMETRIC live_lifecycle font_reads=200 region_reads=100 level_reads=900 label_writes=300 anchors=300 frames=5\nMETRIC live_modern_startup font_reads=100 region_reads=0 level_reads=300 label_writes=100 anchors=100 frames=102\nMETRIC live_modern font_reads=10000 region_reads=0 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=0.062500 cpu_seconds=0.031000\nMETRIC live_legacy_startup font_reads=0 region_reads=100 level_reads=300 label_writes=100 anchors=100 frames=102\nMETRIC live_legacy font_reads=0 region_reads=10000 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=1015.687500 cpu_seconds=0.031000\nMETRIC forever_lifecycle font_reads=200 region_reads=100 level_reads=900 label_writes=300 anchors=300 frames=5\nMETRIC forever_modern_startup font_reads=100 region_reads=0 level_reads=300 label_writes=100 anchors=100 frames=102\nMETRIC forever_modern font_reads=10000 region_reads=0 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=0.062500 cpu_seconds=0.031000\nMETRIC forever_legacy_startup font_reads=0 region_reads=100 level_reads=300 label_writes=100 anchors=100 frames=102\nMETRIC forever_legacy font_reads=0 region_reads=10000 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=1015.687500 cpu_seconds=0.030000\nNameplate countdown work: 1160 checks, 0 failures\n",
+        "metrics": {
+          "era_lifecycle": {
+            "font_reads": 200,
+            "region_reads": 100,
+            "level_reads": 900,
+            "label_writes": 300,
+            "anchors": 300,
+            "frames": 5
+          },
+          "era_modern_startup": {
+            "font_reads": 100,
+            "region_reads": 0,
+            "level_reads": 300,
+            "label_writes": 100,
+            "anchors": 100,
+            "frames": 102
+          },
+          "era_modern": {
+            "font_reads": 10000,
+            "region_reads": 0,
+            "level_reads": 30000,
+            "label_writes": 10000,
+            "anchors": 10000,
+            "frames": 102,
+            "heap_kib": 0.4375,
+            "cpu_seconds": 0.026
+          },
+          "era_legacy_startup": {
+            "font_reads": 0,
+            "region_reads": 100,
+            "level_reads": 300,
+            "label_writes": 100,
+            "anchors": 100,
+            "frames": 102
+          },
+          "era_legacy": {
+            "font_reads": 0,
+            "region_reads": 10000,
+            "level_reads": 30000,
+            "label_writes": 10000,
+            "anchors": 10000,
+            "frames": 102,
+            "heap_kib": 1015.6875,
+            "cpu_seconds": 0.036
+          },
+          "anniversary_lifecycle": {
+            "font_reads": 200,
+            "region_reads": 100,
+            "level_reads": 900,
+            "label_writes": 300,
+            "anchors": 300,
+            "frames": 5
+          },
+          "anniversary_modern_startup": {
+            "font_reads": 100,
+            "region_reads": 0,
+            "level_reads": 300,
+            "label_writes": 100,
+            "anchors": 100,
+            "frames": 102
+          },
+          "anniversary_modern": {
+            "font_reads": 10000,
+            "region_reads": 0,
+            "level_reads": 30000,
+            "label_writes": 10000,
+            "anchors": 10000,
+            "frames": 102,
+            "heap_kib": 0.0625,
+            "cpu_seconds": 0.028
+          },
+          "anniversary_legacy_startup": {
+            "font_reads": 0,
+            "region_reads": 100,
+            "level_reads": 300,
+            "label_writes": 100,
+            "anchors": 100,
+            "frames": 102
+          },
+          "anniversary_legacy": {
+            "font_reads": 0,
+            "region_reads": 10000,
+            "level_reads": 30000,
+            "label_writes": 10000,
+            "anchors": 10000,
+            "frames": 102,
+            "heap_kib": 1015.6875,
+            "cpu_seconds": 0.033
+          },
+          "progression_lifecycle": {
+            "font_reads": 200,
+            "region_reads": 100,
+            "level_reads": 900,
+            "label_writes": 300,
+            "anchors": 300,
+            "frames": 5
+          },
+          "progression_modern_startup": {
+            "font_reads": 100,
+            "region_reads": 0,
+            "level_reads": 300,
+            "label_writes": 100,
+            "anchors": 100,
+            "frames": 102
+          },
+          "progression_modern": {
+            "font_reads": 10000,
+            "region_reads": 0,
+            "level_reads": 30000,
+            "label_writes": 10000,
+            "anchors": 10000,
+            "frames": 102,
+            "heap_kib": 0.0625,
+            "cpu_seconds": 0.027
+          },
+          "progression_legacy_startup": {
+            "font_reads": 0,
+            "region_reads": 100,
+            "level_reads": 300,
+            "label_writes": 100,
+            "anchors": 100,
+            "frames": 102
+          },
+          "progression_legacy": {
+            "font_reads": 0,
+            "region_reads": 10000,
+            "level_reads": 30000,
+            "label_writes": 10000,
+            "anchors": 10000,
+            "frames": 102,
+            "heap_kib": 1015.6875,
+            "cpu_seconds": 0.031
+          },
+          "live_lifecycle": {
+            "font_reads": 200,
+            "region_reads": 100,
+            "level_reads": 900,
+            "label_writes": 300,
+            "anchors": 300,
+            "frames": 5
+          },
+          "live_modern_startup": {
+            "font_reads": 100,
+            "region_reads": 0,
+            "level_reads": 300,
+            "label_writes": 100,
+            "anchors": 100,
+            "frames": 102
+          },
+          "live_modern": {
+            "font_reads": 10000,
+            "region_reads": 0,
+            "level_reads": 30000,
+            "label_writes": 10000,
+            "anchors": 10000,
+            "frames": 102,
+            "heap_kib": 0.0625,
+            "cpu_seconds": 0.031
+          },
+          "live_legacy_startup": {
+            "font_reads": 0,
+            "region_reads": 100,
+            "level_reads": 300,
+            "label_writes": 100,
+            "anchors": 100,
+            "frames": 102
+          },
+          "live_legacy": {
+            "font_reads": 0,
+            "region_reads": 10000,
+            "level_reads": 30000,
+            "label_writes": 10000,
+            "anchors": 10000,
+            "frames": 102,
+            "heap_kib": 1015.6875,
+            "cpu_seconds": 0.031
+          },
+          "forever_lifecycle": {
+            "font_reads": 200,
+            "region_reads": 100,
+            "level_reads": 900,
+            "label_writes": 300,
+            "anchors": 300,
+            "frames": 5
+          },
+          "forever_modern_startup": {
+            "font_reads": 100,
+            "region_reads": 0,
+            "level_reads": 300,
+            "label_writes": 100,
+            "anchors": 100,
+            "frames": 102
+          },
+          "forever_modern": {
+            "font_reads": 10000,
+            "region_reads": 0,
+            "level_reads": 30000,
+            "label_writes": 10000,
+            "anchors": 10000,
+            "frames": 102,
+            "heap_kib": 0.0625,
+            "cpu_seconds": 0.031
+          },
+          "forever_legacy_startup": {
+            "font_reads": 0,
+            "region_reads": 100,
+            "level_reads": 300,
+            "label_writes": 100,
+            "anchors": 100,
+            "frames": 102
+          },
+          "forever_legacy": {
+            "font_reads": 0,
+            "region_reads": 10000,
+            "level_reads": 30000,
+            "label_writes": 10000,
+            "anchors": 10000,
+            "frames": 102,
+            "heap_kib": 1015.6875,
+            "cpu_seconds": 0.03
+          }
+        }
+      }
+    },
+    {
+      "trial": 2,
+      "order": [
+        "after",
+        "before"
+      ],
+      "after": {
+        "command": [
+          "lua",
+          "tests/nameplate_countdown_work.lua"
+        ],
+        "exit": 0,
+        "output": "METRIC era_lifecycle font_reads=200 region_reads=100 level_reads=900 label_writes=300 anchors=300 frames=5\nMETRIC era_modern_startup font_reads=100 region_reads=0 level_reads=300 label_writes=100 anchors=100 frames=102\nMETRIC era_modern font_reads=10000 region_reads=0 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=0.437500 cpu_seconds=0.031000\nMETRIC era_legacy_startup font_reads=0 region_reads=100 level_reads=300 label_writes=100 anchors=100 frames=102\nMETRIC era_legacy font_reads=0 region_reads=10000 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=1015.687500 cpu_seconds=0.039000\nMETRIC anniversary_lifecycle font_reads=200 region_reads=100 level_reads=900 label_writes=300 anchors=300 frames=5\nMETRIC anniversary_modern_startup font_reads=100 region_reads=0 level_reads=300 label_writes=100 anchors=100 frames=102\nMETRIC anniversary_modern font_reads=10000 region_reads=0 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=0.062500 cpu_seconds=0.030000\nMETRIC anniversary_legacy_startup font_reads=0 region_reads=100 level_reads=300 label_writes=100 anchors=100 frames=102\nMETRIC anniversary_legacy font_reads=0 region_reads=10000 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=1015.687500 cpu_seconds=0.046000\nMETRIC progression_lifecycle font_reads=200 region_reads=100 level_reads=900 label_writes=300 anchors=300 frames=5\nMETRIC progression_modern_startup font_reads=100 region_reads=0 level_reads=300 label_writes=100 anchors=100 frames=102\nMETRIC progression_modern font_reads=10000 region_reads=0 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=0.062500 cpu_seconds=0.036000\nMETRIC progression_legacy_startup font_reads=0 region_reads=100 level_reads=300 label_writes=100 anchors=100 frames=102\nMETRIC progression_legacy font_reads=0 region_reads=10000 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=1015.687500 cpu_seconds=0.043000\nMETRIC live_lifecycle font_reads=200 region_reads=100 level_reads=900 label_writes=300 anchors=300 frames=5\nMETRIC live_modern_startup font_reads=100 region_reads=0 level_reads=300 label_writes=100 anchors=100 frames=102\nMETRIC live_modern font_reads=10000 region_reads=0 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=0.062500 cpu_seconds=0.039000\nMETRIC live_legacy_startup font_reads=0 region_reads=100 level_reads=300 label_writes=100 anchors=100 frames=102\nMETRIC live_legacy font_reads=0 region_reads=10000 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=1015.687500 cpu_seconds=0.036000\nMETRIC forever_lifecycle font_reads=200 region_reads=100 level_reads=900 label_writes=300 anchors=300 frames=5\nMETRIC forever_modern_startup font_reads=100 region_reads=0 level_reads=300 label_writes=100 anchors=100 frames=102\nMETRIC forever_modern font_reads=10000 region_reads=0 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=0.062500 cpu_seconds=0.031000\nMETRIC forever_legacy_startup font_reads=0 region_reads=100 level_reads=300 label_writes=100 anchors=100 frames=102\nMETRIC forever_legacy font_reads=0 region_reads=10000 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=1015.687500 cpu_seconds=0.033000\nNameplate countdown work: 1160 checks, 0 failures\n",
+        "metrics": {
+          "era_lifecycle": {
+            "font_reads": 200,
+            "region_reads": 100,
+            "level_reads": 900,
+            "label_writes": 300,
+            "anchors": 300,
+            "frames": 5
+          },
+          "era_modern_startup": {
+            "font_reads": 100,
+            "region_reads": 0,
+            "level_reads": 300,
+            "label_writes": 100,
+            "anchors": 100,
+            "frames": 102
+          },
+          "era_modern": {
+            "font_reads": 10000,
+            "region_reads": 0,
+            "level_reads": 30000,
+            "label_writes": 10000,
+            "anchors": 10000,
+            "frames": 102,
+            "heap_kib": 0.4375,
+            "cpu_seconds": 0.031
+          },
+          "era_legacy_startup": {
+            "font_reads": 0,
+            "region_reads": 100,
+            "level_reads": 300,
+            "label_writes": 100,
+            "anchors": 100,
+            "frames": 102
+          },
+          "era_legacy": {
+            "font_reads": 0,
+            "region_reads": 10000,
+            "level_reads": 30000,
+            "label_writes": 10000,
+            "anchors": 10000,
+            "frames": 102,
+            "heap_kib": 1015.6875,
+            "cpu_seconds": 0.039
+          },
+          "anniversary_lifecycle": {
+            "font_reads": 200,
+            "region_reads": 100,
+            "level_reads": 900,
+            "label_writes": 300,
+            "anchors": 300,
+            "frames": 5
+          },
+          "anniversary_modern_startup": {
+            "font_reads": 100,
+            "region_reads": 0,
+            "level_reads": 300,
+            "label_writes": 100,
+            "anchors": 100,
+            "frames": 102
+          },
+          "anniversary_modern": {
+            "font_reads": 10000,
+            "region_reads": 0,
+            "level_reads": 30000,
+            "label_writes": 10000,
+            "anchors": 10000,
+            "frames": 102,
+            "heap_kib": 0.0625,
+            "cpu_seconds": 0.03
+          },
+          "anniversary_legacy_startup": {
+            "font_reads": 0,
+            "region_reads": 100,
+            "level_reads": 300,
+            "label_writes": 100,
+            "anchors": 100,
+            "frames": 102
+          },
+          "anniversary_legacy": {
+            "font_reads": 0,
+            "region_reads": 10000,
+            "level_reads": 30000,
+            "label_writes": 10000,
+            "anchors": 10000,
+            "frames": 102,
+            "heap_kib": 1015.6875,
+            "cpu_seconds": 0.046
+          },
+          "progression_lifecycle": {
+            "font_reads": 200,
+            "region_reads": 100,
+            "level_reads": 900,
+            "label_writes": 300,
+            "anchors": 300,
+            "frames": 5
+          },
+          "progression_modern_startup": {
+            "font_reads": 100,
+            "region_reads": 0,
+            "level_reads": 300,
+            "label_writes": 100,
+            "anchors": 100,
+            "frames": 102
+          },
+          "progression_modern": {
+            "font_reads": 10000,
+            "region_reads": 0,
+            "level_reads": 30000,
+            "label_writes": 10000,
+            "anchors": 10000,
+            "frames": 102,
+            "heap_kib": 0.0625,
+            "cpu_seconds": 0.036
+          },
+          "progression_legacy_startup": {
+            "font_reads": 0,
+            "region_reads": 100,
+            "level_reads": 300,
+            "label_writes": 100,
+            "anchors": 100,
+            "frames": 102
+          },
+          "progression_legacy": {
+            "font_reads": 0,
+            "region_reads": 10000,
+            "level_reads": 30000,
+            "label_writes": 10000,
+            "anchors": 10000,
+            "frames": 102,
+            "heap_kib": 1015.6875,
+            "cpu_seconds": 0.043
+          },
+          "live_lifecycle": {
+            "font_reads": 200,
+            "region_reads": 100,
+            "level_reads": 900,
+            "label_writes": 300,
+            "anchors": 300,
+            "frames": 5
+          },
+          "live_modern_startup": {
+            "font_reads": 100,
+            "region_reads": 0,
+            "level_reads": 300,
+            "label_writes": 100,
+            "anchors": 100,
+            "frames": 102
+          },
+          "live_modern": {
+            "font_reads": 10000,
+            "region_reads": 0,
+            "level_reads": 30000,
+            "label_writes": 10000,
+            "anchors": 10000,
+            "frames": 102,
+            "heap_kib": 0.0625,
+            "cpu_seconds": 0.039
+          },
+          "live_legacy_startup": {
+            "font_reads": 0,
+            "region_reads": 100,
+            "level_reads": 300,
+            "label_writes": 100,
+            "anchors": 100,
+            "frames": 102
+          },
+          "live_legacy": {
+            "font_reads": 0,
+            "region_reads": 10000,
+            "level_reads": 30000,
+            "label_writes": 10000,
+            "anchors": 10000,
+            "frames": 102,
+            "heap_kib": 1015.6875,
+            "cpu_seconds": 0.036
+          },
+          "forever_lifecycle": {
+            "font_reads": 200,
+            "region_reads": 100,
+            "level_reads": 900,
+            "label_writes": 300,
+            "anchors": 300,
+            "frames": 5
+          },
+          "forever_modern_startup": {
+            "font_reads": 100,
+            "region_reads": 0,
+            "level_reads": 300,
+            "label_writes": 100,
+            "anchors": 100,
+            "frames": 102
+          },
+          "forever_modern": {
+            "font_reads": 10000,
+            "region_reads": 0,
+            "level_reads": 30000,
+            "label_writes": 10000,
+            "anchors": 10000,
+            "frames": 102,
+            "heap_kib": 0.0625,
+            "cpu_seconds": 0.031
+          },
+          "forever_legacy_startup": {
+            "font_reads": 0,
+            "region_reads": 100,
+            "level_reads": 300,
+            "label_writes": 100,
+            "anchors": 100,
+            "frames": 102
+          },
+          "forever_legacy": {
+            "font_reads": 0,
+            "region_reads": 10000,
+            "level_reads": 30000,
+            "label_writes": 10000,
+            "anchors": 10000,
+            "frames": 102,
+            "heap_kib": 1015.6875,
+            "cpu_seconds": 0.033
+          }
+        }
+      },
+      "before": {
+        "command": [
+          "lua",
+          "tests/nameplate_countdown_work.lua",
+          "--source",
+          "tests/fixtures/nameplate_countdown_before.txt",
+          "--measure"
+        ],
+        "exit": 0,
+        "output": "METRIC era_lifecycle font_reads=400 region_reads=200 level_reads=900 label_writes=300 anchors=300 frames=5\nMETRIC era_modern_startup font_reads=200 region_reads=0 level_reads=300 label_writes=100 anchors=100 frames=102\nFAIL era modern one font-region lookup per visible aura per poll\nFAIL era no per-aura temporary frame-level tables\nMETRIC era_modern font_reads=20000 region_reads=0 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=1016.062500 cpu_seconds=0.031000\nMETRIC era_legacy_startup font_reads=0 region_reads=200 level_reads=300 label_writes=100 anchors=100 frames=102\nFAIL era legacy one font-region lookup per visible aura per poll\nMETRIC era_legacy font_reads=0 region_reads=20000 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=3046.937500 cpu_seconds=0.037000\nMETRIC anniversary_lifecycle font_reads=400 region_reads=200 level_reads=900 label_writes=300 anchors=300 frames=5\nMETRIC anniversary_modern_startup font_reads=200 region_reads=0 level_reads=300 label_writes=100 anchors=100 frames=102\nFAIL anniversary modern one font-region lookup per visible aura per poll\nFAIL anniversary no per-aura temporary frame-level tables\nMETRIC anniversary_modern font_reads=20000 region_reads=0 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=1015.687500 cpu_seconds=0.034000\nMETRIC anniversary_legacy_startup font_reads=0 region_reads=200 level_reads=300 label_writes=100 anchors=100 frames=102\nFAIL anniversary legacy one font-region lookup per visible aura per poll\nMETRIC anniversary_legacy font_reads=0 region_reads=20000 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=3046.937500 cpu_seconds=0.039000\nMETRIC progression_lifecycle font_reads=400 region_reads=200 level_reads=900 label_writes=300 anchors=300 frames=5\nMETRIC progression_modern_startup font_reads=200 region_reads=0 level_reads=300 label_writes=100 anchors=100 frames=102\nFAIL progression modern one font-region lookup per visible aura per poll\nFAIL progression no per-aura temporary frame-level tables\nMETRIC progression_modern font_reads=20000 region_reads=0 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=1015.687500 cpu_seconds=0.031000\nMETRIC progression_legacy_startup font_reads=0 region_reads=200 level_reads=300 label_writes=100 anchors=100 frames=102\nFAIL progression legacy one font-region lookup per visible aura per poll\nMETRIC progression_legacy font_reads=0 region_reads=20000 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=3046.937500 cpu_seconds=0.042000\nMETRIC live_lifecycle font_reads=400 region_reads=200 level_reads=900 label_writes=300 anchors=300 frames=5\nMETRIC live_modern_startup font_reads=200 region_reads=0 level_reads=300 label_writes=100 anchors=100 frames=102\nFAIL live modern one font-region lookup per visible aura per poll\nFAIL live no per-aura temporary frame-level tables\nMETRIC live_modern font_reads=20000 region_reads=0 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=1015.687500 cpu_seconds=0.036000\nMETRIC live_legacy_startup font_reads=0 region_reads=200 level_reads=300 label_writes=100 anchors=100 frames=102\nFAIL live legacy one font-region lookup per visible aura per poll\nMETRIC live_legacy font_reads=0 region_reads=20000 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=3046.937500 cpu_seconds=0.041000\nMETRIC forever_lifecycle font_reads=400 region_reads=200 level_reads=900 label_writes=300 anchors=300 frames=5\nMETRIC forever_modern_startup font_reads=200 region_reads=0 level_reads=300 label_writes=100 anchors=100 frames=102\nFAIL forever modern one font-region lookup per visible aura per poll\nFAIL forever no per-aura temporary frame-level tables\nMETRIC forever_modern font_reads=20000 region_reads=0 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=1015.687500 cpu_seconds=0.050000\nMETRIC forever_legacy_startup font_reads=0 region_reads=200 level_reads=300 label_writes=100 anchors=100 frames=102\nFAIL forever legacy one font-region lookup per visible aura per poll\nMETRIC forever_legacy font_reads=0 region_reads=20000 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=3046.937500 cpu_seconds=0.075000\nNameplate countdown work: 1160 checks, 15 failures\n",
+        "metrics": {
+          "era_lifecycle": {
+            "font_reads": 400,
+            "region_reads": 200,
+            "level_reads": 900,
+            "label_writes": 300,
+            "anchors": 300,
+            "frames": 5
+          },
+          "era_modern_startup": {
+            "font_reads": 200,
+            "region_reads": 0,
+            "level_reads": 300,
+            "label_writes": 100,
+            "anchors": 100,
+            "frames": 102
+          },
+          "era_modern": {
+            "font_reads": 20000,
+            "region_reads": 0,
+            "level_reads": 30000,
+            "label_writes": 10000,
+            "anchors": 10000,
+            "frames": 102,
+            "heap_kib": 1016.0625,
+            "cpu_seconds": 0.031
+          },
+          "era_legacy_startup": {
+            "font_reads": 0,
+            "region_reads": 200,
+            "level_reads": 300,
+            "label_writes": 100,
+            "anchors": 100,
+            "frames": 102
+          },
+          "era_legacy": {
+            "font_reads": 0,
+            "region_reads": 20000,
+            "level_reads": 30000,
+            "label_writes": 10000,
+            "anchors": 10000,
+            "frames": 102,
+            "heap_kib": 3046.9375,
+            "cpu_seconds": 0.037
+          },
+          "anniversary_lifecycle": {
+            "font_reads": 400,
+            "region_reads": 200,
+            "level_reads": 900,
+            "label_writes": 300,
+            "anchors": 300,
+            "frames": 5
+          },
+          "anniversary_modern_startup": {
+            "font_reads": 200,
+            "region_reads": 0,
+            "level_reads": 300,
+            "label_writes": 100,
+            "anchors": 100,
+            "frames": 102
+          },
+          "anniversary_modern": {
+            "font_reads": 20000,
+            "region_reads": 0,
+            "level_reads": 30000,
+            "label_writes": 10000,
+            "anchors": 10000,
+            "frames": 102,
+            "heap_kib": 1015.6875,
+            "cpu_seconds": 0.034
+          },
+          "anniversary_legacy_startup": {
+            "font_reads": 0,
+            "region_reads": 200,
+            "level_reads": 300,
+            "label_writes": 100,
+            "anchors": 100,
+            "frames": 102
+          },
+          "anniversary_legacy": {
+            "font_reads": 0,
+            "region_reads": 20000,
+            "level_reads": 30000,
+            "label_writes": 10000,
+            "anchors": 10000,
+            "frames": 102,
+            "heap_kib": 3046.9375,
+            "cpu_seconds": 0.039
+          },
+          "progression_lifecycle": {
+            "font_reads": 400,
+            "region_reads": 200,
+            "level_reads": 900,
+            "label_writes": 300,
+            "anchors": 300,
+            "frames": 5
+          },
+          "progression_modern_startup": {
+            "font_reads": 200,
+            "region_reads": 0,
+            "level_reads": 300,
+            "label_writes": 100,
+            "anchors": 100,
+            "frames": 102
+          },
+          "progression_modern": {
+            "font_reads": 20000,
+            "region_reads": 0,
+            "level_reads": 30000,
+            "label_writes": 10000,
+            "anchors": 10000,
+            "frames": 102,
+            "heap_kib": 1015.6875,
+            "cpu_seconds": 0.031
+          },
+          "progression_legacy_startup": {
+            "font_reads": 0,
+            "region_reads": 200,
+            "level_reads": 300,
+            "label_writes": 100,
+            "anchors": 100,
+            "frames": 102
+          },
+          "progression_legacy": {
+            "font_reads": 0,
+            "region_reads": 20000,
+            "level_reads": 30000,
+            "label_writes": 10000,
+            "anchors": 10000,
+            "frames": 102,
+            "heap_kib": 3046.9375,
+            "cpu_seconds": 0.042
+          },
+          "live_lifecycle": {
+            "font_reads": 400,
+            "region_reads": 200,
+            "level_reads": 900,
+            "label_writes": 300,
+            "anchors": 300,
+            "frames": 5
+          },
+          "live_modern_startup": {
+            "font_reads": 200,
+            "region_reads": 0,
+            "level_reads": 300,
+            "label_writes": 100,
+            "anchors": 100,
+            "frames": 102
+          },
+          "live_modern": {
+            "font_reads": 20000,
+            "region_reads": 0,
+            "level_reads": 30000,
+            "label_writes": 10000,
+            "anchors": 10000,
+            "frames": 102,
+            "heap_kib": 1015.6875,
+            "cpu_seconds": 0.036
+          },
+          "live_legacy_startup": {
+            "font_reads": 0,
+            "region_reads": 200,
+            "level_reads": 300,
+            "label_writes": 100,
+            "anchors": 100,
+            "frames": 102
+          },
+          "live_legacy": {
+            "font_reads": 0,
+            "region_reads": 20000,
+            "level_reads": 30000,
+            "label_writes": 10000,
+            "anchors": 10000,
+            "frames": 102,
+            "heap_kib": 3046.9375,
+            "cpu_seconds": 0.041
+          },
+          "forever_lifecycle": {
+            "font_reads": 400,
+            "region_reads": 200,
+            "level_reads": 900,
+            "label_writes": 300,
+            "anchors": 300,
+            "frames": 5
+          },
+          "forever_modern_startup": {
+            "font_reads": 200,
+            "region_reads": 0,
+            "level_reads": 300,
+            "label_writes": 100,
+            "anchors": 100,
+            "frames": 102
+          },
+          "forever_modern": {
+            "font_reads": 20000,
+            "region_reads": 0,
+            "level_reads": 30000,
+            "label_writes": 10000,
+            "anchors": 10000,
+            "frames": 102,
+            "heap_kib": 1015.6875,
+            "cpu_seconds": 0.05
+          },
+          "forever_legacy_startup": {
+            "font_reads": 0,
+            "region_reads": 200,
+            "level_reads": 300,
+            "label_writes": 100,
+            "anchors": 100,
+            "frames": 102
+          },
+          "forever_legacy": {
+            "font_reads": 0,
+            "region_reads": 20000,
+            "level_reads": 30000,
+            "label_writes": 10000,
+            "anchors": 10000,
+            "frames": 102,
+            "heap_kib": 3046.9375,
+            "cpu_seconds": 0.075
+          }
+        }
+      }
+    },
+    {
+      "trial": 3,
+      "order": [
+        "before",
+        "after"
+      ],
+      "before": {
+        "command": [
+          "lua",
+          "tests/nameplate_countdown_work.lua",
+          "--source",
+          "tests/fixtures/nameplate_countdown_before.txt",
+          "--measure"
+        ],
+        "exit": 0,
+        "output": "METRIC era_lifecycle font_reads=400 region_reads=200 level_reads=900 label_writes=300 anchors=300 frames=5\nMETRIC era_modern_startup font_reads=200 region_reads=0 level_reads=300 label_writes=100 anchors=100 frames=102\nFAIL era modern one font-region lookup per visible aura per poll\nFAIL era no per-aura temporary frame-level tables\nMETRIC era_modern font_reads=20000 region_reads=0 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=1016.062500 cpu_seconds=0.057000\nMETRIC era_legacy_startup font_reads=0 region_reads=200 level_reads=300 label_writes=100 anchors=100 frames=102\nFAIL era legacy one font-region lookup per visible aura per poll\nMETRIC era_legacy font_reads=0 region_reads=20000 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=3046.937500 cpu_seconds=0.045000\nMETRIC anniversary_lifecycle font_reads=400 region_reads=200 level_reads=900 label_writes=300 anchors=300 frames=5\nMETRIC anniversary_modern_startup font_reads=200 region_reads=0 level_reads=300 label_writes=100 anchors=100 frames=102\nFAIL anniversary modern one font-region lookup per visible aura per poll\nFAIL anniversary no per-aura temporary frame-level tables\nMETRIC anniversary_modern font_reads=20000 region_reads=0 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=1015.687500 cpu_seconds=0.042000\nMETRIC anniversary_legacy_startup font_reads=0 region_reads=200 level_reads=300 label_writes=100 anchors=100 frames=102\nFAIL anniversary legacy one font-region lookup per visible aura per poll\nMETRIC anniversary_legacy font_reads=0 region_reads=20000 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=3046.937500 cpu_seconds=0.056000\nMETRIC progression_lifecycle font_reads=400 region_reads=200 level_reads=900 label_writes=300 anchors=300 frames=5\nMETRIC progression_modern_startup font_reads=200 region_reads=0 level_reads=300 label_writes=100 anchors=100 frames=102\nFAIL progression modern one font-region lookup per visible aura per poll\nFAIL progression no per-aura temporary frame-level tables\nMETRIC progression_modern font_reads=20000 region_reads=0 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=1015.687500 cpu_seconds=0.048000\nMETRIC progression_legacy_startup font_reads=0 region_reads=200 level_reads=300 label_writes=100 anchors=100 frames=102\nFAIL progression legacy one font-region lookup per visible aura per poll\nMETRIC progression_legacy font_reads=0 region_reads=20000 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=3046.937500 cpu_seconds=0.057000\nMETRIC live_lifecycle font_reads=400 region_reads=200 level_reads=900 label_writes=300 anchors=300 frames=5\nMETRIC live_modern_startup font_reads=200 region_reads=0 level_reads=300 label_writes=100 anchors=100 frames=102\nFAIL live modern one font-region lookup per visible aura per poll\nFAIL live no per-aura temporary frame-level tables\nMETRIC live_modern font_reads=20000 region_reads=0 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=1015.687500 cpu_seconds=0.052000\nMETRIC live_legacy_startup font_reads=0 region_reads=200 level_reads=300 label_writes=100 anchors=100 frames=102\nFAIL live legacy one font-region lookup per visible aura per poll\nMETRIC live_legacy font_reads=0 region_reads=20000 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=3046.937500 cpu_seconds=0.046000\nMETRIC forever_lifecycle font_reads=400 region_reads=200 level_reads=900 label_writes=300 anchors=300 frames=5\nMETRIC forever_modern_startup font_reads=200 region_reads=0 level_reads=300 label_writes=100 anchors=100 frames=102\nFAIL forever modern one font-region lookup per visible aura per poll\nFAIL forever no per-aura temporary frame-level tables\nMETRIC forever_modern font_reads=20000 region_reads=0 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=1015.687500 cpu_seconds=0.051000\nMETRIC forever_legacy_startup font_reads=0 region_reads=200 level_reads=300 label_writes=100 anchors=100 frames=102\nFAIL forever legacy one font-region lookup per visible aura per poll\nMETRIC forever_legacy font_reads=0 region_reads=20000 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=3046.937500 cpu_seconds=0.062000\nNameplate countdown work: 1160 checks, 15 failures\n",
+        "metrics": {
+          "era_lifecycle": {
+            "font_reads": 400,
+            "region_reads": 200,
+            "level_reads": 900,
+            "label_writes": 300,
+            "anchors": 300,
+            "frames": 5
+          },
+          "era_modern_startup": {
+            "font_reads": 200,
+            "region_reads": 0,
+            "level_reads": 300,
+            "label_writes": 100,
+            "anchors": 100,
+            "frames": 102
+          },
+          "era_modern": {
+            "font_reads": 20000,
+            "region_reads": 0,
+            "level_reads": 30000,
+            "label_writes": 10000,
+            "anchors": 10000,
+            "frames": 102,
+            "heap_kib": 1016.0625,
+            "cpu_seconds": 0.057
+          },
+          "era_legacy_startup": {
+            "font_reads": 0,
+            "region_reads": 200,
+            "level_reads": 300,
+            "label_writes": 100,
+            "anchors": 100,
+            "frames": 102
+          },
+          "era_legacy": {
+            "font_reads": 0,
+            "region_reads": 20000,
+            "level_reads": 30000,
+            "label_writes": 10000,
+            "anchors": 10000,
+            "frames": 102,
+            "heap_kib": 3046.9375,
+            "cpu_seconds": 0.045
+          },
+          "anniversary_lifecycle": {
+            "font_reads": 400,
+            "region_reads": 200,
+            "level_reads": 900,
+            "label_writes": 300,
+            "anchors": 300,
+            "frames": 5
+          },
+          "anniversary_modern_startup": {
+            "font_reads": 200,
+            "region_reads": 0,
+            "level_reads": 300,
+            "label_writes": 100,
+            "anchors": 100,
+            "frames": 102
+          },
+          "anniversary_modern": {
+            "font_reads": 20000,
+            "region_reads": 0,
+            "level_reads": 30000,
+            "label_writes": 10000,
+            "anchors": 10000,
+            "frames": 102,
+            "heap_kib": 1015.6875,
+            "cpu_seconds": 0.042
+          },
+          "anniversary_legacy_startup": {
+            "font_reads": 0,
+            "region_reads": 200,
+            "level_reads": 300,
+            "label_writes": 100,
+            "anchors": 100,
+            "frames": 102
+          },
+          "anniversary_legacy": {
+            "font_reads": 0,
+            "region_reads": 20000,
+            "level_reads": 30000,
+            "label_writes": 10000,
+            "anchors": 10000,
+            "frames": 102,
+            "heap_kib": 3046.9375,
+            "cpu_seconds": 0.056
+          },
+          "progression_lifecycle": {
+            "font_reads": 400,
+            "region_reads": 200,
+            "level_reads": 900,
+            "label_writes": 300,
+            "anchors": 300,
+            "frames": 5
+          },
+          "progression_modern_startup": {
+            "font_reads": 200,
+            "region_reads": 0,
+            "level_reads": 300,
+            "label_writes": 100,
+            "anchors": 100,
+            "frames": 102
+          },
+          "progression_modern": {
+            "font_reads": 20000,
+            "region_reads": 0,
+            "level_reads": 30000,
+            "label_writes": 10000,
+            "anchors": 10000,
+            "frames": 102,
+            "heap_kib": 1015.6875,
+            "cpu_seconds": 0.048
+          },
+          "progression_legacy_startup": {
+            "font_reads": 0,
+            "region_reads": 200,
+            "level_reads": 300,
+            "label_writes": 100,
+            "anchors": 100,
+            "frames": 102
+          },
+          "progression_legacy": {
+            "font_reads": 0,
+            "region_reads": 20000,
+            "level_reads": 30000,
+            "label_writes": 10000,
+            "anchors": 10000,
+            "frames": 102,
+            "heap_kib": 3046.9375,
+            "cpu_seconds": 0.057
+          },
+          "live_lifecycle": {
+            "font_reads": 400,
+            "region_reads": 200,
+            "level_reads": 900,
+            "label_writes": 300,
+            "anchors": 300,
+            "frames": 5
+          },
+          "live_modern_startup": {
+            "font_reads": 200,
+            "region_reads": 0,
+            "level_reads": 300,
+            "label_writes": 100,
+            "anchors": 100,
+            "frames": 102
+          },
+          "live_modern": {
+            "font_reads": 20000,
+            "region_reads": 0,
+            "level_reads": 30000,
+            "label_writes": 10000,
+            "anchors": 10000,
+            "frames": 102,
+            "heap_kib": 1015.6875,
+            "cpu_seconds": 0.052
+          },
+          "live_legacy_startup": {
+            "font_reads": 0,
+            "region_reads": 200,
+            "level_reads": 300,
+            "label_writes": 100,
+            "anchors": 100,
+            "frames": 102
+          },
+          "live_legacy": {
+            "font_reads": 0,
+            "region_reads": 20000,
+            "level_reads": 30000,
+            "label_writes": 10000,
+            "anchors": 10000,
+            "frames": 102,
+            "heap_kib": 3046.9375,
+            "cpu_seconds": 0.046
+          },
+          "forever_lifecycle": {
+            "font_reads": 400,
+            "region_reads": 200,
+            "level_reads": 900,
+            "label_writes": 300,
+            "anchors": 300,
+            "frames": 5
+          },
+          "forever_modern_startup": {
+            "font_reads": 200,
+            "region_reads": 0,
+            "level_reads": 300,
+            "label_writes": 100,
+            "anchors": 100,
+            "frames": 102
+          },
+          "forever_modern": {
+            "font_reads": 20000,
+            "region_reads": 0,
+            "level_reads": 30000,
+            "label_writes": 10000,
+            "anchors": 10000,
+            "frames": 102,
+            "heap_kib": 1015.6875,
+            "cpu_seconds": 0.051
+          },
+          "forever_legacy_startup": {
+            "font_reads": 0,
+            "region_reads": 200,
+            "level_reads": 300,
+            "label_writes": 100,
+            "anchors": 100,
+            "frames": 102
+          },
+          "forever_legacy": {
+            "font_reads": 0,
+            "region_reads": 20000,
+            "level_reads": 30000,
+            "label_writes": 10000,
+            "anchors": 10000,
+            "frames": 102,
+            "heap_kib": 3046.9375,
+            "cpu_seconds": 0.062
+          }
+        }
+      },
+      "after": {
+        "command": [
+          "lua",
+          "tests/nameplate_countdown_work.lua"
+        ],
+        "exit": 0,
+        "output": "METRIC era_lifecycle font_reads=200 region_reads=100 level_reads=900 label_writes=300 anchors=300 frames=5\nMETRIC era_modern_startup font_reads=100 region_reads=0 level_reads=300 label_writes=100 anchors=100 frames=102\nMETRIC era_modern font_reads=10000 region_reads=0 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=0.437500 cpu_seconds=0.051000\nMETRIC era_legacy_startup font_reads=0 region_reads=100 level_reads=300 label_writes=100 anchors=100 frames=102\nMETRIC era_legacy font_reads=0 region_reads=10000 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=1015.687500 cpu_seconds=0.055000\nMETRIC anniversary_lifecycle font_reads=200 region_reads=100 level_reads=900 label_writes=300 anchors=300 frames=5\nMETRIC anniversary_modern_startup font_reads=100 region_reads=0 level_reads=300 label_writes=100 anchors=100 frames=102\nMETRIC anniversary_modern font_reads=10000 region_reads=0 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=0.062500 cpu_seconds=0.039000\nMETRIC anniversary_legacy_startup font_reads=0 region_reads=100 level_reads=300 label_writes=100 anchors=100 frames=102\nMETRIC anniversary_legacy font_reads=0 region_reads=10000 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=1015.687500 cpu_seconds=0.043000\nMETRIC progression_lifecycle font_reads=200 region_reads=100 level_reads=900 label_writes=300 anchors=300 frames=5\nMETRIC progression_modern_startup font_reads=100 region_reads=0 level_reads=300 label_writes=100 anchors=100 frames=102\nMETRIC progression_modern font_reads=10000 region_reads=0 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=0.062500 cpu_seconds=0.047000\nMETRIC progression_legacy_startup font_reads=0 region_reads=100 level_reads=300 label_writes=100 anchors=100 frames=102\nMETRIC progression_legacy font_reads=0 region_reads=10000 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=1015.687500 cpu_seconds=0.044000\nMETRIC live_lifecycle font_reads=200 region_reads=100 level_reads=900 label_writes=300 anchors=300 frames=5\nMETRIC live_modern_startup font_reads=100 region_reads=0 level_reads=300 label_writes=100 anchors=100 frames=102\nMETRIC live_modern font_reads=10000 region_reads=0 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=0.062500 cpu_seconds=0.035000\nMETRIC live_legacy_startup font_reads=0 region_reads=100 level_reads=300 label_writes=100 anchors=100 frames=102\nMETRIC live_legacy font_reads=0 region_reads=10000 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=1015.687500 cpu_seconds=0.041000\nMETRIC forever_lifecycle font_reads=200 region_reads=100 level_reads=900 label_writes=300 anchors=300 frames=5\nMETRIC forever_modern_startup font_reads=100 region_reads=0 level_reads=300 label_writes=100 anchors=100 frames=102\nMETRIC forever_modern font_reads=10000 region_reads=0 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=0.062500 cpu_seconds=0.032000\nMETRIC forever_legacy_startup font_reads=0 region_reads=100 level_reads=300 label_writes=100 anchors=100 frames=102\nMETRIC forever_legacy font_reads=0 region_reads=10000 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=1015.687500 cpu_seconds=0.035000\nNameplate countdown work: 1160 checks, 0 failures\n",
+        "metrics": {
+          "era_lifecycle": {
+            "font_reads": 200,
+            "region_reads": 100,
+            "level_reads": 900,
+            "label_writes": 300,
+            "anchors": 300,
+            "frames": 5
+          },
+          "era_modern_startup": {
+            "font_reads": 100,
+            "region_reads": 0,
+            "level_reads": 300,
+            "label_writes": 100,
+            "anchors": 100,
+            "frames": 102
+          },
+          "era_modern": {
+            "font_reads": 10000,
+            "region_reads": 0,
+            "level_reads": 30000,
+            "label_writes": 10000,
+            "anchors": 10000,
+            "frames": 102,
+            "heap_kib": 0.4375,
+            "cpu_seconds": 0.051
+          },
+          "era_legacy_startup": {
+            "font_reads": 0,
+            "region_reads": 100,
+            "level_reads": 300,
+            "label_writes": 100,
+            "anchors": 100,
+            "frames": 102
+          },
+          "era_legacy": {
+            "font_reads": 0,
+            "region_reads": 10000,
+            "level_reads": 30000,
+            "label_writes": 10000,
+            "anchors": 10000,
+            "frames": 102,
+            "heap_kib": 1015.6875,
+            "cpu_seconds": 0.055
+          },
+          "anniversary_lifecycle": {
+            "font_reads": 200,
+            "region_reads": 100,
+            "level_reads": 900,
+            "label_writes": 300,
+            "anchors": 300,
+            "frames": 5
+          },
+          "anniversary_modern_startup": {
+            "font_reads": 100,
+            "region_reads": 0,
+            "level_reads": 300,
+            "label_writes": 100,
+            "anchors": 100,
+            "frames": 102
+          },
+          "anniversary_modern": {
+            "font_reads": 10000,
+            "region_reads": 0,
+            "level_reads": 30000,
+            "label_writes": 10000,
+            "anchors": 10000,
+            "frames": 102,
+            "heap_kib": 0.0625,
+            "cpu_seconds": 0.039
+          },
+          "anniversary_legacy_startup": {
+            "font_reads": 0,
+            "region_reads": 100,
+            "level_reads": 300,
+            "label_writes": 100,
+            "anchors": 100,
+            "frames": 102
+          },
+          "anniversary_legacy": {
+            "font_reads": 0,
+            "region_reads": 10000,
+            "level_reads": 30000,
+            "label_writes": 10000,
+            "anchors": 10000,
+            "frames": 102,
+            "heap_kib": 1015.6875,
+            "cpu_seconds": 0.043
+          },
+          "progression_lifecycle": {
+            "font_reads": 200,
+            "region_reads": 100,
+            "level_reads": 900,
+            "label_writes": 300,
+            "anchors": 300,
+            "frames": 5
+          },
+          "progression_modern_startup": {
+            "font_reads": 100,
+            "region_reads": 0,
+            "level_reads": 300,
+            "label_writes": 100,
+            "anchors": 100,
+            "frames": 102
+          },
+          "progression_modern": {
+            "font_reads": 10000,
+            "region_reads": 0,
+            "level_reads": 30000,
+            "label_writes": 10000,
+            "anchors": 10000,
+            "frames": 102,
+            "heap_kib": 0.0625,
+            "cpu_seconds": 0.047
+          },
+          "progression_legacy_startup": {
+            "font_reads": 0,
+            "region_reads": 100,
+            "level_reads": 300,
+            "label_writes": 100,
+            "anchors": 100,
+            "frames": 102
+          },
+          "progression_legacy": {
+            "font_reads": 0,
+            "region_reads": 10000,
+            "level_reads": 30000,
+            "label_writes": 10000,
+            "anchors": 10000,
+            "frames": 102,
+            "heap_kib": 1015.6875,
+            "cpu_seconds": 0.044
+          },
+          "live_lifecycle": {
+            "font_reads": 200,
+            "region_reads": 100,
+            "level_reads": 900,
+            "label_writes": 300,
+            "anchors": 300,
+            "frames": 5
+          },
+          "live_modern_startup": {
+            "font_reads": 100,
+            "region_reads": 0,
+            "level_reads": 300,
+            "label_writes": 100,
+            "anchors": 100,
+            "frames": 102
+          },
+          "live_modern": {
+            "font_reads": 10000,
+            "region_reads": 0,
+            "level_reads": 30000,
+            "label_writes": 10000,
+            "anchors": 10000,
+            "frames": 102,
+            "heap_kib": 0.0625,
+            "cpu_seconds": 0.035
+          },
+          "live_legacy_startup": {
+            "font_reads": 0,
+            "region_reads": 100,
+            "level_reads": 300,
+            "label_writes": 100,
+            "anchors": 100,
+            "frames": 102
+          },
+          "live_legacy": {
+            "font_reads": 0,
+            "region_reads": 10000,
+            "level_reads": 30000,
+            "label_writes": 10000,
+            "anchors": 10000,
+            "frames": 102,
+            "heap_kib": 1015.6875,
+            "cpu_seconds": 0.041
+          },
+          "forever_lifecycle": {
+            "font_reads": 200,
+            "region_reads": 100,
+            "level_reads": 900,
+            "label_writes": 300,
+            "anchors": 300,
+            "frames": 5
+          },
+          "forever_modern_startup": {
+            "font_reads": 100,
+            "region_reads": 0,
+            "level_reads": 300,
+            "label_writes": 100,
+            "anchors": 100,
+            "frames": 102
+          },
+          "forever_modern": {
+            "font_reads": 10000,
+            "region_reads": 0,
+            "level_reads": 30000,
+            "label_writes": 10000,
+            "anchors": 10000,
+            "frames": 102,
+            "heap_kib": 0.0625,
+            "cpu_seconds": 0.032
+          },
+          "forever_legacy_startup": {
+            "font_reads": 0,
+            "region_reads": 100,
+            "level_reads": 300,
+            "label_writes": 100,
+            "anchors": 100,
+            "frames": 102
+          },
+          "forever_legacy": {
+            "font_reads": 0,
+            "region_reads": 10000,
+            "level_reads": 30000,
+            "label_writes": 10000,
+            "anchors": 10000,
+            "frames": 102,
+            "heap_kib": 1015.6875,
+            "cpu_seconds": 0.035
+          }
+        }
+      }
+    },
+    {
+      "trial": 4,
+      "order": [
+        "after",
+        "before"
+      ],
+      "after": {
+        "command": [
+          "lua",
+          "tests/nameplate_countdown_work.lua"
+        ],
+        "exit": 0,
+        "output": "METRIC era_lifecycle font_reads=200 region_reads=100 level_reads=900 label_writes=300 anchors=300 frames=5\nMETRIC era_modern_startup font_reads=100 region_reads=0 level_reads=300 label_writes=100 anchors=100 frames=102\nMETRIC era_modern font_reads=10000 region_reads=0 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=0.437500 cpu_seconds=0.031000\nMETRIC era_legacy_startup font_reads=0 region_reads=100 level_reads=300 label_writes=100 anchors=100 frames=102\nMETRIC era_legacy font_reads=0 region_reads=10000 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=1015.687500 cpu_seconds=0.040000\nMETRIC anniversary_lifecycle font_reads=200 region_reads=100 level_reads=900 label_writes=300 anchors=300 frames=5\nMETRIC anniversary_modern_startup font_reads=100 region_reads=0 level_reads=300 label_writes=100 anchors=100 frames=102\nMETRIC anniversary_modern font_reads=10000 region_reads=0 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=0.062500 cpu_seconds=0.035000\nMETRIC anniversary_legacy_startup font_reads=0 region_reads=100 level_reads=300 label_writes=100 anchors=100 frames=102\nMETRIC anniversary_legacy font_reads=0 region_reads=10000 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=1015.687500 cpu_seconds=0.053000\nMETRIC progression_lifecycle font_reads=200 region_reads=100 level_reads=900 label_writes=300 anchors=300 frames=5\nMETRIC progression_modern_startup font_reads=100 region_reads=0 level_reads=300 label_writes=100 anchors=100 frames=102\nMETRIC progression_modern font_reads=10000 region_reads=0 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=0.062500 cpu_seconds=0.044000\nMETRIC progression_legacy_startup font_reads=0 region_reads=100 level_reads=300 label_writes=100 anchors=100 frames=102\nMETRIC progression_legacy font_reads=0 region_reads=10000 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=1015.687500 cpu_seconds=0.037000\nMETRIC live_lifecycle font_reads=200 region_reads=100 level_reads=900 label_writes=300 anchors=300 frames=5\nMETRIC live_modern_startup font_reads=100 region_reads=0 level_reads=300 label_writes=100 anchors=100 frames=102\nMETRIC live_modern font_reads=10000 region_reads=0 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=0.062500 cpu_seconds=0.033000\nMETRIC live_legacy_startup font_reads=0 region_reads=100 level_reads=300 label_writes=100 anchors=100 frames=102\nMETRIC live_legacy font_reads=0 region_reads=10000 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=1015.687500 cpu_seconds=0.035000\nMETRIC forever_lifecycle font_reads=200 region_reads=100 level_reads=900 label_writes=300 anchors=300 frames=5\nMETRIC forever_modern_startup font_reads=100 region_reads=0 level_reads=300 label_writes=100 anchors=100 frames=102\nMETRIC forever_modern font_reads=10000 region_reads=0 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=0.062500 cpu_seconds=0.030000\nMETRIC forever_legacy_startup font_reads=0 region_reads=100 level_reads=300 label_writes=100 anchors=100 frames=102\nMETRIC forever_legacy font_reads=0 region_reads=10000 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=1015.687500 cpu_seconds=0.034000\nNameplate countdown work: 1160 checks, 0 failures\n",
+        "metrics": {
+          "era_lifecycle": {
+            "font_reads": 200,
+            "region_reads": 100,
+            "level_reads": 900,
+            "label_writes": 300,
+            "anchors": 300,
+            "frames": 5
+          },
+          "era_modern_startup": {
+            "font_reads": 100,
+            "region_reads": 0,
+            "level_reads": 300,
+            "label_writes": 100,
+            "anchors": 100,
+            "frames": 102
+          },
+          "era_modern": {
+            "font_reads": 10000,
+            "region_reads": 0,
+            "level_reads": 30000,
+            "label_writes": 10000,
+            "anchors": 10000,
+            "frames": 102,
+            "heap_kib": 0.4375,
+            "cpu_seconds": 0.031
+          },
+          "era_legacy_startup": {
+            "font_reads": 0,
+            "region_reads": 100,
+            "level_reads": 300,
+            "label_writes": 100,
+            "anchors": 100,
+            "frames": 102
+          },
+          "era_legacy": {
+            "font_reads": 0,
+            "region_reads": 10000,
+            "level_reads": 30000,
+            "label_writes": 10000,
+            "anchors": 10000,
+            "frames": 102,
+            "heap_kib": 1015.6875,
+            "cpu_seconds": 0.04
+          },
+          "anniversary_lifecycle": {
+            "font_reads": 200,
+            "region_reads": 100,
+            "level_reads": 900,
+            "label_writes": 300,
+            "anchors": 300,
+            "frames": 5
+          },
+          "anniversary_modern_startup": {
+            "font_reads": 100,
+            "region_reads": 0,
+            "level_reads": 300,
+            "label_writes": 100,
+            "anchors": 100,
+            "frames": 102
+          },
+          "anniversary_modern": {
+            "font_reads": 10000,
+            "region_reads": 0,
+            "level_reads": 30000,
+            "label_writes": 10000,
+            "anchors": 10000,
+            "frames": 102,
+            "heap_kib": 0.0625,
+            "cpu_seconds": 0.035
+          },
+          "anniversary_legacy_startup": {
+            "font_reads": 0,
+            "region_reads": 100,
+            "level_reads": 300,
+            "label_writes": 100,
+            "anchors": 100,
+            "frames": 102
+          },
+          "anniversary_legacy": {
+            "font_reads": 0,
+            "region_reads": 10000,
+            "level_reads": 30000,
+            "label_writes": 10000,
+            "anchors": 10000,
+            "frames": 102,
+            "heap_kib": 1015.6875,
+            "cpu_seconds": 0.053
+          },
+          "progression_lifecycle": {
+            "font_reads": 200,
+            "region_reads": 100,
+            "level_reads": 900,
+            "label_writes": 300,
+            "anchors": 300,
+            "frames": 5
+          },
+          "progression_modern_startup": {
+            "font_reads": 100,
+            "region_reads": 0,
+            "level_reads": 300,
+            "label_writes": 100,
+            "anchors": 100,
+            "frames": 102
+          },
+          "progression_modern": {
+            "font_reads": 10000,
+            "region_reads": 0,
+            "level_reads": 30000,
+            "label_writes": 10000,
+            "anchors": 10000,
+            "frames": 102,
+            "heap_kib": 0.0625,
+            "cpu_seconds": 0.044
+          },
+          "progression_legacy_startup": {
+            "font_reads": 0,
+            "region_reads": 100,
+            "level_reads": 300,
+            "label_writes": 100,
+            "anchors": 100,
+            "frames": 102
+          },
+          "progression_legacy": {
+            "font_reads": 0,
+            "region_reads": 10000,
+            "level_reads": 30000,
+            "label_writes": 10000,
+            "anchors": 10000,
+            "frames": 102,
+            "heap_kib": 1015.6875,
+            "cpu_seconds": 0.037
+          },
+          "live_lifecycle": {
+            "font_reads": 200,
+            "region_reads": 100,
+            "level_reads": 900,
+            "label_writes": 300,
+            "anchors": 300,
+            "frames": 5
+          },
+          "live_modern_startup": {
+            "font_reads": 100,
+            "region_reads": 0,
+            "level_reads": 300,
+            "label_writes": 100,
+            "anchors": 100,
+            "frames": 102
+          },
+          "live_modern": {
+            "font_reads": 10000,
+            "region_reads": 0,
+            "level_reads": 30000,
+            "label_writes": 10000,
+            "anchors": 10000,
+            "frames": 102,
+            "heap_kib": 0.0625,
+            "cpu_seconds": 0.033
+          },
+          "live_legacy_startup": {
+            "font_reads": 0,
+            "region_reads": 100,
+            "level_reads": 300,
+            "label_writes": 100,
+            "anchors": 100,
+            "frames": 102
+          },
+          "live_legacy": {
+            "font_reads": 0,
+            "region_reads": 10000,
+            "level_reads": 30000,
+            "label_writes": 10000,
+            "anchors": 10000,
+            "frames": 102,
+            "heap_kib": 1015.6875,
+            "cpu_seconds": 0.035
+          },
+          "forever_lifecycle": {
+            "font_reads": 200,
+            "region_reads": 100,
+            "level_reads": 900,
+            "label_writes": 300,
+            "anchors": 300,
+            "frames": 5
+          },
+          "forever_modern_startup": {
+            "font_reads": 100,
+            "region_reads": 0,
+            "level_reads": 300,
+            "label_writes": 100,
+            "anchors": 100,
+            "frames": 102
+          },
+          "forever_modern": {
+            "font_reads": 10000,
+            "region_reads": 0,
+            "level_reads": 30000,
+            "label_writes": 10000,
+            "anchors": 10000,
+            "frames": 102,
+            "heap_kib": 0.0625,
+            "cpu_seconds": 0.03
+          },
+          "forever_legacy_startup": {
+            "font_reads": 0,
+            "region_reads": 100,
+            "level_reads": 300,
+            "label_writes": 100,
+            "anchors": 100,
+            "frames": 102
+          },
+          "forever_legacy": {
+            "font_reads": 0,
+            "region_reads": 10000,
+            "level_reads": 30000,
+            "label_writes": 10000,
+            "anchors": 10000,
+            "frames": 102,
+            "heap_kib": 1015.6875,
+            "cpu_seconds": 0.034
+          }
+        }
+      },
+      "before": {
+        "command": [
+          "lua",
+          "tests/nameplate_countdown_work.lua",
+          "--source",
+          "tests/fixtures/nameplate_countdown_before.txt",
+          "--measure"
+        ],
+        "exit": 0,
+        "output": "METRIC era_lifecycle font_reads=400 region_reads=200 level_reads=900 label_writes=300 anchors=300 frames=5\nMETRIC era_modern_startup font_reads=200 region_reads=0 level_reads=300 label_writes=100 anchors=100 frames=102\nFAIL era modern one font-region lookup per visible aura per poll\nFAIL era no per-aura temporary frame-level tables\nMETRIC era_modern font_reads=20000 region_reads=0 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=1016.062500 cpu_seconds=0.033000\nMETRIC era_legacy_startup font_reads=0 region_reads=200 level_reads=300 label_writes=100 anchors=100 frames=102\nFAIL era legacy one font-region lookup per visible aura per poll\nMETRIC era_legacy font_reads=0 region_reads=20000 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=3046.937500 cpu_seconds=0.042000\nMETRIC anniversary_lifecycle font_reads=400 region_reads=200 level_reads=900 label_writes=300 anchors=300 frames=5\nMETRIC anniversary_modern_startup font_reads=200 region_reads=0 level_reads=300 label_writes=100 anchors=100 frames=102\nFAIL anniversary modern one font-region lookup per visible aura per poll\nFAIL anniversary no per-aura temporary frame-level tables\nMETRIC anniversary_modern font_reads=20000 region_reads=0 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=1015.687500 cpu_seconds=0.033000\nMETRIC anniversary_legacy_startup font_reads=0 region_reads=200 level_reads=300 label_writes=100 anchors=100 frames=102\nFAIL anniversary legacy one font-region lookup per visible aura per poll\nMETRIC anniversary_legacy font_reads=0 region_reads=20000 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=3046.937500 cpu_seconds=0.039000\nMETRIC progression_lifecycle font_reads=400 region_reads=200 level_reads=900 label_writes=300 anchors=300 frames=5\nMETRIC progression_modern_startup font_reads=200 region_reads=0 level_reads=300 label_writes=100 anchors=100 frames=102\nFAIL progression modern one font-region lookup per visible aura per poll\nFAIL progression no per-aura temporary frame-level tables\nMETRIC progression_modern font_reads=20000 region_reads=0 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=1015.687500 cpu_seconds=0.047000\nMETRIC progression_legacy_startup font_reads=0 region_reads=200 level_reads=300 label_writes=100 anchors=100 frames=102\nFAIL progression legacy one font-region lookup per visible aura per poll\nMETRIC progression_legacy font_reads=0 region_reads=20000 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=3046.937500 cpu_seconds=0.042000\nMETRIC live_lifecycle font_reads=400 region_reads=200 level_reads=900 label_writes=300 anchors=300 frames=5\nMETRIC live_modern_startup font_reads=200 region_reads=0 level_reads=300 label_writes=100 anchors=100 frames=102\nFAIL live modern one font-region lookup per visible aura per poll\nFAIL live no per-aura temporary frame-level tables\nMETRIC live_modern font_reads=20000 region_reads=0 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=1015.687500 cpu_seconds=0.038000\nMETRIC live_legacy_startup font_reads=0 region_reads=200 level_reads=300 label_writes=100 anchors=100 frames=102\nFAIL live legacy one font-region lookup per visible aura per poll\nMETRIC live_legacy font_reads=0 region_reads=20000 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=3046.937500 cpu_seconds=0.042000\nMETRIC forever_lifecycle font_reads=400 region_reads=200 level_reads=900 label_writes=300 anchors=300 frames=5\nMETRIC forever_modern_startup font_reads=200 region_reads=0 level_reads=300 label_writes=100 anchors=100 frames=102\nFAIL forever modern one font-region lookup per visible aura per poll\nFAIL forever no per-aura temporary frame-level tables\nMETRIC forever_modern font_reads=20000 region_reads=0 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=1015.687500 cpu_seconds=0.040000\nMETRIC forever_legacy_startup font_reads=0 region_reads=200 level_reads=300 label_writes=100 anchors=100 frames=102\nFAIL forever legacy one font-region lookup per visible aura per poll\nMETRIC forever_legacy font_reads=0 region_reads=20000 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=3046.937500 cpu_seconds=0.047000\nNameplate countdown work: 1160 checks, 15 failures\n",
+        "metrics": {
+          "era_lifecycle": {
+            "font_reads": 400,
+            "region_reads": 200,
+            "level_reads": 900,
+            "label_writes": 300,
+            "anchors": 300,
+            "frames": 5
+          },
+          "era_modern_startup": {
+            "font_reads": 200,
+            "region_reads": 0,
+            "level_reads": 300,
+            "label_writes": 100,
+            "anchors": 100,
+            "frames": 102
+          },
+          "era_modern": {
+            "font_reads": 20000,
+            "region_reads": 0,
+            "level_reads": 30000,
+            "label_writes": 10000,
+            "anchors": 10000,
+            "frames": 102,
+            "heap_kib": 1016.0625,
+            "cpu_seconds": 0.033
+          },
+          "era_legacy_startup": {
+            "font_reads": 0,
+            "region_reads": 200,
+            "level_reads": 300,
+            "label_writes": 100,
+            "anchors": 100,
+            "frames": 102
+          },
+          "era_legacy": {
+            "font_reads": 0,
+            "region_reads": 20000,
+            "level_reads": 30000,
+            "label_writes": 10000,
+            "anchors": 10000,
+            "frames": 102,
+            "heap_kib": 3046.9375,
+            "cpu_seconds": 0.042
+          },
+          "anniversary_lifecycle": {
+            "font_reads": 400,
+            "region_reads": 200,
+            "level_reads": 900,
+            "label_writes": 300,
+            "anchors": 300,
+            "frames": 5
+          },
+          "anniversary_modern_startup": {
+            "font_reads": 200,
+            "region_reads": 0,
+            "level_reads": 300,
+            "label_writes": 100,
+            "anchors": 100,
+            "frames": 102
+          },
+          "anniversary_modern": {
+            "font_reads": 20000,
+            "region_reads": 0,
+            "level_reads": 30000,
+            "label_writes": 10000,
+            "anchors": 10000,
+            "frames": 102,
+            "heap_kib": 1015.6875,
+            "cpu_seconds": 0.033
+          },
+          "anniversary_legacy_startup": {
+            "font_reads": 0,
+            "region_reads": 200,
+            "level_reads": 300,
+            "label_writes": 100,
+            "anchors": 100,
+            "frames": 102
+          },
+          "anniversary_legacy": {
+            "font_reads": 0,
+            "region_reads": 20000,
+            "level_reads": 30000,
+            "label_writes": 10000,
+            "anchors": 10000,
+            "frames": 102,
+            "heap_kib": 3046.9375,
+            "cpu_seconds": 0.039
+          },
+          "progression_lifecycle": {
+            "font_reads": 400,
+            "region_reads": 200,
+            "level_reads": 900,
+            "label_writes": 300,
+            "anchors": 300,
+            "frames": 5
+          },
+          "progression_modern_startup": {
+            "font_reads": 200,
+            "region_reads": 0,
+            "level_reads": 300,
+            "label_writes": 100,
+            "anchors": 100,
+            "frames": 102
+          },
+          "progression_modern": {
+            "font_reads": 20000,
+            "region_reads": 0,
+            "level_reads": 30000,
+            "label_writes": 10000,
+            "anchors": 10000,
+            "frames": 102,
+            "heap_kib": 1015.6875,
+            "cpu_seconds": 0.047
+          },
+          "progression_legacy_startup": {
+            "font_reads": 0,
+            "region_reads": 200,
+            "level_reads": 300,
+            "label_writes": 100,
+            "anchors": 100,
+            "frames": 102
+          },
+          "progression_legacy": {
+            "font_reads": 0,
+            "region_reads": 20000,
+            "level_reads": 30000,
+            "label_writes": 10000,
+            "anchors": 10000,
+            "frames": 102,
+            "heap_kib": 3046.9375,
+            "cpu_seconds": 0.042
+          },
+          "live_lifecycle": {
+            "font_reads": 400,
+            "region_reads": 200,
+            "level_reads": 900,
+            "label_writes": 300,
+            "anchors": 300,
+            "frames": 5
+          },
+          "live_modern_startup": {
+            "font_reads": 200,
+            "region_reads": 0,
+            "level_reads": 300,
+            "label_writes": 100,
+            "anchors": 100,
+            "frames": 102
+          },
+          "live_modern": {
+            "font_reads": 20000,
+            "region_reads": 0,
+            "level_reads": 30000,
+            "label_writes": 10000,
+            "anchors": 10000,
+            "frames": 102,
+            "heap_kib": 1015.6875,
+            "cpu_seconds": 0.038
+          },
+          "live_legacy_startup": {
+            "font_reads": 0,
+            "region_reads": 200,
+            "level_reads": 300,
+            "label_writes": 100,
+            "anchors": 100,
+            "frames": 102
+          },
+          "live_legacy": {
+            "font_reads": 0,
+            "region_reads": 20000,
+            "level_reads": 30000,
+            "label_writes": 10000,
+            "anchors": 10000,
+            "frames": 102,
+            "heap_kib": 3046.9375,
+            "cpu_seconds": 0.042
+          },
+          "forever_lifecycle": {
+            "font_reads": 400,
+            "region_reads": 200,
+            "level_reads": 900,
+            "label_writes": 300,
+            "anchors": 300,
+            "frames": 5
+          },
+          "forever_modern_startup": {
+            "font_reads": 200,
+            "region_reads": 0,
+            "level_reads": 300,
+            "label_writes": 100,
+            "anchors": 100,
+            "frames": 102
+          },
+          "forever_modern": {
+            "font_reads": 20000,
+            "region_reads": 0,
+            "level_reads": 30000,
+            "label_writes": 10000,
+            "anchors": 10000,
+            "frames": 102,
+            "heap_kib": 1015.6875,
+            "cpu_seconds": 0.04
+          },
+          "forever_legacy_startup": {
+            "font_reads": 0,
+            "region_reads": 200,
+            "level_reads": 300,
+            "label_writes": 100,
+            "anchors": 100,
+            "frames": 102
+          },
+          "forever_legacy": {
+            "font_reads": 0,
+            "region_reads": 20000,
+            "level_reads": 30000,
+            "label_writes": 10000,
+            "anchors": 10000,
+            "frames": 102,
+            "heap_kib": 3046.9375,
+            "cpu_seconds": 0.047
+          }
+        }
+      }
+    },
+    {
+      "trial": 5,
+      "order": [
+        "before",
+        "after"
+      ],
+      "before": {
+        "command": [
+          "lua",
+          "tests/nameplate_countdown_work.lua",
+          "--source",
+          "tests/fixtures/nameplate_countdown_before.txt",
+          "--measure"
+        ],
+        "exit": 0,
+        "output": "METRIC era_lifecycle font_reads=400 region_reads=200 level_reads=900 label_writes=300 anchors=300 frames=5\nMETRIC era_modern_startup font_reads=200 region_reads=0 level_reads=300 label_writes=100 anchors=100 frames=102\nFAIL era modern one font-region lookup per visible aura per poll\nFAIL era no per-aura temporary frame-level tables\nMETRIC era_modern font_reads=20000 region_reads=0 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=1016.062500 cpu_seconds=0.037000\nMETRIC era_legacy_startup font_reads=0 region_reads=200 level_reads=300 label_writes=100 anchors=100 frames=102\nFAIL era legacy one font-region lookup per visible aura per poll\nMETRIC era_legacy font_reads=0 region_reads=20000 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=3046.937500 cpu_seconds=0.041000\nMETRIC anniversary_lifecycle font_reads=400 region_reads=200 level_reads=900 label_writes=300 anchors=300 frames=5\nMETRIC anniversary_modern_startup font_reads=200 region_reads=0 level_reads=300 label_writes=100 anchors=100 frames=102\nFAIL anniversary modern one font-region lookup per visible aura per poll\nFAIL anniversary no per-aura temporary frame-level tables\nMETRIC anniversary_modern font_reads=20000 region_reads=0 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=1015.687500 cpu_seconds=0.039000\nMETRIC anniversary_legacy_startup font_reads=0 region_reads=200 level_reads=300 label_writes=100 anchors=100 frames=102\nFAIL anniversary legacy one font-region lookup per visible aura per poll\nMETRIC anniversary_legacy font_reads=0 region_reads=20000 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=3046.937500 cpu_seconds=0.051000\nMETRIC progression_lifecycle font_reads=400 region_reads=200 level_reads=900 label_writes=300 anchors=300 frames=5\nMETRIC progression_modern_startup font_reads=200 region_reads=0 level_reads=300 label_writes=100 anchors=100 frames=102\nFAIL progression modern one font-region lookup per visible aura per poll\nFAIL progression no per-aura temporary frame-level tables\nMETRIC progression_modern font_reads=20000 region_reads=0 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=1015.687500 cpu_seconds=0.039000\nMETRIC progression_legacy_startup font_reads=0 region_reads=200 level_reads=300 label_writes=100 anchors=100 frames=102\nFAIL progression legacy one font-region lookup per visible aura per poll\nMETRIC progression_legacy font_reads=0 region_reads=20000 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=3046.937500 cpu_seconds=0.044000\nMETRIC live_lifecycle font_reads=400 region_reads=200 level_reads=900 label_writes=300 anchors=300 frames=5\nMETRIC live_modern_startup font_reads=200 region_reads=0 level_reads=300 label_writes=100 anchors=100 frames=102\nFAIL live modern one font-region lookup per visible aura per poll\nFAIL live no per-aura temporary frame-level tables\nMETRIC live_modern font_reads=20000 region_reads=0 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=1015.687500 cpu_seconds=0.038000\nMETRIC live_legacy_startup font_reads=0 region_reads=200 level_reads=300 label_writes=100 anchors=100 frames=102\nFAIL live legacy one font-region lookup per visible aura per poll\nMETRIC live_legacy font_reads=0 region_reads=20000 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=3046.937500 cpu_seconds=0.043000\nMETRIC forever_lifecycle font_reads=400 region_reads=200 level_reads=900 label_writes=300 anchors=300 frames=5\nMETRIC forever_modern_startup font_reads=200 region_reads=0 level_reads=300 label_writes=100 anchors=100 frames=102\nFAIL forever modern one font-region lookup per visible aura per poll\nFAIL forever no per-aura temporary frame-level tables\nMETRIC forever_modern font_reads=20000 region_reads=0 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=1015.687500 cpu_seconds=0.038000\nMETRIC forever_legacy_startup font_reads=0 region_reads=200 level_reads=300 label_writes=100 anchors=100 frames=102\nFAIL forever legacy one font-region lookup per visible aura per poll\nMETRIC forever_legacy font_reads=0 region_reads=20000 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=3046.937500 cpu_seconds=0.042000\nNameplate countdown work: 1160 checks, 15 failures\n",
+        "metrics": {
+          "era_lifecycle": {
+            "font_reads": 400,
+            "region_reads": 200,
+            "level_reads": 900,
+            "label_writes": 300,
+            "anchors": 300,
+            "frames": 5
+          },
+          "era_modern_startup": {
+            "font_reads": 200,
+            "region_reads": 0,
+            "level_reads": 300,
+            "label_writes": 100,
+            "anchors": 100,
+            "frames": 102
+          },
+          "era_modern": {
+            "font_reads": 20000,
+            "region_reads": 0,
+            "level_reads": 30000,
+            "label_writes": 10000,
+            "anchors": 10000,
+            "frames": 102,
+            "heap_kib": 1016.0625,
+            "cpu_seconds": 0.037
+          },
+          "era_legacy_startup": {
+            "font_reads": 0,
+            "region_reads": 200,
+            "level_reads": 300,
+            "label_writes": 100,
+            "anchors": 100,
+            "frames": 102
+          },
+          "era_legacy": {
+            "font_reads": 0,
+            "region_reads": 20000,
+            "level_reads": 30000,
+            "label_writes": 10000,
+            "anchors": 10000,
+            "frames": 102,
+            "heap_kib": 3046.9375,
+            "cpu_seconds": 0.041
+          },
+          "anniversary_lifecycle": {
+            "font_reads": 400,
+            "region_reads": 200,
+            "level_reads": 900,
+            "label_writes": 300,
+            "anchors": 300,
+            "frames": 5
+          },
+          "anniversary_modern_startup": {
+            "font_reads": 200,
+            "region_reads": 0,
+            "level_reads": 300,
+            "label_writes": 100,
+            "anchors": 100,
+            "frames": 102
+          },
+          "anniversary_modern": {
+            "font_reads": 20000,
+            "region_reads": 0,
+            "level_reads": 30000,
+            "label_writes": 10000,
+            "anchors": 10000,
+            "frames": 102,
+            "heap_kib": 1015.6875,
+            "cpu_seconds": 0.039
+          },
+          "anniversary_legacy_startup": {
+            "font_reads": 0,
+            "region_reads": 200,
+            "level_reads": 300,
+            "label_writes": 100,
+            "anchors": 100,
+            "frames": 102
+          },
+          "anniversary_legacy": {
+            "font_reads": 0,
+            "region_reads": 20000,
+            "level_reads": 30000,
+            "label_writes": 10000,
+            "anchors": 10000,
+            "frames": 102,
+            "heap_kib": 3046.9375,
+            "cpu_seconds": 0.051
+          },
+          "progression_lifecycle": {
+            "font_reads": 400,
+            "region_reads": 200,
+            "level_reads": 900,
+            "label_writes": 300,
+            "anchors": 300,
+            "frames": 5
+          },
+          "progression_modern_startup": {
+            "font_reads": 200,
+            "region_reads": 0,
+            "level_reads": 300,
+            "label_writes": 100,
+            "anchors": 100,
+            "frames": 102
+          },
+          "progression_modern": {
+            "font_reads": 20000,
+            "region_reads": 0,
+            "level_reads": 30000,
+            "label_writes": 10000,
+            "anchors": 10000,
+            "frames": 102,
+            "heap_kib": 1015.6875,
+            "cpu_seconds": 0.039
+          },
+          "progression_legacy_startup": {
+            "font_reads": 0,
+            "region_reads": 200,
+            "level_reads": 300,
+            "label_writes": 100,
+            "anchors": 100,
+            "frames": 102
+          },
+          "progression_legacy": {
+            "font_reads": 0,
+            "region_reads": 20000,
+            "level_reads": 30000,
+            "label_writes": 10000,
+            "anchors": 10000,
+            "frames": 102,
+            "heap_kib": 3046.9375,
+            "cpu_seconds": 0.044
+          },
+          "live_lifecycle": {
+            "font_reads": 400,
+            "region_reads": 200,
+            "level_reads": 900,
+            "label_writes": 300,
+            "anchors": 300,
+            "frames": 5
+          },
+          "live_modern_startup": {
+            "font_reads": 200,
+            "region_reads": 0,
+            "level_reads": 300,
+            "label_writes": 100,
+            "anchors": 100,
+            "frames": 102
+          },
+          "live_modern": {
+            "font_reads": 20000,
+            "region_reads": 0,
+            "level_reads": 30000,
+            "label_writes": 10000,
+            "anchors": 10000,
+            "frames": 102,
+            "heap_kib": 1015.6875,
+            "cpu_seconds": 0.038
+          },
+          "live_legacy_startup": {
+            "font_reads": 0,
+            "region_reads": 200,
+            "level_reads": 300,
+            "label_writes": 100,
+            "anchors": 100,
+            "frames": 102
+          },
+          "live_legacy": {
+            "font_reads": 0,
+            "region_reads": 20000,
+            "level_reads": 30000,
+            "label_writes": 10000,
+            "anchors": 10000,
+            "frames": 102,
+            "heap_kib": 3046.9375,
+            "cpu_seconds": 0.043
+          },
+          "forever_lifecycle": {
+            "font_reads": 400,
+            "region_reads": 200,
+            "level_reads": 900,
+            "label_writes": 300,
+            "anchors": 300,
+            "frames": 5
+          },
+          "forever_modern_startup": {
+            "font_reads": 200,
+            "region_reads": 0,
+            "level_reads": 300,
+            "label_writes": 100,
+            "anchors": 100,
+            "frames": 102
+          },
+          "forever_modern": {
+            "font_reads": 20000,
+            "region_reads": 0,
+            "level_reads": 30000,
+            "label_writes": 10000,
+            "anchors": 10000,
+            "frames": 102,
+            "heap_kib": 1015.6875,
+            "cpu_seconds": 0.038
+          },
+          "forever_legacy_startup": {
+            "font_reads": 0,
+            "region_reads": 200,
+            "level_reads": 300,
+            "label_writes": 100,
+            "anchors": 100,
+            "frames": 102
+          },
+          "forever_legacy": {
+            "font_reads": 0,
+            "region_reads": 20000,
+            "level_reads": 30000,
+            "label_writes": 10000,
+            "anchors": 10000,
+            "frames": 102,
+            "heap_kib": 3046.9375,
+            "cpu_seconds": 0.042
+          }
+        }
+      },
+      "after": {
+        "command": [
+          "lua",
+          "tests/nameplate_countdown_work.lua"
+        ],
+        "exit": 0,
+        "output": "METRIC era_lifecycle font_reads=200 region_reads=100 level_reads=900 label_writes=300 anchors=300 frames=5\nMETRIC era_modern_startup font_reads=100 region_reads=0 level_reads=300 label_writes=100 anchors=100 frames=102\nMETRIC era_modern font_reads=10000 region_reads=0 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=0.437500 cpu_seconds=0.034000\nMETRIC era_legacy_startup font_reads=0 region_reads=100 level_reads=300 label_writes=100 anchors=100 frames=102\nMETRIC era_legacy font_reads=0 region_reads=10000 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=1015.687500 cpu_seconds=0.035000\nMETRIC anniversary_lifecycle font_reads=200 region_reads=100 level_reads=900 label_writes=300 anchors=300 frames=5\nMETRIC anniversary_modern_startup font_reads=100 region_reads=0 level_reads=300 label_writes=100 anchors=100 frames=102\nMETRIC anniversary_modern font_reads=10000 region_reads=0 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=0.062500 cpu_seconds=0.030000\nMETRIC anniversary_legacy_startup font_reads=0 region_reads=100 level_reads=300 label_writes=100 anchors=100 frames=102\nMETRIC anniversary_legacy font_reads=0 region_reads=10000 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=1015.687500 cpu_seconds=0.033000\nMETRIC progression_lifecycle font_reads=200 region_reads=100 level_reads=900 label_writes=300 anchors=300 frames=5\nMETRIC progression_modern_startup font_reads=100 region_reads=0 level_reads=300 label_writes=100 anchors=100 frames=102\nMETRIC progression_modern font_reads=10000 region_reads=0 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=0.062500 cpu_seconds=0.032000\nMETRIC progression_legacy_startup font_reads=0 region_reads=100 level_reads=300 label_writes=100 anchors=100 frames=102\nMETRIC progression_legacy font_reads=0 region_reads=10000 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=1015.687500 cpu_seconds=0.034000\nMETRIC live_lifecycle font_reads=200 region_reads=100 level_reads=900 label_writes=300 anchors=300 frames=5\nMETRIC live_modern_startup font_reads=100 region_reads=0 level_reads=300 label_writes=100 anchors=100 frames=102\nMETRIC live_modern font_reads=10000 region_reads=0 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=0.062500 cpu_seconds=0.032000\nMETRIC live_legacy_startup font_reads=0 region_reads=100 level_reads=300 label_writes=100 anchors=100 frames=102\nMETRIC live_legacy font_reads=0 region_reads=10000 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=1015.687500 cpu_seconds=0.035000\nMETRIC forever_lifecycle font_reads=200 region_reads=100 level_reads=900 label_writes=300 anchors=300 frames=5\nMETRIC forever_modern_startup font_reads=100 region_reads=0 level_reads=300 label_writes=100 anchors=100 frames=102\nMETRIC forever_modern font_reads=10000 region_reads=0 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=0.062500 cpu_seconds=0.040000\nMETRIC forever_legacy_startup font_reads=0 region_reads=100 level_reads=300 label_writes=100 anchors=100 frames=102\nMETRIC forever_legacy font_reads=0 region_reads=10000 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=1015.687500 cpu_seconds=0.045000\nNameplate countdown work: 1160 checks, 0 failures\n",
+        "metrics": {
+          "era_lifecycle": {
+            "font_reads": 200,
+            "region_reads": 100,
+            "level_reads": 900,
+            "label_writes": 300,
+            "anchors": 300,
+            "frames": 5
+          },
+          "era_modern_startup": {
+            "font_reads": 100,
+            "region_reads": 0,
+            "level_reads": 300,
+            "label_writes": 100,
+            "anchors": 100,
+            "frames": 102
+          },
+          "era_modern": {
+            "font_reads": 10000,
+            "region_reads": 0,
+            "level_reads": 30000,
+            "label_writes": 10000,
+            "anchors": 10000,
+            "frames": 102,
+            "heap_kib": 0.4375,
+            "cpu_seconds": 0.034
+          },
+          "era_legacy_startup": {
+            "font_reads": 0,
+            "region_reads": 100,
+            "level_reads": 300,
+            "label_writes": 100,
+            "anchors": 100,
+            "frames": 102
+          },
+          "era_legacy": {
+            "font_reads": 0,
+            "region_reads": 10000,
+            "level_reads": 30000,
+            "label_writes": 10000,
+            "anchors": 10000,
+            "frames": 102,
+            "heap_kib": 1015.6875,
+            "cpu_seconds": 0.035
+          },
+          "anniversary_lifecycle": {
+            "font_reads": 200,
+            "region_reads": 100,
+            "level_reads": 900,
+            "label_writes": 300,
+            "anchors": 300,
+            "frames": 5
+          },
+          "anniversary_modern_startup": {
+            "font_reads": 100,
+            "region_reads": 0,
+            "level_reads": 300,
+            "label_writes": 100,
+            "anchors": 100,
+            "frames": 102
+          },
+          "anniversary_modern": {
+            "font_reads": 10000,
+            "region_reads": 0,
+            "level_reads": 30000,
+            "label_writes": 10000,
+            "anchors": 10000,
+            "frames": 102,
+            "heap_kib": 0.0625,
+            "cpu_seconds": 0.03
+          },
+          "anniversary_legacy_startup": {
+            "font_reads": 0,
+            "region_reads": 100,
+            "level_reads": 300,
+            "label_writes": 100,
+            "anchors": 100,
+            "frames": 102
+          },
+          "anniversary_legacy": {
+            "font_reads": 0,
+            "region_reads": 10000,
+            "level_reads": 30000,
+            "label_writes": 10000,
+            "anchors": 10000,
+            "frames": 102,
+            "heap_kib": 1015.6875,
+            "cpu_seconds": 0.033
+          },
+          "progression_lifecycle": {
+            "font_reads": 200,
+            "region_reads": 100,
+            "level_reads": 900,
+            "label_writes": 300,
+            "anchors": 300,
+            "frames": 5
+          },
+          "progression_modern_startup": {
+            "font_reads": 100,
+            "region_reads": 0,
+            "level_reads": 300,
+            "label_writes": 100,
+            "anchors": 100,
+            "frames": 102
+          },
+          "progression_modern": {
+            "font_reads": 10000,
+            "region_reads": 0,
+            "level_reads": 30000,
+            "label_writes": 10000,
+            "anchors": 10000,
+            "frames": 102,
+            "heap_kib": 0.0625,
+            "cpu_seconds": 0.032
+          },
+          "progression_legacy_startup": {
+            "font_reads": 0,
+            "region_reads": 100,
+            "level_reads": 300,
+            "label_writes": 100,
+            "anchors": 100,
+            "frames": 102
+          },
+          "progression_legacy": {
+            "font_reads": 0,
+            "region_reads": 10000,
+            "level_reads": 30000,
+            "label_writes": 10000,
+            "anchors": 10000,
+            "frames": 102,
+            "heap_kib": 1015.6875,
+            "cpu_seconds": 0.034
+          },
+          "live_lifecycle": {
+            "font_reads": 200,
+            "region_reads": 100,
+            "level_reads": 900,
+            "label_writes": 300,
+            "anchors": 300,
+            "frames": 5
+          },
+          "live_modern_startup": {
+            "font_reads": 100,
+            "region_reads": 0,
+            "level_reads": 300,
+            "label_writes": 100,
+            "anchors": 100,
+            "frames": 102
+          },
+          "live_modern": {
+            "font_reads": 10000,
+            "region_reads": 0,
+            "level_reads": 30000,
+            "label_writes": 10000,
+            "anchors": 10000,
+            "frames": 102,
+            "heap_kib": 0.0625,
+            "cpu_seconds": 0.032
+          },
+          "live_legacy_startup": {
+            "font_reads": 0,
+            "region_reads": 100,
+            "level_reads": 300,
+            "label_writes": 100,
+            "anchors": 100,
+            "frames": 102
+          },
+          "live_legacy": {
+            "font_reads": 0,
+            "region_reads": 10000,
+            "level_reads": 30000,
+            "label_writes": 10000,
+            "anchors": 10000,
+            "frames": 102,
+            "heap_kib": 1015.6875,
+            "cpu_seconds": 0.035
+          },
+          "forever_lifecycle": {
+            "font_reads": 200,
+            "region_reads": 100,
+            "level_reads": 900,
+            "label_writes": 300,
+            "anchors": 300,
+            "frames": 5
+          },
+          "forever_modern_startup": {
+            "font_reads": 100,
+            "region_reads": 0,
+            "level_reads": 300,
+            "label_writes": 100,
+            "anchors": 100,
+            "frames": 102
+          },
+          "forever_modern": {
+            "font_reads": 10000,
+            "region_reads": 0,
+            "level_reads": 30000,
+            "label_writes": 10000,
+            "anchors": 10000,
+            "frames": 102,
+            "heap_kib": 0.0625,
+            "cpu_seconds": 0.04
+          },
+          "forever_legacy_startup": {
+            "font_reads": 0,
+            "region_reads": 100,
+            "level_reads": 300,
+            "label_writes": 100,
+            "anchors": 100,
+            "frames": 102
+          },
+          "forever_legacy": {
+            "font_reads": 0,
+            "region_reads": 10000,
+            "level_reads": 30000,
+            "label_writes": 10000,
+            "anchors": 10000,
+            "frames": 102,
+            "heap_kib": 1015.6875,
+            "cpu_seconds": 0.045
+          }
+        }
+      }
+    }
+  ],
+  "summary": {
+    "era_lifecycle": {
+      "font_reads": {
+        "beforeMedian": 400,
+        "afterMedian": 200,
+        "beforeRange": [
+          400,
+          400
+        ],
+        "afterRange": [
+          200,
+          200
+        ]
+      },
+      "region_reads": {
+        "beforeMedian": 200,
+        "afterMedian": 100,
+        "beforeRange": [
+          200,
+          200
+        ],
+        "afterRange": [
+          100,
+          100
+        ]
+      },
+      "level_reads": {
+        "beforeMedian": 900,
+        "afterMedian": 900,
+        "beforeRange": [
+          900,
+          900
+        ],
+        "afterRange": [
+          900,
+          900
+        ]
+      },
+      "label_writes": {
+        "beforeMedian": 300,
+        "afterMedian": 300,
+        "beforeRange": [
+          300,
+          300
+        ],
+        "afterRange": [
+          300,
+          300
+        ]
+      },
+      "anchors": {
+        "beforeMedian": 300,
+        "afterMedian": 300,
+        "beforeRange": [
+          300,
+          300
+        ],
+        "afterRange": [
+          300,
+          300
+        ]
+      },
+      "frames": {
+        "beforeMedian": 5,
+        "afterMedian": 5,
+        "beforeRange": [
+          5,
+          5
+        ],
+        "afterRange": [
+          5,
+          5
+        ]
+      }
+    },
+    "era_modern_startup": {
+      "font_reads": {
+        "beforeMedian": 200,
+        "afterMedian": 100,
+        "beforeRange": [
+          200,
+          200
+        ],
+        "afterRange": [
+          100,
+          100
+        ]
+      },
+      "region_reads": {
+        "beforeMedian": 0,
+        "afterMedian": 0,
+        "beforeRange": [
+          0,
+          0
+        ],
+        "afterRange": [
+          0,
+          0
+        ]
+      },
+      "level_reads": {
+        "beforeMedian": 300,
+        "afterMedian": 300,
+        "beforeRange": [
+          300,
+          300
+        ],
+        "afterRange": [
+          300,
+          300
+        ]
+      },
+      "label_writes": {
+        "beforeMedian": 100,
+        "afterMedian": 100,
+        "beforeRange": [
+          100,
+          100
+        ],
+        "afterRange": [
+          100,
+          100
+        ]
+      },
+      "anchors": {
+        "beforeMedian": 100,
+        "afterMedian": 100,
+        "beforeRange": [
+          100,
+          100
+        ],
+        "afterRange": [
+          100,
+          100
+        ]
+      },
+      "frames": {
+        "beforeMedian": 102,
+        "afterMedian": 102,
+        "beforeRange": [
+          102,
+          102
+        ],
+        "afterRange": [
+          102,
+          102
+        ]
+      }
+    },
+    "era_modern": {
+      "font_reads": {
+        "beforeMedian": 20000,
+        "afterMedian": 10000,
+        "beforeRange": [
+          20000,
+          20000
+        ],
+        "afterRange": [
+          10000,
+          10000
+        ]
+      },
+      "region_reads": {
+        "beforeMedian": 0,
+        "afterMedian": 0,
+        "beforeRange": [
+          0,
+          0
+        ],
+        "afterRange": [
+          0,
+          0
+        ]
+      },
+      "level_reads": {
+        "beforeMedian": 30000,
+        "afterMedian": 30000,
+        "beforeRange": [
+          30000,
+          30000
+        ],
+        "afterRange": [
+          30000,
+          30000
+        ]
+      },
+      "label_writes": {
+        "beforeMedian": 10000,
+        "afterMedian": 10000,
+        "beforeRange": [
+          10000,
+          10000
+        ],
+        "afterRange": [
+          10000,
+          10000
+        ]
+      },
+      "anchors": {
+        "beforeMedian": 10000,
+        "afterMedian": 10000,
+        "beforeRange": [
+          10000,
+          10000
+        ],
+        "afterRange": [
+          10000,
+          10000
+        ]
+      },
+      "frames": {
+        "beforeMedian": 102,
+        "afterMedian": 102,
+        "beforeRange": [
+          102,
+          102
+        ],
+        "afterRange": [
+          102,
+          102
+        ]
+      },
+      "heap_kib": {
+        "beforeMedian": 1016.0625,
+        "afterMedian": 0.4375,
+        "beforeRange": [
+          1016.0625,
+          1016.0625
+        ],
+        "afterRange": [
+          0.4375,
+          0.4375
+        ]
+      },
+      "cpu_seconds": {
+        "beforeMedian": 0.037,
+        "afterMedian": 0.031,
+        "beforeRange": [
+          0.031,
+          0.057
+        ],
+        "afterRange": [
+          0.026,
+          0.051
+        ]
+      }
+    },
+    "era_legacy_startup": {
+      "font_reads": {
+        "beforeMedian": 0,
+        "afterMedian": 0,
+        "beforeRange": [
+          0,
+          0
+        ],
+        "afterRange": [
+          0,
+          0
+        ]
+      },
+      "region_reads": {
+        "beforeMedian": 200,
+        "afterMedian": 100,
+        "beforeRange": [
+          200,
+          200
+        ],
+        "afterRange": [
+          100,
+          100
+        ]
+      },
+      "level_reads": {
+        "beforeMedian": 300,
+        "afterMedian": 300,
+        "beforeRange": [
+          300,
+          300
+        ],
+        "afterRange": [
+          300,
+          300
+        ]
+      },
+      "label_writes": {
+        "beforeMedian": 100,
+        "afterMedian": 100,
+        "beforeRange": [
+          100,
+          100
+        ],
+        "afterRange": [
+          100,
+          100
+        ]
+      },
+      "anchors": {
+        "beforeMedian": 100,
+        "afterMedian": 100,
+        "beforeRange": [
+          100,
+          100
+        ],
+        "afterRange": [
+          100,
+          100
+        ]
+      },
+      "frames": {
+        "beforeMedian": 102,
+        "afterMedian": 102,
+        "beforeRange": [
+          102,
+          102
+        ],
+        "afterRange": [
+          102,
+          102
+        ]
+      }
+    },
+    "era_legacy": {
+      "font_reads": {
+        "beforeMedian": 0,
+        "afterMedian": 0,
+        "beforeRange": [
+          0,
+          0
+        ],
+        "afterRange": [
+          0,
+          0
+        ]
+      },
+      "region_reads": {
+        "beforeMedian": 20000,
+        "afterMedian": 10000,
+        "beforeRange": [
+          20000,
+          20000
+        ],
+        "afterRange": [
+          10000,
+          10000
+        ]
+      },
+      "level_reads": {
+        "beforeMedian": 30000,
+        "afterMedian": 30000,
+        "beforeRange": [
+          30000,
+          30000
+        ],
+        "afterRange": [
+          30000,
+          30000
+        ]
+      },
+      "label_writes": {
+        "beforeMedian": 10000,
+        "afterMedian": 10000,
+        "beforeRange": [
+          10000,
+          10000
+        ],
+        "afterRange": [
+          10000,
+          10000
+        ]
+      },
+      "anchors": {
+        "beforeMedian": 10000,
+        "afterMedian": 10000,
+        "beforeRange": [
+          10000,
+          10000
+        ],
+        "afterRange": [
+          10000,
+          10000
+        ]
+      },
+      "frames": {
+        "beforeMedian": 102,
+        "afterMedian": 102,
+        "beforeRange": [
+          102,
+          102
+        ],
+        "afterRange": [
+          102,
+          102
+        ]
+      },
+      "heap_kib": {
+        "beforeMedian": 3046.9375,
+        "afterMedian": 1015.6875,
+        "beforeRange": [
+          3046.9375,
+          3046.9375
+        ],
+        "afterRange": [
+          1015.6875,
+          1015.6875
+        ]
+      },
+      "cpu_seconds": {
+        "beforeMedian": 0.041,
+        "afterMedian": 0.039,
+        "beforeRange": [
+          0.037,
+          0.045
+        ],
+        "afterRange": [
+          0.035,
+          0.055
+        ]
+      }
+    },
+    "anniversary_lifecycle": {
+      "font_reads": {
+        "beforeMedian": 400,
+        "afterMedian": 200,
+        "beforeRange": [
+          400,
+          400
+        ],
+        "afterRange": [
+          200,
+          200
+        ]
+      },
+      "region_reads": {
+        "beforeMedian": 200,
+        "afterMedian": 100,
+        "beforeRange": [
+          200,
+          200
+        ],
+        "afterRange": [
+          100,
+          100
+        ]
+      },
+      "level_reads": {
+        "beforeMedian": 900,
+        "afterMedian": 900,
+        "beforeRange": [
+          900,
+          900
+        ],
+        "afterRange": [
+          900,
+          900
+        ]
+      },
+      "label_writes": {
+        "beforeMedian": 300,
+        "afterMedian": 300,
+        "beforeRange": [
+          300,
+          300
+        ],
+        "afterRange": [
+          300,
+          300
+        ]
+      },
+      "anchors": {
+        "beforeMedian": 300,
+        "afterMedian": 300,
+        "beforeRange": [
+          300,
+          300
+        ],
+        "afterRange": [
+          300,
+          300
+        ]
+      },
+      "frames": {
+        "beforeMedian": 5,
+        "afterMedian": 5,
+        "beforeRange": [
+          5,
+          5
+        ],
+        "afterRange": [
+          5,
+          5
+        ]
+      }
+    },
+    "anniversary_modern_startup": {
+      "font_reads": {
+        "beforeMedian": 200,
+        "afterMedian": 100,
+        "beforeRange": [
+          200,
+          200
+        ],
+        "afterRange": [
+          100,
+          100
+        ]
+      },
+      "region_reads": {
+        "beforeMedian": 0,
+        "afterMedian": 0,
+        "beforeRange": [
+          0,
+          0
+        ],
+        "afterRange": [
+          0,
+          0
+        ]
+      },
+      "level_reads": {
+        "beforeMedian": 300,
+        "afterMedian": 300,
+        "beforeRange": [
+          300,
+          300
+        ],
+        "afterRange": [
+          300,
+          300
+        ]
+      },
+      "label_writes": {
+        "beforeMedian": 100,
+        "afterMedian": 100,
+        "beforeRange": [
+          100,
+          100
+        ],
+        "afterRange": [
+          100,
+          100
+        ]
+      },
+      "anchors": {
+        "beforeMedian": 100,
+        "afterMedian": 100,
+        "beforeRange": [
+          100,
+          100
+        ],
+        "afterRange": [
+          100,
+          100
+        ]
+      },
+      "frames": {
+        "beforeMedian": 102,
+        "afterMedian": 102,
+        "beforeRange": [
+          102,
+          102
+        ],
+        "afterRange": [
+          102,
+          102
+        ]
+      }
+    },
+    "anniversary_modern": {
+      "font_reads": {
+        "beforeMedian": 20000,
+        "afterMedian": 10000,
+        "beforeRange": [
+          20000,
+          20000
+        ],
+        "afterRange": [
+          10000,
+          10000
+        ]
+      },
+      "region_reads": {
+        "beforeMedian": 0,
+        "afterMedian": 0,
+        "beforeRange": [
+          0,
+          0
+        ],
+        "afterRange": [
+          0,
+          0
+        ]
+      },
+      "level_reads": {
+        "beforeMedian": 30000,
+        "afterMedian": 30000,
+        "beforeRange": [
+          30000,
+          30000
+        ],
+        "afterRange": [
+          30000,
+          30000
+        ]
+      },
+      "label_writes": {
+        "beforeMedian": 10000,
+        "afterMedian": 10000,
+        "beforeRange": [
+          10000,
+          10000
+        ],
+        "afterRange": [
+          10000,
+          10000
+        ]
+      },
+      "anchors": {
+        "beforeMedian": 10000,
+        "afterMedian": 10000,
+        "beforeRange": [
+          10000,
+          10000
+        ],
+        "afterRange": [
+          10000,
+          10000
+        ]
+      },
+      "frames": {
+        "beforeMedian": 102,
+        "afterMedian": 102,
+        "beforeRange": [
+          102,
+          102
+        ],
+        "afterRange": [
+          102,
+          102
+        ]
+      },
+      "heap_kib": {
+        "beforeMedian": 1015.6875,
+        "afterMedian": 0.0625,
+        "beforeRange": [
+          1015.6875,
+          1015.6875
+        ],
+        "afterRange": [
+          0.0625,
+          0.0625
+        ]
+      },
+      "cpu_seconds": {
+        "beforeMedian": 0.036,
+        "afterMedian": 0.03,
+        "beforeRange": [
+          0.033,
+          0.042
+        ],
+        "afterRange": [
+          0.028,
+          0.039
+        ]
+      }
+    },
+    "anniversary_legacy_startup": {
+      "font_reads": {
+        "beforeMedian": 0,
+        "afterMedian": 0,
+        "beforeRange": [
+          0,
+          0
+        ],
+        "afterRange": [
+          0,
+          0
+        ]
+      },
+      "region_reads": {
+        "beforeMedian": 200,
+        "afterMedian": 100,
+        "beforeRange": [
+          200,
+          200
+        ],
+        "afterRange": [
+          100,
+          100
+        ]
+      },
+      "level_reads": {
+        "beforeMedian": 300,
+        "afterMedian": 300,
+        "beforeRange": [
+          300,
+          300
+        ],
+        "afterRange": [
+          300,
+          300
+        ]
+      },
+      "label_writes": {
+        "beforeMedian": 100,
+        "afterMedian": 100,
+        "beforeRange": [
+          100,
+          100
+        ],
+        "afterRange": [
+          100,
+          100
+        ]
+      },
+      "anchors": {
+        "beforeMedian": 100,
+        "afterMedian": 100,
+        "beforeRange": [
+          100,
+          100
+        ],
+        "afterRange": [
+          100,
+          100
+        ]
+      },
+      "frames": {
+        "beforeMedian": 102,
+        "afterMedian": 102,
+        "beforeRange": [
+          102,
+          102
+        ],
+        "afterRange": [
+          102,
+          102
+        ]
+      }
+    },
+    "anniversary_legacy": {
+      "font_reads": {
+        "beforeMedian": 0,
+        "afterMedian": 0,
+        "beforeRange": [
+          0,
+          0
+        ],
+        "afterRange": [
+          0,
+          0
+        ]
+      },
+      "region_reads": {
+        "beforeMedian": 20000,
+        "afterMedian": 10000,
+        "beforeRange": [
+          20000,
+          20000
+        ],
+        "afterRange": [
+          10000,
+          10000
+        ]
+      },
+      "level_reads": {
+        "beforeMedian": 30000,
+        "afterMedian": 30000,
+        "beforeRange": [
+          30000,
+          30000
+        ],
+        "afterRange": [
+          30000,
+          30000
+        ]
+      },
+      "label_writes": {
+        "beforeMedian": 10000,
+        "afterMedian": 10000,
+        "beforeRange": [
+          10000,
+          10000
+        ],
+        "afterRange": [
+          10000,
+          10000
+        ]
+      },
+      "anchors": {
+        "beforeMedian": 10000,
+        "afterMedian": 10000,
+        "beforeRange": [
+          10000,
+          10000
+        ],
+        "afterRange": [
+          10000,
+          10000
+        ]
+      },
+      "frames": {
+        "beforeMedian": 102,
+        "afterMedian": 102,
+        "beforeRange": [
+          102,
+          102
+        ],
+        "afterRange": [
+          102,
+          102
+        ]
+      },
+      "heap_kib": {
+        "beforeMedian": 3046.9375,
+        "afterMedian": 1015.6875,
+        "beforeRange": [
+          3046.9375,
+          3046.9375
+        ],
+        "afterRange": [
+          1015.6875,
+          1015.6875
+        ]
+      },
+      "cpu_seconds": {
+        "beforeMedian": 0.041,
+        "afterMedian": 0.043,
+        "beforeRange": [
+          0.039,
+          0.056
+        ],
+        "afterRange": [
+          0.033,
+          0.053
+        ]
+      }
+    },
+    "progression_lifecycle": {
+      "font_reads": {
+        "beforeMedian": 400,
+        "afterMedian": 200,
+        "beforeRange": [
+          400,
+          400
+        ],
+        "afterRange": [
+          200,
+          200
+        ]
+      },
+      "region_reads": {
+        "beforeMedian": 200,
+        "afterMedian": 100,
+        "beforeRange": [
+          200,
+          200
+        ],
+        "afterRange": [
+          100,
+          100
+        ]
+      },
+      "level_reads": {
+        "beforeMedian": 900,
+        "afterMedian": 900,
+        "beforeRange": [
+          900,
+          900
+        ],
+        "afterRange": [
+          900,
+          900
+        ]
+      },
+      "label_writes": {
+        "beforeMedian": 300,
+        "afterMedian": 300,
+        "beforeRange": [
+          300,
+          300
+        ],
+        "afterRange": [
+          300,
+          300
+        ]
+      },
+      "anchors": {
+        "beforeMedian": 300,
+        "afterMedian": 300,
+        "beforeRange": [
+          300,
+          300
+        ],
+        "afterRange": [
+          300,
+          300
+        ]
+      },
+      "frames": {
+        "beforeMedian": 5,
+        "afterMedian": 5,
+        "beforeRange": [
+          5,
+          5
+        ],
+        "afterRange": [
+          5,
+          5
+        ]
+      }
+    },
+    "progression_modern_startup": {
+      "font_reads": {
+        "beforeMedian": 200,
+        "afterMedian": 100,
+        "beforeRange": [
+          200,
+          200
+        ],
+        "afterRange": [
+          100,
+          100
+        ]
+      },
+      "region_reads": {
+        "beforeMedian": 0,
+        "afterMedian": 0,
+        "beforeRange": [
+          0,
+          0
+        ],
+        "afterRange": [
+          0,
+          0
+        ]
+      },
+      "level_reads": {
+        "beforeMedian": 300,
+        "afterMedian": 300,
+        "beforeRange": [
+          300,
+          300
+        ],
+        "afterRange": [
+          300,
+          300
+        ]
+      },
+      "label_writes": {
+        "beforeMedian": 100,
+        "afterMedian": 100,
+        "beforeRange": [
+          100,
+          100
+        ],
+        "afterRange": [
+          100,
+          100
+        ]
+      },
+      "anchors": {
+        "beforeMedian": 100,
+        "afterMedian": 100,
+        "beforeRange": [
+          100,
+          100
+        ],
+        "afterRange": [
+          100,
+          100
+        ]
+      },
+      "frames": {
+        "beforeMedian": 102,
+        "afterMedian": 102,
+        "beforeRange": [
+          102,
+          102
+        ],
+        "afterRange": [
+          102,
+          102
+        ]
+      }
+    },
+    "progression_modern": {
+      "font_reads": {
+        "beforeMedian": 20000,
+        "afterMedian": 10000,
+        "beforeRange": [
+          20000,
+          20000
+        ],
+        "afterRange": [
+          10000,
+          10000
+        ]
+      },
+      "region_reads": {
+        "beforeMedian": 0,
+        "afterMedian": 0,
+        "beforeRange": [
+          0,
+          0
+        ],
+        "afterRange": [
+          0,
+          0
+        ]
+      },
+      "level_reads": {
+        "beforeMedian": 30000,
+        "afterMedian": 30000,
+        "beforeRange": [
+          30000,
+          30000
+        ],
+        "afterRange": [
+          30000,
+          30000
+        ]
+      },
+      "label_writes": {
+        "beforeMedian": 10000,
+        "afterMedian": 10000,
+        "beforeRange": [
+          10000,
+          10000
+        ],
+        "afterRange": [
+          10000,
+          10000
+        ]
+      },
+      "anchors": {
+        "beforeMedian": 10000,
+        "afterMedian": 10000,
+        "beforeRange": [
+          10000,
+          10000
+        ],
+        "afterRange": [
+          10000,
+          10000
+        ]
+      },
+      "frames": {
+        "beforeMedian": 102,
+        "afterMedian": 102,
+        "beforeRange": [
+          102,
+          102
+        ],
+        "afterRange": [
+          102,
+          102
+        ]
+      },
+      "heap_kib": {
+        "beforeMedian": 1015.6875,
+        "afterMedian": 0.0625,
+        "beforeRange": [
+          1015.6875,
+          1015.6875
+        ],
+        "afterRange": [
+          0.0625,
+          0.0625
+        ]
+      },
+      "cpu_seconds": {
+        "beforeMedian": 0.039,
+        "afterMedian": 0.036,
+        "beforeRange": [
+          0.031,
+          0.048
+        ],
+        "afterRange": [
+          0.027,
+          0.047
+        ]
+      }
+    },
+    "progression_legacy_startup": {
+      "font_reads": {
+        "beforeMedian": 0,
+        "afterMedian": 0,
+        "beforeRange": [
+          0,
+          0
+        ],
+        "afterRange": [
+          0,
+          0
+        ]
+      },
+      "region_reads": {
+        "beforeMedian": 200,
+        "afterMedian": 100,
+        "beforeRange": [
+          200,
+          200
+        ],
+        "afterRange": [
+          100,
+          100
+        ]
+      },
+      "level_reads": {
+        "beforeMedian": 300,
+        "afterMedian": 300,
+        "beforeRange": [
+          300,
+          300
+        ],
+        "afterRange": [
+          300,
+          300
+        ]
+      },
+      "label_writes": {
+        "beforeMedian": 100,
+        "afterMedian": 100,
+        "beforeRange": [
+          100,
+          100
+        ],
+        "afterRange": [
+          100,
+          100
+        ]
+      },
+      "anchors": {
+        "beforeMedian": 100,
+        "afterMedian": 100,
+        "beforeRange": [
+          100,
+          100
+        ],
+        "afterRange": [
+          100,
+          100
+        ]
+      },
+      "frames": {
+        "beforeMedian": 102,
+        "afterMedian": 102,
+        "beforeRange": [
+          102,
+          102
+        ],
+        "afterRange": [
+          102,
+          102
+        ]
+      }
+    },
+    "progression_legacy": {
+      "font_reads": {
+        "beforeMedian": 0,
+        "afterMedian": 0,
+        "beforeRange": [
+          0,
+          0
+        ],
+        "afterRange": [
+          0,
+          0
+        ]
+      },
+      "region_reads": {
+        "beforeMedian": 20000,
+        "afterMedian": 10000,
+        "beforeRange": [
+          20000,
+          20000
+        ],
+        "afterRange": [
+          10000,
+          10000
+        ]
+      },
+      "level_reads": {
+        "beforeMedian": 30000,
+        "afterMedian": 30000,
+        "beforeRange": [
+          30000,
+          30000
+        ],
+        "afterRange": [
+          30000,
+          30000
+        ]
+      },
+      "label_writes": {
+        "beforeMedian": 10000,
+        "afterMedian": 10000,
+        "beforeRange": [
+          10000,
+          10000
+        ],
+        "afterRange": [
+          10000,
+          10000
+        ]
+      },
+      "anchors": {
+        "beforeMedian": 10000,
+        "afterMedian": 10000,
+        "beforeRange": [
+          10000,
+          10000
+        ],
+        "afterRange": [
+          10000,
+          10000
+        ]
+      },
+      "frames": {
+        "beforeMedian": 102,
+        "afterMedian": 102,
+        "beforeRange": [
+          102,
+          102
+        ],
+        "afterRange": [
+          102,
+          102
+        ]
+      },
+      "heap_kib": {
+        "beforeMedian": 3046.9375,
+        "afterMedian": 1015.6875,
+        "beforeRange": [
+          3046.9375,
+          3046.9375
+        ],
+        "afterRange": [
+          1015.6875,
+          1015.6875
+        ]
+      },
+      "cpu_seconds": {
+        "beforeMedian": 0.042,
+        "afterMedian": 0.037,
+        "beforeRange": [
+          0.036,
+          0.057
+        ],
+        "afterRange": [
+          0.031,
+          0.044
+        ]
+      }
+    },
+    "live_lifecycle": {
+      "font_reads": {
+        "beforeMedian": 400,
+        "afterMedian": 200,
+        "beforeRange": [
+          400,
+          400
+        ],
+        "afterRange": [
+          200,
+          200
+        ]
+      },
+      "region_reads": {
+        "beforeMedian": 200,
+        "afterMedian": 100,
+        "beforeRange": [
+          200,
+          200
+        ],
+        "afterRange": [
+          100,
+          100
+        ]
+      },
+      "level_reads": {
+        "beforeMedian": 900,
+        "afterMedian": 900,
+        "beforeRange": [
+          900,
+          900
+        ],
+        "afterRange": [
+          900,
+          900
+        ]
+      },
+      "label_writes": {
+        "beforeMedian": 300,
+        "afterMedian": 300,
+        "beforeRange": [
+          300,
+          300
+        ],
+        "afterRange": [
+          300,
+          300
+        ]
+      },
+      "anchors": {
+        "beforeMedian": 300,
+        "afterMedian": 300,
+        "beforeRange": [
+          300,
+          300
+        ],
+        "afterRange": [
+          300,
+          300
+        ]
+      },
+      "frames": {
+        "beforeMedian": 5,
+        "afterMedian": 5,
+        "beforeRange": [
+          5,
+          5
+        ],
+        "afterRange": [
+          5,
+          5
+        ]
+      }
+    },
+    "live_modern_startup": {
+      "font_reads": {
+        "beforeMedian": 200,
+        "afterMedian": 100,
+        "beforeRange": [
+          200,
+          200
+        ],
+        "afterRange": [
+          100,
+          100
+        ]
+      },
+      "region_reads": {
+        "beforeMedian": 0,
+        "afterMedian": 0,
+        "beforeRange": [
+          0,
+          0
+        ],
+        "afterRange": [
+          0,
+          0
+        ]
+      },
+      "level_reads": {
+        "beforeMedian": 300,
+        "afterMedian": 300,
+        "beforeRange": [
+          300,
+          300
+        ],
+        "afterRange": [
+          300,
+          300
+        ]
+      },
+      "label_writes": {
+        "beforeMedian": 100,
+        "afterMedian": 100,
+        "beforeRange": [
+          100,
+          100
+        ],
+        "afterRange": [
+          100,
+          100
+        ]
+      },
+      "anchors": {
+        "beforeMedian": 100,
+        "afterMedian": 100,
+        "beforeRange": [
+          100,
+          100
+        ],
+        "afterRange": [
+          100,
+          100
+        ]
+      },
+      "frames": {
+        "beforeMedian": 102,
+        "afterMedian": 102,
+        "beforeRange": [
+          102,
+          102
+        ],
+        "afterRange": [
+          102,
+          102
+        ]
+      }
+    },
+    "live_modern": {
+      "font_reads": {
+        "beforeMedian": 20000,
+        "afterMedian": 10000,
+        "beforeRange": [
+          20000,
+          20000
+        ],
+        "afterRange": [
+          10000,
+          10000
+        ]
+      },
+      "region_reads": {
+        "beforeMedian": 0,
+        "afterMedian": 0,
+        "beforeRange": [
+          0,
+          0
+        ],
+        "afterRange": [
+          0,
+          0
+        ]
+      },
+      "level_reads": {
+        "beforeMedian": 30000,
+        "afterMedian": 30000,
+        "beforeRange": [
+          30000,
+          30000
+        ],
+        "afterRange": [
+          30000,
+          30000
+        ]
+      },
+      "label_writes": {
+        "beforeMedian": 10000,
+        "afterMedian": 10000,
+        "beforeRange": [
+          10000,
+          10000
+        ],
+        "afterRange": [
+          10000,
+          10000
+        ]
+      },
+      "anchors": {
+        "beforeMedian": 10000,
+        "afterMedian": 10000,
+        "beforeRange": [
+          10000,
+          10000
+        ],
+        "afterRange": [
+          10000,
+          10000
+        ]
+      },
+      "frames": {
+        "beforeMedian": 102,
+        "afterMedian": 102,
+        "beforeRange": [
+          102,
+          102
+        ],
+        "afterRange": [
+          102,
+          102
+        ]
+      },
+      "heap_kib": {
+        "beforeMedian": 1015.6875,
+        "afterMedian": 0.0625,
+        "beforeRange": [
+          1015.6875,
+          1015.6875
+        ],
+        "afterRange": [
+          0.0625,
+          0.0625
+        ]
+      },
+      "cpu_seconds": {
+        "beforeMedian": 0.038,
+        "afterMedian": 0.033,
+        "beforeRange": [
+          0.032,
+          0.052
+        ],
+        "afterRange": [
+          0.031,
+          0.039
+        ]
+      }
+    },
+    "live_legacy_startup": {
+      "font_reads": {
+        "beforeMedian": 0,
+        "afterMedian": 0,
+        "beforeRange": [
+          0,
+          0
+        ],
+        "afterRange": [
+          0,
+          0
+        ]
+      },
+      "region_reads": {
+        "beforeMedian": 200,
+        "afterMedian": 100,
+        "beforeRange": [
+          200,
+          200
+        ],
+        "afterRange": [
+          100,
+          100
+        ]
+      },
+      "level_reads": {
+        "beforeMedian": 300,
+        "afterMedian": 300,
+        "beforeRange": [
+          300,
+          300
+        ],
+        "afterRange": [
+          300,
+          300
+        ]
+      },
+      "label_writes": {
+        "beforeMedian": 100,
+        "afterMedian": 100,
+        "beforeRange": [
+          100,
+          100
+        ],
+        "afterRange": [
+          100,
+          100
+        ]
+      },
+      "anchors": {
+        "beforeMedian": 100,
+        "afterMedian": 100,
+        "beforeRange": [
+          100,
+          100
+        ],
+        "afterRange": [
+          100,
+          100
+        ]
+      },
+      "frames": {
+        "beforeMedian": 102,
+        "afterMedian": 102,
+        "beforeRange": [
+          102,
+          102
+        ],
+        "afterRange": [
+          102,
+          102
+        ]
+      }
+    },
+    "live_legacy": {
+      "font_reads": {
+        "beforeMedian": 0,
+        "afterMedian": 0,
+        "beforeRange": [
+          0,
+          0
+        ],
+        "afterRange": [
+          0,
+          0
+        ]
+      },
+      "region_reads": {
+        "beforeMedian": 20000,
+        "afterMedian": 10000,
+        "beforeRange": [
+          20000,
+          20000
+        ],
+        "afterRange": [
+          10000,
+          10000
+        ]
+      },
+      "level_reads": {
+        "beforeMedian": 30000,
+        "afterMedian": 30000,
+        "beforeRange": [
+          30000,
+          30000
+        ],
+        "afterRange": [
+          30000,
+          30000
+        ]
+      },
+      "label_writes": {
+        "beforeMedian": 10000,
+        "afterMedian": 10000,
+        "beforeRange": [
+          10000,
+          10000
+        ],
+        "afterRange": [
+          10000,
+          10000
+        ]
+      },
+      "anchors": {
+        "beforeMedian": 10000,
+        "afterMedian": 10000,
+        "beforeRange": [
+          10000,
+          10000
+        ],
+        "afterRange": [
+          10000,
+          10000
+        ]
+      },
+      "frames": {
+        "beforeMedian": 102,
+        "afterMedian": 102,
+        "beforeRange": [
+          102,
+          102
+        ],
+        "afterRange": [
+          102,
+          102
+        ]
+      },
+      "heap_kib": {
+        "beforeMedian": 3046.9375,
+        "afterMedian": 1015.6875,
+        "beforeRange": [
+          3046.9375,
+          3046.9375
+        ],
+        "afterRange": [
+          1015.6875,
+          1015.6875
+        ]
+      },
+      "cpu_seconds": {
+        "beforeMedian": 0.042,
+        "afterMedian": 0.035,
+        "beforeRange": [
+          0.037,
+          0.046
+        ],
+        "afterRange": [
+          0.031,
+          0.041
+        ]
+      }
+    },
+    "forever_lifecycle": {
+      "font_reads": {
+        "beforeMedian": 400,
+        "afterMedian": 200,
+        "beforeRange": [
+          400,
+          400
+        ],
+        "afterRange": [
+          200,
+          200
+        ]
+      },
+      "region_reads": {
+        "beforeMedian": 200,
+        "afterMedian": 100,
+        "beforeRange": [
+          200,
+          200
+        ],
+        "afterRange": [
+          100,
+          100
+        ]
+      },
+      "level_reads": {
+        "beforeMedian": 900,
+        "afterMedian": 900,
+        "beforeRange": [
+          900,
+          900
+        ],
+        "afterRange": [
+          900,
+          900
+        ]
+      },
+      "label_writes": {
+        "beforeMedian": 300,
+        "afterMedian": 300,
+        "beforeRange": [
+          300,
+          300
+        ],
+        "afterRange": [
+          300,
+          300
+        ]
+      },
+      "anchors": {
+        "beforeMedian": 300,
+        "afterMedian": 300,
+        "beforeRange": [
+          300,
+          300
+        ],
+        "afterRange": [
+          300,
+          300
+        ]
+      },
+      "frames": {
+        "beforeMedian": 5,
+        "afterMedian": 5,
+        "beforeRange": [
+          5,
+          5
+        ],
+        "afterRange": [
+          5,
+          5
+        ]
+      }
+    },
+    "forever_modern_startup": {
+      "font_reads": {
+        "beforeMedian": 200,
+        "afterMedian": 100,
+        "beforeRange": [
+          200,
+          200
+        ],
+        "afterRange": [
+          100,
+          100
+        ]
+      },
+      "region_reads": {
+        "beforeMedian": 0,
+        "afterMedian": 0,
+        "beforeRange": [
+          0,
+          0
+        ],
+        "afterRange": [
+          0,
+          0
+        ]
+      },
+      "level_reads": {
+        "beforeMedian": 300,
+        "afterMedian": 300,
+        "beforeRange": [
+          300,
+          300
+        ],
+        "afterRange": [
+          300,
+          300
+        ]
+      },
+      "label_writes": {
+        "beforeMedian": 100,
+        "afterMedian": 100,
+        "beforeRange": [
+          100,
+          100
+        ],
+        "afterRange": [
+          100,
+          100
+        ]
+      },
+      "anchors": {
+        "beforeMedian": 100,
+        "afterMedian": 100,
+        "beforeRange": [
+          100,
+          100
+        ],
+        "afterRange": [
+          100,
+          100
+        ]
+      },
+      "frames": {
+        "beforeMedian": 102,
+        "afterMedian": 102,
+        "beforeRange": [
+          102,
+          102
+        ],
+        "afterRange": [
+          102,
+          102
+        ]
+      }
+    },
+    "forever_modern": {
+      "font_reads": {
+        "beforeMedian": 20000,
+        "afterMedian": 10000,
+        "beforeRange": [
+          20000,
+          20000
+        ],
+        "afterRange": [
+          10000,
+          10000
+        ]
+      },
+      "region_reads": {
+        "beforeMedian": 0,
+        "afterMedian": 0,
+        "beforeRange": [
+          0,
+          0
+        ],
+        "afterRange": [
+          0,
+          0
+        ]
+      },
+      "level_reads": {
+        "beforeMedian": 30000,
+        "afterMedian": 30000,
+        "beforeRange": [
+          30000,
+          30000
+        ],
+        "afterRange": [
+          30000,
+          30000
+        ]
+      },
+      "label_writes": {
+        "beforeMedian": 10000,
+        "afterMedian": 10000,
+        "beforeRange": [
+          10000,
+          10000
+        ],
+        "afterRange": [
+          10000,
+          10000
+        ]
+      },
+      "anchors": {
+        "beforeMedian": 10000,
+        "afterMedian": 10000,
+        "beforeRange": [
+          10000,
+          10000
+        ],
+        "afterRange": [
+          10000,
+          10000
+        ]
+      },
+      "frames": {
+        "beforeMedian": 102,
+        "afterMedian": 102,
+        "beforeRange": [
+          102,
+          102
+        ],
+        "afterRange": [
+          102,
+          102
+        ]
+      },
+      "heap_kib": {
+        "beforeMedian": 1015.6875,
+        "afterMedian": 0.0625,
+        "beforeRange": [
+          1015.6875,
+          1015.6875
+        ],
+        "afterRange": [
+          0.0625,
+          0.0625
+        ]
+      },
+      "cpu_seconds": {
+        "beforeMedian": 0.04,
+        "afterMedian": 0.031,
+        "beforeRange": [
+          0.031,
+          0.051
+        ],
+        "afterRange": [
+          0.03,
+          0.04
+        ]
+      }
+    },
+    "forever_legacy_startup": {
+      "font_reads": {
+        "beforeMedian": 0,
+        "afterMedian": 0,
+        "beforeRange": [
+          0,
+          0
+        ],
+        "afterRange": [
+          0,
+          0
+        ]
+      },
+      "region_reads": {
+        "beforeMedian": 200,
+        "afterMedian": 100,
+        "beforeRange": [
+          200,
+          200
+        ],
+        "afterRange": [
+          100,
+          100
+        ]
+      },
+      "level_reads": {
+        "beforeMedian": 300,
+        "afterMedian": 300,
+        "beforeRange": [
+          300,
+          300
+        ],
+        "afterRange": [
+          300,
+          300
+        ]
+      },
+      "label_writes": {
+        "beforeMedian": 100,
+        "afterMedian": 100,
+        "beforeRange": [
+          100,
+          100
+        ],
+        "afterRange": [
+          100,
+          100
+        ]
+      },
+      "anchors": {
+        "beforeMedian": 100,
+        "afterMedian": 100,
+        "beforeRange": [
+          100,
+          100
+        ],
+        "afterRange": [
+          100,
+          100
+        ]
+      },
+      "frames": {
+        "beforeMedian": 102,
+        "afterMedian": 102,
+        "beforeRange": [
+          102,
+          102
+        ],
+        "afterRange": [
+          102,
+          102
+        ]
+      }
+    },
+    "forever_legacy": {
+      "font_reads": {
+        "beforeMedian": 0,
+        "afterMedian": 0,
+        "beforeRange": [
+          0,
+          0
+        ],
+        "afterRange": [
+          0,
+          0
+        ]
+      },
+      "region_reads": {
+        "beforeMedian": 20000,
+        "afterMedian": 10000,
+        "beforeRange": [
+          20000,
+          20000
+        ],
+        "afterRange": [
+          10000,
+          10000
+        ]
+      },
+      "level_reads": {
+        "beforeMedian": 30000,
+        "afterMedian": 30000,
+        "beforeRange": [
+          30000,
+          30000
+        ],
+        "afterRange": [
+          30000,
+          30000
+        ]
+      },
+      "label_writes": {
+        "beforeMedian": 10000,
+        "afterMedian": 10000,
+        "beforeRange": [
+          10000,
+          10000
+        ],
+        "afterRange": [
+          10000,
+          10000
+        ]
+      },
+      "anchors": {
+        "beforeMedian": 10000,
+        "afterMedian": 10000,
+        "beforeRange": [
+          10000,
+          10000
+        ],
+        "afterRange": [
+          10000,
+          10000
+        ]
+      },
+      "frames": {
+        "beforeMedian": 102,
+        "afterMedian": 102,
+        "beforeRange": [
+          102,
+          102
+        ],
+        "afterRange": [
+          102,
+          102
+        ]
+      },
+      "heap_kib": {
+        "beforeMedian": 3046.9375,
+        "afterMedian": 1015.6875,
+        "beforeRange": [
+          3046.9375,
+          3046.9375
+        ],
+        "afterRange": [
+          1015.6875,
+          1015.6875
+        ]
+      },
+      "cpu_seconds": {
+        "beforeMedian": 0.047,
+        "afterMedian": 0.034,
+        "beforeRange": [
+          0.042,
+          0.075
+        ],
+        "afterRange": [
+          0.03,
+          0.045
+        ]
+      }
+    }
+  },
+  "mutations": {
+    "duplicate_lookup": {
+      "exit": 1,
+      "output": "METRIC era_lifecycle font_reads=400 region_reads=200 level_reads=900 label_writes=300 anchors=300 frames=5\nMETRIC era_modern_startup font_reads=200 region_reads=0 level_reads=300 label_writes=100 anchors=100 frames=102\nFAIL era modern one font-region lookup per visible aura per poll\nMETRIC era_modern font_reads=20000 region_reads=0 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=0.437500 cpu_seconds=0.036000\nMETRIC era_legacy_startup font_reads=0 region_reads=200 level_reads=300 label_writes=100 anchors=100 frames=102\nFAIL era legacy one font-region lookup per visible aura per poll\nMETRIC era_legacy font_reads=0 region_reads=20000 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=2031.312500 cpu_seconds=0.048000\nMETRIC anniversary_lifecycle font_reads=400 region_reads=200 level_reads=900 label_writes=300 anchors=300 frames=5\nMETRIC anniversary_modern_startup font_reads=200 region_reads=0 level_reads=300 label_writes=100 anchors=100 frames=102\nFAIL anniversary modern one font-region lookup per visible aura per poll\nMETRIC anniversary_modern font_reads=20000 region_reads=0 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=0.062500 cpu_seconds=0.039000\nMETRIC anniversary_legacy_startup font_reads=0 region_reads=200 level_reads=300 label_writes=100 anchors=100 frames=102\nFAIL anniversary legacy one font-region lookup per visible aura per poll\nMETRIC anniversary_legacy font_reads=0 region_reads=20000 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=2031.312500 cpu_seconds=0.044000\nMETRIC progression_lifecycle font_reads=400 region_reads=200 level_reads=900 label_writes=300 anchors=300 frames=5\nMETRIC progression_modern_startup font_reads=200 region_reads=0 level_reads=300 label_writes=100 anchors=100 frames=102\nFAIL progression modern one font-region lookup per visible aura per poll\nMETRIC progression_modern font_reads=20000 region_reads=0 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=0.062500 cpu_seconds=0.036000\nMETRIC progression_legacy_startup font_reads=0 region_reads=200 level_reads=300 label_writes=100 anchors=100 frames=102\nFAIL progression legacy one font-region lookup per visible aura per poll\nMETRIC progression_legacy font_reads=0 region_reads=20000 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=2031.312500 cpu_seconds=0.044000\nMETRIC live_lifecycle font_reads=400 region_reads=200 level_reads=900 label_writes=300 anchors=300 frames=5\nMETRIC live_modern_startup font_reads=200 region_reads=0 level_reads=300 label_writes=100 anchors=100 frames=102\nFAIL live modern one font-region lookup per visible aura per poll\nMETRIC live_modern font_reads=20000 region_reads=0 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=0.062500 cpu_seconds=0.038000\nMETRIC live_legacy_startup font_reads=0 region_reads=200 level_reads=300 label_writes=100 anchors=100 frames=102\nFAIL live legacy one font-region lookup per visible aura per poll\nMETRIC live_legacy font_reads=0 region_reads=20000 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=2031.312500 cpu_seconds=0.050000\nMETRIC forever_lifecycle font_reads=400 region_reads=200 level_reads=900 label_writes=300 anchors=300 frames=5\nMETRIC forever_modern_startup font_reads=200 region_reads=0 level_reads=300 label_writes=100 anchors=100 frames=102\nFAIL forever modern one font-region lookup per visible aura per poll\nMETRIC forever_modern font_reads=20000 region_reads=0 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=0.062500 cpu_seconds=0.038000\nMETRIC forever_legacy_startup font_reads=0 region_reads=200 level_reads=300 label_writes=100 anchors=100 frames=102\nFAIL forever legacy one font-region lookup per visible aura per poll\nMETRIC forever_legacy font_reads=0 region_reads=20000 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=2031.312500 cpu_seconds=0.046000\nNameplate countdown work: 1160 checks, 10 failures\n"
+    },
+    "stale_region": {
+      "exit": 1,
+      "output": "FAIL era native/legacy/opaque labels\nFAIL era rereads replacement text region next poll\nMETRIC era_lifecycle font_reads=0 region_reads=0 level_reads=900 label_writes=300 anchors=300 frames=5\nMETRIC era_modern_startup font_reads=1 region_reads=0 level_reads=300 label_writes=100 anchors=100 frames=102\nFAIL era modern one font-region lookup per visible aura per poll\nMETRIC era_modern font_reads=0 region_reads=0 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=0.437500 cpu_seconds=0.031000\nMETRIC era_legacy_startup font_reads=0 region_reads=100 level_reads=300 label_writes=100 anchors=100 frames=102\nMETRIC era_legacy font_reads=0 region_reads=10000 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=1015.687500 cpu_seconds=0.036000\nFAIL anniversary native/legacy/opaque labels\nFAIL anniversary rereads replacement text region next poll\nMETRIC anniversary_lifecycle font_reads=0 region_reads=0 level_reads=900 label_writes=300 anchors=300 frames=5\nMETRIC anniversary_modern_startup font_reads=1 region_reads=0 level_reads=300 label_writes=100 anchors=100 frames=102\nFAIL anniversary modern one font-region lookup per visible aura per poll\nMETRIC anniversary_modern font_reads=0 region_reads=0 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=0.062500 cpu_seconds=0.033000\nMETRIC anniversary_legacy_startup font_reads=0 region_reads=100 level_reads=300 label_writes=100 anchors=100 frames=102\nMETRIC anniversary_legacy font_reads=0 region_reads=10000 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=1015.687500 cpu_seconds=0.039000\nFAIL progression native/legacy/opaque labels\nFAIL progression rereads replacement text region next poll\nMETRIC progression_lifecycle font_reads=0 region_reads=0 level_reads=900 label_writes=300 anchors=300 frames=5\nMETRIC progression_modern_startup font_reads=1 region_reads=0 level_reads=300 label_writes=100 anchors=100 frames=102\nFAIL progression modern one font-region lookup per visible aura per poll\nMETRIC progression_modern font_reads=0 region_reads=0 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=0.062500 cpu_seconds=0.032000\nMETRIC progression_legacy_startup font_reads=0 region_reads=100 level_reads=300 label_writes=100 anchors=100 frames=102\nMETRIC progression_legacy font_reads=0 region_reads=10000 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=1015.687500 cpu_seconds=0.036000\nFAIL live native/legacy/opaque labels\nFAIL live rereads replacement text region next poll\nMETRIC live_lifecycle font_reads=0 region_reads=0 level_reads=900 label_writes=300 anchors=300 frames=5\nMETRIC live_modern_startup font_reads=1 region_reads=0 level_reads=300 label_writes=100 anchors=100 frames=102\nFAIL live modern one font-region lookup per visible aura per poll\nMETRIC live_modern font_reads=0 region_reads=0 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=0.062500 cpu_seconds=0.033000\nMETRIC live_legacy_startup font_reads=0 region_reads=100 level_reads=300 label_writes=100 anchors=100 frames=102\nMETRIC live_legacy font_reads=0 region_reads=10000 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=1015.687500 cpu_seconds=0.035000\nFAIL forever native/legacy/opaque labels\nFAIL forever rereads replacement text region next poll\nMETRIC forever_lifecycle font_reads=0 region_reads=0 level_reads=900 label_writes=300 anchors=300 frames=5\nMETRIC forever_modern_startup font_reads=1 region_reads=0 level_reads=300 label_writes=100 anchors=100 frames=102\nFAIL forever modern one font-region lookup per visible aura per poll\nMETRIC forever_modern font_reads=0 region_reads=0 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=0.062500 cpu_seconds=0.038000\nMETRIC forever_legacy_startup font_reads=0 region_reads=100 level_reads=300 label_writes=100 anchors=100 frames=102\nMETRIC forever_legacy font_reads=0 region_reads=10000 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=1015.687500 cpu_seconds=0.048000\nNameplate countdown work: 1160 checks, 15 failures\n"
+    },
+    "secret_label": {
+      "exit": 1,
+      "output": "FAIL era two core frames and three reusable hosts\nFAIL era native/legacy/opaque labels\nFAIL era original tenth-second poll\nFAIL era no lifecycle growth/errors\nMETRIC era_lifecycle font_reads=200 region_reads=100 level_reads=600 label_writes=200 anchors=200 frames=4\nFAIL era preview has no host\nMETRIC era_modern_startup font_reads=100 region_reads=0 level_reads=300 label_writes=100 anchors=100 frames=102\nMETRIC era_modern font_reads=10000 region_reads=0 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=0.437500 cpu_seconds=0.036000\nMETRIC era_legacy_startup font_reads=0 region_reads=100 level_reads=300 label_writes=100 anchors=100 frames=102\nMETRIC era_legacy font_reads=0 region_reads=10000 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=1015.687500 cpu_seconds=0.037000\nFAIL anniversary two core frames and three reusable hosts\nFAIL anniversary native/legacy/opaque labels\nFAIL anniversary original tenth-second poll\nFAIL anniversary no lifecycle growth/errors\nMETRIC anniversary_lifecycle font_reads=200 region_reads=100 level_reads=600 label_writes=200 anchors=200 frames=4\nFAIL anniversary preview has no host\nMETRIC anniversary_modern_startup font_reads=100 region_reads=0 level_reads=300 label_writes=100 anchors=100 frames=102\nMETRIC anniversary_modern font_reads=10000 region_reads=0 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=0.062500 cpu_seconds=0.042000\nMETRIC anniversary_legacy_startup font_reads=0 region_reads=100 level_reads=300 label_writes=100 anchors=100 frames=102\nMETRIC anniversary_legacy font_reads=0 region_reads=10000 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=1015.687500 cpu_seconds=0.043000\nFAIL progression two core frames and three reusable hosts\nFAIL progression native/legacy/opaque labels\nFAIL progression original tenth-second poll\nFAIL progression no lifecycle growth/errors\nMETRIC progression_lifecycle font_reads=200 region_reads=100 level_reads=600 label_writes=200 anchors=200 frames=4\nFAIL progression preview has no host\nMETRIC progression_modern_startup font_reads=100 region_reads=0 level_reads=300 label_writes=100 anchors=100 frames=102\nMETRIC progression_modern font_reads=10000 region_reads=0 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=0.062500 cpu_seconds=0.037000\nMETRIC progression_legacy_startup font_reads=0 region_reads=100 level_reads=300 label_writes=100 anchors=100 frames=102\nMETRIC progression_legacy font_reads=0 region_reads=10000 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=1015.687500 cpu_seconds=0.043000\nFAIL live two core frames and three reusable hosts\nFAIL live native/legacy/opaque labels\nFAIL live original tenth-second poll\nFAIL live no lifecycle growth/errors\nMETRIC live_lifecycle font_reads=200 region_reads=100 level_reads=600 label_writes=200 anchors=200 frames=4\nFAIL live preview has no host\nMETRIC live_modern_startup font_reads=100 region_reads=0 level_reads=300 label_writes=100 anchors=100 frames=102\nMETRIC live_modern font_reads=10000 region_reads=0 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=0.062500 cpu_seconds=0.038000\nMETRIC live_legacy_startup font_reads=0 region_reads=100 level_reads=300 label_writes=100 anchors=100 frames=102\nMETRIC live_legacy font_reads=0 region_reads=10000 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=1015.687500 cpu_seconds=0.037000\nFAIL forever two core frames and three reusable hosts\nFAIL forever native/legacy/opaque labels\nFAIL forever original tenth-second poll\nFAIL forever no lifecycle growth/errors\nMETRIC forever_lifecycle font_reads=200 region_reads=100 level_reads=600 label_writes=200 anchors=200 frames=4\nFAIL forever preview has no host\nMETRIC forever_modern_startup font_reads=100 region_reads=0 level_reads=300 label_writes=100 anchors=100 frames=102\nMETRIC forever_modern font_reads=10000 region_reads=0 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=0.062500 cpu_seconds=0.038000\nMETRIC forever_legacy_startup font_reads=0 region_reads=100 level_reads=300 label_writes=100 anchors=100 frames=102\nMETRIC forever_legacy font_reads=0 region_reads=10000 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=1015.687500 cpu_seconds=0.036000\nNameplate countdown work: 1160 checks, 25 failures\n"
+    },
+    "slow_poll": {
+      "exit": 1,
+      "output": "FAIL era original tenth-second poll\nFAIL era readable-time fallback\nFAIL era millisecond fallback\nFAIL era opaque level ignored\nFAIL era level change read immediately\nFAIL era failed placement restores digits\nMETRIC era_lifecycle font_reads=200 region_reads=100 level_reads=900 label_writes=300 anchors=300 frames=5\nMETRIC era_modern_startup font_reads=100 region_reads=0 level_reads=300 label_writes=100 anchors=100 frames=102\nFAIL era modern one font-region lookup per visible aura per poll\nFAIL era all display work and level reads retained\nMETRIC era_modern font_reads=5000 region_reads=0 level_reads=15000 label_writes=5000 anchors=5000 frames=102 heap_kib=0.437500 cpu_seconds=0.022000\nMETRIC era_legacy_startup font_reads=0 region_reads=100 level_reads=300 label_writes=100 anchors=100 frames=102\nFAIL era legacy one font-region lookup per visible aura per poll\nFAIL era all display work and level reads retained\nMETRIC era_legacy font_reads=0 region_reads=5000 level_reads=15000 label_writes=5000 anchors=5000 frames=102 heap_kib=507.875000 cpu_seconds=0.020000\nFAIL anniversary original tenth-second poll\nFAIL anniversary readable-time fallback\nFAIL anniversary millisecond fallback\nFAIL anniversary opaque level ignored\nFAIL anniversary level change read immediately\nFAIL anniversary failed placement restores digits\nMETRIC anniversary_lifecycle font_reads=200 region_reads=100 level_reads=900 label_writes=300 anchors=300 frames=5\nMETRIC anniversary_modern_startup font_reads=100 region_reads=0 level_reads=300 label_writes=100 anchors=100 frames=102\nFAIL anniversary modern one font-region lookup per visible aura per poll\nFAIL anniversary all display work and level reads retained\nMETRIC anniversary_modern font_reads=5000 region_reads=0 level_reads=15000 label_writes=5000 anchors=5000 frames=102 heap_kib=0.062500 cpu_seconds=0.020000\nMETRIC anniversary_legacy_startup font_reads=0 region_reads=100 level_reads=300 label_writes=100 anchors=100 frames=102\nFAIL anniversary legacy one font-region lookup per visible aura per poll\nFAIL anniversary all display work and level reads retained\nMETRIC anniversary_legacy font_reads=0 region_reads=5000 level_reads=15000 label_writes=5000 anchors=5000 frames=102 heap_kib=507.875000 cpu_seconds=0.019000\nFAIL progression original tenth-second poll\nFAIL progression readable-time fallback\nFAIL progression millisecond fallback\nFAIL progression opaque level ignored\nFAIL progression level change read immediately\nFAIL progression failed placement restores digits\nMETRIC progression_lifecycle font_reads=200 region_reads=100 level_reads=900 label_writes=300 anchors=300 frames=5\nMETRIC progression_modern_startup font_reads=100 region_reads=0 level_reads=300 label_writes=100 anchors=100 frames=102\nFAIL progression modern one font-region lookup per visible aura per poll\nFAIL progression all display work and level reads retained\nMETRIC progression_modern font_reads=5000 region_reads=0 level_reads=15000 label_writes=5000 anchors=5000 frames=102 heap_kib=0.062500 cpu_seconds=0.019000\nMETRIC progression_legacy_startup font_reads=0 region_reads=100 level_reads=300 label_writes=100 anchors=100 frames=102\nFAIL progression legacy one font-region lookup per visible aura per poll\nFAIL progression all display work and level reads retained\nMETRIC progression_legacy font_reads=0 region_reads=5000 level_reads=15000 label_writes=5000 anchors=5000 frames=102 heap_kib=507.875000 cpu_seconds=0.024000\nFAIL live original tenth-second poll\nFAIL live readable-time fallback\nFAIL live millisecond fallback\nFAIL live opaque level ignored\nFAIL live level change read immediately\nFAIL live failed placement restores digits\nMETRIC live_lifecycle font_reads=200 region_reads=100 level_reads=900 label_writes=300 anchors=300 frames=5\nMETRIC live_modern_startup font_reads=100 region_reads=0 level_reads=300 label_writes=100 anchors=100 frames=102\nFAIL live modern one font-region lookup per visible aura per poll\nFAIL live all display work and level reads retained\nMETRIC live_modern font_reads=5000 region_reads=0 level_reads=15000 label_writes=5000 anchors=5000 frames=102 heap_kib=0.062500 cpu_seconds=0.020000\nMETRIC live_legacy_startup font_reads=0 region_reads=100 level_reads=300 label_writes=100 anchors=100 frames=102\nFAIL live legacy one font-region lookup per visible aura per poll\nFAIL live all display work and level reads retained\nMETRIC live_legacy font_reads=0 region_reads=5000 level_reads=15000 label_writes=5000 anchors=5000 frames=102 heap_kib=507.875000 cpu_seconds=0.021000\nFAIL forever original tenth-second poll\nFAIL forever readable-time fallback\nFAIL forever millisecond fallback\nFAIL forever opaque level ignored\nFAIL forever level change read immediately\nFAIL forever failed placement restores digits\nMETRIC forever_lifecycle font_reads=200 region_reads=100 level_reads=900 label_writes=300 anchors=300 frames=5\nMETRIC forever_modern_startup font_reads=100 region_reads=0 level_reads=300 label_writes=100 anchors=100 frames=102\nFAIL forever modern one font-region lookup per visible aura per poll\nFAIL forever all display work and level reads retained\nMETRIC forever_modern font_reads=5000 region_reads=0 level_reads=15000 label_writes=5000 anchors=5000 frames=102 heap_kib=0.062500 cpu_seconds=0.019000\nMETRIC forever_legacy_startup font_reads=0 region_reads=100 level_reads=300 label_writes=100 anchors=100 frames=102\nFAIL forever legacy one font-region lookup per visible aura per poll\nFAIL forever all display work and level reads retained\nMETRIC forever_legacy font_reads=0 region_reads=5000 level_reads=15000 label_writes=5000 anchors=5000 frames=102 heap_kib=507.875000 cpu_seconds=0.030000\nNameplate countdown work: 1160 checks, 50 failures\n"
+    },
+    "wrong_level": {
+      "exit": 1,
+      "output": "FAIL era level and native fade\nFAIL era opaque level ignored\nFAIL era unavailable level ignored\nFAIL era level change read immediately\nMETRIC era_lifecycle font_reads=200 region_reads=100 level_reads=900 label_writes=300 anchors=300 frames=5\nMETRIC era_modern_startup font_reads=100 region_reads=0 level_reads=300 label_writes=100 anchors=100 frames=102\nMETRIC era_modern font_reads=10000 region_reads=0 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=0.437500 cpu_seconds=0.039000\nMETRIC era_legacy_startup font_reads=0 region_reads=100 level_reads=300 label_writes=100 anchors=100 frames=102\nMETRIC era_legacy font_reads=0 region_reads=10000 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=1015.687500 cpu_seconds=0.045000\nFAIL anniversary level and native fade\nFAIL anniversary opaque level ignored\nFAIL anniversary unavailable level ignored\nFAIL anniversary level change read immediately\nMETRIC anniversary_lifecycle font_reads=200 region_reads=100 level_reads=900 label_writes=300 anchors=300 frames=5\nMETRIC anniversary_modern_startup font_reads=100 region_reads=0 level_reads=300 label_writes=100 anchors=100 frames=102\nMETRIC anniversary_modern font_reads=10000 region_reads=0 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=0.062500 cpu_seconds=0.033000\nMETRIC anniversary_legacy_startup font_reads=0 region_reads=100 level_reads=300 label_writes=100 anchors=100 frames=102\nMETRIC anniversary_legacy font_reads=0 region_reads=10000 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=1015.687500 cpu_seconds=0.039000\nFAIL progression level and native fade\nFAIL progression opaque level ignored\nFAIL progression unavailable level ignored\nFAIL progression level change read immediately\nMETRIC progression_lifecycle font_reads=200 region_reads=100 level_reads=900 label_writes=300 anchors=300 frames=5\nMETRIC progression_modern_startup font_reads=100 region_reads=0 level_reads=300 label_writes=100 anchors=100 frames=102\nMETRIC progression_modern font_reads=10000 region_reads=0 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=0.062500 cpu_seconds=0.032000\nMETRIC progression_legacy_startup font_reads=0 region_reads=100 level_reads=300 label_writes=100 anchors=100 frames=102\nMETRIC progression_legacy font_reads=0 region_reads=10000 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=1015.687500 cpu_seconds=0.041000\nFAIL live level and native fade\nFAIL live opaque level ignored\nFAIL live unavailable level ignored\nFAIL live level change read immediately\nMETRIC live_lifecycle font_reads=200 region_reads=100 level_reads=900 label_writes=300 anchors=300 frames=5\nMETRIC live_modern_startup font_reads=100 region_reads=0 level_reads=300 label_writes=100 anchors=100 frames=102\nMETRIC live_modern font_reads=10000 region_reads=0 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=0.062500 cpu_seconds=0.037000\nMETRIC live_legacy_startup font_reads=0 region_reads=100 level_reads=300 label_writes=100 anchors=100 frames=102\nMETRIC live_legacy font_reads=0 region_reads=10000 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=1015.687500 cpu_seconds=0.050000\nFAIL forever level and native fade\nFAIL forever opaque level ignored\nFAIL forever unavailable level ignored\nFAIL forever level change read immediately\nMETRIC forever_lifecycle font_reads=200 region_reads=100 level_reads=900 label_writes=300 anchors=300 frames=5\nMETRIC forever_modern_startup font_reads=100 region_reads=0 level_reads=300 label_writes=100 anchors=100 frames=102\nMETRIC forever_modern font_reads=10000 region_reads=0 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=0.062500 cpu_seconds=0.038000\nMETRIC forever_legacy_startup font_reads=0 region_reads=100 level_reads=300 label_writes=100 anchors=100 frames=102\nMETRIC forever_legacy font_reads=0 region_reads=10000 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=1015.687500 cpu_seconds=0.048000\nNameplate countdown work: 1160 checks, 20 failures\n"
+    }
+  },
+  "result": "PASS deterministic operation/resource/geometry controls; native rendering, security, FPS and real secret values require separate checks",
+  "candidateCommit": "efca305c76a87f9db36db12a1a2400272a253633",
+  "candidateTree": "1aa4627d774e10515dc52681b0cb527dba4ab60b"
+}

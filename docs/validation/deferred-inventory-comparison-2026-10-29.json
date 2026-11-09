@@ -1,0 +1,1940 @@
+{
+  "change": "BUG-002/PERF-002",
+  "recordedUtc": "2026-10-29T09:38:58.252777+00:00",
+  "baselineCommit": "201bc8382f9fa6b5d9906200e3331a4ad90c2f13",
+  "baselineTree": "6976189ef0843924e081d89cd47c83001f8d150f",
+  "candidateIdentity": "Committed scan fix; later outgoing-mail correction recorded separately",
+  "sourceHashes": {
+    "Inventory/Builtin/Mail.lua": "e6e6600489d5c762859a465e66573c48a2555e13d0fa99ff448c7cebb7ee113a",
+    "Inventory/Builtin/Auctions.lua": "e88456e273ba550aac0d0e001871f89b5d5ccdd9225236d29d42b72695895677",
+    "Inventory/Store.lua": "2e6cb7e3e5235287dd7de590882a333866c0ddcce09c44f0755e5fc344ba35a2",
+    "Inventory/Syndicator/Adapter.lua": "6484933439a0830fb1c652054bc1384b9e66a824e58f684427ba31cc91f3d078",
+    "tests/deferred_inventory_handoff.lua": "837e042da7ec66e4f014e37e3da9b089aa8389c840004e55a5ee7884261ab0f1",
+    "tests/fixtures/mail_scan_provider_before.txt": "92244006258c3a2e28f33749dd55e98f5d40383a2388e782f544d969b9208f45",
+    "tests/fixtures/auction_scan_provider_before.txt": "bff1c7a870e26e06555ef5624812f88c38899f285f24437b2f0b7aca728aeecf"
+  },
+  "environment": {
+    "os": "Windows-10-10.0.26200-SP0",
+    "cpu": "Intel Core i7-12700F",
+    "logicalProcessors": 20,
+    "ramGpu": "unavailable through sandbox CIM",
+    "lua": "5.4.6",
+    "python": "3.10.6",
+    "clientBuild": "none; mail and modern/legacy auction capability fixtures",
+    "addons": "real Store/Mail/Auctions/Adapter; other regions and native APIs mocked",
+    "settings": "fixed test data; no user SavedVariables consumed",
+    "profiler": "off; deterministic operation counters",
+    "warmup": "fresh harness, optional partial scan before handoff; counts reset after actual Ready callback",
+    "duration": "drain queued scan up to20 synthetic frames per case; candidate must detach on first callback, including before due time",
+    "repetitions": "5 alternating baseline/candidate process pairs;12cases per invocation",
+    "unmeasured": [
+      "native CPU",
+      "attributed allocation/heap",
+      "native operation latency",
+      "frame time/FPS",
+      "screenshots"
+    ],
+    "timingCaution": "process wall includes interpreter/test setup; no timing performance conclusion"
+  },
+  "status": "PASS modeled ownership and cancellation; native behavior pending",
+  "samples": [
+    {
+      "pair": 1,
+      "variant": "baseline",
+      "command": [
+        "lua",
+        "tests/deferred_inventory_handoff.lua",
+        "--mail-source",
+        "tests/fixtures/mail_scan_provider_before.txt",
+        "--auction-source",
+        "tests/fixtures/auction_scan_provider_before.txt",
+        "--measure"
+      ],
+      "exit": 0,
+      "processWallSeconds": 0.05787599999894155,
+      "measurements": [
+        {
+          "scenario": "mail queued provider",
+          "nativeApiReadCalls": 105,
+          "notifications": 1,
+          "generationDelta": 1,
+          "activeAfterFirstCallback": 1,
+          "providerCount": null,
+          "builtinCount": 24
+        },
+        {
+          "scenario": "mail queued empty-provider",
+          "nativeApiReadCalls": 105,
+          "notifications": 1,
+          "generationDelta": 1,
+          "activeAfterFirstCallback": 1,
+          "providerCount": null,
+          "builtinCount": 24
+        },
+        {
+          "scenario": "mail partial provider",
+          "nativeApiReadCalls": 56,
+          "notifications": 1,
+          "generationDelta": 1,
+          "activeAfterFirstCallback": 1,
+          "providerCount": null,
+          "builtinCount": 24
+        },
+        {
+          "scenario": "mail partial empty-provider",
+          "nativeApiReadCalls": 56,
+          "notifications": 1,
+          "generationDelta": 1,
+          "activeAfterFirstCallback": 1,
+          "providerCount": null,
+          "builtinCount": 24
+        },
+        {
+          "scenario": "auctions-legacy queued provider",
+          "nativeApiReadCalls": 71,
+          "notifications": 1,
+          "generationDelta": 1,
+          "activeAfterFirstCallback": 1,
+          "providerCount": null,
+          "builtinCount": 210
+        },
+        {
+          "scenario": "auctions-legacy queued empty-provider",
+          "nativeApiReadCalls": 71,
+          "notifications": 1,
+          "generationDelta": 1,
+          "activeAfterFirstCallback": 1,
+          "providerCount": null,
+          "builtinCount": 210
+        },
+        {
+          "scenario": "auctions-legacy partial provider",
+          "nativeApiReadCalls": 38,
+          "notifications": 1,
+          "generationDelta": 1,
+          "activeAfterFirstCallback": 1,
+          "providerCount": null,
+          "builtinCount": 210
+        },
+        {
+          "scenario": "auctions-legacy partial empty-provider",
+          "nativeApiReadCalls": 38,
+          "notifications": 1,
+          "generationDelta": 1,
+          "activeAfterFirstCallback": 1,
+          "providerCount": null,
+          "builtinCount": 210
+        },
+        {
+          "scenario": "auctions-modern queued provider",
+          "nativeApiReadCalls": 71,
+          "notifications": 1,
+          "generationDelta": 1,
+          "activeAfterFirstCallback": 1,
+          "providerCount": null,
+          "builtinCount": 210
+        },
+        {
+          "scenario": "auctions-modern queued empty-provider",
+          "nativeApiReadCalls": 71,
+          "notifications": 1,
+          "generationDelta": 1,
+          "activeAfterFirstCallback": 1,
+          "providerCount": null,
+          "builtinCount": 210
+        },
+        {
+          "scenario": "auctions-modern partial provider",
+          "nativeApiReadCalls": 38,
+          "notifications": 1,
+          "generationDelta": 1,
+          "activeAfterFirstCallback": 1,
+          "providerCount": null,
+          "builtinCount": 210
+        },
+        {
+          "scenario": "auctions-modern partial empty-provider",
+          "nativeApiReadCalls": 38,
+          "notifications": 1,
+          "generationDelta": 1,
+          "activeAfterFirstCallback": 1,
+          "providerCount": null,
+          "builtinCount": 210
+        }
+      ],
+      "stdout": "mail queued provider nativeReads=105 notifications=1 generationDelta=1 activeAfterFirst=1 providerCount=nil builtinCount=24\nmail queued empty-provider nativeReads=105 notifications=1 generationDelta=1 activeAfterFirst=1 providerCount=nil builtinCount=24\nmail partial provider nativeReads=56 notifications=1 generationDelta=1 activeAfterFirst=1 providerCount=nil builtinCount=24\nmail partial empty-provider nativeReads=56 notifications=1 generationDelta=1 activeAfterFirst=1 providerCount=nil builtinCount=24\nauctions-legacy queued provider nativeReads=71 notifications=1 generationDelta=1 activeAfterFirst=1 providerCount=nil builtinCount=210\nauctions-legacy queued empty-provider nativeReads=71 notifications=1 generationDelta=1 activeAfterFirst=1 providerCount=nil builtinCount=210\nauctions-legacy partial provider nativeReads=38 notifications=1 generationDelta=1 activeAfterFirst=1 providerCount=nil builtinCount=210\nauctions-legacy partial empty-provider nativeReads=38 notifications=1 generationDelta=1 activeAfterFirst=1 providerCount=nil builtinCount=210\nauctions-modern queued provider nativeReads=71 notifications=1 generationDelta=1 activeAfterFirst=1 providerCount=nil builtinCount=210\nauctions-modern queued empty-provider nativeReads=71 notifications=1 generationDelta=1 activeAfterFirst=1 providerCount=nil builtinCount=210\nauctions-modern partial provider nativeReads=38 notifications=1 generationDelta=1 activeAfterFirst=1 providerCount=nil builtinCount=210\nauctions-modern partial empty-provider nativeReads=38 notifications=1 generationDelta=1 activeAfterFirst=1 providerCount=nil builtinCount=210\ndeferred inventory handoff: 210 checks, 42 failures; desktop operation counts only\nFAIL mail queued provider stale scan does no work or publication\nFAIL mail queued provider stale scan retires on its first callback\nFAIL mail queued provider provider snapshot remains intact\nFAIL mail queued provider unchanged provider fingerprint cannot leave stale native facts\nFAIL mail queued empty-provider stale scan does no work or publication\nFAIL mail queued empty-provider stale scan retires on its first callback\nFAIL mail queued empty-provider provider snapshot remains intact\nFAIL mail queued empty-provider unchanged provider fingerprint cannot leave stale native facts\nFAIL mail partial provider stale scan does no work or publication\nFAIL mail partial provider stale scan retires on its first callback\nFAIL mail partial provider provider snapshot remains intact\nFAIL mail partial provider unchanged provider fingerprint cannot leave stale native facts\nFAIL mail partial empty-provider stale scan does no work or publication\nFAIL mail partial empty-provider stale scan retires on its first callback\nFAIL mail partial empty-provider provider snapshot remains intact\nFAIL mail partial empty-provider unchanged provider fingerprint cannot leave stale native facts\nFAIL auctions-legacy queued provider stale scan does no work or publication\nFAIL auctions-legacy queued provider stale scan retires on its first callback\nFAIL auctions-legacy queued provider provider snapshot remains intact\nFAIL auctions-legacy queued empty-provider stale scan does no work or publication\nFAIL auctions-legacy queued empty-provider stale scan retires on its first callback\nFAIL auctions-legacy queued empty-provider provider snapshot remains intact\nFAIL auctions-legacy partial provider stale scan does no work or publication\nFAIL auctions-legacy partial provider stale scan retires on its first callback\nFAIL auctions-legacy partial provider provider snapshot remains intact\nFAIL auctions-legacy partial empty-provider stale scan does no work or publication\nFAIL auctions-legacy partial empty-provider stale scan retires on its first callback\nFAIL auctions-legacy partial empty-provider provider snapshot remains intact\nFAIL auctions-modern queued provider stale scan does no work or publication\nFAIL auctions-modern queued provider stale scan retires on its first callback\nFAIL auctions-modern queued provider provider snapshot remains intact\nFAIL auctions-modern queued empty-provider stale scan does no work or publication\nFAIL auctions-modern queued empty-provider stale scan retires on its first callback\nFAIL auctions-modern queued empty-provider provider snapshot remains intact\nFAIL auctions-modern partial provider stale scan does no work or publication\nFAIL auctions-modern partial provider stale scan retires on its first callback\nFAIL auctions-modern partial provider provider snapshot remains intact\nFAIL auctions-modern partial empty-provider stale scan does no work or publication\nFAIL auctions-modern partial empty-provider stale scan retires on its first callback\nFAIL auctions-modern partial empty-provider provider snapshot remains intact\nFAIL retry handoff cancels before due time without overwriting provider\nFAIL force-close handoff cancels before due time without overwriting provider\n",
+      "stderr": ""
+    },
+    {
+      "pair": 1,
+      "variant": "candidate",
+      "command": [
+        "lua",
+        "tests/deferred_inventory_handoff.lua"
+      ],
+      "exit": 0,
+      "processWallSeconds": 0.04742590000387281,
+      "measurements": [
+        {
+          "scenario": "mail queued provider",
+          "nativeApiReadCalls": 0,
+          "notifications": 0,
+          "generationDelta": 0,
+          "activeAfterFirstCallback": 0,
+          "providerCount": 99,
+          "builtinCount": null
+        },
+        {
+          "scenario": "mail queued empty-provider",
+          "nativeApiReadCalls": 0,
+          "notifications": 0,
+          "generationDelta": 0,
+          "activeAfterFirstCallback": 0,
+          "providerCount": null,
+          "builtinCount": null
+        },
+        {
+          "scenario": "mail partial provider",
+          "nativeApiReadCalls": 0,
+          "notifications": 0,
+          "generationDelta": 0,
+          "activeAfterFirstCallback": 0,
+          "providerCount": 99,
+          "builtinCount": null
+        },
+        {
+          "scenario": "mail partial empty-provider",
+          "nativeApiReadCalls": 0,
+          "notifications": 0,
+          "generationDelta": 0,
+          "activeAfterFirstCallback": 0,
+          "providerCount": null,
+          "builtinCount": null
+        },
+        {
+          "scenario": "auctions-legacy queued provider",
+          "nativeApiReadCalls": 0,
+          "notifications": 0,
+          "generationDelta": 0,
+          "activeAfterFirstCallback": 0,
+          "providerCount": 99,
+          "builtinCount": null
+        },
+        {
+          "scenario": "auctions-legacy queued empty-provider",
+          "nativeApiReadCalls": 0,
+          "notifications": 0,
+          "generationDelta": 0,
+          "activeAfterFirstCallback": 0,
+          "providerCount": null,
+          "builtinCount": null
+        },
+        {
+          "scenario": "auctions-legacy partial provider",
+          "nativeApiReadCalls": 0,
+          "notifications": 0,
+          "generationDelta": 0,
+          "activeAfterFirstCallback": 0,
+          "providerCount": 99,
+          "builtinCount": null
+        },
+        {
+          "scenario": "auctions-legacy partial empty-provider",
+          "nativeApiReadCalls": 0,
+          "notifications": 0,
+          "generationDelta": 0,
+          "activeAfterFirstCallback": 0,
+          "providerCount": null,
+          "builtinCount": null
+        },
+        {
+          "scenario": "auctions-modern queued provider",
+          "nativeApiReadCalls": 0,
+          "notifications": 0,
+          "generationDelta": 0,
+          "activeAfterFirstCallback": 0,
+          "providerCount": 99,
+          "builtinCount": null
+        },
+        {
+          "scenario": "auctions-modern queued empty-provider",
+          "nativeApiReadCalls": 0,
+          "notifications": 0,
+          "generationDelta": 0,
+          "activeAfterFirstCallback": 0,
+          "providerCount": null,
+          "builtinCount": null
+        },
+        {
+          "scenario": "auctions-modern partial provider",
+          "nativeApiReadCalls": 0,
+          "notifications": 0,
+          "generationDelta": 0,
+          "activeAfterFirstCallback": 0,
+          "providerCount": 99,
+          "builtinCount": null
+        },
+        {
+          "scenario": "auctions-modern partial empty-provider",
+          "nativeApiReadCalls": 0,
+          "notifications": 0,
+          "generationDelta": 0,
+          "activeAfterFirstCallback": 0,
+          "providerCount": null,
+          "builtinCount": null
+        }
+      ],
+      "stdout": "mail queued provider nativeReads=0 notifications=0 generationDelta=0 activeAfterFirst=0 providerCount=99 builtinCount=nil\nmail queued empty-provider nativeReads=0 notifications=0 generationDelta=0 activeAfterFirst=0 providerCount=nil builtinCount=nil\nmail partial provider nativeReads=0 notifications=0 generationDelta=0 activeAfterFirst=0 providerCount=99 builtinCount=nil\nmail partial empty-provider nativeReads=0 notifications=0 generationDelta=0 activeAfterFirst=0 providerCount=nil builtinCount=nil\nauctions-legacy queued provider nativeReads=0 notifications=0 generationDelta=0 activeAfterFirst=0 providerCount=99 builtinCount=nil\nauctions-legacy queued empty-provider nativeReads=0 notifications=0 generationDelta=0 activeAfterFirst=0 providerCount=nil builtinCount=nil\nauctions-legacy partial provider nativeReads=0 notifications=0 generationDelta=0 activeAfterFirst=0 providerCount=99 builtinCount=nil\nauctions-legacy partial empty-provider nativeReads=0 notifications=0 generationDelta=0 activeAfterFirst=0 providerCount=nil builtinCount=nil\nauctions-modern queued provider nativeReads=0 notifications=0 generationDelta=0 activeAfterFirst=0 providerCount=99 builtinCount=nil\nauctions-modern queued empty-provider nativeReads=0 notifications=0 generationDelta=0 activeAfterFirst=0 providerCount=nil builtinCount=nil\nauctions-modern partial provider nativeReads=0 notifications=0 generationDelta=0 activeAfterFirst=0 providerCount=99 builtinCount=nil\nauctions-modern partial empty-provider nativeReads=0 notifications=0 generationDelta=0 activeAfterFirst=0 providerCount=nil builtinCount=nil\ndeferred inventory handoff: 210 checks, 0 failures; desktop operation counts only\n",
+      "stderr": ""
+    },
+    {
+      "pair": 2,
+      "variant": "baseline",
+      "command": [
+        "lua",
+        "tests/deferred_inventory_handoff.lua",
+        "--mail-source",
+        "tests/fixtures/mail_scan_provider_before.txt",
+        "--auction-source",
+        "tests/fixtures/auction_scan_provider_before.txt",
+        "--measure"
+      ],
+      "exit": 0,
+      "processWallSeconds": 0.05004410000401549,
+      "measurements": [
+        {
+          "scenario": "mail queued provider",
+          "nativeApiReadCalls": 105,
+          "notifications": 1,
+          "generationDelta": 1,
+          "activeAfterFirstCallback": 1,
+          "providerCount": null,
+          "builtinCount": 24
+        },
+        {
+          "scenario": "mail queued empty-provider",
+          "nativeApiReadCalls": 105,
+          "notifications": 1,
+          "generationDelta": 1,
+          "activeAfterFirstCallback": 1,
+          "providerCount": null,
+          "builtinCount": 24
+        },
+        {
+          "scenario": "mail partial provider",
+          "nativeApiReadCalls": 56,
+          "notifications": 1,
+          "generationDelta": 1,
+          "activeAfterFirstCallback": 1,
+          "providerCount": null,
+          "builtinCount": 24
+        },
+        {
+          "scenario": "mail partial empty-provider",
+          "nativeApiReadCalls": 56,
+          "notifications": 1,
+          "generationDelta": 1,
+          "activeAfterFirstCallback": 1,
+          "providerCount": null,
+          "builtinCount": 24
+        },
+        {
+          "scenario": "auctions-legacy queued provider",
+          "nativeApiReadCalls": 71,
+          "notifications": 1,
+          "generationDelta": 1,
+          "activeAfterFirstCallback": 1,
+          "providerCount": null,
+          "builtinCount": 210
+        },
+        {
+          "scenario": "auctions-legacy queued empty-provider",
+          "nativeApiReadCalls": 71,
+          "notifications": 1,
+          "generationDelta": 1,
+          "activeAfterFirstCallback": 1,
+          "providerCount": null,
+          "builtinCount": 210
+        },
+        {
+          "scenario": "auctions-legacy partial provider",
+          "nativeApiReadCalls": 38,
+          "notifications": 1,
+          "generationDelta": 1,
+          "activeAfterFirstCallback": 1,
+          "providerCount": null,
+          "builtinCount": 210
+        },
+        {
+          "scenario": "auctions-legacy partial empty-provider",
+          "nativeApiReadCalls": 38,
+          "notifications": 1,
+          "generationDelta": 1,
+          "activeAfterFirstCallback": 1,
+          "providerCount": null,
+          "builtinCount": 210
+        },
+        {
+          "scenario": "auctions-modern queued provider",
+          "nativeApiReadCalls": 71,
+          "notifications": 1,
+          "generationDelta": 1,
+          "activeAfterFirstCallback": 1,
+          "providerCount": null,
+          "builtinCount": 210
+        },
+        {
+          "scenario": "auctions-modern queued empty-provider",
+          "nativeApiReadCalls": 71,
+          "notifications": 1,
+          "generationDelta": 1,
+          "activeAfterFirstCallback": 1,
+          "providerCount": null,
+          "builtinCount": 210
+        },
+        {
+          "scenario": "auctions-modern partial provider",
+          "nativeApiReadCalls": 38,
+          "notifications": 1,
+          "generationDelta": 1,
+          "activeAfterFirstCallback": 1,
+          "providerCount": null,
+          "builtinCount": 210
+        },
+        {
+          "scenario": "auctions-modern partial empty-provider",
+          "nativeApiReadCalls": 38,
+          "notifications": 1,
+          "generationDelta": 1,
+          "activeAfterFirstCallback": 1,
+          "providerCount": null,
+          "builtinCount": 210
+        }
+      ],
+      "stdout": "mail queued provider nativeReads=105 notifications=1 generationDelta=1 activeAfterFirst=1 providerCount=nil builtinCount=24\nmail queued empty-provider nativeReads=105 notifications=1 generationDelta=1 activeAfterFirst=1 providerCount=nil builtinCount=24\nmail partial provider nativeReads=56 notifications=1 generationDelta=1 activeAfterFirst=1 providerCount=nil builtinCount=24\nmail partial empty-provider nativeReads=56 notifications=1 generationDelta=1 activeAfterFirst=1 providerCount=nil builtinCount=24\nauctions-legacy queued provider nativeReads=71 notifications=1 generationDelta=1 activeAfterFirst=1 providerCount=nil builtinCount=210\nauctions-legacy queued empty-provider nativeReads=71 notifications=1 generationDelta=1 activeAfterFirst=1 providerCount=nil builtinCount=210\nauctions-legacy partial provider nativeReads=38 notifications=1 generationDelta=1 activeAfterFirst=1 providerCount=nil builtinCount=210\nauctions-legacy partial empty-provider nativeReads=38 notifications=1 generationDelta=1 activeAfterFirst=1 providerCount=nil builtinCount=210\nauctions-modern queued provider nativeReads=71 notifications=1 generationDelta=1 activeAfterFirst=1 providerCount=nil builtinCount=210\nauctions-modern queued empty-provider nativeReads=71 notifications=1 generationDelta=1 activeAfterFirst=1 providerCount=nil builtinCount=210\nauctions-modern partial provider nativeReads=38 notifications=1 generationDelta=1 activeAfterFirst=1 providerCount=nil builtinCount=210\nauctions-modern partial empty-provider nativeReads=38 notifications=1 generationDelta=1 activeAfterFirst=1 providerCount=nil builtinCount=210\ndeferred inventory handoff: 210 checks, 42 failures; desktop operation counts only\nFAIL mail queued provider stale scan does no work or publication\nFAIL mail queued provider stale scan retires on its first callback\nFAIL mail queued provider provider snapshot remains intact\nFAIL mail queued provider unchanged provider fingerprint cannot leave stale native facts\nFAIL mail queued empty-provider stale scan does no work or publication\nFAIL mail queued empty-provider stale scan retires on its first callback\nFAIL mail queued empty-provider provider snapshot remains intact\nFAIL mail queued empty-provider unchanged provider fingerprint cannot leave stale native facts\nFAIL mail partial provider stale scan does no work or publication\nFAIL mail partial provider stale scan retires on its first callback\nFAIL mail partial provider provider snapshot remains intact\nFAIL mail partial provider unchanged provider fingerprint cannot leave stale native facts\nFAIL mail partial empty-provider stale scan does no work or publication\nFAIL mail partial empty-provider stale scan retires on its first callback\nFAIL mail partial empty-provider provider snapshot remains intact\nFAIL mail partial empty-provider unchanged provider fingerprint cannot leave stale native facts\nFAIL auctions-legacy queued provider stale scan does no work or publication\nFAIL auctions-legacy queued provider stale scan retires on its first callback\nFAIL auctions-legacy queued provider provider snapshot remains intact\nFAIL auctions-legacy queued empty-provider stale scan does no work or publication\nFAIL auctions-legacy queued empty-provider stale scan retires on its first callback\nFAIL auctions-legacy queued empty-provider provider snapshot remains intact\nFAIL auctions-legacy partial provider stale scan does no work or publication\nFAIL auctions-legacy partial provider stale scan retires on its first callback\nFAIL auctions-legacy partial provider provider snapshot remains intact\nFAIL auctions-legacy partial empty-provider stale scan does no work or publication\nFAIL auctions-legacy partial empty-provider stale scan retires on its first callback\nFAIL auctions-legacy partial empty-provider provider snapshot remains intact\nFAIL auctions-modern queued provider stale scan does no work or publication\nFAIL auctions-modern queued provider stale scan retires on its first callback\nFAIL auctions-modern queued provider provider snapshot remains intact\nFAIL auctions-modern queued empty-provider stale scan does no work or publication\nFAIL auctions-modern queued empty-provider stale scan retires on its first callback\nFAIL auctions-modern queued empty-provider provider snapshot remains intact\nFAIL auctions-modern partial provider stale scan does no work or publication\nFAIL auctions-modern partial provider stale scan retires on its first callback\nFAIL auctions-modern partial provider provider snapshot remains intact\nFAIL auctions-modern partial empty-provider stale scan does no work or publication\nFAIL auctions-modern partial empty-provider stale scan retires on its first callback\nFAIL auctions-modern partial empty-provider provider snapshot remains intact\nFAIL retry handoff cancels before due time without overwriting provider\nFAIL force-close handoff cancels before due time without overwriting provider\n",
+      "stderr": ""
+    },
+    {
+      "pair": 2,
+      "variant": "candidate",
+      "command": [
+        "lua",
+        "tests/deferred_inventory_handoff.lua"
+      ],
+      "exit": 0,
+      "processWallSeconds": 0.0440392000018619,
+      "measurements": [
+        {
+          "scenario": "mail queued provider",
+          "nativeApiReadCalls": 0,
+          "notifications": 0,
+          "generationDelta": 0,
+          "activeAfterFirstCallback": 0,
+          "providerCount": 99,
+          "builtinCount": null
+        },
+        {
+          "scenario": "mail queued empty-provider",
+          "nativeApiReadCalls": 0,
+          "notifications": 0,
+          "generationDelta": 0,
+          "activeAfterFirstCallback": 0,
+          "providerCount": null,
+          "builtinCount": null
+        },
+        {
+          "scenario": "mail partial provider",
+          "nativeApiReadCalls": 0,
+          "notifications": 0,
+          "generationDelta": 0,
+          "activeAfterFirstCallback": 0,
+          "providerCount": 99,
+          "builtinCount": null
+        },
+        {
+          "scenario": "mail partial empty-provider",
+          "nativeApiReadCalls": 0,
+          "notifications": 0,
+          "generationDelta": 0,
+          "activeAfterFirstCallback": 0,
+          "providerCount": null,
+          "builtinCount": null
+        },
+        {
+          "scenario": "auctions-legacy queued provider",
+          "nativeApiReadCalls": 0,
+          "notifications": 0,
+          "generationDelta": 0,
+          "activeAfterFirstCallback": 0,
+          "providerCount": 99,
+          "builtinCount": null
+        },
+        {
+          "scenario": "auctions-legacy queued empty-provider",
+          "nativeApiReadCalls": 0,
+          "notifications": 0,
+          "generationDelta": 0,
+          "activeAfterFirstCallback": 0,
+          "providerCount": null,
+          "builtinCount": null
+        },
+        {
+          "scenario": "auctions-legacy partial provider",
+          "nativeApiReadCalls": 0,
+          "notifications": 0,
+          "generationDelta": 0,
+          "activeAfterFirstCallback": 0,
+          "providerCount": 99,
+          "builtinCount": null
+        },
+        {
+          "scenario": "auctions-legacy partial empty-provider",
+          "nativeApiReadCalls": 0,
+          "notifications": 0,
+          "generationDelta": 0,
+          "activeAfterFirstCallback": 0,
+          "providerCount": null,
+          "builtinCount": null
+        },
+        {
+          "scenario": "auctions-modern queued provider",
+          "nativeApiReadCalls": 0,
+          "notifications": 0,
+          "generationDelta": 0,
+          "activeAfterFirstCallback": 0,
+          "providerCount": 99,
+          "builtinCount": null
+        },
+        {
+          "scenario": "auctions-modern queued empty-provider",
+          "nativeApiReadCalls": 0,
+          "notifications": 0,
+          "generationDelta": 0,
+          "activeAfterFirstCallback": 0,
+          "providerCount": null,
+          "builtinCount": null
+        },
+        {
+          "scenario": "auctions-modern partial provider",
+          "nativeApiReadCalls": 0,
+          "notifications": 0,
+          "generationDelta": 0,
+          "activeAfterFirstCallback": 0,
+          "providerCount": 99,
+          "builtinCount": null
+        },
+        {
+          "scenario": "auctions-modern partial empty-provider",
+          "nativeApiReadCalls": 0,
+          "notifications": 0,
+          "generationDelta": 0,
+          "activeAfterFirstCallback": 0,
+          "providerCount": null,
+          "builtinCount": null
+        }
+      ],
+      "stdout": "mail queued provider nativeReads=0 notifications=0 generationDelta=0 activeAfterFirst=0 providerCount=99 builtinCount=nil\nmail queued empty-provider nativeReads=0 notifications=0 generationDelta=0 activeAfterFirst=0 providerCount=nil builtinCount=nil\nmail partial provider nativeReads=0 notifications=0 generationDelta=0 activeAfterFirst=0 providerCount=99 builtinCount=nil\nmail partial empty-provider nativeReads=0 notifications=0 generationDelta=0 activeAfterFirst=0 providerCount=nil builtinCount=nil\nauctions-legacy queued provider nativeReads=0 notifications=0 generationDelta=0 activeAfterFirst=0 providerCount=99 builtinCount=nil\nauctions-legacy queued empty-provider nativeReads=0 notifications=0 generationDelta=0 activeAfterFirst=0 providerCount=nil builtinCount=nil\nauctions-legacy partial provider nativeReads=0 notifications=0 generationDelta=0 activeAfterFirst=0 providerCount=99 builtinCount=nil\nauctions-legacy partial empty-provider nativeReads=0 notifications=0 generationDelta=0 activeAfterFirst=0 providerCount=nil builtinCount=nil\nauctions-modern queued provider nativeReads=0 notifications=0 generationDelta=0 activeAfterFirst=0 providerCount=99 builtinCount=nil\nauctions-modern queued empty-provider nativeReads=0 notifications=0 generationDelta=0 activeAfterFirst=0 providerCount=nil builtinCount=nil\nauctions-modern partial provider nativeReads=0 notifications=0 generationDelta=0 activeAfterFirst=0 providerCount=99 builtinCount=nil\nauctions-modern partial empty-provider nativeReads=0 notifications=0 generationDelta=0 activeAfterFirst=0 providerCount=nil builtinCount=nil\ndeferred inventory handoff: 210 checks, 0 failures; desktop operation counts only\n",
+      "stderr": ""
+    },
+    {
+      "pair": 3,
+      "variant": "baseline",
+      "command": [
+        "lua",
+        "tests/deferred_inventory_handoff.lua",
+        "--mail-source",
+        "tests/fixtures/mail_scan_provider_before.txt",
+        "--auction-source",
+        "tests/fixtures/auction_scan_provider_before.txt",
+        "--measure"
+      ],
+      "exit": 0,
+      "processWallSeconds": 0.051156100002117455,
+      "measurements": [
+        {
+          "scenario": "mail queued provider",
+          "nativeApiReadCalls": 105,
+          "notifications": 1,
+          "generationDelta": 1,
+          "activeAfterFirstCallback": 1,
+          "providerCount": null,
+          "builtinCount": 24
+        },
+        {
+          "scenario": "mail queued empty-provider",
+          "nativeApiReadCalls": 105,
+          "notifications": 1,
+          "generationDelta": 1,
+          "activeAfterFirstCallback": 1,
+          "providerCount": null,
+          "builtinCount": 24
+        },
+        {
+          "scenario": "mail partial provider",
+          "nativeApiReadCalls": 56,
+          "notifications": 1,
+          "generationDelta": 1,
+          "activeAfterFirstCallback": 1,
+          "providerCount": null,
+          "builtinCount": 24
+        },
+        {
+          "scenario": "mail partial empty-provider",
+          "nativeApiReadCalls": 56,
+          "notifications": 1,
+          "generationDelta": 1,
+          "activeAfterFirstCallback": 1,
+          "providerCount": null,
+          "builtinCount": 24
+        },
+        {
+          "scenario": "auctions-legacy queued provider",
+          "nativeApiReadCalls": 71,
+          "notifications": 1,
+          "generationDelta": 1,
+          "activeAfterFirstCallback": 1,
+          "providerCount": null,
+          "builtinCount": 210
+        },
+        {
+          "scenario": "auctions-legacy queued empty-provider",
+          "nativeApiReadCalls": 71,
+          "notifications": 1,
+          "generationDelta": 1,
+          "activeAfterFirstCallback": 1,
+          "providerCount": null,
+          "builtinCount": 210
+        },
+        {
+          "scenario": "auctions-legacy partial provider",
+          "nativeApiReadCalls": 38,
+          "notifications": 1,
+          "generationDelta": 1,
+          "activeAfterFirstCallback": 1,
+          "providerCount": null,
+          "builtinCount": 210
+        },
+        {
+          "scenario": "auctions-legacy partial empty-provider",
+          "nativeApiReadCalls": 38,
+          "notifications": 1,
+          "generationDelta": 1,
+          "activeAfterFirstCallback": 1,
+          "providerCount": null,
+          "builtinCount": 210
+        },
+        {
+          "scenario": "auctions-modern queued provider",
+          "nativeApiReadCalls": 71,
+          "notifications": 1,
+          "generationDelta": 1,
+          "activeAfterFirstCallback": 1,
+          "providerCount": null,
+          "builtinCount": 210
+        },
+        {
+          "scenario": "auctions-modern queued empty-provider",
+          "nativeApiReadCalls": 71,
+          "notifications": 1,
+          "generationDelta": 1,
+          "activeAfterFirstCallback": 1,
+          "providerCount": null,
+          "builtinCount": 210
+        },
+        {
+          "scenario": "auctions-modern partial provider",
+          "nativeApiReadCalls": 38,
+          "notifications": 1,
+          "generationDelta": 1,
+          "activeAfterFirstCallback": 1,
+          "providerCount": null,
+          "builtinCount": 210
+        },
+        {
+          "scenario": "auctions-modern partial empty-provider",
+          "nativeApiReadCalls": 38,
+          "notifications": 1,
+          "generationDelta": 1,
+          "activeAfterFirstCallback": 1,
+          "providerCount": null,
+          "builtinCount": 210
+        }
+      ],
+      "stdout": "mail queued provider nativeReads=105 notifications=1 generationDelta=1 activeAfterFirst=1 providerCount=nil builtinCount=24\nmail queued empty-provider nativeReads=105 notifications=1 generationDelta=1 activeAfterFirst=1 providerCount=nil builtinCount=24\nmail partial provider nativeReads=56 notifications=1 generationDelta=1 activeAfterFirst=1 providerCount=nil builtinCount=24\nmail partial empty-provider nativeReads=56 notifications=1 generationDelta=1 activeAfterFirst=1 providerCount=nil builtinCount=24\nauctions-legacy queued provider nativeReads=71 notifications=1 generationDelta=1 activeAfterFirst=1 providerCount=nil builtinCount=210\nauctions-legacy queued empty-provider nativeReads=71 notifications=1 generationDelta=1 activeAfterFirst=1 providerCount=nil builtinCount=210\nauctions-legacy partial provider nativeReads=38 notifications=1 generationDelta=1 activeAfterFirst=1 providerCount=nil builtinCount=210\nauctions-legacy partial empty-provider nativeReads=38 notifications=1 generationDelta=1 activeAfterFirst=1 providerCount=nil builtinCount=210\nauctions-modern queued provider nativeReads=71 notifications=1 generationDelta=1 activeAfterFirst=1 providerCount=nil builtinCount=210\nauctions-modern queued empty-provider nativeReads=71 notifications=1 generationDelta=1 activeAfterFirst=1 providerCount=nil builtinCount=210\nauctions-modern partial provider nativeReads=38 notifications=1 generationDelta=1 activeAfterFirst=1 providerCount=nil builtinCount=210\nauctions-modern partial empty-provider nativeReads=38 notifications=1 generationDelta=1 activeAfterFirst=1 providerCount=nil builtinCount=210\ndeferred inventory handoff: 210 checks, 42 failures; desktop operation counts only\nFAIL mail queued provider stale scan does no work or publication\nFAIL mail queued provider stale scan retires on its first callback\nFAIL mail queued provider provider snapshot remains intact\nFAIL mail queued provider unchanged provider fingerprint cannot leave stale native facts\nFAIL mail queued empty-provider stale scan does no work or publication\nFAIL mail queued empty-provider stale scan retires on its first callback\nFAIL mail queued empty-provider provider snapshot remains intact\nFAIL mail queued empty-provider unchanged provider fingerprint cannot leave stale native facts\nFAIL mail partial provider stale scan does no work or publication\nFAIL mail partial provider stale scan retires on its first callback\nFAIL mail partial provider provider snapshot remains intact\nFAIL mail partial provider unchanged provider fingerprint cannot leave stale native facts\nFAIL mail partial empty-provider stale scan does no work or publication\nFAIL mail partial empty-provider stale scan retires on its first callback\nFAIL mail partial empty-provider provider snapshot remains intact\nFAIL mail partial empty-provider unchanged provider fingerprint cannot leave stale native facts\nFAIL auctions-legacy queued provider stale scan does no work or publication\nFAIL auctions-legacy queued provider stale scan retires on its first callback\nFAIL auctions-legacy queued provider provider snapshot remains intact\nFAIL auctions-legacy queued empty-provider stale scan does no work or publication\nFAIL auctions-legacy queued empty-provider stale scan retires on its first callback\nFAIL auctions-legacy queued empty-provider provider snapshot remains intact\nFAIL auctions-legacy partial provider stale scan does no work or publication\nFAIL auctions-legacy partial provider stale scan retires on its first callback\nFAIL auctions-legacy partial provider provider snapshot remains intact\nFAIL auctions-legacy partial empty-provider stale scan does no work or publication\nFAIL auctions-legacy partial empty-provider stale scan retires on its first callback\nFAIL auctions-legacy partial empty-provider provider snapshot remains intact\nFAIL auctions-modern queued provider stale scan does no work or publication\nFAIL auctions-modern queued provider stale scan retires on its first callback\nFAIL auctions-modern queued provider provider snapshot remains intact\nFAIL auctions-modern queued empty-provider stale scan does no work or publication\nFAIL auctions-modern queued empty-provider stale scan retires on its first callback\nFAIL auctions-modern queued empty-provider provider snapshot remains intact\nFAIL auctions-modern partial provider stale scan does no work or publication\nFAIL auctions-modern partial provider stale scan retires on its first callback\nFAIL auctions-modern partial provider provider snapshot remains intact\nFAIL auctions-modern partial empty-provider stale scan does no work or publication\nFAIL auctions-modern partial empty-provider stale scan retires on its first callback\nFAIL auctions-modern partial empty-provider provider snapshot remains intact\nFAIL retry handoff cancels before due time without overwriting provider\nFAIL force-close handoff cancels before due time without overwriting provider\n",
+      "stderr": ""
+    },
+    {
+      "pair": 3,
+      "variant": "candidate",
+      "command": [
+        "lua",
+        "tests/deferred_inventory_handoff.lua"
+      ],
+      "exit": 0,
+      "processWallSeconds": 0.048451000002387445,
+      "measurements": [
+        {
+          "scenario": "mail queued provider",
+          "nativeApiReadCalls": 0,
+          "notifications": 0,
+          "generationDelta": 0,
+          "activeAfterFirstCallback": 0,
+          "providerCount": 99,
+          "builtinCount": null
+        },
+        {
+          "scenario": "mail queued empty-provider",
+          "nativeApiReadCalls": 0,
+          "notifications": 0,
+          "generationDelta": 0,
+          "activeAfterFirstCallback": 0,
+          "providerCount": null,
+          "builtinCount": null
+        },
+        {
+          "scenario": "mail partial provider",
+          "nativeApiReadCalls": 0,
+          "notifications": 0,
+          "generationDelta": 0,
+          "activeAfterFirstCallback": 0,
+          "providerCount": 99,
+          "builtinCount": null
+        },
+        {
+          "scenario": "mail partial empty-provider",
+          "nativeApiReadCalls": 0,
+          "notifications": 0,
+          "generationDelta": 0,
+          "activeAfterFirstCallback": 0,
+          "providerCount": null,
+          "builtinCount": null
+        },
+        {
+          "scenario": "auctions-legacy queued provider",
+          "nativeApiReadCalls": 0,
+          "notifications": 0,
+          "generationDelta": 0,
+          "activeAfterFirstCallback": 0,
+          "providerCount": 99,
+          "builtinCount": null
+        },
+        {
+          "scenario": "auctions-legacy queued empty-provider",
+          "nativeApiReadCalls": 0,
+          "notifications": 0,
+          "generationDelta": 0,
+          "activeAfterFirstCallback": 0,
+          "providerCount": null,
+          "builtinCount": null
+        },
+        {
+          "scenario": "auctions-legacy partial provider",
+          "nativeApiReadCalls": 0,
+          "notifications": 0,
+          "generationDelta": 0,
+          "activeAfterFirstCallback": 0,
+          "providerCount": 99,
+          "builtinCount": null
+        },
+        {
+          "scenario": "auctions-legacy partial empty-provider",
+          "nativeApiReadCalls": 0,
+          "notifications": 0,
+          "generationDelta": 0,
+          "activeAfterFirstCallback": 0,
+          "providerCount": null,
+          "builtinCount": null
+        },
+        {
+          "scenario": "auctions-modern queued provider",
+          "nativeApiReadCalls": 0,
+          "notifications": 0,
+          "generationDelta": 0,
+          "activeAfterFirstCallback": 0,
+          "providerCount": 99,
+          "builtinCount": null
+        },
+        {
+          "scenario": "auctions-modern queued empty-provider",
+          "nativeApiReadCalls": 0,
+          "notifications": 0,
+          "generationDelta": 0,
+          "activeAfterFirstCallback": 0,
+          "providerCount": null,
+          "builtinCount": null
+        },
+        {
+          "scenario": "auctions-modern partial provider",
+          "nativeApiReadCalls": 0,
+          "notifications": 0,
+          "generationDelta": 0,
+          "activeAfterFirstCallback": 0,
+          "providerCount": 99,
+          "builtinCount": null
+        },
+        {
+          "scenario": "auctions-modern partial empty-provider",
+          "nativeApiReadCalls": 0,
+          "notifications": 0,
+          "generationDelta": 0,
+          "activeAfterFirstCallback": 0,
+          "providerCount": null,
+          "builtinCount": null
+        }
+      ],
+      "stdout": "mail queued provider nativeReads=0 notifications=0 generationDelta=0 activeAfterFirst=0 providerCount=99 builtinCount=nil\nmail queued empty-provider nativeReads=0 notifications=0 generationDelta=0 activeAfterFirst=0 providerCount=nil builtinCount=nil\nmail partial provider nativeReads=0 notifications=0 generationDelta=0 activeAfterFirst=0 providerCount=99 builtinCount=nil\nmail partial empty-provider nativeReads=0 notifications=0 generationDelta=0 activeAfterFirst=0 providerCount=nil builtinCount=nil\nauctions-legacy queued provider nativeReads=0 notifications=0 generationDelta=0 activeAfterFirst=0 providerCount=99 builtinCount=nil\nauctions-legacy queued empty-provider nativeReads=0 notifications=0 generationDelta=0 activeAfterFirst=0 providerCount=nil builtinCount=nil\nauctions-legacy partial provider nativeReads=0 notifications=0 generationDelta=0 activeAfterFirst=0 providerCount=99 builtinCount=nil\nauctions-legacy partial empty-provider nativeReads=0 notifications=0 generationDelta=0 activeAfterFirst=0 providerCount=nil builtinCount=nil\nauctions-modern queued provider nativeReads=0 notifications=0 generationDelta=0 activeAfterFirst=0 providerCount=99 builtinCount=nil\nauctions-modern queued empty-provider nativeReads=0 notifications=0 generationDelta=0 activeAfterFirst=0 providerCount=nil builtinCount=nil\nauctions-modern partial provider nativeReads=0 notifications=0 generationDelta=0 activeAfterFirst=0 providerCount=99 builtinCount=nil\nauctions-modern partial empty-provider nativeReads=0 notifications=0 generationDelta=0 activeAfterFirst=0 providerCount=nil builtinCount=nil\ndeferred inventory handoff: 210 checks, 0 failures; desktop operation counts only\n",
+      "stderr": ""
+    },
+    {
+      "pair": 4,
+      "variant": "baseline",
+      "command": [
+        "lua",
+        "tests/deferred_inventory_handoff.lua",
+        "--mail-source",
+        "tests/fixtures/mail_scan_provider_before.txt",
+        "--auction-source",
+        "tests/fixtures/auction_scan_provider_before.txt",
+        "--measure"
+      ],
+      "exit": 0,
+      "processWallSeconds": 0.048455700001795776,
+      "measurements": [
+        {
+          "scenario": "mail queued provider",
+          "nativeApiReadCalls": 105,
+          "notifications": 1,
+          "generationDelta": 1,
+          "activeAfterFirstCallback": 1,
+          "providerCount": null,
+          "builtinCount": 24
+        },
+        {
+          "scenario": "mail queued empty-provider",
+          "nativeApiReadCalls": 105,
+          "notifications": 1,
+          "generationDelta": 1,
+          "activeAfterFirstCallback": 1,
+          "providerCount": null,
+          "builtinCount": 24
+        },
+        {
+          "scenario": "mail partial provider",
+          "nativeApiReadCalls": 56,
+          "notifications": 1,
+          "generationDelta": 1,
+          "activeAfterFirstCallback": 1,
+          "providerCount": null,
+          "builtinCount": 24
+        },
+        {
+          "scenario": "mail partial empty-provider",
+          "nativeApiReadCalls": 56,
+          "notifications": 1,
+          "generationDelta": 1,
+          "activeAfterFirstCallback": 1,
+          "providerCount": null,
+          "builtinCount": 24
+        },
+        {
+          "scenario": "auctions-legacy queued provider",
+          "nativeApiReadCalls": 71,
+          "notifications": 1,
+          "generationDelta": 1,
+          "activeAfterFirstCallback": 1,
+          "providerCount": null,
+          "builtinCount": 210
+        },
+        {
+          "scenario": "auctions-legacy queued empty-provider",
+          "nativeApiReadCalls": 71,
+          "notifications": 1,
+          "generationDelta": 1,
+          "activeAfterFirstCallback": 1,
+          "providerCount": null,
+          "builtinCount": 210
+        },
+        {
+          "scenario": "auctions-legacy partial provider",
+          "nativeApiReadCalls": 38,
+          "notifications": 1,
+          "generationDelta": 1,
+          "activeAfterFirstCallback": 1,
+          "providerCount": null,
+          "builtinCount": 210
+        },
+        {
+          "scenario": "auctions-legacy partial empty-provider",
+          "nativeApiReadCalls": 38,
+          "notifications": 1,
+          "generationDelta": 1,
+          "activeAfterFirstCallback": 1,
+          "providerCount": null,
+          "builtinCount": 210
+        },
+        {
+          "scenario": "auctions-modern queued provider",
+          "nativeApiReadCalls": 71,
+          "notifications": 1,
+          "generationDelta": 1,
+          "activeAfterFirstCallback": 1,
+          "providerCount": null,
+          "builtinCount": 210
+        },
+        {
+          "scenario": "auctions-modern queued empty-provider",
+          "nativeApiReadCalls": 71,
+          "notifications": 1,
+          "generationDelta": 1,
+          "activeAfterFirstCallback": 1,
+          "providerCount": null,
+          "builtinCount": 210
+        },
+        {
+          "scenario": "auctions-modern partial provider",
+          "nativeApiReadCalls": 38,
+          "notifications": 1,
+          "generationDelta": 1,
+          "activeAfterFirstCallback": 1,
+          "providerCount": null,
+          "builtinCount": 210
+        },
+        {
+          "scenario": "auctions-modern partial empty-provider",
+          "nativeApiReadCalls": 38,
+          "notifications": 1,
+          "generationDelta": 1,
+          "activeAfterFirstCallback": 1,
+          "providerCount": null,
+          "builtinCount": 210
+        }
+      ],
+      "stdout": "mail queued provider nativeReads=105 notifications=1 generationDelta=1 activeAfterFirst=1 providerCount=nil builtinCount=24\nmail queued empty-provider nativeReads=105 notifications=1 generationDelta=1 activeAfterFirst=1 providerCount=nil builtinCount=24\nmail partial provider nativeReads=56 notifications=1 generationDelta=1 activeAfterFirst=1 providerCount=nil builtinCount=24\nmail partial empty-provider nativeReads=56 notifications=1 generationDelta=1 activeAfterFirst=1 providerCount=nil builtinCount=24\nauctions-legacy queued provider nativeReads=71 notifications=1 generationDelta=1 activeAfterFirst=1 providerCount=nil builtinCount=210\nauctions-legacy queued empty-provider nativeReads=71 notifications=1 generationDelta=1 activeAfterFirst=1 providerCount=nil builtinCount=210\nauctions-legacy partial provider nativeReads=38 notifications=1 generationDelta=1 activeAfterFirst=1 providerCount=nil builtinCount=210\nauctions-legacy partial empty-provider nativeReads=38 notifications=1 generationDelta=1 activeAfterFirst=1 providerCount=nil builtinCount=210\nauctions-modern queued provider nativeReads=71 notifications=1 generationDelta=1 activeAfterFirst=1 providerCount=nil builtinCount=210\nauctions-modern queued empty-provider nativeReads=71 notifications=1 generationDelta=1 activeAfterFirst=1 providerCount=nil builtinCount=210\nauctions-modern partial provider nativeReads=38 notifications=1 generationDelta=1 activeAfterFirst=1 providerCount=nil builtinCount=210\nauctions-modern partial empty-provider nativeReads=38 notifications=1 generationDelta=1 activeAfterFirst=1 providerCount=nil builtinCount=210\ndeferred inventory handoff: 210 checks, 42 failures; desktop operation counts only\nFAIL mail queued provider stale scan does no work or publication\nFAIL mail queued provider stale scan retires on its first callback\nFAIL mail queued provider provider snapshot remains intact\nFAIL mail queued provider unchanged provider fingerprint cannot leave stale native facts\nFAIL mail queued empty-provider stale scan does no work or publication\nFAIL mail queued empty-provider stale scan retires on its first callback\nFAIL mail queued empty-provider provider snapshot remains intact\nFAIL mail queued empty-provider unchanged provider fingerprint cannot leave stale native facts\nFAIL mail partial provider stale scan does no work or publication\nFAIL mail partial provider stale scan retires on its first callback\nFAIL mail partial provider provider snapshot remains intact\nFAIL mail partial provider unchanged provider fingerprint cannot leave stale native facts\nFAIL mail partial empty-provider stale scan does no work or publication\nFAIL mail partial empty-provider stale scan retires on its first callback\nFAIL mail partial empty-provider provider snapshot remains intact\nFAIL mail partial empty-provider unchanged provider fingerprint cannot leave stale native facts\nFAIL auctions-legacy queued provider stale scan does no work or publication\nFAIL auctions-legacy queued provider stale scan retires on its first callback\nFAIL auctions-legacy queued provider provider snapshot remains intact\nFAIL auctions-legacy queued empty-provider stale scan does no work or publication\nFAIL auctions-legacy queued empty-provider stale scan retires on its first callback\nFAIL auctions-legacy queued empty-provider provider snapshot remains intact\nFAIL auctions-legacy partial provider stale scan does no work or publication\nFAIL auctions-legacy partial provider stale scan retires on its first callback\nFAIL auctions-legacy partial provider provider snapshot remains intact\nFAIL auctions-legacy partial empty-provider stale scan does no work or publication\nFAIL auctions-legacy partial empty-provider stale scan retires on its first callback\nFAIL auctions-legacy partial empty-provider provider snapshot remains intact\nFAIL auctions-modern queued provider stale scan does no work or publication\nFAIL auctions-modern queued provider stale scan retires on its first callback\nFAIL auctions-modern queued provider provider snapshot remains intact\nFAIL auctions-modern queued empty-provider stale scan does no work or publication\nFAIL auctions-modern queued empty-provider stale scan retires on its first callback\nFAIL auctions-modern queued empty-provider provider snapshot remains intact\nFAIL auctions-modern partial provider stale scan does no work or publication\nFAIL auctions-modern partial provider stale scan retires on its first callback\nFAIL auctions-modern partial provider provider snapshot remains intact\nFAIL auctions-modern partial empty-provider stale scan does no work or publication\nFAIL auctions-modern partial empty-provider stale scan retires on its first callback\nFAIL auctions-modern partial empty-provider provider snapshot remains intact\nFAIL retry handoff cancels before due time without overwriting provider\nFAIL force-close handoff cancels before due time without overwriting provider\n",
+      "stderr": ""
+    },
+    {
+      "pair": 4,
+      "variant": "candidate",
+      "command": [
+        "lua",
+        "tests/deferred_inventory_handoff.lua"
+      ],
+      "exit": 0,
+      "processWallSeconds": 0.04597259999718517,
+      "measurements": [
+        {
+          "scenario": "mail queued provider",
+          "nativeApiReadCalls": 0,
+          "notifications": 0,
+          "generationDelta": 0,
+          "activeAfterFirstCallback": 0,
+          "providerCount": 99,
+          "builtinCount": null
+        },
+        {
+          "scenario": "mail queued empty-provider",
+          "nativeApiReadCalls": 0,
+          "notifications": 0,
+          "generationDelta": 0,
+          "activeAfterFirstCallback": 0,
+          "providerCount": null,
+          "builtinCount": null
+        },
+        {
+          "scenario": "mail partial provider",
+          "nativeApiReadCalls": 0,
+          "notifications": 0,
+          "generationDelta": 0,
+          "activeAfterFirstCallback": 0,
+          "providerCount": 99,
+          "builtinCount": null
+        },
+        {
+          "scenario": "mail partial empty-provider",
+          "nativeApiReadCalls": 0,
+          "notifications": 0,
+          "generationDelta": 0,
+          "activeAfterFirstCallback": 0,
+          "providerCount": null,
+          "builtinCount": null
+        },
+        {
+          "scenario": "auctions-legacy queued provider",
+          "nativeApiReadCalls": 0,
+          "notifications": 0,
+          "generationDelta": 0,
+          "activeAfterFirstCallback": 0,
+          "providerCount": 99,
+          "builtinCount": null
+        },
+        {
+          "scenario": "auctions-legacy queued empty-provider",
+          "nativeApiReadCalls": 0,
+          "notifications": 0,
+          "generationDelta": 0,
+          "activeAfterFirstCallback": 0,
+          "providerCount": null,
+          "builtinCount": null
+        },
+        {
+          "scenario": "auctions-legacy partial provider",
+          "nativeApiReadCalls": 0,
+          "notifications": 0,
+          "generationDelta": 0,
+          "activeAfterFirstCallback": 0,
+          "providerCount": 99,
+          "builtinCount": null
+        },
+        {
+          "scenario": "auctions-legacy partial empty-provider",
+          "nativeApiReadCalls": 0,
+          "notifications": 0,
+          "generationDelta": 0,
+          "activeAfterFirstCallback": 0,
+          "providerCount": null,
+          "builtinCount": null
+        },
+        {
+          "scenario": "auctions-modern queued provider",
+          "nativeApiReadCalls": 0,
+          "notifications": 0,
+          "generationDelta": 0,
+          "activeAfterFirstCallback": 0,
+          "providerCount": 99,
+          "builtinCount": null
+        },
+        {
+          "scenario": "auctions-modern queued empty-provider",
+          "nativeApiReadCalls": 0,
+          "notifications": 0,
+          "generationDelta": 0,
+          "activeAfterFirstCallback": 0,
+          "providerCount": null,
+          "builtinCount": null
+        },
+        {
+          "scenario": "auctions-modern partial provider",
+          "nativeApiReadCalls": 0,
+          "notifications": 0,
+          "generationDelta": 0,
+          "activeAfterFirstCallback": 0,
+          "providerCount": 99,
+          "builtinCount": null
+        },
+        {
+          "scenario": "auctions-modern partial empty-provider",
+          "nativeApiReadCalls": 0,
+          "notifications": 0,
+          "generationDelta": 0,
+          "activeAfterFirstCallback": 0,
+          "providerCount": null,
+          "builtinCount": null
+        }
+      ],
+      "stdout": "mail queued provider nativeReads=0 notifications=0 generationDelta=0 activeAfterFirst=0 providerCount=99 builtinCount=nil\nmail queued empty-provider nativeReads=0 notifications=0 generationDelta=0 activeAfterFirst=0 providerCount=nil builtinCount=nil\nmail partial provider nativeReads=0 notifications=0 generationDelta=0 activeAfterFirst=0 providerCount=99 builtinCount=nil\nmail partial empty-provider nativeReads=0 notifications=0 generationDelta=0 activeAfterFirst=0 providerCount=nil builtinCount=nil\nauctions-legacy queued provider nativeReads=0 notifications=0 generationDelta=0 activeAfterFirst=0 providerCount=99 builtinCount=nil\nauctions-legacy queued empty-provider nativeReads=0 notifications=0 generationDelta=0 activeAfterFirst=0 providerCount=nil builtinCount=nil\nauctions-legacy partial provider nativeReads=0 notifications=0 generationDelta=0 activeAfterFirst=0 providerCount=99 builtinCount=nil\nauctions-legacy partial empty-provider nativeReads=0 notifications=0 generationDelta=0 activeAfterFirst=0 providerCount=nil builtinCount=nil\nauctions-modern queued provider nativeReads=0 notifications=0 generationDelta=0 activeAfterFirst=0 providerCount=99 builtinCount=nil\nauctions-modern queued empty-provider nativeReads=0 notifications=0 generationDelta=0 activeAfterFirst=0 providerCount=nil builtinCount=nil\nauctions-modern partial provider nativeReads=0 notifications=0 generationDelta=0 activeAfterFirst=0 providerCount=99 builtinCount=nil\nauctions-modern partial empty-provider nativeReads=0 notifications=0 generationDelta=0 activeAfterFirst=0 providerCount=nil builtinCount=nil\ndeferred inventory handoff: 210 checks, 0 failures; desktop operation counts only\n",
+      "stderr": ""
+    },
+    {
+      "pair": 5,
+      "variant": "baseline",
+      "command": [
+        "lua",
+        "tests/deferred_inventory_handoff.lua",
+        "--mail-source",
+        "tests/fixtures/mail_scan_provider_before.txt",
+        "--auction-source",
+        "tests/fixtures/auction_scan_provider_before.txt",
+        "--measure"
+      ],
+      "exit": 0,
+      "processWallSeconds": 0.04505059999792138,
+      "measurements": [
+        {
+          "scenario": "mail queued provider",
+          "nativeApiReadCalls": 105,
+          "notifications": 1,
+          "generationDelta": 1,
+          "activeAfterFirstCallback": 1,
+          "providerCount": null,
+          "builtinCount": 24
+        },
+        {
+          "scenario": "mail queued empty-provider",
+          "nativeApiReadCalls": 105,
+          "notifications": 1,
+          "generationDelta": 1,
+          "activeAfterFirstCallback": 1,
+          "providerCount": null,
+          "builtinCount": 24
+        },
+        {
+          "scenario": "mail partial provider",
+          "nativeApiReadCalls": 56,
+          "notifications": 1,
+          "generationDelta": 1,
+          "activeAfterFirstCallback": 1,
+          "providerCount": null,
+          "builtinCount": 24
+        },
+        {
+          "scenario": "mail partial empty-provider",
+          "nativeApiReadCalls": 56,
+          "notifications": 1,
+          "generationDelta": 1,
+          "activeAfterFirstCallback": 1,
+          "providerCount": null,
+          "builtinCount": 24
+        },
+        {
+          "scenario": "auctions-legacy queued provider",
+          "nativeApiReadCalls": 71,
+          "notifications": 1,
+          "generationDelta": 1,
+          "activeAfterFirstCallback": 1,
+          "providerCount": null,
+          "builtinCount": 210
+        },
+        {
+          "scenario": "auctions-legacy queued empty-provider",
+          "nativeApiReadCalls": 71,
+          "notifications": 1,
+          "generationDelta": 1,
+          "activeAfterFirstCallback": 1,
+          "providerCount": null,
+          "builtinCount": 210
+        },
+        {
+          "scenario": "auctions-legacy partial provider",
+          "nativeApiReadCalls": 38,
+          "notifications": 1,
+          "generationDelta": 1,
+          "activeAfterFirstCallback": 1,
+          "providerCount": null,
+          "builtinCount": 210
+        },
+        {
+          "scenario": "auctions-legacy partial empty-provider",
+          "nativeApiReadCalls": 38,
+          "notifications": 1,
+          "generationDelta": 1,
+          "activeAfterFirstCallback": 1,
+          "providerCount": null,
+          "builtinCount": 210
+        },
+        {
+          "scenario": "auctions-modern queued provider",
+          "nativeApiReadCalls": 71,
+          "notifications": 1,
+          "generationDelta": 1,
+          "activeAfterFirstCallback": 1,
+          "providerCount": null,
+          "builtinCount": 210
+        },
+        {
+          "scenario": "auctions-modern queued empty-provider",
+          "nativeApiReadCalls": 71,
+          "notifications": 1,
+          "generationDelta": 1,
+          "activeAfterFirstCallback": 1,
+          "providerCount": null,
+          "builtinCount": 210
+        },
+        {
+          "scenario": "auctions-modern partial provider",
+          "nativeApiReadCalls": 38,
+          "notifications": 1,
+          "generationDelta": 1,
+          "activeAfterFirstCallback": 1,
+          "providerCount": null,
+          "builtinCount": 210
+        },
+        {
+          "scenario": "auctions-modern partial empty-provider",
+          "nativeApiReadCalls": 38,
+          "notifications": 1,
+          "generationDelta": 1,
+          "activeAfterFirstCallback": 1,
+          "providerCount": null,
+          "builtinCount": 210
+        }
+      ],
+      "stdout": "mail queued provider nativeReads=105 notifications=1 generationDelta=1 activeAfterFirst=1 providerCount=nil builtinCount=24\nmail queued empty-provider nativeReads=105 notifications=1 generationDelta=1 activeAfterFirst=1 providerCount=nil builtinCount=24\nmail partial provider nativeReads=56 notifications=1 generationDelta=1 activeAfterFirst=1 providerCount=nil builtinCount=24\nmail partial empty-provider nativeReads=56 notifications=1 generationDelta=1 activeAfterFirst=1 providerCount=nil builtinCount=24\nauctions-legacy queued provider nativeReads=71 notifications=1 generationDelta=1 activeAfterFirst=1 providerCount=nil builtinCount=210\nauctions-legacy queued empty-provider nativeReads=71 notifications=1 generationDelta=1 activeAfterFirst=1 providerCount=nil builtinCount=210\nauctions-legacy partial provider nativeReads=38 notifications=1 generationDelta=1 activeAfterFirst=1 providerCount=nil builtinCount=210\nauctions-legacy partial empty-provider nativeReads=38 notifications=1 generationDelta=1 activeAfterFirst=1 providerCount=nil builtinCount=210\nauctions-modern queued provider nativeReads=71 notifications=1 generationDelta=1 activeAfterFirst=1 providerCount=nil builtinCount=210\nauctions-modern queued empty-provider nativeReads=71 notifications=1 generationDelta=1 activeAfterFirst=1 providerCount=nil builtinCount=210\nauctions-modern partial provider nativeReads=38 notifications=1 generationDelta=1 activeAfterFirst=1 providerCount=nil builtinCount=210\nauctions-modern partial empty-provider nativeReads=38 notifications=1 generationDelta=1 activeAfterFirst=1 providerCount=nil builtinCount=210\ndeferred inventory handoff: 210 checks, 42 failures; desktop operation counts only\nFAIL mail queued provider stale scan does no work or publication\nFAIL mail queued provider stale scan retires on its first callback\nFAIL mail queued provider provider snapshot remains intact\nFAIL mail queued provider unchanged provider fingerprint cannot leave stale native facts\nFAIL mail queued empty-provider stale scan does no work or publication\nFAIL mail queued empty-provider stale scan retires on its first callback\nFAIL mail queued empty-provider provider snapshot remains intact\nFAIL mail queued empty-provider unchanged provider fingerprint cannot leave stale native facts\nFAIL mail partial provider stale scan does no work or publication\nFAIL mail partial provider stale scan retires on its first callback\nFAIL mail partial provider provider snapshot remains intact\nFAIL mail partial provider unchanged provider fingerprint cannot leave stale native facts\nFAIL mail partial empty-provider stale scan does no work or publication\nFAIL mail partial empty-provider stale scan retires on its first callback\nFAIL mail partial empty-provider provider snapshot remains intact\nFAIL mail partial empty-provider unchanged provider fingerprint cannot leave stale native facts\nFAIL auctions-legacy queued provider stale scan does no work or publication\nFAIL auctions-legacy queued provider stale scan retires on its first callback\nFAIL auctions-legacy queued provider provider snapshot remains intact\nFAIL auctions-legacy queued empty-provider stale scan does no work or publication\nFAIL auctions-legacy queued empty-provider stale scan retires on its first callback\nFAIL auctions-legacy queued empty-provider provider snapshot remains intact\nFAIL auctions-legacy partial provider stale scan does no work or publication\nFAIL auctions-legacy partial provider stale scan retires on its first callback\nFAIL auctions-legacy partial provider provider snapshot remains intact\nFAIL auctions-legacy partial empty-provider stale scan does no work or publication\nFAIL auctions-legacy partial empty-provider stale scan retires on its first callback\nFAIL auctions-legacy partial empty-provider provider snapshot remains intact\nFAIL auctions-modern queued provider stale scan does no work or publication\nFAIL auctions-modern queued provider stale scan retires on its first callback\nFAIL auctions-modern queued provider provider snapshot remains intact\nFAIL auctions-modern queued empty-provider stale scan does no work or publication\nFAIL auctions-modern queued empty-provider stale scan retires on its first callback\nFAIL auctions-modern queued empty-provider provider snapshot remains intact\nFAIL auctions-modern partial provider stale scan does no work or publication\nFAIL auctions-modern partial provider stale scan retires on its first callback\nFAIL auctions-modern partial provider provider snapshot remains intact\nFAIL auctions-modern partial empty-provider stale scan does no work or publication\nFAIL auctions-modern partial empty-provider stale scan retires on its first callback\nFAIL auctions-modern partial empty-provider provider snapshot remains intact\nFAIL retry handoff cancels before due time without overwriting provider\nFAIL force-close handoff cancels before due time without overwriting provider\n",
+      "stderr": ""
+    },
+    {
+      "pair": 5,
+      "variant": "candidate",
+      "command": [
+        "lua",
+        "tests/deferred_inventory_handoff.lua"
+      ],
+      "exit": 0,
+      "processWallSeconds": 0.043945800003712066,
+      "measurements": [
+        {
+          "scenario": "mail queued provider",
+          "nativeApiReadCalls": 0,
+          "notifications": 0,
+          "generationDelta": 0,
+          "activeAfterFirstCallback": 0,
+          "providerCount": 99,
+          "builtinCount": null
+        },
+        {
+          "scenario": "mail queued empty-provider",
+          "nativeApiReadCalls": 0,
+          "notifications": 0,
+          "generationDelta": 0,
+          "activeAfterFirstCallback": 0,
+          "providerCount": null,
+          "builtinCount": null
+        },
+        {
+          "scenario": "mail partial provider",
+          "nativeApiReadCalls": 0,
+          "notifications": 0,
+          "generationDelta": 0,
+          "activeAfterFirstCallback": 0,
+          "providerCount": 99,
+          "builtinCount": null
+        },
+        {
+          "scenario": "mail partial empty-provider",
+          "nativeApiReadCalls": 0,
+          "notifications": 0,
+          "generationDelta": 0,
+          "activeAfterFirstCallback": 0,
+          "providerCount": null,
+          "builtinCount": null
+        },
+        {
+          "scenario": "auctions-legacy queued provider",
+          "nativeApiReadCalls": 0,
+          "notifications": 0,
+          "generationDelta": 0,
+          "activeAfterFirstCallback": 0,
+          "providerCount": 99,
+          "builtinCount": null
+        },
+        {
+          "scenario": "auctions-legacy queued empty-provider",
+          "nativeApiReadCalls": 0,
+          "notifications": 0,
+          "generationDelta": 0,
+          "activeAfterFirstCallback": 0,
+          "providerCount": null,
+          "builtinCount": null
+        },
+        {
+          "scenario": "auctions-legacy partial provider",
+          "nativeApiReadCalls": 0,
+          "notifications": 0,
+          "generationDelta": 0,
+          "activeAfterFirstCallback": 0,
+          "providerCount": 99,
+          "builtinCount": null
+        },
+        {
+          "scenario": "auctions-legacy partial empty-provider",
+          "nativeApiReadCalls": 0,
+          "notifications": 0,
+          "generationDelta": 0,
+          "activeAfterFirstCallback": 0,
+          "providerCount": null,
+          "builtinCount": null
+        },
+        {
+          "scenario": "auctions-modern queued provider",
+          "nativeApiReadCalls": 0,
+          "notifications": 0,
+          "generationDelta": 0,
+          "activeAfterFirstCallback": 0,
+          "providerCount": 99,
+          "builtinCount": null
+        },
+        {
+          "scenario": "auctions-modern queued empty-provider",
+          "nativeApiReadCalls": 0,
+          "notifications": 0,
+          "generationDelta": 0,
+          "activeAfterFirstCallback": 0,
+          "providerCount": null,
+          "builtinCount": null
+        },
+        {
+          "scenario": "auctions-modern partial provider",
+          "nativeApiReadCalls": 0,
+          "notifications": 0,
+          "generationDelta": 0,
+          "activeAfterFirstCallback": 0,
+          "providerCount": 99,
+          "builtinCount": null
+        },
+        {
+          "scenario": "auctions-modern partial empty-provider",
+          "nativeApiReadCalls": 0,
+          "notifications": 0,
+          "generationDelta": 0,
+          "activeAfterFirstCallback": 0,
+          "providerCount": null,
+          "builtinCount": null
+        }
+      ],
+      "stdout": "mail queued provider nativeReads=0 notifications=0 generationDelta=0 activeAfterFirst=0 providerCount=99 builtinCount=nil\nmail queued empty-provider nativeReads=0 notifications=0 generationDelta=0 activeAfterFirst=0 providerCount=nil builtinCount=nil\nmail partial provider nativeReads=0 notifications=0 generationDelta=0 activeAfterFirst=0 providerCount=99 builtinCount=nil\nmail partial empty-provider nativeReads=0 notifications=0 generationDelta=0 activeAfterFirst=0 providerCount=nil builtinCount=nil\nauctions-legacy queued provider nativeReads=0 notifications=0 generationDelta=0 activeAfterFirst=0 providerCount=99 builtinCount=nil\nauctions-legacy queued empty-provider nativeReads=0 notifications=0 generationDelta=0 activeAfterFirst=0 providerCount=nil builtinCount=nil\nauctions-legacy partial provider nativeReads=0 notifications=0 generationDelta=0 activeAfterFirst=0 providerCount=99 builtinCount=nil\nauctions-legacy partial empty-provider nativeReads=0 notifications=0 generationDelta=0 activeAfterFirst=0 providerCount=nil builtinCount=nil\nauctions-modern queued provider nativeReads=0 notifications=0 generationDelta=0 activeAfterFirst=0 providerCount=99 builtinCount=nil\nauctions-modern queued empty-provider nativeReads=0 notifications=0 generationDelta=0 activeAfterFirst=0 providerCount=nil builtinCount=nil\nauctions-modern partial provider nativeReads=0 notifications=0 generationDelta=0 activeAfterFirst=0 providerCount=99 builtinCount=nil\nauctions-modern partial empty-provider nativeReads=0 notifications=0 generationDelta=0 activeAfterFirst=0 providerCount=nil builtinCount=nil\ndeferred inventory handoff: 210 checks, 0 failures; desktop operation counts only\n",
+      "stderr": ""
+    }
+  ],
+  "summary": [
+    {
+      "scenario": "auctions-legacy partial empty-provider",
+      "variant": "baseline",
+      "repetitions": 5,
+      "metrics": {
+        "nativeApiReadCalls": {
+          "median": 38,
+          "min": 38,
+          "max": 38
+        },
+        "notifications": {
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "generationDelta": {
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "activeAfterFirstCallback": {
+          "median": 1,
+          "min": 1,
+          "max": 1
+        }
+      }
+    },
+    {
+      "scenario": "auctions-legacy partial empty-provider",
+      "variant": "candidate",
+      "repetitions": 5,
+      "metrics": {
+        "nativeApiReadCalls": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "notifications": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "generationDelta": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "activeAfterFirstCallback": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        }
+      }
+    },
+    {
+      "scenario": "auctions-legacy partial provider",
+      "variant": "baseline",
+      "repetitions": 5,
+      "metrics": {
+        "nativeApiReadCalls": {
+          "median": 38,
+          "min": 38,
+          "max": 38
+        },
+        "notifications": {
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "generationDelta": {
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "activeAfterFirstCallback": {
+          "median": 1,
+          "min": 1,
+          "max": 1
+        }
+      }
+    },
+    {
+      "scenario": "auctions-legacy partial provider",
+      "variant": "candidate",
+      "repetitions": 5,
+      "metrics": {
+        "nativeApiReadCalls": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "notifications": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "generationDelta": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "activeAfterFirstCallback": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        }
+      }
+    },
+    {
+      "scenario": "auctions-legacy queued empty-provider",
+      "variant": "baseline",
+      "repetitions": 5,
+      "metrics": {
+        "nativeApiReadCalls": {
+          "median": 71,
+          "min": 71,
+          "max": 71
+        },
+        "notifications": {
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "generationDelta": {
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "activeAfterFirstCallback": {
+          "median": 1,
+          "min": 1,
+          "max": 1
+        }
+      }
+    },
+    {
+      "scenario": "auctions-legacy queued empty-provider",
+      "variant": "candidate",
+      "repetitions": 5,
+      "metrics": {
+        "nativeApiReadCalls": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "notifications": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "generationDelta": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "activeAfterFirstCallback": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        }
+      }
+    },
+    {
+      "scenario": "auctions-legacy queued provider",
+      "variant": "baseline",
+      "repetitions": 5,
+      "metrics": {
+        "nativeApiReadCalls": {
+          "median": 71,
+          "min": 71,
+          "max": 71
+        },
+        "notifications": {
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "generationDelta": {
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "activeAfterFirstCallback": {
+          "median": 1,
+          "min": 1,
+          "max": 1
+        }
+      }
+    },
+    {
+      "scenario": "auctions-legacy queued provider",
+      "variant": "candidate",
+      "repetitions": 5,
+      "metrics": {
+        "nativeApiReadCalls": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "notifications": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "generationDelta": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "activeAfterFirstCallback": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        }
+      }
+    },
+    {
+      "scenario": "auctions-modern partial empty-provider",
+      "variant": "baseline",
+      "repetitions": 5,
+      "metrics": {
+        "nativeApiReadCalls": {
+          "median": 38,
+          "min": 38,
+          "max": 38
+        },
+        "notifications": {
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "generationDelta": {
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "activeAfterFirstCallback": {
+          "median": 1,
+          "min": 1,
+          "max": 1
+        }
+      }
+    },
+    {
+      "scenario": "auctions-modern partial empty-provider",
+      "variant": "candidate",
+      "repetitions": 5,
+      "metrics": {
+        "nativeApiReadCalls": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "notifications": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "generationDelta": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "activeAfterFirstCallback": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        }
+      }
+    },
+    {
+      "scenario": "auctions-modern partial provider",
+      "variant": "baseline",
+      "repetitions": 5,
+      "metrics": {
+        "nativeApiReadCalls": {
+          "median": 38,
+          "min": 38,
+          "max": 38
+        },
+        "notifications": {
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "generationDelta": {
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "activeAfterFirstCallback": {
+          "median": 1,
+          "min": 1,
+          "max": 1
+        }
+      }
+    },
+    {
+      "scenario": "auctions-modern partial provider",
+      "variant": "candidate",
+      "repetitions": 5,
+      "metrics": {
+        "nativeApiReadCalls": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "notifications": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "generationDelta": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "activeAfterFirstCallback": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        }
+      }
+    },
+    {
+      "scenario": "auctions-modern queued empty-provider",
+      "variant": "baseline",
+      "repetitions": 5,
+      "metrics": {
+        "nativeApiReadCalls": {
+          "median": 71,
+          "min": 71,
+          "max": 71
+        },
+        "notifications": {
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "generationDelta": {
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "activeAfterFirstCallback": {
+          "median": 1,
+          "min": 1,
+          "max": 1
+        }
+      }
+    },
+    {
+      "scenario": "auctions-modern queued empty-provider",
+      "variant": "candidate",
+      "repetitions": 5,
+      "metrics": {
+        "nativeApiReadCalls": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "notifications": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "generationDelta": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "activeAfterFirstCallback": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        }
+      }
+    },
+    {
+      "scenario": "auctions-modern queued provider",
+      "variant": "baseline",
+      "repetitions": 5,
+      "metrics": {
+        "nativeApiReadCalls": {
+          "median": 71,
+          "min": 71,
+          "max": 71
+        },
+        "notifications": {
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "generationDelta": {
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "activeAfterFirstCallback": {
+          "median": 1,
+          "min": 1,
+          "max": 1
+        }
+      }
+    },
+    {
+      "scenario": "auctions-modern queued provider",
+      "variant": "candidate",
+      "repetitions": 5,
+      "metrics": {
+        "nativeApiReadCalls": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "notifications": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "generationDelta": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "activeAfterFirstCallback": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        }
+      }
+    },
+    {
+      "scenario": "mail partial empty-provider",
+      "variant": "baseline",
+      "repetitions": 5,
+      "metrics": {
+        "nativeApiReadCalls": {
+          "median": 56,
+          "min": 56,
+          "max": 56
+        },
+        "notifications": {
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "generationDelta": {
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "activeAfterFirstCallback": {
+          "median": 1,
+          "min": 1,
+          "max": 1
+        }
+      }
+    },
+    {
+      "scenario": "mail partial empty-provider",
+      "variant": "candidate",
+      "repetitions": 5,
+      "metrics": {
+        "nativeApiReadCalls": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "notifications": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "generationDelta": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "activeAfterFirstCallback": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        }
+      }
+    },
+    {
+      "scenario": "mail partial provider",
+      "variant": "baseline",
+      "repetitions": 5,
+      "metrics": {
+        "nativeApiReadCalls": {
+          "median": 56,
+          "min": 56,
+          "max": 56
+        },
+        "notifications": {
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "generationDelta": {
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "activeAfterFirstCallback": {
+          "median": 1,
+          "min": 1,
+          "max": 1
+        }
+      }
+    },
+    {
+      "scenario": "mail partial provider",
+      "variant": "candidate",
+      "repetitions": 5,
+      "metrics": {
+        "nativeApiReadCalls": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "notifications": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "generationDelta": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "activeAfterFirstCallback": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        }
+      }
+    },
+    {
+      "scenario": "mail queued empty-provider",
+      "variant": "baseline",
+      "repetitions": 5,
+      "metrics": {
+        "nativeApiReadCalls": {
+          "median": 105,
+          "min": 105,
+          "max": 105
+        },
+        "notifications": {
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "generationDelta": {
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "activeAfterFirstCallback": {
+          "median": 1,
+          "min": 1,
+          "max": 1
+        }
+      }
+    },
+    {
+      "scenario": "mail queued empty-provider",
+      "variant": "candidate",
+      "repetitions": 5,
+      "metrics": {
+        "nativeApiReadCalls": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "notifications": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "generationDelta": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "activeAfterFirstCallback": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        }
+      }
+    },
+    {
+      "scenario": "mail queued provider",
+      "variant": "baseline",
+      "repetitions": 5,
+      "metrics": {
+        "nativeApiReadCalls": {
+          "median": 105,
+          "min": 105,
+          "max": 105
+        },
+        "notifications": {
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "generationDelta": {
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "activeAfterFirstCallback": {
+          "median": 1,
+          "min": 1,
+          "max": 1
+        }
+      }
+    },
+    {
+      "scenario": "mail queued provider",
+      "variant": "candidate",
+      "repetitions": 5,
+      "metrics": {
+        "nativeApiReadCalls": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "notifications": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "generationDelta": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "activeAfterFirstCallback": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        }
+      }
+    }
+  ],
+  "candidateCommit": "05e9f79160ac641f842f5aba8eabd21f1fe0c1fe",
+  "candidateTree": "6e612fa6b27282f5e535b361f5cf93ac17d250ba",
+  "candidateLuaCorpusSha256": "dea7c69383fee5f64e24c6e8f18676e0ceea690d9f8f23e2826e66b7a969dfc5"
+}

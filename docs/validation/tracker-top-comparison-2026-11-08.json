@@ -1,0 +1,142 @@
+{
+  "changeID": "TRACKER-TOP-20261108",
+  "utc": "2026-11-08T22:23:38.718430+00:00",
+  "checkpoint": {
+    "utc": "20261108T215253Z",
+    "baseline": "1fd463f4de4bbff659f4e402c6f31138c49765b4",
+    "sourceFiles": 2307,
+    "settingsFiles": 188,
+    "sha256": {
+      "source.zip": "6df8f4d12a3026da166c990374305dece839ac1e96b0dc48116b7822c2550292",
+      "settings.zip": "f56ac8fe645b8ac7a6e8a2756f8593d0819a52dad6e4940de0d0ffbd09160941",
+      "history.bundle": "18042a0ab5ce91cb6829e18e9639aca6676feed84dc413d607d08acab1723e0d"
+    },
+    "zipIntegrity": "PASS",
+    "bundleVerification": "PASS",
+    "gameMemory": "Unsaved game memory excluded; no game input, settings mutation or foreground control"
+  },
+  "baseline": {
+    "head": "1fd463f4de4bbff659f4e402c6f31138c49765b4",
+    "ownerLF": "fa7832d6bb67a4ec21afae913d88464389e180cdf6227aa8d71e145bba14183d"
+  },
+  "candidate": {
+    "Minimap/FluxObjectiveTrackerScroll.lua": "c51d44a98d071666dbcb71dfe8d2dc17a1f4d249ce8b45e31883ae70e09e15ee",
+    "tests/objective_tracker_scroll.lua": "b895e72eae8023420bfc5f68e302d5230e221be5962d19693aa4bd92ba49312d"
+  },
+  "scenario": {
+    "clients": "Actual native Retail/Forever frame/container Lua in desktop model; real secure/geometry engine not emulated.",
+    "settings": "Synthetic 0/120/500-height modules; saved native callback; profile tall-pin, stable height, wheel top, combat and provider regressions.",
+    "warmup": "One excluded baseline/candidate process each; five alternating matched finite runs. Harness wall times are not native CPU/latency.",
+    "profiler": "No profiler/preferences changed. Hardware/client addon list not captured; native CPU/memory/allocations/frame-time unavailable.",
+    "finding": "Native inner tracker retained screen clamping inside a fixed scroll viewport. Tall content was shifted above the clip at offset0. Also fix cached-height settlement and queue it after native profile anchors; defer dock ownership until Edit Mode closes.",
+    "overhead": "Clamp getter and existing settlement height getter; setters only when needed. Existing coalesced sync after profile anchor. No new frame/event/ticker/OnUpdate or per-wheel scan.",
+    "interpretation": "62checks pass on Retail/Forever source models; before/after native Forever screenshots and metrics reproduce/fix top clipping. Full native secure/combat/client coverage and CPU/FPS measurements separate."
+  },
+  "samples": [
+    {
+      "variant": "baseline",
+      "trial": 1,
+      "exit": 1,
+      "wallSeconds": 0.01770680001936853,
+      "output": "FAIL Retail: screen clamp cannot push first module above viewport\nFAIL Retail: cached content settles tracker after profile recovery\nFAIL Retail: native profile callback settles without a quest update\nFAIL Retail: profile clamp reset still permits scrolling fully up\nFAIL Retail: native editor keeps position ownership until close\nFAIL Retail: editor close restores and settles scroll dock\nFAIL Forever: screen clamp cannot push first module above viewport\nFAIL Forever: cached content settles tracker after profile recovery\nFAIL Forever: native profile callback settles without a quest update\nFAIL Forever: profile clamp reset still permits scrolling fully up\nFAIL Forever: native editor keeps position ownership until close\nFAIL Forever: editor close restores and settles scroll dock\nObjective tracker scroll: 62 checks, 12 failures\nlua: tests/objective_tracker_scroll.lua:238: objective tracker scroll regression\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/objective_tracker_scroll.lua:238: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "variant": "candidate",
+      "trial": 1,
+      "exit": 0,
+      "wallSeconds": 0.02036170000792481,
+      "output": "Objective tracker scroll: 62 checks, 0 failures\n"
+    },
+    {
+      "variant": "baseline",
+      "trial": 2,
+      "exit": 1,
+      "wallSeconds": 0.01911720001953654,
+      "output": "FAIL Retail: screen clamp cannot push first module above viewport\nFAIL Retail: cached content settles tracker after profile recovery\nFAIL Retail: native profile callback settles without a quest update\nFAIL Retail: profile clamp reset still permits scrolling fully up\nFAIL Retail: native editor keeps position ownership until close\nFAIL Retail: editor close restores and settles scroll dock\nFAIL Forever: screen clamp cannot push first module above viewport\nFAIL Forever: cached content settles tracker after profile recovery\nFAIL Forever: native profile callback settles without a quest update\nFAIL Forever: profile clamp reset still permits scrolling fully up\nFAIL Forever: native editor keeps position ownership until close\nFAIL Forever: editor close restores and settles scroll dock\nObjective tracker scroll: 62 checks, 12 failures\nlua: tests/objective_tracker_scroll.lua:238: objective tracker scroll regression\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/objective_tracker_scroll.lua:238: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "variant": "candidate",
+      "trial": 2,
+      "exit": 0,
+      "wallSeconds": 0.018067199998768046,
+      "output": "Objective tracker scroll: 62 checks, 0 failures\n"
+    },
+    {
+      "variant": "baseline",
+      "trial": 3,
+      "exit": 1,
+      "wallSeconds": 0.01807429999462329,
+      "output": "FAIL Retail: screen clamp cannot push first module above viewport\nFAIL Retail: cached content settles tracker after profile recovery\nFAIL Retail: native profile callback settles without a quest update\nFAIL Retail: profile clamp reset still permits scrolling fully up\nFAIL Retail: native editor keeps position ownership until close\nFAIL Retail: editor close restores and settles scroll dock\nFAIL Forever: screen clamp cannot push first module above viewport\nFAIL Forever: cached content settles tracker after profile recovery\nFAIL Forever: native profile callback settles without a quest update\nFAIL Forever: profile clamp reset still permits scrolling fully up\nFAIL Forever: native editor keeps position ownership until close\nFAIL Forever: editor close restores and settles scroll dock\nObjective tracker scroll: 62 checks, 12 failures\nlua: tests/objective_tracker_scroll.lua:238: objective tracker scroll regression\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/objective_tracker_scroll.lua:238: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "variant": "candidate",
+      "trial": 3,
+      "exit": 0,
+      "wallSeconds": 0.020899200026178733,
+      "output": "Objective tracker scroll: 62 checks, 0 failures\n"
+    },
+    {
+      "variant": "baseline",
+      "trial": 4,
+      "exit": 1,
+      "wallSeconds": 0.01988470001379028,
+      "output": "FAIL Retail: screen clamp cannot push first module above viewport\nFAIL Retail: cached content settles tracker after profile recovery\nFAIL Retail: native profile callback settles without a quest update\nFAIL Retail: profile clamp reset still permits scrolling fully up\nFAIL Retail: native editor keeps position ownership until close\nFAIL Retail: editor close restores and settles scroll dock\nFAIL Forever: screen clamp cannot push first module above viewport\nFAIL Forever: cached content settles tracker after profile recovery\nFAIL Forever: native profile callback settles without a quest update\nFAIL Forever: profile clamp reset still permits scrolling fully up\nFAIL Forever: native editor keeps position ownership until close\nFAIL Forever: editor close restores and settles scroll dock\nObjective tracker scroll: 62 checks, 12 failures\nlua: tests/objective_tracker_scroll.lua:238: objective tracker scroll regression\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/objective_tracker_scroll.lua:238: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "variant": "candidate",
+      "trial": 4,
+      "exit": 0,
+      "wallSeconds": 0.022456000006059185,
+      "output": "Objective tracker scroll: 62 checks, 0 failures\n"
+    },
+    {
+      "variant": "baseline",
+      "trial": 5,
+      "exit": 1,
+      "wallSeconds": 0.02207620002445765,
+      "output": "FAIL Retail: screen clamp cannot push first module above viewport\nFAIL Retail: cached content settles tracker after profile recovery\nFAIL Retail: native profile callback settles without a quest update\nFAIL Retail: profile clamp reset still permits scrolling fully up\nFAIL Retail: native editor keeps position ownership until close\nFAIL Retail: editor close restores and settles scroll dock\nFAIL Forever: screen clamp cannot push first module above viewport\nFAIL Forever: cached content settles tracker after profile recovery\nFAIL Forever: native profile callback settles without a quest update\nFAIL Forever: profile clamp reset still permits scrolling fully up\nFAIL Forever: native editor keeps position ownership until close\nFAIL Forever: editor close restores and settles scroll dock\nObjective tracker scroll: 62 checks, 12 failures\nlua: tests/objective_tracker_scroll.lua:238: objective tracker scroll regression\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/objective_tracker_scroll.lua:238: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "variant": "candidate",
+      "trial": 5,
+      "exit": 0,
+      "wallSeconds": 0.018529699998907745,
+      "output": "Objective tracker scroll: 62 checks, 0 failures\n"
+    }
+  ],
+  "native": {
+    "client": "Forever1.60.1 build70862 (same verified live process)",
+    "before": {
+      "offset": 0,
+      "range": 863.69464111328,
+      "contentHeight": 1276.8472900391,
+      "viewportHeight": 640.66668701172,
+      "trackerHeight": 1276.8472900391,
+      "bodyTop": 1051.3332519531,
+      "contentTop": 1051.3332519531,
+      "trackerTop": 1276.8472900391,
+      "trackerScreenClamped": true
+    },
+    "afterLiveProbe": {
+      "operation": "Disable only inner tracker screen clamp; outer viewport remains fixed/clipped",
+      "offset": 0,
+      "rangeApprox": 636.18,
+      "bodyContentTrackerTop": 1051.3332519531,
+      "visual": "Quests header and first four previously clipped quests visible"
+    },
+    "pending": "Other native clients, hardware mouse-wheel routing, sustained combat and normal native Edit Mode save on final source. No FPS/performance acceptance claimed.",
+    "input": "Guarded PostMessage; no focus/mouse/clipboard/gameplay/profiler changes",
+    "afterPermanentReload": {
+      "client": "Forever1.60.1/70862/16001",
+      "innerScreenClamped": false,
+      "outerScreenClamped": true,
+      "topGap": 0,
+      "wheelDownApprox": 90,
+      "wheelUp": 0,
+      "BugTabsSessionErrors": 0,
+      "source": "Guarded native commands and screenshot tracker-fixed-check; client build printed in game"
+    },
+    "unchangedLayoutRefresh": "Not executed: foreground guard refused before first input; normal native save/edit and sustained-combat acceptance remain separate.",
+    "profileChoice": "User deliberately deleted FluxUI; active Modern/native-only layout list is expected. Do not recreate/reset its marker."
+  }
+}

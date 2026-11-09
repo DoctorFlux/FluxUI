@@ -1,0 +1,130 @@
+-- Extend the CURRENT complete-module mixed-face fixture, not copied addon logic.
+local function read(p)local f=assert(io.open(p,"rb"));local s=f:read("*a"):gsub("\r\n","\n");f:close();return s end
+local source=read("tests/utility_mixed_faces.lua")
+source=source:sub(1,assert(source:find("    local function verify(map, expected)",1,true))-1)
+local extra=[=[
+    local priorCheck=check;check=function(ok,label)priorCheck(ok,label);assert(ok,label)end
+    local frameBase=#s.frames
+    local noop=function()end
+    function w:IsShown()return self.shown~=false end
+    function w:IsVisible()return self.shown~=false and self.visible~=false end
+    function w:GetFrameLevel()return 5 end
+    function w:GetWidth()return 32 end
+    function w:GetHeight()return 32 end
+    local function cool(frame)
+        frame=frame or{};frame.shown=true;frame.timerWrites=0
+        function frame:GetEffectiveAlpha()return .75 end
+        function frame:SetCooldown(start,duration,rate)self.start,self.duration,self.rate=start,duration,rate;self.timerWrites=self.timerWrites+1 end
+        function frame:Clear()self.start,self.duration=0,0 end
+        function frame:Show()self.shown=true end
+        function frame:Hide()self.shown=false end
+        function frame:IsShown()return self.shown end
+        function frame:SetDrawBling(v)self.bling=v end
+        function frame:SetDrawSwipe(v)self.swipe=v end
+        function frame:SetDrawEdge(v)self.edge=v end
+        function frame:GetFrameLevel()return 6 end
+        for _,name in ipairs({"SetSwipeColor","ClearAllPoints","SetPoint","SetFrameLevel","EnableMouse","SetHideCountdownNumbers"})do frame[name]=noop end
+        return frame
+    end
+    cool(cd);w.cooldown=cd;w.chargeCooldown=cool()
+    flux.Client.isAnyClassic=family=="era"or family=="anniversary"or family=="mists"
+    assert(loadfile("Core/ButtonFX/Charges.lua","t",env))("_FluxUI",ns)
+    local apply=flux.ButtonFX.Charges.Apply
+    flux.ButtonFX.Charges.Apply=function(widget,opts)s.cooldown=opts;return apply(widget,opts)end
+    local hk={text=""}
+    function hk:SetText(v)self.text=v end
+    function hk:Show()self.shown=true end
+    function hk:Hide()self.shown=false end
+    function hk:GetWidth()return 44 end
+    for _,name in ipairs({"ClearAllPoints","SetPoint","SetSize","SetFontObject","SetTextColor","SetJustifyH","SetJustifyV","SetWordWrap"})do hk[name]=noop end
+    btn.WHotKey=hk;env.GetBindingKey=function()return"F6"end;env.GetBindingText=function(key)return key end
+    assert(loadfile("ExtraButtonSystem/Shared/HotkeyUtil.lua","t",env))()
+    local hotFrame=s.frames[#s.frames]
+    local spellCounts={[101]=12,[103]=13};local chargeCounts={[102]=2,[104]=4}
+    flux.Spell.GetCount=function(id)return spellCounts[id]or 0 end
+    flux.Spell.GetCharges=function(id)local n=chargeCounts[id];if n then return n,n+1,90,20 end end
+    local itemCounts={[201]=8,[202]=3,[203]=9,[204]=6}
+    flux.Item.GetCount=function(id)return itemCounts[id]or 0 end
+    flux.Item.UsesConsumableCharges=function(id)return id==202 or id==204 end
+    local entries={{type="spell",id=101},{type="item",id=201},{type="spell",id=102},{type="item",id=202},
+        {type="spell",id=103},{type="item",id=203},{type="spell",id=104},{type="item",id=204}}
+    local map={};for i,chord in ipairs(chords)do map[chord]=entries[i]end
+    setup(map);manager.UpdateHotkeys(btn)
+    check(hk.text=="F6","actual utility hotkey displays configured binding")
+    local baselineFrames=#s.frames;local secureWrites=s.writes
+    local edgeCount,frameCount,duplicateFrames=0,0,0
+    local laneTotals={Icon=0,Count=0,Usable=0,Checked=0}
+    local lastChord=""
+    local function nativeEdge(chord)
+        s.mod=chord;edgeCount=edgeCount+1
+        bus.scripts.OnEvent(bus,"MODIFIER_STATE_CHANGED")
+        if hotFrame.scripts.OnEvent then hotFrame.scripts.OnEvent(hotFrame,"MODIFIER_STATE_CHANGED")end
+    end
+    local function finalCheck(chord)
+        local index=1;for i,c in ipairs(chords)do if chord==c then index=i end end
+        local e=entries[index]
+        check(btn.MacroMode==e.type and(e.type=="spell"and btn.SpellId or btn.ItemId)==e.id,"final held chord selects exact saved identity "..chord)
+        local preparedKind=w.attrs[prefixes[index].."type1"]
+        local preparedToken=w.attrs[prefixes[index]..(preparedKind=="spell"and"spell1"or"item1")]
+        check(preparedKind==e.type and tonumber(tostring(preparedToken):match("%d+$"))==e.id,"prepared physical chord action agrees after rapid selection/reuse")
+        check(s.icon==(e.type=="spell"and 1000 or 2000)+e.id,"icon follows final held chord")
+        local count=e.type=="spell"and(spellCounts[e.id]or chargeCounts[e.id])or itemCounts[e.id]
+        check(s.count==tostring(count),"reagent/charge/stack digit has no stale previous face")
+        check(s.cooldown.duration==(e.type=="spell"and 30 or 60)and cd.duration==s.cooldown.duration,"actual Charges main timer follows face")
+        check((w.chargeCooldown.shown==true)==(chargeCounts[e.id]~=nil),"charge edge disappears when face leaves charged spell")
+        check(not btn.FluxConsumableAuraCooldown and not btn.StanceBuffDurationObject and btn._forcedCount==nil,"no stale item-aura/forced-count fields")
+        local expectedHotkeys={"F6","S-F6","C-F6","A-F6","S-C-F6","S-A-F6","C-A-F6","S-C-A-F6"}
+        check(hk.text==expectedHotkeys[index],"actual configured/dynamic hotkey has no stale modifiers: "..tostring(hk.text))
+        check(bus.scripts.OnUpdate==nil,"modifier bus parks at delivery boundary")
+    end
+    local function frame(chord,duplicate)
+        if bus.scripts.OnUpdate then bus.scripts.OnUpdate(bus,0)end
+        runTimers();frameCount=frameCount+1
+        finalCheck(chord)
+        for lane in pairs(laneTotals)do laneTotals[lane]=laneTotals[lane]+(paints[lane]or 0);paints[lane]=nil end
+        if duplicate then duplicateFrames=duplicateFrames+1 end
+        lastChord=chord
+    end
+    -- Ordered physical key states: taps, mixed holds, reverse orders and both
+    -- release orders, including all eight distinct prepared utility chords.
+    local sequences={
+        {"SHIFT",""},{"CTRL",""},{"ALT",""},
+        {"SHIFT","SHIFT-CTRL","CTRL",""},{"CTRL","SHIFT-CTRL","SHIFT",""},
+        {"SHIFT","SHIFT-ALT","ALT",""},{"ALT","SHIFT-ALT","SHIFT",""},
+        {"CTRL","CTRL-ALT","ALT",""},{"ALT","CTRL-ALT","CTRL",""},
+        {"SHIFT","SHIFT-CTRL","SHIFT-CTRL-ALT","CTRL-ALT","ALT",""},
+        {"ALT","CTRL-ALT","SHIFT-CTRL-ALT","SHIFT-CTRL","SHIFT",""}}
+    for _,combat in ipairs({false,true})do
+        s.combat=combat
+        for cycle=1,100 do
+            for _,seq in ipairs(sequences)do
+                for _,chord in ipairs(seq)do
+                    nativeEdge(chord);frame(chord)
+                    local before=cd.timerWrites
+                    nativeEdge(chord);frame(chord,true)
+                    check(cd.timerWrites==before,"duplicate edge never restarts identical native timer")
+                end
+            end
+            -- All transitions can occur inside one render frame. Consumers
+            -- must publish the actual final state, not replay abandoned faces.
+            for _,seq in ipairs(sequences)do for _,chord in ipairs(seq)do nativeEdge(chord)end end
+            frame("")
+            w.visible=cycle%2==0
+        end
+    end
+    check(#s.frames==baselineFrames and s.writes==secureWrites,"press/release stress creates no frames and performs no secure writes")
+    -- Reuse the same host with reversed assignments, then make it visible.
+    s.combat=false;w.visible=false
+    for i=1,4 do entries[i],entries[9-i]=entries[9-i],entries[i]end
+    map={};for i,chord in ipairs(chords)do map[chord]=entries[i]end
+    manager.UpdateButton(btn,map);manager.UpdateHotkeys(btn)
+    for _,chord in ipairs(chords)do nativeEdge(chord);frame(chord)end
+    w.visible=true;nativeEdge("");frame("")
+    check(#s.frames==baselineFrames,"assignment reuse/reappearance allocates no frame")
+    check(hk.text=="F6"and btn._fluxUtilityPetGUID==nil and btn._fluxUtilityOutfitID==nil,"reuse keeps hotkey and clears unrelated face ownership")
+    print(string.format("METRIC utility %s edges=%d deliveredFrames=%d duplicateFrames=%d icon=%d count=%d usable=%d checked=%d mainTimerWrites=%d runtimeFramesCreated=0 secureWritesDuringStress=0 pendingTimers=%d",family,edgeCount,frameCount,duplicateFrames,laneTotals.Icon,laneTotals.Count,laneTotals.Usable,laneTotals.Checked,cd.timerWrites,#s.timers))
+end
+print(string.format("SUMMARY utility checks=%d failures=%d clients=5",checks,failures))
+assert(failures==0,"utility modifier matrix failures")
+]=]
+assert(load(source..extra,"@current-utility-fixture-followup","t",_G))()

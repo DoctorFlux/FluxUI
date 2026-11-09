@@ -1,0 +1,320 @@
+{
+  "scope": "Read-only installed asset/source audit. Inspection PNGs stay private; no runtime edits, no addon asset copies, no game input or Git changes. UV/anchor facts reproduce source mapping, not a blanket asset redistribution license.",
+  "installedClient": "Forever",
+  "version": "#Details.20261104.15400.172",
+  "interface": 16001,
+  "alsoPresentSameDefaultSkin": "Era",
+  "upstreamPin": "cec582cfbac0254e98c393e791478d787ba413a1",
+  "upstreamPaths": [
+    "LICENSE",
+    "functions/skins.lua",
+    "frames/window_main.lua"
+  ],
+  "installedFiles": [
+    {
+      "path": "Details_Camelot.toc",
+      "size": 6632,
+      "sha256": "072f2b81ed5849bc06fbf03736a04d4bae87c0d1c18510a7fbb71d9cc3885a5b"
+    },
+    {
+      "path": "LICENSE",
+      "size": 19,
+      "sha256": "be4a37a6760d03c1efff9d8c54621f5110386a2c6e6d468f9fc9f924b2e3e8e9"
+    },
+    {
+      "path": "functions/skins.lua",
+      "size": 79978,
+      "sha256": "0753c903ce7d3e7c965ae3e93ad62c250ad006555f45843f522c91a94053b847"
+    },
+    {
+      "path": "frames/window_main.lua",
+      "size": 341133,
+      "sha256": "559d512ba875eef1a0d336ccf533662b05e8b4bda47c3a218a5079b5d345d2a0"
+    },
+    {
+      "path": "boot.lua",
+      "size": 87120,
+      "sha256": "1dabf22acab893b7b405ceb336efd03cd1996c70eec27a5f9446f2ab3c033294"
+    },
+    {
+      "path": "images/skins/default_skin.tga",
+      "size": 1399300,
+      "sha256": "1d77769b145fa3ce800f0a0d5929db2e00d7ca52272e4498ec6cd8b7a8e90b52"
+    },
+    {
+      "path": "images/skins/classic_skin.tga",
+      "size": 1399300,
+      "sha256": "e11ccfd40ff6f92052c6767f02774ac802a8249341da8051fd1508e4ee9d7685"
+    },
+    {
+      "path": "images/background.tga",
+      "size": 16402,
+      "sha256": "26797bcb8dde4cd22c35e34294571cef4830f4425af4d25823b7d3320b8d6e8b"
+    },
+    {
+      "path": "images/bar_background.tga",
+      "size": 32786,
+      "sha256": "5d5526bb42a45fd8cb3e27eb4cc07d6c45008b2eafdd704902f52d407cf664cc"
+    },
+    {
+      "path": "fonts/Accidental Presidency.ttf",
+      "size": 41556,
+      "sha256": "91980438519aff2fd182b77d316be9549cbf6cf0daadab8e8f5638367f1d9242"
+    },
+    {
+      "path": "fonts/SIL Open Font License.txt",
+      "size": 4435,
+      "sha256": "95f0b1f9afda13064972fd032130a254494659dc68ba2b1bcc134ae410879316"
+    }
+  ],
+  "atlas": {
+    "logicalPath": "Interface\\AddOns\\Details\\images\\skins\\default_skin",
+    "sourceDeclaredExtension": "blp",
+    "physicalExtension": "tga",
+    "format": "BLP2 DXT3",
+    "size": [
+      1024,
+      1024
+    ]
+  },
+  "rolesForFluxDetails": "HideIcon=true; toolbarSide=1; showStatusbar=false; showSidebars=true",
+  "visiblePieces": {
+    "headerLeftNoIcon": {
+      "uv": [
+        0.44921875,
+        0.5732421875,
+        0.08203125,
+        0.2060546875
+      ],
+      "size": [
+        128,
+        128
+      ],
+      "anchor": [
+        "BOTTOMLEFT",
+        "body",
+        "TOPLEFT",
+        -107,
+        0
+      ],
+      "layer": "OVERLAY"
+    },
+    "headerConnectorNoIcon": {
+      "uv": [
+        0.58837890625,
+        0.5947265625,
+        0.08203125,
+        0.2060546875
+      ],
+      "size": [
+        8,
+        128
+      ],
+      "anchor": [
+        "BOTTOMLEFT",
+        "headerLeftNoIcon",
+        "BOTTOMRIGHT",
+        0,
+        0
+      ],
+      "layer": "BACKGROUND"
+    },
+    "headerRight": {
+      "uv": [
+        0.3154296875,
+        0.439453125,
+        0.08203125,
+        0.2060546875
+      ],
+      "size": [
+        128,
+        128
+      ],
+      "anchor": [
+        "BOTTOMRIGHT",
+        "body",
+        "TOPRIGHT",
+        96,
+        0
+      ],
+      "layer": "BACKGROUND"
+    },
+    "headerStrip": {
+      "uv": [
+        0.15625,
+        0.6552734375,
+        0.22265625,
+        0.3466796875
+      ],
+      "height": 128,
+      "anchors": [
+        [
+          "LEFT",
+          "headerConnectorNoIcon",
+          "RIGHT",
+          0,
+          0
+        ],
+        [
+          "RIGHT",
+          "headerRight",
+          "LEFT",
+          0,
+          0
+        ]
+      ],
+      "layer": "BACKGROUND"
+    },
+    "leftRail": {
+      "uv": [
+        0.765625,
+        0.828125,
+        0.001953125,
+        0.501953125
+      ],
+      "width": 64,
+      "anchors": [
+        [
+          "TOPLEFT",
+          "body",
+          "TOPLEFT",
+          -56,
+          0
+        ],
+        [
+          "BOTTOMLEFT",
+          "body",
+          "BOTTOMLEFT",
+          -56,
+          0
+        ]
+      ],
+      "layer": "ARTWORK"
+    },
+    "rightRail": {
+      "uv": [
+        0.7001953125,
+        0.7626953125,
+        0.001953125,
+        0.501953125
+      ],
+      "width": 64,
+      "anchors": [
+        [
+          "TOPRIGHT",
+          "body",
+          "TOPRIGHT",
+          56,
+          0
+        ],
+        [
+          "BOTTOMRIGHT",
+          "body",
+          "BOTTOMRIGHT",
+          56,
+          0
+        ]
+      ],
+      "layer": "ARTWORK"
+    },
+    "bottomRail": {
+      "uv": [
+        0.32861328125,
+        0.82666015625,
+        0.50537109375,
+        0.56494140625
+      ],
+      "height": 64,
+      "anchors": [
+        [
+          "BOTTOMLEFT",
+          "body",
+          "BOTTOMLEFT",
+          0,
+          -56
+        ],
+        [
+          "BOTTOMRIGHT",
+          "body",
+          "BOTTOMRIGHT",
+          -1,
+          -56
+        ]
+      ],
+      "layer": "ARTWORK"
+    },
+    "footerLeftNoStatus": {
+      "uv": [
+        0.00146484375,
+        0.03076171875,
+        0.30126953125,
+        0.33056640625
+      ],
+      "size": [
+        32,
+        32
+      ],
+      "anchor": [
+        "TOPRIGHT",
+        "body",
+        "BOTTOMLEFT",
+        16,
+        14
+      ],
+      "layer": "OVERLAY"
+    },
+    "footerRightNoStatus": {
+      "uv": [
+        0.03564453125,
+        0.06494140625,
+        0.30126953125,
+        0.33056640625
+      ],
+      "size": [
+        32,
+        32
+      ],
+      "anchor": [
+        "TOPLEFT",
+        "body",
+        "BOTTOMRIGHT",
+        -16,
+        14
+      ],
+      "layer": "OVERLAY"
+    }
+  },
+  "hiddenPieces": [
+    "normal statusbar footer corners",
+    "rodape.top_bg/bottomStrip",
+    "attribute icon"
+  ],
+  "geometryNote": "Body means Details row-area baseframe. Header pieces are128 units tall with large transparent padding, not128 visible pixels. Preserve original pixel density/anchors or crop UV and geometry equivalently; do not squeeze entire128px source rect into a32px native header.",
+  "fill": {
+    "foregroundBar": "Interface\\TargetingFrame\\UI-StatusBar (Flux override)",
+    "panelPath": "Interface\\AddOns\\Details\\images\\background",
+    "panelTint": [
+      0.0941,
+      0.0941,
+      0.0941,
+      0.7
+    ],
+    "rowBackgroundPath": "Interface\\AddOns\\Details\\images\\bar_background",
+    "rowBackgroundTint": [
+      0.619607,
+      0.619607,
+      0.619607,
+      0.116164
+    ],
+    "chromeTint": "Full FluxBorder RGB; alpha instance.color[4], default1; no extra*.4 darkening",
+    "title": "StockFrizQuadrata12/gold/outline; Flux override",
+    "rowFont": "Interface\\AddOns\\Details\\fonts\\Accidental Presidency.ttf;14/outline; Flux override"
+  },
+  "licensing": {
+    "repository": "All rights reserved",
+    "fontNameTableCopyright": "(C)2000 Tepid Monkey Fonts-www.fontframe.com/tepidmonkey",
+    "bundledOFL": "Explicitly names Oswald; no proven Accidental Presidency grant",
+    "provenance": "No whole-atlas stock identity established. Do not copy/redistribute Details files. Referencing user-installed files is a no-copy integration; requires native validation and installed assets in each client."
+  },
+  "enginePlan": "Discover installation without loading; validate SetTexture return on an owned bounded texture and SetFont success; cache perpath. Existing fallback only when referencefile fails. Do not use addon existence or GetFileIDFromPath as proof of asset availability."
+}

@@ -1,0 +1,57 @@
+{
+  "retrievedUTC": "2026-11-07",
+  "provider": "GitHub plugin read-only primary pinned source",
+  "scope": "Negative controls; no runtime API probe",
+  "contracts": [
+    {
+      "target": "live",
+      "pin": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "file": "SpellSharedDocumentation.lua",
+      "received": true,
+      "bytes": 5476,
+      "hasGetDuration": false,
+      "hasGetTotalDuration": false,
+      "chargeActiveNeverSecret": [
+        "\t\t\t\t{ Name = \"isActive\", Type = \"bool\", Nilable = false, NeverSecret = true, Documentation = { \"False if recharging is not active (ex: at maximum available charges, start time or duration are zero); True otherwise\" } },",
+        "\t\t\t\t{ Name = \"isActive\", Type = \"bool\", Nilable = false, NeverSecret = true, Documentation = { \"False if cooldown is not active (ex: not enabled, or startTime or duration are 0); True otherwise\" } },",
+        "\t\t\t\t{ Name = \"isActive\", Type = \"bool\", Nilable = false, NeverSecret = true, Documentation = { \"False if cooldown is not active (startTime or duration are 0); True otherwise\" } },"
+      ],
+      "source": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_APIDocumentationGenerated/SpellSharedDocumentation.lua"
+    },
+    {
+      "target": "live",
+      "pin": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "file": "LuaDurationObjectAPIDocumentation.lua",
+      "received": true,
+      "bytes": 12873,
+      "hasGetDuration": false,
+      "hasGetTotalDuration": true,
+      "source": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_APIDocumentationGenerated/LuaDurationObjectAPIDocumentation.lua"
+    },
+    {
+      "target": "forever",
+      "pin": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "file": "SpellSharedDocumentation.lua",
+      "received": true,
+      "bytes": 5476,
+      "hasGetDuration": false,
+      "hasGetTotalDuration": false,
+      "chargeActiveNeverSecret": [
+        "\t\t\t\t{ Name = \"isActive\", Type = \"bool\", Nilable = false, NeverSecret = true, Documentation = { \"False if recharging is not active (ex: at maximum available charges, start time or duration are zero); True otherwise\" } },",
+        "\t\t\t\t{ Name = \"isActive\", Type = \"bool\", Nilable = false, NeverSecret = true, Documentation = { \"False if cooldown is not active (ex: not enabled, or startTime or duration are 0); True otherwise\" } },",
+        "\t\t\t\t{ Name = \"isActive\", Type = \"bool\", Nilable = false, NeverSecret = true, Documentation = { \"False if cooldown is not active (startTime or duration are 0); True otherwise\" } },"
+      ],
+      "source": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_APIDocumentationGenerated/SpellSharedDocumentation.lua"
+    },
+    {
+      "target": "forever",
+      "pin": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "file": "LuaDurationObjectAPIDocumentation.lua",
+      "received": true,
+      "bytes": 12873,
+      "hasGetDuration": false,
+      "hasGetTotalDuration": true,
+      "source": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_APIDocumentationGenerated/LuaDurationObjectAPIDocumentation.lua"
+    }
+  ]
+}

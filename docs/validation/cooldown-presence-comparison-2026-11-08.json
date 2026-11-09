@@ -1,0 +1,108 @@
+{
+  "changeID": "COOLDOWN-PRESENCE-20261108",
+  "utc": "2026-11-08T22:41:45.198226+00:00",
+  "checkpoint": {
+    "utc": "20261108T223752Z",
+    "baseline": "1fd463f4de4bbff659f4e402c6f31138c49765b4",
+    "sourceFiles": 2313,
+    "settingsFiles": 188,
+    "sha256": {
+      "source.zip": "223747af3b0add238efd0738bcb088a65c16b82fd98219ea35447f0bd37f02db",
+      "settings.zip": "e59ef7ec3761428cafc724700859a4150f39faaa77a3e23e866be7bcb2bb464e",
+      "history.bundle": "ce2bc5eb7a451203fd613821431877c83ae12bc3bf9af9cee03387b770aa4c11"
+    },
+    "zipIntegrity": "PASS",
+    "bundleVerification": "PASS",
+    "gameMemory": "Unsaved game memory excluded; no game input, settings mutation or foreground control"
+  },
+  "baseline": {
+    "head": "1fd463f4de4bbff659f4e402c6f31138c49765b4",
+    "ownerLF": "27431e8f0c5548587cde544c71fe31a7fae9eab21a23048970d8f9214796b754"
+  },
+  "candidate": {
+    "Other/FluxCooldownDefaults.lua": "d2c449ddde42935b169eb87670801664758f2161ca8e60b1d20f20fb3b9841cd",
+    "tests/cooldown_defaults.lua": "99f3132b56fe9f79f54e6253b54dfc432cc84dcfe838d9b0eefb77e241a5cfa7"
+  },
+  "scenario": {
+    "scope": "Desktop actual-owner public layout/API lifecycle model; native engine/taint/rendering separate",
+    "warmup": "One excluded baseline/candidate each;five alternating bounded pairs",
+    "runtime": "Lua 5.4.6  Copyright (C) 1994-2023 Lua.org, PUC-Rio",
+    "settings": "Native presets; existing custom names; deleted FluxUI after saved/applied marker; recovery records",
+    "profiler": "None; no profiler preferences changed; hardware/addon-list matched CPU/memory/frame-time/latency unavailable",
+    "interpretation": "Baseline stops at applied marker and leaves missing profile absent. Candidate checks actual layout existence, recreates once and preserves existing custom/profile/recovery data. No FPS improvement claim.",
+    "resources": "No new frames/hooks/events/tickers/OnUpdates. One existence scan on existing layout events; save/delete requests use existing coalescing/combat/editor queues. Legacy retirement is not repeated during recreation."
+  },
+  "samples": [
+    {
+      "variant": "baseline",
+      "trial": 1,
+      "exit": 1,
+      "wallSeconds": 0.01865509999333881,
+      "output": "lua: tests/cooldown_defaults.lua:3: deleted FluxUI layout recreated automatically\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/cooldown_defaults.lua:3: in local 'check'\n\ttests/cooldown_defaults.lua:209: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "variant": "candidate",
+      "trial": 1,
+      "exit": 0,
+      "wallSeconds": 0.02523470000596717,
+      "output": "[FluxUI] Cooldown defaults stopped: native metadata changed; reload before continuing.\ncooldown defaults: 202 checks PASS (desktop data/guard scope)\n"
+    },
+    {
+      "variant": "baseline",
+      "trial": 2,
+      "exit": 1,
+      "wallSeconds": 0.01772599999094382,
+      "output": "lua: tests/cooldown_defaults.lua:3: deleted FluxUI layout recreated automatically\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/cooldown_defaults.lua:3: in local 'check'\n\ttests/cooldown_defaults.lua:209: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "variant": "candidate",
+      "trial": 2,
+      "exit": 0,
+      "wallSeconds": 0.02508340001804754,
+      "output": "[FluxUI] Cooldown defaults stopped: native metadata changed; reload before continuing.\ncooldown defaults: 202 checks PASS (desktop data/guard scope)\n"
+    },
+    {
+      "variant": "baseline",
+      "trial": 3,
+      "exit": 1,
+      "wallSeconds": 0.019788999983575195,
+      "output": "lua: tests/cooldown_defaults.lua:3: deleted FluxUI layout recreated automatically\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/cooldown_defaults.lua:3: in local 'check'\n\ttests/cooldown_defaults.lua:209: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "variant": "candidate",
+      "trial": 3,
+      "exit": 0,
+      "wallSeconds": 0.050588700018124655,
+      "output": "[FluxUI] Cooldown defaults stopped: native metadata changed; reload before continuing.\ncooldown defaults: 202 checks PASS (desktop data/guard scope)\n"
+    },
+    {
+      "variant": "baseline",
+      "trial": 4,
+      "exit": 1,
+      "wallSeconds": 0.018627500016009435,
+      "output": "lua: tests/cooldown_defaults.lua:3: deleted FluxUI layout recreated automatically\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/cooldown_defaults.lua:3: in local 'check'\n\ttests/cooldown_defaults.lua:209: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "variant": "candidate",
+      "trial": 4,
+      "exit": 0,
+      "wallSeconds": 0.02573530000518076,
+      "output": "[FluxUI] Cooldown defaults stopped: native metadata changed; reload before continuing.\ncooldown defaults: 202 checks PASS (desktop data/guard scope)\n"
+    },
+    {
+      "variant": "baseline",
+      "trial": 5,
+      "exit": 1,
+      "wallSeconds": 0.016446299996459857,
+      "output": "lua: tests/cooldown_defaults.lua:3: deleted FluxUI layout recreated automatically\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/cooldown_defaults.lua:3: in local 'check'\n\ttests/cooldown_defaults.lua:209: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "variant": "candidate",
+      "trial": 5,
+      "exit": 0,
+      "wallSeconds": 0.024877100018784404,
+      "output": "[FluxUI] Cooldown defaults stopped: native metadata changed; reload before continuing.\ncooldown defaults: 202 checks PASS (desktop data/guard scope)\n"
+    }
+  ],
+  "native": "PASS Forever70862 missing-after-save creation/selection; BugTabs0; tracker top gap0/clampfalse. Second reload PENDING: game foreground guard blocked before input."
+}

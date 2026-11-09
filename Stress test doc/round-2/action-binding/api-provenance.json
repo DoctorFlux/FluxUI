@@ -1,0 +1,25 @@
+{
+  "target": "forever",
+  "pin": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+  "version": "1.60.1.70862",
+  "file": "Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleRegionAPIDocumentation.lua",
+  "githubBlob": "ca66eb6c9e70d9e30c8f92139c184442c368d136",
+  "url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleRegionAPIDocumentation.lua",
+  "contract": {
+    "GetVertexColor": {
+      "MayReturnNothing": true,
+      "SecretReturnsForAspect": [
+        "VertexColor",
+        "Alpha"
+      ],
+      "returns": [
+        "number colorR",
+        "number colorG",
+        "number colorB",
+        "number colorA"
+      ]
+    }
+  },
+  "evidence": "Fresh commit-pinned Github connector read; declaration not native operation acceptance. Local Forever normalized Git blob matches the fresh source exactly.",
+  "otherTargets": [{"target":"live","ref":"297d7aaaa736f346b3e036f38ee088eaf7f8c07f","sha":"ca66eb6c9e70d9e30c8f92139c184442c368d136","url":"https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleRegionAPIDocumentation.lua","contract":"true","secretAspects":"{ Enum.SecretAspect.VertexColor, Enum.SecretAspect.Alpha },"},{"target":"classic_era","ref":"4192ac60067fc55566182291bc67c85dd9b6794d","sha":"b936682a752963f3c52c07f423df04012c52d41d","url":"https://github.com/Gethe/wow-ui-source/blob/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleRegionAPIDocumentation.lua","contract":"true","secretAspects":null},{"target":"classic_anniversary","ref":"68e0a2ec559d9761dfc4e7f864c3944f9d758a49","sha":"b936682a752963f3c52c07f423df04012c52d41d","url":"https://github.com/Gethe/wow-ui-source/blob/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleRegionAPIDocumentation.lua","contract":"true","secretAspects":null}]
+}

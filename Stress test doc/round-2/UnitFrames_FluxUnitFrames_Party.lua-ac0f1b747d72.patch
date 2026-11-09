@@ -1,0 +1,52 @@
+--- baseline/UnitFrames/FluxUnitFrames_Party.lua
++++ current/UnitFrames/FluxUnitFrames_Party.lua
+@@ -90,8 +90,7 @@
+     end
+     local portrait = not frame._fluxPortraitDisabled and frame.PortraitFrame or frame.Health
+     -- Class/spec anchors and visibility come from the same UF factory as player.
+-    for _, spec in ipairs({{"pvpIcon", "BOTTOMRIGHT", -2, 2, 26},
+-        {"partyRoleIcon", "TOPRIGHT", -2, -2, 24}}) do
++    for _, spec in ipairs({{"partyRoleIcon", "TOPRIGHT", -2, -2, 24}}) do
+         local icon = frame[spec[1]]
+         if icon then
+             icon:ClearAllPoints(); icon:SetPoint(spec[2], portrait, spec[2], spec[3], spec[4])
+@@ -104,6 +103,7 @@
+         frame.levelText:SetWidth(40)
+         if frame.levelText.SetTextScale then frame.levelText:SetTextScale(math.max(1, .6 / (frame:GetEffectiveScale() / UIParent:GetEffectiveScale()))) end
+     end
++    Party.UpdatePvpBadge(frame, true)
+     local host = frame._fluxPartyNameTextAnchor
+     if host and host.GetWidth then
+         local width = host:GetWidth()
+@@ -122,6 +122,10 @@
+         end
+     end
+     if Party.SyncCastCover then Party.SyncCastCover(frame) end
++end
++
++function Party.UpdatePvpBadge(frame, layoutOnly)
++    return UF.UpdatePvpBadge(frame, layoutOnly)
+ end
+ 
+ function Party.SyncCastCover(frame)
+@@ -319,9 +323,19 @@
+     layer:EnableMouse(false); layer:SetAllPoints(frame.outerBorderFrame)
+     layer:SetFrameLevel(frame:GetFrameLevel() + 80)
+     frame._fluxPartyIndicatorLayer = layer
+-    for _, key in ipairs({"raidIcon", "levelText", "leaderIcon", "assistantIcon", "mainTankIcon", "mainAssistIcon", "masterLooterIcon", "pvpIcon"}) do
++    for _, key in ipairs({"raidIcon", "levelText", "pvpTimer", "leaderIcon", "assistantIcon", "mainTankIcon", "mainAssistIcon", "masterLooterIcon"}) do
+         if frame[key] and frame[key].SetParent then frame[key]:SetParent(layer) end
+     end
++    local pvpLayer = CreateFrame("Frame", nil, frame.outerBorderFrame)
++    pvpLayer:EnableMouse(false); pvpLayer:SetAllPoints(frame.outerBorderFrame)
++    pvpLayer:SetFrameLevel(frame:GetFrameLevel() + 20)
++    frame._fluxPartyPvpLayer = pvpLayer
++    if frame.pvpIcon and frame.pvpIcon.SetParent then frame.pvpIcon:SetParent(pvpLayer) end
++    local prestigePortrait, prestigeBadge = frame._fluxPvpPrestigePortrait, frame._fluxPvpPrestigeBadge
++    if prestigePortrait.SetParent then prestigePortrait:SetParent(pvpLayer) end
++    if prestigeBadge.SetParent then prestigeBadge:SetParent(pvpLayer) end
++    frame._fluxPartyPrestigePortrait, frame._fluxPartyPrestigeBadge = prestigePortrait, prestigeBadge
++    frame._fluxPartyPvpElements = frame._fluxPvpElements
+     for _, key in ipairs({"readyCheckIcon", "centerStatusIcon", "partyRoleIcon"}) do
+         local icon = layer:CreateTexture(nil, "OVERLAY", nil, 7)
+         icon:SetSize(32, 32); icon:SetPoint("CENTER", frame.PortraitFrame or frame.Health, "CENTER", 0, 0)

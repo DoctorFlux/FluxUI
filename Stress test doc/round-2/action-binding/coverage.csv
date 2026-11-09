@@ -1,0 +1,74 @@
+path,review_level,scope_limit
+Bars/_tmp_barsmoke.lua,existing control executed,native source replay is not native execution
+Bars/_tmp_forevercontrolsmoke.lua,existing control executed,native source replay is not native execution
+Bars/_tmp_stockgridsmoke.lua,inventory and targeted writer/caller searches,no claim of whole-file semantic or branch coverage
+Bars/BadgeHost.lua,delegated,input agent owns BadgeHost; included only for preservation hash
+Bars/BindingMode.lua,bounded static protected-owner/callpath review plus existing targeted controls,not every branch individually simulated
+Bars/Blizzard.lua,inventory and targeted writer/caller searches,no claim of whole-file semantic or branch coverage
+Bars/BlizzardOptions.lua,inventory and targeted writer/caller searches,no claim of whole-file semantic or branch coverage
+Bars/Clicks.lua,bounded static protected-owner/callpath review plus existing targeted controls,not every branch individually simulated
+Bars/Effects.lua,inventory and targeted writer/caller searches,no claim of whole-file semantic or branch coverage
+Bars/Flyout.lua,inventory and targeted writer/caller searches,no claim of whole-file semantic or branch coverage
+Bars/Hosts.lua,bounded static protected-owner/callpath review plus existing targeted controls,not every branch individually simulated
+Bars/Init.lua,inventory and targeted writer/caller searches,no claim of whole-file semantic or branch coverage
+Bars/Layout.lua,inventory and targeted writer/caller searches,no claim of whole-file semantic or branch coverage
+Bars/MacrotextDisplay.lua,inventory and targeted writer/caller searches,no claim of whole-file semantic or branch coverage
+Bars/Minis.lua,inventory and targeted writer/caller searches,no claim of whole-file semantic or branch coverage
+Bars/Paint.lua,inventory and targeted writer/caller searches,no claim of whole-file semantic or branch coverage
+Bars/Pet/Init.lua,inventory and targeted writer/caller searches,no claim of whole-file semantic or branch coverage
+Bars/Pet/Keys.lua,bounded static protected-owner/callpath review plus existing targeted controls,not every branch individually simulated
+Bars/Pet/Layout.lua,inventory and targeted writer/caller searches,no claim of whole-file semantic or branch coverage
+Bars/Pet/Watch.lua,inventory and targeted writer/caller searches,no claim of whole-file semantic or branch coverage
+Bars/ProgramFace.lua,bounded static protected-owner/callpath review plus existing targeted controls,not every branch individually simulated
+Bars/SlotMath.lua,inventory and targeted writer/caller searches,no claim of whole-file semantic or branch coverage
+Bars/SlotProgram.lua,full production module replay,narrow mocked dependencies; native VM/security/rendering not executed
+Bars/SpellRank.lua,inventory and targeted writer/caller searches,no claim of whole-file semantic or branch coverage
+Bars/Stance/Extras.lua,inventory and targeted writer/caller searches,no claim of whole-file semantic or branch coverage
+Bars/Stance/Forms.lua,inventory and targeted writer/caller searches,no claim of whole-file semantic or branch coverage
+Bars/Stance/Init.lua,inventory and targeted writer/caller searches,no claim of whole-file semantic or branch coverage
+Bars/Stance/Layout.lua,inventory and targeted writer/caller searches,no claim of whole-file semantic or branch coverage
+Bars/Stance/Order.lua,inventory and targeted writer/caller searches,no claim of whole-file semantic or branch coverage
+Bars/Stance/Watch.lua,inventory and targeted writer/caller searches,no claim of whole-file semantic or branch coverage
+Bars/State.lua,bounded static protected-owner/callpath review plus existing targeted controls,not every branch individually simulated
+Bars/Strip.lua,inventory and targeted writer/caller searches,no claim of whole-file semantic or branch coverage
+Bars/Vehicle.lua,inventory and targeted writer/caller searches,no claim of whole-file semantic or branch coverage
+Bars/Watch.lua,bounded static protected-owner/callpath review plus existing targeted controls,not every branch individually simulated
+Binding/Boot.lua,inventory and targeted writer/caller searches,no claim of whole-file semantic or branch coverage
+Binding/Core/Action.lua,inventory and targeted writer/caller searches,no claim of whole-file semantic or branch coverage
+Binding/Core/Apply.lua,actual named production fragment replay,whole editor and full ComputePlan not loaded
+Binding/Core/BindingTooltip.lua,inventory and targeted writer/caller searches,no claim of whole-file semantic or branch coverage
+Binding/Core/ChordMap.lua,full production module replay,narrow mocked dependencies; native VM/security/rendering not executed
+Binding/Core/Conditions.lua,inventory and targeted writer/caller searches,no claim of whole-file semantic or branch coverage
+Binding/Core/DB.lua,inventory and targeted writer/caller searches,no claim of whole-file semantic or branch coverage
+Binding/Core/Engraving.lua,inventory and targeted writer/caller searches,no claim of whole-file semantic or branch coverage
+Binding/Core/Forms.lua,inventory and targeted writer/caller searches,no claim of whole-file semantic or branch coverage
+Binding/Core/MacroFactory.lua,inventory and targeted writer/caller searches,no claim of whole-file semantic or branch coverage
+Binding/Core/Placement.lua,bounded static protected-owner/callpath review plus existing targeted controls,not every branch individually simulated
+Binding/Core/PushPress.lua,full production module replay,narrow mocked dependencies; native VM/security/rendering not executed
+Binding/Core/SecurePool.lua,full production module replay,narrow mocked dependencies; native VM/security/rendering not executed
+Binding/Core/SpellLibrary.lua,inventory and targeted writer/caller searches,no claim of whole-file semantic or branch coverage
+Binding/Input/FluxMouseoverKeybind.lua,inventory and targeted writer/caller searches,no claim of whole-file semantic or branch coverage
+Binding/Respec.lua,full production module replay,narrow mocked dependencies; native VM/security/rendering not executed
+Binding/Slash.lua,inventory and targeted writer/caller searches,no claim of whole-file semantic or branch coverage
+Binding/UI/Browser/AceGUIWidget-FluxBindingBrowserEmbed.lua,inventory and targeted writer/caller searches,no claim of whole-file semantic or branch coverage
+Binding/UI/Browser/Core.lua,inventory and targeted writer/caller searches,no claim of whole-file semantic or branch coverage
+Binding/UI/Editor/Chrome.lua,inventory and targeted writer/caller searches,no claim of whole-file semantic or branch coverage
+Binding/UI/Editor/Core.lua,inventory and targeted writer/caller searches,no claim of whole-file semantic or branch coverage
+Binding/UI/Editor/Panels.lua,inventory and targeted writer/caller searches,no claim of whole-file semantic or branch coverage
+Binding/UI/Editor/Theme.lua,inventory and targeted writer/caller searches,no claim of whole-file semantic or branch coverage
+Binding/UI/Editor/Widgets/AceGUIWidget-FluxBlizzardDropdown.lua,inventory and targeted writer/caller searches,no claim of whole-file semantic or branch coverage
+Binding/UI/Editor/Widgets/AceGUIWidget-FluxMultiCastOrderPanel.lua,inventory and targeted writer/caller searches,no claim of whole-file semantic or branch coverage
+Binding/UI/Editor/Widgets/FluxBindingFrame.lua,inventory and targeted writer/caller searches,no claim of whole-file semantic or branch coverage
+Binding/UI/Editor/Widgets/FluxBindingTabGroup.lua,inventory and targeted writer/caller searches,no claim of whole-file semantic or branch coverage
+Binding/UI/Editor/Widgets/FluxKeyCapture.lua,actual named production fragment replay,whole editor and full ComputePlan not loaded
+Binding/UI/Editor/Widgets/FluxSectionHeading.lua,inventory and targeted writer/caller searches,no claim of whole-file semantic or branch coverage
+Binding/UI/Editor/Widgets/FluxTargetRow.lua,inventory and targeted writer/caller searches,no claim of whole-file semantic or branch coverage
+Binding/UI/KeyVisualizer/AceGUIContainer-FluxKeyVisualizerTreeGroup.lua,inventory and targeted writer/caller searches,no claim of whole-file semantic or branch coverage
+Binding/UI/KeyVisualizer/AceGUIWidget-FluxKeyVisualizerButton.lua,inventory and targeted writer/caller searches,no claim of whole-file semantic or branch coverage
+Binding/UI/KeyVisualizer/Core.lua,inventory and targeted writer/caller searches,no claim of whole-file semantic or branch coverage
+Binding/UI/KeyVisualizer/KeyLayouts.lua,inventory and targeted writer/caller searches,no claim of whole-file semantic or branch coverage
+Binding/UI/Locale.lua,inventory and targeted writer/caller searches,no claim of whole-file semantic or branch coverage
+Binding/UI/Media/Media.lua,inventory and targeted writer/caller searches,no claim of whole-file semantic or branch coverage
+Binding/UI/SpellbookBindingHooks.lua,inventory and targeted writer/caller searches,no claim of whole-file semantic or branch coverage
+Core/Engine/MouseoverCast.lua,bounded static protected-owner/callpath review plus existing targeted controls,not every branch individually simulated
+Core/Engine/Restricted.lua,bounded static protected-owner/callpath review plus existing targeted controls,not every branch individually simulated

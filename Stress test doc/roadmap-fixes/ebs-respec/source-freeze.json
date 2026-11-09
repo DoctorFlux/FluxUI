@@ -1,0 +1,42 @@
+{
+  "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\07\\01a1b5b8-1789-7050-b49c-88d0a742e874\\roadmap-fixes-20261107T184559Z",
+  "baseline": {
+    "Respec/FluxRespec_Equipment.lua": "b5e878a30a774c5d120f094a3ff20b496c53a5b32ee71c0bf94ded43663fdd66",
+    "Respec/FluxRespec_Apply.lua": "891c77da3faf71d66204a47eb452dc0952c919c28beb9d63e5cb0370bed10ba3",
+    "Respec/FluxRespec_Talents.lua": "e8d64c22e3fbef0a97dd4a1ca70cb9768406760d47869770bab6615baefc4d6b",
+    "Respec/FluxRespec_GearPicker.lua": "64d870b894c1857275705869d7da8dccd2b41ff4cef9c5874d1dd22625c0939f",
+    "Respec/FluxRespec_RunePicker.lua": "9aeec7f7483e26a81b17a92398cb2172d13ef164a1000e2230cabdfce32b0c6e",
+    "ExtraButtonSystem/NonCombatGrid/FluxSmartMountConfig.lua": "51465e9627786935c4e825c65ade111c2bdd79c7352080225d1d59569d14188f",
+    "ExtraButtonSystem/NonCombatGrid/Buttons/MountCollection.lua": "3794c4f876452d44a9af7ec7ae6a9cc54c0f81453218415f559b94b85dabe408",
+    "ExtraButtonSystem/NonCombatGrid/Buttons/Mount.lua": "728fe5df4975dd635f7be7bc03a9ec6444d211969328b3f0d5d08c2493bbc52c",
+    "ExtraButtonSystem/Engine/Usability.lua": "5b12b7f277acade9df7b51634800a1a6c02c3fb78702a80d4700de43fb8b6129",
+    "Core/ButtonFX/Cast.lua": "ea8f5cc521d734e2010ea807c7ac1abc002a8938e4dcf00d0dae8f05c75d819b",
+    "Core/ButtonFX/Charges.lua": "7911a8cde0f2e8855a0f22a3a6bc791f4f5cf391354e978405774bed974e1df3"
+  },
+  "after": {
+    "Respec/FluxRespec_Equipment.lua": "a23ff25de69275db2895b72453f763ff9705bf8bb00d2f92ff2a42dbf7cd4d45",
+    "Respec/FluxRespec_Apply.lua": "3e983fd91063aa14f9bdf1d85c86efd8853e0bfd083e9b536265d20087b236b2",
+    "Respec/FluxRespec_Talents.lua": "583f273e61218492d9844b850ed4b9545ed1c4fa0dd51f27aede889b096eacaa",
+    "Respec/FluxRespec_GearPicker.lua": "44754847e664b0e79c10817f82608b87abbcd0a33d48c572f0dd773f3372b9e6",
+    "Respec/FluxRespec_RunePicker.lua": "6f79b8d95c6cefb3c170ac4bcdb515c43ebdd42870031276be276766d346c7a9",
+    "ExtraButtonSystem/NonCombatGrid/FluxSmartMountConfig.lua": "c9c599746034074657e1cfaeda24ddcf87959cd924be91c2000a8156651cf6a4",
+    "ExtraButtonSystem/NonCombatGrid/Buttons/MountCollection.lua": "f4e945c4499f3d134775273acd78a61d55ab8ab79c0a302f02426ede4a61cac2",
+    "ExtraButtonSystem/NonCombatGrid/Buttons/Mount.lua": "3baccb916f2ef49330508d3715a8777cd1a3792613747ebabd2c14be44f61f46",
+    "ExtraButtonSystem/Engine/Usability.lua": "3fce31bc520e3ed24af59e3e26271c4a55c0d557db1d72996f886b3becc696f0",
+    "Core/ButtonFX/Cast.lua": "5e8a085c46c23e5ac297095188ad816fac5052118e392f5cab5add4ad51319e2",
+    "Core/ButtonFX/Charges.lua": "004502522b4e4d1c692dff1293ee0a77daae5778446e047867565455e2ace134"
+  },
+  "initialAfter": {
+    "Respec/FluxRespec_Equipment.lua": "123c998411b1266325a19f5cc5b6c2bc3c1040d6e73c311938faa02a3bfec6f6",
+    "Respec/FluxRespec_Apply.lua": "3e983fd91063aa14f9bdf1d85c86efd8853e0bfd083e9b536265d20087b236b2",
+    "Respec/FluxRespec_Talents.lua": "583f273e61218492d9844b850ed4b9545ed1c4fa0dd51f27aede889b096eacaa",
+    "Respec/FluxRespec_GearPicker.lua": "44754847e664b0e79c10817f82608b87abbcd0a33d48c572f0dd773f3372b9e6",
+    "Respec/FluxRespec_RunePicker.lua": "6f79b8d95c6cefb3c170ac4bcdb515c43ebdd42870031276be276766d346c7a9",
+    "ExtraButtonSystem/NonCombatGrid/FluxSmartMountConfig.lua": "c9c599746034074657e1cfaeda24ddcf87959cd924be91c2000a8156651cf6a4",
+    "ExtraButtonSystem/NonCombatGrid/Buttons/MountCollection.lua": "f4e945c4499f3d134775273acd78a61d55ab8ab79c0a302f02426ede4a61cac2",
+    "ExtraButtonSystem/NonCombatGrid/Buttons/Mount.lua": "3baccb916f2ef49330508d3715a8777cd1a3792613747ebabd2c14be44f61f46",
+    "ExtraButtonSystem/Engine/Usability.lua": "3fce31bc520e3ed24af59e3e26271c4a55c0d557db1d72996f886b3becc696f0",
+    "Core/ButtonFX/Cast.lua": "5e8a085c46c23e5ac297095188ad816fac5052118e392f5cab5add4ad51319e2",
+    "Core/ButtonFX/Charges.lua": "004502522b4e4d1c692dff1293ee0a77daae5778446e047867565455e2ace134"
+  }
+}

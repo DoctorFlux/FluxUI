@@ -1,0 +1,64 @@
+-- Reuse the existing test widget fixture without executing its fixed scenarios.
+-- Complete unchanged production Compat/Unit modules; aura/prediction painters
+-- and all native widgets remain narrow mocks. Not native combat/taint/FPS proof.
+local f=assert(io.open("tests/raid_healer_runtime.lua","rb"));local src=f:read("*a"):gsub("\r\n","\n");f:close()
+local boundary=assert(src:find("local function exercise(client,body)",1,true))
+-- Instrument only the mock widget method, never the production module.
+local prefix=src:sub(1,boundary-1)
+local old="function methods:SetScript(event,fn)self.scripts[event]=fn end"
+local at=assert(prefix:find(old,1,true),"fixture method changed; review instrumentation")
+prefix=prefix:sub(1,at-1)..[[function methods:SetScript(event,fn)
+    self.scripts[event]=fn
+    if event=="OnUpdate"and fn then e._stressOnUpdateArms=(e._stressOnUpdateArms or 0)+1 end
+end]]..prefix:sub(at+#old)
+local fixture=assert(load(prefix.."\nreturn fixture", "@reused-raid-fixture", "t",_G))()
+local checks,failed,eventsTotal,paintsTotal=0,0,0,0
+local function check(ok,label)checks=checks+1;if not ok then failed=failed+1;print("FAIL|"..label)end end
+local events={"UNIT_HEALTH","UNIT_POWER_UPDATE","UNIT_HEAL_PREDICTION","UNIT_ABSORB_AMOUNT_CHANGED","UNIT_AURA","UNIT_THREAT_SITUATION_UPDATE","UNIT_IN_RANGE_UPDATE"}
+for _,client in ipairs({"era","anniversary","live","forever"})do
+    for _,count in ipairs({0,1,5,40})do
+        for _,combat in ipairs({false,true})do
+            for _,context in ipairs({"world","dungeon","raid"})do
+                local e,cell,fire,flush,pending,facts,calls,queries=fixture(client)
+                -- Context APIs are supplied, but the tested Unit module uses
+                -- unit binding/visibility rather than instance type for paints.
+                e.IsInInstance=function()return context~="world",context=="world"and"none"or context=="raid"and"raid"or"party"end
+                e.IsInRaid=function()return context=="raid"end
+                e.GetNumGroupMembers=function()return count end
+                local cells={}
+                for i=1,count do
+                    local unit="raid"..i;facts[unit]={name="Member"..i,health=75,maximum=100,power=40,powerMax=100,connected=true,dead=false,range=true,role="HEALER"}
+                    cells[i]=cell("FluxStressCell"..i);e.FluxRaid_BindUnit(cells[i],unit)
+                end
+                flush();e.combat=combat
+                local health,power,aura,prediction=queries.health,queries.power,calls.aura,calls.prediction
+                local writesBefore=0;for _,frame in ipairs(cells)do writesBefore=writesBefore+frame.healthBar.values end
+                local delivered=0;local armsBefore=e._stressOnUpdateArms or 0
+                for repetition=1,100 do
+                    for i,frame in ipairs(cells)do for _,event in ipairs(events)do fire(frame,event,"raid"..i);delivered=delivered+1 end end
+                end
+                local armed=pending()
+                local armCalls=(e._stressOnUpdateArms or 0)-armsBefore
+                check(queries.health==health and calls.aura==aura,"burst has no immediate paint")
+                check(armed==(count>0 and 1 or 0),"one paint driver per burst")
+                check(armCalls==delivered,"observed redundant arm count equals delivered paint events")
+                flush()
+                local healthQueries,powerDelta,auraDelta,predictionDelta=queries.health-health,queries.power-power,calls.aura-aura,calls.prediction-prediction
+                local writesAfter=0;for _,frame in ipairs(cells)do writesAfter=writesAfter+frame.healthBar.values end
+                local healthDelta=writesAfter-writesBefore
+                check(healthDelta==count and powerDelta==count and auraDelta==count and predictionDelta==count,"one paint per category/member")
+                check(pending()==0,"paint driver sleeps after flush")
+                eventsTotal=eventsTotal+delivered;paintsTotal=paintsTotal+healthDelta
+                local writes=0;for _,frame in ipairs(cells)do writes=writes+frame.protectedWrites end
+                -- Queued stale work must be discarded on hide, even in combat.
+                for i,frame in ipairs(cells)do fire(frame,"UNIT_AURA","raid"..i);frame.shown=false;e.FluxRaidUnit_OnHide(frame)end
+                aura=calls.aura;flush();check(calls.aura==aura,"hidden queued unit does no aura work")
+                for _,frame in ipairs(cells)do check(next(frame.events)==nil,"hidden unit releases events")end
+                print(("RESULT|raid_%s_%d_%s_%s|events=%d|health_paints=%d|health_queries=%d|power_paints=%d|aura_paints=%d|prediction_paints=%d|drivers=%d|setscript_arm_calls=%d|context_effect=none_in_this_module")
+                    :format(client,count,tostring(combat),context,delivered,healthDelta,healthQueries,powerDelta,auraDelta,predictionDelta,armed,armCalls))
+            end
+        end
+    end
+end
+print(("RESULT|SUMMARY|checks=%d|failed=%d|events=%d|health_paints=%d|scenarios=96"):format(checks,failed,eventsTotal,paintsTotal))
+assert(failed==0,"raid scaling expectations failed")

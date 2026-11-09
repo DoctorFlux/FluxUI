@@ -1,0 +1,20 @@
+{
+  "status": "PROPOSALS_ONLY_NOT_APPLIED",
+  "scope": "Isolated source-model candidates and unchanged existing mock suite; native frame attribution/taint/pixels/FPS remain unverified",
+  "selectedPrototypeFiles": 9,
+  "fullExistingBaseline": {
+    "pass": 222,
+    "fail": 0
+  },
+  "fullExistingCandidate": {
+    "pass": 222,
+    "fail": 0
+  },
+  "originalFilesCompared": 975,
+  "liveSourceDriftSinceProposalSnapshot": [],
+  "candidateFilesNoLongerMatchLiveBaseline": [],
+  "geometryNativeSpanRejected": true,
+  "geometryGEO02Held": true,
+  "errors": [],
+  "pass": true
+}

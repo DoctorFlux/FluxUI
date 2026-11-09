@@ -1,0 +1,3 @@
+OBSERVATION|R2-DOM-04|portrait_public_controls=PASS|normal_opaque_denial=1|combat_outer_opaque_denial=1|combat_root_opaque_denial=1|guarded_setter_opaque_operations=0
+OBSERVATION|R2-DOM-04|threat_public_control=PASS|border_opaque_denial=1|root_opaque_denial=1|native_reachability=NOT_OBSERVED
+CHECKS|11

@@ -1,0 +1,105 @@
+{
+  "changeID": "UNIT-NATIVE-PVP-BADGE-20261107",
+  "requirement": "REQ-RF-77",
+  "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\06\\01a1b0ac-547f-7972-8df9-fa26882e0e03\\unit-pvp-badge-20261107T153314Z\\checkpoint.json",
+  "baselineUserResult": "User reports no PvP change on unit frames after party-only RF76; previous visual acceptance never established.",
+  "cause": "Shared player/target/focus renderer still resized PvP into compact status chain; previous change branched only on _fluxPartyMember.",
+  "after": {
+    "UnitFrames/FluxUnitFrames_Shared.lua": "001c9471de765d1a87d112a81210890754c93e0e2c6e9225633e29d9ace66312",
+    "UnitFrames/FluxUnitFrames_Party.lua": "ac0f1b747d7281852a8c2bf7fa9059a073f600869bffd047fa5f55a8feedabbc",
+    "tests/unit_indicator_layout.lua": "ef558111e9363c5e14618640e905c333d44f66255b01be7c8d5aaf5db7451c69",
+    "tests/raid_party_frames.lua": "b8af0cfde2f043d14d2e868e6ca8f6a43f7c8aaf8fc98d0e798877d92ce96129"
+  },
+  "sources": {
+    "live": {
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "playerXMLBlob": "f2e106ab9da91fb7b32cfa2bf067c69aff6ca31e",
+      "path": "Interface/AddOns/Blizzard_UnitFrame/Mainline/PlayerFrame.xml"
+    },
+    "forever": {
+      "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "playerXMLBlob": "410ca1307eba91401aacbc64e5389426d870cfa7",
+      "path": "Interface/AddOns/Blizzard_UnitFrame/Mainline/PlayerFrame.xml"
+    },
+    "classic": {
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "playerXMLBlob": "c48b3e6e8dea4059dea6847f522c23a3023e3d0c",
+      "path": "Interface/AddOns/Blizzard_UnitFrame/Classic/PlayerFrame.xml"
+    },
+    "classic_era": {
+      "commit": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "playerXMLBlob": "c48b3e6e8dea4059dea6847f522c23a3023e3d0c",
+      "path": "Interface/AddOns/Blizzard_UnitFrame/Classic/PlayerFrame.xml"
+    },
+    "classic_anniversary": {
+      "commit": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "playerXMLBlob": "f03ed39542ccf4e61f717c845625c1c2aff63e0d",
+      "path": "Interface/AddOns/Blizzard_UnitFrame/Classic/PlayerFrame.xml"
+    },
+    "nativeRenderers": {
+      "live": "e4d36ab0dca70d28e56d38edaea16aad20a34e42",
+      "forever": "60d5da8b429c3ac397a39fa576ab939b1a6b08ab",
+      "path": "Interface/AddOns/Blizzard_UnitFrame/Shared/UnitFrameUtil.lua"
+    },
+    "timerAPI": {
+      "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "blob": "acc0ec3d9eaae7854a8e688bddde0850d0623274",
+      "contract": "GetPVPTimer has no unit argument; native player frame uses it only for player countdown."
+    },
+    "nativePlayerLua": {
+      "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "path": "Interface/AddOns/Blizzard_UnitFrame/Mainline/PlayerFrame.lua",
+      "blob": "ec49779f9bb6e54dab747518ac46f329f461b360",
+      "contract": "native PlayerFrame_UpdatePvPStatus passes checkMercenary=true for player"
+    },
+    "nativeTargetLua": {
+      "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "path": "Interface/AddOns/Blizzard_UnitFrame/Mainline/TargetFrame.lua",
+      "blob": "9132e790f0e354a9bec81093bf3b20c434c0f6eb",
+      "contract": "native target uses UpdateUnitPvPIndicator for self.unit without mercenary override"
+    }
+  },
+  "implementation": [
+    "Shared UF.CreatePvpBadge/UpdatePvpBadge now serves player,target,focus and normal party; party wrapper/layer preserved and reuses owned prestige art",
+    "Full client-native faction/FFA natural-size atlas or Classic64x64 texture;50x52 prestige background and30x30 badge",
+    "Badge behind level; timer under level; player driver retained and other units empty by explicit user preference",
+    "Native secure delegate uses actual unit and player-only checkMercenary=true; guarded fallback never branches on secret flags",
+    "PvP removed from status square sizing and secondary name width/visibility reads; existing leader/roles stay compact"
+  ],
+  "resources": "Two prestige textures per shared outer frame; normal party reuses them instead of allocating a second pair. Existing badge layer only on normal party. No new timer/ticker/event/hook; paint cadence unchanged.",
+  "tests": {
+    "indicator": 299,
+    "party": 905,
+    "restrictedContracts": 78,
+    "identity": 206,
+    "fullScriptsPass": 232,
+    "fullScriptsFail": 0,
+    "syntaxFiles": 896,
+    "syntaxFailures": [],
+    "regression": "Current indicator fixture rejects checkpoint source at private PvP visibility read in old status packing."
+  },
+  "nativePending": "Live badge pixels, flag changes, prestige/mercenary appearance, combat/taint and CPU/FPS; no native automation/input performed.",
+  "settings": "45 on-disk settings metadata entries inspected read-only. Prior complete settings/source recovery retained externally; fresh history.bundle verified. No game/WTF/profiler edits.",
+  "copies": [
+    {
+      "client": "_retail_",
+      "mismatches": []
+    },
+    {
+      "client": "_forever_",
+      "mismatches": []
+    },
+    {
+      "client": "_classic_",
+      "mismatches": []
+    },
+    {
+      "client": "_classic_era_",
+      "mismatches": []
+    },
+    {
+      "client": "_anniversary_",
+      "mismatches": []
+    }
+  ]
+}

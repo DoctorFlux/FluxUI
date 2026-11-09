@@ -1,0 +1,57 @@
+METRIC legacy_id_debounced_manual wrong=1 unavailable=1 wrong_cost=800 calls=4 id_reads=0 link_reads=0 spent=810 frames=1
+FAIL legacy_id_debounced_manual replacement item never bought
+FAIL legacy_id_debounced_manual missing listing never submitted
+METRIC legacy_id_debounced_tier wrong=1 unavailable=1 wrong_cost=800 calls=4 id_reads=0 link_reads=0 spent=810 frames=1
+FAIL legacy_id_debounced_tier replacement item never bought
+FAIL legacy_id_debounced_tier missing listing never submitted
+METRIC legacy_id_rebuilt_manual wrong=1 unavailable=1 wrong_cost=800 calls=4 id_reads=0 link_reads=0 spent=810 frames=1
+FAIL legacy_id_rebuilt_manual replacement item never bought
+FAIL legacy_id_rebuilt_manual missing listing never submitted
+METRIC legacy_id_rebuilt_tier wrong=1 unavailable=1 wrong_cost=800 calls=4 id_reads=0 link_reads=0 spent=810 frames=1
+FAIL legacy_id_rebuilt_tier replacement item never bought
+FAIL legacy_id_rebuilt_tier missing listing never submitted
+FAIL legacy_id each same-pass task rechecks identity
+METRIC legacy_id_stable calls=40 passes=5 id_reads=0 link_reads=0 frames=1
+METRIC legacy_link_debounced_manual wrong=1 unavailable=1 wrong_cost=800 calls=4 id_reads=0 link_reads=0 spent=810 frames=1
+FAIL legacy_link_debounced_manual replacement item never bought
+FAIL legacy_link_debounced_manual missing listing never submitted
+METRIC legacy_link_debounced_tier wrong=1 unavailable=1 wrong_cost=800 calls=4 id_reads=0 link_reads=0 spent=810 frames=1
+FAIL legacy_link_debounced_tier replacement item never bought
+FAIL legacy_link_debounced_tier missing listing never submitted
+METRIC legacy_link_rebuilt_manual wrong=1 unavailable=1 wrong_cost=800 calls=4 id_reads=0 link_reads=0 spent=810 frames=1
+FAIL legacy_link_rebuilt_manual replacement item never bought
+FAIL legacy_link_rebuilt_manual missing listing never submitted
+METRIC legacy_link_rebuilt_tier wrong=1 unavailable=1 wrong_cost=800 calls=4 id_reads=0 link_reads=0 spent=810 frames=1
+FAIL legacy_link_rebuilt_tier replacement item never bought
+FAIL legacy_link_rebuilt_tier missing listing never submitted
+FAIL legacy_link each same-pass task rechecks identity
+METRIC legacy_link_stable calls=40 passes=5 id_reads=0 link_reads=0 frames=1
+METRIC modern_id_debounced_manual wrong=1 unavailable=1 wrong_cost=800 calls=4 id_reads=0 link_reads=0 spent=810 frames=1
+FAIL modern_id_debounced_manual replacement item never bought
+FAIL modern_id_debounced_manual missing listing never submitted
+METRIC modern_id_debounced_tier wrong=1 unavailable=1 wrong_cost=800 calls=4 id_reads=0 link_reads=0 spent=810 frames=1
+FAIL modern_id_debounced_tier replacement item never bought
+FAIL modern_id_debounced_tier missing listing never submitted
+METRIC modern_id_rebuilt_manual wrong=1 unavailable=1 wrong_cost=800 calls=4 id_reads=0 link_reads=0 spent=810 frames=1
+FAIL modern_id_rebuilt_manual replacement item never bought
+FAIL modern_id_rebuilt_manual missing listing never submitted
+METRIC modern_id_rebuilt_tier wrong=1 unavailable=1 wrong_cost=800 calls=4 id_reads=0 link_reads=0 spent=810 frames=1
+FAIL modern_id_rebuilt_tier replacement item never bought
+FAIL modern_id_rebuilt_tier missing listing never submitted
+FAIL modern_id each same-pass task rechecks identity
+METRIC modern_id_stable calls=40 passes=5 id_reads=0 link_reads=0 frames=1
+METRIC modern_link_debounced_manual wrong=1 unavailable=1 wrong_cost=800 calls=4 id_reads=0 link_reads=0 spent=810 frames=1
+FAIL modern_link_debounced_manual replacement item never bought
+FAIL modern_link_debounced_manual missing listing never submitted
+METRIC modern_link_debounced_tier wrong=1 unavailable=1 wrong_cost=800 calls=4 id_reads=0 link_reads=0 spent=810 frames=1
+FAIL modern_link_debounced_tier replacement item never bought
+FAIL modern_link_debounced_tier missing listing never submitted
+METRIC modern_link_rebuilt_manual wrong=1 unavailable=1 wrong_cost=800 calls=4 id_reads=0 link_reads=0 spent=810 frames=1
+FAIL modern_link_rebuilt_manual replacement item never bought
+FAIL modern_link_rebuilt_manual missing listing never submitted
+METRIC modern_link_rebuilt_tier wrong=1 unavailable=1 wrong_cost=800 calls=4 id_reads=0 link_reads=0 spent=810 frames=1
+FAIL modern_link_rebuilt_tier replacement item never bought
+FAIL modern_link_rebuilt_tier missing listing never submitted
+FAIL modern_link each same-pass task rechecks identity
+METRIC modern_link_stable calls=40 passes=5 id_reads=0 link_reads=0 frames=1
+Vendor slot identity: 660 checks, 36 failures

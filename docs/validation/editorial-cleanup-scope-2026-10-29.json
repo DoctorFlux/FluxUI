@@ -1,0 +1,11 @@
+{
+  "scope": "All actual addon files, including ignored files and bundled libraries; Git internals excluded.",
+  "filesScanned": 1195,
+  "bytesScanned": 33266102,
+  "developmentMarkerMatches": [],
+  "archive": "FluxUI-recovery-20261029T101942Z",
+  "archivedOriginalFilesVerified": 38,
+  "protectedScope": "libraries/assets/manifests byte-verified; no client data edits",
+  "legitimateTerminology": "Blizzard Single-Button Assistant and group assistant roles, local item-rank variables and original game item names are preserved.",
+  "history": "Existing Git commits and main remain unchanged."
+}

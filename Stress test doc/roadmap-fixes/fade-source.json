@@ -1,0 +1,9 @@
+{
+  "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+  "blob": "a1fe94ae627fe3c694d5c38df9f0d1a54eecb84d",
+  "url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_SharedXMLBase/FrameUtil.lua",
+  "verifiedLocalLFBlobMatches": true,
+  "checksPerReplay": 1017,
+  "repeats": 3,
+  "scope": "Pinned native fade-manager source executed with controlled frame/timer/opaque alpha models; native attribution/pixels/taint pending"
+}

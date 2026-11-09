@@ -1,0 +1,229 @@
+local proxyButtons = {}
+local iconHooks = setmetatable({}, {__mode = "k"})
+local tooltipOperation, tooltipButton, tooltipDriver
+local rebuildDriver, rebuildPending
+
+local function TooltipOwnedBy(button, original)
+    if not GameTooltip then return false end
+    if GameTooltip.GetOwner then
+        local owner = GameTooltip:GetOwner()
+        return owner == button or owner == original
+    end
+    if GameTooltip.IsOwned then return GameTooltip:IsOwned(button) or GameTooltip:IsOwned(original) end
+    return true -- Old tooltip APIs still have the explicit hover operation.
+end
+
+local function CancelProxyTooltip(button)
+    if not button then return end
+    button._fluxProxyHovered = false
+    if tooltipOperation and tooltipOperation.button == button then
+        tooltipOperation = nil
+        if tooltipDriver then tooltipDriver:SetScript("OnUpdate", nil); tooltipDriver:Hide() end
+    end
+    if tooltipButton == button then
+        tooltipButton = nil
+        if TooltipOwnedBy(button, button.originalMinimapButton) then GameTooltip:Hide() end
+    end
+end
+
+local function ProxyTooltipCurrent(operation)
+    local button = operation.button
+    return tooltipButton == button and button._fluxProxyHovered
+        and button._fluxProxyEnabled and button.originalMinimapButton == operation.original
+        and (not button.IsShown or button:IsShown())
+end
+
+local function PositionProxyTooltip(button)
+    if not GameTooltip then return end
+    -- Keep the original native owner/data processor for standard handlers.
+    -- Moving the same tooltip retains async data, widgets, colors and lines.
+    if GameTooltip.SetAnchorType then GameTooltip:SetAnchorType("ANCHOR_NONE") end
+    GameTooltip:ClearAllPoints()
+    GameTooltip:SetPoint("LEFT", button, "RIGHT", 5, 0)
+end
+
+local function QueueProxyTooltip(operation)
+    tooltipOperation = operation
+    if not tooltipDriver then tooltipDriver = CreateFrame("Frame"); tooltipDriver:Hide() end
+    tooltipDriver:SetScript("OnUpdate", function(self)
+        local current = tooltipOperation
+        if not current or not ProxyTooltipCurrent(current) then
+            tooltipOperation = nil; self:SetScript("OnUpdate", nil); self:Hide(); return
+        end
+        current.attempts = (current.attempts or 0) + 1
+        local button = current.button
+        if button:GetLeft() and button:GetRight() then
+            -- Clear first: callbacks may start a newer tooltip operation.
+            tooltipOperation = nil; self:SetScript("OnUpdate", nil); self:Hide()
+            current.run()
+        elseif current.attempts >= 10 then
+            tooltipOperation = nil; self:SetScript("OnUpdate", nil); self:Hide()
+        end
+    end)
+    tooltipDriver:Show()
+end
+
+local function ProxyTooltipEnter(button)
+    if tooltipButton then CancelProxyTooltip(tooltipButton) end
+    button._fluxProxyHovered = true
+    tooltipButton = button
+    local original = button.originalMinimapButton
+    if not original or not GameTooltip then return end
+    local operation = {button=button, original=original}
+    operation.run = function()
+        if not ProxyTooltipCurrent(operation) then return end
+        local data = original.dataObject
+        if data and data.OnTooltipShow then
+            GameTooltip:SetOwner(button, "ANCHOR_NONE")
+            PositionProxyTooltip(button); GameTooltip:ClearLines()
+            data.OnTooltipShow(GameTooltip)
+            if ProxyTooltipCurrent(operation) and TooltipOwnedBy(button, original) then GameTooltip:Show() end
+        elseif data and data.OnEnter then
+            data.OnEnter(button)
+        else
+            local onEnter = original:GetScript("OnEnter")
+            if onEnter then
+                GameTooltip:SetOwner(original, "ANCHOR_NONE")
+                GameTooltip:ClearLines()
+                pcall(onEnter, original)
+                if ProxyTooltipCurrent(operation) and TooltipOwnedBy(button, original) then
+                    PositionProxyTooltip(button)
+                    -- A handler may finish layout next frame. Reanchor only
+                    -- while this same owner/hover still owns the tooltip.
+                    QueueProxyTooltip({button=button, original=original, run=function()
+                        if ProxyTooltipCurrent(operation) and TooltipOwnedBy(button, original) then PositionProxyTooltip(button) end
+                    end})
+                end
+            else
+                GameTooltip:SetOwner(button, "ANCHOR_NONE")
+                PositionProxyTooltip(button)
+                GameTooltip:SetText(M:GetFriendlyMinimapButtonName(button.minimapButtonName))
+                GameTooltip:Show()
+            end
+        end
+    end
+    if button:GetLeft() and button:GetRight() then operation.run()
+    else QueueProxyTooltip(operation) end
+end
+
+local function ProxyTooltipLeave(button)
+    local original = button.originalMinimapButton
+    -- A stale leave/hide must not clear another button's active tooltip.
+    local owns = tooltipButton == button
+    CancelProxyTooltip(button)
+    if owns and original then
+        local data = original.dataObject
+        if data and data.OnLeave then pcall(data.OnLeave, button)
+        else
+            local onLeave = original:GetScript("OnLeave")
+            if onLeave then pcall(onLeave, original) end
+        end
+    end
+end
+
+local function BindProxyOriginal(button, name, original)
+    local previous = button.originalMinimapButton
+    if previous and previous ~= original then
+        CancelProxyTooltip(button)
+        if previous._fluxMicroBtn == button then previous._fluxMicroBtn = nil end
+    end
+    button.originalMinimapButton, button.minimapButtonName = original, name
+    button._fluxProxyEnabled = true
+    original._fluxMicroBtn = button
+    local icon = M:GetButtonIconTexture(original)
+    if icon and not iconHooks[icon] then
+        iconHooks[icon] = true
+        local function changed()
+            -- The hook stays on this native icon; dispatch to its current
+            -- enabled proxy, never retain a disabled/replaced proxy closure.
+            local owner = icon:GetParent()
+            local proxy = owner and owner._fluxMicroBtn
+            if proxy and proxy._fluxProxyEnabled then M:UpdateMicroButtonIconFromMinimap(proxy) end
+        end
+        if icon.SetTexture then hooksecurefunc(icon, "SetTexture", changed) end
+        if icon.SetAtlas then hooksecurefunc(icon, "SetAtlas", changed) end
+    end
+    M:UpdateMicroButtonIconFromMinimap(button)
+end
+
+local function QueueMicroMenuRebuild()
+    if rebuildPending or not (FluxMicroMenu and FluxMicroMenu.Rebuild) then return end
+    rebuildPending = true
+    if not rebuildDriver then rebuildDriver = CreateFrame("Frame"); rebuildDriver:Hide() end
+    rebuildDriver:SetScript("OnUpdate", function(self)
+        self:SetScript("OnUpdate", nil); self:Hide(); rebuildPending = false
+        if FluxMicroMenu and FluxMicroMenu.Rebuild then FluxMicroMenu:Rebuild() end
+        if _G.FluxStatusBarUpdateLayout then _G.FluxStatusBarUpdateLayout() end
+    end)
+    rebuildDriver:Show()
+end
+
+function M:RebuildMicroButtons()
+    if self.isUpdating then return end
+    self.isUpdating = true
+    local enabledList = self:GetEnabledButtonsOrdered()
+    local enabledSet = {}
+    for _, name in ipairs(enabledList) do enabledSet[name] = true end
+    for _, button in ipairs(self.createdMicroButtons) do
+        if button and button.minimapButtonName and not enabledSet[button.minimapButtonName] then
+            button._fluxProxyEnabled = false
+            CancelProxyTooltip(button)
+            if button.originalMinimapButton and button.originalMinimapButton._fluxMicroBtn == button then button.originalMinimapButton._fluxMicroBtn = nil end
+            local name = button:GetName()
+            button:Hide(); button:SetParent(nil)
+            if name and _G[name] == button then _G[name] = nil end
+            if name and _G.BUTTON_PRIORITIES then _G.BUTTON_PRIORITIES[name] = nil end
+        end
+    end
+    wipe(self.createdMicroButtons)
+    if #self.scannedButtons == 0 then self:ScanButtons(true) end
+    for i, name in ipairs(enabledList) do
+        local original = self.buttonNameMap[name]
+        if original then
+            local button = self:CreateMicroButtonForMinimap(name, original, i)
+            if button then self.createdMicroButtons[#self.createdMicroButtons+1] = button end
+        end
+    end
+    QueueMicroMenuRebuild()
+    self.isUpdating = false
+end
+
+function M:CreateMicroButtonForMinimap(buttonName, originalButton, orderIndex)
+    if not originalButton then return nil end
+    local globalName = "FluxMinimap2Micro_" .. buttonName:gsub("[^%w]", "_") .. "MicroButton"
+    local priority = 104 + orderIndex
+    if _G.BUTTON_PRIORITIES then _G.BUTTON_PRIORITIES[globalName] = priority end
+    local button = proxyButtons[buttonName] or _G[globalName]
+    if not button then
+        local clickHandler = {OnTooltip=function() end, OnClick=function(self, mouseButton, down)
+            local original = self.originalMinimapButton
+            if not original then return end
+            local data = original.dataObject
+            if data and data.OnClick then data.OnClick(self, mouseButton)
+            else
+                local onClick = original:GetScript("OnClick")
+                if onClick then onClick(original, mouseButton, down) end
+                if mouseButton == "LeftButton" or mouseButton == "RightButton" then
+                    local onMouseUp = original:GetScript("OnMouseUp")
+                    if onMouseUp then onMouseUp(original, mouseButton) end
+                end
+            end
+        end}
+        button = FluxMicroMenu:CreateMicroButton(globalName, self:GetButtonIcon(originalButton),
+            self:GetFriendlyMinimapButtonName(buttonName), nil, clickHandler)
+        if not button then return nil end
+    end
+    proxyButtons[buttonName] = button
+    if not button._fluxProxyHooks then
+        button._fluxProxyHooks = true
+        button:SetScript("OnEnter", ProxyTooltipEnter)
+        button:SetScript("OnLeave", ProxyTooltipLeave)
+        button:HookScript("OnHide", function(self) CancelProxyTooltip(self) end)
+        button:RegisterForClicks("AnyUp")
+    end
+    BindProxyOriginal(button, buttonName, originalButton)
+    _G[globalName] = button
+    button:SetParent(UIParent); button:Show()
+    return button
+end
+

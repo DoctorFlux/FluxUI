@@ -1,0 +1,81 @@
+{
+  "scope": "Loaded Lua module with mocked inventory; process wall time is not addon CPU or FPS.",
+  "baselineMain": "d71f2b9ef0d6675870ab3f12f3d0d0c79bd91b68",
+  "sourceSha256": {
+    "baseline": "b8a31fbabfdd8e79e313b0e1ff736a699aa42d05ba7fb29bec0ca2550b8ed611",
+    "candidate": "2193301d557d4e659a3d285adf663a727f4aa7a6cb445f397e77bd5764e61222",
+    "fixture": "9af96b7b6eeb7fca78cbbec26ca2ac8eba54b5c16f43a5f052b73f3d9e29da5b"
+  },
+  "rows": [
+    {
+      "trial": 1,
+      "kind": "baseline",
+      "exit": 0,
+      "output": "Restock charge bank iterator: 5 checks passed",
+      "wallSeconds": 0.0213
+    },
+    {
+      "trial": 1,
+      "kind": "candidate",
+      "exit": 0,
+      "output": "Restock charge bank iterator: 12 checks passed",
+      "wallSeconds": 0.028
+    },
+    {
+      "trial": 2,
+      "kind": "baseline",
+      "exit": 0,
+      "output": "Restock charge bank iterator: 5 checks passed",
+      "wallSeconds": 0.0183
+    },
+    {
+      "trial": 2,
+      "kind": "candidate",
+      "exit": 0,
+      "output": "Restock charge bank iterator: 12 checks passed",
+      "wallSeconds": 0.0191
+    },
+    {
+      "trial": 3,
+      "kind": "baseline",
+      "exit": 0,
+      "output": "Restock charge bank iterator: 5 checks passed",
+      "wallSeconds": 0.0179
+    },
+    {
+      "trial": 3,
+      "kind": "candidate",
+      "exit": 0,
+      "output": "Restock charge bank iterator: 12 checks passed",
+      "wallSeconds": 0.018
+    },
+    {
+      "trial": 4,
+      "kind": "baseline",
+      "exit": 0,
+      "output": "Restock charge bank iterator: 5 checks passed",
+      "wallSeconds": 0.018
+    },
+    {
+      "trial": 4,
+      "kind": "candidate",
+      "exit": 0,
+      "output": "Restock charge bank iterator: 12 checks passed",
+      "wallSeconds": 0.0173
+    },
+    {
+      "trial": 5,
+      "kind": "baseline",
+      "exit": 0,
+      "output": "Restock charge bank iterator: 5 checks passed",
+      "wallSeconds": 0.0197
+    },
+    {
+      "trial": 5,
+      "kind": "candidate",
+      "exit": 0,
+      "output": "Restock charge bank iterator: 12 checks passed",
+      "wallSeconds": 0.0209
+    }
+  ]
+}
