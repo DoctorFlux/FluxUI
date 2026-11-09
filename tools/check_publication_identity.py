@@ -59,8 +59,8 @@ def pre_push(stream):
         if set(local_sha) == {"0"}:
             raise ValueError("Deleting the published main branch is not permitted by this hook")
         count += revision(local_sha)
-    if not count:
-        raise ValueError("No main publication reference to verify")
+    # Git also invokes this hook when main is already up to date. Empty input
+    # publishes nothing; actual updates still verify their complete ancestry.
     return count
 
 

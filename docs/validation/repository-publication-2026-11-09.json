@@ -58,7 +58,8 @@
     "existingSyntaxFilesPassed": 930,
     "documentation": "PASS;963classified sources;602TOC/XML reachable;15629links before completion record",
     "runtimeSettingsUIChanges": "None; existing native acceptance limitations unchanged",
-    "completionDocumentation": "PASS;963classified sources;602TOC/XML reachable;15630links"
+    "completionDocumentation": "PASS;963classified sources;602TOC/XML reachable;15630links",
+    "actualNoOpPushDryRun": "PASS; real updates retain full ancestry check"
   },
   "policy": {
     "localHooksPath": ".githooks",
@@ -67,7 +68,8 @@
     "mainOnlyPushGuard": true,
     "reachableAncestryChecked": true,
     "readOnlyCIPostPushDetection": true,
-    "limitations": "GitHub has no contributor blacklist. Administrators can bypass local controls; do not claim an unconditional platform ban. Contributor graph caching is outside local control."
+    "limitations": "GitHub has no contributor blacklist. Administrators can bypass local controls; do not claim an unconditional platform ban. Contributor graph caching is outside local control.",
+    "alreadyUpToDatePushAllowed": true
   },
   "verifiedUTC": "2026-11-09T08:45:39.714559+00:00"
 }

@@ -29,6 +29,7 @@ The checked-in guard has three local entry points:
 - `pre-push` checks every reachable commit in the proposed main history and
   refuses other branches, tags and deletion of main. This prevents an old tag or
   branch from accidentally importing unwanted publication history.
+  An already-up-to-date push publishes nothing and is allowed.
 
 Activate the hooks with `git config core.hooksPath .githooks`. Both local identity
 configuration fields must use the approved name/email. Do not use `--no-verify`,

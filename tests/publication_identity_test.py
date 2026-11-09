@@ -51,7 +51,10 @@ class PublicationPolicy(unittest.TestCase):
         with patch.object(policy, "revision", return_value=1) as check:
             self.assertEqual(policy.pre_push(io.StringIO("refs/heads/main "+commit+" refs/heads/main "+"0"*40+"\n")), 1)
             check.assert_called_once_with(commit)
-        for entry in ("", "malformed\n", "main "+commit+" refs/tags/old "+commit+"\n",
+        with patch.object(policy, "revision") as check:
+            self.assertEqual(policy.pre_push(io.StringIO("")), 0)
+            check.assert_not_called()
+        for entry in ("malformed\n", "main "+commit+" refs/tags/old "+commit+"\n",
                       "main "+"0"*40+" refs/heads/main "+commit+"\n", "main nope refs/heads/main "+commit+"\n"):
             with self.subTest(entry=entry), self.assertRaises(ValueError):
                 policy.pre_push(io.StringIO(entry))

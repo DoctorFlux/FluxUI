@@ -14,6 +14,9 @@ docs963sources/602reachable/15630links PASS. No runtime/settings changes or forc
 push. The CLI unexpectedly copied its device code despite no clipboard flag;
 reported promptly. Later browser opening was explicitly authorized by the user.
 Completion records are a normal follow-up publication commit.
+Final repeat-push check reproduced an empty-input hook rejection on an already
+up-to-date main. Allow that no-op while retaining complete checks for real
+updates; regression and actual dry-run checks pass.
 [Evidence](validation/repository-publication-2026-11-09.json).
 
 9 November FOCUS-SECURE-VISIBILITY-20261109: preserved actual-file/history/settings
