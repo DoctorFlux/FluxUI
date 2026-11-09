@@ -1,0 +1,7 @@
+{
+  "fullReport": "docs/validation/menu-press-full-2026-11-09.json",
+  "pass": 265,
+  "syntaxFiles": 932,
+  "drift": [],
+  "normalization": "CRLF to LF"
+}

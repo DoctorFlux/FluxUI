@@ -1,0 +1,20 @@
+{
+  "date": "2026-11-09",
+  "change_id": "BAG-ITEM-TARGETING-20261109",
+  "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\09\\01a1c020-23fd-7cf0-991c-338e589980c3\\bag-targeting-checkpoint-20261109T115303Z",
+  "sourceFiles": 2395,
+  "integrity": "All source ZIP entry SHA256, CRC and all-ref history bundle verified",
+  "sha256": {
+    "source.zip": "d9f8ac912d7bf4f3e310ed4e9e845dfb6e5b778c99d32359723747746a24f780",
+    "history.bundle": "59600670adf20fae425be27f3435aeb6e7723a33d31f0c4f3968264d0a7289b8"
+  },
+  "settingsMetadataFiles": 120,
+  "settingsScope": "Read-only disk metadata; no live memory or quiescent backup claimed",
+  "settingsWrites": false,
+  "baseline": {
+    "Other/FluxInputDebug.lua": "82c423e408ca31a33fa7837ab811b46bde990844546899ed539bff0ad50412c0",
+    "tests/input_diagnostics.lua": "55e5f7577c7bce607d7311e79b38ed110714f046262c07776de7e74e177d2652",
+    "Inventory/Restock/Junk/FluxJunkOverlay.lua": "ef94f0c14defe12b12c513de5795c9a25eea2b84d3396a700a849ab8049dfaaf",
+    "MicroMenu/FluxCombinedBagHeader.lua": "3b21d5882ec78c7591a86f0f2dcb92b5ae28c9b0994c4f8ccdff1262af835223"
+  }
+}

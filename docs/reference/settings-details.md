@@ -1290,143 +1290,161 @@ Sets button size to 90% and spacing offset to -2 for the current micro menu bar 
 
 [AddonOptions/FluxOptionsNameplates.lua](../../AddonOptions/FluxOptionsNameplates.lua)
 
-### &lt;anonymous&gt; · name · L63
+### &lt;anonymous&gt; · name · L67
 
-Source: [AddonOptions/FluxOptionsNameplates.lua:63](../../AddonOptions/FluxOptionsNameplates.lua#L63). Type: `"toggle"`.
-
-| Contract | Source expression / implementation |
-|---|---|
-| get | `function() local api = ThreatAPI() if api and api.NameplateDisplayEnabled then return api.NameplateDisplayEnabled(key) end return true end` [source](../../AddonOptions/FluxOptionsNameplates.lua#L69) |
-| set | `function(_, v) local api = ThreatAPI() if api and api.SetNameplateDisplay then api.SetNameplateDisplay(key, v) end end` [source](../../AddonOptions/FluxOptionsNameplates.lua#L76) |
-
-### headerThreat · Threat · L87
-
-Source: [AddonOptions/FluxOptionsNameplates.lua:87](../../AddonOptions/FluxOptionsNameplates.lua#L87). Type: `"header"`.
+Source: [AddonOptions/FluxOptionsNameplates.lua:67](../../AddonOptions/FluxOptionsNameplates.lua#L67). Type: `"toggle"`.
 
 | Contract | Source expression / implementation |
 |---|---|
+| get | `function() local api = ThreatAPI() if api and api.NameplateDisplayEnabled then return api.NameplateDisplayEnabled(key) end return true end` [source](../../AddonOptions/FluxOptionsNameplates.lua#L73) |
+| set | `function(_, v) local api = ThreatAPI() if api and api.SetNameplateDisplay then api.SetNameplateDisplay(key, v) end end` [source](../../AddonOptions/FluxOptionsNameplates.lua#L80) |
 
-### threatDesc · Flux draws a threat-colored border and your threat rank and percent (100% = you have aggro) on enemy NPC name… · L92
+### headerThreat · Threat · L91
 
-Source: [AddonOptions/FluxOptionsNameplates.lua:92](../../AddonOptions/FluxOptionsNameplates.lua#L92). Type: `"description"`.
+Source: [AddonOptions/FluxOptionsNameplates.lua:91](../../AddonOptions/FluxOptionsNameplates.lua#L91). Type: `"header"`.
 
 | Contract | Source expression / implementation |
 |---|---|
 
-### visibilityMode · Threat visibility · L98
+### threatDesc · Flux draws a threat-colored border and your threat rank and percent (100% = you have aggro) on enemy NPC name… · L96
 
-Source: [AddonOptions/FluxOptionsNameplates.lua:98](../../AddonOptions/FluxOptionsNameplates.lua#L98). Type: `"select"`.
+Source: [AddonOptions/FluxOptionsNameplates.lua:96](../../AddonOptions/FluxOptionsNameplates.lua#L96). Type: `"description"`.
+
+| Contract | Source expression / implementation |
+|---|---|
+
+### visibilityMode · Threat visibility · L102
+
+Source: [AddonOptions/FluxOptionsNameplates.lua:102](../../AddonOptions/FluxOptionsNameplates.lua#L102). Type: `"select"`.
 
 When Flux nameplate threat visuals are shown. Group = party/raid only.
 
 | Contract | Source expression / implementation |
 |---|---|
-| values | `{ group = "In group only", always = "Always", never = "Never", }` [source](../../AddonOptions/FluxOptionsNameplates.lua#L104) |
-| get | `function() return EnsureNameplateThreatDB().visibilityMode or "group" end` [source](../../AddonOptions/FluxOptionsNameplates.lua#L109) |
-| set | `function(_, v) if v ~= "always" and v ~= "never" and v ~= "group" then v = "group" end EnsureNameplateThreatDB().visibilityMode = v RefreshNameplatesFromDB() end` [source](../../AddonOptions/FluxOptionsNameplates.lua#L112) |
+| values | `{ group = "In group only", always = "Always", never = "Never", }` [source](../../AddonOptions/FluxOptionsNameplates.lua#L108) |
+| get | `function() return EnsureNameplateThreatDB().visibilityMode or "group" end` [source](../../AddonOptions/FluxOptionsNameplates.lua#L113) |
+| set | `function(_, v) if v ~= "always" and v ~= "never" and v ~= "group" then v = "group" end EnsureNameplateThreatDB().visibilityMode = v RefreshNameplatesFromDB() end` [source](../../AddonOptions/FluxOptionsNameplates.lua#L116) |
 
-### npcThreatBorder · NPC threat border + rank/% · L120
+### npcThreatBorder · NPC threat border + rank/% · L124
 
-Source: [AddonOptions/FluxOptionsNameplates.lua:120](../../AddonOptions/FluxOptionsNameplates.lua#L120). Type: `"toggle"`.
+Source: [AddonOptions/FluxOptionsNameplates.lua:124](../../AddonOptions/FluxOptionsNameplates.lua#L124). Type: `"toggle"`.
 
 Color the nameplate border from your threat on enemy NPCs and show threat rank and percent under the health bar.
 
 | Contract | Source expression / implementation |
 |---|---|
-| get | `function() return EnsureNameplateThreatDB().npcThreatBorder ~= false end` [source](../../AddonOptions/FluxOptionsNameplates.lua#L126) |
-| set | `function(_, v) EnsureNameplateThreatDB().npcThreatBorder = v and true or false RefreshNameplatesFromDB() end` [source](../../AddonOptions/FluxOptionsNameplates.lua#L129) |
+| get | `function() return EnsureNameplateThreatDB().npcThreatBorder ~= false end` [source](../../AddonOptions/FluxOptionsNameplates.lua#L130) |
+| set | `function(_, v) EnsureNameplateThreatDB().npcThreatBorder = v and true or false RefreshNameplatesFromDB() end` [source](../../AddonOptions/FluxOptionsNameplates.lua#L133) |
 
-### showNumericThreat · Show threat percentage · L134
+### showNumericThreat · Show threat percentage · L138
 
-Source: [AddonOptions/FluxOptionsNameplates.lua:134](../../AddonOptions/FluxOptionsNameplates.lua#L134). Type: `"toggle"`.
+Source: [AddonOptions/FluxOptionsNameplates.lua:138](../../AddonOptions/FluxOptionsNameplates.lua#L138). Type: `"toggle"`.
 
 Shows tank-relative threat % (100% = you have aggro) on nameplates and on the Flux target/focus threat bar.
 
 | Contract | Source expression / implementation |
 |---|---|
-| get | `function() local api = ThreatAPI() if api and api.ShowNumeric then return api.ShowNumeric() end return true end` [source](../../AddonOptions/FluxOptionsNameplates.lua#L140) |
-| set | `function(_, v) local api = ThreatAPI() if api and api.SetShowNumeric then api.SetShowNumeric(v) end RefreshNameplatesFromDB() if FluxUnitFrames_ApplyThreatBarOptionsFromDB then FluxUnitFrames_ApplyThreatBarOptionsFromDB() end end` [source](../../AddonOptions/FluxOptionsNameplates.lua#L147) |
+| get | `function() local api = ThreatAPI() if api and api.ShowNumeric then return api.ShowNumeric() end return true end` [source](../../AddonOptions/FluxOptionsNameplates.lua#L144) |
+| set | `function(_, v) local api = ThreatAPI() if api and api.SetShowNumeric then api.SetShowNumeric(v) end RefreshNameplatesFromDB() if FluxUnitFrames_ApplyThreatBarOptionsFromDB then FluxUnitFrames_ApplyThreatBarOptionsFromDB() end end` [source](../../AddonOptions/FluxOptionsNameplates.lua#L151) |
 
-### enemyPlayerTarget · Enemy player targeting you · L158
+### enemyPlayerTarget · Enemy player targeting you · L162
 
-Source: [AddonOptions/FluxOptionsNameplates.lua:158](../../AddonOptions/FluxOptionsNameplates.lua#L158). Type: `"toggle"`.
+Source: [AddonOptions/FluxOptionsNameplates.lua:162](../../AddonOptions/FluxOptionsNameplates.lua#L162). Type: `"toggle"`.
 
 Red nameplate border when an enemy player is targeting you.
 
 | Contract | Source expression / implementation |
 |---|---|
-| get | `function() return EnsureNameplateThreatDB().enemyPlayerTarget ~= false end` [source](../../AddonOptions/FluxOptionsNameplates.lua#L164) |
-| set | `function(_, v) EnsureNameplateThreatDB().enemyPlayerTarget = v and true or false RefreshNameplatesFromDB() end` [source](../../AddonOptions/FluxOptionsNameplates.lua#L167) |
+| get | `function() return EnsureNameplateThreatDB().enemyPlayerTarget ~= false end` [source](../../AddonOptions/FluxOptionsNameplates.lua#L168) |
+| set | `function(_, v) EnsureNameplateThreatDB().enemyPlayerTarget = v and true or false RefreshNameplatesFromDB() end` [source](../../AddonOptions/FluxOptionsNameplates.lua#L171) |
 
-### headerBlizzardThreat · Blizzard nameplate threat · L172
+### headerBlizzardThreat · Blizzard nameplate threat · L176
 
-Source: [AddonOptions/FluxOptionsNameplates.lua:172](../../AddonOptions/FluxOptionsNameplates.lua#L172). Type: `"header"`.
-
-| Contract | Source expression / implementation |
-|---|---|
-
-### blizzardThreatDesc · The game's own Progressive / Flash / Health Bar Color threat display (nameplateThreatDisplay). Flux writes th… · L177
-
-Source: [AddonOptions/FluxOptionsNameplates.lua:177](../../AddonOptions/FluxOptionsNameplates.lua#L177). Type: `"description"`.
+Source: [AddonOptions/FluxOptionsNameplates.lua:176](../../AddonOptions/FluxOptionsNameplates.lua#L176). Type: `"header"`.
 
 | Contract | Source expression / implementation |
 |---|---|
 
-### threatWarning · Threat warning · L189
+### blizzardThreatDesc · The game's own Progressive / Flash / Health Bar Color threat display (nameplateThreatDisplay). Flux writes th… · L181
 
-Source: [AddonOptions/FluxOptionsNameplates.lua:189](../../AddonOptions/FluxOptionsNameplates.lua#L189). Type: `"select"`.
+Source: [AddonOptions/FluxOptionsNameplates.lua:181](../../AddonOptions/FluxOptionsNameplates.lua#L181). Type: `"description"`.
+
+| Contract | Source expression / implementation |
+|---|---|
+
+### threatWarning · Threat warning · L193
+
+Source: [AddonOptions/FluxOptionsNameplates.lua:193](../../AddonOptions/FluxOptionsNameplates.lua#L193). Type: `"select"`.
 
 Blizzard threatWarning CVar (tanking/losing aggro indicator). Off / party / raid / always.
 
 | Contract | Source expression / implementation |
 |---|---|
-| values | `{ [0] = "Off", [1] = "In party", [2] = "In raid", [3] = "Always", }` [source](../../AddonOptions/FluxOptionsNameplates.lua#L195) |
-| get | `function() local api = ThreatAPI() if api and api.GetWarningMode then return api.GetWarningMode() end return 3 end` [source](../../AddonOptions/FluxOptionsNameplates.lua#L206) |
-| set | `function(_, v) local api = ThreatAPI() if api and api.SetWarningMode then api.SetWarningMode(v) end end` [source](../../AddonOptions/FluxOptionsNameplates.lua#L213) |
-| hidden | `function() local api = ThreatAPI() return not (api and api.HasWarningCVar and api.HasWarningCVar()) end` [source](../../AddonOptions/FluxOptionsNameplates.lua#L202) |
+| values | `{ [0] = "Off", [1] = "In party", [2] = "In raid", [3] = "Always", }` [source](../../AddonOptions/FluxOptionsNameplates.lua#L199) |
+| get | `function() local api = ThreatAPI() if api and api.GetWarningMode then return api.GetWarningMode() end return 3 end` [source](../../AddonOptions/FluxOptionsNameplates.lua#L210) |
+| set | `function(_, v) local api = ThreatAPI() if api and api.SetWarningMode then api.SetWarningMode(v) end end` [source](../../AddonOptions/FluxOptionsNameplates.lua#L217) |
+| hidden | `function() local api = ThreatAPI() return not (api and api.HasWarningCVar and api.HasWarningCVar()) end` [source](../../AddonOptions/FluxOptionsNameplates.lua#L206) |
 
-### headerLevel · Level · L223
+### headerLevel · Level · L227
 
-Source: [AddonOptions/FluxOptionsNameplates.lua:223](../../AddonOptions/FluxOptionsNameplates.lua#L223). Type: `"header"`.
-
-| Contract | Source expression / implementation |
-|---|---|
-
-### levelDesc · On Modern nameplate style, Flux shows a smaller "Lvl. N" under the right side of the health bar. · L228
-
-Source: [AddonOptions/FluxOptionsNameplates.lua:228](../../AddonOptions/FluxOptionsNameplates.lua#L228). Type: `"description"`.
+Source: [AddonOptions/FluxOptionsNameplates.lua:227](../../AddonOptions/FluxOptionsNameplates.lua#L227). Type: `"header"`.
 
 | Contract | Source expression / implementation |
 |---|---|
 
-### levelOverlayEnabled · Show level overlay (Modern style) · L234
+### levelDesc · On Modern nameplate style, Flux shows a smaller "Lvl. N" under the right side of the health bar. · L232
 
-Source: [AddonOptions/FluxOptionsNameplates.lua:234](../../AddonOptions/FluxOptionsNameplates.lua#L234). Type: `"toggle"`.
+Source: [AddonOptions/FluxOptionsNameplates.lua:232](../../AddonOptions/FluxOptionsNameplates.lua#L232). Type: `"description"`.
+
+| Contract | Source expression / implementation |
+|---|---|
+
+### levelOverlayEnabled · Show level overlay (Modern style) · L238
+
+Source: [AddonOptions/FluxOptionsNameplates.lua:238](../../AddonOptions/FluxOptionsNameplates.lua#L238). Type: `"toggle"`.
 
 Flux level text/skull under the health text on Modern-style nameplates. Ignored while the Classic health-bar style is active.
 
 | Contract | Source expression / implementation |
 |---|---|
-| get | `function() return EnsureNameplateThreatDB().levelOverlayEnabled ~= false end` [source](../../AddonOptions/FluxOptionsNameplates.lua#L240) |
-| set | `function(_, v) EnsureNameplateThreatDB().levelOverlayEnabled = v and true or false RefreshNameplatesFromDB() end` [source](../../AddonOptions/FluxOptionsNameplates.lua#L243) |
+| get | `function() return EnsureNameplateThreatDB().levelOverlayEnabled ~= false end` [source](../../AddonOptions/FluxOptionsNameplates.lua#L244) |
+| set | `function(_, v) EnsureNameplateThreatDB().levelOverlayEnabled = v and true or false RefreshNameplatesFromDB() end` [source](../../AddonOptions/FluxOptionsNameplates.lua#L247) |
 
-### countdownHeader · Buff / debuff countdown · L250
+### headerQuestProgress · Quest progress · L254
 
-Source: [AddonOptions/FluxOptionsNameplates.lua:250](../../AddonOptions/FluxOptionsNameplates.lua#L250). Type: `"header"`.
-
-| Contract | Source expression / implementation |
-|---|---|
-
-### aurasDesc · Countdown digits use the same Flux 12px overlay as Classic on every client. Size: edit FLUX_NAMEPLATE_AURA_CO… · L256
-
-Source: [AddonOptions/FluxOptionsNameplates.lua:256](../../AddonOptions/FluxOptionsNameplates.lua#L256). Type: `"description"`.
+Source: [AddonOptions/FluxOptionsNameplates.lua:254](../../AddonOptions/FluxOptionsNameplates.lua#L254). Type: `"header"`.
 
 | Contract | Source expression / implementation |
 |---|---|
 
-### &lt;anonymous&gt; · Nameplates · L263
+### questOverlayEnabled · Show quest kill / loot progress · L257
 
-Source: [AddonOptions/FluxOptionsNameplates.lua:263](../../AddonOptions/FluxOptionsNameplates.lua#L263). Type: `"group"`.
+Source: [AddonOptions/FluxOptionsNameplates.lua:257](../../AddonOptions/FluxOptionsNameplates.lua#L257). Type: `"toggle"`.
+
+Show a kill or loot icon and your current / required count below the left edge of quest mob nameplates. Uses Questie when loaded, otherwise available Blizzard quest information. Disables Questie's own nameplate marker while enabled.
+
+| Contract | Source expression / implementation |
+|---|---|
+| get | `function() return EnsureNameplateThreatDB().questOverlayEnabled ~= false end` [source](../../AddonOptions/FluxOptionsNameplates.lua#L262) |
+| set | `function(_, value) EnsureNameplateThreatDB().questOverlayEnabled = value and true or false RefreshNameplatesFromDB() end` [source](../../AddonOptions/FluxOptionsNameplates.lua#L263) |
+
+### countdownHeader · Buff / debuff countdown · L269
+
+Source: [AddonOptions/FluxOptionsNameplates.lua:269](../../AddonOptions/FluxOptionsNameplates.lua#L269). Type: `"header"`.
+
+| Contract | Source expression / implementation |
+|---|---|
+
+### aurasDesc · Countdown digits use the same Flux 12px overlay as Classic on every client. Size: edit FLUX_NAMEPLATE_AURA_CO… · L275
+
+Source: [AddonOptions/FluxOptionsNameplates.lua:275](../../AddonOptions/FluxOptionsNameplates.lua#L275). Type: `"description"`.
+
+| Contract | Source expression / implementation |
+|---|---|
+
+### &lt;anonymous&gt; · Nameplates · L282
+
+Source: [AddonOptions/FluxOptionsNameplates.lua:282](../../AddonOptions/FluxOptionsNameplates.lua#L282). Type: `"group"`.
 
 | Contract | Source expression / implementation |
 |---|---|
@@ -1437,9 +1455,9 @@ Arguments select storage keys, unit names, labels, fallback values, ordering, an
 
 | Site | Factory and arguments |
 |---|---|
-| [AddonOptions/FluxOptionsNameplates.lua:183](../../AddonOptions/FluxOptionsNameplates.lua#L183) | `BlizzardThreatToggle("Progressive", "Progressive", "Blizzard progressive aggro highlight on enemy nameplates.", 6.2)` |
-| [AddonOptions/FluxOptionsNameplates.lua:185](../../AddonOptions/FluxOptionsNameplates.lua#L185) | `BlizzardThreatToggle("Flash", "Flash", "Blizzard aggro flash on enemy nameplates.", 6.3)` |
-| [AddonOptions/FluxOptionsNameplates.lua:187](../../AddonOptions/FluxOptionsNameplates.lua#L187) | `BlizzardThreatToggle("HealthBarColor", "Health Bar Color", "Blizzard threat coloring on the nameplate health bar. The Flux border is separate.", 6.4)` |
+| [AddonOptions/FluxOptionsNameplates.lua:187](../../AddonOptions/FluxOptionsNameplates.lua#L187) | `BlizzardThreatToggle("Progressive", "Progressive", "Blizzard progressive aggro highlight on enemy nameplates.", 6.2)` |
+| [AddonOptions/FluxOptionsNameplates.lua:189](../../AddonOptions/FluxOptionsNameplates.lua#L189) | `BlizzardThreatToggle("Flash", "Flash", "Blizzard aggro flash on enemy nameplates.", 6.3)` |
+| [AddonOptions/FluxOptionsNameplates.lua:191](../../AddonOptions/FluxOptionsNameplates.lua#L191) | `BlizzardThreatToggle("HealthBarColor", "Health Bar Color", "Blizzard threat coloring on the nameplate health bar. The Flux border is separate.", 6.4)` |
 
 ## FluxOptionsRaidFrame.lua
 

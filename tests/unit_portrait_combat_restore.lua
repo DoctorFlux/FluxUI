@@ -25,10 +25,12 @@ local env=setmetatable({UF=UF,Party=Party,ns={PartyFrames=Party,Border=border},B
  SafeBooleanTest=function(v,fallback)if type(v)=='boolean'then return v end;return fallback end,
  Secret=function(v)return type(v)=='table'end,RAID_CLASS_COLORS={MAGE={r=.2,g=.6,b=1}},
  UnitIsPlayer=function()return true end,UnitClass=function()return 'Mage','MAGE'end,
+ ClassColorForUnit=function()return {r=.2,g=.6,b=1}end,
  FluxUnitFrames_IsPortraitCombatTintEnabled=function()return state.enabled end,
  UnitExists=function()return true end,UnitAffectingCombat=function()return state.combat end,
  InCombatLockdown=function()return state.locked end},{__index=_G})
 UF.SetFramePublicLevel=function(f,n)f.level=n end
+UF.ForeverNpcChrome=function()end
 local levelFirst=assert(source:find('function UF.GetFramePublicLevel(frame)',1,true))
 local levelLast=assert(source:find('function UF.SetFramePublicLevel(frame, level)',levelFirst,true))
 assert(load(source:sub(levelFirst,levelLast-1),'@actual-public-level-reader','t',env))()
@@ -43,7 +45,7 @@ for _,unit in ipairs({'party1','party4','focus'})do
    check(pf.bg.shown and pf.bg.color[1]==.4 and pf.backdrop[1]==.4,'combat applies the existing red border/backdrop/plate')
    state.combat=false;UF.UpdatePortraitCombatTint(f)
    check(not pf.bg.shown,'unit leaving combat hides red portrait plate even while player remains in combat')
-   check(math.abs(pf.backdrop[1]-(classColor and .08 or .12))<1e-9,'normal class or accent backdrop is restored')
+   check(math.abs(pf.backdrop[1]-((unit=='focus' or classColor) and .08 or .12))<1e-9,'focus restores its unit class; party restores its class or accent backdrop')
   end
   state.combat,state.enabled=true,true;UF.UpdatePortraitCombatTint(f)
   state.enabled=false;UF.UpdatePortraitCombatTint(f)

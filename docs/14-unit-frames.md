@@ -1,5 +1,47 @@
 # Individual unit frames
 
+9 November focus colors (FOCUS-TARGET-COLORS-20261109): compact focus now
+uses the shared target color painter for its own focused unit instead of the
+party/player accent policy. Main/portrait/outer/atlas borders, backdrops, compact
+divider, cast shell/icon and threat shell follow target's class/NPC palette;
+combat portrait red restores those colors. Party class-color controls remain
+party-only; focus layout, HP/resource fills, aura options and settings remain.
+21,985 focused checks across five client models and 66 portrait-restore checks
+pass; five old-source rejects/candidate passes and 10 matching installed source
+copies retained. External 2382-file/history checkpoint verified; 120 settings
+metadata entries read-only. No new frame, event, timer, polling or settings;
+native pixels/taint/performance pending. All 268 scripts and 935 syntax files
+PASS with no source drift.
+[Scope and evidence](UNITFRAME_COMBAT_TRANSITIONS.md#focus-colors--9-november-follow-up).
+
+9 November unit-frame combat transitions (UNITFRAME-COMBAT-20261109): target
+click host now retains prepared mouse input under native visibility; compact
+focus-target width survives global squeeze and deferred combat sizing. Party
+widths are verified through modeled combat roster transitions. Focus/party/pet
+vertical strips support shields and heal absorbs through shared full-height
+native sinks/clipping, existing options and safe events. 285 visibility/30 width/
+2785 vertical/1035 party checks pass, plus existing menu/geometry checks. Five
+baseline-reject/candidate-pass pairs per fault retained; all 267 scripts and 934 syntax files
+PASS, no source drift; 20 installed runtime copies match.
+External verified 2362-file/history checkpoint and 120 settings metadata retained.
+Four display frames per strip plus modern calculator and one target native
+visibility registration are explicit feature costs; no new poll/ticker/event
+frame. Native clicks/taint/pixels/performance pending on all five clients; no
+connected test tool, game input, settings/profiler writes or publication.
+[Scope, sources and steps](UNITFRAME_COMBAT_TRANSITIONS.md).
+
+9 November rejected cast bar (CAST-REJECTED-20261109): terminal failure/stop
+feedback now requires an active visible cast/channel. Cooldown and other rejected
+attempts cannot summon an idle bar or replace finish/interrupt/custom-timer state.
+Valid interruption/completion, secret-safe routing and appearance retained.
+24,775 focused checks across five clients; five baseline/candidate pairs and
+three rejected controls; party215/timer379 and full267-script/934-syntax checks
+PASS with no source drift. Five mirrored runtime
+copies match. Native input/events/taint/pixels/performance pending; no connected
+test tool, client/settings/profiler interaction or manual sync. Verified external
+2,364-file/history checkpoint and125 read-only settings metadata entries.
+[Scope and evidence](CAST_REJECTED_ATTEMPTS.md).
+
 9 November focus visibility/menu ownership (FOCUS-SECURE-VISIBILITY-20261109):
 focus/focus-target native visibility hides protected mouse descendants instead
 of leaving an alpha-zero hit region; paired lifecycle prevents disabled watches

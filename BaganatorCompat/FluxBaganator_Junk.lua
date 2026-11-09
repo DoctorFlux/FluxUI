@@ -60,6 +60,39 @@ local function ScheduleRefresh()
     Compat.RequestBaganatorRefresh()
 end
 
+-- Registration alone leaves an existing detector (for example RXPGuides)
+-- active. Adopt FluxUI once per profile, then respect later manual choices.
+function Compat.ConfigureBaganatorJunkDetector()
+    local config = _G.BAGANATOR_CONFIG
+    local registry = _G.Baganator and _G.Baganator.CallbackRegistry
+    if type(config) ~= "table" or not registry or not registry.TriggerEvent then
+        return false
+    end
+    local profile = config
+    if type(config.Profiles) == "table" then
+        profile = config.Profiles[_G.BAGANATOR_CURRENT_PROFILE or "DEFAULT"]
+            or config.Profiles.DEFAULT
+    end
+    if type(profile) ~= "table" then
+        return false
+    end
+    local migration = profile.fluxui_junk_detector
+    if type(migration) == "table" and (tonumber(migration.version) or 0) >= 1 then
+        return false
+    end
+    local previous = profile.junk_plugin
+    profile.fluxui_junk_detector = { version = 1, previousPlugin = previous }
+    if previous == "fluxui" then
+        return false
+    end
+    profile.junk_plugin = "fluxui"
+    -- Match Baganator's setting notification so cached icon callbacks and its
+    -- ignored-plugin list agree with the saved profile before rebuilding bags.
+    registry:TriggerEvent("SettingChanged", "junk_plugin")
+    Compat.RequestBaganatorRefresh(true)
+    return true
+end
+
 function Compat.InitJunk()
     local api = _G.Baganator and _G.Baganator.API
     if not api or not api.RegisterJunkPlugin or Compat._junkInitialized then
@@ -85,6 +118,13 @@ function Compat.InitJunk()
         end
         return false
     end)
+
+    Compat.ConfigureBaganatorJunkDetector()
+    local registry = _G.Baganator and _G.Baganator.CallbackRegistry
+    if registry and registry.RegisterCallback then
+        -- Also cover profiles selected later and configuration not ready at init.
+        registry:RegisterCallback("BagShow", Compat.ConfigureBaganatorJunkDetector)
+    end
 
     -- Only re-request Baganator widgets when Flux junk verdicts change.
     -- Bag moves already refresh via Syndicator → Baganator (plugin runs there).

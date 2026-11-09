@@ -1,0 +1,13 @@
+{
+  "date": "2026-11-09",
+  "externalCheckpoint": "cast-rejected-checkpoint-20261109T104735Z",
+  "sourceFiles": 2364,
+  "onDiskSettingsMetadataFiles": 125,
+  "settingsWrites": false,
+  "integrity": "ZIP CRC and all-ref history bundle verification PASS",
+  "archives": {
+    "source.zip": "fd9f49f0dd4263985960c40836c6c1a46ce61f5b056e2302c9d2c41726abadd4",
+    "history.bundle": "b215aef6c150e783db6836903db138f8b83e00f2b14226e89bd6488b37a00358"
+  },
+  "scope": "On-disk metadata only; unsaved game memory excluded"
+}

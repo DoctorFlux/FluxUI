@@ -1,5 +1,52 @@
 # Audit continuity — 7 November 2026
 
+9 November focus colors (FOCUS-TARGET-COLORS-20261109): compact focus now
+uses the shared target color painter for its own focused unit instead of the
+party/player accent policy. Main/portrait/outer/atlas borders, backdrops, compact
+divider, cast shell/icon and threat shell follow target's class/NPC palette;
+combat portrait red restores those colors. Party class-color controls remain
+party-only; focus layout, HP/resource fills, aura options and settings remain.
+21,985 focused checks across five client models and 66 portrait-restore checks
+pass; five old-source rejects/candidate passes and 10 matching installed source
+copies retained. External 2382-file/history checkpoint verified; 120 settings
+metadata entries read-only. No new frame, event, timer, polling or settings;
+native pixels/taint/performance pending. All 268 scripts and 935 syntax files
+PASS with no source drift.
+[Scope and evidence](../docs/UNITFRAME_COMBAT_TRANSITIONS.md#focus-colors--9-november-follow-up).
+
+9 November NAMEPLATE-QUEST-COMPACT-20261109: user requested shorter/smaller quest
+tags with contained icon. Quest font/icon10; host12; total icon/padding16; topY+3
+keeps centreY-3 matching threat/level.371focused plus existing combo/cast checks
+PASS; no new resources, quest/provider changes or game interaction. Native
+visual check remains user-owned.
+[Compact record](../docs/validation/nameplate-quest-compact-2026-11-09.json).
+
+
+9 November unit-frame combat transitions (UNITFRAME-COMBAT-20261109): target
+click host now retains prepared mouse input under native visibility; compact
+focus-target width survives global squeeze and deferred combat sizing. Party
+widths are verified through modeled combat roster transitions. Focus/party/pet
+vertical strips support shields and heal absorbs through shared full-height
+native sinks/clipping, existing options and safe events. 285 visibility/30 width/
+2785 vertical/1035 party checks pass, plus existing menu/geometry checks. Five
+baseline-reject/candidate-pass pairs per fault retained; all 267 scripts and 934 syntax files
+PASS, no source drift; 20 installed runtime copies match.
+External verified 2362-file/history checkpoint and 120 settings metadata retained.
+Four display frames per strip plus modern calculator and one target native
+visibility registration are explicit feature costs; no new poll/ticker/event
+frame. Native clicks/taint/pixels/performance pending on all five clients; no
+connected test tool, game input, settings/profiler writes or publication.
+[Scope, sources and steps](../docs/UNITFRAME_COMBAT_TRANSITIONS.md).
+
+9 November NAMEPLATE-QUEST-PROGRESS-20261109: existing nameplate Core/defaults/
+options add own default-enabled quest kill/loot counters, exact requested TOPLEFT
+at BOTTOMLEFT0,+4 and centreY -3 matching threat/level, Questie association/native fallback and duplicate-marker policy.
+311 focused/seven rejected controls; full suite evidence under docs/validation.
+Native acceptance user-owned and NOT RUN; no FPS/taint/pixel inference, game input,
+sync or publication. External source/history checkpoint verified before runtime.
+See [feature](../docs/19-nameplates.md#quest-kill-and-loot-progress--9-november-2026).
+
+
 <!-- STRESS-FIXES-20261107 -->
 7 November stress fixes (STRESS-FIXES-20261107): the user authorized implementation after the audit/proposal phase. Applied public fade ownership, secret-safe alpha/geometry handling, local Forever driver adapters, accurate/cancellable Respec completion, input invalidation, mutation-safe event delivery, retained FIFO scheduler work, bounded combat drains, raid/nameplate work reduction, hidden-watch suspension, bounded range freshness and auction retry churn. Settings, saved roots, commands, artwork and foreign library ownership are preserved. Combined desktop validation: 232/232 scripts and 896 Lua syntax files PASS; post-suite Lua hashes match. No game input, WTF/profiler writes, commit, push or manual cross-install copy was performed. USER-001 actual failing frame/first taint source, native taint, pixels and CPU/FPS remain pending. Visible character-button polling and coherent auction publication after quiet are intentional safety limits, not claimed eliminated costs. [Current implementation record](applied-fixes/README.md). Earlier no-edit authorization statements below are historical.
 <!-- /STRESS-FIXES-20261107 -->
@@ -124,3 +171,13 @@ independent tests after individual failures. New user stacks go into the error
 intake process, with exact client/build/context and an isolated reproducer where
 possible. USER-001 is the first stack received; frame/action/combat/instance state
 remain unknown. Do not ask the user to guess after they answered that they do not know.
+
+<!-- NPQ-FULL-CURRENT -->
+Latest full checkout:263/265 standalone scripts PASS;932Lua syntax PASS.
+Concurrent unit-frame changes produced two mock failures: `public_geometry_writers.lua`
+needs `DeferProtected` in its test double; `raid_party_frames.lua` needs
+`SetClipsChildren` in its test double. Both reproduce separately. This quest task
+did not edit those owners or tests. Earlier265/265 captures retain their exact
+source scope externally. Quest checks311PASS, seven harmful controls rejected;
+full current source identities/failures are retained in the quest validation JSON.
+<!-- /NPQ-FULL-CURRENT -->

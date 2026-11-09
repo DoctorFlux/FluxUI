@@ -2917,6 +2917,15 @@ function CB.CreateCastBar(frame, unit)
         local castGUID = arg1
         local spellID = arg2
 
+        -- Rejected attempts can send FAILED/STOP without ever starting a cast.
+        -- Terminal feedback belongs only to the active, visible cast; it must
+        -- not summon an idle bar or replace a finish/interrupt/flight timer.
+        if event == "UNIT_SPELLCAST_FAILED" or event == "UNIT_SPELLCAST_INTERRUPTED"
+            or event == "UNIT_SPELLCAST_STOP" or event == "UNIT_CHANNEL_STOP"
+            or event == "UNIT_SPELLCAST_CHANNEL_STOP" or event == "UNIT_SPELLCAST_EMPOWER_STOP" then
+            if not (self.casting or self.channeling) or not self:IsShown() then return end
+        end
+
         -- A missing GUID is allowed by the scoped event path. When a spell ID
         -- is public on both sides, still reject an older spell's terminal event.
         if event == "UNIT_SPELLCAST_STOP" or event == "UNIT_SPELLCAST_FAILED" or event == "UNIT_SPELLCAST_INTERRUPTED" then

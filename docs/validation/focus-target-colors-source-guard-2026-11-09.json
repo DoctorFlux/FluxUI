@@ -1,0 +1,14 @@
+{
+  "date": "2026-11-09",
+  "scriptsPass": 268,
+  "scriptsFail": 0,
+  "syntaxFiles": 935,
+  "syntaxFailures": [],
+  "changedSinceValidation": [],
+  "addedSinceValidation": [],
+  "removedSinceValidation": [],
+  "ownerMatches": {
+    "UnitFrames/FluxUnitFrames_Shared.lua": true,
+    "UnitFrames/FluxUnitFrames_Party.lua": true
+  }
+}

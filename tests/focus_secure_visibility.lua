@@ -152,6 +152,35 @@ for _,client in ipairs(clients)do
  check(not hit(frames.focus.outerBorderFrame) and not hit(frames.focustarget.outerBorderFrame),client..' disabled replacements stay absent after driver tick')
  E.FluxUnitFrames_ApplyRuntimeFocus(true);E.FluxUnitFrames_ApplyRuntimeFocusTarget(true);tick();sync()
  check(hit(frames.focus.outerBorderFrame) and hit(frames.focustarget.outerBorderFrame),client..' re-enabled replacements retain interaction')
+ -- An empty target used to disable mouse OOC and could not restore it when
+ -- first acquired in combat. Replay native visibility on its real click host.
+ if src:find('function UF.ConfigureTargetClickVisibility',1,true)then
+  assert(load(section(src,'function UF.ConfigureTargetClickVisibility','-- Preserve the existing samples'),
+   '@actual-target-click-visibility','t',E))()
+ else ns.UnitFrames.ConfigureTargetClickVisibility=function()end end
+ local target=E.CreateFrame('Button','FluxUnitFrame_target');target.unit='target';target.attrs.unit='target'
+ target.outerBorderFrame=E.CreateFrame('Button','FluxUnitFrameOuter_target',target)
+ st.units.target='alive'
+ E.RegisterUnitWatch(target)
+ ns.UnitFrames.ConfigureTargetClickVisibility(target);tick()
+ ns.UnitFrames.SyncWatchedUnitFrameVisibility(target);drain()
+ -- Addon target event can run before the native unit-watch hides the root.
+ st.units.target=nil
+ ns.UnitFrames.SyncWatchedUnitFrameVisibility(target);drain()
+ tick()
+ check(not hit(target.outerBorderFrame) and target.outerBorderFrame.mouse,client..' empty target hides native hit host with input prepared')
+ local registrations=st.registrations
+ for _=1,20 do ns.UnitFrames.ConfigureTargetClickVisibility(target)end
+ check(st.registrations==registrations,client..' target driver setup is stable')
+ st.combat=true;mouseBefore=st.mouseWrites
+ for _=1,20 do
+  st.units.target='alive';tick();ns.UnitFrames.SyncWatchedUnitFrameVisibility(target);drain()
+  check(hit(target.outerBorderFrame),client..' first target gained in combat accepts native right click')
+  st.units.target=nil;tick();ns.UnitFrames.SyncWatchedUnitFrameVisibility(target);drain()
+  check(not hit(target.outerBorderFrame),client..' cleared combat target releases native hit host')
+ end
+ check(st.mouseWrites==mouseBefore and st.blocked==0,client..' target transitions make no insecure protected mouse writes')
+ st.combat=false
  samples[#samples+1]={client=client,frames=#st.frames,registrations=st.registrations,blocked=st.blocked}
 end
 print('Focus secure visibility: '..checks..' checks; failures='..failures..'; '..#clients..' pinned driver replays; native combat/taint/hit testing pending')

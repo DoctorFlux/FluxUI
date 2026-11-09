@@ -1,0 +1,11 @@
+{
+  "date": "2026-11-09",
+  "sourceFiles": 2351,
+  "externalCheckpoint": "press-input-checkpoint-20261109T103238Z",
+  "sourceZipSHA256": "66ee9b646d1429397f3e1deb7c76666de16abe345af17cf92e481958294a2d9a",
+  "historyBundleSHA256": "342016c8e03368450a70f3f2dc3d8b32ea0815887584ea1883384fac3b9f1a6c",
+  "integrity": "source ZIP CRC and all-ref bundle verification PASS",
+  "onDiskSettingsMetadataFiles": 125,
+  "settingsWrites": false,
+  "scope": "Read-only live on-disk metadata; no claim to unsaved game memory"
+}

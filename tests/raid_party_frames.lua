@@ -63,7 +63,11 @@ for _,client in ipairs({"live","forever","classic","classic_era","classic_annive
     function methods:SetStatusBarTexture()end
     function methods:GetStatusBarTexture()return {SetHorizTile=function()end,SetVertTile=function()end,SetTexCoord=function()end}end
     function methods:SetOrientation(v)self.orientation=v end
+    function methods:SetClipsChildren(v)self.clipsChildren=v end
+    function methods:SetReverseFill(v)self.reverseFill=v end
     function methods:SetMinMaxValues(a,b)self.minimum,self.maximum=a,b end
+    function methods:GetMinMaxValues()return self.minimum,self.maximum end
+    function methods:GetValue()return self.value end
     function methods:SetValue(v)self.value=v end
     function methods:SetStatusBarColor(...)self.color={...}end
     function methods:CreateTexture()
@@ -152,6 +156,10 @@ for _,client in ipairs({"live","forever","classic","classic_era","classic_annive
     UF.GetFramePublicDimensions=function(f)return f._fluxLayoutWidth or f.width or f:GetWidth(),f._fluxLayoutHeight or f.height or f:GetHeight()end
     e.StatusBarSetMinMaxImmediate=function(b,a,z)b:SetMinMaxValues(a,z)end
     e.StatusBarSetValueImmediate=function(b,v)b:SetValue(v)end
+    e.ApplyBlizzardShieldFillToStatusBar=function(b)b:SetStatusBarColor(.14,.33,.7,.7)end
+    e.ApplyBlizzardHealAbsorbFillToStatusBar=function(b)b:SetStatusBarColor(.68,.28,.28,.7)end
+    e.API={SafeUnitGetTotalAbsorbs=function()return 0 end,SafeUnitGetTotalHealAbsorbs=function()return 0 end}
+    e.FluxSafeRegisterUnitEvent=function(frame,event,unit)frame:RegisterUnitEvent(event,unit)end
     local va=assert(ufSource:find("function UF.LayoutVerticalTargetHealth",1,true))
     local vb=assert(ufSource:find("function UF.UpdateHealth(self, unit)",va,true))
     assert(load(ufSource:sub(va,vb-1),"@shared-vertical-target-health","t",e))()
@@ -284,6 +292,7 @@ for _,client in ipairs({"live","forever","classic","classic_era","classic_annive
     check(member._fluxPartyHealthTextAnchor.point[1]=="BOTTOMRIGHT","without pet health text fills the bar for vertical centering")
     check(member._fluxPartyNameTextAnchor.points[1][4]==namePetX,"pet does not unnecessarily narrow the name header")
     e.targets[1]=true;refresh();check(P.targets[1].shown,"native state driver handles combat target acquisition")
+    for i=1,4 do check(P.targets[i].width==30 and P.targets[i].height==121,"party target keeps prepared narrow size through combat roster changes")end
     e.targets[1]=false;refresh();check(not P.targets[1].shown,"native state driver handles combat target loss")
     e.mode="raid";refresh();for _,f in ipairs(P.members)do check(not f.shown,"party mode hides immediately on combat raid conversion")end
     e.mode="solo";refresh();for _,f in ipairs(P.pets)do check(not f.shown,"all pet input rectangles disappear after combat group leave")end
@@ -448,7 +457,7 @@ for _,client in ipairs({"live","forever","classic","classic_era","classic_annive
         "focus target matches party target dimensions and right-edge anchor")
     check(ft.Health.Percent.alpha==0 and ft.Health.Value.alpha==0,"vertical target omits party-target labels")
     local initialWidth=ft.width;e.combat=true;focus.height=100;e.FluxUnitFrames_MatchFocusTargetToFocus()
-    check(ft.width==initialWidth and ft.height==121 and deferred["focustarget.partition"],"combat keeps prepared target geometry and defers protected partition changes")
+    check(ft.width==initialWidth and ft.height==121 and deferred["focustarget.metrics"],"combat keeps prepared target geometry and defers full metrics")
     e.combat=false;e.FluxUnitFrames_MatchFocusTargetToFocus()
     check(ft.height==136,"focus sizing applies target geometry outside combat")
     focus.height=85

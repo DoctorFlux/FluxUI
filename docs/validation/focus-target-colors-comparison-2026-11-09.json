@@ -1,0 +1,75 @@
+{
+  "date": "2026-11-09",
+  "change": "FOCUS-TARGET-COLORS-20261109",
+  "baseline": {
+    "UnitFrames/FluxUnitFrames_Shared.lua": "751a53d383092859673a70ec98ee99a16efee4455284e22a68835207fe158207",
+    "UnitFrames/FluxUnitFrames_Party.lua": "274fc275f93e1d96838c06084814dbd7dbd6ef2a2e29f823efabd15c01a7df01"
+  },
+  "candidate": {
+    "UnitFrames/FluxUnitFrames_Shared.lua": "8593c20228f3d8a40f79bfcd3a743832e106060e0dd851b7cf24721412b0a75d",
+    "UnitFrames/FluxUnitFrames_Party.lua": "dc6b9d1b5667ef01dbdb91275c30d28d3b4a8165e07e13cabcb04d1383305507"
+  },
+  "pairs": [
+    {
+      "baseline": {
+        "exit": 1,
+        "output": "lua: tests/focus_target_colors.lua:8: live custom focus matches target PortraitFrame\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/focus_target_colors.lua:8: in upvalue 'check'\n\ttests/focus_target_colors.lua:9: in local 'same'\n\ttests/focus_target_colors.lua:69: in main chunk\n\t[C]: in ?\n",
+        "wallSeconds": 0.0825055000022985
+      },
+      "candidate": {
+        "exit": 0,
+        "output": "Focus target colors: 21985 checks; five client models; focused-unit class/NPC/opaque colors; combat restoration and all accents; native pixels pending\n",
+        "wallSeconds": 0.027037299994844943
+      }
+    },
+    {
+      "baseline": {
+        "exit": 1,
+        "output": "lua: tests/focus_target_colors.lua:8: live custom focus matches target PortraitFrame\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/focus_target_colors.lua:8: in upvalue 'check'\n\ttests/focus_target_colors.lua:9: in local 'same'\n\ttests/focus_target_colors.lua:69: in main chunk\n\t[C]: in ?\n",
+        "wallSeconds": 0.017324999993434176
+      },
+      "candidate": {
+        "exit": 0,
+        "output": "Focus target colors: 21985 checks; five client models; focused-unit class/NPC/opaque colors; combat restoration and all accents; native pixels pending\n",
+        "wallSeconds": 0.02695780000067316
+      }
+    },
+    {
+      "baseline": {
+        "exit": 1,
+        "output": "lua: tests/focus_target_colors.lua:8: live custom focus matches target PortraitFrame\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/focus_target_colors.lua:8: in upvalue 'check'\n\ttests/focus_target_colors.lua:9: in local 'same'\n\ttests/focus_target_colors.lua:69: in main chunk\n\t[C]: in ?\n",
+        "wallSeconds": 0.017858899984275922
+      },
+      "candidate": {
+        "exit": 0,
+        "output": "Focus target colors: 21985 checks; five client models; focused-unit class/NPC/opaque colors; combat restoration and all accents; native pixels pending\n",
+        "wallSeconds": 0.02655479998793453
+      }
+    },
+    {
+      "baseline": {
+        "exit": 1,
+        "output": "lua: tests/focus_target_colors.lua:8: live custom focus matches target PortraitFrame\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/focus_target_colors.lua:8: in upvalue 'check'\n\ttests/focus_target_colors.lua:9: in local 'same'\n\ttests/focus_target_colors.lua:69: in main chunk\n\t[C]: in ?\n",
+        "wallSeconds": 0.016877999994903803
+      },
+      "candidate": {
+        "exit": 0,
+        "output": "Focus target colors: 21985 checks; five client models; focused-unit class/NPC/opaque colors; combat restoration and all accents; native pixels pending\n",
+        "wallSeconds": 0.026014699978986755
+      }
+    },
+    {
+      "baseline": {
+        "exit": 1,
+        "output": "lua: tests/focus_target_colors.lua:8: live custom focus matches target PortraitFrame\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/focus_target_colors.lua:8: in upvalue 'check'\n\ttests/focus_target_colors.lua:9: in local 'same'\n\ttests/focus_target_colors.lua:69: in main chunk\n\t[C]: in ?\n",
+        "wallSeconds": 0.017687799991108477
+      },
+      "candidate": {
+        "exit": 0,
+        "output": "Focus target colors: 21985 checks; five client models; focused-unit class/NPC/opaque colors; combat restoration and all accents; native pixels pending\n",
+        "wallSeconds": 0.03165930000250228
+      }
+    }
+  ],
+  "scope": "Desktop correctness; timings do not establish native performance"
+}

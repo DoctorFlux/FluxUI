@@ -13,7 +13,8 @@
 -- Forever has no WrapScript. Stock OnClick cannot pass isSecureAction, so
 -- mouse and keys share one useOnKeyDown gate. Do not SetScript OnClick —
 -- calling SecureActionButton_OnClick from addon Lua taints UseAction.
--- Visible hosts register AnyUp with useOnKeyDown false (mouse on release).
+-- Ordinary hosts register AnyUp with useOnKeyDown false (mouse on release).
+-- HUD hosts explicitly opt into AnyDown with useOnKeyDown true for mouse/keys.
 -- Strip keys click a hidden AnyDown proxy that inherits the host attributes.
 local addonName, ns = ...
 local Flux = ns.Flux
@@ -29,9 +30,8 @@ local wrapFrame
 -- KeyBind remaps to LeftButton per CVar. ConjureBind remaps to RightButton.
 -- Extra window: mouse-down is swallowed. Mouse-up falls through so the secure
 -- handler runs the release path (typerelease / typerelease2 / typerelease3).
--- HUD grids / trinkets (opts.onDown): invert that — fire on press, swallow up
--- so AnyDown+AnyUp does not use twice. HUD conjure keys must follow that press
--- path: CVar-gating would swallow down, and this wrap also swallows up.
+-- HUD grids / trinkets (opts.onDown): mouse, use and conjure keys always fire
+-- on press, independently of the action-bar CVar. Swallow up to avoid reuse.
 -- The empower gate follows the same modifier paging the click does: Bars.State
 -- stamps shift-IsEmpowerSpell* / ctrl-IsEmpowerSpell* next to shift-action* /
 -- ctrl-action*, and IsShiftKeyDown / IsControlKeyDown are both in the
@@ -87,39 +87,12 @@ local CLICK_SNIPPET = [[
 
 local CLICK_SNIPPET_ON_DOWN = [[
 	local utility = button and button ~= "LeftButton" and button ~= "RightButton" and self:GetAttribute("flux-utility-key-" .. button)
-	if (button == "KeyBind" or utility) then
-		local IsEmpowerSpell
-		if (IsShiftKeyDown()) then
-			IsEmpowerSpell = self:GetAttribute("shift-IsEmpowerSpell*")
-		elseif (IsControlKeyDown()) then
-			IsEmpowerSpell = self:GetAttribute("ctrl-IsEmpowerSpell*")
-		else
-			IsEmpowerSpell = self:GetAttribute("IsEmpowerSpell*")
-		end
-		if (IsEmpowerSpell == nil) then
-			IsEmpowerSpell = self:GetAttribute("IsEmpowerSpell")
-		end
-		if (down) then
-			if (ActionButtonUseKeyDown or IsEmpowerSpell) then
-				return utility and button or "LeftButton"
-			else
-				return false
-			end
-		else
-			if ((not ActionButtonUseKeyDown and not IsEmpowerSpell) or (IsEmpowerSpell and not empowerTapControls)) then
-				return utility and button or "LeftButton"
-			else
-				return false
-			end
-		end
-	elseif (button == "ConjureBind") then
-		if (down == false) then
-			return false
-		else
-			return "RightButton"
-		end
-	elseif (not down) then
+	if (not down) then
 		return false
+	elseif (button == "KeyBind" or utility) then
+		return utility and button or "LeftButton"
+	elseif (button == "ConjureBind") then
+		return "RightButton"
 	end
 ]]
 
@@ -242,8 +215,8 @@ function Click.Apply(widget, opts)
 	local Restricted = Flux.Restricted
 	if not Click.UsesWrap() then
 		-- Keep the template OnClick (secure). Addon OnClick taints UseAction.
-		widget:RegisterForClicks("AnyUp")
-		if not pcall(widget.SetAttribute, widget, "useOnKeyDown", false) then return false end
+		widget:RegisterForClicks(opts.onDown and "AnyDown" or "AnyUp")
+		if not pcall(widget.SetAttribute, widget, "useOnKeyDown", opts.onDown and true or false) then return false end
 		return pcall(widget.SetAttribute, widget, "pressAndHoldAction", false)
 	end
 	local wrap = EnsureWrap()

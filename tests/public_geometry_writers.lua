@@ -11,6 +11,7 @@ for _,client in ipairs({"era","anniversary","live","forever"})do
     local uf={UsesHudUnitBars=function()return client=="live"or client=="forever"end}
     local api={IsSecretValue=function(v)return v==opaque end,CanAccessValue=function(v)return v~=opaque end}
     local ns={UnitFrames=uf,API=api};local combat=false
+    local deferred={};uf.DeferProtected=function(key,fn)deferred[key]=fn end
     e.InCombatLockdown=function()return combat end
     local function run(code)return assert(load(code,"@production-layout-owner","t",e))("_FluxUI",ns)end
     run("local _,ns=...;local UF,API=ns.UnitFrames,ns.API\n"..slice(shared,"local function ValueIsSecret(value)","local function PlayerDeadOrGhost(unit)"))
@@ -41,7 +42,7 @@ for _,client in ipairs({"era","anniversary","live","forever"})do
     local target=frame(119,50);match(target)
     check(target.actualWidth==222 and math.abs(target.actualHeight-58.2)<1e-8,"real focus target matches public focus visual metrics")
     combat=true;local before=target.actualWidth;focus._fluxLayoutWidth=200;match(target)
-    check(target.actualWidth==before,"focus target retains protected size until combat ends");combat=false
+    check(target.actualWidth==before and deferred["focustarget.metrics"],"focus target retains protected size and queues latest metrics until combat ends");combat=false
 
     -- The pet-target updater is a real nested function, executed unchanged with
     -- its normal owned locals and public PetFrame ledger.

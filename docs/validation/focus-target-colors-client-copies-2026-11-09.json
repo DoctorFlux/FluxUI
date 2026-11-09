@@ -1,0 +1,75 @@
+{
+  "readOnly": true,
+  "copies": [
+    {
+      "client": "_retail_",
+      "source": "UnitFrames/FluxUnitFrames_Shared.lua",
+      "sha256": "8593c20228f3d8a40f79bfcd3a743832e106060e0dd851b7cf24721412b0a75d",
+      "expectedSHA256": "8593c20228f3d8a40f79bfcd3a743832e106060e0dd851b7cf24721412b0a75d",
+      "matches": true
+    },
+    {
+      "client": "_retail_",
+      "source": "UnitFrames/FluxUnitFrames_Party.lua",
+      "sha256": "dc6b9d1b5667ef01dbdb91275c30d28d3b4a8165e07e13cabcb04d1383305507",
+      "expectedSHA256": "dc6b9d1b5667ef01dbdb91275c30d28d3b4a8165e07e13cabcb04d1383305507",
+      "matches": true
+    },
+    {
+      "client": "_forever_",
+      "source": "UnitFrames/FluxUnitFrames_Shared.lua",
+      "sha256": "8593c20228f3d8a40f79bfcd3a743832e106060e0dd851b7cf24721412b0a75d",
+      "expectedSHA256": "8593c20228f3d8a40f79bfcd3a743832e106060e0dd851b7cf24721412b0a75d",
+      "matches": true
+    },
+    {
+      "client": "_forever_",
+      "source": "UnitFrames/FluxUnitFrames_Party.lua",
+      "sha256": "dc6b9d1b5667ef01dbdb91275c30d28d3b4a8165e07e13cabcb04d1383305507",
+      "expectedSHA256": "dc6b9d1b5667ef01dbdb91275c30d28d3b4a8165e07e13cabcb04d1383305507",
+      "matches": true
+    },
+    {
+      "client": "_classic_",
+      "source": "UnitFrames/FluxUnitFrames_Shared.lua",
+      "sha256": "8593c20228f3d8a40f79bfcd3a743832e106060e0dd851b7cf24721412b0a75d",
+      "expectedSHA256": "8593c20228f3d8a40f79bfcd3a743832e106060e0dd851b7cf24721412b0a75d",
+      "matches": true
+    },
+    {
+      "client": "_classic_",
+      "source": "UnitFrames/FluxUnitFrames_Party.lua",
+      "sha256": "dc6b9d1b5667ef01dbdb91275c30d28d3b4a8165e07e13cabcb04d1383305507",
+      "expectedSHA256": "dc6b9d1b5667ef01dbdb91275c30d28d3b4a8165e07e13cabcb04d1383305507",
+      "matches": true
+    },
+    {
+      "client": "_classic_era_",
+      "source": "UnitFrames/FluxUnitFrames_Shared.lua",
+      "sha256": "8593c20228f3d8a40f79bfcd3a743832e106060e0dd851b7cf24721412b0a75d",
+      "expectedSHA256": "8593c20228f3d8a40f79bfcd3a743832e106060e0dd851b7cf24721412b0a75d",
+      "matches": true
+    },
+    {
+      "client": "_classic_era_",
+      "source": "UnitFrames/FluxUnitFrames_Party.lua",
+      "sha256": "dc6b9d1b5667ef01dbdb91275c30d28d3b4a8165e07e13cabcb04d1383305507",
+      "expectedSHA256": "dc6b9d1b5667ef01dbdb91275c30d28d3b4a8165e07e13cabcb04d1383305507",
+      "matches": true
+    },
+    {
+      "client": "_anniversary_",
+      "source": "UnitFrames/FluxUnitFrames_Shared.lua",
+      "sha256": "8593c20228f3d8a40f79bfcd3a743832e106060e0dd851b7cf24721412b0a75d",
+      "expectedSHA256": "8593c20228f3d8a40f79bfcd3a743832e106060e0dd851b7cf24721412b0a75d",
+      "matches": true
+    },
+    {
+      "client": "_anniversary_",
+      "source": "UnitFrames/FluxUnitFrames_Party.lua",
+      "sha256": "dc6b9d1b5667ef01dbdb91275c30d28d3b4a8165e07e13cabcb04d1383305507",
+      "expectedSHA256": "dc6b9d1b5667ef01dbdb91275c30d28d3b4a8165e07e13cabcb04d1383305507",
+      "matches": true
+    }
+  ]
+}

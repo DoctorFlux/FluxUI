@@ -1,0 +1,51 @@
+{
+  "date": "2026-11-09",
+  "records": [
+    {
+      "branch": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_UIPanels_Game/Shared/CastingBarFrame.lua",
+      "blob": "6648bf2520d05266952b71fe4cd5a13b68b6d9d9",
+      "eventPath": "Interface/AddOns/Blizzard_APIDocumentationGenerated/UnitDocumentation.lua",
+      "eventBlob": "6fa1024ea0b4881edbd14ddf43508c6a99075340",
+      "contract": "HandleInterruptOrSpellFailed requires shown+casting+matching castID outside empowered interruption. FAILED is synchronous and may report a rejected attempt; modern payload carries restricted unit/GUID/spell fields. Flux keeps existing unit routing and secret-safe identity fallback only after its own active/visible lifecycle gate."
+    },
+    {
+      "branch": "forever",
+      "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "path": "Interface/AddOns/Blizzard_UIPanels_Game/Shared/CastingBarFrame.lua",
+      "blob": "763660ff16fd063bf36c37ac87f7d2e93ab4a3a8",
+      "eventPath": "Interface/AddOns/Blizzard_APIDocumentationGenerated/UnitDocumentation.lua",
+      "eventBlob": "620b28ad0cc57c13501a196a42c37b8398703a84",
+      "contract": "HandleInterruptOrSpellFailed requires shown+casting+matching castID outside empowered interruption. FAILED is synchronous and may report a rejected attempt; modern payload carries restricted unit/GUID/spell fields. Flux keeps existing unit routing and secret-safe identity fallback only after its own active/visible lifecycle gate."
+    },
+    {
+      "branch": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_UIPanels_Game/Shared/CastingBarFrame.lua",
+      "blob": "3b125d12414582877dc78dfe403c16ab95e1fe08",
+      "eventPath": "Interface/AddOns/Blizzard_APIDocumentationGenerated/UnitDocumentation.lua",
+      "eventBlob": "cf3944af3635324125c3aaa3c8845b0a069e1237",
+      "contract": "HandleInterruptOrSpellFailed requires shown+casting+matching castID outside empowered interruption. FAILED is synchronous and may report a rejected attempt; modern payload carries restricted unit/GUID/spell fields. Flux keeps existing unit routing and secret-safe identity fallback only after its own active/visible lifecycle gate."
+    },
+    {
+      "branch": "classic_era",
+      "commit": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "path": "Interface/AddOns/Blizzard_UIPanels_Game/Shared/CastingBarFrame.lua",
+      "blob": "3b125d12414582877dc78dfe403c16ab95e1fe08",
+      "eventPath": "Interface/AddOns/Blizzard_APIDocumentationGenerated/UnitDocumentation.lua",
+      "eventBlob": "cf3944af3635324125c3aaa3c8845b0a069e1237",
+      "contract": "HandleInterruptOrSpellFailed requires shown+casting+matching castID outside empowered interruption. FAILED is synchronous and may report a rejected attempt; modern payload carries restricted unit/GUID/spell fields. Flux keeps existing unit routing and secret-safe identity fallback only after its own active/visible lifecycle gate."
+    },
+    {
+      "branch": "classic_anniversary",
+      "commit": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "path": "Interface/AddOns/Blizzard_UIPanels_Game/Shared/CastingBarFrame.lua",
+      "blob": "4e283109eb28524109dbece41d4171fdd80898ee",
+      "eventPath": "Interface/AddOns/Blizzard_APIDocumentationGenerated/UnitDocumentation.lua",
+      "eventBlob": "cf3944af3635324125c3aaa3c8845b0a069e1237",
+      "contract": "HandleInterruptOrSpellFailed requires shown+casting+matching castID outside empowered interruption. FAILED is synchronous and may report a rejected attempt; modern payload carries restricted unit/GUID/spell fields. Flux keeps existing unit routing and secret-safe identity fallback only after its own active/visible lifecycle gate."
+    }
+  ],
+  "scope": "Fresh pinned source verification; generated declarations and desktop models do not certify native delivery/taint."
+}

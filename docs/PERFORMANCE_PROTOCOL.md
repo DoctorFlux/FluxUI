@@ -1,5 +1,52 @@
 # Baseline protocol and currency evidence
 
+9 November focus colors (FOCUS-TARGET-COLORS-20261109): compact focus now
+uses the shared target color painter for its own focused unit instead of the
+party/player accent policy. Main/portrait/outer/atlas borders, backdrops, compact
+divider, cast shell/icon and threat shell follow target's class/NPC palette;
+combat portrait red restores those colors. Party class-color controls remain
+party-only; focus layout, HP/resource fills, aura options and settings remain.
+21,985 focused checks across five client models and 66 portrait-restore checks
+pass; five old-source rejects/candidate passes and 10 matching installed source
+copies retained. External 2382-file/history checkpoint verified; 120 settings
+metadata entries read-only. No new frame, event, timer, polling or settings;
+native pixels/taint/performance pending. All 268 scripts and 935 syntax files
+PASS with no source drift.
+[Scope and evidence](UNITFRAME_COMBAT_TRANSITIONS.md#focus-colors--9-november-follow-up).
+
+9 November compact quest badge: geometry-only follow-up keeps the existing
+active-plate driver, quest invalidation and measurement cadence. No frame/event/
+ticker was added.371 focused checks retain idle-query and lifecycle assertions;
+smaller geometry is not a native CPU/FPS measurement.
+[Compact record](validation/nameplate-quest-compact-2026-11-09.json).
+
+
+9 November unit-frame combat transitions (UNITFRAME-COMBAT-20261109): target
+click host now retains prepared mouse input under native visibility; compact
+focus-target width survives global squeeze and deferred combat sizing. Party
+widths are verified through modeled combat roster transitions. Focus/party/pet
+vertical strips support shields and heal absorbs through shared full-height
+native sinks/clipping, existing options and safe events. 285 visibility/30 width/
+2785 vertical/1035 party checks pass, plus existing menu/geometry checks. Five
+baseline-reject/candidate-pass pairs per fault retained; all 267 scripts and 934 syntax files
+PASS, no source drift; 20 installed runtime copies match.
+External verified 2362-file/history checkpoint and 120 settings metadata retained.
+Four display frames per strip plus modern calculator and one target native
+visibility registration are explicit feature costs; no new poll/ticker/event
+frame. Native clicks/taint/pixels/performance pending on all five clients; no
+connected test tool, game input, settings/profiler writes or publication.
+[Scope, sources and steps](UNITFRAME_COMBAT_TRANSITIONS.md).
+
+9 November nameplate quest feature: existing0.25s active-plate driver, coalesced
+quest invalidation and three bounded follow-up polls. One batch shares same-NPC
+Questie refreshes and native quest reads. Five contract models each run1000 settled
+polls with zero additional objective/tooltip queries, text writes or frames;
+visibility changes and duplicate-marker policy still checked. These are feature
+cost/lifecycle assertions, not performance improvement or native CPU/FPS evidence.
+Native matched measurements NOT RUN; profiler untouched.
+[Evidence](validation/nameplate-quest-progress-2026-11-09.json).
+
+
 6 November party/raid rewrite: five alternating baseline/candidate process pairs
 replay700 unit events through the actual dispatcher. Health/power/aura/threat/
 range callbacks fall100→1 per category; prediction300→1; synchronous health

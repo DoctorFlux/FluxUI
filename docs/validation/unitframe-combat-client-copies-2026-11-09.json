@@ -1,0 +1,146 @@
+{
+  "scope": "Read-only verification; no manual sync or client operation",
+  "copies": [
+    {
+      "client": "_retail_",
+      "path": "UnitFrames/FluxUnitFrames_Shared.lua",
+      "expectedSHA256": "751a53d383092859673a70ec98ee99a16efee4455284e22a68835207fe158207",
+      "sha256": "751a53d383092859673a70ec98ee99a16efee4455284e22a68835207fe158207",
+      "matches": true
+    },
+    {
+      "client": "_retail_",
+      "path": "UnitFrames/FluxUnitFrames_FocusTarget.lua",
+      "expectedSHA256": "eb856db4bd2927784cef78b78c46db1549cd84a26230ff39d9d39d77bd54f2d4",
+      "sha256": "eb856db4bd2927784cef78b78c46db1549cd84a26230ff39d9d39d77bd54f2d4",
+      "matches": true
+    },
+    {
+      "client": "_retail_",
+      "path": "UnitFrames/FluxUnitFrames_Party.lua",
+      "expectedSHA256": "274fc275f93e1d96838c06084814dbd7dbd6ef2a2e29f823efabd15c01a7df01",
+      "sha256": "274fc275f93e1d96838c06084814dbd7dbd6ef2a2e29f823efabd15c01a7df01",
+      "matches": true
+    },
+    {
+      "client": "_retail_",
+      "path": "UnitFrames/FluxUnitFrames_PetTarget.lua",
+      "expectedSHA256": "78cf7a34e4ce6065d84ef6e2e207b6d69b97388b11993d7a40ae9092076849d4",
+      "sha256": "78cf7a34e4ce6065d84ef6e2e207b6d69b97388b11993d7a40ae9092076849d4",
+      "matches": true
+    },
+    {
+      "client": "_forever_",
+      "path": "UnitFrames/FluxUnitFrames_Shared.lua",
+      "expectedSHA256": "751a53d383092859673a70ec98ee99a16efee4455284e22a68835207fe158207",
+      "sha256": "751a53d383092859673a70ec98ee99a16efee4455284e22a68835207fe158207",
+      "matches": true
+    },
+    {
+      "client": "_forever_",
+      "path": "UnitFrames/FluxUnitFrames_FocusTarget.lua",
+      "expectedSHA256": "eb856db4bd2927784cef78b78c46db1549cd84a26230ff39d9d39d77bd54f2d4",
+      "sha256": "eb856db4bd2927784cef78b78c46db1549cd84a26230ff39d9d39d77bd54f2d4",
+      "matches": true
+    },
+    {
+      "client": "_forever_",
+      "path": "UnitFrames/FluxUnitFrames_Party.lua",
+      "expectedSHA256": "274fc275f93e1d96838c06084814dbd7dbd6ef2a2e29f823efabd15c01a7df01",
+      "sha256": "274fc275f93e1d96838c06084814dbd7dbd6ef2a2e29f823efabd15c01a7df01",
+      "matches": true
+    },
+    {
+      "client": "_forever_",
+      "path": "UnitFrames/FluxUnitFrames_PetTarget.lua",
+      "expectedSHA256": "78cf7a34e4ce6065d84ef6e2e207b6d69b97388b11993d7a40ae9092076849d4",
+      "sha256": "78cf7a34e4ce6065d84ef6e2e207b6d69b97388b11993d7a40ae9092076849d4",
+      "matches": true
+    },
+    {
+      "client": "_classic_",
+      "path": "UnitFrames/FluxUnitFrames_Shared.lua",
+      "expectedSHA256": "751a53d383092859673a70ec98ee99a16efee4455284e22a68835207fe158207",
+      "sha256": "751a53d383092859673a70ec98ee99a16efee4455284e22a68835207fe158207",
+      "matches": true
+    },
+    {
+      "client": "_classic_",
+      "path": "UnitFrames/FluxUnitFrames_FocusTarget.lua",
+      "expectedSHA256": "eb856db4bd2927784cef78b78c46db1549cd84a26230ff39d9d39d77bd54f2d4",
+      "sha256": "eb856db4bd2927784cef78b78c46db1549cd84a26230ff39d9d39d77bd54f2d4",
+      "matches": true
+    },
+    {
+      "client": "_classic_",
+      "path": "UnitFrames/FluxUnitFrames_Party.lua",
+      "expectedSHA256": "274fc275f93e1d96838c06084814dbd7dbd6ef2a2e29f823efabd15c01a7df01",
+      "sha256": "274fc275f93e1d96838c06084814dbd7dbd6ef2a2e29f823efabd15c01a7df01",
+      "matches": true
+    },
+    {
+      "client": "_classic_",
+      "path": "UnitFrames/FluxUnitFrames_PetTarget.lua",
+      "expectedSHA256": "78cf7a34e4ce6065d84ef6e2e207b6d69b97388b11993d7a40ae9092076849d4",
+      "sha256": "78cf7a34e4ce6065d84ef6e2e207b6d69b97388b11993d7a40ae9092076849d4",
+      "matches": true
+    },
+    {
+      "client": "_classic_era_",
+      "path": "UnitFrames/FluxUnitFrames_Shared.lua",
+      "expectedSHA256": "751a53d383092859673a70ec98ee99a16efee4455284e22a68835207fe158207",
+      "sha256": "751a53d383092859673a70ec98ee99a16efee4455284e22a68835207fe158207",
+      "matches": true
+    },
+    {
+      "client": "_classic_era_",
+      "path": "UnitFrames/FluxUnitFrames_FocusTarget.lua",
+      "expectedSHA256": "eb856db4bd2927784cef78b78c46db1549cd84a26230ff39d9d39d77bd54f2d4",
+      "sha256": "eb856db4bd2927784cef78b78c46db1549cd84a26230ff39d9d39d77bd54f2d4",
+      "matches": true
+    },
+    {
+      "client": "_classic_era_",
+      "path": "UnitFrames/FluxUnitFrames_Party.lua",
+      "expectedSHA256": "274fc275f93e1d96838c06084814dbd7dbd6ef2a2e29f823efabd15c01a7df01",
+      "sha256": "274fc275f93e1d96838c06084814dbd7dbd6ef2a2e29f823efabd15c01a7df01",
+      "matches": true
+    },
+    {
+      "client": "_classic_era_",
+      "path": "UnitFrames/FluxUnitFrames_PetTarget.lua",
+      "expectedSHA256": "78cf7a34e4ce6065d84ef6e2e207b6d69b97388b11993d7a40ae9092076849d4",
+      "sha256": "78cf7a34e4ce6065d84ef6e2e207b6d69b97388b11993d7a40ae9092076849d4",
+      "matches": true
+    },
+    {
+      "client": "_anniversary_",
+      "path": "UnitFrames/FluxUnitFrames_Shared.lua",
+      "expectedSHA256": "751a53d383092859673a70ec98ee99a16efee4455284e22a68835207fe158207",
+      "sha256": "751a53d383092859673a70ec98ee99a16efee4455284e22a68835207fe158207",
+      "matches": true
+    },
+    {
+      "client": "_anniversary_",
+      "path": "UnitFrames/FluxUnitFrames_FocusTarget.lua",
+      "expectedSHA256": "eb856db4bd2927784cef78b78c46db1549cd84a26230ff39d9d39d77bd54f2d4",
+      "sha256": "eb856db4bd2927784cef78b78c46db1549cd84a26230ff39d9d39d77bd54f2d4",
+      "matches": true
+    },
+    {
+      "client": "_anniversary_",
+      "path": "UnitFrames/FluxUnitFrames_Party.lua",
+      "expectedSHA256": "274fc275f93e1d96838c06084814dbd7dbd6ef2a2e29f823efabd15c01a7df01",
+      "sha256": "274fc275f93e1d96838c06084814dbd7dbd6ef2a2e29f823efabd15c01a7df01",
+      "matches": true
+    },
+    {
+      "client": "_anniversary_",
+      "path": "UnitFrames/FluxUnitFrames_PetTarget.lua",
+      "expectedSHA256": "78cf7a34e4ce6065d84ef6e2e207b6d69b97388b11993d7a40ae9092076849d4",
+      "sha256": "78cf7a34e4ce6065d84ef6e2e207b6d69b97388b11993d7a40ae9092076849d4",
+      "matches": true
+    }
+  ],
+  "matches": 20
+}

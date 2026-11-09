@@ -1,5 +1,14 @@
 # Vendor, junk, tier targets, and bank restock
 
+9 November Baganator detector activation: FluxUI now selects its own junk detector
+once per active Baganator profile, with a saved previous detector and normal
+setting/widget/search/layout notifications. Existing RXPGuides/poor-quality/none
+selections are adopted once; later manual choices survive reopen and reload.
+This addon fix supersedes the initial manual-selection remedy. Ranking and
+Useful/restock/conjured protections are retained.403focused and full269-script/
+936-syntax checks PASS; native coins/categories/persistence remain pending.
+[Requirements and evidence](BAGANATOR_JUNK_ACTIVATION.md).
+
 8 November combat consumable junk uses the best usable tier currently in bags;
 learned recipes, stored items and saved/vendor tiers do not count as upgrades.
 Purchasing thresholds and explicit overrides remain. See

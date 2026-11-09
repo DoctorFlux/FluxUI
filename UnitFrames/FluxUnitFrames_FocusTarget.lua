@@ -34,6 +34,10 @@ local function GetFocusFullVisualWidth(ff)
 end
 
 local function MatchFocusBarMetrics(frame)
+    if InCombatLockdown() then
+        UF.DeferProtected("focustarget.metrics", function() FluxUnitFrames_MatchFocusTargetToFocus() end)
+        return
+    end
     local ff = ns.FocusFrame
     if not ff or not ff.GetWidth or not ff.GetHeight then return end
     if ff._fluxCompactFocus then
@@ -43,6 +47,7 @@ local function MatchFocusBarMetrics(frame)
             if UF.GetFramePublicDimensions then local ignored; ignored, height = UF.GetFramePublicDimensions(ff) end
             height = PublicNumber(height) or PublicNumber(ff:GetHeight()) or 85
             local width = tonumber(db.partyTargetWidth) or 30
+            frame._fluxLayoutBaseWidth = width
             height = height + (ff.outerBorderPadding or 36)
             if UF.RecordFrameDimensions then UF.RecordFrameDimensions(frame, width, height) end
             frame:SetSize(width, height)
@@ -184,7 +189,8 @@ local function InitializeFocusTargetFrame()
 
             self:RegisterUnitEvent("UNIT_HEALTH", "focustarget")
             self:RegisterUnitEvent("UNIT_MAXHEALTH", "focustarget")
-        elseif event == "UNIT_HEALTH" or event == "UNIT_MAXHEALTH" or event == "UNIT_CONNECTION" or event == "UNIT_FLAGS" then
+        elseif event == "UNIT_HEALTH" or event == "UNIT_MAXHEALTH" or event == "UNIT_CONNECTION" or event == "UNIT_FLAGS"
+            or event == "UNIT_ABSORB_AMOUNT_CHANGED" or event == "UNIT_HEAL_ABSORB_AMOUNT_CHANGED" then
             UF.UpdateHealth(self, "focustarget")
         elseif (event == "PLAYER_FLAGS_CHANGED" or event == "UNIT_FACTION") and unit == "focustarget" then
             UF.UpdateHealth(self, "focustarget")

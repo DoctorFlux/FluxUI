@@ -12703,8 +12703,8 @@
       "path": "AddonOptions/FluxOptionsDefaults.lua",
       "classification": "active",
       "chapter": "26-options-map.md",
-      "lines": 703,
-      "sha256": "6b72f3bfbf1a3a2fbd617de7ae26849efcf67b9e08681fd90d7e5d4f13f75b22",
+      "lines": 704,
+      "sha256": "053ccb196536d1747ba3d628c097c28fd9969915275cc3a34a8867bc9a6a1333",
       "clients": [
         "camelot",
         "cata",
@@ -14051,8 +14051,8 @@
       "path": "AddonOptions/FluxOptionsNameplates.lua",
       "classification": "active",
       "chapter": "26-options-map.md",
-      "lines": 282,
-      "sha256": "d62156084777d3b16b80fb14fe7afe23caaa3eb854f5cd071aa566ab81205a9c",
+      "lines": 301,
+      "sha256": "8e377a3f713f3b1a2aeaaeb5b7f0d5eab672b24c3d92a2087a4f7c84888617cb",
       "clients": [
         "camelot",
         "cata",
@@ -14069,7 +14069,7 @@
       "settings": [
         {
           "key": "<anonymous>",
-          "line": 63,
+          "line": 67,
           "fields": {
             "type": "\"toggle\"",
             "name": "name",
@@ -14080,34 +14080,34 @@
             "set": "function(_, v)\n            local api = ThreatAPI()\n            if api and api.SetNameplateDisplay then\n                api.SetNameplateDisplay(key, v)\n            end\n        end"
           },
           "field_lines": {
-            "type": 64,
-            "name": 65,
-            "desc": 66,
-            "order": 67,
-            "width": 68,
-            "get": 69,
-            "set": 76
+            "type": 68,
+            "name": 69,
+            "desc": 70,
+            "order": 71,
+            "width": 72,
+            "get": 73,
+            "set": 80
           },
           "parent_line": null
         },
         {
           "key": "headerThreat",
-          "line": 87,
+          "line": 91,
           "fields": {
             "type": "\"header\"",
             "name": "\"Threat\"",
             "order": "1"
           },
           "field_lines": {
-            "type": 88,
-            "name": 89,
-            "order": 90
+            "type": 92,
+            "name": 93,
+            "order": 94
           },
-          "parent_line": 86
+          "parent_line": 90
         },
         {
           "key": "threatDesc",
-          "line": 92,
+          "line": 96,
           "fields": {
             "type": "\"description\"",
             "name": "\"Flux draws a threat-colored border and your threat rank and percent (100% = you have aggro) on enemy NPC nameplates. Enemy players targeting you get a red border.\\n\"",
@@ -14115,16 +14115,16 @@
             "fontSize": "\"small\""
           },
           "field_lines": {
-            "type": 93,
-            "name": 94,
-            "order": 95,
-            "fontSize": 96
+            "type": 97,
+            "name": 98,
+            "order": 99,
+            "fontSize": 100
           },
-          "parent_line": 86
+          "parent_line": 90
         },
         {
           "key": "visibilityMode",
-          "line": 98,
+          "line": 102,
           "fields": {
             "type": "\"select\"",
             "name": "\"Threat visibility\"",
@@ -14136,20 +14136,20 @@
             "set": "function(_, v)\n                if v ~= \"always\" and v ~= \"never\" and v ~= \"group\" then\n                    v = \"group\"\n                end\n                EnsureNameplateThreatDB().visibilityMode = v\n                RefreshNameplatesFromDB()\n            end"
           },
           "field_lines": {
-            "type": 99,
-            "name": 100,
-            "desc": 101,
-            "order": 102,
-            "width": 103,
-            "values": 104,
-            "get": 109,
-            "set": 112
+            "type": 103,
+            "name": 104,
+            "desc": 105,
+            "order": 106,
+            "width": 107,
+            "values": 108,
+            "get": 113,
+            "set": 116
           },
-          "parent_line": 86
+          "parent_line": 90
         },
         {
           "key": "npcThreatBorder",
-          "line": 120,
+          "line": 124,
           "fields": {
             "type": "\"toggle\"",
             "name": "\"NPC threat border + rank/%\"",
@@ -14160,19 +14160,19 @@
             "set": "function(_, v)\n                EnsureNameplateThreatDB().npcThreatBorder = v and true or false\n                RefreshNameplatesFromDB()\n            end"
           },
           "field_lines": {
-            "type": 121,
-            "name": 122,
-            "desc": 123,
-            "order": 124,
-            "width": 125,
-            "get": 126,
-            "set": 129
+            "type": 125,
+            "name": 126,
+            "desc": 127,
+            "order": 128,
+            "width": 129,
+            "get": 130,
+            "set": 133
           },
-          "parent_line": 86
+          "parent_line": 90
         },
         {
           "key": "showNumericThreat",
-          "line": 134,
+          "line": 138,
           "fields": {
             "type": "\"toggle\"",
             "name": "\"Show threat percentage\"",
@@ -14183,19 +14183,19 @@
             "set": "function(_, v)\n                local api = ThreatAPI()\n                if api and api.SetShowNumeric then\n                    api.SetShowNumeric(v)\n                end\n                RefreshNameplatesFromDB()\n                if FluxUnitFrames_ApplyThreatBarOptionsFromDB then\n                    FluxUnitFrames_ApplyThreatBarOptionsFromDB()\n                end\n            end"
           },
           "field_lines": {
-            "type": 135,
-            "name": 136,
-            "desc": 137,
-            "order": 138,
-            "width": 139,
-            "get": 140,
-            "set": 147
+            "type": 139,
+            "name": 140,
+            "desc": 141,
+            "order": 142,
+            "width": 143,
+            "get": 144,
+            "set": 151
           },
-          "parent_line": 86
+          "parent_line": 90
         },
         {
           "key": "enemyPlayerTarget",
-          "line": 158,
+          "line": 162,
           "fields": {
             "type": "\"toggle\"",
             "name": "\"Enemy player targeting you\"",
@@ -14206,34 +14206,34 @@
             "set": "function(_, v)\n                EnsureNameplateThreatDB().enemyPlayerTarget = v and true or false\n                RefreshNameplatesFromDB()\n            end"
           },
           "field_lines": {
-            "type": 159,
-            "name": 160,
-            "desc": 161,
-            "order": 162,
-            "width": 163,
-            "get": 164,
-            "set": 167
+            "type": 163,
+            "name": 164,
+            "desc": 165,
+            "order": 166,
+            "width": 167,
+            "get": 168,
+            "set": 171
           },
-          "parent_line": 86
+          "parent_line": 90
         },
         {
           "key": "headerBlizzardThreat",
-          "line": 172,
+          "line": 176,
           "fields": {
             "type": "\"header\"",
             "name": "\"Blizzard nameplate threat\"",
             "order": "6"
           },
           "field_lines": {
-            "type": 173,
-            "name": 174,
-            "order": 175
+            "type": 177,
+            "name": 178,
+            "order": 179
           },
-          "parent_line": 86
+          "parent_line": 90
         },
         {
           "key": "blizzardThreatDesc",
-          "line": 177,
+          "line": 181,
           "fields": {
             "type": "\"description\"",
             "name": "\"The game's own Progressive / Flash / Health Bar Color threat display (nameplateThreatDisplay). Flux writes these bits with SetCVarBitfield only.\\n\"",
@@ -14241,16 +14241,16 @@
             "fontSize": "\"small\""
           },
           "field_lines": {
-            "type": 178,
-            "name": 179,
-            "order": 180,
-            "fontSize": 181
+            "type": 182,
+            "name": 183,
+            "order": 184,
+            "fontSize": 185
           },
-          "parent_line": 86
+          "parent_line": 90
         },
         {
           "key": "threatWarning",
-          "line": 189,
+          "line": 193,
           "fields": {
             "type": "\"select\"",
             "name": "\"Threat warning\"",
@@ -14264,37 +14264,37 @@
             "set": "function(_, v)\n                local api = ThreatAPI()\n                if api and api.SetWarningMode then\n                    api.SetWarningMode(v)\n                end\n            end"
           },
           "field_lines": {
-            "type": 190,
-            "name": 191,
-            "desc": 192,
-            "order": 193,
-            "width": 194,
-            "values": 195,
-            "sorting": 201,
-            "hidden": 202,
-            "get": 206,
-            "set": 213
+            "type": 194,
+            "name": 195,
+            "desc": 196,
+            "order": 197,
+            "width": 198,
+            "values": 199,
+            "sorting": 205,
+            "hidden": 206,
+            "get": 210,
+            "set": 217
           },
-          "parent_line": 86
+          "parent_line": 90
         },
         {
           "key": "headerLevel",
-          "line": 223,
+          "line": 227,
           "fields": {
             "type": "\"header\"",
             "name": "\"Level\"",
             "order": "10"
           },
           "field_lines": {
-            "type": 224,
-            "name": 225,
-            "order": 226
+            "type": 228,
+            "name": 229,
+            "order": 230
           },
           "parent_line": null
         },
         {
           "key": "levelDesc",
-          "line": 228,
+          "line": 232,
           "fields": {
             "type": "\"description\"",
             "name": "\"On Modern nameplate style, Flux shows a smaller \\\"Lvl. N\\\" under the right side of the health bar.\\n\"",
@@ -14302,16 +14302,16 @@
             "fontSize": "\"small\""
           },
           "field_lines": {
-            "type": 229,
-            "name": 230,
-            "order": 231,
-            "fontSize": 232
+            "type": 233,
+            "name": 234,
+            "order": 235,
+            "fontSize": 236
           },
           "parent_line": null
         },
         {
           "key": "levelOverlayEnabled",
-          "line": 234,
+          "line": 238,
           "fields": {
             "type": "\"toggle\"",
             "name": "\"Show level overlay (Modern style)\"",
@@ -14322,34 +14322,72 @@
             "set": "function(_, v)\n                EnsureNameplateThreatDB().levelOverlayEnabled = v and true or false\n                RefreshNameplatesFromDB()\n            end"
           },
           "field_lines": {
-            "type": 235,
-            "name": 236,
-            "desc": 237,
-            "order": 238,
-            "width": 239,
-            "get": 240,
-            "set": 243
+            "type": 239,
+            "name": 240,
+            "desc": 241,
+            "order": 242,
+            "width": 243,
+            "get": 244,
+            "set": 247
+          },
+          "parent_line": null
+        },
+        {
+          "key": "headerQuestProgress",
+          "line": 254,
+          "fields": {
+            "type": "\"header\"",
+            "name": "\"Quest progress\"",
+            "order": "15"
+          },
+          "field_lines": {
+            "type": 255,
+            "name": 255,
+            "order": 255
+          },
+          "parent_line": null
+        },
+        {
+          "key": "questOverlayEnabled",
+          "line": 257,
+          "fields": {
+            "type": "\"toggle\"",
+            "name": "\"Show quest kill / loot progress\"",
+            "desc": "\"Show a kill or loot icon and your current / required count below the left edge of quest mob nameplates. Uses Questie when loaded, otherwise available Blizzard quest information. Disables Questie's own nameplate marker while enabled.\"",
+            "order": "16",
+            "width": "\"full\"",
+            "get": "function() return EnsureNameplateThreatDB().questOverlayEnabled ~= false end",
+            "set": "function(_, value)\n            EnsureNameplateThreatDB().questOverlayEnabled = value and true or false\n            RefreshNameplatesFromDB()\n        end"
+          },
+          "field_lines": {
+            "type": 258,
+            "name": 259,
+            "desc": 260,
+            "order": 261,
+            "width": 261,
+            "get": 262,
+            "set": 263
           },
           "parent_line": null
         },
         {
           "key": "countdownHeader",
-          "line": 250,
+          "line": 269,
           "fields": {
             "type": "\"header\"",
             "name": "\"Buff / debuff countdown\"",
             "order": "20"
           },
           "field_lines": {
-            "type": 251,
-            "name": 252,
-            "order": 253
+            "type": 270,
+            "name": 271,
+            "order": 272
           },
           "parent_line": null
         },
         {
           "key": "aurasDesc",
-          "line": 256,
+          "line": 275,
           "fields": {
             "type": "\"description\"",
             "name": "\"Countdown digits use the same Flux 12px overlay as Classic on every client. Size: edit FLUX_NAMEPLATE_AURA_COUNTDOWN_SCALE in NamePlates/Countdown.lua (default 0.75), then /reload.\\n\"",
@@ -14357,16 +14395,16 @@
             "fontSize": "\"small\""
           },
           "field_lines": {
-            "type": 257,
-            "name": 258,
-            "order": 259,
-            "fontSize": 260
+            "type": 276,
+            "name": 277,
+            "order": 278,
+            "fontSize": 279
           },
           "parent_line": null
         },
         {
           "key": "<anonymous>",
-          "line": 263,
+          "line": 282,
           "fields": {
             "name": "\"Nameplates\"",
             "type": "\"group\"",
@@ -14374,10 +14412,10 @@
             "args": "args"
           },
           "field_lines": {
-            "name": 264,
-            "type": 265,
-            "order": 266,
-            "args": 267
+            "name": 283,
+            "type": 284,
+            "order": 285,
+            "args": 286
           },
           "parent_line": null
         }
@@ -14385,7 +14423,7 @@
       "functions": [],
       "events": [
         {
-          "line": 272,
+          "line": 291,
           "method": "RegisterEvent",
           "arguments": [
             "\"ADDON_LOADED\""
@@ -14409,7 +14447,7 @@
       ],
       "setting_factories": [
         {
-          "line": 183,
+          "line": 187,
           "method": "BlizzardThreatToggle",
           "arguments": [
             "\"Progressive\"",
@@ -14420,7 +14458,7 @@
           "context": ",},blizzardProgressive="
         },
         {
-          "line": 185,
+          "line": 189,
           "method": "BlizzardThreatToggle",
           "arguments": [
             "\"Flash\"",
@@ -14431,7 +14469,7 @@
           "context": "6.2),blizzardFlash="
         },
         {
-          "line": 187,
+          "line": 191,
           "method": "BlizzardThreatToggle",
           "arguments": [
             "\"HealthBarColor\"",
@@ -21952,8 +21990,8 @@
       "path": "BaganatorCompat/FluxBaganator_Junk.lua",
       "classification": "active compatibility",
       "chapter": "24-baganator-compat.md",
-      "lines": 100,
-      "sha256": "9628a448fa03b024abff3a6008269ea57e244d6b0609452be2d725cd58b43ba9",
+      "lines": 140,
+      "sha256": "377ff605edf44152f1ece42a268dc5466c643105f355e39b9c2df343c46cd990",
       "clients": [
         "camelot",
         "cata",
@@ -21974,8 +22012,12 @@
           "line": 25
         },
         {
+          "name": "Compat.ConfigureBaganatorJunkDetector",
+          "line": 65
+        },
+        {
           "name": "Compat.InitJunk",
-          "line": 63
+          "line": 96
         }
       ],
       "events": [],
@@ -22134,8 +22176,8 @@
       "path": "Bars/_tmp_barsmoke.lua",
       "classification": "development harness",
       "chapter": "11-action-bars.md",
-      "lines": 8225,
-      "sha256": "85882add0b0cef4fe53d08d809dde93be2bc3ab38c50c5e593ff31d6d170efec",
+      "lines": 8224,
+      "sha256": "2d91e924836ffc1b0b2b4a2ad2d03ed184ddedb78a7733701185969dae9f91a6",
       "clients": [],
       "parents": [],
       "settings": [],
@@ -34300,8 +34342,8 @@
       "path": "Core/ButtonFX/Click.lua",
       "classification": "active",
       "chapter": "08-shared-services.md",
-      "lines": 269,
-      "sha256": "bb73ffadabbe938ccb37bc72e4d70b4b0b9779fb7f044d7a035842bfdaa8230f",
+      "lines": 242,
+      "sha256": "525102008a765770e3adbc39292050203573b9acfef0fec54a8b8338270ebc94",
       "clients": [
         "camelot",
         "cata",
@@ -34319,19 +34361,19 @@
       "functions": [
         {
           "name": "Click.SyncCVars",
-          "line": 144
+          "line": 117
         },
         {
           "name": "Click.MirrorTypeRelease",
-          "line": 208
+          "line": 181
         },
         {
           "name": "Click.UsesWrap",
-          "line": 226
+          "line": 199
         },
         {
           "name": "Click.Apply",
-          "line": 234
+          "line": 207
         }
       ],
       "events": [],
@@ -63438,8 +63480,8 @@
       "path": "NamePlates/Core.lua",
       "classification": "active",
       "chapter": "19-nameplates.md",
-      "lines": 866,
-      "sha256": "cea2b96881c2c2789fcffcb48868b099ab20599eb0014451d250bb8ffc1dedf6",
+      "lines": 1204,
+      "sha256": "f6c537838c26809954b623be2796387c7681d521554f6bf17e299ce23302a380",
       "clients": [
         "camelot",
         "cata",
@@ -63481,92 +63523,112 @@
         },
         {
           "name": "NP.GetDB",
-          "line": 94
+          "line": 95
         },
         {
           "name": "NP.IsSecret",
-          "line": 121
+          "line": 125
         },
         {
           "name": "NP.IsUsable",
-          "line": 138
+          "line": 142
         },
         {
           "name": "NP.BoolTest",
-          "line": 150
+          "line": 154
         },
         {
           "name": "NP.GetPlate",
-          "line": 164
+          "line": 168
         },
         {
           "name": "NP.GetParts",
-          "line": 179
+          "line": 183
         },
         {
           "name": "NP.CreateHost",
-          "line": 204
+          "line": 208
         },
         {
           "name": "NP.AttachHost",
-          "line": 214
+          "line": 218
         },
         {
           "name": "NP.ReleaseHost",
-          "line": 230
+          "line": 234
         },
         {
           "name": "NP.UsesClassicHealthBar",
-          "line": 239
+          "line": 243
         },
         {
           "name": "NP.CreateClientPlate",
-          "line": 270
+          "line": 274
         },
         {
           "name": "NP.FitPlate",
-          "line": 285
+          "line": 289
         },
         {
           "name": "NP.IsUnitTarget",
-          "line": 301
+          "line": 305
         },
         {
           "name": "NP.ShowPlate",
-          "line": 309
+          "line": 313
         },
         {
           "name": "NP.SetThreatTint",
-          "line": 333
+          "line": 337
         },
         {
           "name": "NP.ThreatTint",
-          "line": 344
+          "line": 348
         },
         {
           "name": "NP.TintPlateChrome",
-          "line": 404
+          "line": 408
         },
         {
           "name": "NP.ResetPlateChrome",
-          "line": 424
+          "line": 428
         },
         {
           "name": "NP.RegisterModule",
-          "line": 463
+          "line": 467
         },
         {
           "name": "NP.RefreshUnit",
-          "line": 533
+          "line": 537
         },
         {
           "name": "NP.RefreshAll",
-          "line": 539
+          "line": 543
+        },
+        {
+          "name": "Quest.Added",
+          "line": 890
+        },
+        {
+          "name": "Quest.Removed",
+          "line": 893
+        },
+        {
+          "name": "Quest.Refresh",
+          "line": 897
+        },
+        {
+          "name": "Quest.RefreshAll",
+          "line": 898
+        },
+        {
+          "name": "Quest.Poll",
+          "line": 907
         }
       ],
       "events": [
         {
-          "line": 564,
+          "line": 568,
           "method": "RegisterEvent",
           "arguments": [
             "\"NAME_PLATE_UNIT_ADDED\""
@@ -63574,7 +63636,7 @@
           "context": "(\"Frame\")events:"
         },
         {
-          "line": 565,
+          "line": 569,
           "method": "RegisterEvent",
           "arguments": [
             "\"NAME_PLATE_UNIT_REMOVED\""
@@ -63582,7 +63644,7 @@
           "context": "(\"NAME_PLATE_UNIT_ADDED\")events:"
         },
         {
-          "line": 566,
+          "line": 570,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_ENTERING_WORLD\""
@@ -63590,7 +63652,7 @@
           "context": "(\"NAME_PLATE_UNIT_REMOVED\")events:"
         },
         {
-          "line": 567,
+          "line": 571,
           "method": "RegisterEvent",
           "arguments": [
             "\"GROUP_ROSTER_UPDATE\""
@@ -63598,7 +63660,7 @@
           "context": "(\"PLAYER_ENTERING_WORLD\")events:"
         },
         {
-          "line": 568,
+          "line": 572,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_REGEN_ENABLED\""
@@ -63606,7 +63668,7 @@
           "context": "(\"GROUP_ROSTER_UPDATE\")events:"
         },
         {
-          "line": 569,
+          "line": 573,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_REGEN_DISABLED\""
@@ -63621,9 +63683,9 @@
         {
           "name": "FluxUI_DB",
           "lines": [
-            95,
-            98,
-            101
+            96,
+            99,
+            102
           ]
         }
       ]
@@ -66384,8 +66446,8 @@
       "path": "Other/FluxInputDebug.lua",
       "classification": "active",
       "chapter": "25-other-qol.md",
-      "lines": 229,
-      "sha256": "82c423e408ca31a33fa7837ab811b46bde990844546899ed539bff0ad50412c0",
+      "lines": 335,
+      "sha256": "0b53c2948d11e745ff8a53069d7e0d88d35687883c66ea3cd171f73cccd20ff3",
       "clients": [
         "camelot",
         "cata",
@@ -66410,8 +66472,12 @@
           "line": 175
         },
         {
+          "name": "Debug.CaptureBags",
+          "line": 219
+        },
+        {
           "name": "SlashCmdList.FLUXINPUT",
-          "line": 203
+          "line": 290
         }
       ],
       "events": [],
@@ -66420,12 +66486,12 @@
           "kind": "alias",
           "name": "SLASH_FLUXINPUT1",
           "value": "/fluxinput",
-          "line": 202
+          "line": 289
         },
         {
           "kind": "handler",
           "name": "FLUXINPUT",
-          "line": 203
+          "line": 290
         }
       ],
       "widgets": [],
@@ -66436,9 +66502,13 @@
           "lines": [
             106,
             107,
-            207,
-            208,
-            209
+            293,
+            294,
+            297,
+            305,
+            313,
+            314,
+            315
           ]
         }
       ]
@@ -73994,6 +74064,132 @@
       "sv_sites": []
     },
     {
+      "path": "tests/bag_item_targeting_diagnostics.lua",
+      "classification": "inactive source",
+      "chapter": "34-assets.md",
+      "lines": 111,
+      "sha256": "df4500b3eeb48139b625dcd027c78eb672723da8f8fe254766d87936ef979743",
+      "clients": [],
+      "parents": [],
+      "settings": [],
+      "functions": [
+        {
+          "name": "falseenv.issecretvalue",
+          "line": 9
+        },
+        {
+          "name": "secretendenv.canaccesstable",
+          "line": 10
+        },
+        {
+          "name": "inaccessibleendenv.InCombatLockdown",
+          "line": 11
+        },
+        {
+          "name": "returnfalseendenv.GetBuildInfo",
+          "line": 12
+        },
+        {
+          "name": "endenv.GetCursorInfo",
+          "line": 13
+        },
+        {
+          "name": "ornilendenv.SpellIsTargeting",
+          "line": 14
+        },
+        {
+          "name": "returntargetingendenv.SpellCanTargetItem",
+          "line": 15
+        },
+        {
+          "name": "returntargetingendenv.SpellCanTargetItemID",
+          "line": 16
+        },
+        {
+          "name": "env.print",
+          "line": 29
+        },
+        {
+          "name": "messageendenv.issecurevariable",
+          "line": 30
+        },
+        {
+          "name": "env.GetMouseFoci",
+          "line": 46
+        },
+        {
+          "name": "env.SpellCanTargetItem",
+          "line": 87
+        },
+        {
+          "name": "returnsecretendenv.SpellIsTargeting",
+          "line": 88
+        },
+        {
+          "name": "endbutton.GetBagID",
+          "line": 89
+        },
+        {
+          "name": "returnsecretendbutton.GetID",
+          "line": 90
+        },
+        {
+          "name": "nilenv.GetMouseFocus",
+          "line": 104
+        }
+      ],
+      "events": [],
+      "slash": [],
+      "widgets": [],
+      "loads": [],
+      "sv_sites": [
+        {
+          "name": "FluxPerfCaptureDB",
+          "lines": [
+            47,
+            48
+          ]
+        }
+      ]
+    },
+    {
+      "path": "tests/baganator_junk_detector.lua",
+      "classification": "inactive source",
+      "chapter": "34-assets.md",
+      "lines": 151,
+      "sha256": "18cbc84f6b3b25d69f33b259bb891c69fc713539fd568dce1c78436d700e5f49",
+      "clients": [],
+      "parents": [],
+      "settings": [],
+      "functions": [
+        {
+          "name": "registry:RegisterCallback",
+          "line": 23
+        },
+        {
+          "name": "registry:TriggerEvent",
+          "line": 27
+        },
+        {
+          "name": "plugins.RXPGuides",
+          "line": 39
+        },
+        {
+          "name": "returnfalseendplugins.none",
+          "line": 40
+        },
+        {
+          "name": "returnfalseendplugins.poor_quality",
+          "line": 41
+        }
+      ],
+      "events": [],
+      "slash": [],
+      "widgets": [],
+      "loads": [],
+      "sv_sites": []
+    },
+    {
       "path": "tests/bank_restock_icon.lua",
       "classification": "inactive source",
       "chapter": "34-assets.md",
@@ -75479,6 +75675,22 @@
           "line": 74
         }
       ],
+      "events": [],
+      "slash": [],
+      "widgets": [],
+      "loads": [],
+      "sv_sites": []
+    },
+    {
+      "path": "tests/castbar_rejected_cast.lua",
+      "classification": "inactive source",
+      "chapter": "34-assets.md",
+      "lines": 91,
+      "sha256": "5abac35a68effb8a0dbe1ec587ff4b0e0647ac4e134f3c56d4d4811bb5df8ab4",
+      "clients": [],
+      "parents": [],
+      "settings": [],
+      "functions": [],
       "events": [],
       "slash": [],
       "widgets": [],
@@ -80128,8 +80340,8 @@
       "path": "tests/focus_secure_visibility.lua",
       "classification": "inactive source",
       "chapter": "34-assets.md",
-      "lines": 158,
-      "sha256": "540cf48f86d0de932c807f6180973c383c366c0d5bfb6a2fd3753620a5682e9f",
+      "lines": 187,
+      "sha256": "de5e3a783f337ec730742c897d0c308f4947a2cadbd9374a3774949a6047921c",
       "clients": [],
       "parents": [],
       "settings": [],
@@ -80253,6 +80465,172 @@
         {
           "name": "endE.FluxUIPositionFocusFrameDefault",
           "line": 150
+        },
+        {
+          "name": "elsens.UnitFrames.ConfigureTargetClickVisibility",
+          "line": 160
+        }
+      ],
+      "events": [],
+      "slash": [],
+      "widgets": [],
+      "loads": [],
+      "sv_sites": []
+    },
+    {
+      "path": "tests/focus_target_colors.lua",
+      "classification": "inactive source",
+      "chapter": "34-assets.md",
+      "lines": 85,
+      "sha256": "fe56dadcd82f1ab9856f62b17683aee809ac0e014751c561c6896992f28a02ac",
+      "clients": [],
+      "parents": [],
+      "settings": [],
+      "functions": [
+        {
+          "name": "Border:GetAccentColor",
+          "line": 16
+        },
+        {
+          "name": "Border:SetClassColor",
+          "line": 17
+        },
+        {
+          "name": "Border:SetBorderColor",
+          "line": 18
+        },
+        {
+          "name": "Border:SetBackdropColor",
+          "line": 19
+        },
+        {
+          "name": "Border:GetForeverClientChromeRGB",
+          "line": 20
+        },
+        {
+          "name": "Border:GetForeverClientBackdropRGB",
+          "line": 21
+        },
+        {
+          "name": "secretE.PublicGeometryNumber",
+          "line": 27
+        },
+        {
+          "name": "andvendE.SafeBooleanTest",
+          "line": 28
+        },
+        {
+          "name": "E.UnitIsPlayer",
+          "line": 30
+        },
+        {
+          "name": "endE.UnitClass",
+          "line": 31
+        },
+        {
+          "name": "orstate.classendE.UnitExists",
+          "line": 32
+        },
+        {
+          "name": "returntrueendE.UnitAffectingCombat",
+          "line": 33
+        },
+        {
+          "name": "returnstate.combatendE.FluxUnitFrames_IsPortraitCombatTintEnabled",
+          "line": 34
+        },
+        {
+          "name": "returntrueendE.InCombatLockdown",
+          "line": 35
+        },
+        {
+          "name": "returnstate.combatendUF.UsesHudUnitBars",
+          "line": 36
+        },
+        {
+          "name": "endUF.GetFramePublicLevel",
+          "line": 37
+        },
+        {
+          "name": "endUF.SetFramePublicLevel",
+          "line": 38
+        },
+        {
+          "name": "f:GetFrameLevel",
+          "line": 45
+        },
+        {
+          "name": "f:SetAlpha",
+          "line": 46
+        },
+        {
+          "name": "f:SetVertexColor",
+          "line": 47
+        },
+        {
+          "name": "f:Hide",
+          "line": 48
+        },
+        {
+          "name": "f:Show",
+          "line": 49
+        }
+      ],
+      "events": [],
+      "slash": [],
+      "widgets": [],
+      "loads": [],
+      "sv_sites": []
+    },
+    {
+      "path": "tests/focus_target_combat_width.lua",
+      "classification": "inactive source",
+      "chapter": "34-assets.md",
+      "lines": 46,
+      "sha256": "bcd1766bd501c866438e9f4b5cfe922ef4b9a6d3933084bfb55069a8d6e72f2e",
+      "clients": [],
+      "parents": [],
+      "settings": [],
+      "functions": [
+        {
+          "name": "frame:SetSize",
+          "line": 15
+        },
+        {
+          "name": "frame:SetWidth",
+          "line": 16
+        },
+        {
+          "name": "frame:UpdatePartition",
+          "line": 17
+        },
+        {
+          "name": "focus:GetWidth",
+          "line": 18
+        },
+        {
+          "name": "focus:GetHeight",
+          "line": 19
+        },
+        {
+          "name": "returnself.heightendUF.RecordFrameDimensions",
+          "line": 20
+        },
+        {
+          "name": "hendUF.GetFramePublicDimensions",
+          "line": 21
+        },
+        {
+          "name": "f.publicHeightorf.heightendUF.DeferProtected",
+          "line": 22
+        },
+        {
+          "name": "E.InCombatLockdown",
+          "line": 25
+        },
+        {
+          "name": "E.FluxUnitFrames_MatchFocusTargetToFocus",
+          "line": 28
         }
       ],
       "events": [],
@@ -83779,6 +84157,143 @@
       "sv_sites": []
     },
     {
+      "path": "tests/menu_press_input.lua",
+      "classification": "inactive source",
+      "chapter": "34-assets.md",
+      "lines": 124,
+      "sha256": "d294073a1c45f96f06b8e810f3bbc3b056827d23641f0c0d3a2cbb31972ce7e7",
+      "clients": [],
+      "parents": [],
+      "settings": [],
+      "functions": [
+        {
+          "name": "endenv.InCombatLockdown",
+          "line": 14
+        },
+        {
+          "name": "returnstate.combatendenv.GetCVarBool",
+          "line": 15
+        },
+        {
+          "name": "andkeyDownendenv.IsShiftKeyDown",
+          "line": 16
+        },
+        {
+          "name": "endenv.IsControlKeyDown",
+          "line": 17
+        },
+        {
+          "name": "endenv.IsAltKeyDown",
+          "line": 18
+        },
+        {
+          "name": "endenv.UnitExists",
+          "line": 19
+        },
+        {
+          "name": "returntrueendenv.UnitCanAttack",
+          "line": 20
+        },
+        {
+          "name": "returnfalseendenv.UnitCanAssist",
+          "line": 21
+        },
+        {
+          "name": "returnfalseendenv.SpellCanTargetItem",
+          "line": 22
+        },
+        {
+          "name": "returnfalseendenv.SpellCanTargetItemID",
+          "line": 23
+        },
+        {
+          "name": "returnfalseendenv.SecureCmdItemParse",
+          "line": 24
+        },
+        {
+          "name": "Frame:GetAttribute",
+          "line": 34
+        },
+        {
+          "name": "Frame:SetAttribute",
+          "line": 40
+        },
+        {
+          "name": "Frame:GetName",
+          "line": 44
+        },
+        {
+          "name": "Frame:GetParent",
+          "line": 45
+        },
+        {
+          "name": "Frame:RegisterForClicks",
+          "line": 46
+        },
+        {
+          "name": "Frame:EnableMouse",
+          "line": 49
+        },
+        {
+          "name": "Frame:Hide",
+          "line": 50
+        },
+        {
+          "name": "Frame:RegisterEvent",
+          "line": 51
+        },
+        {
+          "name": "Frame:SetScript",
+          "line": 52
+        },
+        {
+          "name": "Frame:WrapScript",
+          "line": 53
+        },
+        {
+          "name": "Frame:UnwrapScript",
+          "line": 54
+        },
+        {
+          "name": "Frame:Execute",
+          "line": 55
+        },
+        {
+          "name": "Frame:Click",
+          "line": 56
+        },
+        {
+          "name": "endenv.CreateFrame",
+          "line": 66
+        },
+        {
+          "name": "env.GetFrameMetatable",
+          "line": 74
+        },
+        {
+          "name": "endenv.CopyTable",
+          "line": 75
+        },
+        {
+          "name": "env.GetBindingKey",
+          "line": 81
+        },
+        {
+          "name": "endenv.ClearOverrideBindings",
+          "line": 82
+        },
+        {
+          "name": "endenv.SetOverrideBindingClick",
+          "line": 83
+        }
+      ],
+      "events": [],
+      "slash": [],
+      "widgets": [],
+      "loads": [],
+      "sv_sites": []
+    },
+    {
       "path": "tests/micro_menu_nil_center.lua",
       "classification": "inactive source",
       "chapter": "34-assets.md",
@@ -84794,6 +85309,187 @@
           "context": "vendfunctionf:"
         }
       ],
+      "slash": [],
+      "widgets": [],
+      "loads": [],
+      "sv_sites": []
+    },
+    {
+      "path": "tests/nameplate_quest_progress.lua",
+      "classification": "inactive source",
+      "chapter": "34-assets.md",
+      "lines": 341,
+      "sha256": "918eb2fc0d9bb1c5d8420a29957e38ee57c9a606771cba38c5cb4a2a6b6360e7",
+      "clients": [],
+      "parents": [],
+      "settings": [],
+      "functions": [
+        {
+          "name": "w:SetParent",
+          "line": 25
+        },
+        {
+          "name": "w:GetParent",
+          "line": 26
+        },
+        {
+          "name": "w:Hide",
+          "line": 27
+        },
+        {
+          "name": "w:Show",
+          "line": 28
+        },
+        {
+          "name": "w:IsShown",
+          "line": 29
+        },
+        {
+          "name": "w:ClearAllPoints",
+          "line": 30
+        },
+        {
+          "name": "w:SetPoint",
+          "line": 31
+        },
+        {
+          "name": "w:SetSize",
+          "line": 32
+        },
+        {
+          "name": "w:GetWidth",
+          "line": 33
+        },
+        {
+          "name": "w:SetFont",
+          "line": 34
+        },
+        {
+          "name": "w:GetStringWidth",
+          "line": 35
+        },
+        {
+          "name": "w:SetShadowColor",
+          "line": 36
+        },
+        {
+          "name": "w:SetShadowOffset",
+          "line": 37
+        },
+        {
+          "name": "w:SetJustifyH",
+          "line": 38
+        },
+        {
+          "name": "w:SetWordWrap",
+          "line": 39
+        },
+        {
+          "name": "w:SetTextColor",
+          "line": 40
+        },
+        {
+          "name": "w:SetTexture",
+          "line": 41
+        },
+        {
+          "name": "w:SetText",
+          "line": 42
+        },
+        {
+          "name": "w:SetFormattedText",
+          "line": 43
+        },
+        {
+          "name": "w:CreateTexture",
+          "line": 44
+        },
+        {
+          "name": "w:CreateFontString",
+          "line": 45
+        },
+        {
+          "name": "doentry.objective.Update",
+          "line": 55
+        },
+        {
+          "name": "questiePlates:HideCurrentFrames",
+          "line": 63
+        },
+        {
+          "name": "questie.API.RegisterForQuestUpdates",
+          "line": 70
+        },
+        {
+          "name": "questie.API.RegisterOnReady",
+          "line": 71
+        },
+        {
+          "name": "falseenv.IsInInstance",
+          "line": 103
+        },
+        {
+          "name": "returninInstanceendenv.wipe",
+          "line": 104
+        },
+        {
+          "name": "thenqlog.GetNumQuestLogEntries",
+          "line": 110
+        },
+        {
+          "name": "endqlog.GetInfo",
+          "line": 111
+        },
+        {
+          "name": "endelseenv.GetNumQuestLogEntries",
+          "line": 113
+        },
+        {
+          "name": "endenv.GetQuestLogTitle",
+          "line": 114
+        },
+        {
+          "name": "scannerObjectenv.CreateFrame",
+          "line": 127
+        },
+        {
+          "name": "scan:SetOwner",
+          "line": 130
+        },
+        {
+          "name": "scan:ClearLines",
+          "line": 131
+        },
+        {
+          "name": "scan:SetUnit",
+          "line": 132
+        },
+        {
+          "name": "scan:GetRegions",
+          "line": 139
+        },
+        {
+          "name": "qlog.IsOnQuestqlog.IsOnQuest",
+          "line": 267
+        },
+        {
+          "name": "nilenv.GetNumQuestLogEntries",
+          "line": 294
+        },
+        {
+          "name": "endenv.GetQuestLogTitle",
+          "line": 295
+        },
+        {
+          "name": "endenv.GetNumQuestLogEntries",
+          "line": 298
+        },
+        {
+          "name": "endenv.GetQuestLogTitle",
+          "line": 299
+        }
+      ],
+      "events": [],
       "slash": [],
       "widgets": [],
       "loads": [],
@@ -88713,91 +89409,95 @@
       "path": "tests/public_geometry_writers.lua",
       "classification": "inactive source",
       "chapter": "34-assets.md",
-      "lines": 83,
-      "sha256": "958bafc5e8d9017a3455032279d3b7ee14f7a8330ac3d2aa43451d376faa8494",
+      "lines": 84,
+      "sha256": "f6d7732c66fb270e2cba896c9352e4f3effc06c4a307360befe4c7999a0cc22b",
       "clients": [],
       "parents": [],
       "settings": [],
       "functions": [
         {
-          "name": "falsee.InCombatLockdown",
+          "name": "uf.DeferProtected",
           "line": 14
         },
         {
+          "name": "fnende.InCombatLockdown",
+          "line": 15
+        },
+        {
           "name": "f:GetWidth",
-          "line": 19
-        },
-        {
-          "name": "f:GetHeight",
-          "line": 19
-        },
-        {
-          "name": "f:SetWidth",
           "line": 20
         },
         {
-          "name": "f:SetHeight",
+          "name": "f:GetHeight",
+          "line": 20
+        },
+        {
+          "name": "f:SetWidth",
           "line": 21
         },
         {
-          "name": "f:SetSize",
+          "name": "f:SetHeight",
           "line": 22
         },
         {
-          "name": "f:UpdatePartition",
+          "name": "f:SetSize",
           "line": 23
         },
         {
-          "name": "f:UpdateAtlasBorder",
+          "name": "f:UpdatePartition",
           "line": 24
+        },
+        {
+          "name": "f:UpdateAtlasBorder",
+          "line": 25
         },
         {
           "name": "f:UpdateOuterBorder",
-          "line": 24
+          "line": 25
         },
         {
           "name": "f:SetScale",
-          "line": 25
-        },
-        {
-          "name": "f:GetScale",
-          "line": 25
-        },
-        {
-          "name": "f:GetEffectiveScale",
           "line": 26
         },
         {
-          "name": "f:GetParent",
+          "name": "f:GetScale",
+          "line": 26
+        },
+        {
+          "name": "f:GetEffectiveScale",
           "line": 27
+        },
+        {
+          "name": "f:GetParent",
+          "line": 28
         },
         {
           "name": "f:ClearAllPoints",
-          "line": 27
+          "line": 28
         },
         {
           "name": "f:SetPoint",
-          "line": 27
+          "line": 28
         },
         {
           "name": "falseuf.GetFluxStylePartitionHealthHeight",
-          "line": 38
+          "line": 39
         },
         {
           "name": "e.FluxUnitFrames_ShouldUseFlux",
-          "line": 73
-        },
-        {
-          "name": "returntrueende.FluxUnitFrames_GetWholeFrameScale",
           "line": 74
         },
         {
-          "name": "ende.FluxUnitFrames_GetConfiguredFrameSize",
+          "name": "returntrueende.FluxUnitFrames_GetWholeFrameScale",
           "line": 75
         },
         {
-          "name": "ende.FluxUnitFrames_GetConfiguredPetTargetBarWidth",
+          "name": "ende.FluxUnitFrames_GetConfiguredFrameSize",
           "line": 76
+        },
+        {
+          "name": "ende.FluxUnitFrames_GetConfiguredPetTargetBarWidth",
+          "line": 77
         }
       ],
       "events": [],
@@ -92137,8 +92837,8 @@
       "path": "tests/raid_party_frames.lua",
       "classification": "inactive source",
       "chapter": "34-assets.md",
-      "lines": 459,
-      "sha256": "178da96a948f98f53c39d6fb222b039d93c378d606fa69a49b7d9562bdc0f064",
+      "lines": 468,
+      "sha256": "edadf140656dda674577ddcbe72e4dea332dfbedca26ae51365706d85d0dd2a9",
       "clients": [],
       "parents": [],
       "settings": [],
@@ -92220,323 +92920,361 @@
           "line": 65
         },
         {
-          "name": "methods:SetMinMaxValues",
+          "name": "methods:SetClipsChildren",
           "line": 66
         },
         {
-          "name": "methods:SetValue",
+          "name": "methods:SetReverseFill",
           "line": 67
         },
         {
-          "name": "methods:SetStatusBarColor",
+          "name": "methods:SetMinMaxValues",
           "line": 68
         },
         {
-          "name": "methods:CreateTexture",
+          "name": "methods:GetMinMaxValues",
           "line": 69
         },
         {
+          "name": "methods:GetValue",
+          "line": 70
+        },
+        {
+          "name": "methods:SetValue",
+          "line": 71
+        },
+        {
+          "name": "methods:SetStatusBarColor",
+          "line": 72
+        },
+        {
+          "name": "methods:CreateTexture",
+          "line": 73
+        },
+        {
           "name": "methods:HookScript",
-          "line": 77
-        },
-        {
-          "name": "methods:RegisterUnitEvent",
-          "line": 80
-        },
-        {
-          "name": "ende.SecureUnitButton_OnLoad",
           "line": 81
         },
         {
-          "name": "methods:RegisterEvent",
-          "line": 82
-        },
-        {
-          "name": "methods:UnregisterEvent",
-          "line": 83
-        },
-        {
-          "name": "methods:UnregisterAllEvents",
+          "name": "methods:RegisterUnitEvent",
           "line": 84
         },
         {
-          "name": "methods:SetMouseClickEnabled",
+          "name": "ende.SecureUnitButton_OnLoad",
           "line": 85
         },
         {
-          "name": "methods:SetShown",
+          "name": "methods:RegisterEvent",
           "line": 86
         },
         {
+          "name": "methods:UnregisterEvent",
+          "line": 87
+        },
+        {
+          "name": "methods:UnregisterAllEvents",
+          "line": 88
+        },
+        {
+          "name": "methods:SetMouseClickEnabled",
+          "line": 89
+        },
+        {
+          "name": "methods:SetShown",
+          "line": 90
+        },
+        {
           "name": "UF.CreateBaseFrame",
-          "line": 99
+          "line": 103
         },
         {
           "name": "frame.UpdatePartition",
-          "line": 104
+          "line": 108
         },
         {
           "name": "endframe.UpdateOuterBorder",
-          "line": 105
+          "line": 109
         },
         {
           "name": "endendreturnframeendUF.CreateHealthBar",
-          "line": 114
-        },
-        {
-          "name": "endUF.CreatePowerBar",
-          "line": 115
-        },
-        {
-          "name": "endUF.CreatePortrait",
-          "line": 116
-        },
-        {
-          "name": "endUF.CreateAtlasBorder",
-          "line": 117
-        },
-        {
-          "name": "endUF.CreateOuterBorder",
           "line": 118
         },
         {
+          "name": "endUF.CreatePowerBar",
+          "line": 119
+        },
+        {
+          "name": "endUF.CreatePortrait",
+          "line": 120
+        },
+        {
+          "name": "endUF.CreateAtlasBorder",
+          "line": 121
+        },
+        {
+          "name": "endUF.CreateOuterBorder",
+          "line": 122
+        },
+        {
           "name": "endUF.UpdateHealth",
-          "line": 125
+          "line": 129
         },
         {
           "name": "endUF.UpdatePower",
-          "line": 126
+          "line": 130
         },
         {
           "name": "endUF.UpdatePortrait",
-          "line": 127
+          "line": 131
         },
         {
           "name": "e.ValueIsSecret",
-          "line": 145
+          "line": 149
         },
         {
           "name": "ende.CompactUnitFrame_OpenMenu",
-          "line": 146
-        },
-        {
-          "name": "e.PublicGeometryNumber",
           "line": 150
         },
         {
-          "name": "returnvendUF.RecordFrameDimensions",
-          "line": 151
-        },
-        {
-          "name": "hendendUF.GetFramePublicDimensions",
-          "line": 152
-        },
-        {
-          "name": "ende.StatusBarSetMinMaxImmediate",
-          "line": 153
-        },
-        {
-          "name": "ende.StatusBarSetValueImmediate",
+          "name": "e.PublicGeometryNumber",
           "line": 154
         },
         {
+          "name": "returnvendUF.RecordFrameDimensions",
+          "line": 155
+        },
+        {
+          "name": "hendendUF.GetFramePublicDimensions",
+          "line": 156
+        },
+        {
+          "name": "ende.StatusBarSetMinMaxImmediate",
+          "line": 157
+        },
+        {
+          "name": "ende.StatusBarSetValueImmediate",
+          "line": 158
+        },
+        {
+          "name": "ende.ApplyBlizzardShieldFillToStatusBar",
+          "line": 159
+        },
+        {
+          "name": "ende.ApplyBlizzardHealAbsorbFillToStatusBar",
+          "line": 160
+        },
+        {
+          "name": "e.FluxSafeRegisterUnitEvent",
+          "line": 162
+        },
+        {
           "name": "ns.Flux.Restricted.UnregisterPagingDrivere.SecureCmdOptionParse",
-          "line": 167
+          "line": 175
         },
         {
           "name": "endns.Flux.Restricted.RegisterPagingDriver",
-          "line": 179
+          "line": 187
         },
         {
           "name": "endns.Flux.Restricted.UnregisterPagingDriver",
-          "line": 185
+          "line": 193
         },
         {
           "name": "e.UnitHealth",
-          "line": 190
-        },
-        {
-          "name": "e.UnitHealthMax",
-          "line": 190
-        },
-        {
-          "name": "e.UnitIsConnected",
-          "line": 190
-        },
-        {
-          "name": "e.issecretvalue",
-          "line": 194
-        },
-        {
-          "name": "doe.UnitIsConnected",
-          "line": 196
-        },
-        {
-          "name": "ende.UnitIsDead",
-          "line": 197
-        },
-        {
-          "name": "e.UnitIsGhost",
-          "line": 197
-        },
-        {
-          "name": "ende.UnitIsAFK",
           "line": 198
         },
         {
-          "name": "ende.UnitIsConnected",
+          "name": "e.UnitHealthMax",
+          "line": 198
+        },
+        {
+          "name": "e.UnitIsConnected",
+          "line": 198
+        },
+        {
+          "name": "e.issecretvalue",
           "line": 202
+        },
+        {
+          "name": "doe.UnitIsConnected",
+          "line": 204
+        },
+        {
+          "name": "ende.UnitIsDead",
+          "line": 205
+        },
+        {
+          "name": "e.UnitIsGhost",
+          "line": 205
+        },
+        {
+          "name": "ende.UnitIsAFK",
+          "line": 206
+        },
+        {
+          "name": "ende.UnitIsConnected",
+          "line": 210
         },
         {
           "name": "e.UnitIsDead",
-          "line": 202
+          "line": 210
         },
         {
           "name": "returnfalseende.UnitIsGhost",
-          "line": 203
-        },
-        {
-          "name": "e.UnitIsAFK",
-          "line": 203
-        },
-        {
-          "name": "e.GetPVPTimer",
-          "line": 209
-        },
-        {
-          "name": "ende.UnitIsPVPFreeForAll",
-          "line": 210
-        },
-        {
-          "name": "e.UnitIsPVP",
-          "line": 210
-        },
-        {
-          "name": "returntrueende.UnitFactionGroup",
           "line": 211
         },
         {
-          "name": "e.UnitIsPVPFreeForAll",
+          "name": "e.UnitIsAFK",
+          "line": 211
+        },
+        {
+          "name": "e.GetPVPTimer",
+          "line": 217
+        },
+        {
+          "name": "ende.UnitIsPVPFreeForAll",
           "line": 218
         },
         {
-          "name": "e.UnitIsPVPFreeForAll",
-          "line": 220
+          "name": "e.UnitIsPVP",
+          "line": 218
+        },
+        {
+          "name": "returntrueende.UnitFactionGroup",
+          "line": 219
         },
         {
           "name": "e.UnitIsPVPFreeForAll",
-          "line": 231
+          "line": 226
+        },
+        {
+          "name": "e.UnitIsPVPFreeForAll",
+          "line": 228
+        },
+        {
+          "name": "e.UnitIsPVPFreeForAll",
+          "line": 239
         },
         {
           "name": "e.UnitIsPVP",
-          "line": 231
+          "line": 239
         },
         {
           "name": "e.UnitOf",
-          "line": 296
+          "line": 305
         },
         {
           "name": "e.issecretvaluee.ShowRegion",
-          "line": 297
+          "line": 306
         },
         {
           "name": "e.GetReadyCheckStatus",
-          "line": 300
+          "line": 309
         },
         {
           "name": "ende.UnitHasIncomingResurrection",
-          "line": 301
+          "line": 310
         },
         {
           "name": "returntrueende.UnitGroupRolesAssigned",
-          "line": 302
+          "line": 311
         },
         {
           "name": "e.UnitHasIncomingResurrection",
-          "line": 327
+          "line": 336
         },
         {
           "name": "ende.FluxOptions.GetUnitFrameDB",
-          "line": 369
+          "line": 378
         },
         {
           "name": "e.FluxOptions.GetUnitFrameDB",
-          "line": 387
+          "line": 396
         },
         {
           "name": "returnunitDBende.UnitIsPlayer",
-          "line": 388
-        },
-        {
-          "name": "e.UnitClass",
-          "line": 388
-        },
-        {
-          "name": "e.UnitIsPlayer",
-          "line": 393
-        },
-        {
-          "name": "e.UnitIsPlayer",
-          "line": 394
-        },
-        {
-          "name": "e.UnitIsPlayer",
-          "line": 395
-        },
-        {
-          "name": "e.UnitClass",
-          "line": 395
+          "line": 397
         },
         {
           "name": "e.UnitClass",
           "line": 397
         },
         {
-          "name": "e.FluxOptions.RefreshRaidFrameScopedModules",
+          "name": "e.UnitIsPlayer",
+          "line": 402
+        },
+        {
+          "name": "e.UnitIsPlayer",
+          "line": 403
+        },
+        {
+          "name": "e.UnitIsPlayer",
           "line": 404
         },
         {
-          "name": "UF.RegisterInitializer",
-          "line": 411
+          "name": "e.UnitClass",
+          "line": 404
         },
         {
-          "name": "fnendUF.DeferProtected",
-          "line": 412
+          "name": "e.UnitClass",
+          "line": 406
         },
         {
-          "name": "fnendUF.SyncWatchedUnitFrameVisibility",
+          "name": "e.FluxOptions.RefreshRaidFrameScopedModules",
           "line": 413
         },
         {
-          "name": "endUF.GetFluxStylePartitionHealthHeight",
-          "line": 414
-        },
-        {
-          "name": "endUF.CreateMouseoverHighlight",
-          "line": 415
-        },
-        {
-          "name": "e.UnitExists",
-          "line": 417
-        },
-        {
-          "name": "returntrueende.FluxUnitFrames_ShouldUseFlux",
-          "line": 418
-        },
-        {
-          "name": "returntrueende.FluxUnitFrames_SuppressBlizzardUnitFrame",
-          "line": 419
-        },
-        {
-          "name": "ende.GetRaidTargetIndex",
+          "name": "UF.RegisterInitializer",
           "line": 420
         },
         {
-          "name": "returnnilendUF.ApplyAuraOptionsToFrame",
+          "name": "fnendUF.DeferProtected",
           "line": 421
+        },
+        {
+          "name": "fnendUF.SyncWatchedUnitFrameVisibility",
+          "line": 422
+        },
+        {
+          "name": "endUF.GetFluxStylePartitionHealthHeight",
+          "line": 423
+        },
+        {
+          "name": "endUF.CreateMouseoverHighlight",
+          "line": 424
+        },
+        {
+          "name": "e.UnitExists",
+          "line": 426
+        },
+        {
+          "name": "returntrueende.FluxUnitFrames_ShouldUseFlux",
+          "line": 427
+        },
+        {
+          "name": "returntrueende.FluxUnitFrames_SuppressBlizzardUnitFrame",
+          "line": 428
+        },
+        {
+          "name": "ende.GetRaidTargetIndex",
+          "line": 429
+        },
+        {
+          "name": "returnnilendUF.ApplyAuraOptionsToFrame",
+          "line": 430
         }
       ],
-      "events": [],
+      "events": [
+        {
+          "line": 162,
+          "method": "RegisterUnitEvent",
+          "arguments": [
+            "event",
+            "unit"
+          ],
+          "context": ",unit)frame:"
+        }
+      ],
       "slash": [],
       "widgets": [],
       "loads": [],
@@ -95878,8 +96616,8 @@
       "path": "tests/unit_portrait_combat_restore.lua",
       "classification": "inactive source",
       "chapter": "34-assets.md",
-      "lines": 55,
-      "sha256": "8945decd839b8c1dbbd1f6a3e68e89326cdf7924c1cece675bec1c82544c5f3b",
+      "lines": 57,
+      "sha256": "0771e1d3393ac28ac59e0f6dd9a8c90edc427176cd085f6a1c060b86971bfb19",
       "clients": [],
       "parents": [],
       "settings": [],
@@ -95902,7 +96640,11 @@
         },
         {
           "name": "UF.SetFramePublicLevel",
-          "line": 31
+          "line": 32
+        },
+        {
+          "name": "nendUF.ForeverNpcChrome",
+          "line": 33
         }
       ],
       "events": [],
@@ -96277,8 +97019,8 @@
       "path": "tests/unit_vertical_target_health.lua",
       "classification": "inactive source",
       "chapter": "34-assets.md",
-      "lines": 164,
-      "sha256": "9a1ec9831ae215dcbf29efd005b5af423fb9b477f0dfdb5375890243003bc35b",
+      "lines": 218,
+      "sha256": "ff9158c349153c1abba3a805690a85df98f6ceaed32b6beaaa5ea4b962c9f98c",
       "clients": [],
       "parents": [],
       "settings": [],
@@ -96320,48 +97062,96 @@
           "line": 32
         },
         {
-          "name": "ende.FluxUnitFrames_GetTargetClassHealthColor",
+          "name": "ende.UnitIsDeadOrGhost",
           "line": 33
         },
         {
-          "name": "endendUF.RecordFrameDimensions",
+          "name": "returns.deadors.ghostende.FluxUnitFrames_ShouldShowAbsorbs",
           "line": 34
         },
         {
-          "name": "hendUF.GetFramePublicDimensions",
-          "line": 35
+          "name": "e.UnitGetTotalAbsorbsns.API.SafeUnitGetTotalHealAbsorbs",
+          "line": 37
         },
         {
-          "name": "frame._publicHeightendUF.DeferProtected",
-          "line": 36
-        },
-        {
-          "name": "methods:SetOrientation",
+          "name": "endns.API.CreateUnitHealPredictionCalculator",
           "line": 38
         },
         {
+          "name": "endns.API.UnitGetDetailedHealPrediction",
+          "line": 57
+        },
+        {
+          "name": "ende.ApplyBlizzardShieldFillToStatusBar",
+          "line": 58
+        },
+        {
+          "name": "ende.ApplyBlizzardHealAbsorbFillToStatusBar",
+          "line": 59
+        },
+        {
+          "name": "ende.FluxUnitFrames_GetTargetClassHealthColor",
+          "line": 60
+        },
+        {
+          "name": "endendUF.RecordFrameDimensions",
+          "line": 61
+        },
+        {
+          "name": "hendUF.GetFramePublicDimensions",
+          "line": 62
+        },
+        {
+          "name": "frame._publicHeightendUF.DeferProtected",
+          "line": 63
+        },
+        {
+          "name": "methods:SetOrientation",
+          "line": 65
+        },
+        {
           "name": "methods:GetOrientation",
-          "line": 39
+          "line": 66
+        },
+        {
+          "name": "methods:SetReverseFill",
+          "line": 67
+        },
+        {
+          "name": "methods:SetClipsChildren",
+          "line": 68
+        },
+        {
+          "name": "methods:SetSize",
+          "line": 69
+        },
+        {
+          "name": "methods:GetValue",
+          "line": 70
+        },
+        {
+          "name": "methods:GetMinMaxValues",
+          "line": 71
         },
         {
           "name": "methods:SetTexCoord",
-          "line": 40
+          "line": 72
         },
         {
           "name": "methods:SetPoint",
-          "line": 42
+          "line": 74
         },
         {
           "name": "e.CreateFramee.CreateFrame",
-          "line": 44
+          "line": 76
         },
         {
           "name": "s:sample",
-          "line": 51
+          "line": 83
         },
         {
           "name": "s:step",
-          "line": 55
+          "line": 87
         }
       ],
       "events": [],
@@ -98326,8 +99116,8 @@
       "path": "UnitFrames/FluxCastBar.lua",
       "classification": "active",
       "chapter": "14-unit-frames.md",
-      "lines": 3483,
-      "sha256": "852aa3f0c6ccf13982d45d768c7e861e76a56e5c7d4055e867ed71e2acf7d6c5",
+      "lines": 3492,
+      "sha256": "6d6dff01da2e0ef0b1f61e009244176d5a01cc5b909bfdffd26cca58777be346",
       "clients": [
         "camelot",
         "cata",
@@ -98405,15 +99195,15 @@
         },
         {
           "name": "endcastBar.UpdateLayout",
-          "line": 3105
+          "line": 3114
         },
         {
           "name": "CB.SyncBlizzardCastBars",
-          "line": 3427
+          "line": 3436
         },
         {
           "name": "FluxCastBar_ApplyAppearanceAccent",
-          "line": 3458
+          "line": 3467
         }
       ],
       "events": [
@@ -98435,7 +99225,7 @@
           "context": "function()castBar:"
         },
         {
-          "line": 3469,
+          "line": 3478,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_LOGIN\""
@@ -98443,7 +99233,7 @@
           "context": "(\"Frame\")loader:"
         },
         {
-          "line": 3470,
+          "line": 3479,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_ENTERING_WORLD\""
@@ -100116,8 +100906,8 @@
       "path": "UnitFrames/FluxUnitFrames_FocusTarget.lua",
       "classification": "active",
       "chapter": "14-unit-frames.md",
-      "lines": 340,
-      "sha256": "89d8a8753f3369242e102a8fc2cf420d6fb557be733916e04ad284ff1ebf7031",
+      "lines": 346,
+      "sha256": "eb856db4bd2927784cef78b78c46db1549cd84a26230ff39d9d39d77bd54f2d4",
       "clients": [
         "camelot",
         "cata",
@@ -100135,20 +100925,20 @@
       "functions": [
         {
           "name": "frame.UpdatePartitionframe.UpdatePartition",
-          "line": 102
+          "line": 107
         },
         {
           "name": "FluxUnitFrames_ApplyRuntimeFocusTarget",
-          "line": 238
+          "line": 244
         },
         {
           "name": "FluxUnitFrames_MatchFocusTargetToFocus",
-          "line": 321
+          "line": 327
         }
       ],
       "events": [
         {
-          "line": 169,
+          "line": 174,
           "method": "RegisterUnitEvent",
           "arguments": [
             "\"UNIT_CONNECTION\"",
@@ -100157,7 +100947,7 @@
           "context": "()endframe:"
         },
         {
-          "line": 170,
+          "line": 175,
           "method": "RegisterUnitEvent",
           "arguments": [
             "\"UNIT_FLAGS\"",
@@ -100166,7 +100956,7 @@
           "context": ",\"focustarget\")frame:"
         },
         {
-          "line": 171,
+          "line": 176,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_FOCUS_CHANGED\""
@@ -100174,7 +100964,7 @@
           "context": ",\"focustarget\")frame:"
         },
         {
-          "line": 172,
+          "line": 177,
           "method": "RegisterEvent",
           "arguments": [
             "\"UNIT_TARGET\""
@@ -100182,7 +100972,7 @@
           "context": "(\"PLAYER_FOCUS_CHANGED\")frame:"
         },
         {
-          "line": 173,
+          "line": 178,
           "method": "RegisterEvent",
           "arguments": [
             "\"UNIT_NAME_UPDATE\""
@@ -100190,7 +100980,7 @@
           "context": "(\"UNIT_TARGET\")frame:"
         },
         {
-          "line": 185,
+          "line": 190,
           "method": "RegisterUnitEvent",
           "arguments": [
             "\"UNIT_HEALTH\"",
@@ -100199,7 +100989,7 @@
           "context": "()endself:"
         },
         {
-          "line": 186,
+          "line": 191,
           "method": "RegisterUnitEvent",
           "arguments": [
             "\"UNIT_MAXHEALTH\"",
@@ -100208,7 +100998,7 @@
           "context": ",\"focustarget\")self:"
         },
         {
-          "line": 217,
+          "line": 223,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_FOCUS_CHANGED\""
@@ -100216,7 +101006,7 @@
           "context": "(\"Frame\")blizzardFocusToTHideFrame:"
         },
         {
-          "line": 218,
+          "line": 224,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_ENTERING_WORLD\""
@@ -100525,8 +101315,8 @@
       "path": "UnitFrames/FluxUnitFrames_Party.lua",
       "classification": "active",
       "chapter": "14-unit-frames.md",
-      "lines": 818,
-      "sha256": "0733dd73ff6daf71ae48df78a432e37634f34c4cbf3bb9302d50709ecf303b47",
+      "lines": 826,
+      "sha256": "dc6b9d1b5667ef01dbdb91275c30d28d3b4a8165e07e13cabcb04d1383305507",
       "clients": [
         "camelot",
         "cata",
@@ -100600,40 +101390,40 @@
         },
         {
           "name": "Party.RefreshChrome",
-          "line": 296
+          "line": 302
         },
         {
           "name": "Party.LayoutFocusPresentation",
-          "line": 374
+          "line": 380
         },
         {
           "name": "Party.SetupFocusPresentation",
-          "line": 397
+          "line": 403
         },
         {
           "name": "Party.SetupCompactCastOverlay",
-          "line": 411
+          "line": 417
         },
         {
           "name": "bar.UpdateLayoutbar.UpdateLayout",
-          "line": 416
+          "line": 422
         },
         {
           "name": "Party.RefreshPreview",
-          "line": 667
+          "line": 675
         },
         {
           "name": "Party.ApplyOptions",
-          "line": 743
+          "line": 751
         },
         {
           "name": "Party.Diagnostics",
-          "line": 790
+          "line": 798
         }
       ],
       "events": [
         {
-          "line": 452,
+          "line": 458,
           "method": "RegisterUnitEvent",
           "arguments": [
             "event",
@@ -100642,16 +101432,16 @@
           "context": "})doframe:"
         },
         {
-          "line": 453,
+          "line": 461,
           "method": "RegisterUnitEvent",
           "arguments": [
             "\"UNIT_TARGET\"",
             "owner.unit"
           ],
-          "context": "unit)endframe:"
+          "context": ",unit)frame:"
         },
         {
-          "line": 454,
+          "line": 462,
           "method": "RegisterEvent",
           "arguments": [
             "\"GROUP_ROSTER_UPDATE\""
@@ -100659,7 +101449,7 @@
           "context": ".unit)frame:"
         },
         {
-          "line": 537,
+          "line": 545,
           "method": "RegisterUnitEvent",
           "arguments": [
             "\"UNIT_NAME_UPDATE\"",
@@ -100668,7 +101458,7 @@
           "context": "frame)endframe:"
         },
         {
-          "line": 538,
+          "line": 546,
           "method": "RegisterUnitEvent",
           "arguments": [
             "\"UNIT_PORTRAIT_UPDATE\"",
@@ -100677,7 +101467,7 @@
           "context": ",unit)frame:"
         },
         {
-          "line": 539,
+          "line": 547,
           "method": "RegisterUnitEvent",
           "arguments": [
             "\"UNIT_MODEL_CHANGED\"",
@@ -100686,7 +101476,7 @@
           "context": ",unit)frame:"
         },
         {
-          "line": 540,
+          "line": 548,
           "method": "RegisterUnitEvent",
           "arguments": [
             "\"UNIT_CONNECTION\"",
@@ -100695,7 +101485,7 @@
           "context": ",unit)frame:"
         },
         {
-          "line": 541,
+          "line": 549,
           "method": "RegisterEvent",
           "arguments": [
             "\"UNIT_PET\""
@@ -100703,7 +101493,7 @@
           "context": ",unit)frame:"
         },
         {
-          "line": 542,
+          "line": 550,
           "method": "RegisterUnitEvent",
           "arguments": [
             "\"UNIT_FLAGS\"",
@@ -100712,7 +101502,7 @@
           "context": "(\"UNIT_PET\")frame:"
         },
         {
-          "line": 543,
+          "line": 551,
           "method": "RegisterUnitEvent",
           "arguments": [
             "\"PLAYER_FLAGS_CHANGED\"",
@@ -100721,7 +101511,7 @@
           "context": ",unit)frame:"
         },
         {
-          "line": 544,
+          "line": 552,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_REGEN_ENABLED\""
@@ -100729,7 +101519,7 @@
           "context": ",unit)frame:"
         },
         {
-          "line": 559,
+          "line": 567,
           "method": "RegisterEvent",
           "arguments": [
             "\"CVAR_UPDATE\""
@@ -100737,7 +101527,7 @@
           "context": ")endendframe:"
         },
         {
-          "line": 562,
+          "line": 570,
           "method": "RegisterUnitEvent",
           "arguments": [
             "\"UNIT_AURA\"",
@@ -100882,8 +101672,8 @@
       "path": "UnitFrames/FluxUnitFrames_PetTarget.lua",
       "classification": "active",
       "chapter": "14-unit-frames.md",
-      "lines": 256,
-      "sha256": "54229e03f5721dc0cfc4bbc37256c85f1f8b26858d7326515cc1636cf0d63b78",
+      "lines": 258,
+      "sha256": "78cf7a34e4ce6065d84ef6e2e207b6d69b97388b11993d7a40ae9092076849d4",
       "clients": [
         "camelot",
         "cata",
@@ -100901,7 +101691,7 @@
       "functions": [
         {
           "name": "FluxUnitFrames_ApplyRuntimePetTarget",
-          "line": 226
+          "line": 228
         }
       ],
       "events": [
@@ -100932,7 +101722,7 @@
           "context": ",\"pettarget\")evt:"
         },
         {
-          "line": 175,
+          "line": 177,
           "method": "RegisterUnitEvent",
           "arguments": [
             "\"UNIT_CONNECTION\"",
@@ -100941,7 +101731,7 @@
           "context": ",\"pettarget\")evt:"
         },
         {
-          "line": 176,
+          "line": 178,
           "method": "RegisterUnitEvent",
           "arguments": [
             "\"UNIT_FLAGS\"",
@@ -100950,7 +101740,7 @@
           "context": ",\"pettarget\")evt:"
         },
         {
-          "line": 177,
+          "line": 179,
           "method": "RegisterUnitEvent",
           "arguments": [
             "\"UNIT_FACTION\"",
@@ -100959,7 +101749,7 @@
           "context": ",\"pettarget\")evt:"
         },
         {
-          "line": 178,
+          "line": 180,
           "method": "RegisterUnitEvent",
           "arguments": [
             "\"UNIT_TARGET\"",
@@ -100968,7 +101758,7 @@
           "context": ",\"pettarget\")evt:"
         },
         {
-          "line": 179,
+          "line": 181,
           "method": "RegisterUnitEvent",
           "arguments": [
             "\"UNIT_PET\"",
@@ -100977,7 +101767,7 @@
           "context": ",\"pet\")evt:"
         },
         {
-          "line": 180,
+          "line": 182,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_ENTERING_WORLD\""
@@ -100985,7 +101775,7 @@
           "context": ",\"player\")evt:"
         },
         {
-          "line": 181,
+          "line": 183,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_REGEN_ENABLED\""
@@ -101203,8 +101993,8 @@
       "path": "UnitFrames/FluxUnitFrames_Shared.lua",
       "classification": "active",
       "chapter": "14-unit-frames.md",
-      "lines": 9471,
-      "sha256": "cf7ca23d31685de195d40c4e6bc20942c4f5a28963b51c080cf2cc8ddb1f4ec3",
+      "lines": 9590,
+      "sha256": "8593c20228f3d8a40f79bfcd3a743832e106060e0dd851b7cf24721412b0a75d",
       "clients": [
         "camelot",
         "cata",
@@ -101225,449 +102015,461 @@
           "line": 12
         },
         {
+          "name": "UF.ConfigureTargetClickVisibility",
+          "line": 33
+        },
+        {
           "name": "UF.RegisterUnitFramePoll",
-          "line": 148
-        },
-        {
-          "name": "UF.UnregisterUnitFramePoll",
-          "line": 161
-        },
-        {
-          "name": "FluxUI_GetUnitFramePollStats",
           "line": 168
         },
         {
+          "name": "UF.UnregisterUnitFramePoll",
+          "line": 181
+        },
+        {
+          "name": "FluxUI_GetUnitFramePollStats",
+          "line": 188
+        },
+        {
           "name": "UF.SyncBigDebuffsFrameLevelForUnitFrame",
-          "line": 322
+          "line": 342
         },
         {
           "name": "UF.SetFocusUnitWatch",
-          "line": 377
+          "line": 397
         },
         {
           "name": "UF.UnitTokenIsResolved",
-          "line": 413
+          "line": 433
         },
         {
           "name": "UF.ShouldShowWatchedUnitFrame",
-          "line": 471
+          "line": 491
         },
         {
           "name": "UF.HideEmptyUnitPortrait",
-          "line": 612
+          "line": 633
         },
         {
           "name": "UF.SyncTargetPlaceholderVisibility",
-          "line": 634
+          "line": 655
         },
         {
           "name": "UF.SyncWatchedUnitFrameVisibility",
-          "line": 694
+          "line": 715
         },
         {
           "name": "UF.GetHudBarTexture",
-          "line": 876
+          "line": 897
         },
         {
           "name": "UF.UsesHudUnitBars",
-          "line": 884
+          "line": 905
         },
         {
           "name": "UF.RecordFrameDimensions",
-          "line": 919
+          "line": 940
         },
         {
           "name": "UF.GetFramePublicDimensions",
-          "line": 929
+          "line": 950
         },
         {
           "name": "UF.GetFramePublicLevel",
-          "line": 939
+          "line": 960
         },
         {
           "name": "UF.SetFramePublicLevel",
-          "line": 958
+          "line": 979
         },
         {
           "name": "UF.RecordRelativeFramePublicLevel",
-          "line": 973
+          "line": 994
         },
         {
           "name": "UF.SetRelativeFramePublicLevel",
-          "line": 980
+          "line": 1001
         },
         {
           "name": "UF.SyncPublicHealthGeometry",
-          "line": 1005
+          "line": 1026
         },
         {
           "name": "UF.GetPowerPredictionColor",
-          "line": 1054
+          "line": 1075
         },
         {
           "name": "UF.GetPowerStatusAtlas",
-          "line": 1073
+          "line": 1094
         },
         {
           "name": "UF.UpdateResourceSpark",
-          "line": 1127
+          "line": 1148
         },
         {
           "name": "pulse:StartAnimIfFull",
-          "line": 1345
+          "line": 1366
         },
         {
           "name": "pulse:RemoveAnims",
-          "line": 1368
+          "line": 1389
         },
         {
           "name": "UF.SetFullResourcePulseActive",
-          "line": 1383
+          "line": 1404
         },
         {
           "name": "UF.UpdateFullResourcePulse",
-          "line": 1406
+          "line": 1427
         },
         {
           "name": "UF.PowerValueForDisplay",
-          "line": 1430
+          "line": 1451
         },
         {
           "name": "UF.ApplyResourceBarStyle",
-          "line": 1466
+          "line": 1487
         },
         {
           "name": "UF.RefreshResourceConnection",
-          "line": 1561
+          "line": 1582
         },
         {
           "name": "UF.ApplyStaggerBarStyle",
-          "line": 1584
+          "line": 1605
         },
         {
           "name": "UF.LayoutPetHappinessIcon",
-          "line": 1666
+          "line": 1687
         },
         {
           "name": "UF.ForeverNpcChrome",
-          "line": 2163
+          "line": 2184
         },
         {
           "name": "AnimatedHealthLossMixin:OnLoad",
-          "line": 2267
+          "line": 2288
         },
         {
           "name": "AnimatedHealthLossMixin:SetDuration",
-          "line": 2275
+          "line": 2296
         },
         {
           "name": "AnimatedHealthLossMixin:SetStartDelay",
-          "line": 2279
+          "line": 2300
         },
         {
           "name": "AnimatedHealthLossMixin:SetPauseDelay",
-          "line": 2283
+          "line": 2304
         },
         {
           "name": "AnimatedHealthLossMixin:SetPostponeDelay",
-          "line": 2287
+          "line": 2308
         },
         {
           "name": "AnimatedHealthLossMixin:SetUnitHealthBar",
-          "line": 2291
+          "line": 2312
         },
         {
           "name": "AnimatedHealthLossMixin:UpdateHealthMinMax",
-          "line": 2301
+          "line": 2322
         },
         {
           "name": "AnimatedHealthLossMixin:GetHealthLossAnimationData",
-          "line": 2306
+          "line": 2327
         },
         {
           "name": "AnimatedHealthLossMixin:CancelAnimation",
-          "line": 2323
+          "line": 2344
         },
         {
           "name": "AnimatedHealthLossMixin:SetDisplayedLoss",
-          "line": 2329
+          "line": 2350
         },
         {
           "name": "AnimatedHealthLossMixin:BeginAnimation",
-          "line": 2339
+          "line": 2360
         },
         {
           "name": "AnimatedHealthLossMixin:PostponeStartTime",
-          "line": 2348
+          "line": 2369
         },
         {
           "name": "AnimatedHealthLossMixin:UpdateHealth",
-          "line": 2352
+          "line": 2373
         },
         {
           "name": "AnimatedHealthLossMixin:ReadableAbsorbBlocks",
-          "line": 2370
+          "line": 2391
         },
         {
           "name": "AnimatedHealthLossMixin:UpdateLossAnimation",
-          "line": 2378
+          "line": 2399
         },
         {
           "name": "AnimatedHealthLossMixin:ShowPixelDriver",
-          "line": 2397
+          "line": 2418
         },
         {
           "name": "AnimatedHealthLossMixin:UpdateFromPixels",
-          "line": 2420
+          "line": 2441
         },
         {
           "name": "UF.ApplyHealAbsorbOptionVisibility",
-          "line": 2724
+          "line": 2745
         },
         {
           "name": "UF.UpdateHealPrediction",
-          "line": 2752
+          "line": 2773
         },
         {
           "name": "UF.UnitIsAFKDisplay",
-          "line": 2978
+          "line": 3000
         },
         {
           "name": "UF.ShouldShowAFKHealthOverlay",
-          "line": 2988
+          "line": 3010
         },
         {
           "name": "UF.GetHealthDeadGhostStatusText",
-          "line": 2995
+          "line": 3017
         },
         {
           "name": "UF.LayoutVerticalTargetHealth",
-          "line": 3019
+          "line": 3041
+        },
+        {
+          "name": "UF.CreateVerticalTargetAbsorbs",
+          "line": 3070
+        },
+        {
+          "name": "UF.UpdateVerticalTargetAbsorbs",
+          "line": 3109
         },
         {
           "name": "UF.UpdateVerticalTargetColor",
-          "line": 3043
+          "line": 3153
         },
         {
           "name": "UF.ResetVerticalTargetHealth",
-          "line": 3060
+          "line": 3170
         },
         {
           "name": "UF.ConfigureVerticalTargetHealth",
-          "line": 3064
+          "line": 3174
         },
         {
           "name": "UF.UpdateVerticalTargetHealth",
-          "line": 3101
+          "line": 3213
         },
         {
           "name": "UF.UpdateHealth",
-          "line": 3121
+          "line": 3234
         },
         {
           "name": "UF.CreateHealthBar",
-          "line": 3277
+          "line": 3390
         },
         {
           "name": "UF.UpdateHealthColor",
-          "line": 3550
+          "line": 3663
         },
         {
           "name": "UF.UpdatePower",
-          "line": 3611
+          "line": 3724
         },
         {
           "name": "UF.CreatePowerBar",
-          "line": 3771
+          "line": 3884
         },
         {
           "name": "UF.CreatePortrait",
-          "line": 4037
+          "line": 4150
         },
         {
           "name": "UF.FrameUsesPortraitLayout",
-          "line": 4253
+          "line": 4366
         },
         {
           "name": "UF.LayoutBigDebuffsCornerPlaceholder",
-          "line": 4270
+          "line": 4383
         },
         {
           "name": "UF.UpdatePortrait",
-          "line": 4396
+          "line": 4509
         },
         {
           "name": "UF.SyncPortraitModelGeometry",
-          "line": 4473
+          "line": 4586
         },
         {
           "name": "UF.RefreshPortraitAfterDisplayMetrics",
-          "line": 4501
+          "line": 4614
         },
         {
           "name": "UF.UpdatePlayerSpecIconOnly",
-          "line": 4660
+          "line": 4773
         },
         {
           "name": "_G.FluxUnitFrames_RefreshPlayerSpecIcon",
-          "line": 4719
+          "line": 4832
         },
         {
           "name": "_G.FluxUnitFrames_GetPlayerSpecIcon",
-          "line": 4790
+          "line": 4903
         },
         {
           "name": "UF.CreateAtlasBorder",
-          "line": 4828
+          "line": 4941
         },
         {
           "name": "UF.UpdateAtlasBorder",
-          "line": 4876
+          "line": 4989
         },
         {
           "name": "UF.GuardTooltipStatusBar",
-          "line": 4920
+          "line": 5033
         },
         {
           "name": "mixin:ResetUnitHealth",
-          "line": 4948
+          "line": 5061
         },
         {
           "name": "mixin:UpdateUnitHealth",
-          "line": 4955
+          "line": 5068
         },
         {
           "name": "UF.ShowUnitTooltip",
-          "line": 4963
+          "line": 5076
         },
         {
           "name": "endGameTooltip.UpdateTooltip",
-          "line": 4992
+          "line": 5105
         },
         {
           "name": "UF.HideUnitTooltip",
-          "line": 5004
+          "line": 5117
         },
         {
           "name": "UF.CreateMouseoverHighlight",
-          "line": 5046
+          "line": 5159
         },
         {
           "name": "UF.SetIndicatorArt",
-          "line": 5128
+          "line": 5241
         },
         {
           "name": "UF.CreatePvpBadge",
-          "line": 5146
+          "line": 5259
         },
         {
           "name": "UF.UpdatePvpBadge",
-          "line": 5164
+          "line": 5277
         },
         {
           "name": "UF.CreateOuterBorder",
-          "line": 5208
+          "line": 5321
         },
         {
           "name": "outerBorderFrame.SetRightClickMenu",
-          "line": 5457
+          "line": 5571
         },
         {
           "name": "UF.SetFrameLevelIfChanged",
-          "line": 5574
+          "line": 5688
         },
         {
           "name": "UF.UpdatePortraitCombatTint",
-          "line": 5681
+          "line": 5795
         },
         {
           "name": "UF.UpdateBorderColors",
-          "line": 5710
+          "line": 5824
         },
         {
           "name": "UF.UpdateRaidMarker",
-          "line": 6545
+          "line": 6662
         },
         {
           "name": "UF.LayoutRaidMarker",
-          "line": 6559
+          "line": 6676
         },
         {
           "name": "UF.UpdateOuterBorder",
-          "line": 6569
+          "line": 6686
         },
         {
           "name": "UF.UpdateAdditionalPower",
-          "line": 7218
+          "line": 7335
         },
         {
           "name": "UF.CreateAdditionalPowerBar",
-          "line": 7371
+          "line": 7488
         },
         {
           "name": "UF.GetThreatBarPosition",
-          "line": 7556
+          "line": 7673
         },
         {
           "name": "UF.CreateThreatBar",
-          "line": 7850
+          "line": 7967
         },
         {
           "name": "UF.LayoutThreatBar",
-          "line": 7918
+          "line": 8035
         },
         {
           "name": "UF.UpdateThreatBar",
-          "line": 8044
+          "line": 8161
         },
         {
           "name": "UF.UpdateFrameVisualElements",
-          "line": 8248
+          "line": 8365
         },
         {
           "name": "UF.UpdateFramePartitionSeparators",
-          "line": 8393
+          "line": 8510
         },
         {
           "name": "UF.GetFluxStylePartitionHealthHeight",
-          "line": 8426
+          "line": 8543
         },
         {
           "name": "UF.UpdateFramePartition",
-          "line": 8440
+          "line": 8557
         },
         {
           "name": "UF.ApplyEmulatedHorizontalSqueezeForFrame",
-          "line": 9106
+          "line": 9225
         },
         {
           "name": "UF.UpdateAllEmulatedHorizontalSqueeze",
-          "line": 9110
+          "line": 9229
         },
         {
           "name": "FluxUnitFrames_UpdateAllEmulatedHorizontalSqueeze",
-          "line": 9122
+          "line": 9241
         },
         {
           "name": "UF.RegisterEmulatedHorizontalSqueeze",
-          "line": 9126
+          "line": 9245
         },
         {
           "name": "UF.CreateBaseFrame",
-          "line": 9171
+          "line": 9290
         },
         {
           "name": "UF.RefreshSelfDisplayNames",
-          "line": 9429
+          "line": 9548
         },
         {
           "name": "FluxUnitFrames_RefreshAppearanceChrome",
-          "line": 9451
+          "line": 9570
         }
       ],
       "events": [
         {
-          "line": 197,
+          "line": 217,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_REGEN_DISABLED\""
@@ -101675,7 +102477,7 @@
           "context": "(\"Frame\")threatArmFrame:"
         },
         {
-          "line": 198,
+          "line": 218,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_REGEN_ENABLED\""
@@ -101683,7 +102485,7 @@
           "context": "(\"PLAYER_REGEN_DISABLED\")threatArmFrame:"
         },
         {
-          "line": 199,
+          "line": 219,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_ENTERING_WORLD\""
@@ -101691,7 +102493,7 @@
           "context": "(\"PLAYER_REGEN_ENABLED\")threatArmFrame:"
         },
         {
-          "line": 1338,
+          "line": 1359,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_REGEN_ENABLED\""
@@ -101699,7 +102501,7 @@
           "context": "PulseFrame=pulseFramepulse:"
         },
         {
-          "line": 4643,
+          "line": 4756,
           "method": "RegisterUnitEvent",
           "arguments": [
             "\"UNIT_TARGET\"",
@@ -101708,7 +102510,7 @@
           "context": ".RegisterUnitEventtheninspectFrame:"
         },
         {
-          "line": 4645,
+          "line": 4758,
           "method": "RegisterEvent",
           "arguments": [
             "\"UNIT_TARGET\""
@@ -101716,7 +102518,7 @@
           "context": "\"player\")elseinspectFrame:"
         },
         {
-          "line": 5419,
+          "line": 5532,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_ENTERING_WORLD\""
@@ -101724,7 +102526,7 @@
           "context": ")end)pvpTimerFrame:"
         },
         {
-          "line": 5420,
+          "line": 5533,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_FLAGS_CHANGED\""
@@ -101732,15 +102534,15 @@
           "context": "(\"PLAYER_ENTERING_WORLD\")pvpTimerFrame:"
         },
         {
-          "line": 5454,
+          "line": 5568,
           "method": "RegisterEvent",
           "arguments": [
             "\"RAID_TARGET_UPDATE\""
           ],
-          "context": "unit)endouterBorderFrame:"
+          "context": "frame)endouterBorderFrame:"
         },
         {
-          "line": 6581,
+          "line": 6698,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_REGEN_ENABLED\""
@@ -101748,7 +102550,7 @@
           "context": "\"PLAYER_REGEN_ENABLED\")thenself:"
         },
         {
-          "line": 8578,
+          "line": 8695,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_REGEN_ENABLED\""
@@ -101756,7 +102558,7 @@
           "context": "\"PLAYER_REGEN_ENABLED\")thenself:"
         },
         {
-          "line": 8607,
+          "line": 8724,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_REGEN_ENABLED\""
@@ -101764,7 +102566,7 @@
           "context": "\"PLAYER_REGEN_ENABLED\")thenself:"
         },
         {
-          "line": 9135,
+          "line": 9254,
           "method": "RegisterEvent",
           "arguments": [
             "\"UI_SCALE_CHANGED\""
@@ -101772,7 +102574,7 @@
           "context": "(\"Frame\")emulatedSqueezeEventFrame:"
         },
         {
-          "line": 9136,
+          "line": 9255,
           "method": "RegisterEvent",
           "arguments": [
             "\"DISPLAY_SIZE_CHANGED\""
@@ -101780,7 +102582,7 @@
           "context": "(\"UI_SCALE_CHANGED\")emulatedSqueezeEventFrame:"
         },
         {
-          "line": 9137,
+          "line": 9256,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_ENTERING_WORLD\""
@@ -101788,7 +102590,7 @@
           "context": "(\"DISPLAY_SIZE_CHANGED\")emulatedSqueezeEventFrame:"
         },
         {
-          "line": 9138,
+          "line": 9257,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_REGEN_ENABLED\""
@@ -101796,7 +102598,7 @@
           "context": "(\"PLAYER_ENTERING_WORLD\")emulatedSqueezeEventFrame:"
         },
         {
-          "line": 9210,
+          "line": 9329,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_ENTERING_WORLD\""
@@ -101804,7 +102606,7 @@
           "context": ",OnEvent)frame:"
         },
         {
-          "line": 9211,
+          "line": 9330,
           "method": "RegisterEvent",
           "arguments": [
             "\"UI_SCALE_CHANGED\""
@@ -101812,7 +102614,7 @@
           "context": "(\"PLAYER_ENTERING_WORLD\")frame:"
         },
         {
-          "line": 9212,
+          "line": 9331,
           "method": "RegisterEvent",
           "arguments": [
             "\"DISPLAY_SIZE_CHANGED\""
@@ -101820,7 +102622,7 @@
           "context": "(\"UI_SCALE_CHANGED\")frame:"
         },
         {
-          "line": 9213,
+          "line": 9332,
           "method": "RegisterEvent",
           "arguments": [
             "\"UPDATE_SHAPESHIFT_FORM\""
@@ -101828,7 +102630,7 @@
           "context": "(\"DISPLAY_SIZE_CHANGED\")frame:"
         },
         {
-          "line": 9214,
+          "line": 9333,
           "method": "RegisterUnitEvent",
           "arguments": [
             "\"UNIT_HEALTH\"",
@@ -101837,7 +102639,7 @@
           "context": "(\"UPDATE_SHAPESHIFT_FORM\")frame:"
         },
         {
-          "line": 9215,
+          "line": 9334,
           "method": "RegisterUnitEvent",
           "arguments": [
             "\"UNIT_MAXHEALTH\"",
@@ -101846,7 +102648,7 @@
           "context": ",unit)frame:"
         },
         {
-          "line": 9216,
+          "line": 9335,
           "method": "RegisterUnitEvent",
           "arguments": [
             "\"UNIT_POWER_UPDATE\"",
@@ -101855,7 +102657,7 @@
           "context": ",unit)frame:"
         },
         {
-          "line": 9217,
+          "line": 9336,
           "method": "RegisterUnitEvent",
           "arguments": [
             "\"UNIT_MAXPOWER\"",
@@ -101864,7 +102666,7 @@
           "context": ",unit)frame:"
         },
         {
-          "line": 9218,
+          "line": 9337,
           "method": "RegisterUnitEvent",
           "arguments": [
             "\"UNIT_DISPLAYPOWER\"",
@@ -101873,7 +102675,7 @@
           "context": ",unit)frame:"
         },
         {
-          "line": 9226,
+          "line": 9345,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_TARGET_CHANGED\""
@@ -101881,7 +102683,7 @@
           "context": "==\"target\"thenframe:"
         },
         {
-          "line": 9227,
+          "line": 9346,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_REGEN_ENABLED\""
@@ -101889,7 +102691,7 @@
           "context": "(\"PLAYER_TARGET_CHANGED\")frame:"
         },
         {
-          "line": 9231,
+          "line": 9350,
           "method": "RegisterUnitEvent",
           "arguments": [
             "\"UNIT_NAME_UPDATE\"",
@@ -101898,7 +102700,7 @@
           "context": "(frame)frame:"
         },
         {
-          "line": 9233,
+          "line": 9352,
           "method": "RegisterUnitEvent",
           "arguments": [
             "\"UNIT_CLASSIFICATION_CHANGED\"",
@@ -101907,7 +102709,7 @@
           "context": ",unit)frame:"
         },
         {
-          "line": 9234,
+          "line": 9353,
           "method": "RegisterUnitEvent",
           "arguments": [
             "\"UNIT_LEVEL\"",
@@ -101916,7 +102718,7 @@
           "context": ",unit)frame:"
         },
         {
-          "line": 9235,
+          "line": 9354,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_LEVEL_UP\""
@@ -101924,7 +102726,7 @@
           "context": ",unit)frame:"
         },
         {
-          "line": 9236,
+          "line": 9355,
           "method": "RegisterEvent",
           "arguments": [
             "\"UNIT_THREAT_LIST_UPDATE\""
@@ -101932,7 +102734,7 @@
           "context": "(\"PLAYER_LEVEL_UP\")frame:"
         },
         {
-          "line": 9238,
+          "line": 9357,
           "method": "RegisterUnitEvent",
           "arguments": [
             "\"UNIT_NAME_UPDATE\"",
@@ -101941,7 +102743,7 @@
           "context": "==\"targettarget\"thenframe:"
         },
         {
-          "line": 9239,
+          "line": 9358,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_TARGET_CHANGED\""
@@ -101949,7 +102751,7 @@
           "context": ",unit)frame:"
         },
         {
-          "line": 9240,
+          "line": 9359,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_REGEN_ENABLED\""
@@ -101957,7 +102759,7 @@
           "context": "(\"PLAYER_TARGET_CHANGED\")frame:"
         },
         {
-          "line": 9243,
+          "line": 9362,
           "method": "RegisterUnitEvent",
           "arguments": [
             "\"UNIT_TARGET\"",
@@ -101966,7 +102768,7 @@
           "context": "(\"PLAYER_REGEN_ENABLED\")frame:"
         },
         {
-          "line": 9248,
+          "line": 9367,
           "method": "RegisterUnitEvent",
           "arguments": [
             "\"UNIT_CLASSIFICATION_CHANGED\"",
@@ -101975,7 +102777,7 @@
           "context": "(frame)frame:"
         },
         {
-          "line": 9249,
+          "line": 9368,
           "method": "RegisterUnitEvent",
           "arguments": [
             "\"UNIT_LEVEL\"",
@@ -101984,7 +102786,7 @@
           "context": ",unit)frame:"
         },
         {
-          "line": 9254,
+          "line": 9373,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_FOCUS_CHANGED\""
@@ -101992,7 +102794,7 @@
           "context": "\"PLAYER_FOCUS_CHANGED\")elseframe:"
         },
         {
-          "line": 9256,
+          "line": 9375,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_REGEN_ENABLED\""
@@ -102000,7 +102802,7 @@
           "context": "\"PLAYER_FOCUS_CHANGED\")endframe:"
         },
         {
-          "line": 9258,
+          "line": 9377,
           "method": "RegisterUnitEvent",
           "arguments": [
             "\"UNIT_NAME_UPDATE\"",
@@ -102009,7 +102811,7 @@
           "context": ",true)frame:"
         },
         {
-          "line": 9259,
+          "line": 9378,
           "method": "RegisterUnitEvent",
           "arguments": [
             "\"UNIT_CLASSIFICATION_CHANGED\"",
@@ -102018,7 +102820,7 @@
           "context": ",unit)frame:"
         },
         {
-          "line": 9260,
+          "line": 9379,
           "method": "RegisterUnitEvent",
           "arguments": [
             "\"UNIT_LEVEL\"",
@@ -102027,7 +102829,7 @@
           "context": ",unit)frame:"
         },
         {
-          "line": 9261,
+          "line": 9380,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_LEVEL_UP\""
@@ -102035,7 +102837,7 @@
           "context": ",unit)frame:"
         },
         {
-          "line": 9262,
+          "line": 9381,
           "method": "RegisterEvent",
           "arguments": [
             "\"UNIT_THREAT_LIST_UPDATE\""
@@ -102043,7 +102845,7 @@
           "context": "(\"PLAYER_LEVEL_UP\")frame:"
         },
         {
-          "line": 9264,
+          "line": 9383,
           "method": "RegisterUnitEvent",
           "arguments": [
             "\"UNIT_NAME_UPDATE\"",
@@ -102052,7 +102854,7 @@
           "context": "==\"focustarget\"thenframe:"
         },
         {
-          "line": 9268,
+          "line": 9387,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_FOCUS_CHANGED\""
@@ -102060,7 +102862,7 @@
           "context": "\"PLAYER_FOCUS_CHANGED\")elseframe:"
         },
         {
-          "line": 9270,
+          "line": 9389,
           "method": "RegisterUnitEvent",
           "arguments": [
             "\"UNIT_TARGET\"",
@@ -102069,7 +102871,7 @@
           "context": "\"PLAYER_FOCUS_CHANGED\")endframe:"
         },
         {
-          "line": 9271,
+          "line": 9390,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_REGEN_ENABLED\""
@@ -102077,7 +102879,7 @@
           "context": ",\"focus\")frame:"
         },
         {
-          "line": 9273,
+          "line": 9392,
           "method": "RegisterUnitEvent",
           "arguments": [
             "\"UNIT_CLASSIFICATION_CHANGED\"",
@@ -102086,7 +102888,7 @@
           "context": ",true)frame:"
         },
         {
-          "line": 9274,
+          "line": 9393,
           "method": "RegisterUnitEvent",
           "arguments": [
             "\"UNIT_LEVEL\"",
@@ -102095,7 +102897,7 @@
           "context": ",unit)frame:"
         },
         {
-          "line": 9277,
+          "line": 9396,
           "method": "RegisterEvent",
           "arguments": [
             "\"UNIT_PET\""
@@ -102103,7 +102905,7 @@
           "context": "==\"player\"thenframe:"
         },
         {
-          "line": 9282,
+          "line": 9401,
           "method": "RegisterUnitEvent",
           "arguments": [
             "\"UNIT_NAME_UPDATE\"",
@@ -102113,7 +102915,7 @@
           "context": "\"UNIT_HAPPINESS\")endframe:"
         },
         {
-          "line": 9286,
+          "line": 9405,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_REGEN_DISABLED\""
@@ -102121,7 +102923,7 @@
           "context": ",\"pet\")frame:"
         },
         {
-          "line": 9287,
+          "line": 9406,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_REGEN_ENABLED\""
@@ -102129,7 +102931,7 @@
           "context": "(\"PLAYER_REGEN_DISABLED\")frame:"
         },
         {
-          "line": 9288,
+          "line": 9407,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_UPDATE_RESTING\""
@@ -102137,7 +102939,7 @@
           "context": "(\"PLAYER_REGEN_ENABLED\")frame:"
         },
         {
-          "line": 9289,
+          "line": 9408,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_FLAGS_CHANGED\""
@@ -102145,7 +102947,7 @@
           "context": "(\"PLAYER_UPDATE_RESTING\")frame:"
         },
         {
-          "line": 9293,
+          "line": 9412,
           "method": "RegisterEvent",
           "arguments": [
             "\"GROUP_ROSTER_UPDATE\""
@@ -102153,7 +102955,7 @@
           "context": "\"PLAYER_FLAGS_CHANGED\")endframe:"
         },
         {
-          "line": 9294,
+          "line": 9413,
           "method": "RegisterEvent",
           "arguments": [
             "\"RAID_ROSTER_UPDATE\""
@@ -102161,7 +102963,7 @@
           "context": "(\"GROUP_ROSTER_UPDATE\")frame:"
         },
         {
-          "line": 9295,
+          "line": 9414,
           "method": "RegisterEvent",
           "arguments": [
             "\"PARTY_LEADER_CHANGED\""
@@ -102169,7 +102971,7 @@
           "context": "(\"RAID_ROSTER_UPDATE\")frame:"
         },
         {
-          "line": 9299,
+          "line": 9418,
           "method": "RegisterEvent",
           "arguments": [
             "\"PARTY_LOOT_METHOD_CHANGED\""
@@ -102177,7 +102979,7 @@
           "context": "function()frame:"
         },
         {
-          "line": 9303,
+          "line": 9422,
           "method": "RegisterUnitEvent",
           "arguments": [
             "\"UNIT_FACTION\"",
@@ -102186,7 +102988,7 @@
           "context": "end)endframe:"
         },
         {
-          "line": 9304,
+          "line": 9423,
           "method": "RegisterUnitEvent",
           "arguments": [
             "\"PLAYER_FLAGS_CHANGED\"",
@@ -102195,7 +102997,7 @@
           "context": ".unit)frame:"
         },
         {
-          "line": 9308,
+          "line": 9427,
           "method": "RegisterEvent",
           "arguments": [
             "\"ZONE_CHANGED\""
@@ -102203,7 +103005,7 @@
           "context": ".unit)frame:"
         },
         {
-          "line": 9309,
+          "line": 9428,
           "method": "RegisterEvent",
           "arguments": [
             "\"ZONE_CHANGED_NEW_AREA\""
@@ -102211,7 +103013,7 @@
           "context": "(\"ZONE_CHANGED\")frame:"
         },
         {
-          "line": 9310,
+          "line": 9429,
           "method": "RegisterEvent",
           "arguments": [
             "\"ZONE_CHANGED_INDOORS\""
@@ -102219,7 +103021,7 @@
           "context": "(\"ZONE_CHANGED_NEW_AREA\")frame:"
         },
         {
-          "line": 9311,
+          "line": 9430,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_ENTERING_WORLD\""
@@ -102227,7 +103029,7 @@
           "context": "(\"ZONE_CHANGED_INDOORS\")frame:"
         },
         {
-          "line": 9442,
+          "line": 9561,
           "method": "RegisterEvent",
           "arguments": [
             "\"CVAR_UPDATE\""
@@ -105480,139 +106282,144 @@
       "line": 663
     },
     {
+      "path": "FluxOptionsDefaults.global.nameplateThreat.questOverlayEnabled",
+      "value": "true",
+      "line": 664
+    },
+    {
       "path": "FluxOptionsDefaults.global.nameplateThreat.showRefreshableDebuffs",
       "value": "true",
-      "line": 671
+      "line": 672
     },
     {
       "path": "FluxOptionsDefaults.global.nameplateThreat.blizzardThreat.Progressive",
       "value": "true",
-      "line": 665
+      "line": 666
     },
     {
       "path": "FluxOptionsDefaults.global.nameplateThreat.blizzardThreat.Flash",
       "value": "true",
-      "line": 666
+      "line": 667
     },
     {
       "path": "FluxOptionsDefaults.global.nameplateThreat.blizzardThreat.HealthBarColor",
       "value": "true",
-      "line": 667
+      "line": 668
     },
     {
       "path": "FluxOptionsDefaults.global.chatCopyPaste.chat_copy",
       "value": "true",
-      "line": 675
+      "line": 676
     },
     {
       "path": "FluxOptionsDefaults.global.chatCopyPaste.chat_btn_social",
       "value": "true",
-      "line": 676
+      "line": 677
     },
     {
       "path": "FluxOptionsDefaults.global.chatCopyPaste.chat_btn_channel",
       "value": "true",
-      "line": 677
+      "line": 678
     },
     {
       "path": "FluxOptionsDefaults.global.chatCopyPaste.chat_btn_guild",
       "value": "true",
-      "line": 678
+      "line": 679
     },
     {
       "path": "FluxOptionsDefaults.global.chatCopyPaste.chat_btn_durability",
       "value": "true",
-      "line": 679
+      "line": 680
     },
     {
       "path": "FluxOptionsDefaults.global.chatCopyPaste.chat_btn_bags",
       "value": "true",
-      "line": 680
+      "line": 681
     },
     {
       "path": "FluxOptionsDefaults.global.chatCopyPaste.chat_btn_options",
       "value": "true",
-      "line": 681
+      "line": 682
     },
     {
       "path": "FluxOptionsDefaults.global.chatCopyPaste.chat_btn_menu",
       "value": "true",
-      "line": 682
+      "line": 683
     },
     {
       "path": "FluxOptionsDefaults.global.chatCopyPaste.chat_url",
       "value": "true",
-      "line": 683
+      "line": 684
     },
     {
       "path": "FluxOptionsDefaults.global.chatCopyPaste.chat_url_color_r",
       "value": "0",
-      "line": 684
+      "line": 685
     },
     {
       "path": "FluxOptionsDefaults.global.chatCopyPaste.chat_url_color_g",
       "value": "173",
-      "line": 685
+      "line": 686
     },
     {
       "path": "FluxOptionsDefaults.global.chatCopyPaste.chat_url_color_b",
       "value": "255",
-      "line": 686
+      "line": 687
     },
     {
       "path": "FluxOptionsDefaults.global.chatCopyPaste.chat_msg_color_r",
       "value": "0",
-      "line": 687
+      "line": 688
     },
     {
       "path": "FluxOptionsDefaults.global.chatCopyPaste.chat_msg_color_g",
       "value": "255",
-      "line": 688
+      "line": 689
     },
     {
       "path": "FluxOptionsDefaults.global.chatCopyPaste.chat_msg_color_b",
       "value": "0",
-      "line": 689
+      "line": 690
     },
     {
       "path": "FluxOptionsDefaults.global.chatCopyPaste.chat_disable_fade",
       "value": "false",
-      "line": 690
+      "line": 691
     },
     {
       "path": "FluxOptionsDefaults.global.chatCopyPaste.maxLinesShown",
       "value": "500",
-      "line": 691
+      "line": 692
     },
     {
       "path": "FluxOptionsDefaults.global.keyVisualizer.lastKeyboardLayout",
       "value": "\"QWERTY\"",
-      "line": 695
+      "line": 696
     },
     {
       "path": "FluxOptionsDefaults.global.keyVisualizer.lastKeyboardSize",
       "value": "100",
-      "line": 696
+      "line": 697
     },
     {
       "path": "FluxOptionsDefaults.global.keyVisualizer.showOnlyLoadedBindings",
       "value": "true",
-      "line": 697
+      "line": 698
     },
     {
       "path": "FluxOptionsDefaults.global.keyVisualizer.highlightEmptyKeys",
       "value": "false",
-      "line": 698
+      "line": 699
     },
     {
       "path": "FluxOptionsDefaults.global.keyVisualizer.showExtraButtons",
       "value": "true",
-      "line": 699
+      "line": 700
     },
     {
       "path": "FluxOptionsDefaults.global.keyVisualizer.showMouse",
       "value": "true",
-      "line": 700
+      "line": 701
     }
   ],
   "assets": [
@@ -106670,6 +107477,21 @@
       "path": "Texture/MouseScrollUp.tga",
       "bytes": 1025,
       "sha256": "df10d4b712543c51ec0a7a4df48853323f43c52451623631ff8dac6163c03643"
+    },
+    {
+      "path": "Texture/QuestIcons-NOTICE.txt",
+      "bytes": 410,
+      "sha256": "b562e3b782f797b1644ae4150677c71bef35ccbe86898e3bac24ad3e6a91f505"
+    },
+    {
+      "path": "Texture/QuestLoot.blp",
+      "bytes": 2564,
+      "sha256": "237974b610c9d3304084b783b35d9021138a7f40d3961c621d1e04accd527e5b"
+    },
+    {
+      "path": "Texture/QuestSlay.blp",
+      "bytes": 2564,
+      "sha256": "1a5ab061ac2649cf1953e1ebb82ed9cf957b15937fdf77711861c69038b6db08"
     },
     {
       "path": "Texture/RaidFrameShieldOverlay.BLP",

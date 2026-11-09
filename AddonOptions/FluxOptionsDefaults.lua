@@ -661,6 +661,7 @@ FluxOptionsDefaults = {
             enemyPlayerTarget = true,
             visibilityMode = "group",
             levelOverlayEnabled = true,
+            questOverlayEnabled = true,
             blizzardThreat = {
                 Progressive = true,
                 Flash = true,

@@ -198,10 +198,116 @@ function Debug.CaptureEditMode()
     return snapshot
 end
 
+-- Observe item targeting without calling native bag refresh/click handlers.
+-- A forbidden C item use does not identify its first tainted field.
+local function readable(object)
+    if type(object) ~= "table" or (issecretvalue and issecretvalue(object)) then return false end
+    if canaccesstable then
+        local ok, allowed = pcall(canaccesstable, object)
+        if not ok or not allowed then return false end
+    end
+    return true
+end
+local bagButtonFields = { "bagID", "containerFrame", "GetBagID", "GetID", "OnClick", "OnModifiedClick",
+    "OnAttributeChanged", "OnDragStart", "OnReceiveDrag", "UpdateTooltip", "SetBagID", "Initialize" }
+local function bagButtonState(button)
+    if not readable(button) then return { restricted = true } end
+    return { name = name(button), bag = call(button, "GetBagID"), slot = call(button, "GetID"),
+        bagAttribute = call(button, "GetAttribute", "bagid"), visible = call(button, "IsVisible"),
+        security = security(button, bagButtonFields) }
+end
+function Debug.CaptureBags()
+    local snapshot = { schema = 1, frames = {}, foci = {}, targeting = {},
+        combat = InCombatLockdown and plain(InCombatLockdown()),
+        time = date and date("%Y-%m-%d %H:%M:%S") }
+    if GetBuildInfo then
+        local version, build, _, interface = GetBuildInfo()
+        snapshot.version, snapshot.build, snapshot.interface = plain(version), plain(build), plain(interface)
+    end
+    local queries = { spell = SpellIsTargeting, item = SpellCanTargetItem, itemID = SpellCanTargetItemID,
+        enchanting = C_Spell and C_Spell.TargetSpellIsEnchanting, cursor = GetCursorInfo }
+    for key, query in pairs(queries) do
+        if type(query) == "function" then
+            local ok, value = pcall(query)
+            if ok then snapshot.targeting[key] = plain(value) end
+        end
+    end
+    local getCVar = C_CVar and C_CVar.GetCVar or GetCVar
+    if getCVar then
+        local ok, value = pcall(getCVar, "taintLog")
+        if ok then snapshot.taintLog = plain(value) end
+    end
+    snapshot.globals = security(_G, { "ContainerFrameItemButton_OnClick", "ContainerFrameItemButton_OnEnter",
+        "MerchantFrame_ResetRefundItem", "BankUtil_IsAccountBankDepositRefundable", "SpellCanTargetItem", "SpellCanTargetItemID" })
+    snapshot.containerAPI = security(C_Container, { "UseContainerItem", "GetContainerItemInfo" })
+    snapshot.itemSelection = security(ItemButtonUtil, { "MarkItemSelectionFromBag", "ClearPendingItemSelectionSource" })
+    snapshot.mixin = security(ContainerFrameItemButtonMixin, bagButtonFields)
+    local bank = _G.BankFrame
+    if readable(bank) then
+        snapshot.bank = { shown = call(bank, "IsShown"), security = security(bank, { "GetActiveBankType", "BankPanel" }) }
+        local panel = bank.BankPanel
+        if readable(panel) then
+            snapshot.bank.panel = { shown = call(panel, "IsShown"), security = security(panel, { "GetActiveBankType", "bankType" }) }
+        end
+    end
+    local remaining = 256
+    local function captureFrame(key)
+        local frame = _G[key]
+        if not readable(frame) then return end
+        local record = { visible = call(frame, "IsVisible"), shown = call(frame, "IsShown"), buttons = {},
+            security = security(frame, { "Items", "Update", "UpdateItems", "UpdateItemSlots", "UpdateItemLayout" }) }
+        snapshot.frames[key] = record
+        if not (record.visible == true or (record.visible == nil and record.shown == true)) then return end
+        local items = frame.Items
+        if not readable(items) then return end
+        for i = 1, 256 do
+            if remaining == 0 then record.truncated = true; break end
+            local button = items[i]
+            if button == nil then break end
+            record.buttons[#record.buttons + 1] = bagButtonState(button)
+            remaining = remaining - 1
+        end
+    end
+    captureFrame("ContainerFrameCombinedBags")
+    for i = 1, 13 do captureFrame("ContainerFrame" .. i) end
+    local foci
+    if GetMouseFoci then
+        local ok, value = pcall(GetMouseFoci)
+        if ok and readable(value) then foci = value end
+    elseif GetMouseFocus then
+        local ok, value = pcall(GetMouseFocus)
+        if ok and readable(value) then foci = { value } end
+    end
+    for i = 1, math.min(foci and #foci or 0, 8) do
+        snapshot.foci[i] = bagButtonState(foci[i])
+    end
+    snapshot.complete = true
+    return snapshot
+end
+
 local pending = false
 SLASH_FLUXINPUT1 = "/fluxinput"
 SlashCmdList.FLUXINPUT = function(message)
     if pending then return end
+    if type(message) == "string" and message:lower():match("^%s*bags%s*$") then
+        FluxPerfCaptureDB = FluxPerfCaptureDB or {}
+        local prior = FluxPerfCaptureDB.bagInputDebug
+        local previous = type(prior) == "table" and prior.latest or nil
+        local before = Debug.CaptureBags()
+        FluxPerfCaptureDB.bagInputDebug = { latest = before, previous = previous }
+        print("Flux bag capture: use the item, then hover its target within 10 seconds. /reload afterward to save.")
+        if C_Timer and C_Timer.After then
+            pending = true
+            C_Timer.After(10, function()
+                pending = false
+                local snapshot = Debug.CaptureBags()
+                snapshot.before = before
+                FluxPerfCaptureDB.bagInputDebug = { latest = snapshot, previous = previous }
+                print("Flux bag targeting captured. /reload to save.")
+            end)
+        end
+        return
+    end
     if type(message) == "string" and message:lower():match("^%s*edit%s*$") then
         local snapshot = Debug.CaptureEditMode()
         FluxPerfCaptureDB = FluxPerfCaptureDB or {}

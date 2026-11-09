@@ -1,5 +1,13 @@
 # Player input and native callback ownership — 23 October 2026
 
+9 November 2026: `/fluxinput bags` adds bounded before/ten-second metadata for
+native source-item → item-targeting cursor → destination-item failures. It records
+native button/helper ownership and targeting state without native refreshes,
+click hooks, actions or logging changes. Two capture runs are retained under
+`FluxPerfCaptureDB.bagInputDebug`; existing diagnostic roots are preserved.
+The reported Forever crate fault remains unresolved pending the first native
+taint writer. [Scope, checks and reproduction](BAG_ITEM_TARGETING.md).
+
 The Retail input snapshot recorded a visible, mouse-enabled `FluxUnitFrameOuter_player`, its native `SecureUnitButton_OnClick` handler, `unit=player`, `*type1=target`, and mouse focus directly on that button. Blizzard reported left-click binding type `None` and right-click interaction `RightButton`. Its native handler deliberately rejects target interactions when that binding is absent. The user restored **Target Unit → Left Button** through Blizzard's Click Casting UI and confirmed that left-click then worked. Flux does not reset or replace the native click-casting profile. This is a confirmed Retail observation, not a five-client native test.
 
 The shared mouse-routing setup now registers left/right release events and middle/button 4/button 5 press events explicitly. This restores the ordinary left release omitted by `AnyDown, RightButtonUp` while retaining the extra-button routing. The five branch-specific native unit-click implementations are exercised by [unit click edges](../tests/unit_click_edges.lua), including spell assignments and intentionally unbound interactions. Native click-binding decisions remain authoritative.

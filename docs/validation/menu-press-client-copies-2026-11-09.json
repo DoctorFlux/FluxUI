@@ -1,0 +1,30 @@
+{
+  "scope": "Read-only installed copy hashes; no manual sync or reload",
+  "copies": [
+    {
+      "client": "_retail_",
+      "exists": true,
+      "sha256": "525102008a765770e3adbc39292050203573b9acfef0fec54a8b8338270ebc94"
+    },
+    {
+      "client": "_forever_",
+      "exists": true,
+      "sha256": "525102008a765770e3adbc39292050203573b9acfef0fec54a8b8338270ebc94"
+    },
+    {
+      "client": "_classic_",
+      "exists": true,
+      "sha256": "525102008a765770e3adbc39292050203573b9acfef0fec54a8b8338270ebc94"
+    },
+    {
+      "client": "_classic_era_",
+      "exists": true,
+      "sha256": "525102008a765770e3adbc39292050203573b9acfef0fec54a8b8338270ebc94"
+    },
+    {
+      "client": "_anniversary_",
+      "exists": true,
+      "sha256": "525102008a765770e3adbc39292050203573b9acfef0fec54a8b8338270ebc94"
+    }
+  ]
+}

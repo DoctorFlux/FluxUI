@@ -1,0 +1,162 @@
+{
+  "date": "2026-11-09",
+  "change_id": "BAG-ITEM-TARGETING-20261109",
+  "status": "Unresolved runtime fault; bounded opt-in metadata capture implemented",
+  "scope": "General source item to item-target cursor to destination item; no item whitelist or production interaction change",
+  "report": {
+    "client": "Forever",
+    "saved_error": "12:44:34 UNKNOWN; count3; native ContainerFrame.lua1611 UseContainerItem",
+    "user_clarification": "Item resembling a Waylaid crate that targets another item",
+    "unknown": [
+      "exact item ID",
+      "failure before cursor or destination click",
+      "combat/vendor state",
+      "first native taint writer"
+    ],
+    "focus": "00:53:20 count1 matches historical pre-fix report; no new recurrence established"
+  },
+  "native_process": "Host read-only check verified Forever Wow.exe PID49960 window361306470; no input",
+  "upstream": {
+    "target": "Forever",
+    "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+    "build": "1.60.1/70862",
+    "files": [
+      {
+        "path": "Interface/AddOns/Blizzard_UIPanels_Game/Mainline/ContainerFrame.lua",
+        "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_UIPanels_Game/Mainline/ContainerFrame.lua",
+        "sha256": "9af2c76d16ebff607dd8b983722f36f98e819b35bc77395232bb2f960d15e3d3"
+      },
+      {
+        "path": "Interface/AddOns/Blizzard_UIPanels_Game/Mainline/ContainerFrame.xml",
+        "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_UIPanels_Game/Mainline/ContainerFrame.xml",
+        "sha256": "d7261b3b95822fb2d8b741b2218bba054e8ea015ae6af09ef42477778ea0bd8e"
+      },
+      {
+        "path": "Interface/AddOns/Blizzard_UIPanels_Game/Blizzard_UIPanels_Game.toc",
+        "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_UIPanels_Game/Blizzard_UIPanels_Game.toc",
+        "sha256": "c4f57e9b6df5597c134f8434391e71f8019d9bd7a2f7682d87f3b893449ba7b1"
+      },
+      {
+        "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/ContainerDocumentation.lua",
+        "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_APIDocumentationGenerated/ContainerDocumentation.lua",
+        "sha256": "dd3e4741d45720384f814d3f78ce975dab3951458ae894e728ed3aedc8ae56b3"
+      }
+    ]
+  },
+  "source_sha256": {
+    "Other/FluxInputDebug.lua": "0b53c2948d11e745ff8a53069d7e0d88d35687883c66ea3cd171f73cccd20ff3",
+    "tests/bag_item_targeting_diagnostics.lua": "df4500b3eeb48139b625dcd027c78eb672723da8f8fe254766d87936ef979743",
+    "Inventory/Restock/Junk/FluxJunkOverlay.lua": "ef94f0c14defe12b12c513de5795c9a25eea2b84d3396a700a849ab8049dfaaf",
+    "MicroMenu/FluxCombinedBagHeader.lua": "3b21d5882ec78c7591a86f0f2dcb92b5ae28c9b0994c4f8ccdff1262af835223"
+  },
+  "baseline_rejection": {
+    "command": [
+      "lua",
+      "tests/bag_item_targeting_diagnostics.lua",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\09\\01a1c020-23fd-7cf0-991c-338e589980c3\\FluxInputDebug-before.lua"
+    ],
+    "exit": 1,
+    "output": "lua: tests/bag_item_targeting_diagnostics.lua:3: bag targeting metadata entry point exists\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/bag_item_targeting_diagnostics.lua:3: in local 'check'\n\ttests/bag_item_targeting_diagnostics.lua:53: in main chunk\n\t[C]: in ?\n"
+  },
+  "checks": [
+    {
+      "command": [
+        "lua",
+        "tests/bag_item_targeting_diagnostics.lua"
+      ],
+      "exit": 0,
+      "output": "Bag item-targeting diagnostics: 574 checks PASS; native taint reproduction pending\n"
+    },
+    {
+      "command": [
+        "lua",
+        "tests/input_diagnostics.lua"
+      ],
+      "exit": 0,
+      "output": "Input diagnostics: read-only capture, secrets, false/protected states, restricted reads, click routing, logging mode, bounded callback passed\n"
+    },
+    {
+      "command": [
+        "lua",
+        "tests/visible_native_bag_work.lua"
+      ],
+      "exit": 0,
+      "output": "native bags era unified=false hidden updates=0 hidden item reads=0 visible item reads=6\nnative bags anniversary unified=false hidden updates=0 hidden item reads=0 visible item reads=6\nnative bags mists unified=false hidden updates=0 hidden item reads=0 visible item reads=6\nnative bags retail unified=true hidden updates=0 hidden item reads=0 visible item reads=3\nnative bags forever unified=true hidden updates=0 hidden item reads=0 visible item reads=3\nvisible native bag work: 65 checks, 0 failures\n"
+    },
+    {
+      "command": [
+        "lua",
+        "tests/native_forever_bank.lua"
+      ],
+      "exit": 0,
+      "output": "native Forever bank: 168 checks, 0 failures\n"
+    },
+    {
+      "command": [
+        "lua",
+        "tests/focus_native_menus.lua"
+      ],
+      "exit": 0,
+      "output": "Native focus menu routing: 670 checks PASS; native menu action/responders replayed across five clients; actual taint/hardware pending\n"
+    },
+    {
+      "command": [
+        "lua",
+        "MicroMenu/_tmp_bagslotssmoke.lua"
+      ],
+      "exit": 0,
+      "output": "Bag slot smoke OK (Forever native art/masks, reagent marker/tooltips, native keyring toggle with showKeyring off, key drops, bag equip/swap/unequip, refresh/layout, Live/gamepad/alternative UI guards)\n"
+    }
+  ],
+  "installed_copies": [
+    {
+      "client": "_retail_",
+      "matches": true,
+      "sha256": "0b53c2948d11e745ff8a53069d7e0d88d35687883c66ea3cd171f73cccd20ff3"
+    },
+    {
+      "client": "_forever_",
+      "matches": true,
+      "sha256": "0b53c2948d11e745ff8a53069d7e0d88d35687883c66ea3cd171f73cccd20ff3"
+    },
+    {
+      "client": "_classic_",
+      "matches": true,
+      "sha256": "0b53c2948d11e745ff8a53069d7e0d88d35687883c66ea3cd171f73cccd20ff3"
+    },
+    {
+      "client": "_classic_era_",
+      "matches": true,
+      "sha256": "0b53c2948d11e745ff8a53069d7e0d88d35687883c66ea3cd171f73cccd20ff3"
+    },
+    {
+      "client": "_anniversary_",
+      "matches": true,
+      "sha256": "0b53c2948d11e745ff8a53069d7e0d88d35687883c66ea3cd171f73cccd20ff3"
+    }
+  ],
+  "settingsWrites": false,
+  "profilerChanges": false,
+  "gameInput": false,
+  "nativeHooksAdded": false,
+  "resource_scope": "Inactive by default; explicit command captures immediately and once at10s;256buttons/14containers/8foci;latest+previous bounded",
+  "native_result": "Pending user reproduction with optional verbose taint log; desktop metadata checks do not prove secure item use",
+  "performance": "No native CPU/FPS/latency measurement or improvement claim",
+  "full_validation": {
+    "report": "docs/validation/bag-item-targeting-full-2026-11-09.json",
+    "scripts_pass": 270,
+    "scripts_fail": 0,
+    "syntax_files": 937,
+    "syntax_failures": 0,
+    "source_drift": []
+  },
+  "user_reproduction_update": "Original items no longer available; do not require acquiring another crate. Equivalent future item-targeting reproduction remains open.",
+  "observed_log": {
+    "sha256": "0ce9b023007c4f66025a9e5c97bc6ddf32c83449fece4538497f05c62a2e8a1f",
+    "bytes": 590608,
+    "scope": "Available13:00 verbose log; no matching UseContainerItem/ContainerFrame/item-targeting/forbidden-action trace; startup taint alone is not causal proof",
+    "raw_storage": "Private external task evidence; no log contents published"
+  },
+  "saved_bag_capture": "Not present in available on-disk FluxUI saved variables",
+  "documentation_check": "PASS970sources/602reachable/417settings/24SavedVariables/15749localLinks"
+}

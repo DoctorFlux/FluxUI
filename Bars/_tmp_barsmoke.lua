@@ -3692,7 +3692,7 @@ has(clickSrc, "button == \"KeyBind\"", "Click wrap KeyBind")
 has(clickSrc, "button == \"ConjureBind\"", "Click wrap ConjureBind")
 has(clickSrc, "elseif (down) then", "mouse-down swallow")
 has(clickSrc, "CLICK_SNIPPET_ON_DOWN", "HUD extras can fire on mouse-down")
-has(clickSrc, "elseif (not down) then", "onDown wrap swallows mouse-up")
+has(clickSrc, "if (not down) then", "onDown wrap swallows mouse-up")
 has(clickSrc, "pressAndHoldAction", "ButtonForge pressAndHoldAction")
 has(clickSrc, "function Click.Apply", "Click.Apply")
 has(clickSrc, "function Click.MirrorTypeRelease", "typerelease mirrors type")
@@ -3719,8 +3719,8 @@ has(clickSrc, "WrapScript", "Click wrap lives in ButtonFX")
 has(clickSrc, '"pressAndHoldAction", true', "Click.Apply pressAndHold always on")
 has(clickSrc, "function Click.UsesWrap", "Click.UsesWrap gates Forever")
 has(clickSrc, "Click.UsesWrap()", "Click.Apply consults UsesWrap")
-has(clickSrc, 'widget:RegisterForClicks("AnyUp")', "Forever mouse is up-only")
-has(clickSrc, '"useOnKeyDown", false', "Forever mouse ignores UseKeyDown")
+has(clickSrc, 'widget:RegisterForClicks(opts.onDown and "AnyDown" or "AnyUp")', "Forever HUD press and ordinary release policies")
+has(clickSrc, '"useOnKeyDown", opts.onDown and true or false', "Forever uses the explicit HUD input edge")
 has(clickSrc, '"pressAndHoldAction", false', "Forever mouse is not hold-release")
 if clickSrc:find("ForeverOnClick", 1, true) then
 	failures[#failures + 1] = "Forever must not SetScript OnClick (taints UseAction)"
@@ -3756,7 +3756,7 @@ do
 end
 do
 	local onDownSnippet = clickSrc:match("CLICK_SNIPPET_ON_DOWN%s*=%s*%[%[(.-)%]%]") or ""
-	if not onDownSnippet:find("elseif (not down) then", 1, true) then
+	if not onDownSnippet:find("if (not down) then", 1, true) then
 		failures[#failures + 1] = "onDown Click snippet must swallow mouse-up"
 	end
 	if onDownSnippet:find("SetAttribute", 1, true) then
@@ -3766,10 +3766,9 @@ do
 		failures[#failures + 1] = "onDown Click snippet must remap ConjureBind"
 	end
 	local i = onDownSnippet:find('button == "ConjureBind"', 1, true)
-	local j = i and onDownSnippet:find("elseif (not down)", i, true)
-	local chunk = (i and j and onDownSnippet:sub(i, j - 1)) or ""
-	if chunk:find("ActionButtonUseKeyDown", 1, true) then
-		failures[#failures + 1] = "HUD ConjureBind must fire on press, not follow UseKeyDown"
+	local chunk = i and onDownSnippet:sub(i) or ""
+	if onDownSnippet:find("ActionButtonUseKeyDown", 1, true) then
+		failures[#failures + 1] = "HUD use/conjure bindings must fire on press, not follow UseKeyDown"
 	end
 	if not chunk:find('return "RightButton"', 1, true) then
 		failures[#failures + 1] = "HUD ConjureBind must return RightButton on down"

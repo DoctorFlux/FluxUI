@@ -12,6 +12,7 @@ FluxUI uses bundled textures/fonts, native Blizzard atlases and embedded game-da
 | [Texture/ActionBarVFX](../Texture/ActionBarVFX) | Cast/channel fills, inner glows, completion masks, interrupt/target art and placeholder texture. Consumed by the button-effect engine's capability-specific fallbacks. |
 | [Texture/borders](../Texture/borders) | Blizzard-style, glow and lightspark border resources used by border/overlay presentation. |
 | [Texture](../Texture) | Raid shield, bag portrait, battlefield-map, merchant, mouse/keyboard glyphs and other shared UI art. Several glyphs have BLP/PNG/TGA/legacy variants; presence is not proof every variant is loaded. |
+| [Quest kill/loot icons](../Texture/QuestIcons-NOTICE.txt) | Two unchanged 2,564-byte default Questie BLPs supplied locally for [nameplate progress](19-nameplates.md#quest-kill-and-loot-progress--9-november-2026), including when Questie is absent. Source notice retained; no redistribution license asserted or publication performed. |
 | [Binding media](../Binding/UI/Media/Media.lua) | Binding editor media paths and JetBrains Mono font. See provenance for embedded component attribution. |
 | Native atlas/texture references | Resolved at runtime through guarded atlas/resource paths. These are client resources and do not appear as bundled files in the asset inventory. |
 

@@ -1,0 +1,84 @@
+{
+  "date": "2026-11-09",
+  "change": "MENU-PRESS-20261109",
+  "baselineSHA256": "bb73ffadabbe938ccb37bc72e4d70b4b0b9779fb7f044d7a035842bfdaa8230f",
+  "candidateSHA256": "525102008a765770e3adbc39292050203573b9acfef0fec54a8b8338270ebc94",
+  "checksPerCandidate": 4284,
+  "pairs": [
+    {
+      "baseline": {
+        "exit": 1,
+        "output": "lua: tests/menu_press_input.lua:5: live food fires on press: KeyBind\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/menu_press_input.lua:5: in local 'check'\n\ttests/menu_press_input.lua:100: in main chunk\n\t[C]: in ?\n",
+        "wallSeconds": 0.019390099972952157
+      },
+      "candidate": {
+        "exit": 0,
+        "output": "menu_press_input: 4284 checks PASS (five existing clients; both CVars; mouse/use/conjure; modifiers; combat model)\n",
+        "wallSeconds": 0.07613020000280812
+      }
+    },
+    {
+      "baseline": {
+        "exit": 1,
+        "output": "lua: tests/menu_press_input.lua:5: live food fires on press: KeyBind\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/menu_press_input.lua:5: in local 'check'\n\ttests/menu_press_input.lua:100: in main chunk\n\t[C]: in ?\n",
+        "wallSeconds": 0.01751250002416782
+      },
+      "candidate": {
+        "exit": 0,
+        "output": "menu_press_input: 4284 checks PASS (five existing clients; both CVars; mouse/use/conjure; modifiers; combat model)\n",
+        "wallSeconds": 0.06888000000617467
+      }
+    },
+    {
+      "baseline": {
+        "exit": 1,
+        "output": "lua: tests/menu_press_input.lua:5: live food fires on press: KeyBind\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/menu_press_input.lua:5: in local 'check'\n\ttests/menu_press_input.lua:100: in main chunk\n\t[C]: in ?\n",
+        "wallSeconds": 0.01687689998652786
+      },
+      "candidate": {
+        "exit": 0,
+        "output": "menu_press_input: 4284 checks PASS (five existing clients; both CVars; mouse/use/conjure; modifiers; combat model)\n",
+        "wallSeconds": 0.06997859998955391
+      }
+    },
+    {
+      "baseline": {
+        "exit": 1,
+        "output": "lua: tests/menu_press_input.lua:5: live food fires on press: KeyBind\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/menu_press_input.lua:5: in local 'check'\n\ttests/menu_press_input.lua:100: in main chunk\n\t[C]: in ?\n",
+        "wallSeconds": 0.01587390000349842
+      },
+      "candidate": {
+        "exit": 0,
+        "output": "menu_press_input: 4284 checks PASS (five existing clients; both CVars; mouse/use/conjure; modifiers; combat model)\n",
+        "wallSeconds": 0.07023929999559186
+      }
+    },
+    {
+      "baseline": {
+        "exit": 1,
+        "output": "lua: tests/menu_press_input.lua:5: live food fires on press: KeyBind\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/menu_press_input.lua:5: in local 'check'\n\ttests/menu_press_input.lua:100: in main chunk\n\t[C]: in ?\n",
+        "wallSeconds": 0.01692120000370778
+      },
+      "candidate": {
+        "exit": 0,
+        "output": "menu_press_input: 4284 checks PASS (five existing clients; both CVars; mouse/use/conjure; modifiers; combat model)\n",
+        "wallSeconds": 0.07240780000574887
+      }
+    }
+  ],
+  "scope": "Correctness only; uncontrolled process durations are not native latency/CPU/FPS. No input-time protected attribute writes or frame allocation in modeled combat/noncombat paths.",
+  "native": "Not run; no connected Witchcraft/UIForever tools. Existing simulator preference retained.",
+  "preserved": "Settings, key assignments, geometry, cooldown and inventory ownership; ordinary non-HUD mouse release routing.",
+  "negativeControls": [
+    {
+      "control": "forever-release",
+      "exit": 1,
+      "output": "lua: tests/menu_press_input.lua:5: forever food fires on press: LeftButton\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/menu_press_input.lua:5: in local 'check'\n\ttests/menu_press_input.lua:100: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "control": "forever-gate",
+      "exit": 1,
+      "output": "lua: tests/menu_press_input.lua:5: forever food fires on press: LeftButton\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/menu_press_input.lua:5: in local 'check'\n\ttests/menu_press_input.lua:100: in main chunk\n\t[C]: in ?\n"
+    }
+  ]
+}

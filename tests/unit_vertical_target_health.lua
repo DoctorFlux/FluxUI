@@ -9,7 +9,7 @@ local function near(a, b, label) check(math.abs(a - b) < .00001, label) end
 local base = read("tests/unit_overlay_secret_identity.lua")
 base = base:sub(1, assert(base:find("local function healthCases()", 1, true)) - 1)
 local make = assert(load(base .. "\nreturn fixture", "@vertical-overlay-fixture", "t", _G))()
-local shared = read("UnitFrames/FluxUnitFrames_Shared.lua")
+local shared = read(os.getenv("FLUX_VERTICAL_SOURCE") or "UnitFrames/FluxUnitFrames_Shared.lua")
 local first = assert(shared:find("function UF.LayoutVerticalTargetHealth", 1, true))
 local last = assert(shared:find("function UF.UpdateHealth(self, unit)", first, true))
 local helperSource = shared:sub(first, last - 1)
@@ -30,6 +30,33 @@ local function fixture(client, unit, withExistingLoss, initiallyDisabled)
     e.UnitIsGhost = function() return s.ghost end
     e.UnitIsAFK = function() return s.afk end
     e.UnitGetTotalAbsorbs = function() return s.absorbs or 0 end
+    e.UnitIsDeadOrGhost = function() return s.dead or s.ghost end
+    e.FluxUnitFrames_ShouldShowAbsorbs = function() return s.showAbsorbs ~= false end
+    ns.API.isMidnight = client == "live" or client == "forever"
+    ns.API.SafeUnitGetTotalAbsorbs = e.UnitGetTotalAbsorbs
+    ns.API.SafeUnitGetTotalHealAbsorbs = function() return s.healAbsorbs or 0 end
+    ns.API.CreateUnitHealPredictionCalculator = function()
+        assert(not s.combat, "calculator allocated before combat")
+        return {
+            SetDamageAbsorbClampMode = function(self, mode) self.mode = mode end,
+            SetHealAbsorbClampMode = function(self, mode) self.healClamp = mode end,
+            SetHealAbsorbMode = function(self, mode) self.healMode = mode end,
+            GetDamageAbsorbs = function(self)
+                if ns.API.IsSecretValue(s.absorbs) then return s.absorbs end
+                if ns.API.IsSecretValue(s.healthMax) or ns.API.IsSecretValue(s.health) then return s:secret("number") end
+                return math.min(s.absorbs or 0, self.mode == 1 and (s.healthMax - s.health) or s.healthMax)
+            end,
+            GetHealAbsorbs = function(self)
+                check(self.healClamp == 0 and self.healMode == 1, "native heal absorb uses total amount clamped to health")
+                if ns.API.IsSecretValue(s.healAbsorbs) then return s.healAbsorbs end
+                if ns.API.IsSecretValue(s.health) then return s:secret("number") end
+                return math.min(s.healAbsorbs or 0, s.health)
+            end,
+        }
+    end
+    ns.API.UnitGetDetailedHealPrediction = function(unit) check(unit == f.unit, "calculator follows live unit token") end
+    e.ApplyBlizzardShieldFillToStatusBar = function(overlay) overlay:SetStatusBarColor(.14, .33, .7, .7) end
+    e.ApplyBlizzardHealAbsorbFillToStatusBar = function(overlay) overlay:SetStatusBarColor(.5, 0, 0, .7) end
     e.FluxUnitFrames_GetTargetClassHealthColor = function() if s.classColor then return .2, .4, .8 end end
     UF.RecordFrameDimensions = function(frame, w, h) frame._publicWidth, frame._publicHeight = w, h end
     UF.GetFramePublicDimensions = function(frame) return frame._publicWidth, frame._publicHeight end
@@ -37,6 +64,11 @@ local function fixture(client, unit, withExistingLoss, initiallyDisabled)
     local methods = getmetatable(f).__index
     function methods:SetOrientation(v) self.orientation = v end
     function methods:GetOrientation() return self.orientation end
+    function methods:SetReverseFill(v) self.reverseFill = v end
+    function methods:SetClipsChildren(v) self.clipsChildren = v end
+    function methods:SetSize(w, h) self.width, self.height = w, h end
+    function methods:GetValue() return self.value end
+    function methods:GetMinMaxValues() return self.low, self.high end
     function methods:SetTexCoord(...) self.texCoords = {...} end
     local oldPoint = methods.SetPoint
     function methods:SetPoint(...) oldPoint(self, ...); self.points = self.points or {}; self.points[#self.points + 1] = {...} end
@@ -114,6 +146,28 @@ for _, client in ipairs({"live", "forever", "classic", "classic_era", "classic_a
         s.connected = true; s:sample(100)
         s.absorbs = 10; s:sample(60)
         check(not tex:IsShown(), "readable absorbs suppress loss like native health bars")
+        check(f.verticalAbsorbBar and f.verticalAbsorbBar:IsShown() and f.verticalAbsorbBar.value == 10, "shield appears on target without resizing health")
+        check(f.verticalAbsorbBar.orientation == "VERTICAL" and f.verticalAbsorbBar.height == 50, "shield uses full height normalization")
+        check(f.verticalAbsorbBar.point[1] == "BOTTOMLEFT" and f.verticalAbsorbBar.point[2] == bar.fill, "shield starts at live vertical health edge")
+        check(f.verticalAbsorbOverflow.reverseFill and f.verticalAbsorbClip.allPoints == bar.fill and f.verticalAbsorbClip.clipsChildren,
+            "overflow reverses inside native health-fill clip")
+        s.absorbs = 80; s.healAbsorbs = 15; s:sample(60)
+        check(f.verticalAbsorbBar.value == 40 and f.verticalAbsorbOverflow.value == 80, "large shield fills remaining space and spills over health")
+        check(f.verticalHealAbsorbBar.value == 15 and f.verticalHealAbsorbBar.reverseFill, "heal absorb bites downward from health edge")
+        s.showAbsorbs = false; UF.UpdateVerticalTargetAbsorbs(f)
+        check(not f.verticalAbsorbBar:IsShown() and not f.verticalAbsorbOverflow:IsShown() and not f.verticalHealAbsorbBar:IsShown(), "absorb option hides every vertical overlay")
+        s.showAbsorbs = true
+        local allocated = #s.frames
+        for _ = 1, 20 do UF.UpdateVerticalTargetAbsorbs(f) end
+        check(#s.frames == allocated, "repeated combat shield changes allocate no frames")
+        if s.ns.API.isMidnight then
+            s.absorbs, s.healAbsorbs = s:secret("number"), s:secret("number")
+            UF.UpdateVerticalTargetAbsorbs(f)
+            check(f.verticalAbsorbBar.value == s.absorbs and f.verticalHealAbsorbBar.value == s.healAbsorbs and s.opaqueOps == 0,
+                "opaque absorbs pass directly to vertical native value sinks")
+        end
+        s.absorbs, s.healAbsorbs = 0, 0; UF.UpdateVerticalTargetAbsorbs(f)
+        check(not f.verticalAbsorbBar:IsShown() and not f.verticalAbsorbOverflow:IsShown(), "expired shields clear without health change")
         s.absorbs = 0
         s.enabled = false; s:sample(30)
         check(not bar._fluxHealthLossUnderlay and not tex:IsShown(), "feature toggle cancels effects")

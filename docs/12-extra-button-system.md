@@ -1,5 +1,17 @@
 # Extra buttons, consumables, travel and flyouts
 
+9 November menu press input (MENU-PRESS-20261109): food/water/bandage/healing
+potion/mana gem/mana potion/healthstone/trinket HUD mouse and use/conjure bindings
+now activate on press. Shared wrapped policy ignores release CVar for HUD keys;
+Forever unwrapped policy honors onDown with native AnyDown. Ordinary hosts retain
+their existing policy. 4,284 focused checks across five existing clients; five
+baseline-reject/candidate-pass pairs and two rejected Forever controls. All five
+mirrored runtime hashes match.
+Native physical input/combat/taint/pixels/performance pending; no connected test
+tool, client interaction, settings/profiler writes or manual sync. External dated
+2,351-file/history checkpoint and125 settings metadata verified. Full265-script/
+932-syntax validation PASS; no source drift. Result linked in [scope and evidence](MENU_PRESS_INPUT.md).
+
 <!-- STRESS-FIXES-20261107 -->
 7 November applied stress fixes: Effective-alpha readiness tolerates a denied getter without treating it as declassified data. Classic cooldown-ring alpha uses its existing public write ownership. Ordinary utility execution and saved assignments are preserved. [Evidence](../Stress%20test%20doc/applied-fixes/README.md). Native taint/pixels/performance acceptance remains pending.
 <!-- /STRESS-FIXES-20261107 -->

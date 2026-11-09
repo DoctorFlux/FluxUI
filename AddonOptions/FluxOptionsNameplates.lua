@@ -36,6 +36,7 @@ local function EnsureNameplateThreatDB()
         enemyPlayerTarget = true,
         visibilityMode = "group",
         levelOverlayEnabled = true,
+        questOverlayEnabled = true,
     }
 
     if db.npcThreatBorder == nil then
@@ -49,6 +50,9 @@ local function EnsureNameplateThreatDB()
     end
     if db.levelOverlayEnabled == nil then
         db.levelOverlayEnabled = defaults.levelOverlayEnabled ~= false
+    end
+    if db.questOverlayEnabled == nil then
+        db.questOverlayEnabled = defaults.questOverlayEnabled ~= false
     end
     return db
 end
@@ -246,6 +250,21 @@ local function BuildNameplatesOptions()
             end,
         }
     end
+
+    args.headerQuestProgress = {
+        type = "header", name = "Quest progress", order = 15,
+    }
+    args.questOverlayEnabled = {
+        type = "toggle",
+        name = "Show quest kill / loot progress",
+        desc = "Show a kill or loot icon and your current / required count below the left edge of quest mob nameplates. Uses Questie when loaded, otherwise available Blizzard quest information. Disables Questie's own nameplate marker while enabled.",
+        order = 16, width = "full",
+        get = function() return EnsureNameplateThreatDB().questOverlayEnabled ~= false end,
+        set = function(_, value)
+            EnsureNameplateThreatDB().questOverlayEnabled = value and true or false
+            RefreshNameplatesFromDB()
+        end,
+    }
 
     local countdownHeader = {
         type = "header",

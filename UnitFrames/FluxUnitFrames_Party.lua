@@ -263,6 +263,12 @@ end
 
 function Party.PaintChrome(frame, only)
     if not ns.Border then return end
+    -- Focus borrows party geometry, but its colors follow the focused unit just
+    -- like target, independently of the player's accent and party class option.
+    if frame._fluxCompactFocus then
+        UF.UpdateBorderColors(frame)
+        return
+    end
     local color
     if frame._fluxPartyClassChrome then
         local class = frame._fluxPartyPreviewClass
@@ -373,7 +379,7 @@ end
 -- Presentation only: focus keeps its watched-unit driver and external auras.
 function Party.LayoutFocusPresentation(frame)
     if InCombatLockdown() then return end
-    frame._fluxPartyClassChrome = DB().partyClassColor == true
+    frame._fluxPartyClassChrome = nil
     frame._fluxPartyPowerHeightScale = math.max(.5, math.min(1.5, tonumber(DB().partyPowerHeightScale) or .8))
     LayoutTextHosts(frame, false, 1)
     local relative = frame:GetEffectiveScale() / UIParent:GetEffectiveScale()
@@ -450,6 +456,8 @@ local function BuildTarget(owner, preview)
     if not preview then
         RegisterClickFrame(frame)
         for _, event in ipairs({"UNIT_HEALTH", "UNIT_MAXHEALTH", "UNIT_CONNECTION", "UNIT_FLAGS", "UNIT_FACTION", "UNIT_NAME_UPDATE"}) do frame:RegisterUnitEvent(event, unit) end
+        FluxSafeRegisterUnitEvent(frame, "UNIT_ABSORB_AMOUNT_CHANGED", unit)
+        FluxSafeRegisterUnitEvent(frame, "UNIT_HEAL_ABSORB_AMOUNT_CHANGED", unit)
         frame:RegisterUnitEvent("UNIT_TARGET", owner.unit)
         frame:RegisterEvent("GROUP_ROSTER_UPDATE")
         frame:SetScript("OnEvent", function(self, event)

@@ -1,0 +1,437 @@
+[
+  {
+    "branch": "live",
+    "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+    "files": [
+      {
+        "path": "version.txt",
+        "sha256": "4e532c8d3beb3231ae8195704b6de0a099a19742e02505f73f292f47fe9e080b",
+        "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/version.txt",
+        "local": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\09\\01a1bfe2-f421-7f43-9f7c-f3d386d88478\\upstream\\live\\version.txt"
+      },
+      {
+        "path": "Interface/AddOns/Blizzard_FrameXML/SecureTemplates.lua",
+        "sha256": "5fd1efcbfc20b4d426187f55dbee52542d37befd1ef52082db1f466f1049929a",
+        "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_FrameXML/SecureTemplates.lua",
+        "local": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\09\\01a1bfe2-f421-7f43-9f7c-f3d386d88478\\upstream\\live\\Interface\\AddOns\\Blizzard_FrameXML\\SecureTemplates.lua"
+      },
+      {
+        "path": "Interface/AddOns/Blizzard_FrameXML/SecureTemplates.xml",
+        "sha256": "32e3bd4db8498bb0d9bd9ff93f1e1d21141cf21ef0b192d333188b326202851b",
+        "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_FrameXML/SecureTemplates.xml",
+        "local": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\09\\01a1bfe2-f421-7f43-9f7c-f3d386d88478\\upstream\\live\\Interface\\AddOns\\Blizzard_FrameXML\\SecureTemplates.xml"
+      },
+      {
+        "path": "Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureStateDriver.lua",
+        "sha256": "bebd4a4b18e610233ff8f734df7b473df08fe25b1ce383b0c7883ae962a63029",
+        "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureStateDriver.lua",
+        "local": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\09\\01a1bfe2-f421-7f43-9f7c-f3d386d88478\\upstream\\live\\Interface\\AddOns\\Blizzard_RestrictedAddOnEnvironment\\SecureStateDriver.lua"
+      },
+      {
+        "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/UnitDocumentation.lua",
+        "sha256": "1ac4048d3d8acb63cd624c7be3c40e3149b6761b73a7d6bb271e3ace6af34c94",
+        "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_APIDocumentationGenerated/UnitDocumentation.lua",
+        "local": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\09\\01a1bfe2-f421-7f43-9f7c-f3d386d88478\\upstream\\live\\Interface\\AddOns\\Blizzard_APIDocumentationGenerated\\UnitDocumentation.lua"
+      },
+      {
+        "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleStatusBarAPIDocumentation.lua",
+        "sha256": "8a1adba0e8b921e31b3d537f5a24095a946bb69ea9014db134f2c175245265e0",
+        "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleStatusBarAPIDocumentation.lua",
+        "local": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\09\\01a1bfe2-f421-7f43-9f7c-f3d386d88478\\upstream\\live\\Interface\\AddOns\\Blizzard_APIDocumentationGenerated\\SimpleStatusBarAPIDocumentation.lua"
+      },
+      {
+        "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/UnitHealPredictionCalculatorAPIDocumentation.lua",
+        "sha256": "c9396f4d90c75fcd3929422a4221c948aa4cbbd609357bf13d8ccc43ad1f390a",
+        "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_APIDocumentationGenerated/UnitHealPredictionCalculatorAPIDocumentation.lua",
+        "local": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\09\\01a1bfe2-f421-7f43-9f7c-f3d386d88478\\upstream\\live\\Interface\\AddOns\\Blizzard_APIDocumentationGenerated\\UnitHealPredictionCalculatorAPIDocumentation.lua"
+      },
+      {
+        "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/UnitHealPredictionCalculatorSharedDocumentation.lua",
+        "sha256": "523f52a673c5350f2e5a0a3b6cb835a6b7fd1615bd7e9aee9975377b26fcc2b9",
+        "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_APIDocumentationGenerated/UnitHealPredictionCalculatorSharedDocumentation.lua",
+        "local": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\09\\01a1bfe2-f421-7f43-9f7c-f3d386d88478\\upstream\\live\\Interface\\AddOns\\Blizzard_APIDocumentationGenerated\\UnitHealPredictionCalculatorSharedDocumentation.lua"
+      },
+      {
+        "path": "Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/Blizzard_RestrictedAddOnEnvironment.toc",
+        "sha256": "466a8c36a02435a892c30b6060cd6ec8ab7f473c254312e8950157deb14be5a3",
+        "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/Blizzard_RestrictedAddOnEnvironment.toc",
+        "local": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\09\\01a1bfe2-f421-7f43-9f7c-f3d386d88478\\upstream\\live\\Interface\\AddOns\\Blizzard_RestrictedAddOnEnvironment\\Blizzard_RestrictedAddOnEnvironment.toc"
+      },
+      {
+        "path": "Interface/AddOns/Blizzard_FrameXML/Blizzard_FrameXML.toc",
+        "sha256": "f9ca1de04824bb5bd06439640ede516bbb7d2ff5fe7f9cdce45c50e99f1422c9",
+        "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_FrameXML/Blizzard_FrameXML.toc",
+        "local": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\09\\01a1bfe2-f421-7f43-9f7c-f3d386d88478\\upstream\\live\\Interface\\AddOns\\Blizzard_FrameXML\\Blizzard_FrameXML.toc"
+      }
+    ],
+    "localReplayVerification": [
+      {
+        "path": "Interface/AddOns/Blizzard_FrameXML/SecureTemplates.lua",
+        "wholeFileMatches": true,
+        "exercisedBlocks": [
+          {
+            "block": "SECURE_ACTIONS.menu =",
+            "matches": true
+          },
+          {
+            "block": "function SecureUnitButton_OnClick",
+            "matches": true
+          }
+        ]
+      },
+      {
+        "path": "Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureStateDriver.lua",
+        "wholeFileMatches": true,
+        "exercisedBlocks": []
+      }
+    ]
+  },
+  {
+    "branch": "forever",
+    "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+    "files": [
+      {
+        "path": "version.txt",
+        "sha256": "40632cd2240c025fafc7bb8343593d2f8bde74c1196bc678cbdaeb807c9eb6c2",
+        "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/9dc84f0d3bbae1768ac3405b3716000bd93eda06/version.txt",
+        "local": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\09\\01a1bfe2-f421-7f43-9f7c-f3d386d88478\\upstream\\forever\\version.txt"
+      },
+      {
+        "path": "Interface/AddOns/Blizzard_FrameXML/SecureTemplates.lua",
+        "sha256": "b6e91f1d54f269a8bd66312b368e6fd7706028d366eee0167161ace9004cae23",
+        "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_FrameXML/SecureTemplates.lua",
+        "local": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\09\\01a1bfe2-f421-7f43-9f7c-f3d386d88478\\upstream\\forever\\Interface\\AddOns\\Blizzard_FrameXML\\SecureTemplates.lua"
+      },
+      {
+        "path": "Interface/AddOns/Blizzard_FrameXML/SecureTemplates.xml",
+        "sha256": "32e3bd4db8498bb0d9bd9ff93f1e1d21141cf21ef0b192d333188b326202851b",
+        "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_FrameXML/SecureTemplates.xml",
+        "local": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\09\\01a1bfe2-f421-7f43-9f7c-f3d386d88478\\upstream\\forever\\Interface\\AddOns\\Blizzard_FrameXML\\SecureTemplates.xml"
+      },
+      {
+        "path": "Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureStateDriver.lua",
+        "sha256": "bebd4a4b18e610233ff8f734df7b473df08fe25b1ce383b0c7883ae962a63029",
+        "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureStateDriver.lua",
+        "local": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\09\\01a1bfe2-f421-7f43-9f7c-f3d386d88478\\upstream\\forever\\Interface\\AddOns\\Blizzard_RestrictedAddOnEnvironment\\SecureStateDriver.lua"
+      },
+      {
+        "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/UnitDocumentation.lua",
+        "sha256": "93004ac1b260127741471b7861360cdf7536afcb18d4c1db73b7259faa43e61c",
+        "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_APIDocumentationGenerated/UnitDocumentation.lua",
+        "local": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\09\\01a1bfe2-f421-7f43-9f7c-f3d386d88478\\upstream\\forever\\Interface\\AddOns\\Blizzard_APIDocumentationGenerated\\UnitDocumentation.lua"
+      },
+      {
+        "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleStatusBarAPIDocumentation.lua",
+        "sha256": "8a1adba0e8b921e31b3d537f5a24095a946bb69ea9014db134f2c175245265e0",
+        "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleStatusBarAPIDocumentation.lua",
+        "local": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\09\\01a1bfe2-f421-7f43-9f7c-f3d386d88478\\upstream\\forever\\Interface\\AddOns\\Blizzard_APIDocumentationGenerated\\SimpleStatusBarAPIDocumentation.lua"
+      },
+      {
+        "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/UnitHealPredictionCalculatorAPIDocumentation.lua",
+        "sha256": "c9396f4d90c75fcd3929422a4221c948aa4cbbd609357bf13d8ccc43ad1f390a",
+        "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_APIDocumentationGenerated/UnitHealPredictionCalculatorAPIDocumentation.lua",
+        "local": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\09\\01a1bfe2-f421-7f43-9f7c-f3d386d88478\\upstream\\forever\\Interface\\AddOns\\Blizzard_APIDocumentationGenerated\\UnitHealPredictionCalculatorAPIDocumentation.lua"
+      },
+      {
+        "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/UnitHealPredictionCalculatorSharedDocumentation.lua",
+        "sha256": "523f52a673c5350f2e5a0a3b6cb835a6b7fd1615bd7e9aee9975377b26fcc2b9",
+        "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_APIDocumentationGenerated/UnitHealPredictionCalculatorSharedDocumentation.lua",
+        "local": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\09\\01a1bfe2-f421-7f43-9f7c-f3d386d88478\\upstream\\forever\\Interface\\AddOns\\Blizzard_APIDocumentationGenerated\\UnitHealPredictionCalculatorSharedDocumentation.lua"
+      },
+      {
+        "path": "Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/Blizzard_RestrictedAddOnEnvironment.toc",
+        "sha256": "dca5214d880754035fdae1e93b1e62a4093e3deb30619d4f4951ceec1d321bc8",
+        "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/Blizzard_RestrictedAddOnEnvironment.toc",
+        "local": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\09\\01a1bfe2-f421-7f43-9f7c-f3d386d88478\\upstream\\forever\\Interface\\AddOns\\Blizzard_RestrictedAddOnEnvironment\\Blizzard_RestrictedAddOnEnvironment.toc"
+      },
+      {
+        "path": "Interface/AddOns/Blizzard_FrameXML/Blizzard_FrameXML.toc",
+        "sha256": "545e6f04b3fcb7825782762c186f167d14a6083040cb9fd2ee328bee015e8de6",
+        "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_FrameXML/Blizzard_FrameXML.toc",
+        "local": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\09\\01a1bfe2-f421-7f43-9f7c-f3d386d88478\\upstream\\forever\\Interface\\AddOns\\Blizzard_FrameXML\\Blizzard_FrameXML.toc"
+      }
+    ],
+    "localReplayVerification": [
+      {
+        "path": "Interface/AddOns/Blizzard_FrameXML/SecureTemplates.lua",
+        "wholeFileMatches": true,
+        "exercisedBlocks": [
+          {
+            "block": "SECURE_ACTIONS.menu =",
+            "matches": true
+          },
+          {
+            "block": "function SecureUnitButton_OnClick",
+            "matches": true
+          }
+        ]
+      },
+      {
+        "path": "Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureStateDriver.lua",
+        "wholeFileMatches": true,
+        "exercisedBlocks": []
+      }
+    ]
+  },
+  {
+    "branch": "classic",
+    "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+    "files": [
+      {
+        "path": "version.txt",
+        "sha256": "bcb030fe2d2febd396332d886d804ef9b397335e88f0196edc5d8dbe54c1ba38",
+        "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/version.txt",
+        "local": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\09\\01a1bfe2-f421-7f43-9f7c-f3d386d88478\\upstream\\classic\\version.txt"
+      },
+      {
+        "path": "Interface/AddOns/Blizzard_FrameXML/SecureTemplates.lua",
+        "sha256": "8bc0c7f6cac0340a00bec729253a6768b1ff4baa7879b70a4fdb6f4f3b287fde",
+        "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_FrameXML/SecureTemplates.lua",
+        "local": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\09\\01a1bfe2-f421-7f43-9f7c-f3d386d88478\\upstream\\classic\\Interface\\AddOns\\Blizzard_FrameXML\\SecureTemplates.lua"
+      },
+      {
+        "path": "Interface/AddOns/Blizzard_FrameXML/SecureTemplates.xml",
+        "sha256": "32e3bd4db8498bb0d9bd9ff93f1e1d21141cf21ef0b192d333188b326202851b",
+        "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_FrameXML/SecureTemplates.xml",
+        "local": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\09\\01a1bfe2-f421-7f43-9f7c-f3d386d88478\\upstream\\classic\\Interface\\AddOns\\Blizzard_FrameXML\\SecureTemplates.xml"
+      },
+      {
+        "path": "Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureStateDriver.lua",
+        "sha256": "bebd4a4b18e610233ff8f734df7b473df08fe25b1ce383b0c7883ae962a63029",
+        "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureStateDriver.lua",
+        "local": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\09\\01a1bfe2-f421-7f43-9f7c-f3d386d88478\\upstream\\classic\\Interface\\AddOns\\Blizzard_RestrictedAddOnEnvironment\\SecureStateDriver.lua"
+      },
+      {
+        "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/UnitDocumentation.lua",
+        "sha256": "b9e8124179606c58b5b701fafd28f5f968afe0dc893a915ccc52c57e57c287b5",
+        "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_APIDocumentationGenerated/UnitDocumentation.lua",
+        "local": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\09\\01a1bfe2-f421-7f43-9f7c-f3d386d88478\\upstream\\classic\\Interface\\AddOns\\Blizzard_APIDocumentationGenerated\\UnitDocumentation.lua"
+      },
+      {
+        "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleStatusBarAPIDocumentation.lua",
+        "sha256": "1048fdcdc3018992cf2a004f1faeacdb30d1b0eaf3aa0d62ef23f3ec6964cab7",
+        "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleStatusBarAPIDocumentation.lua",
+        "local": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\09\\01a1bfe2-f421-7f43-9f7c-f3d386d88478\\upstream\\classic\\Interface\\AddOns\\Blizzard_APIDocumentationGenerated\\SimpleStatusBarAPIDocumentation.lua"
+      },
+      {
+        "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/UnitHealPredictionCalculatorAPIDocumentation.lua",
+        "sha256": "e39bd1082b0430664c543cda4a8c1f801703dbf9032594d68e490edc3dc6a8bb",
+        "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_APIDocumentationGenerated/UnitHealPredictionCalculatorAPIDocumentation.lua",
+        "local": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\09\\01a1bfe2-f421-7f43-9f7c-f3d386d88478\\upstream\\classic\\Interface\\AddOns\\Blizzard_APIDocumentationGenerated\\UnitHealPredictionCalculatorAPIDocumentation.lua"
+      },
+      {
+        "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/UnitHealPredictionCalculatorSharedDocumentation.lua",
+        "sha256": "9a140a44894eeb118188920d23599fe30dc41ea46541eb61e8e10157494c4c79",
+        "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_APIDocumentationGenerated/UnitHealPredictionCalculatorSharedDocumentation.lua",
+        "local": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\09\\01a1bfe2-f421-7f43-9f7c-f3d386d88478\\upstream\\classic\\Interface\\AddOns\\Blizzard_APIDocumentationGenerated\\UnitHealPredictionCalculatorSharedDocumentation.lua"
+      },
+      {
+        "path": "Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/Blizzard_RestrictedAddOnEnvironment.toc",
+        "sha256": "cc787045c99b37bd0a12f5c15442f0dabcab5defbf3ed2e82d0ed0a6a7e92b24",
+        "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/Blizzard_RestrictedAddOnEnvironment.toc",
+        "local": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\09\\01a1bfe2-f421-7f43-9f7c-f3d386d88478\\upstream\\classic\\Interface\\AddOns\\Blizzard_RestrictedAddOnEnvironment\\Blizzard_RestrictedAddOnEnvironment.toc"
+      },
+      {
+        "path": "Interface/AddOns/Blizzard_FrameXML/Blizzard_FrameXML_Mists.toc",
+        "sha256": "6ea84cc86a6ad9e919478a0e5d48dba6f2066e4157d2c6c424fe029c0c972825",
+        "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_FrameXML/Blizzard_FrameXML_Mists.toc",
+        "local": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\09\\01a1bfe2-f421-7f43-9f7c-f3d386d88478\\upstream\\classic\\Interface\\AddOns\\Blizzard_FrameXML\\Blizzard_FrameXML_Mists.toc"
+      }
+    ],
+    "localReplayVerification": [
+      {
+        "path": "Interface/AddOns/Blizzard_FrameXML/SecureTemplates.lua",
+        "wholeFileMatches": true,
+        "exercisedBlocks": [
+          {
+            "block": "SECURE_ACTIONS.menu =",
+            "matches": true
+          },
+          {
+            "block": "function SecureUnitButton_OnClick",
+            "matches": true
+          }
+        ]
+      },
+      {
+        "path": "Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureStateDriver.lua",
+        "wholeFileMatches": true,
+        "exercisedBlocks": []
+      }
+    ]
+  },
+  {
+    "branch": "classic_era",
+    "commit": "4192ac60067fc55566182291bc67c85dd9b6794d",
+    "files": [
+      {
+        "path": "version.txt",
+        "sha256": "5224861aa41c7bcfd9d48bdd8003eb769a8954c72e3e9682035aeff5bc236f29",
+        "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/4192ac60067fc55566182291bc67c85dd9b6794d/version.txt",
+        "local": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\09\\01a1bfe2-f421-7f43-9f7c-f3d386d88478\\upstream\\classic_era\\version.txt"
+      },
+      {
+        "path": "Interface/AddOns/Blizzard_FrameXML/SecureTemplates.lua",
+        "sha256": "1c3b956e03752ab9f3bffd62ff7b5b545d57de8d8026f242c69d843cdbe32400",
+        "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_FrameXML/SecureTemplates.lua",
+        "local": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\09\\01a1bfe2-f421-7f43-9f7c-f3d386d88478\\upstream\\classic_era\\Interface\\AddOns\\Blizzard_FrameXML\\SecureTemplates.lua"
+      },
+      {
+        "path": "Interface/AddOns/Blizzard_FrameXML/SecureTemplates.xml",
+        "sha256": "32e3bd4db8498bb0d9bd9ff93f1e1d21141cf21ef0b192d333188b326202851b",
+        "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_FrameXML/SecureTemplates.xml",
+        "local": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\09\\01a1bfe2-f421-7f43-9f7c-f3d386d88478\\upstream\\classic_era\\Interface\\AddOns\\Blizzard_FrameXML\\SecureTemplates.xml"
+      },
+      {
+        "path": "Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureStateDriver.lua",
+        "sha256": "bebd4a4b18e610233ff8f734df7b473df08fe25b1ce383b0c7883ae962a63029",
+        "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureStateDriver.lua",
+        "local": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\09\\01a1bfe2-f421-7f43-9f7c-f3d386d88478\\upstream\\classic_era\\Interface\\AddOns\\Blizzard_RestrictedAddOnEnvironment\\SecureStateDriver.lua"
+      },
+      {
+        "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/UnitDocumentation.lua",
+        "sha256": "b9e8124179606c58b5b701fafd28f5f968afe0dc893a915ccc52c57e57c287b5",
+        "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_APIDocumentationGenerated/UnitDocumentation.lua",
+        "local": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\09\\01a1bfe2-f421-7f43-9f7c-f3d386d88478\\upstream\\classic_era\\Interface\\AddOns\\Blizzard_APIDocumentationGenerated\\UnitDocumentation.lua"
+      },
+      {
+        "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleStatusBarAPIDocumentation.lua",
+        "sha256": "1048fdcdc3018992cf2a004f1faeacdb30d1b0eaf3aa0d62ef23f3ec6964cab7",
+        "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleStatusBarAPIDocumentation.lua",
+        "local": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\09\\01a1bfe2-f421-7f43-9f7c-f3d386d88478\\upstream\\classic_era\\Interface\\AddOns\\Blizzard_APIDocumentationGenerated\\SimpleStatusBarAPIDocumentation.lua"
+      },
+      {
+        "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/UnitHealPredictionCalculatorAPIDocumentation.lua",
+        "sha256": "e39bd1082b0430664c543cda4a8c1f801703dbf9032594d68e490edc3dc6a8bb",
+        "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_APIDocumentationGenerated/UnitHealPredictionCalculatorAPIDocumentation.lua",
+        "local": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\09\\01a1bfe2-f421-7f43-9f7c-f3d386d88478\\upstream\\classic_era\\Interface\\AddOns\\Blizzard_APIDocumentationGenerated\\UnitHealPredictionCalculatorAPIDocumentation.lua"
+      },
+      {
+        "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/UnitHealPredictionCalculatorSharedDocumentation.lua",
+        "sha256": "9a140a44894eeb118188920d23599fe30dc41ea46541eb61e8e10157494c4c79",
+        "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_APIDocumentationGenerated/UnitHealPredictionCalculatorSharedDocumentation.lua",
+        "local": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\09\\01a1bfe2-f421-7f43-9f7c-f3d386d88478\\upstream\\classic_era\\Interface\\AddOns\\Blizzard_APIDocumentationGenerated\\UnitHealPredictionCalculatorSharedDocumentation.lua"
+      },
+      {
+        "path": "Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/Blizzard_RestrictedAddOnEnvironment.toc",
+        "sha256": "cc787045c99b37bd0a12f5c15442f0dabcab5defbf3ed2e82d0ed0a6a7e92b24",
+        "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/Blizzard_RestrictedAddOnEnvironment.toc",
+        "local": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\09\\01a1bfe2-f421-7f43-9f7c-f3d386d88478\\upstream\\classic_era\\Interface\\AddOns\\Blizzard_RestrictedAddOnEnvironment\\Blizzard_RestrictedAddOnEnvironment.toc"
+      },
+      {
+        "path": "Interface/AddOns/Blizzard_FrameXML/Blizzard_FrameXML_Vanilla.toc",
+        "sha256": "455fede5476f77f437bd88cd8fa456423e2353ce9733b14061c5f33de37d8e60",
+        "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_FrameXML/Blizzard_FrameXML_Vanilla.toc",
+        "local": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\09\\01a1bfe2-f421-7f43-9f7c-f3d386d88478\\upstream\\classic_era\\Interface\\AddOns\\Blizzard_FrameXML\\Blizzard_FrameXML_Vanilla.toc"
+      }
+    ],
+    "localReplayVerification": [
+      {
+        "path": "Interface/AddOns/Blizzard_FrameXML/SecureTemplates.lua",
+        "wholeFileMatches": true,
+        "exercisedBlocks": [
+          {
+            "block": "SECURE_ACTIONS.menu =",
+            "matches": true
+          },
+          {
+            "block": "function SecureUnitButton_OnClick",
+            "matches": true
+          }
+        ]
+      },
+      {
+        "path": "Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureStateDriver.lua",
+        "wholeFileMatches": true,
+        "exercisedBlocks": []
+      }
+    ]
+  },
+  {
+    "branch": "classic_anniversary",
+    "commit": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+    "files": [
+      {
+        "path": "version.txt",
+        "sha256": "53498c451665c69194d1a41b9983916109b370b6a261bb833322ae871838bdb3",
+        "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/version.txt",
+        "local": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\09\\01a1bfe2-f421-7f43-9f7c-f3d386d88478\\upstream\\classic_anniversary\\version.txt"
+      },
+      {
+        "path": "Interface/AddOns/Blizzard_FrameXML/SecureTemplates.lua",
+        "sha256": "45a0e3164c63070f265e22028a829717c262cabecad21a4d090d2b663c22addf",
+        "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_FrameXML/SecureTemplates.lua",
+        "local": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\09\\01a1bfe2-f421-7f43-9f7c-f3d386d88478\\upstream\\classic_anniversary\\Interface\\AddOns\\Blizzard_FrameXML\\SecureTemplates.lua"
+      },
+      {
+        "path": "Interface/AddOns/Blizzard_FrameXML/SecureTemplates.xml",
+        "sha256": "24b726a6298c5eaf9022fe9dc47a7836915bfa016da872fddb88f6aa55055803",
+        "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_FrameXML/SecureTemplates.xml",
+        "local": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\09\\01a1bfe2-f421-7f43-9f7c-f3d386d88478\\upstream\\classic_anniversary\\Interface\\AddOns\\Blizzard_FrameXML\\SecureTemplates.xml"
+      },
+      {
+        "path": "Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureStateDriver.lua",
+        "sha256": "e7eb9ea10a65127d92fef048305f02a60f56ed58ee30f9a8ce16a8e0209543db",
+        "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureStateDriver.lua",
+        "local": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\09\\01a1bfe2-f421-7f43-9f7c-f3d386d88478\\upstream\\classic_anniversary\\Interface\\AddOns\\Blizzard_RestrictedAddOnEnvironment\\SecureStateDriver.lua"
+      },
+      {
+        "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/UnitDocumentation.lua",
+        "sha256": "b9e8124179606c58b5b701fafd28f5f968afe0dc893a915ccc52c57e57c287b5",
+        "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_APIDocumentationGenerated/UnitDocumentation.lua",
+        "local": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\09\\01a1bfe2-f421-7f43-9f7c-f3d386d88478\\upstream\\classic_anniversary\\Interface\\AddOns\\Blizzard_APIDocumentationGenerated\\UnitDocumentation.lua"
+      },
+      {
+        "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleStatusBarAPIDocumentation.lua",
+        "sha256": "1048fdcdc3018992cf2a004f1faeacdb30d1b0eaf3aa0d62ef23f3ec6964cab7",
+        "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleStatusBarAPIDocumentation.lua",
+        "local": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\09\\01a1bfe2-f421-7f43-9f7c-f3d386d88478\\upstream\\classic_anniversary\\Interface\\AddOns\\Blizzard_APIDocumentationGenerated\\SimpleStatusBarAPIDocumentation.lua"
+      },
+      {
+        "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/UnitHealPredictionCalculatorAPIDocumentation.lua",
+        "sha256": "e39bd1082b0430664c543cda4a8c1f801703dbf9032594d68e490edc3dc6a8bb",
+        "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_APIDocumentationGenerated/UnitHealPredictionCalculatorAPIDocumentation.lua",
+        "local": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\09\\01a1bfe2-f421-7f43-9f7c-f3d386d88478\\upstream\\classic_anniversary\\Interface\\AddOns\\Blizzard_APIDocumentationGenerated\\UnitHealPredictionCalculatorAPIDocumentation.lua"
+      },
+      {
+        "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/UnitHealPredictionCalculatorSharedDocumentation.lua",
+        "sha256": "9a140a44894eeb118188920d23599fe30dc41ea46541eb61e8e10157494c4c79",
+        "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_APIDocumentationGenerated/UnitHealPredictionCalculatorSharedDocumentation.lua",
+        "local": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\09\\01a1bfe2-f421-7f43-9f7c-f3d386d88478\\upstream\\classic_anniversary\\Interface\\AddOns\\Blizzard_APIDocumentationGenerated\\UnitHealPredictionCalculatorSharedDocumentation.lua"
+      },
+      {
+        "path": "Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/Blizzard_RestrictedAddOnEnvironment.toc",
+        "sha256": "b92c4730806fea1761b934b0643677a1189ce48dc43b4b07aa643e48431aff02",
+        "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/Blizzard_RestrictedAddOnEnvironment.toc",
+        "local": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\09\\01a1bfe2-f421-7f43-9f7c-f3d386d88478\\upstream\\classic_anniversary\\Interface\\AddOns\\Blizzard_RestrictedAddOnEnvironment\\Blizzard_RestrictedAddOnEnvironment.toc"
+      },
+      {
+        "path": "Interface/AddOns/Blizzard_FrameXML/Blizzard_FrameXML_TBC.toc",
+        "sha256": "5ae2a03471dda0d61a23b2390e1206d7c4fb14f2d46fb537c305c9c2694c11ed",
+        "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_FrameXML/Blizzard_FrameXML_TBC.toc",
+        "local": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\09\\01a1bfe2-f421-7f43-9f7c-f3d386d88478\\upstream\\classic_anniversary\\Interface\\AddOns\\Blizzard_FrameXML\\Blizzard_FrameXML_TBC.toc"
+      }
+    ],
+    "localReplayVerification": [
+      {
+        "path": "Interface/AddOns/Blizzard_FrameXML/SecureTemplates.lua",
+        "wholeFileMatches": true,
+        "exercisedBlocks": [
+          {
+            "block": "SECURE_ACTIONS.menu =",
+            "matches": true
+          },
+          {
+            "block": "function SecureUnitButton_OnClick",
+            "matches": true
+          }
+        ]
+      },
+      {
+        "path": "Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureStateDriver.lua",
+        "wholeFileMatches": true,
+        "exercisedBlocks": []
+      }
+    ]
+  }
+]

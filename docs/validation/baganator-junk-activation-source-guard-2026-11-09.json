@@ -1,0 +1,41 @@
+{
+  "date": "2026-11-09",
+  "runtime_changes_since_checkpoint": [
+    "BaganatorCompat/FluxBaganator_Junk.lua"
+  ],
+  "full_manifest_drift": [],
+  "client_copies_read_only": [
+    {
+      "client": "_retail_",
+      "exists": true,
+      "sha256": "377ff605edf44152f1ece42a268dc5466c643105f355e39b9c2df343c46cd990",
+      "matches": true
+    },
+    {
+      "client": "_forever_",
+      "exists": true,
+      "sha256": "377ff605edf44152f1ece42a268dc5466c643105f355e39b9c2df343c46cd990",
+      "matches": true
+    },
+    {
+      "client": "_classic_",
+      "exists": true,
+      "sha256": "377ff605edf44152f1ece42a268dc5466c643105f355e39b9c2df343c46cd990",
+      "matches": true
+    },
+    {
+      "client": "_classic_era_",
+      "exists": true,
+      "sha256": "377ff605edf44152f1ece42a268dc5466c643105f355e39b9c2df343c46cd990",
+      "matches": true
+    },
+    {
+      "client": "_anniversary_",
+      "exists": true,
+      "sha256": "377ff605edf44152f1ece42a268dc5466c643105f355e39b9c2df343c46cd990",
+      "matches": true
+    }
+  ],
+  "manual_sync": false,
+  "native": "Not run; installed file equality only"
+}

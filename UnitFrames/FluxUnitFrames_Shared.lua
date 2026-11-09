@@ -28,6 +28,26 @@ function UF.ConfigureUnitMenu(button, unit, enabled)
     return true
 end
 
+-- Keep the target's prepared mouse input intact while it is empty. The native
+-- driver hides only its interactive chrome; the separate empty outline stays.
+function UF.ConfigureTargetClickVisibility(frame)
+    if not frame or frame.unit ~= "target" or not frame.outerBorderFrame then return end
+    if frame._fluxTargetClickVisibilityDriver then return end
+    if InCombatLockdown() then
+        UF.DeferProtected("target.clickvisibility", function() UF.ConfigureTargetClickVisibility(frame) end)
+        return
+    end
+    if Restricted and Restricted.RegisterPagingDriver
+        and (Restricted.Works() or Restricted.PagingWorks()) then
+        local button = frame.outerBorderFrame
+        button:EnableMouse(true)
+        button:SetMouseClickEnabled(true)
+        if Restricted.RegisterPagingDriver(button, "visibility", "[@target,exists] show; hide") then
+            frame._fluxTargetClickVisibilityDriver = true
+        end
+    end
+end
+
 -- Preserve the existing samples, but wake at their deadlines instead of every
 -- rendered frame. A shared OnUpdate remains available for timer-less clients.
 do
@@ -508,6 +528,7 @@ local function SetWatchedFrameClickable(frame, enabled)
     if not frame then
         return
     end
+    if frame._fluxTargetClickVisibilityDriver then return end
     if InCombatLockdown and InCombatLockdown() then
         return
     end
@@ -2750,6 +2771,7 @@ end
 -- totalAbsorbBar uses TPerl/XPerl style: positioned at the health fill boundary
 -- with reverse-fill so the absorb renders right where the green health ends.
 function UF.UpdateHealPrediction(frame)
+    if frame._fluxVerticalHealthBar then return UF.UpdateVerticalTargetAbsorbs(frame) end
     if not frame.myHealPredictionBar then return end
     local showHeal = not FluxUnitFrames_ShouldShowHealPrediction or FluxUnitFrames_ShouldShowHealPrediction(frame.unit)
     local showAbsorb = not FluxUnitFrames_ShouldShowAbsorbs or FluxUnitFrames_ShouldShowAbsorbs(frame.unit)
@@ -3038,6 +3060,94 @@ function UF.LayoutVerticalTargetHealth(frame)
         bar._fluxHealthLossExtent = extent
     end
     if frame.Power then frame.Power:Hide() end
+    if frame.verticalAbsorbBar and width and height then
+        local extent = math.max(1, height - 6)
+        frame.verticalAbsorbBar:SetSize(math.max(1, width - 4), extent)
+        frame.verticalHealAbsorbBar:SetSize(math.max(1, width - 4), extent)
+    end
+end
+
+function UF.CreateVerticalTargetAbsorbs(frame, bar)
+    if frame.verticalAbsorbBar then return end
+    local texture = bar:GetStatusBarTexture()
+    local clip = CreateFrame("Frame", nil, bar)
+    clip:SetAllPoints(texture)
+    clip:SetClipsChildren(true)
+    clip:EnableMouse(false)
+    clip:SetFrameLevel(bar._fluxPublicFrameLevel + 1)
+    frame.verticalAbsorbClip = clip
+    for _, key in ipairs({"verticalAbsorbBar", "verticalAbsorbOverflow", "verticalHealAbsorbBar"}) do
+        local overlay = CreateFrame("StatusBar", nil, key == "verticalAbsorbOverflow" and clip or bar)
+        overlay:SetOrientation("VERTICAL")
+        overlay:SetStatusBarTexture(TEXTURE_BG)
+        overlay:SetFrameLevel(bar._fluxPublicFrameLevel + 1)
+        overlay:EnableMouse(false)
+        if key == "verticalHealAbsorbBar" then
+            ApplyBlizzardHealAbsorbFillToStatusBar(overlay)
+            overlay:SetReverseFill(true)
+            overlay:SetPoint("TOPLEFT", texture, "TOPLEFT")
+        else
+            ApplyBlizzardShieldFillToStatusBar(overlay)
+            if key == "verticalAbsorbOverflow" then
+                overlay:SetReverseFill(true)
+                overlay:SetAllPoints(bar)
+            else
+                overlay:SetPoint("BOTTOMLEFT", texture, "TOPLEFT")
+            end
+        end
+        overlay:Hide()
+        frame[key] = overlay
+    end
+    -- Allocate the native calculator before any combat show/identity transition.
+    if API.isMidnight then
+        bar.healCalc = bar.healCalc or API.CreateUnitHealPredictionCalculator()
+        bar.healCalc:SetHealAbsorbClampMode(0) -- CurrentHealth
+        bar.healCalc:SetHealAbsorbMode(1) -- Total; these strips have no incoming-heal segments.
+    end
+end
+
+function UF.UpdateVerticalTargetAbsorbs(frame)
+    if not frame.verticalAbsorbBar then return end
+    local unit, bar = frame.unit, frame.Health or frame.HealthBar
+    local connected = UnitIsConnected and UnitIsConnected(unit)
+    local dead = UnitIsDeadOrGhost and UnitIsDeadOrGhost(unit)
+    local maximum = select(2, bar:GetMinMaxValues())
+    local hide = (FluxUnitFrames_ShouldShowAbsorbs and not FluxUnitFrames_ShouldShowAbsorbs(unit))
+        or (not ValueIsSecret(connected) and connected == false)
+        or (not ValueIsSecret(dead) and dead == true)
+        or (not ValueIsSecret(maximum) and (type(maximum) ~= "number" or maximum <= 0))
+    local forward, full, healAbsorb
+    if not hide then
+        if API.isMidnight then
+            local calc = bar.healCalc
+            API.UnitGetDetailedHealPrediction(unit, "player", calc)
+            calc:SetDamageAbsorbClampMode(1) -- MissingHealthWithoutIncomingHeals
+            forward = calc:GetDamageAbsorbs()
+            calc:SetDamageAbsorbClampMode(2) -- MaximumHealth
+            full = calc:GetDamageAbsorbs()
+            healAbsorb = calc:GetHealAbsorbs()
+        else
+            local health = PublicGeometryNumber(bar:GetValue())
+            full = PublicGeometryNumber(API.SafeUnitGetTotalAbsorbs(unit)) or 0
+            healAbsorb = PublicGeometryNumber(API.SafeUnitGetTotalHealAbsorbs(unit)) or 0
+            if health and not ValueIsSecret(maximum) then
+                full = math.max(0, math.min(full, maximum))
+                forward = math.min(full, math.max(0, maximum - health))
+                healAbsorb = math.max(0, math.min(healAbsorb, health))
+            else hide = true end
+        end
+    end
+    for _, item in ipairs({{frame.verticalAbsorbBar, forward}, {frame.verticalAbsorbOverflow, full},
+        {frame.verticalHealAbsorbBar, healAbsorb}}) do
+        local overlay, value = item[1], item[2]
+        if hide or (not ValueIsSecret(value) and (type(value) ~= "number" or value <= 0)) then
+            overlay:Hide()
+        else
+            StatusBarSetMinMaxImmediate(overlay, 0, maximum)
+            StatusBarSetValueImmediate(overlay, value)
+            overlay:Show()
+        end
+    end
 end
 
 function UF.UpdateVerticalTargetColor(frame, unit)
@@ -3069,6 +3179,7 @@ function UF.ConfigureVerticalTargetHealth(frame, bar, preview)
     bar._fluxPublicFrameLevel = math.max(PublicGeometryNumber(bar:GetFrameLevel()) or 0, baseLevel + 2)
     bar:SetFrameLevel(bar._fluxPublicFrameLevel)
     bar:SetOrientation("VERTICAL")
+    bar:SetClipsChildren(true)
     bar:SetStatusBarTexture(TEXTURE_BAR)
     local texture = bar:GetStatusBarTexture()
     texture:SetHorizTile(false); texture:SetVertTile(false)
@@ -3087,9 +3198,10 @@ function UF.ConfigureVerticalTargetHealth(frame, bar, preview)
         bar.bg:SetAllPoints(trough); bar.bg:SetTexture(TEXTURE_BG); bar.bg:SetVertexColor(.2, .2, .2)
     end
     for _, label in pairs({bar.Value, bar.Percent, bar.HealthStatusLabel}) do label:SetAlpha(0) end
-    for _, key in ipairs({"myHealPredictionBar", "otherHealPredictionBar", "totalAbsorbBar", "healAbsorbBar", "overAbsorbGlow", "overHealAbsorbGlow"}) do
+    for _, key in ipairs({"myHealPredictionBar", "otherHealPredictionBar", "totalAbsorbBar", "absorbOverflow", "healAbsorbBar", "overAbsorbGlow", "overHealAbsorbGlow"}) do
         if frame[key] then frame[key]:Hide() end
     end
+    UF.CreateVerticalTargetAbsorbs(frame, bar)
     UF.LayoutVerticalTargetHealth(frame)
     if not preview and ns.HealthLossOverlay then ns.HealthLossOverlay.Initialize(frame) end
     if not frame._fluxVerticalHealthCleanup then
@@ -3116,6 +3228,7 @@ function UF.UpdateVerticalTargetHealth(frame, unit)
     StatusBarSetValueImmediate(bar, health)
     if loss then loss.OnAfterHealthValueSet(bar) end
     UF.UpdateVerticalTargetColor(frame, unit)
+    UF.UpdateVerticalTargetAbsorbs(frame)
 end
 
 function UF.UpdateHealth(self, unit)
@@ -5449,6 +5562,7 @@ function UF.CreateOuterBorder(frame)
     outerBorderFrame:SetAttribute("unit", frame.unit)
     outerBorderFrame:SetAttribute("*type1", "target") -- Left click targets
     if not preview then UF.ConfigureUnitMenu(outerBorderFrame, frame.unit) end
+    if not preview then UF.ConfigureTargetClickVisibility(frame) end
 
     -- Register raid target update event on outer border frame
     outerBorderFrame:RegisterEvent("RAID_TARGET_UPDATE")
@@ -5618,7 +5732,7 @@ local function ApplyNormalPortraitChrome(self)
     if not pf or not ns.Border then
         return
     end
-    if (self._fluxPartyMember or self._fluxCompactFocus) and ns.PartyFrames then
+    if self._fluxPartyMember and ns.PartyFrames then
         if pf.bg then pf.bg:Hide() end
         ns.PartyFrames.PaintChrome(self, pf)
         return
@@ -5709,7 +5823,7 @@ end
 
 function UF.UpdateBorderColors(self)
     if not self.unit then return end
-    if (self._fluxPartyMember or self._fluxCompactFocus) and ns.PartyFrames then
+    if self._fluxPartyMember and ns.PartyFrames then
         ns.PartyFrames.PaintChrome(self)
         UF.UpdatePortraitCombatTint(self)
         return
@@ -5775,6 +5889,9 @@ function UF.UpdateBorderColors(self)
             end
             if self.PowerAdditionalSeparator then
                 self.PowerAdditionalSeparator:SetVertexColor(borderR, borderG, borderB, 1)
+            end
+            if self._fluxCompactFocus and self._fluxPartyDivider then
+                self._fluxPartyDivider:SetVertexColor(borderR, borderG, borderB, 1)
             end
         end
 
@@ -9077,6 +9194,8 @@ local emulatedSqueezeEventFrame = nil
 
 local function ApplyEmulatedHorizontalSqueezeToFrame(frame)
     if not frame or not frame._fluxLayoutBaseWidth then return end
+    -- Compact focus targets own a fixed strip width, like party targets.
+    if frame._fluxVerticalFocusTarget then return end
     if InCombatLockdown() then
         return
     end

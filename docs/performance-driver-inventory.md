@@ -262,7 +262,7 @@ Counts below are lexical call/assignment candidates after removing comments and 
 | [Other/FluxEquipSlotFlyout.lua](../Other/FluxEquipSlotFlyout.lua) | 0 | 0 | 2 | 0 | 0 |
 | [Other/FluxExtraAbilityHUD.lua](../Other/FluxExtraAbilityHUD.lua) | 0 | 0 | 1 | 1 | 4 |
 | [Other/FluxHUDTooltip.lua](../Other/FluxHUDTooltip.lua) | 0 | 0 | 2 | 1 | 1 |
-| [Other/FluxInputDebug.lua](../Other/FluxInputDebug.lua) | 0 | 0 | 1 | 0 | 0 |
+| [Other/FluxInputDebug.lua](../Other/FluxInputDebug.lua) | 0 | 0 | 2 | 0 | 0 |
 | [Other/FluxLoot.lua](../Other/FluxLoot.lua) | 1 | 0 | 0 | 3 | 0 |
 | [Other/FluxLootRollPosition.lua](../Other/FluxLootRollPosition.lua) | 4 | 0 | 0 | 3 | 1 |
 | [Other/FluxPerfCapture.lua](../Other/FluxPerfCapture.lua) | 5 | 1 | 1 | 1 | 0 |

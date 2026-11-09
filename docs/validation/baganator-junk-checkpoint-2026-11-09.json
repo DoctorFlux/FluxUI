@@ -1,0 +1,16 @@
+{
+  "date": "2026-11-09",
+  "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\09\\01a1c01a-56ee-73c0-9dda-f645198e7009\\baganator-junk-checkpoint-20261109T114619Z",
+  "sourceFiles": 2389,
+  "settingsMetadataFiles": 56,
+  "integrity": "Every ZIP entry SHA256 and all-ref bundle verified",
+  "sha256": {
+    "source.zip": "35d0705bf45890bb3cc280f69fddb9cf2578ecb1bbce08bb30ab675eb82a37fb",
+    "history.bundle": "eb896263d5c3f7338c62d7105cdcbe45cad2649262424a86ba8146ec2b2b9d74"
+  },
+  "baseline": {
+    "BaganatorCompat/FluxBaganator_Junk.lua": "9628a448fa03b024abff3a6008269ea57e244d6b0609452be2d725cd58b43ba9"
+  },
+  "settingsWrites": false,
+  "settingsScope": "Read-only metadata; no live memory or quiescent settings backup claimed"
+}

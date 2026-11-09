@@ -1,0 +1,16 @@
+{
+  "date": "2026-11-09",
+  "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\09\\01a1bfe2-f421-7f43-9f7c-f3d386d88478\\unitframe-checkpoint-20261109T104332Z",
+  "sourceFiles": 2362,
+  "sourceZipSHA256": "6afeae07ee193ab085b68f153b832098ff7c4c640b6f17856baf06f440aae3b4",
+  "historyBundleSHA256": "d7907022a45bde07de7f986de62ca2d99c50bbf352db67678b29685cae5dedeb",
+  "integrity": "ZIP CRC and all-ref bundle PASS",
+  "settingsMetadataFiles": 120,
+  "settingsWrites": false,
+  "baseline": {
+    "UnitFrames/FluxUnitFrames_Shared.lua": "cf7ca23d31685de195d40c4e6bc20942c4f5a28963b51c080cf2cc8ddb1f4ec3",
+    "UnitFrames/FluxUnitFrames_FocusTarget.lua": "89d8a8753f3369242e102a8fc2cf420d6fb557be733916e04ad284ff1ebf7031",
+    "UnitFrames/FluxUnitFrames_Party.lua": "0733dd73ff6daf71ae48df78a432e37634f34c4cbf3bb9302d50709ecf303b47",
+    "UnitFrames/FluxUnitFrames_PetTarget.lua": "54229e03f5721dc0cfc4bbc37256c85f1f8b26858d7326515cc1636cf0d63b78"
+  }
+}

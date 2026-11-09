@@ -1,0 +1,7 @@
+{
+  "fullReport": "docs/validation/cast-rejected-full-2026-11-09.json",
+  "pass": 267,
+  "syntaxFiles": 934,
+  "drift": [],
+  "normalization": "CRLF to LF"
+}

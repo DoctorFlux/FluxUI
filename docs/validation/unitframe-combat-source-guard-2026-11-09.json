@@ -1,0 +1,17 @@
+{
+  "date": "2026-11-09",
+  "suitePass": 267,
+  "suiteFail": 0,
+  "syntaxFiles": 934,
+  "syntaxFailures": [],
+  "changedSinceValidation": [],
+  "addedSinceValidation": [],
+  "removedSinceValidation": [],
+  "candidateOwnerMatches": {
+    "UnitFrames/FluxUnitFrames_Shared.lua": true,
+    "UnitFrames/FluxUnitFrames_FocusTarget.lua": true,
+    "UnitFrames/FluxUnitFrames_Party.lua": true,
+    "UnitFrames/FluxUnitFrames_PetTarget.lua": true
+  },
+  "scope": "Normalized Lua source identity; native acceptance remains pending"
+}

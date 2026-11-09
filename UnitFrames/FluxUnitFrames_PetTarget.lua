@@ -172,6 +172,8 @@ local function InitializePetTargetFrame()
     frame._petTargetEventFrame = evt
     evt:RegisterUnitEvent("UNIT_HEALTH", "pettarget")
     evt:RegisterUnitEvent("UNIT_MAXHEALTH", "pettarget")
+    FluxSafeRegisterUnitEvent(evt, "UNIT_ABSORB_AMOUNT_CHANGED", "pettarget")
+    FluxSafeRegisterUnitEvent(evt, "UNIT_HEAL_ABSORB_AMOUNT_CHANGED", "pettarget")
     evt:RegisterUnitEvent("UNIT_CONNECTION", "pettarget")
     evt:RegisterUnitEvent("UNIT_FLAGS", "pettarget")
     evt:RegisterUnitEvent("UNIT_FACTION", "pettarget")

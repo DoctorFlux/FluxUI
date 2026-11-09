@@ -1,0 +1,3 @@
+QuestSlay.blp and QuestLoot.blp are unchanged local copies of Questie 12.6.4 Icons/slay.blp and Icons/loot.blp, supplied by the user.
+Source: https://github.com/Questie/Questie
+The supplied Questie Icons/LICENSE.md says that files not listed as MIT have unclear licensing and should be considered all rights reserved. These two BLP files are not in its MIT list. No redistribution license is asserted here.

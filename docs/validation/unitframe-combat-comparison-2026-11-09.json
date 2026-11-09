@@ -1,0 +1,214 @@
+{
+  "date": "2026-11-09",
+  "change": "UNITFRAME-COMBAT-20261109",
+  "baseline": {
+    "UnitFrames/FluxUnitFrames_Shared.lua": "cf7ca23d31685de195d40c4e6bc20942c4f5a28963b51c080cf2cc8ddb1f4ec3",
+    "UnitFrames/FluxUnitFrames_FocusTarget.lua": "89d8a8753f3369242e102a8fc2cf420d6fb557be733916e04ad284ff1ebf7031",
+    "UnitFrames/FluxUnitFrames_Party.lua": "0733dd73ff6daf71ae48df78a432e37634f34c4cbf3bb9302d50709ecf303b47",
+    "UnitFrames/FluxUnitFrames_PetTarget.lua": "54229e03f5721dc0cfc4bbc37256c85f1f8b26858d7326515cc1636cf0d63b78"
+  },
+  "candidate": {
+    "UnitFrames/FluxUnitFrames_Shared.lua": "751a53d383092859673a70ec98ee99a16efee4455284e22a68835207fe158207",
+    "UnitFrames/FluxUnitFrames_FocusTarget.lua": "eb856db4bd2927784cef78b78c46db1549cd84a26230ff39d9d39d77bd54f2d4",
+    "UnitFrames/FluxUnitFrames_Party.lua": "274fc275f93e1d96838c06084814dbd7dbd6ef2a2e29f823efabd15c01a7df01",
+    "UnitFrames/FluxUnitFrames_PetTarget.lua": "78cf7a34e4ce6065d84ef6e2e207b6d69b97388b11993d7a40ae9092076849d4"
+  },
+  "comparisons": [
+    {
+      "case": "targetInput",
+      "pairs": [
+        {
+          "baseline": {
+            "exit": 1,
+            "output": "lua: tests/focus_secure_visibility.lua:8: forever empty target hides native hit host with input prepared\nstack traceback:\n\t[C]: in function 'error'\n\ttests/focus_secure_visibility.lua:8: in local 'check'\n\ttests/focus_secure_visibility.lua:171: in main chunk\n\t[C]: in ?\n",
+            "wallSeconds": 0.09965240000747144
+          },
+          "candidate": {
+            "exit": 0,
+            "output": "Focus secure visibility: 285 checks; failures=0; 5 pinned driver replays; native combat/taint/hit testing pending\nlive: frames=7 registrations=5 protectedFailures=0\nforever: frames=9 registrations=5 protectedFailures=0\nclassic: frames=7 registrations=5 protectedFailures=0\nclassic_era: frames=7 registrations=5 protectedFailures=0\nclassic_anniversary: frames=7 registrations=5 protectedFailures=0\n",
+            "wallSeconds": 0.04828220000490546
+          }
+        },
+        {
+          "baseline": {
+            "exit": 1,
+            "output": "lua: tests/focus_secure_visibility.lua:8: forever empty target hides native hit host with input prepared\nstack traceback:\n\t[C]: in function 'error'\n\ttests/focus_secure_visibility.lua:8: in local 'check'\n\ttests/focus_secure_visibility.lua:171: in main chunk\n\t[C]: in ?\n",
+            "wallSeconds": 0.02820840000640601
+          },
+          "candidate": {
+            "exit": 0,
+            "output": "Focus secure visibility: 285 checks; failures=0; 5 pinned driver replays; native combat/taint/hit testing pending\nlive: frames=7 registrations=5 protectedFailures=0\nforever: frames=9 registrations=5 protectedFailures=0\nclassic: frames=7 registrations=5 protectedFailures=0\nclassic_era: frames=7 registrations=5 protectedFailures=0\nclassic_anniversary: frames=7 registrations=5 protectedFailures=0\n",
+            "wallSeconds": 0.04393280000658706
+          }
+        },
+        {
+          "baseline": {
+            "exit": 1,
+            "output": "lua: tests/focus_secure_visibility.lua:8: forever empty target hides native hit host with input prepared\nstack traceback:\n\t[C]: in function 'error'\n\ttests/focus_secure_visibility.lua:8: in local 'check'\n\ttests/focus_secure_visibility.lua:171: in main chunk\n\t[C]: in ?\n",
+            "wallSeconds": 0.028603000013390556
+          },
+          "candidate": {
+            "exit": 0,
+            "output": "Focus secure visibility: 285 checks; failures=0; 5 pinned driver replays; native combat/taint/hit testing pending\nlive: frames=7 registrations=5 protectedFailures=0\nforever: frames=9 registrations=5 protectedFailures=0\nclassic: frames=7 registrations=5 protectedFailures=0\nclassic_era: frames=7 registrations=5 protectedFailures=0\nclassic_anniversary: frames=7 registrations=5 protectedFailures=0\n",
+            "wallSeconds": 0.04663659998914227
+          }
+        },
+        {
+          "baseline": {
+            "exit": 1,
+            "output": "lua: tests/focus_secure_visibility.lua:8: forever empty target hides native hit host with input prepared\nstack traceback:\n\t[C]: in function 'error'\n\ttests/focus_secure_visibility.lua:8: in local 'check'\n\ttests/focus_secure_visibility.lua:171: in main chunk\n\t[C]: in ?\n",
+            "wallSeconds": 0.02744080001139082
+          },
+          "candidate": {
+            "exit": 0,
+            "output": "Focus secure visibility: 285 checks; failures=0; 5 pinned driver replays; native combat/taint/hit testing pending\nlive: frames=7 registrations=5 protectedFailures=0\nforever: frames=9 registrations=5 protectedFailures=0\nclassic: frames=7 registrations=5 protectedFailures=0\nclassic_era: frames=7 registrations=5 protectedFailures=0\nclassic_anniversary: frames=7 registrations=5 protectedFailures=0\n",
+            "wallSeconds": 0.04490339997573756
+          }
+        },
+        {
+          "baseline": {
+            "exit": 1,
+            "output": "lua: tests/focus_secure_visibility.lua:8: forever empty target hides native hit host with input prepared\nstack traceback:\n\t[C]: in function 'error'\n\ttests/focus_secure_visibility.lua:8: in local 'check'\n\ttests/focus_secure_visibility.lua:171: in main chunk\n\t[C]: in ?\n",
+            "wallSeconds": 0.02856220002286136
+          },
+          "candidate": {
+            "exit": 0,
+            "output": "Focus secure visibility: 285 checks; failures=0; 5 pinned driver replays; native combat/taint/hit testing pending\nlive: frames=7 registrations=5 protectedFailures=0\nforever: frames=9 registrations=5 protectedFailures=0\nclassic: frames=7 registrations=5 protectedFailures=0\nclassic_era: frames=7 registrations=5 protectedFailures=0\nclassic_anniversary: frames=7 registrations=5 protectedFailures=0\n",
+            "wallSeconds": 0.04367499999352731
+          }
+        }
+      ]
+    },
+    {
+      "case": "focusWidth",
+      "pairs": [
+        {
+          "baseline": {
+            "exit": 1,
+            "output": "lua: tests/focus_target_combat_width.lua:5: live world/scale/layout refresh cannot restore original wide construction size\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/focus_target_combat_width.lua:5: in local 'check'\n\ttests/focus_target_combat_width.lua:34: in main chunk\n\t[C]: in ?\n",
+            "wallSeconds": 0.03067039998131804
+          },
+          "candidate": {
+            "exit": 0,
+            "output": "Focus target combat width: 30 checks; five client models; native pixels/combat pending\n",
+            "wallSeconds": 0.019703300000401214
+          }
+        },
+        {
+          "baseline": {
+            "exit": 1,
+            "output": "lua: tests/focus_target_combat_width.lua:5: live world/scale/layout refresh cannot restore original wide construction size\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/focus_target_combat_width.lua:5: in local 'check'\n\ttests/focus_target_combat_width.lua:34: in main chunk\n\t[C]: in ?\n",
+            "wallSeconds": 0.01806969998870045
+          },
+          "candidate": {
+            "exit": 0,
+            "output": "Focus target combat width: 30 checks; five client models; native pixels/combat pending\n",
+            "wallSeconds": 0.01896290000877343
+          }
+        },
+        {
+          "baseline": {
+            "exit": 1,
+            "output": "lua: tests/focus_target_combat_width.lua:5: live world/scale/layout refresh cannot restore original wide construction size\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/focus_target_combat_width.lua:5: in local 'check'\n\ttests/focus_target_combat_width.lua:34: in main chunk\n\t[C]: in ?\n",
+            "wallSeconds": 0.021225999982561916
+          },
+          "candidate": {
+            "exit": 0,
+            "output": "Focus target combat width: 30 checks; five client models; native pixels/combat pending\n",
+            "wallSeconds": 0.019818300002953038
+          }
+        },
+        {
+          "baseline": {
+            "exit": 1,
+            "output": "lua: tests/focus_target_combat_width.lua:5: live world/scale/layout refresh cannot restore original wide construction size\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/focus_target_combat_width.lua:5: in local 'check'\n\ttests/focus_target_combat_width.lua:34: in main chunk\n\t[C]: in ?\n",
+            "wallSeconds": 0.018015800014836714
+          },
+          "candidate": {
+            "exit": 0,
+            "output": "Focus target combat width: 30 checks; five client models; native pixels/combat pending\n",
+            "wallSeconds": 0.01880030002212152
+          }
+        },
+        {
+          "baseline": {
+            "exit": 1,
+            "output": "lua: tests/focus_target_combat_width.lua:5: live world/scale/layout refresh cannot restore original wide construction size\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/focus_target_combat_width.lua:5: in local 'check'\n\ttests/focus_target_combat_width.lua:34: in main chunk\n\t[C]: in ?\n",
+            "wallSeconds": 0.016932800004724413
+          },
+          "candidate": {
+            "exit": 0,
+            "output": "Focus target combat width: 30 checks; five client models; native pixels/combat pending\n",
+            "wallSeconds": 0.019466199999442324
+          }
+        }
+      ]
+    },
+    {
+      "case": "verticalAbsorb",
+      "pairs": [
+        {
+          "baseline": {
+            "exit": 1,
+            "output": "lua: tests/unit_vertical_target_health.lua:7: shield appears on target without resizing health\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/unit_vertical_target_health.lua:7: in local 'check'\n\ttests/unit_vertical_target_health.lua:149: in main chunk\n\t[C]: in ?\n",
+            "wallSeconds": 0.04880980000598356
+          },
+          "candidate": {
+            "exit": 0,
+            "output": "Vertical target health: 2785 checks; five client models, six target tokens; native taint/rendering pending\n",
+            "wallSeconds": 0.11416989998542704
+          }
+        },
+        {
+          "baseline": {
+            "exit": 1,
+            "output": "lua: tests/unit_vertical_target_health.lua:7: shield appears on target without resizing health\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/unit_vertical_target_health.lua:7: in local 'check'\n\ttests/unit_vertical_target_health.lua:149: in main chunk\n\t[C]: in ?\n",
+            "wallSeconds": 0.023763000004692003
+          },
+          "candidate": {
+            "exit": 0,
+            "output": "Vertical target health: 2785 checks; five client models, six target tokens; native taint/rendering pending\n",
+            "wallSeconds": 0.110091900016414
+          }
+        },
+        {
+          "baseline": {
+            "exit": 1,
+            "output": "lua: tests/unit_vertical_target_health.lua:7: shield appears on target without resizing health\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/unit_vertical_target_health.lua:7: in local 'check'\n\ttests/unit_vertical_target_health.lua:149: in main chunk\n\t[C]: in ?\n",
+            "wallSeconds": 0.02179450000403449
+          },
+          "candidate": {
+            "exit": 0,
+            "output": "Vertical target health: 2785 checks; five client models, six target tokens; native taint/rendering pending\n",
+            "wallSeconds": 0.10685790001298301
+          }
+        },
+        {
+          "baseline": {
+            "exit": 1,
+            "output": "lua: tests/unit_vertical_target_health.lua:7: shield appears on target without resizing health\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/unit_vertical_target_health.lua:7: in local 'check'\n\ttests/unit_vertical_target_health.lua:149: in main chunk\n\t[C]: in ?\n",
+            "wallSeconds": 0.021894500008784235
+          },
+          "candidate": {
+            "exit": 0,
+            "output": "Vertical target health: 2785 checks; five client models, six target tokens; native taint/rendering pending\n",
+            "wallSeconds": 0.10789919999660924
+          }
+        },
+        {
+          "baseline": {
+            "exit": 1,
+            "output": "lua: tests/unit_vertical_target_health.lua:7: shield appears on target without resizing health\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/unit_vertical_target_health.lua:7: in local 'check'\n\ttests/unit_vertical_target_health.lua:149: in main chunk\n\t[C]: in ?\n",
+            "wallSeconds": 0.02127259998815134
+          },
+          "candidate": {
+            "exit": 0,
+            "output": "Vertical target health: 2785 checks; five client models, six target tokens; native taint/rendering pending\n",
+            "wallSeconds": 0.11084060001303442
+          }
+        }
+      ]
+    }
+  ],
+  "scope": "Desktop correctness and resource counts only; harness wall times are not native performance measurements"
+}

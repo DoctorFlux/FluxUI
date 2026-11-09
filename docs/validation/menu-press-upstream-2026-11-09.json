@@ -1,0 +1,46 @@
+{
+  "date": "2026-11-09",
+  "source": "Gethe/wow-ui-source",
+  "records": [
+    {
+      "branch": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_FrameXML/SecureTemplates.lua",
+      "blob": "0b7ba234696b5f1c551e7d84375900e50c824cbb",
+      "xmlBlob": "201329f44520050f05370445bcb7d9caadf4c85a",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_FrameXML/SecureTemplates.lua"
+    },
+    {
+      "branch": "forever",
+      "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "path": "Interface/AddOns/Blizzard_FrameXML/SecureTemplates.lua",
+      "blob": "66f203e31a819f383ea3c6920be8d4f6556848eb",
+      "xmlBlob": "201329f44520050f05370445bcb7d9caadf4c85a",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_FrameXML/SecureTemplates.lua"
+    },
+    {
+      "branch": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_FrameXML/SecureTemplates.lua",
+      "blob": "e35a52fa79f9cbc38452b6b529d8734ded0938ea",
+      "xmlBlob": "201329f44520050f05370445bcb7d9caadf4c85a",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_FrameXML/SecureTemplates.lua"
+    },
+    {
+      "branch": "classic_anniversary",
+      "commit": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "path": "Interface/AddOns/Blizzard_FrameXML/SecureTemplates.lua",
+      "blob": "ba180de8cf11512e45d0f184d8e060efdf3471f4",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_FrameXML/SecureTemplates.lua"
+    },
+    {
+      "branch": "classic_era",
+      "commit": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "path": "Interface/AddOns/Blizzard_FrameXML/SecureTemplates.lua",
+      "blob": "31ea34c7dc3995bac10adcd2ce57b02f06db13e2",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_FrameXML/SecureTemplates.lua"
+    }
+  ],
+  "contract": "SecureActionButtonTemplate calls SecureActionButton_OnClick(self, button, down); explicit useOnKeyDown overrides ActionButtonUseKeyDown. Wrapped HUD rejects release before dispatch; unwrapped HUD registers only AnyDown and disables pressAndHoldAction.",
+  "scope": "Source and desktop dispatch verification; native secure VM/input/taint/pixels/performance pending."
+}

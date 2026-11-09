@@ -1,5 +1,113 @@
 # Client and reference validation — 29 October 2026
 
+9 November native bag item targeting (BAG-ITEM-TARGETING-20261109): user
+Forever crate-like item/native bags fault unresolved; actual source use/cursor/
+destination/cancel, native taint and protections remain pending. Pinned70862
+source matches right-click line1611; it does not locate first taint. Opt-in bag
+metadata574checks and five related suites PASS; no engine/taint VM emulation
+claim. Host executable/window verified read-only, no game input. User reproduction
+and verbose trace needed; prior settings/logging/profiling retained. User lacks
+the original items. Latest13:00 log contains no matching bag/action trace and
+no saved bag capture exists; equivalent future reproduction remains open.
+Full270-script/937-syntax validation PASS; complete Lua corpus unchanged.
+[Exact reproduction and limitations](BAG_ITEM_TARGETING.md).
+
+9 November Baganator junk activation (BAGANATOR-JUNK-ACTIVATION-20261109):
+user explicitly requested the addon fix after the detector diagnosis. The junk
+bridge now selects FluxUI once per active Baganator profile, retains the previous
+detector in additive profile metadata, emits the normal setting notification and
+refreshes widgets/searches/layout. Later manual choices persist; inactive profiles,
+consumable ranking, Useful/restock/conjured/gear protections remain. One BagShow
+callback; no new frame/timer/polling.403 focused checks; five old/new pairs reject
+old code (162 failures) and pass candidate. Full269 scripts/936 syntax files PASS;
+source corpus unchanged after validation. Native coins/categories and actual
+settings persistence pending user reproduction; no connected native tool.
+Verified external2389-file/history checkpoint and56 read-only settings metadata.
+No game input, on-disk settings/profiler writes, manual sync or publication.
+[Requirements, sources and acceptance](BAGANATOR_JUNK_ACTIVATION.md).
+
+9 November Baganator missing consumable junk (BAGANATOR-JUNK-DETECTOR-20261109):
+read-only diagnosis found Forever Baganator846 saved DEFAULT junk detector
+RXPGuides; sampled FluxUI inferior switches are enabled. Baganator calls one
+selected plugin; registering FluxUI does not activate it over RXPGuides.
+Select General > Junk detection > FluxUI, reopen bags and verify lower potions,
+bandages, food and water against a better usable carried tier. Preserve explicit
+Useful/manual restock/conjured protections. Saved disk state is not a live-session
+observation. Existing combat1020checks and junk/Baganator smoke PASS; native
+selection/coins/category acceptance pending user reproduction. No runtime edit,
+settings write, game input, profiler change or publication; no new performance
+claim. [Exact inspected sources and checks](validation/baganator-junk-detector-2026-11-09.json).
+
+9 November focus colors (FOCUS-TARGET-COLORS-20261109): compact focus now
+uses the shared target color painter for its own focused unit instead of the
+party/player accent policy. Main/portrait/outer/atlas borders, backdrops, compact
+divider, cast shell/icon and threat shell follow target's class/NPC palette;
+combat portrait red restores those colors. Party class-color controls remain
+party-only; focus layout, HP/resource fills, aura options and settings remain.
+21,985 focused checks across five client models and 66 portrait-restore checks
+pass; five old-source rejects/candidate passes and 10 matching installed source
+copies retained. External 2382-file/history checkpoint verified; 120 settings
+metadata entries read-only. No new frame, event, timer, polling or settings;
+native pixels/taint/performance pending. All 268 scripts and 935 syntax files
+PASS with no source drift.
+[Scope and evidence](UNITFRAME_COMBAT_TRANSITIONS.md#focus-colors--9-november-follow-up).
+
+9 November compact quest badge:371 focused geometry/data/lifecycle checks PASS;
+existing combo and56cast-school checks PASS. Smaller10-unit icon/font,12-unit
+host and tight16-unit icon/padding allowance preserve centreY-3. Native overlap,
+icon fit/legibility and all-client pixels remain for the user's in-game test.
+[Compact record](validation/nameplate-quest-compact-2026-11-09.json).
+
+
+9 November unit-frame combat transitions (UNITFRAME-COMBAT-20261109): target
+click host now retains prepared mouse input under native visibility; compact
+focus-target width survives global squeeze and deferred combat sizing. Party
+widths are verified through modeled combat roster transitions. Focus/party/pet
+vertical strips support shields and heal absorbs through shared full-height
+native sinks/clipping, existing options and safe events. 285 visibility/30 width/
+2785 vertical/1035 party checks pass, plus existing menu/geometry checks. Five
+baseline-reject/candidate-pass pairs per fault retained; all 267 scripts and 934 syntax files
+PASS, no source drift; 20 installed runtime copies match.
+External verified 2362-file/history checkpoint and 120 settings metadata retained.
+Four display frames per strip plus modern calculator and one target native
+visibility registration are explicit feature costs; no new poll/ticker/event
+frame. Native clicks/taint/pixels/performance pending on all five clients; no
+connected test tool, game input, settings/profiler writes or publication.
+[Scope, sources and steps](UNITFRAME_COMBAT_TRANSITIONS.md).
+
+9 November rejected cast bar (CAST-REJECTED-20261109): terminal failure/stop
+feedback now requires an active visible cast/channel. Cooldown and other rejected
+attempts cannot summon an idle bar or replace finish/interrupt/custom-timer state.
+Valid interruption/completion, secret-safe routing and appearance retained.
+24,775 focused checks across five clients; five baseline/candidate pairs and
+three rejected controls; party215/timer379 and full267-script/934-syntax checks
+PASS with no source drift. Five mirrored runtime
+copies match. Native input/events/taint/pixels/performance pending; no connected
+test tool, client/settings/profiler interaction or manual sync. Verified external
+2,364-file/history checkpoint and125 read-only settings metadata entries.
+[Scope and evidence](CAST_REJECTED_ATTEMPTS.md).
+
+9 November nameplate quest progress: five desktop contract models,311 checks and
+seven rejected harmful controls PASS; baseline has no feature. Current source pins:
+Retail70783, Forever70862, progression70631; existing Era/Anniversary paths
+retained. Native quest/drop association, pixels with level/threat/casts, combat,
+taint, profile/reload and world/instance transitions NOT RUN. User will test in-game;
+no Witchcraft/UIForever tool connected, no client input or source synchronization.
+[Acceptance](19-nameplates.md#quest-kill-and-loot-progress--9-november-2026).
+
+
+9 November menu press input (MENU-PRESS-20261109): food/water/bandage/healing
+potion/mana gem/mana potion/healthstone/trinket HUD mouse and use/conjure bindings
+now activate on press. Shared wrapped policy ignores release CVar for HUD keys;
+Forever unwrapped policy honors onDown with native AnyDown. Ordinary hosts retain
+their existing policy. 4,284 focused checks across five existing clients; five
+baseline-reject/candidate-pass pairs and two rejected Forever controls. All five
+mirrored runtime hashes match.
+Native physical input/combat/taint/pixels/performance pending; no connected test
+tool, client interaction, settings/profiler writes or manual sync. External dated
+2,351-file/history checkpoint and125 settings metadata verified. Full265-script/
+932-syntax validation PASS; no source drift. Result linked in [scope and evidence](MENU_PRESS_INPUT.md).
+
 9 November focus visibility/menu validation: Forever native1.60.1/70862/16001,
 verified exact executable/window, guarded background reload and readbacks.
 Empty focus/focus-target roots and their mouse children are really hidden;
@@ -2824,3 +2932,13 @@ native aura CPU readings do not certify dense/restricted aura churn or leak-free
 sessions. [Evidence](ACTION_AURA_WORK.md). Original profile0 Retail/1 Era restored;
 Retail diagnostic root nil and Era prior report restored, deep-equal. Sessions
 conflict on this account: both processes stay open but testing is sequential.
+
+<!-- NPQ-FULL-CURRENT -->
+Latest full checkout:263/265 standalone scripts PASS;932Lua syntax PASS.
+Concurrent unit-frame changes produced two mock failures: `public_geometry_writers.lua`
+needs `DeferProtected` in its test double; `raid_party_frames.lua` needs
+`SetClipsChildren` in its test double. Both reproduce separately. This quest task
+did not edit those owners or tests. Earlier265/265 captures retain their exact
+source scope externally. Quest checks311PASS, seven harmful controls rejected;
+full current source identities/failures are retained in the quest validation JSON.
+<!-- /NPQ-FULL-CURRENT -->

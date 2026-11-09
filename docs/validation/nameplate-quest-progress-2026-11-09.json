@@ -1,0 +1,327 @@
+{
+  "changeID": "NAMEPLATE-QUEST-PROGRESS-20261109",
+  "UTC": "2026-11-09T10:49:36.559980+00:00",
+  "head": "1023aa04b8b196d8397a949b7cb6255e3508bc61",
+  "branch": "main",
+  "checkpoint": {
+    "external": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\09\\01a1bfb1-6545-7ce2-9920-22c8b8ba3dc1\\Quest-bottom-left-20261109T103519Z\\checkpoint.json",
+    "sourceFiles": 2353,
+    "sourceZipVerified": true,
+    "historyBundleVerified": true,
+    "settingsMetadataInspected": 87,
+    "privateSettingsWritten": false
+  },
+  "userChoices": {
+    "UI": "Implement directly",
+    "testing": "Finish local checks; user will test in-game",
+    "anchor": "TOPLEFT to health container BOTTOMLEFT0,+4; 14-high first row centerY -3 matches threat/level; subsequent rows16lower"
+  },
+  "requirements": "docs/19-nameplates.md#quest-kill-and-loot-progress--9-november-2026",
+  "upstreamSources": [
+    {
+      "branch": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/QuestLogDocumentation.lua",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_APIDocumentationGenerated/QuestLogDocumentation.lua"
+    },
+    {
+      "branch": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/TooltipInfoDocumentation.lua",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_APIDocumentationGenerated/TooltipInfoDocumentation.lua"
+    },
+    {
+      "branch": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/TooltipInfoSharedDocumentation.lua",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_APIDocumentationGenerated/TooltipInfoSharedDocumentation.lua"
+    },
+    {
+      "branch": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_NamePlates/Blizzard_NamePlates.toc",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_NamePlates/Blizzard_NamePlates.toc"
+    },
+    {
+      "branch": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_NamePlates/Blizzard_NamePlateUnitFrame.lua",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_NamePlates/Blizzard_NamePlateUnitFrame.lua"
+    },
+    {
+      "branch": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_SharedXMLGame/Tooltip/TooltipDataRules.lua",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_SharedXMLGame/Tooltip/TooltipDataRules.lua"
+    },
+    {
+      "branch": "forever",
+      "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/QuestLogDocumentation.lua",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_APIDocumentationGenerated/QuestLogDocumentation.lua"
+    },
+    {
+      "branch": "forever",
+      "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/TooltipInfoDocumentation.lua",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_APIDocumentationGenerated/TooltipInfoDocumentation.lua"
+    },
+    {
+      "branch": "forever",
+      "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/TooltipInfoSharedDocumentation.lua",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_APIDocumentationGenerated/TooltipInfoSharedDocumentation.lua"
+    },
+    {
+      "branch": "forever",
+      "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "path": "Interface/AddOns/Blizzard_NamePlates/Blizzard_NamePlates.toc",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_NamePlates/Blizzard_NamePlates.toc"
+    },
+    {
+      "branch": "forever",
+      "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "path": "Interface/AddOns/Blizzard_NamePlates/Blizzard_NamePlateUnitFrame.lua",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_NamePlates/Blizzard_NamePlateUnitFrame.lua"
+    },
+    {
+      "branch": "forever",
+      "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "path": "Interface/AddOns/Blizzard_SharedXMLGame/Tooltip/TooltipDataRules.lua",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_SharedXMLGame/Tooltip/TooltipDataRules.lua"
+    },
+    {
+      "branch": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/QuestLogDocumentation.lua",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_APIDocumentationGenerated/QuestLogDocumentation.lua"
+    },
+    {
+      "branch": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/TooltipInfoDocumentation.lua",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_APIDocumentationGenerated/TooltipInfoDocumentation.lua"
+    },
+    {
+      "branch": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/TooltipInfoSharedDocumentation.lua",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_APIDocumentationGenerated/TooltipInfoSharedDocumentation.lua"
+    },
+    {
+      "branch": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_NamePlates/Blizzard_NamePlates.toc",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_NamePlates/Blizzard_NamePlates.toc"
+    },
+    {
+      "branch": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_NamePlates/Blizzard_NamePlateUnitFrame.lua",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_NamePlates/Blizzard_NamePlateUnitFrame.lua"
+    },
+    {
+      "branch": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_SharedXMLGame/Tooltip/TooltipDataRules.lua",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_SharedXMLGame/Tooltip/TooltipDataRules.lua"
+    }
+  ],
+  "questieReferences": [
+    {
+      "addon": "Questie 12.6.4 local reference",
+      "path": "Questie_Forever.toc",
+      "sha256": "9ff0ffae9f5eaa479adce5e07b1da6079da23a5a51fe36f5aaba1eaa092b660e"
+    },
+    {
+      "addon": "Questie 12.6.4 local reference",
+      "path": "Questie.lua",
+      "sha256": "ac5085e6ac6e34f3828a7b8b35ab58b7b408f5e13058cea1506bbe670577842a"
+    },
+    {
+      "addon": "Questie 12.6.4 local reference",
+      "path": "Modules/QuestieNameplate.lua",
+      "sha256": "686cb10fc3077823bf97182dbd6ecdc55cb046c817737f0fdf750b2c8bdb1517"
+    },
+    {
+      "addon": "Questie 12.6.4 local reference",
+      "path": "Modules/Tooltips/Tooltip.lua",
+      "sha256": "3380214e9d249b46414540dd75d3e16854cbe0000dc2bfd77d55d8986f45fa88"
+    },
+    {
+      "addon": "Questie 12.6.4 local reference",
+      "path": "Modules/Quest/QuestieQuest.lua",
+      "sha256": "81562cc564dde57a6a50d79025dff99ca3dafbf390f18e8ab3b1637c56a3d989"
+    },
+    {
+      "addon": "Questie 12.6.4 local reference",
+      "path": "Public/RegisterForQuestUpdates.lua",
+      "sha256": "dc76d3c494b50467eab69a7d8cd5e38ea07b4475ced4220941de4fa712cb59c0"
+    },
+    {
+      "addon": "Questie 12.6.4 local reference",
+      "path": "Public/RegisterOnReady.lua",
+      "sha256": "5344c77bdd7018de29dc6b3744cd0ed5432f4dcd748735bbdfbafebd107eeb78"
+    },
+    {
+      "addon": "Questie 12.6.4 local reference",
+      "path": "Icons/LICENSE.md",
+      "sha256": "1dd7019ea9e714cffdae9b2991f7f9ee81009097f8a1c75e797461dd36252134"
+    }
+  ],
+  "assets": [
+    {
+      "path": "Texture/QuestSlay.blp",
+      "source": "Questie/Icons/slay.blp",
+      "bytes": 2564,
+      "sha256": "1a5ab061ac2649cf1953e1ebb82ed9cf957b15937fdf77711861c69038b6db08",
+      "notice": "Texture/QuestIcons-NOTICE.txt; no redistribution license asserted; no publication"
+    },
+    {
+      "path": "Texture/QuestLoot.blp",
+      "source": "Questie/Icons/loot.blp",
+      "bytes": 2564,
+      "sha256": "237974b610c9d3304084b783b35d9021138a7f40d3961c621d1e04accd527e5b",
+      "notice": "Texture/QuestIcons-NOTICE.txt; no redistribution license asserted; no publication"
+    }
+  ],
+  "focused": {
+    "scope": "Desktop source slice with widget/API doubles; native pixels taint and CPU/FPS not run",
+    "baselineRejected": true,
+    "baselineOutput": "lua: tests/nameplate_quest_progress.lua:147: assertion failed!\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/nameplate_quest_progress.lua:147: in local 'scenario'\n\ttests/nameplate_quest_progress.lua:326: in main chunk\n\t[C]: in ?\n",
+    "focused": "QUEST_PROGRESS client=live frames=4 checks=66 idle_polls=1000 idle_queries=0\nQUEST_PROGRESS client=forever frames=4 checks=132 idle_polls=1000 idle_queries=0\nQUEST_PROGRESS client=classic frames=4 checks=190 idle_polls=1000 idle_queries=0\nQUEST_PROGRESS client=classic_era frames=4 checks=248 idle_polls=1000 idle_queries=0\nQUEST_PROGRESS client=classic_anniversary frames=4 checks=306 idle_polls=1000 idle_queries=0\nQUEST_PROGRESS checks=311 failures=0 native_pixels_taint_performance=NOT_RUN\n",
+    "controls": [
+      {
+        "control": "wrong_anchor",
+        "rejected": true,
+        "output": "lua: tests/nameplate_quest_progress.lua:5: top-left at bottom-left; opposite level\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/nameplate_quest_progress.lua:5: in upvalue 'check'\n\ttests/nameplate_quest_progress.lua:167: in local 'scenario'\n\ttests/nameplate_quest_progress.lua:326: in main chunk\n\t[C]: in ?\n"
+      },
+      {
+        "control": "wrong_y",
+        "rejected": true,
+        "output": "lua: tests/nameplate_quest_progress.lua:5: left edge; first row center aligns with threat/level at -3; later rows stack down\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/nameplate_quest_progress.lua:5: in upvalue 'check'\n\ttests/nameplate_quest_progress.lua:168: in local 'scenario'\n\ttests/nameplate_quest_progress.lua:326: in main chunk\n\t[C]: in ?\n"
+      },
+      {
+        "control": "questie_duplicate",
+        "rejected": true,
+        "output": "lua: tests/nameplate_quest_progress.lua:5: Questie native setting disabled and existing markers cleared once\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/nameplate_quest_progress.lua:5: in upvalue 'check'\n\ttests/nameplate_quest_progress.lua:161: in local 'scenario'\n\ttests/nameplate_quest_progress.lua:326: in main chunk\n\t[C]: in ?\n"
+      },
+      {
+        "control": "old_markers_visible",
+        "rejected": true,
+        "output": "lua: tests/nameplate_quest_progress.lua:5: Questie native setting disabled and existing markers cleared once\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/nameplate_quest_progress.lua:5: in upvalue 'check'\n\ttests/nameplate_quest_progress.lua:161: in local 'scenario'\n\ttests/nameplate_quest_progress.lua:326: in main chunk\n\t[C]: in ?\n"
+      },
+      {
+        "control": "no_native_fallback",
+        "rejected": true,
+        "output": "lua: tests/nameplate_quest_progress.lua:5: Questie initialization uses available native data\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/nameplate_quest_progress.lua:5: in upvalue 'check'\n\ttests/nameplate_quest_progress.lua:186: in local 'scenario'\n\ttests/nameplate_quest_progress.lua:326: in main chunk\n\t[C]: in ?\n"
+      },
+      {
+        "control": "stale_on_remove",
+        "rejected": true,
+        "output": "lua: tests/nameplate_quest_progress.lua:5: remove releases all rows\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/nameplate_quest_progress.lua:5: in upvalue 'check'\n\ttests/nameplate_quest_progress.lua:237: in local 'scenario'\n\ttests/nameplate_quest_progress.lua:326: in main chunk\n\t[C]: in ?\n"
+      },
+      {
+        "control": "restricted_lookup",
+        "rejected": true,
+        "output": "lua: tests/nameplate_quest_progress.lua:5: restricted instance clears old world counts\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/nameplate_quest_progress.lua:5: in upvalue 'check'\n\ttests/nameplate_quest_progress.lua:195: in local 'scenario'\n\ttests/nameplate_quest_progress.lua:326: in main chunk\n\t[C]: in ?\n"
+      }
+    ],
+    "sourceSHA256": "d5ed0e8d29d2640383235473637102c1004aad016f48a797c7e58434c05a4194"
+  },
+  "full": {
+    "testsPassed": 263,
+    "testsFailed": 2,
+    "syntaxFiles": 932,
+    "syntaxFailures": 0,
+    "currentManifestDrift": [
+      "tests/focus_secure_visibility.lua",
+      "tests/public_geometry_writers.lua",
+      "tests/raid_party_frames.lua",
+      "UnitFrames/FluxCastBar.lua"
+    ],
+    "unrelatedRuntimeChangesDuringTask": [
+      "Bars/_tmp_barsmoke.lua",
+      "tests/focus_secure_visibility.lua",
+      "tests/menu_press_input.lua",
+      "tests/public_geometry_writers.lua",
+      "tests/unit_vertical_target_health.lua",
+      "UnitFrames/FluxCastBar.lua",
+      "UnitFrames/FluxUnitFrames_FocusTarget.lua",
+      "UnitFrames/FluxUnitFrames_Party.lua",
+      "UnitFrames/FluxUnitFrames_PetTarget.lua",
+      "UnitFrames/FluxUnitFrames_Shared.lua"
+    ],
+    "concurrentScope": "Preserved; this task did not write these files. Full capture accepts its recorded manifest only.",
+    "evidence": "docs/validation/nameplate-quest-progress-full-2026-11-09.json"
+  },
+  "candidate": [
+    {
+      "path": "NamePlates/Core.lua",
+      "sha256": "d5ed0e8d29d2640383235473637102c1004aad016f48a797c7e58434c05a4194"
+    },
+    {
+      "path": "AddonOptions/FluxOptionsDefaults.lua",
+      "sha256": "053ccb196536d1747ba3d628c097c28fd9969915275cc3a34a8867bc9a6a1333"
+    },
+    {
+      "path": "AddonOptions/FluxOptionsNameplates.lua",
+      "sha256": "8e377a3f713f3b1a2aeaaeb5b7f0d5eab672b24c3d92a2087a4f7c84888617cb"
+    },
+    {
+      "path": "tests/nameplate_quest_progress.lua",
+      "sha256": "a16f3d137b3bcd31b93c4cf6d45ae092ea6f359c8c3bf51b11cda3541fd29ca4"
+    }
+  ],
+  "native": "NOT RUN; user will test; no connected Witchcraft/UIForever; rendering, quest coverage, combat, taint, CPU/FPS pending",
+  "workspaceOnly": true,
+  "sync": false,
+  "gameInput": false,
+  "settingsOrProfilerWrites": false,
+  "publication": false,
+  "limits": [
+    "No native association means no inferred marker without Questie",
+    "Modern secret-enforcing clients skip instance lookups",
+    "Two supplied default BLPs retain original source restriction notice"
+  ],
+  "relatedRegressions": [
+    {
+      "path": "tests/nameplate_quest_progress.lua",
+      "exit": 0,
+      "output": "QUEST_PROGRESS client=live frames=4 checks=66 idle_polls=1000 idle_queries=0\nQUEST_PROGRESS client=forever frames=4 checks=132 idle_polls=1000 idle_queries=0\nQUEST_PROGRESS client=classic frames=4 checks=190 idle_polls=1000 idle_queries=0\nQUEST_PROGRESS client=classic_era frames=4 checks=248 idle_polls=1000 idle_queries=0\nQUEST_PROGRESS client=classic_anniversary frames=4 checks=306 idle_polls=1000 idle_queries=0\nQUEST_PROGRESS checks=311 failures=0 native_pixels_taint_performance=NOT_RUN\n"
+    },
+    {
+      "path": "NamePlates/_tmp_combosmoke.lua",
+      "exit": 0,
+      "output": "Nameplate combos OK: Era/Anniversary/Forever native templates; target-only top-of-health anchors; zero/gains/spends/transfers; combat/forms/vehicles; secret counts; removal/reuse; native frames untouched; independent of unit-frame options\n"
+    },
+    {
+      "path": "tests/nameplate_countdown_work.lua",
+      "exit": 0,
+      "output": "METRIC era_lifecycle font_reads=200 region_reads=100 level_reads=900 label_writes=300 anchors=300 frames=5\nMETRIC era_modern_startup font_reads=100 region_reads=0 level_reads=300 label_writes=100 anchors=100 frames=102\nMETRIC era_modern font_reads=10000 region_reads=0 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=2.296875 cpu_seconds=0.037000\nMETRIC era_legacy_startup font_reads=0 region_reads=100 level_reads=300 label_writes=100 anchors=100 frames=102\nMETRIC era_legacy font_reads=0 region_reads=10000 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=1017.546875 cpu_seconds=0.038000\nMETRIC anniversary_lifecycle font_reads=200 region_reads=100 level_reads=900 label_writes=300 anchors=300 frames=5\nMETRIC anniversary_modern_startup font_reads=100 region_reads=0 level_reads=300 label_writes=100 anchors=100 frames=102\nMETRIC anniversary_modern font_reads=10000 region_reads=0 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=1.921875 cpu_seconds=0.038000\nMETRIC anniversary_legacy_startup font_reads=0 region_reads=100 level_reads=300 label_writes=100 anchors=100 frames=102\nMETRIC anniversary_legacy font_reads=0 region_reads=10000 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=1017.546875 cpu_seconds=0.044000\nMETRIC progression_lifecycle font_reads=200 region_reads=100 level_reads=900 label_writes=300 anchors=300 frames=5\nMETRIC progression_modern_startup font_reads=100 region_reads=0 level_reads=300 label_writes=100 anchors=100 frames=102\nMETRIC progression_modern font_reads=10000 region_reads=0 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=1.921875 cpu_seconds=0.035000\nMETRIC progression_legacy_startup font_reads=0 region_reads=100 level_reads=300 label_writes=100 anchors=100 frames=102\nMETRIC progression_legacy font_reads=0 region_reads=10000 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=1017.546875 cpu_seconds=0.041000\nMETRIC live_lifecycle font_reads=200 region_reads=100 level_reads=900 label_writes=300 anchors=300 frames=5\nMETRIC live_modern_startup font_reads=100 region_reads=0 level_reads=300 label_writes=100 anchors=100 frames=102\nMETRIC live_modern font_reads=10000 region_reads=0 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=1.921875 cpu_seconds=0.037000\nMETRIC live_legacy_startup font_reads=0 region_reads=100 level_reads=300 label_writes=100 anchors=100 frames=102\nMETRIC live_legacy font_reads=0 region_reads=10000 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=1017.546875 cpu_seconds=0.045000\nMETRIC forever_lifecycle font_reads=200 region_reads=100 level_reads=900 label_writes=300 anchors=300 frames=5\nMETRIC forever_modern_startup font_reads=100 region_reads=0 level_reads=300 label_writes=100 anchors=100 frames=102\nMETRIC forever_modern font_reads=10000 region_reads=0 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=1.921875 cpu_seconds=0.037000\nMETRIC forever_legacy_startup font_reads=0 region_reads=100 level_reads=300 label_writes=100 anchors=100 frames=102\nMETRIC forever_legacy font_reads=0 region_reads=10000 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=1017.546875 cpu_seconds=0.044000\nNameplate countdown work: 1160 checks, 0 failures\n"
+    },
+    {
+      "path": "tests/nameplate_castbar_schools.lua",
+      "exit": 0,
+      "output": "PASS nameplate cast-bar themes: 56 checks; native taint/pixels pending\n"
+    },
+    {
+      "path": "tests/raid_nameplate_defaults.lua",
+      "exit": 0,
+      "output": "raid and nameplate defaults: 15 checks passed\n"
+    },
+    {
+      "path": "Minimap/_tmp_questiesmoke.lua",
+      "exit": 0,
+      "output": "Questie tracker smoke OK (Classic/Forever parity, async frames, late addon, native header ownership, overflow, collapse/expand, combat, optional native timer and disabled tracker)\n"
+    }
+  ],
+  "ownedFinalDrift": [],
+  "documentationValidation": {
+    "status": "Requires refresh after concurrent unit-frame edits",
+    "lastResult": "2 freshness issues; tests/raid_party_frames.lua changed after generated inventory and verification; checker made no edits",
+    "ownFeatureLinks": "resolved in last validation"
+  },
+  "geometrySupersededBy": "docs/validation/nameplate-quest-compact-2026-11-09.json",
+  "geometryFollowup": "User requested shorter/smaller icon and badge; historical identities/results retained"
+}

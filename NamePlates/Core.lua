@@ -89,6 +89,7 @@ local DEFAULTS = {
 	enemyPlayerTarget = true,
 	visibilityMode = "group",
 	levelOverlayEnabled = true,
+	questOverlayEnabled = true,
 }
 
 function NP.GetDB()
@@ -111,6 +112,9 @@ function NP.GetDB()
 	end
 	if db.levelOverlayEnabled == nil then
 		db.levelOverlayEnabled = true
+	end
+	if db.questOverlayEnabled == nil then
+		db.questOverlayEnabled = true
 	end
 	return db
 end
@@ -587,6 +591,340 @@ end)
 -- Options call these after changing FluxUI_DB.nameplateThreat.
 _G.FluxNamePlates_RefreshFromDB = NP.RefreshAll
 _G.FluxNamePlateThreat_RefreshFromDB = NP.RefreshAll
+
+-- Small quest progress tags: Questie's associations when loaded, otherwise
+-- Blizzard's unit tooltip + active quest log. No bundled database or saved
+-- quest cache. Flux replaces Questie's nameplate marker while this is enabled.
+do
+	local Quest = NP.RegisterModule("quest", { interval = 0.25 })
+	local states, unused = {}, {}
+	local visibleUnits = {}
+	local dirty, subscribed, retries = true, false, 0
+	local callbackOwner, readyOwner
+	local questiePlates, questieLoader, suppressedProfile
+	local questEvents = { "QUEST_LOG_UPDATE", "QUEST_ACCEPTED", "QUEST_REMOVED", "ADDON_LOADED" }
+	-- Exact artwork from the supplied Questie installation; included here so
+	-- disabling/uninstalling Questie does not change the badge. See docs/19-nameplates.md.
+	local icons = { monster = "Interface\\AddOns\\_FluxUI\\Texture\\QuestSlay.blp",
+		item = "Interface\\AddOns\\_FluxUI\\Texture\\QuestLoot.blp" }
+	local scanner
+
+	local function Enabled()
+		return NP.GetDB().questOverlayEnabled ~= false
+	end
+
+	local function Invalidate()
+		if Enabled() then dirty, retries = true, 3 end
+	end
+
+	local function SuppressQuestieNameplates()
+		if not Enabled() then return end
+		local profile = Questie and Questie.db and Questie.db.profile
+		if not profile then return end
+		local changed = profile.nameplateEnabled ~= false
+		if changed then profile.nameplateEnabled = false end
+		if QuestieLoader and type(QuestieLoader.ImportModule) == "function" then
+			if questieLoader ~= QuestieLoader then
+				questieLoader = QuestieLoader
+				questiePlates = QuestieLoader:ImportModule("QuestieNameplate")
+				suppressedProfile = nil
+			end
+			-- Match Questie's own option setter, including already-visible markers.
+			-- Its target-frame marker and every other Questie setting stay independent.
+			if questiePlates and type(questiePlates.HideCurrentFrames) == "function"
+				and (changed or suppressedProfile ~= profile) then
+				questiePlates:HideCurrentFrames()
+				suppressedProfile = profile
+			end
+		end
+	end
+
+	local function Subscribe()
+		SuppressQuestieNameplates()
+		if not Flux.Events then return end
+		local enabled = Enabled()
+		if enabled ~= subscribed then
+			subscribed = enabled
+			for _, event in ipairs(questEvents) do
+				if enabled then Flux.Events.Register(event, Invalidate)
+				else Flux.Events.Unregister(event, Invalidate) end
+			end
+		end
+		local api = Questie and Questie.API
+		if enabled and api and type(api.RegisterOnReady) == "function" and readyOwner ~= api then
+			readyOwner = api
+			api.RegisterOnReady(Invalidate)
+		end
+		if enabled and api and type(api.RegisterForQuestUpdates) == "function" and callbackOwner ~= api then
+			api.RegisterForQuestUpdates(Invalidate)
+			-- The public API has no unregister. This one callback is inert when off.
+			callbackOwner = api
+		end
+	end
+
+	local function Number(value)
+		if NP.IsSecret(value) or type(value) ~= "number" or value ~= value
+			or value == math.huge or value == -math.huge or value < 0 or value % 1 ~= 0 then return end
+		return value
+	end
+
+	local function PublicTable(value)
+		return not NP.IsSecret(value) and type(value) == "table"
+			and not (issecrettable and issecrettable(value))
+	end
+
+	local function Text(value)
+		if not NP.IsSecret(value) and type(value) == "string" then
+			return (value:gsub("|c%x%x%x%x%x%x%x%x", ""):gsub("|r", ""):match("^%s*(.-)%s*$"))
+		end
+	end
+
+	local function NativeObjectives(id, cache)
+		if not id or id == 0 then return end
+		if cache[id] == nil then
+			cache[id] = false
+			local log = C_QuestLog
+			if log and log.GetQuestObjectives and (not log.IsOnQuest or NP.BoolTest(log.IsOnQuest(id), false)) then
+				local ok, objectives = pcall(log.GetQuestObjectives, id)
+				if ok and PublicTable(objectives) then cache[id] = objectives end
+			end
+		end
+		return cache[id] or nil
+	end
+
+	local function MatchNative(rows, seen, id, text, cache)
+		text = Text(text)
+		if not text then return end
+		for index, objective in ipairs(NativeObjectives(id, cache) or {}) do
+			if PublicTable(objective) then
+				local kind, finished = Text(objective.type), objective.finished
+				local current, required = Number(objective.numFulfilled), Number(objective.numRequired)
+				if (kind == "monster" or kind == "item") and not NP.IsSecret(finished) and not finished
+					and current and required and required > 0 and current < required
+					and text == Text(objective.text) and not seen[objective] then
+					seen[objective] = true
+					rows[#rows + 1] = { questID = id, index = index, kind = kind, current = current, required = required }
+				end
+			end
+		end
+	end
+
+	local function NativeRows(unit, rows, batch)
+		local cache, seen = batch.nativeObjectives or {}, {}
+		batch.nativeObjectives = cache
+		if C_TooltipInfo and C_TooltipInfo.GetUnit then
+			local ok, data = pcall(C_TooltipInfo.GetUnit, unit)
+			local kinds = Enum and Enum.TooltipDataLineType
+			if not ok or not PublicTable(data) or not PublicTable(data.lines) or not kinds then return end
+			local id, own = nil, false
+			local playerGUID = UnitGUID("player")
+			for _, line in ipairs(data.lines) do
+				if PublicTable(line) and not NP.IsSecret(line.type) then
+					if line.type == kinds.QuestTitle then id, own = Number(line.id), true
+					elseif line.type == kinds.QuestPlayer then
+						own = not NP.IsSecret(line.guid) and not NP.IsSecret(playerGUID)
+							and type(line.guid) == "string" and line.guid == playerGUID
+					elseif line.type == kinds.QuestObjective and own and id then
+						MatchNative(rows, seen, id, line.leftText, cache)
+					end
+				else id, own = nil, false end
+			end
+		elseif GetNumQuestLogEntries and GetQuestLogTitle then
+			-- Legacy clients: a single private native tooltip, never GameTooltip.
+			-- Match its quest block to active log text; never guess drop sources.
+			if not scanner then scanner = CreateFrame("GameTooltip", "FluxNamePlateQuestScanner", UIParent, "GameTooltipTemplate") end
+			scanner:SetOwner(UIParent, "ANCHOR_NONE")
+			scanner:ClearLines()
+			local ok = pcall(scanner.SetUnit, scanner, unit)
+			if ok then
+				local titles = batch.nativeTitles
+				if not titles then
+					titles = {}
+					batch.nativeTitles = titles
+					for index = 1, math.min(Number(GetNumQuestLogEntries()) or 0, 500) do
+						local title, _, _, header, _, _, _, id = GetQuestLogTitle(index)
+						title, id = Text(title), Number(id)
+						if title and id and not NP.IsSecret(header) and not header then
+							if titles[title] == nil then titles[title] = id else titles[title] = false end
+						end
+					end
+				end
+				local id
+				for _, region in ipairs({ scanner:GetRegions() }) do
+					local text = region.IsObjectType and region:IsObjectType("FontString") and Text(region:GetText())
+					if text then
+						if titles[text] ~= nil then id = titles[text] or nil
+						elseif id then MatchNative(rows, seen, id, text, cache) end
+					end
+				end
+			end
+			scanner:Hide()
+			scanner:ClearLines()
+		end
+	end
+
+	local function Rows(unit, cache)
+		-- Modern instance tooltips/GUIDs can be restricted even when a token is
+		-- public. Do not invoke Questie's Lua lookup or a native tooltip rebuild
+		-- in that context; old public counts must disappear on world transitions.
+		if NP.IsSecretClient() and IsInInstance and NP.BoolTest(IsInInstance(), true) then return end
+		local guid = UnitGUID and UnitGUID(unit)
+		if NP.IsSecret(guid) or type(guid) ~= "string" then return end
+		local npc = guid:match("^Creature%-%d+%-%d+%-%d+%-%d+%-(%d+)%-")
+			or guid:match("^Vehicle%-%d+%-%d+%-%d+%-%d+%-(%d+)%-")
+		if not npc then return end
+		local loaded = Questie and Questie.db and QuestieLoader and type(QuestieLoader.ImportModule) == "function"
+			and not (Questie.API and Questie.API.isReady == false)
+		local key = loaded and npc or unit
+		if cache[key] then return cache[key] end
+		local rows = {}
+		cache[key] = rows
+		local tooltips = loaded and QuestieLoader:ImportModule("QuestieTooltips")
+		local entries = tooltips and tooltips.lookupByKey and tooltips.lookupByKey["m_" .. npc]
+		if not tooltips then NativeRows(unit, rows, cache) end
+		local seen = {}
+		for _, entry in pairs(entries or {}) do
+			local objective = entry.objective
+			local id = Number(entry.questId)
+			local active = true
+			if id and C_QuestLog and C_QuestLog.IsOnQuest then
+				active = NP.BoolTest(C_QuestLog.IsOnQuest(id), false)
+			end
+			if objective and id and active and not seen[objective] then
+				seen[objective] = true
+				-- The same refresh contract Questie uses before drawing its icon.
+				if type(objective.Update) == "function" then objective:Update() end
+				local current, required = Number(objective.Collected), Number(objective.Needed)
+				local kind, completed = objective.Type, objective.Completed
+				if not NP.IsSecret(kind) and (kind == "monster" or kind == "item")
+					and not NP.IsSecret(completed) and not completed
+					and current and required and required > 0 and current < required then
+					rows[#rows + 1] = { questID = id, index = Number(objective.Index) or 0,
+						kind = kind, current = current, required = required }
+				end
+			end
+		end
+		table.sort(rows, function(a, b)
+			if a.questID == b.questID then return a.index < b.index end
+			return a.questID < b.questID
+		end)
+		return rows
+	end
+
+	local function ReleaseRow(host)
+		NP.ReleaseHost(host)
+		host.text:SetText("")
+		host.icon:SetTexture(nil)
+		host.kind, host.current, host.required = nil, nil, nil
+		unused[#unused + 1] = host
+	end
+
+	local function Release(unit)
+		local state = states[unit]
+		if not state then return end
+		for _, host in ipairs(state) do ReleaseRow(host) end
+		states[unit] = nil
+	end
+
+	local function NewRow()
+		local host = table.remove(unused)
+		if host then return host end
+		host = NP.CreateClientPlate("quest")
+		host.icon = host:CreateTexture(nil, "OVERLAY")
+		host.icon:SetSize(10, 10)
+		host.icon:SetPoint("LEFT", host, "LEFT", 2, 0)
+		host.text = host:CreateFontString(nil, "OVERLAY")
+		host.text:SetFont(NP.FONT, 10, "OUTLINE")
+		host.text:SetShadowColor(0, 0, 0, 1)
+		host.text:SetShadowOffset(1, -1)
+		host.text:SetJustifyH("LEFT")
+		host.text:SetWordWrap(false)
+		host.text:SetPoint("LEFT", host.icon, "RIGHT", 2, NP.IsLiveClient() and 1 or NP.PlateTextOffsetY())
+		host.text:SetTextColor(1, 0.82, 0, 1)
+		return host
+	end
+
+	local function IsVisible(uf, healthBar)
+		if not uf or not healthBar then return false end
+		local visible, shown = true, true
+		if uf.IsShown then visible, shown = pcall(uf.IsShown, uf) end
+		if not visible or not NP.BoolTest(shown, false) then return false end
+		if healthBar.IsShown then visible, shown = pcall(healthBar.IsShown, healthBar) end
+		return visible and NP.BoolTest(shown, false)
+	end
+
+	local function Update(unit, cache)
+		local uf, plate, container, healthBar = NP.GetParts(unit)
+		local visible = IsVisible(uf, healthBar)
+		visibleUnits[unit] = visible
+		if not Enabled() or unit == NP.PREVIEW_UNIT or not container or not visible
+			then Release(unit); return end
+		local rows = Rows(unit, cache)
+		if not rows or #rows == 0 then Release(unit); return end
+		local state = states[unit] or {}
+		states[unit] = state
+		for index, row in ipairs(rows) do
+			local host = state[index] or NewRow()
+			state[index] = host
+			if host.kind ~= row.kind then host.icon:SetTexture(icons[row.kind]); host.kind = row.kind end
+			if host.current ~= row.current or host.required ~= row.required then
+				host.text:SetFormattedText("%d/%d", row.current, row.required)
+				host.current, host.required = row.current, row.required
+				NP.FitPlate(host, host.text)
+				-- FitPlate includes 10 text-padding units; total extra space is
+				-- 2 left + 10 icon + 2 gap + 2 right = 16, keeping the tag short.
+				host:SetSize(host:GetWidth() + 6, 12)
+			end
+			NP.ShowPlate(host, unit)
+			if NP.AttachHost(host, plate, 1) then
+				host:ClearAllPoints()
+				-- Keep the left edge and the same center Y (-3) as threat/level.
+				-- A 12-high host needs TOPLEFT at +3; additional objectives stack down.
+				if pcall(host.SetPoint, host, "TOPLEFT", container, "BOTTOMLEFT", 0, 3 - (index - 1) * 16) then host:Show()
+				else host:Hide() end
+			else host:Hide() end
+		end
+		for index = #state, #rows + 1, -1 do ReleaseRow(table.remove(state)) end
+	end
+
+	function Quest.Added(unit)
+		if Enabled() then SuppressQuestieNameplates(); Update(unit, {}); retries = 3 end
+	end
+	function Quest.Removed(unit)
+		Release(unit)
+		visibleUnits[unit] = nil
+	end
+	function Quest.Refresh(unit) Update(unit, {}) end
+	function Quest.RefreshAll()
+		Subscribe()
+		dirty = true
+		if not Enabled() then
+			for unit in pairs(states) do Release(unit) end
+			wipe(visibleUnits)
+			retries, dirty = 0, false
+		end
+	end
+	function Quest.Poll()
+		if not Enabled() then return end
+		SuppressQuestieNameplates()
+		if not (dirty or retries > 0) then
+			-- Native name-only/style changes can hide a bar without a quest event.
+			-- Detect that transition without rescanning settled objective data.
+			local cache = {}
+			for unit in pairs(activeUnits) do
+				local uf, _, _, bar = NP.GetParts(unit)
+				if visibleUnits[unit] ~= IsVisible(uf, bar) then Update(unit, cache) end
+			end
+			return
+		end
+		Subscribe()
+		dirty = false
+		if retries > 0 then retries = retries - 1 end
+		local cache = {}
+		for unit in pairs(activeUnits) do Update(unit, cache) end
+	end
+	Subscribe()
+end
 
 -- ---------------------------------------------------------------------------
 -- Forever world plates: fade Blizzard's level number (not the frame — options

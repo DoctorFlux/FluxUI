@@ -1,0 +1,76 @@
+{
+  "changeID": "NAMEPLATE-QUEST-COMPACT-20261109",
+  "capturedUTC": "2026-11-09T11:01:38.488928+00:00",
+  "request": "Shorter/smaller quest badge with icon contained and room for threat; preserve same Y",
+  "checkpoint": {
+    "external": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\09\\01a1bfb1-6545-7ce2-9920-22c8b8ba3dc1\\Quest-compact-20261109T105842Z\\checkpoint.json",
+    "sourceFiles": 2380,
+    "zipVerified": true,
+    "historyBundleVerified": true,
+    "onDiskSettingsMetadataInspected": 87,
+    "settingsWrites": false
+  },
+  "baselineCoreSHA256": "d5ed0e8d29d2640383235473637102c1004aad016f48a797c7e58434c05a4194",
+  "candidate": [
+    {
+      "path": "NamePlates/Core.lua",
+      "sha256": "f6c537838c26809954b623be2796387c7681d521554f6bf17e299ce23302a380"
+    },
+    {
+      "path": "tests/nameplate_quest_progress.lua",
+      "sha256": "918eb2fc0d9bb1c5d8420a29957e38ee57c9a606771cba38c5cb4a2a6b6360e7"
+    }
+  ],
+  "runtimeChanges": {
+    "questFont": [
+      12,
+      10
+    ],
+    "questIcon": [
+      12,
+      10
+    ],
+    "questHostHeight": [
+      14,
+      12
+    ],
+    "totalIconAndHorizontalPadding": [
+      28,
+      16
+    ],
+    "leftGapRightInsets": [
+      2,
+      2,
+      2
+    ],
+    "iconVerticalClearance": 1,
+    "firstHostCenterY": -3,
+    "firstTopLeftY": [
+      4,
+      3
+    ],
+    "additionalRowSpacing": 16,
+    "newFramesEventsTickers": 0,
+    "questProviderOrProgressChanges": false,
+    "threatOrLevelChanges": false
+  },
+  "focused": "QUEST_PROGRESS client=live frames=4 checks=78 idle_polls=1000 idle_queries=0\nQUEST_PROGRESS client=forever frames=4 checks=156 idle_polls=1000 idle_queries=0\nQUEST_PROGRESS client=classic frames=4 checks=226 idle_polls=1000 idle_queries=0\nQUEST_PROGRESS client=classic_era frames=4 checks=296 idle_polls=1000 idle_queries=0\nQUEST_PROGRESS client=classic_anniversary frames=4 checks=366 idle_polls=1000 idle_queries=0\nQUEST_PROGRESS checks=371 failures=0 native_pixels_taint_performance=NOT_RUN\n",
+  "full": {
+    "pass": 267,
+    "fail": 0,
+    "syntaxFiles": 934,
+    "syntaxFailures": 0,
+    "manifestDrift": [],
+    "record": "docs/validation/nameplate-quest-compact-full-2026-11-09.json"
+  },
+  "onlyTwoLuaFilesChanged": [
+    "NamePlates/Core.lua",
+    "tests/nameplate_quest_progress.lua"
+  ],
+  "nativeVisual": "NOT RUN; user chose in-game testing; no pixel/overlap or taint/FPS certification",
+  "gameInput": false,
+  "profilerChanges": false,
+  "manualSync": false,
+  "publication": false,
+  "documentationValidation": "PASS:967classified sources;602TOC/XML reachable;417setting definitions;24SavedVariables;15706local links;source inventory/evidence current"
+}

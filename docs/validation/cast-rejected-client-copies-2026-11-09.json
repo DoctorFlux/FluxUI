@@ -1,0 +1,30 @@
+{
+  "scope": "Read-only hashes after existing mirror; no manual sync or game interaction",
+  "copies": [
+    {
+      "client": "_retail_",
+      "exists": true,
+      "sha256": "6d6dff01da2e0ef0b1f61e009244176d5a01cc5b909bfdffd26cca58777be346"
+    },
+    {
+      "client": "_forever_",
+      "exists": true,
+      "sha256": "6d6dff01da2e0ef0b1f61e009244176d5a01cc5b909bfdffd26cca58777be346"
+    },
+    {
+      "client": "_classic_",
+      "exists": true,
+      "sha256": "6d6dff01da2e0ef0b1f61e009244176d5a01cc5b909bfdffd26cca58777be346"
+    },
+    {
+      "client": "_classic_era_",
+      "exists": true,
+      "sha256": "6d6dff01da2e0ef0b1f61e009244176d5a01cc5b909bfdffd26cca58777be346"
+    },
+    {
+      "client": "_anniversary_",
+      "exists": true,
+      "sha256": "6d6dff01da2e0ef0b1f61e009244176d5a01cc5b909bfdffd26cca58777be346"
+    }
+  ]
+}

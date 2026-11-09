@@ -1,0 +1,87 @@
+{
+  "change": "CAST-REJECTED-20261109",
+  "baselineSHA256": "852aa3f0c6ccf13982d45d768c7e861e76a56e5c7d4055e867ed71e2acf7d6c5",
+  "candidateSHA256": "6d6dff01da2e0ef0b1f61e009244176d5a01cc5b909bfdffd26cca58777be346",
+  "checksPerCandidate": 24775,
+  "pairs": [
+    {
+      "baseline": {
+        "exit": 1,
+        "output": "lua: tests/castbar_rejected_cast.lua:6: live player idle: terminal event cannot show an inactive/hidden cast: UNIT_SPELLCAST_FAILED\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/castbar_rejected_cast.lua:6: in local 'check'\n\ttests/castbar_rejected_cast.lua:45: in main chunk\n\t[C]: in ?\n",
+        "wallSeconds": 0.05842529999790713
+      },
+      "candidate": {
+        "exit": 0,
+        "output": "Rejected cast lifecycle: 24775 checks PASS; five client models; native input/taint/pixels pending\n",
+        "wallSeconds": 1.506009400007315
+      }
+    },
+    {
+      "baseline": {
+        "exit": 1,
+        "output": "lua: tests/castbar_rejected_cast.lua:6: live player idle: terminal event cannot show an inactive/hidden cast: UNIT_SPELLCAST_FAILED\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/castbar_rejected_cast.lua:6: in local 'check'\n\ttests/castbar_rejected_cast.lua:45: in main chunk\n\t[C]: in ?\n",
+        "wallSeconds": 0.024728399992454797
+      },
+      "candidate": {
+        "exit": 0,
+        "output": "Rejected cast lifecycle: 24775 checks PASS; five client models; native input/taint/pixels pending\n",
+        "wallSeconds": 1.5806706000003032
+      }
+    },
+    {
+      "baseline": {
+        "exit": 1,
+        "output": "lua: tests/castbar_rejected_cast.lua:6: live player idle: terminal event cannot show an inactive/hidden cast: UNIT_SPELLCAST_FAILED\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/castbar_rejected_cast.lua:6: in local 'check'\n\ttests/castbar_rejected_cast.lua:45: in main chunk\n\t[C]: in ?\n",
+        "wallSeconds": 0.04002280000713654
+      },
+      "candidate": {
+        "exit": 0,
+        "output": "Rejected cast lifecycle: 24775 checks PASS; five client models; native input/taint/pixels pending\n",
+        "wallSeconds": 1.4987742000084836
+      }
+    },
+    {
+      "baseline": {
+        "exit": 1,
+        "output": "lua: tests/castbar_rejected_cast.lua:6: live player idle: terminal event cannot show an inactive/hidden cast: UNIT_SPELLCAST_FAILED\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/castbar_rejected_cast.lua:6: in local 'check'\n\ttests/castbar_rejected_cast.lua:45: in main chunk\n\t[C]: in ?\n",
+        "wallSeconds": 0.030532400007359684
+      },
+      "candidate": {
+        "exit": 0,
+        "output": "Rejected cast lifecycle: 24775 checks PASS; five client models; native input/taint/pixels pending\n",
+        "wallSeconds": 1.4054692000208888
+      }
+    },
+    {
+      "baseline": {
+        "exit": 1,
+        "output": "lua: tests/castbar_rejected_cast.lua:6: live player idle: terminal event cannot show an inactive/hidden cast: UNIT_SPELLCAST_FAILED\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/castbar_rejected_cast.lua:6: in local 'check'\n\ttests/castbar_rejected_cast.lua:45: in main chunk\n\t[C]: in ?\n",
+        "wallSeconds": 0.03069420001702383
+      },
+      "candidate": {
+        "exit": 0,
+        "output": "Rejected cast lifecycle: 24775 checks PASS; five client models; native input/taint/pixels pending\n",
+        "wallSeconds": 1.4428344999905676
+      }
+    }
+  ],
+  "scope": "Loaded production lifecycle in five client desktop models; repeated correctness samples and no-op paint/allocation counters; process durations uncontrolled and not native CPU/FPS/latency.",
+  "native": "Not run; existing UIForever preference retained; no connected native/simulator tool. No game input/settings/profiler changes.",
+  "negativeControls": [
+    {
+      "name": "missing-active-state",
+      "exit": 1,
+      "output": "lua: tests/castbar_rejected_cast.lua:6: terminal event cannot replace or extend post-cast feedback\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/castbar_rejected_cast.lua:6: in local 'check'\n\ttests/castbar_rejected_cast.lua:46: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "missing-visibility",
+      "exit": 1,
+      "output": "lua: tests/castbar_rejected_cast.lua:6: live player hidden: terminal event cannot show an inactive/hidden cast: UNIT_SPELLCAST_FAILED\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/castbar_rejected_cast.lua:6: in local 'check'\n\ttests/castbar_rejected_cast.lua:45: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "lost-channel",
+      "exit": 1,
+      "output": "lua: tests/castbar_rejected_cast.lua:6: real channel completion retained\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/castbar_rejected_cast.lua:6: in local 'check'\n\ttests/castbar_rejected_cast.lua:84: in main chunk\n\t[C]: in ?\n"
+    }
+  ]
+}

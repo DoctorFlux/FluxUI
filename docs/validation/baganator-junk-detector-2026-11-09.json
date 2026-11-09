@@ -1,0 +1,48 @@
+{
+  "date": "2026-11-09",
+  "change_id": "BAGANATOR-JUNK-DETECTOR-20261109",
+  "head": "1023aa04b8b196d8397a949b7cb6255e3508bc61",
+  "scope": "Read-only configuration/source diagnosis; documentation only",
+  "finding": {
+    "client_installation": "Forever",
+    "baganator_version": "846",
+    "saved_profile": "DEFAULT",
+    "saved_junk_plugin": "RXPGuides",
+    "FluxUI_markInferior_options": "Enabled for all five kinds in sampled saved character settings",
+    "native_active_settings": "Not observed; disk settings may differ from unsaved session",
+    "contract": "Baganator uses the single selected junk plugin; registering fluxui does not replace an existing valid plugin",
+    "remedy": "Baganator General > Junk detection > FluxUI; reopen bags and inspect inferior consumables"
+  },
+  "source_sha256": {
+    "BaganatorCompat/FluxBaganator_Junk.lua": "9628a448fa03b024abff3a6008269ea57e244d6b0609452be2d725cd58b43ba9",
+    "Inventory/Restock/Junk/FluxJunk.lua": "9d44088cb1125d7bf7191d04b52e6b31aa1859cf869d74813c46670afa651f45",
+    "Inventory/Restock/Core/Tiers/FluxRestockTiers_Match.lua": "60eafad40bb4982887299ea48a7f21778043dbdb5c9d7ece68158de332b88559",
+    "Inventory/Restock/Core/Tiers/FluxRestockTiers_Inferior.lua": "a7b498b4ad00c0c1b40e53a4396750b14593879b706c439f33f152e6419cb873"
+  },
+  "baganator_reference_sha256": {
+    "Baganator.toc": "99f6dbaa9bd99024ee068631c1d25da888f4446a000d16063349ff4b82076477",
+    "API/Main.lua": "b951feb00109a544ad52d13e96d6abb3c6c6236ddf9face8dcea61a6c1010fe0",
+    "ItemViewCommon/ItemButton.lua": "14c75e8f88520e3e856996c38abfe1de0f3bd53396013f6be171ace4a350eb93",
+    "CategoryViews/BagLayout.lua": "e6a23537badbe67d4001a284bd9619588f21885656a3aa3674b2dfceeed0fcd6",
+    "CustomiseDialog/Main.lua": "a83335900652d91ba2aad968dad286be481967c529924e4802a12238dfee2f26",
+    "LICENSE": "8ab1f878ab363dbb42591f062190386662a0aaaae36f90cc518dcf3494bafb7d"
+  },
+  "checks": [
+    {
+      "script": "tests/combat_consumable_junk.lua",
+      "exit": 0,
+      "output": "SAMPLE forever immediate bandage bagWalks=120 liveQueries=91 sells=1 warmWalks=0 warmLiveQueries=0\nSAMPLE forever immediate healPotion bagWalks=120 liveQueries=91 sells=1 warmWalks=0 warmLiveQueries=0\nSAMPLE forever immediate manaPotion bagWalks=120 liveQueries=91 sells=1 warmWalks=0 warmLiveQueries=0\nSAMPLE forever delayed-provider bandage bagWalks=119 liveQueries=106 sells=1 warmWalks=0 warmLiveQueries=0\nSAMPLE forever delayed-provider healPotion bagWalks=119 liveQueries=106 sells=1 warmWalks=0 warmLiveQueries=0\nSAMPLE forever delayed-provider manaPotion bagWalks=119 liveQueries=106 sells=1 warmWalks=0 warmLiveQueries=0\nSAMPLE live immediate bandage bagWalks=120 liveQueries=91 sells=1 warmWalks=0 warmLiveQueries=0\nSAMPLE live immediate healPotion bagWalks=120 liveQueries=91 sells=1 warmWalks=0 warmLiveQueries=0\nSAMPLE live immediate manaPotion bagWalks=120 liveQueries=91 sells=1 warmWalks=0 warmLiveQueries=0\nSAMPLE live delayed-provider bandage bagWalks=119 liveQueries=106 sells=1 warmWalks=0 warmLiveQueries=0\nSAMPLE live delayed-provider healPotion bagWalks=119 liveQueries=106 sells=1 warmWalks=0 warmLiveQueries=0\nSAMPLE live delayed-provider manaPotion bagWalks=119 liveQueries=106 sells=1 warmWalks=0 warmLiveQueries=0\nSAMPLE era immediate bandage bagWalks=120 liveQueries=91 sells=1 warmWalks=0 warmLiveQueries=0\nSAMPLE era immediate healPotion bagWalks=120 liveQueries=91 sells=1 warmWalks=0 warmLiveQueries=0\nSAMPLE era immediate manaPotion bagWalks=120 liveQueries=91 sells=1 warmWalks=0 warmLiveQueries=0\nSAMPLE era delayed-provider bandage bagWalks=119 liveQueries=106 sells=1 warmWalks=0 warmLiveQueries=0\nSAMPLE era delayed-provider healPotion bagWalks=119 liveQueries=106 sells=1 warmWalks=0 warmLiveQueries=0\nSAMPLE era delayed-provider manaPotion bagWalks=119 liveQueries=106 sells=1 warmWalks=0 warmLiveQueries=0\nSAMPLE anniversary immediate bandage bagWalks=120 liveQueries=91 sells=1 warmWalks=0 warmLiveQueries=0\nSAMPLE anniversary immediate healPotion bagWalks=120 liveQueries=91 sells=1 warmWalks=0 warmLiveQueries=0\nSAMPLE anniversary immediate manaPotion bagWalks=120 liveQueries=91 sells=1 warmWalks=0 warmLiveQueries=0\nSAMPLE anniversary delayed-provider bandage bagWalks=119 liveQueries=106 sells=1 warmWalks=0 warmLiveQueries=0\nSAMPLE anniversary delayed-provider healPotion bagWalks=119 liveQueries=106 sells=1 warmWalks=0 warmLiveQueries=0\nSAMPLE anniversary delayed-provider manaPotion bagWalks=119 liveQueries=106 sells=1 warmWalks=0 warmLiveQueries=0\nSAMPLE mists immediate bandage bagWalks=120 liveQueries=91 sells=1 warmWalks=0 warmLiveQueries=0\nSAMPLE mists immediate healPotion bagWalks=120 liveQueries=91 sells=1 warmWalks=0 warmLiveQueries=0\nSAMPLE mists immediate manaPotion bagWalks=120 liveQueries=91 sells=1 warmWalks=0 warmLiveQueries=0\nSAMPLE mists delayed-provider bandage bagWalks=119 liveQueries=106 sells=1 warmWalks=0 warmLiveQueries=0\nSAMPLE mists delayed-provider healPotion bagWalks=119 liveQueries=106 sells=1 warmWalks=0 warmLiveQueries=0\nSAMPLE mists delayed-provider manaPotion bagWalks=119 liveQueries=106 sells=1 warmWalks=0 warmLiveQueries=0\nCombat consumable junk: 1020 checks, 0 failures; native acceptance pending\n"
+    },
+    {
+      "script": "Inventory/Restock/Junk/_tmp_junksmoke.lua",
+      "exit": 0,
+      "output": "Junk smoke OK: actual compatibility/facade/classifier/seller; Live/Forever/Era/Anniversary/Mists; gray rules/lists, async and immediate sales, no duplicates/bulk/cursor fallback, busy retry, protection, relocation, mode switch, close\nJunk visuals OK: native/fallback coin + highlight, pooled/named buttons, uncached grays, protected/empty slots, settings, native coin resets, Baganator item-data refresh\n"
+    }
+  ],
+  "native_result": "Pending user selection and observation; no connected client testing tool",
+  "runtime_changes": false,
+  "settings_writes": false,
+  "game_input": false,
+  "performance": "No runtime change; native CPU/FPS not measured",
+  "privacy": "No settings file contents, account identifiers or private copies included"
+}

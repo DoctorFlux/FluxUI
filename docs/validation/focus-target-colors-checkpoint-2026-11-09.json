@@ -1,0 +1,16 @@
+{
+  "date": "2026-11-09",
+  "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\09\\01a1bfe2-f421-7f43-9f7c-f3d386d88478\\focus-colors-checkpoint-20261109T110844Z",
+  "sourceFiles": 2382,
+  "settingsMetadataFiles": 120,
+  "integrity": "ZIP CRC and all-ref bundle PASS",
+  "sha256": {
+    "source.zip": "ba5d6fed47cfdc84c08061abb2945ac9156a3d538f91587f0ddb73b45244030c",
+    "history.bundle": "61a9dd50e6624d50b07aebaefd7d9220aabb82138f4d96ee1517e5bd92d52d20"
+  },
+  "baseline": {
+    "UnitFrames/FluxUnitFrames_Shared.lua": "751a53d383092859673a70ec98ee99a16efee4455284e22a68835207fe158207",
+    "UnitFrames/FluxUnitFrames_Party.lua": "274fc275f93e1d96838c06084814dbd7dbd6ef2a2e29f823efabd15c01a7df01"
+  },
+  "settingsWrites": false
+}
