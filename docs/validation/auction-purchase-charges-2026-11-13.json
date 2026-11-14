@@ -1,0 +1,205 @@
+{
+  "dateUTC": "2026-11-13T09:24:58.111467+00:00",
+  "changeID": "AUCTION-PURCHASE-CHARGES-20261113",
+  "requirements": "AHR-41 through AHR-45",
+  "candidate": "AH-purchase-charges-20261113-r8",
+  "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\auction-restock\\tab-crafting-followup\\purchase-identity-20261113\\checkpoint.json",
+  "checkpointSourceFiles": 2654,
+  "settingsMetadataEntries": 103,
+  "privateSettingsCopied": false,
+  "sourceGuard": {
+    "dateUTC": "2026-11-13T09:21:24.808763+00:00",
+    "checkpointVerified": true,
+    "sourceFiles": 2654,
+    "settingsMetadataEntries": 103,
+    "changedOwned": [
+      "Inventory/Builtin/AuctionPurchases.lua",
+      "Inventory/Restock/Auction/FluxAuctionRestock.lua",
+      "Inventory/Restock/Auction/FluxAuctionRestockCraft.lua",
+      "Inventory/Restock/Auction/FluxAuctionRestockData.lua",
+      "Inventory/Restock/Auction/FluxAuctionRestockLocale.lua",
+      "Inventory/Restock/Auction/FluxAuctionRestockPotions.lua",
+      "Inventory/Restock/Auction/FluxAuctionRestockUI.lua",
+      "tests/auction_incoming_mail.lua",
+      "tests/auction_restock.lua"
+    ],
+    "addedOwned": [
+      "tests/auction_restock_charges.lua",
+      "tests/auction_restock_purchase_flow.lua"
+    ],
+    "concurrentChangesPreserved": [
+      "AddonOptions/FluxOptionsBattlezone.lua",
+      "Minimap/FluxMinimapButtons.lua",
+      "tests/minimap_extra_layout.lua",
+      "tests/options_navigation.lua"
+    ],
+    "concurrentNewPreserved": [],
+    "candidateRawHashes": {
+      "Inventory/Restock/Auction/FluxAuctionRestock.lua": "29671b24fd0f46dca99c4371d9f53c874adf6f3597dd943da3076f4d5940272f",
+      "Inventory/Restock/Auction/FluxAuctionRestockCraft.lua": "e9f66ca45f5e43ae8d650c15d5c85364370a5aa97447a0b5b956b3bc6430069b",
+      "Inventory/Restock/Auction/FluxAuctionRestockData.lua": "2dfb7f4b92d8b1498bef767aefb539d5e471f4bd327d0a8db8ad12a742f96522",
+      "Inventory/Restock/Auction/FluxAuctionRestockLocale.lua": "263f9a21b38ccd70252ec29cd0c18d106be53ebdc98cc22019589384ef6b6793",
+      "Inventory/Restock/Auction/FluxAuctionRestockPotions.lua": "eb371ed077fe035be9374ee8168e404bad5d7ddec035c24bc50e77c2b09f4ec3",
+      "Inventory/Restock/Auction/FluxAuctionRestockPrices.lua": "01a3ed1a2b754f9d9d16c6a56af0440fef86829f80e09419d99e0a8f4ce8cfed",
+      "Inventory/Restock/Auction/FluxAuctionRestockUI.lua": "82dfcf8fee0245a34cb7c8040171c01750a604300f24a28514d538c0ac3c340e",
+      "Inventory/Builtin/AuctionPurchases.lua": "38be70fd8433deb478846b2b5429ea872b8d1a8cb418f8101d456430979bf56b",
+      "tests/auction_restock.lua": "58857d0c14afe69eebafe2947ca763e98d937a63b671574d4480d16e7632f5a2",
+      "tests/auction_incoming_mail.lua": "478a13b4ea360f76d7aa47408fecc665be166400ed09856d644fa15e218dbc09",
+      "tests/auction_restock_charges.lua": "8a924f36e99cb4fa97e36082986f4f0c15ed911ce486cb23d0151b492f3899ef",
+      "tests/auction_restock_purchase_flow.lua": "4d0ab0483c14d2e1574d499490282a112e67433882dd668253709909274e3cbd"
+    },
+    "acceptance": [
+      {
+        "test": "tests/auction_restock_purchase_flow.lua",
+        "exit": 0,
+        "output": "Auction restock purchase flow: 400 checks PASS; 20 client/provider/excess profiles; native purchasing/taint/latency NOT RUN\n"
+      },
+      {
+        "test": "tests/auction_restock_charges.lua",
+        "exit": 0,
+        "output": "Auction restock charges: 14292 checks PASS; 20 profiles; native charges/mail/purchases NOT RUN\n"
+      },
+      {
+        "test": "tests/auction_incoming_mail.lua",
+        "exit": 0,
+        "output": "Auction incoming mail: 743 checks PASS; 15 client/provider profiles; native purchase/taint/latency NOT RUN\n"
+      }
+    ],
+    "native": "NOT RUN: user native reproduction selected; no foreground/input or settings/profiler writes."
+  },
+  "sources": [
+    {
+      "kind": "bundled source-pinned API schema",
+      "path": "C:\\Users\\mario\\.codex\\plugins\\cache\\wow-addon-api-agents\\wow-addon-dev\\2.7.0\\skills\\wow-api-items-inventory\\references\\generated\\retail.json",
+      "sha256": "58b59cc391f78a83ada4a9b8c34dd5da6332de536edc2129446734ed2bf84cf7",
+      "pin": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "version": "12.1.5.70783",
+      "contract": "C_Item.GetItemCount includeUses; existing adapter, not a new capacity API",
+      "limitation": "Dated bundled snapshot read13Nov; actual native values/permissions not exercised; Era/Anniversary use existing adapters"
+    },
+    {
+      "kind": "bundled source-pinned API schema",
+      "path": "C:\\Users\\mario\\.codex\\plugins\\cache\\wow-addon-api-agents\\wow-addon-dev\\2.7.0\\skills\\wow-api-items-inventory\\references\\generated\\forever.json",
+      "sha256": "8bb019783b5934556060c3461251fcad6dd657618f534c84cdf9f5a9321dc1c8",
+      "pin": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "version": "1.60.1.70862",
+      "contract": "C_Item.GetItemCount includeUses; existing adapter, not a new capacity API",
+      "limitation": "Dated bundled snapshot read13Nov; actual native values/permissions not exercised; Era/Anniversary use existing adapters"
+    },
+    {
+      "kind": "bundled source-pinned API schema",
+      "path": "C:\\Users\\mario\\.codex\\plugins\\cache\\wow-addon-api-agents\\wow-addon-dev\\2.7.0\\skills\\wow-api-items-inventory\\references\\generated\\classic.json",
+      "sha256": "96a4b4086e667349b9eb81a1e59b1b2f422e6772a56d59010c3113e57a9e42ac",
+      "pin": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "version": "5.5.4.70631",
+      "contract": "C_Item.GetItemCount includeUses; existing adapter, not a new capacity API",
+      "limitation": "Dated bundled snapshot read13Nov; actual native values/permissions not exercised; Era/Anniversary use existing adapters"
+    },
+    {
+      "kind": "existing local owner",
+      "path": "Inventory/Restock/Core/FluxRestockList.lua",
+      "sha256": "11dc85d44927716a5f0c2595c727e0e2292f741028c04501de0a0de834a2f48e"
+    },
+    {
+      "kind": "existing local owner",
+      "path": "Inventory/Restock/FluxRestock_Inv.lua",
+      "sha256": "925d68b91c127ee7659e4706064a6aa312367073a88cc335c94acca80972f010"
+    },
+    {
+      "kind": "existing local owner",
+      "path": "Inventory/LegacyBridge.lua",
+      "sha256": "a133c12021ffd4ddaa8dd0e2a52d7e86ff8bd673b908cac257328d3496f4b7af"
+    },
+    {
+      "kind": "existing local owner",
+      "path": "Inventory/Index.lua",
+      "sha256": "10e927b927f8276170eb8a410f1673e40bd26a25633040b505acde3901e0de89"
+    },
+    {
+      "kind": "existing local owner",
+      "path": "Core/API/Item.lua",
+      "sha256": "2be703fae6568d44910f237c95ccb398680ba33658eb57cdceb5491100b2dbb4"
+    },
+    {
+      "kind": "existing local owner",
+      "path": "ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua",
+      "sha256": "a4cc7223bf109ffe29bda67ba330a98066eada17370bcc24297a82d2f559d0a9"
+    },
+    {
+      "kind": "installed reference read-only",
+      "path": "F:\\World of Warcraft\\_forever_\\Interface\\AddOns\\Syndicator\\Tracking\\AuctionCacheModern.lua",
+      "version": "290",
+      "sha256": "186dc61d453edf7db6839e22403ad5f3acc3845282943cf24a3e356c022d5b75",
+      "role": "matching observed bid before item-completion publication; no implementation copied"
+    },
+    {
+      "kind": "installed reference read-only",
+      "path": "F:\\World of Warcraft\\_forever_\\Interface\\AddOns\\Syndicator\\Syndicator.toc",
+      "version": "290",
+      "sha256": "d78b2bf574a00c81c41c2467021e3ed2c03ee64931875e943d3040587ac2b098",
+      "role": "matching observed bid before item-completion publication; no implementation copied"
+    },
+    {
+      "kind": "installed reference read-only",
+      "path": "F:\\World of Warcraft\\_forever_\\Interface\\AddOns\\Syndicator\\LICENSE",
+      "version": "290",
+      "sha256": "8ab1f878ab363dbb42591f062190386662a0aaaae36f90cc518dcf3494bafb7d",
+      "role": "matching observed bid before item-completion publication; no implementation copied"
+    }
+  ],
+  "focused": {
+    "tests/auction_active_rows.lua": "auction active rows: 156 checks, 0 failures; burst visits=600, classifications=200",
+    "tests/auction_cold_tooltip.lua": "provider-absent nilReplies=500 missingLinesReplies=1 errors=0 frames=1 timers=0 nativeRequests=0 continuations=0 knownRows=3\nprovider-present nilReplies=500 missingLinesReplies=1 errors=0 frames=1 timers=0 nativeRequests=0 continuations=0 knownRows=3\nauction cold tooltip: 48 checks, 0 failures; desktop production replay only",
+    "tests/auction_incoming_mail.lua": "Auction incoming mail: 743 checks PASS; 15 client/provider profiles; native purchase/taint/latency NOT RUN",
+    "tests/auction_metadata_work.lua": "auction metadata: 230 checks, 0 failures; burst names=0 info=0 walks=0 junk=0 invalidations=0 cacheEntries=0",
+    "tests/auction_query_ownership.lua": "auction query ownership: 628 checks, 0 failures; duplicate-burst legacy queries=4 modern queries=6 foreign queries=0 reentrant queries=10",
+    "tests/auction_refresh_batching.lua": "auction refresh batching: 365 checks, 0 failures; progressive rebuilds=10 snapshot rows=5000 maps=10 publications=10 scheduler requests=10",
+    "tests/auction_restock.lua": "Auction restock: 15976 checks PASS; 20 client/provider/addon profiles; native purchases/input/taint/pixels/FPS NOT RUN",
+    "tests/auction_restock_charges.lua": "Auction restock charges: 14292 checks PASS; 20 profiles; native charges/mail/purchases NOT RUN",
+    "tests/auction_restock_crafting.lua": "Auction restock crafting/tab: 824 checks PASS; 20 profiles; native quote permissions/rendering/controller NOT RUN",
+    "tests/auction_restock_market.lua": "Auction dense grid/stock/price bridge: 2508 checks PASS; 20 profiles; native pixels/vendor coverage/coexistence NOT RUN",
+    "tests/auction_restock_potions.lua": "Auction potion upgrades: 552 checks PASS; 20 profiles; native browse/usability/tier/input NOT RUN",
+    "tests/auction_restock_purchase_flow.lua": "Auction restock purchase flow: 400 checks PASS; 20 client/provider/excess profiles; native purchasing/taint/latency NOT RUN",
+    "tests/auction_restock_queue.lua": "Auction restock automatic queue: 928 checks PASS; 20 profiles; native purchase permissions/pixels NOT RUN",
+    "tests/character_recipe_cache.lua": "Character recipe persistence/vendor crafting: 704 checks PASS; 20 profiles; native persistence/buying NOT RUN"
+  },
+  "full": {
+    "pass": 324,
+    "fail": 0,
+    "syntaxFiles": 1006,
+    "syntaxFailures": [],
+    "currentCompleteManifestVerified": true,
+    "raw": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\auction-restock\\tab-crafting-followup\\purchase-identity-20261113\\full.json"
+  },
+  "harmfulControls": {
+    "rejected": 7,
+    "total": 7,
+    "details": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\auction-restock\\tab-crafting-followup\\purchase-identity-20261113\\controls.json"
+  },
+  "receiptBaseline": "Before fix: confirmed potion units=1; unbid cloth units=38; delivery rows=2",
+  "receiptCandidate": "After fix: confirmed potion units=1; unbid cloth units=0; delivery rows=1\nAfter actual matching buyout: potion units=1; bought cloth units=38; delivery rows=2",
+  "redGreen": {
+    "beforeCore": "Counterfactual checkpoint Core: false; tests/auction_restock_purchase_flow.lua:4: fresh press rebuilds stale 38 to live need two using only matching cached commodity rows",
+    "current": "Auction restock purchase flow: 400 checks PASS; 20 client/provider/excess profiles; native purchasing/taint/latency NOT RUN"
+  },
+  "resources": {
+    "runtimeFilesChanged": 7,
+    "newRuntimeFiles": 0,
+    "newTestFiles": 2,
+    "newEventsTimersHooksPollers": 0,
+    "decorativeRegions": "four textures per existing visible-page cell; no new interactive frame or focus stop",
+    "recurringCadence": "existing repaint and one cancellable AH timer; exact-item result rebuild only before a stale oversized commodity quote"
+  },
+  "native": "NOT RUN. User-native reproduction retained: purchases/protected permission/charge metadata/mail latency/pixels/controller/taint/FPS; earlier Forever blocked action unresolved natively.",
+  "oldPredictions": "No provenance-based pruning possible. Normal authoritative mailbox refresh replaces stale predictions; no Clear pending UI.",
+  "userData": "Existing saved-variable roots/targets/max-prices/toggles preserved. New reservation itemCount/unitScale facts only; old record fallback retained.",
+  "operations": "Main retained; no client foreground/input, private settings/profiler writes, manual client sync, commit or publication.",
+  "documentationValidation": {
+    "pass": true,
+    "classifiedSources": 1039,
+    "reachable": 617,
+    "settings": 433,
+    "savedVariableRoots": 24,
+    "localLinks": 16720
+  }
+}

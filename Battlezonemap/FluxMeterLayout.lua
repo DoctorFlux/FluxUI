@@ -1416,6 +1416,7 @@ function FluxMeterLayout.GetPickerGroups(row, index)
             nativeGroups[#nativeGroups + 1] = group
         end
         nativeGroups[#nativeGroups + 1] = { label = "Window options", items = {
+            { label = "Blizzard type menu...", nativeMenu = "type" },
             { label = "Combat session...", nativeMenu = "session" },
             { label = "Window settings...", nativeMenu = "settings" },
         } }

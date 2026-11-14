@@ -1,0 +1,123 @@
+{
+  "task": "TRINKET-DARKENING-20261113",
+  "capturedUTC": "2026-11-13T07:33:06.073472+00:00",
+  "scope": "Desktop real-owner/painter/cooldown-cache state transitions. No native VM/rendering/taint/input/FPS claim.",
+  "checkpoint": {
+    "date": "2026-11-13",
+    "createdUTC": "2026-11-13T07:26:24.359362+00:00",
+    "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d3c9-c166-71f2-b8b4-0d21db493723\\trinket-darkening-20261113T072613Z",
+    "verified": true,
+    "sourceFiles": 2627,
+    "revision": "26f886e3ea5371b196ab235d2dace0c156002285",
+    "branch": "main",
+    "hooksPath": ".githooks",
+    "settingsMetadataEntries": 7,
+    "settingsPolicy": "Retail on-disk settings hashed read-only; no settings values copied; no quiescent backup claimed.",
+    "sha256": {
+      "source.zip": "096b6165dce9f5f8e6e1d14576e50e571fc73994ffeaa308ebd0bec82470c2ab",
+      "history.bundle": "988d4acdf210f72f8cf2aa08ace9b84385af8d97086c6815aa1c25ed7243fef9",
+      "source-manifest.json": "77f70e490d5f26b3f7a24c970352ff443dde618c905908908065aa5913da4473"
+    }
+  },
+  "sourceHashPolicy": "SHA256 with CRLF to LF; other bytes preserved",
+  "sources": {
+    "ExtraButtonSystem/Engine/Paint.lua": {
+      "before": "6fe2aaa29a92c0fb0cf07037747039ae3ff8a00e6309e9f997c85c67dc385858",
+      "after": "011f126ae7963368662651a9502c36c211028821621a4c978286386d33ff7a8a"
+    },
+    "ExtraButtonSystem/TrinketMenu/FluxTrinketMenu.lua": {
+      "before": "21013af4173247cf4fd4e922248ac40fa6c90b6e535b657f38ad06f5af2675fb",
+      "after": "9a5ce2455b05fcc4f602d9854ff7c3e7763e5304d42330c1601bcd35da8041c0"
+    }
+  },
+  "tests": [
+    {
+      "name": "exact-checkpoint",
+      "exit": 1,
+      "stdout": "trinket visual recovery: 150 checks; 55 failures; five desktop client models\n",
+      "stderr": "retail: held press follows newest usable color\nretail: release cannot restore stale dark color\nretail: cached repaint remains bright\nretail: same item re-equipped restores cached white\nretail: ready slot clears stale item cooldown\nretail: usability refresh cannot reintroduce stale cooldown\nretail: real slot cooldown preserved\nretail: second slot keeps real cooldown\nretail: intervening slot writer cannot leave cached stale swipe\nretail: equipped faces use slot cooldown exclusively\nretail: disabled fallback timer clears\nforever: held press follows newest usable color\nforever: release cannot restore stale dark color\nforever: cached repaint remains bright\nforever: same item re-equipped restores cached white\nforever: ready slot clears stale item cooldown\nforever: usability refresh cannot reintroduce stale cooldown\nforever: real slot cooldown preserved\nforever: second slot keeps real cooldown\nforever: intervening slot writer cannot leave cached stale swipe\nforever: equipped faces use slot cooldown exclusively\nforever: disabled fallback timer clears\nclassic: held press follows newest usable color\nclassic: release cannot restore stale dark color\nclassic: cached repaint remains bright\nclassic: same item re-equipped restores cached white\nclassic: ready slot clears stale item cooldown\nclassic: usability refresh cannot reintroduce stale cooldown\nclassic: real slot cooldown preserved\nclassic: second slot keeps real cooldown\nclassic: intervening slot writer cannot leave cached stale swipe\nclassic: equipped faces use slot cooldown exclusively\nclassic: disabled fallback timer clears\nera: held press follows newest usable color\nera: release cannot restore stale dark color\nera: cached repaint remains bright\nera: same item re-equipped restores cached white\nera: ready slot clears stale item cooldown\nera: usability refresh cannot reintroduce stale cooldown\nera: real slot cooldown preserved\nera: second slot keeps real cooldown\nera: intervening slot writer cannot leave cached stale swipe\nera: equipped faces use slot cooldown exclusively\nera: disabled fallback timer clears\nanniversary: held press follows newest usable color\nanniversary: release cannot restore stale dark color\nanniversary: cached repaint remains bright\nanniversary: same item re-equipped restores cached white\nanniversary: ready slot clears stale item cooldown\nanniversary: usability refresh cannot reintroduce stale cooldown\nanniversary: real slot cooldown preserved\nanniversary: second slot keeps real cooldown\nanniversary: intervening slot writer cannot leave cached stale swipe\nanniversary: equipped faces use slot cooldown exclusively\nanniversary: disabled fallback timer clears\nlua: tests/trinket_visual_recovery.lua:180: trinket visual recovery failed\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/trinket_visual_recovery.lua:180: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "candidate",
+      "exit": 0,
+      "stdout": "trinket visual recovery: 245 checks; 0 failures; five desktop client models\n",
+      "stderr": ""
+    },
+    {
+      "name": "stale-press-palette",
+      "exit": 1,
+      "stdout": "trinket visual recovery: 245 checks; 15 failures; five desktop client models\n",
+      "stderr": "retail: held press follows newest usable color\nretail: release cannot restore stale dark color\nretail: cached repaint remains bright\nforever: held press follows newest usable color\nforever: release cannot restore stale dark color\nforever: cached repaint remains bright\nclassic: held press follows newest usable color\nclassic: release cannot restore stale dark color\nclassic: cached repaint remains bright\nera: held press follows newest usable color\nera: release cannot restore stale dark color\nera: cached repaint remains bright\nanniversary: held press follows newest usable color\nanniversary: release cannot restore stale dark color\nanniversary: cached repaint remains bright\nlua: tests/trinket_visual_recovery.lua:180: trinket visual recovery failed\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/trinket_visual_recovery.lua:180: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "stale-same-item-cache",
+      "exit": 1,
+      "stdout": "trinket visual recovery: 245 checks; 5 failures; five desktop client models\n",
+      "stderr": "retail: same item re-equipped restores cached white\nforever: same item re-equipped restores cached white\nclassic: same item re-equipped restores cached white\nera: same item re-equipped restores cached white\nanniversary: same item re-equipped restores cached white\nlua: tests/trinket_visual_recovery.lua:180: trinket visual recovery failed\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/trinket_visual_recovery.lua:180: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "item-id-cooldown-wins",
+      "exit": 1,
+      "stdout": "trinket visual recovery: 115 checks; 25 failures; five desktop client models\n",
+      "stderr": "retail: ready slot clears stale item cooldown\nretail: usability refresh cannot reintroduce stale cooldown\nretail: real slot cooldown preserved\nretail: second slot keeps real cooldown\nretail: equipped faces use slot cooldown exclusively\nforever: ready slot clears stale item cooldown\nforever: usability refresh cannot reintroduce stale cooldown\nforever: real slot cooldown preserved\nforever: second slot keeps real cooldown\nforever: equipped faces use slot cooldown exclusively\nclassic: ready slot clears stale item cooldown\nclassic: usability refresh cannot reintroduce stale cooldown\nclassic: real slot cooldown preserved\nclassic: second slot keeps real cooldown\nclassic: equipped faces use slot cooldown exclusively\nera: ready slot clears stale item cooldown\nera: usability refresh cannot reintroduce stale cooldown\nera: real slot cooldown preserved\nera: second slot keeps real cooldown\nera: equipped faces use slot cooldown exclusively\nanniversary: ready slot clears stale item cooldown\nanniversary: usability refresh cannot reintroduce stale cooldown\nanniversary: real slot cooldown preserved\nanniversary: second slot keeps real cooldown\nanniversary: equipped faces use slot cooldown exclusively\nlua: tests/trinket_visual_recovery.lua:180: trinket visual recovery failed\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/trinket_visual_recovery.lua:180: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "competing-cooldown-writer",
+      "exit": 1,
+      "stdout": "trinket visual recovery: 245 checks; 5 failures; five desktop client models\n",
+      "stderr": "retail: intervening slot writer cannot leave cached stale swipe\nforever: intervening slot writer cannot leave cached stale swipe\nclassic: intervening slot writer cannot leave cached stale swipe\nera: intervening slot writer cannot leave cached stale swipe\nanniversary: intervening slot writer cannot leave cached stale swipe\nlua: tests/trinket_visual_recovery.lua:180: trinket visual recovery failed\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/trinket_visual_recovery.lua:180: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "disabled-fallback-timer",
+      "exit": 1,
+      "stdout": "trinket visual recovery: 245 checks; 5 failures; five desktop client models\n",
+      "stderr": "retail: disabled fallback timer clears\nforever: disabled fallback timer clears\nclassic: disabled fallback timer clears\nera: disabled fallback timer clears\nanniversary: disabled fallback timer clears\nlua: tests/trinket_visual_recovery.lua:180: trinket visual recovery failed\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/trinket_visual_recovery.lua:180: in main chunk\n\t[C]: in ?\n"
+    }
+  ],
+  "nativeAcceptance": "NOT RUN; no connected client execution tool; user reproduces after reload.",
+  "controller": "Decorative tint/swipe only; existing secure click/bind/flyout ownership retained. Native gamepad/focus untested.",
+  "resources": "Two existing runtime owners; no new frame/event/timer/hook/poll; existing watcher cadence retained.",
+  "settings": "No private settings, profiler, binding or client input changes; existing settings inspected read-only.",
+  "publication": "None; main and existing unrelated work retained.",
+  "fullSuite": {
+    "path": "docs/validation/trinket-darkening-full-2026-11-13.json",
+    "scripts": 321,
+    "syntaxFiles": 1003,
+    "failures": 0,
+    "focusedRefresh": {
+      "capturedUTC": "2026-11-13T07:36:34.375223+00:00",
+      "path": "tests/trinket_visual_recovery.lua",
+      "reason": "Added cache-writer interleaving acceptance after full-run capture; reran this test and syntax, preserving all other source identities.",
+      "result": "trinket visual recovery: 245 checks; 0 failures; five desktop client models"
+    }
+  },
+  "sourcesReceipt": "docs/validation/trinket-darkening-sources-2026-11-13.json",
+  "supportingChecks": [
+    {
+      "path": "tests/idle_trinkets.lua",
+      "exit": 0,
+      "wallSeconds": 0.0564,
+      "output": "idle trinkets: 1563 checks; five client models; 4 mutations rejected; 4800 frames binding queries 9600 -> 0; Lua heap 1275.09KB -> 0.00KB (GC paused in fixture only)\n"
+    },
+    {
+      "path": "tests/trinket_equipped_usability.lua",
+      "exit": 0,
+      "wallSeconds": 0.0224,
+      "output": "trinket equipped usability: 10 checks\n"
+    }
+  ],
+  "documentationValidation": {
+    "result": "PASS",
+    "sources": 1036,
+    "tocXmlReachable": 617,
+    "settingDefinitions": 437,
+    "savedVariables": 24,
+    "localLinks": 16670
+  },
+  "diffCheck": "git diff --check PASS; task-only runtime patch reviewed against exact external checkpoint",
+  "finalSourceGuard": {
+    "ExtraButtonSystem/Engine/Paint.lua": "011f126ae7963368662651a9502c36c211028821621a4c978286386d33ff7a8a",
+    "ExtraButtonSystem/TrinketMenu/FluxTrinketMenu.lua": "9a5ce2455b05fcc4f602d9854ff7c3e7763e5304d42330c1601bcd35da8041c0",
+    "tests/trinket_visual_recovery.lua": "993355455d3f7d4ecdc16cdf966a3ea21d2f819dbdf47f43beadf471504c75d4"
+  }
+}

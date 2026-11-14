@@ -1,6 +1,46 @@
 # Options map and settings behavior
 
-Open `/fluxui` or `/fluxoptions` to toggle the standalone settings shell. `/fluxui bliz` / `blizzard` opens the native settings route; `/fluxui raidpreview` toggles the raid preview. The Blizzard addon category also contains a button into the standalone shell.
+13 November: HUD → Flux Window → General includes the shared minimap button count, Dynamic button count, optional screen-side layout/start position, hide-empty slots, always shown or mouseover visibility, 10–200% screen-side grid scale (new100%=previous85%) and an always-visible screen-side combat-hide option. Dynamic mode uses the count as a minimum, offers one temporary empty slot while carrying an action over a full grid, keeps it only when assigned, and shrinks when assignments are removed. There is no movement toggle: Always shown makes room automatically; mouseover leaves minimap/Questie/objectives/auras in place and overlays that area. Mouseover changes freeze during combat. Embedded minimap buttons ignore side visibility and empty filtering. Columns and button size are automatic in both layouts; embedded minimap size has no setting. These character-scoped controls preserve action assignments; see [defaults and acceptance](MINIMAP_EXTRA_LAYOUT.md#dynamic-minimum-and-automatic-frame-movement).
+
+10 November follow-up: **Auto open bank** joins Auto open vendor in the same
+Automation group. Each has its own per-character saved choice. A native checkbox
+in the lower-left gossip footer appears for a sole available bank/vendor choice
+without quests; checking opens now and saves that service. Hold Shift when
+talking to the NPC to reveal/uncheck it. Automatic selection runs immediately in
+the gossip event, with icon assets prepared at login and no added selection timer.
+[Checkbox, native acceptance and speed limits](20-vendor-restock-junk.md#bank-and-vendor-gossip-checkbox--10-november-2026).
+
+10 November: **Loot & Items → Vendor → Automation → Auto open vendor** opts a
+character into instantly selecting a sole available vendor gossip choice with
+no quests on Forever/Classic. Default off; hold Shift to keep gossip. Changes
+apply immediately. English fallback catalog is supplied; native persistence,
+localized layout and controller handoff remain pending.
+[Behavior and source evidence](20-vendor-restock-junk.md#single-choice-vendor-gossip--10-november-2026).
+
+Open **Escape → FluxUI Settings**, `/fluxui` or `/fluxoptions` for the standalone
+settings shell. `/fluxui bliz` / `blizzard` opens the native settings route;
+`/fluxui raidpreview` toggles the raid preview. The Blizzard addon category also
+contains a button into the same shell.
+
+The 9 November rework follows the supplied Naowh Forever reference's navigation
+and grouped settings, using original FluxUI code and native Blizzard artwork.
+The window, insets, tabs and checkboxes use the running client's templates;
+Forever supplies its own NineSlice skin, Options tabs and minimal sliders. All
+clients initialize the portrait border through their own native template.
+Classic's inherited SetBorder method does not imply the Mainline portrait
+NineSlice layout exists; FluxUI leaves its texture border intact.
+Existing feature sources and their saved data/callbacks remain. The source pages
+are reorganized by FluxUI feature below, following the user's latest sorting
+clarification. Search checks setting names/descriptions across pages and
+jumps to a matching subpage; hidden settings stay excluded. Click a group header
+to fold it. Search temporarily reveals folded matches. Narrow content uses one
+column; wider content pairs compatible rows. Closing releases page callbacks and
+embedded editors. [Requirements and native acceptance](OPTIONS_REWORK.md).
+
+The sidebar follows the supplied compact screenshot: framed category headers,
+24-unit feature rows with 16-unit fitting icons, and a fixed framed system
+footer. Icons remain visible on Forever too. Its 220-unit width reserves room
+for those icons and text; actual native pixels still require client validation.
 
 The catalog, builders and renderer are separate layers. **Sidebar labels below come from the current catalog**, not old chapter names or builder-internal names. [Catalog](../AddonOptions/FluxOptionsCatalog.lua), [bootstrap/accessors](../AddonOptions/FluxOptions.lua), [shell](../AddonOptions/FluxOptionsShell.lua), [renderer](../AddonOptions/FluxOptionsRender.lua).
 
@@ -17,17 +57,77 @@ The inventories preserve **source definitions**, including templates expanded pe
 
 ## Actual sidebar
 
-| Group | Page order | Main implementation |
-|---|---|---|
-| General | General → Nameplates → Windows → Profiles | [catalog](../AddonOptions/FluxOptionsCatalog.lua) |
-| HUD | Layout → Action Bars → Status Bars → Info → Micro Menu → Chat → Unit Frames → Flux Window | [catalog](../AddonOptions/FluxOptionsCatalog.lua) |
-| Tools | Inventory → Binding | [catalog](../AddonOptions/FluxOptionsCatalog.lua) |
+| Group | Entries |
+|---|---|
+| Combat | Action Bars → Bindings (Bindings / Keybindings tabs) |
+| Loot & Items | Loot → Vendor → Restock |
+| Utilities | Windows → Professions |
+| HUD | Layout → Chat → Info → Micro Menu → Flux Window → Status Bars |
+| Unit Frame | General → Individual Frames → Party Frames → Raid Frames → Cast Bars → Nameplates |
+| Fixed footer | Settings → Profiles → Patch Notes → Credits |
 
-Party/raid settings are merged into Unit Frames. Vendor/restock/junk and salvage belong to Inventory. Info and Chat have their own pages. There is no separate sidebar Frames group, Raid page, Salvage page or Defaults page in this catalog.
+13 November: **Threat warning visibility** in Unit Frame → General and Nameplates
+edits the same existing Unit Frame scoped preference. Choices: **Always, In raid,
+In party, Off**. In party includes raids; In raid is raid-only. All target/focus
+bar positions and Flux nameplate warnings use this gate. The old separate native
+warning selector is removed; explicit selections also request the native warning
+CVar through the existing guarded API. [Details and checks](OPTIONS_REWORK.md#13-november-sidebar-bindings-and-shared-threat-warnings).
+
+Click a framed header to minimize/expand its entries. Search temporarily reveals
+matches; clearing it restores the minimized state. Explicit links expand their
+parent. Minimize state lasts for the window instance, including close/reopen;
+there is no new saved setting. Smaller windows scroll above the fixed footer.
+Every entry has a fitting icon; Restock uses the existing native bag texture.
+
+HUD has separate **Layout, Chat, Info, Micro Menu, Flux Window, Status Bars**
+sidebar entries. Layout restores the original independent scope, reset and
+interactive HUD preview. Chat owns chat controls; Info owns HUD information;
+Micro Menu excludes profession buttons. Flux Window has **General** (including
+tab ordering) and **Damage Meter** tabs. Status Bars keeps XP/gold/currencies/honor.
+Inventory Awareness is inside **Loot & Items → Loot**. Meter right-click opens **HUD → Flux Window → Damage
+Meter**, expanding a minimized HUD category. Windows moves to Utilities.
+The former Quality of Life entry is removed; old QoL links redirect.
+
+Unit Frame **General** merges setup, scopes, resets and appearance. **Individual
+Frames** contains four native tabs: **Player, Target, Focus, Pet**, as explicitly
+chosen by the user. Target-of-target, focus-target and pet-target remain with
+their parents. Player keeps Swing Timer, MP5 and flight paths. Party Frames owns
+player-style party controls; Raid Frames owns compact party/raid controls and
+the raid preview. Raid preview choices and entry points require10–40 members;
+explicit party preview remains5. Cast Bars owns school/spell themes; Nameplates
+owns native plate/threat/quest controls. Independent scopes still live in General.
+
+Loot & Items has direct **Loot, Vendor, Restock** sidebar entries. Loot includes
+Inventory Awareness and its item/currency location tooltip controls; these retain
+their original Status Bars storage scope and Syndicator delegation. Vendor includes
+repair, junk, bag markers and known-item tint. Restock includes vendor/bank toggles
+and the original targets/editor. Action Bars keeps Bars, Extra Buttons and Stance
+Order; Extra Buttons contains consumables, trinkets, travel buttons and visibility.
+Bindings remains the spell/item/macro browser; Keybindings remains physical keys.
+Professions retains profession buttons/salvage. The top HUD Editor button also
+opens HUD → Layout.
+
+Original builder IDs still describe storage/callback owners. Every original
+leaf has one primary destination in the [placement map](validation/options-navigation-map-2026-11-09.csv).
+[Current requirements/evidence](OPTIONS_REWORK.md).
 
 ## Rendering and application
 
 Builders or prebuilt tables register through `FluxOptions:RegisterModuleOptions(key,optionsTableOrBuilder)`. The shell builds the selected page/subpage and renders native rows from Ace-style tables. Embedded custom controls remain AceGUI widgets. Profiles comes from bundled AceDBOptions.
+
+[Navigation views](../AddonOptions/FluxOptionsNavigation.lua) select controls
+without modifying the registered option tables. The renderer evaluates each
+moved control against its original root, handler and info path, preserving
+inherited get/set/validate/confirm/hidden/disabled behavior. Dependent pages use
+the generations of all their source builders. Old settings links resolve through
+route aliases, including Salvage → Professions, Macros → Bindings, old action-bar
+binding settings → Keybindings, and the separate consumable/trinket/travel pages
+→ Action Bars > Extra Buttons. Old Swing Timer links open Unit Frame > Individual Frames > Player;
+old QoL Loot & Items links open its new sidebar page. Old QoL Combat/Nameplates
+links open Unit Frame > Nameplates, school-theme links open Cast Bars, and the
+old Party / Raid helper opens Raid Frames. Old Appearance opens General and old
+Player/Target/Focus/Pet links open Individual Frames at the matching unit tab. Matching macro searches keep the whole binding
+browser visible.
 
 The renderer evaluates functions and handler methods; inherits get/set/func/confirm/validate/hidden/disabled down option paths; and respects dialog/gui overrides. Availability therefore depends on both the control and its parent. A source-defined toggle is not proof it is visible or editable on every client.
 
@@ -43,8 +143,8 @@ Group/header order can be overridden by the catalog. The header named **Performa
 | Windows | Independent `profile.windowMover` / `char.windowMover`, default account. |
 | Micro Menu bar geometry/order | Independent `profile.microMenu` / `char.microMenu`, default account. Per-row Off/Account/Character visibility is a different mechanism; professions are always true character storage. |
 | Status Bars | Independent `profile.statusBars` / `char.statusBars`, default account. Honor/Arena are true character settings; item currency is always AceDB `char.itemCurrency`. |
-| Unit Frames | Independent `profile.unitFrames` / `char.unitFrames`, default account. |
-| Party / raid | Independent `profile.raidFrames` / `char.raidFrames`, default account even though displayed inside Unit Frames. |
+| Unit Frame | Independent `profile.unitFrames` / `char.unitFrames`, default account. |
+| Party / raid | Independent `profile.raidFrames` / `char.raidFrames`, default account even though displayed inside Unit Frame. |
 | Info content | Always `_FluxUI_CharSavedVars.infoFrame`; its location/cell placement is Layout-scoped. |
 | Nameplates | Actual feature store `FluxUI_DB.nameplateThreat`, plus shared threat/CVar accessors; not a General-profile-only setting. |
 | Chat | AceDB `global.chatCopyPaste`, account-wide and independent of selected profile. |
@@ -69,8 +169,8 @@ Source: [General builder](../AddonOptions/FluxOptionsGeneral.lua).
 
 ### Nameplates
 
-The cast-school **Blizzard nameplates** toggle is in Unit frames → Cast bar
-school themes because it shares the target/focus renderer and appearance
+The cast-school **Blizzard nameplates** toggle is in Unit Frame →
+Cast Bars because it shares the target/focus renderer and appearance
 controls. It defaults on; secret or unidentified casts retain Blizzard's
 normal fill. [Implementation and limits](NAMEPLATE_CASTBAR_SCHOOLS.md).
 
@@ -150,7 +250,7 @@ Visibility defaults are listed in [literal defaults](reference/defaults.md). The
 | Scope, gold strip, hide non-XP strip, height | Independent Status scope; gold shown; hide-exp false; height 18 with range 10–40. Reset restores owned strip options. |
 | Honor / Arena | Both false, true character `PVPTracking`; availability follows the PvP feature gate. Setter synchronizes status-bar tracking. |
 | Account gold ledger | Dynamic stored-character select and confirmed delete; operates on the ledger, not an Ace profile reset. |
-| Inventory tooltip | Items, currencies, equipped, guild, blank line and race icons enabled; Shift-only, connected-realms-only and same-faction-only disabled. Writes effective Status settings. |
+| Inventory tooltip (now inside Loot & Items > Loot) | Items, currencies, equipped, guild, blank line and race icons enabled; Shift-only, connected-realms-only and same-faction-only disabled. Retains effective Status settings storage. |
 | Item currency | Ace `char.itemCurrency.enabled=true`; cursor-assigned item rows and reorder/clear embed. Current owner caps total rows at 40 and appends a trailing empty row while capacity remains, not the stale six-item introductory text. Row visibility is normalized from item ID. |
 
 Source: [Status builder](../AddonOptions/FluxOptionsStatusBars.lua), [item-currency owner](../StatusBars/FluxItemCurrencyTracking.lua), [widget controls](35-custom-widget-controls.md), [system](16-status-bars.md).
@@ -183,9 +283,9 @@ Eight account-global toggles: Social, Channels, Guild, Character Info/durability
 
 The wider chat-copy schema also contains URL color/message color/fade/max-line fields, but this page exposes the button toggles; absence of a control here is different from absence of an internal setting. [Chat builder](../AddonOptions/FluxOptionsChat.lua), [defaults](reference/defaults.md), [QoL](25-other-qol.md).
 
-### Unit Frames, including party/raid
+### Unit Frame, including party/raid
 
-Master Player/Target/Target-of-target/Focus/Focus-target/Pet/Pet-target switches default on, with focus-capability gates. Unit Frames and Party/raid have separate scope/reset controls. `useFluxRaidFrames` defaults on. Settings switch runtime ownership through the appropriate coordinator; see [unit frames](14-unit-frames.md) and [raid frames](15-raid-frames.md).
+Master Player/Target/Target-of-target/Focus/Focus-target/Pet/Pet-target switches default on, with focus-capability gates. Unit Frame and Party/raid have separate scope/reset controls. `useFluxRaidFrames` defaults on. Settings switch runtime ownership through the appropriate coordinator; see [unit frames](14-unit-frames.md) and [raid frames](15-raid-frames.md).
 
 Player has a shared player/target whole-frame scale; Focus has a separate whole-frame
 scale (50–200%, 100% default). Both use the unit-frame scope and include attached
@@ -209,7 +309,7 @@ Per-unit groups expose applicable portrait, cast bar/time, health/power text, le
 
 Party/raid controls include class-colored names; preview toggle, roster size, MT-column/slot count and demo buff/debuff toggles/counts; member width/height, power and aura scale, manager scale; frame/range/aura opacity; dispel/aggro/target/mouseover highlights; roles/groups/range fade; class colors/power/prediction; health text; buffs/debuffs, aura focus and dispellable-only filtering.
 
-Important seeded raid values: width 1, height 1.2, power 1, aura 1.4, manager 0.9; base alpha 1, in-range 0.9, out-of-range 0.44, aura alpha 1; preview roster 40, MT enabled/count 2, buff/debuff demos enabled/counts 3/5; aura focus debuff. Exact ranges and gates: [definition inventory](reference/settings-details.md). Source: [merged Unit Frames builder](../AddonOptions/FluxOptionsUnitFrames.lua), [party/raid builder](../AddonOptions/FluxOptionsRaidFrame.lua).
+Important seeded raid values: width 1, height 1.2, power 1, aura 1.4, manager 0.9; base alpha 1, in-range 0.9, out-of-range 0.44, aura alpha 1; preview roster 40, MT enabled/count 2, buff/debuff demos enabled/counts 3/5; aura focus debuff. Exact ranges and gates: [definition inventory](reference/settings-details.md). Source: [merged Unit Frame builder](../AddonOptions/FluxOptionsUnitFrames.lua), [party/raid builder](../AddonOptions/FluxOptionsRaidFrame.lua).
 
 ### Flux Window
 

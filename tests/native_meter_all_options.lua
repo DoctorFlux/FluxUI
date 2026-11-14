@@ -88,7 +88,7 @@ for _, gamepad in ipairs({ false, true }) do
     check(status.visibleNativePanes == 2 and status.setupPanes == 1 and #s.windows == 2, "missing native window has an explicit setup pane without addon creation")
     local active
     for _,notice in ipairs(notices) do if notice:IsShown() then active = notice end end
-    check(active and active.text.text:find("add this Blizzard meter",1,true), "missing window explains its native creation action")
+    check(active and active.text.text:find("settings menu to add a window",1,true), "missing window explains its native creation action")
     check(active.skinTitle == "Dispels" and active.skinScale == .8 and active.skinTimer == false,
         "uncreated slot shares the Damage/Healing skin and scale without claiming a native timer")
     s.dm:ShowNewSecondarySessionWindow() -- User action; hook runs after native setup.

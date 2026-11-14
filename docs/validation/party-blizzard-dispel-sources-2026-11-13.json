@@ -1,0 +1,232 @@
+{
+  "task": "PARTY-BLIZZARD-DISPEL-20261113",
+  "verifiedDate": "2026-11-13",
+  "verificationMethod": "Read-only GitHub connector branch resolution followed by commit-pinned file retrieval.",
+  "branches": [
+    {
+      "branch": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "sourceVersion": "12.1.5 (70783)",
+      "upstreamCommitDate": "2026-11-04T00:46:01Z",
+      "url": "https://github.com/Gethe/wow-ui-source/commit/297d7aaaa736f346b3e036f38ee088eaf7f8c07f"
+    },
+    {
+      "branch": "forever",
+      "commit": "bebcb6bf309cf41b41bd74f8ca651e6a105b2676",
+      "sourceVersion": "1.60.1 (70938)",
+      "upstreamCommitDate": "2026-11-13T01:46:40Z",
+      "url": "https://github.com/Gethe/wow-ui-source/commit/bebcb6bf309cf41b41bd74f8ca651e6a105b2676"
+    },
+    {
+      "branch": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "sourceVersion": "5.5.4 (70631)",
+      "upstreamCommitDate": "2026-10-27T14:16:09Z",
+      "url": "https://github.com/Gethe/wow-ui-source/commit/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf"
+    },
+    {
+      "branch": "classic_era",
+      "commit": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "sourceVersion": "1.15.9 (70576)",
+      "upstreamCommitDate": "2026-10-26T23:16:08Z",
+      "url": "https://github.com/Gethe/wow-ui-source/commit/4192ac60067fc55566182291bc67c85dd9b6794d"
+    },
+    {
+      "branch": "classic_anniversary",
+      "commit": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "sourceVersion": "2.5.6 (70577)",
+      "upstreamCommitDate": "2026-10-26T23:16:20Z",
+      "url": "https://github.com/Gethe/wow-ui-source/commit/68e0a2ec559d9761dfc4e7f864c3944f9d758a49"
+    }
+  ],
+  "sources": [
+    {
+      "branch": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_SettingsDefinitions_Frame/Mainline/InterfaceOverrides.lua",
+      "gitBlob": "30fd4b017539b879ab507419ced032db7bdcaca8",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_SettingsDefinitions_Frame/Mainline/InterfaceOverrides.lua",
+      "contract": "Native compact frames checkbox binds raidFramesDisplayOnlyDispellableDebuffs.",
+      "verification": "Pinned GitHub file content and blob identity read through connected GitHub tools; no reference source copied into runtime."
+    },
+    {
+      "branch": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_UnitFrame/Shared/PartyMemberFrame.lua",
+      "gitBlob": "774b865f41d35655ac1ba5499b7674aec9ce71bf",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_UnitFrame/Shared/PartyMemberFrame.lua",
+      "contract": "Standard party uses showDispelDebuffs; separate from the selected compact checkbox.",
+      "verification": "Pinned GitHub file content and blob identity read through connected GitHub tools; no reference source copied into runtime."
+    },
+    {
+      "branch": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_CUFProfiles/Blizzard_CompactUnitFrameProfiles.lua",
+      "gitBlob": "9d8c84e32089ed7ab3212d5fe12f05ff780ea97e",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_CUFProfiles/Blizzard_CompactUnitFrameProfiles.lua",
+      "contract": "Native CVar callback maps raidFramesDisplayOnlyDispellableDebuffs to displayOnlyDispellableDebuffs.",
+      "verification": "Pinned GitHub file content and blob identity read through connected GitHub tools; no reference source copied into runtime."
+    },
+    {
+      "branch": "forever",
+      "commit": "bebcb6bf309cf41b41bd74f8ca651e6a105b2676",
+      "path": "Interface/AddOns/Blizzard_SettingsDefinitions_Frame/Mainline/InterfaceOverrides.lua",
+      "gitBlob": "518020d7576369ed7b500d438b7f898a4a2b5c31",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/bebcb6bf309cf41b41bd74f8ca651e6a105b2676/Interface/AddOns/Blizzard_SettingsDefinitions_Frame/Mainline/InterfaceOverrides.lua",
+      "contract": "Native compact frames checkbox binds raidFramesDisplayOnlyDispellableDebuffs.",
+      "verification": "Pinned GitHub file content and blob identity read through connected GitHub tools; no reference source copied into runtime."
+    },
+    {
+      "branch": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_FrameXMLUtil/AuraUtil.lua",
+      "gitBlob": "bd730b33237b8467164bde252474ad6c6516b7cf",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_FrameXMLUtil/AuraUtil.lua",
+      "contract": "Native ProcessAura retains boss, role and priority exceptions when its dispellable-only argument is true.",
+      "verification": "Pinned GitHub file content and blob identity read through connected GitHub tools; no reference source copied into runtime."
+    },
+    {
+      "branch": "forever",
+      "commit": "bebcb6bf309cf41b41bd74f8ca651e6a105b2676",
+      "path": "Interface/AddOns/Blizzard_FrameXMLUtil/AuraUtil.lua",
+      "gitBlob": "bd730b33237b8467164bde252474ad6c6516b7cf",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/bebcb6bf309cf41b41bd74f8ca651e6a105b2676/Interface/AddOns/Blizzard_FrameXMLUtil/AuraUtil.lua",
+      "contract": "Same native classification contract as Retail.",
+      "verification": "Pinned GitHub file content and blob identity read through connected GitHub tools; no reference source copied into runtime."
+    },
+    {
+      "branch": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_SettingsDefinitions_Frame/Classic/InterfaceOverrides.lua",
+      "gitBlob": "fe1a09d7de5b1a82222cd3a8dca0dd33c0537008",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_SettingsDefinitions_Frame/Classic/InterfaceOverrides.lua",
+      "contract": "Native compact frames checkbox binds raidFramesDisplayOnlyDispellableDebuffs.",
+      "verification": "Pinned GitHub file content and blob identity read through connected GitHub tools; no reference source copied into runtime."
+    },
+    {
+      "branch": "classic_era",
+      "commit": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "path": "Interface/AddOns/Blizzard_SettingsDefinitions_Frame/Classic/InterfaceOverrides.lua",
+      "gitBlob": "c0b525264904ea98bb289b4432698acbeb40439d",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_SettingsDefinitions_Frame/Classic/InterfaceOverrides.lua",
+      "contract": "Native compact frames checkbox binds raidFramesDisplayOnlyDispellableDebuffs.",
+      "verification": "Pinned GitHub file content and blob identity read through connected GitHub tools; no reference source copied into runtime."
+    },
+    {
+      "branch": "classic_anniversary",
+      "commit": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "path": "Interface/AddOns/Blizzard_SettingsDefinitions_Frame/Classic/InterfaceOverrides.lua",
+      "gitBlob": "c3b9ea32944039b7dbc01c6647f0267ba7049271",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_SettingsDefinitions_Frame/Classic/InterfaceOverrides.lua",
+      "contract": "Native compact frames checkbox binds raidFramesDisplayOnlyDispellableDebuffs.",
+      "verification": "Pinned GitHub file content and blob identity read through connected GitHub tools; no reference source copied into runtime."
+    },
+    {
+      "branch": "forever",
+      "commit": "bebcb6bf309cf41b41bd74f8ca651e6a105b2676",
+      "path": "Interface/AddOns/Blizzard_CUFProfiles/Blizzard_CompactUnitFrameProfiles.lua",
+      "gitBlob": "9d8c84e32089ed7ab3212d5fe12f05ff780ea97e",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/bebcb6bf309cf41b41bd74f8ca651e6a105b2676/Interface/AddOns/Blizzard_CUFProfiles/Blizzard_CompactUnitFrameProfiles.lua",
+      "contract": "Native compact option maps selected CVar to displayOnlyDispellableDebuffs.",
+      "verification": "Pinned GitHub file content and blob identity read through connected GitHub tools; no reference source copied into runtime."
+    },
+    {
+      "branch": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_CUFProfiles/Blizzard_CompactUnitFrameProfiles.lua",
+      "gitBlob": "6c7f72812671b5584ecba0316a68a08edbf9fdbf",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_CUFProfiles/Blizzard_CompactUnitFrameProfiles.lua",
+      "contract": "Native compact option maps selected CVar to displayOnlyDispellableDebuffs.",
+      "verification": "Pinned GitHub file content and blob identity read through connected GitHub tools; no reference source copied into runtime."
+    },
+    {
+      "branch": "classic_era",
+      "commit": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "path": "Interface/AddOns/Blizzard_CUFProfiles/Blizzard_CompactUnitFrameProfiles.lua",
+      "gitBlob": "6c7f72812671b5584ecba0316a68a08edbf9fdbf",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_CUFProfiles/Blizzard_CompactUnitFrameProfiles.lua",
+      "contract": "Native compact option maps selected CVar to displayOnlyDispellableDebuffs.",
+      "verification": "Pinned GitHub file content and blob identity read through connected GitHub tools; no reference source copied into runtime."
+    },
+    {
+      "branch": "classic_anniversary",
+      "commit": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "path": "Interface/AddOns/Blizzard_CUFProfiles/Blizzard_CompactUnitFrameProfiles.lua",
+      "gitBlob": "d22ce59f39587e500d84f43f3be142f2e185dbe7",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_CUFProfiles/Blizzard_CompactUnitFrameProfiles.lua",
+      "contract": "Native compact option maps selected CVar to displayOnlyDispellableDebuffs.",
+      "verification": "Pinned GitHub file content and blob identity read through connected GitHub tools; no reference source copied into runtime."
+    },
+    {
+      "branch": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_SettingsDefinitions_Frame/Interface.lua",
+      "gitBlob": "db6b36f2442d2e2099da73f388f8ce799fa9b1b1",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_SettingsDefinitions_Frame/Interface.lua",
+      "contract": "Interface settings construction invokes CreateRaidFrameSettings.",
+      "verification": "Pinned GitHub file content and blob identity read through connected GitHub tools; no reference source copied into runtime."
+    },
+    {
+      "branch": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_SettingsDefinitions_Frame/Blizzard_SettingsDefinitions_Frame.toc",
+      "gitBlob": "297ebb461576059bea54bb2e1b32d8b270018909",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_SettingsDefinitions_Frame/Blizzard_SettingsDefinitions_Frame.toc",
+      "contract": "Loads family InterfaceOverrides and Interface settings construction.",
+      "verification": "Pinned GitHub file content and blob identity read through connected GitHub tools; no reference source copied into runtime."
+    },
+    {
+      "branch": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_UnitFrame/Blizzard_UnitFrame_Mainline.toc",
+      "gitBlob": "976f1f7286b169c0eae8b70c809150426bdd5895",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_UnitFrame/Blizzard_UnitFrame_Mainline.toc",
+      "contract": "Mainline load path includes shared PartyMemberFrame and CompactUnitFrame plus CompactPartyFrame.",
+      "verification": "Pinned GitHub file content and blob identity read through connected GitHub tools; no reference source copied into runtime."
+    },
+    {
+      "branch": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_CUFProfiles/Blizzard_CUFProfiles.toc",
+      "gitBlob": "7f39033db2ff988e8ee4d0391038a267b5a5743f",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_CUFProfiles/Blizzard_CUFProfiles.toc",
+      "contract": "Depends on Blizzard_UnitFrame and loads native CUF CVar mapping.",
+      "verification": "Pinned GitHub file content and blob identity read through connected GitHub tools; no reference source copied into runtime."
+    },
+    {
+      "branch": "forever",
+      "commit": "bebcb6bf309cf41b41bd74f8ca651e6a105b2676",
+      "path": "Interface/AddOns/Blizzard_UnitFrame/Shared/PartyMemberFrame.lua",
+      "gitBlob": "774b865f41d35655ac1ba5499b7674aec9ce71bf",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/bebcb6bf309cf41b41bd74f8ca651e6a105b2676/Interface/AddOns/Blizzard_UnitFrame/Shared/PartyMemberFrame.lua",
+      "contract": "Standard party uses showDispelDebuffs; separate from the selected compact checkbox.",
+      "verification": "Pinned GitHub file content and blob identity read through connected GitHub tools; no reference source copied into runtime."
+    }
+  ],
+  "selectedContract": {
+    "label": "Show Dispellable Debuffs Only",
+    "settingToken": "COMPACT_UNIT_FRAME_PROFILE_DISPLAYONLYDISPELLABLEDEBUFFS",
+    "cvar": "raidFramesDisplayOnlyDispellableDebuffs",
+    "nativeOption": "displayOnlyDispellableDebuffs",
+    "fluxScope": "Party frames in both display styles and matching party preview; existing Flux strict flag remains effective.",
+    "ownership": "Read native preference only. Do not change Blizzard defaults, saved native options, or the shared Flux raid option table.",
+    "filterPolicy": "Retain Flux's existing strict HARMFUL|RAID rule. Native ProcessAura has boss, role and priority exceptions, so exact native category parity is not claimed."
+  },
+  "excludedContract": {
+    "cvar": "showDispelDebuffs",
+    "reason": "Standard Blizzard party and target aura preference is a separate contract. It is outside this task's selected compact-frame checkbox scope."
+  },
+  "acceptance": {
+    "sourceDeclaration": "Verified at the recorded branch commits.",
+    "installedClientBuild": "Not queried by this source review.",
+    "nativeOperation": "NOT RUN",
+    "combatRestrictions": "NOT RUN",
+    "pixels": "NOT RUN",
+    "taint": "NOT RUN",
+    "controller": "NOT RUN",
+    "cpuFps": "NOT RUN",
+    "clientControl": "None",
+    "settingsWrites": "None",
+    "limitations": "Source content and API presence do not certify native permissions, filtering operation, protected VM behavior or rendered output."
+  }
+}

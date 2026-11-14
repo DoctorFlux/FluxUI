@@ -1,0 +1,20 @@
+{
+  "date": "2026-11-09",
+  "client": "Forever",
+  "records": [
+    {
+      "path": "Interface/AddOns/Blizzard_SharedXML/ListTemplates.xml",
+      "capture": "C:/Users/mario/.codex/visualizations/2026/11/09/01a1c03e-c615-7f02-a24a-3e5ed07300f1/options-fidelity-sources/ListTemplates.xml",
+      "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "normalizedSHA256": "08ba21cff1c8f1d6dc0b6f9890c514da8ab5f07e90444c0ad68f28e86fa18e4e",
+      "installedMirrorMatches": true
+    },
+    {
+      "path": "Interface/AddOns/Blizzard_SharedXML/Shared/Scroll/MinimalScrollBar.xml",
+      "capture": "C:/Users/mario/.codex/visualizations/2026/11/09/01a1c03e-c615-7f02-a24a-3e5ed07300f1/options-fidelity-sources/MinimalScrollBar.xml",
+      "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "normalizedSHA256": "c38bd5abd1c59525918a1299d8ab0407b5c33c541e8e245c1d40f82628cd0dc7",
+      "installedMirrorMatches": false
+    }
+  ]
+}

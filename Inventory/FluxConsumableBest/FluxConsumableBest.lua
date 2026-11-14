@@ -181,6 +181,7 @@ function Best.GetBest(kind)
     if not rec then
         return nil
     end
+    if Best.Score and Best.Score.IsExcludedFromBest and Best.Score.IsExcludedFromBest(rec.itemID) then return nil end
     local out = {}
     for k, v in pairs(rec) do
         out[k] = v
@@ -303,7 +304,7 @@ function Best.GetAllBest()
     for _, kind in ipairs(Best.KINDS) do
         if Best.IsManaKindRelevant(kind) then
             local rec = Best._runtime and Best._runtime[kind]
-            if rec then
+            if rec and not (Best.Score and Best.Score.IsExcludedFromBest and Best.Score.IsExcludedFromBest(rec.itemID)) then
                 local copy = {}
                 for k, v in pairs(rec) do
                     copy[k] = v
@@ -503,7 +504,7 @@ function Best.Init()
         sessionSawInitialPew = true
         if isLogin then
             if api and api.BeginLoginHold then
-                api.BeginLoginHold()
+                api.BeginLoginHold(true)
             end
             -- Bag DELAYED pulse drives the first scan. Login-scan ticker
             -- retries every empty kind (food/water/pots/bandage/HS/gem).

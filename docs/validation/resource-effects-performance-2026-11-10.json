@@ -1,0 +1,227 @@
+{
+  "changeId": "RESOURCE-EFFECTS-PERFORMANCE-20261110",
+  "requirements": [
+    "RFX-01",
+    "RFX-02",
+    "RFX-03",
+    "RFX-04",
+    "RFX-05",
+    "RFX-06"
+  ],
+  "scope": "Shared resource spark/pulse and power-cost overlay; decorative effects. Native FPS/pixels/taint/input acceptance NOT RUN.",
+  "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\resource-effects-followup\\checkpoint-20261110T145129Z",
+  "checkpointFiles": 2539,
+  "settingsMetadataEntries": 53,
+  "privateSettingsCopied": false,
+  "branch": "main",
+  "sources": {
+    "Core/_tmp_foreverbarstylesmoke.lua": "74113d1d3a183bf1cc4098b9d065c05110202747cb4e9c379f7e7ece3872d23c",
+    "tests/mp5_mana_ticks.lua": "cc7ce3d6bf41246f272aff127ad840725861cb9100de9cf2160f361bdfca0af1",
+    "tests/unit_overlay_secret_identity.lua": "8650633fbd8e3cf8b128bb47570bcd2c011a39820a98a2987545660af3b1a0b6",
+    "tests/unit_resource_lifecycle.lua": "e8048ed98ecec38520118b906b64ae3ab782f2a4a24bd0def6582887ab4c64d3",
+    "UnitFrames/FluxPowerCostOverlay.lua": "0588e5562bc4a20f46af746e2b3bccb2e3f4c93a7ee5502d03e5b0e304eaf727",
+    "UnitFrames/FluxUnitFrames_Shared.lua": "331a4e263bee1b83a6fbb234de30b5d8ccf3ff257ac564b722d73f28be44b689",
+    "tests/power_cost_idle_work.lua": "c00f4e37c9ba5067efcf403b9823dc681f41d988b7a53a56569e502e7c42d9d6",
+    "tests/resource_effects_safety.lua": "91c4f134e10ddd84f7a38d5d786c0518e27eb99550e8f9b84182e2fef9eb9d67"
+  },
+  "pins": {
+    "live": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+    "forever": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+    "classic": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+    "classic_era": "4192ac60067fc55566182291bc67c85dd9b6794d",
+    "classic_anniversary": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49"
+  },
+  "shared": {
+    "matchedPairs": 3,
+    "candidateChecks": 122,
+    "controlsRejected": 9,
+    "unsafeGeometryBeforeAfter": [
+      400,
+      0
+    ],
+    "coldProtectedAttemptsBeforeAfter": [
+      5,
+      0
+    ],
+    "settledSparkReadsBeforeAfter": [
+      900,
+      900
+    ],
+    "settledSparkStyleWritesBeforeAfter": [
+      0,
+      0
+    ],
+    "constructorBytePreserved": true,
+    "extraPreparationPerEligibleHUDMainBar": {
+      "Frames": 3,
+      "Textures": 4,
+      "AnimationGroups": 3,
+      "Animations": 12,
+      "RegenSubscriptions": 1,
+      "OnUpdate": 0
+    }
+  },
+  "powerCost": {
+    "matchedPairs": 3,
+    "candidateChecks": 168,
+    "controlsRejected": 12,
+    "sameFramePaintBurst": 1000,
+    "queuedCallbacksBeforeAfter": [
+      1000,
+      1
+    ],
+    "redundantGhostWritesBeforeAfter": [
+      1,
+      0
+    ],
+    "protectedHUDCaseBeforeAfter": [
+      4,
+      0
+    ],
+    "protectedNonHUDCaseBeforeAfter": [
+      5,
+      0
+    ],
+    "secretOnlyHalfSecond240HzCallbacksBeforeAfter": [
+      120,
+      0
+    ],
+    "extraPreparation": "Three helper frames per enabled bar; fixed textures/groups prepared OOC. Existing client feature paths retained.",
+    "ordering": "After0 remains even for unchanged values; later same-frame colors preserved; original0.6s hold; no native-value equality on opaque inputs.",
+    "appearanceComparison": "Three matched pairs; five client models; effective art/value/progress traces identical. C++ animations and pixels not certified."
+  },
+  "combined": {
+    "runs": 3,
+    "checksPerRun": 84,
+    "disconnectControlsRejected": 2,
+    "scope": "Same actual Shared factory-created Power bar calls actual PCO CreateOverlay/PrepareBar before any paint, then actual public/secret PCO and Shared pulse/spark routines. Same counted native widget contracts; cast identity and animation completion modeled explicitly. Uses real private Spark creator and PCO module, no replacement PCO helpers. Does not execute full Shared.UpdatePower event dispatcher or certify native widget access/rendering/taint/FPS.",
+    "protectedAttempts": 0,
+    "unsafeArithmetic": 0,
+    "combatFrameGrowth": 0,
+    "idleCallbacksAfterCompletion": 0
+  },
+  "validation": {
+    "scriptsPass": 290,
+    "scriptsFail": 0,
+    "syntaxPass": 962,
+    "syntaxFail": 0,
+    "sourceMatches": true,
+    "generatedInventory": {
+      "sources": 995,
+      "reachable": 607,
+      "settings": 427,
+      "savedVariableRoots": 24
+    },
+    "documentation": {
+      "status": "PASS",
+      "localLinks": 16146,
+      "log": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\resource-effects-followup\\docs-validation.txt"
+    },
+    "initialFullRun": "Preserved initial failure: one added local exceeded whole-file200-local compiler limit; corrected with narrow do/end scope. Existing art smoke needed current helper name/contract.",
+    "previousPowerPainterAndPartitionPreserved": true
+  },
+  "nativeSources": {
+    "records": 88,
+    "uniqueGitBlobs": 54,
+    "gitBlobSHA1Verified": true,
+    "ownershipContractChecks": 50,
+    "correction": "SimpleFrameAPI explicitly overrides generic Show/Hide as protected on all5clients; generic-only absence never grants permission."
+  },
+  "preservation": {
+    "appearanceFilesUnchanged": 252,
+    "optionsBindingSourcesUnchanged": 80,
+    "otherRuntimeFilesUnchangedSinceCheckpoint": true,
+    "settingsWrites": false,
+    "profilerWrites": false,
+    "manualCrossClientSync": false,
+    "clientInputOrFocus": false,
+    "publication": false
+  },
+  "remaining": [
+    "Native combat invitation and FX operation permission retest",
+    "Native first-frame timing and pixel/clipping/input parity",
+    "Native CPU/memory/FPS attribution; no FPS result inferred from mocks",
+    "Pre-existing partial/nil new-identity overlay arguments outside actual Shared call contract are unchanged"
+  ],
+  "commands": [
+    "lua tests/resource_effects_safety.lua",
+    "lua tests/power_cost_idle_work.lua",
+    "python tests/run_validation.py --output <external>/full-validation.json --sync-docs",
+    "python docs/tools/build_reference.py",
+    "python docs/tools/validate_docs.py"
+  ],
+  "artifacts": {
+    "shared/summary.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\resource-effects-followup\\shared\\summary.json",
+      "sha256": "1f6bf3b008e3f99ff80f3061727cb48023377279621e62306d5fb3e851117298"
+    },
+    "shared/source-seal.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\resource-effects-followup\\shared\\source-seal.json",
+      "sha256": "a1b8e864b064896459a33aa001f27fa7a477926aae8e3dbc1e4cf43321e5a974"
+    },
+    "shared/compare.py": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\resource-effects-followup\\shared\\compare.py",
+      "sha256": "e3f83f067dbffb44d6ed4951e44ebde20a64bd94e36f78ae9430d8e9fe6837dc"
+    },
+    "shared/combined-integration-summary.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\resource-effects-followup\\shared\\combined-integration-summary.json",
+      "sha256": "8fc022ef453b55eff64487567dfc95ec78f29791d1224d969158c36420fe2929"
+    },
+    "shared/combined_integration.lua": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\resource-effects-followup\\shared\\combined_integration.lua",
+      "sha256": "7cacf1625b279809bf7297d803b578da3a13e4b0c6cb7898e2e8412f62986e95"
+    },
+    "pco/comparison.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\resource-effects-followup\\pco\\comparison.json",
+      "sha256": "1bf472291e72e90b384883747d8243b5582747a03ac3de33d70f5035ccfe9b23"
+    },
+    "pco/run_comparison.py": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\resource-effects-followup\\pco\\run_comparison.py",
+      "sha256": "d9df2b0fdbeecb6a15a24c79642d380bfbe31d9d116e5f381b68f766f28561d4"
+    },
+    "pco/appearance-comparison.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\resource-effects-followup\\pco\\appearance-comparison.json",
+      "sha256": "1848a9dffb5511f6d3236d00a75516cfea43678b277dd545e8fbe587e8770745"
+    },
+    "native/world-sources.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\resource-effects-followup\\native\\world-sources.json",
+      "sha256": "29bbd2111643ffabc7f2efcbaf461848c3ca6485f36bc8c8170fe16b44fbbec7"
+    },
+    "native/world-summary.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\resource-effects-followup\\native\\world-summary.json",
+      "sha256": "733067e1d2ed56208f8331c2378eebc1c67818c03d20a653bdb69b89864ad4ed"
+    },
+    "native/world-verification.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\resource-effects-followup\\native\\world-verification.json",
+      "sha256": "7b7b3819d6c176436557aa8064d1d9bbea60a5c89d14ed035e1c8530f0681e42"
+    },
+    "native/world-contract-checks.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\resource-effects-followup\\native\\world-contract-checks.json",
+      "sha256": "051b0e52403d4a3b952825a4e3d3600e99acd2118bfddedff390a60648b14095"
+    },
+    "native/ghost-scheduling-results.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\resource-effects-followup\\native\\ghost-scheduling-results.json",
+      "sha256": "454212da364e4961cde324ea44a4ee3567e502f97510bd1184b21248d5aed03a"
+    },
+    "initial-full-validation.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\resource-effects-followup\\initial-full-validation.json",
+      "sha256": "d2dd4b46ae1bf9013689762e6fb5e741ce6462c3a7e1b34ce46883ea4061d8e0"
+    },
+    "full-validation.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\resource-effects-followup\\full-validation.json",
+      "sha256": "6e1748be8d4261e0b7e3cf3aa8aa18ed551f5f96d3dafd11bd58dea290a91d86"
+    },
+    "final-verification.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\resource-effects-followup\\final-verification.json",
+      "sha256": "27b644fac6aa832c182e545de7457ade8e43eaf4a36b45621c14db70ccc62328"
+    },
+    "implementation.patch": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\resource-effects-followup\\implementation.patch",
+      "sha256": "1028dd1df03f400a44333881d6afd6a9c23b5a7df8680cf3c2eb6b4fc15ca53e"
+    },
+    "docs-validation.txt": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\resource-effects-followup\\docs-validation.txt",
+      "sha256": "d0a1ccc630cbc6641324ca4bf383fdb4352d031664cac4833f95ec36cc859000"
+    }
+  }
+}

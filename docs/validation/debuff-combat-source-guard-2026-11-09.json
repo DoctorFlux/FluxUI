@@ -1,0 +1,43 @@
+{
+  "change_id": "DEBUFF-COMBAT-COLORS-20261109",
+  "full": {
+    "pass": 271,
+    "fail": 0,
+    "syntaxFiles": 940
+  },
+  "sourceGuard": "Complete current LF-normalized Lua manifest equals full report;owned runtime/tests equal comparison hashes",
+  "native": "NOT RUN on all five clients;no native tool;engine access/secret propagation/rendering/taint/performance pending",
+  "copies": [
+    {
+      "client": "_retail_",
+      "exists": true,
+      "matches": true
+    },
+    {
+      "client": "_forever_",
+      "exists": true,
+      "matches": true
+    },
+    {
+      "client": "_classic_",
+      "exists": true,
+      "matches": true
+    },
+    {
+      "client": "_classic_era_",
+      "exists": true,
+      "matches": true
+    },
+    {
+      "client": "_anniversary_",
+      "exists": true,
+      "matches": true
+    }
+  ],
+  "files": {
+    "UnitFrames/FluxUnitFrames_DebuffTint.lua": "53166b4ac1ca3b2b534f631c900d6ac9da3329298655c55a94946a025e50c8b5",
+    "tests/friendly_debuff_tint.lua": "7d2945e5b39a34756bbdaa37f221632716b710b11dab97719211e540938a7fc4"
+  },
+  "nativeDisposition": "REJECTED by user13:45:15 forbidden GetVertexColor;registered Texture access inference invalid",
+  "supersededBy": "docs/validation/debuff-forbidden-comparison-2026-11-09.json"
+}

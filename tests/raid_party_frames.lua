@@ -172,15 +172,14 @@ for _,client in ipairs({"live","forever","classic","classic_era","classic_annive
     local states={}
     local originalRegister=ns.Flux.Restricted.RegisterPagingDriver
     local originalUnregister=ns.Flux.Restricted.UnregisterPagingDriver
-    e.SecureCmdOptionParse=function(condition)
-        if condition=="hide"then return "hide"end
-        local token=condition:match("@(party%dtarget)")or condition:match("@(partypet%d)")or condition:match("@(party%d)")
-        if not token then return condition:find("group:party",1,true)and e.mode=="party"and"show"or"hide"end
-        local index=tonumber(token:match("(%d)"))
-        local grouped=not condition:find("group:party",1,true)or e.mode=="party"
-        local show=grouped and index<=e.partyCount and(not token:match("^partypet")or e.pets[index])and(not token:match("target$")or e.targets[index])
-        return show and"show"or"hide"
-    end
+    e.SecureCmdOptionParse=assert(loadfile("tests/support/group_condition_parser.lua"))()({
+        exists=function(token)
+            if token:match("^raid%d+$")then return e.mode=="raid"end
+            local index=tonumber(token:match("(%d+)"))
+            return index and index<=e.partyCount and(not token:match("^partypet")or e.pets[index])and(not token:match("target$")or e.targets[index])
+        end,
+        petbattle=function()return e.petbattle end,group=function()return e.mode end,
+    })
     local function refresh()
         secure(function()for owner,list in pairs(states)do for state,condition in pairs(list)do e.resolveDriver(owner,"state-"..state,condition)end end end)
     end

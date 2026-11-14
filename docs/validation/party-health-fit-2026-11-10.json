@@ -1,0 +1,116 @@
+{
+  "changeId": "PARTY-HEALTH-FIT-20261110",
+  "capturedUtc": "2026-11-10T18:40:02.512149+00:00",
+  "request": "Party HP fill must fit above the resource bar instead of continuing beneath it",
+  "branch": "main",
+  "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c6bd-9795-7872-8262-11e62eca4825\\party-health-20261110T183659Z",
+  "checkpointFiles": 2566,
+  "checkpointHead": "26f886e3ea5371b196ab235d2dace0c156002285",
+  "historyVerified": true,
+  "settingsMetadataEntries": 26,
+  "privateSettingsCopied": false,
+  "beforeRawSha256": "331a4e263bee1b83a6fbb234de30b5d8ccf3ff257ac564b722d73f28be44b689",
+  "afterRawSha256": "fa7e3d64739b75e5ca1ddfc49ac14f5b11073b492263af88911abe8995e91e32",
+  "afterNormalizedSha256": "98e28553e71e13fc7d7799a58c2e1de36cb2434649cc5b582be84529de531fa9",
+  "baselineRegression": {
+    "exit": 1,
+    "output": "lua: tests/party_divider_boundary.lua:20: party health fill ends above resource with the existing two-unit gap\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/party_divider_boundary.lua:20: in local 'check'\n\ttests/party_divider_boundary.lua:45: in main chunk\n\t[C]: in ?\n"
+  },
+  "candidateRegression": {
+    "exit": 0,
+    "output": "Party divider boundary: 396 checks; fitted party HP, prediction geometry, resource transitions and unchanged target/focus; native pixels/combat pending\n"
+  },
+  "sourceLookup": [
+    {
+      "branch": "live",
+      "error": "<urlopen error [Errno 11001] getaddrinfo failed>"
+    },
+    {
+      "branch": "forever",
+      "error": "<urlopen error [Errno 11001] getaddrinfo failed>"
+    },
+    {
+      "branch": "classic",
+      "error": "<urlopen error [Errno 11001] getaddrinfo failed>"
+    },
+    {
+      "branch": "classic_era",
+      "error": "<urlopen error [Errno 11001] getaddrinfo failed>"
+    },
+    {
+      "branch": "classic_anniversary",
+      "error": "<urlopen error [Errno 11001] getaddrinfo failed>"
+    }
+  ],
+  "sourceEvidence": "Fresh heads unavailable (DNS/access failures). Existing 10 November five-client pins retained; Retail protected SetHeight rechecked via web at 297d7aaaa736f346b3e036f38ee088eaf7f8c07f. No new API or load path.",
+  "native": "NOT RUN; user reproduction route retained. No input/focus/clipboard/reload/settings/profiler/manual sync/publication.",
+  "controller": "Passive fill geometry only; no focus target, input handler or binding added. Existing unit clicks/navigation unchanged in source; native operation not run.",
+  "runtimeChanges": [
+    "UnitFrames/FluxUnitFrames_Shared.lua"
+  ],
+  "changedSinceCheckpoint": [
+    "UnitFrames/FluxUnitFrames_Shared.lua",
+    "tests/party_divider_boundary.lua"
+  ],
+  "fullValidation": "docs/validation/party-health-fit-full-2026-11-10.json",
+  "fullResult": {
+    "scriptsPassed": 304,
+    "scriptsFailed": 0,
+    "syntaxFiles": 976,
+    "syntaxFailures": 0,
+    "allCurrentLuaMatchesManifest": true
+  },
+  "regressions": [
+    {
+      "path": "tests/party_divider_boundary.lua",
+      "exit": 0,
+      "wallSeconds": 0.1038,
+      "output": "Party divider boundary: 396 checks; fitted party HP, prediction geometry, resource transitions and unchanged target/focus; native pixels/combat pending\n"
+    },
+    {
+      "path": "tests/power_partition_combat_join.lua",
+      "exit": 0,
+      "wallSeconds": 0.3699,
+      "output": "POWER_COMBAT_JOIN|client=live|permission=strict|attempts=0|blocked=0|errors=0|first=none|firstBlocked=none|nativeSinks=14|partitions=25|regen=16|defers=4\nPOWER_COMBAT_JOIN|client=live|permission=show-only|attempts=0|blocked=0|errors=0|first=none|firstBlocked=none|nativeSinks=14|partitions=25|regen=16|defers=4\nPOWER_COMBAT_JOIN|client=live|permission=regen-only|attempts=0|blocked=0|errors=0|first=none|firstBlocked=none|nativeSinks=6|partitions=10|regen=9|defers=0\nPOWER_COMBAT_JOIN|client=forever|permission=strict|attempts=0|blocked=0|errors=0|first=none|firstBlocked=none|nativeSinks=14|partitions=25|regen=16|defers=4\nPOWER_COMBAT_JOIN|client=forever|permission=show-only|attempts=0|blocked=0|errors=0|first=none|firstBlocked=none|nativeSinks=14|partitions=25|regen=16|defers=4\nPOWER_COMBAT_JOIN|client=forever|permission=regen-only|attempts=0|blocked=0|errors=0|first=none|firstBlocked=none|nativeSinks=6|partitions=10|regen=9|defers=0\nPOWER_COMBAT_JOIN|client=classic|permission=strict|attempts=0|blocked=0|errors=0|first=none|firstBlocked=none|nativeSinks=14|partitions=25|regen=16|defers=4\nPOWER_COMBAT_JOIN|client=classic|permission=show-only|attempts=0|blocked=0|errors=0|first=none|firstBlocked=none|nativeSinks=14|partitions=25|regen=16|defers=4\nPOWER_COMBAT_JOIN|client=classic|permission=regen-only|attempts=0|blocked=0|errors=0|first=none|firstBlocked=none|nativeSinks=6|partitions=10|regen=9|defers=0\nPOWER_COMBAT_JOIN|client=classic_era|permission=strict|attempts=0|blocked=0|errors=0|first=none|firstBlocked=none|nativeSinks=14|partitions=25|regen=16|defers=4\nPOWER_COMBAT_JOIN|client=classic_era|permission=show-only|attempts=0|blocked=0|errors=0|first=none|firstBlocked=none|nativeSinks=14|partitions=25|regen=16|defers=4\nPOWER_COMBAT_JOIN|client=classic_era|permission=regen-only|attempts=0|blocked=0|errors=0|first=none|firstBlocked=none|nativeSinks=6|partitions=10|regen=9|defers=0\nPOWER_COMBAT_JOIN|client=classic_anniversary|permission=strict|attempts=0|blocked=0|errors=0|first=none|firstBlocked=none|nativeSinks=14|partitions=25|regen=16|defers=4\nPOWER_COMBAT_JOIN|client=classic_anniversary|permission=show-only|attempts=0|blocked=0|errors=0|first=none|firstBlocked=none|nativeSinks=14|partitions=25|regen=16|defers=4\nPOWER_COMBAT_JOIN|client=classic_anniversary|permission=regen-only|attempts=0|blocked=0|errors=0|first=none|firstBlocked=none|nativeSinks=6|partitions=10|regen=9|defers=0\npower partition combat join: 675 checks PASS; production paths, modeled permissions; native client acceptance pending\n"
+    },
+    {
+      "path": "tests/prediction_public_geometry.lua",
+      "exit": 0,
+      "wallSeconds": 0.0583,
+      "output": "Prediction public geometry: 8460 checks; modern clips=12 classic clips=8; all layers, first paint, scale dimensions, native clipping/32px math; native pixels/taint pending\n"
+    },
+    {
+      "path": "tests/raid_party_frames.lua",
+      "exit": 0,
+      "wallSeconds": 0.5294,
+      "output": "Party player-style frames: 1035 checks; five pinned secure handler models, combat roster/pet/anchor transitions; native visuals/input pending\n"
+    },
+    {
+      "path": "tests/unit_power_visibility.lua",
+      "exit": 0,
+      "wallSeconds": 0.0289,
+      "output": "unit power visibility: main split, combat, secret and raid checks passed\n"
+    },
+    {
+      "path": "tests/unit_resource_lifecycle.lua",
+      "exit": 0,
+      "wallSeconds": 0.0735,
+      "output": "unit resource lifecycle: 16278 checks, five client models, 7 mutations rejected\n  100 option/enable cycles: watcher frames 201 -> 1; 300 spark paints: style writes 1200 -> 4\n"
+    }
+  ],
+  "requirements": [
+    "Party HP stops two layout units above resource; existing separator/power sizing stays",
+    "Prediction geometry follows the same party health height",
+    "Known zero-resource expands HP; unknown/restricted capacity retains prepared split",
+    "Existing combat deferral and main/compact-focus layouts retained",
+    "No new settings, visible strings, bindings, events, hooks or timers"
+  ],
+  "documentationValidation": {
+    "result": "PASS",
+    "classifiedSources": 1009,
+    "reachable": 607,
+    "settingDefinitions": 427,
+    "savedVariableRoots": 24,
+    "localLinks": 16270
+  }
+}

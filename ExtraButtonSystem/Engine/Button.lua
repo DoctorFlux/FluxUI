@@ -1623,8 +1623,8 @@ function FluxButton:UpdateTextureMacro()
                 end
             end
             -- Try spell first
-            if C_Spell and C_Spell.GetSpellInfo and C_Spell.GetSpellInfo(token) then
-                local info = C_Spell.GetSpellInfo(token)
+            local info = C_Spell and C_Spell.GetSpellInfo and C_Spell.GetSpellInfo(token)
+            if info then
                 tex = C_Spell.GetSpellTexture(info.spellID)
                 SetMacroSpellIdentity(info.spellID, info.name, token)
             elseif GetSpellTexture then
@@ -1650,8 +1650,11 @@ function FluxButton:UpdateTextureMacro()
                     if tex then
                         self.MacroMode = "item"
                         self.ItemId = itemId
-                        self.ItemName = GetItemInfo(itemId)
-                        self.ItemLink = select(2, GetItemInfo(itemId))
+                        local itemName, itemLink = GetItemInfo(itemId)
+                        self.ItemName = itemName
+                        self.ItemLink = itemLink
+                        -- A cold first result still gets the existing link retry.
+                        if itemLink == nil then self.ItemLink = select(2, GetItemInfo(itemId)) end
                     end
                 else
                     -- Try item name lookup

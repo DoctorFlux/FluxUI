@@ -1,0 +1,135 @@
+{
+  "changeId": "PARTY-DEBUFF-VISIBILITY-20261110",
+  "requirements": [
+    "PDV-01",
+    "PDV-02",
+    "PDV-03",
+    "PDV-04",
+    "PDV-05"
+  ],
+  "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c661-fa86-7052-8f15-3ebb54cba6a9\\party-debuffs\\checkpoint-20261110T165951Z",
+  "sourceFiles": 2551,
+  "historyVerified": true,
+  "archiveVerified": true,
+  "settingsMetadataEntries": 61,
+  "privateSettingsCopied": false,
+  "branch": "main",
+  "checks": {
+    "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c661-fa86-7052-8f15-3ebb54cba6a9\\party-debuffs\\checkpoint-20261110T165951Z",
+    "baselineHashes": {
+      "UnitFrames/FluxUnitFrames_DebuffTint.lua": "abee3277e58429709eb7b89200a0a23e0d40ced64fdbe3985c4904500cd2ea96",
+      "RaidFrame/FluxRaidAuras.lua": "8e8cfdde7832132ce3cc69115f234830846cd87e247adc37b24178e0968a2904",
+      "RaidFrame/FluxRaidVisuals.lua": "e25832bbedf933397f8d6210a6fa6406ac5273d5356a7fd7ec1b97a1b08f91d4"
+    },
+    "candidateHashes": {
+      "UnitFrames/FluxUnitFrames_DebuffTint.lua": "3e627ebd85a594818889678d3331cc26b26ad26ff1f247753b7ee8c67c2d6fe9",
+      "RaidFrame/FluxRaidAuras.lua": "217b8d9ee438e6f43a669613e77abf9acb80e8ddb6574dace5e8132911fa8a00",
+      "RaidFrame/FluxRaidVisuals.lua": "6483351f203bd3aebbf44aac0b7783c1e5cb16ebba69b168c60ab45f44f9bd39"
+    },
+    "focused": [
+      {
+        "test": "tests/friendly_debuff_tint.lua",
+        "exit": 0,
+        "output": "Friendly debuff tint: 18618 checks PASS across five clients/current and legacy aura providers; native game checks pending\n"
+      },
+      {
+        "test": "tests/party_debuff_visibility.lua",
+        "exit": 0,
+        "output": "Party debuff visibility: 408 checks PASS; five client models, native/legacy render paths and missing-atlas fallback; native pixels/taint pending\n"
+      },
+      {
+        "test": "tests/raid_healer_auras.lua",
+        "exit": 0,
+        "output": "Raid healer auras: 11410 checks; actual native owner/flow projection, global one-to-six limits, native-relative sizing, strict filters and cooldown sinks; eleven rejected negative controls; client visuals/scheduling pending\n"
+      },
+      {
+        "test": "tests/friendly_debuff_tint.lua",
+        "exit": 0,
+        "output": "Friendly debuff tint: 18618 checks PASS across five clients/current and legacy aura providers; native game checks pending\n"
+      },
+      {
+        "test": "tests/party_debuff_visibility.lua",
+        "exit": 0,
+        "output": "Party debuff visibility: 408 checks PASS; five client models, native/legacy render paths and missing-atlas fallback; native pixels/taint pending\n"
+      },
+      {
+        "test": "tests/raid_healer_auras.lua",
+        "exit": 0,
+        "output": "Raid healer auras: 11410 checks; actual native owner/flow projection, global one-to-six limits, native-relative sizing, strict filters and cooldown sinks; eleven rejected negative controls; client visuals/scheduling pending\n"
+      }
+    ],
+    "controls": [
+      {
+        "test": "tests/friendly_debuff_tint.lua",
+        "exit": 1,
+        "output": "lua: tests/friendly_debuff_tint.lua:7: exact normal text restored\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/friendly_debuff_tint.lua:7: in upvalue 'check'\n\ttests/friendly_debuff_tint.lua:265: in local 'restored'\n\ttests/friendly_debuff_tint.lua:421: in main chunk\n\t[C]: in ?\n",
+        "control": "exact external pre-change source"
+      },
+      {
+        "test": "tests/party_debuff_visibility.lua",
+        "exit": 1,
+        "output": "lua: tests/party_debuff_visibility.lua:31: attempt to index a nil value (local 'owner')\nstack traceback:\n\ttests/party_debuff_visibility.lua:31: in main chunk\n\t[C]: in ?\n",
+        "control": "exact external pre-change source"
+      },
+      {
+        "test": "tests/party_debuff_visibility.lua",
+        "exit": 1,
+        "output": "lua: tests/party_debuff_visibility.lua:10: native glow selects only the client's dispellable aura filter\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/party_debuff_visibility.lua:10: in local 'check'\n\ttests/party_debuff_visibility.lua:32: in main chunk\n\t[C]: in ?\n",
+        "control": "ordinary-native-filter"
+      },
+      {
+        "test": "tests/party_debuff_visibility.lua",
+        "exit": 1,
+        "output": "lua: tests/party_debuff_visibility.lua:10: glow follows the client's exact type palette\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/party_debuff_visibility.lua:10: in local 'check'\n\ttests/party_debuff_visibility.lua:84: in main chunk\n\t[C]: in ?\n",
+        "control": "wrong-readable-type"
+      },
+      {
+        "test": "tests/party_debuff_visibility.lua",
+        "exit": 1,
+        "output": "lua: tests/party_debuff_visibility.lua:10: enemy party unit has no dispel glow\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/party_debuff_visibility.lua:10: in local 'check'\n\ttests/party_debuff_visibility.lua:61: in main chunk\n\t[C]: in ?\n",
+        "control": "no-friendly-gate"
+      },
+      {
+        "test": "tests/friendly_debuff_tint.lua",
+        "exit": 1,
+        "output": "lua: tests/friendly_debuff_tint.lua:7: exact normal text restored\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/friendly_debuff_tint.lua:7: in upvalue 'check'\n\ttests/friendly_debuff_tint.lua:265: in local 'restored'\n\ttests/friendly_debuff_tint.lua:410: in main chunk\n\t[C]: in ?\n",
+        "control": "delayed-enemy-cleanup"
+      }
+    ],
+    "runtimeChanges": [
+      "UnitFrames/FluxUnitFrames_DebuffTint.lua",
+      "RaidFrame/FluxRaidAuras.lua",
+      "RaidFrame/FluxRaidVisuals.lua"
+    ],
+    "concurrentRuntimeChanges": [
+      "Inventory/Restock/Junk/FluxJunk.lua",
+      "Inventory/Restock/Junk/FluxVendorJunkPanel.lua"
+    ],
+    "otherRuntimePreserved": "Two concurrent inventory changes detected and left untouched; all other baseline runtime bytes preserved",
+    "native": "NOT RUN; no Witchcraft, computer input, or simulator tools; prior direct implementation/user reproduction preference retained"
+  },
+  "sourcePins": {
+    "live": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+    "forever": "4cd0ab752a77164f654ccbca9d0c1fe8dafceebe",
+    "classic": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+    "classic_era": "4192ac60067fc55566182291bc67c85dd9b6794d",
+    "classic_anniversary": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49"
+  },
+  "native": "NOT RUN; actual client build/pixels/taint/controller/FPS not established",
+  "preferences": "Prior direct implementation and user in-game reproduction preference retained",
+  "scope": "Retail folder only; no client input, settings/profiler writes, manual client sync or publication",
+  "fullSuite": {
+    "scriptsPassed": 298,
+    "scriptsFailed": 0,
+    "syntaxFiles": 970,
+    "syntaxFailures": 0,
+    "manifestMatchesCurrentSource": true
+  },
+  "sourceVerification": {
+    "fetchedFiles": 63,
+    "sourceIdentitiesRechecked": true,
+    "fiveClientAuraUtilHelpersMatchPinnedSource": true
+  },
+  "tocPreserved": true,
+  "diffCheck": "PASS"
+}

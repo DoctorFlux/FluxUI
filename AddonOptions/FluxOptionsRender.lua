@@ -136,6 +136,10 @@ end
 local function TextOf(option, root, path, field)
     local value = SafeMember(field, option, root, path)
     if type(value) == "string" then
+        if field == "desc" or field == "name" and option.type == "description" then
+            local catalog = ns.FluxOptionsCatalog
+            if catalog and catalog.HelpText then return catalog.HelpText(value) end
+        end
         return value
     end
     if type(value) == "number" then
@@ -683,7 +687,7 @@ local function Walk(page, group, pathPrefix, parent, advancedNames)
     end
     SortEntries(entries, page.root, pathPrefix)
     local catalog = ns.FluxOptionsCatalog
-    local sectionOrder = catalog and catalog.sectionOrder and catalog.sectionOrder[page.pageId]
+    local sectionOrder = catalog and catalog.sectionOrder and catalog.sectionOrder[page.sourceModule or page.pageId]
     entries = ApplySectionOrder(entries, sectionOrder)
 
     local inAdvanced = false
@@ -746,6 +750,18 @@ local function Walk(page, group, pathPrefix, parent, advancedNames)
             end
         end
     end
+    for _, source in ipairs(group._fluxSources or {}) do
+        local previousRoot, previousModule = page.root, page.sourceModule
+        page.root, page.sourceModule = source.root, source.module
+        if not IsHidden(source.group, source.root, source.path) then
+            if source.title and next(source.group.args or {}) then
+                local header = AddControlRow(page, { opt = { type = "header", name = source.title }, path = source.path }, parent)
+                if header then header.sectionHeader = true; page.rows[#page.rows + 1] = header end
+            end
+            Walk(page, source.group, source.path, parent, advancedNames)
+        end
+        page.root, page.sourceModule = previousRoot, previousModule
+    end
 end
 
 local function SectionVisible(rows, startIndex, query)
@@ -759,14 +775,18 @@ local function SectionVisible(rows, startIndex, query)
             break
         end
         last = i
-        if query ~= "" and row.kind ~= "more" and row.searchText and row.searchText:find(query, 1, true) then
+        if query ~= "" and not row._hidden and row.kind ~= "more" and row.searchText and row.searchText:find(query, 1, true) then
             childMatch = true
         end
     end
     return headerMatch, childMatch, last
 end
 
-function R.ListSubpages(group)
+function R.SourceHidden(source)
+    return IsHidden(source.group, source.root, source.path)
+end
+
+function R.ListSubpages(group, includeHidden)
     if not group or group.childGroups ~= "tab" or type(group.args) ~= "table" then
         return nil
     end
@@ -780,7 +800,7 @@ function R.ListSubpages(group)
             elseif opt.hidden then
                 hidden = true
             end
-            if not hidden then
+            if includeHidden or not hidden then
                 local name = opt.name
                 if type(name) == "function" then
                     local ok, result = pcall(name)
@@ -812,6 +832,42 @@ function R.ListSubpages(group)
     return pages
 end
 
+-- Search declarations only. Do not construct off-screen editors, call getters
+-- or setters, or index settings hidden by their owning feature/client.
+function R.Search(root, query)
+    query = string.lower(query or "")
+    if not root or query == "" then return 0 end
+    local count, firstSub = 0, nil
+    local function walk(group, prefix, subKey, originRoot)
+        local entries = CollectArgs(group)
+        SortEntries(entries, originRoot, prefix)
+        for i = 1, #entries do
+            local entry = entries[i]
+            local opt, path = entry.opt, entry.path
+            if not IsHidden(opt, originRoot, path) then
+                local blob = SearchBlob(TextOf(opt, originRoot, path, "name"), TextOf(opt, originRoot, path, "desc"))
+                local sub = subKey
+                if originRoot == root and #prefix == 0 and root.childGroups == "tab" and opt.type == "group" and not IsInline(opt) then
+                    sub = entry.key
+                end
+                if blob:find(query, 1, true) then
+                    count = count + 1
+                    firstSub = firstSub or sub
+                end
+                if opt.type == "group" then walk(opt, path, sub, originRoot) end
+            end
+        end
+        for _, source in ipairs(group._fluxSources or {}) do
+            if not IsHidden(source.group, source.root, source.path) then
+                if source.title and string.lower(source.title):find(query, 1, true) then count = count + 1; firstSub = firstSub or subKey end
+                walk(source.group, source.path, subKey, source.root)
+            end
+        end
+    end
+    if not IsHidden(root, root, {}) then walk(root, {}, nil, root) end
+    return count, firstSub
+end
+
 function R.Build(parent, root, group, pathPrefix, opts)
     opts = opts or {}
     local page = {
@@ -827,6 +883,7 @@ function R.Build(parent, root, group, pathPrefix, opts)
         getWidth = opts.getWidth,
         getViewport = opts.getViewport,
         _active = true,
+        collapsed = opts.collapsed or {},
     }
 
     function page:ContentWidth()
@@ -871,9 +928,12 @@ function R.Build(parent, root, group, pathPrefix, opts)
             if row.sectionHeader then
                 local headerMatch, childMatch, last = SectionVisible(self.rows, i, query)
                 local sectionOn = (query == "") or headerMatch or childMatch
+                local folded = query == "" and self.collapsed[i]
+                if row.SetExpanded then row:SetExpanded(not folded) end
                 for n = i, last do
                     local candidate = self.rows[n]
                     local visible = sectionOn and not candidate._hidden
+                    if folded and n ~= i then visible = false end
                     if candidate.advanced and not showAdvanced then
                         visible = false
                     end
@@ -926,14 +986,30 @@ function R.Build(parent, root, group, pathPrefix, opts)
         end
 
         local index = 1
+        local card, cardY
+        local function finishCard()
+            if card then card:SetHeight(math.max(38, cardY - y)); card = nil end
+        end
         while index <= #self.rows do
             local row = self.rows[index]
+            if row.card then row.card:Hide() end
             if not show[index] then
                 row:Hide()
                 index = index + 1
             else
                 local nxt = self.rows[index + 1]
-                local pair = row.pairable and nxt and show[index + 1] and nxt.pairable and not row.fillViewport and not nxt.fillViewport
+                if row.sectionHeader then
+                    finishCard()
+                    if y < 0 then y = y - 12 end
+                    if row.card then
+                        card, cardY = row.card, y
+                        card:ClearAllPoints()
+                        card:SetPoint("TOPLEFT", parent, "TOPLEFT", 0, y)
+                        card:SetWidth(width)
+                        card:Show()
+                    end
+                end
+                local pair = width >= 820 and row.pairable and nxt and show[index + 1] and nxt.pairable and not row.fillViewport and not nxt.fillViewport
                 row:Show()
                 if row.kind == "description" and row.LayoutHeight then
                     row:LayoutHeight(pair and (width / 2) or width)
@@ -993,6 +1069,8 @@ function R.Build(parent, root, group, pathPrefix, opts)
                 end
             end
         end
+        finishCard()
+        if self.empty then self.empty:SetShown(y == 0 and query ~= "") end
 
         parent:SetWidth(width)
         parent:SetHeight(math.max(1, -y))
@@ -1021,7 +1099,9 @@ function R.Build(parent, root, group, pathPrefix, opts)
         if not active then
             for i = 1, #self.rows do
                 self.rows[i]:Hide()
+                if self.rows[i].card then self.rows[i].card:Hide() end
             end
+            if self.empty then self.empty:Hide() end
             for i = 1, #self.embeds do
                 local widget = self.embeds[i]
                 if widget and widget.type == "FluxBindingBrowserEmbed" and _G.FluxBindingBrowser_Detach then
@@ -1057,9 +1137,12 @@ function R.Build(parent, root, group, pathPrefix, opts)
         end
         for i = 1, #self.rows do
             local row = self.rows[i]
+            if W.ReleaseAccent then W.ReleaseAccent(row) end
             row:Hide()
             row:SetParent(nil)
+            if row.card then row.card:Hide(); row.card:SetParent(nil) end
         end
+        if self.empty then self.empty:Hide(); self.empty:SetParent(nil) end
         self.rows = {}
         self.embeds = {}
         self.released = true
@@ -1067,6 +1150,20 @@ function R.Build(parent, root, group, pathPrefix, opts)
 
     local advancedNames = ns.FluxOptionsCatalog and ns.FluxOptionsCatalog.advancedHeaders
     Walk(page, group, pathPrefix or {}, parent, advancedNames)
+    if W.CreateSectionCard then
+        for i = 1, #page.rows do
+            local row = page.rows[i]
+            if row.sectionHeader then
+                local sectionIndex = i
+                row.card = W.CreateSectionCard(parent)
+                row:SetScript("OnClick", function()
+                    page.collapsed[sectionIndex] = not page.collapsed[sectionIndex]
+                    page:Layout()
+                end)
+            end
+        end
+        page.empty = W.CreateEmpty(parent)
+    end
     for i = 1, #page.rows do
         if page.rows[i].Refresh then
             page.rows[i]:Refresh()

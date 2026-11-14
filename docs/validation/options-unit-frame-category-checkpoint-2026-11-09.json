@@ -1,0 +1,14 @@
+{
+  "date": "2026-11-09",
+  "snapshot": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\09\\01a1c03e-c615-7f02-a24a-3e5ed07300f1\\unit-frame-category-before-20261109T150136Z",
+  "rawSHA256": {
+    "AddonOptions/FluxOptionsCatalog.lua": "8a95677e3b4016f06bba4ad58c08153a362fb27dc09eb0961c30f1772d7b40be",
+    "tests/options_navigation.lua": "960178e85abb00a618302edfd3710976a82cf6bdbd940116b2cb453c91138379",
+    "tests/options_rework.lua": "d3a6d1ad7de6ba2202f039eb35a07e702e4645cd83f482a9937250c512cdfbc3",
+    "docs/validation/options-unitframes-2026-11-09.json": "63ef5bf2e96ad16318ea1d1edbe07d085ae39e97120f4861a28c5c352f7245f7"
+  },
+  "verifiedFullSourceHistory": "options-unitframes-checkpoint-2026-11-09.json",
+  "settingsMetadataAvailable": true,
+  "settingsMetadataEntries": 43,
+  "settingsWrites": false
+}

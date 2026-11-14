@@ -1,0 +1,259 @@
+{
+  "date": "2026-11-10",
+  "change_id": "NPC-WINDOW-OPENING-AUDIT-20261110",
+  "requirement": "REQ-VG-09",
+  "userClarification": "Delay between clicking the NPC and the window appearing",
+  "runtimeChanges": false,
+  "sourceBlobCount": 29,
+  "sources": [
+    {
+      "target": "forever",
+      "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "path": "Interface/AddOns/Blizzard_UIPanels_Game/Shared/GossipFrameShared.lua",
+      "gitBlob": "a8d28c8a9d0b1b29b4dbee5df66513066099f838",
+      "sha256": "89073a44f81864990cdaa1e6914bdaf64dd3942738ada5132d1e7abafe9e20a3",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_UIPanels_Game/Shared/GossipFrameShared.lua"
+    },
+    {
+      "target": "forever",
+      "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "path": "Interface/AddOns/Blizzard_UIPanels_Game/Shared/PlayerInteractionFrameManager.lua",
+      "gitBlob": "30561fd964670336e94e782a03663b6fac9f69ce",
+      "sha256": "c806dcf0c47654a6537b5d7d33bcaf36899291a68c1db34633ddb7bfe1c32912",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_UIPanels_Game/Shared/PlayerInteractionFrameManager.lua"
+    },
+    {
+      "target": "forever",
+      "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/GossipInfoDocumentation.lua",
+      "gitBlob": "16929e1ed1539cc6b574d49992ba89de3165951b",
+      "sha256": "22cd6a48eded91316753af2e40624e542a91c728c713636549b7d3a6ef7916a5",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_APIDocumentationGenerated/GossipInfoDocumentation.lua"
+    },
+    {
+      "target": "forever",
+      "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "path": "Interface/AddOns/Blizzard_UIPanels_Game/Blizzard_UIPanels_Game.toc",
+      "gitBlob": "7b6537794b17e8a2d1c7eef582f1f724c0e180f7",
+      "sha256": "c4f57e9b6df5597c134f8434391e71f8019d9bd7a2f7682d87f3b893449ba7b1",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_UIPanels_Game/Blizzard_UIPanels_Game.toc"
+    },
+    {
+      "target": "forever",
+      "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "path": "Interface/AddOns/Blizzard_UIPanels_Game/Mainline/CustomGossipFrameBase.lua",
+      "gitBlob": "20c30502ec8690153889b82bfee22a3e7959d6b7",
+      "sha256": "694a0db67f15d222d30e8925813daff45d83aa5fa9e8b12db059301d4a9db050",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_UIPanels_Game/Mainline/CustomGossipFrameBase.lua"
+    },
+    {
+      "target": "forever",
+      "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "path": "Interface/AddOns/Blizzard_UIPanels_Game/Mainline/BankFrameTemplates.lua",
+      "gitBlob": "160399011be5d1fd538a4ea638c60a2a13b27fef",
+      "sha256": "6a7ea01d9bf7caa903db01eec7b61defe5e543f867ab5ec676ee9deaa507cbf8",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_UIPanels_Game/Mainline/BankFrameTemplates.lua"
+    },
+    {
+      "target": "forever",
+      "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "path": "Interface/AddOns/Blizzard_UIPanels_Game/Camelot/BankFrame.lua",
+      "gitBlob": "3da34df4abc55e9437574a302ba74331dfcc3be6",
+      "sha256": "9a90733340ca3f61dff4998b8c2fd3fffb854b5c2bf26df344583913e5f5c7d4",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_UIPanels_Game/Camelot/BankFrame.lua"
+    },
+    {
+      "target": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_UIPanels_Game/Shared/GossipFrameShared.lua",
+      "gitBlob": "f327d6d4d1dc65de4084fed15f2a4647365e9c7a",
+      "sha256": "b6ff7386dca484bdfb4a89753eb0a2632e3490fa02ae44b803e45cd1fb69cb95",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_UIPanels_Game/Shared/GossipFrameShared.lua"
+    },
+    {
+      "target": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_UIPanels_Game/Shared/PlayerInteractionFrameManager.lua",
+      "gitBlob": "968b2bd0c16b58f390fc240eac4b696c0921e5eb",
+      "sha256": "0de5593382cee2e1f31ec430bc69c5f9db91dcdfd073d87c448e1b98169c12d2",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_UIPanels_Game/Shared/PlayerInteractionFrameManager.lua"
+    },
+    {
+      "target": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/GossipInfoDocumentation.lua",
+      "gitBlob": "47abd85f8babbcc03bfddff0f4e54a13e05ed2af",
+      "sha256": "0e3532d6be02fe345e1ef1dac53fabfe6b4358a07279e3fe69b5534306b8c826",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_APIDocumentationGenerated/GossipInfoDocumentation.lua"
+    },
+    {
+      "target": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_UIPanels_Game/Blizzard_UIPanels_Game_Classic.toc",
+      "gitBlob": "1f400a399e608a57a5d6519bfa9e1d47fe66fa11",
+      "sha256": "9c24a09e2e50dbe8f481e85112055ef67d7ef77c1242c9be22e31133cb9ba29e",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_UIPanels_Game/Blizzard_UIPanels_Game_Classic.toc"
+    },
+    {
+      "target": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_UIPanels_Game/Classic/GossipFrame.lua",
+      "gitBlob": "7037afd5a0fdeb0ad4a478e0e5e85429be1d025d",
+      "sha256": "8d72355f482879fc1785002412ea385f0ee0e576e94d104935710f8bc52b7433",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_UIPanels_Game/Classic/GossipFrame.lua"
+    },
+    {
+      "target": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_UIPanels_Game/TBC/MerchantFrame.lua",
+      "gitBlob": "cb6302893f7d96e29a9273c7b6f2a130e47f5b88",
+      "sha256": "67f84948ebb1b9861f55cc54d2edbf25b8a0a6254c2d5cb37ff7c25163bceeee",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_UIPanels_Game/TBC/MerchantFrame.lua"
+    },
+    {
+      "target": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_UIPanels_Game/TBC/BankFrame.lua",
+      "gitBlob": "4ae296d7becb178d73701380c0d1c33118589159",
+      "sha256": "eb3886be5d96f30d7a9f916b659a407fd47df1f06a039b5668beb644dad06ed7",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_UIPanels_Game/TBC/BankFrame.lua"
+    },
+    {
+      "target": "classic_era",
+      "commit": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "path": "Interface/AddOns/Blizzard_UIPanels_Game/Shared/GossipFrameShared.lua",
+      "gitBlob": "f327d6d4d1dc65de4084fed15f2a4647365e9c7a",
+      "sha256": "b6ff7386dca484bdfb4a89753eb0a2632e3490fa02ae44b803e45cd1fb69cb95",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_UIPanels_Game/Shared/GossipFrameShared.lua"
+    },
+    {
+      "target": "classic_era",
+      "commit": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "path": "Interface/AddOns/Blizzard_UIPanels_Game/Shared/PlayerInteractionFrameManager.lua",
+      "gitBlob": "968b2bd0c16b58f390fc240eac4b696c0921e5eb",
+      "sha256": "0de5593382cee2e1f31ec430bc69c5f9db91dcdfd073d87c448e1b98169c12d2",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_UIPanels_Game/Shared/PlayerInteractionFrameManager.lua"
+    },
+    {
+      "target": "classic_era",
+      "commit": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/GossipInfoDocumentation.lua",
+      "gitBlob": "47abd85f8babbcc03bfddff0f4e54a13e05ed2af",
+      "sha256": "0e3532d6be02fe345e1ef1dac53fabfe6b4358a07279e3fe69b5534306b8c826",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_APIDocumentationGenerated/GossipInfoDocumentation.lua"
+    },
+    {
+      "target": "classic_era",
+      "commit": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "path": "Interface/AddOns/Blizzard_UIPanels_Game/Blizzard_UIPanels_Game_Classic.toc",
+      "gitBlob": "1f400a399e608a57a5d6519bfa9e1d47fe66fa11",
+      "sha256": "9c24a09e2e50dbe8f481e85112055ef67d7ef77c1242c9be22e31133cb9ba29e",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_UIPanels_Game/Blizzard_UIPanels_Game_Classic.toc"
+    },
+    {
+      "target": "classic_era",
+      "commit": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "path": "Interface/AddOns/Blizzard_UIPanels_Game/Classic/GossipFrame.lua",
+      "gitBlob": "7037afd5a0fdeb0ad4a478e0e5e85429be1d025d",
+      "sha256": "8d72355f482879fc1785002412ea385f0ee0e576e94d104935710f8bc52b7433",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_UIPanels_Game/Classic/GossipFrame.lua"
+    },
+    {
+      "target": "classic_era",
+      "commit": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "path": "Interface/AddOns/Blizzard_UIPanels_Game/Vanilla/MerchantFrame.lua",
+      "gitBlob": "d39bcf73059b3228eb6d6993cf8a5e33ec3cda8a",
+      "sha256": "654f677e17c23aad68fbef615702c815ea370833f2e21c52339126ed1a47549f",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_UIPanels_Game/Vanilla/MerchantFrame.lua"
+    },
+    {
+      "target": "classic_era",
+      "commit": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "path": "Interface/AddOns/Blizzard_UIPanels_Game/Vanilla/BankFrame.lua",
+      "gitBlob": "3bbff268e19a8b30673293befc769b54183939d9",
+      "sha256": "5b0347939969ec61df2f7a96facc325d6f013802aa59901825633b0d452ead6a",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_UIPanels_Game/Vanilla/BankFrame.lua"
+    },
+    {
+      "target": "classic_anniversary",
+      "commit": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "path": "Interface/AddOns/Blizzard_UIPanels_Game/Shared/GossipFrameShared.lua",
+      "gitBlob": "43be55620379d7c3b8bdbb5a49101076db411d28",
+      "sha256": "1f14a731c0b10bd5c9c6c5d0ffeebc8763ccf0b6ca39f0714cb27dfd0b71a060",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_UIPanels_Game/Shared/GossipFrameShared.lua"
+    },
+    {
+      "target": "classic_anniversary",
+      "commit": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "path": "Interface/AddOns/Blizzard_UIPanels_Game/Shared/PlayerInteractionFrameManager.lua",
+      "gitBlob": "2d38a56c6eb780f4303cbe926eb47325b02c8d3a",
+      "sha256": "935066ff88d889c6dd416be46f919f8cc104d9e359cdb0df902e85b6787b5ce0",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_UIPanels_Game/Shared/PlayerInteractionFrameManager.lua"
+    },
+    {
+      "target": "classic_anniversary",
+      "commit": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/GossipInfoDocumentation.lua",
+      "gitBlob": "47abd85f8babbcc03bfddff0f4e54a13e05ed2af",
+      "sha256": "0e3532d6be02fe345e1ef1dac53fabfe6b4358a07279e3fe69b5534306b8c826",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_APIDocumentationGenerated/GossipInfoDocumentation.lua"
+    },
+    {
+      "target": "classic_anniversary",
+      "commit": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "path": "Interface/AddOns/Blizzard_UIPanels_Game/Blizzard_UIPanels_Game_Classic.toc",
+      "gitBlob": "476cee00ddd4f9eb0784fb7132bbab2681727f86",
+      "sha256": "1b37ebb91cfd3689a89b4f6569886b236c3e33717fc38e2918859ef94d71dbc8",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_UIPanels_Game/Blizzard_UIPanels_Game_Classic.toc"
+    },
+    {
+      "target": "classic_anniversary",
+      "commit": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "path": "Interface/AddOns/Blizzard_UIPanels_Game/Classic/GossipFrame.lua",
+      "gitBlob": "b962266ba105e0b5915264896f5a5e3e94869cf7",
+      "sha256": "aaaa0c2ef341b673e4284ae81c8742a49ef0a9aa3579f13969ee836fbe6de388",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_UIPanels_Game/Classic/GossipFrame.lua"
+    },
+    {
+      "target": "classic_anniversary",
+      "commit": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "path": "Interface/AddOns/Blizzard_UIPanels_Game/TBC/MerchantFrame.lua",
+      "gitBlob": "ed2d64e11e727f0b343f77e025a7a3d94c06a810",
+      "sha256": "4cb6bfd0d85ef2e635aacaea12dfbe76a5e9e08056006300e4eb4d68e742405d",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_UIPanels_Game/TBC/MerchantFrame.lua"
+    },
+    {
+      "target": "classic_anniversary",
+      "commit": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "path": "Interface/AddOns/Blizzard_UIPanels_Game/TBC/BankFrame.lua",
+      "gitBlob": "a722d565537d77328c0ca5a2ffed93e67d8bb170",
+      "sha256": "e71cc3084aaaf69b0edc85276d26906be9027123a8297594e691fe733ef84fbe",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_UIPanels_Game/TBC/BankFrame.lua"
+    },
+    {
+      "target": "forever",
+      "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "path": "Interface/AddOns/Blizzard_UIPanels_Game/Mainline/MerchantFrame.lua",
+      "gitBlob": "03dea790d0cdfcf96e0e9fb7b507e75fa0cc2b0a",
+      "sha256": "2cee4e2ef28627b263e8e719264c3454267eee645c53c43ad7f1a871e9563e14",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_UIPanels_Game/Mainline/MerchantFrame.lua"
+    }
+  ],
+  "moduleSHA256": "8a46e38dd1d0a875864a6aaf57a2c6266dec2f5a2117c4fd0de64319aa865a0f",
+  "conclusions": {
+    "selection": "Current addon sends SelectOptionByIndex in the same GOSSIP_SHOW callback after validating one available bank/vendor choice and no quests. No added selection timer, asset lookup or checkbox creation.",
+    "preload": "The pinned ordinary bank/merchant panels are in Blizzard_UIPanels_Game startup file lists;the inspected Forever registrations call their show functions without loadFunc. No additional on-demand preloader justified.",
+    "nativeFirstAppearance": "Unmeasured. Native UI processing, other addon callbacks and network/server time may affect perception;no server-only root cause is established.",
+    "nextEvidence": "Actual client click-to-gossip, selection-to-bank/merchant, callback/first-draw times and network latency;matched trials needed before changing unrelated inventory paths."
+  },
+  "validation": {
+    "all950LuaIdentitiesMatchPriorPassingManifest": true,
+    "priorScripts": 279,
+    "priorFocusedChecks": 702,
+    "freshNativeTiming": "NOT RUN",
+    "fullSuiteRerun": "Not repeated;no runtime/test source changes"
+  },
+  "installedGossipCopies": "All four target copies match current source",
+  "inputFocusSettingsProfilerWrites": false,
+  "nativeRoute": "Prior user reproduction route;no connected Witchcraft tool available;paused party/raid work remains paused"
+}

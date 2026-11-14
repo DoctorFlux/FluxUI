@@ -1,0 +1,21 @@
+{
+  "scope": "Desktop declaration mapping only",
+  "negativeControls": [
+    {
+      "control": "wrong-category",
+      "exit": 1,
+      "firstFailure": "lua: tests/options_navigation.lua:5: live: reference category names and order"
+    },
+    {
+      "control": "dropped-consumable",
+      "exit": 1,
+      "firstFailure": "lua: tests/options_navigation.lua:5: live: unmapped original settings: actionbars/extra/consumableSwapFoodWater"
+    },
+    {
+      "control": "wrong-flight-parent",
+      "exit": 1,
+      "firstFailure": "lua: tests/options_navigation.lua:5: live: unmapped original settings: unitframes/unitPlayer/enableFlightPathCastBar, unitframes/unitPlayer/enableFlightPathTimers, unitframes/unitPlayer/enableFlightPathTooltips"
+    }
+  ],
+  "candidate": "PASS"
+}

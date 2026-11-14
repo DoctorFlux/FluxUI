@@ -1,0 +1,14 @@
+{
+  "date": "2026-11-09",
+  "change_id": "OPTIONS-REWORK-20261109",
+  "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\09\\01a1c03e-c615-7f02-a24a-3e5ed07300f1\\options-checkpoint-20261109T122031Z",
+  "head": "26f886e3ea5371b196ab235d2dace0c156002285",
+  "sourceFiles": 2396,
+  "verified": true,
+  "archives": {
+    "source.zip": "9bf59beb97aaa8eaec0f8d213b204a27a0b703313c1abb2d1d62ade7688cfbf6",
+    "history.bundle": "a828ea583dab6d23fa209d3a189d6498a0ea8ee45617582270707fea30624a50"
+  },
+  "settingsMetadataFiles": 120,
+  "settingsScope": "Read-only metadata; no settings contents copied or modified; no quiescent backup claimed"
+}

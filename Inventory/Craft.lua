@@ -1,11 +1,10 @@
 --[[
     Inventory/Craft.lua
 
-    Right-click crafts only the best heal/mana potion or bandage already in the
-    scanned tradeskill list, and only when bags can afford that top recipe.
-    Never falls back to a worse known recipe. Does not open the profession as
-    a consolation click. Classic reagent tables only fill missing itemIDs on
-    scanned rows.
+    Right-click crafts the highest-ranked heal/mana potion or bandage in the
+    scanned tradeskill list that current bag materials can afford. Lower tiers
+    remain available when a higher tier lacks materials. Classic reagent tables
+    only fill missing itemIDs on scanned rows.
 
     Forever (camelot): healing potions live on First Aid, not Alchemy. Bandages
     stay on First Aid too — live post-DF moved them to Tailoring, Forever did not.
@@ -639,8 +638,7 @@ function Craft.ListRecipesForKind(kind)
     return out
 end
 
---- Absolute best known tradeskill recipe for kind, only when bags afford THAT recipe.
---- Never falls back to a worse recipe when mats are short for the top one.
+--- Highest-ranked known tradeskill recipe that current bag materials can afford.
 local bestCraftCache = {} -- [kind] = { bagGen = number, best = entry|false }
 
 function Craft.InvalidateCanCraftCache()
@@ -679,14 +677,15 @@ function Craft.GetBestCraftable(kind)
     end
     local list = Craft.ListRecipesForKind(kind)
     local best = nil
-    local top = list[1]
-    if top then
-        local n = top.craftable or Craft.GetCraftableCount(top.reagents)
+    for i = 1, #list do
+        local recipe = list[i]
+        local n = recipe.craftable or Craft.GetCraftableCount(recipe.reagents)
         if n and n > 0 then
-            top.craftable = n
-            top.outputPerCraft = top.outputPerCraft or Craft.GetOutputPerCraft(top)
-            top.craftableItems = n * (top.outputPerCraft or 1)
-            best = top
+            recipe.craftable = n
+            recipe.outputPerCraft = recipe.outputPerCraft or Craft.GetOutputPerCraft(recipe)
+            recipe.craftableItems = n * (recipe.outputPerCraft or 1)
+            best = recipe
+            break
         end
     end
     local reagentIDs = {}
@@ -709,7 +708,7 @@ function Craft.GetBestCraftable(kind)
     return best
 end
 
---- True when bags can afford the single best scanned recipe for kind.
+--- True when bags can afford any known recipe for kind.
 function Craft.CanCraftKind(kind)
     kind = kind and tostring(kind) or nil
     if kind ~= "healPotion" and kind ~= "manaPotion" and kind ~= "bandage" then
@@ -951,8 +950,7 @@ local lastCraftKind = nil
 local lastCraftSucceeded = false
 local CRAFT_CLICK_LOCK_SEC = 0.2
 
---- Craft the top scanned recipe only when bags afford it. Does not open the
---- profession as a consolation click.
+--- Craft the highest-ranked affordable scanned recipe from the player's click.
 function Craft.ExecuteCraft(kind)
     if InCombatLockdown and InCombatLockdown() then
         return false

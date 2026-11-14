@@ -1,5 +1,5 @@
 -- FluxUnitFrames_PetAuraTooltip.lua
--- Embed pet buff/debuff icons + cooldown countdown inside the same GameTooltip
+-- Embed pet buff/debuff icons + cooldown countdown inside the Flux unit tooltip
 -- shown on pet-frame mouseover. Icons are non-mouse so they cannot dismiss the tip.
 local addonName, ns = ...
 
@@ -16,9 +16,10 @@ local ICON_SIZE = 20
 local ICON_PAD = 2
 local ROW_GAP = 2
 local PAD = 4
-local LINE_PX = 12 -- approximate GameTooltip line height for spacer reserve
+local LINE_PX = 12 -- approximate tooltip line height for spacer reserve
 
-local host -- child of GameTooltip
+local unitTooltip -- The Flux-owned unit tooltip; never the world-cursor tooltip.
+local host -- child of unitTooltip
 local buffButtons = {}
 local debuffButtons = {}
 local shown = false
@@ -207,9 +208,10 @@ local function EnsureHost()
         pendingCreate = true
         return nil
     end
-    if not GameTooltip or GameTooltip:IsForbidden() then return nil end
+    unitTooltip = UF.GetUnitTooltip and UF.GetUnitTooltip(true)
+    if not unitTooltip or unitTooltip:IsForbidden() then return nil end
 
-    host = CreateFrame("Frame", "FluxPetAuraTooltipHost", GameTooltip)
+    host = CreateFrame("Frame", "FluxPetAuraTooltipHost", unitTooltip)
     host:EnableMouse(false)
     host:Hide()
 
@@ -220,11 +222,11 @@ local function EnsureHost()
         debuffButtons[i] = CreateAuraIcon(host, i, "Debuff")
     end
 
-    if not GameTooltip._fluxPetAuraHideHooked then
-        GameTooltip._fluxPetAuraHideHooked = true
-        GameTooltip:HookScript("OnHide", function()
+    if not unitTooltip._fluxPetAuraHideHooked then
+        unitTooltip._fluxPetAuraHideHooked = true
+        unitTooltip:HookScript("OnHide", function()
             -- Ignore hide during SetUnit/rebuild; only clear when tip is truly dismissed.
-            if GameTooltip._fluxUnitTipRebuilding then return end
+            if unitTooltip._fluxUnitTipRebuilding then return end
             if shown then
                 UF.HidePetAuraTooltip()
             end
@@ -494,12 +496,12 @@ local function ReserveTooltipSpace(tt, pixelHeight)
 end
 
 local function TipIsPetUnit()
-    if not GameTooltip or GameTooltip:IsForbidden() or not GameTooltip:IsShown() then
+    if not unitTooltip or unitTooltip:IsForbidden() or not unitTooltip:IsShown() then
         return false
     end
-    if GameTooltip.GetUnit then
-        local _, unit = GameTooltip:GetUnit()
-        if unit == "pet" then return true end
+    if unitTooltip.GetUnit then
+        local _, unit = unitTooltip:GetUnit()
+        if not (issecretvalue and issecretvalue(unit)) and unit == "pet" then return true end
     end
     -- Fallback: owner is pet outer border while we marked shown.
     return shown
@@ -544,13 +546,13 @@ local function PaintIntoTooltip()
 
     frame:SetSize(blockW, blockH)
     frame:ClearAllPoints()
-    frame:SetPoint("BOTTOMLEFT", GameTooltip, "BOTTOMLEFT", PAD, PAD)
+    frame:SetPoint("BOTTOMLEFT", unitTooltip, "BOTTOMLEFT", PAD, PAD)
     frame:Show()
 
-    local ttW = GameTooltip:GetWidth() or 0
+    local ttW = unitTooltip:GetWidth() or 0
     local needW = blockW + PAD * 2 + 4
-    if ttW < needW and GameTooltip.SetMinimumWidth then
-        GameTooltip:SetMinimumWidth(needW)
+    if ttW < needW and unitTooltip.SetMinimumWidth then
+        unitTooltip:SetMinimumWidth(needW)
     end
     SyncDurationTicker()
 end
@@ -558,8 +560,9 @@ end
 function UF.ShowPetAuraTooltip()
     if not ShouldShow() then return end
     if not UnitExists("pet") then return end
-    if not GameTooltip or GameTooltip:IsForbidden() then return end
-    if not GameTooltip:IsShown() then return end
+    unitTooltip = UF.GetUnitTooltip and UF.GetUnitTooltip(false)
+    if not unitTooltip or unitTooltip:IsForbidden() then return end
+    if not unitTooltip:IsShown() then return end
 
     shown = true
     if not EnsureHost() then
@@ -577,13 +580,13 @@ function UF.ShowPetAuraTooltip()
     local blockH = AuraBlockHeight(#buffs, #debuffs)
 
     -- SetUnit already ran; append spacers into this tip then paint icons inside it.
-    GameTooltip._fluxUnitTipRebuilding = true
-    ReserveTooltipSpace(GameTooltip, blockH)
-    GameTooltip:Show()
+    unitTooltip._fluxUnitTipRebuilding = true
+    ReserveTooltipSpace(unitTooltip, blockH)
+    unitTooltip:Show()
     if ns.ApplyHUDTooltipPosition then
-        ns.ApplyHUDTooltipPosition()
+        ns.ApplyHUDTooltipPosition(unitTooltip)
     end
-    GameTooltip._fluxUnitTipRebuilding = nil
+    unitTooltip._fluxUnitTipRebuilding = nil
 
     PaintIntoTooltip()
 end
@@ -644,6 +647,7 @@ local _origShow = UF.ShowUnitTooltip
 local _origHide = UF.HideUnitTooltip
 
 function UF.ShowUnitTooltip(anchorFrame, unit, fromUpdate)
+    if issecretvalue and issecretvalue(unit) then return end
     if _origShow then
         _origShow(anchorFrame, unit, fromUpdate)
     end
@@ -654,10 +658,12 @@ function UF.ShowUnitTooltip(anchorFrame, unit, fromUpdate)
     end
 end
 
-function UF.HideUnitTooltip()
+function UF.HideUnitTooltip(owner)
+    local tooltip = UF.GetUnitTooltip and UF.GetUnitTooltip(false)
+    if owner and tooltip and tooltip._fluxUnitTipOwner ~= owner then return end
     UF.HidePetAuraTooltip()
     if _origHide then
-        _origHide()
+        _origHide(owner)
     end
 end
 

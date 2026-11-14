@@ -1,5 +1,13 @@
 # Nameplate overlays and chrome
 
+13 November shared threat warnings: **Threat warning visibility** in Unit Frame
+→ General and Nameplates uses the existing Unit Frame scope/key. Choices are
+Always, In raid, In party, Off; In party includes raids. Nameplates and every
+target/focus bar position share one gate, including the between-bar strip. Old
+independent nameplate visibility data is retained but no longer gates warnings.
+870 warning checks and 316-script/997-syntax desktop suite snapshot PASS; native
+pixels/combat/controller/persistence/FPS NOT RUN.
+[Requirements and acceptance](OPTIONS_REWORK.md#13-november-sidebar-bindings-and-shared-threat-warnings).
 ## Quest kill and loot progress — 9 November 2026
 
 NAMEPLATE-QUEST-PROGRESS-20261109 adds the default-enabled **Show quest kill / loot
@@ -9,8 +17,8 @@ not instructions to import the supplied reference addons or their databases.
 
 | Requirement | Implementation | Acceptance |
 |---|---|---|
-| REQ-NPQ-01: own kill/loot icon with current/required | Existing Core module reads incomplete `monster`/`item` objectives; separate rows such as kill `2/8` and loot `1/5`; completed objectives disappear. | Desktop data/painter checks pass; actual mobs pending. |
-| REQ-NPQ-02: top-left anchored to plate bottom-left; same Y as threat/level | Flux host `TOPLEFT` anchors to the existing health container `BOTTOMLEFT` at `0,+3` for its compact 12-unit height, so its centre Y is `-3`, matching the existing threat/level badges; further objectives stack downward at 16-unit intervals. Existing level/threat anchors stay unchanged. | Exact anchor assertions pass; native pixels and simultaneous threat/long counters pending. |
+| REQ-NPQ-01: own kill/loot icon with current/required | Existing Core module reads incomplete `monster`/`item` objectives; adjacent badges such as kill `2/8` and loot `1/5` share one row; completed objectives disappear. | Desktop data/painter checks pass; actual mobs pending. |
+| REQ-NPQ-02: top-left anchored to plate bottom-left; same Y as threat/level | Each 12-unit badge anchors `TOPLEFT` to the health container `BOTTOMLEFT` at Y `+3`, retaining centre Y `-3`. The strip begins at X `0` when it fits and extends left when needed; no downward stacking. Existing level/threat anchors stay unchanged. | Dynamic geometry checks pass; native pixels and simultaneous threat/casts pending. |
 | REQ-NPQ-03: compatible with Questie, without a database | Reads Questie 12.6.4 `QuestieTooltips.lookupByKey["m_" .. npcID]`; refreshes associated objective via its existing `Update`; uses public quest-ready/update callbacks. | Same-NPC batching, startup and callback lifecycle pass; installed-client integration pending. |
 | REQ-NPQ-04: Blizzard fallback with Questie absent | Reads native unit quest tooltip blocks and verifies exact objective text and active quest membership against `C_QuestLog.GetQuestObjectives`; older clients use one private hidden tooltip. No inferred item drop sources or text-based mob-name guesses. | Modern/legacy and localized counter models pass. Clients that expose no native association cannot identify that mob without Questie; native coverage pending. |
 | REQ-NPQ-05: same default icons with/without Questie | Two unchanged 2,564-byte supplied Questie textures, `Texture/QuestSlay.blp` and `Texture/QuestLoot.blp`. | Exact SHA-256/reference comparison recorded; native appearance pending. |
@@ -24,6 +32,47 @@ threat/level and the existing16-unit row spacing. Threat/level geometry and
 quest data behavior remain unchanged.371 focused checks include icon containment,
 compact count geometry and alignment; native overlap/legibility remains for the
 user's in-game check. [Compact evidence](validation/nameplate-quest-compact-2026-11-09.json).
+
+### Combined objectives and dynamic width — 9 November follow-up
+
+NAMEPLATE-QUEST-LAYOUT-20261109 supersedes the earlier downward stacking. A mob
+serving both kill and loot objectives keeps both icons and exact counters on one
+horizontal row, for example `[kill 2/8] [loot 1/5]`. Additional objectives use that
+same row. Each badge fits its actual text plus the existing 16-unit icon/padding
+allowance; font and icon remain 10 units and height remains 12. Nothing shrinks,
+wraps, truncates or discards progress to fit.
+
+| Requirement | Implementation | Acceptance |
+|---|---|---|
+| REQ-NPQ-07: combined kill/loot must not create another row over casts | Adjacent objectives share Y `+3`; four units separate host boxes, including their expanding artwork. | Five models cover two/three objectives and completion; native casts pending. |
+| REQ-NPQ-08: fit available space without unreadably small content | Reserve the actual centered threat label's half-width and six units of separation. Keep X `0` when the entire strip fits; otherwise extend it left of the plate. Long counters grow at the existing font size. | Narrow/wide plates, hidden/long threat, long counts and exact progress pass. |
+| REQ-NPQ-09: respond to geometry without quest rescans | Existing 0.25s poll checks width and the threat module's public painted-width record; only changed layout writes anchors. Missing/secret/nonfinite native width uses the exterior left lane. | 1,000 settled polls per model add no quest queries, text/frame allocations or anchor writes. |
+
+Threat exposes its own last painted width and visibility state; the quest module
+does not read threat values or anchored threat-widget geometry. `FitPlate` returns
+the public width it already calculated. Health width is checked before arithmetic;
+Retail/Forever `GetWidth` can be secret when anchoring is secret. Fresh pinned
+`SimpleScriptRegionAPIDocumentation.lua` and native nameplate sources were inspected
+for Retail `297d7aaaa736f346b3e036f38ee088eaf7f8c07f`, Forever
+`9dc84f0d3bbae1768ac3405b3716000bd93eda06` and Classic progression
+`e5d9b3a22c3f0f6f41ebac0e454f4969594261cf`. Existing Era/Anniversary gates and
+quest-provider contracts remain; native runtime access is not certified by source.
+
+The fresh external checkpoint verifies 2,455 source files, history and 87 settings
+metadata files. Settings were inspected read-only; no live settings-content backup
+is claimed. No new frame driver, event, hook, ticker, saved setting or cast-bar
+mutation was added. The existing host pool expands only to the objective peak.
+1,261 focused checks across five models and eight actual threat-module integration
+checks pass; three baseline/candidate pairs reject the old stacking and pass the
+candidate, and three harmful controls fail. Full validation: 272 scripts and 942
+Lua syntax files pass. [Exact sources and evidence](validation/nameplate-quest-layout-2026-11-09.json).
+
+The prior direct-implementation/local-check choice still applies. Native pixels,
+cast clearance in each nameplate style, combat/taint and CPU/FPS remain pending
+the user's in-game check. Reload, inspect a casting mob with both objectives and
+visible threat/level, narrow/widen the plate, then complete one objective. Confirm
+the row stays readable and extends left when crowded. No game input or settings/
+profiler writes were performed.
 
 Implementation stays in [Core.lua](../NamePlates/Core.lua), the existing defaults
 and options files. No new runtime Lua/TOC entry, quest database or quest saved
@@ -147,7 +196,8 @@ font, levels and 0.1s timing. 1,160 checks include 100 plate lifecycle cycles.
 Native Retail real-widget geometry/alpha/reuse checks pass with zero recorded errors;
 actual protected aura rendering/combat/secret values remain pending. [Evidence](NAMEPLATE_COUNTDOWN_WORK.md).
 
-<!-- NPQ-FULL-CURRENT -->
+<!-- NPQ-FULL-HISTORICAL -->
+Historical initial-progress capture (superseded by the layout validation above):
 Latest full checkout:263/265 standalone scripts PASS;932Lua syntax PASS.
 Concurrent unit-frame changes produced two mock failures: `public_geometry_writers.lua`
 needs `DeferProtected` in its test double; `raid_party_frames.lua` needs
@@ -155,9 +205,9 @@ needs `DeferProtected` in its test double; `raid_party_frames.lua` needs
 did not edit those owners or tests. Earlier265/265 captures retain their exact
 source scope externally. Quest checks311PASS, seven harmful controls rejected;
 full current source identities/failures are retained in the quest validation JSON.
-<!-- /NPQ-FULL-CURRENT -->
+<!-- /NPQ-FULL-HISTORICAL -->
 
-Final freshness note: independent unit-frame work continued after the full capture.
+Historical freshness note: independent unit-frame work continued after that capture.
 The last documentation check reported only inventory/verification freshness for
 `tests/raid_party_frames.lua`; refresh whole-project evidence after that batch.
 Six related quest/nameplate/Questie scripts pass and this feature's four owned

@@ -13,6 +13,9 @@ ns.FluxBindingTooltip = BT
 _G.FluxBindingTooltip = BT
 
 local hooksInstalled = false
+-- The shared tooltip also renders native secret world-cursor data. Keep addon
+-- bookkeeping off its Lua table, including writes from clear/hide callbacks.
+local tooltipOwners = setmetatable({}, { __mode = "k" })
 
 local function TextureTag(tex)
     if not tex then return "" end
@@ -371,7 +374,7 @@ local function FinishTooltipLines(tooltip, button, lines)
         tooltip:AddLine(row.text, row.r, row.g, row.b, true)
     end
     tooltip:Show()
-    tooltip._fluxBindingTipOwner = button
+    tooltipOwners[tooltip] = button
     return true
 end
 
@@ -394,7 +397,7 @@ function BT.AppendForButton(button, tooltip)
     end
 
     -- Already appended for this tooltip fill (PostCall + LAB sync).
-    if tooltip._fluxBindingTipOwner == button then
+    if tooltipOwners[tooltip] == button then
         return false
     end
 
@@ -679,7 +682,7 @@ function BT.OnLabTooltip(button)
         if not button or not button.IsMouseOver or not button:IsMouseOver() then
             return
         end
-        if GameTooltip and GameTooltip._fluxBindingTipOwner == button then
+        if GameTooltip and tooltipOwners[GameTooltip] == button then
             return
         end
         BT.AppendForButton(button, GameTooltip)
@@ -708,10 +711,10 @@ function BT.InstallHooks()
 
     if GameTooltip and GameTooltip.HookScript then
         GameTooltip:HookScript("OnTooltipCleared", function(self)
-            self._fluxBindingTipOwner = nil
+            tooltipOwners[self] = nil
         end)
         GameTooltip:HookScript("OnHide", function(self)
-            self._fluxBindingTipOwner = nil
+            tooltipOwners[self] = nil
         end)
     end
 

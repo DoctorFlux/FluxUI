@@ -1,0 +1,210 @@
+{
+  "change_id": "DEBUFF-COMBAT-COLORS-20261109",
+  "date": "2026-11-09",
+  "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\09\\01a1c04a-6ed8-71d1-ab6f-fabaa447ebc2\\debuff-combat-20261109T123609Z",
+  "baseline_sha256": "e302df314b366274f33c016ad6f86c6fc42e8269e46dcf986b924870592c76c0",
+  "candidate_sha256": "53166b4ac1ca3b2b534f631c900d6ac9da3329298655c55a94946a025e50c8b5",
+  "samples": [
+    {
+      "case": "portrait-layer",
+      "pair": 1,
+      "variant": "baseline",
+      "exit": 1,
+      "output": "lua: tests/friendly_debuff_tint.lua:7: portrait tint inherits the border combat level\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/friendly_debuff_tint.lua:7: in local 'check'\n\ttests/friendly_debuff_tint.lua:264: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "case": "portrait-layer",
+      "pair": 1,
+      "variant": "candidate",
+      "exit": 0,
+      "output": "Friendly debuff tint: 17104 checks PASS across five clients/current and legacy aura providers; native game checks pending\n"
+    },
+    {
+      "case": "portrait-layer",
+      "pair": 2,
+      "variant": "baseline",
+      "exit": 1,
+      "output": "lua: tests/friendly_debuff_tint.lua:7: portrait tint inherits the border combat level\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/friendly_debuff_tint.lua:7: in local 'check'\n\ttests/friendly_debuff_tint.lua:264: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "case": "portrait-layer",
+      "pair": 2,
+      "variant": "candidate",
+      "exit": 0,
+      "output": "Friendly debuff tint: 17104 checks PASS across five clients/current and legacy aura providers; native game checks pending\n"
+    },
+    {
+      "case": "portrait-layer",
+      "pair": 3,
+      "variant": "baseline",
+      "exit": 1,
+      "output": "lua: tests/friendly_debuff_tint.lua:7: portrait tint inherits the border combat level\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/friendly_debuff_tint.lua:7: in local 'check'\n\ttests/friendly_debuff_tint.lua:264: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "case": "portrait-layer",
+      "pair": 3,
+      "variant": "candidate",
+      "exit": 0,
+      "output": "Friendly debuff tint: 17104 checks PASS across five clients/current and legacy aura providers; native game checks pending\n"
+    },
+    {
+      "case": "portrait-layer",
+      "pair": 4,
+      "variant": "baseline",
+      "exit": 1,
+      "output": "lua: tests/friendly_debuff_tint.lua:7: portrait tint inherits the border combat level\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/friendly_debuff_tint.lua:7: in local 'check'\n\ttests/friendly_debuff_tint.lua:264: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "case": "portrait-layer",
+      "pair": 4,
+      "variant": "candidate",
+      "exit": 0,
+      "output": "Friendly debuff tint: 17104 checks PASS across five clients/current and legacy aura providers; native game checks pending\n"
+    },
+    {
+      "case": "portrait-layer",
+      "pair": 5,
+      "variant": "baseline",
+      "exit": 1,
+      "output": "lua: tests/friendly_debuff_tint.lua:7: portrait tint inherits the border combat level\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/friendly_debuff_tint.lua:7: in local 'check'\n\ttests/friendly_debuff_tint.lua:264: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "case": "portrait-layer",
+      "pair": 5,
+      "variant": "candidate",
+      "exit": 0,
+      "output": "Friendly debuff tint: 17104 checks PASS across five clients/current and legacy aura providers; native game checks pending\n"
+    },
+    {
+      "case": "combat-text",
+      "pair": 1,
+      "variant": "baseline",
+      "exit": 1,
+      "output": "lua: tests/friendly_debuff_tint.lua:7: HP/resource values and percent match client type\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/friendly_debuff_tint.lua:7: in upvalue 'check'\n\ttests/friendly_debuff_tint.lua:250: in local 'paintMatches'\n\ttests/friendly_debuff_tint.lua:310: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "case": "combat-text",
+      "pair": 1,
+      "variant": "candidate",
+      "exit": 0,
+      "output": "Friendly debuff tint: 17084 checks PASS across five clients/current and legacy aura providers; native game checks pending\n"
+    },
+    {
+      "case": "combat-text",
+      "pair": 2,
+      "variant": "baseline",
+      "exit": 1,
+      "output": "lua: tests/friendly_debuff_tint.lua:7: HP/resource values and percent match client type\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/friendly_debuff_tint.lua:7: in upvalue 'check'\n\ttests/friendly_debuff_tint.lua:250: in local 'paintMatches'\n\ttests/friendly_debuff_tint.lua:310: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "case": "combat-text",
+      "pair": 2,
+      "variant": "candidate",
+      "exit": 0,
+      "output": "Friendly debuff tint: 17084 checks PASS across five clients/current and legacy aura providers; native game checks pending\n"
+    },
+    {
+      "case": "combat-text",
+      "pair": 3,
+      "variant": "baseline",
+      "exit": 1,
+      "output": "lua: tests/friendly_debuff_tint.lua:7: HP/resource values and percent match client type\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/friendly_debuff_tint.lua:7: in upvalue 'check'\n\ttests/friendly_debuff_tint.lua:250: in local 'paintMatches'\n\ttests/friendly_debuff_tint.lua:310: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "case": "combat-text",
+      "pair": 3,
+      "variant": "candidate",
+      "exit": 0,
+      "output": "Friendly debuff tint: 17084 checks PASS across five clients/current and legacy aura providers; native game checks pending\n"
+    },
+    {
+      "case": "combat-text",
+      "pair": 4,
+      "variant": "baseline",
+      "exit": 1,
+      "output": "lua: tests/friendly_debuff_tint.lua:7: HP/resource values and percent match client type\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/friendly_debuff_tint.lua:7: in upvalue 'check'\n\ttests/friendly_debuff_tint.lua:250: in local 'paintMatches'\n\ttests/friendly_debuff_tint.lua:310: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "case": "combat-text",
+      "pair": 4,
+      "variant": "candidate",
+      "exit": 0,
+      "output": "Friendly debuff tint: 17084 checks PASS across five clients/current and legacy aura providers; native game checks pending\n"
+    },
+    {
+      "case": "combat-text",
+      "pair": 5,
+      "variant": "baseline",
+      "exit": 1,
+      "output": "lua: tests/friendly_debuff_tint.lua:7: HP/resource values and percent match client type\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/friendly_debuff_tint.lua:7: in upvalue 'check'\n\ttests/friendly_debuff_tint.lua:250: in local 'paintMatches'\n\ttests/friendly_debuff_tint.lua:310: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "case": "combat-text",
+      "pair": 5,
+      "variant": "candidate",
+      "exit": 0,
+      "output": "Friendly debuff tint: 17084 checks PASS across five clients/current and legacy aura providers; native game checks pending\n"
+    }
+  ],
+  "negativeControls": [
+    {
+      "mutation": "ignore-native-visibility",
+      "exit": 1,
+      "output": "lua: tests/friendly_debuff_tint.lua:7: exact normal text restored\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/friendly_debuff_tint.lua:7: in upvalue 'check'\n\ttests/friendly_debuff_tint.lua:253: in local 'restored'\n\ttests/friendly_debuff_tint.lua:289: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "mutation": "inspect-secret-color",
+      "exit": 1,
+      "output": "lua: actual-friendly-debuff-tint:146: attempt to compare number with table\nstack traceback:\n\tactual-friendly-debuff-tint:146: in upvalue 'PaintNativeText'\n\tactual-friendly-debuff-tint:259: in upvalue 'Update'\n\tactual-friendly-debuff-tint:294: in local 'fn'\n\ttests/friendly_debuff_tint.lua:229: in local 'flush'\n\ttests/friendly_debuff_tint.lua:257: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "mutation": "disable-native-text",
+      "exit": 1,
+      "output": "lua: tests/friendly_debuff_tint.lua:7: bursts coalesced; native color path needs no aura lookup\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/friendly_debuff_tint.lua:7: in local 'check'\n\ttests/friendly_debuff_tint.lua:284: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "mutation": "detach-portrait-layer",
+      "exit": 1,
+      "output": "lua: tests/friendly_debuff_tint.lua:7: portrait tint inherits the border combat level\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/friendly_debuff_tint.lua:7: in local 'check'\n\ttests/friendly_debuff_tint.lua:264: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "mutation": "skip-normal-restore",
+      "exit": 1,
+      "output": "lua: tests/friendly_debuff_tint.lua:7: exact normal text restored\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/friendly_debuff_tint.lua:7: in upvalue 'check'\n\ttests/friendly_debuff_tint.lua:253: in local 'restored'\n\ttests/friendly_debuff_tint.lua:321: in main chunk\n\t[C]: in ?\n"
+    }
+  ],
+  "candidate": {
+    "UnitFrames/FluxUnitFrames_DebuffTint.lua": "53166b4ac1ca3b2b534f631c900d6ac9da3329298655c55a94946a025e50c8b5",
+    "tests/friendly_debuff_tint.lua": "7d2945e5b39a34756bbdaa37f221632716b710b11dab97719211e540938a7fc4"
+  },
+  "copies": [
+    {
+      "client": "_retail_",
+      "exists": true,
+      "matches": true
+    },
+    {
+      "client": "_forever_",
+      "exists": true,
+      "matches": true
+    },
+    {
+      "client": "_classic_",
+      "exists": true,
+      "matches": true
+    },
+    {
+      "client": "_classic_era_",
+      "exists": true,
+      "matches": true
+    },
+    {
+      "client": "_anniversary_",
+      "exists": true,
+      "matches": true
+    }
+  ],
+  "scope": "Desktop lifecycle and opaque-value forwarding contracts only; no native VM/rendering/taint/performance claim",
+  "nativeDisposition": "REJECTED by user13:45:15 forbidden GetVertexColor;registered Texture access inference invalid",
+  "supersededBy": "docs/validation/debuff-forbidden-comparison-2026-11-09.json"
+}

@@ -1,0 +1,44 @@
+{
+  "date": "2026-11-09",
+  "sourceScope": "Exact GitHub-blob verified native Lua on engine primitives; not native rendering/secure VM/controller/performance",
+  "beforeNormalizedSHA256": "5b85e90daaf78e088e4a8ce803c64dcd0a9e02ffe87bc9832185ee2a087eda9a",
+  "baselineControls": [
+    {
+      "client": "classic",
+      "exit": 1,
+      "output": "lua: options-rework:163: attempt to index a nil value (local 'userLayout')\nstack traceback:\n\toptions-rework:163: in field 'ApplyLayout'\n\toptions-rework:49: in method 'SetBorder'\n\toptions-rework:41: in field 'CreateWindow'\n\toptions-rework:903: in method 'EnsureFrame'\n\toptions-rework:1189: in method 'Show'\n\ttests/options_rework.lua:280: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "client": "classic_era",
+      "exit": 1,
+      "output": "lua: options-rework:163: attempt to index a nil value (local 'userLayout')\nstack traceback:\n\toptions-rework:163: in field 'ApplyLayout'\n\toptions-rework:49: in method 'SetBorder'\n\toptions-rework:41: in field 'CreateWindow'\n\toptions-rework:903: in method 'EnsureFrame'\n\toptions-rework:1189: in method 'Show'\n\ttests/options_rework.lua:280: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "client": "classic_anniversary",
+      "exit": 1,
+      "output": "lua: options-rework:163: attempt to index a nil value (local 'userLayout')\nstack traceback:\n\toptions-rework:163: in field 'ApplyLayout'\n\toptions-rework:49: in method 'SetBorder'\n\toptions-rework:41: in field 'CreateWindow'\n\toptions-rework:903: in method 'EnsureFrame'\n\toptions-rework:1189: in method 'Show'\n\ttests/options_rework.lua:280: in main chunk\n\t[C]: in ?\n"
+    }
+  ],
+  "candidatePasses": [
+    {
+      "run": 1,
+      "exit": 0,
+      "output": "Options rework: 1253 checks; complete shell/renderer/widgets and menu lifecycle across five client models; native acceptance pending"
+    },
+    {
+      "run": 2,
+      "exit": 0,
+      "output": "Options rework: 1253 checks; complete shell/renderer/widgets and menu lifecycle across five client models; native acceptance pending"
+    },
+    {
+      "run": 3,
+      "exit": 0,
+      "output": "Options rework: 1253 checks; complete shell/renderer/widgets and menu lifecycle across five client models; native acceptance pending"
+    }
+  ],
+  "candidateNormalizedSHA256": {
+    "AddonOptions/FluxOptionsSkin.lua": "fcf6b5350dd992445618e36e7a1f868629869d19d5abd1d48e717e3e98871af2",
+    "tests/options_rework.lua": "ddb728512a3e3b2942898cd792917b984809574feebfdc756bf415533b47dbbb"
+  },
+  "sourceReport": "options-native-border-sources-2026-11-09.json"
+}

@@ -1,0 +1,220 @@
+{
+  "changeId": "VENDOR-JUNK-TAB-FREEZE-20261110",
+  "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c665-0f60-7912-92cc-9111ed0502f2\\junk-tab-checkpoint-20261110T165954Z",
+  "checkpointFiles": 2545,
+  "revision": "26f886e3ea5371b196ab235d2dace0c156002285",
+  "settingsMetadataEntries": 4,
+  "settingsWrites": false,
+  "privateSettingsCopied": false,
+  "runtimeFilesChanged": [
+    "Inventory/Restock/Junk/FluxJunk.lua",
+    "Inventory/Restock/Junk/FluxVendorJunkPanel.lua"
+  ],
+  "concurrentLuaChangesPreserved": [
+    "RaidFrame/FluxRaidAuras.lua",
+    "RaidFrame/FluxRaidVisuals.lua",
+    "tests/combat_grid_live_counts.lua",
+    "tests/friendly_debuff_tint.lua",
+    "tests/raid_healer_auras.lua",
+    "UnitFrames/FluxUnitFrames_DebuffTint.lua"
+  ],
+  "sourceHashes": {
+    "Inventory/Restock/Junk/FluxJunk.lua": "e4fc5d0a7f38a1ad1a91f0a6dde5a59bfda4ea5f211eab686a8d85e67b1157fc",
+    "Inventory/Restock/Junk/FluxVendorJunkPanel.lua": "240ffcc8f1c5a6155b6038aec5d2e2f45596cd80282600b7fe1d09929f8721ad",
+    "tests/vendor_junk_tab_work.lua": "b44d1285b780a1cb6c02f25e31cc08d783c098c2b669970c2b2c42b9bb59817b"
+  },
+  "pairs": [
+    {
+      "label": "junk-pair1-before",
+      "command": [
+        "lua",
+        "tests/vendor_junk_tab_work.lua",
+        "--compare",
+        "--panel-source",
+        "C:/Users/mario/.codex/visualizations/2026/11/10/01a1c665-0f60-7912-92cc-9111ed0502f2/junk-baseline/FluxVendorJunkPanel.lua",
+        "--junk-source",
+        "C:/Users/mario/.codex/visualizations/2026/11/10/01a1c665-0f60-7912-92cc-9111ed0502f2/junk-baseline/FluxJunk.lua"
+      ],
+      "exit": 0,
+      "seconds": 15.769986199971754,
+      "output": "METRIC live coldRequests=13768 coldScans=1 coldRows=51 burstScans=400 burstFields=20315 burstRows=6834\nFAIL live cold list requests bounded to linear work\nFAIL live opening paints once despite scroll range delivery\nFAIL live metadata burst coalesces full bag/list rebuilds\nFAIL live metadata burst coalesces row paints\nFAIL live stable refresh does not rewrite scroll geometry\nFAIL live old timer cannot repaint reopened panel\nFAIL live new timer retains refresh ownership\nMETRIC live synchronousDepth=65 synchronousScans=121\nFAIL live synchronous metadata cannot recursively rebuild: nil\nMETRIC forever coldRequests=13768 coldScans=1 coldRows=51 burstScans=400 burstFields=20315 burstRows=6834\nFAIL forever cold list requests bounded to linear work\nFAIL forever opening paints once despite scroll range delivery\nFAIL forever metadata burst coalesces full bag/list rebuilds\nFAIL forever metadata burst coalesces row paints\nFAIL forever stable refresh does not rewrite scroll geometry\nFAIL forever old timer cannot repaint reopened panel\nFAIL forever new timer retains refresh ownership\nMETRIC forever synchronousDepth=65 synchronousScans=121\nFAIL forever synchronous metadata cannot recursively rebuild: nil\nMETRIC mists coldRequests=13768 coldScans=1 coldRows=51 burstScans=400 burstFields=20315 burstRows=6834\nFAIL mists cold list requests bounded to linear work\nFAIL mists opening paints once despite scroll range delivery\nFAIL mists metadata burst coalesces full bag/list rebuilds\nFAIL mists metadata burst coalesces row paints\nFAIL mists stable refresh does not rewrite scroll geometry\nFAIL mists old timer cannot repaint reopened panel\nFAIL mists new timer retains refresh ownership\nMETRIC mists synchronousDepth=65 synchronousScans=121\nFAIL mists synchronous metadata cannot recursively rebuild: nil\nMETRIC era coldRequests=13768 coldScans=1 coldRows=51 burstScans=400 burstFields=20315 burstRows=6834\nFAIL era cold list requests bounded to linear work\nFAIL era opening paints once despite scroll range delivery\nFAIL era metadata burst coalesces full bag/list rebuilds\nFAIL era metadata burst coalesces row paints\nFAIL era stable refresh does not rewrite scroll geometry\nFAIL era old timer cannot repaint reopened panel\nFAIL era new timer retains refresh ownership\nMETRIC era synchronousDepth=65 synchronousScans=121\nFAIL era synchronous metadata cannot recursively rebuild: nil\nMETRIC anniversary coldRequests=13768 coldScans=1 coldRows=51 burstScans=400 burstFields=20315 burstRows=6834\nFAIL anniversary cold list requests bounded to linear work\nFAIL anniversary opening paints once despite scroll range delivery\nFAIL anniversary metadata burst coalesces full bag/list rebuilds\nFAIL anniversary metadata burst coalesces row paints\nFAIL anniversary stable refresh does not rewrite scroll geometry\nFAIL anniversary old timer cannot repaint reopened panel\nFAIL anniversary new timer retains refresh ownership\nMETRIC anniversary synchronousDepth=65 synchronousScans=121\nFAIL anniversary synchronous metadata cannot recursively rebuild: nil\nVendor Junk tab: 85 checks, 40 failures\n"
+    },
+    {
+      "label": "junk-pair1-after",
+      "command": [
+        "lua",
+        "tests/vendor_junk_tab_work.lua"
+      ],
+      "exit": 0,
+      "seconds": 0.20388839999213815,
+      "output": "METRIC live coldRequests=1200 coldScans=1 coldRows=17 burstScans=1 burstFields=34 burstRows=17\nMETRIC live synchronousDepth=1 synchronousScans=1\nMETRIC forever coldRequests=1200 coldScans=1 coldRows=17 burstScans=1 burstFields=34 burstRows=17\nMETRIC forever synchronousDepth=1 synchronousScans=1\nMETRIC mists coldRequests=1200 coldScans=1 coldRows=17 burstScans=1 burstFields=34 burstRows=17\nMETRIC mists synchronousDepth=1 synchronousScans=1\nMETRIC era coldRequests=1200 coldScans=1 coldRows=17 burstScans=1 burstFields=34 burstRows=17\nMETRIC era synchronousDepth=1 synchronousScans=1\nMETRIC anniversary coldRequests=1200 coldScans=1 coldRows=17 burstScans=1 burstFields=34 burstRows=17\nMETRIC anniversary synchronousDepth=1 synchronousScans=1\nVendor Junk tab: 85 checks, 0 failures\n"
+    },
+    {
+      "label": "junk-pair2-after",
+      "command": [
+        "lua",
+        "tests/vendor_junk_tab_work.lua"
+      ],
+      "exit": 0,
+      "seconds": 0.20085500000277534,
+      "output": "METRIC live coldRequests=1200 coldScans=1 coldRows=17 burstScans=1 burstFields=34 burstRows=17\nMETRIC live synchronousDepth=1 synchronousScans=1\nMETRIC forever coldRequests=1200 coldScans=1 coldRows=17 burstScans=1 burstFields=34 burstRows=17\nMETRIC forever synchronousDepth=1 synchronousScans=1\nMETRIC mists coldRequests=1200 coldScans=1 coldRows=17 burstScans=1 burstFields=34 burstRows=17\nMETRIC mists synchronousDepth=1 synchronousScans=1\nMETRIC era coldRequests=1200 coldScans=1 coldRows=17 burstScans=1 burstFields=34 burstRows=17\nMETRIC era synchronousDepth=1 synchronousScans=1\nMETRIC anniversary coldRequests=1200 coldScans=1 coldRows=17 burstScans=1 burstFields=34 burstRows=17\nMETRIC anniversary synchronousDepth=1 synchronousScans=1\nVendor Junk tab: 85 checks, 0 failures\n"
+    },
+    {
+      "label": "junk-pair2-before",
+      "command": [
+        "lua",
+        "tests/vendor_junk_tab_work.lua",
+        "--compare",
+        "--panel-source",
+        "C:/Users/mario/.codex/visualizations/2026/11/10/01a1c665-0f60-7912-92cc-9111ed0502f2/junk-baseline/FluxVendorJunkPanel.lua",
+        "--junk-source",
+        "C:/Users/mario/.codex/visualizations/2026/11/10/01a1c665-0f60-7912-92cc-9111ed0502f2/junk-baseline/FluxJunk.lua"
+      ],
+      "exit": 0,
+      "seconds": 14.30155219999142,
+      "output": "METRIC live coldRequests=13768 coldScans=1 coldRows=51 burstScans=400 burstFields=20315 burstRows=6834\nFAIL live cold list requests bounded to linear work\nFAIL live opening paints once despite scroll range delivery\nFAIL live metadata burst coalesces full bag/list rebuilds\nFAIL live metadata burst coalesces row paints\nFAIL live stable refresh does not rewrite scroll geometry\nFAIL live old timer cannot repaint reopened panel\nFAIL live new timer retains refresh ownership\nMETRIC live synchronousDepth=65 synchronousScans=121\nFAIL live synchronous metadata cannot recursively rebuild: nil\nMETRIC forever coldRequests=13768 coldScans=1 coldRows=51 burstScans=400 burstFields=20315 burstRows=6834\nFAIL forever cold list requests bounded to linear work\nFAIL forever opening paints once despite scroll range delivery\nFAIL forever metadata burst coalesces full bag/list rebuilds\nFAIL forever metadata burst coalesces row paints\nFAIL forever stable refresh does not rewrite scroll geometry\nFAIL forever old timer cannot repaint reopened panel\nFAIL forever new timer retains refresh ownership\nMETRIC forever synchronousDepth=65 synchronousScans=121\nFAIL forever synchronous metadata cannot recursively rebuild: nil\nMETRIC mists coldRequests=13768 coldScans=1 coldRows=51 burstScans=400 burstFields=20315 burstRows=6834\nFAIL mists cold list requests bounded to linear work\nFAIL mists opening paints once despite scroll range delivery\nFAIL mists metadata burst coalesces full bag/list rebuilds\nFAIL mists metadata burst coalesces row paints\nFAIL mists stable refresh does not rewrite scroll geometry\nFAIL mists old timer cannot repaint reopened panel\nFAIL mists new timer retains refresh ownership\nMETRIC mists synchronousDepth=65 synchronousScans=121\nFAIL mists synchronous metadata cannot recursively rebuild: nil\nMETRIC era coldRequests=13768 coldScans=1 coldRows=51 burstScans=400 burstFields=20315 burstRows=6834\nFAIL era cold list requests bounded to linear work\nFAIL era opening paints once despite scroll range delivery\nFAIL era metadata burst coalesces full bag/list rebuilds\nFAIL era metadata burst coalesces row paints\nFAIL era stable refresh does not rewrite scroll geometry\nFAIL era old timer cannot repaint reopened panel\nFAIL era new timer retains refresh ownership\nMETRIC era synchronousDepth=65 synchronousScans=121\nFAIL era synchronous metadata cannot recursively rebuild: nil\nMETRIC anniversary coldRequests=13768 coldScans=1 coldRows=51 burstScans=400 burstFields=20315 burstRows=6834\nFAIL anniversary cold list requests bounded to linear work\nFAIL anniversary opening paints once despite scroll range delivery\nFAIL anniversary metadata burst coalesces full bag/list rebuilds\nFAIL anniversary metadata burst coalesces row paints\nFAIL anniversary stable refresh does not rewrite scroll geometry\nFAIL anniversary old timer cannot repaint reopened panel\nFAIL anniversary new timer retains refresh ownership\nMETRIC anniversary synchronousDepth=65 synchronousScans=121\nFAIL anniversary synchronous metadata cannot recursively rebuild: nil\nVendor Junk tab: 85 checks, 40 failures\n"
+    },
+    {
+      "label": "junk-pair3-before",
+      "command": [
+        "lua",
+        "tests/vendor_junk_tab_work.lua",
+        "--compare",
+        "--panel-source",
+        "C:/Users/mario/.codex/visualizations/2026/11/10/01a1c665-0f60-7912-92cc-9111ed0502f2/junk-baseline/FluxVendorJunkPanel.lua",
+        "--junk-source",
+        "C:/Users/mario/.codex/visualizations/2026/11/10/01a1c665-0f60-7912-92cc-9111ed0502f2/junk-baseline/FluxJunk.lua"
+      ],
+      "exit": 0,
+      "seconds": 13.798895500018261,
+      "output": "METRIC live coldRequests=13768 coldScans=1 coldRows=51 burstScans=400 burstFields=20315 burstRows=6834\nFAIL live cold list requests bounded to linear work\nFAIL live opening paints once despite scroll range delivery\nFAIL live metadata burst coalesces full bag/list rebuilds\nFAIL live metadata burst coalesces row paints\nFAIL live stable refresh does not rewrite scroll geometry\nFAIL live old timer cannot repaint reopened panel\nFAIL live new timer retains refresh ownership\nMETRIC live synchronousDepth=65 synchronousScans=121\nFAIL live synchronous metadata cannot recursively rebuild: nil\nMETRIC forever coldRequests=13768 coldScans=1 coldRows=51 burstScans=400 burstFields=20315 burstRows=6834\nFAIL forever cold list requests bounded to linear work\nFAIL forever opening paints once despite scroll range delivery\nFAIL forever metadata burst coalesces full bag/list rebuilds\nFAIL forever metadata burst coalesces row paints\nFAIL forever stable refresh does not rewrite scroll geometry\nFAIL forever old timer cannot repaint reopened panel\nFAIL forever new timer retains refresh ownership\nMETRIC forever synchronousDepth=65 synchronousScans=121\nFAIL forever synchronous metadata cannot recursively rebuild: nil\nMETRIC mists coldRequests=13768 coldScans=1 coldRows=51 burstScans=400 burstFields=20315 burstRows=6834\nFAIL mists cold list requests bounded to linear work\nFAIL mists opening paints once despite scroll range delivery\nFAIL mists metadata burst coalesces full bag/list rebuilds\nFAIL mists metadata burst coalesces row paints\nFAIL mists stable refresh does not rewrite scroll geometry\nFAIL mists old timer cannot repaint reopened panel\nFAIL mists new timer retains refresh ownership\nMETRIC mists synchronousDepth=65 synchronousScans=121\nFAIL mists synchronous metadata cannot recursively rebuild: nil\nMETRIC era coldRequests=13768 coldScans=1 coldRows=51 burstScans=400 burstFields=20315 burstRows=6834\nFAIL era cold list requests bounded to linear work\nFAIL era opening paints once despite scroll range delivery\nFAIL era metadata burst coalesces full bag/list rebuilds\nFAIL era metadata burst coalesces row paints\nFAIL era stable refresh does not rewrite scroll geometry\nFAIL era old timer cannot repaint reopened panel\nFAIL era new timer retains refresh ownership\nMETRIC era synchronousDepth=65 synchronousScans=121\nFAIL era synchronous metadata cannot recursively rebuild: nil\nMETRIC anniversary coldRequests=13768 coldScans=1 coldRows=51 burstScans=400 burstFields=20315 burstRows=6834\nFAIL anniversary cold list requests bounded to linear work\nFAIL anniversary opening paints once despite scroll range delivery\nFAIL anniversary metadata burst coalesces full bag/list rebuilds\nFAIL anniversary metadata burst coalesces row paints\nFAIL anniversary stable refresh does not rewrite scroll geometry\nFAIL anniversary old timer cannot repaint reopened panel\nFAIL anniversary new timer retains refresh ownership\nMETRIC anniversary synchronousDepth=65 synchronousScans=121\nFAIL anniversary synchronous metadata cannot recursively rebuild: nil\nVendor Junk tab: 85 checks, 40 failures\n"
+    },
+    {
+      "label": "junk-pair3-after",
+      "command": [
+        "lua",
+        "tests/vendor_junk_tab_work.lua"
+      ],
+      "exit": 0,
+      "seconds": 0.20792620000429451,
+      "output": "METRIC live coldRequests=1200 coldScans=1 coldRows=17 burstScans=1 burstFields=34 burstRows=17\nMETRIC live synchronousDepth=1 synchronousScans=1\nMETRIC forever coldRequests=1200 coldScans=1 coldRows=17 burstScans=1 burstFields=34 burstRows=17\nMETRIC forever synchronousDepth=1 synchronousScans=1\nMETRIC mists coldRequests=1200 coldScans=1 coldRows=17 burstScans=1 burstFields=34 burstRows=17\nMETRIC mists synchronousDepth=1 synchronousScans=1\nMETRIC era coldRequests=1200 coldScans=1 coldRows=17 burstScans=1 burstFields=34 burstRows=17\nMETRIC era synchronousDepth=1 synchronousScans=1\nMETRIC anniversary coldRequests=1200 coldScans=1 coldRows=17 burstScans=1 burstFields=34 burstRows=17\nMETRIC anniversary synchronousDepth=1 synchronousScans=1\nVendor Junk tab: 85 checks, 0 failures\n"
+    }
+  ],
+  "controls": [
+    {
+      "label": "junk-control-comparator",
+      "command": [
+        "lua",
+        "tests/vendor_junk_tab_work.lua",
+        "--junk-source",
+        "C:/Users/mario/.codex/visualizations/2026/11/10/01a1c665-0f60-7912-92cc-9111ed0502f2/junk-control-comparator.lua.txt"
+      ],
+      "exit": 1,
+      "seconds": 0.27337140002055094,
+      "output": "METRIC live coldRequests=14568 coldScans=1 coldRows=17 burstScans=1 burstFields=34 burstRows=17\nFAIL live cold list requests bounded to linear work\nMETRIC live synchronousDepth=1 synchronousScans=1\nMETRIC forever coldRequests=14568 coldScans=1 coldRows=17 burstScans=1 burstFields=34 burstRows=17\nFAIL forever cold list requests bounded to linear work\nMETRIC forever synchronousDepth=1 synchronousScans=1\nMETRIC mists coldRequests=14568 coldScans=1 coldRows=17 burstScans=1 burstFields=34 burstRows=17\nFAIL mists cold list requests bounded to linear work\nMETRIC mists synchronousDepth=1 synchronousScans=1\nMETRIC era coldRequests=14568 coldScans=1 coldRows=17 burstScans=1 burstFields=34 burstRows=17\nFAIL era cold list requests bounded to linear work\nMETRIC era synchronousDepth=1 synchronousScans=1\nMETRIC anniversary coldRequests=14568 coldScans=1 coldRows=17 burstScans=1 burstFields=34 burstRows=17\nFAIL anniversary cold list requests bounded to linear work\nMETRIC anniversary synchronousDepth=1 synchronousScans=1\nVendor Junk tab: 85 checks, 5 failures\nlua: tests/vendor_junk_tab_work.lua:217: assertion failed!\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/vendor_junk_tab_work.lua:217: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "label": "junk-control-immediate",
+      "command": [
+        "lua",
+        "tests/vendor_junk_tab_work.lua",
+        "--panel-source",
+        "C:/Users/mario/.codex/visualizations/2026/11/10/01a1c665-0f60-7912-92cc-9111ed0502f2/junk-control-immediate.lua.txt"
+      ],
+      "exit": 1,
+      "seconds": 4.012720200000331,
+      "output": "METRIC live coldRequests=1200 coldScans=1 coldRows=17 burstScans=400 burstFields=40528 burstRows=13617\nFAIL live metadata burst coalesces full bag/list rebuilds\nFAIL live metadata burst coalesces row paints\nFAIL live late automatic junk remains visible\nFAIL live old timer cannot repaint reopened panel\nFAIL live new timer retains refresh ownership\nMETRIC live synchronousDepth=2 synchronousScans=2\nMETRIC forever coldRequests=1200 coldScans=1 coldRows=17 burstScans=400 burstFields=40528 burstRows=13617\nFAIL forever metadata burst coalesces full bag/list rebuilds\nFAIL forever metadata burst coalesces row paints\nFAIL forever late automatic junk remains visible\nFAIL forever old timer cannot repaint reopened panel\nFAIL forever new timer retains refresh ownership\nMETRIC forever synchronousDepth=2 synchronousScans=2\nMETRIC mists coldRequests=1200 coldScans=1 coldRows=17 burstScans=400 burstFields=40528 burstRows=13617\nFAIL mists metadata burst coalesces full bag/list rebuilds\nFAIL mists metadata burst coalesces row paints\nFAIL mists late automatic junk remains visible\nFAIL mists old timer cannot repaint reopened panel\nFAIL mists new timer retains refresh ownership\nMETRIC mists synchronousDepth=2 synchronousScans=2\nMETRIC era coldRequests=1200 coldScans=1 coldRows=17 burstScans=400 burstFields=40528 burstRows=13617\nFAIL era metadata burst coalesces full bag/list rebuilds\nFAIL era metadata burst coalesces row paints\nFAIL era late automatic junk remains visible\nFAIL era old timer cannot repaint reopened panel\nFAIL era new timer retains refresh ownership\nMETRIC era synchronousDepth=2 synchronousScans=2\nMETRIC anniversary coldRequests=1200 coldScans=1 coldRows=17 burstScans=400 burstFields=40528 burstRows=13617\nFAIL anniversary metadata burst coalesces full bag/list rebuilds\nFAIL anniversary metadata burst coalesces row paints\nFAIL anniversary late automatic junk remains visible\nFAIL anniversary old timer cannot repaint reopened panel\nFAIL anniversary new timer retains refresh ownership\nMETRIC anniversary synchronousDepth=2 synchronousScans=2\nVendor Junk tab: 85 checks, 25 failures\nlua: tests/vendor_junk_tab_work.lua:217: assertion failed!\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/vendor_junk_tab_work.lua:217: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "label": "junk-control-geometry",
+      "command": [
+        "lua",
+        "tests/vendor_junk_tab_work.lua",
+        "--panel-source",
+        "C:/Users/mario/.codex/visualizations/2026/11/10/01a1c665-0f60-7912-92cc-9111ed0502f2/junk-control-geometry.lua.txt"
+      ],
+      "exit": 1,
+      "seconds": 0.21230040001682937,
+      "output": "METRIC live coldRequests=1200 coldScans=1 coldRows=17 burstScans=1 burstFields=34 burstRows=17\nFAIL live stable refresh does not rewrite scroll geometry\nMETRIC live synchronousDepth=1 synchronousScans=1\nMETRIC forever coldRequests=1200 coldScans=1 coldRows=17 burstScans=1 burstFields=34 burstRows=17\nFAIL forever stable refresh does not rewrite scroll geometry\nMETRIC forever synchronousDepth=1 synchronousScans=1\nMETRIC mists coldRequests=1200 coldScans=1 coldRows=17 burstScans=1 burstFields=34 burstRows=17\nFAIL mists stable refresh does not rewrite scroll geometry\nMETRIC mists synchronousDepth=1 synchronousScans=1\nMETRIC era coldRequests=1200 coldScans=1 coldRows=17 burstScans=1 burstFields=34 burstRows=17\nFAIL era stable refresh does not rewrite scroll geometry\nMETRIC era synchronousDepth=1 synchronousScans=1\nMETRIC anniversary coldRequests=1200 coldScans=1 coldRows=17 burstScans=1 burstFields=34 burstRows=17\nFAIL anniversary stable refresh does not rewrite scroll geometry\nMETRIC anniversary synchronousDepth=1 synchronousScans=1\nVendor Junk tab: 85 checks, 5 failures\nlua: tests/vendor_junk_tab_work.lua:217: assertion failed!\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/vendor_junk_tab_work.lua:217: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "label": "junk-control-reentry",
+      "command": [
+        "lua",
+        "tests/vendor_junk_tab_work.lua",
+        "--panel-source",
+        "C:/Users/mario/.codex/visualizations/2026/11/10/01a1c665-0f60-7912-92cc-9111ed0502f2/junk-control-reentry.lua.txt"
+      ],
+      "exit": 1,
+      "seconds": 0.22487199999159202,
+      "output": "METRIC live coldRequests=1200 coldScans=1 coldRows=34 burstScans=1 burstFields=34 burstRows=17\nFAIL live opening paints once despite scroll range delivery\nMETRIC live synchronousDepth=1 synchronousScans=1\nMETRIC forever coldRequests=1200 coldScans=1 coldRows=34 burstScans=1 burstFields=34 burstRows=17\nFAIL forever opening paints once despite scroll range delivery\nMETRIC forever synchronousDepth=1 synchronousScans=1\nMETRIC mists coldRequests=1200 coldScans=1 coldRows=34 burstScans=1 burstFields=34 burstRows=17\nFAIL mists opening paints once despite scroll range delivery\nMETRIC mists synchronousDepth=1 synchronousScans=1\nMETRIC era coldRequests=1200 coldScans=1 coldRows=34 burstScans=1 burstFields=34 burstRows=17\nFAIL era opening paints once despite scroll range delivery\nMETRIC era synchronousDepth=1 synchronousScans=1\nMETRIC anniversary coldRequests=1200 coldScans=1 coldRows=34 burstScans=1 burstFields=34 burstRows=17\nFAIL anniversary opening paints once despite scroll range delivery\nMETRIC anniversary synchronousDepth=1 synchronousScans=1\nVendor Junk tab: 85 checks, 5 failures\nlua: tests/vendor_junk_tab_work.lua:217: assertion failed!\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/vendor_junk_tab_work.lua:217: in main chunk\n\t[C]: in ?\n"
+    }
+  ],
+  "native": "NOT RUN; user reproduction route; no game input or profiler changes",
+  "limitations": "Production-code desktop models; no native FPS, pixels, taint, controller or freeze-removal acceptance",
+  "fullValidation": {
+    "pass": 295,
+    "fail": 2,
+    "syntaxFiles": 969,
+    "syntaxFailures": [],
+    "failingScripts": [
+      {
+        "path": "tests/raid_aura_native_filters.lua",
+        "exit": 1,
+        "wallSeconds": 0.5769,
+        "output": "FAIL live readable native gameplay priority: ...live/Interface/AddOns/Blizzard_FrameXMLUtil/AuraUtil.lua:615: attempt to index a nil value\nFAIL live strict raw raid membership bypasses custom visibility safely: ...live/Interface/AddOns/Blizzard_FrameXMLUtil/AuraUtil.lua:615: attempt to index a nil value\nFAIL live readable UnitAura-only records preserve known query context: ...live/Interface/AddOns/Blizzard_FrameXMLUtil/AuraUtil.lua:615: attempt to index a nil value\nFAIL forever readable native gameplay priority: ...ever/Interface/AddOns/Blizzard_FrameXMLUtil/AuraUtil.lua:615: attempt to index a nil value\nFAIL forever strict raw raid membership bypasses custom visibility safely: ...ever/Interface/AddOns/Blizzard_FrameXMLUtil/AuraUtil.lua:615: attempt to index a nil value\nFAIL forever readable UnitAura-only records preserve known query context: ...ever/Interface/AddOns/Blizzard_FrameXMLUtil/AuraUtil.lua:615: attempt to index a nil value\nFAIL classic readable native gameplay priority: ...ssic/Interface/AddOns/Blizzard_FrameXMLUtil/AuraUtil.lua:476: attempt to index a nil value (field 'color')\nFAIL classic strict raw raid membership bypasses custom visibility safely: ...ssic/Interface/AddOns/Blizzard_FrameXMLUtil/AuraUtil.lua:476: attempt to index a nil value (field 'color')\nFAIL classic readable UnitAura-only records preserve known query context: ...ssic/Interface/AddOns/Blizzard_FrameXMLUtil/AuraUtil.lua:476: attempt to index a nil value (field 'color')\nFAIL classic_era readable native gameplay priority: ..._era/Interface/AddOns/Blizzard_FrameXMLUtil/AuraUtil.lua:476: attempt to index a nil value (field 'color')\nFAIL classic_era strict raw raid membership bypasses custom visibility safely: ..._era/Interface/AddOns/Blizzard_FrameXMLUtil/AuraUtil.lua:476: attempt to index a nil value (field 'color')\nFAIL classic_era readable UnitAura-only records preserve known query context: ..._era/Interface/AddOns/Blizzard_FrameXMLUtil/AuraUtil.lua:476: attempt to index a nil value (field 'color')\nFAIL classic_anniversary readable native gameplay priority: ...sary/Interface/AddOns/Blizzard_FrameXMLUtil/AuraUtil.lua:476: attempt to index a nil value (field 'color')\nFAIL classic_anniversary strict raw raid membership bypasses custom visibility safely: ...sary/Interface/AddOns/Blizzard_FrameXMLUtil/AuraUtil.lua:476: attempt to index a nil value (field 'color')\nFAIL classic_anniversary readable UnitAura-only records preserve known query context: ...sary/Interface/AddOns/Blizzard_FrameXMLUtil/AuraUtil.lua:476: attempt to index a nil value (field 'color')\nRaid native aura policy: 111 passed, 15 failed; five pinned client policies, public native predicates; native VM/rendering pending\nlua: tests\\raid_aura_native_filters.lua:180: native aura policy regressions\nstack traceback:\n\t[C]: in function 'assert'\n\ttests\\raid_aura_native_filters.lua:180: in main chunk\n\t[C]: in ?\n"
+      },
+      {
+        "path": "tests/raid_healer_auras.lua",
+        "exit": 1,
+        "wallSeconds": 0.0439,
+        "output": "lua: ..._era/Interface/AddOns/Blizzard_FrameXMLUtil/AuraUtil.lua:476: attempt to index a nil value (field 'color')\nstack traceback:\n\t..._era/Interface/AddOns/Blizzard_FrameXMLUtil/AuraUtil.lua:476: in field 'SetAuraBorderColor'\n\tRaidFrame/FluxRaidAuras.lua:785: in field 'UpdateDispel'\n\tRaidFrame/FluxRaidAuras.lua:766: in field 'Update'\n\ttests\\raid_healer_auras.lua:420: in main chunk\n\t[C]: in ?\n"
+      }
+    ],
+    "scope": "Concurrent unrelated Lua edits; no clean full-suite acceptance claimed; affected Junk hashes match the run"
+  },
+  "sourceLookup": {
+    "freshCommits": "Unavailable: DNS lookup failed and web commit endpoints were inaccessible",
+    "used": "Existing pinned packaged contracts; ten read-only local source files; no source pins advanced",
+    "retailItemDocumentation": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f"
+  },
+  "artifacts": {
+    "junk-tab-full.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c665-0f60-7912-92cc-9111ed0502f2\\junk-tab-full.json",
+      "sha256": "5dbcef4ffd8107a6b620d08ebc0039ec3ff87b2168a42dc7def3da844fb1faa1"
+    },
+    "junk-local-source-contracts.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c665-0f60-7912-92cc-9111ed0502f2\\junk-local-source-contracts.json",
+      "sha256": "e1a0777a3d4f4f1e86cb8ca624b374733cd6cb014da108c5c2fbcadefd3e37b3"
+    }
+  },
+  "focusedChecks": 85,
+  "nativeAcceptance": {
+    "freezeRemoval": "NOT RUN",
+    "FPS": "NOT RUN",
+    "pixels": "NOT RUN",
+    "taint": "NOT RUN",
+    "controller": "NOT RUN",
+    "route": "Established user-performed reproduction; no connected Witchcraft tools available"
+  },
+  "checkpointArchiveHashes": {
+    "source.zip": "06f41e3f257cbdce1b24e98931eabdd8d685e9428aa9494bb95f5a4423287260",
+    "history.bundle": "4474b7bf056f567f4a92d7bd58a16ccb721bbf6db79b56de4da718934299736a"
+  },
+  "settingsMetadataUnchanged": true,
+  "publication": "Not performed; main retained; no branch, commit or push",
+  "documentationValidation": {
+    "result": "PASS",
+    "classifiedSources": 1003,
+    "reachableFiles": 607,
+    "settings": 427,
+    "savedVariableRoots": 24,
+    "localLinks": 16208
+  },
+  "finalFocusedValidation": {
+    "junkTabChecks": 85,
+    "timerOwnershipChecks": 54,
+    "syntax": "PASS for both changed runtime files and new test",
+    "diffWhitespace": "PASS"
+  }
+}

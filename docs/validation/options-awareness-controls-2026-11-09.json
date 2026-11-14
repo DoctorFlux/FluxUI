@@ -1,0 +1,18 @@
+{
+  "date": "2026-11-09",
+  "scope": "Source models only; no native rendering/input/performance",
+  "baselineCatalogNormalizedSHA256": "819a030ca538d50facaff3077fa8329760fc410edc7c06539527927adb782f08",
+  "baselineControls": [
+    {
+      "test": "tests/options_navigation.lua",
+      "exit": 1,
+      "output": "lua: tests/options_navigation.lua:5: live: canonical placement statusBars/invTipFactionOnly -> lootItems/loot\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/options_navigation.lua:5: in upvalue 'check'\n\ttests/options_navigation.lua:88: in local 'at'\n\ttests/options_navigation.lua:115: in local 'exercise'\n\ttests/options_navigation.lua:175: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "test": "tests/options_rework.lua",
+      "exit": 1,
+      "output": "lua: tests/options_rework.lua:13: live: Inventory awareness removed from Status Bars\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/options_rework.lua:13: in local 'check'\n\ttests/options_rework.lua:407: in main chunk\n\t[C]: in ?\n"
+    }
+  ],
+  "artifactRoot": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\09\\01a1c03e-c615-7f02-a24a-3e5ed07300f1\\options-awareness-controls"
+}

@@ -173,10 +173,14 @@ function VM.GetVendorCandidates(kind)
             itemID = tonumber(itemID)
             local usable = Score.IsUsableForVendor and Score.IsUsableForVendor(itemID, kind)
                 or (Score.IsUsable and Score.IsUsable(itemID, kind))
-            if itemID and usable then
-                -- Prefer persisted effective; avoid re-Classify on every Best scan.
+            if itemID and usable and not (Score.IsExcludedFromBest and Score.IsExcludedFromBest(itemID)) then
+                -- Old maximum-based records migrate once when their real
+                -- minimum is known; settled records do not reparse every scan.
+                if Best.Persist.NormalizePotion then Best.Persist.NormalizePotion(kind, info, itemID) end
+                local ready = not Best.Persist.NormalizePotion or (kind ~= "healPotion" and kind ~= "manaPotion")
+                    or info.restoreBasis == "minimum"
                 local effective = tonumber(info.effective) or 0
-                out[#out + 1] = {
+                if ready then out[#out + 1] = {
                     itemID = itemID,
                     kind = kind,
                     effective = effective,
@@ -186,7 +190,7 @@ function VM.GetVendorCandidates(kind)
                     count = 0,
                     source = "vendor",
                     locations = {},
-                }
+                } end
             end
         end
     end

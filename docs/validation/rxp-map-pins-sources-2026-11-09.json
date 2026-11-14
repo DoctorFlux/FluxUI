@@ -1,0 +1,74 @@
+{
+  "branch": "forever",
+  "sha": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+  "commitDate": "2026-11-07T04:46:13Z",
+  "files": [
+    {
+      "path": "version.txt",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/9dc84f0d3bbae1768ac3405b3716000bd93eda06/version.txt",
+      "sha256": "40632cd2240c025fafc7bb8343593d2f8bde74c1196bc678cbdaeb807c9eb6c2",
+      "bytes": 13
+    },
+    {
+      "path": "Interface/AddOns/Blizzard_MapCanvas/MapCanvas_DataProviderBase.lua",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_MapCanvas/MapCanvas_DataProviderBase.lua",
+      "sha256": "22d116c7d374116623ca1f4adab12a5dea48a6f94485606712578b96a59df7a0",
+      "bytes": 19979
+    },
+    {
+      "path": "Interface/AddOns/Blizzard_MapCanvas/Blizzard_MapCanvas.lua",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_MapCanvas/Blizzard_MapCanvas.lua",
+      "sha256": "1360239aa43996f74b1793e800bc384a1baa8eb2b307ea61a8873ea5ec461143",
+      "bytes": 39575
+    },
+    {
+      "path": "Interface/AddOns/Blizzard_MapCanvas/MapCanvas_PinBase.lua",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "path": "Interface/AddOns/Blizzard_MapCanvas/Blizzard_MapCanvas.toc",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_MapCanvas/Blizzard_MapCanvas.toc",
+      "sha256": "480cadc152ac31a0ef8b9dd78e477247578ffe5e88bb2fa079a2968c199b8af7",
+      "bytes": 208
+    },
+    {
+      "path": "Interface/AddOns/Blizzard_WorldMap/Blizzard_WorldMap.toc",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "path": "Interface/AddOns/Blizzard_BattlefieldMap/Blizzard_BattlefieldMap.toc",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_BattlefieldMap/Blizzard_BattlefieldMap.toc",
+      "sha256": "1ceea4e47e7e0ed3c7abd7b82b95cc57a5c6e3f12dbccea2ea920bef657f2eb7",
+      "bytes": 666
+    }
+  ],
+  "nativeOperation": "NOT RUN",
+  "installedRXP": {
+    "path": "F:\\World of Warcraft\\_forever_\\Interface\\AddOns\\RXPGuides",
+    "version": "v4.11.35",
+    "HBDPinsVersion": 17,
+    "license": "CC BY-NC-SA 4.0; inspected read-only; no code/art/guide content copied",
+    "files": [
+      {
+        "path": "RXPGuides.toc",
+        "sha256": "61d0ae9cd1aeebda63fc0aaea01f40d261ccba8c7d39889fa11948f458dcb16f"
+      },
+      {
+        "path": "map.lua",
+        "sha256": "fde153b9b977180a67d25f9fac57f7497db48a3e4ea18439593c5f76b6727a41"
+      },
+      {
+        "path": "CptStadicsVendorTreasures.lua",
+        "sha256": "b249f52a5cea40b76f421d13c242ac58cc40a8602da5910406d7a6097eb08cdd"
+      },
+      {
+        "path": "libs/HereBeDragons/HereBeDragons-Pins-2.0.lua",
+        "sha256": "7b234d9488bbd108822264b13e692c25fe8fb08c68705c7d5da5600ca69f7b33"
+      },
+      {
+        "path": "LICENSE",
+        "sha256": "cb6fc99e7c3c66807b71c8ec52b94a8bca3806e60e27405007624e9d4929e5bd"
+      }
+    ]
+  }
+}

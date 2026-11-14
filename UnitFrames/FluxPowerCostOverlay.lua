@@ -1,6 +1,6 @@
 -- UnitFrames/FluxPowerCostOverlay.lua
--- HUD clients: cast-cost segment (ManaCostPredictionBar) and BuilderSpender spend/gain flash.
--- Era, Anniversary, and Mists unit frames do not mount either widget.
+-- Cast-cost segment (ManaCostPredictionBar) and BuilderSpender spend/gain flash.
+-- HUD clients also support the native-value ghost path for restricted costs.
 local addonName, ns = ...
 ns.PowerCostOverlay = ns.PowerCostOverlay or {}
 local PCO = ns.PowerCostOverlay
@@ -13,6 +13,11 @@ local LOSS_TIME_END = 0.6
 local LOSS_GLOW_FADE = 0.25
 local LOSS_BAR_FADE = 0.4
 local GAIN_TIME_END = 0.5
+local PrepareBar, QueuePreparation
+
+local function InCombat()
+    return InCombatLockdown and InCombatLockdown()
+end
 
 local function UsesHud()
     return UF and UF.UsesHudUnitBars and UF.UsesHudUnitBars()
@@ -146,12 +151,22 @@ end
 -- Prediction segment
 -- ---------------------------------------------------------------------------
 function PCO.CreateOverlay(powerBar)
-    if not powerBar or powerBar.CostOverlay then return end
-    local seg = powerBar:CreateTexture(nil, "OVERLAY", nil, 3)
-    seg:SetTexture(TEXTURE_BAR)
-    seg:SetWidth(1)
-    seg:Hide()
-    powerBar.CostOverlay = seg
+    if not powerBar then return end
+    if InCombat() and not powerBar._fluxPowerFeedbackPrepared then
+        QueuePreparation(powerBar)
+        return powerBar.CostOverlay
+    end
+    local seg = powerBar.CostOverlay
+    if not seg then
+        seg = powerBar:CreateTexture(nil, "OVERLAY", nil, 3)
+        seg:SetTexture(TEXTURE_BAR)
+        seg:SetWidth(1)
+        seg:Hide()
+        powerBar.CostOverlay = seg
+    end
+    if not FluxUnitFrames_IsFeatureEnabled or FluxUnitFrames_IsFeatureEnabled("powerCostOverlay") then
+        PrepareBar(powerBar)
+    end
     return seg
 end
 
@@ -197,55 +212,141 @@ end
 -- Hidden meter turns a secret cost into a pixel width via SetValue, with no Lua math.
 local function EnsureCostMeter(bar)
     if bar._fluxCostMeter then return bar._fluxCostMeter end
+    if InCombat() then QueuePreparation(bar); return end
     local meter = CreateFrame("StatusBar", nil, bar)
     meter:SetAllPoints(bar)
     meter:SetAlpha(0)
     meter:SetStatusBarTexture(TEXTURE_BAR)
-    meter:Hide()
+    meter:Show()
     bar._fluxCostMeter = meter
     return meter
 end
 
 local function EnsurePowerGhost(bar)
     if bar.PowerGhost then return bar.PowerGhost end
+    if InCombat() then QueuePreparation(bar); return end
     local parent = bar:GetParent() or bar
     local ghost = CreateFrame("StatusBar", nil, parent)
     ghost:SetAllPoints(bar)
     ghost:SetFrameLevel(math.max(0, (bar:GetFrameLevel() or 1) - 1))
     ghost:SetAlpha(0)
     ghost:SetStatusBarTexture(TEXTURE_BAR)
+    ghost:Show()
     bar.PowerGhost = ghost
     return ghost
 end
 
-local function MatchGhostArt(bar, ghost)
-    if bar._fluxBarAtlas and ghost.SetStatusBarTexture then
+local function GhostArt(bar)
+    if bar._fluxBarAtlas then
         local atlas = bar._fluxBarAtlas
-        ghost:SetStatusBarTexture(UF.GetHudBarTexture and UF.GetHudBarTexture(atlas) or atlas)
-        ghost:SetStatusBarColor(1, 1, 1)
+        local resolver = UF.GetHudBarTexture
+        local client = ns.Flux and ns.Flux.Client or rawget(_G, "FLUX_API")
+        local forever = client and client.isForever
+        if CanRead(atlas) and bar._fluxGhostTextureAtlas == atlas and bar._fluxGhostTextureResolver == resolver
+            and bar._fluxGhostTextureClient == client and bar._fluxGhostTextureForever == forever then
+            return bar._fluxGhostTexturePath, 1, 1, 1
+        end
+        local path = resolver and resolver(atlas) or atlas
+        if CanRead(atlas) and CanRead(path) then
+            bar._fluxGhostTextureAtlas, bar._fluxGhostTextureResolver = atlas, resolver
+            bar._fluxGhostTextureClient, bar._fluxGhostTextureForever = client, forever
+            bar._fluxGhostTexturePath = path
+        end
+        return path, 1, 1, 1
     else
-        ghost:SetStatusBarTexture(TEXTURE_BAR)
         local r, g, b = bar:GetStatusBarColor()
-        ghost:SetStatusBarColor(r or 1, g or 1, b or 1)
+        return TEXTURE_BAR, r or 1, g or 1, b or 1
     end
+end
+
+local function PublicArt(path, r, g, b)
+    return CanRead(path) and ReadableNumber(r) ~= nil and ReadableNumber(g) ~= nil and ReadableNumber(b) ~= nil
+end
+
+local function GhostUnchanged(bar)
+    local ghost = bar.PowerGhost
+    if not ghost or not ghost._fluxGhostCommitted then return false end
+    local value, maximum = ReadableNumber(bar._fluxGhostValue), ReadableNumber(bar._fluxGhostMax)
+    if value == nil or maximum == nil then return false end
+    local path, r, g, b = GhostArt(bar)
+    return PublicArt(path, r, g, b) and ghost._fluxGhostValue == value and ghost._fluxGhostMaximum == maximum
+        and ghost._fluxGhostPath == path and ghost._fluxGhostR == r and ghost._fluxGhostG == g and ghost._fluxGhostB == b
 end
 
 local function CommitPowerGhost(bar)
     local ghost = EnsurePowerGhost(bar)
+    if not ghost then return false end
     local value = bar._fluxGhostValue
     local maxValue = bar._fluxGhostMax
-    if type(value) == "nil" or type(maxValue) == "nil" then return end
-    MatchGhostArt(bar, ghost)
-    ghost:Show()
-    pcall(function()
-        ghost:SetMinMaxValues(0, maxValue)
-    end)
+    if type(value) == "nil" or type(maxValue) == "nil" then return false end
+    if GhostUnchanged(bar) then return true end
+    local path, r, g, b = GhostArt(bar)
+    local textured = ghost:SetStatusBarTexture(path)
+    ghost:SetStatusBarColor(r, g, b)
+    local sized = pcall(ghost.SetMinMaxValues, ghost, 0, maxValue)
     local interp = ImmediateInterp()
+    local applied
     if interp then
-        local ok = pcall(ghost.SetValue, ghost, value, interp)
-        if ok then return end
+        applied = pcall(ghost.SetValue, ghost, value, interp)
     end
-    pcall(ghost.SetValue, ghost, value)
+    if not applied then applied = pcall(ghost.SetValue, ghost, value) end
+    if textured == true and sized and applied and ReadableNumber(value) ~= nil and ReadableNumber(maxValue) ~= nil and PublicArt(path, r, g, b) then
+        ghost._fluxGhostCommitted = true
+        ghost._fluxGhostValue, ghost._fluxGhostMaximum = value, maxValue
+        ghost._fluxGhostPath, ghost._fluxGhostR, ghost._fluxGhostG, ghost._fluxGhostB = path, r, g, b
+    else
+        ghost._fluxGhostCommitted = nil
+    end
+    return sized and applied
+end
+
+local function HoldGhost(bar)
+    bar._fluxGhostHolding = true
+    bar._fluxGhostCommitPending = nil
+    bar._fluxGhostSeq = (bar._fluxGhostSeq or 0) + 1
+    local seq = bar._fluxGhostSeq
+    if C_Timer and C_Timer.After then
+        C_Timer.After(LOSS_TIME_END, function()
+            if bar._fluxGhostSeq ~= seq then return end
+            bar._fluxGhostHolding = false
+            CommitPowerGhost(bar)
+        end)
+    else
+        bar._fluxGhostHolding = false
+        CommitPowerGhost(bar)
+    end
+end
+
+local function CommitGhostLater(bar)
+    if bar._fluxGhostHolding or bar._fluxGhostCommitPending then return end
+    bar._fluxGhostSeq = (bar._fluxGhostSeq or 0) + 1
+    local seq = bar._fluxGhostSeq
+    if C_Timer and C_Timer.After then
+        bar._fluxGhostCommitPending = true
+        -- One deadline retains the latest values in this frame. Completion
+        -- still observes the old ghost before the same next-frame boundary.
+        C_Timer.After(0, function()
+            if bar._fluxGhostSeq ~= seq then return end
+            bar._fluxGhostCommitPending = nil
+            if not bar._fluxGhostHolding then CommitPowerGhost(bar) end
+        end)
+    else
+        CommitPowerGhost(bar)
+    end
+end
+
+local function SyncFeedbackDriver(f)
+    local active = f.updatingGain or f.updatingLoss or false
+    if not active and not f.secretPlaying then
+        -- The prepared Frame stays shown. Replace its old final Hide with
+        -- equivalent effective visibility for every owned effect texture.
+        if f.GainGlowTexture then f.GainGlowTexture:Hide() end
+        if f.LossGlowTexture then f.LossGlowTexture:Hide() end
+        if f.BarTexture then f.BarTexture:Hide() end
+    end
+    if f._fluxReadableDriver == active then return end
+    f:SetScript("OnUpdate", active and f._fluxFeedbackOnUpdate or nil)
+    f._fluxReadableDriver = active
 end
 
 local function StopBarFeedback(bar)
@@ -253,6 +354,7 @@ local function StopBarFeedback(bar)
     bar._fluxCastFinish = nil
     bar._fluxGhostHolding = false
     bar._fluxGhostSeq = (bar._fluxGhostSeq or 0) + 1
+    bar._fluxGhostCommitPending = nil
     bar._fluxPrevFillW = nil
     local f = bar.FeedbackFrame
     if not f then return end
@@ -268,7 +370,7 @@ local function StopBarFeedback(bar)
     if f.GainGlowTexture then f.GainGlowTexture:Hide() end
     if f.LossGlowTexture then f.LossGlowTexture:Hide() end
     if f.BarTexture then f.BarTexture:Hide() end
-    f:Hide()
+    SyncFeedbackDriver(f)
 end
 
 function PCO.ResetIdentityForFrame(frame)
@@ -277,6 +379,7 @@ function PCO.ResetIdentityForFrame(frame)
         if not bar then return end
         StopBarFeedback(bar)
         bar._fluxGhostPrimed = nil
+        bar._fluxGhostValue, bar._fluxGhostMax = nil, nil
         bar._fluxFeedbackGUID = nil
         bar._fluxFeedbackUnit = nil
         bar._fluxCastUnitGUID = nil
@@ -382,7 +485,7 @@ function PCO.RefreshPrediction(bar)
     end
 
     local meter = EnsureCostMeter(bar)
-    meter:Show()
+    if not meter then seg:Hide(); return end
     local width
     local sized = pcall(function()
         meter:SetMinMaxValues(0, maxPower)
@@ -408,12 +511,14 @@ end
 local function EndFeedbackGain(f)
     f.GainGlowTexture:Hide()
     f.updatingGain = false
+    SyncFeedbackDriver(f)
 end
 
 local function EndFeedbackLoss(f)
     f.LossGlowTexture:Hide()
     f.BarTexture:Hide()
     f.updatingLoss = false
+    SyncFeedbackDriver(f)
 end
 
 local function FeedbackOnUpdate(f)
@@ -459,13 +564,12 @@ local function FeedbackOnUpdate(f)
             f.BarTexture:SetAlpha(barAlpha)
         end
     end
-    if not f.updatingGain and not f.updatingLoss and not f.secretPlaying then
-        f:Hide()
-    end
+    SyncFeedbackDriver(f)
 end
 
 local function EnsureFeedback(bar)
     if bar.FeedbackFrame then return bar.FeedbackFrame end
+    if InCombat() then QueuePreparation(bar); return end
     local f = CreateFrame("Frame", nil, bar)
     f:SetAllPoints(bar)
     -- Under the amount / percent text (TextOverlay is bar level + 20).
@@ -485,8 +589,10 @@ local function EnsureFeedback(bar)
     f.BarTexture = barTex
     f.LossGlowTexture = loss
     f.GainGlowTexture = gain
-    f:SetScript("OnUpdate", FeedbackOnUpdate)
-    f:Hide()
+    f._fluxFeedbackOnUpdate = FeedbackOnUpdate
+    f._fluxReadableDriver = false
+    f:SetScript("OnUpdate", nil)
+    f:Show()
     bar.FeedbackFrame = f
     return f
 end
@@ -537,9 +643,7 @@ local function SecretGlowFinished(f)
     f.secretPlaying = false
     if f.LossGlowTexture then f.LossGlowTexture:Hide() end
     if f.BarTexture then f.BarTexture:Hide() end
-    if not f.updatingGain and not f.updatingLoss then
-        f:Hide()
-    end
+    SyncFeedbackDriver(f)
 end
 
 local function EnsureSecretAnims(f)
@@ -574,6 +678,39 @@ local function EnsureSecretAnims(f)
     f.SecretBarAnim = barAnim
 end
 
+PrepareBar = function(bar)
+    if bar._fluxPowerFeedbackPrepared then return true end
+    if InCombat() then QueuePreparation(bar); return false end
+    EnsurePowerGhost(bar)
+    EnsureCostMeter(bar)
+    local feedback = EnsureFeedback(bar)
+    EnsureSecretAnims(feedback)
+    bar._fluxPowerFeedbackPrepared = true
+    return true
+end
+
+QueuePreparation = function(bar, frame)
+    if not bar or not UF or not UF.DeferProtected then return end
+    if frame then bar._fluxPreparationInitializeOwner = frame end
+    if bar._fluxPreparationPending then return end
+    bar._fluxPreparationPending = true
+    local seq = bar._fluxPreparationSeq or 0
+    -- AdditionalPower is deliberately parented to UIParent. A bar owns its
+    -- preparation; only an explicit Initialize request may install a watcher.
+    UF.DeferProtected("powercost.prepare." .. tostring(bar), function()
+        if (bar._fluxPreparationSeq or 0) ~= seq then return end
+        bar._fluxPreparationPending = nil
+        local owner = bar._fluxPreparationInitializeOwner
+        bar._fluxPreparationInitializeOwner = nil
+        if FluxUnitFrames_IsFeatureEnabled and not FluxUnitFrames_IsFeatureEnabled("powerCostOverlay") then return end
+        if owner then PCO.Initialize(owner) else PCO.CreateOverlay(bar) end
+        if type(bar._fluxGhostValue) ~= "nil" and type(bar._fluxGhostMax) ~= "nil" then
+            bar._fluxGhostPrimed = CommitPowerGhost(bar) or nil
+            PCO.RefreshPrediction(bar)
+        end
+    end)
+end
+
 local function AnchorSecretSlice(tex, fill, anchor)
     tex:ClearAllPoints()
     tex:SetPoint("TOPLEFT", fill, "TOPRIGHT", 0, 0)
@@ -599,7 +736,7 @@ local function StartFeedback(bar, oldW, newW, force, unit)
             local feedback = bar.FeedbackFrame
             if feedback and feedback.updatingGain then
                 EndFeedbackGain(feedback)
-                if not feedback.updatingLoss and not feedback.secretPlaying then feedback:Hide() end
+                SyncFeedbackDriver(feedback)
             end
             return
         end
@@ -608,6 +745,7 @@ local function StartFeedback(bar, oldW, newW, force, unit)
     if not gaining and not CVarEnabled("showSpenderFeedback") then return end
 
     local f = EnsureFeedback(bar)
+    if not f then return end
     StopSecretGlow(f)
     local height = TryLayoutHeight(bar)
     f.barW = bw
@@ -620,7 +758,7 @@ local function StartFeedback(bar, oldW, newW, force, unit)
         f.gainNew = newW
         f.animGainStartTime = GetTime()
         f.GainGlowTexture:SetAlpha(0.75)
-        f:Show()
+        SyncFeedbackDriver(f)
     else
         local left = newW
         local width = oldW - newW
@@ -631,7 +769,7 @@ local function StartFeedback(bar, oldW, newW, force, unit)
         PlaceSlice(f.BarTexture, f, left, width, height, texMin, texMax, 1)
         f.updatingLoss = true
         f.animLossStartTime = GetTime()
-        f:Show()
+        SyncFeedbackDriver(f)
     end
 end
 
@@ -643,6 +781,7 @@ local function ShowSecretSpendBetween(bar)
     if not fill or not ghostFill then return end
 
     local f = EnsureFeedback(bar)
+    if not f then return end
     StopSecretGlow(f)
     f.updatingGain = false
     f.updatingLoss = false
@@ -657,7 +796,7 @@ local function ShowSecretSpendBetween(bar)
     f.LossGlowTexture:Show()
     f.BarTexture:Show()
     f.secretPlaying = true
-    f:Show()
+    SyncFeedbackDriver(f)
     EnsureSecretAnims(f)
     f.SecretLossAnim:Play()
     f.SecretBarAnim:Play()
@@ -676,13 +815,6 @@ function PCO.AfterPowerApplied(bar, unit, displayValue, maxValue)
         HideSegment(bar)
         bar._fluxSpendFlashUntil = nil
         return
-    end
-
-    if type(displayValue) ~= "nil" then
-        bar._fluxGhostValue = displayValue
-    end
-    if type(maxValue) ~= "nil" then
-        bar._fluxGhostMax = maxValue
     end
 
     local guid = ReadableGUID(unit)
@@ -707,12 +839,14 @@ function PCO.AfterPowerApplied(bar, unit, displayValue, maxValue)
         bar._fluxFeedbackUnit = unit
     end
 
+    if type(displayValue) ~= "nil" then bar._fluxGhostValue = displayValue end
+    if type(maxValue) ~= "nil" then bar._fluxGhostMax = maxValue end
+
     local castFinish = bar._fluxCastFinish and CastMatchesUnit(bar, unit, guid)
     bar._fluxCastFinish = nil
 
     if not bar._fluxGhostPrimed then
-        bar._fluxGhostPrimed = true
-        CommitPowerGhost(bar)
+        bar._fluxGhostPrimed = CommitPowerGhost(bar) or nil
         PCO.RefreshPrediction(bar)
         return
     end
@@ -730,37 +864,6 @@ function PCO.AfterPowerApplied(bar, unit, displayValue, maxValue)
     local bw = readable and TryLayoutWidth(bar) or nil
     local bigChange = bw and bw > 0 and math.abs(fillW - prev) / bw > 0.1
 
-    local function holdGhost()
-        bar._fluxGhostHolding = true
-        bar._fluxGhostSeq = (bar._fluxGhostSeq or 0) + 1
-        local seq = bar._fluxGhostSeq
-        if C_Timer and C_Timer.After then
-            C_Timer.After(LOSS_TIME_END, function()
-                if bar._fluxGhostSeq ~= seq then return end
-                bar._fluxGhostHolding = false
-                CommitPowerGhost(bar)
-            end)
-        else
-            bar._fluxGhostHolding = false
-            CommitPowerGhost(bar)
-        end
-    end
-
-    local function commitGhostLater()
-        if bar._fluxGhostHolding then return end
-        bar._fluxGhostSeq = (bar._fluxGhostSeq or 0) + 1
-        local seq = bar._fluxGhostSeq
-        if C_Timer and C_Timer.After then
-            -- After spell events in this frame, so a finished cast still sees the old ghost.
-            C_Timer.After(0, function()
-                if bar._fluxGhostSeq ~= seq or bar._fluxGhostHolding then return end
-                CommitPowerGhost(bar)
-            end)
-        else
-            CommitPowerGhost(bar)
-        end
-    end
-
     local watchedUnit = unit == "target" or unit == "targettarget" or unit == "focus" or unit == "focustarget"
     if castFinish then
         -- Finished cast (instant or timed). Flash even if the texture width did not change much.
@@ -768,20 +871,20 @@ function PCO.AfterPowerApplied(bar, unit, displayValue, maxValue)
             if readable and math.abs(fillW - prev) > 0.5 then
                 StartFeedback(bar, prev, fillW, true, unit)
             end
-            commitGhostLater()
+            CommitGhostLater(bar)
         else
             if bigChange then
                 StartFeedback(bar, prev, fillW, nil, unit)
             else
                 ShowSecretSpendBetween(bar)
             end
-            holdGhost()
+            HoldGhost(bar)
         end
     elseif readable and bigChange and not watchedUnit then
         StartFeedback(bar, prev, fillW, nil, unit)
-        commitGhostLater()
+        CommitGhostLater(bar)
     else
-        commitGhostLater()
+        CommitGhostLater(bar)
     end
     PCO.RefreshPrediction(bar)
 end
@@ -801,11 +904,14 @@ function PCO.DisableForFrame(frame)
     PCO.ResetIdentityForFrame(frame)
     local function hideBar(bar)
         if not bar then return end
+        bar._fluxPreparationSeq = (bar._fluxPreparationSeq or 0) + 1
+        bar._fluxPreparationPending = nil
+        bar._fluxPreparationInitializeOwner = nil
         HideSegment(bar)
         -- Invalidate queued ghost commits/holds as well as stopping the visible
         -- animation. Otherwise a callback can show the ghost after disable.
-        if bar.PowerGhost then bar.PowerGhost:Hide() end
-        if bar._fluxCostMeter then bar._fluxCostMeter:Hide() end
+        -- Both helpers are alpha-zero native value meters. Their prepared
+        -- protected visibility stays untouched during combat and disable.
     end
     hideBar(frame.Power)
     hideBar(frame.AdditionalPower)
@@ -816,6 +922,12 @@ function PCO.Initialize(frame)
     local enabled = not FluxUnitFrames_IsFeatureEnabled or FluxUnitFrames_IsFeatureEnabled("powerCostOverlay")
     if not enabled then
         PCO.DisableForFrame(frame)
+        return
+    end
+    if frame.PowerCostWatcher and frame.PowerCostWatcher.unit ~= frame.unit then PCO.ResetIdentityForFrame(frame) end
+    if InCombat() and (not frame.Power._fluxPowerFeedbackPrepared
+        or (frame.AdditionalPower and not frame.AdditionalPower._fluxPowerFeedbackPrepared)) then
+        QueuePreparation(frame.Power, frame)
         return
     end
 
@@ -829,7 +941,6 @@ function PCO.Initialize(frame)
     -- the old event frame; retain it across rebinds and feature toggles instead
     -- of accumulating unregistered frames for the rest of the session.
     local watcher = frame.PowerCostWatcher
-    if watcher and watcher.unit ~= unit then PCO.ResetIdentityForFrame(frame) end
     if not watcher then
         watcher = CreateFrame("Frame")
         frame.PowerCostWatcher = watcher

@@ -1,0 +1,46 @@
+{
+  "captured_utc": "2026-11-13T14:55:34.433196+00:00",
+  "task_owned_matches": [
+    "Minimap/FluxMinimapButtons.lua",
+    "tests/minimap_extra_layout.lua",
+    "tests/minimap_side_border.lua"
+  ],
+  "full_snapshot_pass": 341,
+  "full_snapshot_fail": 4,
+  "syntax_files": 1033,
+  "current_full_manifest_mismatches": [
+    "Inventory/Restock/Auction/FluxAuctionRestock.lua",
+    "Inventory/Restock/Auction/FluxAuctionRestockCraft.lua",
+    "Inventory/Restock/Auction/FluxAuctionRestockFollowup.lua",
+    "Inventory/Restock/Auction/FluxAuctionRestockFollowupUI.lua",
+    "Inventory/Restock/Auction/FluxAuctionRestockUI.lua",
+    "Inventory/Restock/Vendor/FluxVendorBuy.lua",
+    "tests/auction_restock_followup.lua",
+    "tests/auction_restock_followup_automation.lua",
+    "tests/auction_restock_vendor_routes.lua",
+    "tests/auction_restock_workflow.lua"
+  ],
+  "unrelated_failures": [
+    "tests/auction_restock_followup_automation.lua",
+    "tests/auction_restock_followup_ui.lua",
+    "tests/auction_restock_vendor_routes.lua",
+    "tests/auction_restock_workflow.lua"
+  ],
+  "dependency_identities": [
+    {
+      "path": "FluxBorder.lua",
+      "candidate_lf_sha256": "32f95e3c04bb7ea3154973b2dff3fee6f9cd302cb913d17f430a1627d852707b"
+    },
+    {
+      "path": "ExtraButtonSystem/FlyoutEngine/Arrow.lua",
+      "candidate_lf_sha256": "1a2a5e2624aed31dba590e486fe1d6a46bb105f0c3567dd202a497ccf8e7ccf9"
+    },
+    {
+      "path": "Minimap/FluxMinimap.lua",
+      "candidate_lf_sha256": "799b8ababf0bf1fd236268a0bb813123c269995d18831f3791ec1f2f56210670"
+    }
+  ],
+  "branch": "main",
+  "hooks_path": ".githooks",
+  "policy": "Unrelated changes preserved;no reset/restore/publication/client input"
+}

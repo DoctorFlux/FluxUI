@@ -6,7 +6,8 @@ local function check(value, message)
 end
 
 local function scenario(branch)
-    local calls = { objectives = 0, tooltip = 0, frames = 0, text = 0, writes = 0 }
+    local calls = { objectives = 0, tooltip = 0, frames = 0, text = 0, writes = 0, anchors = 0 }
+    local threatWidth = 40
     local secret = setmetatable({}, { __tostring = function() error("secret string conversion") end })
     local secretTable = {}
     local handlers, modules, hosts, fonts = {}, {}, {}, {}
@@ -28,7 +29,7 @@ local function scenario(branch)
         function w:Show() self.shown = true end
         function w:IsShown() return self.shown end
         function w:ClearAllPoints() self.point = nil end
-        function w:SetPoint(...) self.point = { ... } end
+        function w:SetPoint(...) self.point = { ... }; calls.anchors = calls.anchors + 1 end
         function w:SetSize(x, y) self.width, self.height = x, y end
         function w:GetWidth() return self.width end
         function w:SetFont(...) self.font = { ... } end
@@ -48,6 +49,7 @@ local function scenario(branch)
     local ui = widget()
     local plates = { nameplate1 = { frame = widget(), container = widget(), bar = widget() },
         nameplate2 = { frame = widget(), container = widget(), bar = widget() } }
+    plates.nameplate1.container.width, plates.nameplate2.container.width = 200, 200
     local guids = { player = "Player-1-A", nameplate1 = "Creature-0-1-2-3-42-0001", nameplate2 = "Creature-0-1-2-3-42-0002" }
     local entries = { first = { questId = 101, objective = { Index = 1 } },
         second = { questId = 101, objective = { Index = 2 } } }
@@ -74,6 +76,7 @@ local function scenario(branch)
         IsSecret = function(value) return value == secret end,
         BoolTest = function(value, default) if value == secret then return default end; return value and true or false end,
         GetDB = function() return db end,
+        GetThreatPlateWidth = function() return threatWidth end,
         RegisterModule = function(name, module) modules[name] = module; return module end,
         GetParts = function(unit)
             local p = plates[unit]
@@ -87,7 +90,7 @@ local function scenario(branch)
             calls.frames = calls.frames + 1; hosts[#hosts + 1] = host
             return host
         end,
-        FitPlate = function(host, text) host:SetSize(text:GetStringWidth() + 10, 14) end,
+        FitPlate = function(host, text) local width = text:GetStringWidth() + 10; host:SetSize(width, 14); return width end,
         ShowPlate = function() end,
         AttachHost = function(host, plate) host:SetParent(plate); return true end,
         ReleaseHost = function(host) host:Hide(); host:ClearAllPoints(); host:SetParent(ui) end,
@@ -166,7 +169,7 @@ local function scenario(branch)
     for _, host in ipairs(visible()) do
         check(host.parent == plates.nameplate1 or host.parent == plates.nameplate2, "host parent is plate")
         check(host.role == "quest" and host.point[1] == "TOPLEFT" and host.point[3] == "BOTTOMLEFT", "top-left at bottom-left; opposite level")
-		check(host.point[4] == 0 and (host.point[5] == 3 or host.point[5] == -13), "left edge; compact first row center aligns with threat/level at -3; later rows stack down")
+		check(host.point[4] >= 0 and host.point[5] == 3, "kill and loot share one baseline beside threat; no second row over cast bar")
 		check(host.height == 12 and host.text.font[2] == 10, "smaller quest badge and count text")
 		check(host.icon.width == 10 and host.icon.height == 10 and host.icon.point[4] == 2 and host.icon.point[5] == 0,
 			"icon has two-unit left inset and one-unit vertical inset")
@@ -175,11 +178,80 @@ local function scenario(branch)
         check(host.text.text == "2/8" or host.text.text == "1/5", "actual count")
         check(host.icon.texture:find(host.text.text == "2/8" and "QuestSlay.blp" or "QuestLoot.blp"), "distinct kill/loot icon")
     end
+    local function strip()
+        local list = {}
+        for _, host in ipairs(visible()) do
+            if host.parent == plates.nameplate1 then list[#list + 1] = host end
+        end
+        table.sort(list, function(a, b) return a.point[4] < b.point[4] end)
+        return list
+    end
+    local function readableStrip()
+        local list = strip()
+        check(#list >= 1, "objective strip remains visible")
+        for index, host in ipairs(list) do
+            check(host.point[5] == 3 and host.height == 12, "all objectives stay in original 12-unit first row")
+            check(host.text.font[2] == 10 and host.icon.width == 10, "crowding never shrinks readable text or icons")
+            check(host.width >= host.text:GetStringWidth() + 16, "full counter fits without clipping")
+            if index > 1 then
+                local previous = list[index - 1]
+                check(host.point[4] >= previous.point[4] + previous.width + 4, "adjacent objective backdrops do not overlap")
+            end
+        end
+        local last = list[#list]
+        local width = plates.nameplate1.container.width
+        if width == secret or not width or width <= 0 or width == math.huge then width = 0 end
+        check(last.point[4] + last.width + 6 <= width / 2 - threatWidth / 2,
+            "quest artwork clears centered threat and stays left of level")
+        return list
+    end
+    -- Same-unit health width and threat changes need no quest invalidation.
+    for _ = 1, 4 do module.Poll() end
+    local queriesBefore, tooltipBefore, updatesBefore = calls.objectives, calls.tooltip, calls.updates
+    for _, width in ipairs({ 80, 120, 200, 320 }) do
+        for _, labelWidth in ipairs({ 0, 40, 100 }) do
+            plates.nameplate1.container.width, threatWidth = width, labelWidth
+            module.Poll()
+            readableStrip()
+        end
+    end
+    for _, width in ipairs({ secret, 0, math.huge }) do
+        plates.nameplate1.container.width = width
+        module.Poll()
+        readableStrip()
+    end
+    plates.nameplate1.container.width, threatWidth = 200, 40
+    module.Poll()
+    check(calls.objectives == queriesBefore and calls.tooltip == tooltipBefore and calls.updates == updatesBefore,
+        "geometry changes neither rescan quest data nor refresh Questie objectives")
+    local firstX = strip()[1].point[4]
+    objects[101][1].numFulfilled, objects[101][1].numRequired = 999, 10000
+    objects[101][2].numFulfilled, objects[101][2].numRequired = 888, 10000
+    module.Refresh("nameplate1")
+    local long = readableStrip()
+    check(long[1].text.text == "999/10000" and long[2].text.text == "888/10000", "long kill and loot counts remain exact")
+    check(long[1].point[4] < firstX and long[1].width > 31, "long counters grow outward instead of smaller or downward")
+    objects[101][1].numFulfilled, objects[101][1].numRequired = 2, 8
+    objects[101][2].numFulfilled, objects[101][2].numRequired = 1, 5
+    objects[101][4] = { type = "monster", text = "Another objective: 0/3", numFulfilled = 0, numRequired = 3, finished = false }
+    entries.third = { questId = 101, objective = { Index = 4, Update = function(self)
+        self.Type, self.Collected, self.Needed, self.Completed = "monster", 0, 3, false
+    end } }
+    module.Refresh("nameplate1")
+    check(#readableStrip() == 3, "more than two objectives remain on one readable row without losing any counts")
+    entries.third, objects[101][4] = nil, nil
+    objects[101][1].finished = true
+    module.Refresh("nameplate1")
+    check(#readableStrip() == 1 and strip()[1].text.text == "1/5", "completing kill leaves the loot count in a single compact badge")
+    objects[101][1].finished = false
+    module.Refresh("nameplate1")
+    check(#readableStrip() == 2 and strip()[1].point[4] == 0, "normal count and position recover after long counts or completion")
     -- Drain bounded readiness refresh; a settled plate does no data/painter work.
     for _ = 1, 4 do module.Poll() end
-    local queries, tooltips, writes, frames = calls.objectives, calls.tooltip, calls.text, calls.frames
+    local queries, tooltips, writes, frames, anchors = calls.objectives, calls.tooltip, calls.text, calls.frames, calls.anchors
     for _ = 1, 1000 do module.Poll() end
     check(calls.objectives == queries and calls.tooltip == tooltips and calls.text == writes and calls.frames == frames, "idle polls do no work")
+    check(calls.anchors == anchors, "settled strip never rewrites anchors")
 	plates.nameplate1.bar.shown = false
 	module.Poll()
 	check(#visible() == 2, "native name-only transition hides attached quest rows without a quest event")

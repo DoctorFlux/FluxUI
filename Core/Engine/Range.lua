@@ -190,7 +190,7 @@ end
 -- Memoized probes
 -- ---------------------------------------------------------------------------
 
-local function Memo(key, fn, unit)
+local function Memo(key, fn, unit, ident, owner)
 	local now = GetTime and GetTime() or nil
 	local entry = memo[unit]
 	if not entry then
@@ -213,9 +213,31 @@ local function Memo(key, fn, unit)
 		end
 		return cached
 	end
-	local r = fn()
+	local r = fn(ident, unit, owner)
 	values[key] = (r == nil) and NILV or r
 	return r
+end
+
+local function ProbeSpell(ident, unit)
+	local S = Flux.Spell
+	if not (S and S.IsInRange) then return nil end
+	local ok, r = pcall(S.IsInRange, ident, unit)
+	if not ok then return nil end
+	return r
+end
+
+local function ProbeItem(itemId, unit, owner)
+	local ok, r = pcall(owner.IsInRange, itemId, unit)
+	if not ok then return nil end
+	return r
+end
+
+local function ProbeAction(slot, unit)
+	if not IsActionInRange then return nil end
+	-- Keep the explicit unit: the no-argument form always answers for target.
+	local ok, r = pcall(IsActionInRange, slot, unit)
+	if not ok then return nil end
+	return Normalize(r)
 end
 
 function Range.CheckSpell(ident, unit)
@@ -225,17 +247,7 @@ function Range.CheckSpell(ident, unit)
 	if not UnitExistsSafe(unit) then
 		return nil
 	end
-	return Memo("s\1" .. tostring(ident) .. "\1" .. unit, function()
-		local S = Flux.Spell
-		if not (S and S.IsInRange) then
-			return nil
-		end
-		local ok, r = pcall(S.IsInRange, ident, unit)
-		if not ok then
-			return nil
-		end
-		return r
-	end, unit)
+	return Memo("s\1" .. tostring(ident) .. "\1" .. unit, ProbeSpell, unit, ident)
 end
 
 --- Second return true means "cannot check right now, keep the last result"
@@ -254,13 +266,7 @@ function Range.CheckItem(itemId, unit)
 	if I.CanCheckRange and not I.CanCheckRange(unit) then
 		return nil, true
 	end
-	return Memo("i\1" .. tostring(itemId) .. "\1" .. unit, function()
-		local ok, r = pcall(I.IsInRange, itemId, unit)
-		if not ok then
-			return nil
-		end
-		return r
-	end, unit)
+	return Memo("i\1" .. tostring(itemId) .. "\1" .. unit, ProbeItem, unit, itemId, I)
 end
 
 function Range.CheckAction(slot, unit)
@@ -272,18 +278,7 @@ function Range.CheckAction(slot, unit)
 	if not UnitExistsSafe(unit) then
 		return nil
 	end
-	return Memo("a\1" .. slot .. "\1" .. unit, function()
-		if not IsActionInRange then
-			return nil
-		end
-		-- Passing the unit matters: the no-arg form always answers for "target",
-		-- which is wrong for mouseover-cast and for an @mouseover overlay.
-		local ok, r = pcall(IsActionInRange, slot, unit)
-		if not ok then
-			return nil
-		end
-		return Normalize(r)
-	end, unit)
+	return Memo("a\1" .. slot .. "\1" .. unit, ProbeAction, unit, slot)
 end
 
 -- ---------------------------------------------------------------------------

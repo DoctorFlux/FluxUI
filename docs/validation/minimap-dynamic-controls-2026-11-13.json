@@ -1,0 +1,151 @@
+{
+  "task": "MINIMAP-DYNAMIC-20261113",
+  "scope": "Paired desktop behavior;three matched trials per layout;no native timing",
+  "cases": [
+    {
+      "label": "baseline",
+      "source_sha256": "95cc2bc21faca859b1dc6dcf5b96dc575eb01d6624bc01b639163850241527e4",
+      "cases": [
+        {
+          "layout": "embedded",
+          "trial": "1",
+          "idle": "15",
+          "while_carried": "15",
+          "cancelled": "15",
+          "dropped_elsewhere": "16",
+          "saved_minimum": "16",
+          "always_offset": "-37.4",
+          "mouseover_offset": "-37.4"
+        },
+        {
+          "layout": "embedded",
+          "trial": "2",
+          "idle": "15",
+          "while_carried": "15",
+          "cancelled": "15",
+          "dropped_elsewhere": "16",
+          "saved_minimum": "16",
+          "always_offset": "-37.4",
+          "mouseover_offset": "-37.4"
+        },
+        {
+          "layout": "embedded",
+          "trial": "3",
+          "idle": "15",
+          "while_carried": "15",
+          "cancelled": "15",
+          "dropped_elsewhere": "16",
+          "saved_minimum": "16",
+          "always_offset": "-37.4",
+          "mouseover_offset": "-37.4"
+        },
+        {
+          "layout": "side",
+          "trial": "1",
+          "idle": "15",
+          "while_carried": "15",
+          "cancelled": "15",
+          "dropped_elsewhere": "16",
+          "saved_minimum": "16",
+          "always_offset": "-37.4",
+          "mouseover_offset": "-37.4"
+        },
+        {
+          "layout": "side",
+          "trial": "2",
+          "idle": "15",
+          "while_carried": "15",
+          "cancelled": "15",
+          "dropped_elsewhere": "16",
+          "saved_minimum": "16",
+          "always_offset": "-37.4",
+          "mouseover_offset": "-37.4"
+        },
+        {
+          "layout": "side",
+          "trial": "3",
+          "idle": "15",
+          "while_carried": "15",
+          "cancelled": "15",
+          "dropped_elsewhere": "16",
+          "saved_minimum": "16",
+          "always_offset": "-37.4",
+          "mouseover_offset": "-37.4"
+        }
+      ]
+    },
+    {
+      "label": "candidate",
+      "source_sha256": "d4f3f3cd045f75321c74a233183fb43085ee4427f82d97cad9e57514551bc26d",
+      "cases": [
+        {
+          "layout": "embedded",
+          "trial": "1",
+          "idle": "15",
+          "while_carried": "16",
+          "cancelled": "15",
+          "dropped_elsewhere": "15",
+          "saved_minimum": "15",
+          "always_offset": "-37.4",
+          "mouseover_offset": "0"
+        },
+        {
+          "layout": "embedded",
+          "trial": "2",
+          "idle": "15",
+          "while_carried": "16",
+          "cancelled": "15",
+          "dropped_elsewhere": "15",
+          "saved_minimum": "15",
+          "always_offset": "-37.4",
+          "mouseover_offset": "0"
+        },
+        {
+          "layout": "embedded",
+          "trial": "3",
+          "idle": "15",
+          "while_carried": "16",
+          "cancelled": "15",
+          "dropped_elsewhere": "15",
+          "saved_minimum": "15",
+          "always_offset": "-37.4",
+          "mouseover_offset": "0"
+        },
+        {
+          "layout": "side",
+          "trial": "1",
+          "idle": "15",
+          "while_carried": "16",
+          "cancelled": "15",
+          "dropped_elsewhere": "15",
+          "saved_minimum": "15",
+          "always_offset": "-37.4",
+          "mouseover_offset": "0"
+        },
+        {
+          "layout": "side",
+          "trial": "2",
+          "idle": "15",
+          "while_carried": "16",
+          "cancelled": "15",
+          "dropped_elsewhere": "15",
+          "saved_minimum": "15",
+          "always_offset": "-37.4",
+          "mouseover_offset": "0"
+        },
+        {
+          "layout": "side",
+          "trial": "3",
+          "idle": "15",
+          "while_carried": "16",
+          "cancelled": "15",
+          "dropped_elsewhere": "15",
+          "saved_minimum": "15",
+          "always_offset": "-37.4",
+          "mouseover_offset": "0"
+        }
+      ]
+    }
+  ],
+  "negative_controls": "tests/minimap_dynamic_buttons.lua rejects six isolated changes at their intended assertion"
+}

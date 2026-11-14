@@ -131,6 +131,9 @@ end
 local attributeDrivers = {}
 local unitWatchers = {}
 local fallbackFrame
+local fallbackTicker
+local fallbackEpoch = 0
+local FallbackActive
 local fallbackTimer = 0
 local FALLBACK_THROTTLE = 0.2
 -- Identical driver strings are common on main/mini rows and visibility
@@ -283,23 +286,52 @@ local function ApplyAll()
 	end
 end
 
+local function StopFallbackTicker()
+	if fallbackTicker then
+		fallbackTicker:Cancel()
+		fallbackTicker = nil
+	end
+end
+
+local function FallbackOnUpdate(_, elapsed)
+	fallbackTimer = fallbackTimer - elapsed
+	if fallbackTimer > 0 then return end
+	fallbackTimer = FALLBACK_THROTTLE
+	local epoch = fallbackEpoch
+	ApplyAll()
+	-- A setter may synchronously register/unregister another owned driver.
+	-- Its fresh next-frame/idle state must not be replaced by this old pass.
+	if epoch ~= fallbackEpoch or not FallbackActive() then return end
+	if Flux.Timer and Flux.Timer.NewTicker and Flux.Timer.HasNativeTicker ~= false then
+		-- Preserve the immediate event pass AND its next-frame reconciliation;
+		-- subsequent 0.2s fallback checks need no per-frame Lua wait loop.
+		fallbackFrame:SetScript("OnUpdate", nil)
+		if not fallbackTicker then
+			fallbackTicker = Flux.Timer.NewTicker(FALLBACK_THROTTLE, function()
+				if not FallbackActive() then StopFallbackTicker(); return end
+				ApplyAll()
+			end)
+		end
+	end
+end
+
+local function ReconcileFallback()
+	StopFallbackTicker()
+	fallbackEpoch = fallbackEpoch + 1
+	fallbackTimer = 0
+	fallbackFrame:SetScript("OnUpdate", FallbackOnUpdate)
+	ApplyAll()
+end
+
 local function EnsureFallbackFrame()
 	if fallbackFrame then
 		return fallbackFrame
 	end
 	fallbackFrame = CreateFrame("Frame", "FluxInsecureStateDriver")
 	fallbackFrame:Hide()
-	fallbackFrame:SetScript("OnUpdate", function(_, elapsed)
-		fallbackTimer = fallbackTimer - elapsed
-		if fallbackTimer > 0 then
-			return
-		end
-		fallbackTimer = FALLBACK_THROTTLE
-		ApplyAll()
-	end)
+	fallbackFrame:SetScript("OnUpdate", FallbackOnUpdate)
 	fallbackFrame:SetScript("OnEvent", function()
-		fallbackTimer = 0
-		ApplyAll()
+		if FallbackActive() then ReconcileFallback() end
 	end)
 	fallbackFrame:RegisterEvent("PLAYER_TARGET_CHANGED")
 	fallbackFrame:RegisterEvent("PLAYER_FOCUS_CHANGED")
@@ -316,7 +348,7 @@ local function EnsureFallbackFrame()
 	return fallbackFrame
 end
 
-local function FallbackActive()
+FallbackActive = function()
 	return next(attributeDrivers) ~= nil or next(unitWatchers) ~= nil
 end
 
@@ -324,9 +356,11 @@ local function SyncFallbackFrame()
 	local f = EnsureFallbackFrame()
 	if FallbackActive() then
 		f:Show()
-		fallbackTimer = 0
-		ApplyAll()
+		ReconcileFallback()
 	else
+		fallbackEpoch = fallbackEpoch + 1
+		StopFallbackTicker()
+		f:SetScript("OnUpdate", nil)
 		f:Hide()
 	end
 end

@@ -6,6 +6,8 @@
 local ADDON_NAME = ...
 
 local editorBtn
+-- Keep shared-tooltip bookkeeping private; row and Button hovers share a fill.
+local bindingTipShown = setmetatable({}, { __mode = "k" })
 
 local function SpellbookEntryIsPassive(spellInfo)
     if not spellInfo then
@@ -147,7 +149,7 @@ local function AppendSpellbookBindingTip(owner, spellInfo)
         return
     end
     -- Avoid stacking the line if both Button and row OnEnter fire.
-    if GameTooltip.__FluxBindingRightClickTip then
+    if bindingTipShown[GameTooltip] then
         return
     end
     local tipOwner = GameTooltip:GetOwner()
@@ -163,7 +165,7 @@ local function AppendSpellbookBindingTip(owner, spellInfo)
     end
     local text = LocaleTip("spellbook_right_click_binding_tip", "Right-click to open in Flux Binding.")
     GameTooltip:AddLine(text, 0.9, 0.9, 0.9, true)
-    GameTooltip.__FluxBindingRightClickTip = true
+    bindingTipShown[GameTooltip] = true
     GameTooltip:Show()
 end
 
@@ -188,7 +190,7 @@ local function HookSpellbookBindingTip(frame, buildInfo)
     end)
     frame:HookScript("OnLeave", function()
         if GameTooltip then
-            GameTooltip.__FluxBindingRightClickTip = nil
+            bindingTipShown[GameTooltip] = nil
         end
     end)
 end

@@ -1,0 +1,35 @@
+{
+  "scope": "Read-only source comparison; no manual sync or client interaction",
+  "copies": [
+    {
+      "client": "_retail_",
+      "path": "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\Inventory\\Craft.lua",
+      "normalizedSHA256": "3d539a419dba681d8dcf1a1ebbd052723c3b6567c942c96a9c599d94124dd88b",
+      "matches": true
+    },
+    {
+      "client": "_forever_",
+      "path": "F:\\World of Warcraft\\_forever_\\Interface\\AddOns\\_FluxUI\\Inventory\\Craft.lua",
+      "normalizedSHA256": "3d539a419dba681d8dcf1a1ebbd052723c3b6567c942c96a9c599d94124dd88b",
+      "matches": true
+    },
+    {
+      "client": "_classic_era_",
+      "path": "F:\\World of Warcraft\\_classic_era_\\Interface\\AddOns\\_FluxUI\\Inventory\\Craft.lua",
+      "normalizedSHA256": "3d539a419dba681d8dcf1a1ebbd052723c3b6567c942c96a9c599d94124dd88b",
+      "matches": true
+    },
+    {
+      "client": "_anniversary_",
+      "path": "F:\\World of Warcraft\\_anniversary_\\Interface\\AddOns\\_FluxUI\\Inventory\\Craft.lua",
+      "normalizedSHA256": "3d539a419dba681d8dcf1a1ebbd052723c3b6567c942c96a9c599d94124dd88b",
+      "matches": true
+    },
+    {
+      "client": "_classic_",
+      "path": "F:\\World of Warcraft\\_classic_\\Interface\\AddOns\\_FluxUI\\Inventory\\Craft.lua",
+      "normalizedSHA256": "3d539a419dba681d8dcf1a1ebbd052723c3b6567c942c96a9c599d94124dd88b",
+      "matches": true
+    }
+  ]
+}

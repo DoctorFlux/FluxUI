@@ -1,5 +1,15 @@
 # Quick Join anchor cycle — BUG-008
 
+14 November recovery of the 08:41:34 recurrence: an unrequested source replacement
+removed this existing guard and its coalesced retry owner. Restored the immediately
+preceding verified version; the column owns positioning whenever either button
+belongs to it. The enclosing callback still reconciles the column and unmanaged
+native fallback remains. Three repeated runs reject the reported replacement and
+pass the recovered source. Full 365 scripts/1053 syntax PASS. Native chat taint and
+pixel parity remain pending. [Recovery evidence](validation/flux-source-recovery-2026-11-14.json).
+The accompanying nil Skin/missing meter symptoms came from 45 removed TOC load
+entries; the recovered load list restores those modules without resetting settings.
+
 The reported 12:45:27 error comes from QuickJoinToastButton:SetPoint at the baseline
 FluxChatFrame.lua line 1248. The affected client/build was not specified. The chat
 column already anchors Channels below Quick Join; the older social callback then

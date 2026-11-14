@@ -1,0 +1,59 @@
+{
+  "scope": "Desktop semantic regression sensitivity; native input/rendering/taint/FPS NOT RUN",
+  "controls": [
+    {
+      "control": "default_overwrites_false",
+      "rejected": true,
+      "output": "lua: tests/minimap_tracking.lua:4: explicit false and other saved data preserved\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/minimap_tracking.lua:4: in local 'check'\n\ttests/minimap_tracking.lua:108: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "control": "force_focus_default",
+      "rejected": true,
+      "output": "lua: tests/minimap_tracking.lua:4: target default; focus preserved\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/minimap_tracking.lua:4: in local 'check'\n\ttests/minimap_tracking.lua:81: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "control": "ignore_show_all",
+      "rejected": true,
+      "output": "lua: tests/minimap_tracking.lua:4: show-all delegates native menu and state\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/minimap_tracking.lua:4: in local 'check'\n\ttests/minimap_tracking.lua:110: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "control": "stale_retry",
+      "rejected": true,
+      "output": "lua: tests/minimap_tracking.lua:4: stale world retry invalidated\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/minimap_tracking.lua:4: in local 'check'\n\ttests/minimap_tracking.lua:138: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "control": "duplicate_native",
+      "rejected": true,
+      "output": "lua: tests/minimap_tracking.lua:4: native nested choices never duplicated\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/minimap_tracking.lua:4: in local 'check'\n\ttests/minimap_tracking.lua:117: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "control": "overwrite_other_tracking",
+      "rejected": true,
+      "output": "lua: tests/minimap_tracking.lua:4: apply only target\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/minimap_tracking.lua:4: in local 'check'\n\ttests/minimap_tracking.lua:82: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "control": "ignore_companion",
+      "rejected": true,
+      "output": "lua: tests/minimap_tracking.lua:4: standalone owns all resources when loaded\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/minimap_tracking.lua:4: in local 'check'\n\ttests/minimap_tracking.lua:122: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "control": "ignore_game_rule",
+      "rejected": true,
+      "output": "lua: tests/minimap_tracking.lua:4: native no-tracking game rule respected\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/minimap_tracking.lua:4: in local 'check'\n\ttests/minimap_tracking.lua:153: in main chunk\n\t[C]: in ?\n"
+    }
+  ],
+  "candidateRuns": [
+    {
+      "run": 1,
+      "output": "Pinned native full tracking generator replay PASS: forever\nPinned native full tracking generator replay PASS: live\nMinimap tracking PASS: 412 checks; native pixels/input/controller/taint/FPS NOT RUN\n"
+    },
+    {
+      "run": 2,
+      "output": "Pinned native full tracking generator replay PASS: forever\nPinned native full tracking generator replay PASS: live\nMinimap tracking PASS: 412 checks; native pixels/input/controller/taint/FPS NOT RUN\n"
+    },
+    {
+      "run": 3,
+      "output": "Pinned native full tracking generator replay PASS: forever\nPinned native full tracking generator replay PASS: live\nMinimap tracking PASS: 412 checks; native pixels/input/controller/taint/FPS NOT RUN\n"
+    }
+  ]
+}

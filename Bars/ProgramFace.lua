@@ -47,6 +47,7 @@ end
 
 local lastPeek = false
 local peekPoller = nil
+local peekTimer = nil
 local peekPollAccum = 0
 local PEEK_POLL = 0.05
 
@@ -1295,12 +1296,38 @@ function ProgramFace.Shown(host)
 	return kind, id
 end
 
+local function StopPeekPoller()
+	if peekTimer then
+		peekTimer:Cancel()
+		peekTimer = nil
+	end
+	if peekPoller then peekPoller:Hide() end
+end
+
+local function PollHoverPeek()
+	local SP = Bars.SlotProgram
+	local peek = PeekContext()
+	local hasHover = SP and SP.HasHover and SP.HasHover()
+	if peek ~= lastPeek then
+		ProgramFace.RequestHoverPeek()
+	elseif not peek and not hasHover then
+		StopPeekPoller()
+	end
+end
+
 local function ArmPeekPoller()
 	local SP = Bars.SlotProgram
 	if not (SP and SP.HasHover and SP.HasHover()) then
-		if peekPoller then
-			peekPoller:Hide()
-		end
+		StopPeekPoller()
+		return
+	end
+	-- Keep the same 50ms hover fallback, including secure native frames whose
+	-- enter/leave scripts cannot be hooked. Native timers avoid an otherwise
+	-- idle Lua callback on every rendered frame. Restart at the same arm edge.
+	local timer = Flux.Timer
+	if timer and timer.NewTicker and timer.HasNativeTicker ~= false then
+		StopPeekPoller()
+		peekTimer = timer.NewTicker(PEEK_POLL, PollHoverPeek)
 		return
 	end
 	if not peekPoller then
@@ -1312,13 +1339,7 @@ local function ArmPeekPoller()
 				return
 			end
 			peekPollAccum = 0
-			local peek = PeekContext()
-			local hasHover = SP.HasHover and SP.HasHover()
-			if peek ~= lastPeek then
-				ProgramFace.RequestHoverPeek()
-			elseif not peek and not hasHover then
-				self:Hide()
-			end
+			PollHoverPeek()
 		end)
 	end
 	peekPollAccum = 0
@@ -1366,9 +1387,7 @@ end
 function ProgramFace.RequestHoverPeek()
 	local SP = Bars.SlotProgram
 	if not (SP and SP.HasHover and SP.HasHover()) then
-		if peekPoller then
-			peekPoller:Hide()
-		end
+		StopPeekPoller()
 		return
 	end
 	local fp = PeekFingerprint()
@@ -1383,9 +1402,7 @@ function ProgramFace.RequestHoverPeek()
 	After(HOVER_PEEK_COALESCE, function()
 		peekPending = false
 		if not (SP and SP.HasHover and SP.HasHover()) then
-			if peekPoller then
-				peekPoller:Hide()
-			end
+			StopPeekPoller()
 			return
 		end
 		local fp2 = PeekFingerprint()

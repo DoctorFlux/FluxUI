@@ -44,7 +44,7 @@ for _,client in ipairs({'live','forever','classic','classic_era','classic_annive
   local f={FluxBorderFrame={level=50,GetFrameLevel=function(s)return s.level end},level=40}
   function f:GetFrameLevel()return self.level end
   function f:SetAlpha(a)self.alpha=a end
-  function f:SetVertexColor(...)self.color={...}end
+  function f:SetVertexColor(...)self.color={...};self.alpha=select(4,...)or 1 end
   function f:Hide()self.shown=false end
   function f:Show()self.shown=true end
   f.bg={Hide=f.Hide,Show=f.Show,SetVertexColor=f.SetVertexColor}
@@ -81,5 +81,14 @@ for _,client in ipairs({'live','forever','classic','classic_era','classic_annive
  end
  local member=frame('party1');member._fluxCompactFocus=nil;member._fluxPartyMember=true;member._fluxPartyClassChrome=false
  Party.PaintChrome(member);same(member.color,accent,'ordinary party retains configured accent')
+ for _,case in ipairs({{main=false,alpha=0},{main=true,alpha=100},{alpha={opaque=true}}})do
+  focus._fluxHasMainPower=case.main;focus._fluxMainPowerAlpha=case.alpha
+  local expected=case.main==false and 0 or 1
+  if UF.UsesHudUnitBars()then expected=case.alpha end
+  for _,combat in ipairs({false,true})do
+   state.combat=combat;Party.PaintChrome(focus)
+   check(rawequal(focus._fluxPartyDivider.alpha,expected),'focus chrome preserves no-resource and native opaque divider opacity')
+  end
+ end
 end
 print('Focus target colors: '..checks..' checks; five client models; focused-unit class/NPC/opaque colors; combat restoration and all accents; native pixels pending')

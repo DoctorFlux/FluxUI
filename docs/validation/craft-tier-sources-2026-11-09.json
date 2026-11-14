@@ -1,0 +1,187 @@
+{
+  "date": "2026-11-09",
+  "change_id": "CRAFT-TIER-FALLBACK-20261109",
+  "latestCheck": "GitHub API web access failed and git ls-remote DNS/thread failure; latest branch heads not verified",
+  "scope": "No API additions or signature changes. Existing CraftRecipe/DoTradeSkill dispatch and profession routing retained. Bundled source declarations below are dated inventory evidence; addon permission/runtime not inferred.",
+  "records": [
+    {
+      "target": "retail",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "version": "12.1.5.70783",
+      "evidence": "Source-declared only. Loading, runtime behavior and addon access remain unknown unless a curated reference supplies separate evidence.",
+      "matches": 1,
+      "returned": 1,
+      "truncated": false,
+      "results": [
+        {
+          "id": "function:C_TradeSkillUI.CraftRecipe@TradeSkillUIDocumentation.lua",
+          "kind": "function",
+          "symbol": "C_TradeSkillUI.CraftRecipe",
+          "name": "CraftRecipe",
+          "group": "C_TradeSkillUI",
+          "namespace": "C_TradeSkillUI",
+          "environment": "All",
+          "parent": {
+            "name": "TradeSkillUI",
+            "type": "System",
+            "group": "C_TradeSkillUI",
+            "section": "Functions",
+            "metadata": {
+              "Name": "TradeSkillUI",
+              "Type": "System",
+              "Namespace": "C_TradeSkillUI",
+              "Environment": "All"
+            }
+          },
+          "source": {
+            "file": "TradeSkillUIDocumentation.lua",
+            "line": 60,
+            "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_APIDocumentationGenerated/TradeSkillUIDocumentation.lua#L60"
+          },
+          "declaration": {
+            "Name": "CraftRecipe",
+            "Type": "Function",
+            "SecretArguments": "AllowedWhenUntainted",
+            "Arguments": [
+              {
+                "Name": "recipeSpellID",
+                "Type": "number",
+                "Nilable": false
+              },
+              {
+                "Name": "numCasts",
+                "Type": "number",
+                "Nilable": false,
+                "Default": 1
+              },
+              {
+                "Name": "craftingReagents",
+                "Type": "table",
+                "InnerType": "CraftingReagentInfo",
+                "Nilable": true
+              },
+              {
+                "Name": "recipeLevel",
+                "Type": "luaIndex",
+                "Nilable": true
+              },
+              {
+                "Name": "orderID",
+                "Type": "BigUInteger",
+                "Nilable": true
+              },
+              {
+                "Name": "applyConcentration",
+                "Type": "bool",
+                "Nilable": true
+              }
+            ]
+          },
+          "owner": "wow-api-professions",
+          "classification": "client-system",
+          "evidence": {
+            "declaration": "source-declared",
+            "loadConditions": "unknown",
+            "runtime": "unknown",
+            "addonAccess": "unknown"
+          }
+        }
+      ]
+    },
+    {
+      "target": "forever",
+      "commit": "eac30af597e5aaa43a60f6675ef5fdcea100375f",
+      "version": "1.60.1.70790",
+      "evidence": "Source-declared only. Loading, runtime behavior and addon access remain unknown unless a curated reference supplies separate evidence.",
+      "matches": 1,
+      "returned": 1,
+      "truncated": false,
+      "results": [
+        {
+          "id": "function:C_TradeSkillUI.CraftRecipe@TradeSkillUIDocumentation.lua",
+          "kind": "function",
+          "symbol": "C_TradeSkillUI.CraftRecipe",
+          "name": "CraftRecipe",
+          "group": "C_TradeSkillUI",
+          "namespace": "C_TradeSkillUI",
+          "environment": "All",
+          "parent": {
+            "name": "TradeSkillUI",
+            "type": "System",
+            "group": "C_TradeSkillUI",
+            "section": "Functions",
+            "metadata": {
+              "Name": "TradeSkillUI",
+              "Type": "System",
+              "Namespace": "C_TradeSkillUI",
+              "Environment": "All"
+            }
+          },
+          "source": {
+            "file": "TradeSkillUIDocumentation.lua",
+            "line": 75,
+            "url": "https://github.com/Gethe/wow-ui-source/blob/eac30af597e5aaa43a60f6675ef5fdcea100375f/Interface/AddOns/Blizzard_APIDocumentationGenerated/TradeSkillUIDocumentation.lua#L75"
+          },
+          "declaration": {
+            "Name": "CraftRecipe",
+            "Type": "Function",
+            "SecretArguments": "AllowedWhenUntainted",
+            "Arguments": [
+              {
+                "Name": "recipeSpellID",
+                "Type": "number",
+                "Nilable": false
+              },
+              {
+                "Name": "numCasts",
+                "Type": "number",
+                "Nilable": false,
+                "Default": 1
+              },
+              {
+                "Name": "craftingReagents",
+                "Type": "table",
+                "InnerType": "CraftingReagentInfo",
+                "Nilable": true
+              },
+              {
+                "Name": "recipeLevel",
+                "Type": "luaIndex",
+                "Nilable": true
+              },
+              {
+                "Name": "orderID",
+                "Type": "BigUInteger",
+                "Nilable": true
+              },
+              {
+                "Name": "applyConcentration",
+                "Type": "bool",
+                "Nilable": true
+              }
+            ]
+          },
+          "owner": "wow-api-professions",
+          "classification": "client-system",
+          "evidence": {
+            "declaration": "source-declared",
+            "loadConditions": "unknown",
+            "runtime": "unknown",
+            "addonAccess": "unknown"
+          }
+        }
+      ]
+    },
+    {
+      "target": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "version": "5.5.4.70631",
+      "evidence": "Source-declared only. Loading, runtime behavior and addon access remain unknown unless a curated reference supplies separate evidence.",
+      "matches": 0,
+      "returned": 0,
+      "truncated": false,
+      "note": "Not found in this generated inventory. This does not establish removal or lack of runtime availability; inspect loaded FrameXML and runtime evidence.",
+      "results": []
+    }
+  ]
+}

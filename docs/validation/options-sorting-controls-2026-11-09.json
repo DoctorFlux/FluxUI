@@ -1,0 +1,62 @@
+{
+  "scope": "Latest functional taxonomy and production Meter right-click routing; desktop models only",
+  "negativeControls": [
+    {
+      "control": "lost-extra-controls",
+      "test": "tests/options_navigation.lua",
+      "exit": 1,
+      "firstFailure": "lua: tests/options_navigation.lua:5: live: unmapped original settings: actionbars/extra/consumableSwapDesc, actionbars/extra/consumableSwapFoodWater, actionbars/extra/consumableSwapHeader, actionbars/extra/consumableSwapPotions, actionbars/extra/extraButtonVisibilityPanel, actionbars/extra/extraButtonVisibilityReset, actionbars/extra/extraButtonsDesc, actionbars/extra/extraButtonsHeader, actionbars/extra/ncFlyoutPanel, actionbars/extra/spellbookSlotsDesc, actionbars/extra/spellbookSlotsHeader, actionbars/extra/spellbookSlotsPanel"
+    },
+    {
+      "control": "split-consumables",
+      "test": "tests/options_navigation.lua",
+      "exit": 1,
+      "firstFailure": "lua: tests/options_navigation.lua:5: live: related bars and buttons share one parent"
+    },
+    {
+      "control": "detached-swing-timer",
+      "test": "tests/options_navigation.lua",
+      "exit": 1,
+      "firstFailure": "lua: tests/options_navigation.lua:5: live: Swing Timer is part of Unit Frames"
+    },
+    {
+      "control": "loot-under-qol",
+      "test": "tests/options_navigation.lua",
+      "exit": 1,
+      "firstFailure": "lua: tests/options_navigation.lua:5: live: QoL contains only implemented feature groups"
+    },
+    {
+      "control": "misnamed-bindings",
+      "test": "tests/options_navigation.lua",
+      "exit": 1,
+      "firstFailure": "lua: tests/options_navigation.lua:5: live: Bindings and Keybindings are separate; no misleading Macros page"
+    },
+    {
+      "control": "old-meter-destination",
+      "test": "tests/options_rework.lua",
+      "exit": 1,
+      "firstFailure": "lua: tests/options_rework.lua:10: live: actual Meter right-click opens Damage Meter settings"
+    },
+    {
+      "control": "collapsed-loot-tabs",
+      "test": "tests/options_navigation.lua",
+      "exit": 1,
+      "firstFailure": "lua: tests/options_navigation.lua:5: live: canonical placement loot/fast -> lootItems/loot"
+    },
+    {
+      "control": "restock-switches-on-vendor",
+      "test": "tests/options_navigation.lua",
+      "exit": 1,
+      "firstFailure": "lua: tests/options_navigation.lua:5: live: canonical placement vendor/vendor/autoRestock -> lootItems/restock"
+    }
+  ],
+  "candidate": "PASS:5158 navigation and391 shell checks",
+  "candidateNormalizedSHA256": {
+    "AddonOptions/FluxOptionsCatalog.lua": "5c1980ea3d50d2ae8411a69a92b89ad3309e532412cc8f89649db29e50b9ed8b",
+    "AddonOptions/FluxOptionsNavigation.lua": "e845d5cff87fc88340327fadcfc96d7b71b6a9dc948b4c7e9984a8fe2c197024",
+    "AddonOptions/FluxOptions.lua": "911e3527d683d302b5388eb9bd3b359736b245ab78537b821bbb5748c33371e7",
+    "Battlezonemap/FluxWindowFrame.lua": "406c3b0c2ff6d9bafc5aa94b895e7f8d812a03a45da50c1476d9847eeef132c3",
+    "tests/options_navigation.lua": "4e0f2b0d8192a902352e245a42d10a14e8007136bbf36ccc7e22dca630031600",
+    "tests/options_rework.lua": "a706c092c40da44c961225d7fa9f0d38bce6b9f41af0ebd6e837ac6857f9ca53"
+  }
+}

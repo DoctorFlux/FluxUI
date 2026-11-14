@@ -59,6 +59,26 @@ function Tiers.IsMarkInferiorEnabled(kind)
     return store[fields.mark] ~= false
 end
 
+function Tiers.IsCarriedUpgradeRequired(kind)
+    if not P.COMBAT_KINDS[kind] then return false end
+    local store, fields = P.KindStore(kind)
+    return not store or store[fields.keep] ~= false
+end
+function Tiers.SetCarriedUpgradeRequired(kind, enabled)
+    if not P.COMBAT_KINDS[kind] or type(enabled) ~= "boolean" then return false end
+    local store, fields = P.KindStore(kind)
+    store[fields.keep] = enabled
+    if Tiers.InvalidateTierQueryCache then Tiers.InvalidateTierQueryCache() end
+    local junk = P.FJ()
+    if junk then
+        if junk.InvalidateRules then junk.InvalidateRules() end
+        if junk.InvalidateJunkSlotCount then junk.InvalidateJunkSlotCount() end
+    end
+    if Tiers.RequestRecompute then Tiers.RequestRecompute({ force = true, scope = "inferior", notify = true }) end
+    if junk and junk.RefreshJunkVisuals then junk.RefreshJunkVisuals() end
+    return true
+end
+
 function Tiers.SetMarkInferiorEnabled(kind, enabled)
     local store, fields = P.KindStore(kind)
     if not store then
@@ -94,6 +114,35 @@ function Tiers.NeedsTierRestockTargets()
     return false
 end
 
+-- Auction discovery uses the same persisted threshold/ref owners as merchants.
+-- It does not arm vendor selling or change the carried-only junk safety gate.
+function Tiers.ApplyAuctionTierUpgrade(kind, candidate)
+    if (kind ~= "healPotion" and kind ~= "manaPotion" and kind ~= "bandage") or type(candidate) ~= "table" then return false end
+    local best = P.Best()
+    local score = best and best.Score
+    if not score or not score.IsUsableForVendor or not score.IsUsableForVendor(candidate.itemID, kind)
+        or (score.IsKnownUnusable and score.IsKnownUnusable(candidate.itemID, kind)) then return false end
+    local value = P.RoundTier(candidate.effective)
+    local previous = best.Persist and best.Persist.GetRef and best.Persist.GetRef(kind)
+    local saved = P.GetSavedTier(kind) or 0
+    if value <= 0 then return false end
+    if value < saved then
+        if previous then return false end
+        local owned = Tiers.GetOwnedTier and Tiers.GetOwnedTier(kind) or 0
+        if value < owned then return false end
+    end
+    local discovery = {}
+    for key, val in pairs(candidate) do discovery[key] = val end
+    discovery.source, discovery.isConjured = "auction", false
+    local changed = best.Persist and best.Persist.MaybeUpdateRef and best.Persist.MaybeUpdateRef(kind, discovery)
+    if value ~= saved then P.SetSavedTier(kind, value); changed = true end
+    if changed then
+        Tiers.InvalidateTierQueryCache()
+        if Tiers.NotifyTierReferenceUIRefresh then Tiers.NotifyTierReferenceUIRefresh() end
+    end
+    return changed == true
+end
+
 function Tiers.EnsureStores()
     local s = P.Settings()
     if type(s.restockFoodWater) ~= "table" then
@@ -115,6 +164,10 @@ function Tiers.EnsureStores()
     if c.markInferiorBandage == nil then c.markInferiorBandage = true end
     if c.markInferiorHealPotion == nil then c.markInferiorHealPotion = true end
     if c.markInferiorManaPotion == nil then c.markInferiorManaPotion = true end
+    for _, kind in ipairs({ "bandage", "healPotion", "manaPotion" }) do
+        local key = P.KIND_FIELDS[kind].keep
+        if c[key] == nil then c[key] = true end
+    end
 
     local jf = s.junkFilters
     if type(jf) ~= "table" then

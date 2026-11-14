@@ -1,0 +1,389 @@
+{
+  "change_id": "DEBUFF-COMBAT-COLORS-20261109",
+  "sources": [
+    {
+      "client": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "version.txt",
+      "sha256": "4e532c8d3beb3231ae8195704b6de0a099a19742e02505f73f292f47fe9e080b",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/version.txt",
+      "version": "12.1.5.70783"
+    },
+    {
+      "client": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_FrameXMLUtil/AuraUtil.lua",
+      "sha256": "c273c6be5d4bfce92c54510f5a1729f84bf9762ded0a4a9c523363d713b5f909",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_FrameXMLUtil/AuraUtil.lua"
+    },
+    {
+      "client": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleRegionAPIDocumentation.lua",
+      "sha256": "f311fdf12572f2a32df67c3a0cd11195bc699a6f3872dd69f8300cd542bcfbd0",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleRegionAPIDocumentation.lua"
+    },
+    {
+      "client": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleScriptRegionAPIDocumentation.lua",
+      "sha256": "34c57917b3c1e95a2f1054e3dbc6901222311b716322be31c78e62a119d37747",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleScriptRegionAPIDocumentation.lua"
+    },
+    {
+      "client": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleFontStringAPIDocumentation.lua",
+      "sha256": "156e370421081e6a8ec78afdee8e4306686cecc99f0d2163c1b62ce9a5ddbe96",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleFontStringAPIDocumentation.lua"
+    },
+    {
+      "client": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleFrameScriptObjectAPIDocumentation.lua",
+      "sha256": "09c85f7ee160d6f4d39765ba92a93ccd112d9e578b48d6f99b79f65e2ec42b1d",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleFrameScriptObjectAPIDocumentation.lua"
+    },
+    {
+      "client": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/CurveUtilDocumentation.lua",
+      "sha256": "cc9f435e7a6609301a6b315c49ddcfc7fe494cce698101d9edf9b41fa384fd5f",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_APIDocumentationGenerated/CurveUtilDocumentation.lua"
+    },
+    {
+      "client": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_AuraContainer/Blizzard_CustomAuraButton.lua",
+      "sha256": "e583c0306774cb209a7a4d1b4c29a96f39dab0761da965af173b843ef61704c5",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_AuraContainer/Blizzard_CustomAuraButton.lua"
+    },
+    {
+      "client": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_AuraContainer/Blizzard_AuraContainerUtil.lua",
+      "sha256": "603cebadf285d56c46544af87588867c2aa3c4b1fdcff3665d0e43816fe3b262",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_AuraContainer/Blizzard_AuraContainerUtil.lua"
+    },
+    {
+      "client": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_AuraContainer/Blizzard_AuraContainerFrameProviders.lua",
+      "sha256": "2d1e3f6486636b7a285978aa6ee240205aacb38a5c255c23cfb294987192925e",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_AuraContainer/Blizzard_AuraContainerFrameProviders.lua"
+    },
+    {
+      "client": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_AuraContainer/Blizzard_AuraContainerShared.lua",
+      "sha256": "9eda989a81824d6084e3b652282761d563c70fd11ed60e42753c96ea988fd245",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_AuraContainer/Blizzard_AuraContainerShared.lua"
+    },
+    {
+      "client": "forever",
+      "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "path": "version.txt",
+      "sha256": "40632cd2240c025fafc7bb8343593d2f8bde74c1196bc678cbdaeb807c9eb6c2",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/9dc84f0d3bbae1768ac3405b3716000bd93eda06/version.txt",
+      "version": "1.60.1.70862"
+    },
+    {
+      "client": "forever",
+      "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "path": "Interface/AddOns/Blizzard_FrameXMLUtil/AuraUtil.lua",
+      "sha256": "c273c6be5d4bfce92c54510f5a1729f84bf9762ded0a4a9c523363d713b5f909",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_FrameXMLUtil/AuraUtil.lua"
+    },
+    {
+      "client": "forever",
+      "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleRegionAPIDocumentation.lua",
+      "sha256": "f311fdf12572f2a32df67c3a0cd11195bc699a6f3872dd69f8300cd542bcfbd0",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleRegionAPIDocumentation.lua"
+    },
+    {
+      "client": "forever",
+      "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleScriptRegionAPIDocumentation.lua",
+      "sha256": "3718e5f81b99525819264d2f50e473080541d655978f88ca85582acc4073fd82",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleScriptRegionAPIDocumentation.lua"
+    },
+    {
+      "client": "forever",
+      "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleFontStringAPIDocumentation.lua",
+      "sha256": "156e370421081e6a8ec78afdee8e4306686cecc99f0d2163c1b62ce9a5ddbe96",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleFontStringAPIDocumentation.lua"
+    },
+    {
+      "client": "forever",
+      "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleFrameScriptObjectAPIDocumentation.lua",
+      "sha256": "09c85f7ee160d6f4d39765ba92a93ccd112d9e578b48d6f99b79f65e2ec42b1d",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleFrameScriptObjectAPIDocumentation.lua"
+    },
+    {
+      "client": "forever",
+      "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/CurveUtilDocumentation.lua",
+      "sha256": "cc9f435e7a6609301a6b315c49ddcfc7fe494cce698101d9edf9b41fa384fd5f",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_APIDocumentationGenerated/CurveUtilDocumentation.lua"
+    },
+    {
+      "client": "forever",
+      "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "path": "Interface/AddOns/Blizzard_AuraContainer/Blizzard_CustomAuraButton.lua",
+      "sha256": "e583c0306774cb209a7a4d1b4c29a96f39dab0761da965af173b843ef61704c5",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_AuraContainer/Blizzard_CustomAuraButton.lua"
+    },
+    {
+      "client": "forever",
+      "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "path": "Interface/AddOns/Blizzard_AuraContainer/Blizzard_AuraContainerUtil.lua",
+      "sha256": "603cebadf285d56c46544af87588867c2aa3c4b1fdcff3665d0e43816fe3b262",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_AuraContainer/Blizzard_AuraContainerUtil.lua"
+    },
+    {
+      "client": "forever",
+      "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "path": "Interface/AddOns/Blizzard_AuraContainer/Blizzard_AuraContainerFrameProviders.lua",
+      "sha256": "2d1e3f6486636b7a285978aa6ee240205aacb38a5c255c23cfb294987192925e",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_AuraContainer/Blizzard_AuraContainerFrameProviders.lua"
+    },
+    {
+      "client": "forever",
+      "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "path": "Interface/AddOns/Blizzard_AuraContainer/Blizzard_AuraContainerShared.lua",
+      "sha256": "9eda989a81824d6084e3b652282761d563c70fd11ed60e42753c96ea988fd245",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_AuraContainer/Blizzard_AuraContainerShared.lua"
+    },
+    {
+      "client": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "version.txt",
+      "sha256": "bcb030fe2d2febd396332d886d804ef9b397335e88f0196edc5d8dbe54c1ba38",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/version.txt",
+      "version": "5.5.4.70631"
+    },
+    {
+      "client": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_FrameXMLUtil/AuraUtil.lua",
+      "sha256": "c386ff2182365cfeec735560319634d07dd97d5e6fe5fe1a09887e277c79457f",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_FrameXMLUtil/AuraUtil.lua"
+    },
+    {
+      "client": "classic_era",
+      "commit": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "path": "version.txt",
+      "sha256": "5224861aa41c7bcfd9d48bdd8003eb769a8954c72e3e9682035aeff5bc236f29",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/4192ac60067fc55566182291bc67c85dd9b6794d/version.txt",
+      "version": "1.15.9.70576"
+    },
+    {
+      "client": "classic_era",
+      "commit": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "path": "Interface/AddOns/Blizzard_FrameXMLUtil/AuraUtil.lua",
+      "sha256": "c386ff2182365cfeec735560319634d07dd97d5e6fe5fe1a09887e277c79457f",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_FrameXMLUtil/AuraUtil.lua"
+    },
+    {
+      "client": "classic_anniversary",
+      "commit": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "path": "version.txt",
+      "sha256": "53498c451665c69194d1a41b9983916109b370b6a261bb833322ae871838bdb3",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/version.txt",
+      "version": "2.5.6.70577"
+    },
+    {
+      "client": "classic_anniversary",
+      "commit": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "path": "Interface/AddOns/Blizzard_FrameXMLUtil/AuraUtil.lua",
+      "sha256": "564e621fd045f0a4857a9124ef25ea356f6f7c3b9ad53bee7f7e141143e807de",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_FrameXMLUtil/AuraUtil.lua"
+    },
+    {
+      "client": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_SharedXMLBase/Color.lua",
+      "sha256": "bb0b6ed17705996954bb264c87284755963c240373cd749b268a0d10d18fc750",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_SharedXMLBase/Color.lua"
+    },
+    {
+      "client": "forever",
+      "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "path": "Interface/AddOns/Blizzard_SharedXMLBase/Color.lua",
+      "sha256": "bb0b6ed17705996954bb264c87284755963c240373cd749b268a0d10d18fc750",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_SharedXMLBase/Color.lua"
+    }
+  ],
+  "guards": [
+    {
+      "client": "live",
+      "symbol": "AuraUtil.GetDebuffDisplayInfoTable",
+      "matchesLocalReference": true
+    },
+    {
+      "client": "live",
+      "symbol": "AuraUtil.SetAuraBorderColor",
+      "matchesLocalReference": true
+    },
+    {
+      "client": "live",
+      "symbol": "AuraUtil.GetAuraBorderColor",
+      "matchesLocalReference": true
+    },
+    {
+      "client": "live",
+      "symbol": "GetVertexColor",
+      "matchesLocalReference": true,
+      "contract": "{\n\t\t\tName = \"GetVertexColor\",\n\t\t\tType = \"Function\",\n\t\t\tMayReturnNothing = true,\n\t\t\tSecretReturnsForAspect = { Enum.SecretAspect.VertexColor, Enum.SecretAspect.Alpha },\n\n\t\t\tArguments =\n\t\t\t{\n\t\t\t},\n\n\t\t\tReturns =\n\t\t\t{\n\t\t\t\t{ Name = \"colorR\", Type = \"number\", Nilable = false },\n\t\t\t\t{ Name = \"colorG\", Type = \"number\", Nilable = false },\n\t\t\t\t{ Name = \"colorB\", Type = \"number\", Nilable = false },\n\t\t\t\t{ Name = \"colorA\", Type = \"number\", Nilable = false },\n\t\t\t},\n\t\t},"
+    },
+    {
+      "client": "live",
+      "symbol": "IsVisible",
+      "matchesLocalReference": true,
+      "contract": "{\n\t\t\tName = \"IsVisible\",\n\t\t\tType = \"Function\",\n\t\t\tSecretReturnsForAspect = { Enum.SecretAspect.Shown },\n\n\t\t\tArguments =\n\t\t\t{\n\t\t\t},\n\n\t\t\tReturns =\n\t\t\t{\n\t\t\t\t{ Name = \"isVisible\", Type = \"bool\", Nilable = false },\n\t\t\t},\n\t\t},"
+    },
+    {
+      "client": "live",
+      "symbol": "SetTextColor",
+      "matchesLocalReference": true,
+      "contract": "{\n\t\t\tName = \"SetTextColor\",\n\t\t\tType = \"Function\",\n\t\t\tSecretArgumentsAddAspect = { Enum.SecretAspect.VertexColor, Enum.SecretAspect.Alpha },\n\t\t\tSecretArguments = \"AllowedWhenTainted\",\n\n\t\t\tArguments =\n\t\t\t{\n\t\t\t\t{ Name = \"colorR\", Type = \"number\", Nilable = false },\n\t\t\t\t{ Name = \"colorG\", Type = \"number\", Nilable = false },\n\t\t\t\t{ Name = \"colorB\", Type = \"number\", Nilable = false },\n\t\t\t\t{ Name = \"a\", Type = \"SingleColorValue\", Nilable = true },\n\t\t\t},\n\t\t},"
+    },
+    {
+      "client": "live",
+      "symbol": "EvaluateColorFromBoolean",
+      "matchesLocalReference": true,
+      "contract": "{\n\t\t\tName = \"EvaluateColorFromBoolean\",\n\t\t\tType = \"Function\",\n\t\t\tSecretArguments = \"AllowedWhenTainted\",\n\t\t\tDocumentation = { \"Evaluates a potentially-secret boolean value and returns a color.\" },\n\n\t\t\tArguments =\n\t\t\t{\n\t\t\t\t{ Name = \"boolean\", Type = \"bool\", Nilable = false },\n\t\t\t\t{ Name = \"valueIfTrue\", Type = \"colorRGBA\", Mixin = \"ColorMixin\", Nilable = false },\n\t\t\t\t{ Name = \"valueIfFalse\", Type = \"colorRGBA\", Mixin = \"ColorMixin\", Nilable = false },\n\t\t\t},\n\n\t\t\tReturns =\n\t\t\t{\n\t\t\t\t{ Name = \"value\", Type = \"colorRGBA\", Mixin = \"ColorMixin\", Nilable = false },\n\t\t\t},\n\t\t},"
+    },
+    {
+      "client": "live",
+      "symbol": "CustomAuraButtonSharedMixin:AddDispelTypeTexture",
+      "matchesLocalReference": false,
+      "requiredContractMatches": true,
+      "difference": "Live local snapshot uses unqualified validator and table.insert with unused index return; pinned source uses uniqueness helper and no return"
+    },
+    {
+      "client": "live",
+      "symbol": "ApplyDispelTypeTexture",
+      "matchesLocalReference": true,
+      "requiredContractMatches": true,
+      "difference": null
+    },
+    {
+      "client": "live",
+      "symbol": "AuraContainerUtil.InitializeInboundScriptObject",
+      "matchesLocalReference": true,
+      "requiredContractMatches": true,
+      "difference": null
+    },
+    {
+      "client": "live",
+      "symbol": "AuraContainerCustomFrameProviderMixin:CreateFrame",
+      "matchesLocalReference": true,
+      "requiredContractMatches": true,
+      "difference": null
+    },
+    {
+      "client": "forever",
+      "symbol": "AuraUtil.GetDebuffDisplayInfoTable",
+      "matchesLocalReference": true
+    },
+    {
+      "client": "forever",
+      "symbol": "AuraUtil.SetAuraBorderColor",
+      "matchesLocalReference": true
+    },
+    {
+      "client": "forever",
+      "symbol": "AuraUtil.GetAuraBorderColor",
+      "matchesLocalReference": true
+    },
+    {
+      "client": "forever",
+      "symbol": "GetVertexColor",
+      "matchesLocalReference": true,
+      "contract": "{\n\t\t\tName = \"GetVertexColor\",\n\t\t\tType = \"Function\",\n\t\t\tMayReturnNothing = true,\n\t\t\tSecretReturnsForAspect = { Enum.SecretAspect.VertexColor, Enum.SecretAspect.Alpha },\n\n\t\t\tArguments =\n\t\t\t{\n\t\t\t},\n\n\t\t\tReturns =\n\t\t\t{\n\t\t\t\t{ Name = \"colorR\", Type = \"number\", Nilable = false },\n\t\t\t\t{ Name = \"colorG\", Type = \"number\", Nilable = false },\n\t\t\t\t{ Name = \"colorB\", Type = \"number\", Nilable = false },\n\t\t\t\t{ Name = \"colorA\", Type = \"number\", Nilable = false },\n\t\t\t},\n\t\t},"
+    },
+    {
+      "client": "forever",
+      "symbol": "IsVisible",
+      "matchesLocalReference": true,
+      "contract": "{\n\t\t\tName = \"IsVisible\",\n\t\t\tType = \"Function\",\n\t\t\tSecretReturnsForAspect = { Enum.SecretAspect.Shown },\n\n\t\t\tArguments =\n\t\t\t{\n\t\t\t},\n\n\t\t\tReturns =\n\t\t\t{\n\t\t\t\t{ Name = \"isVisible\", Type = \"bool\", Nilable = false },\n\t\t\t},\n\t\t},"
+    },
+    {
+      "client": "forever",
+      "symbol": "SetTextColor",
+      "matchesLocalReference": true,
+      "contract": "{\n\t\t\tName = \"SetTextColor\",\n\t\t\tType = \"Function\",\n\t\t\tSecretArgumentsAddAspect = { Enum.SecretAspect.VertexColor, Enum.SecretAspect.Alpha },\n\t\t\tSecretArguments = \"AllowedWhenTainted\",\n\n\t\t\tArguments =\n\t\t\t{\n\t\t\t\t{ Name = \"colorR\", Type = \"number\", Nilable = false },\n\t\t\t\t{ Name = \"colorG\", Type = \"number\", Nilable = false },\n\t\t\t\t{ Name = \"colorB\", Type = \"number\", Nilable = false },\n\t\t\t\t{ Name = \"a\", Type = \"SingleColorValue\", Nilable = true },\n\t\t\t},\n\t\t},"
+    },
+    {
+      "client": "forever",
+      "symbol": "EvaluateColorFromBoolean",
+      "matchesLocalReference": true,
+      "contract": "{\n\t\t\tName = \"EvaluateColorFromBoolean\",\n\t\t\tType = \"Function\",\n\t\t\tSecretArguments = \"AllowedWhenTainted\",\n\t\t\tDocumentation = { \"Evaluates a potentially-secret boolean value and returns a color.\" },\n\n\t\t\tArguments =\n\t\t\t{\n\t\t\t\t{ Name = \"boolean\", Type = \"bool\", Nilable = false },\n\t\t\t\t{ Name = \"valueIfTrue\", Type = \"colorRGBA\", Mixin = \"ColorMixin\", Nilable = false },\n\t\t\t\t{ Name = \"valueIfFalse\", Type = \"colorRGBA\", Mixin = \"ColorMixin\", Nilable = false },\n\t\t\t},\n\n\t\t\tReturns =\n\t\t\t{\n\t\t\t\t{ Name = \"value\", Type = \"colorRGBA\", Mixin = \"ColorMixin\", Nilable = false },\n\t\t\t},\n\t\t},"
+    },
+    {
+      "client": "forever",
+      "symbol": "CustomAuraButtonSharedMixin:AddDispelTypeTexture",
+      "matchesLocalReference": true,
+      "requiredContractMatches": true,
+      "difference": null
+    },
+    {
+      "client": "forever",
+      "symbol": "ApplyDispelTypeTexture",
+      "matchesLocalReference": true,
+      "requiredContractMatches": true,
+      "difference": null
+    },
+    {
+      "client": "forever",
+      "symbol": "AuraContainerUtil.InitializeInboundScriptObject",
+      "matchesLocalReference": true,
+      "requiredContractMatches": true,
+      "difference": null
+    },
+    {
+      "client": "forever",
+      "symbol": "AuraContainerCustomFrameProviderMixin:CreateFrame",
+      "matchesLocalReference": true,
+      "requiredContractMatches": true,
+      "difference": null
+    },
+    {
+      "client": "classic",
+      "symbol": "AuraUtil.GetDebuffDisplayInfoTable",
+      "matchesLocalReference": true
+    },
+    {
+      "client": "classic",
+      "symbol": "AuraUtil.SetAuraBorderColor",
+      "matchesLocalReference": true
+    },
+    {
+      "client": "classic_era",
+      "symbol": "AuraUtil.GetDebuffDisplayInfoTable",
+      "matchesLocalReference": true
+    },
+    {
+      "client": "classic_era",
+      "symbol": "AuraUtil.SetAuraBorderColor",
+      "matchesLocalReference": true
+    },
+    {
+      "client": "classic_anniversary",
+      "symbol": "AuraUtil.GetDebuffDisplayInfoTable",
+      "matchesLocalReference": true
+    },
+    {
+      "client": "classic_anniversary",
+      "symbol": "AuraUtil.SetAuraBorderColor",
+      "matchesLocalReference": true
+    }
+  ],
+  "accessBoundary": "Keep only the addon-created registered Texture. The provider restricts its private AuraButton; no private-button getter, hook or state inspection. Inbound Texture forbidden aspects prevent reparenting/removing secret aspects. GetVertexColor and IsVisible return opaque display data; native EvaluateColorFromBoolean and SetTextColor allow tainted secret arguments. Actual engine access/propagation must still be validated in-game.",
+  "nativeDisposition": "REJECTED by user13:45:15 forbidden GetVertexColor;registered Texture access inference invalid",
+  "supersededBy": "docs/validation/debuff-forbidden-comparison-2026-11-09.json"
+}

@@ -20,6 +20,7 @@ local spinner
 local merchantTab
 local QueryItems
 local metadataRetry
+local listRefreshDirty = false
 
 local function CancelMetadataRetry()
     local operation = metadataRetry
@@ -38,6 +39,14 @@ local function ScheduleMetadataRetry()
     end
     if C_Timer.NewTimer then operation.timer = C_Timer.NewTimer(0.2, fire)
     else C_Timer.After(0.2, fire) end
+end
+
+local function ScheduleListRefresh()
+    if not panelFrame or not panelFrame:IsShown() then return end
+    -- Share the existing 200ms metadata retry with visual notifications.
+    -- A load completion must never rebuild a list inside its own name lookup.
+    listRefreshDirty = true
+    ScheduleMetadataRetry()
 end
 
 local ROW_HEIGHT = 20
@@ -350,18 +359,20 @@ function Panel:NotifyListChanged(itemID)
     Panel:FocusItem(itemID, nil)
 end
 
-local function RefreshScrollList()
+local function PaintScrollList()
     if not scrollFrame or not scrollChild then
         return
     end
     local list = GetActiveList()
     local frameWidth = scrollFrame:GetWidth()
-    if frameWidth and frameWidth > 0 then
+    if frameWidth and frameWidth > 0 and scrollChild:GetWidth() ~= frameWidth then
         scrollChild:SetWidth(frameWidth)
     end
     local offset = math.floor((scrollFrame:GetVerticalScroll() or 0) / ROW_HEIGHT + 0.5)
     local childHeight = math.max(#list * ROW_HEIGHT, ROW_HEIGHT)
-    scrollChild:SetHeight(childHeight)
+    if scrollChild:GetHeight() ~= childHeight then
+        scrollChild:SetHeight(childHeight)
+    end
 
     EnsureListButtons(VISIBLE_ROWS)
     for i = 1, VISIBLE_ROWS do
@@ -417,6 +428,15 @@ local function RefreshScrollList()
     end
 end
 
+local refreshingScrollList = false
+local function RefreshScrollList()
+    -- Updating the child geometry can deliver OnScrollRangeChanged immediately.
+    if refreshingScrollList then return end
+    refreshingScrollList = true
+    PaintScrollList()
+    refreshingScrollList = false
+end
+
 function Panel:RefreshList()
     RefreshScrollList()
 end
@@ -443,6 +463,10 @@ QueryItems = function()
     if not panelFrame or not panelFrame:IsShown() then
         CancelMetadataRetry()
         return
+    end
+    if listRefreshDirty then
+        listRefreshDirty = false
+        if FJ and FJ.InvalidateJunkTabListCache then FJ.InvalidateJunkTabListCache() end
     end
     local pendingLoad = false
     local list = GetActiveList()
@@ -658,22 +682,13 @@ local function CreatePanelFrame()
         -- appears the first time the Junk tab is viewed, without a tab switch.
         if FJ.RegisterVisualRefresh then
             FJ.RegisterVisualRefresh(function()
-                if not panelFrame or not panelFrame:IsShown() then
-                    return
-                end
-                if FJ.InvalidateJunkTabListCache then
-                    FJ.InvalidateJunkTabListCache()
-                end
-                Panel:RefreshList()
+                ScheduleListRefresh()
             end)
         end
     end
 
     panelFrame:SetScript("OnShow", function()
         selectedItemID = nil
-        if scrollChild and scrollFrame then
-            scrollChild:SetWidth(scrollFrame:GetWidth())
-        end
         ApplySubTabLayout()
         if pendingJunkRefresh and FJ and FJ.InvalidateJunkTabListCache then
             FJ.InvalidateJunkTabListCache()
@@ -686,7 +701,6 @@ local function CreatePanelFrame()
         if scrollFrame then
             scrollFrame:SetVerticalScroll(0)
         end
-        Panel:RefreshList()
         QueryItems()
     end)
 
@@ -697,23 +711,10 @@ local function CreatePanelFrame()
 
     if not panelFrame.fluxItemDataHooked then
         panelFrame.fluxItemDataHooked = true
-        local itemDataRefreshPending = false
         panelFrame:RegisterEvent("ITEM_DATA_LOAD_RESULT")
         panelFrame:SetScript("OnEvent", function(_, event)
             if event == "ITEM_DATA_LOAD_RESULT" and panelFrame:IsShown() then
-                if itemDataRefreshPending then return end
-                itemDataRefreshPending = true
-                local function run()
-                    itemDataRefreshPending = false
-                    if panelFrame:IsShown() then
-                        Panel:RefreshList()
-                    end
-                end
-                if C_Timer and C_Timer.After then
-                    C_Timer.After(0.2, run)
-                else
-                    run()
-                end
+                ScheduleListRefresh()
             end
         end)
     end

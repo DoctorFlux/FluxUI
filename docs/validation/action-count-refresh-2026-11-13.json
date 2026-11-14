@@ -1,0 +1,115 @@
+{
+  "task": "ACTION-COUNT-REFRESH-20261113",
+  "captured_utc": "2026-11-13T14:37:59.829739+00:00",
+  "requirements": [
+    "ACR-01",
+    "ACR-02",
+    "ACR-03",
+    "ACR-04",
+    "ACR-05"
+  ],
+  "checkpoint": "docs/validation/action-count-checkpoint-2026-11-13.json",
+  "sources": "docs/validation/action-count-sources-2026-11-13.json",
+  "comparison_sources": "docs/validation/action-count-comparison-sources-2026-11-13.json",
+  "focused": "docs/validation/action-count-refresh-focused-2026-11-13.json",
+  "full": "docs/validation/action-count-refresh-full-2026-11-13.json",
+  "production_paths": [
+    "Bars/Watch.lua",
+    "ExtraButtonSystem/Engine/Watch.lua"
+  ],
+  "sources_at_acceptance": [
+    {
+      "path": "Bars/Watch.lua",
+      "baseline_sha256": "2a5e85c6a99a579d566f9728552cec22120dbf363a2e9fa1a4f0cbe9e76eb564",
+      "candidate_sha256": "29294406ba2f303660fcc89bb585a994b63f298492441edb5b89da236bec9975"
+    },
+    {
+      "path": "Bars/Paint.lua",
+      "baseline_sha256": "7885acc887459081f924384e12baeca79bf5a8722f090cdb70423859274154a1",
+      "candidate_sha256": "7885acc887459081f924384e12baeca79bf5a8722f090cdb70423859274154a1"
+    },
+    {
+      "path": "Inventory/Init.lua",
+      "baseline_sha256": "72d2fe6d303afc36c7499c16be39c4a5667b6f1992d519620abfa892a6dc695e",
+      "candidate_sha256": "72d2fe6d303afc36c7499c16be39c4a5667b6f1992d519620abfa892a6dc695e"
+    },
+    {
+      "path": "ExtraButtonSystem/Init.lua",
+      "baseline_sha256": "fa7e2334fa9d0595d4c9db208c66d4fa792781a0f3ac42e74249a52f621f3dc6",
+      "candidate_sha256": "fa7e2334fa9d0595d4c9db208c66d4fa792781a0f3ac42e74249a52f621f3dc6"
+    },
+    {
+      "path": "ExtraButtonSystem/Engine/Watch.lua",
+      "baseline_sha256": "4e22b2fde9ff08ff2fb62f96e595921fef508fbfcd16bb96997daa2e1257a04f",
+      "candidate_sha256": "6263f646d063926d6bbc564cf333e512a356f5fad02ef8c89e2b5f748d5a59a8"
+    },
+    {
+      "path": "ExtraButtonSystem/Engine/Paint.lua",
+      "baseline_sha256": "011f126ae7963368662651a9502c36c211028821621a4c978286386d33ff7a8a",
+      "candidate_sha256": "011f126ae7963368662651a9502c36c211028821621a4c978286386d33ff7a8a"
+    },
+    {
+      "path": "ExtraButtonSystem/Engine/Badge.lua",
+      "baseline_sha256": "713c2d1b6e27664d0a56a0a76bdde6e6d07bce4fbbcff461a3e9d207d236a58c",
+      "candidate_sha256": "713c2d1b6e27664d0a56a0a76bdde6e6d07bce4fbbcff461a3e9d207d236a58c"
+    },
+    {
+      "path": "ExtraButtonSystem/Engine/Widget.lua",
+      "baseline_sha256": "5458e613ae80fa7e750db36432cfb929f52fe3cf1aba642b870e77b046cd99a0",
+      "candidate_sha256": "5458e613ae80fa7e750db36432cfb929f52fe3cf1aba642b870e77b046cd99a0"
+    }
+  ],
+  "test_sha256": "cca07b85209d0858bdc71b789ebb9a3d7db71206f61f074afda6f58bf881f9b4",
+  "focused_checks": 666,
+  "profiles": 10,
+  "matched_pairs": 3,
+  "baseline_failures_each": 224,
+  "candidate_failures_each": 0,
+  "harmful_controls": 7,
+  "all_controls_rejected": true,
+  "burst_model": {
+    "events": 100,
+    "visible_spell_count_queries": 6,
+    "changed_ebs_text_writes": 3,
+    "added_timers": 0,
+    "claims": "Modeled shared scheduler token coalescing;not native timing"
+  },
+  "full_result": {
+    "scripts": 343,
+    "failures": 0,
+    "syntax_files": 1031,
+    "syntax_failures": 0,
+    "current_manifest_verified": true
+  },
+  "documentation": {
+    "command": "python docs/tools/build_reference.py; python docs/tools/validate_docs.py",
+    "result": "PASS: 1064 classified sources; 623 TOC/XML reachable; 437 setting definitions; 24 SavedVariables; 16970 local links",
+    "source_inventory_current": true,
+    "native_approval": "Existing user-managed native testing; no client interaction requested"
+  },
+  "concurrent_paths_preserved": [
+    "Inventory/Restock/Auction/FluxAuctionRestock.lua",
+    "Minimap/FluxMinimapButtons.lua",
+    "tests/minimap_dynamic_buttons.lua"
+  ],
+  "native": {
+    "Retail": "NOT RUN: event registration/delivery;secure use;combat/taint;pixels;controller;CPU/FPS",
+    "Forever": "NOT RUN: event registration/delivery;secure use;combat/taint;pixels;controller;CPU/FPS",
+    "MoP": "NOT RUN: event registration/delivery;secure use;combat/taint;pixels;controller;CPU/FPS",
+    "Era": "NOT RUN: event registration/delivery;secure use;combat/taint;pixels;controller;CPU/FPS",
+    "Anniversary": "NOT RUN: event registration/delivery;secure use;combat/taint;pixels;controller;CPU/FPS"
+  },
+  "preservation": {
+    "external_source_files": 2712,
+    "settings_metadata": 47,
+    "private_settings_copied": false,
+    "foreground_or_input_control": false,
+    "settings_or_profiler_writes": false,
+    "manual_sync": false,
+    "publication": false,
+    "new_pollers_timers_frames_hooks": 0
+  },
+  "comparison_complete": true,
+  "publication_identity_check": "python tools/check_publication_identity.py --revision main: PASS (4 commits); no commit or publication",
+  "final_verified_utc": "2026-11-13T14:39:34.443803+00:00"
+}

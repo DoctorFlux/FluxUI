@@ -1,0 +1,6 @@
+{
+  "command": "python docs/tools/validate_docs.py",
+  "exitCode": 1,
+  "scope": "Final documentation/source inventory check. Any unrelated concurrent inventory freshness failures remain pending; final task-owned sources have their own scoped attestation.",
+  "output": "Documentation validation FAILED:\n- Stale source inventory: Inventory/Restock/Auction/FluxAuctionRestockCraft.lua\n- Stale source inventory: Inventory/Syndicator/Sync.lua\n- Stale source inventory: tests/syndicator_sync.lua\n- Stale generated view: reference/interfaces.md\n- Recorded verification predates current source: Inventory/Containers.lua\n- Recorded verification predates current source: Inventory/Restock/Auction/FluxAuctionRestockCraft.lua\n- Recorded verification predates current source: Inventory/Syndicator/Sync.lua\n- Recorded verification predates current source: tests/character_recipe_cache.lua\n- Recorded verification predates current source: tests/syndicator_sync.lua\n- Broken link SYNDICATOR_SYNC.md:78: validation/syndicator-sync-2026-11-13.json\n10 issue(s); checker made no edits.\n"
+}

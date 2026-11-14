@@ -12,7 +12,7 @@ end
 local function fixture(branch, capabilities)
     capabilities = capabilities or {}
     local state = {frames = {}, textures = {}, casts = {}, metadata={},cold={},loadRequests={},timers={},
-        work={metadata=0,textures=0,gradients=0,positions=0,sizes=0,spriteWrites=0},animations={},clock = 1, released = 0, claimed = 0,
+        work={metadata=0,textures=0,gradients=0,positions=0,sizes=0,spriteWrites=0,recipes=0},animations={},clock = 1, released = 0, claimed = 0,
         combatLogCalls = {register = 0, unregister = 0, read = 0},
         combatLogRestricted = capabilities.combatLogRestricted or branch == "live" or branch == "forever"}
     local secret = setmetatable({}, {__tostring = function() error("secret tostring") end,
@@ -66,10 +66,10 @@ local function fixture(branch, capabilities)
     function methods:EnableMouse(value) self.mouse = value end
     function methods:SetOwner() end
     function methods:SetClipsChildren(value) self.clipped = value end
-    function methods:SetTexture(path)
+    function methods:SetTexture(path, wrapH, wrapV)
         state.work.textures=state.work.textures+1
         if capabilities.noCompositeFills and type(path)=="string" and path:find("Fills\\fill_",1,true) then self.path=nil;return false end
-        self.path=path;return true
+        self.path,self.wrapH,self.wrapV=path,wrapH,wrapV;return true
     end
     function methods:SetDrawLayer(layer,sublevel)self.drawLayer,self.sublevel=layer,sublevel end
     function methods:SetAtlas(path) self.atlas = path end
@@ -81,10 +81,15 @@ local function fixture(branch, capabilities)
     function methods:SetDesaturated(value) self.desaturated = value end
     function methods:SetGradient(...) self.gradient = {...};state.work.gradients=state.work.gradients+1 end
     function methods:SetGradientAlpha(...) self.gradient = {...};state.work.gradients=state.work.gradients+1 end
-    function methods:CreateTexture()
-        local tex = object("Texture",self); state.textures[#state.textures+1] = tex; return tex
+    function methods:CreateTexture(_, layer, _, sublevel)
+        local tex = object("Texture",self); tex.drawLayer,tex.sublevel=layer,sublevel
+        state.textures[#state.textures+1] = tex; return tex
     end
     function methods:CreateFontString() return object("FontString", self) end
+    function methods:CreateMaskTexture()
+        local mask=object("MaskTexture",self);state.textures[#state.textures+1]=mask;return mask
+    end
+    function methods:AddMaskTexture(mask)self.mask=mask end
     function methods:SetStatusBarTexture(path)
         if not self.texture then self.texture = self:CreateTexture() end
         self.texture:SetTexture(path); return true
@@ -140,13 +145,20 @@ local function fixture(branch, capabilities)
                 function animation:SetRadians(value)self.radians=value end
                 function animation:SetStartColor(value)self.startColor=value end
                 function animation:SetEndColor(value)self.endColor=value end
+                function animation:SetFlipBookRows(value)self.rows=value end
+                function animation:SetFlipBookColumns(value)self.columns=value end
+                function animation:SetFlipBookFrames(value)self.frames=value end
+                function animation:SetFlipBookFrameWidth(value)self.frameWidth=value end
+                function animation:SetFlipBookFrameHeight(value)self.frameHeight=value end
                 if capabilities.partialNativeAnimation and kind=="Alpha" then animation.SetToAlpha=nil end
                 group.animations[#group.animations+1]=animation;return animation
             end
             function group:SetScript(key,fn)self.scripts[key]=fn end
             function group:SetToFinalAlpha(value)self.finalAlpha=value end
+            function group:SetLooping(value)self.looping=value end
             function group:Stop()self.playing=false end
             function group:Play()
+                self.plays=(self.plays or 0)+1
                 self.elapsed,self.duration,self.playing=0,0,true
                 for _,animation in ipairs(self.animations)do self.duration=math.max(self.duration,animation.duration+animation.delay)end
             end
@@ -201,6 +213,22 @@ local function fixture(branch, capabilities)
     env.hooksecurefunc = function() end
     env.IsWoWLegacyClient = function() return branch ~= "forever" and branch ~= "live" end
     env.Enum = {StatusBarTimerDirection = {}, StatusBarInterpolation = {}}
+    if capabilities.tradeThemes then
+        env.Enum.Profession = {Alchemy=0,Blacksmithing=1,Enchanting=2,Engineering=3,Herbalism=4,
+            Inscription=5,Jewelcrafting=6,Leatherworking=7,Mining=8,Skinning=9,Tailoring=10,Cooking=11,Fishing=12}
+        state.professions, state.missingAtlas, state.atlasHeight = {}, {}, {}
+        env.C_TradeSkillUI = {GetProfessionInfoByRecipeID=function(id)
+            state.work.recipes=state.work.recipes+1
+            assert(not rawequal(id,secret),"secret cast ID must not reach recipe query")
+            if capabilities.recipeError then error("recipe unavailable") end
+            return state.professions[id]
+        end}
+        env.C_Texture.GetAtlasInfo=function(name)
+            if state.missingAtlas[name] or (branch~="live" and branch~="forever") then return nil end
+            if name:find("Skillbar_",1,true)==1 then return {width=1024,height=state.atlasHeight[name] or 1020} end
+            return {}
+        end
+    end
     env.UnitCastingInfo = function(unit)
         local cast = state.casts[unit]
         if cast and not cast.channel then return cast.name or "Spell", cast.name or "Spell", 12345, 0, 5000, cast.trade, "cast-1", cast.locked, cast.id end
@@ -244,6 +272,7 @@ local function fixture(branch, capabilities)
     if capabilities.gradient == "solid" then methods.SetGradientAlpha = nil end
     if capabilities.noAtlas then env.C_Texture = false; methods.SetAtlas = nil end
     if capabilities.noClip then methods.SetClipsChildren = nil end
+    if capabilities.noMask then methods.CreateMaskTexture = nil end
     ns.SwingTimer = {HideForCastBarClaim=function()state.claimed=state.claimed+1 end,
         OnCastBarSlotReleased=function()state.released=state.released+1 end}
     function state.SetDB(nextDB) db = nextDB end
@@ -252,7 +281,7 @@ local function fixture(branch, capabilities)
         for _,group in ipairs(state.animations) do
             if group.playing then
                 group.elapsed=group.elapsed+dt
-                if group.elapsed>=group.duration then group.playing=false;if group.scripts.OnFinished then group.scripts.OnFinished(group)end end
+                if group.elapsed>=group.duration and group.looping~="REPEAT" then group.playing=false;if group.scripts.OnFinished then group.scripts.OnFinished(group)end end
             end
         end
         for _, frame in ipairs(state.frames) do if frame:IsVisible() and frame.scripts.OnUpdate then frame.scripts.OnUpdate(frame, dt) end end
@@ -287,10 +316,174 @@ local function fixture(branch, capabilities)
     end
     loadAddon("UnitFrames/FluxCastBarSchools.lua",env,ns)
     loadAddon("UnitFrames/FluxCastBarVisuals.lua",env,ns)
+    loadAddon("UnitFrames/FluxCastBarTradeskills.lua",env,ns)
     loadAddon("UnitFrames/FluxCastBarThemes.lua",env,ns)
     loadAddon("UnitFrames/FluxCastBar.lua",env,ns)
     return state,env,ns
 end
+
+-- Profession artwork must follow real production CastStart/Finish/Reset paths,
+-- without using the currently selected profession or learning a magic school.
+local professionCheckStart=checks
+local function professionFill(s, bar)
+    for _,tex in ipairs(s.textures) do
+        if tex.atlas and tex.atlas:find("Skillbar_Fill_Flipbook_",1,true)==1
+            and tex:IsVisible() and tex.parent==bar.TimerBar then return tex end
+    end
+end
+for _,branch in ipairs({"live","forever","classic_era","classic_anniversary","classic"}) do
+    local s,e,ns=fixture(branch,{tradeThemes=true,nativeParticles=true})
+    local bar=s.NewBar("player")
+    local source=bar:GetStatusBarTexture()
+    local enabledClient=branch=="live" or branch=="forever"
+    for kit,profession in pairs(e.Enum.Profession) do
+        local id=700000+profession
+        s.professions[id]={profession=profession,professionName="Localized profession"}
+        local framesBefore=#s.frames
+        s.Cast("player",id,false,true)
+        local fill=professionFill(s,bar)
+        if enabledClient then
+            check(fill and fill.atlas=="Skillbar_Fill_Flipbook_"..kit,branch.." uses native "..kit.." art")
+            check(source:GetAlpha()==0,branch.." native art replaces default fill")
+            check(fill.allPoints==bar.TimerBar and fill.mask and fill.mask.allPoints==source,branch.." full art is engine-masked at cast progress")
+            check(#s.frames==framesBefore,branch.." artwork adds no input frame")
+            check(fill.parent==bar.TimerBar and fill.drawLayer=="ARTWORK" and fill.sublevel==7,
+                branch.." profession fill shares working school texture parent and layer")
+            check(fill.mask.wrapH=="CLAMPTOBLACKADDITIVE" and fill.mask.wrapV=="CLAMPTOBLACKADDITIVE",
+                branch.." mask is opaque only inside current cast progress")
+            check(bar._fluxSchoolCast.schoolMask==nil and ns.CastBarSchools.Resolve(id)==nil,branch.." professions are not spell schools")
+            local group=s.animations[#s.animations]
+            local anim=group.animations[1]
+            check(group.playing and group.looping=="REPEAT" and anim.kind=="FlipBook" and anim.rows==30
+                and anim.columns==2 and anim.frames==60 and anim.duration==2,branch.." native flipbook contract")
+            local queries,plays=s.work.recipes,group.plays
+            for _=1,20 do ns.CastBarThemes.Apply(bar) end
+            check(s.work.recipes==queries and group.plays==plays,branch.." refresh reuses metadata and animation")
+            check(s.VisibleDrivers()==0,branch.." tradeskills add no Lua animation driver")
+            local before=bar.TimerBar.manualWrites
+            ns.CastBarThemes.Finish(bar)
+            check(professionFill(s,bar)==fill and source:GetAlpha()==0 and bar.TimerBar.manualWrites==before,
+                branch.." completion retains art under existing fade and timing")
+            local completionFlare
+            for _,tex in ipairs(s.textures) do
+                if tex.atlas=="Skillbar_Flare_"..kit and tex:IsVisible() then completionFlare=tex end
+            end
+            check(completionFlare and math.abs(completionFlare:GetAlpha()-.6)<.00001,
+                branch.." soft skill-up flare remains through completion hold/fade")
+            bar:Hide()
+            check(source:GetAlpha()==1 and not group.playing and not fill:IsVisible() and not completionFlare:IsVisible(),
+                branch.." hiding stops animation and restores fill")
+        else
+            check(fill==nil and source:GetAlpha()==1 and s.work.recipes==0,branch.." without native rank art remains unchanged")
+        end
+    end
+    if enabledClient then
+        s.professions[700000]={profession=e.Enum.Profession.Alchemy}
+        local art="Skillbar_Fill_Flipbook_Alchemy"
+        s.missingAtlas[art]=true
+        s.Cast("player",700000,false,true)
+        check(professionFill(s,bar).atlas=="Skillbar_Fill_Flipbook_DefaultBlue",branch.." missing profession fill uses native blue fallback")
+        s.missingAtlas[art]=nil
+        s.atlasHeight[art]=1088
+        s.Cast("player",700000,false,true)
+        check(s.animations[#s.animations].animations[1].rows==32,branch.." flipbook rows derive from actual atlas height")
+        s.atlasHeight[art]=1021
+        s.Cast("player",700000,false,true)
+        check(not professionFill(s,bar) and source:GetAlpha()==1,branch.." malformed atlas restores ordinary cast")
+        s.atlasHeight[art]=nil
+
+        s.Cast("player",700000,true,true)
+        check(professionFill(s,bar) and bar.channeling,branch.." tradeskill channels share lifecycle")
+        local oldSource=source
+        local replacement=bar.TimerBar:CreateTexture()
+        replacement:SetAlpha(.6)
+        bar.TimerBar.texture=replacement
+        ns.CastBarThemes.Apply(bar)
+        check(oldSource:GetAlpha()==1 and replacement:GetAlpha()==0,branch.." changed native fill is restored and rebound")
+        ns.CastBarThemes.Reset(bar,true)
+        check(replacement:GetAlpha()==.6,branch.." reset restores exact original alpha")
+        bar.TimerBar.texture=source
+
+        for _,key in ipairs({"enabled","player","colors"}) do
+            s.Cast("player",700000,false,true)
+            s.GetDB().castBarThemes[key]=false;ns.CastBarThemes.Refresh()
+            check(not professionFill(s,bar) and source:GetAlpha()==1,branch.." existing "..key.." option restores normal art")
+            s.GetDB().castBarThemes[key]=true;ns.CastBarThemes.Refresh()
+            check(professionFill(s,bar)~=nil,branch.." re-enabling "..key.." resumes current craft")
+        end
+        ns.CastBarThemes.Reset(bar,true)
+        s.Cast("player",133,false,false)
+        check(not professionFill(s,bar) and bar._fluxSchoolCast.visualMask==4,branch.." next magic cast keeps Fire theme")
+        s.Cast("player",700000,false,true)
+        s.Event(bar,"UNIT_SPELLCAST_INTERRUPTED","player","cast-1",700000)
+        check(not professionFill(s,bar) and source:GetAlpha()==1,branch.." interruption removes profession art")
+
+        local queries=s.work.recipes
+        ns.CastBarThemes.Begin(bar,"player",s.secret,"Secret recipe",true)
+        check(s.work.recipes==queries and not professionFill(s,bar),branch.." secret recipe identity is not queried")
+        ns.CastBarThemes.Begin(bar,"player",700000,"Secret trade flag",s.secret)
+        check(s.work.recipes==queries and not professionFill(s,bar),branch.." secret trade flag keeps ordinary appearance")
+        ns.CastBarThemes.Begin(bar,"player",700099,"Unknown recipe",true)
+        check(not professionFill(s,bar) and source:GetAlpha()==1,branch.." unknown profession keeps default cast")
+        s.professions[700099]={profession=s.secret}
+        ns.CastBarThemes.Begin(bar,"player",700099,"Restricted profession",true)
+        check(not professionFill(s,bar),branch.." restricted profession field is not compared")
+        s.professions[700099]={profession=9999}
+        ns.CastBarThemes.Begin(bar,"player",700099,"Unmapped profession",true)
+        check(not professionFill(s,bar),branch.." unknown enum does not fabricate profession art")
+        bar.interrupted=nil
+        s.Cast("player",700000,false,true)
+        local flare
+        for _,tex in ipairs(s.textures) do if tex.atlas=="Skillbar_Flare_Alchemy" and tex:IsVisible() then flare=tex end end
+        check(flare~=nil and bar.Spark:GetAlpha()==0,branch.." native flare replaces tip spark")
+        check(math.abs(flare:GetAlpha()-.6)<.00001,branch.." profession flare stays visible at 60 percent intensity")
+        check(flare.drawLayer=="OVERLAY" and flare.sublevel==0,branch.." flare draws above fill and below native text/shields")
+        check(math.abs(flare.width-44*bar.TimerBar:GetHeight()/18)<.00001
+            and math.abs(flare.height-14*bar.TimerBar:GetHeight()/18)<.00001,branch.." profession flare has a slightly smaller footprint")
+        s.GetDB().castBarThemes.glowOpacity=50;ns.CastBarThemes.Refresh()
+        check(math.abs(flare:GetAlpha()-.3)<.00001,branch.." existing glow preference scales the softer flare")
+        s.GetDB().castBarThemes.glowOpacity=0;ns.CastBarThemes.Refresh()
+        check(not flare:IsVisible() and bar.Spark:GetAlpha()==1,branch.." zero glow restores normal tip spark")
+        s.GetDB().castBarThemes.glowOpacity=100
+        s.missingAtlas.Skillbar_Flare_Alchemy=true
+        s.Cast("player",700000,false,true)
+        check(professionFill(s,bar) and not flare:IsVisible() and bar.Spark:GetAlpha()==1,branch.." missing optional flare keeps fill and native tip")
+        bar:Hide()
+        for _,unit in ipairs({"target","focus","pet"}) do
+            local unitBar=s.NewBar(unit)
+            s.Cast(unit,700000,false,true)
+            check(professionFill(s,unitBar)~=nil,branch.." themes readable "..unit.." crafts")
+            s.GetDB().castBarThemes[unit]=false;ns.CastBarThemes.Refresh()
+            check(not professionFill(s,unitBar) and unitBar:GetStatusBarTexture():GetAlpha()==1,branch.." honors "..unit.." toggle")
+            s.GetDB().castBarThemes[unit]=true
+            unitBar:Hide()
+        end
+        local native=s.NewBar("target");native:Show()
+        local proxy=e.CreateFrame("Frame",nil,e.UIParent)
+        proxy.TimerBar,proxy._fluxNativeCast=native.TimerBar,native
+        ns.CastBarThemes.Attach(proxy)
+        ns.CastBarThemes.Begin(proxy,"nameplate1",700000,"Craft",true,nil,true)
+        check(professionFill(s,proxy)~=nil,branch.." shared nameplate lifecycle uses profession art")
+        local fill=professionFill(s,proxy)
+        check(fill.parent==native.TimerBar and fill.drawLayer=="ARTWORK" and fill.sublevel==7,
+            branch.." nameplate art is below native OVERLAY text and shield")
+        proxy:Hide()
+        check(native:GetStatusBarTexture():GetAlpha()==1,branch.." removing nameplate restores native fill")
+        for _,capabilities in ipairs({{tradeThemes=true},{tradeThemes=true,nativeParticles=true,noMask=true}}) do
+            local unsupported,ue,un=fixture(branch,capabilities)
+            local ub=unsupported.NewBar("player")
+            unsupported.professions[700000]={profession=ue.Enum.Profession.Alchemy}
+            unsupported.Cast("player",700000,false,true)
+            local frames=#unsupported.frames
+            for _=1,20 do un.CastBarThemes.Apply(ub) end
+            check(not professionFill(unsupported,ub) and ub:GetStatusBarTexture():GetAlpha()==1,
+                branch.." unavailable optional graphics leaves native cast")
+            check(#unsupported.frames==frames,branch.." unsupported graphics do not repeatedly allocate")
+        end
+    end
+end
+
+print("PASS tradeskill cast themes: "..(checks-professionCheckStart).." checks; native rendering/input/taint pending")
 
 local function checkParticleGeometry(s, aspect, label)
     local count=0

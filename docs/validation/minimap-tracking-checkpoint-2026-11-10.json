@@ -1,0 +1,14 @@
+{
+  "date": "2026-11-10",
+  "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c518-4380-79c3-a979-031666ccaead\\minimap-tracking-20261110T105811Z",
+  "verified": true,
+  "sourceFiles": 2510,
+  "revision": "26f886e3ea5371b196ab235d2dace0c156002285",
+  "settingsMetadataEntries": 46,
+  "settingsBackup": "Read-only metadata; no quiescent settings backup claimed",
+  "settingsWrites": false,
+  "sha256": {
+    "source.zip": "7d9be2451adb8776bf958b501ae29935b3f69805e741847564f53114ffc5f3f8",
+    "history.bundle": "bc2cb2ec5705499a361da403efc0d72120b8291d2d930a6191c34aa0f67ef296"
+  }
+}

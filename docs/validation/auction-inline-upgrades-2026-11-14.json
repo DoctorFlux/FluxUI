@@ -1,0 +1,188 @@
+{
+  "dateUTC": "2026-11-14T08:04:41.663257+00:00",
+  "localDate": "2026-11-14",
+  "timezone": "Europe/Copenhagen",
+  "checkpoints": [
+    {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\auction-restock\\tab-crafting-followup\\restock-inline-upgrades-20261114T063938Z\\checkpoint.json",
+      "sha256": "de692fad4a558c9b24acbd90426f6fe96b62b062724ea3a80fb80dd206b27454",
+      "sourceFiles": 2772,
+      "accessibleSettingsMetadata": 129,
+      "privateSettingsCopied": false,
+      "archives": {
+        "source-before.zip": {
+          "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\auction-restock\\tab-crafting-followup\\restock-inline-upgrades-20261114T063938Z\\source-before.zip",
+          "sha256": "0546ad5d17f8f71812643f32fd771167b5fc37bd4e2bc5f89c3518db820d23e6"
+        },
+        "history-before.bundle": {
+          "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\auction-restock\\tab-crafting-followup\\restock-inline-upgrades-20261114T063938Z\\history-before.bundle",
+          "sha256": "0f956615b8b5199bde87b036c301d5ed61f068370ceb211fd0bc8e4413ecbf9a"
+        }
+      }
+    },
+    {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\auction-restock\\tab-crafting-followup\\restock-shared-blacklist-20261114T072300Z\\checkpoint.json",
+      "sha256": "ec1f8a4c03238eb3bc615d3b37b4090f32ed1908c3990f1684c0d966ffe99e10",
+      "sourceFiles": 2773,
+      "accessibleSettingsMetadata": 129,
+      "privateSettingsCopied": false,
+      "archives": {
+        "source-before.zip": {
+          "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\auction-restock\\tab-crafting-followup\\restock-shared-blacklist-20261114T072300Z\\source-before.zip",
+          "sha256": "f716f4118c62275495aa4a6c367acb979f1a8e4c413e06cd02f9f7498bf4d25d"
+        },
+        "history-before.bundle": {
+          "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\auction-restock\\tab-crafting-followup\\restock-shared-blacklist-20261114T072300Z\\history-before.bundle",
+          "sha256": "1d0d0944319ecf8a64ab85fb11fc0de9d10701fa14bd2741782cebc4084b5a8f"
+        }
+      }
+    }
+  ],
+  "fullSuite": {
+    "pass": 365,
+    "fail": 0,
+    "syntaxFiles": 1053,
+    "syntaxFailures": 0,
+    "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\auction-restock\\tab-crafting-followup\\restock-shared-blacklist-20261114T072300Z\\full.json",
+    "sha256": "7c8e7f41a483544c13aa76f505f3c3f661cedd64a59f45ec06b017cdf703342f",
+    "scope": "Desktop Lua mocks/source checks only; native secure VM, real secret values, rendering and client performance unverified.",
+    "sourceGuard": {
+      "normalizedLuaFiles": 1053,
+      "unexpectedChanges": [],
+      "normalization": "CRLF to LF only; exact saved full-run manifest"
+    }
+  },
+  "branch": "main",
+  "hooksPath": ".githooks",
+  "publication": "No commit or push",
+  "native": {
+    "client": "Forever",
+    "lastEstablishedBuild": "1.60.1.70938",
+    "processID": 40032,
+    "window": 7995860,
+    "foregroundChanged": false,
+    "globalInput": false,
+    "clipboard": false,
+    "profilerPreferencesChanged": false,
+    "observed": "Recovered Threat pane and meter skin visible after a reload; existing healing potion button uses permitted red potion.",
+    "excludedProbe": "Two-phase window-targeted chat command produced no diagnostic output while the player moved; not acceptance; further input stopped.",
+    "pending": [
+      "Options EnsureFrame/show with recovered Skin",
+      "Inline multi-item native layout and actions",
+      "Bandage and potion accepted native upgrades",
+      "Real buys/receipts",
+      "Controller navigation",
+      "Other clients",
+      "Taint and protected VM certification",
+      "Native CPU/memory/FPS"
+    ],
+    "actions": "No purchase or upgrade choice submitted by agent; user activity left alone; no reload sent by agent",
+    "windowEvidence": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\auction-restock\\tab-crafting-followup\\restock-shared-blacklist-20261114T072300Z\\forever-window.json",
+      "sha256": "14f835f1f95a1035a917095fbdd9da825616b35ea3268f58df416621eccacdfe"
+    },
+    "inputEvidence": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\auction-restock\\tab-crafting-followup\\restock-shared-blacklist-20261114T072300Z\\verified-input.jsonl",
+      "sha256": "ad19f4d51e6fec67235cc9ce588378e64e1ca80c9c7d8ec4daaec61909e2bfcc"
+    }
+  },
+  "installedCopies": {
+    "utc": "2026-11-14T07:59:04.899789+00:00",
+    "scope": "Read-only; automatic sync retained; no manual copy",
+    "clients": [
+      {
+        "client": "_retail_",
+        "files": 91,
+        "match": true,
+        "mismatches": []
+      },
+      {
+        "client": "_forever_",
+        "files": 91,
+        "match": true,
+        "mismatches": []
+      },
+      {
+        "client": "_classic_",
+        "files": 91,
+        "match": true,
+        "mismatches": []
+      },
+      {
+        "client": "_classic_era_",
+        "files": 91,
+        "match": true,
+        "mismatches": []
+      },
+      {
+        "client": "_anniversary_",
+        "files": 91,
+        "match": true,
+        "mismatches": []
+      }
+    ]
+  },
+  "changeID": "AUCTION-INLINE-UPGRADES-20261114",
+  "candidate": "AH-restock-inline-upgrades-20261114-r25",
+  "requirements": [
+    "AHR-96",
+    "AHR-97",
+    "AHR-98",
+    "AHR-99",
+    "AHR-100",
+    "AHR-101"
+  ],
+  "functional": {
+    "inline": "880 checks/20 profiles",
+    "sharedExclusions": "240 checks/10 profiles",
+    "globalJunk": "1230 checks/30 scenarios",
+    "geometry": "120 checks/20 profiles; desktop bounds and lazy-frame work only"
+  },
+  "controls": {
+    "inlineGlobal": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\auction-restock\\tab-crafting-followup\\restock-inline-upgrades-20261114T063938Z\\results.json",
+      "sha256": "19d25f6d2ebcd49d9b9a43718739304f7e33a2b9e03242f64c78aeff2d030abb"
+    },
+    "shared": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\auction-restock\\tab-crafting-followup\\restock-shared-blacklist-20261114T072300Z\\shared-results.json",
+      "sha256": "ef8270a3525fd8da27604c968a0080599cafd0a1c9cb3f131868b7de963c002a"
+    },
+    "syntaxValidRejected": 22,
+    "trials": "3 baseline/candidate repetitions per regression; raw outputs and hashes retained"
+  },
+  "intentionalBehavior": [
+    "Independent inline choices for healing/mana/bandage; no modal popup",
+    "Accepted tier saved; automatic junk governed globally; no new explicit Junk marks",
+    "Three default-on global carried-upgrade protection settings; manual Junk wins",
+    "Shared manual item blacklist and default-on case-insensitive discolored healing substring exclusion; all tiers; no ID/name catalogue",
+    "Exclusions refresh Best and button binding without bags/AH; secure writes deferred in combat; excluded items cannot justify junk"
+  ],
+  "candidateRawHashes": {
+    "Inventory/Restock/Auction/FluxAuctionRestockPotions.lua": "2b71bd86b69bf1ea054e74d147138a8d55267953fe77c02805a65ff18b4f70e5",
+    "Inventory/Restock/Auction/FluxAuctionRestock.lua": "eb02a46dc3b982622d36c7eb0b7164d1b771f8579f55f80a7439b5db6cc67a51",
+    "Inventory/FluxConsumableClassify.lua": "7c90fe85deecca2dd9a8dedd52406d490456be42898de7d3ba822243b4e9c565",
+    "Inventory/Restock/Core/Tiers/FluxRestockTiers_Settings.lua": "c5625c825fc85e74abf30d3ee44448b73e9dd9bc5c761c60cfdfad6e73a83965",
+    "Inventory/Restock/Core/Tiers/FluxRestockTiers_Match.lua": "4dea0444ef27e33d6c031bfcfde1df045ab7321e03523ef367888fd769ccb634",
+    "Inventory/Restock/Junk/FluxJunk.lua": "b70e6121aa5a44a176613bbbf3a6445a1885b3332fd4424289c3edd48bacde8c",
+    "Inventory/Restock/Core/Tiers/FluxRestockTiers_Init.lua": "cc55373ffcbac25ea2bba2b310b284b4639ff69223df8a00e3a71a4689137c97",
+    "Inventory/Restock/Auction/FluxAuctionRestockData.lua": "671665a0dbeb8ba546907f125bb23c3b8f3450ca6257b3827568d0028bb69359",
+    "Inventory/Restock/Auction/FluxAuctionRestockUI.lua": "8f1478eedae6332ab97caf8e7e0a44c99c1e53dc268f31aa0b6a688ac78a1c83",
+    "Inventory/Restock/Auction/FluxAuctionRestockLocale.lua": "103f9d753154b4cd28fb005c5d6dea874cfe363c3f22efaadb4f7cb202f166c1",
+    "AddonOptions/FluxOptionsVendor.lua": "75906268f1defc2243ff35efd12d5a79e4b11df51ce18bc5a471810000fe73ce",
+    "tests/auction_restock.lua": "6555f38a5e069424127c79e950616a8e01f6007c943c69b3607c02b6465d1830",
+    "tests/auction_restock_potions.lua": "5bd475a2ac5ca2b00cb9ee2f1c30467e0f030d2b2eb24de7fcd55e83625d9117",
+    "tests/auction_restock_potion_confirmation.lua": "e55cf4bb64f998b660c8eb4c16b0f5f6b9126984b065f3437d51f410284e28bd",
+    "tests/auction_restock_potion_restore.lua": "20140b8b5638eeb287bbd74d6963db07a54dbaba77bf52569b95e3e8732b3441",
+    "tests/auction_restock_potion_upgrade.lua": "b1f2476ee1f631088ff49a4d6d902e00fa6880405c0c0cb2e26c798b9ef2a8d9",
+    "tests/auction_restock_price_policy.lua": "7928759508bd3c395e2cf6b0808ed767291e5ea8926762e932fec6ee88bbba1e",
+    "tests/auction_restock_scan_all.lua": "7e08a1696603d0a2df4238c0bb7977156e1f76cca403fd9d516f94721daa4d42",
+    "tests/auction_restock_speed.lua": "2024537c7a3f95062ec363f7b1b0f443e27243cd5a034a89b79fbbeb14d7953b",
+    "tests/auction_restock_inline_upgrades.lua": "134052bc3bc2e175b7891011119894cad08c3866eaa00eac1664f284ee092dbe",
+    "tests/combat_consumable_junk.lua": "e74538cf9150577ba1c87bc9b5cdefbc1ed45ad7a98a9ea2dafd8c27979c75c4",
+    "Inventory/FluxConsumableBest/Score.lua": "a1d84a7dd20ab5342a04fb526ad7c927c353bd956c155cb27195080e26772667",
+    "Inventory/FluxConsumableBest/Persist.lua": "3ae9e78d4c4a8a4c9817a8b319787184fd643d63caef2f298bf3ca24b5c8203c",
+    "Inventory/FluxConsumableBest/VendorMemory.lua": "f2dce62b4b6407faa5d3751c2df6221517010a8c80afd1eff260d7c7da3ab39c",
+    "Inventory/FluxConsumableBest/FluxConsumableBest.lua": "5997d2531f0d51e6aaf4ecf1b736b2156e0108992a7f69286c959afb8f645743",
+    "tests/consumable_shared_exclusions.lua": "176a9a1f532bc18960b47d65044486f88d60058ef3111512942745ae29841804"
+  }
+}

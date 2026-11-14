@@ -20,6 +20,37 @@ local PADDING_INTERNAL = 4
 local BUTTON_SIZE = 14
 local INDENT_STEP = 10 
 
+-- Questie can recycle or rewrite every line during Update. Compare live public
+-- geometry, rather than trusting a cached assignment, before repeating setters.
+local function SetWidthIfChanged(frame, width)
+    if not frame.GetWidth or frame:GetWidth() ~= width then frame:SetWidth(width) end
+end
+
+local function SetHeightIfChanged(frame, height)
+    if not frame.GetHeight or frame:GetHeight() ~= height then frame:SetHeight(height) end
+end
+
+local function PointMatches(frame, index, point, relative, relativePoint, x, y)
+    local p, r, rp, px, py = frame:GetPoint(index)
+    return p == point and r == relative and rp == relativePoint and px == x and py == y
+end
+
+local function SetOnlyPoint(frame, point, relative, relativePoint, x, y)
+    if frame.GetNumPoints and frame.GetPoint and frame:GetNumPoints() == 1
+        and PointMatches(frame, 1, point, relative, relativePoint, x, y) then return end
+    frame:ClearAllPoints()
+    frame:SetPoint(point, relative, relativePoint, x, y)
+end
+
+local function SetLabelPoints(label, line, right)
+    if label.GetNumPoints and label.GetPoint and label:GetNumPoints() == 2
+        and PointMatches(label, 1, "TOPRIGHT", line, "TOPRIGHT", -right, 0)
+        and PointMatches(label, 2, "TOPLEFT", line, "TOPLEFT", PADDING_EDGE, 0) then return end
+    label:ClearAllPoints()
+    label:SetPoint("TOPRIGHT", line, "TOPRIGHT", -right, 0)
+    label:SetPoint("TOPLEFT", line, "TOPLEFT", PADDING_EDGE, 0)
+end
+
 -- ----------------------------------------------------------------------------
 -- INITIALIZATION
 -- ----------------------------------------------------------------------------
@@ -208,7 +239,7 @@ function FluxQuestie:UpdateScrollRange()
         local line = self.TrackerLinePool.GetLine(i)
         if line and line:IsShown() then height = height + line:GetHeight() end
     end
-    child:SetHeight(height + 3)
+    SetHeightIfChanged(child, height + 3)
     if scroll.UpdateScrollChildRect then scroll:UpdateScrollChildRect() end
     local offset = scroll:GetVerticalScroll() or 0
     local maxScroll = math.max(0, child:GetHeight() - scroll:GetHeight())
@@ -222,20 +253,22 @@ function FluxQuestie:StyleBaseFrame(baseFrame)
     if scale < 0.1 then scale = 1 end
     
     local finalWidth = width / scale
-    baseFrame:SetWidth(finalWidth)
+    SetWidthIfChanged(baseFrame, finalWidth)
     baseFrame:SetClampedToScreen(true)
-    
-    -- Force Position (RIGID LOCK)
-    baseFrame:ClearAllPoints()
     
     local isEmbedded = FluxMinimap and FluxMinimap.IsEmbedded and FluxMinimap:IsEmbedded()
     local isMinimized = Questie and Questie.db and Questie.db.char and (not Questie.db.char.isTrackerExpanded)
+    local dockX = FluxMinimapButtons and FluxMinimapButtons.GetTrackerOffset
+        and FluxMinimapButtons:GetTrackerOffset() or 0
+    if baseFrame.GetEffectiveScale and UIParent.GetEffectiveScale then
+        dockX = dockX * UIParent:GetEffectiveScale() / baseFrame:GetEffectiveScale()
+    end
     
     if isEmbedded then
         if isMinimized then
             -- Embedded + Minimized: Header is at bottom of baseFrame, anchor BOTTOMRIGHT to TOPRIGHT
             -- This positions the header (at bottom) near the top of screen
-            baseFrame:SetPoint("BOTTOMRIGHT", UIParent, "TOPRIGHT", -15, 20)
+            SetOnlyPoint(baseFrame, "BOTTOMRIGHT", UIParent, "TOPRIGHT", -15, 20)
             
             -- Don't override height - let Questie manage it (it will be just header height)
             -- But ensure it's visible
@@ -244,14 +277,14 @@ function FluxQuestie:StyleBaseFrame(baseFrame)
             end
         else
             -- Embedded + Expanded: Top of Screen
-            baseFrame:SetPoint("TOPRIGHT", UIParent, "TOPRIGHT", -15, 15)
+            SetOnlyPoint(baseFrame, "TOPRIGHT", UIParent, "TOPRIGHT", -15, 15)
             
             if FluxWindowFrame and FluxWindowFrame.frame then
                 -- Use same calculation as UpdateQuestTrackerPosition for consistency
                 local screenTop = UIParent:GetTop() or UIParent:GetHeight()
                 local windowTop = FluxWindowFrame.frame:GetTop() or 0
                 local availableHeight = (screenTop - windowTop) / scale
-                baseFrame:SetHeight(math.max(100, availableHeight))
+                SetHeightIfChanged(baseFrame, math.max(100, availableHeight))
             end
         end
     else
@@ -260,9 +293,9 @@ function FluxQuestie:StyleBaseFrame(baseFrame)
             -- Anchor TOPRIGHT to BOTTOMRIGHT of Minimap so tracker appears below minimap
             -- The header (at bottom of baseFrame) will then be positioned below the minimap
             if Minimap then
-                baseFrame:SetPoint("TOPRIGHT", Minimap, "BOTTOMRIGHT", -15, 10)
+                SetOnlyPoint(baseFrame, "TOPRIGHT", Minimap, "BOTTOMRIGHT", -15 + dockX, 10)
             else
-                baseFrame:SetPoint("TOPRIGHT", UIParent, "TOPRIGHT", -15, -185)
+                SetOnlyPoint(baseFrame, "TOPRIGHT", UIParent, "TOPRIGHT", -15, -185)
             end
             -- Don't override height - let Questie manage it (it will be just header height)
             if baseFrame:GetHeight() < 20 then
@@ -271,9 +304,9 @@ function FluxQuestie:StyleBaseFrame(baseFrame)
         else
             -- Not Embedded + Expanded: Under Minimap
             if Minimap then
-                baseFrame:SetPoint("TOPRIGHT", Minimap, "BOTTOMRIGHT", -15, 10)
+                SetOnlyPoint(baseFrame, "TOPRIGHT", Minimap, "BOTTOMRIGHT", -15 + dockX, 10)
             else
-                baseFrame:SetPoint("TOPRIGHT", UIParent, "TOPRIGHT", -15, -185)
+                SetOnlyPoint(baseFrame, "TOPRIGHT", UIParent, "TOPRIGHT", -15, -185)
             end
             
             if FluxWindowFrame and FluxWindowFrame.frame then
@@ -281,9 +314,9 @@ function FluxQuestie:StyleBaseFrame(baseFrame)
                 local minimapBottom = Minimap and Minimap:GetBottom() or UIParent:GetHeight()
                 local windowTop = FluxWindowFrame.frame:GetTop() or 0
                 local availableHeight = (minimapBottom - windowTop) / scale
-                baseFrame:SetHeight(math.max(100, availableHeight))
+                SetHeightIfChanged(baseFrame, math.max(100, availableHeight))
             else
-                baseFrame:SetHeight(600) -- Fallback if FluxWindowFrame not available
+                SetHeightIfChanged(baseFrame, 600) -- Fallback if FluxWindowFrame not available
             end
         end
     end
@@ -358,13 +391,13 @@ function FluxQuestie:SizeQuestFrame(baseFrame, timerHeight)
     
     local baseWidth = baseFrame:GetWidth() or TRACKER_WIDTH
     local questFrameWidth = baseWidth + 10 -- Add 10px to show minimize button
-    questFrame:SetWidth(questFrameWidth)
-    questFrame:SetHeight(availableHeight)
+    SetWidthIfChanged(questFrame, questFrameWidth)
+    SetHeightIfChanged(questFrame, availableHeight)
     
     -- ScrollFrame uses SetAllPoints(questFrame), so it will automatically match questFrame size
     -- Match ScrollChildFrame width as well.
     if questFrame.ScrollFrame and questFrame.ScrollChildFrame then
-        questFrame.ScrollChildFrame:SetWidth(questFrame.ScrollFrame:GetWidth())
+        SetWidthIfChanged(questFrame.ScrollChildFrame, questFrame.ScrollFrame:GetWidth())
     end
 end
 
@@ -375,7 +408,7 @@ function FluxQuestie:StyleLines(trackerWidth)
         local line = self.TrackerLinePool.GetLine(i)
         if line and line:IsShown() then
             -- Set Line Width
-            line:SetWidth(trackerWidth)
+            SetWidthIfChanged(line, trackerWidth)
             
             -- Identify Active Elements based on Mode
             local mode = line.mode
@@ -434,8 +467,13 @@ function FluxQuestie:StyleLines(trackerWidth)
                 end
                 
                 line.FluxOverlay:Show()
-                line.FluxOverlay:ClearAllPoints()
-                line.FluxOverlay:SetAllPoints(line) 
+                if not (line.FluxOverlay.GetNumPoints and line.FluxOverlay.GetPoint
+                    and line.FluxOverlay:GetNumPoints() == 2
+                    and PointMatches(line.FluxOverlay, 1, "TOPLEFT", line, "TOPLEFT", 0, 0)
+                    and PointMatches(line.FluxOverlay, 2, "BOTTOMRIGHT", line, "BOTTOMRIGHT", 0, 0)) then
+                    line.FluxOverlay:ClearAllPoints()
+                    line.FluxOverlay:SetAllPoints(line)
+                end
                 
             else
                 if line.FluxOverlay then line.FluxOverlay:Hide() end
@@ -463,16 +501,17 @@ function FluxQuestie:StyleLines(trackerWidth)
             
             -- 1. Expand Button
             if expandBtn and expandBtn:IsShown() then
-                expandBtn:ClearAllPoints()
-                expandBtn:SetSize(BUTTON_SIZE, BUTTON_SIZE)
-                expandBtn:SetPoint("TOPRIGHT", line, "TOPRIGHT", -rightCursor, -2)
+                if not expandBtn.GetWidth or not expandBtn.GetHeight
+                    or expandBtn:GetWidth() ~= BUTTON_SIZE or expandBtn:GetHeight() ~= BUTTON_SIZE then
+                    expandBtn:SetSize(BUTTON_SIZE, BUTTON_SIZE)
+                end
+                SetOnlyPoint(expandBtn, "TOPRIGHT", line, "TOPRIGHT", -rightCursor, -2)
                 rightCursor = rightCursor + BUTTON_SIZE + PADDING_INTERNAL
             end
             
             -- 2. Icon Button
             if iconBtn and iconBtn:IsShown() then
-                iconBtn:ClearAllPoints()
-                iconBtn:SetPoint("TOPRIGHT", line, "TOPRIGHT", -rightCursor, -2)
+                SetOnlyPoint(iconBtn, "TOPRIGHT", line, "TOPRIGHT", -rightCursor, -2)
                 local w = iconBtn:GetWidth() or 14
                 if w > 20 then w = 14 end
                 rightCursor = rightCursor + w + PADDING_INTERNAL
@@ -480,24 +519,21 @@ function FluxQuestie:StyleLines(trackerWidth)
             
             -- 3. Label
             if label then
-                label:ClearAllPoints()
-                label:SetPoint("TOPRIGHT", line, "TOPRIGHT", -rightCursor, 0)
-                label:SetPoint("TOPLEFT", line, "TOPLEFT", PADDING_EDGE, 0)
+                SetLabelPoints(label, line, rightCursor)
                 
                 local availableWidth = trackerWidth - rightCursor - PADDING_EDGE
                 if availableWidth > 0 then
-                    label:SetWidth(availableWidth)
+                    SetWidthIfChanged(label, availableWidth)
                 end
                 
-                if mode == "zone" then
-                    label:SetJustifyH("LEFT")
-                else
-                    label:SetJustifyH("RIGHT")
+                local justify = mode == "zone" and "LEFT" or "RIGHT"
+                if not label.GetJustifyH or label:GetJustifyH() ~= justify then
+                    label:SetJustifyH(justify)
                 end
                 
-                label:SetWordWrap(true)
-                if label.SetNonSpaceWrap then label:SetNonSpaceWrap(true) end
-                if label.SetMaxLines then label:SetMaxLines(0) end 
+                if not label.CanWordWrap or not label:CanWordWrap() then label:SetWordWrap(true) end
+                if label.SetNonSpaceWrap and (not label.CanNonSpaceWrap or not label:CanNonSpaceWrap()) then label:SetNonSpaceWrap(true) end
+                if label.SetMaxLines and (not label.GetMaxLines or label:GetMaxLines() ~= 0) then label:SetMaxLines(0) end
                 label:SetHeight(0) 
                  
                 -- RECALCULATE HEIGHT
@@ -509,7 +545,7 @@ function FluxQuestie:StyleLines(trackerWidth)
                 end
                 
                 local finalHeight = math.max(minHeight, stringHeight) + PADDING_INTERNAL
-                line:SetHeight(finalHeight)
+                SetHeightIfChanged(line, finalHeight)
             end
         end
     end

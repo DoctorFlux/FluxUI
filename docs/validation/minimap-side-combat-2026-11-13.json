@@ -1,0 +1,54 @@
+{
+  "changeId": "MINIMAP-SIDE-COMBAT-20261113",
+  "createdUTC": "2026-11-13T09:23:12.136302+00:00",
+  "requirement": "REQ-MBL-17",
+  "implemented": true,
+  "scope": "Always-visible combat-hide option affects normal-map screen-side grid only;embedded grid ignores saved combat hide",
+  "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d3b4-b7ec-7591-94d3-6d3b3097fb8a\\minimap-side-combat-20261113T091348Z",
+  "baselineSourceFiles": 2652,
+  "settingsMetadataEntries": 103,
+  "settingsWrites": false,
+  "branch": "main",
+  "sourceHashes": {
+    "AddonOptions/FluxOptionsBattlezone.lua": "8aa27fc910a38f89adea8a26bedcf2a23a8a611e6b614845810659ab1b8b6d97",
+    "Minimap/FluxMinimapButtons.lua": "e1fc53c1737c83a8cdac9a470fcbf497903054f6d84d5fc8587ecc48da1d0e82"
+  },
+  "desktop": {
+    "gridChecks": 50034,
+    "mapChecks": 113,
+    "auraChecks": 2287,
+    "flyoutChecks": 168,
+    "optionsChecks": 6407,
+    "candidateRepeatedPass": 3,
+    "baselineRejected": true,
+    "harmfulControlsRejected": 3,
+    "scripts": 324,
+    "failures": 0,
+    "syntaxFiles": 1006,
+    "syntaxFailures": 0,
+    "currentTaskFilesVerified": true,
+    "currentFullSuiteVerified": false,
+    "fullSuiteReport": "docs/validation/minimap-side-combat-full-2026-11-13.json",
+    "fullSuiteScope": "Full captured snapshot passes;task-owned files still match. Concurrent later auction edits are preserved and leave global freshness pending."
+  },
+  "controls": "docs/validation/minimap-side-combat-controls-2026-11-13.json",
+  "sourceGuard": "docs/validation/minimap-side-combat-source-guard-2026-11-13.json",
+  "native": {
+    "pixels": "NOT RUN",
+    "input": "NOT RUN",
+    "controller": "NOT RUN",
+    "persistence": "NOT RUN",
+    "taint": "NOT RUN",
+    "FPS": "NOT RUN"
+  },
+  "ownership": "Two task runtime owners/two existing tests;no new frame/event/timer/ticker/hook/poll/native API. Existing secure side driver only;hideInCombat data retained. Tab/layout transitions in combat retain deferred application.",
+  "preferences": "Existing direct implementation and user-native reproduction;English fallback and original toggle/controller path retained",
+  "clientActions": "No client focus/input/clipboard,private settings/profiler file write,sync,commit or publication",
+  "unrelatedWork": "Concurrent auction runtime/test changes preserved.",
+  "documentationValidation": {
+    "report": "docs/validation/minimap-side-combat-docs-2026-11-13.json",
+    "globalResult": "Pending concurrent auction source/generated inventories and evidence link",
+    "taskEvidenceLinkResolved": true,
+    "taskSpecLocalLinkTargetsVerified": 15
+  }
+}

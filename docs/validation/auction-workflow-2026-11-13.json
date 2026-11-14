@@ -1,0 +1,365 @@
+{
+  "dateUTC": "2026-11-13T12:02:39.674029+00:00",
+  "changeID": "AUCTION-WORKFLOW-20261113",
+  "candidate": "AH-restock-workflow-20261113-r11",
+  "requirements": "AHR-57 through AHR-64",
+  "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\auction-restock\\tab-crafting-followup\\restock-workflow-20261113\\checkpoint.json",
+  "privateSettingsCopied": false,
+  "sourceGuard": {
+    "sourceFiles": 2684,
+    "settingsMetadataEntries": 95,
+    "sourceZIPAndHistoryVerified": true,
+    "changedOwned": [
+      "AddonOptions/FluxOptionsCatalog.lua",
+      "AddonOptions/FluxOptionsVendor.lua",
+      "Inventory/Restock/Auction/FluxAuctionRestock.lua",
+      "Inventory/Restock/Auction/FluxAuctionRestockData.lua",
+      "Inventory/Restock/Auction/FluxAuctionRestockCraft.lua",
+      "Inventory/Restock/Auction/FluxAuctionRestockLocale.lua",
+      "Inventory/Restock/Auction/FluxAuctionRestockUI.lua",
+      "Inventory/Restock/Auction/FluxAuctionRestockFollowup.lua",
+      "Inventory/Restock/Auction/FluxAuctionRestockFollowupUI.lua",
+      "Inventory/Restock/Bank/FluxBankRestock.lua",
+      "Inventory/Restock/Core/FluxRestockList.lua",
+      "Inventory/Restock/Vendor/FluxVendorBuy.lua",
+      "Mail/Select.lua",
+      "Mail/Settings.lua",
+      "_FluxUI.toc",
+      "tests/auction_restock.lua",
+      "tests/auction_restock_followup.lua",
+      "tests/auction_restock_followup_ui.lua",
+      "tests/auction_restock_market.lua",
+      "tests/auction_restock_potions.lua",
+      "tests/auction_restock_vendor_queue.lua",
+      "tests/auction_restock_vendor_routes.lua",
+      "tests/options_navigation.lua"
+    ],
+    "addedOwned": [
+      "Mail/Restock.lua",
+      "tests/auction_restock_scroll.lua",
+      "tests/auction_restock_sources.lua",
+      "tests/auction_restock_workflow.lua",
+      "tests/mail_restock.lua"
+    ],
+    "candidateRawHashes": {
+      "AddonOptions/FluxOptionsCatalog.lua": "23301f36d3e3fe9d18c7e825ea7ee4823e167bc67d46a334665be83f2dd421f4",
+      "AddonOptions/FluxOptionsVendor.lua": "ba3530ce4833342e7e41d24583293d77c938d50567060db80952088bf4ecb478",
+      "Inventory/Restock/Auction/FluxAuctionRestock.lua": "1c3f8825b4126a6db25abde101d19bada0dc6bc73e7b6c9393f73a5b7b61e435",
+      "Inventory/Restock/Auction/FluxAuctionRestockData.lua": "ee15e27b1e1d7fb60d61c88cfa50359872afe103f14dbd2a59a1c596e949bcf7",
+      "Inventory/Restock/Auction/FluxAuctionRestockCraft.lua": "bd9b7bffc1b275220cbc78126b31e2775ad3414db75113758473b03e173bd096",
+      "Inventory/Restock/Auction/FluxAuctionRestockLocale.lua": "3bc8ad23e4a8bbebc1c9c889d36f4bc9d4fdb268c9b6739baad0f6275ac8504e",
+      "Inventory/Restock/Auction/FluxAuctionRestockUI.lua": "dd0e99766e1340b951d472713276f3783f5ec670e0fad60b4dd410506941a35d",
+      "Inventory/Restock/Auction/FluxAuctionRestockFollowup.lua": "84470d4d8d50ff92b12462578ebb057e0fa6af73518c36b0332e1ec689d751af",
+      "Inventory/Restock/Auction/FluxAuctionRestockFollowupUI.lua": "e25bd74408b1cdab5e89e59a8de510aeade794004e2bdf5faa7dce2cd2c62886",
+      "Inventory/Restock/Bank/FluxBankRestock.lua": "e010585a8512a893fc80f211a529a7743f8a34d413553d65d1b9ec0e4d706812",
+      "Inventory/Restock/Core/FluxRestockList.lua": "885ce48e979f070b2c11b3456379755bfb59665f9cfa2dc583ffd991f7e225cb",
+      "Inventory/Restock/Vendor/FluxVendorBuy.lua": "45a6f4fa757ca75fa1b6dd83859fa179ccd00ea427819dd0bc6125f848d113b7",
+      "Mail/Select.lua": "356a26355c21fa609cabdd57f0cf33b396d8c9562ec730e9d8f1591c78832b22",
+      "Mail/Settings.lua": "55c65d9e607bf0d62057d8c66f62bce1df5749f75ca5706552d648a108f23fe1",
+      "Mail/Restock.lua": "1747fc2efc8f1da661fdbd49d9782d022e90ce8fabfa63cebec69573b7fd626e",
+      "_FluxUI.toc": "b3e08dd1c5c116bf2a23372d22c83f573ce6627628103331657cc03ed48ae521",
+      "tests/auction_restock.lua": "3e4047881bc1135a837011b551b3820d19f8da38d32926f14ee21436485bb242",
+      "tests/auction_restock_followup.lua": "91bdc30b543021d2d4a12a26efefe74002ef1aa9de4d946d60ba7fc8aa33a106",
+      "tests/auction_restock_followup_ui.lua": "17d8d75ea54aaaddf8303f18bf73bdceca453d6a934ebf694f5ba9d1d976401a",
+      "tests/auction_restock_market.lua": "ab881d307c5031b4d05a5fcd9bd9fa957870c0c021bd7e26caa7c71373706654",
+      "tests/auction_restock_potions.lua": "42036aee7935c9ef8255e627f2ba613af5e8af244b2cf9eb52e05d552defef01",
+      "tests/auction_restock_vendor_queue.lua": "3258ccd712453cf07157a87b34dced291ecf9080f0ee67638580fc94cfbcee21",
+      "tests/auction_restock_vendor_routes.lua": "f421dfbf6ef627deb61a147c0527805dd6ee4259503ba9c4d4bc36d726326ca0",
+      "tests/options_navigation.lua": "ffa60f1b8af77487c02b110f5a23dd82d6433441f51c6ac055c34abd376ec958",
+      "tests/auction_restock_scroll.lua": "ce1603235f9d72963a5fc1065b994d22f92209ac87253c92e7324590607b3644",
+      "tests/auction_restock_sources.lua": "72307b41d3b0948c615922e0d04bf65c3efa33fd58ecbb89b92e1a38cf705c37",
+      "tests/auction_restock_workflow.lua": "7fee59e8343cdf82ae0ac76e9f49ef0f63d2f8f0b5d65fc26a0212fcc1724285",
+      "tests/mail_restock.lua": "d544d291f4b7de59ff592a3797b9d548ed732dd8690dd55b8b0b55bc67f39b97"
+    },
+    "concurrentLuaChangesPreserved": [
+      "Battlezonemap/FluxBlizzardMeter.lua",
+      "Battlezonemap/FluxMeterLayout.lua",
+      "RaidFrame/FluxRaidPreview.lua",
+      "RaidFrame/FluxRaidUnit.lua",
+      "tests/bars_contract_regression.lua",
+      "tests/native_meter_all_options.lua",
+      "tests/native_meter_controls.lua",
+      "UnitFrames/FluxUnitFrames_PetAuraTooltip.lua",
+      "UnitFrames/FluxUnitFrames_Shared.lua"
+    ],
+    "currentCompleteLuaManifestVerified": false,
+    "currentOwnedSourceHashesVerified": true,
+    "globalManifestLimitation": "Concurrent unrelated Bars/meter/raid/unit edits after initial full336/1024 pass; preserved without modification.",
+    "concurrentNewLuaPreserved": [
+      "tests/unit_tooltip_ownership.lua"
+    ]
+  },
+  "full": {
+    "pass": 336,
+    "fail": 0,
+    "syntaxFiles": 1024,
+    "raw": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\auction-restock\\tab-crafting-followup\\restock-workflow-20261113\\full-final.json",
+    "currentManifestVerified": false,
+    "scope": "Initial full336/1024 pass before concurrent unrelated edits; not certification of later shared tree."
+  },
+  "focused": {
+    "tests/auction_restock.lua": "Auction restock: 16104 checks PASS; 20 client/provider/addon profiles; native purchases/input/taint/pixels/FPS NOT RUN",
+    "tests/auction_restock_charges.lua": "Auction restock charges: 19636 checks PASS; 20 profiles; native charges/mail/purchases NOT RUN",
+    "tests/auction_restock_crafting.lua": "Auction restock crafting/tab: 824 checks PASS; 20 profiles; native quote permissions/rendering/controller NOT RUN",
+    "tests/auction_restock_followup.lua": "Auction restock follow-up: 654 checks PASS; 10 client/provider profiles; native mail/vendor/craft permissions NOT RUN",
+    "tests/auction_restock_followup_craft.lua": "Auction restock follow-up craft: 1692 checks PASS; 20 profiles; native open/craft/input/taint NOT RUN",
+    "tests/auction_restock_followup_ui.lua": "Auction restock follow-up UI: 219 checks PASS; 5 client profiles; native pixels/input/controller/taint NOT RUN",
+    "tests/auction_restock_market.lua": "Auction dense grid/stock/price bridge: 2508 checks PASS; 20 profiles; native pixels/vendor coverage/coexistence NOT RUN",
+    "tests/auction_restock_potions.lua": "Auction potion upgrades: 552 checks PASS; 20 profiles; native browse/usability/tier/input NOT RUN",
+    "tests/auction_restock_purchase_flow.lua": "Auction restock purchase flow: 400 checks PASS; 20 client/provider/excess profiles; native purchasing/taint/latency NOT RUN",
+    "tests/auction_restock_queue.lua": "Auction restock automatic queue: 928 checks PASS; 20 profiles; native purchase permissions/pixels NOT RUN",
+    "tests/auction_restock_scroll.lua": "Auction compact scrolling tab: 800 checks PASS; 20 client/addon profiles; native pixels/clipping/controller/input/taint NOT RUN",
+    "tests/auction_restock_sources.lua": "Auction restock sources: 800 checks PASS; 20 profiles; native bank/vendor permissions NOT RUN",
+    "tests/auction_restock_vendor_prices.lua": "Auction vendor opportunity prices: 1170 checks PASS; 20 profiles; native vendor/AH prices/input NOT RUN",
+    "tests/auction_restock_vendor_queue.lua": "Auction vendor opportunity queue: 1110 checks PASS; 20 profiles; native purchasing/taint/provider coexistence NOT RUN",
+    "tests/auction_restock_vendor_routes.lua": "Auction restock vendor routes: 600 checks PASS; 20 client/addon profiles; native price/stack/vendor/craft permissions NOT RUN",
+    "tests/auction_restock_workflow.lua": "Auction restock workflow: 300 checks PASS; 10 client/provider profiles; native delivery/permissions NOT RUN",
+    "tests/auction_vendor_catalog.lua": "Auction vendor catalog: 30990 checks PASS; 12 client/alias profiles; native stock/access/discounts NOT RUN",
+    "tests/auction_vendor_learning.lua": "Auction vendor source learning: 415 checks PASS; 30 configured client/source profiles; native merchant operation/FPS NOT RUN",
+    "tests/bank_restock_icon.lua": "bank restock icon: 1780 checks passed (five clients; native/Baganator; cold/warm merchant)",
+    "tests/character_recipe_cache.lua": "Character recipe persistence/vendor crafting: 848 checks PASS; 20 profiles; native persistence/buying NOT RUN",
+    "tests/classic_combined_bank.lua": "classic combined bank: 33 checks",
+    "tests/flux_mail_category_attach.lua": "Flux mail category attach: 25 checks passed",
+    "tests/flux_mail_contacts.lua": "Flux mail contacts: 21 checks passed",
+    "tests/flux_mail_conveniences.lua": "Flux mail conveniences: 14 checks passed",
+    "tests/flux_mail_do_not_want.lua": "Flux mail expiry action: 8 checks passed",
+    "tests/flux_mail_open_all.lua": "Flux mail open all: 18 checks passed",
+    "tests/flux_mail_quick_attach.lua": "Flux mail quick attach: 22 checks passed",
+    "tests/flux_mail_select.lua": "Flux mail select: 21 checks passed",
+    "tests/flux_mail_settings.lua": "Flux mail settings: 28 checks passed",
+    "tests/mail_job_lifecycle.lua": "mail job lifecycle: 880 checks, 0 failures; disabled actions=0 disabled readiness reads=0 missed final cancels=0",
+    "tests/mail_loot_scheduling.lua": "mail loot scheduling: 3140 checks, 0 failures; burst timers=40 pending header reads=40",
+    "tests/mail_native_command.lua": "mail native command: 14800 checks, 0 failures; unsafe requests=0 premature completion=0 native checks=8800 timers=10560",
+    "tests/mail_restock.lua": "Mail restock: 3040 checks PASS /20 client-provider-timer profiles",
+    "tests/native_forever_bank.lua": "native Forever bank: 168 checks, 0 failures",
+    "tests/options_navigation.lua": "Options navigation: 6422 checks; actual builders mapped across five client contracts; native rendering pending",
+    "tests/restock_charge_bank_iterator.lua": "Restock charge bank iterator: 12 checks passed",
+    "tests/vendor_open_work.lua": "METRIC era cold_reads=200 repeat_reads=0 frames=1 native_reads=0\nMETRIC anniversary cold_reads=200 repeat_reads=0 frames=1 native_reads=0\nMETRIC wrath cold_reads=200 repeat_reads=0 frames=1 native_reads=0\nMETRIC cata cold_reads=200 repeat_reads=0 frames=1 native_reads=0\nMETRIC mists cold_reads=200 repeat_reads=0 frames=1 native_reads=0\nMETRIC live cold_reads=240 repeat_reads=0 frames=1 native_reads=182\nMETRIC forever cold_reads=240 repeat_reads=0 frames=1 native_reads=182\nVendor-open work: 265 checks, 0 failures",
+    "tests/vendor_slot_identity.lua": "METRIC legacy_id_debounced_manual wrong=0 unavailable=0 wrong_cost=0 calls=2 id_reads=4 link_reads=1 spent=10 frames=1\nMETRIC legacy_id_debounced_tier wrong=0 unavailable=0 wrong_cost=0 calls=2 id_reads=4 link_reads=1 spent=10 frames=1\nMETRIC legacy_id_rebuilt_manual wrong=0 unavailable=0 wrong_cost=0 calls=2 id_reads=4 link_reads=1 spent=10 frames=1\nMETRIC legacy_id_rebuilt_tier wrong=0 unavailable=0 wrong_cost=0 calls=2 id_reads=4 link_reads=1 spent=10 frames=1\nMETRIC legacy_id_stable calls=40 passes=5 id_reads=40 link_reads=0 frames=1\nMETRIC legacy_link_debounced_manual wrong=0 unavailable=0 wrong_cost=0 calls=2 id_reads=0 link_reads=4 spent=10 frames=1\nMETRIC legacy_link_debounced_tier wrong=0 unavailable=0 wrong_cost=0 calls=2 id_reads=0 link_reads=4 spent=10 frames=1\nMETRIC legacy_link_rebuilt_manual wrong=0 unavailable=0 wrong_cost=0 calls=2 id_reads=0 link_reads=4 spent=10 frames=1\nMETRIC legacy_link_rebuilt_tier wrong=0 unavailable=0 wrong_cost=0 calls=2 id_reads=0 link_reads=4 spent=10 frames=1\nMETRIC legacy_link_stable calls=40 passes=5 id_reads=0 link_reads=40 frames=1\nMETRIC modern_id_debounced_manual wrong=0 unavailable=0 wrong_cost=0 calls=2 id_reads=4 link_reads=1 spent=10 frames=1\nMETRIC modern_id_debounced_tier wrong=0 unavailable=0 wrong_cost=0 calls=2 id_reads=4 link_reads=1 spent=10 frames=1\nMETRIC modern_id_rebuilt_manual wrong=0 unavailable=0 wrong_cost=0 calls=2 id_reads=4 link_reads=1 spent=10 frames=1\nMETRIC modern_id_rebuilt_tier wrong=0 unavailable=0 wrong_cost=0 calls=2 id_reads=4 link_reads=1 spent=10 frames=1\nMETRIC modern_id_stable calls=40 passes=5 id_reads=40 link_reads=0 frames=1\nMETRIC modern_link_debounced_manual wrong=0 unavailable=0 wrong_cost=0 calls=2 id_reads=0 link_reads=4 spent=10 frames=1\nMETRIC modern_link_debounced_tier wrong=0 unavailable=0 wrong_cost=0 calls=2 id_reads=0 link_reads=4 spent=10 frames=1\nMETRIC modern_link_rebuilt_manual wrong=0 unavailable=0 wrong_cost=0 calls=2 id_reads=0 link_reads=4 spent=10 frames=1\nMETRIC modern_link_rebuilt_tier wrong=0 unavailable=0 wrong_cost=0 calls=2 id_reads=0 link_reads=4 spent=10 frames=1\nMETRIC modern_link_stable calls=40 passes=5 id_reads=0 link_reads=40 frames=1\nMETRIC legacy_sold_out calls=0 rejected=0 bought=0 accounted=0 actual_spent=0 passes=1 info_reads=0 frames=1\nMETRIC legacy_finite_same_pass calls=2 rejected=0 bought=3 accounted=15 actual_spent=15 passes=1 info_reads=0 frames=1\nMETRIC legacy_finite_across_passes calls=10 rejected=0 bought=10 accounted=50 actual_spent=50 passes=2 info_reads=0 frames=1\nMETRIC legacy_shared_stock calls=2 rejected=0 bought=3 accounted=15 actual_spent=15 passes=1 info_reads=0 frames=1\nMETRIC legacy_sold_out_partial_gold calls=0 rejected=0 bought=0 accounted=0 actual_spent=0 passes=1 info_reads=0 frames=1\nMETRIC legacy_finite_partial_gold calls=1 rejected=0 bought=2 accounted=10 actual_spent=10 passes=1 info_reads=0 frames=1\nMETRIC legacy_unlimited calls=40 rejected=0 bought=40 accounted=200 actual_spent=200 passes=5 info_reads=0 frames=1\nMETRIC legacy_unlimited_partial_gold calls=1 rejected=0 bought=2 accounted=10 actual_spent=10 passes=1 info_reads=0 frames=1\nMETRIC legacy_finite_currency calls=1 rejected=0 bought=10 accounted=0 actual_spent=0 passes=1 info_reads=0 frames=1\nMETRIC legacy_finite_item_cost calls=1 rejected=0 bought=10 accounted=0 actual_spent=0 passes=1 info_reads=0 frames=1\nMETRIC modern_sold_out calls=0 rejected=0 bought=0 accounted=0 actual_spent=0 passes=1 info_reads=0 frames=1\nMETRIC modern_finite_same_pass calls=2 rejected=0 bought=3 accounted=15 actual_spent=15 passes=1 info_reads=0 frames=1\nMETRIC modern_finite_across_passes calls=10 rejected=0 bought=10 accounted=50 actual_spent=50 passes=2 info_reads=0 frames=1\nMETRIC modern_shared_stock calls=2 rejected=0 bought=3 accounted=15 actual_spent=15 passes=1 info_reads=0 frames=1\nMETRIC modern_sold_out_partial_gold calls=0 rejected=0 bought=0 accounted=0 actual_spent=0 passes=1 info_reads=0 frames=1\nMETRIC modern_finite_partial_gold calls=1 rejected=0 bought=2 accounted=10 actual_spent=10 passes=1 info_reads=0 frames=1\nMETRIC modern_unlimited calls=40 rejected=0 bought=40 accounted=200 actual_spent=200 passes=5 info_reads=0 frames=1\nMETRIC modern_unlimited_partial_gold calls=1 rejected=0 bought=2 accounted=10 actual_spent=10 passes=1 info_reads=0 frames=1\nMETRIC modern_finite_currency calls=1 rejected=0 bought=10 accounted=0 actual_spent=0 passes=1 info_reads=0 frames=1\nMETRIC modern_finite_item_cost calls=1 rejected=0 bought=10 accounted=0 actual_spent=0 passes=1 info_reads=0 frames=1\nVendor slot/stock: 837 checks, 0 failures",
+    "tests/vendor_tier_work.lua": "METRIC legacy_20 seed_info=9 seed_owned=9 status_info=19 status_owned=19 seed_classify=100 status_classify=200\nMETRIC legacy_20_reopen info=0 owned=0 classify=1500 frames=1 purchases=0\nMETRIC legacy_200 seed_info=10 seed_owned=10 status_info=20 status_owned=20 seed_classify=1000 status_classify=2000\nMETRIC legacy_200_reopen info=0 owned=0 classify=15000 frames=1 purchases=0\nMETRIC modern_20 seed_info=9 seed_owned=9 status_info=19 status_owned=19 seed_classify=100 status_classify=200\nMETRIC modern_20_reopen info=0 owned=0 classify=1500 frames=1 purchases=0\nMETRIC modern_200 seed_info=10 seed_owned=10 status_info=20 status_owned=20 seed_classify=1000 status_classify=2000\nMETRIC modern_200_reopen info=0 owned=0 classify=15000 frames=1 purchases=0\nVendor tier work: 340 checks, 0 failures",
+    "tests/vendor_toggle_input_permissions.lua": "Vendor toggle input permissions: 285 checks PASS; native merchant/combat acceptance pending"
+  },
+  "controls": {
+    "total": 26,
+    "workflow": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\auction-restock\\tab-crafting-followup\\restock-workflow-20261113\\workflow-controls.json",
+    "ui": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\auction-restock\\tab-crafting-followup\\restock-workflow-20261113\\compact-ui-controls.json",
+    "sources": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\auction-restock\\tab-crafting-followup\\restock-workflow-20261113\\source-controls\\results.json",
+    "mail": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\auction-restock\\tab-crafting-followup\\restock-workflow-20261113\\mail-restock-controls.txt"
+  },
+  "mailSourceContracts": {
+    "date": "2026-11-13",
+    "scope": "Source declarations only; operation/native permission NOT RUN",
+    "files": [
+      {
+        "client": "Forever",
+        "ref": "bebcb6bf309cf41b41bd74f8ca651e6a105b2676",
+        "path": "Interface/AddOns/Blizzard_MailFrame/MailFrame.lua",
+        "gitBlob": "4c08c03928ac0c51bb6244728132375efa4296f9",
+        "url": "https://github.com/Gethe/wow-ui-source/blob/bebcb6bf309cf41b41bd74f8ca651e6a105b2676/Interface/AddOns/Blizzard_MailFrame/MailFrame.lua",
+        "contractLineNumbers": [
+          34,
+          151,
+          1522,
+          1534,
+          1548,
+          1649,
+          1652,
+          1668,
+          1679,
+          1680,
+          1682,
+          1683,
+          1684,
+          1688
+        ]
+      },
+      {
+        "client": "Retail",
+        "ref": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+        "path": "Interface/AddOns/Blizzard_MailFrame/MailFrame.lua",
+        "gitBlob": "7288ec29570045eaf865403a9c572694ad037c7c",
+        "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_MailFrame/MailFrame.lua",
+        "contractLineNumbers": [
+          32,
+          103,
+          1195,
+          1207,
+          1220,
+          1320,
+          1323,
+          1339,
+          1348,
+          1349,
+          1351,
+          1352,
+          1353,
+          1357
+        ]
+      },
+      {
+        "client": "MoP",
+        "ref": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+        "path": "Interface/AddOns/Blizzard_UIPanels_Game/Classic/MailFrame.lua",
+        "gitBlob": "11dc502e0309f87404e553cb4c348bbd5b271f5d",
+        "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_UIPanels_Game/Classic/MailFrame.lua",
+        "contractLineNumbers": [
+          29,
+          61,
+          1109,
+          1118,
+          1128,
+          1184,
+          1187,
+          1203,
+          1212,
+          1213,
+          1215,
+          1216,
+          1217,
+          1221
+        ]
+      },
+      {
+        "client": "Era",
+        "ref": "4192ac60067fc55566182291bc67c85dd9b6794d",
+        "path": "Interface/AddOns/Blizzard_UIPanels_Game/Classic/MailFrame.lua",
+        "gitBlob": "e631ccbd4a0276e5916bb024c5d7a73027bea8da",
+        "url": "https://github.com/Gethe/wow-ui-source/blob/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_UIPanels_Game/Classic/MailFrame.lua",
+        "contractLineNumbers": [
+          29,
+          61,
+          1109,
+          1118,
+          1128,
+          1184,
+          1187,
+          1203,
+          1212,
+          1213,
+          1215,
+          1216,
+          1217,
+          1221
+        ]
+      },
+      {
+        "client": "Anniversary",
+        "ref": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+        "path": "Interface/AddOns/Blizzard_UIPanels_Game/Classic/MailFrame.lua",
+        "gitBlob": "a75d6ed456e0e5d00b96078aa975708e62338791",
+        "url": "https://github.com/Gethe/wow-ui-source/blob/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_UIPanels_Game/Classic/MailFrame.lua",
+        "contractLineNumbers": [
+          29,
+          61,
+          1109,
+          1118,
+          1128,
+          1184,
+          1187,
+          1203,
+          1212,
+          1213,
+          1215,
+          1216,
+          1217,
+          1221
+        ]
+      }
+    ]
+  },
+  "retainedProfessionSources": {
+    "record": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\auction-restock\\tab-crafting-followup\\followup-actions-20261113\\professions-upstream\\sources.json",
+    "files": 26,
+    "allSHA256AndGitBlobVerified": true
+  },
+  "runtimeBudget": {
+    "mailSnapshot": "Demand-only while acknowledged restock mail exists; maximum48 native reads or1ms per slice, generation cache and validated matching headers; detaches OnUpdate at settle/close/timeout/no demand. No ticker. Existing Postal worker owns actual commands and opening speed/free-space limits.",
+    "AHUI": "Native ScrollFrame + reused high-water cells; redraw O(configured rows), no poller/pagination.",
+    "bankVendor": "Existing purchase/movement queues; temporary source targets, bank-button cache invalidated only on goal changes."
+  },
+  "choices": {
+    "implementation": "Implement directly (existing choice)",
+    "testing": "User-native reproduction (existing choice); no Witchcraft/UIForever tools available"
+  },
+  "native": "NOT RUN: all five native builds, secure AH/craft/mail/vendor/bank operations, delivery, pixels/clipping, controller focus/input, localization layout, taint and matched CPU/FPS. No client focus/input, private settings/profiler writes, install sync or publication.",
+  "focusedFinal": {
+    "pass": 40,
+    "fail": 0,
+    "raw": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\auction-restock\\tab-crafting-followup\\restock-workflow-20261113\\scoped-final.json",
+    "ownedSourceDrift": [],
+    "ownedSyntaxPass": true
+  },
+  "laterCombinedRuns": [
+    {
+      "raw": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\auction-restock\\tab-crafting-followup\\restock-workflow-20261113\\full-final-current.json",
+      "pass": 334,
+      "fail": 2,
+      "failures": [
+        "tests/native_meter_all_options.lua",
+        "tests/native_meter_controls.lua"
+      ],
+      "subsequentFocusedMeterRerun": "Both PASS after concurrent corrections; no meter code modified by this task."
+    },
+    {
+      "raw": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\auction-restock\\tab-crafting-followup\\restock-workflow-20261113\\full-combined-current.json",
+      "pass": 334,
+      "fail": 2,
+      "syntaxFiles": 1024,
+      "failures": [
+        {
+          "path": "Bars/_tmp_barsmoke.lua",
+          "exit": 1,
+          "wallSeconds": 2.2912,
+          "output": "bars refresh: 17454 checks passed; 19 production mutations rejected\nBlizzard script ownership: 26 checks passed; 6 native-owner mutations rejected\nCombat grid depletion transitions: 672 checks, 0 failures\nsource contract FAILED (9)\n  bars_contract_regression executable contract: Bars/../tests/bars_contract_regression.lua:7: live: valid raid tooltip refresh remains active\n  State preserves native mouse-up and Forever key-down input\n  raid OnEnter skips SetUnit without a unit token\n  MTMA alpha-0 minis disable mouse\n  stance parenting follows the client capability policy\n  Extra badge identity and placeholder resolve correctly\n  SpellFX preserves authored native dimensions under badge scaling\n  stance widgets preserve native dimensions and per-axis squeeze\n  stance SlotFrame uses configured size and squeeze\n"
+        },
+        {
+          "path": "tests/bars_contract_regression.lua",
+          "exit": 1,
+          "wallSeconds": 0.0229,
+          "output": "lua: tests\\bars_contract_regression.lua:7: live: valid raid tooltip refresh remains active\nstack traceback:\n\t[C]: in function 'assert'\n\ttests\\bars_contract_regression.lua:7: in upvalue 'check'\n\ttests\\bars_contract_regression.lua:172: in upvalue 'raidCase'\n\ttests\\bars_contract_regression.lua:399: in local 'run'\n\ttests\\bars_contract_regression.lua:406: in main chunk\n\t[C]: in ?\n"
+        }
+      ],
+      "scope": "Concurrent unrelated raid/unit tooltip and Bars contract edits; restock focused40 and26controls PASS. Unrelated code is preserved."
+    }
+  ],
+  "installationReadback": {
+    "_forever_": {
+      "matchingChangedRuntimeFiles": 15,
+      "expected": 15,
+      "mailRestockTOCEntry": true,
+      "manualSyncPerformed": false
+    },
+    "_classic_": {
+      "matchingChangedRuntimeFiles": 15,
+      "expected": 15,
+      "mailRestockTOCEntry": true,
+      "manualSyncPerformed": false
+    },
+    "_classic_era_": {
+      "matchingChangedRuntimeFiles": 15,
+      "expected": 15,
+      "mailRestockTOCEntry": true,
+      "manualSyncPerformed": false
+    }
+  },
+  "documentationValidation": {
+    "command": "py -3 docs/tools/validate_docs.py",
+    "status": "Stale unrelated generated source inventory after concurrent edits; no checker mutation",
+    "issues": [
+      "RaidFrame/FluxRaidPreview.lua",
+      "RaidFrame/FluxRaidUnit.lua",
+      "UnitFrames/FluxUnitFrames_Shared.lua",
+      "tests/bars_contract_regression.lua",
+      "tests/unit_tooltip_ownership.lua",
+      "30-source-coverage.md",
+      "reference/interfaces.md"
+    ],
+    "generatedInventory": {
+      "sources": 1057,
+      "reachable": 623,
+      "settingsDefinitions": 434,
+      "literalDefaults": 583
+    },
+    "scope": "Restock records/requirements/client/parity/performance/source ledgers updated; whole-tree generation must be refreshed when concurrent work settles."
+  }
+}

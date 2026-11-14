@@ -1,0 +1,60 @@
+{
+  "changeId": "MINIMAP-AUTO-LAYOUT-20261113",
+  "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d3b4-b7ec-7591-94d3-6d3b3097fb8a\\minimap-auto-embedded-20261113T075002Z",
+  "expectedRuntimeOwners": [
+    "AddonOptions/FluxOptionsBattlezone.lua",
+    "Minimap/FluxMinimap.lua",
+    "Minimap/FluxMinimapButtons.lua"
+  ],
+  "changedRuntimeOwners": [
+    "AddonOptions/FluxOptionsBattlezone.lua",
+    "Minimap/FluxMinimap.lua",
+    "Minimap/FluxMinimapButtons.lua"
+  ],
+  "unexpectedRuntimeChangesPreserved": [],
+  "newRuntimeOwners": [],
+  "missingSourceFiles": [],
+  "changedSourceFiles": [
+    "AddonOptions/FluxOptionsBattlezone.lua",
+    "Minimap/FluxMinimap.lua",
+    "Minimap/FluxMinimapButtons.lua",
+    "NEXT_SESSION.md",
+    "docs/18-minimap-and-trackers.md",
+    "docs/26-options-map.md",
+    "docs/CLIENT_MATRIX.csv",
+    "docs/CLIENT_VALIDATION.md",
+    "docs/DECISIONS.md",
+    "docs/FEATURE_PARITY.csv",
+    "docs/MINIMAP_EXTRA_LAYOUT.md",
+    "docs/PERFORMANCE_AUDIT.csv",
+    "docs/PERFORMANCE_PROTOCOL.md",
+    "docs/PERFORMANCE_RESULTS.csv",
+    "docs/STATUS.md",
+    "docs/WORK_LOG.md",
+    "docs/reference/declarations.md",
+    "docs/reference/interfaces.md",
+    "docs/reference/inventory.json",
+    "docs/reference/settings-details.md",
+    "docs/reference/verification.json",
+    "tests/minimap_extra_layout.lua",
+    "tests/minimap_flyout_visibility.lua",
+    "tests/minimap_side_auras.lua",
+    "tests/minimap_window_layout.lua",
+    "tests/options_navigation.lua"
+  ],
+  "newSourceFiles": [
+    "docs/validation/minimap-auto-embedded-checkpoint-2026-11-13.json",
+    "docs/validation/minimap-auto-layout-2026-11-13.json",
+    "docs/validation/minimap-auto-layout-controls-2026-11-13.json",
+    "docs/validation/minimap-auto-layout-docs-2026-11-13.json",
+    "docs/validation/minimap-auto-layout-full-2026-11-13.json",
+    "docs/validation/minimap-auto-layout-source-guard-2026-11-13.json"
+  ],
+  "sourceHashes": {
+    "AddonOptions/FluxOptionsBattlezone.lua": "2f21020940c7cac1277f85cf6b79cbe23fe7bd3d0babc829fd065b65e8e0def0",
+    "Minimap/FluxMinimap.lua": "799b8ababf0bf1fd236268a0bb813123c269995d18831f3791ec1f2f56210670",
+    "Minimap/FluxMinimapButtons.lua": "27fad68ebe6b24b891523c53fdf381b091dbf2951052685deec26bf2dce8dfbb"
+  },
+  "currentFullSuiteVerified": true,
+  "taskScopeVerified": true
+}

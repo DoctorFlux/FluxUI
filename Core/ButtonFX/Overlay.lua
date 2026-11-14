@@ -110,12 +110,18 @@ local function SetDraw(tex, layer, sub)
 	elseif sub < -8 then
 		sub = -8
 	end
-	pcall(tex.SetDrawLayer, tex, layer, sub)
+	return pcall(tex.SetDrawLayer, tex, layer, sub)
 end
 
 -- Channel/cast fill must sit above the cooldown child so GCD/spell swipe
 -- still paints, while the fill stays readable on the same icon.
 local FILL_ABOVE_COOLDOWN = 1
+
+local function PublicEqual(a, b)
+	if issecretvalue and (issecretvalue(a) or issecretvalue(b)) then return false end
+	if canaccessvalue and (not canaccessvalue(a) or not canaccessvalue(b)) then return false end
+	return a == b
+end
 
 -- Shown cooldown only. Showing a cleared swipe is a full-dark slab that
 -- does not progress (Extra Button cast/channel looked fully darkened).
@@ -141,16 +147,29 @@ local function ApplyFillAboveCooldown(frame, widget)
 	if not frame or not widget then
 		return
 	end
-	pcall(frame.SetParent, frame, widget)
+	local parentOK, parent
+	if frame.GetParent then parentOK, parent = pcall(frame.GetParent, frame) end
+	if not parentOK or not PublicEqual(parent, widget) then
+		pcall(frame.SetParent, frame, widget)
+	end
 	if frame.SetUsingParentLevel then
-		pcall(frame.SetUsingParentLevel, frame, false)
+		local usingOK, using
+		if frame.IsUsingParentLevel then usingOK, using = pcall(frame.IsUsingParentLevel, frame) end
+		if not usingOK or not PublicEqual(using, false) then
+			pcall(frame.SetUsingParentLevel, frame, false)
+		end
 	end
 	local level = ShownCooldownLevel(widget)
 	if not level then
 		level = (widget.GetFrameLevel and widget:GetFrameLevel()) or 0
 	end
 	if frame.SetFrameLevel then
-		pcall(frame.SetFrameLevel, frame, level + FILL_ABOVE_COOLDOWN)
+		local wanted = level + FILL_ABOVE_COOLDOWN
+		local levelOK, current
+		if frame.GetFrameLevel then levelOK, current = pcall(frame.GetFrameLevel, frame) end
+		if not levelOK or not PublicEqual(current, wanted) then
+			pcall(frame.SetFrameLevel, frame, wanted)
+		end
 	end
 end
 
@@ -201,6 +220,8 @@ end
 
 local nativeWatch = {}
 local nativeTicker
+local nativeSampleGeneration = 0
+local nativeCastSamples = {}
 
 local function CoerceTime(value)
 	if Flux.Secrets and Flux.Secrets.CoerceNumberLoose then
@@ -410,15 +431,19 @@ local function ApplyChannelUnderlay(widget, progress, kind)
 		progress = 1
 	end
 	local w = OverlayButtonWidth(widget)
-	if tex.ClearAllPoints then
-		tex:ClearAllPoints()
+	-- This texture is addon-owned; native Setup touches its named Fill art,
+	-- not this sibling. Transfer changes the owning widget and reanchors it.
+	if tex._fluxUnderOwner ~= widget then
+		if tex.ClearAllPoints then tex:ClearAllPoints() end
+		tex:SetPoint("TOPLEFT", widget, "TOPLEFT", 0, 0)
+		tex:SetPoint("BOTTOMLEFT", widget, "BOTTOMLEFT", 0, 0)
+		tex:SetColorTexture(CHANNEL_UNDER_R, CHANNEL_UNDER_G, CHANNEL_UNDER_B, 1)
+		tex:SetAlpha(CHANNEL_UNDER_ALPHA)
+		if not tex.SetDrawLayer or SetDraw(tex, "ARTWORK", 0) then
+			tex._fluxUnderOwner = widget
+		end
 	end
-	tex:SetPoint("TOPLEFT", widget, "TOPLEFT", 0, 0)
-	tex:SetPoint("BOTTOMLEFT", widget, "BOTTOMLEFT", 0, 0)
 	tex:SetWidth(math.max(1, w * progress))
-	tex:SetColorTexture(CHANNEL_UNDER_R, CHANNEL_UNDER_G, CHANNEL_UNDER_B, 1)
-	tex:SetAlpha(CHANNEL_UNDER_ALPHA)
-	SetDraw(tex, "ARTWORK", 0)
 	tex:Show()
 end
 
@@ -529,7 +554,7 @@ local function VfxUnit(widget)
 	return "player"
 end
 
-local function UnitCastTimes(kind, widget)
+local function UnitCastTimes(kind, widget, samplePass)
 	local fn = UnitCastingInfo
 	if kind == CHANNEL or kind == EMPOWER then
 		fn = UnitChannelInfo
@@ -537,7 +562,13 @@ local function UnitCastTimes(kind, widget)
 	if type(fn) ~= "function" then
 		return nil, nil
 	end
-	local ok, _, _, _, startTime, endTime = pcall(fn, VfxUnit(widget))
+	local unit = VfxUnit(widget)
+	local key = (unit == "pet" and 2 or 1) + ((kind == CHANNEL or kind == EMPOWER) and 2 or 0)
+	local sample = samplePass and nativeCastSamples[key]
+	if sample and sample.pass == samplePass and sample.fn == fn then
+		return sample.startTime, sample.endTime
+	end
+	local ok, _, _, _, startTime, endTime = pcall(fn, unit)
 	if not ok then
 		return nil, nil
 	end
@@ -546,16 +577,24 @@ local function UnitCastTimes(kind, widget)
 	if startTime <= 0 or endTime <= 0 or endTime <= startTime then
 		return nil, nil
 	end
+	-- Only share reads inside one synchronous native watcher pass. Events,
+	-- direct refreshes and separate frames always obtain fresh timing data.
+	if samplePass then
+		sample = sample or {}
+		sample.pass, sample.fn = samplePass, fn
+		sample.startTime, sample.endTime = startTime, endTime
+		nativeCastSamples[key] = sample
+	end
 	return startTime, endTime
 end
 
-function Overlay._tickNativeFill(widget)
+function Overlay._tickNativeFill(widget, samplePass)
 	if not widget or widget._fluxVfxMode ~= "native" then
 		return
 	end
 	ApplyFillAboveCooldown(widget.SpellCastAnimFrame, widget)
 	local kind = widget.actionButtonCastType or CAST
-	local startTime, endTime = UnitCastTimes(kind, widget)
+	local startTime, endTime = UnitCastTimes(kind, widget, samplePass)
 	local data = widget.vfxCastData
 	if startTime and endTime then
 		local duration = (endTime - startTime) / 1000
@@ -611,10 +650,11 @@ local function EnsureNativeTicker()
 	nativeTicker = CreateFrame("Frame")
 	nativeTicker:Hide()
 	nativeTicker:SetScript("OnUpdate", function()
+		nativeSampleGeneration = nativeSampleGeneration + 1
 		local any = false
 		for w in pairs(nativeWatch) do
 			if w and w._fluxVfxMode == "native" then
-				Overlay._tickNativeFill(w)
+				Overlay._tickNativeFill(w, nativeSampleGeneration)
 				any = true
 			elseif w and w._fluxVfxMode == "finish" then
 				Overlay._tickFinish(w)
@@ -1200,9 +1240,12 @@ function Overlay._classicOnUpdate(widget)
 		end
 		local t = (GetTime() or 0) - (widget._fluxFinishStart or 0)
 		local w = OverlayButtonWidth(widget)
-		tex:ClearAllPoints()
-		tex:SetPoint("TOPLEFT", driver, "TOPLEFT", 0, 0)
-		tex:SetPoint("BOTTOMLEFT", driver, "BOTTOMLEFT", 0, 0)
+		if tex._fluxFillAnchor ~= driver then
+			tex:ClearAllPoints()
+			tex:SetPoint("TOPLEFT", driver, "TOPLEFT", 0, 0)
+			tex:SetPoint("BOTTOMLEFT", driver, "BOTTOMLEFT", 0, 0)
+			tex._fluxFillAnchor = driver
+		end
 		tex:SetWidth(math.max(1, w))
 		if t < BURST_DURATION then
 			tex:SetAlpha(0.55 * (1 - t / BURST_DURATION))
@@ -1260,11 +1303,13 @@ function Overlay._classicOnUpdate(widget)
 		return
 	end
 	local w = OverlayButtonWidth(widget)
-	tex:ClearAllPoints()
-	tex:SetPoint("TOPLEFT", driver, "TOPLEFT", 0, 0)
-	tex:SetPoint("BOTTOMLEFT", driver, "BOTTOMLEFT", 0, 0)
+	if tex._fluxFillAnchor ~= driver then
+		tex:ClearAllPoints()
+		tex:SetPoint("TOPLEFT", driver, "TOPLEFT", 0, 0)
+		tex:SetPoint("BOTTOMLEFT", driver, "BOTTOMLEFT", 0, 0)
+		tex._fluxFillAnchor = driver
+	end
 	tex:SetWidth(math.max(1, w * p))
-	tex:SetColorTexture(1, 0.95, 0.55, 1)
 	tex:SetAlpha(FillAlphaForKind(kind))
 	tex:Show()
 end

@@ -1,0 +1,213 @@
+{
+  "dateUTC": "2026-11-13T07:01:44.400792+00:00",
+  "changeID": "OPTIONS-SHARED-THREAT-20261113",
+  "requirements": [
+    "REQ-OPT-35",
+    "REQ-OPT-36",
+    "REQ-OPT-37",
+    "REQ-OPT-38"
+  ],
+  "head": "26f886e3ea5371b196ab235d2dace0c156002285",
+  "checkpoint": {
+    "dateUTC": "2026-11-13T06:47:45.828041+00:00",
+    "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d3a8-30c9-72b0-a6ee-0c2f70df8f7e\\options-threat-checkpoint",
+    "sourceFiles": 2609,
+    "head": "26f886e3ea5371b196ab235d2dace0c156002285",
+    "archiveSha256": {
+      "source-before.zip": "34380c363ce082cec7773844e6f168ec43231c271053f45efbafa0cf3cb583c5",
+      "history.bundle": "1e386c567ddae9a49a9acf83368ccf00e6f47bf1c132335f5da72bb23b1e2050"
+    },
+    "verified": true,
+    "historyVerify": "C:/Users/mario/.codex/visualizations/2026/11/13/01a1d3a8-30c9-72b0-a6ee-0c2f70df8f7e/options-threat-checkpoint/history.bundle is okay",
+    "settingsMetadataEntries": 141,
+    "settingsBackup": "Read-only metadata; no settings content copied while client state is unknown"
+  },
+  "sourcePins": {
+    "live": {
+      "sha": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "date": "2026-11-04T00:46:01Z"
+    },
+    "forever": {
+      "sha": "4cd0ab752a77164f654ccbca9d0c1fe8dafceebe",
+      "date": "2026-11-10T15:16:27Z"
+    },
+    "classic": {
+      "sha": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "date": "2026-10-27T14:16:09Z"
+    },
+    "classic_era": {
+      "sha": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "date": "2026-10-26T23:16:08Z"
+    },
+    "classic_anniversary": {
+      "sha": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "date": "2026-10-26T23:16:20Z"
+    }
+  },
+  "sourceFreshness": "Dated existing pins retained. Fresh GitHub branch resolution unavailable via web; shell DNS failed. No new native API dependency.",
+  "savedContract": {
+    "owner": "FluxOptions:GetUnitFrameDB().threatBarVisibility",
+    "values": {
+      "always": "Always",
+      "raid": "In raid",
+      "group": "In party (includes raids)",
+      "never": "Off"
+    },
+    "legacyFallback": "threatBarGroupOnly=false maps to always; all other missing/invalid values to group",
+    "separateNameplateData": "Retained; no longer read by threat renderer",
+    "nativeCVar": "Explicit selections request existing guarded SetWarningMode mapping 3/2/1/0; blocked/unavailable native write does not overwrite saved intent",
+    "readWrites": false
+  },
+  "sidebarOrder": [
+    "Combat",
+    "Loot & Items",
+    "Utilities",
+    "HUD",
+    "Unit Frame"
+  ],
+  "bindings": "One sidebar entry;original browser and keybinding actions as two tabs;old routes and cross-tab search retained",
+  "focused": [
+    {
+      "path": "tests/threat_warning_visibility.lua",
+      "exit": 0,
+      "output": "Shared threat warning visibility: 870 checks across five client models; native acceptance pending"
+    },
+    {
+      "path": "tests/options_navigation.lua",
+      "exit": 0,
+      "output": "Options navigation: 6272 checks; actual builders mapped across five client contracts; native rendering pending"
+    },
+    {
+      "path": "tests/options_rework.lua",
+      "exit": 0,
+      "output": "Options rework: 1243 checks; complete shell/renderer/widgets and menu lifecycle across five client models; native acceptance pending"
+    }
+  ],
+  "full": {
+    "tests": 316,
+    "failed": 0,
+    "syntaxFiles": 997,
+    "syntaxFailures": [],
+    "rawReport": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d3a8-30c9-72b0-a6ee-0c2f70df8f7e\\options-threat-full.json",
+    "rawReportSha256": "feff0905604c8058cd655fbc1f1753e5c17f3207e7eda4df8f2f69bb7c4c8e30",
+    "allOwnedSourcesMatchFinalManifest": true,
+    "independentFilesChangedAfterSnapshot": [
+      "Inventory/Professions.lua",
+      "Inventory/Restock/Vendor/FluxVendorBuy.lua",
+      "tests/character_recipe_cache.lua"
+    ],
+    "scope": "Desktop suite snapshot. Does not certify later independent inventory edits;final owned sources match and focused checks repeated."
+  },
+  "ownedSources": {
+    "AddonOptions/FluxOptionsCatalog.lua": {
+      "beforeSha256LF": "a679e7d73d8ee4b61e76d0e0f683ee0ec699f3159f250d743dde5504095e8665",
+      "afterSha256LF": "4136f54674d38e4af2d2c87dec6bb86b8010e50b18aa439d714591809c38f040"
+    },
+    "AddonOptions/FluxOptionsShell.lua": {
+      "beforeSha256LF": "f83d460c0f64d63d69ebcbd48ecaf985967dd7a1d47a517d63c44759fd31d38d",
+      "afterSha256LF": "b8c3f6010f72ae91d5041cbd0307eb026b45d71ee8a0377100dc8381ab0ecec8"
+    },
+    "AddonOptions/FluxOptionsUnitFrames.lua": {
+      "beforeSha256LF": "f36b14499d2a989206178e3ed8c1300b4a84595961d2e85545aad4fffb85fce6",
+      "afterSha256LF": "fb64ec3971d4533351e9afbd3c5ef9e1753c69ad477de266d449f1a30edaef56"
+    },
+    "AddonOptions/FluxOptionsNameplates.lua": {
+      "beforeSha256LF": "8e377a3f713f3b1a2aeaaeb5b7f0d5eab672b24c3d92a2087a4f7c84888617cb",
+      "afterSha256LF": "0bac4f3a5b59693f873f2be5f07dbe74d0c0ece19f95b7c702bbcd769aac67f2"
+    },
+    "Core/API/Threat.lua": {
+      "beforeSha256LF": "0bc20fbd49c43239f2fa79c2d2e0fafe85b4b6a49589f81e5b57643a3e9b4096",
+      "afterSha256LF": "8aefd47231d66b8acb906ea9405b6cdaaeae4a9c9a5ad56d9521d50df3d74055"
+    },
+    "NamePlates/Threat.lua": {
+      "beforeSha256LF": "6588773e8727c747d9e770939cc0a9202d067f688f2478f266f048b07c8f4a07",
+      "afterSha256LF": "90eb6e4a0a93c9d3b47bce87b512a622f6551694b000b3fe56fa5864e336328d"
+    },
+    "UnitFrames/FluxUnitFrames_Shared.lua": {
+      "beforeSha256LF": "627b4ef839b6a76d456989d78fb1a7a6099e3b5f54283392eec7eb9c3047da0b",
+      "afterSha256LF": "a31f79846904bbd70c3abb44e7bcfb8bae8d6a6fa81eac30e64fd341abbc0583"
+    },
+    "tests/options_navigation.lua": {
+      "beforeSha256LF": "9a8b677c2d9eac6e61809eccc25bbe178bd7cdc15c142bd65b86e702cf531be3",
+      "afterSha256LF": "b18f46c78780abe142f13d258e0305aec755824cd93bab105682416ebe4e83b3"
+    },
+    "tests/options_rework.lua": {
+      "beforeSha256LF": "ddb728512a3e3b2942898cd792917b984809574feebfdc756bf415533b47dbbb",
+      "afterSha256LF": "d21e052289e530c4769ed7608812096aa6b7bc85fc3f90e4352b9df8d41d2cf8"
+    },
+    "tests/passive_nameplate_optimization.lua": {
+      "beforeSha256LF": "33eac77b9eeb46a80ec1a929fbdf5eb4a8843f47019a4c9deece4a52cdf957fe",
+      "afterSha256LF": "3c4f5339491a7db36439da07fa960f99b1ea27eae93e5e140ece89443d81a7d2"
+    },
+    "tests/threat_warning_visibility.lua": {
+      "beforeSha256LF": null,
+      "afterSha256LF": "c539ab5bbcbdb04f88d200bb5b33fef46186a451ba4c73c06798fc74cff5c069"
+    }
+  },
+  "sourceGuard": {
+    "changedExisting": [
+      "NEXT_SESSION.md",
+      "AddonOptions/FluxOptionsCatalog.lua",
+      "AddonOptions/FluxOptionsNameplates.lua",
+      "AddonOptions/FluxOptionsShell.lua",
+      "AddonOptions/FluxOptionsUnitFrames.lua",
+      "Core/API/Threat.lua",
+      "docs/14-unit-frames.md",
+      "docs/19-nameplates.md",
+      "docs/26-options-map.md",
+      "docs/CLIENT_MATRIX.csv",
+      "docs/CLIENT_VALIDATION.md",
+      "docs/DECISIONS.md",
+      "docs/FEATURE_PARITY.csv",
+      "docs/OPTIONS_REWORK.md",
+      "docs/PERFORMANCE_AUDIT.csv",
+      "docs/PERFORMANCE_RESULTS.csv",
+      "docs/STATUS.md",
+      "docs/WORK_LOG.md",
+      "docs/reference/verification.json",
+      "Inventory/Professions.lua",
+      "Inventory/Restock/Auction/FluxAuctionRestockCraft.lua",
+      "Inventory/Restock/Core/FluxRestockList.lua",
+      "Inventory/Restock/Vendor/FluxVendorBuy.lua",
+      "Inventory/Restock/Vendor/FluxVendorRestockPanel.lua",
+      "NamePlates/Threat.lua",
+      "tests/options_navigation.lua",
+      "tests/options_rework.lua",
+      "tests/passive_nameplate_optimization.lua",
+      "UnitFrames/FluxUnitFrames_Shared.lua"
+    ],
+    "new": [
+      "tests/character_recipe_cache.lua",
+      "tests/threat_warning_visibility.lua"
+    ],
+    "missing": [],
+    "ownedRuntime": [
+      "AddonOptions/FluxOptionsCatalog.lua",
+      "AddonOptions/FluxOptionsShell.lua",
+      "AddonOptions/FluxOptionsUnitFrames.lua",
+      "AddonOptions/FluxOptionsNameplates.lua",
+      "Core/API/Threat.lua",
+      "NamePlates/Threat.lua",
+      "UnitFrames/FluxUnitFrames_Shared.lua"
+    ],
+    "ownedTests": [
+      "tests/options_navigation.lua",
+      "tests/options_rework.lua",
+      "tests/passive_nameplate_optimization.lua",
+      "tests/threat_warning_visibility.lua"
+    ],
+    "independentConcurrentRuntimeOrTests": [
+      "Inventory/Professions.lua",
+      "Inventory/Restock/Auction/FluxAuctionRestockCraft.lua",
+      "Inventory/Restock/Core/FluxRestockList.lua",
+      "Inventory/Restock/Vendor/FluxVendorBuy.lua",
+      "Inventory/Restock/Vendor/FluxVendorRestockPanel.lua",
+      "tests/character_recipe_cache.lua"
+    ]
+  },
+  "resources": "No new runtime frame,event,timer,ticker,hook,poll or driver;existing owner cadence and callback lifecycle retained",
+  "localization": "English fallback catalog for changed threat labels/help;no translations or localized-layout acceptance claimed",
+  "controller": "Existing sidebar,tabs,dropdown,browser,scrolling and Escape/back paths retained.Native focus acquisition/tab switching/dropdown selection/editor return/close NOT RUN.",
+  "native": "NOT RUN on all targets:rendering,persistence,protected execution/taint,native CVar operation,controller,FPS",
+  "preferences": "No private settings/profiler file writes;no client input/focus,manual sync,commit or publication"
+}

@@ -5,6 +5,7 @@ local FX = {}
 ns.CastBarThemes = FX
 local Schools = ns.CastBarSchools
 local SpellVisuals = ns.CastBarVisuals
+local Trades = ns.CastBarTradeskills
 local MEDIA = 'Interface\\AddOns\\_FluxUI\\Texture\\CastBarSchools\\'
 local function rnd(a, b) return a + math.random() * (b - a) end
 local THEMES = {
@@ -439,6 +440,7 @@ local function syncBackdropHost(v)
 end
 
 function FX.Layout(bar)
+    if Trades then Trades.Layout(bar) end
     local v = visuals[bar]
     if not v then return end
     local timer = bar.TimerBar
@@ -565,6 +567,7 @@ local function sleepIfIdle()
 end
 
 function FX.Reset(bar, forget)
+    if Trades then Trades.Reset(bar) end
     local v = visuals[bar]
     if v and v.theme then
         restoreFill(v)
@@ -783,6 +786,10 @@ function FX.Apply(bar)
         FX.Reset(bar)
         return
     end
+    if Trades and record.trade == true then
+        Trades.Apply(bar, record, db)
+        return
+    end
     local theme,info = FX.ResolveTheme(record,db)
     if not theme then FX.Reset(bar); return end
     record.schoolMask,record.visualMask,record.resolvedMask,record.inferred=info.schoolMask,theme.mask,info.mask,info.inferred
@@ -833,6 +840,7 @@ function FX.Finish(bar)
     local record=bar._fluxSchoolCast
     if not record or record.finished then return end
     record.finished=true
+    if Trades and record.trade == true then Trades.Finish(bar, settings()) end
     local v=visuals[bar]
     if not v or not v.theme then return end
     v.finished=true

@@ -25,6 +25,21 @@ function Persist.GetRoot()
     return EnsureRoot()
 end
 
+function Persist.NormalizePotion(kind, record, itemID)
+    if (kind ~= "healPotion" and kind ~= "manaPotion") or type(record) ~= "table"
+        or record.restoreBasis == "minimum" then return record end
+    local classify = _G.FluxConsumableClassify
+    local cls = classify and classify.Classify and classify.Classify(itemID or record.itemID)
+    if cls and cls.kind == kind and cls.restoreKnown ~= false then
+        record.effective = Best.Score.EffectiveFromClassify(cls)
+        record.restoreRaw, record.restoreMax = cls.restoreMin or record.effective, cls.restoreMax or record.effective
+        record.restoreMin, record.restorePct, record.restoreBasis = cls.restoreMin or record.effective, cls.restorePct, "minimum"
+    end
+    -- Keep unresolved old facts conservative until the actual tooltip arrives;
+    -- never invent a minimum from a saved maximum or an item name.
+    return record
+end
+
 function Persist.GetRef(kind)
     if not Best.IsValidKind(kind) then
         return nil
@@ -47,7 +62,7 @@ function Persist.GetRef(kind)
         refs[kind] = nil
         return nil
     end
-    return ref
+    return Persist.NormalizePotion(kind, ref)
 end
 
 function Persist.GetAllRefs()
@@ -69,8 +84,9 @@ function Persist.MaybeUpdateRef(kind, candidate)
     end
     local Score = Best.Score
     -- Vendor discoveries are not owned yet; IsUsableItem often lies for those IDs.
+    if Score and Score.IsExcludedFromBest and Score.IsExcludedFromBest(itemID) then return false end
     local usableOk = true
-    if candidate.source == "vendor" and Score and Score.IsUsableForVendor then
+    if (candidate.source == "vendor" or candidate.source == "auction") and Score and Score.IsUsableForVendor then
         usableOk = Score.IsUsableForVendor(itemID, kind)
     elseif Score and Score.IsUsable then
         usableOk = Score.IsUsable(itemID, kind)
@@ -87,6 +103,8 @@ function Persist.MaybeUpdateRef(kind, candidate)
         count = tonumber(candidate.count) or 0,
         source = candidate.source or "owned",
     }
+    Persist.NormalizePotion(kind, nextRef)
+    if (kind == "healPotion" or kind == "manaPotion") and nextRef.restoreBasis ~= "minimum" then return false end
     if existing then
         local a = {
             itemID = nextRef.itemID,
@@ -134,6 +152,7 @@ function Persist.RememberVendorItem(itemID, info)
         price = info.price,
         lastSeen = time and time() or 0,
     }
+    Persist.NormalizePotion(info.kind, root.vendorSeen[itemID], itemID)
     return true
 end
 

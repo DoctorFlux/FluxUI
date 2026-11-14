@@ -1,0 +1,156 @@
+{
+  "changeId": "PARTY-BLIZZARD-DISPEL-20261113",
+  "createdUTC": "2026-11-13T13:08:20.416680+00:00",
+  "request": "Party frames must work with Blizzard Show Dispellable Debuffs Only",
+  "scope": "Both Flux party styles and previews; retained Flux strict flag OR read-only Blizzard compact-party preference. Actual raid/focus policy remains scoped to Flux.",
+  "checkpoint": {
+    "createdUTC": "2026-11-13T13:00:22.005740+00:00",
+    "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d4fd-28b4-7dd2-8697-2d490eef8f30\\party-blizzard-dispel-20261113T130012Z",
+    "verified": true,
+    "sourceFiles": 2694,
+    "settingsMetadataEntries": 183,
+    "settingsContentsCopied": false,
+    "settingsWrites": false,
+    "revision": "26f886e3ea5371b196ab235d2dace0c156002285",
+    "branch": "main",
+    "hooksPath": ".githooks",
+    "sha256": {
+      "source.zip": "5bc75c5535eeb8d339058ffc7265fbceb457632a7c5573f0d12107032b553032",
+      "source-manifest.json": "23fa32b2eb7b461ae515a44582f5173afdb474ee377aaefc0309bdf68eee0571",
+      "history.bundle": "62e56b93e7349d7b5918408a865c690f15d4be06311b2155aa4c67c67209b7dd"
+    }
+  },
+  "baselineSHA256": {
+    "RaidFrame/FluxRaidVisuals.lua": "6483351f203bd3aebbf44aac0b7783c1e5cb16ebba69b168c60ab45f44f9bd39",
+    "RaidFrame/FluxRaidAuras.lua": "217b8d9ee438e6f43a669613e77abf9acb80e8ddb6574dace5e8132911fa8a00",
+    "RaidFrame/FluxRaidFrame.lua": "bf552666bc44199e1a0638a8df5874d98840e40105c100a94de18ee913e829e6",
+    "RaidFrame/FluxRaidPreview.lua": "b96b39f0079d5efc53f48d8397ff3af78f80f86d32391726cd045433b6c8d6cc",
+    "UnitFrames/FluxUnitFrames_Party.lua": "1b81cdc7f27d74951f5ddec6bf06cfc59fd54a7a33285bb19a50cf1e4ea4129b"
+  },
+  "candidateSHA256": {
+    "RaidFrame/FluxRaidVisuals.lua": "57a01891c19fc28acec41d529428209679420c6a857e186f71f77976c64b256a",
+    "RaidFrame/FluxRaidAuras.lua": "fcb087d4639761605634c253c83b864fbb1adce848c2efe48ba539a89fec416b",
+    "RaidFrame/FluxRaidFrame.lua": "d53d6473d4ee6ce1e5207b3bed3fdfdcb2b93700d773c482824b556c1c6c1532",
+    "RaidFrame/FluxRaidPreview.lua": "719281553d6c8e35ecea62324798f8c8f13c2208ef73da3397435b6ff9366f55",
+    "UnitFrames/FluxUnitFrames_Party.lua": "50747f3550ec9411da6a8d1987621d9063b0404a81388fad2375e388bfdf7819"
+  },
+  "testSHA256": "0b4b3db9a30cee33865407c8ac0fd6044b16aac939cf65d399398d68f75f0aa4",
+  "sourceEvidence": {
+    "path": "docs/validation/party-blizzard-dispel-sources-2026-11-13.json",
+    "sha256": "7374a11c5bbc1ca6b4814b07aa6264d57631b4e264e5fedc25a8eeaabeada40f"
+  },
+  "regressions": {
+    "scope": "Desktop caller and public-contract models only; no native aura membership/restrictions/taint/pixels/performance claim",
+    "checks": 418,
+    "results": [
+      {
+        "name": "candidate",
+        "exit": 0,
+        "output": "Party Blizzard dispellable-only setting: 418 checks PASS; five client models; native filtering/pixels/taint pending",
+        "root": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d4fd-28b4-7dd2-8697-2d490eef8f30\\party-blizzard-dispel-regression-controls\\candidate"
+      },
+      {
+        "name": "exact-checkpoint-baseline",
+        "exit": 1,
+        "output": "lua: tests/party_blizzard_dispels.lua:46: missing party Blizzard dispel-setting helper\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/party_blizzard_dispels.lua:46: in main chunk\n\t[C]: in ?",
+        "root": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d4fd-28b4-7dd2-8697-2d490eef8f30\\party-blizzard-dispel-regression-controls\\exact-checkpoint-baseline"
+      },
+      {
+        "name": "harmful-ignore-native-filter-in-renderer",
+        "exit": 1,
+        "output": "lua: tests/party_blizzard_dispels.lua:11: strict native boss category cannot bypass the dispellable filter\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/party_blizzard_dispels.lua:11: in local 'check'\n\ttests/party_blizzard_dispels.lua:81: in main chunk\n\t[C]: in ?",
+        "root": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d4fd-28b4-7dd2-8697-2d490eef8f30\\party-blizzard-dispel-regression-controls\\harmful-ignore-native-filter-in-renderer"
+      },
+      {
+        "name": "harmful-player-setting-refresh-removed",
+        "exit": 1,
+        "output": "lua: tests/party_blizzard_dispels.lua:11: Blizzard preference event refreshes player-style party immediately, including combat\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/party_blizzard_dispels.lua:11: in local 'check'\n\ttests/party_blizzard_dispels.lua:193: in main chunk\n\t[C]: in ?",
+        "root": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d4fd-28b4-7dd2-8697-2d490eef8f30\\party-blizzard-dispel-regression-controls\\harmful-player-setting-refresh-removed"
+      },
+      {
+        "name": "harmful-header-setting-refresh-removed",
+        "exit": 1,
+        "output": "lua: tests/party_blizzard_dispels.lua:144: dispellable-only event requires no scheduled layout\nstack traceback:\n\t[C]: in function 'error'\n\ttests/party_blizzard_dispels.lua:144: in field 'After'\n\tactual-blizzard-dispel-header-event:63: in local 'refresh'\n\ttests/party_blizzard_dispels.lua:149: in main chunk\n\t[C]: in ?",
+        "root": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d4fd-28b4-7dd2-8697-2d490eef8f30\\party-blizzard-dispel-regression-controls\\harmful-header-setting-refresh-removed"
+      },
+      {
+        "name": "harmful-hidden-party-rebound",
+        "exit": 1,
+        "output": "lua: tests/party_blizzard_dispels.lua:11: live header event refreshes only actual full party cells, including combat\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/party_blizzard_dispels.lua:11: in local 'check'\n\ttests/party_blizzard_dispels.lua:150: in main chunk\n\t[C]: in ?",
+        "root": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d4fd-28b4-7dd2-8697-2d490eef8f30\\party-blizzard-dispel-regression-controls\\harmful-hidden-party-rebound"
+      },
+      {
+        "name": "harmful-player-preview-skipped",
+        "exit": 1,
+        "output": "lua: tests/party_blizzard_dispels.lua:11: active player-style preview refreshes while compact preview container is hidden\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/party_blizzard_dispels.lua:11: in local 'check'\n\ttests/party_blizzard_dispels.lua:228: in main chunk\n\t[C]: in ?",
+        "root": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d4fd-28b4-7dd2-8697-2d490eef8f30\\party-blizzard-dispel-regression-controls\\harmful-player-preview-skipped"
+      }
+    ],
+    "testSHA256": "0b4b3db9a30cee33865407c8ac0fd6044b16aac939cf65d399398d68f75f0aa4",
+    "candidateSHA256": {
+      "RaidFrame/FluxRaidVisuals.lua": "57a01891c19fc28acec41d529428209679420c6a857e186f71f77976c64b256a",
+      "RaidFrame/FluxRaidAuras.lua": "fcb087d4639761605634c253c83b864fbb1adce848c2efe48ba539a89fec416b",
+      "RaidFrame/FluxRaidFrame.lua": "d53d6473d4ee6ce1e5207b3bed3fdfdcb2b93700d773c482824b556c1c6c1532",
+      "RaidFrame/FluxRaidPreview.lua": "719281553d6c8e35ecea62324798f8c8f13c2208ef73da3397435b6ff9366f55",
+      "UnitFrames/FluxUnitFrames_Party.lua": "50747f3550ec9411da6a8d1987621d9063b0404a81388fad2375e388bfdf7819"
+    }
+  },
+  "fullValidation": {
+    "path": "docs/validation/party-blizzard-dispel-full-2026-11-13.json",
+    "pass": 338,
+    "fail": 0,
+    "syntaxFiles": 1026,
+    "syntaxFailures": 0,
+    "sha256": "4ccb50c1b876fd72ee5f32e6b47569531bd781fe7a3abbb6e0b54975d861efa6",
+    "currentCompleteLuaManifestVerified": true,
+    "initialSweepNote": "Initial sweep had 337 pass and one test-fixture failure while the IsVisible guard and fixture were being updated. Corrected final fixture and both lifecycle fixes pass the fresh full sweep; initial report retained externally."
+  },
+  "resourceChanges": {
+    "newFrames": 0,
+    "newEvents": 0,
+    "newHooks": 0,
+    "newTimers": 0,
+    "newPolling": 0,
+    "existingPreviewDeferralRetained": true,
+    "additionalWork": "Read one native CVar for each party aura evaluation when Flux strict is off; checkbox events refresh only visible party aura owners; previews reuse existing refresh."
+  },
+  "reviewFixes": [
+    "Visible player-style previews refresh even while compact preview container is hidden",
+    "Hidden prepared compact-party children stay retired on CVar changes"
+  ],
+  "native": {
+    "status": "NOT RUN",
+    "targets": [
+      "live",
+      "forever",
+      "classic",
+      "classic_era",
+      "classic_anniversary"
+    ],
+    "pending": [
+      "Actual build and CVar persistence",
+      "Native HARMFUL|RAID membership and combat addon permission",
+      "Pixels;tooltips;mouse/controller behavior",
+      "Taint/errors",
+      "CPU/FPS matched measurements"
+    ],
+    "route": "Existing direct implementation and user-native reproduction choice retained; no client/input tool connected"
+  },
+  "settingsWrites": false,
+  "profilerChanges": false,
+  "clientControl": false,
+  "manualSync": false,
+  "publication": false,
+  "completedUTC": "2026-11-13T13:09:41.691136+00:00",
+  "documentationValidation": {
+    "pass": true,
+    "sources": 1059,
+    "reachable": 623,
+    "settings": 434,
+    "savedVariables": 24,
+    "localLinks": 16885,
+    "sourceInventory": "Regenerated with docs/tools/build_reference.py",
+    "evidence": "docs/tools/validate_docs.py passed; no stale source or links",
+    "gitDiffCheck": "PASS"
+  }
+}

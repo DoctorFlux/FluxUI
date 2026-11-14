@@ -138,6 +138,7 @@ local function fixture(client, options)
         end,
     }
     assert(loadfile(root .. "RaidFrame/FluxRaidSecure.lua", "t", e))("_FluxUI", ns)
+    e.resolveDriver = resolveDriver
     return e, secure, execute
 end
 
@@ -247,7 +248,17 @@ local function exercise(client)
     e.IsInGroup = function() return e.mode ~= "solo" end
     e.GetNumGroupMembers = function() return e.mode == "raid" and #e.raidRoster or e.partyCount + 1 end
     e.GetNumSubgroupMembers = function() return e.partyCount end
-    e.UnitExists = function(unit) return unit == "player" or unit:match("^party%d$") and tonumber(unit:match("%d")) <= e.partyCount end
+    e.UnitExists = function(unit)
+        if unit:match("^raid%d+target$") then return not e.missingTargets[unit] end
+        local raid = tonumber(unit:match("^raid(%d+)$"))
+        if raid then return e.mode == "raid" and (e.raidRoster[raid] ~= nil or raid == 1) end
+        return unit == "player" or unit:match("^party%d$") and tonumber(unit:match("%d")) <= e.partyCount
+    end
+    e.SecureCmdOptionParse = assert(loadfile(root .. "tests/support/group_condition_parser.lua"))()({
+        exists = function(unit) return e.UnitExists(unit) end,
+        petbattle = function() return e.petbattle end,
+        group = function() return e.mode end,
+    })
     e.UnitName = function(unit)
         local index=type(unit)=="string" and tonumber(unit:match("^raid(%d+)$"))
         local row=index and e.raidRoster[index]
@@ -281,11 +292,10 @@ local function exercise(client)
     check(S.ConfigureHeader(mt, nil, true), client .. ": MTMA raid-only driver prepared")
     check(S.RefreshRosterLayout(container, groups, mt, { colStep = 74, columnHeight = 215, mtChildStep = 66 }), client .. ": secure dynamic reverse layout prepared")
     local function roster(mode, partyCount, rows, petbattle)
-        e.mode, e.partyCount, e.raidRoster = mode, partyCount or 0, rows or {}
+        e.mode, e.partyCount, e.raidRoster, e.petbattle = mode, partyCount or 0, rows or {}, petbattle
         secure(function()
             for controller, driver in pairs(e.drivers) do
-                local show = not petbattle and (mode == "raid" or mode == "party" and driver.condition:find("group:party", 1, true))
-                controller:SetAttribute("state-" .. driver.state, show and "show" or "hide")
+                e.resolveDriver(controller, "state-" .. driver.state, driver.condition)
             end
             for _, h in ipairs(groups) do e.SecureGroupHeader_OnEvent(h, "GROUP_ROSTER_UPDATE") end
             e.SecureGroupHeader_OnEvent(mt, "GROUP_ROSTER_UPDATE")

@@ -1,0 +1,54 @@
+function A.Update(frame)
+    if not frame or frame._fluxRaidMini then return end
+    A.Setup(frame); if not frame._fluxHealerAuras then return end
+    local unit,opt=Unit(frame),frame.optionTable or {}
+    local valid=type(unit)=="string" and unit~=""
+    if frame._fluxAuraNative then UpdateNative(frame,unit,valid,opt); return end
+    local buffs,debuffs,dispel={},{},{}
+    local buffSeen,debuffSeen={},{}
+    local kinds=AuraUtil and AuraUtil.AuraUpdateChangedType
+    local ids,names=ClassBuffFilter()
+    local classBuffs=ShowClassBuffs()
+    -- Match the client's spell/spec visibility and ordering, including boss
+    -- helpful auras on the debuff side. Duration never decides eligibility.
+    if valid and kinds then
+        for _,filter in ipairs({"HARMFUL","HARMFUL|RAID","HELPFUL"}) do
+            for _,aura in ipairs(Scan(unit,filter)) do
+                local copy,kind=Classify(aura)
+                if copy then
+                    if kind==kinds.Buff and opt.displayBuffs~=false and not HiddenBuffs()[copy.spellId]
+                        and not (classBuffs and ids[copy.spellId]) then AddUnique(buffs,buffSeen,copy)
+                    elseif (kind==kinds.Debuff or kind==kinds.Dispel) and opt.displayDebuffs~=false
+                        and opt.displayOnlyDispellableDebuffs~=true then AddUnique(debuffs,debuffSeen,copy) end
+                end
+            end
+        end
+        Sort(buffs,false); Sort(debuffs,true)
+    end
+    if valid and opt.displayBuffs~=false then
+        if classBuffs and #buffs<SLOTS then Append(buffs,buffSeen,Scan(unit,"HELPFUL",function(aura)
+            local id,name=aura.spellId,aura.name
+            return Readable(id) and Readable(aura.hideOnPartyFrames) and not aura.hideOnPartyFrames
+                and ((id~=nil and ids[id]) or (Readable(name) and name~=nil and names[name]))
+        end)) end
+    end
+    if valid and opt.displayDebuffs~=false then
+        dispel=Scan(unit,"HARMFUL|RAID",function(aura)
+            return Readable(aura.canActivePlayerDispel) and aura.canActivePlayerDispel~=false
+                and Readable(aura.hideOnPartyFrames) and not aura.hideOnPartyFrames
+        end)
+        if opt.displayOnlyDispellableDebuffs==true then
+            for _,aura in ipairs(dispel) do
+                local copy=StrictRaidAura(aura)
+                if copy then AddUnique(debuffs,debuffSeen,copy) end
+            end
+            Sort(debuffs,true)
+        end
+    end
+    local geometry=frame._fluxAuraRowMetrics
+    PaintList(frame._fluxAuraCorners.buffs,buffs,geometry.buffs.count,geometry,geometry.buffs)
+    PaintList(frame._fluxAuraCorners.debuffs,debuffs,geometry.debuffs.count,geometry,geometry.debuffs)
+    frame._fluxAuraRows.top:SetShown(valid and opt.displayBuffs~=false)
+    frame._fluxAuraRows.bottom:SetShown(valid and opt.displayDebuffs~=false)
+    local kind=dispel[1] and dispel[1].dispelName; frame._fluxDispelType=Readable(kind) and kind or nil
+end

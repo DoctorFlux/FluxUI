@@ -1,0 +1,179 @@
+{
+  "date": "2026-11-09",
+  "audit": "OPTIONS-NATIVE-READINESS-20261109",
+  "utc": "2026-11-09T14:26:40.885623+00:00",
+  "previousGoalTurn": "progress: implemented latest item tabs, exact control placement, route aliases, regression coverage and documentation",
+  "currentGoalTurn": "no progress: same native testing prerequisite independently revalidated for the third goal turn; no connected test tool, installed addon or configured Witchcraft server; no owned source/test drift",
+  "sameBlockerConsecutiveGoalTurns": 3,
+  "ownedSourceAndTestsUnchanged": {
+    "AddonOptions/FluxOptions.lua": true,
+    "AddonOptions/FluxOptionsCatalog.lua": true,
+    "AddonOptions/FluxOptionsNavigation.lua": true,
+    "AddonOptions/FluxOptionsRender.lua": true,
+    "AddonOptions/FluxOptionsShell.lua": true,
+    "AddonOptions/FluxOptionsWidgets.lua": true,
+    "AddonOptions/FluxOptionsSkin.lua": true,
+    "AddonOptions/FluxOptionsGameMenu.lua": true,
+    "_FluxUI.toc": true,
+    "Battlezonemap/FluxWindowFrame.lua": true,
+    "tests/options_navigation.lua": true,
+    "tests/options_rework.lua": true
+  },
+  "laterFullValidation": "rxp-map-pins-full-2026-11-09.json",
+  "laterFullValidationScope": "272 scripts/942 syntax PASS; owned Lua hashes match. Unrelated RestedXP changes preserved.",
+  "requirements": [
+    {
+      "id": "REQ-OPT-01",
+      "requirement": "Sidebar, tabs, grouped settings and embedded editors",
+      "currentEvidence": "Desktop shell/navigation PASS",
+      "unperformedAcceptance": "Native editor rendering and interaction",
+      "state": "NATIVE_PENDING"
+    },
+    {
+      "id": "REQ-OPT-02",
+      "requirement": "Client-native skins",
+      "currentEvidence": "Pinned five-client source contracts and skin model PASS",
+      "unperformedAcceptance": "Actual native rendering on each client",
+      "state": "NATIVE_PENDING"
+    },
+    {
+      "id": "REQ-OPT-03",
+      "requirement": "Cross-page search",
+      "currentEvidence": "Production shell/declaration search model PASS",
+      "unperformedAcceptance": null,
+      "state": "DESKTOP_PROVEN"
+    },
+    {
+      "id": "REQ-OPT-04",
+      "requirement": "Escape menu settings entry",
+      "currentEvidence": "Lazy load, rebuild, mouse/gamepad order models PASS",
+      "unperformedAcceptance": "Actual Escape-menu input and taint",
+      "state": "NATIVE_PENDING"
+    },
+    {
+      "id": "REQ-OPT-05",
+      "requirement": "Preserve settings, callbacks, saved data and Escape ownership",
+      "currentEvidence": "Original object/root/path coverage and existing regressions PASS",
+      "unperformedAcceptance": "Native profile persistence, protected input and taint",
+      "state": "NATIVE_PENDING"
+    },
+    {
+      "id": "REQ-OPT-06",
+      "requirement": "Responsive layout and cleanup",
+      "currentEvidence": "Shell lifecycle/resize/release models PASS",
+      "unperformedAcceptance": "Native clipping, scroll, tooltip and input",
+      "state": "NATIVE_PENDING"
+    },
+    {
+      "id": "REQ-OPT-07",
+      "requirement": "Reference taxonomy",
+      "currentEvidence": "Literal labels superseded by explicit functional sorting; fixed footer model PASS",
+      "unperformedAcceptance": "Native fixed-footer appearance",
+      "state": "NATIVE_PENDING"
+    },
+    {
+      "id": "REQ-OPT-08",
+      "requirement": "Settings placement with original context",
+      "currentEvidence": "5158 actual-builder checks; complete primary-location CSV; original object/root/path checks PASS",
+      "unperformedAcceptance": null,
+      "state": "DESKTOP_PROVEN"
+    },
+    {
+      "id": "REQ-OPT-09",
+      "requirement": "Old links and commands",
+      "currentEvidence": "Production alias and helper models PASS",
+      "unperformedAcceptance": "Native entry interaction",
+      "state": "NATIVE_PENDING"
+    },
+    {
+      "id": "REQ-OPT-10",
+      "requirement": "Compact reference sidebar and fitting icons",
+      "currentEvidence": "Dimensions, frames, catalog textures and all-client icon model PASS",
+      "unperformedAcceptance": "Actual screenshot comparison",
+      "state": "NATIVE_PENDING"
+    },
+    {
+      "id": "REQ-OPT-11",
+      "requirement": "Consolidate Extra Buttons",
+      "currentEvidence": "Original complete Extra Buttons source once; three Action Bars tabs; placement PASS",
+      "unperformedAcceptance": null,
+      "state": "DESKTOP_PROVEN"
+    },
+    {
+      "id": "REQ-OPT-12",
+      "requirement": "Separate Bindings and Keybindings",
+      "currentEvidence": "Browser versus physical-key routes and macro search PASS",
+      "unperformedAcceptance": null,
+      "state": "DESKTOP_PROVEN"
+    },
+    {
+      "id": "REQ-OPT-13",
+      "requirement": "Functional organization without empty placeholders",
+      "currentEvidence": "Current catalog and real-builder contract PASS",
+      "unperformedAcceptance": null,
+      "state": "DESKTOP_PROVEN"
+    },
+    {
+      "id": "REQ-OPT-14",
+      "requirement": "Swing Timer and flight paths in Unit Frames",
+      "currentEvidence": "Exact original paths map to Unit Frames > Player; no standalone Swing Timer page",
+      "unperformedAcceptance": null,
+      "state": "DESKTOP_PROVEN"
+    },
+    {
+      "id": "REQ-OPT-15",
+      "requirement": "Meter right-click goes to Damage Meter",
+      "currentEvidence": "Actual production OnClick > window method > options accessor > shell PASS; old route rejected",
+      "unperformedAcceptance": "Native reproduction after reload",
+      "state": "NATIVE_PENDING"
+    },
+    {
+      "id": "REQ-OPT-16",
+      "requirement": "Loot & Items own sidebar page",
+      "currentEvidence": "Utilities sidebar catalog and exact placement PASS",
+      "unperformedAcceptance": null,
+      "state": "DESKTOP_PROVEN"
+    },
+    {
+      "id": "REQ-OPT-17",
+      "requirement": "Loot, Vendor & Junk, Restock tabs",
+      "currentEvidence": "Exact tab and leaf placements PASS; restock switches with editor; old routes PASS",
+      "unperformedAcceptance": null,
+      "state": "DESKTOP_PROVEN"
+    }
+  ],
+  "completion": "NOT PROVEN; goal marked blocked rather than complete after required repeated-blocker audit",
+  "selectedRoute": "Witchcraft in-game",
+  "availableWitchcraftTools": [],
+  "installedWitchcraftClients": [],
+  "configuredWitchcraftServers": [],
+  "verifiedClient": {
+    "utc": "2026-11-09T14:24:10.5580471Z",
+    "pid": 49960,
+    "executable": "F:/World of Warcraft/_forever_/Wow.exe",
+    "windowTitle": "World of Warcraft",
+    "windowHandle": 361306470,
+    "printWindow": true,
+    "dimensions": [
+      1906,
+      1032
+    ],
+    "foreground": true,
+    "observation": "Active gameplay; options not open. No candidate options screenshot or loaded source/build identity established."
+  },
+  "privateCapture": "Retained outside AddOns; no screenshot/chat/character data copied into repository",
+  "captureSHA256": "ed0af298e8cc299a697f2173a55df1b35d8e511b2c2a1f9425bc58d722f04f80",
+  "blocker": "Selected native testing route absent. Prior setup approval question remains unanswered; current user computer-use constraint prohibits foreground/input control.",
+  "prerequisite": "Prior Witchcraft setup approval, or an explicitly selected alternative/deferral; user-driven native reproduction after reload with fresh evidence",
+  "skill": "C:/Users/mario/.codex/plugins/cache/wow-addon-api-agents/wow-addon-dev/2.4.1/skills/wow-addon-development/SKILL.md",
+  "skillInstruction": "If the selected route needs setup or is unavailable, explain the concrete prerequisite and let the user choose setup, an alternative, or deferral; reuse prior setup authorization.",
+  "gameInputOrFocusControl": false,
+  "settingsWrites": false,
+  "profilerWrites": false,
+  "setupOrDaemonChanges": false,
+  "manualSync": false,
+  "publication": false,
+  "goalStatus": "blocked",
+  "evidenceStatus": "Historical blocked audit before latest user-authorized Unit Frames scope; do not carry its counter into a resumed audit",
+  "supersededBy": "options-unitframes-2026-11-09.json"
+}

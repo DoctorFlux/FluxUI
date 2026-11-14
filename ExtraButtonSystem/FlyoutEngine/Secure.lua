@@ -22,7 +22,11 @@ end
 local popup = self:GetFrameRef("popup")
 local host = self:GetFrameRef("host")
 local uiParent = self:GetFrameRef("uiParent")
+local visibilityParent = self:GetFrameRef("visibilityParent")
 if not popup then
+	return
+end
+if visibilityParent and not visibilityParent:IsVisible() then
 	return
 end
 if popup:IsShown() then
@@ -32,8 +36,8 @@ if popup:IsShown() then
 end
 	popup:SetBindingClick(true, "ESCAPE", self, mouseClick)
 	popup:ClearAllPoints()
-	if uiParent then
-		popup:SetParent(uiParent)
+	if visibilityParent or uiParent then
+		popup:SetParent(visibilityParent or uiParent)
 	end
 	local dir = self:GetAttribute("flyoutDirection") or "UP"
 	local place = self:GetFrameRef("place") or host
@@ -81,10 +85,39 @@ if popup:IsShown() then
 end
 ]=]
 
+-- Only explicitly opted-in hosts follow a shared visibility owner. Run this
+-- before that owner's ordinary OnHide so an open popup loses its Escape
+-- binding securely and stays closed when the owner becomes visible again.
+Secure.VISIBILITY_HIDE_SCRIPT = [=[
+if control:GetFrameRef("visibilityParent") == self then
+	control:Hide()
+	control:ClearBindings()
+end
+]=]
+
 function Secure.HandlerOnLoad(frame)
 	if frame and SecureHandler_OnLoad then
 		pcall(SecureHandler_OnLoad, frame)
 	end
+end
+
+function Secure.SetVisibilityParent(popup, parent)
+	if not popup or Flyout.InLockdown() then return false end
+	if not parent and not popup._fluxVisibilityParent then return true end
+	Secure.HandlerOnLoad(popup)
+	if not popup.SetFrameRef then return false end
+	popup:SetFrameRef("visibilityParent", parent or UIParent)
+	popup._fluxVisibilityParent = parent
+	if not parent then return true end
+	local Restricted = Flux.Restricted
+	local works = not Restricted or not Restricted.Works or Restricted.Works()
+	if not works and Restricted.PagingWorks then works = Restricted.PagingWorks() end
+	if not works or not popup.WrapScript then return false end
+	popup._fluxVisibilityWraps = popup._fluxVisibilityWraps or {}
+	if popup._fluxVisibilityWraps[parent] then return true end
+	local ok = pcall(popup.WrapScript, popup, parent, "OnHide", Secure.VISIBILITY_HIDE_SCRIPT)
+	if ok then popup._fluxVisibilityWraps[parent] = true end
+	return ok
 end
 
 function Secure.InstallOpener(arrow, popup, host)
@@ -102,6 +135,11 @@ function Secure.InstallOpener(arrow, popup, host)
 		arrow:SetFrameRef("uiParent", UIParent)
 		local rec = Flyout.HostOf(host)
 		local opts = rec and rec.opts or {}
+		if opts.visibilityParent or arrow._fluxVisibilityParent then
+			arrow:SetFrameRef("visibilityParent", opts.visibilityParent or UIParent)
+			arrow._fluxVisibilityParent = opts.visibilityParent
+			Secure.SetVisibilityParent(popup, opts.visibilityParent)
+		end
 		local place = opts.anchorFrame or host
 		arrow:SetFrameRef("place", place)
 		if not Flyout.InLockdown() then

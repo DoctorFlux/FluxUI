@@ -1,0 +1,21 @@
+{
+  "baseline_border_test": {
+    "exit": 1,
+    "output": "lua: tests/minimap_side_border.lua:72: active side grid uses a real FluxBorder host\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/minimap_side_border.lua:72: in local 'model'\n\ttests/minimap_side_border.lua:135: in main chunk\n\t[C]: in ?\n",
+    "expected_failure": "active side grid uses a real FluxBorder host"
+  },
+  "negative_controls": "tests/minimap_side_border.lua rejects seven changes at intended assertions",
+  "paired_layer_trials": [
+    {
+      "label": "baseline",
+      "source_sha256": "d4f3f3cd045f75321c74a233183fb43085ee4427f82d97cad9e57514551bc26d",
+      "output": "1\tMEDIUM\t0\t15\nembedded\tMEDIUM\t15\n2\tMEDIUM\t0\t15\nembedded\tMEDIUM\t15\n3\tMEDIUM\t0\t15\nembedded\tMEDIUM\t15\n"
+    },
+    {
+      "label": "candidate",
+      "source_sha256": "528b18d9ac66bd99a29555f5ff2e855e79c42e81244f1a16e81b5f549b02aa4b",
+      "output": "1\tHIGH\t28\t15\nembedded\tMEDIUM\t15\n2\tHIGH\t28\t15\nembedded\tMEDIUM\t15\n3\tHIGH\t28\t15\nembedded\tMEDIUM\t15\n"
+    }
+  ],
+  "scope": "Three paired desktop layer trials;native clock MEDIUM45;native rendering/input/taint/FPS not measured"
+}

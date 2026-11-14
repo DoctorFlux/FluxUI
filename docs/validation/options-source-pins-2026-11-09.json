@@ -1,0 +1,135 @@
+{
+  "date": "2026-11-09",
+  "change_id": "OPTIONS-REWORK-20261109",
+  "records": [
+    {
+      "client": "retail",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_SharedXML/Mainline/SharedUIPanelTemplates.xml",
+      "capture": "C:/Users/mario/.codex/visualizations/2026/11/09/01a1c03e-c615-7f02-a24a-3e5ed07300f1/options-sources/retail/SharedUIPanelTemplates.xml",
+      "normalizedSHA256": "cc0c3542394cf8085bddf4d32443689832ddb59fa42e1a790d6aea57b24b2962",
+      "installedMirrorMatches": true
+    },
+    {
+      "client": "retail",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_GameMenu/Shared/GameMenuFrame.lua",
+      "capture": "C:/Users/mario/.codex/visualizations/2026/11/09/01a1c03e-c615-7f02-a24a-3e5ed07300f1/options-sources/retail/GameMenuFrame.lua",
+      "normalizedSHA256": "4f2ab779291a09cd5b825047e83674b57bf8d143a87f6a1d8f7076b69408bd65",
+      "installedMirrorMatches": true
+    },
+    {
+      "client": "retail",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_SharedXML/Blizzard_SharedXML.toc",
+      "capture": "C:/Users/mario/.codex/visualizations/2026/11/09/01a1c03e-c615-7f02-a24a-3e5ed07300f1/options-sources/retail/Blizzard_SharedXML.toc",
+      "normalizedSHA256": "66717cbdc7ff81337c7cfc9b714695b1c28a5d11fba701f58a291ded5e7300d1",
+      "installedMirrorMatches": false
+    },
+    {
+      "client": "forever",
+      "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "path": "Interface/AddOns/Blizzard_SharedXML/Mainline/SharedUIPanelTemplates.xml",
+      "capture": "C:/Users/mario/.codex/visualizations/2026/11/09/01a1c03e-c615-7f02-a24a-3e5ed07300f1/options-sources/forever/SharedUIPanelTemplates.xml",
+      "normalizedSHA256": "3ef3c573e14f073c779018da4ca92c06a21648081a1067f966e6b92688a53ff9",
+      "installedMirrorMatches": true
+    },
+    {
+      "client": "forever",
+      "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "path": "Interface/AddOns/Blizzard_GameMenu/Shared/GameMenuFrame.lua",
+      "capture": "C:/Users/mario/.codex/visualizations/2026/11/09/01a1c03e-c615-7f02-a24a-3e5ed07300f1/options-sources/forever/GameMenuFrame.lua",
+      "normalizedSHA256": "c587f031c17af4dfc2f8ec87bb3c95091e3517aa8d300780e5bcecd45c5edc91",
+      "installedMirrorMatches": true
+    },
+    {
+      "client": "forever",
+      "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "path": "Interface/AddOns/Blizzard_SharedXML/Blizzard_SharedXML.toc",
+      "capture": "C:/Users/mario/.codex/visualizations/2026/11/09/01a1c03e-c615-7f02-a24a-3e5ed07300f1/options-sources/forever/Blizzard_SharedXML.toc",
+      "normalizedSHA256": "533affae69a56106afb238aab68e0d54437a8fb17a54c511ad5d831dd3ae4024",
+      "installedMirrorMatches": true
+    },
+    {
+      "client": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_SharedXML/Classic/SharedUIPanelTemplates.xml",
+      "capture": "C:/Users/mario/.codex/visualizations/2026/11/09/01a1c03e-c615-7f02-a24a-3e5ed07300f1/options-sources/classic/SharedUIPanelTemplates.xml",
+      "normalizedSHA256": "c671d1ebe1f0091d05846ff6b55faf12c59c2113b93b69c3aaf448aef4a9bf1c",
+      "installedMirrorMatches": true
+    },
+    {
+      "client": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_GameMenu/Shared/GameMenuFrame.lua",
+      "capture": "C:/Users/mario/.codex/visualizations/2026/11/09/01a1c03e-c615-7f02-a24a-3e5ed07300f1/options-sources/classic/GameMenuFrame.lua",
+      "normalizedSHA256": "cccf71566f1f9c3a33af608ce21c75fb26520e726523ff25a67ba2c8782e7445",
+      "installedMirrorMatches": true
+    },
+    {
+      "client": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_SharedXML/Blizzard_SharedXML_Mists.toc",
+      "capture": "C:/Users/mario/.codex/visualizations/2026/11/09/01a1c03e-c615-7f02-a24a-3e5ed07300f1/options-sources/classic/Blizzard_SharedXML_Mists.toc",
+      "normalizedSHA256": "310019271f68dfb70e92ae4232464221bacd0f8b6f0e7da493a86b5e625c8775",
+      "installedMirrorMatches": true
+    },
+    {
+      "client": "classic_era",
+      "commit": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "path": "Interface/AddOns/Blizzard_SharedXML/Classic/SharedUIPanelTemplates.xml",
+      "capture": "C:/Users/mario/.codex/visualizations/2026/11/09/01a1c03e-c615-7f02-a24a-3e5ed07300f1/options-sources/classic_era/SharedUIPanelTemplates.xml",
+      "normalizedSHA256": "c671d1ebe1f0091d05846ff6b55faf12c59c2113b93b69c3aaf448aef4a9bf1c",
+      "installedMirrorMatches": true
+    },
+    {
+      "client": "classic_era",
+      "commit": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "path": "Interface/AddOns/Blizzard_GameMenu/Shared/GameMenuFrame.lua",
+      "capture": "C:/Users/mario/.codex/visualizations/2026/11/09/01a1c03e-c615-7f02-a24a-3e5ed07300f1/options-sources/classic_era/GameMenuFrame.lua",
+      "normalizedSHA256": "cccf71566f1f9c3a33af608ce21c75fb26520e726523ff25a67ba2c8782e7445",
+      "installedMirrorMatches": true
+    },
+    {
+      "client": "classic_era",
+      "commit": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "path": "Interface/AddOns/Blizzard_SharedXML/Blizzard_SharedXML_Vanilla.toc",
+      "capture": "C:/Users/mario/.codex/visualizations/2026/11/09/01a1c03e-c615-7f02-a24a-3e5ed07300f1/options-sources/classic_era/Blizzard_SharedXML_Vanilla.toc",
+      "normalizedSHA256": "4c6d5523b01a4bf72de282d7595c8e9abdf92e55e56660952bacdb68dfb332f4",
+      "installedMirrorMatches": false
+    },
+    {
+      "client": "classic_anniversary",
+      "commit": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "path": "Interface/AddOns/Blizzard_SharedXML/Classic/SharedUIPanelTemplates.xml",
+      "capture": "C:/Users/mario/.codex/visualizations/2026/11/09/01a1c03e-c615-7f02-a24a-3e5ed07300f1/options-sources/classic_anniversary/SharedUIPanelTemplates.xml",
+      "normalizedSHA256": "c671d1ebe1f0091d05846ff6b55faf12c59c2113b93b69c3aaf448aef4a9bf1c",
+      "installedMirrorMatches": true
+    },
+    {
+      "client": "classic_anniversary",
+      "commit": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "path": "Interface/AddOns/Blizzard_GameMenu/Shared/GameMenuFrame.lua",
+      "capture": "C:/Users/mario/.codex/visualizations/2026/11/09/01a1c03e-c615-7f02-a24a-3e5ed07300f1/options-sources/classic_anniversary/GameMenuFrame.lua",
+      "normalizedSHA256": "cccf71566f1f9c3a33af608ce21c75fb26520e726523ff25a67ba2c8782e7445",
+      "installedMirrorMatches": true
+    },
+    {
+      "client": "classic_anniversary",
+      "commit": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "path": "Interface/AddOns/Blizzard_SharedXML/Blizzard_SharedXML_TBC.toc",
+      "capture": "C:/Users/mario/.codex/visualizations/2026/11/09/01a1c03e-c615-7f02-a24a-3e5ed07300f1/options-sources/classic_anniversary/Blizzard_SharedXML_TBC.toc",
+      "normalizedSHA256": "bef480de6d083538956809729cd5c10e2e0ca8964efb9032113b7ea1841cf910",
+      "installedMirrorMatches": false
+    }
+  ],
+  "reference": {
+    "NaowhForever.toc": "fbc221ccb8db71745fc68a831396a26b7a7394c94e8a9bab1e2f4e0b20cf7bf7",
+    "LICENSE.md": "ce557597c7d260ac415d0a375c4535d0c29314d6d91d3e3c5dee1632a6ff92e9",
+    "Core/Options/Window.lua": "5edd1187a951a96aa63c41a220d7d1406372dd993025878593ac7992f54ba15f",
+    "Core/Options/GameMenu.lua": "4168d0c99031fca028269f1531b826eb2aadbfb50af1d80b4edd0b7835542640",
+    "Shared/UI/Forever.lua": "809167cf67ca2115558da76acddeb4ca41e141e23aa53c3827dc0ee5e9591c91",
+    "Shared/Settings/Style.lua": "5831f5e6298493b991f582ed8d01d8539b9d3a235451deb2ee876b4d74d18aa1"
+  },
+  "referenceVersion": "NaowhForever 1.2.19; all rights reserved for own code/art; inspection only"
+}

@@ -469,6 +469,19 @@ function Watch.Start()
 		RequestEval("ebs.usable")
 	end)
 
+	-- Native reagent/cast-use counts may update after a bag publication.
+	-- Count and empty/refill tint share the existing coalesced eval; badges
+	-- use these same lanes, without re-resolving their macro or action.
+	Ev.Register("SPELL_UPDATE_USES", function()
+		if InFormWindow() then
+			formCountHeld = true
+			formUsableHeld = true
+			return
+		end
+		RequestEval("ebs.count")
+		RequestEval("ebs.usable")
+	end)
+
 	Ev.Register("PLAYER_EQUIPMENT_CHANGED", function()
 		RequestEval("ebs.equipped")
 		RequestCond("all")
@@ -549,8 +562,8 @@ function Watch.Start()
 		-- Do not FlushEval the whole extra + badge list. Burst already painted
 		-- form-sensitive faces; usable-only on extra-window buttons covers
 		-- power-type swaps (UNIT_DISPLAYPOWER) without touching badges/grids.
-		-- Count is the exception: a charge that appeared during the window
-		-- was not in that burst paint, including a quiet settle.
+		-- Count is the exception: a charge/reagent change during the window
+		-- needs its digit and tint replayed, including badges and quiet settle.
 		local needUsable = formUsableHeld
 		local needVisual = formIconHeld or formCooldownHeld
 		local needCount = formCountHeld
@@ -560,11 +573,12 @@ function Watch.Start()
 		formCountHeld = false
 		if needCount then
 			RequestEval("ebs.count")
+			RequestEval("ebs.usable")
 		end
 		if needVisual then
 			PaintFormSensitiveExtras()
 		end
-		if needUsable then
+		if needUsable and not needCount then
 			PaintExtrasUsable()
 		end
 	end

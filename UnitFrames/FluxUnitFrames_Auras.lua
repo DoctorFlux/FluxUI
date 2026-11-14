@@ -2264,14 +2264,10 @@ function UF.EnableAuras(frame, enableBuffs, enableDebuffs, buffConfig, debuffCon
                     end
                 elseif event == "UNIT_AURA" then
                     if UF.FrameUsesEngineAuras and UF.FrameUsesEngineAuras(frame) then
-                        if unit and unit == frame.unit then
-                            if frame.BuffContainer and UF.PokeEngineAuras then
-                                UF.PokeEngineAuras(frame.BuffContainer, frame)
-                            end
-                            if frame.DebuffContainer and UF.PokeEngineAuras then
-                                UF.PokeEngineAuras(frame.DebuffContainer, frame)
-                            end
-                        end
+                        -- Visible/enabled native containers own their UNIT_AURA
+                        -- registrations and incremental payloads. Poking here
+                        -- upgrades even an empty diff to FullAuraRebuild. Keep
+                        -- explicit pokes for target/focus rebinding and recovery.
                         return
                     end
                     if unit and unit == frame.unit and UnitExists(unit) then

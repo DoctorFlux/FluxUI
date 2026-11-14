@@ -13,11 +13,14 @@ local ERR_COLOR = CreateColor(1, 32 / 255, 32 / 255)
 local hooksInstalled = false
 
 local pendingBagSlot = {}
+-- Do not store even nil-valued decoration flags on Blizzard's shared tooltip.
+local decoratedTooltips = setmetatable({}, { __mode = "k" })
+local protectionShown = setmetatable({}, { __mode = "k" })
 
 local function ResetTooltipDecorationState(tooltip)
     if tooltip then
-        tooltip.fluxGearSetProtectionDecorated = nil
-        tooltip.fluxGearSetProtectionShown = nil
+        decoratedTooltips[tooltip] = nil
+        protectionShown[tooltip] = nil
     end
 end
 
@@ -76,11 +79,11 @@ local function HideTooltipLine(tooltip, index)
 end
 
 local function ShowProtectionLine(tooltip)
-    if tooltip.fluxGearSetProtectionShown then
+    if protectionShown[tooltip] then
         return true
     end
     tooltip:AddLine(GearSetLock.MESSAGE, ERR_COLOR:GetRGB())
-    tooltip.fluxGearSetProtectionShown = true
+    protectionShown[tooltip] = true
     tooltip:Show()
     return true
 end
@@ -98,7 +101,7 @@ local function ReplaceLineWithProtection(tooltip, index)
         right:SetText(nil)
         right:Hide()
     end
-    tooltip.fluxGearSetProtectionShown = true
+    protectionShown[tooltip] = true
     tooltip:Show()
     return true
 end
@@ -120,16 +123,16 @@ function GearSetLock.DecorateProtectedInventoryTooltip(tooltip, invSlot)
     if not invSlot or not GearSetLock.IsInventorySlotProtected(invSlot) then
         return
     end
-    if tooltip.fluxGearSetProtectionDecorated then
+    if decoratedTooltips[tooltip] then
         return
     end
-    tooltip.fluxGearSetProtectionDecorated = true
+    decoratedTooltips[tooltip] = true
 
     local numLines = tooltip:NumLines() or 0
     for i = numLines, 2, -1 do
         local text = TooltipLineText(tooltip, i)
         if text and IsEnchantRequirementLine(text) then
-            if tooltip.fluxGearSetProtectionShown then
+            if protectionShown[tooltip] then
                 HideTooltipLine(tooltip, i)
             else
                 ReplaceLineWithProtection(tooltip, i)
@@ -137,7 +140,7 @@ function GearSetLock.DecorateProtectedInventoryTooltip(tooltip, invSlot)
         end
     end
 
-    if not tooltip.fluxGearSetProtectionShown and GearSetLock.IsDisenchantContext() then
+    if not protectionShown[tooltip] and GearSetLock.IsDisenchantContext() then
         ShowProtectionLine(tooltip)
     end
 end
@@ -151,10 +154,10 @@ function GearSetLock.DecorateProtectedTooltip(tooltip, bag, slot)
     if not bag or not slot or not GearSetLock.IsSlotProtected(bag, slot) then
         return
     end
-    if tooltip.fluxGearSetProtectionDecorated then
+    if decoratedTooltips[tooltip] then
         return
     end
-    tooltip.fluxGearSetProtectionDecorated = true
+    decoratedTooltips[tooltip] = true
 
     local atMerchant = GearSetLock.IsMerchantSellContext()
     local numLines = tooltip:NumLines() or 0
@@ -174,7 +177,7 @@ function GearSetLock.DecorateProtectedTooltip(tooltip, bag, slot)
             end
 
             if isSellPrice or IsEnchantRequirementLine(text) then
-                if tooltip.fluxGearSetProtectionShown then
+                if protectionShown[tooltip] then
                     HideTooltipLine(tooltip, i)
                 else
                     ReplaceLineWithProtection(tooltip, i)
@@ -187,7 +190,7 @@ function GearSetLock.DecorateProtectedTooltip(tooltip, bag, slot)
         StripSellPriceMoney(tooltip)
     end
 
-    if not tooltip.fluxGearSetProtectionShown and (atMerchant or GearSetLock.IsDisenchantContext()) then
+    if not protectionShown[tooltip] and (atMerchant or GearSetLock.IsDisenchantContext()) then
         ShowProtectionLine(tooltip)
     end
 end
@@ -267,7 +270,7 @@ local function FilterLegacyTooltipMoney(tooltip)
     local bag, slot = GearSetLock.ResolveBagSlotFromTooltip(tooltip)
     if bag and GearSetLock.IsSlotProtected(bag, slot) and GearSetLock.IsMerchantSellContext() then
         StripSellPriceMoney(tooltip)
-        if not tooltip.fluxGearSetProtectionShown then
+        if not protectionShown[tooltip] then
             ShowProtectionLine(tooltip)
         end
     end

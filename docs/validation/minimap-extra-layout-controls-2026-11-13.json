@@ -1,0 +1,86 @@
+{
+  "date": "2026-11-13",
+  "test": "tests/minimap_extra_layout.lua",
+  "scope": "Actual module desktop geometry, shared action reuse and strict structural combat-write guards; mocked secure visibility state. Native taint, input, controller, pixels and FPS not run.",
+  "sourceNormalizedSHA256": "e07d756934d15d04afa7b547c07f4e57f9a7acd9aebb87c2dca85b3cedccf105",
+  "sourceBytesSHA256": "e07d756934d15d04afa7b547c07f4e57f9a7acd9aebb87c2dca85b3cedccf105",
+  "testSHA256": "dc109c8de4de96fb03ff29baabb64a6463c89654616c4ee8c0afdaf8928c932f",
+  "externalLogs": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d3b4-b7ec-7591-94d3-6d3b3097fb8a\\minimap-layout-fixture-controls-20261113T072243Z",
+  "candidateRepeatedPass": 3,
+  "checksPerCandidateRun": 507,
+  "harmfulControlsRejected": 10,
+  "baselineRejected": true,
+  "passed": true,
+  "results": [
+    {
+      "name": "candidate-1",
+      "exitCode": 0,
+      "summary": "minimap extra layout: 507 checks PASS (runtime geometry, saved actions, reuse, deferred combat writes and state-driver model; native acceptance pending)"
+    },
+    {
+      "name": "candidate-2",
+      "exitCode": 0,
+      "summary": "minimap extra layout: 507 checks PASS (runtime geometry, saved actions, reuse, deferred combat writes and state-driver model; native acceptance pending)"
+    },
+    {
+      "name": "candidate-3",
+      "exitCode": 0,
+      "summary": "minimap extra layout: 507 checks PASS (runtime geometry, saved actions, reuse, deferred combat writes and state-driver model; native acceptance pending)"
+    },
+    {
+      "name": "fixed-fifteen",
+      "exitCode": 1,
+      "summary": "lua: tests/minimap_extra_layout.lua:5: count may grow beyond original fifteen"
+    },
+    {
+      "name": "discard-hidden-actions",
+      "exitCode": 1,
+      "summary": "lua: tests/minimap_extra_layout.lua:238: attempt to index a nil value (field 'integer index')"
+    },
+    {
+      "name": "row-major-side",
+      "exitCode": 1,
+      "summary": "lua: tests/minimap_extra_layout.lua:5: same column x: 1868.0 / 1824.0"
+    },
+    {
+      "name": "no-native-combat-driver",
+      "exitCode": 1,
+      "summary": "lua: tests/minimap_extra_layout.lua:5: hide option installs native secure visibility state driver"
+    },
+    {
+      "name": "unsafe-combat-refresh",
+      "exitCode": 1,
+      "summary": "lua: tests/minimap_extra_layout.lua:20: no insecure combat mutation: Show"
+    },
+    {
+      "name": "unbounded-dense-width",
+      "exitCode": 1,
+      "summary": "lua: tests/minimap_extra_layout.lua:5: three columns fit within two-column width"
+    },
+    {
+      "name": "ignore-effective-scale",
+      "exitCode": 1,
+      "summary": "lua: tests/minimap_extra_layout.lua:5: below-map start follows actual scaled minimap bottom: 565.36363636364 / 622.5"
+    },
+    {
+      "name": "recreate-all-widgets",
+      "exitCode": 1,
+      "summary": "lua: tests/minimap_extra_layout.lua:5: existing embed creates fifteen real EBS widgets"
+    },
+    {
+      "name": "detached-embedded-visibility",
+      "exitCode": 1,
+      "summary": "lua: tests/minimap_extra_layout.lua:5: hidden Flux Window hides embedded widgets through inherited visibility"
+    },
+    {
+      "name": "overflow-empty-side-space",
+      "exitCode": 1,
+      "summary": "lua: tests/minimap_extra_layout.lua:5: dense side fits top-to-window bounds: button 76 outside bounds"
+    },
+    {
+      "name": "exact-external-baseline",
+      "exitCode": 1,
+      "summary": "lua: tests/minimap_extra_layout.lua:212: attempt to call a nil value (method 'GetSetting')"
+    }
+  ]
+}

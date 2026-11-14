@@ -1,0 +1,541 @@
+{
+  "changeId": "PASSIVE-PERFORMANCE-PASS3-20261110",
+  "requirements": [
+    "PP3-01",
+    "PP3-02",
+    "PP3-03",
+    "PP3-04",
+    "PP3-05",
+    "PP3-06"
+  ],
+  "hotspots": [
+    "PP3-H01",
+    "PP3-H02",
+    "PP3-H03",
+    "PP3-H04",
+    "PP3-H05",
+    "PP3-H06",
+    "PP3-H07",
+    "PP3-H08",
+    "PP3-H09",
+    "PP3-H10",
+    "PP3-H11",
+    "PP3-H12"
+  ],
+  "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\passive-performance-pass3\\checkpoint-20261110T172656Z",
+  "checkpointFiles": 2561,
+  "branch": "main",
+  "runtimeFiles": 8,
+  "newTests": 4,
+  "updatedNegativeControls": 1,
+  "sourceHashes": {
+    "CharacterInfo/GearScore.lua": "1c6449df162530ae09fe9fd4f43969883b9d7fb05cd6b85b3d4910f9b5768a5d",
+    "CharacterInfo/PaperDollQuality.lua": "c8611457b8e84bee06047011472f8b886c31061ffca97d1fba27847ac6c807f3",
+    "Core/API/Secrets.lua": "493d25ef4dcf4d9475b77eb194eb82a304867de8211c6990237855392753b030",
+    "Core/API/Spell.lua": "982cd45001e5ead092a0851093575dea33f7e138345adf2935c96c086e259317",
+    "Inventory/Index.lua": "10e927b927f8276170eb8a410f1673e40bd26a25633040b505acde3901e0de89",
+    "RaidFrame/FluxRaidUnit.lua": "bc7438c63ab93a1aa8fe58359f6fe4cd9a245b5631911bcb646d16a83d0224bc",
+    "UnitFrames/FluxMP5Overlay.lua": "186c927d97d628ef70167d9060a340f0416a1cca8cb5d68c83e4a8fe50ac983c",
+    "UnitFrames/FluxSwingTimer.lua": "c2402436f6df15a47b52ddf01847b7d468dcc259833e919b467b29f92b978a25",
+    "tests/passive_character_work.lua": "f8cc1ed687fc768ab2065778b864012366b1fe58e834e3603170ddc73cd14eaa",
+    "tests/passive_core_lookup_work.lua": "554e4ab7f01b3d9c96bcfb590a4e62c0bcd8054c3f10227a98e194f555885ff3",
+    "tests/passive_inventory_index.lua": "eccf01fb2871b669424a2dffc8612dccf897cce29296d364bae85990c0f2bc26",
+    "tests/passive_unit_styles.lua": "a0b75d3e2c1d7ee45b301ef67dbf2186d4df241f8f6fc028d841824836e1f854",
+    "tests/raid_healer_runtime.lua": "823067be5ae4cfc90ff60c2fe5faeb59061c3e5971fe6a8d0ed903b4d8863c6d"
+  },
+  "concurrentChanges": {
+    "sourceHashes": {
+      "ExtraButtonSystem/Engine/ConsumableBind.lua": "4a4cc798eb606248e40725d0dc3608aa6936b0e3f25424c84a3e3bc59c9d3b41",
+      "ExtraButtonSystem/Engine/Paint.lua": "675f738b03b0f129ea283a8447661bc8071a24cd38f1b963830577066def8390",
+      "tests/combat_grid_use_events.lua": "28f601da90f1b3fcce64c50e6b024288ef077a96407845bdc6548ca37b42a35d"
+    },
+    "scope": "Two combat-grid owners and one test changed independently during final validation. Preserved and included in the stable combined full run; no pass3 performance result attributed to them."
+  },
+  "settingsMetadataEntries": 53,
+  "privateSettingsCopied": false,
+  "sourcePins": {
+    "live": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+    "forever": "4cd0ab752a77164f654ccbca9d0c1fe8dafceebe",
+    "classic": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+    "classic_era": "4192ac60067fc55566182291bc67c85dd9b6794d",
+    "classic_anniversary": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49"
+  },
+  "core": {
+    "matchedPairs": 3,
+    "candidateChecks": 173,
+    "controlsRejected": 12,
+    "runs": [
+      {
+        "label": "pair1-before",
+        "metrics": {
+          "iterations": 10000.0,
+          "checkedCallbacks": 20000.0,
+          "protectedCallbacks": 40005.0,
+          "heapKiB": 12422.312,
+          "nativeQueries": 200000.0
+        }
+      },
+      {
+        "label": "pair1-after",
+        "metrics": {
+          "iterations": 10000.0,
+          "checkedCallbacks": 2.0,
+          "protectedCallbacks": 7.0,
+          "heapKiB": 3594.062,
+          "nativeQueries": 200000.0
+        }
+      },
+      {
+        "label": "pair2-after",
+        "metrics": {
+          "iterations": 10000.0,
+          "checkedCallbacks": 2.0,
+          "protectedCallbacks": 7.0,
+          "heapKiB": 3594.062,
+          "nativeQueries": 200000.0
+        }
+      },
+      {
+        "label": "pair2-before",
+        "metrics": {
+          "iterations": 10000.0,
+          "checkedCallbacks": 20000.0,
+          "protectedCallbacks": 40005.0,
+          "heapKiB": 12422.312,
+          "nativeQueries": 200000.0
+        }
+      },
+      {
+        "label": "pair3-before",
+        "metrics": {
+          "iterations": 10000.0,
+          "checkedCallbacks": 20000.0,
+          "protectedCallbacks": 40005.0,
+          "heapKiB": 12422.312,
+          "nativeQueries": 200000.0
+        }
+      },
+      {
+        "label": "pair3-after",
+        "metrics": {
+          "iterations": 10000.0,
+          "checkedCallbacks": 2.0,
+          "protectedCallbacks": 7.0,
+          "heapKiB": 3594.062,
+          "nativeQueries": 200000.0
+        }
+      }
+    ],
+    "scope": "Whole production modules. Current/autorepeat order, per-call identifier dedup map, native/global fallbacks, access guards, coercion/fallback and aura payload policy are unchanged.",
+    "heapScope": "Temporary desktop Lua5.4 heap with GC paused for10000 workloads; per-call identifier maps retained intentionally. Not native retained memory/CPU/FPS."
+  },
+  "unit": {
+    "matchedPairs": 3,
+    "candidateChecks": 119,
+    "controlsRejected": 16,
+    "traceGroups": 8,
+    "before": {
+      "mp5_144_anchor": 17280,
+      "mp5_144_height": 8640,
+      "mp5_144_level": 8640,
+      "mp5_144_maximum": 8640,
+      "mp5_144_power": 8640,
+      "mp5_144_spark": 8640,
+      "mp5_144_value": 8640,
+      "mp5_240_anchor": 28800,
+      "mp5_240_height": 14400,
+      "mp5_240_level": 14400,
+      "mp5_240_maximum": 14400,
+      "mp5_240_power": 14400,
+      "mp5_240_spark": 14400,
+      "mp5_240_value": 14400,
+      "mp5_60_anchor": 7200,
+      "mp5_60_height": 3600,
+      "mp5_60_level": 3600,
+      "mp5_60_maximum": 3600,
+      "mp5_60_power": 3600,
+      "mp5_60_spark": 3600,
+      "mp5_60_value": 3600,
+      "raid_dirty_arrays": 48000,
+      "raid_value_paints": 144000,
+      "swing_144_alpha": 17280,
+      "swing_144_color": 17280,
+      "swing_144_label": 8640,
+      "swing_144_level": 17280,
+      "swing_144_speeds": 17280,
+      "swing_240_alpha": 28800,
+      "swing_240_color": 28800,
+      "swing_240_label": 14400,
+      "swing_240_level": 28800,
+      "swing_240_speeds": 28800,
+      "swing_60_alpha": 7200,
+      "swing_60_color": 7200,
+      "swing_60_label": 3600,
+      "swing_60_level": 7200,
+      "swing_60_speeds": 7200
+    },
+    "after": {
+      "mp5_144_anchor": 0,
+      "mp5_144_height": 0,
+      "mp5_144_level": 0,
+      "mp5_144_maximum": 8640,
+      "mp5_144_power": 8640,
+      "mp5_144_spark": 8640,
+      "mp5_144_value": 8640,
+      "mp5_240_anchor": 0,
+      "mp5_240_height": 0,
+      "mp5_240_level": 0,
+      "mp5_240_maximum": 14400,
+      "mp5_240_power": 14400,
+      "mp5_240_spark": 14400,
+      "mp5_240_value": 14400,
+      "mp5_60_anchor": 0,
+      "mp5_60_height": 0,
+      "mp5_60_level": 0,
+      "mp5_60_maximum": 3600,
+      "mp5_60_power": 3600,
+      "mp5_60_spark": 3600,
+      "mp5_60_value": 3600,
+      "raid_dirty_arrays": 40,
+      "raid_value_paints": 144000,
+      "swing_144_alpha": 0,
+      "swing_144_color": 0,
+      "swing_144_label": 0,
+      "swing_144_level": 0,
+      "swing_144_speeds": 17280,
+      "swing_240_alpha": 0,
+      "swing_240_color": 0,
+      "swing_240_label": 0,
+      "swing_240_level": 0,
+      "swing_240_speeds": 28800,
+      "swing_60_alpha": 0,
+      "swing_60_color": 0,
+      "swing_60_label": 0,
+      "swing_60_level": 0,
+      "swing_60_speeds": 7200
+    },
+    "allBehaviorTracesMatch": true,
+    "tradeoffs": [
+      "Swing reads current owned frame level before suppressing a setter; borrowed cast-bar level still fresh",
+      "Each raid cell retains at most one idle dirty-table spare, active reentrant buffers remain separate",
+      "Public write revisions invalidate reentrant cache commits; no native GetAlpha introduced"
+    ],
+    "scenarioLimits": [
+      "MP5 settled partial mana, one moving tick overlay; four client support branches checked",
+      "Swing steady in-range mainhand duration; speed/value/spark cadence retained, native fade/cancel and range transition cases separate",
+      "Raid40 cells20 event/paint batches persecond60 seconds, plus reentrant/error/unbind cases"
+    ],
+    "nativeFrameUtil": {
+      "commit": "4cd0ab752a77164f654ccbca9d0c1fe8dafceebe",
+      "path": "Interface/AddOns/Blizzard_SharedXMLBase/FrameUtil.lua",
+      "sha256": "77a7590313e95a6926160aca1e9ca0e50001e5cc0d8b128c461e82203d2a6b5f",
+      "git_blob_sha1": "a1fe94ae627fe3c694d5c38df9f0d1a54eecb84d",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4cd0ab752a77164f654ccbca9d0c1fe8dafceebe/Interface/AddOns/Blizzard_SharedXMLBase/FrameUtil.lua"
+    },
+    "fullSuiteDefaultReferenceMatchesCanonical": true
+  },
+  "inventory": {
+    "matchedPairs": 3,
+    "candidateChecks": 99237,
+    "controlsRejected": 15,
+    "before": {
+      "GetCount20000": {
+        "nativeCalls": 0,
+        "normalizedTables": 20000,
+        "slotVisits": 0
+      },
+      "GetFirst1000x100Matches": {
+        "locationTables": 100000,
+        "nativeCalls": 0,
+        "normalizedTables": 1000,
+        "slotVisits": 100000
+      },
+      "GetLiveCount20000": {
+        "helperIdentities": 20000,
+        "nativeCalls": 20000,
+        "normalizedTables": 40000,
+        "slotVisits": 0
+      }
+    },
+    "after": {
+      "GetCount20000": {
+        "nativeCalls": 0,
+        "slotVisits": 0
+      },
+      "GetFirst1000x100Matches": {
+        "locationTables": 1000,
+        "nativeCalls": 0,
+        "slotVisits": 1000
+      },
+      "GetLiveCount20000": {
+        "helperIdentities": 1,
+        "nativeCalls": 20000,
+        "normalizedTables": 20000,
+        "slotVisits": 0
+      }
+    },
+    "traceSamples": 15405,
+    "traceSHA256": [
+      "4cc0d0982cc044c1c69ed3a587a16b32056b63039e6fa586e1130718f292df7d",
+      "4cc0d0982cc044c1c69ed3a587a16b32056b63039e6fa586e1130718f292df7d",
+      "4cc0d0982cc044c1c69ed3a587a16b32056b63039e6fa586e1130718f292df7d"
+    ],
+    "fullFindUnchanged": true,
+    "firstContract": "GetFirst returns the first fresh location in existing region/pairs order, with an Index.Find override fallback. Unused tail traversal/errors on malformed internal rows are not its contract. Full Find source body is unchanged.",
+    "allocationScope": "Line hooks count actual normalized options and returned location constructors. Call hooks count distinct conversion function identities: 20,000 per-call closures versus one module-owned helper; candidate helper is allocated once at module load. Instrumentation allocations excluded."
+  },
+  "character": {
+    "matchedPairs": 3,
+    "candidateChecks": 252,
+    "controlsRejected": 14,
+    "measurements": {
+      "gear_1000calls": {
+        "GetItemInfo": [
+          36000,
+          19000
+        ],
+        "GetInventoryItemLink": [
+          18000,
+          18000
+        ],
+        "scores_and_colors": "Exact same formula and TacoTip precedence. No metadata cache introduced; each scored slot still queries GetItemInfo in GetItemScore, including unknown metadata.",
+        "discarded_private_palette_evaluations": [
+          17000,
+          0
+        ],
+        "private_return_contract": "GetItemScore is private; both callers consume only score/equip-location. Exactly two return values retained for success, nil, uncached data, and zero-score cases; metadata exception propagation retained."
+      },
+      "quality_10000_visible_refreshes": {
+        "quality_queries": [
+          400000,
+          400000
+        ],
+        "SetTexture": [
+          400000,
+          400000
+        ],
+        "SetVertexColor": [
+          400000,
+          400000
+        ],
+        "Show": [
+          400000,
+          400000
+        ],
+        "uncollected_heap_KiB": {
+          "baseline": [
+            4143.817,
+            4143.817,
+            4143.817
+          ],
+          "candidate": [
+            3.317,
+            3.192,
+            3.192
+          ]
+        },
+        "change": "Immutable20-name table and RefreshButton helper hoisted only; arrays/global duplicate traversal order, dynamic native widgets and every sink remain. Existing hidden-panel gate preserved."
+      }
+    },
+    "activeGate": "CharacterInfo/Shared.lua:useClassicPaperDollChrome=Era/Anniversary/TBC/Wrath. Retail/Forever/Cata/Mists gates unchanged; current5target models mostly exercise activeEra/Anniversary pluslegacyWrath.",
+    "verification": {
+      "matched_pairs": 3,
+      "candidate_checks_each": 252,
+      "baseline_behavior_checks_each": 249,
+      "harmful_controls_rejected": 14,
+      "optimized_budget_baseline_fails": 3,
+      "raw_score_trace_bytes": 3595,
+      "raw_query_paint_trace_bytes": 28286,
+      "all_raw_traces_exact": true,
+      "whole_source_luac": "PASS both owners",
+      "CharacterInfo_smoke": "PASS",
+      "public_palette_body_and_global_color_getter": "Exact checkpoint RAW bytes verified; public zero/low/saturated tiers and TacoTip colors/failure fallback tested.",
+      "source_hashes": {
+        "gear": "1c6449df162530ae09fe9fd4f43969883b9d7fb05cd6b85b3d4910f9b5768a5d",
+        "quality": "c8611457b8e84bee06047011472f8b886c31061ffca97d1fba27847ac6c807f3"
+      }
+    },
+    "historicalCopiesUnchanged": true,
+    "publicPaletteRawGuards": {
+      "GetQuality_sha256": "60c5a93f8aa9c2f33a4acc13adcd4a72484f3584d8f8d62b18c52953e1e71e5a",
+      "global_color_getter_sha256": "272a11b9024e2e9ec66d35d3c0f5e6da3bffd809bde0ab10a1ccf5dab85a7816",
+      "exact_checkpoint_bytes": true
+    }
+  },
+  "candidateChecksPerCombinedSet": 99781,
+  "harmfulControlsRejected": 57,
+  "validation": {
+    "scriptsPass": 303,
+    "scriptsFail": 0,
+    "syntaxPass": 975,
+    "syntaxFail": 0,
+    "sourceMatches": true,
+    "sourceStableThroughoutFullRun": true,
+    "generatedSources": 1008,
+    "reachable": 607,
+    "settings": 427,
+    "savedVariableRoots": 24,
+    "documentation": "PASS",
+    "initialFullRun": "301pass/1failed obsolete mutation;974syntaxPASS. Updated mutation removes both current cleanup steps; unchanged rebind behavior assertion rejects it. No runtime correction needed."
+  },
+  "preservation": {
+    "appearanceFilesUnchanged": 252,
+    "optionsBindingSourcesUnchanged": 80,
+    "otherRuntimePreservedExceptConcurrent": true,
+    "freshPartyVendorFixesPreserved": true,
+    "concurrentLiveCountChangesPreserved": true,
+    "priorProtectedHelpersPreserved": true,
+    "historicalCharacterCopiesPreserved": true,
+    "settingsWrites": false,
+    "profilerWrites": false,
+    "clientInput": false,
+    "manualSync": false,
+    "publication": false
+  },
+  "nativeSources": {
+    "records": 21,
+    "distinctGitBlobs": 10,
+    "allGitBlobSHA1Verified": true,
+    "canonicalFadeSHA256": "77a7590313e95a6926160aca1e9ca0e50001e5cc0d8b128c461e82203d2a6b5f",
+    "setterReturnContractChecks": 35,
+    "scope": "Source declarations and exact FrameUtil replay only; no native permission/silent-success/pixel/FPS certification."
+  },
+  "nativeAcceptance": "NOT RUN: actual FPS/frame time, retained memory, rendering/clipping, secure instance permission/silent failures, native cold-data timing and physical/controller input.",
+  "exclusions": [
+    "Guild-bank and void-storage callbacks",
+    "Fresh party-debuff/vendor Junk/live-count implementations",
+    "Unloaded historical character copies",
+    "Unrelated party/raid feature work and native sessions"
+  ],
+  "commands": [
+    "lua tests/passive_core_lookup_work.lua",
+    "lua tests/passive_inventory_index.lua",
+    "lua tests/passive_unit_styles.lua",
+    "lua tests/passive_character_work.lua",
+    "python tests/run_validation.py --output <external>/full-validation.json --sync-docs",
+    "python docs/tools/build_reference.py",
+    "python docs/tools/validate_docs.py"
+  ],
+  "artifacts": {
+    "core/comparison.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\passive-performance-pass3\\core\\comparison.json",
+      "sha256": "de2f9fe865af0f1829826c281ed3fc6f84f15262182f9e29c62ada39255d9d1a"
+    },
+    "core/compare.py": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\passive-performance-pass3\\core\\compare.py",
+      "sha256": "4c15f1b45fb19ec5ea5fec5931c7b86adcce37ee3f142457f81a1c593bc2297f"
+    },
+    "unit/summary.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\passive-performance-pass3\\unit\\summary.json",
+      "sha256": "f8cd5f823c236373337ef98f9e540489bcb05b0a1b5150de3f8ed99ad67b1a62"
+    },
+    "unit/compare.py": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\passive-performance-pass3\\unit\\compare.py",
+      "sha256": "6a7319f5ad9b27117403372bea1c7cc6463c7918658a1fa60f94072445748c19"
+    },
+    "unit/native-FrameUtil.lua": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\passive-performance-pass3\\unit\\native-FrameUtil.lua",
+      "sha256": "77a7590313e95a6926160aca1e9ca0e50001e5cc0d8b128c461e82203d2a6b5f"
+    },
+    "unit/native-frameutil-canonical.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\passive-performance-pass3\\unit\\native-frameutil-canonical.json",
+      "sha256": "2ca3fa39a50d54051fe4d6dc63c6e501002ff8f1435c34aec7873c03c1a9a02d"
+    },
+    "inventory/comparison.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\passive-performance-pass3\\inventory\\comparison.json",
+      "sha256": "6be897548f7e1b147ffa23a0584e20cdb25b19cc767aa37616e5fd22f3cf3a3b"
+    },
+    "inventory/compare.py": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\passive-performance-pass3\\inventory\\compare.py",
+      "sha256": "f0296b09d834b507f3365993084f5c357606ae7fb6141447fb385a5630963e63"
+    },
+    "inventory/focused-results.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\passive-performance-pass3\\inventory\\focused-results.json",
+      "sha256": "781281c3f31999853445ad360ad919581cf72e04dd28d22a927f5dd21fffae0d"
+    },
+    "inventory/unit-review.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\passive-performance-pass3\\inventory\\unit-review.json",
+      "sha256": "f32a5a09f64eef449ccda25834b3e27394f30cee1c5030ebe2d208095dd29573"
+    },
+    "world/comparison.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\passive-performance-pass3\\world\\comparison.json",
+      "sha256": "e02fe128376ed6367935935194a9692bf6af47c25847b31f93cb32d591bc4b60"
+    },
+    "world/summary.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\passive-performance-pass3\\world\\summary.json",
+      "sha256": "27d7004b762b3de6ef5a4c504b9e3dc3d279ecc71753e4b8407d638ef50db133"
+    },
+    "world/seal.py": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\passive-performance-pass3\\world\\seal.py",
+      "sha256": "9ba313715532a4fc3f15183cab85ee7a8a434ce8e3480065ca3e9d0d57eb69be"
+    },
+    "world/pins.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\passive-performance-pass3\\world\\pins.json",
+      "sha256": "9ccce05312ccb6aed8eff954b6152b8de5cb1ddf96bd73fdf3741989eeebcbba"
+    },
+    "world/setter-native-sources.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\passive-performance-pass3\\world\\setter-native-sources.json",
+      "sha256": "27f74cb42b5bead1f66f7538c12fb7d12a1de65a680f12d11a193910411c3041"
+    },
+    "world/setter-native-contracts.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\passive-performance-pass3\\world\\setter-native-contracts.json",
+      "sha256": "f702eb5ea87c199d395e8dc869f3094ae6bf8b2933ed34aab51bd779279fa211"
+    },
+    "initial-full-validation.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\passive-performance-pass3\\initial-full-validation.json",
+      "sha256": "4e25a26b1ecac06bf67d54be3466f78da13d6e136c57bbca9a8ebfc076b49608"
+    },
+    "full-validation.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\passive-performance-pass3\\full-validation.json",
+      "sha256": "ae7d042fb1ab74bd2de01181562220dc678cc17a15943c435ee703da251f3aee"
+    },
+    "final-verification.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\passive-performance-pass3\\final-verification.json",
+      "sha256": "4a1822e9163e2e8282cb86674ee758ff6637ca578e9231317a85ddf9dbe1d8b7"
+    },
+    "implementation.patch": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\passive-performance-pass3\\implementation.patch",
+      "sha256": "f3f46bf90a03063de6780daac3382b0c5698872b0dbb376d5fc4b8b228f6ca72"
+    },
+    "concurrent-changes.patch": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\passive-performance-pass3\\concurrent-changes.patch",
+      "sha256": "15ffd61c14d84b8e83438bc4b2150743ada49e05706104e1b66e191b38bb7793"
+    },
+    "seal_full.py": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\passive-performance-pass3\\seal_full.py",
+      "sha256": "a2d6a9bb786a933d8e394a1a53133762f29886ea14c5ab20a8333117c7728da1"
+    },
+    "stable-full-run.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\passive-performance-pass3\\stable-full-run.json",
+      "sha256": "079845281157b7715e8e9e88dc40918aeded1d9b6847f9cc070704c479b53c1b"
+    },
+    "pre-final-full-manifest.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\passive-performance-pass3\\pre-final-full-manifest.json",
+      "sha256": "0b455ff2f9e6d6c5c0cad81eb215ffb2cf1fd6a5c3b5d39e6cbcc6e15eee135c"
+    },
+    "verify_final.py": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\passive-performance-pass3\\verify_final.py",
+      "sha256": "972e5020cfe3b86373598a07e770c28e754b54c30143fa9ea6e5f4ee0673f80d"
+    },
+    "finalize_records.py": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\passive-performance-pass3\\finalize_records.py",
+      "sha256": "ad03f7048f6fbf94636d4be6d6a9f148c6169edaa87cd21af338d1fc8b834a1d"
+    },
+    "pre-concurrent-full-validation.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\passive-performance-pass3\\pre-concurrent-full-validation.json",
+      "sha256": "f3f26c0f04164d83327fb8d15dde5ce105a9f1e6d71a96f14f9e6314d8dc9823"
+    },
+    "pre-concurrent-docs-validation.txt": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\passive-performance-pass3\\pre-concurrent-docs-validation.txt",
+      "sha256": "3a7336d169e66439f2437246b5fd1fecc1becf711d0d54e44c046da2c86a0f15"
+    },
+    "concurrent-before-test-revision-full-validation.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\passive-performance-pass3\\concurrent-before-test-revision-full-validation.json",
+      "sha256": "66e48b1b53c608e5bb3de081549b5ee077c9baf7e7eb12eb96ef945a26c98942"
+    },
+    "docs-validation.txt": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\passive-performance-pass3\\docs-validation.txt",
+      "sha256": "54693e456e1e5d81b2d98b9576a0279604f2016d7279b3d7e137918070bcf3eb"
+    }
+  }
+}

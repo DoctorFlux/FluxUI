@@ -1,0 +1,3 @@
+-- Compatibility load entry for clients that have already received the new TOC.
+-- Target/focus tracking now initializes inside FluxMinimap.lua, which all existing
+-- FluxUI client file lists already load. Keep this entry harmless and idempotent.

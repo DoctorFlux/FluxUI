@@ -15,6 +15,8 @@ local FLUX_NAMEPLATE_AURA_COUNTDOWN_BASE_PX = 16
 local MAX_DURATION_SEC = 60
 
 local hosts = setmetatable({}, { __mode = "k" })
+local visited = setmetatable({}, { __mode = "k" })
+local visit = 0
 
 local function GetSize()
 	local scale = FLUX_NAMEPLATE_AURA_COUNTDOWN_SCALE
@@ -146,10 +148,11 @@ local function HideHost(auraItem, cooldown, digits)
 end
 
 local function HostLevel(plate, auraItem, cooldown)
-	local level = 0
+	local level, parentLevel = 0, nil
 	local ok, n = pcall(plate.GetFrameLevel, plate)
-	if ok and type(n) == "number" and not NP.IsSecret(n) and n > level then
-		level = n
+	if ok and type(n) == "number" and not NP.IsSecret(n) then
+		parentLevel = n
+		if n > level then level = n end
 	end
 	ok, n = pcall(auraItem.GetFrameLevel, auraItem)
 	if ok and type(n) == "number" and not NP.IsSecret(n) and n > level then
@@ -159,13 +162,12 @@ local function HostLevel(plate, auraItem, cooldown)
 	if ok and type(n) == "number" and not NP.IsSecret(n) and n > level then
 		level = n
 	end
-	return level + NP.FRAME_LEVEL_OFFSET
+	return level + NP.FRAME_LEVEL_OFFSET, parentLevel
 end
 
 local function UpdateAuraItem(auraItem, plate)
-	if not auraItem then
-		return
-	end
+	if not auraItem or visited[auraItem] == visit then return end
+	visited[auraItem] = visit
 	local cooldown = auraItem.Cooldown
 	if not cooldown or not CanUseObject(auraItem) or not CanUseObject(cooldown) or not IsShownSafe(auraItem) then
 		HideHost(auraItem, cooldown)
@@ -180,17 +182,35 @@ local function UpdateAuraItem(auraItem, plate)
 	end
 
 	local host = EnsureHost(auraItem)
-	pcall(host.text.SetText, host.text, label)
-	if host:GetParent() ~= plate and not pcall(host.SetParent, host, plate) then
-		HideHost(auraItem, cooldown, digits)
-		return
+	-- Only Flux-owned output is cached. Native text/regions and frame levels
+	-- are still read at every original deadline, including replacement/reuse.
+	local secret = NP.IsSecret(label)
+	if secret or host._fluxLabel ~= label then
+		local ok = pcall(host.text.SetText, host.text, label)
+		host._fluxLabel = ok and not secret and label or nil
 	end
-	host:ClearAllPoints()
-	if not pcall(host.SetPoint, host, "CENTER", cooldown, "CENTER", 0, 0) then
-		HideHost(auraItem, cooldown, digits)
-		return
+	if host:GetParent() ~= plate then
+		host._fluxAnchor = nil
+		host._fluxLevel, host._fluxParentLevel = nil, nil
+		if not pcall(host.SetParent, host, plate) then
+			HideHost(auraItem, cooldown, digits)
+			return
+		end
 	end
-	pcall(host.SetFrameLevel, host, HostLevel(plate, auraItem, cooldown))
+	if host._fluxAnchor ~= cooldown then
+		host:ClearAllPoints()
+		if not pcall(host.SetPoint, host, "CENTER", cooldown, "CENTER", 0, 0) then
+			HideHost(auraItem, cooldown, digits)
+			return
+		end
+		host._fluxAnchor = cooldown
+	end
+	local level, parentLevel = HostLevel(plate, auraItem, cooldown)
+	if not parentLevel or host._fluxLevel ~= level or host._fluxParentLevel ~= parentLevel then
+		if pcall(host.SetFrameLevel, host, level) then
+			host._fluxLevel, host._fluxParentLevel = level, parentLevel
+		end
+	end
 	host:Show()
 	SetBlizzardDigitsAlpha(cooldown, 0, digits)
 end
@@ -221,6 +241,7 @@ local function UpdatePool(pool, plate)
 end
 
 local function UpdatePlate(unit)
+	visit = visit + 1
 	local uf, plate = NP.GetParts(unit)
 	local auras = uf and uf.AurasFrame
 	if not auras then

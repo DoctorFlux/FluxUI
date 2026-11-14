@@ -546,6 +546,9 @@ local MOUSE_BIND = {
 local bindingChords
 local clearPushes = {}
 local clearMousePresses = {}
+local function HasPollableTrinketBinding()
+    return bindingChords and (#bindingChords[1] > 0 or #bindingChords[2] > 0)
+end
 
 local function TrinketBareKey(chord)
     if type(chord) ~= "string" or chord == "" then
@@ -769,6 +772,11 @@ local function NoteTrinketPushed(widget, reason)
         rec.untilClear = math.max(rec.untilClear or 0, ((GetTime and GetTime()) or 0) + TAP_FLASH)
     end
     ApplyTrinketPushVisual(widget)
+    -- Mouse/wheel-only users have no physical binding to poll while idle.
+    -- Wake on the existing press handler so release/fade still runs next frame.
+    if TM.Frame and TM.Frame.IsShown and TM.Frame:IsShown() then
+        keyPushWatch:Show()
+    end
 end
 
 local function EnsureHandler(widget, handler)
@@ -788,7 +796,8 @@ function TM.SyncKeybindPushWatch()
     -- Binding metadata is stable between UPDATE_BINDINGS/setup calls. Physical
     -- key state still polls every frame, including release-only secure clicks.
     RefreshTrinketBindings()
-    if TM.Frame and TM.Frame.IsShown and TM.Frame:IsShown() then
+    if TM.Frame and TM.Frame.IsShown and TM.Frame:IsShown()
+        and (HasPollableTrinketBinding() or next(presses)) then
         keyPushWatch:Show()
         return
     end
@@ -820,10 +829,11 @@ keyPushWatch:RegisterEvent("GLOBAL_MOUSE_UP")
 keyPushWatch:RegisterEvent("UPDATE_BINDINGS")
 keyPushWatch:SetScript("OnEvent", function(_, event)
     if event == "UPDATE_BINDINGS" then
-        RefreshTrinketBindings()
+        TM.SyncKeybindPushWatch()
         return
     end
     if event == "GLOBAL_MOUSE_UP" then
+        if not next(presses) then return end
         if C_Timer and C_Timer.After then
             C_Timer.After(0, ReleaseMousePresses)
         else
@@ -888,6 +898,9 @@ keyPushWatch:SetScript("OnUpdate", function()
         end
         toClear[i] = nil
     end
+    if not HasPollableTrinketBinding() and not next(presses) then
+        keyPushWatch:Hide()
+    end
 end)
 
 function TM.HookTrinketClickScripts(widget)
@@ -930,6 +943,16 @@ function TM.SyncEquippedFace(button)
     end
     local slot = button.inventorySlot
     local itemID = slot and GetInventoryItemID and GetInventoryItemID("player", slot)
+    if button._fluxManagedFaceItemId ~= itemID then
+        -- Empty slots paint outside Extra Paint. Re-equipping the same item
+        -- must invalidate its cached white tint and any in-flight press color.
+        ClearTrinketPush(button.Widget or button)
+        local EBS = FluxEBS()
+        if EBS and EBS.Paint and EBS.Paint.ClearCache then
+            EBS.Paint.ClearCache(button)
+        end
+        button._lastUsable, button._lastNoMana = nil, nil
+    end
     button.SpellId = nil
     button.MacroTexture = nil
     if itemID then
@@ -1568,12 +1591,21 @@ end
 
 function TM.UpdateTrinketCooldown(button)
     if not button then return end
+
+    -- Every refresh uses the same slot query and cooldown cache. Mixing the
+    -- native slot painter with Extra's item-ID painter could restore an old swipe.
+    local EBS = FluxEBS()
+    if button.ActionType and button.ActionValue ~= nil
+        and EBS and EBS.Paint and EBS.Paint.UpdateCooldown then
+        EBS.Paint.UpdateCooldown(button)
+        return
+    end
     
     local slot = button.inventorySlot
     local start, duration, enable = GetInventoryItemCooldown("player", slot)
     
     -- Get cooldown frame
-    local cooldown = button.Cooldown
+    local cooldown = button.WCooldown or button.Cooldown
     if not cooldown and button.Widget then
         cooldown = button.Widget.cooldown or button.Widget.Cooldown
     end
@@ -1583,7 +1615,7 @@ function TM.UpdateTrinketCooldown(button)
     if CooldownFrame_Set then
         CooldownFrame_Set(cooldown, start, duration, enable)
     elseif cooldown.SetCooldown then
-        if start and duration and start > 0 and duration > 0 then
+        if enable and enable ~= 0 and start and duration and start > 0 and duration > 0 then
             cooldown:SetCooldown(start, duration)
         elseif cooldown.Clear then
             cooldown:Clear()

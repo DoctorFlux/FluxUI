@@ -165,15 +165,20 @@ end
 -- ---------------------------------------------------------------------------
 -- Plate lookup (read-only)
 -- ---------------------------------------------------------------------------
+-- Native nameplate tokens are rebound by the existing add/remove lifecycle.
+-- Cache only the plate identity; child fields remain live reads on every call.
+local activePlates = {}
 function NP.GetPlate(unit)
 	if type(unit) ~= "string" or unit == NP.PREVIEW_UNIT then
 		return nil
 	end
-	if not (C_NamePlate and C_NamePlate.GetNamePlateForUnit) then
-		return nil
-	end
+	local cached = activePlates[unit]
+	if cached then return cached end
+	if not (C_NamePlate and C_NamePlate.GetNamePlateForUnit) then return nil end
 	local ok, plate = pcall(C_NamePlate.GetNamePlateForUnit, unit)
 	if ok then
+		-- A missing plate is retried; NAME_PLATE_UNIT_ADDED can precede setup.
+		if plate and NP.activeUnits and NP.activeUnits[unit] then activePlates[unit] = plate end
 		return plate
 	end
 	return nil
@@ -292,14 +297,17 @@ function NP.FitPlate(host, widget)
 	end
 	local threat = host._fluxRole == "threat"
 	local w = host._fluxRole == "level" and 52 or 54
+	local measured = false
 	local method = widget and (widget.GetStringWidth or widget.GetWidth)
 	if method then
 		local okW, sw = pcall(method, widget)
 		if okW and not NP.IsSecret(sw) and type(sw) == "number" and sw > 4 then
 			w = sw + (threat and 4 or 10)
+			measured = true
 		end
 	end
 	host:SetSize(w, PLATE_HEIGHT)
+	return w, measured
 end
 
 function NP.IsUnitTarget(unit)
@@ -339,7 +347,9 @@ function NP.SetThreatTint(unit, r, g, b)
 		return
 	end
 	if r then
-		threatTint[unit] = { r, g, b }
+		local tint = threatTint[unit]
+		if tint then tint[1], tint[2], tint[3] = r, g, b
+		else threatTint[unit] = { r, g, b } end
 	else
 		threatTint[unit] = nil
 	end
@@ -492,9 +502,9 @@ local function HasActiveUnits()
 end
 
 local function AddUnit(unit)
-	if not unit or activeUnits[unit] then
-		return
-	end
+	if not unit then return end
+	activePlates[unit] = nil
+	if activeUnits[unit] then return end
 	activeUnits[unit] = true
 	EachModule("Added", unit)
 	driver:Show()
@@ -505,6 +515,7 @@ local function RemoveUnit(unit)
 		return
 	end
 	activeUnits[unit] = nil
+	activePlates[unit] = nil
 	EachModule("Removed", unit)
 	if not HasActiveUnits() then
 		driver:Hide()
@@ -525,6 +536,7 @@ local function ScanPlates()
 		if unit then
 			seen[unit] = true
 			AddUnit(unit)
+			activePlates[unit] = plate
 		end
 	end
 	for unit in pairs(activeUnits) do
@@ -541,6 +553,8 @@ function NP.RefreshUnit(unit)
 end
 
 function NP.RefreshAll()
+	-- Explicit refreshes also reconcile native replacement/style rebuilds.
+	for unit in pairs(activePlates) do activePlates[unit] = nil end
 	NP.GetDB()
 	EachModule("RefreshAll")
 	for unit in pairs(activeUnits) do
@@ -853,6 +867,30 @@ do
 		return visible and NP.BoolTest(shown, false)
 	end
 
+	local function Layout(unit, state, container)
+		if not state then return end
+		local width = 0
+		if container.GetWidth then
+			local ok, value = pcall(container.GetWidth, container)
+			if ok and not NP.IsSecret(value) and type(value) == "number"
+				and value > 0 and value < math.huge then width = value end
+		end
+		local threatWidth = NP.GetThreatPlateWidth and NP.GetThreatPlateWidth(unit) or 0
+		-- Keep every objective on the first badge baseline. Grow outward to the
+		-- left when the plate's left half cannot fit it beside centered threat.
+		-- Six units leave two visible units between the two expanding backdrops.
+		-- Unknown native width uses the exterior left lane without secret arithmetic.
+		local x = math.min(0, width / 2 - threatWidth / 2 - 6 - state.width)
+		if not state.layoutDirty and state.container == container and state.x == x then return end
+		state.layoutDirty, state.container, state.x = false, container, x
+		for _, host in ipairs(state) do
+			host:ClearAllPoints()
+			if host.attached and pcall(host.SetPoint, host, "TOPLEFT", container, "BOTTOMLEFT", x, 3) then host:Show()
+			else host:Hide() end
+			x = x + host.questWidth + 4
+		end
+	end
+
 	local function Update(unit, cache)
 		local uf, plate, container, healthBar = NP.GetParts(unit)
 		local visible = IsVisible(uf, healthBar)
@@ -863,6 +901,7 @@ do
 		if not rows or #rows == 0 then Release(unit); return end
 		local state = states[unit] or {}
 		states[unit] = state
+		state.width, state.layoutDirty = 0, true
 		for index, row in ipairs(rows) do
 			local host = state[index] or NewRow()
 			state[index] = host
@@ -870,21 +909,18 @@ do
 			if host.current ~= row.current or host.required ~= row.required then
 				host.text:SetFormattedText("%d/%d", row.current, row.required)
 				host.current, host.required = row.current, row.required
-				NP.FitPlate(host, host.text)
+				local width = NP.FitPlate(host, host.text)
 				-- FitPlate includes 10 text-padding units; total extra space is
 				-- 2 left + 10 icon + 2 gap + 2 right = 16, keeping the tag short.
-				host:SetSize(host:GetWidth() + 6, 12)
+				host.questWidth = width + 6
+				host:SetSize(host.questWidth, 12)
 			end
 			NP.ShowPlate(host, unit)
-			if NP.AttachHost(host, plate, 1) then
-				host:ClearAllPoints()
-				-- Keep the left edge and the same center Y (-3) as threat/level.
-				-- A 12-high host needs TOPLEFT at +3; additional objectives stack down.
-				if pcall(host.SetPoint, host, "TOPLEFT", container, "BOTTOMLEFT", 0, 3 - (index - 1) * 16) then host:Show()
-				else host:Hide() end
-			else host:Hide() end
+			host.attached = NP.AttachHost(host, plate, 1)
+			state.width = state.width + host.questWidth + (index > 1 and 4 or 0)
 		end
 		for index = #state, #rows + 1, -1 do ReleaseRow(table.remove(state)) end
+		Layout(unit, state, container)
 	end
 
 	function Quest.Added(unit)
@@ -912,8 +948,9 @@ do
 			-- Detect that transition without rescanning settled objective data.
 			local cache = {}
 			for unit in pairs(activeUnits) do
-				local uf, _, _, bar = NP.GetParts(unit)
-				if visibleUnits[unit] ~= IsVisible(uf, bar) then Update(unit, cache) end
+				local uf, _, container, bar = NP.GetParts(unit)
+				if visibleUnits[unit] ~= IsVisible(uf, bar) then Update(unit, cache)
+				elseif container then Layout(unit, states[unit], container) end
 			end
 			return
 		end
@@ -1032,7 +1069,8 @@ local function StretchHealthBar(uf)
 end
 
 local function ApplyForeverPlate(uf)
-	if not uf or OptionsOpen() then
+	-- The single caller checks Settings once before walking the active batch.
+	if not uf then
 		return
 	end
 	local unit = uf.unit
@@ -1055,7 +1093,7 @@ local function ShowOnlyName(uf)
 end
 
 local function PlaceHealthReadout(uf)
-	if not uf or OptionsOpen() then
+	if not uf then
 		return
 	end
 	local unit = uf.unit
@@ -1155,13 +1193,9 @@ if IsForeverClient() then
 		end
 		for unit in pairs(activeUnits) do
 			local uf = NP.GetParts(unit)
-			if IsForeverClient() then
-				-- Combat shows the level badge and Blizzard shortens the bar by that width.
-				ApplyForeverPlate(uf)
-				if placeText then
-					PlaceHealthReadout(uf)
-				end
-			end
+			-- Combat shows the level badge and Blizzard shortens the bar by that width.
+			ApplyForeverPlate(uf)
+			if placeText then PlaceHealthReadout(uf) end
 		end
 	end)
 end

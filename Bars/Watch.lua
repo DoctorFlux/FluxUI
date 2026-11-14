@@ -647,6 +647,19 @@ function Watch.Start()
 		Bars.RequestPaint("bars.usable")
 	end)
 
+	-- Reagent/cast-use counts can settle after the bag snapshot, without a
+	-- charge or macro-face change. Reuse the count lanes; no cooldown or
+	-- protected action needs rebuilding for a changed number.
+	Ev.Register("SPELL_UPDATE_USES", function()
+		if InFormWindow() then
+			formCountHeld = true
+			formUsableHeld = true
+			return
+		end
+		Bars.RequestPaint("bars.count")
+		Bars.RequestPaint("bars.usable")
+	end)
+
 	local function OnIconEvent()
 		if InFormWindow() then
 			formIconHeld = true
@@ -996,10 +1009,10 @@ function Watch.Start()
 			Bars.RequestPaint("bars.usable")
 			Bars.RequestPaint("bars.equipped")
 		end, {
-			tier = "scan",
+			tier = "instant",
 			regions = { "bags", "equip" },
-			-- 0→1 is identityChanged. deferHeavy would queue that first digit
-			-- behind the heavy debounce. Count text stays on the bag frame.
+			-- Light bag notifications must reach count paint too. sync alone
+			-- does not admit a scan-tier listener on those notifications.
 			sync = true,
 		})
 	end

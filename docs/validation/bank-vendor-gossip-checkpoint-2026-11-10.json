@@ -1,0 +1,14 @@
+{
+  "date": "2026-11-10",
+  "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c4d0-1465-7d32-8c0d-36447d4477b6\\bank-vendor-gossip-checkpoint-20261110T095943Z",
+  "verified": true,
+  "sourceFiles": 2505,
+  "revision": "26f886e3ea5371b196ab235d2dace0c156002285",
+  "settingsMetadataEntries": 105,
+  "settingsBackup": "Read-only metadata; no quiescent settings backup claimed",
+  "settingsWrites": false,
+  "sha256": {
+    "source.zip": "d07549af70ccaa0ba642c9c065385d051eca13756425e6b8fb24582af41e1fe2",
+    "history.bundle": "11ef1e964ca6e2e469c84ef09f30adad771cc601ccf9968481c5c86faaa8ba9c"
+  }
+}

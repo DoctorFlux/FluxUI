@@ -1,0 +1,96 @@
+{
+  "task": "MINIMAP-VISIBILITY-20261113",
+  "captured_utc": "2026-11-13",
+  "repository": "Gethe/wow-ui-source",
+  "pins": {
+    "retail": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+    "forever": "bebcb6bf309cf41b41bd74f8ca651e6a105b2676",
+    "classic": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf"
+  },
+  "contracts": [
+    {
+      "target": "retail",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_APIDocumentationGenerated/InputDocumentation.lua",
+      "title": "InputDocumentation.lua",
+      "matches": [
+        {
+          "line": 20,
+          "text": "\t\t},\n\t\t{\n\t\t\tName = \"GetCursorPosition\",\n\t\t\tType = \"Function\",\n\n\t\t\tReturns =\n\t\t\t{\n\t\t\t\t{ Name = \"posX\", Type = \"number\", Nilable = false },\n\t\t\t\t{ Name = \"posY\", Type = \"number\", Nilable = false },\n\t\t\t},\n\t\t},\n\t\t{\n\t\t\tName = \"GetMouseButtonClicked\",\n\t\t\tType = \"Function\",\n\n\t\t\tReturns =\n\t\t\t{\n\t\t\t\t{ Name = \"buttonName\", Type = \"cstring\", Nilable = false },\n\t\t\t},\n\t\t},\n\t\t{\n\t\t\tName = \"GetMouseButtonName\",\n\t\t\tType = \"Function\",\n\t\t\tSecretArguments = \"AllowedWhenUntainted\",\n"
+        }
+      ]
+    },
+    {
+      "target": "retail",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_APIDocumentationGenerated/CursorDocumentation.lua",
+      "title": "CursorDocumentation.lua",
+      "matches": [
+        {
+          "line": 31,
+          "text": "\t\t},\n\t\t{\n\t\t\tName = \"CursorChanged\",\n\t\t\tType = \"Event\",\n\t\t\tLiteralName = \"CURSOR_CHANGED\",\n\t\t\tSynchronousEvent = true,\n\t\t\tPayload =\n\t\t\t{\n\t\t\t\t{ Name = \"isDefault\", Type = \"bool\", Nilable = false },\n\t\t\t\t{ Name = \"newCursorType\", Type = \"UICursorType\", Nilable = false },\n\t\t\t\t{ Name = \"oldCursorType\", Type = \"UICursorType\", Nilable = false },\n\t\t\t\t{ Name = \"oldCursorVirtualID\", Type = \"number\", Nilable = false },\n\t\t\t},\n\t\t},\n\t\t{\n\t\t\tName = \"MountCursorClear\",\n\t\t\tType = \"Event\",\n\t\t\tLiteralName = \"MOUNT_CURSOR_CLEAR\",\n\t\t\tSynchronousEvent = true,\n\t\t},\n\t\t{\n\t\t\tName = \"WorldCursorTooltipUpdate\",\n\t\t\tType = \"Event\",\n\t\t\tLiteralName = \"WORLD_CURSOR_TOOLTIP_UPDATE\",\n\t\t\tSynchronousEvent = true,"
+        },
+        {
+          "line": 33,
+          "text": "\t\t\tName = \"CursorChanged\",\n\t\t\tType = \"Event\",\n\t\t\tLiteralName = \"CURSOR_CHANGED\",\n\t\t\tSynchronousEvent = true,\n\t\t\tPayload =\n\t\t\t{\n\t\t\t\t{ Name = \"isDefault\", Type = \"bool\", Nilable = false },\n\t\t\t\t{ Name = \"newCursorType\", Type = \"UICursorType\", Nilable = false },\n\t\t\t\t{ Name = \"oldCursorType\", Type = \"UICursorType\", Nilable = false },\n\t\t\t\t{ Name = \"oldCursorVirtualID\", Type = \"number\", Nilable = false },\n\t\t\t},\n\t\t},\n\t\t{\n\t\t\tName = \"MountCursorClear\",\n\t\t\tType = \"Event\",\n\t\t\tLiteralName = \"MOUNT_CURSOR_CLEAR\",\n\t\t\tSynchronousEvent = true,\n\t\t},\n\t\t{\n\t\t\tName = \"WorldCursorTooltipUpdate\",\n\t\t\tType = \"Event\",\n\t\t\tLiteralName = \"WORLD_CURSOR_TOOLTIP_UPDATE\",\n\t\t\tSynchronousEvent = true,\n\t\t\tDocumentation = { \"Sends an update when the mouse enters or leaves something in-world (object, unit, etc) that should display a tooltip\" },\n\t\t\tPayload ="
+        }
+      ]
+    },
+    {
+      "target": "forever",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/bebcb6bf309cf41b41bd74f8ca651e6a105b2676/Interface/AddOns/Blizzard_APIDocumentationGenerated/InputDocumentation.lua",
+      "title": "InputDocumentation.lua",
+      "matches": [
+        {
+          "line": 30,
+          "text": "\t\t},\n\t\t{\n\t\t\tName = \"GetCursorPosition\",\n\t\t\tType = \"Function\",\n\n\t\t\tReturns =\n\t\t\t{\n\t\t\t\t{ Name = \"posX\", Type = \"number\", Nilable = false },\n\t\t\t\t{ Name = \"posY\", Type = \"number\", Nilable = false },\n\t\t\t},\n\t\t},\n\t\t{\n\t\t\tName = \"GetMouseButtonClicked\",\n\t\t\tType = \"Function\",\n\n\t\t\tReturns =\n\t\t\t{\n\t\t\t\t{ Name = \"buttonName\", Type = \"cstring\", Nilable = false },\n\t\t\t},\n\t\t},\n\t\t{\n\t\t\tName = \"GetMouseButtonName\",\n\t\t\tType = \"Function\",\n\t\t\tSecretArguments = \"AllowedWhenUntainted\",\n"
+        }
+      ]
+    },
+    {
+      "target": "forever",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/bebcb6bf309cf41b41bd74f8ca651e6a105b2676/Interface/AddOns/Blizzard_APIDocumentationGenerated/CursorDocumentation.lua",
+      "title": "CursorDocumentation.lua",
+      "matches": [
+        {
+          "line": 31,
+          "text": "\t\t},\n\t\t{\n\t\t\tName = \"CursorChanged\",\n\t\t\tType = \"Event\",\n\t\t\tLiteralName = \"CURSOR_CHANGED\",\n\t\t\tSynchronousEvent = true,\n\t\t\tPayload =\n\t\t\t{\n\t\t\t\t{ Name = \"isDefault\", Type = \"bool\", Nilable = false },\n\t\t\t\t{ Name = \"newCursorType\", Type = \"UICursorType\", Nilable = false },\n\t\t\t\t{ Name = \"oldCursorType\", Type = \"UICursorType\", Nilable = false },\n\t\t\t\t{ Name = \"oldCursorVirtualID\", Type = \"number\", Nilable = false },\n\t\t\t},\n\t\t},\n\t\t{\n\t\t\tName = \"MountCursorClear\",\n\t\t\tType = \"Event\",\n\t\t\tLiteralName = \"MOUNT_CURSOR_CLEAR\",\n\t\t\tSynchronousEvent = true,\n\t\t},\n\t\t{\n\t\t\tName = \"WorldCursorTooltipUpdate\",\n\t\t\tType = \"Event\",\n\t\t\tLiteralName = \"WORLD_CURSOR_TOOLTIP_UPDATE\",\n\t\t\tSynchronousEvent = true,"
+        },
+        {
+          "line": 33,
+          "text": "\t\t\tName = \"CursorChanged\",\n\t\t\tType = \"Event\",\n\t\t\tLiteralName = \"CURSOR_CHANGED\",\n\t\t\tSynchronousEvent = true,\n\t\t\tPayload =\n\t\t\t{\n\t\t\t\t{ Name = \"isDefault\", Type = \"bool\", Nilable = false },\n\t\t\t\t{ Name = \"newCursorType\", Type = \"UICursorType\", Nilable = false },\n\t\t\t\t{ Name = \"oldCursorType\", Type = \"UICursorType\", Nilable = false },\n\t\t\t\t{ Name = \"oldCursorVirtualID\", Type = \"number\", Nilable = false },\n\t\t\t},\n\t\t},\n\t\t{\n\t\t\tName = \"MountCursorClear\",\n\t\t\tType = \"Event\",\n\t\t\tLiteralName = \"MOUNT_CURSOR_CLEAR\",\n\t\t\tSynchronousEvent = true,\n\t\t},\n\t\t{\n\t\t\tName = \"WorldCursorTooltipUpdate\",\n\t\t\tType = \"Event\",\n\t\t\tLiteralName = \"WORLD_CURSOR_TOOLTIP_UPDATE\",\n\t\t\tSynchronousEvent = true,\n\t\t\tDocumentation = { \"Sends an update when the mouse enters or leaves something in-world (object, unit, etc) that should display a tooltip\" },\n\t\t\tPayload ="
+        }
+      ]
+    },
+    {
+      "target": "classic",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_APIDocumentationGenerated/InputDocumentation.lua",
+      "title": "InputDocumentation.lua",
+      "matches": [
+        {
+          "line": 20,
+          "text": "\t\t},\n\t\t{\n\t\t\tName = \"GetCursorPosition\",\n\t\t\tType = \"Function\",\n\n\t\t\tReturns =\n\t\t\t{\n\t\t\t\t{ Name = \"posX\", Type = \"number\", Nilable = false },\n\t\t\t\t{ Name = \"posY\", Type = \"number\", Nilable = false },\n\t\t\t},\n\t\t},\n\t\t{\n\t\t\tName = \"GetMouseFoci\",\n\t\t\tType = \"Function\",\n\n\t\t\tReturns =\n\t\t\t{\n\t\t\t\t{ Name = \"region\", Type = \"table\", InnerType = \"ScriptRegion\", Nilable = false },\n\t\t\t},\n\t\t},\n\t\t{\n\t\t\tName = \"GetStringFromModifiers\",\n\t\t\tType = \"Function\",\n\n\t\t\tArguments ="
+        }
+      ]
+    },
+    {
+      "target": "classic",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_APIDocumentationGenerated/CursorDocumentation.lua",
+      "title": "CursorDocumentation.lua",
+      "matches": [
+        {
+          "line": 31,
+          "text": "\t\t},\n\t\t{\n\t\t\tName = \"CursorChanged\",\n\t\t\tType = \"Event\",\n\t\t\tLiteralName = \"CURSOR_CHANGED\",\n\t\t\tSynchronousEvent = true,\n\t\t\tPayload =\n\t\t\t{\n\t\t\t\t{ Name = \"isDefault\", Type = \"bool\", Nilable = false },\n\t\t\t\t{ Name = \"newCursorType\", Type = \"UICursorType\", Nilable = false },\n\t\t\t\t{ Name = \"oldCursorType\", Type = \"UICursorType\", Nilable = false },\n\t\t\t\t{ Name = \"oldCursorVirtualID\", Type = \"number\", Nilable = false },\n\t\t\t},\n\t\t},\n\t\t{\n\t\t\tName = \"MountCursorClear\",\n\t\t\tType = \"Event\",\n\t\t\tLiteralName = \"MOUNT_CURSOR_CLEAR\",\n\t\t\tSynchronousEvent = true,\n\t\t},\n\t},\n\n\tTables =\n\t{\n\t},"
+        },
+        {
+          "line": 33,
+          "text": "\t\t\tName = \"CursorChanged\",\n\t\t\tType = \"Event\",\n\t\t\tLiteralName = \"CURSOR_CHANGED\",\n\t\t\tSynchronousEvent = true,\n\t\t\tPayload =\n\t\t\t{\n\t\t\t\t{ Name = \"isDefault\", Type = \"bool\", Nilable = false },\n\t\t\t\t{ Name = \"newCursorType\", Type = \"UICursorType\", Nilable = false },\n\t\t\t\t{ Name = \"oldCursorType\", Type = \"UICursorType\", Nilable = false },\n\t\t\t\t{ Name = \"oldCursorVirtualID\", Type = \"number\", Nilable = false },\n\t\t\t},\n\t\t},\n\t\t{\n\t\t\tName = \"MountCursorClear\",\n\t\t\tType = \"Event\",\n\t\t\tLiteralName = \"MOUNT_CURSOR_CLEAR\",\n\t\t\tSynchronousEvent = true,\n\t\t},\n\t},\n\n\tTables =\n\t{\n\t},\n\tPredicates =\n\t{"
+        }
+      ]
+    }
+  ],
+  "secure_gate": {
+    "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureStateDriver.lua",
+    "finding": "resolveDriver unconditionally shows/hides state-visibility on repeated native updates. Hover owns the existing outer container; native combat visibility owns the child gate, so repeated secure shows cannot undo hover hiding."
+  },
+  "prior_security_and_loading_evidence": "minimap-layout-sources-2026-11-13.json",
+  "scope": "Source evidence only. CURSOR_CHANGED payload is ignored; GetCursorInfo reuses existing EBS pickup contract. Era/Anniversary retain existing guards without fresh source pins. Native registration/delivery/input/taint/pixels/FPS NOT RUN."
+}

@@ -1,0 +1,163 @@
+{
+  "dateUTC": "2026-11-14T08:23:01.743210+00:00",
+  "localDate": "2026-11-14",
+  "timezone": "Europe/Copenhagen",
+  "changeID": "AUCTION-COMPACT-UPGRADES-20261114",
+  "requirements": [
+    "AHR-102",
+    "AHR-103"
+  ],
+  "candidate": "AH-restock-compact-upgrades-20261114-r26",
+  "checkpoint": {
+    "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\auction-restock\\tab-crafting-followup\\compact-upgrades-20261114T080946Z\\checkpoint.json",
+    "sha256": "0a49210ae605db00a385f9a7a9dd731de1596e02c665fd937fb10da0e523411c",
+    "sourceFiles": 2776,
+    "accessibleSettingsMetadata": 129,
+    "privateSettingsCopied": false,
+    "archives": {
+      "source-before.zip": {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\auction-restock\\tab-crafting-followup\\compact-upgrades-20261114T080946Z\\source-before.zip",
+        "sha256": "6dddba2539849803aefa108576592a2015d209cce90f52517556d305c8c45040"
+      },
+      "history-before.bundle": {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\auction-restock\\tab-crafting-followup\\compact-upgrades-20261114T080946Z\\history-before.bundle",
+        "sha256": "4ba5e18db66942d3b227d9c696fea1a91a5a3d8e10b3cd8a6814b44ee251111b"
+      }
+    }
+  },
+  "implementation": {
+    "cardHeight": {
+      "before": 174,
+      "after": 44
+    },
+    "extraRowAllowance": {
+      "before": 180,
+      "after": 50
+    },
+    "actions": "Candidate24px beside Upgrade52px;Keep26px and Blacklist52px below;native buttons",
+    "details": "Native candidate tooltip retains name/effect/restore comparison/unit price/funds;Keep has full action label in tooltip",
+    "order": [
+      "healing potion preset",
+      "mana potion preset",
+      "bandage preset",
+      "spell reagent",
+      "consumable configuration",
+      "other"
+    ],
+    "tieBreak": "Name then itemID within each group;metadata only;merged and virtual preset rows included",
+    "ownerSafety": "Proposal keyed by row object before sorting;existing revalidation/purchase owners retained;no settings migration or new APIs"
+  },
+  "validation": {
+    "precedingWiderRun": {
+      "pass": 364,
+      "fail": 1,
+      "syntaxFiles": 1053,
+      "artifact": {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\auction-restock\\tab-crafting-followup\\compact-upgrades-20261114T080946Z\\full.json",
+        "sha256": "cdcc0318b2c896b1817e7cc8c0a7bdedb6d363bd33acd356d6d8c002254f9478"
+      },
+      "sourceGuard": {
+        "ownedFiles": 6,
+        "unexpectedChanges": [],
+        "normalization": "Owned sources match full manifest CRLF to LF;TOC raw bytes unchanged"
+      },
+      "scope": "AH-focused acceptance only;user assigned meters to a separate agent after the wider run. No further meter inspection/testing/changes.",
+      "auctionScripts": {
+        "pass": 40,
+        "fail": 0
+      },
+      "widerFailure": "One meter-control test failed after an unrelated concurrent edit;separate agent owns this work;not treated as an AH regression or claimed green."
+    },
+    "auctionScripts": {
+      "pass": 40,
+      "fail": 0
+    },
+    "inline": "1220 checks/20 profiles",
+    "confirmation": "672 checks/20 profiles",
+    "geometry": "780 checks/20 profiles;card hit regions,next-row separation,scroll,lazy frames",
+    "trials": "3 matched baseline/candidate trials per inline and geometry regression",
+    "compiledHarmfulControlsRejected": 8,
+    "raw": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\auction-restock\\tab-crafting-followup\\compact-upgrades-20261114T080946Z\\results.json",
+      "sha256": "e1f3737843663051d61f4df443053f2ac06561da14602fc4d5a9b832b5c30ba4"
+    },
+    "initialSuite": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\auction-restock\\tab-crafting-followup\\compact-upgrades-20261114T080946Z\\initial-full.json",
+      "sha256": "729954a7ef405a126e0c0411f35b6380bcdfe0a11d5164ac074f41a7fa49bff4",
+      "result": "364 pass/1 fail;obsolete expanded name-field assertion changed to the real candidate tooltip;confirmation and full suite rerun"
+    }
+  },
+  "native": {
+    "route": "Existing authorized background Forever testing;no Witchcraft/UIForever capability exposed on this host",
+    "windowEvidence": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\auction-restock\\tab-crafting-followup\\compact-upgrades-20261114T080946Z\\forever-window.json",
+      "sha256": "31b586f379adbf15ac8b4bbe91dc234bb664921f49478165b4225353b2a5937f"
+    },
+    "scope": "Passive exact PID40032/window7995860 capture;player actively crafting with AH closed;no input/reload/purchase/upgrade sent",
+    "lastEstablishedBuild": "Forever1.60.1.70938",
+    "compactLayout": "NOT RUN;reload and reopen AH required when user is ready",
+    "fontsPixelsAndController": "NOT RUN on every client",
+    "timingFPS": "Not measured;geometry/work counts only;profilers unchanged"
+  },
+  "controller": "All3 ordinary native action buttons remain separately reachable by existing cursor route;native highlights and scrolling preserved;tooltip icon adds no activation;directional navigation not certified",
+  "localization": "New AH_UPGRADE_KEEP_SHORT English fallback;long-form Keep current retained for tooltip;other-language layout/review pending",
+  "sourcePinsRetained": {
+    "Retail": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+    "Forever": "bebcb6bf309cf41b41bd74f8ca651e6a105b2676",
+    "MoP": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+    "Era": "4192ac60067fc55566182291bc67c85dd9b6794d",
+    "Anniversary": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49"
+  },
+  "installedCopies": {
+    "scope": "Read-only;existing automatic sync retained;no manual sync",
+    "clients": [
+      {
+        "client": "_retail_",
+        "checked": 5,
+        "mismatches": []
+      },
+      {
+        "client": "_forever_",
+        "checked": 5,
+        "mismatches": []
+      },
+      {
+        "client": "_classic_",
+        "checked": 5,
+        "mismatches": []
+      },
+      {
+        "client": "_classic_era_",
+        "checked": 5,
+        "mismatches": []
+      },
+      {
+        "client": "_anniversary_",
+        "checked": 5,
+        "mismatches": []
+      }
+    ]
+  },
+  "candidateRawHashes": {
+    "Inventory/Restock/Auction/FluxAuctionRestock.lua": "c0866bd0d03face53dec65d65784bb33e32c25f48e47a231f12713c9452d5eec",
+    "Inventory/Restock/Auction/FluxAuctionRestockData.lua": "90d80884cd8c62453983ab1232e999863075a2acde44fafbbd1bb6279cdaa7fb",
+    "Inventory/Restock/Auction/FluxAuctionRestockLocale.lua": "abb380cab3dc532bf5e309eaa32bdcd43bf734f6b6f6f2812fa6b303b2a9faa3",
+    "Inventory/Restock/Auction/FluxAuctionRestockUI.lua": "f61d98fdbfe83bbebd99147f30ade7a1188c4a959a4aa83876272a88cdc437a7",
+    "tests/auction_restock_inline_upgrades.lua": "2bcd66607a351b907f000431c0ead110a482f94b53faf786046a30a4990c6e45",
+    "tests/auction_restock_potion_confirmation.lua": "416c546f13b78a4adba1ac20412aa914310347e315cd30af6a2ed8457e06a1d6"
+  },
+  "branch": "main",
+  "hooksPath": ".githooks",
+  "publication": "No commit or push",
+  "finalOwnedSourceGuard": {
+    "files": 6,
+    "unexpectedChanges": [],
+    "scope": "Only AH task files;meter files/tests explicitly owned by separate agent"
+  },
+  "documentation": {
+    "inventoryBuild": "PASS:1086 sources;623 reachable;443 settings;583 literal defaults",
+    "validation": "Three meter-owned issues remain during concurrent meter-agent work:source verification for meter source/test and its new evidence link. No AH documentation issue reported. Left to the assigned meter agent.",
+    "diffCheck": "PASS",
+    "ledgerColumns": "PASS"
+  }
+}

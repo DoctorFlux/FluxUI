@@ -38,15 +38,15 @@ P.KIND_FIELDS = {
     },
     bandage = {
         store = "restockCombat", target = "bandageTarget", countBank = "bandageCountBank",
-        mark = "markInferiorBandage", saved = "savedBandageTier",
+        mark = "markInferiorBandage", saved = "savedBandageTier", keep = "keepInferiorBandageUntilUpgrade",
     },
     healPotion = {
         store = "restockCombat", target = "healPotionTarget", countBank = "healPotionCountBank",
-        mark = "markInferiorHealPotion", saved = "savedHealPotionTier",
+        mark = "markInferiorHealPotion", saved = "savedHealPotionTier", keep = "keepInferiorHealPotionUntilUpgrade",
     },
     manaPotion = {
         store = "restockCombat", target = "manaPotionTarget", countBank = "manaPotionCountBank",
-        mark = "markInferiorManaPotion", saved = "savedManaPotionTier",
+        mark = "markInferiorManaPotion", saved = "savedManaPotionTier", keep = "keepInferiorManaPotionUntilUpgrade",
     },
 }
 
@@ -120,7 +120,16 @@ function P.GetSavedTier(kind)
     if not store then
         return 0
     end
-    return tonumber(store[fields.saved]) or 0
+    local value = tonumber(store[fields.saved]) or 0
+    if (kind == "healPotion" or kind == "manaPotion") and store[fields.saved .. "Basis"] ~= "minimum" then
+        local best = P.Best()
+        local ref = best and best.GetBestRef and best.GetBestRef(kind)
+        if ref and ref.restoreBasis == "minimum" then
+            if value > 0 then value = P.RoundTier(ref.effective); store[fields.saved] = value end
+            store[fields.saved .. "Basis"] = "minimum"
+        end
+    end
+    return value
 end
 
 function P.SetSavedTier(kind, value)
@@ -129,6 +138,7 @@ function P.SetSavedTier(kind, value)
         return
     end
     store[fields.saved] = P.RoundTier(value)
+    if kind == "healPotion" or kind == "manaPotion" then store[fields.saved .. "Basis"] = "minimum" end
 end
 
 -- Lightweight caches

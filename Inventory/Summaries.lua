@@ -8,6 +8,10 @@ local Store = Inv.Store
 local Summaries = {}
 Inv.Summaries = Summaries
 
+-- Saved rows can be edited in place. Validate both source fields on every use;
+-- weak ownership releases the parsed key as soon as that source row is retired.
+local itemKeys = setmetatable({}, { __mode = "k" })
+
 local function EmptyLoc()
 	return {
 		bags = 0,
@@ -37,7 +41,15 @@ local function WalkSlots(slots, summary, field)
 	end
 	for _, rec in pairs(slots) do
 		if type(rec) == "table" then
-			local key = Store.GetItemKey(rec.link or rec.itemLink, rec.itemID)
+			local link, id = rec.link or rec.itemLink, rec.itemID
+			local cached = itemKeys[rec]
+			local key
+			if cached and cached.link == link and cached.itemID == id then
+				key = cached.key
+			else
+				key = Store.GetItemKey(link, id)
+				itemKeys[rec] = { link = link, itemID = id, key = key }
+			end
 			local n = tonumber(rec.count or rec.itemCount) or 0
 			AddCount(summary, key, field, n)
 		end
@@ -153,13 +165,24 @@ local function GenerateWarband()
 	db.Summaries.Warband.Summary = flat
 end
 
-local function FlushPending()
+local function FlushPending(realmSet, faction)
 	if Store.UsesSyndicator() then
 		return
 	end
 	local chars = Store.TakeCharacterPending()
 	for name, kind in pairs(chars) do
-		GenerateCharacter(name, kind)
+		local char = Store.GetCharacter(name)
+		local details = char and char.details
+		-- Filtering never needs this character's item index. Retain the exact
+		-- pending scope so removing the filter/showing the character is current.
+		local excluded = details and (not details.show or details.show.inventory == false
+			or (realmSet and not realmSet[details.realmNormalized])
+			or (faction and details.faction ~= faction))
+		if excluded then
+			Store.MarkPending(name, kind == Store.PendingBags() and "bags" or "all")
+		else
+			GenerateCharacter(name, kind)
+		end
 	end
 	local guilds = Store.TakeGuildPending()
 	for name in pairs(guilds) do
@@ -209,18 +232,17 @@ function Summaries.GetTooltipInfo(key, connected, faction)
 		return { characters = {}, guilds = {}, warband = { 0 } }
 	end
 
-	FlushPending()
-	local db = Store.GetDB()
-	if not db then
-		return { characters = {}, guilds = {}, warband = { 0 } }
-	end
-
 	local realmSet
 	if connected then
 		local _, seen = Store.GetConnectedRealms()
 		realmSet = seen
 	end
 	local currentFaction = UnitFactionGroup and UnitFactionGroup("player") or nil
+	FlushPending(realmSet, faction and currentFaction or nil)
+	local db = Store.GetDB()
+	if not db then
+		return { characters = {}, guilds = {}, warband = { 0 } }
+	end
 	local result = { characters = {}, guilds = {}, warband = { 0 } }
 
 	for realm, byChar in pairs(db.Summaries.Characters.ByRealm) do

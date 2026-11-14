@@ -1,0 +1,142 @@
+{
+  "task": "MINIMAP-VISIBILITY-20261113",
+  "captured_utc": "2026-11-13T14:13:24.863155+00:00",
+  "requirements": [
+    "REQ-MBL-18",
+    "REQ-MBL-19",
+    "REQ-MBL-20",
+    "REQ-MBL-21"
+  ],
+  "checkpoint": "minimap-visibility-checkpoint-2026-11-13.json",
+  "sources": "minimap-visibility-sources-2026-11-13.json",
+  "baseline_controls": "minimap-visibility-controls-2026-11-13.json",
+  "desktop_scope": "Strict protected-write/geometry/save-state mocks, actual options and native tracker/aura integration methods; five client models are not native-client certification",
+  "results": [
+    {
+      "path": "tests/minimap_extra_visibility.lua",
+      "exit": 0,
+      "output": "Minimap extra visibility: 4540 checks; 5 client models; 15 scale cases; 5 harmful controls PASS\n"
+    },
+    {
+      "path": "tests/minimap_extra_layout.lua",
+      "exit": 0,
+      "output": "minimap extra layout: 50034 checks PASS (runtime geometry, saved actions, reuse, deferred combat writes and state-driver model; native acceptance pending)\n"
+    },
+    {
+      "path": "tests/minimap_window_layout.lua",
+      "exit": 0,
+      "output": "Minimap window integration: 113 checks; real map/window/tracker/Questie paths and four harmful controls passed\n"
+    },
+    {
+      "path": "tests/minimap_side_auras.lua",
+      "exit": 0,
+      "output": "Minimap side aura positioning: 2543 checks; 5 client models; 15 scale cases; 4 harmful controls PASS\n"
+    },
+    {
+      "path": "tests/minimap_flyout_visibility.lua",
+      "exit": 0,
+      "output": "PASS minimap flyout visibility: 168 checks; 4 client models; 9 harmful controls\n"
+    },
+    {
+      "path": "tests/options_navigation.lua",
+      "exit": 0,
+      "output": "Options navigation: 6537 checks; actual builders mapped across five client contracts; native rendering pending\n"
+    },
+    {
+      "path": "tests/options_rework.lua",
+      "exit": 0,
+      "output": "Options rework: 1243 checks; complete shell/renderer/widgets and menu lifecycle across five client models; native acceptance pending\n"
+    },
+    {
+      "path": "tests/transmog_actions.lua",
+      "exit": 0,
+      "output": "Transmog actions: 6485 checks; five branches, capability adapters, six negative controls passed\n"
+    },
+    {
+      "path": "tests/edit_mode_native_ownership.lua",
+      "exit": 0,
+      "output": "Flux Edit Mode metadata captured; native spec event: true. /reload to save.\nFlux Edit Mode metadata captured; native spec event: true. /reload to save.\nFlux Edit Mode metadata captured; native spec event: true. /reload to save.\nFlux Edit Mode metadata captured; native spec event: true. /reload to save.\nEdit Mode resources live: base=18 overrides=0 nativeSpecUnregister=0 flags=0 saves=3 resets=5\nFlux Edit Mode metadata captured; native spec event: true. /reload to save.\nFlux Edit Mode metadata captured; native spec event: true. /reload to save.\nFlux Edit Mode metadata captured; native spec event: true. /reload to save.\nFlux Edit Mode metadata captured; native spec event: true. /reload to save.\nEdit Mode resources forever: base=18 overrides=0 nativeSpecUnregister=0 flags=0 saves=3 resets=5\nFlux Edit Mode metadata captured; native spec event: true. /reload to save.\nFlux Edit Mode metadata captured; native spec event: true. /reload to save.\nFlux Edit Mode metadata captured; native spec event: true. /reload to save.\nFlux Edit Mode metadata captured; native spec event: true. /reload to save.\nEdit Mode resources classic: base=18 overrides=0 nativeSpecUnregister=0 flags=0 saves=3 resets=5\nFlux Edit Mode metadata captured; native spec event: true. /reload to save.\nFlux Edit Mode metadata captured; native spec event: true. /reload to save.\nFlux Edit Mode metadata captured; native spec event: true. /reload to save.\nFlux Edit Mode metadata captured; native spec event: true. /reload to save.\nEdit Mode resources classic_era: base=18 overrides=0 nativeSpecUnregister=0 flags=0 saves=3 resets=5\nFlux Edit Mode metadata captured; native spec event: true. /reload to save.\nFlux Edit Mode metadata captured; native spec event: true. /reload to save.\nFlux Edit Mode metadata captured; native spec event: true. /reload to save.\nFlux Edit Mode metadata captured; native spec event: true. /reload to save.\nEdit Mode resources classic_anniversary: base=18 overrides=0 nativeSpecUnregister=0 flags=0 saves=3 resets=5\nEdit Mode native ownership: 295 checks; 0 failures; native protected execution/taint/pixels pending\n"
+    }
+  ],
+  "source_identities": [
+    {
+      "path": "Minimap/FluxMinimapButtons.lua",
+      "baseline_raw_sha256": "e1fc53c1737c83a8cdac9a470fcbf497903054f6d84d5fc8587ecc48da1d0e82",
+      "candidate_raw_sha256": "95cc2bc21faca859b1dc6dcf5b96dc575eb01d6624bc01b639163850241527e4",
+      "candidate_lf_sha256": "95cc2bc21faca859b1dc6dcf5b96dc575eb01d6624bc01b639163850241527e4"
+    },
+    {
+      "path": "AddonOptions/FluxOptionsBattlezone.lua",
+      "baseline_raw_sha256": "8aa27fc910a38f89adea8a26bedcf2a23a8a611e6b614845810659ab1b8b6d97",
+      "candidate_raw_sha256": "2e2782dadd5764436b5ff9231105bf9b8aeea8ca326c1dece2185b3f39d09c3a",
+      "candidate_lf_sha256": "2e2782dadd5764436b5ff9231105bf9b8aeea8ca326c1dece2185b3f39d09c3a"
+    },
+    {
+      "path": "tests/minimap_extra_visibility.lua",
+      "baseline_raw_sha256": null,
+      "candidate_raw_sha256": "97b35b7eff8bcba86c3af89de465a7649abca36a27c8983de93cf973f5291385",
+      "candidate_lf_sha256": "97b35b7eff8bcba86c3af89de465a7649abca36a27c8983de93cf973f5291385"
+    },
+    {
+      "path": "tests/minimap_extra_layout.lua",
+      "baseline_raw_sha256": "61e0290c599fb08f0d23fdcbf9d9d75f985dcb4581057045113b56640a07e651",
+      "candidate_raw_sha256": "319e13887024448053ce40909bef493fbab7482291404cbc0e3dd2504a9742bb",
+      "candidate_lf_sha256": "319e13887024448053ce40909bef493fbab7482291404cbc0e3dd2504a9742bb"
+    },
+    {
+      "path": "tests/minimap_side_auras.lua",
+      "baseline_raw_sha256": "e963ecb208e812671588b173992ae77b35c415e750d5453f08bb938d61aac45f",
+      "candidate_raw_sha256": "f22babbe9c59c2abb12dc386011f58c5120494a41707487230a2f309c2805d39",
+      "candidate_lf_sha256": "f22babbe9c59c2abb12dc386011f58c5120494a41707487230a2f309c2805d39"
+    },
+    {
+      "path": "tests/minimap_flyout_visibility.lua",
+      "baseline_raw_sha256": "9f13f2bb9d4aec4862e1c07bd8a3170e163d931aede18d581c34596181c41dc7",
+      "candidate_raw_sha256": "648393e13ba8a478ae31394315dafef54d9cc3a0bb47288ce0465a9e635e3f19",
+      "candidate_lf_sha256": "648393e13ba8a478ae31394315dafef54d9cc3a0bb47288ce0465a9e635e3f19"
+    },
+    {
+      "path": "tests/options_navigation.lua",
+      "baseline_raw_sha256": "ffa60f1b8af77487c02b110f5a23dd82d6433441f51c6ac055c34abd376ec958",
+      "candidate_raw_sha256": "3b370c5ce96d7f21f1827c60ce298f7cd67d4055cd042a6db18ba20a85995e32",
+      "candidate_lf_sha256": "c56ef79160457e1dce5125e87d0c12d193071ca76cc4ad14bc6bb5f7e726437b"
+    }
+  ],
+  "full_suite": "minimap-visibility-full-2026-11-13.json",
+  "native": {
+    "clients": [
+      "Retail",
+      "Forever",
+      "Classic progression",
+      "Era",
+      "Anniversary"
+    ],
+    "input_taint_pixels_controller_persistence_fps": "NOT RUN; retained user-managed native reload/retest route",
+    "no_foreground_or_input": true,
+    "settings_profiler_unchanged": true,
+    "no_publication_or_manual_sync": true
+  },
+  "full_result": {
+    "pass": 341,
+    "fail": 0,
+    "syntax_files": 1029,
+    "current_manifest_mismatches": [
+      "Inventory/Restock/Core/FluxRestockList.lua",
+      "tests/auction_restock_bank_flag_ui.lua"
+    ],
+    "evidence": "minimap-visibility-full-2026-11-13.json"
+  },
+  "source_guard": "minimap-visibility-source-guard-2026-11-13.json",
+  "documentation": "minimap-visibility-docs-2026-11-13.json",
+  "concurrent_auction_validation": {
+    "initial_broad_result": "339 pass;two auction test failures during concurrent auction edits",
+    "checkpoint_tests": "Both pass in pre-edit checkpoint",
+    "final_broad_result": "341 pass;0 fail",
+    "detail": "minimap-visibility-unrelated-2026-11-13.json"
+  },
+  "documentation_result": {
+    "task_links_pass": 125,
+    "global_issues": 5,
+    "global_issues_scope": "Unrelated party heading references; see docs evidence"
+  }
+}

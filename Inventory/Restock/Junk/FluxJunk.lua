@@ -101,6 +101,7 @@ local function CombatUpgradeAllowsAutoJunk(itemID)
         return nil
     end
     local Tiers = _G.FluxRestockTiers
+    if Tiers and Tiers.IsCarriedUpgradeRequired and not Tiers.IsCarriedUpgradeRequired(kind) then return nil end
     if not Tiers or not Tiers.GetJunkReferenceTier or not Tiers.GetItemTierValue then
         return false
     end
@@ -1392,9 +1393,16 @@ end
 
 local function SortByName(list)
     local ic = IC()
+    -- GetName can request metadata and synchronously deliver item-data events.
+    -- Sample once per item, outside the comparator, so a cold list does linear
+    -- metadata work and the ordering stays stable throughout table.sort.
+    local names = {}
+    for _, id in ipairs(list) do
+        names[id] = (ic and ic.GetName(id)) or ""
+    end
     table.sort(list, function(a, b)
-        local nameA = (ic and ic.GetName(a)) or ""
-        local nameB = (ic and ic.GetName(b)) or ""
+        local nameA = names[a]
+        local nameB = names[b]
         if nameA == nameB then
             return a < b
         end

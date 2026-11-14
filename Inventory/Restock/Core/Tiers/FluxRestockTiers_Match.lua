@@ -442,7 +442,7 @@ end
 
 --- Junk needs an actual carried upgrade; purchase targets retain remembered tiers.
 function Tiers.GetJunkReferenceTier(kind, merchantIndex, aboveTier)
-    if not P.COMBAT_KINDS[kind] then
+    if not P.COMBAT_KINDS[kind] or (Tiers.IsCarriedUpgradeRequired and not Tiers.IsCarriedUpgradeRequired(kind)) then
         return Tiers.GetInferiorReferenceTier(kind, merchantIndex)
     end
     local inv = P.Inv()
@@ -633,6 +633,7 @@ end
 --- opts.vendor: use vendor-tolerant usable gate (cold merchant IDs allowed).
 function P.IsTierItemUsable(kind, itemID, opts)
     local Score = P.Best() and P.Best().Score
+    if Score and Score.IsExcludedFromBest and Score.IsExcludedFromBest(itemID) then return false end
     if not Score then
         return true
     end
@@ -728,14 +729,14 @@ local function SumUniqueMap(countsOrUnique, kind, matcher)
     return total
 end
 
-function Tiers.GetTierCount(kind, merchantIndex)
+function Tiers.GetTierCount(kind, merchantIndex, minimumTier)
     if not Tiers.IsTierEligible(kind) then
         return 0
     end
     merchantIndex = P.ResolveMerchantIndex and P.ResolveMerchantIndex(merchantIndex) or merchantIndex
     local bagGen = P.GetBagCacheGen()
     local merchantGen = P.GetMerchantCacheGen()
-    local cacheKey = tostring(kind) .. ":" .. tostring(merchantIndex and true or false)
+    local cacheKey = tostring(kind) .. ":" .. tostring(merchantIndex and true or false) .. ":" .. tostring(minimumTier or 0)
     if P.countCache.bagGen == bagGen and P.countCache.merchantGen == merchantGen then
         local cached = P.countCache.kinds[cacheKey]
         -- Never reuse a cached 0: empty Syndicator snapshots and pending
@@ -749,7 +750,7 @@ function Tiers.GetTierCount(kind, merchantIndex)
         wipe(P.countCache.kinds)
     end
 
-    local threshold = P.GetTierRestockThreshold(kind, merchantIndex)
+    local threshold = math.max(P.GetTierRestockThreshold(kind, merchantIndex), tonumber(minimumTier) or 0)
     local fj = P.FJ()
     local inv = P.Inv()
     local counted = {}
@@ -895,7 +896,7 @@ function Tiers.GetTierBagTotalForBankRestock(kind)
     return total
 end
 
-function Tiers.GetBankCountForKind(kind, merchantIndex)
+function Tiers.GetBankCountForKind(kind, merchantIndex, minimumTier, strictOnly)
     if not Tiers.IsTierEligible(kind) then
         return 0
     end
@@ -903,7 +904,7 @@ function Tiers.GetBankCountForKind(kind, merchantIndex)
     if not inv or not inv.Bank then
         return 0
     end
-    local ref = P.GetTierRestockThreshold(kind, merchantIndex)
+    local ref = math.max(P.GetTierRestockThreshold(kind, merchantIndex), tonumber(minimumTier) or 0)
     local strict, loose = 0, 0
     local function consider(itemID, n, itemLink)
         itemID = tonumber(itemID)
@@ -947,6 +948,7 @@ function Tiers.GetBankCountForKind(kind, merchantIndex)
     for itemID in pairs(seen) do
         consider(itemID, inv.Bank.GetCount(itemID, { bank = true, warband = true }) or 0)
     end
+    if strictOnly then return strict end
     if strict > 0 then
         return strict + loose
     end

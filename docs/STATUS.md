@@ -1,5 +1,1507 @@
 # Development status
 
+14 November `ADDON-PUBLICATION-20261114`: the user requested publication of the
+full current addon snapshot to DoctorFlux/FluxUI on main, including completed
+auction, consumable, UI/options and casting/inventory work. Preserve all newer
+source and licenses. This task updates documentation, the stale commerce renderer
+regression and Git state. The regression permits fewer hidden-row writes while
+retaining native repair, opacity, reentry and exact-error propagation checks;
+addon runtime code, settings and client/profiler state remain under their owners.
+
+Both author and committer must be DoctorFlux
+`<100806234+DoctorFlux@users.noreply.github.com>`, with no co-author trailers.
+The existing identity hooks remain active. Five identity regressions and all four
+prior reachable commits passed; GitHub's pre-upload contributor API lists only
+DoctorFlux. Check the new main history and contributor/workflow state after push.
+GitHub has no contributor blacklist; enforce publication metadata at each upload.
+
+Current source evidence: 365 fresh desktop scripts passed; 52 auction/shared-grid
+dependents were replayed after the last concurrent UI edits, with all Lua stable.
+The index retains 14 unchanged meter/threat observations from their owner instead
+of rerunning them. All 1067 syntax hashes match current files; 379 passing
+observations are recorded. The adapted commerce test rejects four compiled
+harmful controls. Existing native
+acceptance gaps remain; publishing establishes no new native/performance result.
+External source/history/index checkpoint: 2794 files and
+113 settings metadata entries; no private settings copied.
+No branch/reset/force push/tag/repository replacement. [Publication record](validation/addon-publication-2026-11-14.json).
+
+14 November LHO actual producer audit reproduces two unresolved synthetic
+counterexamples using installed Syndicator code: cold closed-bank completion5→0,
+and an old cold-mail job overwriting newer inbox facts (including equal-cardinality
+wrong IDs). Three baseline repeats/three isolation pairs per fault/three extra
+controls;38checks/run. External41 files unchanged. No bank/mail remedy applied.
+Native tri-state count/provenance and persisted handoff need proof; header counts
+alone cannot validate mail identities. User requires native populated-mail timing
+before a fallback-delay decision; the available empty mailbox cannot establish it.
+[Causal evidence and pending decisions](validation/lag-hotspots-provider-counterexamples-2026-11-14.json).
+
+14 November lag continuation: after the fresh 2,792-file source/history checkpoint and 375-script/1,063-syntax baseline gate, three commerce owners reduce recipe-scan allocations, select only relevant modern output aliases and reuse warm owned bag facts within a capacity call. Three paired source comparisons pass 770 focused checks/set and reject 13 compiled harmful controls. Affected installed checks pass 61 scripts with all 1,065 Lua hashes stable in that run; independent review reproduces 770 checks. Every profession native scan, craft invalidation and publication remains; aliases, partial/closed recipes, public overrides, cold bag retries and existing link return values remain. Desktop timings and allocation samples establish their modeled scope; no profession/vendor native CPU or FPS comparison is claimed. Keep the earlier full run historical until a new combined run seals current source.
+[Source comparison and limits](validation/lag-hotspots-commerce-continuation-2026-11-14.json).
+
+14 November LHO empty-mailbox native observation: user opened the mailbox;
+Forever70938 reports inbox0, Flux mail0, Syndicator source, reliabletrue and no
+pending native mail command. Three 1,000-call GetInboxNumItems trials take
+0.0418/0.0405/0.0398ms. Same-session _FluxUI native profiler counters over12.922s
+increase230 for >1ms and0 for >5/10/50/100/500/1000ms; nested counters are not summed.
+This is an unpaired existing-city observation, not a before/after FPS result or
+populated/cold-mail latency measurement. No mail/item operations, activation,
+profiler preference changes or persistent probes. User requires in-game measurement
+before accepting the stale-mail fallback delay; that decision remains pending.
+[Exact scope and readouts](validation/lag-hotspots-empty-mailbox-2026-11-14.json).
+
+14 November casting/inventory lag (LAG-HOTSPOTS-20261114; LHO-01–13):
+pre-edit 367 scripts/1,055 syntax PASS with unchanged source; external 2,781-file
+source/history checkpoint and 125 settings metadata entries, no private copy.
+Eight measured slices now change eleven runtime owners: protected cast/VFX helpers,
+same-call macro metadata, dirty-bank aggregation/publication retries, merged potion
+needs, live mail capacity, bulk merchant queue retirement and hidden merchant paints.
+Three pairs/slice; 46,925 focused checks/set; 71 compiled harmful controls rejected.
+Final 375 scripts/1,063 syntax PASS; full source stable throughout. Craft/pending
+integration adds 380 checks/120 scenarios. Independent reviews caught and fixed
+two bank retry/reentry cases; native getters slowed the AH paint experiment, so
+original UI bytes were restored. All 257 assets/XML/TOCs, 85 options/bindings,
+7 defaults/settings owners and 5 license files unchanged; all 55 owned files match
+across five installed copies read-only; external Syndicator's 41 files unchanged.
+Forever70938 native watch:2 gaps52–55ms,0observedFluxcallbacks>10ms,0newLuaerrors;
+not FPS attribution. After user reload and a specific foreground exception, food
+rank4 starts/stops were submitted; Interrupted and eight Pumpernickel/count8 are
+observed with cast cleared. No buying/selling/deletion, craft materials, focus
+activation, profiler preferences, manual sync or publication. Other native timing,
+provider-off/client/pixel/controller acceptance remains pending. Documentation validator PASS.
+[Requirements, remaining acceptance and evidence](LAG_HOTSPOT_OPTIMIZATION.md).
+
+14 November `AUCTION-PASSIVE-REFRESH-20261114` / AHR-105/106, build
+`AH-restock-explicit-start-20261114-r27`: opening the Restock tab prepares missing
+targets once. Filled known items/tiers are skipped. Bag, mail and profession
+updates refresh counts without canceling a search, replacing upgrade choices or
+restarting completed work. A user-started initial stock-loading wait can resume;
+matching purchase receipts still prepare the next shortage. Buying and upgrading
+retain their separate player choices. An actual setting edit can replan once.
+
+Loot & Items → Restock now has independent AH upgrade prompt options: healing
+and mana on by default, bandages off. Saved choices are per character. Turning
+one off keeps its current-tier direct/crafting restock and rejects stale upgrade
+actions. The compact native actions read Keep / Block, with full tooltip labels;
+unchanged enabled states are not rewritten on passive refreshes.
+
+The explicitly requested modern Scan all restock remains a full pricing action.
+Old AH remains per-item scan/buy without Scan all. The latest opening-shortages
+request supersedes earlier filled-tier discovery on opening, not manual scans.
+76 affected scripts/82 syntax files PASS; 440 passive checks/20 client-provider
+models; 3 matched baseline/candidate trials and 11 compiled harmful controls.
+Other test observations remain historical; no whole-suite or meter test rerun.
+All 5 installed copies match the 6 runtime files read-only. Verified external
+checkpoint: 2780 source files/all-ref history and 129 settings metadata entries;
+no private contents copied/restored. Main/.githooks and concurrent work retained.
+
+Native flicker, text fit, controller, protected input/taint and performance remain
+NOT RUN. No client input/reload, upgrade acceptance, purchase or profiler change.
+Reload when ready. Meter work remains with its separate agent. [Evidence](validation/auction-passive-refresh-2026-11-14.json).
+
+14 November `POTION-MINIMUM-RESTORE-20261114` / AHR-104: healing and mana
+potion tiers use their minimum restore across the whole addon. A larger maximum
+cannot promote a lower-floor potion: 500–1500 loses to 600–800; 650–700 can upgrade.
+The shared classifier supplies minimum health/mana/effective values; maximum
+metadata remains available. Food, water and bandage ranking is preserved.
+
+Potion buttons, Best ranking, cached recipes, vendors, AH choices and automatic
+junk use the same floor. Old saved potion refs/vendor observations and restock
+thresholds migrate only after verified classification. Unknown old facts remain
+saved but cannot compete/promote as verified minima. Potion-only cached effect
+text/axes preserve floors across tooltip gaps. Targets/price limits/manual Junk
+priority and explicit AH choice/purchase presses remain under existing owners.
+
+74 affected scripts and 79 syntax files PASS; 510 checks/50 minimum-ranking models,
+388/20 restore checks; 10 compiled harmful controls rejected; 3 matched trials.
+Global verification is explicitly incremental: other test observations remain
+historical, not a whole-suite rerun. Meters are excluded and left to their agent.
+Five installed copies match the 5 runtime files read-only. External checkpoint 2778
+source/history files and 129 accessible settings metadata verified; no private
+contents copied/restored. Main/.githooks/newer work retained; no publication.
+
+Minimum-ranking native acceptance is NOT RUN. Existing background test preference
+continues; no client input/reload, purchase, upgrade acceptance or profiler change.
+Reload when ready to apply the new shared logic. [Evidence](validation/potion-minimum-restore-2026-11-14.json).
+
+Full validation: 365 scripts and 1053 Lua syntax files PASS; complete current Lua manifest verified.
+
+14 November `METER-CONTROL-RECOVERY-20261114` restores direct native type choices,
+preset/custom/structure/tab/setup application, required native windows and Current
+for every displayed pane after an explicit layout/type choice. Ordinary refresh,
+reopen and geometry preserve later manual Overall/history choices. The lost
+behavior came from 13 November's capability withdrawal; the 14 November source
+recovery contained that already-limited version.
+
+Selection uses existing native menu descriptions and original proxy Pick with
+field/method provenance guards. No menu regeneration/opening, private setters,
+history reset or tooltip/header rollback. 476 control checks, both pinned native
+menu replays, 12 focused scripts and 7 harmful controls PASS. Native operation,
+combat/taint, controller, localized pixels and CPU/FPS remain NOT RUN.
+Fresh external checkpoint: 2771 files/all-ref history and 53 settings metadata;
+no settings contents copied/restored. Main/.githooks and concurrent work retained;
+no client input, manual sync, commit or push. Reload outside combat and reselect
+the layout. [Requirements](METER_STANDALONE.md#meter-control-recovery--14-november-2026);
+[evidence](validation/meter-control-recovery-2026-11-14.json).
+
+14 November `AUCTION-COMPACT-UPGRADES-20261114` (AHR-102/103), build
+`AH-restock-compact-upgrades-20261114-r26`: upgrade cards now occupy 44px instead
+of 174px. A 24px candidate icon sits beside Upgrade; Keep and Blacklist form the
+second action row. Candidate name, restore comparison, unit price and current
+funds remain in the native tooltip. Each candidate still needs its own choice.
+
+Cell order is healing potion, mana potion, bandage, spell reagents, consumable
+configuration, then other items. Preset/source metadata drives ordering; names
+and item IDs break ties only within each group. Merged manual/preset targets and
+virtual proposals without a saved tier retain preset priority. Proposals stay
+bound to row identity while sorting. No new API, saved-root/default change or
+automatic purchase was introduced; old-AH per-item behavior remains.
+
+Inline 1220/20, confirmation 672/20 and geometry 780/20 checks PASS; 8 compiled harmful
+controls rejected with 3 matched baseline/candidate trials per regression.
+All auction scripts and 1053 syntax files PASS; owned source hashes and recovered
+TOC retained. The wider run has a separate meter failure; the user assigned meter
+work to another agent. No further meter inspection, testing or changes in this task.
+Verified external checkpoint 2776 files/history and 129 settings metadata; no private
+values copied. Four runtime files plus two relevant tests changed. Five installed
+copies match read-only. Native capture found the user crafting with AH closed;
+no input/reload was sent. Native compact pixels/fonts/controller/other-client
+acceptance and CPU/FPS remain pending. [Evidence](validation/auction-compact-upgrades-2026-11-14.json).
+
+14 November `AUCTION-INLINE-UPGRADES-20261114` / AHR-96–101 is current,
+build `AH-restock-inline-upgrades-20261114-r25`. Healing, mana and bandage
+upgrade choices are independent controls on their cells; no modal prompt.
+Accepting changes the saved tier only. Three default-on global settings keep
+weaker items until a better usable tier is carried; explicit manual Junk wins.
+The shared item blacklist and default-on `discolored` healing-name substring
+toggle affect Best, the healing button, AH planning and junk replacement checks.
+No item-ID/full-name tier catalogue was added. Buying still needs a player press.
+
+`FLUX-SOURCE-RECOVERY-20261114` recovered an unrequested source replacement
+around 08:32 Copenhagen: 79 whole Lua files, lost fixes in 4 shared files and 45
+TOC load entries. This restores chat anchor ownership, options Skin loading,
+meter/threat presentation and other verified fixes while retaining the new work.
+Writer remains unknown; the user reports no other writer known. Existing outward
+sync is not evidence of the cause. No checkout/reset or saved settings restore.
+
+Final 365 scripts/1053 syntax files PASS. Inline 880/20 profiles, shared button
+exclusions 240/10 profiles and global junk 1230/30 scenarios PASS; 22 compiled
+harmful changes rejected. Chat's reported source fails in 3 repeated comparisons;
+recovered source passes. All 91 checked files match across five installations.
+Two external source/history checkpoints 2772/2773 files and 129 settings metadata
+each verified; private values/archives remain outside AddOns. Main/.githooks and
+existing dirty work retained; no commit/push.
+
+Forever background observation after a reload shows the meter skin and Threat
+pane restored. A chat diagnostic produced no result while the player moved and
+is excluded from acceptance; input tests stopped. Options opening, new inline
+native interactions, accepted upgrades, real buys, controller, other clients,
+taint and CPU/FPS remain pending. No agent purchase/upgrade/reload was sent.
+See [inline evidence](validation/auction-inline-upgrades-2026-11-14.json) and
+[source recovery](validation/flux-source-recovery-2026-11-14.json).
+This supersedes the older r24 modal and explicit automatic-Junk description below.
+
+14 November Forever potion discovery and upgrade approval (AUCTION-POTION-BROWSE-20261114;
+AHR-93–95), build AH-restock-potion-browse-20261114-r24. Upgrade/Keep current now
+precedes any saved tier, inherited policy or previous-item junk change. Decline,
+Escape, combat, closing and stale callbacks preserve current state; buying needs
+its own player press. This supersedes AHR-92's automatic promotion.
+
+Independent health/mana range parsing avoids mixed axes and cooldown/level
+digits. A completed empty modern phrase browse gets one name-free potion-category
+fallback. An unsent request owns no results; the ready event wakes its existing
+bounded wait and native unavailability is shown explicitly. Dynamically linked
+spell text loads once per item/job; late text can revive a negative parse once.
+Loaded item metadata is no longer re-requested by the pending classifier, which
+otherwise repeatedly lost retry evidence to duplicate metadata events. Known
+unusable items are rejected before parsing. No new potion-name/tier/ID catalogue;
+old AH remains per-item only. Existing price/vendor/buy owners and limits remain.
+
+Actual Forever1.60.1.70938 background test: normal Buy was empty too and the native
+queue was unready. Fresh Mario Super character login restored62 catalogue rows.
+Native text parsed Superior Healing900 health at level35 and Greater Mana900
+mana at requiredlevel31. r24 Restock now displays an upgrade from Greater Healing
+to Superior Discolored Healing at22s93c/unit. Its Upgrade/Keep current prompt is
+left unanswered; the current5/5 target remains unchanged. No buy/upgrade decision
+was submitted. Native mana prompt follows the healing choice and remains pending.
+Other clients, accepted native tier/junk persistence, buys/receipts, controller,
+taint and CPU/FPS remain unverified. Earlier misfocused/protected exploratory
+probes are excluded from acceptance; errors retained, no addon disabled.
+
+Confirmation672/20 and restore/browse388/20 focused checks PASS. Three matched
+before/after trials per20 models for each regression retain raw outcomes.
+363 scripts/1051 syntax;15 harmful controls;complete current Lua manifest PASS. Four verified external source/history checkpoints
+(2769/2770/2771/2771 files), each129 settings metadata; no private contents copied.
+All five installed copies match five runtime files read-only; no manual sync.
+Main/.githooks/concurrent work retained. Explicit background testing authorization
+used; no foreground/global input/clipboard, settings/profiler write or publication.
+[Requirements/native scope](AUCTION_RESTOCK.md#forever-empty-browse-and-restore-amounts);
+[exact sources and acceptance](validation/auction-potion-browse-2026-11-14.json).
+
+14 November usable potion upgrades (AUCTION-POTION-TIER-20261114; AHR-92), build
+AH-restock-potion-tier-20261114-r20: per-item AH preparation now checks stronger
+usable healing/mana tiers even when weaker potions fill the target. A real
+eligible listing promotes the saved tier and fills the full stronger target;
+the next purchase still needs a player press. Old AH remains per-item only.
+Fresh kind catalogues are reused at the same level; character-level changes
+invalidate usable-only coverage so newly usable tiers can be found immediately
+on the next preparation. Caps/No limit, restrictions/vendor policy, target0 and
+native gesture guards remain. New240/20 checks and existing potion580, speed492,
+price820, craft836 and scan284 checks PASS. Three matched before/after trials
+per20 models retain raw tier/query observations. 361 scripts/1049 syntax;3 controls;complete current Lua manifest PASS.
+The obsolete filled-legacy-idle assertion was updated; safety checks retained.
+Verified external2767-file source/history checkpoint and 129 settings metadata;
+private contents not copied. No new event/timer/poll/frame/settings. Main/.githooks
+and concurrent work retained. No foreground/input/clipboard, settings/profiler
+write, manual client sync or publication. Native eligibility/search/tier display,
+buying/provider coexistence/controller/taint/CPU/FPS remain NOT RUN; existing
+user-native test route retained.
+[Requirements/native checks](AUCTION_RESTOCK.md#usable-potion-tier-upgrades-during-per-item-scans); [evidence](validation/auction-potion-tier-2026-11-14.json).
+
+14 November restock mail cadence (AUCTION-MAIL-SPEED-20261114; AHR-91), build
+AH-restock-mail-speed-20261114-r19: the existing Opening Speed sets the interval
+between restock take requests, including0. Reply time is no longer added; an
+acknowledged batch does not wait for a full inbox rescan before every attachment.
+Initial snapshot and live header/COD/GM/item/quantity/receipt/free-space/native
+command checks remain. Snapshot publication wakes the same worker. Successful
+message compaction preserves cadence; abort/failure resets it. Setting changes
+update an active deadline. Ordinary Select/Open All settings/behavior remain.
+Focused940/20, existing mail3100 and automation1260 PASS. Three matched trials
+per20 models at six speeds; simulated200msreply with0.5speed gives requests at
+0/0.5/1.0 versus0/0.7/1.4. These are desktop timestamps, not native throughput.
+360 scripts/1048 syntax;5 controls;complete current Lua manifest PASS. Verified external2765-file source/history checkpoint
+and 129 settings metadata; no private contents copied. No new event/frame/ticker/
+poller; existing timers and48-read/1ms/8s scan bounds retained. Main/.githooks and
+concurrent work preserved. No foreground/input/clipboard, settings/profiler write,
+manual client sync or publication. Native collection/throughput/taint/CPU/FPS
+remain NOT RUN; retain the user-native test route.
+[Requirements/native checks](AUCTION_RESTOCK.md#restock-mail-opening-speed); [evidence](validation/auction-mail-speed-2026-11-14.json).
+
+13 November duplicate system debuffs (UNIT-DEBUFF-OVERLAP-20261113; UDO-01–03):
+user confirms the two XP icons show the same effect. The larger native own group
+now also requires a player-origin flag; exact PLAYER/!PLAYER ownership filters,
+other-player effects, own sizes and separate same-spell instances remain.
+100 focused checks PASS; exact baseline and four harmful variants rejected;
+359 scripts/1,047 syntax PASS with the complete current Lua manifest verified.
+Native filter overlap is a hypothesis, not captured C behavior; actual XP removal,
+player/pet/vehicle metadata, pixels/tooltips/controller/taint/CPU/FPS NOT RUN.
+Verified external 2,758-file source/history checkpoint; 70 settings metadata entries,
+no private values copied. One native predicate; no new driver/resources/settings.
+Direct correction/user-native route retained; reload OOC and retarget. No game
+input/focus/clipboard, settings/profiler writes, manual sync or publication.
+[Requirements/native steps](14-unit-frames.md#duplicate-system-debuffs--13-november-2026); [evidence](validation/unit-debuff-overlap-2026-11-13.json).
+
+13 November steady craft completion and measured restock work (AUCTION-CRAFT-STEADY-20261113;
+AHR-89/90), build AH-restock-craft-steady-20261113-r18: known same-job craft items
+remain visible/disabled during bag settlement; reliable counts update in place
+and completion hides once. Actual service/driver/storm/HUD regression412/20
+passes, including coalesced outputs, partial/no-output cancellation and unsafe
+tokens. A public observed cast can hold presentation only, never credit inventory
+or authorize another craft. Legacy name-mismatch fallback remains native UNKNOWN.
+Data1900/20: an80-row refresh cuts deficit/bag reads160→80 and mail reads320→80;
+service carried reads275→250 per25 refreshes. UI63063 plus render1020/integration290
+pass: identical paints do no avoidable setter/layout/show/hide work; quantity-only
+updates avoid reflow. Three matched trials per20 data/service and5 proc-enabled
+UI profiles; counts are desktop work, not native timing/atlas/FPS evidence.
+358 scripts/1046 syntax;16 controls;complete current Lua manifest PASS. Verified external2758-file source/history checkpoint
+and 129 settings metadata; private contents not copied. One job-owned START
+observer; no new timer/poller. Old per-item AH, modern full scan, settings and
+native click/receipt owners preserved. Main/.githooks/concurrent work retained;
+no foreground/input/clipboard, settings/profiler write, manual sync or publication.
+Native ordering/art/controller/taint/CPU/FPS remain NOT RUN; existing user-native
+test route retained.
+[Requirements/native checks](AUCTION_RESTOCK.md#stable-craft-completion-and-restock-work); [evidence](validation/auction-craft-steady-2026-11-13.json).
+
+13 November 20:38/20:39 secret texture and tooltip follow-up
+(TOOLTIP-VISUAL-FOLLOWUP-20261113; CLASS-TIP-01–03): both class-icon paths now
+filter UnitClass filenames through the existing safe-string helper before
+concatenation. Restricted class data hides stale art until public data returns;
+ordinary art/fallback/corners/settings remain. 560 icon and 766 diagnostic checks
+PASS; checkpoint concatenation fails; four harmful variants rejected. Full
+355 scripts/1,043 syntax PASS. External 2,753-file source/history checkpoint and
+129 settings metadata verified; private contents not copied. The new color error
+names _FluxUI taint, but the originating field/build/reload status are unknown.
+Tooltip resolution remains UNRESOLVED. Existing taint logs predate this report.
+Reload out of combat; if it recurs run /fluxinput tooltip and hover within three
+seconds, then share the printed field/writer/build lines. Opt-in metadata only;
+no native tooltip data/actions/hooks, logging/profiler change or idle driver.
+Prior diagnostics/settings/roots retained. Native class/tooltip resolution,
+pixels/controller/taint/CPU/FPS NOT RUN. No client control/sync/publication.
+[Requirements and steps](SECRET_TOOLTIP_METER_ERRORS.md#secret-class-texture-and-tooltip-provenance-follow-up);
+[evidence](validation/tooltip-visual-followup-2026-11-13.json).
+
+13 November 20:29 world-cursor tooltip follow-up (WORLD-TOOLTIP-20261113;
+WORLD-TIP-01–04): binding ownership, spellbook hints, protected-gear flags and
+consumable separators use private weak-key tables. Native clear/hide callbacks
+no longer write these fields on shared GameTooltip. Content/deduplication,
+HUD/cadence, native APIs/processors, input owners and settings remain. 115 new
+bookkeeping checks; 66 spellbook checks; five pre-fix source cases and five harmful
+variants rejected. Full suite: 353 scripts and 1,041 syntax checks PASS. Verified
+external checkpoint: 2,750 files/history and 129 settings metadata entries;
+private contents not copied.
+Gethe Retail/Forever pins rechecked. The report lacks originating taint/source/
+build attribution;native resolution is NOT RUN. Reload out of combat and retest
+world units before/after addon hovers and in combat. Existing user-native route
+retained;native pixels/controller/taint/CPU/FPS pending. No new frame/hook/event/
+timer/poll or client/input/settings/profiler/publication operation.
+[Requirements and native steps](SECRET_TOOLTIP_METER_ERRORS.md#world-cursor-follow-up-at-202955);
+[evidence](validation/world-tooltip-state-2026-11-13.json).
+
+13 November old auction-house per-item flow (AUCTION-LEGACY-ITEM-20261113; AHR-88),
+build AH-restock-legacy-item-20261113-r17: old AH has no Scan all restock control
+or bulk-scan backend. The main action prepares one shortage and its relevant
+recipe inputs/current potion kind, buys one listing per player press, then
+prepares the next after its receipt. Even retained full-scan requests use this
+path. Old help describes Search then Buy; modern explicit full scans remain.
+Saved settings, caps, excess policy and native purchase/receipt guards are
+preserved. 352 scripts/1040 syntax PASS with complete current
+Lua manifest; three harmful controls rejected. Initial obsolete price-policy
+fixture failure and its correction are retained in evidence. Verified external
+2750-file source/history checkpoint and95 settings metadata;
+private contents not copied. No new event/timer/poller; one fewer old-AH button.
+Main/.githooks and concurrent work retained; no foreground/input, settings or
+profiler writes, manual client sync or publication. Native transactions, layout,
+controller, taint and CPU/FPS remain NOT RUN; use the existing native test route.
+[Requirements/native checks](AUCTION_RESTOCK.md#old-auction-house-per-item-searches); [evidence](validation/auction-legacy-item-2026-11-13.json).
+
+13 November meter title alignment (METER-TITLE-20261113; METER-TITLE-01–03):
+native labels recover Threat's five-pixel inset/shared baseline when the initial
+width is zero, the first hidden pane opens or native anchors/width reset. Combat
+resize uses existing deferred header refresh. One guarded show hook per native
+session pane; no new frame/texture/timer/event/poll. Original geometry restores
+on release; native localized text/menu/input/controller owners and saved data
+remain. 206 skin checks PASS; exact checkpoint baseline rejects 25 new cases
+(27 final failures including two hook-count expectations). Full352 scripts/
+1040 syntax PASS with complete current Lua manifest verified. External2748-file
+source/history checkpoint and76 settings metadata verified; private contents
+not copied. Prior direct implementation/user-native test route retained.
+Native pixels/localized clipping/input/controller/taint/CPU/FPS NOT RUN. No
+foreground/input/clipboard control, settings/profiler writes, manual sync or
+publication. Reload out of combat and compare reopened pane titles with Threat.
+[Fix and native steps](METER_STANDALONE.md#header-alignment-recovery--13-november-2026);
+[evidence](validation/meter-title-2026-11-13.json).
+
+13 November fast auction restock and usable pending item buttons
+(AUCTION-SPEED-READY-20261113; AHR-81–87), build AH-restock-speed-ready-20261113-r16:
+routine preparation prices the next shortage and its recipe inputs, then prepares
+the next item after its receipt. Explicit Scan all restock retains full-list and
+filled-target potion upgrades. Three direct purchases take1 query before the
+first ready item and3 total, versus4 and6 before, with3 player presses in both
+desktop models; these are query counts, not native timing. Item buttons remain
+32–44px with exact1px gaps and ordinary pressed art. Only visible actionable
+items have private proc glow; busy/submitted/closed/combat states stop it.
+Crafting updates remaining planned output quantities automatically. The mailbox
+Restock button/adjacent checkbox are removed; settings and the selective worker
+remain. Closed-profession mail→bank/vendor progression uses durable owned recipe
+facts across serialized reloads. Partial alias/roster responses preserve complete
+facts; live crafting still verifies ownership, materials and output. Snapshot
+dispatch fixes storm-listener mutation; strict receipt reconciliation protects
+new transit from stale mail. Full-bag mail retry is covered by the owner tests.
+352 scripts/1040 syntax;complete current Lua manifest PASS. Current harmful controls and exact
+source identities are linked below. Verified external2743/2745-file source/history
+checkpoints and95 settings metadata each; private values not copied. Main and
+.githooks retained; concurrent work preserved. No foreground/input, settings/
+profiler write, manual client sync or publication. Native protected transactions,
+mail/bank/vendor coexistence, login persistence, proc/pressed art/clipping,
+localized/controller behavior, taint and matched CPU/FPS remain NOT RUN. Use the
+existing user-managed native test route across all five clients.
+[Requirements/native checks](AUCTION_RESTOCK.md#fast-purchases-and-usable-pending-item-buttons); [evidence](validation/auction-speed-ready-2026-11-13.json).
+
+13 November auction follow-up overview (AUCTION-FOLLOWUP-ITEMS-20261113;
+AHR-74–80), build AH-restock-followup-items-20261113-r13: every current-step item
+has a sorted icon and physical quantity; icons shrink/wrap inside one ordinary
+stage hit/focus host. Caption is larger, outlined and contrast-backed. Matching
+live bank/vendor/mail contexts glow; cached bank views, closed contexts, waiting,
+completion and combat do not. One press delegates all scoped step items through
+existing owners, without unrelated targets or duplicate submitted work.
+Loot & Items → Restock has independent auction follow-up automation (default off),
+compatible with both existing bank/vendor auto settings. No limit defaults on for
+new/unset items; existing positive AH caps are preserved. With it off, zero is a
+real cap; saved craft/potion source policies retain the mode. Explicit Scan prices
+all listed items including full/zero/free-route inputs. Full weaker healing/mana
+stock can upgrade its saved tier and fill the entire stronger target. Clear pending
+is absent. Grouped Auctionator availability stays distinct from one-item bids.
+348 scripts/1036 syntax PASS with complete current Lua manifest;36 harmful controls
+rejected. UI16763, actual-owner integration270, automation800, price788 and scan340
+checks PASS. Fixed readiness recursion, scoped vendor price fallback and bounded
+failed-auto retry. External2729-file source/history checkpoint and95 settings
+metadata verified; private values not copied. Concurrent minimap work preserved.
+No foreground/input, settings/profiler writes, manual sync or publication. Native
+operation/glow/pixels/controller/taint/persistence/CPU/FPS remain NOT RUN; retain
+the existing user-managed reproduction across all five clients.
+[Requirements and native checks](AUCTION_RESTOCK.md#item-overview-follow-up-automation-and-explicit-price-limits);
+[evidence](validation/auction-followup-items-2026-11-13.json).
+
+13 November side-grid border/layering (MINIMAP-SIDE-BORDER-20261113;
+REQ-MBL-24/25): the screenshot's clarified defect was minimap cluster/clock
+layering over buttons. The screen-side root/gate/native-template widgets now use
+HIGH; embedded mode restores MEDIUM. Actual FluxBorder is applied once to a
+mouse-disabled decorative host inside the existing secure visibility gate.
+Border/backdrop inherit hover and secure combat hiding, scale and inactive/empty
+grid visibility. The backdrop stays above native chrome but below buttons, with
+border below existing flyout arrows. Native map/clock frames and handlers, grid
+geometry, saved settings/actions and dynamic minimum behavior are preserved.
+2794 actual border/arrow checks,30 atlas/legacy-scale cases,seven harmful controls,
+three paired layer trials and nine existing integration scripts PASS. Broad
+snapshot:341 pass/four unrelated auction failures;1033 syntax PASS. Concurrent
+auction work is preserved; the snapshot is not a claim about later global files.
+External2724-file source/history checkpoint and99 settings metadata verified;
+private values not copied. No new poll/event/driver;one lazy host plus the shared
+border's two frames/normal textures. Native visual/input/taint/controller/CPU/FPS
+remain NOT RUN; reload out of combat and use the retained user-native route.
+No foreground/input, settings/profiler write, manual sync or publication.
+[Requirements and acceptance](MINIMAP_EXTRA_LAYOUT.md#screen-side-border-and-minimap-clock-layering);
+[evidence](validation/minimap-side-border-2026-11-13.json).
+
+13 November action/badge/extra counts (ACTION-COUNT-REFRESH-20261113; ACR-01–05): normal bars now receive light bag-count publications; validated spell-use events refresh count/tint through existing coalesced lanes. Count-held form settle also restores badge tint. Two watch owners; no new frame/timer/poll/hook/scan or secure action change. Read-only Gethe five-client pins and Bartender4/LibActionButton/installed ButtonForge comparison retained. 666 focused checks across five client models/both providers; three exact checkpoint pairs reject224 old failures; seven harmful controls rejected. Full343scripts/1031syntax PASS with current complete manifest. External2712-file source/history checkpoint and47 settings metadata verified; private values not copied. Concurrent auction/minimap work preserved. Native event delivery/operation/taint/pixels/controller/CPU/FPS NOT RUN; existing user-native route retained. No foreground/input, settings/profiler writes, manual sync or publication.
+[Requirements, comparison and native steps](ACTION_COUNT_REFRESH.md); [evidence](validation/action-count-refresh-2026-11-13.json).
+
+13 November auction restock recovery (AUCTION-RESTOCK-RECOVERY-20261113;
+AHR-66–73), candidate AH-restock-recovery-20261113-r12: waiting is silent;
+changed ingredients reprice safely; each ingredient's Count Bank flag controls
+AH/vendor quantities and source costs. Latest verified vendor stock replaces the
+opposite classification. Saved recipes retain profession, recipe, materials,
+output and yield while closed. Modern commodities can buy forty at once; modern
+item bids and old listings still require their own native press. Grouped modern
+availability is separate from purchased quantity: one five-charge oil reserves
+five uses once. Excess stacks apply only to old-AH ordinary items; the control
+is hidden on modern AH. Target nine uses/five per item still rounds to two items.
+Desktop suite341/1029 PASS with all owned auction hashes matching;26 harmful
+controls rejected. Later unrelated source changes are preserved and recorded,
+so that captured suite is not a claim about newer global files. Source checkpoint
+2699/history and95 settings metadata verified; no private settings copy.
+No foreground/input, settings/profiler writes, manual sync or publication.
+Old corrupted reservations cannot safely be halved; reconcile from the mailbox.
+Native purchase/mail/vendor/bank/craft, pixels/controller/taint and CPU/FPS remain
+NOT RUN. Existing user-managed native reproduction retained.
+[Requirements and acceptance](AUCTION_RESTOCK.md#silent-waiting-and-changed-ingredient-stock);
+[evidence](validation/auction-restock-recovery-2026-11-13.json).
+
+13 November dynamic minimap buttons (MINIMAP-DYNAMIC-20261113; REQ-MBL-22/23)
+supersedes the earlier growth/movement choices: Dynamic button count keeps the
+configured count as a saved minimum. With fifteen full slots, carrying offers
+sixteen; cancel/drop elsewhere returns to fifteen; filling the preview keeps
+sixteen. Deleting assignments compacts toward the minimum, including interior
+holes, without renumbering saved indices. Both layouts share this behavior;
+hide-empty may still hide screen-side minimum placeholders. The independent
+movement control is removed: Always shown automatically reserves room for
+minimap/Questie/objectives/auras; mouseover overlays their normal dock. The old
+sideMoveFrames value stays saved but is ignored. Cursor observation also covers
+active embedded dynamic layouts; no new frame/timer/poll/native API is added.
+10480 dynamic checks/30 layout-scale cases/six harmful controls, paired baseline
+and candidate (three trials per layout), nine existing integration scripts and
+full 342 scripts/1030 syntax PASS for the captured snapshot. Later concurrent
+action-count edits stale global evidence; task-owned source identities match.
+External 2706-file source/history checkpoint
+and 99 settings metadata verified; private values not copied. Native input/taint/
+pixels/persistence/controller/CPU/FPS remain NOT RUN. No foreground/input,
+settings/profiler write, manual sync or publication. Reload outside combat and
+follow the retained user-managed native reproduction route.
+[Current requirements and acceptance](MINIMAP_EXTRA_LAYOUT.md#dynamic-minimum-and-automatic-frame-movement);
+[evidence](validation/minimap-dynamic-2026-11-13.json).
+
+13 November minimap extra-button visibility (MINIMAP-VISIBILITY-20261113;
+REQ-MBL-18–21): optional screen-side empty-slot filtering preserves numbered
+assignments and reveals one drop target while carrying an action. Optional shared
+auto-growth adds one slot after a full successful drop, up to 120. Movement can
+be disabled for minimap/Questie/objectives/auras. Always shown or mouseover mode
+combines with the existing secure combat-hide toggle; hover freezes during
+combat and embedded buttons ignore side-only visibility/empty filtering. Defaults
+retain the current layout. One 0.1s hover ticker runs only in active side mouseover
+mode and stops in combat/embedded/disabled/always mode; cursor observation is
+scoped to active side hide-empty mode. No input-capturing frame is added.
+4540 focused checks/15 scale cases/5 harmful controls and eight existing
+layout/options/action/ownership scripts PASS. Full 341 scripts/1029 syntax PASS;
+two transient auction failures during concurrent edits passed on the full rerun.
+Verified external 2697-file source/history checkpoint and 99 settings metadata;
+no private settings copy, foreground/input, settings/profiler write, manual sync
+or publication. Native input/taint/pixels/controller/persistence/CPU/FPS remain
+NOT RUN; reload out of combat and follow the retained user-managed reproduction.
+[Requirements and acceptance](MINIMAP_EXTRA_LAYOUT.md#empty-slots-automatic-growth-and-optional-overlay-visibility);
+[evidence](validation/minimap-visibility-2026-11-13.json).
+
+13 November mailbox restock tooltip (MAIL-RESTOCK-TOOLTIP-20261113; AHR-65):
+Restock and Auto help now clear/add one wrapped white line instead of passing
+boolean true in SetText's numeric alpha slot. Owner/anchor/localized help and
+hover/leave behavior are preserved; no settings or input actions change.
+Strict native-argument hover regressions fail before the fix and pass after it:
+3160 mail checks/20 profiles,21 Select,18 OpenAll,880 lifecycle,654 follow-up and
+300 workflow checks PASS; full338scripts/1026syntax PASS with current manifest
+verified. Restoring the bad call fails the
+intended alpha assertion. External2695-file source/history checkpoint and95
+settings metadata verified; private settings not copied. No foreground/input,
+settings/profiler writes, manual sync or publication. Native hover retest pending.
+[Fix and acceptance](AUCTION_RESTOCK.md#mailbox-tooltip-argument-correction);
+[evidence](validation/mail-restock-tooltip-2026-11-13.json).
+
+13 November tooltip/meter errors (SECRET-UI-20261113): Flux unit/pet/raid/preview
+hovers now use one private reusable native-template tooltip; shared GameTooltip
+state and health mixin methods stay native. Meter menus/configuration remain
+with actual Blizzard dropdown clicks; addon generation/open/pick removed. Saved
+layout requests/history/segments retained. Automatic native type/window/Current
+application is intentionally pending a verified clean route. Meter106checks,
+three baseline pairs/three harmful controls;tooltip three baseline pairs/two
+harmful controls;337 scripts/1025 Lua syntax files PASS.
+External2690-file source/history checkpoint and127 settings metadata verified;
+36 pinned source records. Reload needed to clear previously tainted objects.
+Native secret/taint/pixels/controller/CPU/FPS NOT RUN; user retest retained. No
+client control, settings/profiler writes, manual sync or publication.
+[Requirements, sources and acceptance](SECRET_TOOLTIP_METER_ERRORS.md).
+
+13 November integrated restock workflow (AUCTION-WORKFLOW-20261113; AHR-57–64)
+implements shortage-only scanning, compact scrolling cells/coin price editing,
+and temporary recipe targets through normal vendor/bank owners. Mailbox Restock
+and saved Auto collect acknowledged matching items through Postal's space/speed/
+command gates. Complete empty native inbox proof clears private pending, saved
+collection job and Collect restock mail HUD. Partial loaded inboxes collect
+visible matches while keeping inaccessible receipts. Native failure/index shifts
+cannot claim delivery; inbox removal and delayed bag arrivals credit once.
+Saved recipes/source plans survive reload; shared bank/vendor-owned inputs,
+physical charges, direct targets and recipe budgets remain protected. Manual clear
+preserves real mail/permanent targets and rejects transactions/commodity quotes.
+Current focused40scripts, owned syntax and26 harmful controls PASS with no restock
+source drift. Initial full336scripts/1024syntax PASS; later shared-tree sweeps
+changed during unrelated Bars/meter/raid/unit work, which is preserved. Carry
+that global validation separately; do not claim current whole-tree acceptance.
+Latest combined sweep334/336: unrelated Bars smoke/contract failures. Docs checker
+reports7 stale unrelated generated-source/view entries after concurrent edits.
+Refresh global validation once that work settles; scoped restock40 remains PASS.
+External2684-file source/history checkpoint and95 settings metadata verified;
+private settings not copied. Existing implementation/user-native choices retained.
+Native operation, pixels/controller, delivery, taint/CPU/FPS remain NOT RUN on all
+five clients. Read-only installed-file checks find all15 changed runtime files
+matching Forever/MoP/Era; no manual synchronization was performed. No client focus/
+input, settings/profiler writes or publication.
+[Behavior](AUCTION_RESTOCK.md#integrated-restock-workflow-13-november-2026);
+[evidence](validation/auction-workflow-2026-11-13.json).
+
+13 November Blizzard party dispel setting (PARTY-BLIZZARD-DISPEL-20261113): both
+party styles and their previews honor Blizzard's dispellable-only checkbox through
+a read-only per-frame predicate, retaining Flux's existing strict option and raid
+scope. Existing CVar events refresh visible party auras, including combat; hidden
+owners stay retired. 418 focused checks and the full 338-script/1,026-Lua-syntax
+run PASS; the complete current Lua manifest and documentation validate. External 2,694-file source/history checkpoint and 183 settings
+metadata entries verified. Native pixels/combat/taint/controller/CPU/FPS NOT RUN;
+existing user retest retained. No client control or settings/profiler writes.
+[Behavior and native checks](PARTY_DEBUFF_VISIBILITY.md#blizzards-dispellable-only-checkbox--13-november-2026).
+
+13 November vendor catalogue and AH discounts (AUCTION-VENDOR-ROUTES-20261113;
+AHR-52–56): the user accepted a bundled catalogue combined with learned vendor
+data, without item-name exceptions. All five selected client types have their
+own source profile. Across seven retained profiles:15,327 stock/15,310 prices;
+Retail3710/3693,Forever849,MoP3005,Era862,TBC1708. Only selected maps allocate.
+All11,617 legacy raw prices/counts match their client build; Retail3710 stock
+records derive from pinned current world-vendor/condition data plus ItemSparse.
+MIT/GPL notices, compact public inputs and reproducible generator are retained.
+Learned stock/prices override catalogue assumptions. Unlimited goods stay hidden
+unless fresh usable AH unit prices are strictly lower; equal/dearer/owned/stale/
+historical offers cannot authorize buying. Known stock without price stays out.
+Repair/sell/manual-only configured visits learn through the existing paced index.
+Every recipe input is priced; actual whole-stack invoices decide vendor vs AH,
+and stable per-plan routes/prices preserve mixed-source quantities and budgets.
+Physical-unit bundle normalization, exact fractions, invoices and affordability
+avoid rounding ties/underbuys; vendor-only temporary targets never leak into AH.
+Pending-only mail/vendor/craft HUD, combat hiding, saved closed-profession recipes,
+charges, source ownership and one action per press remain. Full332scripts/1019
+syntax PASS;complete current Lua manifest verified. Focused30990catalog/1170price/
+1130queue/600route/415learning checks and16 harmful controls PASS. External2670-file
+source/history checkpoint and95currently present settings metadata verified;
+private settings not copied. Native buying/crafting/discounts/access/HUD/controller/
+delivery/taint/CPU/FPS remain NOT RUN. Existing direct implementation/user-native
+choices retained. No client focus/input,settings/profiler writes,sync or publication.
+[Behavior](AUCTION_RESTOCK.md#vendor-catalogue-observations-and-auction-discounts);
+[evidence](validation/auction-vendor-routes-2026-11-13.json).
+
+13 November restock follow-up (AUCTION-FOLLOWUP-20261113;AHR-46–51): one ordinary
+HUD button beside the extra-action area follows acknowledged restock purchases
+through matching mail, missing vendor materials and exact recipe batches. Jobs
+survive reload, hide in combat and remove demand subscriptions when complete.
+Each action requires a press; callbacks only prepare state. Current vendor
+identity/price/wallet and exact live craft output/reagents/allocation are checked;
+shared direct targets and partial charged copies stay protected. Authoritative
+owned-take proof handles net physicalbags1→1 after an old last charge is used.
+Closed/wrong profession native data can no longer override complete saved learned
+recipes for cost comparison; exact execution still requires live proof.
+854state/1692driver/209UI/848charactercache/824crafting checks PASS;fiveclient
+models with optional providers. Full327scripts/1012syntax PASS with current
+complete Lua manifest verified. External2663-file source/history checkpoint,
+103settings metadata entries and26pinned profession blobs verified. No newtimer/
+poller/nativebinding;one lazy ordinary button. Native permission,placement,
+gamepad,delivery,taint/FPS remain NOT RUN;Forever directopening is unverified.
+Existing implementdirect/user-native choices remain;no foreground/input,
+private settings/profiler writes,manualsync,commit or publication.
+[Behavior](AUCTION_RESTOCK.md#follow-up-button-and-closed-profession-recipes);
+[evidence](validation/auction-followup-2026-11-13.json).
+
+13 November auction purchase/charges (AUCTION-PURCHASE-CHARGES-20261113;AHR-41–45):
+an unmatched item-completion event no longer turns potion1 into extra cloth38.
+Live commodity shortages rebuild before quoting (38→2 even with excess enabled).
+Selected price-editor cells have a thick gold outline and warm fill. Charge
+targets reuse Registry capacity:9uses/5per item buys2physical=10uses; recipe
+ingredients/prices remain physical. New reservation itemCount/unitScale facts
+reconcile delivery and target/material role changes without rebasing active
+transaction units; legacy records retain their fallback. Shared direct/craft
+invoices charge only recipe share to the crafting budget; surplus stays included.
+14,292 charge checks;400 full purchase-flow checks;743 receipt checks PASS across
+five client models/optional providers. Seven harmful controls rejected; full
+324scripts/1,006syntax PASS and complete current source manifest verified.
+Seven existing runtime owners;no new event/timer/hook/poller/interactive frame.
+External2,654-file source/history checkpoint and103settings metadata verified.
+Four concurrent minimap/options changes preserved. Native purchase/charge/mail/
+controller/pixel/taint/FPS checks remain pending; earlier Forever BLOCKED is not
+certified fixed. Existing wrong predictions require one normal mailbox refresh;
+no Clear pending or cache pruning. No foreground/input/settings/profiler writes,
+manual sync,commit or publication. Build AH-purchase-charges-20261113-r8.
+[Behavior](AUCTION_RESTOCK.md#purchase-identity-selection-and-charged-items);
+[evidence](validation/auction-purchase-charges-2026-11-13.json).
+
+13 November combat-hide scope (MINIMAP-SIDE-COMBAT-20261113;REQ-MBL-17): the setting
+stays visible while embedded and applies only to normal-map screen-side buttons.
+Embedding removes the existing combat driver; embedded grid remains visible in
+combat. Saved hideInCombat persists and resumes on returning to the side layout.
+UI label/help clarify that scope; capability gating and deferred protected layout
+remain. Two runtime owners;no new frame,event,timer,hook,poll or native API.
+50,034 grid/113 map/2,287 aura/168 flyout/6,407 options checks PASS;three matched
+runs reject exact baseline and3harmful controls. Full snapshot 324 scripts/1,006
+syntax PASS;task files remain current. Concurrent later auction edits are preserved;
+global source freshness remains pending for that unrelated work. External
+2,652-file source/history checkpoint and103settings metadata verified. Native
+pixels/input/controller/persistence/taint/FPS NOT RUN;user-native route retained.
+No client control,private settings/profiler writes,sync,commit or publication.
+[Requirement](MINIMAP_EXTRA_LAYOUT.md#combat-hiding-applies-only-to-the-screen-side-grid); [evidence](validation/minimap-side-combat-2026-11-13.json).
+
+
+13 November side-grid scale normalization (MINIMAP-SCALE-BASIS-20261113;REQ-MBL-16):
+new displayed 100% is the previous 85% size and remains the default. The slider is
+10–200%, effective frame scale0.085–1.7. Legacy explicit scales convert by /0.85
+without rounding or rewriting records; new choices mark version2 to prevent repeat
+conversion. Old values beyond the new ceiling are capped by new200%;raw data stays.
+Automatic columns, zero padding, shared actions, aura/flyout geometry and combat
+queues retained. Two runtime owners; no new frame/event/timer/hook/poll/native API.
+50,007 grid checks;113 map/2,287 aura/168 flyout/6,397 options checks PASS. Three
+actual checkpoint comparisons preserve9,408 geometry fields/run for old25–170 and
+new100=old85;four harmful controls rejected. Full322scripts/1,004syntax PASS and
+current manifest verified. External2,644-file source/history checkpoint and103
+settings metadata entries verified;no private contents copied. Native pixels,
+input/controller/persistence/taint/FPS remain NOT RUN;existing user-native route
+retained. No client control,settings/profiler file write,sync,commit or publication.
+[Current requirement](MINIMAP_EXTRA_LAYOUT.md#scale-normalization-100-equals-the-previous-85); [evidence](validation/minimap-scale-basis-2026-11-13.json).
+
+
+13 November automatic minimap grids (MINIMAP-AUTO-LAYOUT-20261113;REQ-MBL-12–15):
+both layouts now choose columns and largest fitted button size from count/space.
+Embedded minimap size is automatic; embedded columns/map-size and side-column
+controls removed. Screen-side whole-grid scale remains 25–200%, default100%; every scale refits
+above Flux Window. User screenshot gap follow-up removes container/screen/start/
+window padding and fractional-row slack. Completed side columns touch the window;
+embedded buttons touch the map. Map/tracker/aura reservation follows scaled width. Downward side
+column order, shared numbered actions, widget reuse, hidden-tab/window state,
+flyouts and combat deferral retained. Retired saved keys preserved but ignored;
+sideScale preserved and extended. Three runtime owners; no new frame,event,timer,
+ticker,hook,polling or native API.48,866grid/113map/2,287aura/168flyout checks;6,397
+options-navigation checks;three matched pairs/scenario;11 external and4 map harmful
+controls PASS. Full322scripts/1,004syntax PASS,current complete manifest verified.
+Fresh external2,638-file source/history checkpoint and103settings metadata verified.
+Existing dated Gethe pins/direct implementation/user-native route retained;native
+pixels/input/taint/controller/persistence/FPS NOT RUN. No client control,private
+settings/profiler write,manual sync,commit or publication.
+[Current requirements](MINIMAP_EXTRA_LAYOUT.md#current-behavior-automatic-grids-and-screen-side-grid-scale); [evidence](validation/minimap-auto-layout-2026-11-13.json).
+
+
+13 November screen-side resize/aura follow-up (MINIMAP-SIDE-AURA-20261113;
+REQ-MBL-10–11): the existing 25–100% button-size slider now scales after height
+fitting, so crowded 120-slot layouts respond at 50%/25%. Defaults, shared actions,
+column order/bounds and saved setting identities stay intact. Beside-map buttons
+now reserve the same left offset for native BuffFrame/DebuffFrame. Existing aura
+placement runs from shared strip layout before the hidden branch, restoring old
+positions for below/off/embedded states. Native aura content/style/input remains
+Blizzard-owned; combat/Edit Mode guards retained. Two runtime owners; no new frame,
+event, timer, ticker, hook or polling. 3,415 resize +1,855 aura checks, three matched
+pairs per scenario and five harmful controls PASS; full 322 scripts/1,004 syntax
+PASS with the complete current Lua manifest verified. Documentation validator PASS.
+23 narrow Gethe records/21 Git blobs verified at retained source pins. Fresh
+external 2,630-file/source-history checkpoint and 69 settings metadata entries
+verified; no private contents copied. Direct implementation/user-native route
+retained; native pixels/input/controller/persistence/taint/FPS NOT RUN. No client
+control, settings/profiler write, manual sync, commit or publication.
+[Requirements and native checks](MINIMAP_EXTRA_LAYOUT.md#follow-up-screen-side-resizing-and-aura-placement); [evidence](validation/minimap-side-aura-2026-11-13.json).
+
+
+13 November trinket visual recovery (TRINKET-DARKENING-20261113; TD-01–04):
+held presses restore the newest public usability color; empty/re-equipped faces
+invalidate stale tint; equipped cooldown refreshes share slot data and one paint
+cache. Passive trinkets remain dim; real cooldowns stay visible. Two runtime owners,
+no new frame/event/timer/hook/poll. 245 integrated checks across five models;
+exact checkpoint fails 55 checks; five regressions rejected. Existing 10/1,563 focused checks
+and 321 scripts/1,003 syntax checks PASS with documented final test refresh. Verified
+external source/history checkpoint (2,627 files) and seven Retail settings metadata entries;
+15 fresh source records. Native pixels/input/controller/taint/FPS/memory NOT RUN;
+user-native reproduction/direct implementation retained. No client control,
+private settings/profiler write, sync, commit or publication.
+[Task evidence and native checks](TRINKET_EQUIPPED_USABILITY.md#13-november-follow-up-intermittent-dark-faces-and-cooldown-overlays).
+
+13 November Syndicator continuity (SYNDICATOR-SYNC-20261113; SYN-SYNC-01-05):
+while delegated, FluxUI saves Syndicator's live v2 root by reference, including
+alts/deletions. Next standalone startup imports detached facts once; later reloads
+retain standalone changes. Exact three-way field/container comparisons update
+unchanged stale external data; independent external edits/deletions and current
+native cash/tokens win. No scan timestamps are fabricated. Dense slots, offsets,
+capacities and list/auction metadata retained; no phantom bank tabs.
+Transition-only notifications refresh views/search without alt live-player changes;
+guild/void callbacks unchanged. No new frame/event/timer/subscription/poll; existing
+scanner records capacity without extra native queries. 309 focused checks and three
+harmful controls PASS across five desktop models; full snapshot320 scripts/1002
+syntax PASS, task sources still match. A new concurrent trinket recovery test after
+suite enumeration now passes200 checks after its separate source edits; unrelated
+work preserved and whole-workspace freshness remains pending. External2612-file/source-history checkpoint and58
+settings metadata entries verified; Syndicator290 read-only reference, ARR preserved.
+Native persistence/Baganator pixels/taint/CPU/FPS pending; existing user reproduction
+route retained. No client input/focus, private settings/profiler write, manual
+installation sync, commit or publication.
+[Requirements and native checks](SYNDICATOR_SYNC.md); [evidence](validation/syndicator-sync-2026-11-13.json).
+
+13 November saved character recipes (CHARACTER-RECIPES-20261113; CRP-01–06): existing
+profession SavedVariables now retain complete learned material/output/yield/slot
+facts for AH and future shared consumers. Filtered and partial scans preserve
+known facts; explicit unlearn removes them; unknown learned state and NPC/legacy
+linked knowledge are rejected. Output-based per-character queries deduplicate
+modern aliases. Proven deterministic recipes work after closing/reloading the
+profession; uncertain grades still require native operation proof. Finished-item
+caps include crafting/vendor acquisition cost;0 stays unlimited. Selected missing
+vendor inputs create temporary per-character targets in the ordinary vendor list.
+They sum shared requirements, subtract bags/mail once, survive the vendor trip
+and reload, and retire on completion/invalidation without changing permanent
+targets. Live vendor price ceilings protect the plan; permanent base targets
+still buy independently. Pure temporary rows are read-only; no new controls.
+704 new recipe checks;20 models;17 harmful controls;320 scripts/1002 syntax PASS at captured run;17,229 combined auction/recipe checks. Five repeated
+work models:4→2 schematic reads,4→2 duplicate-free catalogue rows,0→1 usable
+closed-profession AH variants. These are work models, not native time/FPS.
+Scoped guard:5 existing runtime files and1 new test;2,609-file external checkpoint
+and47 settings metadata entries verified. Concurrent unrelated workspace edits
+are retained and listed separately; captured full-run scope is explicit.
+Open each relevant profession once after updating to populate the new facts.
+Current native capture/reload/vendor/coexistence/controller/taint acceptance and
+the prior Forever purchase BLOCKED resolution remain pending. No client input,
+private settings/profiler write, manual sync, commit or publication.
+Global documentation validation remains pending solely for concurrent
+Syndicator sync source/evidence edits; owned recipe/restock hashes remain verified.
+[Behavior/API](CHARACTER_RECIPES.md);[evidence](validation/character-recipes-2026-11-13.json).
+
+13 November minimap layouts (MINIMAP-LAYOUT-20261113; REQ-MBL-01–09): shared character
+slots now support 1–120 buttons; embedded columns auto-fit beside a 40–100% square
+right-aligned map. Optional normal-map side layout defaults off; 1/2 columns retain
+44-point buttons when space permits; 3+ fit two-column width and can shrink further.
+Fill down the rightmost column to above Flux Window, then continue left. Start
+below map or beside it from screen top; native/Questie docks reserve matching room.
+Secure combat-hide option covers buttons/arrows/open flyouts and releases Escape;
+unsupported secure engines explain unavailable. All structural changes defer;
+queued combat embed/restore reconciles correctly. Hidden slots keep actions and
+widgets; existing cadence/input/integrations retained. 760 focused checks; 22 harmful
+controls; exact old baseline rejected; combined 320 scripts/1002 syntax PASS (319/1001
+full run plus one concurrently added test checked separately). Final owned sources pass scoped retests; unrelated concurrent
+inventory edits leave global freshness pending. 46 fresh Gethe source
+records/36 Git blobs verified; Forever pin now bebcb6bf309cf41b41bd74f8ca651e6a105b2676.
+External 2608-file/source-history checkpoint and 69 settings metadata verified.
+Eight task runtime owners; unrelated concurrent inventory work preserved. No new
+addon poll/ticker/timer. Direct implementation/user-native route retained; native
+pixels/input/persistence/controller/taint/FPS/memory NOT RUN. No client control,
+settings/profiler write, manual sync, commit or publication.
+[Requirements and native checks](MINIMAP_EXTRA_LAYOUT.md); [evidence](validation/minimap-layout-2026-11-13.json).
+
+
+13 November options follow-up (OPTIONS-SHARED-THREAT-20261113; REQ-OPT-35–38):
+sidebar order is Combat → Loot & Items → Utilities → HUD → Unit Frame. Bindings
+and Keybindings share one Bindings entry with two original-tool tabs; old links,
+macro search and editor lifecycle remain. Threat warning visibility renames the
+existing scoped threatBarVisibility setting; General/Nameplates share Always,
+In raid, In party, Off. Party includes raids; raid-only excludes parties. All
+nameplate and target/focus positions share one gate; between-bar exception removed.
+Old nameplate values/legacy keys preserved. Explicit changes request the existing
+guarded native warning CVar; wrapper CVar-presence call signature corrected.
+870 warning/6,272 placement/1,243 shell checks; suite snapshot316 scripts/997 syntax PASS.
+External2,609-file/source-history checkpoint and141 settings metadata entries
+verified. Seven runtime owners changed; no new driver/event/timer/hook/poll.
+Direct implementation/user native reproduction retained; native pixels, persistence,
+combat/taint, controller and FPS NOT RUN. No client input/focus, private settings/
+profiler write, manual sync, commit or publication. Fresh source lookup unavailable;
+existing dated pins retained; no new native API contract.
+[Requirements and acceptance](OPTIONS_REWORK.md#13-november-sidebar-bindings-and-shared-threat-warnings);
+[evidence](validation/options-shared-threat-2026-11-13.json).
+
+12 November potion discovery stall (AUCTION-POTION-STALL-20261112; AHR-38–40): the new
+screenshot remains Finding stronger usable potions. The real parser reproduced
+a spent shared-budget failure that the earlier classification stub missed. Each
+deferred AH batch now renews that budget (still at most8 IDs). Potion results mark
+whether restore is known; name-only placeholders retry until real tooltip data
+arrives and cannot be ranked as restore1. Known unusable potions are skipped first.
+Native ADDED browse payloads now contribute later rows and cumulative unique-key
+progress, preserving the initial catalog instead of repeatedly reading its first
+batch. Read-only /fluxah debug adds search phase/term/results/page/deadline.
+Five repeated desktop work models: baseline refs100/101,734 load requests and
+timeout; candidate refs201/300,30 requests and ready. Simulated elapsed times are
+not native measurements. 552 potion/16525 auction checks;20 restock/15 receipt models;6 new harmful controls;314 scripts/995 syntax PASS.
+Four existing runtime/test files changed;0 new; external2,608-file source/history
+checkpoint and47 settings metadata entries verified. Existing UI, settings,
+unquoted terms, price/usability/shared tiers and per-press buying are preserved.
+User native reproduction route/direct implementation remain selected. Current
+native retest and earlier Forever purchase BLOCKED resolution remain pending.
+No client input/focus, private settings/profiler write, manual sync or publication.
+[Current behavior](AUCTION_RESTOCK.md);[evidence](validation/auction-restock-potion-stall-2026-11-12.json).
+
+12 November auction density/source/potion correction (AUCTION-DENSE-STOCK-20261112; AHR-28–37)
+replaces the recipe/cost pane with a full-width paged grid and Direct/Craftable
+labels (24cells at modeled800×600), retaining three money fields and one Buy next.
+Old/unacknowledged pending attempts are pruned; real receipt/private/provider
+incoming credits still reconcile once. Only typed unlimited merchant supply
+excludes an item; limited/unknown/price-only/extended-cost records stay eligible.
+Food/water are absent, including manual entries; vendor spell reagents use that
+same unlimited-supply rule. All listed eligible items, including full/zero targets,
+are price-scanned. Optional Auctionator public hints and guarded unit-price/history
+write-back coalesce one notification; historical prices never authorize buys.
+Plain unquoted partial healing potion / mana potion searches collect all native
+result pages, validate usability/live offers/caps, choose stronger tiers and update
+the real shared reference/tier. Weaker bag/bank stock cannot fill the stronger
+target. Original caps survive a scrubbed ref; unknown metadata holds potion buys.
+Craft preference, exact yields/shared inputs, price caps and one transaction per
+press remain. 16413 focused checks;20 restock/15 receipt models;41 harmful controls;314 scripts/995 syntax PASS; 226 pinned upstream blobs verified.
+Source guard:15 existing changed runtime/test files and4 new since the verified
+2,602-file external checkpoint;47 settings metadata entries, no private values.
+Earlier Forever mouse BLOCKED failures and screenshot defects remain prior native
+evidence; current live purchases/pixels/coexistence/controller/taint/FPS NOT RUN.
+No client input/focus, manual sync, settings/profiler write, commit or publication.
+[Behavior and remaining native checks](AUCTION_RESTOCK.md);
+[current evidence](validation/auction-restock-dense-potions-2026-11-12.json).
+
+12 November auction follow-up (AUCTION-AUTO-CRAFT-TAB-20261112; AHR-10–27) supersedes the
+initial popup/two-press/zero-disables/clear-pending design below. Real AH tab uses
+shared restock cells/current icons and three currency fields; top edge/height
+match neighboring tabs. Whole-list/material planning is automatic; cell selection
+only edits. One press quotes/confirms one qualifying transaction; next needs a new
+press. Zero/unset is unlimited. Saved Prefer crafting materials toggle is in AH
+and Vendor→Restock; equal/cheaper learned recipes use exact missing inputs/yield,
+vendor costs/shared stock and finite parent budgets. Incoming inbox plus transit
+credit reconciles automatically (19/20 feathers +1 pending blocks rebuy); there is
+no Clear pending UI/API. Built-in inventory now publishes confirmed AH purchases
+to its mail snapshot/ledger immediately, including other auction controls; provider
+Ready handoff stays inert. Prediction/private transit credit counts once and an
+early empty inbox cannot discard the own reservation. Proven owned failures and
+synchronously blocked calls release their own credits without phantom delivery.
+13078 focused checks;20 restock/15 receipt models;34 harmful controls;312 scripts/991 syntax PASS;202 upstream Git blobs verified;
+source guard permits10 existing changed files/5 new files in this follow-up;
+shared cells/professions/Syndicator adapter remain byte-identical. Built-in Mail/
+Auctions are intentionally extended. External2,595/2,598-
+file source/history checkpoint and47 settings metadata entries verified.
+Two prior Forever mouse-click BLOCKED failures remain native evidence; direct
+calls/action-before-disable candidate has NOT passed native retest. No-search,
+pixels, transactions/coexistence, persistence, controller, taint and FPS acceptance
+pending. Auctionator345/TSM4.15.6/Syndicator290 inspected read-only at explicit request;
+ARR notices preserved; no copied code. No client focus/input, settings/profiler
+write, manual sync or publication. Reload after user-managed synchronization.
+[Current behavior and native checks](AUCTION_RESTOCK.md).
+
+12 November auction restock (AUCTION-RESTOCK-20261112; AHR-01–09): native-API
+standalone implementation for Retail/Forever/MoP and Era/Anniversary. One action
+button searches/quotes/buys; every purchase requires a press. Per-item saved unit
+caps include active presets; known vendor stock excluded, unclassified items need
+an explicit cap. Legacy default fits whole stacks; optional excess shows surplus
+and total. Charge/tier/bank math and persistent pending-mail reservations prevent
+duplicate refill. Competing queries/quotes yield; partial batches request more
+selected-item rows. No Auctionator source/dependency or new inventory provider.
+6,496 focused checks/20 models;12 harmful controls; full309 scripts/986 syntax PASS;
+all final manifest hashes match. 87 pinned Git blobs verified. External2,587-file
+source/history checkpoint and47 WTF metadata entries; private settings not copied.
+Four new modules,one test;three existing runtime files changed;all other existing
+Lua/XML/TOC bytes preserved. Direct implementation selected12November; prior
+user native reproduction route retained. Native transactions/addon coexistence,
+pixels/controller/persistence/taint/FPS NOT RUN. Reload after user-managed sync;
+use Vendor→Restock→Auction restock & prices, `/fluxah` or auction-house button.
+No foreground/input, settings/profiler-file write, manual sync or publication.
+[Requirements and remaining native acceptance](AUCTION_RESTOCK.md).
+
+11 November all-consumable audit (CONSUMABLE-ALL-BUTTON-AUDIT-20261111;
+CGLC-23 through CGLC-27): all seven real Create paths and both grid count methods
+run together across five models, both providers and two gem policies. Repeated
+loading, charged remnants, isolated depletion/refill and regen placeholders PASS.
+2,580 checks; old native-failing source 940/current 0 in three matched pairs;
+ten harmful controls rejected. One shared watcher; 100 use signals coalesce to
+one immediate and one 100ms settle callback, 14 recounts; 100 unrelated events add 0;
+idle 12s adds 0 scans/timers. Full 308 scripts/981 syntax PASS; manifest current.
+No production Lua/XML/TOC changes; one new test. External 2,585-file source/history
+checkpoint and 55 settings metadata entries verified; 75 installed runtime copies
+match user sync. Current repair native acceptance/FPS/taint/pixels/input remains
+NOT RUN. No client focus/input, settings/profiler write, manual sync or publication.
+[Coverage, source ownership and native limits](COMBAT_GRID_LIVE_COUNTS.md#all-seven-real-button-modules-audited-together).
+
+11 November native loading-hold fix (CONSUMABLE-LOAD-END-20261111;CGLC-19 through
+CGLC-22): failing-state capture proves food 1 with every source 0 while inventory
+is reliable and Best's loading latch remains open. Ordinary bag events cannot
+release it. One Inventory handler now completes unfinished loads on validated
+optional LOADING_SCREEN_DISABLED, restarts cancelled existing slot refresh and
+reuses bounded portal recovery. Normal PEW/duplicate completion add no work;
+newer loads remain protected. All seven kinds/providers/five models covered.
+2,230 checks; exact checkpoint fails 660; three matched pairs and five controls;
+full 307 scripts/980 syntax PASS with current manifest. One runtime owner and
+one test added; one event subscription; no new frame/ticker/timer call site,
+background polling, settings or action writes. Five pinned blobs and external
+2,583-file source/history checkpoint verified; 55 settings metadata entries;
+all five installed runtime copies match via user sync. Prior candidate FAILED
+natively; new handler symptom/taint/pixels/input/FPS acceptance NOT RUN. Reload
+and retest loading/depletion; retain /fluxinv buttons output during recurrence.
+No foreground/input, profiler write, manual sync, commit or publication.
+[Native evidence and completion recovery](COMBAT_GRID_LIVE_COUNTS.md#native-capture-loading-completion-left-open).
+
+11 November consumable screenshot follow-up (COUNT-SOURCE-RECONCILIATION-20261111;
+CGLC-14 through CGLC-18): all seven kinds and other assigned item faces share
+count-source/recovery corrections. Actual world entry releases an orphaned
+open loading latch; startup during real loading remains held. The existing
+portal timer publishes inventory count recovery even without an identity change.
+A valid carried-only modern zero no longer falls through to a stale deprecated
+positive; missing/error and extended-bank compatibility remain. Optional
+`/fluxinv buttons` captures physical slots, APIs, provider/text/hold facts once;
+no automatic polling, new event/frame/timer/hook, settings or protected writes.
+2,104 hold/diagnostic +245 source checks PASS; exact checkpoint fails 583/150;
+three matched pairs per workstream and eight harmful controls rejected.
+Full 306 scripts/979 syntax PASS; normalized manifest current; four runtime
+owners only and two new tests. 22 fresh pinned Gethe blobs verified; external
+2,580-file source/history checkpoint and 55 settings metadata entries. All 20
+installed runtime copies match via user sync. User's healthy Syndicator/reliable/
+no-hold sample and unbound gem do not explain the intermittent screenshot.
+Follow-up food/water probe prints no rows; raw API agreement is unverified.
+Native candidate symptom/pixels/taint/input/FPS remains NOT RUN; reload and
+capture `/fluxinv buttons` during recurrence before another reload. No client
+input, settings/profiler write, manual sync or publication.
+[Requirements and remaining native acceptance](COMBAT_GRID_LIVE_COUNTS.md#screenshot-follow-up-count-sources-and-loading-holds).
+
+10 November profession fill/glow correction (TRADESKILL-CAST-FILL-FIX-20261110;
+TCAST-06–08): user reports missing fill and excessive flare, then requests a
+visible skill-up-style glow after softening. Animated fill now belongs directly
+to TimerBar ARTWORK7; an opaque native mask follows progress with black-outside
+wrap. Flare is explicitly above fill at OVERLAY0 and below native text/shields;
+60% intensity and 44x14 instead of 53x16 at 18px bar height. Glow persists through
+the existing completion fade. No new frames, drivers, events, timers, hooks,
+options or data; one clip frame removed, one mask added per themed bar.
+455 focused checks; exact old clipped implementation plus seven harmful variants
+rejected; full 304 scripts/977 syntax PASS; current source attested.
+Six mask-API blobs verify at the retained Retail/Forever pins. External 2,578-file
+source/history checkpoint and four settings metadata entries verified. Initial
+native failure is user evidence; candidate pixels/taint/input/controller/FPS
+NOT RUN. Direct implementation/user retest retained; reload OOC and craft.
+No client input/focus, settings/profiler writes, manual sync or publication.
+[Correction and remaining acceptance](TRADESKILL_CAST_THEMES.md#fill-and-visible-glow-correction).
+
+
+10 November profession cast themes (TRADESKILL-CAST-THEMES-20261110; TCAST-01–05):
+readable tradeskill casts now use Blizzard's animated profession rank-bar fill
+and optional flare on capable Forever/Retail clients. Recipe API plus native
+profession enum selects the kit; unknown/restricted data and absent art keep
+the ordinary cast. Existing master/unit/colors/edge/glow controls and complete
+cast/channel/completion/interruption lifecycle retained. No new Lua driver,
+event, timer, hook, options, text or saved data. Focused five-client models PASS;
+old behavior and five harmful controls rejected; full 304 scripts /
+977 syntax PASS with current source manifest. Fourteen fresh pinned Gethe
+blobs verified. External 2,574-file/source-history checkpoint; four settings
+metadata entries only. Direct implementation/user reproduction retained.
+Native pixels/taint/input/controller/FPS NOT RUN; reload OOC and craft with
+two professions. No client input/focus, settings/profiler write, manual sync
+or publication. [Requirements, implementation and checks](TRADESKILL_CAST_THEMES.md).
+
+
+10 November focus without resource (FOCUS-NO-RESOURCE-20261110): the compact focus
+divider now follows resource opacity, including focused-unit chrome refreshes.
+No-resource focus retains full HP with no dividing line; empty current power
+with positive capacity keeps its bar/divider. Native opaque alpha passes
+directly; combat geometry stays deferred. Two exact-baseline regressions
+rejected; 22,015 color checks and full 304 scripts / 976 syntax PASS.
+One runtime owner; dated external source checkpoint and history verified;
+four Retail settings metadata entries read-only. Direct implementation/user
+reproduction retained. Native pixels/taint/input NOT RUN; reload OOC and
+focus units with/without resources. No new driver, settings or binding; no
+client input, preference write, manual sync or publication. [Evidence](validation/focus-no-resource-2026-11-10.json).
+
+
+10 November party HP/resource fit (PARTY-HEALTH-FIT-20261110): player-style party health
+now stops above the resource bar at the existing two-unit gap instead of
+extending behind it on HUD clients. Planned prediction geometry matches;
+known no-resource units still expand health. Main/compact-focus layouts and
+combat deferral remain. 396 fit checks reject the exact checkpoint; 675
+combat-join checks and full 304 scripts / 976 syntax PASS.
+One runtime owner; external 2,566-file/history checkpoint and 26 settings
+metadata entries verified. Direct implementation/user reproduction retained.
+Native pixels, combat/taint and input NOT RUN; reload OOC and check a party.
+No new input/focus targets, options, strings or runtime drivers. No client
+input, settings/profiler writes, manual sync or publication. Fresh upstream
+heads unavailable; existing dated pins retained. [Evidence](validation/party-health-fit-2026-11-10.json).
+
+
+10 November passive pass 3 (PASSIVE-PERFORMANCE-PASS3-20261110; PP3-01–06;
+PP3-H01–12): twelve new hotspots across eight loaded runtime owners. Core numeric/
+aura/checked helpers reuse callbacks; Index avoids normalized tables and full
+first-location result construction. Mana/swing owned styles settle without slowing
+live movement/values; raid flags recycle after paint. Active Classic character
+calculations drop unused metadata/palette work; quality keeps every query/sink.
+Three pairs/workstream; 99,781 focused checks/set; 57 harmful controls rejected.
+Full 303 scripts / 975 syntax PASS; source stable throughout. One obsolete rebind
+mutation now breaks both cleanup steps; unchanged functional assertion rejects it.
+Generated 1,008 sources / 607 reachable / 427 settings / 24 saved roots. Documentation validator PASS.
+21 source records / 10 Git blobs verified; canonical native fade replay and
+35 setter-return checks. 252 appearance files / 80 options-binding sources unchanged.
+Fresh party/vendor fixes and inactive character copies are byte-preserved.
+Concurrent ConsumableBind/Paint and use-event test edits are retained and included
+in the combined full run; other runtime owners match the checkpoint. External
+2,561-file/history checkpoint; settings
+metadata only. Native FPS/memory/pixels/taint/input pending; no input, preferences/
+profiler write, manual sync or publication. Unrelated party/raid work stays paused.
+[Findings, comparisons and native limits](PASSIVE_PERFORMANCE_PASS3.md).
+
+10 November combat grid use/depletion follow-up (COMBAT-GRID-USE-EVENTS-20261110;
+CGLC-07–13): user confirmed dark gem1 after use on Forever/Syndicator; wants dark0
+in combat and next owned item/empty placeholder OOC for all seven kinds/providers.
+Cooldown-only notifications and wrong nonblank cached digits now refresh. Shared
+watch has one immediate plus one100ms settle pass; no idle ticker or predicted
+decrement. Reliable exhausted gem clears sticky face; gem/stone selection and
+charge/refill recovery use existing owners. Tint follows displayed item, including
+prepared macro faces. Combat actions and loading holds remain.
+1219use +672transition +2175prior checks PASS; three matched pairs each workstream;
+12harmful controls rejected. Full304scripts/976syntax PASS; entire source manifest
+matches. Hidden340-check trace/budgets and unrelated-bag zero-scan behavior retained.
+Three runtime owners; two new tests; two existing fixture expectations updated to
+the clarified behavior.22exact Gethe records; external2566-file/history checkpoint;
+33initial+22Anniversary settings metadata only. All15installed runtime copies match
+through user sync; no manual propagation. Candidate native symptom/taint/pixels/
+input/FPS remains NOT RUN; reload and user retest required. No input/focus,
+settings/profiler write, manual sync or publication.
+[Correction, regression and native steps](COMBAT_GRID_LIVE_COUNTS.md).
+
+10 November party debuff visibility (PARTY-DEBUFF-VISIBILITY-20261110; PDV-01–05):
+enemy target/focus tint is revoked immediately; friendly tint remains. Player-style
+party icons have rectangular type borders. Both party styles get a Salvage-style
+type-colored glow only for native/readable dispellable auras, with an atlas fallback.
+18,618 tint / 408 visibility / 11,410 aura checks PASS; two focused runs and six
+new controls. Full 298 scripts / 970 syntax PASS; current manifest matches.
+Native pixels/combat animation/taint/input/FPS NOT RUN. Three runtime
+owners only; concurrent inventory edits preserved. External 2,551-file history/source
+checkpoint and 61 settings metadata entries verified. No input, settings/profiler
+write, manual sync or publication; direct/user reproduction route retained.
+[Requirements, sources and acceptance](PARTY_DEBUFF_VISIBILITY.md).
+
+10 November vendor Junk tab freeze fix (VENDOR-JUNK-TAB-FREEZE-20261110):
+two runtime owners; name snapshots remove comparator loads; visual/item completions
+share the existing 200 ms retry; reentrant/unchanged scroll painting is suppressed.
+Three matched pairs across five client models: 400 cold entries request
+13,768→1,200 loads; 400 completions rebuild 400→1 times and paint 6,834→17 rows.
+85 focused checks PASS; four harmful controls rejected; vendor/timer regressions PASS.
+Full run: 295 scripts PASS, two raid-aura failures amid concurrent unrelated edits;
+969 syntax PASS. No clean current full-suite or native freeze/FPS/pixels/taint/input
+acceptance claimed. Concurrent edits retained; exact Junk sources match full run.
+External 2,545-file/history checkpoint verified; four settings metadata entries only.
+No input/focus, settings/profiler write, manual sync or publication. Reload and
+user-performed vendor/Junk retest pending. Fresh upstream commit lookup unavailable.
+[Cause, fix, evidence and native limits](VENDOR_JUNK_TAB_FREEZE.md).
+
+10 November combat grid live counts (COMBAT-GRID-LIVE-COUNTS-20261110;
+CGLC-01–06): food/water/bandage/potions/gem/healthstone reach zero with both
+providers. Syndicator's native fallback now includes both conjured kinds;
+count/tint and ownership use live carried copies while metadata delays publishing.
+Same-frame bag bursts coalesce; combat actions and loading holds remain.
+Three matched pairs: 2,175 checks PASS; checkpoint rejects 244; seven harmful
+controls rejected. Forty provider burst fixtures: recounts2,500→40, native count
+queries2,500→159; no combat scans/rebinds/new frames. Existing craft/hidden-button
+regressions pass. Full suite completed297scripts/969syntax PASS; task source hashes
+match; unrelated subsequent/concurrent vendor/raid edits retain separate acceptance.
+Final docs check has four stale inventory/verification records in concurrently edited
+raid/debuff owners; own task sources match all passing focused checks.
+Twenty-two pinned Gethe records verified across five clients. External2,550-file/
+history checkpoint;33settings metadata entries read-only. Native input/pixels/taint/
+FPS/memory NOT RUN; no client input, settings/profiler write, manual sync or publication.
+User-managed Retail-only writes and prior party/raid native pause retained.
+[Fix, comparisons and native steps](COMBAT_GRID_LIVE_COUNTS.md).
+
+10 November additional passive optimization (PASSIVE-PERFORMANCE-PASS2-20261110;
+PP2-01–06, PP2-H01–10): ten new hotspots across eight runtime files. Combat
+class-resource retry storms coalesce; synchronous cast text shares a revision-guarded
+clock sample; raid prediction uses scalars. Parked Extra Buttons stop checked/count/
+metadata work, with count/tint/equipped state refreshed before first visible paint.
+Core protected/range helpers and meter timer election reuse functions; collector
+keeps linear child snapshots and all discovery cadence with fewer pattern matches.
+Three pairs/workstream; 783 focused checks/set; 60 harmful controls rejected.
+Full 295 scripts / 967 syntax PASS; exact source matches. Generated 1,000 sources,
+607 reachable files, 427 settings and 24 SavedVariables roots. Documentation validator PASS.
+25 pinned records / 20 Git blobs verified; Forever advanced to 4cd0ab752a77.
+252 appearance files / 80 options-binding sources and all other runtime owners
+unchanged, including prior combat/resource fixes. External 2,543-file/history
+checkpoint; settings metadata only. Native FPS/memory/pixels/taint/input pending;
+no client input, preferences/profiler writes, manual sync or publication. Guild/
+void callbacks and unrelated party/raid feature work remain excluded.
+[Findings, comparisons and limits](PASSIVE_PERFORMANCE_PASS2.md).
+
+10 November resource-effects follow-up (RESOURCE-EFFECTS-PERFORMANCE-20261110;
+RFX-01–06): power ghost bursts coalesce at the original After0 boundary;
+1,000 same-frame paints queue 1 callback instead of 1,000; unchanged public sinks
+retry only when needed. Secret animation Lua callbacks fall 120→0 in 0.5 s/240 Hz.
+Prepared shown helper containers use texture visibility and active-only drivers;
+shared spark guards geometry before arithmetic; eligible HUD main bars prewarm
+unchanged pulse trees. Bounded dormant allocation tradeoff recorded, no idle driver.
+Three pairs/workstream; 122 Shared/168 PCO checks; 9+12 controls; 3×84 combined
+checks and 2 disconnection controls. Full 290 scripts/962 syntax PASS; source attested.
+Documentation validator PASS: 995 sources, 607 reachable files, 16,146 local links.
+88 pinned records/54 blobs and 50 ownership checks; Frame Show/Hide correction.
+Earlier partition/value painter and all other runtime owners byte-preserved.
+252 appearance files/80 options-binding sources unchanged; external 2,539-file/history
+checkpoint; settings metadata only. No native FX/taint/pixels/FPS/input acceptance,
+settings/profiler write, manual sync or publication. Prior scoped pauses remain.
+[Changes, tradeoffs and evidence](RESOURCE_EFFECTS_PERFORMANCE.md).
+
+10 November combat-invite power partition correction (POWER-PARTITION-COMBAT-JOIN-20261110;
+PWRJOIN-01–06): native user trace exposed protected SetHeight/Show in ordinary
+post-reveal painting. Shared partition now defers structural geometry before all
+text-anchor/prediction/layout mutations; native reveal and value paints continue.
+Absent prepared slots retain unknown resource capability so combat joins have a
+ready power bar. Existing queue coalesces per frame; Party retains its regen owner.
+675 focused checks/15 cases across five clients; three exact-baseline pairs;
+eight harmful controls rejected; full 288 scripts / 960 syntax PASS. Documentation
+validator PASS: 993 sources / 607 reachable / 16,131 local links. 44 pinned
+source records / 31 blobs verified. Only one runtime file changed; earlier 23
+performance owners unchanged. External 2,536-file/history checkpoint; settings
+metadata only. No native retest/pixels/taint/FPS claim, input/focus, settings/profiler
+write, manual sync or publication. Prior mocks omitted protected child permissions.
+[Cause, correction and native limits](POWER_PARTITION_COMBAT_JOIN.md).
+
+10 November passive performance optimization (PASSIVE-PERFORMANCE-OPTIMIZATION-20261110;
+PPO-01–06): all 24 audited candidates optimized with preserved nominal cadence,
+features and tested geometry/input/lifecycle behavior. Three exact-checkpoint pairs
+per workstream; 23 runtime files, seven new tests. Full 287 scripts / 959 syntax
+PASS; current source matches validation and comparison hashes. Documentation
+validator PASS: 992 sources / 607 reachable / 16,117 local links; records current. Native reset reads,
+secret sinks, sparse-slot probes and complete provider validation remain where
+correctness requires them. 31 pinned source records / 25 unique Git blobs verified.
+252 appearance/XML/TOC files and 79 options/binding sources byte-preserved.
+External 2,525-file/source-history checkpoint; settings metadata only. No native
+FPS/pixels/taint/input acceptance, client input, settings/profiler writes, manual
+sync, commit or publication. Scoped optimization includes readable raid fallback;
+unrelated party/raid feature work and native sessions remain paused.
+[Before/after results and constraints](PASSIVE_PERFORMANCE_OPTIMIZATION.md).
+
+10 November passive performance audit (PASSIVE-PERFORMANCE-AUDIT-20261110;
+REQ-RPF-01–05): 24 current optimization candidates plus 2 retained feature costs.
+Priority: per-mob group/pet threat ranking; per-frame nameplate layout checks;
+settled aura styling and explicit native full-aura rebuild requests; idle observers;
+mail/provider bursts. 39 synthetic replay scenarios load unchanged production code
+or exact verified native methods; five existing focused regressions PASS. Five
+fresh Gethe branch pins; 21 source records / 17 unique blobs verified. All 953 Lua
+byte identities unchanged. No runtime/settings/profiler/client-input/sync/publication
+change; guild/void callbacks excluded. Actual native CPU/FPS/taint/pixels/memory
+remain NOT RUN. Existing generated minimap docs/verification have 10 stale issues;
+unrelated generated records not regenerated. Party/raid implementation/native-test
+pause preserved. [Findings and optimization order](PASSIVE_PERFORMANCE_AUDIT_2026-11-10.md).
+
+10 November built-in minimap target/focus tracking (MINIMAP-TRACKING-20261110;
+REQ-MT-01–06): native tracking-menu extension restores actual hidden Target/Focus
+entries on capable Retail/Forever clients. Target defaults on; Focus stays native
+until chosen; character choices survive reload/world resets with a bounded 3s retry.
+Native show-all, existing rows, game-rule restrictions and enabled standalone owner
+remain. Classic family without GetTrackingFilter stays inactive; enum names alone
+never fabricate markers. One shared world subscription/menu modifier; no new frames,
+tickers/OnUpdate/global hooks.412 focused checks x3; 8 harmful controls rejected;
+full 280 scripts / 952 syntax PASS;33 source records / 26 exact Git blobs at five fresh pins.
+External 2,510-source/history checkpoint and 46 read-only settings metadata entries.
+Native markers/input/controller/pixels/taint/persistence/FPS NOT RUN. Prior direct
+implementation/user reproduction retained. User confirms running sync program and
+explicitly requests Retail-only writes; no manual cross-client install or publication.
+No game input/focus or private-settings/profiler writes. Party/raid work stays paused.
+[Requirements and evidence](MINIMAP_TARGET_FOCUS.md).
+
+10 November NPC-to-window speed audit (NPC-WINDOW-OPENING-AUDIT-20261110;
+REQ-VG-09): user locates delay before bank/vendor appearance. Current selection
+already runs in the same gossip event without an added timer/icon lookup/UI
+allocation.29exact pinned native blobs verify normal startup-loaded panels and
+Forever direct show registrations;no extra preloader justified. No runtime or
+settings changes, new frames/events/timers/hooks, input/focus/profiler operation
+or publication. All950Lua identities and4installed gossip copies still match the
+279-script passing source;no full rerun. Actual native click→response→first-draw
+latency remains unmeasured;network/native/other-addon contributions unresolved.
+Native timing is required before promising any additional opening-speed gain.
+Earlier paused party/raid work remains paused.
+[Exact source evidence and limits](validation/npc-window-opening-audit-2026-11-10.json).
+
+10 November bank/vendor gossip checkbox and immediate selection follow-up
+(BANK-VENDOR-GOSSIP-20261110; REQ-VG-05–08): separate Auto open bank defaults off;
+vendor preference survives. One native checkbox appears lower-left beside Goodbye
+for one available bank/vendor choice without quests. Checking saves that service
+and opens now; Shift reveals it later to disable. Icons prime at login;automatic
+selection runs in the same event with0asset lookups/0checkbox allocations/no added
+timer. Pending refreshes cannot duplicate selection. Server/native latency/FPS
+remain unmeasured. One lazy reused checkbox;two shared lifecycle subscriptions
+are now required even with automation off;Forever adds its valid refresh event.
+No new timers/tickers/hooks/OnUpdate/protected propagation setters.702focused x3;
+10harmful controls and old source rejected;6237navigation/1253shell/36data checks;
+full279scripts/950syntax PASS.82exact Gethe source blobs at existing five pins.
+External2505-source/history checkpoint and105read-only settings metadata entries.
+Three tested files installed inForever/progression/Era/Anniversary after approved
+escalation;12copies verified;originals external. Reload required. Native NPC/
+input/controller/pixels/taint/persistence/latency NOT RUN. Prior direct-design and
+user reproduction choices retained. No game input/focus, private-settings/
+profiler writes or publication. Paused party/raid native work remains paused.
+[Requirements and evidence](20-vendor-restock-junk.md#bank-and-vendor-gossip-checkbox--10-november-2026).
+
+10 November single-choice vendor gossip (VENDOR-GOSSIP-20261110; REQ-VG-01–04):
+Loot & Items → Vendor → Automation has Auto open vendor, off by default and
+per-character. On GOSSIP_SHOW it immediately selects only a sole available vendor
+icon choice without quests; Shift preserves gossip. Uses native orderIndex;
+Blizzard retains its own automatic selection and confirmations. One shared event
+only while enabled; zero new frames/timers/tickers/hooks/OnUpdate. Retail inactive.
+Fresh Gethe sources: all five pinned commits and 46 exact blobs; 321 focused
+checks in three fresh runs; six harmful controls rejected; full279 scripts and
+950 syntax PASS. Options navigation6222/shell1253/data-integrity36 PASS. External
+2495-source/history checkpoint verified;105 settings metadata entries read-only.
+Four verified feature files installed in Forever/progression/Era/Anniversary after
+approved filesystem escalation;16 copies match and originals backed up externally.
+Native NPC/input/controller/taint/pixels/persistence/performance NOT RUN; reload
+required. Prior direct implementation/user native reproduction route retained.
+No foreground/input, private-settings/profiler writes or publication. Earlier
+paused party/raid native work remains paused.
+[Behavior, source identities and evidence](20-vendor-restock-junk.md#single-choice-vendor-gossip--10-november-2026).
+
+9 November Classic border fix (OPTIONS-NATIVE-BORDER-20261109; REQ-OPT-34):
+Era error traced to inherited SetBorder with absent PortraitFrameTemplate layout.
+Removed forced layout call; each client retains native template initialization.
+Old regression stub missed this; real pinned native Lua now runs in the full shell.
+Old source reproduces userLayout nil on progression/Era/Anniversary; candidate
+passes1,253 checks across five models in three fresh processes.28 exact upstream
+Git blobs verified with load/XML contracts. Decoration only; no focus/input/text/
+settings/controller integration change. Native Era/other client retest pending;
+no game input/focus, profiler/settings writes or publication. After approved
+filesystem escalation, only the verified Skin file was installed in Forever,
+progression, Era and Anniversary; all five copies match. Prior files backed up externally.
+[Evidence](validation/options-native-border-2026-11-09.json).
+
+9 November Forever native performance follow-up (FOREVER-NATIVE-PERFORMANCE-20261109;
+REQ-RF-99): actual background-client preview stress completed with explicit
+targeted diagnostic-input authorization. Solo/OOC only; server combat/roster APIs
+untouched. Cold40-member preview196.1003ms, warm11.1176ms; warm party4.8791ms.
+These single trials do not measure live joins or an FPS improvement. Fixed secret
+resource-pulse geometry arithmetic and permission-gated vendor checkbox mouse
+setters, reusing the combat queue.185 pulse/285 vendor/17050 tint checks PASS;
+three vendor pairs and four harmful controls; full276 scripts/946 syntax PASS.
+Ten exact API blobs;15 installed file copies match. Old debuff reader is absent.
+Diagnostic18:07 errors were my lost-table readback after reload; commands guarded,
+original performance report restored with3843 equal values, preview/prefs restored.
+Real combat joins/leaves/subgroups and merchant input remain pending. Final client
+foreground preflight caused no input. Source/history checkpoints and private
+recovery data remain external; no manual sync or publication.
+[Detailed evidence and limitations](FOREVER_NATIVE_PERFORMANCE.md).
+
+9 November Inventory Awareness placement (OPTIONS-AWARENESS-20261109; REQ-OPT-33):
+Inventory Awareness is inside Loot & Items > Loot, removed from Status Bars.
+Original controls/callbacks/storage scope/Syndicator delegation remain. No new
+sidebar entry or gameplay driver.6,207 placement/1,242 complete-shell checks PASS;
+previous catalog rejected by both harnesses. Native acceptance remains NOT RUN.
+[Evidence](validation/options-awareness-2026-11-09.json).
+
+9 November HUD correction (OPTIONS-HUD-20261109; REQ-OPT-30 through32):
+HUD replaces the Quality of Life sidebar page and contains Layout, Chat, Info,
+Micro Menu, Flux Window and Status Bars. Windows moves to Utilities. Layout is
+visible again with its original independent scope/reset and preview editor.
+Flux Window contains General/Damage Meter tabs; actual Meter right-click opens
+Damage Meter and expands minimized HUD. General shortcut selects General explicitly.
+Old QoL links redirect; original sources/scopes/data/skins and other categories stay.
+6,057 real-builder/1,217 complete-shell checks PASS across five models; five old or
+harmful controls rejected and three fresh candidate runs each; full275 scripts /
+945 syntax PASS with exact current corpus. External2,477-source/history checkpoint
+verified;43 read-only settings metadata entries. Native visuals/drag/persistence/
+input/taint/FPS NOT RUN; Witchcraft unavailable. No input/focus, settings/profiler
+writes, manual sync, publication or new background goal.
+[Current requirements and evidence](OPTIONS_REWORK.md).
+
+9 November merged layout and follow-up fixes (OPTIONS-MERGED-LAYOUT-20261109):
+General includes Appearance; Individual Frames has user-selected Player/Target/
+Focus/Pet tabs. Unit Frame retains six sidebar entries. Loot & Items is a header
+with Loot/Vendor/Restock; Restock uses the native bag icon. QoL has seven per-feature
+tabs. Raid preview starts at10; explicit party preview stays5; legacy reads do not
+reset data and combat entry stays guarded. Header buttons minimize/expand; search
+reveals/restores state and old links expand parents. Forever background restores
+visibility/alpha and disables inherited rock tiling on resize; other client skins
+remain. 5,847 builder/877 shell/280 raid option-session/78 party checks PASS;
+13 controls, three fresh candidate overlay runs each; full275-script/945-syntax
+PASS. External2,468-source/history checkpoint and43 settings metadata entries.
+Native visuals/input/persistence/taint/FPS pending. No game input/focus, private
+settings/profiler writes, manual sync, publication or new background goal.
+[REQ-OPT-23 through29 and evidence](OPTIONS_REWORK.md).
+
+9 November all-client combat roster audit (COMBAT-GROUP-LIFECYCLE-20261109;
+REQ-RF-98/83): checked current Blizzard secure header, visibility and event-manager
+code across Retail, Forever, progression, Era and Anniversary. No new runtime
+gap found. New regression executes the full native event-to-next-update manager
+plus four callback orders:247385 checks over1800 transitions per run;three repeated
+passes;six harmful controls rejected;50 exact source blobs and30 contracts.
+Both party styles, solo/group/raid conversions, full/sparse/empty raids, subgroup
+moves, MT changes, hidden parents, pets/targets and leave cleanup are covered.
+Full274 scripts/944 syntax PASS; all current Lua matches the manifest and existing
+runtime matches the external2463-source/history checkpoint.43 settings metadata
+entries read-only;25 installed runtime copies match. No runtime change, game input,
+settings/profiler write, manual sync or publication. Native taint/input/pixels/
+latency acceptance remains NOT RUN. Preparation must complete before combat;
+prepared roster changes do not wait for combat exit. [Mechanism, sources and
+acceptance](COMBAT_GROUP_LIFECYCLE.md).
+
+9 November sidebar header clarification (OPTIONS-UNIT-FRAME-SIDEBAR-20261109):
+Unit Frame is now a framed sidebar header like Combat, with General, Appearance,
+Player, Target, Focus, Pet, Party Frames, Raid Frames, Cast Bars and Nameplates as
+ten clickable child rows with fitting icons. Each opens its section directly;
+there is no category button or horizontal frame tab strip. One row is selected;
+search/counts/hidden gates apply per child; short windows scroll above the fixed
+footer. Original source roots/info paths/scopes/aliases and data remain. 5,832
+real-builder +876 production-shell checks across five models; nine controls;
+full273-script/943-syntax PASS. Verified external2,458-source/history checkpoint
+and43 read-only settings metadata entries. Native acceptance remains NOT RUN;
+no input/focus, settings/profiler writes, manual sync or publication.
+[REQ-OPT-22, current hierarchy and evidence](OPTIONS_REWORK.md).
+
+9 November steady party performance (PARTY-STEADY-PERFORMANCE-20261109;
+REQ-RF-97): bar/prediction traffic now uses the existing shared painters without
+full chrome/font/cast-cover rebuilds. Pet prediction is corrected, UNIT_PET is
+owner-scoped, unchanged power text anchors are reused, and cold appearance events
+refresh metadata immediately. Features, settings, range cadence and secure
+roster/binding drivers remain. Five matched pairs/model remove936 full chrome,
+800 pet style and3280 power-anchor operations in the replay; actual native lag
+and FPS remain unmeasured.305 focused,1035 party and163 roster checks PASS;
+full273 scripts/943 syntax PASS.51 exact upstream blobs across all five clients;
+external2456-source/history checkpoint and43 read-only settings metadata entries.
+All five installed copies match through existing sync. No game input, settings/
+profiler writes, manual sync or publication. Prior manual testing route retained;
+native latency/pixels/taint acceptance still pending. [Details and evidence](PARTY_STEADY_PERFORMANCE.md).
+
+Follow-up: immediate party/raid visibility on combat joins remains required
+(REQ-RF-83). Fresh pinned secure-source replay passes255908 checks plus1035
+party checks, including revealing a hidden prepared parent. The existing native
+secure drivers already own this path; the optimization does not defer it to
+combat exit. Actual client timing/taint acceptance remains pending.
+
+9 November combined quest objectives (NAMEPLATE-QUEST-LAYOUT-20261109): kill and
+loot counters now share one horizontal 12-unit row, including additional objectives.
+Badges fit full counts at the existing10-unit font/icon size and extend left when
+the plate narrows or centered threat grows. No second row over casts; actual
+native style clearance remains pending. Existing0.25s poll adjusts changed geometry
+without quest rescans or settled anchor writes. No new driver resources/settings.
+1,261 focused checks across five models plus8 actual threat-module checks PASS;
+three old/new pairs and three harmful controls; full272-script/942-syntax PASS.
+Verified external2,455-source/history checkpoint and87 settings metadata entries.
+Prior direct implementation/local-check choice retained; user performs native
+pixels/casts/combat/taint checks. No game input, settings/profiler writes, manual
+sync or publication. [Requirements and evidence](19-nameplates.md#combined-objectives-and-dynamic-width--9-november-follow-up).
+
+9 November category correction (OPTIONS-UNIT-FRAME-CATEGORY-20261109): Unit Frame
+is now an independent top-level category beside Quality of Life, with that exact
+singular label and all ten frame tabs. Combat contains Action Bars, Bindings and
+Keybindings. Internal IDs, original builders, settings, scopes, aliases and icon
+remain. 5,782 placement +441 shell checks across five models PASS; both wrong
+nesting/name controls rejected. Native acceptance remains pending; no game input,
+settings/profiler writes, manual sync or publication. REQ-OPT-21 supersedes the
+earlier Combat nesting. [Current requirements and evidence](OPTIONS_REWORK.md).
+
+9 November Unit Frames options organization (OPTIONS-UNITFRAMES-20261109): user
+confirmed moving QoL Combat content into Unit Frames. Combat now contains Unit
+Frames, Action Bars, Bindings and Keybindings; Utilities contains Loot & Items
+and Professions. Unit Frames has General, Appearance, Player, Target, Focus, Pet,
+Party Frames, Raid Frames, Cast Bars and Nameplates. Shared appearance is separated
+from setup/scopes, party-style controls from compact raid/party controls; child
+targets remain with their parents. Every original option object/root/info path,
+handler, scope, reset, hidden/disabled condition and saved schema remains. Old
+links redirect. 5,777 real-builder placement +441 complete-shell checks across
+five models PASS; seven harmful controls rejected; full272-script/942-syntax PASS.
+Native rendering/input/persistence/taint/performance remain NOT RUN; prior Witchcraft
+setup request remains unanswered. Verified external2,447-file source/history
+checkpoint and43 read-only FluxUI settings metadata entries. No foreground/input,
+settings/profiler writes, manual sync or publication. The earlier native blocked
+audit predates this new user-authorized implementation work.
+[Requirements, current tab map and validation](OPTIONS_REWORK.md).
+
+Earlier native-readiness audit is retained in `validation/options-native-readiness-2026-11-09.json`; the user subsequently authorized the Unit Frames reorganization below. Native acceptance still awaits the selected test route.
+
+9 November RestedXP battlefield pins (RXP-PINS-20261109): Forever now admits
+standard HereBeDragons-Pins-2.0 alongside Questie through the existing Map Pins
+bridge. Original guide icons/style/tooltips and source settings remain; World Map
+priority, guide-owner removal, combat deferral and toggle restoration are covered.
+RestedXP v4.11.35 / HBD minor 17 inspected read-only; route lines/arrow unchanged. Six
+old/new pairs reject the old rule and pass the candidate, including installed-HBD
+provider replay. Full 272-script / 942-syntax validation PASS. Existing sync copied
+the runtime change to Forever; no manual sync, settings/profiler writes or game
+input. Verified external 2,438-file source/history checkpoint; 60 settings metadata files.
+Native pixels/taint/FPS NOT RUN; prior Witchcraft route unavailable on this host.
+[Requirements, exact sources and native steps](10-flux-window.md#restedxp-pins--9-november-2026).
+
+9 November functional options sorting (OPTIONS-SORTING-20261109): latest user
+clarifications are recorded in the active goal and supersede earlier taxonomy.
+Action Bars has Bars, Extra Buttons and Stance Order. Consumables, Trinket Menu,
+travel buttons, visibility and utility slots share the original Extra Buttons
+group; Swing Timer and flight-path settings stay in Unit Frames > Player.
+Loot & Items has its own Utilities sidebar page with Loot, Vendor & Junk and
+Restock tabs; restock switches are grouped with the targets/editor. Bindings and Keybindings remain
+separate; Quality of Life has four implemented tabs. The Meter right-click now
+opens Damage Meter through a dedicated accessor; the real OnClick-to-shell route
+passes and restoring the old destination fails. Compact framed icons, native
+client skins and Escape entry remain. Original option identities, callbacks,
+saved schemas and old links are retained. 5,158 mapping +391 shell checks across
+five models; eight negative controls rejected; related meter/window checks PASS.
+Full suite:272 scripts/942 syntax PASS. Native visuals/input/persistence/taint/FPS
+NOT RUN; selected Witchcraft setup approval remains pending. No foreground/input
+control, private settings/profiler writes, manual sync or publication.
+[Current requirements and evidence](OPTIONS_REWORK.md).
+
+9 November supported combat text audit (DEBUFF-BINDING-AUDIT-20261109): renewed
+user request checked against35 freshly fetched pinned Gethe files across Retail,
+Forever, Classic progression, Era and Anniversary.16 checks execute the actual
+Retail/Forever Lua validators: native dispel Texture registration rejects a
+FontString; aura animations reject external health/resource targets. Native type
+text supports content/symbols; duration text exposes only temporal color inputs;
+direct aura color lookup requires aura access. No supported binding was found for
+the existing numeric labels while Retail/Forever aura data is restricted. The
+all-client combat numeric-color requirement remains OPEN; no runtime workaround
+was installed. Prior forbidden read stays removed; portrait/native border path,
+readable Classic colors, options and saved data remain. Existing focused17,050
+checks PASS; owned runtime/test hashes unchanged from the correction. No new
+native operations, settings/profiler writes, sync, publication or performance claim.
+[Source findings and remaining requirement](UNITFRAME_DEBUFF_COMBAT.md#supported-route-audit--renewed-request).
+
+9 November supplied sidebar reference: accepted180x675 screenshot now drives compact framed categories, 24-unit feature rows, fixed22-unit system buttons and16-unit fitting icons on every client including Forever. Earlier icon-free styling superseded. User category relocation is implemented with4908 actual-builder mapping checks and421 complete-shell checks PASS; prior source objects/roots/info paths, valid mode lists and saved data retained. Quality of Life10tabs;Adventure/Combat/Utilities;fixed Settings/Profiles/Patch Notes/Credits. Native art/input/persistence/taint/performance NOT RUN; Witchcraft setup approval remains pending. No game input, settings/profiler writes, manual sync or publication. [Requirements and accepted reference](OPTIONS_REWORK.md).
+
+9 November options category clarification (OPTIONS-NAVIGATION-20261109): user explicitly authorizes moving settings to match the reference. Quality of Life has all10 reference tabs; Adventure/Combat/Utilities groups and fixed Settings/Profiles/Patch Notes/Credits footer. Original controls have one primary location each; original roots/info paths/owners and saved data remain. 4898 real-builder mapping checks and266 full-shell checks PASS across five desktop clients; three harmful catalogs rejected. Forever Options tabs/minimal sliders/list headers/scroll art and Journeys backdrop use native assets; other client families retain native templates. Native pixels/input/persistence/taint/performance remain NOT RUN; selected Witchcraft setup still awaits approval. No game input/settings/profiler writes/manual sync/publication. [Requirements and placement map](OPTIONS_REWORK.md).
+
+9 November craftable consumable tiers (CRAFT-TIER-FALLBACK-20261109): bandage,
+healing-potion and mana-potion Auto slots now use the highest ranked affordable
+learned recipe. Lower tiers remain available when stronger recipes lack bag
+materials; material gains promote normally. Supersedes the old top-only rule.
+1,609 focused checks across five client models and builtin/Syndicator; three
+baseline/candidate pairs reject old source with 540 failures and pass candidate.
+Full 272-script/942-syntax validation PASS twice; owned sources unchanged.
+Concurrent options source changes preserved and checked; see source guard.
+Existing cache/dependencies, profession routing, owned outputs and settings remain;
+no new driver resources. Verified external 2,417-source/history checkpoint and
+116 read-only settings metadata entries. Five installed source copies match.
+No game input, settings/profiler writes, manual sync or publication. Native
+clicks/pixels/taint/performance pending; no connected native tool.
+[Requirements, evidence and native steps](CONSUMABLE_CRAFT_TIERS.md).
+
+9 November forbidden debuff Texture read (DEBUFF-FORBIDDEN-READ-20261109):
+user13:45:15 native GetVertexColor failure rejects the previous color bridge;
+reported client/build unspecified. Removed both descendant getter operations,
+retained Texture reference and prepared color objects. Keep portrait border-parent
+layer fix on all five clients and native dispel border ownership. Numeric colors
+use readable types and restore normal color during aura restrictions; the original
+restricted numeric-color requirement remains OPEN. Fixture now rejects registered
+Texture descendant access too:17,050 focused checks;five baseline forbidden-error
+rejects/candidate passes;three controls;full271scripts/940syntax PASS with complete
+current Lua corpus match. All five installed runtime copies match via existing
+sync. External2411-source/history checkpoint and120 settings metadata verified.
+No new frame/event/hook/timer/polling or suppression;no game input/settings/profiler
+writes/manual sync/publication. Post-correction native error absence, portrait
+pixels and taint/performance remain pending. Original desktop result is historical
+rejected evidence, not native acceptance.
+[Correction, source restrictions and native steps](UNITFRAME_DEBUFF_COMBAT.md).
+
+Earlier DEBUFF-COMBAT-COLORS-20261109 is REJECTED by the user's13:45:15 native forbidden-object error. Its desktop mock allowed an inaccessible registered Texture. Retained comparisons are historical evidence only; see the [correction and open requirement](UNITFRAME_DEBUFF_COMBAT.md).
+
+9 November options rework (OPTIONS-REWORK-20261109): replaced HUD-tinted options chrome with the running client's native portrait/inset/tab skin; reference-style grouped navigation, collapsible settings and cross-page search across all 15 existing pages. Added Escape > FluxUI Settings; existing commands, builders, data and embedded editors retained. 240 focused lifecycle checks across five desktop client models and full271-script/940-syntax checks PASS; native pixels/input/persistence/taint/performance remain NOT RUN. User chose Witchcraft in-game; it is neither installed nor connected, so setup authorization/client restart remain needed. No game input, private settings/profiler writes, manual sync or publication. [Requirements, source pins and resume steps](OPTIONS_REWORK.md).
+
 9 November current-addon publication: include all current non-ignored source, assets, documentation and validation on main. External 2400-file source/history checkpoint and166 on-disk settings files verified. Existing full270-script/937-Lua PASS report matches the complete current Lua manifest; five publication-policy tests pass. DoctorFlux author/committer and no co-author trailers are required by active hooks. Native acceptance limitations remain unchanged.
 
 9 November native bag item targeting (BAG-ITEM-TARGETING-20261109): Forever
@@ -552,7 +2054,7 @@ PASS. Old party/portrait source rejects the regressions. 235/235 scripts PASS; 8
 owned final hashes match. Native current pixels/taint/real combat/input/CPU/FPS
 NOT RUN; screenshot is prior user evidence, not current-source acceptance. No new
 runtime regions/timer/ticker/global hook; one native driver reuses the hub.
-Fresh external checkpoint/history and45 read-only settings metadata entries kept;
+Fresh external checkpoint/history and 45 read-only settings metadata entries kept;
 independent concurrent edits preserved. No foreground control, game/WTF/profiler
 write, manual sync, branch or push. [Evidence](validation/group-visibility-focus-row-restore-2026-11-07.json).
 
@@ -614,7 +2116,7 @@ regressions. 233/233 scripts PASS; 897 syntax files/0 failures; owned final mani
 Native screen pixels/position/combat/taint/FPS NOT RUN; the earlier user-visible
 regression is recorded as rejected, not accepted by prior mock results.
 No new runtime frames/textures/events/hooks/timers/tickers; one panel-scale cache
-and constant layout arithmetic. External history/source checkpoint verified and45
+and constant layout arithmetic. External history/source checkpoint verified and 45
 settings metadata entries read-only; prior complete private recovery retained.
 No foreground control, game/WTF/profiler write, manual sync, branch or push.
 [Evidence](validation/focus-anchor-aura-fix-2026-11-07.json).
@@ -766,7 +2268,7 @@ five candidates pass41255 checks; four mutations rejected.12634 face/count/CD,
 1473 VFX and4973 mouseover checks PASS; existing320-transition paint budget
 unchanged. No new frame/event/timer/ticker/poll. Actual new modifier input/
 mouseover/combat/taint/pixels/FPS acceptance remains NOT RUN.
-Full run:894 syntax PASS;229/230 scripts PASS. The sole failure is the
+Full run:894 syntax PASS; 229/230 scripts PASS. The sole failure is the
 unrelated portrait_camera.lua fixture missing GetFramePublicDimensions;
 concurrent portrait work is preserved. Utility source owners/tests remain
 at their recorded hashes; all five installed copies match via the existing
@@ -1161,7 +2663,7 @@ Full run reports218 scripts/881 Lua syntax PASS at its captured snapshot.
 Three unrelated raid/party Lua files subsequently drifted; bank runtime/test
 owners remain stable, so no whole-addon PASS is claimed for the changing tree.
 All five installed bank runtime copies match through the existing mirror;
-no manual client copy performed. Source/history checkpoint and45 on-disk Flux settings metadata entries verified
+no manual client copy performed. Source/history checkpoint and 45 on-disk Flux settings metadata entries verified
 outside AddOns. No game input, WTF/profiler writes or new recurring driver.
 Native candidate pixels/input/taint/FPS remain pending; no connected client tool.
 [Evidence](validation/bank-restock-icon-2026-11-07.json).
@@ -1368,7 +2870,7 @@ and finally both Dispels and new Interrupts four-pane presets work immediately.
 Acceptance is selected Forever UI/function only; native combat/secret/taint,
 gamepad, other-client execution and FPS remain pending. Fresh pinned source,
 paired desktop/mutation/full results and exact identities are in the evidence.
-Final meter checks: all11 focused meter/threat scripts PASS;220 native-control
+Final meter checks: all11 focused meter/threat scripts PASS; 220 native-control
 checks,256 checks per pinned client menu replay, five baseline-rejecting pairs
 and five rejected mutations. All5 installed backend/layout pairs match the final
 tested hashes through the existing mirror. The final whole run has874 syntax
@@ -3141,3 +4643,8 @@ notes are historical and superseded. Current source matches the95-script/736-fil
 teleport corpus;527 focused checks pass again. [Fresh publication validation](validation/main-local-snapshot-2026-10-29.json)
 records the complete local snapshot. All current code/test/docs belong in main;
 private backups/settings/captures remain local. Native pending checks are unchanged.
+
+
+Native continuation17:40UTC: Forever background readback confirms zero session errors, solo/OOC, profiling0, all three merchant input toggles configured, party v7 ready/secure with four hidden solo members. No runtime/settings/gameplay changes. User reports a real test party/raid with combat roster changes is unavailable now; actual combat/grouped acceptance remains pending. First consecutive unavailable-scenario audit; goal active. See FOREVER_NATIVE_PERFORMANCE.md and its validation JSON.
+
+9 November goal blocker audit3: actual combat roster and grouped performance acceptance remain unavailable after three consecutive goal turns. User cannot arrange the real test group now. Goal blocked pending that scenario; no new runtime, input, settings or profiler changes. Completed evidence and exact pending checks remain in FOREVER_NATIVE_PERFORMANCE.md.

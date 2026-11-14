@@ -1,5 +1,136 @@
 # Inventory: sources, snapshots, ledgers, and item knowledge
 
+14 November casting/inventory lag: Dirty bank updates retain fresh maps and persistence, classify touched IDs, and retain publication debt through failure and nested updates. Mail keeps live capacity checks with early availability exit. [Comparisons and limits](LAG_HOTSPOT_OPTIMIZATION.md).
+
+14 November AHR-104: minimum restore now determines healing/mana potion tiers
+globally, including owned buttons, crafting, vendor memory/restocking and automatic
+junk. A higher maximum cannot displace a higher minimum. Saved data normalizes
+when verified; unresolved old values stay saved without promoting. Manual Junk
+priority remains. [Rules and acceptance](AUCTION_RESTOCK.md#global-potion-minimum-restore).
+
+14 November AHR-96–101: independent inline healing/mana/bandage upgrade choices,
+shared manual exclusions and default-on automatic `discolored` healing-name filter.
+Best/button/persist/vendor/AH/tier owners use the same policy, with combat binding
+writes deferred. Three default-on global carried-upgrade Junk settings live under
+Loot & Items → Vendor; manual Junk wins. [Behavior](AUCTION_RESTOCK.md#inline-upgrades-bandages-and-item-exclusions)
+and [365-script/1053-syntax validation](validation/auction-inline-upgrades-2026-11-14.json).
+
+13 November AUCTION-VENDOR-ROUTES-20261113: client-scoped vendor catalogue plus typed observations; strict cheaper-AH exceptions, exact physical-unit pricing and mixed recipe routes; configured visits learn without enabling automation. [Rules and native limits](AUCTION_RESTOCK.md#vendor-catalogue-observations-and-auction-discounts).
+
+13 November AUCTION-FOLLOWUP-20261113: acknowledged AH restock jobs retain exact recipes for a conditional mail/vendor/craft HUD button. Closed-profession comparison uses saved learned facts. [Workflow and native limits](AUCTION_RESTOCK.md#follow-up-button-and-closed-profession-recipes).
+
+13 November AUCTION-PURCHASE-CHARGES-20261113: matching purchase receipts, live commodity quantities, clearer selected cells and charged-item targets now share the existing restock/recipe/mail owners. [Behavior and native limits](AUCTION_RESTOCK.md#purchase-identity-selection-and-charged-items); [validation](validation/auction-purchase-charges-2026-11-13.json).
+
+13 November saved character recipes (CHARACTER-RECIPES-20261113; CRP-01–06): existing
+profession SavedVariables now retain complete learned material/output/yield/slot
+facts for AH and future shared consumers. Filtered and partial scans preserve
+known facts; explicit unlearn removes them; unknown learned state and NPC/legacy
+linked knowledge are rejected. Output-based per-character queries deduplicate
+modern aliases. Proven deterministic recipes work after closing/reloading the
+profession; uncertain grades still require native operation proof. Finished-item
+caps include crafting/vendor acquisition cost;0 stays unlimited. Selected missing
+vendor inputs create temporary per-character targets in the ordinary vendor list.
+They sum shared requirements, subtract bags/mail once, survive the vendor trip
+and reload, and retire on completion/invalidation without changing permanent
+targets. Live vendor price ceilings protect the plan; permanent base targets
+still buy independently. Pure temporary rows are read-only; no new controls.
+704 new recipe checks;20 models;17 harmful controls;320 scripts/1002 syntax PASS at captured run;17,229 combined auction/recipe checks. Five repeated
+work models:4→2 schematic reads,4→2 duplicate-free catalogue rows,0→1 usable
+closed-profession AH variants. These are work models, not native time/FPS.
+Scoped guard:5 existing runtime files and1 new test;2,609-file external checkpoint
+and47 settings metadata entries verified. Concurrent unrelated workspace edits
+are retained and listed separately; captured full-run scope is explicit.
+Open each relevant profession once after updating to populate the new facts.
+Current native capture/reload/vendor/coexistence/controller/taint acceptance and
+the prior Forever purchase BLOCKED resolution remain pending. No client input,
+private settings/profiler write, manual sync, commit or publication.
+[Behavior/API](CHARACTER_RECIPES.md);[evidence](validation/character-recipes-2026-11-13.json).
+
+12 November potion discovery stall (AUCTION-POTION-STALL-20261112; AHR-38–40): the new
+screenshot remains Finding stronger usable potions. The real parser reproduced
+a spent shared-budget failure that the earlier classification stub missed. Each
+deferred AH batch now renews that budget (still at most8 IDs). Potion results mark
+whether restore is known; name-only placeholders retry until real tooltip data
+arrives and cannot be ranked as restore1. Known unusable potions are skipped first.
+Native ADDED browse payloads now contribute later rows and cumulative unique-key
+progress, preserving the initial catalog instead of repeatedly reading its first
+batch. Read-only /fluxah debug adds search phase/term/results/page/deadline.
+Five repeated desktop work models: baseline refs100/101,734 load requests and
+timeout; candidate refs201/300,30 requests and ready. Simulated elapsed times are
+not native measurements. 552 potion/16525 auction checks;20 restock/15 receipt models;6 new harmful controls;314 scripts/995 syntax PASS.
+Four existing runtime/test files changed;0 new; external2,608-file source/history
+checkpoint and47 settings metadata entries verified. Existing UI, settings,
+unquoted terms, price/usability/shared tiers and per-press buying are preserved.
+User native reproduction route/direct implementation remain selected. Current
+native retest and earlier Forever purchase BLOCKED resolution remain pending.
+No client input/focus, private settings/profiler write, manual sync or publication.
+[Current behavior](AUCTION_RESTOCK.md);[evidence](validation/auction-restock-potion-stall-2026-11-12.json).
+
+12 November auction density/source/potion correction (AUCTION-DENSE-STOCK-20261112; AHR-28–37)
+replaces the recipe/cost pane with a full-width paged grid and Direct/Craftable
+labels (24cells at modeled800×600), retaining three money fields and one Buy next.
+Old/unacknowledged pending attempts are pruned; real receipt/private/provider
+incoming credits still reconcile once. Only typed unlimited merchant supply
+excludes an item; limited/unknown/price-only/extended-cost records stay eligible.
+Food/water are absent, including manual entries; vendor spell reagents use that
+same unlimited-supply rule. All listed eligible items, including full/zero targets,
+are price-scanned. Optional Auctionator public hints and guarded unit-price/history
+write-back coalesce one notification; historical prices never authorize buys.
+Plain unquoted partial healing potion / mana potion searches collect all native
+result pages, validate usability/live offers/caps, choose stronger tiers and update
+the real shared reference/tier. Weaker bag/bank stock cannot fill the stronger
+target. Original caps survive a scrubbed ref; unknown metadata holds potion buys.
+Craft preference, exact yields/shared inputs, price caps and one transaction per
+press remain. 16413 focused checks;20 restock/15 receipt models;41 harmful controls;314 scripts/995 syntax PASS;226 pinned upstream blobs verified.
+Source guard:15 existing changed runtime/test files and4 new since the verified
+2,602-file external checkpoint;47 settings metadata entries, no private values.
+Earlier Forever mouse BLOCKED failures and screenshot defects remain prior native
+evidence; current live purchases/pixels/coexistence/controller/taint/FPS NOT RUN.
+No client input/focus, manual sync, settings/profiler write, commit or publication.
+[Behavior and remaining native checks](AUCTION_RESTOCK.md);
+[current evidence](validation/auction-restock-dense-potions-2026-11-12.json).
+
+## Immediate auction purchase mail — 12 November 2026
+
+12 November auction follow-up (AUCTION-AUTO-CRAFT-TAB-20261112; AHR-10–27) supersedes the
+initial popup/two-press/zero-disables/clear-pending design below. Real AH tab uses
+shared restock cells/current icons and three currency fields; top edge/height
+match neighboring tabs. Whole-list/material planning is automatic; cell selection
+only edits. One press quotes/confirms one qualifying transaction; next needs a new
+press. Zero/unset is unlimited. Saved Prefer crafting materials toggle is in AH
+and Vendor→Restock; equal/cheaper learned recipes use exact missing inputs/yield,
+vendor costs/shared stock and finite parent budgets. Incoming inbox plus transit
+credit reconciles automatically (19/20 feathers +1 pending blocks rebuy); there is
+no Clear pending UI/API. Built-in inventory now publishes confirmed AH purchases
+to its mail snapshot/ledger immediately, including other auction controls; provider
+Ready handoff stays inert. Prediction/private transit credit counts once and an
+early empty inbox cannot discard the own reservation. Proven owned failures and
+synchronously blocked calls release their own credits without phantom delivery.
+13078 focused checks;20 restock/15 receipt models;34 harmful controls;312 scripts/991 syntax PASS;202 upstream Git blobs verified;
+source guard permits10 existing changed files/5 new files in this follow-up;
+shared cells/professions/Syndicator adapter remain byte-identical. Built-in Mail/
+Auctions are intentionally extended. External2,595/2,598-
+file source/history checkpoint and47 settings metadata entries verified.
+Two prior Forever mouse-click BLOCKED failures remain native evidence; direct
+calls/action-before-disable candidate has NOT passed native retest. No-search,
+pixels, transactions/coexistence, persistence, controller, taint and FPS acceptance
+pending. Auctionator345/TSM4.15.6/Syndicator290 inspected read-only at explicit request;
+ARR notices preserved; no copied code. No client focus/input, settings/profiler
+write, manual sync or publication. Reload after user-managed synchronization.
+[Current behavior and native checks](AUCTION_RESTOCK.md).
+
+11 November all-consumable audit: all seven real button modules execute together with both grid count methods across five client models and both providers. Loading/depletion/refill/charges/regen and bounded shared work PASS; no additional runtime changes. [2,580 integrated checks, source guard and pending native acceptance](COMBAT_GRID_LIVE_COUNTS.md#all-seven-real-button-modules-audited-together).
+
+11 November native loading-hold fix: the capture proves food 1 with all sources 0 because an open loading latch pins it. A guarded loading-screen completion event now resumes the existing world refresh and bounded settle. All seven kinds and both providers share the fix; no new background driver or protected write. [Captured failure, tests and pending native retest](COMBAT_GRID_LIVE_COUNTS.md#native-capture-loading-completion-left-open).
+
+11 November screenshot follow-up: loading/world-entry handoff and portal count-only recovery now share inventory ownership; valid carried-only modern zero is retained. Covers all seven kinds and other item faces with either provider. Optional `/fluxinv buttons` captures an intermittent bad state without polling. Desktop regressions pass; native symptom acceptance stays open. [Source reconciliation and evidence](COMBAT_GRID_LIVE_COUNTS.md#screenshot-follow-up-count-sources-and-loading-holds).
+
+10 November passive pass 3: Index count options use scalars, live conversion reuses a helper and GetFirst stops after one fresh result; full Find and override seams remain. [Before/after and native limits](PASSIVE_PERFORMANCE_PASS3.md).
+
+10 November use/depletion follow-up: all seven kinds show dark0 for the displayed exhausted item in combat; OOC selection advances or clears to the empty placeholder. Cooldown-only signals, stale text-cache hits and conjured recharge recovery use existing owners with both providers. Same-frame work coalesces with one100ms follow-up. [User symptom,4066 focused checks and native limits](COMBAT_GRID_LIVE_COUNTS.md).
+
+10 November combat grid count correction: all seven consumable kinds use the existing native bag-event fallback with Syndicator, including gems/stones. Reliable live copies keep count/tint and charged ownership current; same-frame recounts coalesce. Built-in dispatch, loading holds and combat action ownership remain. [Requirements, 2,175 checks and native limits](COMBAT_GRID_LIVE_COUNTS.md).
+
 <!-- STRESS-FIXES-20261107 -->
 7 November applied stress fixes: Inventory callback tails use a cursor, retaining nested callback/token/reason requests without quadratic old-tail copying. After two cancelled auction scans, retry waits for the existing quiet interval; final snapshots remain atomic and publish after quiet. Guild-bank/void callbacks are unchanged. [Evidence](../Stress%20test%20doc/applied-fixes/README.md). Native taint/pixels/performance acceptance remains pending.
 <!-- /STRESS-FIXES-20261107 -->
@@ -15,6 +146,18 @@ This is the current implementation reference for `Flux.Inventory`, its adapters,
 ## Ownership and initialization
 
 [`Inventory/Init.lua`](../Inventory/Init.lua), `Inv.Start`, registers the inventory module, installs scheduler and bank-state hooks, begins the login reliability hold, and chooses a source. [`Syndicator/Adapter.lua`](../Inventory/Syndicator/Adapter.lua), `Adapter.Start`, leaves built-in facts available while waiting for Syndicator readiness, starting the built-in source immediately if none exists. `Ready` calls the idempotent `Bind`, transfers ownership to Syndicator and rebuilds snapshots. An absent provider remains retryable through late addon loading. There is no three-second timeout or session-long refusal to hand off. Built-in currency callbacks check ownership at execution time after the handoff; their four shared event subscriptions remain installed but perform no currency work. See [regression evidence](PERFORMANCE_PROTOCOL.md).
+
+13 November [Syndicator data continuity](SYNDICATOR_SYNC.md) adds a saved live-root
+mirror while the companion owns inventory. Leaving that provider converts the
+mirror into a detached built-in ledger once; returning reconciles proven newer
+built-in fields/containers into unchanged external records before the existing
+handoff. Independently changed external data and deletions remain authoritative.
+This adds no synchronization polling, recurring timer or cache subscriptions;
+bounded existing callbacks refresh changed records only at the transition,
+including neutral mail notifications for account-search invalidation. Alt bag
+notifications are avoided because Baganator treats their sender as live.
+Guild-bank and void callbacks retain their existing owners. Native SavedVariables
+reload persistence and performance acceptance remain pending.
 
 `Inv.source` is `nil`, `builtin`, or `syndicator`; `ready`, `started`, and source readiness are separate state. [`LegacyBridge.lua`](../Inventory/LegacyBridge.lua) exposes old `FluxInv`/`FluxInventory` names over the new facade. [`Restock/FluxRestock_Inv.lua`](../Inventory/Restock/FluxRestock_Inv.lua) adds the economy-specific adapter and live mutation helpers; [`Respec/FluxRespec_Inv.lua`](../Respec/FluxRespec_Inv.lua) adds gear-oriented queries. The older `Inventory/FluxInv/` implementation is present on disk but is not the loaded scanner.
 
@@ -88,9 +231,9 @@ Outgoing mail is attributed to an already-known alt only after send success. Ret
 
 Character keys use shared player-name helpers where available, including regional-name handling. Historical `FluxUIGoldLedger` rows can seed character stubs through `ImportGoldLedgerStubs`. Gold display deduplicates folded name/realm identities and respects hidden/deleted rows. Shared-currency handling avoids blindly summing currencies such as Trader's Tender across characters.
 
-When `Store.UsesSyndicator()` is true, accessors proxy Syndicator's account API instead of writing a second account ledger. `Store.GetDB()` returns nil in that mode. The current-character bank-count compatibility store remains `_FluxUI_CharSavedVars.Bank.charCounts/warCounts`; `LoadPersistedBankCounts` can seed empty snapshots. `PersistBankCounts` only overwrites those fallback maps when the live map is nonempty; an empty fallback map should not be read as a guaranteed fresh bank scan.
+When `Store.UsesSyndicator()` is true, accessors proxy Syndicator's account API and `Store.GetDB()` returns nil. The transition bridge retains the complete provider root through `FluxUIInventoryDB.SyndicatorSync.data`; it does not rebuild a second ledger on each provider update. `Store.GetSyncDB()` supplies the local root only to that bridge, and `EnsureDB` restores a detached ledger once after a delegated session. See [freshness rules and native limits](SYNDICATOR_SYNC.md). The current-character bank-count compatibility store remains `_FluxUI_CharSavedVars.Bank.charCounts/warCounts`; `LoadPersistedBankCounts` can seed empty snapshots. `PersistBankCounts` only overwrites those fallback maps when the live map is nonempty; an empty fallback map should not be read as a guaranteed fresh bank scan.
 
-[`Tooltip.lua`](../Inventory/Tooltip.lua) appends location lines only when Syndicator is not supplying them. Settings come from scoped Status Bars options: item/currency lines, Shift-only, connected realms, faction, equipped, guild, blank line, and race icons. Default behavior shows item/currency lines, equipped and guild locations, a separator and race icons; Shift/realm/faction filters default off. Character detail is capped at twenty rows. Cached location lines describe the last known store, not real-time alt access.
+[`Tooltip.lua`](../Inventory/Tooltip.lua) appends location lines only when Syndicator is not supplying them. Configure **Inventory Awareness in Loot & Items → Loot**: item/currency lines, Shift-only, connected realms, faction, equipped, guild, blank line, and race icons. The controls retain their existing scoped Status Bars storage; no values or scopes migrate when their navigation moves. Default behavior shows item/currency lines, equipped and guild locations, a separator and race icons; Shift/realm/faction filters default off. Character detail is capped at twenty rows. Cached location lines describe the last known store, not real-time alt access.
 
 ## Classification, consumables, spells, and professions
 
@@ -110,6 +253,11 @@ When `Store.UsesSyndicator()` is true, accessors proxy Syndicator's account API 
 | [`FluxEquipSlotCandidates.lua`](../Inventory/FluxEquipSlotCandidates.lua) | Usability/equipment-slot candidates, optional empty-slot actions and live equip/unequip helpers used by paperdoll and binding surfaces. |
 
 Profession startup currently marks missing recipes as `needsOpen`; it does not auto-open protected profession windows from timers. Forever uses available filtered recipe/profession APIs instead of assuming `GetAllRecipeIDs` or the older profession-info API exists. `Craft.ExecuteCraft` may open, scan, and attempt one craft from the player's click. `TryFlushPendingCraft` only invalidates the craftability cache and returns false: profession events do not execute a queued protected craft. A short click lock prevents overlapping hosts or down/up clicks from crafting twice.
+
+9 November craft-tier correction: any affordable learned bandage/healing/mana
+potion recipe can keep Auto visible. Crafting prefers the highest ranked
+affordable tier, with fallback and promotion as bag materials change. This
+supersedes the old top-recipe-only rule. [Checks and native steps](CONSUMABLE_CRAFT_TIERS.md).
 
 ## Built-in Classic combined bags
 

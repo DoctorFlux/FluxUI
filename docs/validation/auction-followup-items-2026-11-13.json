@@ -1,0 +1,615 @@
+{
+  "dateUTC": "2026-11-13T15:18:21.118761+00:00",
+  "changeID": "AUCTION-FOLLOWUP-ITEMS-20261113",
+  "candidate": "AH-restock-followup-items-20261113-r13",
+  "requirements": [
+    "AHR-74",
+    "AHR-75",
+    "AHR-76",
+    "AHR-77",
+    "AHR-78",
+    "AHR-79",
+    "AHR-80"
+  ],
+  "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\auction-restock\\tab-crafting-followup\\followup-items-limit-20261113T150000Z\\checkpoint.json",
+  "privateSettingsCopied": false,
+  "sourceGuard": {
+    "sourceFiles": 2729,
+    "settingsMetadataEntries": 95,
+    "archivesVerified": {
+      "history-before.bundle": true,
+      "source-before.zip": true
+    },
+    "candidateRawHashes": {
+      "AddonOptions/FluxOptionsCatalog.lua": "502cf4c5979b2be078a09ddb76609d1ef30b663e5850763bc4441f21b00db55f",
+      "AddonOptions/FluxOptionsVendor.lua": "5c092ab6c35b41fbe087065a79065565592f97b9ddbd70fd78a15569e7d85610",
+      "Inventory/Restock/Auction/FluxAuctionRestock.lua": "85515f4b49504eba6b6f3e8200a4a60bc0ab25946ccf88d93f66615e21aa5105",
+      "Inventory/Restock/Auction/FluxAuctionRestockCraft.lua": "298d37a31bf3dcd8db31ec0fcbe5e520402f677981e4fc953718077a72d21bac",
+      "Inventory/Restock/Auction/FluxAuctionRestockData.lua": "7a8f69cd9c16462bc0bcb7c86d280032ce2b4f06d83c854ab5bffc38d0a1fffb",
+      "Inventory/Restock/Auction/FluxAuctionRestockFollowup.lua": "ba2d8a396ef3e6500971a49abf69162914dd20da8d64b054f9526a7abdc0c9ca",
+      "Inventory/Restock/Auction/FluxAuctionRestockFollowupUI.lua": "a1e67221d7628ffb53f7652fdced93697240220e83000a1775b067fbdd51f5a4",
+      "Inventory/Restock/Auction/FluxAuctionRestockLocale.lua": "86e98edb8f2462fd147424eee3dcd8d05007c67505f28ebea905680aa4120657",
+      "Inventory/Restock/Auction/FluxAuctionRestockPotions.lua": "11a750be8d51a8c2910f860f3f6dec22c59280a0454f635135fce25dd1444586",
+      "Inventory/Restock/Auction/FluxAuctionRestockPrices.lua": "49bd240a433ea2565daa049771dfaaaa0cbe79fa1f56c1de61cf50e471bccd6f",
+      "Inventory/Restock/Auction/FluxAuctionRestockUI.lua": "37042004daf9a0c23d8f52251200b2db06b1e9ab3e70ecb5f3f97985e0c78f85",
+      "Inventory/Restock/Bank/FluxBankRestock.lua": "d11ad3885f6d15022d525f8cdd411092f37b093b35c5ad5d4c6add96df923648",
+      "Inventory/Restock/Vendor/FluxVendorBuy.lua": "735a44386db93102aef38bacf8d2e7d3c8712a08f0e6e5f9f5827eb692468c45",
+      "Mail/Restock.lua": "2c89985cfc477ca6fadc5ab5635b14ee01b3aa6e5c4ace514c5bd27389410e89",
+      "tests/auction_restock.lua": "bde06db450e69f4806cdee8ed327bc2386fe7530dbc010987997b067fa7c69f1",
+      "tests/auction_restock_crafting.lua": "0f7848f5a7cd7cc1bfb6cda31f133131ee18234693b53dbcf6bae4dd05cd3a78",
+      "tests/auction_restock_followup.lua": "d5b051aacd11b10c6af398a9b0b213d5cbd1e925fcc1864d8126f029cdb1654c",
+      "tests/auction_restock_followup_automation.lua": "41084dbf4ff6a00f0803222733410950f1329ab0ebcefd3cdf12b100bbd6758b",
+      "tests/auction_restock_followup_integration.lua": "a6cd2b3addc306900fedd5d9d02aedf11490795827c59500e940f865fb70a4fd",
+      "tests/auction_restock_followup_ui.lua": "400ae8269c77fa27bde0e0d202574029c3b0d65f9019fc10ecd1c66753985b4b",
+      "tests/auction_restock_market.lua": "aedd329fd17324db992b27f5a8e1ca4a4e5bc0032558ed92caf79f2a81ec1985",
+      "tests/auction_restock_potions.lua": "78fbd9166a0819a86f64039f95c77026dd9240b2816f554d548037824bc4feac",
+      "tests/auction_restock_price_policy.lua": "2366a5ecc463767802cf99b2668c09b7c8013f3e41ee58803a247566ebc356e9",
+      "tests/auction_restock_queue.lua": "6fae6c46a10876f2b1ef019dd6b6ed89f12b4f4661fdf15e3e04e4ad162abed6",
+      "tests/auction_restock_scan_all.lua": "5193e0731327a7d4181adf02719bffbdf7115a7d86316384ffb77cf41d5f5bba",
+      "tests/auction_restock_scroll.lua": "cf0607ee856e6e16867ad49c31f07120be0a2b09f9164ae699459eba49b45687",
+      "tests/auction_restock_vendor_routes.lua": "71542e22be5f2022b9ef28e4e09c2eb6991826def44a6dc72c8b6e0811cf2b39",
+      "tests/auction_restock_workflow.lua": "24742717bb2ca722a22c2937958d7573f9b10d30d29fff3f3fc57bbbd4ae76cd",
+      "tests/mail_restock.lua": "436427dd7b5a08a395cc664622216522b04be8db7c67f6a4bb918f1f04d052b3",
+      "tests/options_navigation.lua": "ef784c2656e64b585bdcae504ac2892452f741ee42f48e14b359c6edbf6b5d6e"
+    },
+    "changedOwned": [
+      "AddonOptions/FluxOptionsCatalog.lua",
+      "AddonOptions/FluxOptionsVendor.lua",
+      "Inventory/Restock/Auction/FluxAuctionRestock.lua",
+      "Inventory/Restock/Auction/FluxAuctionRestockCraft.lua",
+      "Inventory/Restock/Auction/FluxAuctionRestockData.lua",
+      "Inventory/Restock/Auction/FluxAuctionRestockFollowup.lua",
+      "Inventory/Restock/Auction/FluxAuctionRestockFollowupUI.lua",
+      "Inventory/Restock/Auction/FluxAuctionRestockLocale.lua",
+      "Inventory/Restock/Auction/FluxAuctionRestockPotions.lua",
+      "Inventory/Restock/Auction/FluxAuctionRestockPrices.lua",
+      "Inventory/Restock/Auction/FluxAuctionRestockUI.lua",
+      "Inventory/Restock/Bank/FluxBankRestock.lua",
+      "Inventory/Restock/Vendor/FluxVendorBuy.lua",
+      "Mail/Restock.lua",
+      "tests/auction_restock.lua",
+      "tests/auction_restock_crafting.lua",
+      "tests/auction_restock_followup.lua",
+      "tests/auction_restock_followup_ui.lua",
+      "tests/auction_restock_market.lua",
+      "tests/auction_restock_potions.lua",
+      "tests/auction_restock_queue.lua",
+      "tests/auction_restock_scroll.lua",
+      "tests/auction_restock_vendor_routes.lua",
+      "tests/auction_restock_workflow.lua",
+      "tests/mail_restock.lua",
+      "tests/options_navigation.lua"
+    ],
+    "addedOwned": [
+      "tests/auction_restock_followup_automation.lua",
+      "tests/auction_restock_followup_integration.lua",
+      "tests/auction_restock_price_policy.lua",
+      "tests/auction_restock_scan_all.lua"
+    ],
+    "concurrentLuaChangesPreserved": [
+      "Minimap/FluxMinimapButtons.lua",
+      "tests/minimap_extra_layout.lua",
+      "tests/minimap_side_border.lua"
+    ],
+    "deletedFiles": []
+  },
+  "full": {
+    "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\auction-restock\\tab-crafting-followup\\followup-items-limit-20261113T150000Z\\full.json",
+    "sha256": "3261ab24eb20e8a9f7bfab582e59eba1f19aeb1f9a02821b8dabc6c46f0c8404",
+    "pass": 348,
+    "fail": 0,
+    "syntaxFiles": 1036,
+    "syntaxFailures": 0,
+    "currentCompleteManifestMatches": true,
+    "initialReport": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\auction-restock\\tab-crafting-followup\\followup-items-limit-20261113T150000Z\\full-initial.json",
+      "sha256": "aea1f0f135940cf9136cd3aa17b8f54c74a1dbf643af62b4cff2ab481fb6c84a",
+      "pass": 346,
+      "fail": 2,
+      "failures": [
+        {
+          "path": "tests/auction_restock.lua",
+          "exit": 1,
+          "wallSeconds": 0.0259,
+          "output": "lua: tests\\auction_restock.lua:5: no rebuy before mail delivery\nstack traceback:\n\t[C]: in function 'assert'\n\ttests\\auction_restock.lua:5: in local 'check'\n\ttests\\auction_restock.lua:434: in main chunk\n\t[C]: in ?\n"
+        },
+        {
+          "path": "tests/auction_restock_crafting.lua",
+          "exit": 1,
+          "wallSeconds": 0.0304,
+          "output": "lua: tests\\auction_restock_crafting.lua:3: covered craft output does not trigger duplicate finished purchase\nstack traceback:\n\t[C]: in function 'assert'\n\ttests\\auction_restock_crafting.lua:3: in local 'check'\n\ttests\\auction_restock_crafting.lua:77: in main chunk\n\t[C]: in ?\n"
+        }
+      ],
+      "resolution": "Old assertions assumed a covered target cannot be searched. Updated to settle the explicit read-only scan and verify unchanged native quote/confirmation/bid counts and pending quantities. No runtime change after that run."
+    }
+  },
+  "focused": [
+    {
+      "path": "tests/auction_active_rows.lua",
+      "exit": 0,
+      "wallSeconds": 0.0858,
+      "output": "auction active rows: 156 checks, 0 failures; burst visits=600, classifications=200\n"
+    },
+    {
+      "path": "tests/auction_cold_tooltip.lua",
+      "exit": 0,
+      "wallSeconds": 0.03,
+      "output": "provider-absent nilReplies=500 missingLinesReplies=1 errors=0 frames=1 timers=0 nativeRequests=0 continuations=0 knownRows=3\nprovider-present nilReplies=500 missingLinesReplies=1 errors=0 frames=1 timers=0 nativeRequests=0 continuations=0 knownRows=3\nauction cold tooltip: 48 checks, 0 failures; desktop production replay only\n"
+    },
+    {
+      "path": "tests/auction_incoming_mail.lua",
+      "exit": 0,
+      "wallSeconds": 0.5908,
+      "output": "Auction incoming mail: 743 checks PASS; 15 client/provider profiles; native purchase/taint/latency NOT RUN\n"
+    },
+    {
+      "path": "tests/auction_metadata_work.lua",
+      "exit": 0,
+      "wallSeconds": 0.0781,
+      "output": "auction metadata: 230 checks, 0 failures; burst names=0 info=0 walks=0 junk=0 invalidations=0 cacheEntries=0\n"
+    },
+    {
+      "path": "tests/auction_query_ownership.lua",
+      "exit": 0,
+      "wallSeconds": 0.0554,
+      "output": "auction query ownership: 628 checks, 0 failures; duplicate-burst legacy queries=4 modern queries=6 foreign queries=0 reentrant queries=10\n"
+    },
+    {
+      "path": "tests/auction_refresh_batching.lua",
+      "exit": 0,
+      "wallSeconds": 0.0672,
+      "output": "auction refresh batching: 365 checks, 0 failures; progressive rebuilds=10 snapshot rows=5000 maps=10 publications=10 scheduler requests=10\n"
+    },
+    {
+      "path": "tests/auction_restock.lua",
+      "exit": 0,
+      "wallSeconds": 0.6321,
+      "output": "Auction restock: 19532 checks PASS; 20 client/provider/addon profiles; native purchases/input/taint/pixels/FPS NOT RUN\n"
+    },
+    {
+      "path": "tests/auction_restock_bank_flag_ui.lua",
+      "exit": 0,
+      "wallSeconds": 0.6215,
+      "output": "Auction ingredient bank UI: 180 checks PASS; 20 profiles; native clicks/pixels/controller NOT RUN\n"
+    },
+    {
+      "path": "tests/auction_restock_charges.lua",
+      "exit": 0,
+      "wallSeconds": 0.9183,
+      "output": "Auction restock charges: 19722 checks PASS; 20 profiles +33 real-receipt profiles; native charges/mail/purchases NOT RUN\n"
+    },
+    {
+      "path": "tests/auction_restock_crafting.lua",
+      "exit": 0,
+      "wallSeconds": 0.7143,
+      "output": "Auction restock crafting/tab: 836 checks PASS; 20 profiles; native quote permissions/rendering/controller NOT RUN\n"
+    },
+    {
+      "path": "tests/auction_restock_followup.lua",
+      "exit": 0,
+      "wallSeconds": 1.7805,
+      "output": "Auction restock follow-up: 674 checks PASS; 10 client/provider profiles; native mail/vendor/craft permissions NOT RUN\n"
+    },
+    {
+      "path": "tests/auction_restock_followup_automation.lua",
+      "exit": 0,
+      "wallSeconds": 1.4212,
+      "output": "Auction follow-up automation: 800 checks PASS; 20 client/provider/global-option profiles; native actions/glow NOT RUN\n"
+    },
+    {
+      "path": "tests/auction_restock_followup_craft.lua",
+      "exit": 0,
+      "wallSeconds": 0.2195,
+      "output": "Auction restock follow-up craft: 1692 checks PASS; 20 profiles; native open/craft/input/taint NOT RUN\n"
+    },
+    {
+      "path": "tests/auction_restock_followup_integration.lua",
+      "exit": 0,
+      "wallSeconds": 0.2381,
+      "output": "Auction restock follow-up integration: 270 checks PASS; 10 client/provider profiles; native actions/pixels/input/taint NOT RUN\n"
+    },
+    {
+      "path": "tests/auction_restock_followup_ui.lua",
+      "exit": 0,
+      "wallSeconds": 0.0479,
+      "output": "Auction restock follow-up UI: 16763 checks PASS; 5 client profiles; native pixels/input/controller/taint NOT RUN\n"
+    },
+    {
+      "path": "tests/auction_restock_generation.lua",
+      "exit": 0,
+      "wallSeconds": 0.247,
+      "output": "Auction generation/quantity: 276 checks PASS; 20 client/provider profiles; native detection/buying NOT RUN\n"
+    },
+    {
+      "path": "tests/auction_restock_market.lua",
+      "exit": 0,
+      "wallSeconds": 2.6827,
+      "output": "Auction dense grid/stock/price bridge: 2532 checks PASS; 20 profiles; native pixels/vendor coverage/coexistence NOT RUN\n"
+    },
+    {
+      "path": "tests/auction_restock_potions.lua",
+      "exit": 0,
+      "wallSeconds": 4.5566,
+      "output": "Auction potion upgrades: 552 checks PASS; 20 profiles; native browse/usability/tier/input NOT RUN\n"
+    },
+    {
+      "path": "tests/auction_restock_price_policy.lua",
+      "exit": 0,
+      "wallSeconds": 1.7885,
+      "output": "Auction explicit price policy: 788 checks PASS; 20 profiles; native input/rendering NOT RUN\n"
+    },
+    {
+      "path": "tests/auction_restock_purchase_flow.lua",
+      "exit": 0,
+      "wallSeconds": 0.7815,
+      "output": "Auction restock purchase flow: 400 checks PASS; 20 client/provider/excess profiles; native purchasing/taint/latency NOT RUN\n"
+    },
+    {
+      "path": "tests/auction_restock_queue.lua",
+      "exit": 0,
+      "wallSeconds": 0.6122,
+      "output": "Auction restock automatic queue: 928 checks PASS; 20 profiles; native purchase permissions/pixels NOT RUN\n"
+    },
+    {
+      "path": "tests/auction_restock_scan_all.lua",
+      "exit": 0,
+      "wallSeconds": 0.8613,
+      "output": "Auction all-target scans: 340 checks PASS; 20 client/provider/addon profiles; native searches/tier updates NOT RUN\n"
+    },
+    {
+      "path": "tests/auction_restock_scroll.lua",
+      "exit": 0,
+      "wallSeconds": 1.1325,
+      "output": "Auction compact scrolling tab: 772 checks PASS; 20 client/addon profiles; native pixels/clipping/controller/input/taint NOT RUN\n"
+    },
+    {
+      "path": "tests/auction_restock_sources.lua",
+      "exit": 0,
+      "wallSeconds": 3.4531,
+      "output": "Auction restock sources: 1464 checks PASS; 20 profiles; native bank/vendor permissions NOT RUN\n"
+    },
+    {
+      "path": "tests/auction_restock_vendor_prices.lua",
+      "exit": 0,
+      "wallSeconds": 0.1409,
+      "output": "Auction vendor opportunity prices: 1170 checks PASS; 20 profiles; native vendor/AH prices/input NOT RUN\n"
+    },
+    {
+      "path": "tests/auction_restock_vendor_queue.lua",
+      "exit": 0,
+      "wallSeconds": 0.234,
+      "output": "Auction vendor opportunity queue: 1110 checks PASS; 20 profiles; native purchasing/taint/provider coexistence NOT RUN\n"
+    },
+    {
+      "path": "tests/auction_restock_vendor_routes.lua",
+      "exit": 0,
+      "wallSeconds": 1.4084,
+      "output": "Auction restock vendor routes: 468 checks PASS; 20 client/addon profiles; native price/stack/vendor/craft permissions NOT RUN\n"
+    },
+    {
+      "path": "tests/auction_restock_workflow.lua",
+      "exit": 0,
+      "wallSeconds": 0.9875,
+      "output": "Auction restock workflow: 310 checks PASS; 10 client/provider profiles; native delivery/permissions NOT RUN\n"
+    },
+    {
+      "path": "tests/auction_vendor_catalog.lua",
+      "exit": 0,
+      "wallSeconds": 0.4849,
+      "output": "Auction vendor catalog: 30990 checks PASS; 12 client/alias profiles; native stock/access/discounts NOT RUN\n"
+    },
+    {
+      "path": "tests/auction_vendor_learning.lua",
+      "exit": 0,
+      "wallSeconds": 0.3673,
+      "output": "Auction vendor source learning: 480 checks PASS; 30 configured client/source profiles; native merchant operation/FPS NOT RUN\n"
+    },
+    {
+      "path": "tests/character_recipe_cache.lua",
+      "exit": 0,
+      "wallSeconds": 2.3295,
+      "output": "Character recipe persistence/vendor crafting: 848 checks PASS; 20 profiles; native persistence/buying NOT RUN\n"
+    },
+    {
+      "path": "tests/mail_restock.lua",
+      "exit": 0,
+      "wallSeconds": 1.5241,
+      "output": "Mail restock: 3160 checks PASS /20 client-provider-timer profiles\n"
+    },
+    {
+      "path": "tests/options_navigation.lua",
+      "exit": 0,
+      "wallSeconds": 0.0796,
+      "output": "Options navigation: 6532 checks; actual builders mapped across five client contracts; native rendering pending\n"
+    }
+  ],
+  "harmfulControlCount": 36,
+  "harmfulControls": [
+    {
+      "group": "owner",
+      "case": "vendor-scope",
+      "rejected": true,
+      "output": "REJECTED vendor-scope: tests/auction_restock_followup_automation.lua:5: actual vendor owner executes all scoped ingredients while unrelated restock stays untouched"
+    },
+    {
+      "group": "owner",
+      "case": "bank-scope",
+      "rejected": true,
+      "output": "REJECTED bank-scope: tests/auction_restock_followup_automation.lua:5: actual bank owner submits all job-scoped targets without the unrelated ordinary target"
+    },
+    {
+      "group": "owner",
+      "case": "mail-continuation",
+      "rejected": true,
+      "output": "REJECTED mail-continuation: tests/auction_restock_followup_automation.lua:5: mail worker owns one current attachment command"
+    },
+    {
+      "group": "owner",
+      "case": "cached-bank",
+      "rejected": true,
+      "output": "REJECTED cached-bank: tests/auction_restock_followup_automation.lua:5: cached bank counts cannot glow or start native bank moves"
+    },
+    {
+      "group": "owner",
+      "case": "repeated-click",
+      "rejected": true,
+      "output": "REJECTED repeated-click: tests/auction_restock_followup_automation.lua:5: enabled independent automation uses the existing owner without inventing a player click"
+    },
+    {
+      "group": "owner",
+      "case": "mail-bag-gate",
+      "rejected": true,
+      "output": "REJECTED mail-bag-gate: tests/auction_restock_followup_automation.lua:5: native mailbox context remains actionable while bag counts are settling"
+    },
+    {
+      "group": "owner",
+      "case": "vendor-prepare-price",
+      "rejected": true,
+      "output": "REJECTED vendor-prepare-price: tests/auction_restock_followup_automation.lua:5: scoped vendor preparation rejects an invoice above the saved craft price despite an ordinary base shortage"
+    },
+    {
+      "group": "owner",
+      "case": "vendor-execute-price",
+      "rejected": true,
+      "output": "REJECTED vendor-execute-price: tests/auction_restock_followup_automation.lua:5: scoped vendor preparation and execution cannot borrow an unrelated base target to bypass the saved craft price"
+    },
+    {
+      "group": "owner",
+      "case": "failure-retry",
+      "rejected": true,
+      "output": "REJECTED failure-retry: tests/auction_restock_followup_automation.lua:5: independent automatic bank dispatch works with either global setting and never starts crafting"
+    },
+    {
+      "group": "owner",
+      "case": "vendor-getter",
+      "rejected": true,
+      "output": "REJECTED vendor-getter: tests/auction_restock_followup_integration.lua:4: vendor readiness queries read the published target snapshot without reentering Refresh"
+    },
+    {
+      "group": "scan",
+      "case": "rows-shortage-only",
+      "rejected": true,
+      "output": "REJECTED rows-shortage-only: tests/auction_restock_scan_all.lua:4: the actual Scan restock button prices all listed items, including full and zero targets and vendor opportunities"
+    },
+    {
+      "group": "scan",
+      "case": "filled-tier-skipped",
+      "rejected": true,
+      "output": "REJECTED filled-tier-skipped: tests/auction_restock_scan_all.lua:4: full weaker potion bags do not prevent stronger usable healing and mana discovery"
+    },
+    {
+      "group": "scan",
+      "case": "free-route-skipped",
+      "rejected": true,
+      "output": "REJECTED free-route-skipped: tests/auction_restock_scan_all.lua:4: explicit scans price a free craft output and its newly displayed owned ingredient exactly once"
+    },
+    {
+      "group": "scan",
+      "case": "button-shortage-only",
+      "rejected": true,
+      "output": "REJECTED button-shortage-only: tests/auction_restock_scan_all.lua:4: the actual Scan restock button prices all listed items, including full and zero targets and vendor opportunities"
+    },
+    {
+      "group": "scan",
+      "case": "reuse-cached-craft-route",
+      "rejected": true,
+      "output": "REJECTED reuse-cached-craft-route: tests/auction_restock_scan_all.lua:4: an explicit scan ignores fresh-looking old caches and selects the finished item when ingredients become dearer"
+    },
+    {
+      "group": "scan",
+      "case": "bridge-collapses-group",
+      "rejected": true,
+      "output": "REJECTED bridge-collapses-group: tests/auction_restock_market.lua:3: modern market availability counts the groups while unit price stays per purchased copy"
+    },
+    {
+      "group": "scan",
+      "case": "restore-clear-pending",
+      "rejected": true,
+      "output": "REJECTED restore-clear-pending: tests/auction_restock_scroll.lua:4: the auction tab does not expose a Clear pending control"
+    },
+    {
+      "group": "price",
+      "case": "lose-positive-cap-migration",
+      "rejected": true,
+      "output": "CONTROL lose-positive-cap-migration changed=1 compiled=true outcome=fail\ntests/auction_restock_price_policy.lua:4: legacy positive price migrates to an enabled limit [Retail/false/false]\n"
+    },
+    {
+      "group": "price",
+      "case": "zero-becomes-unlimited",
+      "rejected": true,
+      "output": "CONTROL zero-becomes-unlimited changed=1 compiled=true outcome=fail\ntests/auction_restock_price_policy.lua:4: explicit limited zero remains a true zero purchase cap [Retail/false/false]\n"
+    },
+    {
+      "group": "price",
+      "case": "reuse-opposite-zero-mode",
+      "rejected": true,
+      "output": "CONTROL reuse-opposite-zero-mode changed=1 compiled=true outcome=fail\ntests/auction_restock_price_policy.lua:4: zero mode is part of saved-plan identity [Retail/false/false]\n"
+    },
+    {
+      "group": "price",
+      "case": "editor-forgets-mode",
+      "rejected": true,
+      "output": "CONTROL editor-forgets-mode changed=2 compiled=true outcome=fail\ntests/auction_restock_price_policy.lua:4: editing all-zero currency retains an explicit zero and displays zero copper [Retail/false/false]\n"
+    },
+    {
+      "group": "price",
+      "case": "blur-overwrites-clicked-mode",
+      "rejected": true,
+      "output": "CONTROL blur-overwrites-clicked-mode changed=2 compiled=true outcome=fail\ntests/auction_restock_price_policy.lua:4: clicking off commits dirty currency text then keeps the requested limited mode [Retail/false/false]\n"
+    },
+    {
+      "group": "price",
+      "case": "recipe-zero-becomes-unlimited",
+      "rejected": true,
+      "output": "CONTROL recipe-zero-becomes-unlimited changed=5 compiled=true outcome=fail\ntests/auction_restock_price_policy.lua:4: zero output cap rejects a paid material route and paid finished item [Retail/false/false]\n"
+    },
+    {
+      "group": "price",
+      "case": "derived-limit-ignores-zero",
+      "rejected": true,
+      "output": "CONTROL derived-limit-ignores-zero changed=5 compiled=true outcome=fail\ntests/auction_restock_price_policy.lua:4: explicit zero input cap clamps a previously derived positive recipe limit [Retail/false/false]\n"
+    },
+    {
+      "group": "price",
+      "case": "potion-zero-becomes-unlimited",
+      "rejected": true,
+      "output": "CONTROL potion-zero-becomes-unlimited changed=8 compiled=true outcome=fail\ntests/auction_restock_price_policy.lua:4: zero-limited healing and mana targets cannot discover or buy a paid stronger tier [Retail/false/false]\n"
+    },
+    {
+      "group": "price",
+      "case": "potion-forgets-inherited-mode",
+      "rejected": true,
+      "output": "CONTROL potion-forgets-inherited-mode changed=9 compiled=true outcome=fail\ntests/auction_restock_price_policy.lua:4: upgrades inherit both retained copper and explicit unlimited mode [Retail/false/false]\n"
+    },
+    {
+      "group": "ui",
+      "case": "cap-five-items",
+      "rejected": true,
+      "output": "lua: ...ace\\AddOns\\_FluxUI\\tests\\auction_restock_followup_ui.lua:4: every current-stage item has a visible slot\nstack traceback:\n\t[C]: in function 'assert'\n\t...ace\\AddOns\\_FluxUI\\tests\\auction_restock_followup_ui.lua:4: in upvalue 'check'\n\t...ace\\AddOns\\_FluxUI\\tests\\auction_restock_followup_ui.lua:160: in local 'Layout'\n\t...ace\\AddOns\\_FluxUI\\tests\\auction_restock_followup_ui.lua:236: in main chunk\n\t[C]: in ?"
+    },
+    {
+      "group": "ui",
+      "case": "never-shrink-icons",
+      "rejected": true,
+      "output": "lua: ...ace\\AddOns\\_FluxUI\\tests\\auction_restock_followup_ui.lua:4: sixty stage items remain visible across compact rows\nstack traceback:\n\t[C]: in function 'assert'\n\t...ace\\AddOns\\_FluxUI\\tests\\auction_restock_followup_ui.lua:4: in local 'check'\n\t...ace\\AddOns\\_FluxUI\\tests\\auction_restock_followup_ui.lua:240: in main chunk\n\t[C]: in ?"
+    },
+    {
+      "group": "ui",
+      "case": "leave-surplus-regions",
+      "rejected": true,
+      "output": "lua: ...ace\\AddOns\\_FluxUI\\tests\\auction_restock_followup_ui.lua:4: surplus slots hide and clear stale identity/count data\nstack traceback:\n\t[C]: in function 'assert'\n\t...ace\\AddOns\\_FluxUI\\tests\\auction_restock_followup_ui.lua:4: in local 'check'\n\t...ace\\AddOns\\_FluxUI\\tests\\auction_restock_followup_ui.lua:254: in main chunk\n\t[C]: in ?"
+    },
+    {
+      "group": "ui",
+      "case": "omit-glow-cleanup",
+      "rejected": true,
+      "output": "lua: ...ace\\AddOns\\_FluxUI\\tests\\auction_restock_followup_ui.lua:4: closing the matching context immediately cleans up its glow\nstack traceback:\n\t[C]: in function 'assert'\n\t...ace\\AddOns\\_FluxUI\\tests\\auction_restock_followup_ui.lua:4: in local 'check'\n\t...ace\\AddOns\\_FluxUI\\tests\\auction_restock_followup_ui.lua:226: in main chunk\n\t[C]: in ?"
+    },
+    {
+      "group": "ui",
+      "case": "glow-closed-context",
+      "rejected": true,
+      "output": "lua: ...ace\\AddOns\\_FluxUI\\tests\\auction_restock_followup_ui.lua:4: a closed matching window does not glow\nstack traceback:\n\t[C]: in function 'assert'\n\t...ace\\AddOns\\_FluxUI\\tests\\auction_restock_followup_ui.lua:4: in local 'check'\n\t...ace\\AddOns\\_FluxUI\\tests\\auction_restock_followup_ui.lua:216: in main chunk\n\t[C]: in ?"
+    },
+    {
+      "group": "ui",
+      "case": "select-single-item",
+      "rejected": true,
+      "output": "lua: ...ace\\AddOns\\_FluxUI\\tests\\auction_restock_followup_ui.lua:4: the stage click does not select one icon/item\nstack traceback:\n\t[C]: in function 'assert'\n\t...ace\\AddOns\\_FluxUI\\tests\\auction_restock_followup_ui.lua:4: in upvalue 'check'\n\t...ace\\AddOns\\_FluxUI\\tests\\auction_restock_followup_ui.lua:118: in field 'Click'\n\t...50000Z\\followup-ui-controls-final\\select-single-item.lua:134: in field 'OnClick'\n\t...ace\\AddOns\\_FluxUI\\tests\\auction_restock_followup_ui.lua:139: in field 'press'\n\t...ace\\AddOns\\_FluxUI\\tests\\auction_restock_followup_ui.lua:147: in field 'pressIcon'\n\t...ace\\AddOns\\_FluxUI\\tests\\auction_restock_followup_ui.lua:213: in main chunk\n\t[C]: in ?"
+    },
+    {
+      "group": "ui",
+      "case": "badge-operations-not-output",
+      "rejected": true,
+      "output": "lua: ...ace\\AddOns\\_FluxUI\\tests\\auction_restock_followup_ui.lua:4: two operations yielding three display six output items and an operations caption\nstack traceback:\n\t[C]: in function 'assert'\n\t...ace\\AddOns\\_FluxUI\\tests\\auction_restock_followup_ui.lua:4: in local 'check'\n\t...ace\\AddOns\\_FluxUI\\tests\\auction_restock_followup_ui.lua:263: in main chunk\n\t[C]: in ?"
+    },
+    {
+      "group": "ui",
+      "case": "query-readiness-from-paint",
+      "rejected": true,
+      "output": "lua: ...ace\\AddOns\\_FluxUI\\tests\\auction_restock_followup_ui.lua:4: paint never queries a vendor owner that can rebuild the stage\nstack traceback:\n\t[C]: in function 'assert'\n\t...ace\\AddOns\\_FluxUI\\tests\\auction_restock_followup_ui.lua:4: in upvalue 'check'\n\t...ace\\AddOns\\_FluxUI\\tests\\auction_restock_followup_ui.lua:107: in field 'IsContextOpen'\n\t...ollowup-ui-controls-final\\query-readiness-from-paint.lua:202: in field 'Paint'\n\t...ace\\AddOns\\_FluxUI\\tests\\auction_restock_followup_ui.lua:115: in field 'Refresh'\n\t...ollowup-ui-controls-final\\query-readiness-from-paint.lua:206: in function <...ollowup-ui-controls-final\\query-readiness-from-paint.lua:206>\n\t...ace\\AddOns\\_FluxUI\\tests\\auction_restock_followup_ui.lua:135: in field 'emit'\n\t...ace\\AddOns\\_FluxUI\\tests\\auction_restock_followup_ui.lua:192: in main chunk\n\t[C]: in ?"
+    },
+    {
+      "group": "ui",
+      "case": "allocate-while-combat",
+      "rejected": true,
+      "output": "lua: ...ace\\AddOns\\_FluxUI\\tests\\auction_restock_followup_ui.lua:4: no frame is allocated in combat\nstack traceback:\n\t[C]: in function 'assert'\n\t...ace\\AddOns\\_FluxUI\\tests\\auction_restock_followup_ui.lua:4: in upvalue 'check'\n\t...ace\\AddOns\\_FluxUI\\tests\\auction_restock_followup_ui.lua:59: in global 'CreateFrame'\n\t...00Z\\followup-ui-controls-final\\allocate-while-combat.lua:113: in upvalue 'EnsureButton'\n\t...00Z\\followup-ui-controls-final\\allocate-while-combat.lua:192: in field 'Paint'\n\t...ace\\AddOns\\_FluxUI\\tests\\auction_restock_followup_ui.lua:115: in field 'Refresh'\n\t...ace\\AddOns\\_FluxUI\\tests\\auction_restock_followup_ui.lua:190: in main chunk\n\t[C]: in ?"
+    },
+    {
+      "group": "ui",
+      "case": "do-not-resize-active-glow",
+      "rejected": true,
+      "output": "lua: ...ace\\AddOns\\_FluxUI\\tests\\auction_restock_followup_ui.lua:4: an active glow resizes its library textures when all-item wrapping grows the host\nstack traceback:\n\t[C]: in function 'assert'\n\t...ace\\AddOns\\_FluxUI\\tests\\auction_restock_followup_ui.lua:4: in local 'check'\n\t...ace\\AddOns\\_FluxUI\\tests\\auction_restock_followup_ui.lua:319: in main chunk\n\t[C]: in ?"
+    }
+  ],
+  "controlVerifiers": {
+    "verify_price_policy_controls.py": "e8004b196ed4d70091afed5e35741f56826d181ff504ccc1fcb3f2be15fa22db",
+    "verify_followup_ui_controls.py": "43024f98c2a91a1832a022b30bcd101b79d357e56196ce986e62781ceee531cb",
+    "followup-owner-controls.lua": "901b2c8ba8c124dfda65fc95955c393bbb097f2ff8670edb3b70880f54c83c0a",
+    "scan-controls.lua": "bdef45411c8b7bc9f1073f60d4e309ee93d094a9c3295e20e4c0628f1a48fd2a"
+  },
+  "behavior": {
+    "overview": "Sorted physical item quantities for every current-stage item. One ordinary Button hit/focus host; decorative icons44/38/32/28/24/20px wrap without item cap. Caption14px outlined/shadowed with contrast backing. Craft badge=operations*yield.",
+    "glow": "Published live matching bank/vendor/mail context; cached bank view is insufficient. Generic vendored glow only, resize on changed dimensions, stop on close/completion/waiting/combat. Paint never re-enters vendor readiness.",
+    "batch": "Any icon area dispatches all this stage targets through scoped existing mail/bank/vendor owners. Join active owner without restart; no unrelated goal, duplicate submitted batch or craft/AH auto gesture.",
+    "automation": "Character auctionRestock.autoFollowup defaults off; separate option in Loot & Items / Restock. Works with global auto flags on/off without changing them. Failed attempt retries only after bag generation/free slots/money change; submitted intent waits for stage progress.",
+    "price": "Per-item noPriceLimit defaults on for new/oldzero. Old positive caps migrate off. Explicit off+zero blocks paid AH offers and paid parent recipe budgets. Ingredient AH caps do not change normal vendor policy. Mode persists/inherits and invalidates incompatible source plans.",
+    "allScan": "Explicit Scan prices full/zero targets, vendor opportunities and newly visible/free-route ingredients; freshness invalidates changed paid-route comparisons. Automatic recovery remains shortage-scoped. Full weaker potion stock still discovers stronger usable tiers and updates saved tiers/full new target.",
+    "noClear": "No Clear pending control; automatic authoritative mailbox reconciliation remains.",
+    "groupedPrices": "Auctionator write-back availability uses grouped availableQuantity while a modern item bid remains physical1."
+  },
+  "integrationBugsFixed": [
+    "Vendor readiness refresh recursion",
+    "Scoped vendor prepare/execution ordinary-target fallback exceeding craft price",
+    "Failed automation unable to retry after real readiness changes",
+    "Explicit scan skipping free-route outputs/materials",
+    "Grouped market write-back undercounting availability"
+  ],
+  "preserved": {
+    "existingSettingsRoots": true,
+    "commandsAndIntegrations": true,
+    "globalAutoFlags": true,
+    "manualClientSync": false,
+    "foregroundOrInput": false,
+    "settingsOrProfilerWrites": false,
+    "publication": false,
+    "gitBranch": "main",
+    "hooksPath": ".githooks"
+  },
+  "performance": {
+    "newPollers": 0,
+    "newLuaOnUpdate": 0,
+    "newTickers": 0,
+    "glow": "One generic library animation while matching open context and work remain; stop on hide/close/combat.",
+    "events": "Existing job subscriptions plus bank/PIM lifecycle and PLAYER_MONEY; retire with job.",
+    "scans": "User-requested full scan intentionally queries every listed price; automatic purchase recovery stays demand-scoped.",
+    "nativeMeasurements": "NOT RUN"
+  },
+  "referenceHashes": {
+    "Libs/LibCustomGlow-1.0/LibCustomGlow-1.0.lua": "e5ed4d1f3b5ab4bda75772cda846562cde0b929c8a3f302e91e4c5c47db91bb6"
+  },
+  "native": {
+    "status": "NOT RUN",
+    "clients": [
+      "Retail",
+      "Forever",
+      "MoP",
+      "Era",
+      "Anniversary"
+    ],
+    "pending": [
+      "live glow/geometry/text/localized layout/controller",
+      "native mail/bank/vendor batch execution and coexistence",
+      "protected auction/craft operations",
+      "persistence in each client",
+      "taint",
+      "matched CPU/FPS"
+    ],
+    "route": "Existing user-managed native reproduction; no Witchcraft/UIForever tool available."
+  },
+  "documentation": {
+    "validation": "PASS:1069 classified sources;623 reachable;438 setting definitions;24 SavedVariables;17022 local links",
+    "diffCheck": "PASS",
+    "finalCompleteLuaManifestMatches": true
+  }
+}

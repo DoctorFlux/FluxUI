@@ -689,6 +689,8 @@ function C.ScanBag(bag)
 	local bySlot = {}
 	local n = GetNumSlots(bag)
 	local capacityKnown = n > 0
+	local Sync = Inv.Syndicator and Inv.Syndicator.Sync
+	if Sync and (capacityKnown or C.IsCarriedBag(bag)) then Sync.NoteCapacity(bag, n) end
 	if n <= 0 then
 		local inv = Flux.Inventory
 		if inv and inv.IsBankOpen and inv.IsBankOpen() and C.IsBankContainer(bag) then

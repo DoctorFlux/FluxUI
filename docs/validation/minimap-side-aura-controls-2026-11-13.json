@@ -1,0 +1,100 @@
+{
+  "changeId": "MINIMAP-SIDE-AURA-20261113",
+  "baselineCheckpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d3b4-b7ec-7591-94d3-6d3b3097fb8a\\minimap-side-aura-20261113T073724Z",
+  "candidateNormalizedHashes": {
+    "Minimap/FluxMinimapButtons.lua": "0682a68111af98010461ea38202a6d4ec535545a3b767e956c55522b337ab2e7",
+    "Minimap/FluxBuffDebuffFrames.lua": "ceb65d5458f378a7a45a87af3a3cffa3ddd06d68f783f13eca6be7c1927a8191",
+    "tests/minimap_extra_layout.lua": "74af7c3819951c96212b1c66def7b1aad0090f22b9a05dbe9881e612576c8056",
+    "tests/minimap_side_auras.lua": "a2156dc8caffaea502e10ab1c3caf739ea4641cf59d8f23a24696f76ee806b16"
+  },
+  "scope": "Actual Lua module desktop geometry and guarded lifecycle; native taint/input/pixels/performance NOT RUN",
+  "candidateRepeatedPass": 3,
+  "baselineRejected": true,
+  "resizeChecks": 3415,
+  "auraChecks": 1855,
+  "focusedChecks": 5270,
+  "harmfulControlsRejected": 5,
+  "harmfulControls": "Former pre-fit percentage plus4 production aura offset/scale/guard/callback mutations embedded in aura fixture",
+  "externalRawLogs": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d3b4-b7ec-7591-94d3-6d3b3097fb8a\\minimap-side-aura-controls-20261113T074119Z",
+  "results": [
+    {
+      "name": "baseline-resize-1",
+      "test": "tests/minimap_extra_layout.lua",
+      "exitCode": 1,
+      "summary": "lua: tests/minimap_extra_layout.lua:5: dense 1 columns slider applies after fitting at 50%: 4.3583333333333 / 2.1791666666667"
+    },
+    {
+      "name": "candidate-resize-1",
+      "test": "tests/minimap_extra_layout.lua",
+      "exitCode": 0,
+      "summary": "minimap extra layout: 3415 checks PASS (runtime geometry, saved actions, reuse, deferred combat writes and state-driver model; native acceptance pending)"
+    },
+    {
+      "name": "baseline-auras-1",
+      "test": "tests/minimap_side_auras.lua",
+      "exitCode": 1,
+      "summary": "lua: tests/minimap_side_auras.lua:7: retail: immediate enable: side offset converts to native scale: -200.0 / -256.0"
+    },
+    {
+      "name": "candidate-auras-1",
+      "test": "tests/minimap_side_auras.lua",
+      "exitCode": 0,
+      "summary": "Minimap side aura positioning: 1855 checks; 5 client models; 15 scale cases; 4 harmful controls PASS"
+    },
+    {
+      "name": "baseline-resize-2",
+      "test": "tests/minimap_extra_layout.lua",
+      "exitCode": 1,
+      "summary": "lua: tests/minimap_extra_layout.lua:5: dense 1 columns slider applies after fitting at 50%: 4.3583333333333 / 2.1791666666667"
+    },
+    {
+      "name": "candidate-resize-2",
+      "test": "tests/minimap_extra_layout.lua",
+      "exitCode": 0,
+      "summary": "minimap extra layout: 3415 checks PASS (runtime geometry, saved actions, reuse, deferred combat writes and state-driver model; native acceptance pending)"
+    },
+    {
+      "name": "baseline-auras-2",
+      "test": "tests/minimap_side_auras.lua",
+      "exitCode": 1,
+      "summary": "lua: tests/minimap_side_auras.lua:7: retail: immediate enable: side offset converts to native scale: -200.0 / -256.0"
+    },
+    {
+      "name": "candidate-auras-2",
+      "test": "tests/minimap_side_auras.lua",
+      "exitCode": 0,
+      "summary": "Minimap side aura positioning: 1855 checks; 5 client models; 15 scale cases; 4 harmful controls PASS"
+    },
+    {
+      "name": "baseline-resize-3",
+      "test": "tests/minimap_extra_layout.lua",
+      "exitCode": 1,
+      "summary": "lua: tests/minimap_extra_layout.lua:5: dense 1 columns slider applies after fitting at 50%: 4.3583333333333 / 2.1791666666667"
+    },
+    {
+      "name": "candidate-resize-3",
+      "test": "tests/minimap_extra_layout.lua",
+      "exitCode": 0,
+      "summary": "minimap extra layout: 3415 checks PASS (runtime geometry, saved actions, reuse, deferred combat writes and state-driver model; native acceptance pending)"
+    },
+    {
+      "name": "baseline-auras-3",
+      "test": "tests/minimap_side_auras.lua",
+      "exitCode": 1,
+      "summary": "lua: tests/minimap_side_auras.lua:7: retail: immediate enable: side offset converts to native scale: -200.0 / -256.0"
+    },
+    {
+      "name": "candidate-auras-3",
+      "test": "tests/minimap_side_auras.lua",
+      "exitCode": 0,
+      "summary": "Minimap side aura positioning: 1855 checks; 5 client models; 15 scale cases; 4 harmful controls PASS"
+    },
+    {
+      "name": "harmful-pre-fit-scale",
+      "test": "tests/minimap_extra_layout.lua",
+      "exitCode": 1,
+      "summary": "lua: tests/minimap_extra_layout.lua:5: dense 1 columns slider applies after fitting at 50%: 4.3583333333333 / 2.1791666666667",
+      "harmfulControl": true
+    }
+  ]
+}

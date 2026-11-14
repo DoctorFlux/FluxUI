@@ -1,0 +1,74 @@
+{
+  "changeId": "MINIMAP-AUTO-LAYOUT-20261113",
+  "capturedUTC": "2026-11-13T08:13:13.664887+00:00",
+  "requirements": "docs/MINIMAP_EXTRA_LAYOUT.md#current-behavior-automatic-grids-and-screen-side-grid-scale",
+  "featureIds": [
+    "REQ-MBL-12",
+    "REQ-MBL-13",
+    "REQ-MBL-14",
+    "REQ-MBL-15"
+  ],
+  "implemented": true,
+  "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d3b4-b7ec-7591-94d3-6d3b3097fb8a\\minimap-auto-embedded-20261113T075002Z",
+  "sourceFiles": 2638,
+  "revision": "26f886e3ea5371b196ab235d2dace0c156002285",
+  "branch": "main",
+  "settingsMetadataEntries": 103,
+  "settingsWrites": false,
+  "sourceHashes": {
+    "AddonOptions/FluxOptionsBattlezone.lua": "2f21020940c7cac1277f85cf6b79cbe23fe7bd3d0babc829fd065b65e8e0def0",
+    "Minimap/FluxMinimap.lua": "799b8ababf0bf1fd236268a0bb813123c269995d18831f3791ec1f2f56210670",
+    "Minimap/FluxMinimapButtons.lua": "27fad68ebe6b24b891523c53fdf381b091dbf2951052685deec26bf2dce8dfbb"
+  },
+  "desktop": {
+    "gridChecks": 48866,
+    "mapChecks": 113,
+    "auraChecks": 2287,
+    "flyoutChecks": 168,
+    "optionsNavigationChecks": 6397,
+    "candidatePairsPerScenario": 3,
+    "externalHarmfulControls": 11,
+    "builtInMapControls": 4,
+    "scripts": 322,
+    "failures": 0,
+    "syntaxFiles": 1004,
+    "syntaxFailures": 0,
+    "currentFullSuiteVerified": true,
+    "fullSuiteReport": "docs/validation/minimap-auto-layout-full-2026-11-13.json"
+  },
+  "controls": "docs/validation/minimap-auto-layout-controls-2026-11-13.json",
+  "sourceGuard": "docs/validation/minimap-auto-layout-source-guard-2026-11-13.json",
+  "sourceContractsReused": [
+    "docs/validation/minimap-layout-sources-2026-11-13.json",
+    "docs/validation/minimap-side-aura-sources-2026-11-13.json"
+  ],
+  "native": {
+    "pixels": "NOT RUN",
+    "input": "NOT RUN",
+    "taint": "NOT RUN",
+    "controller": "NOT RUN",
+    "persistence": "NOT RUN",
+    "FPS": "NOT RUN",
+    "memory": "NOT RUN"
+  },
+  "settings": "Shared count and optional side enable/start/combat hide retained;sideScale preserved and extended25\u2013200 for whole grid;embeddedColumns/embeddedMapScale/sideColumns preserved but ignored",
+  "runtimeOwnership": "Three existing owners;shared bounded fit helper;no new frame/event/timer/ticker/hook/polling or native API contract. Saved actions/widgets retained. Existing guards and aura/flyout ownership unchanged.",
+  "preferences": "Existing direct implementation/user-native reproduction and English fallback/controller paths retained",
+  "clientActions": "No client focus/input/clipboard,settings/profiler write,manual sync,commit or publication",
+  "zeroGap": "No container padding/start/screen/window margins. Completed side columns round rows upward and refit square size to meet window exactly. Embedded grid is flush to minimap. Every grid scale refits available local height;short lists keep standard capped sizing.",
+  "userNativeEvidence": {
+    "source": "User-attached13November screenshot showing previous gaps;client/source build not captured",
+    "preservedImage": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d3b4-b7ec-7591-94d3-6d3b3097fb8a\\minimap-final-zero-gap-controls-20261113T082418Z\\user-reported-gap.png",
+    "sha256": "a551b2452e15b538eac4825ccfeaf8a3192efe8285926df6cb5af2459ee8ed91",
+    "candidateNativeResult": "NOT RUN"
+  },
+  "documentationValidation": {
+    "result": "PASS",
+    "report": "docs/validation/minimap-auto-layout-docs-2026-11-13.json",
+    "classifiedSources": 1037,
+    "reachableSources": 617,
+    "settingDefinitions": 433,
+    "savedVariableRoots": 24,
+    "localLinks": 16677
+  }
+}

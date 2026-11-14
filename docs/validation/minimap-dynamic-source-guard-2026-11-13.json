@@ -1,0 +1,46 @@
+{
+  "captured_utc": "2026-11-13T14:34:51.737427+00:00",
+  "task_owned_matches": [
+    "Minimap/FluxMinimapButtons.lua",
+    "AddonOptions/FluxOptionsBattlezone.lua",
+    "tests/minimap_dynamic_buttons.lua",
+    "tests/minimap_extra_visibility.lua",
+    "tests/minimap_side_auras.lua",
+    "tests/options_navigation.lua"
+  ],
+  "full_snapshot_pass": 342,
+  "full_snapshot_fail": 0,
+  "full_snapshot_syntax_files": 1030,
+  "current_full_manifest_mismatches": [
+    "ExtraButtonSystem/Engine/Watch.lua"
+  ],
+  "outside_owned_changed_since_checkpoint": [
+    "Bars/Watch.lua",
+    "ExtraButtonSystem/Engine/Watch.lua",
+    "Inventory/Restock/Auction/FluxAuctionRestock.lua",
+    "NEXT_SESSION.md",
+    "docs/18-minimap-and-trackers.md",
+    "docs/26-options-map.md",
+    "docs/30-source-coverage.md",
+    "docs/AUCTION_RESTOCK.md",
+    "docs/CLIENT_MATRIX.csv",
+    "docs/CLIENT_VALIDATION.md",
+    "docs/DECISIONS.md",
+    "docs/FEATURE_PARITY.csv",
+    "docs/MINIMAP_EXTRA_LAYOUT.md",
+    "docs/MODULE_OWNERSHIP.csv",
+    "docs/PERFORMANCE_AUDIT.csv",
+    "docs/PERFORMANCE_PROTOCOL.md",
+    "docs/PERFORMANCE_RESULTS.csv",
+    "docs/STATUS.md",
+    "docs/WORK_LOG.md",
+    "docs/reference/declarations.md",
+    "docs/reference/interfaces.md",
+    "docs/reference/inventory.json",
+    "docs/reference/settings-details.md",
+    "docs/reference/verification.json"
+  ],
+  "branch": "main",
+  "hooks_path": ".githooks",
+  "policy": "Unrelated changes preserved;no reset/restore/publication/client input"
+}

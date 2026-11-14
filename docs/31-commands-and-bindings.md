@@ -18,6 +18,7 @@ This reference follows reachable source and actual handlers, including assignmen
 
 | Command / aliases | Arguments and actual effect | Source |
 |---|---|---|
+| `/fluxah`, `/fluxah debug` | Open the auction house's Restock tab with automatic planning, craft preference, mailbox/pending counts and Gold/Silver/Copper limits; zero means unlimited. Requires an open auction house. `debug` prints state, search phase/term/results/page/deadline and the last attempted action without buying. No slash argument purchases anything. | [handler](../Inventory/Restock/Auction/FluxAuctionRestockUI.lua), [behavior](AUCTION_RESTOCK.md) |
 | `/fluxui`, `/fluxoptions` | Empty/other input toggles the options shell. `bliz` / `blizzard` opens the Flux options shell through `ShowConfig`; `raidpreview` toggles raid preview. | [options registration](../AddonOptions/FluxOptions.lua#L1798) |
 | `/fluxbind` | Empty: open a pending binding editor, with options-page fallback. Positive spell ID: open that action. `viz` / `visualizer` / `keyboard`: keyboard view. `apply`: request recompile/apply. `debug`: diagnostics. Only the visualizer aliases use the lowercased copy; other comparisons retain the input's case. | [handler](../Binding/Slash.lua) |
 | `/fluxwindow`, `/fw` | `show`, `hide`, `toggle`; `tab <name>` switches outside combat; `addtab <name>` creates a placeholder tab; `removetab <name>` removes it. **Empty/unrecognized input does nothing** in the current handler. | [handler](../Battlezonemap/FluxWindowFrame.lua#L1195) |
@@ -35,6 +36,12 @@ This reference follows reachable source and actual handlers, including assignmen
 | `/fluxfp` | `save <sourceNodeID> <destinationNodeID> <seconds>`, `clear <source> <destination>`, `list`, `measure`, `help`. Persists faction-specific route overrides; measure prints elapsed time from the recorded flight start and is an estimate. | [flight helper](../UnitFrames/FluxFlightPath.lua#L465) |
 
 ## Diagnostic and developer commands
+
+`/fluxinput tooltip` takes a one-shot tooltip provenance capture: run it, then
+hover the failing world unit within three seconds. It prints field/writer/build
+metadata and retains latest/previous captures in the existing diagnostics root.
+It does not read tooltip content or change logging/profiler settings.
+[Scope, limits and retest](SECRET_TOOLTIP_METER_ERRORS.md#secret-class-texture-and-tooltip-provenance-follow-up).
 
 | Command / aliases | Arguments and behavior | Source |
 |---|---|---|

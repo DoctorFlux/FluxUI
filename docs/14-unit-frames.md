@@ -1,5 +1,208 @@
 # Individual unit frames
 
+14 November casting/inventory lag: Cast progress/start/stop helpers reduce allocation without slowing text/geometry, native reads, fading or interruption. [Comparisons and limits](LAG_HOTSPOT_OPTIMIZATION.md).
+
+13 November class-icon secret-string follow-up: both visual and partition icon
+paths filter `UnitClass` filenames through the existing safe-string helper before
+building texture paths. Restricted class data hides stale art until a public token
+returns; ordinary art/fallback/corners/settings remain. 560 desktop checks; native
+retest pending. The separately reported tooltip taint remains unresolved and has
+an opt-in provenance capture.
+[Requirements and native steps](SECRET_TOOLTIP_METER_ERRORS.md#secret-class-texture-and-tooltip-provenance-follow-up).
+
+13 November SECRET-UI-20261113 supersedes earlier automatic native meter
+selection claims: Blizzard controls own types/window creation/Current; Flux
+keeps saved layout requests with explicit setup feedback. Unit/pet/raid/preview
+hover state is isolated from the world-cursor tooltip. Reload/native retest
+required. [Fix, capability limit and evidence](SECRET_TOOLTIP_METER_ERRORS.md).
+
+13 November shared threat warnings: **Threat warning visibility** in Unit Frame
+→ General and Nameplates uses the existing Unit Frame scope/key. Choices are
+Always, In raid, In party, Off; In party includes raids. Nameplates and every
+target/focus bar position share one gate, including the between-bar strip. Old
+independent nameplate visibility data is retained but no longer gates warnings.
+870 warning checks and 316-script/997-syntax desktop suite snapshot PASS; native
+pixels/combat/controller/persistence/FPS NOT RUN.
+[Requirements and acceptance](OPTIONS_REWORK.md#13-november-sidebar-bindings-and-shared-threat-warnings).
+10 November profession fill/glow correction (TRADESKILL-CAST-FILL-FIX-20261110;
+TCAST-06–08): user reports missing fill and excessive flare, then requests a
+visible skill-up-style glow after softening. Animated fill now belongs directly
+to TimerBar ARTWORK7; an opaque native mask follows progress with black-outside
+wrap. Flare is explicitly above fill at OVERLAY0 and below native text/shields;
+60% intensity and 44x14 instead of 53x16 at 18px bar height. Glow persists through
+the existing completion fade. No new frames, drivers, events, timers, hooks,
+options or data; one clip frame removed, one mask added per themed bar.
+455 focused checks; exact old clipped implementation plus seven harmful variants
+rejected; full 304 scripts/977 syntax PASS; current source attested.
+Six mask-API blobs verify at the retained Retail/Forever pins. External 2,578-file
+source/history checkpoint and four settings metadata entries verified. Initial
+native failure is user evidence; candidate pixels/taint/input/controller/FPS
+NOT RUN. Direct implementation/user retest retained; reload OOC and craft.
+No client input/focus, settings/profiler writes, manual sync or publication.
+[Correction and remaining acceptance](TRADESKILL_CAST_THEMES.md#fill-and-visible-glow-correction).
+
+
+10 November profession cast themes (TRADESKILL-CAST-THEMES-20261110; TCAST-01–05):
+readable tradeskill casts now use Blizzard's animated profession rank-bar fill
+and optional flare on capable Forever/Retail clients. Recipe API plus native
+profession enum selects the kit; unknown/restricted data and absent art keep
+the ordinary cast. Existing master/unit/colors/edge/glow controls and complete
+cast/channel/completion/interruption lifecycle retained. No new Lua driver,
+event, timer, hook, options, text or saved data. Focused five-client models PASS;
+old behavior and five harmful controls rejected; full 304 scripts /
+977 syntax PASS with current source manifest. Fourteen fresh pinned Gethe
+blobs verified. External 2,574-file/source-history checkpoint; four settings
+metadata entries only. Direct implementation/user reproduction retained.
+Native pixels/taint/input/controller/FPS NOT RUN; reload OOC and craft with
+two professions. No client input/focus, settings/profiler write, manual sync
+or publication. [Requirements, implementation and checks](TRADESKILL_CAST_THEMES.md).
+
+
+10 November focus without resource (FOCUS-NO-RESOURCE-20261110): the compact focus
+divider now follows resource opacity, including focused-unit chrome refreshes.
+No-resource focus retains full HP with no dividing line; empty current power
+with positive capacity keeps its bar/divider. Native opaque alpha passes
+directly; combat geometry stays deferred. Two exact-baseline regressions
+rejected; 22,015 color checks and full 304 scripts / 976 syntax PASS.
+One runtime owner; dated external source checkpoint and history verified;
+four Retail settings metadata entries read-only. Direct implementation/user
+reproduction retained. Native pixels/taint/input NOT RUN; reload OOC and
+focus units with/without resources. No new driver, settings or binding; no
+client input, preference write, manual sync or publication. [Evidence](validation/focus-no-resource-2026-11-10.json).
+
+
+10 November party HP/resource fit (PARTY-HEALTH-FIT-20261110): player-style party health
+now stops above the resource bar at the existing two-unit gap instead of
+extending behind it on HUD clients. Planned prediction geometry matches;
+known no-resource units still expand health. Main/compact-focus layouts and
+combat deferral remain. 396 fit checks reject the exact checkpoint; 675
+combat-join checks and full 304 scripts / 976 syntax PASS.
+One runtime owner; external 2,566-file/history checkpoint and 26 settings
+metadata entries verified. Direct implementation/user reproduction retained.
+Native pixels, combat/taint and input NOT RUN; reload OOC and check a party.
+No new input/focus targets, options, strings or runtime drivers. No client
+input, settings/profiler writes, manual sync or publication. Fresh upstream
+heads unavailable; existing dated pins retained. [Evidence](validation/party-health-fit-2026-11-10.json).
+
+
+10 November passive pass 3: Mana/swing owned styles suppress settled writes while values, moving geometry, speed and fade timing remain live. [Before/after and native limits](PASSIVE_PERFORMANCE_PASS3.md).
+
+10 November party debuff visibility (PARTY-DEBUFF-VISIBILITY-20261110; PDV-01–05):
+enemy target/focus tint is revoked immediately; friendly tint remains. Player-style
+party icons have rectangular type borders. Both party styles get a Salvage-style
+type-colored glow only for native/readable dispellable auras, with an atlas fallback.
+18,618 tint / 408 visibility / 11,410 aura checks PASS; two focused runs and six
+new controls. Full 298 scripts / 970 syntax PASS; current manifest matches.
+Native pixels/combat animation/taint/input/FPS NOT RUN. Three runtime
+owners only; concurrent inventory edits preserved. External 2,551-file history/source
+checkpoint and 61 settings metadata entries verified. No input, settings/profiler
+write, manual sync or publication; direct/user reproduction route retained.
+[Requirements, sources and acceptance](PARTY_DEBUFF_VISIBILITY.md).
+
+10 November passive pass 2: Class combat retry chains coalesce; cast text shares a revision-validated sample at its original cadence. [Before/after evidence and native limits](PASSIVE_PERFORMANCE_PASS2.md).
+
+10 November resource-effects follow-up (RESOURCE-EFFECTS-PERFORMANCE-20261110;
+RFX-01–06): power ghost bursts coalesce at the original After0 boundary;
+1,000 same-frame paints queue 1 callback instead of 1,000; unchanged public sinks
+retry only when needed. Secret animation Lua callbacks fall 120→0 in 0.5 s/240 Hz.
+Prepared shown helper containers use texture visibility and active-only drivers;
+shared spark guards geometry before arithmetic; eligible HUD main bars prewarm
+unchanged pulse trees. Bounded dormant allocation tradeoff recorded, no idle driver.
+Three pairs/workstream; 122 Shared/168 PCO checks; 9+12 controls; 3×84 combined
+checks and 2 disconnection controls. Full 290 scripts/962 syntax PASS; source attested.
+Documentation validator PASS: 995 sources, 607 reachable files, 16,146 local links.
+88 pinned records/54 blobs and 50 ownership checks; Frame Show/Hide correction.
+Earlier partition/value painter and all other runtime owners byte-preserved.
+252 appearance files/80 options-binding sources unchanged; external 2,539-file/history
+checkpoint; settings metadata only. No native FX/taint/pixels/FPS/input acceptance,
+settings/profiler write, manual sync or publication. Prior scoped pauses remain.
+[Changes, tradeoffs and evidence](RESOURCE_EFFECTS_PERFORMANCE.md).
+
+10 November combat-invite power partition correction (POWER-PARTITION-COMBAT-JOIN-20261110;
+PWRJOIN-01–06): native user trace exposed protected SetHeight/Show in ordinary
+post-reveal painting. Shared partition now defers structural geometry before all
+text-anchor/prediction/layout mutations; native reveal and value paints continue.
+Absent prepared slots retain unknown resource capability so combat joins have a
+ready power bar. Existing queue coalesces per frame; Party retains its regen owner.
+675 focused checks/15 cases across five clients; three exact-baseline pairs;
+eight harmful controls rejected; full 288 scripts / 960 syntax PASS. Documentation
+validator PASS: 993 sources / 607 reachable / 16,131 local links. 44 pinned
+source records / 31 blobs verified. Only one runtime file changed; earlier 23
+performance owners unchanged. External 2,536-file/history checkpoint; settings
+metadata only. No native retest/pixels/taint/FPS claim, input/focus, settings/profiler
+write, manual sync or publication. Prior mocks omitted protected child permissions.
+[Cause, correction and native limits](POWER_PARTITION_COMBAT_JOIN.md).
+
+9 November all-client combat roster audit (COMBAT-GROUP-LIFECYCLE-20261109;
+REQ-RF-98/83): checked current Blizzard secure header, visibility and event-manager
+code across Retail, Forever, progression, Era and Anniversary. No new runtime
+gap found. New regression executes the full native event-to-next-update manager
+plus four callback orders:247385 checks over1800 transitions per run;three repeated
+passes;six harmful controls rejected;50 exact source blobs and30 contracts.
+Both party styles, solo/group/raid conversions, full/sparse/empty raids, subgroup
+moves, MT changes, hidden parents, pets/targets and leave cleanup are covered.
+Full274 scripts/944 syntax PASS; all current Lua matches the manifest and existing
+runtime matches the external2463-source/history checkpoint.43 settings metadata
+entries read-only;25 installed runtime copies match. No runtime change, game input,
+settings/profiler write, manual sync or publication. Native taint/input/pixels/
+latency acceptance remains NOT RUN. Preparation must complete before combat;
+prepared roster changes do not wait for combat exit. [Mechanism, sources and
+acceptance](COMBAT_GROUP_LIFECYCLE.md).
+
+9 November steady party performance (PARTY-STEADY-PERFORMANCE-20261109;
+REQ-RF-97): bar/prediction traffic now uses the existing shared painters without
+full chrome/font/cast-cover rebuilds. Pet prediction is corrected, UNIT_PET is
+owner-scoped, unchanged power text anchors are reused, and cold appearance events
+refresh metadata immediately. Features, settings, range cadence and secure
+roster/binding drivers remain. Five matched pairs/model remove936 full chrome,
+800 pet style and3280 power-anchor operations in the replay; actual native lag
+and FPS remain unmeasured.305 focused,1035 party and163 roster checks PASS;
+full273 scripts/943 syntax PASS.51 exact upstream blobs across all five clients;
+external2456-source/history checkpoint and43 read-only settings metadata entries.
+All five installed copies match through existing sync. No game input, settings/
+profiler writes, manual sync or publication. Prior manual testing route retained;
+native latency/pixels/taint acceptance still pending. [Details and evidence](PARTY_STEADY_PERFORMANCE.md).
+
+9 November options organization: Unit Frame is a collapsible sidebar header with
+General, Individual Frames, Party Frames, Raid Frames, Cast Bars and Nameplates.
+General includes shared appearance/scopes/resets; Individual Frames has Player,
+Target, Focus and Pet tabs. Child targets remain with their parents. Original
+controls and stored data are retained. [Current organization](OPTIONS_REWORK.md#unit-frames-organization--current-user-confirmed-layout).
+
+9 November supported combat text audit (DEBUFF-BINDING-AUDIT-20261109): renewed
+user request checked against35 freshly fetched pinned Gethe files across Retail,
+Forever, Classic progression, Era and Anniversary.16 checks execute the actual
+Retail/Forever Lua validators: native dispel Texture registration rejects a
+FontString; aura animations reject external health/resource targets. Native type
+text supports content/symbols; duration text exposes only temporal color inputs;
+direct aura color lookup requires aura access. No supported binding was found for
+the existing numeric labels while Retail/Forever aura data is restricted. The
+all-client combat numeric-color requirement remains OPEN; no runtime workaround
+was installed. Prior forbidden read stays removed; portrait/native border path,
+readable Classic colors, options and saved data remain. Existing focused17,050
+checks PASS; owned runtime/test hashes unchanged from the correction. No new
+native operations, settings/profiler writes, sync, publication or performance claim.
+[Source findings and remaining requirement](UNITFRAME_DEBUFF_COMBAT.md#supported-route-audit--renewed-request).
+
+9 November forbidden debuff Texture read (DEBUFF-FORBIDDEN-READ-20261109):
+user13:45:15 native GetVertexColor failure rejects the previous color bridge;
+reported client/build unspecified. Removed both descendant getter operations,
+retained Texture reference and prepared color objects. Keep portrait border-parent
+layer fix on all five clients and native dispel border ownership. Numeric colors
+use readable types and restore normal color during aura restrictions; the original
+restricted numeric-color requirement remains OPEN. Fixture now rejects registered
+Texture descendant access too:17,050 focused checks;five baseline forbidden-error
+rejects/candidate passes;three controls;full271scripts/940syntax PASS with complete
+current Lua corpus match. All five installed runtime copies match via existing
+sync. External2411-source/history checkpoint and120 settings metadata verified.
+No new frame/event/hook/timer/polling or suppression;no game input/settings/profiler
+writes/manual sync/publication. Post-correction native error absence, portrait
+pixels and taint/performance remain pending. Original desktop result is historical
+rejected evidence, not native acceptance.
+[Correction, source restrictions and native steps](UNITFRAME_DEBUFF_COMBAT.md).
+
+Earlier DEBUFF-COMBAT-COLORS-20261109 is REJECTED by the user's13:45:15 native forbidden-object error. Its desktop mock allowed an inaccessible registered Texture. Retained comparisons are historical evidence only; see the [correction and open requirement](UNITFRAME_DEBUFF_COMBAT.md).
+
 9 November focus colors (FOCUS-TARGET-COLORS-20261109): compact focus now
 uses the shared target color painter for its own focused unit instead of the
 party/player accent policy. Main/portrait/outer/atlas borders, backdrops, compact
@@ -290,10 +493,10 @@ input, appearance, combat and taint acceptance remain pending.
 UF-AURA-02 supersedes the rejected per-target/focus UF-AURA-01 prototype.
 The user briefly requested all aura frames, then explicitly split the scope:
 
-- Unit Frames > General > Show aura timers only below 1 minute covers normal
+- Unit Frame > General > Show aura timers only below 1 minute covers normal
   player-style party frames, target and focus. Existing unit-frame scope owns
   unitFrames.auraTimersUnderMinute (false default; no settings reset).
-- Party / Raid > Show aura timers only below 1 minute covers raid and compact
+- Unit Frame > Raid Frames > Show aura timers only below 1 minute covers raid and compact
   party frames, keeping the existing raid key/default and scope.
 
 At remaining>=60 seconds only countdown text blanks; below60 it returns. Icons,
@@ -481,7 +684,7 @@ underlying glyphs during casts/holds and restores previous public alpha on hide
 or disable. Metadata repaint cannot raise the level over the cast. Show/Hide
 callbacks change text alpha only; existing OOC layout prepares geometry.
 
-Party / Raid > Party frames > Show party cast bars retains partyShowCastBar and
+Unit Frame > Party Frames > Show party cast bars retains partyShowCastBar and
 combat deferral. Disabling hides an active cast immediately outside combat;
 enabling refreshes the current cast through existing CB.RefreshCastForUnit.
 840 party/310 binding/379 timer/2730 marker checks PASS; five fresh alternating
@@ -784,3 +987,61 @@ no foreground control, game/WTF/profiler write, manual sync, branch or push.
 | ID | Requirement | Acceptance |
 |---|---|---|
 | REQ-RF-85 | Keep original focus aura width; fit more per row without target-strip expansion |1011 geometry/packing checks; supersedes only the width extension in REQ-RF-82; native appearance pending |
+
+
+9 November native follow-up: conservative public geometry for full-resource pulses;
+permission-gated vendor checkbox input configuration; old debuff reader absent.
+Native preview stress and cleanup completed; combat roster/merchant acceptance
+remain pending. [Exact scope and evidence](FOREVER_NATIVE_PERFORMANCE.md).
+
+
+13 November: both Flux party styles and previews follow Blizzard's **Show Dispellable
+Debuffs Only** checkbox as well as the existing Flux strict option. Existing CVar
+events refresh visible party aura content, including combat; hidden owners stay
+retired. [Behavior and acceptance](PARTY_DEBUFF_VISIBILITY.md#blizzards-dispellable-only-checkbox--13-november-2026).
+
+## Duplicate system debuffs — 13 November 2026
+
+UNIT-DEBUFF-OVERLAP-20261113; UDO-01–03. The supplied Emi Nockels screenshot
+shows the XP icon at the two debuff-group sizes; the user confirmed identical
+effects in both tooltips. The screenshot does not establish aura instance IDs,
+spell ID, caster flags, client build or the actual native filter result. Overlap
+of a system/casterless aura in the native PLAYER and !PLAYER queries is a working
+hypothesis, not a captured native root cause.
+
+The larger native `own` group now also requires
+`candidateFilters.isFromPlayerOrPlayerPet = true`. Its existing
+`HARMFUL|PLAYER|INCLUDE_NAME_PLATE_ONLY` filter still selects the actual player,
+pet or vehicle; the extra flag alone would include other players. The `other`
+group keeps its complete negated-player filter without this guard, preserving
+NPC, system and other-player effects. No spell-ID, name or icon deduplication
+is introduced. Separate instances of the same effect remain supported. The
+legacy Lua painter and full-harmful fallback are unchanged.
+
+UDO-01: one ordinary icon for a system effect returned by both ownership
+queries. UDO-02: preserve own emphasis, other-player effects, separate same-spell
+instances, caps, spacing, buffs, fallback, settings and tooltip/input owners.
+UDO-03: submit only native options; no addon aura-data reads, new event, hook,
+timer, frame, poller, string, option or saved data. This is an existing-appearance
+bug correction; direct implementation and the existing user-native test route
+are retained. No new controller focus stop or interaction is introduced; native
+aura tooltip/gamepad behavior remains with its current owner.
+
+The regression loads the actual Flux engine and Blizzard's candidate predicate
+for Retail/Forever. Its overlapping native query result is explicitly simulated.
+100 checks pass, the exact checkpoint implementation fails, and four harmful
+variants are rejected. These results do not prove that the client's C filters
+produced the hypothesized overlap. Retail source is pinned to
+`297d7aaaa736f346b3e036f38ee088eaf7f8c07f`; Forever to
+`bebcb6bf309cf41b41bd74f8ca651e6a105b2676`. The native guard is supported by
+[Blizzard's Retail predicate](https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_AuraContainer/Blizzard_AuraContainerUtil.lua)
+and [Forever predicate](https://github.com/Gethe/wow-ui-source/blob/bebcb6bf309cf41b41bd74f8ca651e6a105b2676/Interface/AddOns/Blizzard_AuraContainer/Blizzard_AuraContainerUtil.lua).
+
+Native acceptance is **NOT RUN**. Reload out of combat, retarget the affected
+unit and compare the two tooltips/XP icon. Check actual own, pet/vehicle,
+other-player and NPC debuffs, target/focus changes and combat transitions. If a
+player-origin effect still doubles, this guard does not resolve that case; retain
+the exact tooltip names, client build and target for follow-up. Native rendering,
+controller/tooltips, taint and CPU/FPS remain pending. No game input, settings or
+profiler writes, client synchronization or publication was performed.
+[Exact sources, recovery and regression evidence](validation/unit-debuff-overlap-2026-11-13.json).

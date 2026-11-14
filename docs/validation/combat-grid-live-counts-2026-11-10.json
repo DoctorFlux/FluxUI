@@ -1,0 +1,597 @@
+{
+  "changeId": "COMBAT-GRID-LIVE-COUNTS-20261110",
+  "requirements": [
+    "CGLC-01",
+    "CGLC-02",
+    "CGLC-03",
+    "CGLC-04",
+    "CGLC-05",
+    "CGLC-06"
+  ],
+  "branch": "main",
+  "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c65e-a3d3-7840-a32a-09fda47a48df\\combat-counts\\checkpoint-20261110T165303Z",
+  "checkpointFiles": 2550,
+  "checkpointHead": "26f886e3ea5371b196ab235d2dace0c156002285",
+  "settingsMetadataEntries": 33,
+  "privateSettingsCopied": false,
+  "sourceHashes": {
+    "ExtraButtonSystem/Engine/ConsumableBind.lua": "3631f411f99fe89dc77f513d63a4c03515311820e3ecef901021f35db187191b",
+    "ExtraButtonSystem/Engine/Paint.lua": "57dc4907233c07d1534f26769d620aa0c19ff5c5404aaaafaa6add5642677de7",
+    "tests/combat_grid_live_counts.lua": "aa32ebaccb6234a5bcf12d16e4e9963513bded0735c2ba18e362a442a45c497d"
+  },
+  "runtimeFiles": [
+    "ExtraButtonSystem/Engine/ConsumableBind.lua",
+    "ExtraButtonSystem/Engine/Paint.lua"
+  ],
+  "comparison": {
+    "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c65e-a3d3-7840-a32a-09fda47a48df\\combat-counts\\checkpoint-20261110T165303Z",
+    "pairs": [
+      {
+        "label": "pair1-before",
+        "command": [
+          "lua",
+          "tests/combat_grid_live_counts.lua",
+          "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c65e-a3d3-7840-a32a-09fda47a48df\\combat-counts\\baseline"
+        ],
+        "exit": 1,
+        "hostWallSeconds": 1.4041696999920532,
+        "metrics": {
+          "checks": 2175,
+          "failures": 244,
+          "burstRecounts": 2500,
+          "nativeCountQueries": 2500
+        }
+      },
+      {
+        "label": "pair1-after",
+        "command": [
+          "lua",
+          "tests/combat_grid_live_counts.lua"
+        ],
+        "exit": 0,
+        "hostWallSeconds": 1.2684717000229284,
+        "metrics": {
+          "checks": 2175,
+          "failures": 0,
+          "burstRecounts": 40,
+          "nativeCountQueries": 159
+        }
+      },
+      {
+        "label": "pair2-after",
+        "command": [
+          "lua",
+          "tests/combat_grid_live_counts.lua"
+        ],
+        "exit": 0,
+        "hostWallSeconds": 1.2556420000037178,
+        "metrics": {
+          "checks": 2175,
+          "failures": 0,
+          "burstRecounts": 40,
+          "nativeCountQueries": 159
+        }
+      },
+      {
+        "label": "pair2-before",
+        "command": [
+          "lua",
+          "tests/combat_grid_live_counts.lua",
+          "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c65e-a3d3-7840-a32a-09fda47a48df\\combat-counts\\baseline"
+        ],
+        "exit": 1,
+        "hostWallSeconds": 1.2622399000101723,
+        "metrics": {
+          "checks": 2175,
+          "failures": 244,
+          "burstRecounts": 2500,
+          "nativeCountQueries": 2500
+        }
+      },
+      {
+        "label": "pair3-before",
+        "command": [
+          "lua",
+          "tests/combat_grid_live_counts.lua",
+          "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c65e-a3d3-7840-a32a-09fda47a48df\\combat-counts\\baseline"
+        ],
+        "exit": 1,
+        "hostWallSeconds": 1.2830593000398949,
+        "metrics": {
+          "checks": 2175,
+          "failures": 244,
+          "burstRecounts": 2500,
+          "nativeCountQueries": 2500
+        }
+      },
+      {
+        "label": "pair3-after",
+        "command": [
+          "lua",
+          "tests/combat_grid_live_counts.lua"
+        ],
+        "exit": 0,
+        "hostWallSeconds": 1.2879416000214405,
+        "metrics": {
+          "checks": 2175,
+          "failures": 0,
+          "burstRecounts": 40,
+          "nativeCountQueries": 159
+        }
+      }
+    ],
+    "controls": [
+      {
+        "label": "control-omit-conjured-events",
+        "command": [
+          "lua",
+          "tests/combat_grid_live_counts.lua",
+          "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c65e-a3d3-7840-a32a-09fda47a48df\\combat-counts\\controls\\omit-conjured-events"
+        ],
+        "exit": 1,
+        "hostWallSeconds": 1.4304010000196286,
+        "metrics": {
+          "checks": 2175,
+          "failures": 75,
+          "burstRecounts": 25,
+          "nativeCountQueries": 75
+        }
+      },
+      {
+        "label": "control-stale-paint-copies",
+        "command": [
+          "lua",
+          "tests/combat_grid_live_counts.lua",
+          "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c65e-a3d3-7840-a32a-09fda47a48df\\combat-counts\\controls\\stale-paint-copies"
+        ],
+        "exit": 1,
+        "hostWallSeconds": 1.3740302000078373,
+        "metrics": {
+          "checks": 2175,
+          "failures": 492,
+          "burstRecounts": 40,
+          "nativeCountQueries": 89
+        }
+      },
+      {
+        "label": "control-stale-conjured-ownership",
+        "command": [
+          "lua",
+          "tests/combat_grid_live_counts.lua",
+          "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c65e-a3d3-7840-a32a-09fda47a48df\\combat-counts\\controls\\stale-conjured-ownership"
+        ],
+        "exit": 1,
+        "hostWallSeconds": 1.4412480000173673,
+        "metrics": {
+          "checks": 2175,
+          "failures": 99,
+          "burstRecounts": 40,
+          "nativeCountQueries": 134
+        }
+      },
+      {
+        "label": "control-skip-coalescing",
+        "command": [
+          "lua",
+          "tests/combat_grid_live_counts.lua",
+          "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c65e-a3d3-7840-a32a-09fda47a48df\\combat-counts\\controls\\skip-coalescing"
+        ],
+        "exit": 1,
+        "hostWallSeconds": 1.436106099979952,
+        "metrics": {
+          "checks": 2175,
+          "failures": 40,
+          "burstRecounts": 4000,
+          "nativeCountQueries": 15900
+        }
+      },
+      {
+        "label": "control-restore-frozen-positive",
+        "command": [
+          "lua",
+          "tests/combat_grid_live_counts.lua",
+          "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c65e-a3d3-7840-a32a-09fda47a48df\\combat-counts\\controls\\restore-frozen-positive"
+        ],
+        "exit": 1,
+        "hostWallSeconds": 1.2764308999758214,
+        "metrics": {
+          "checks": 2175,
+          "failures": 25,
+          "burstRecounts": 40,
+          "nativeCountQueries": 109
+        }
+      },
+      {
+        "label": "control-count-unknown-equipped",
+        "command": [
+          "lua",
+          "tests/combat_grid_live_counts.lua",
+          "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c65e-a3d3-7840-a32a-09fda47a48df\\combat-counts\\controls\\count-unknown-equipped"
+        ],
+        "exit": 1,
+        "hostWallSeconds": 1.3367594999726862,
+        "metrics": {
+          "checks": 2175,
+          "failures": 1,
+          "burstRecounts": 40,
+          "nativeCountQueries": 159
+        }
+      },
+      {
+        "label": "control-retain-empty-charge",
+        "command": [
+          "lua",
+          "tests/combat_grid_live_counts.lua",
+          "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c65e-a3d3-7840-a32a-09fda47a48df\\combat-counts\\controls\\retain-empty-charge"
+        ],
+        "exit": 1,
+        "hostWallSeconds": 1.2573424000293016,
+        "metrics": {
+          "checks": 2175,
+          "failures": 14,
+          "burstRecounts": 40,
+          "nativeCountQueries": 159
+        }
+      }
+    ],
+    "sourceHashes": {
+      "ExtraButtonSystem/Engine/ConsumableBind.lua": "3631f411f99fe89dc77f513d63a4c03515311820e3ecef901021f35db187191b",
+      "ExtraButtonSystem/Engine/Paint.lua": "57dc4907233c07d1534f26769d620aa0c19ff5c5404aaaafaa6add5642677de7"
+    },
+    "scope": "Desktop production-code simulations only; host timing is diagnostic, not native CPU/FPS evidence."
+  },
+  "sources": {
+    "live": {
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "records": [
+        {
+          "path": "version.txt",
+          "bytes": 13,
+          "sha256": "4e532c8d3beb3231ae8195704b6de0a099a19742e02505f73f292f47fe9e080b",
+          "gitBlob": "61a71eb0d9c435ad6f9f9701ab4d9c072cd3237e",
+          "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/version.txt"
+        },
+        {
+          "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/ItemDocumentation.lua",
+          "bytes": 43163,
+          "sha256": "56970512d088ad07f3a143bd5959789ced40546ad4f6992ee0824509fdcc10fb",
+          "gitBlob": "4955484268741dfe40991520d6c04edffb6d8d75",
+          "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_APIDocumentationGenerated/ItemDocumentation.lua"
+        },
+        {
+          "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/ContainerDocumentation.lua",
+          "bytes": 19085,
+          "sha256": "dd3e4741d45720384f814d3f78ce975dab3951458ae894e728ed3aedc8ae56b3",
+          "gitBlob": "d8ccac7e60f0a575d5ca27fda9b6900a92f1c709",
+          "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_APIDocumentationGenerated/ContainerDocumentation.lua"
+        },
+        {
+          "path": "Interface/AddOns/Blizzard_ActionBar/Mainline/ActionButton.lua",
+          "error": "HTTP Error 404: Not Found"
+        },
+        {
+          "path": "Interface/AddOns/Blizzard_ActionBar/Shared/ActionButton.lua",
+          "bytes": 62267,
+          "sha256": "54fb5625a5e8aa343cbbc0be805b23e2b3b329011e792448e6b732a4bebd8cba",
+          "gitBlob": "34ce1b2f5ef3c4eb679da7e8b02b1222ea122db1",
+          "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_ActionBar/Shared/ActionButton.lua"
+        },
+        {
+          "path": "Interface/AddOns/Blizzard_ActionBar/Blizzard_ActionBar.toc",
+          "bytes": 2823,
+          "sha256": "be2742875abf7461b047090bc77baf5ee793191be20b4840583f2d371fcc3a97",
+          "gitBlob": "3f63d114fcc74c5d4b27efa2c6f88628dd2bd1fc",
+          "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_ActionBar/Blizzard_ActionBar.toc"
+        }
+      ],
+      "verifiedPaths": [
+        "version.txt",
+        "Interface/AddOns/Blizzard_APIDocumentationGenerated/ItemDocumentation.lua",
+        "Interface/AddOns/Blizzard_APIDocumentationGenerated/ContainerDocumentation.lua",
+        "Interface/AddOns/Blizzard_ActionBar/Shared/ActionButton.lua",
+        "Interface/AddOns/Blizzard_ActionBar/Blizzard_ActionBar.toc"
+      ],
+      "version": "12.1.5.70783",
+      "runtime": "NOT RUN"
+    },
+    "forever": {
+      "commit": "4cd0ab752a77164f654ccbca9d0c1fe8dafceebe",
+      "records": [
+        {
+          "path": "version.txt",
+          "bytes": 13,
+          "sha256": "cda1e9ba5d7782fc757ed568df675acded1841ec72e8b76cc73124a7a0985a36",
+          "gitBlob": "5aae5d83fbb13b18885a3ac745bc004d10ea1409",
+          "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/4cd0ab752a77164f654ccbca9d0c1fe8dafceebe/version.txt"
+        },
+        {
+          "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/ItemDocumentation.lua",
+          "bytes": 44454,
+          "sha256": "59c5dd2f70757cdb9bc4511cb0fafe6287bbfb51d58a7389097dcbb485785af0",
+          "gitBlob": "2ca379d4976dc3254c1bf24c4754a60f684740e5",
+          "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/4cd0ab752a77164f654ccbca9d0c1fe8dafceebe/Interface/AddOns/Blizzard_APIDocumentationGenerated/ItemDocumentation.lua"
+        },
+        {
+          "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/ContainerDocumentation.lua",
+          "bytes": 19085,
+          "sha256": "dd3e4741d45720384f814d3f78ce975dab3951458ae894e728ed3aedc8ae56b3",
+          "gitBlob": "d8ccac7e60f0a575d5ca27fda9b6900a92f1c709",
+          "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/4cd0ab752a77164f654ccbca9d0c1fe8dafceebe/Interface/AddOns/Blizzard_APIDocumentationGenerated/ContainerDocumentation.lua"
+        },
+        {
+          "path": "Interface/AddOns/Blizzard_ActionBar/Mainline/ActionButton.lua",
+          "error": "HTTP Error 404: Not Found"
+        },
+        {
+          "path": "Interface/AddOns/Blizzard_ActionBar/Shared/ActionButton.lua",
+          "bytes": 64879,
+          "sha256": "cc0053c747b6af20db8e31e0b59838dc2a4da6638ec7b49c8f91ca81d4c1114e",
+          "gitBlob": "ade2b56a266cc44f7b727c77818fa237fab585d5",
+          "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/4cd0ab752a77164f654ccbca9d0c1fe8dafceebe/Interface/AddOns/Blizzard_ActionBar/Shared/ActionButton.lua"
+        },
+        {
+          "path": "Interface/AddOns/Blizzard_ActionBar/Blizzard_ActionBar.toc",
+          "bytes": 2552,
+          "sha256": "8788866b0d683bc7038034bd0bc198d67f2a612bd677a79fcb29ae719fa66fac",
+          "gitBlob": "5f95586c9cc81a02e8e059711c3b28d8df9ea1e8",
+          "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/4cd0ab752a77164f654ccbca9d0c1fe8dafceebe/Interface/AddOns/Blizzard_ActionBar/Blizzard_ActionBar.toc"
+        }
+      ],
+      "verifiedPaths": [
+        "version.txt",
+        "Interface/AddOns/Blizzard_APIDocumentationGenerated/ItemDocumentation.lua",
+        "Interface/AddOns/Blizzard_APIDocumentationGenerated/ContainerDocumentation.lua",
+        "Interface/AddOns/Blizzard_ActionBar/Shared/ActionButton.lua",
+        "Interface/AddOns/Blizzard_ActionBar/Blizzard_ActionBar.toc"
+      ],
+      "version": "1.60.1.70888",
+      "runtime": "NOT RUN"
+    },
+    "classic": {
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "records": [
+        {
+          "path": "version.txt",
+          "bytes": 12,
+          "sha256": "bcb030fe2d2febd396332d886d804ef9b397335e88f0196edc5d8dbe54c1ba38",
+          "gitBlob": "6888c66e55b78c6b76bdda185480facc60d9b5e5",
+          "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/version.txt"
+        },
+        {
+          "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/ItemDocumentation.lua",
+          "bytes": 26349,
+          "sha256": "56a6938bd9ac19b252e751eac3e621f5bd89c391a2d1d56656e1ce558b5aacc3",
+          "gitBlob": "77ab90302128427bab0926b6b012c7c1a21836b5",
+          "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_APIDocumentationGenerated/ItemDocumentation.lua"
+        },
+        {
+          "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/ContainerDocumentation.lua",
+          "bytes": 15269,
+          "sha256": "633dfcab41f333ba2d691a1d8472786e2a13440cd82034e792bdc91e320a1ef4",
+          "gitBlob": "bdf5586ff128f3394d4a7f50b696f8601a36a210",
+          "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_APIDocumentationGenerated/ContainerDocumentation.lua"
+        },
+        {
+          "path": "Interface/AddOns/Blizzard_ActionBar/Mainline/ActionButton.lua",
+          "error": "HTTP Error 404: Not Found"
+        },
+        {
+          "path": "Interface/AddOns/Blizzard_ActionBar/Shared/ActionButton.lua",
+          "bytes": 60549,
+          "sha256": "743d91b87f7535576240d5584e93318d0d69ce7afd4576baa5b71a14d45e4b42",
+          "gitBlob": "1d6bcdfda44143959d2bd657ebae8e13c8d9d3a9",
+          "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_ActionBar/Shared/ActionButton.lua"
+        },
+        {
+          "path": "Interface/AddOns/Blizzard_ActionBar/Blizzard_ActionBar.toc",
+          "error": "HTTP Error 404: Not Found"
+        }
+      ],
+      "verifiedPaths": [
+        "version.txt",
+        "Interface/AddOns/Blizzard_APIDocumentationGenerated/ItemDocumentation.lua",
+        "Interface/AddOns/Blizzard_APIDocumentationGenerated/ContainerDocumentation.lua",
+        "Interface/AddOns/Blizzard_ActionBar/Shared/ActionButton.lua"
+      ],
+      "version": "5.5.4.70631",
+      "runtime": "NOT RUN"
+    },
+    "classic_era": {
+      "commit": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "records": [
+        {
+          "path": "version.txt",
+          "bytes": 13,
+          "sha256": "5224861aa41c7bcfd9d48bdd8003eb769a8954c72e3e9682035aeff5bc236f29",
+          "gitBlob": "66bc5d3c31ec0d4ac300d1ba18ffd9490ac424d9",
+          "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/4192ac60067fc55566182291bc67c85dd9b6794d/version.txt"
+        },
+        {
+          "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/ItemDocumentation.lua",
+          "bytes": 26349,
+          "sha256": "56a6938bd9ac19b252e751eac3e621f5bd89c391a2d1d56656e1ce558b5aacc3",
+          "gitBlob": "77ab90302128427bab0926b6b012c7c1a21836b5",
+          "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_APIDocumentationGenerated/ItemDocumentation.lua"
+        },
+        {
+          "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/ContainerDocumentation.lua",
+          "bytes": 15269,
+          "sha256": "633dfcab41f333ba2d691a1d8472786e2a13440cd82034e792bdc91e320a1ef4",
+          "gitBlob": "bdf5586ff128f3394d4a7f50b696f8601a36a210",
+          "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_APIDocumentationGenerated/ContainerDocumentation.lua"
+        },
+        {
+          "path": "Interface/AddOns/Blizzard_ActionBar/Mainline/ActionButton.lua",
+          "error": "HTTP Error 404: Not Found"
+        },
+        {
+          "path": "Interface/AddOns/Blizzard_ActionBar/Shared/ActionButton.lua",
+          "bytes": 60549,
+          "sha256": "743d91b87f7535576240d5584e93318d0d69ce7afd4576baa5b71a14d45e4b42",
+          "gitBlob": "1d6bcdfda44143959d2bd657ebae8e13c8d9d3a9",
+          "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_ActionBar/Shared/ActionButton.lua"
+        },
+        {
+          "path": "Interface/AddOns/Blizzard_ActionBar/Blizzard_ActionBar.toc",
+          "error": "HTTP Error 404: Not Found"
+        }
+      ],
+      "verifiedPaths": [
+        "version.txt",
+        "Interface/AddOns/Blizzard_APIDocumentationGenerated/ItemDocumentation.lua",
+        "Interface/AddOns/Blizzard_APIDocumentationGenerated/ContainerDocumentation.lua",
+        "Interface/AddOns/Blizzard_ActionBar/Shared/ActionButton.lua"
+      ],
+      "version": "1.15.9.70576",
+      "runtime": "NOT RUN"
+    },
+    "classic_anniversary": {
+      "commit": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "records": [
+        {
+          "path": "version.txt",
+          "bytes": 12,
+          "sha256": "53498c451665c69194d1a41b9983916109b370b6a261bb833322ae871838bdb3",
+          "gitBlob": "f81737db88bfda2cd085cc09b18ca8ce764efc42",
+          "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/version.txt"
+        },
+        {
+          "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/ItemDocumentation.lua",
+          "bytes": 26349,
+          "sha256": "56a6938bd9ac19b252e751eac3e621f5bd89c391a2d1d56656e1ce558b5aacc3",
+          "gitBlob": "77ab90302128427bab0926b6b012c7c1a21836b5",
+          "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_APIDocumentationGenerated/ItemDocumentation.lua"
+        },
+        {
+          "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/ContainerDocumentation.lua",
+          "bytes": 15269,
+          "sha256": "633dfcab41f333ba2d691a1d8472786e2a13440cd82034e792bdc91e320a1ef4",
+          "gitBlob": "bdf5586ff128f3394d4a7f50b696f8601a36a210",
+          "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_APIDocumentationGenerated/ContainerDocumentation.lua"
+        },
+        {
+          "path": "Interface/AddOns/Blizzard_ActionBar/Mainline/ActionButton.lua",
+          "error": "HTTP Error 404: Not Found"
+        },
+        {
+          "path": "Interface/AddOns/Blizzard_ActionBar/Shared/ActionButton.lua",
+          "bytes": 62460,
+          "sha256": "9b8c7d5e2f3a77d15c601fcdb4145853ef80ed58a56767c20b60082acec7d96a",
+          "gitBlob": "7cade90eea5465dbb34b5b9c5faffb940ce8ae6f",
+          "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_ActionBar/Shared/ActionButton.lua"
+        },
+        {
+          "path": "Interface/AddOns/Blizzard_ActionBar/Blizzard_ActionBar.toc",
+          "error": "HTTP Error 404: Not Found"
+        }
+      ],
+      "verifiedPaths": [
+        "version.txt",
+        "Interface/AddOns/Blizzard_APIDocumentationGenerated/ItemDocumentation.lua",
+        "Interface/AddOns/Blizzard_APIDocumentationGenerated/ContainerDocumentation.lua",
+        "Interface/AddOns/Blizzard_ActionBar/Shared/ActionButton.lua"
+      ],
+      "version": "2.5.6.70577",
+      "runtime": "NOT RUN"
+    }
+  },
+  "referenceSyndicator": {
+    "path": "F:\\World of Warcraft\\_forever_\\Interface\\AddOns\\Syndicator",
+    "version": "290",
+    "sha256": {
+      "Syndicator.toc": "d78b2bf574a00c81c41c2467021e3ed2c03ee64931875e943d3040587ac2b098",
+      "Tracking/BagCache.lua": "c34a06b0d3a5d87c9ae319fd9212c4efb0603709ba2b5114bb7b9988195a9d8a",
+      "LICENSE": "8ab1f878ab363dbb42591f062190386662a0aaaae36f90cc518dcf3494bafb7d"
+    },
+    "license": "All Rights Reserved; Copyright (c) 2023-2026 plusmouse",
+    "access": "read-only",
+    "codeCopied": false
+  },
+  "fullValidation": {
+    "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c65e-a3d3-7840-a32a-09fda47a48df\\combat-counts\\full-rechecked.json",
+    "pass": 297,
+    "fail": 0,
+    "syntaxFiles": 969,
+    "syntaxFailures": [],
+    "changedTaskFilesMatch": true,
+    "unrelatedSourceDriftAtRecord": [],
+    "scope": "Full run during concurrent raid edits followed by four bounded rechecks with stable inputs; raw interrupted-source run retained in full-stable.json.",
+    "rechecks": [
+      {
+        "path": "tests/raid_healer_auras.lua",
+        "priorExit": 1,
+        "exit": 0,
+        "output": "Raid healer auras: 11410 checks; actual native owner/flow projection, global one-to-six limits, native-relative sizing, strict filters and cooldown sinks; eleven rejected negative controls; client visuals/scheduling pending\n",
+        "sha256": "96e12e69d5ddd01eab841fcb63cebba173e7e46b9adfeebeca98382d2bb8fc4f"
+      },
+      {
+        "path": "tests/raid_aura_layout.lua",
+        "priorExit": 0,
+        "exit": 0,
+        "output": "Raid aura layout: 2944 checks; stock-relative squares, independent aura resizing and actual text crop; four rejected mutants; native rendering pending\n",
+        "sha256": "961ce24a7d7c9def93576c02fc89d6a4f89923cdd5d9256566324a672b7d6308"
+      },
+      {
+        "path": "tests/passive_raid_aura_snapshots.lua",
+        "priorExit": 0,
+        "exit": 0,
+        "output": "PASS raid fallback snapshots: 108 actual-painter checks; native owners untouched\n",
+        "sha256": "01923641447896184ec9fb461b128bcd594e8c9fd127c4e1883e2db98e4f5fd3"
+      },
+      {
+        "path": "tests/combat_grid_live_counts.lua",
+        "priorExit": 0,
+        "exit": 0,
+        "output": "Combat grid live counts: 2175 checks, 0 failures; provider burst recounts=40 nativeCountQueries=159\n",
+        "sha256": "aa32ebaccb6234a5bcf12d16e4e9963513bded0735c2ba18e362a442a45c497d"
+      }
+    ],
+    "earlierFullPass": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c65e-a3d3-7840-a32a-09fda47a48df\\combat-counts\\full-final.json",
+    "rawConcurrentRun": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c65e-a3d3-7840-a32a-09fda47a48df\\combat-counts\\full-stable.json",
+    "concurrentInputChanges": {
+      "exit": 1,
+      "changedDuringRun": [
+        "RaidFrame/FluxRaidAuras.lua",
+        "tests/raid_healer_auras.lua"
+      ],
+      "stableInputs": false,
+      "pass": 296,
+      "fail": 1,
+      "syntaxFiles": 969
+    },
+    "unrelatedSourceDriftAtFinalRecord": [
+      "RaidFrame/FluxRaidAuras.lua",
+      "UnitFrames/FluxUnitFrames_DebuffTint.lua"
+    ]
+  },
+  "native": "NOT RUN: no connected Witchcraft/UIForever/computer-use tool; existing user-reproduction route retained.",
+  "visualAndInput": "No design, settings, bindings or input changes. Native pixels, controller/physical input, taint, secure operation, FPS and memory NOT RUN.",
+  "drivers": "Existing BAG_UPDATE_DELAYED watch; one pending After(0) recount for tracked Syndicator faces; no new frames/tickers/hooks/polling. Empty disabled craft slots queue no recount.",
+  "actions": "Retail workspace writes only; no game input/focus, private settings/profiler writes, manual sync, commit or publication.",
+  "sharedVerificationSnapshot": {
+    "passed": 298,
+    "failed": 0,
+    "syntaxFiles": 970,
+    "scope": "Other tasks also write this shared index; counts are a recorded snapshot, not a new claim of testing their subsequent edits."
+  },
+  "documentationValidation": {
+    "command": "python docs/tools/validate_docs.py",
+    "result": "FAIL outside this task scope",
+    "issues": [
+      "Stale source inventory: RaidFrame/FluxRaidAuras.lua",
+      "Stale source inventory: UnitFrames/FluxUnitFrames_DebuffTint.lua",
+      "Recorded verification predates current source: RaidFrame/FluxRaidAuras.lua",
+      "Recorded verification predates current source: UnitFrames/FluxUnitFrames_DebuffTint.lua"
+    ],
+    "scope": "All reported errors concern concurrently edited raid/debuff owners. Generated inventory refreshed; task source and links remain covered. No unrelated runtime/test files changed by this task."
+  },
+  "finalTaskSourceGuard": {
+    "capturedAtUTC": "2026-11-10T17:13:45.267996+00:00",
+    "pass": true,
+    "files": [
+      "ExtraButtonSystem/Engine/ConsumableBind.lua",
+      "ExtraButtonSystem/Engine/Paint.lua",
+      "tests/combat_grid_live_counts.lua"
+    ]
+  }
+}

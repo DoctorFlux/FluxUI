@@ -552,6 +552,12 @@ local function CreatePluginFrames()
         }
     end
 
+    local function PlainThreatTank(row)
+        local flag = row and row.isTanking
+        if issecretvalue and issecretvalue(flag) then return false end
+        return flag and true or false
+    end
+
     local function GatherAllThreat(targetUnit)
         wipe(Threat.threatData)
 
@@ -594,14 +600,7 @@ local function CreatePluginFrames()
             return FT.AccessibleNumber(row.threatPct) or FT.AccessibleNumber(row.threatVal)
         end
         table_sort(Threat.threatData, function(a, b)
-            local function plainTank(row)
-                local flag = row and row.isTanking
-                if issecretvalue and issecretvalue(flag) then
-                    return false
-                end
-                return flag and true or false
-            end
-            local aTank, bTank = plainTank(a), plainTank(b)
+            local aTank, bTank = PlainThreatTank(a), PlainThreatTank(b)
             if aTank ~= bTank then
                 return aTank and not bTank
             end
@@ -850,21 +849,22 @@ local function CreatePluginFrames()
     local function ThreatFrame_OnUpdate()
         if not Threat.Active then return end
         if not ThreatFrame:IsVisible() then return end
-        if not Threat:GetPluginInstance() then return end
-
         local now = GetTime()
         local freq = Threat.options.updatespeed or 0.2
         if freq < 0.1 then freq = 0.1 end
         if freq > 2 then freq = 2 end
 
-        local targetUnit = GetThreatTarget()
-        local needTargetTargetPoll = targetUnit == "targettarget" and _UnitAffectingCombat("player")
-        local inCombat = _UnitAffectingCombat("player")
-        local eventLed = Threat.saveddata.event_led_threat_updates == true
-
+        -- Target/combat state has no observable effect until this deadline.
+        -- Keep the existing per-frame/event-led behavior once it is due.
         if now < lastThreatPollTime + freq then
             return
         end
+        if not Threat:GetPluginInstance() then return end
+
+        local targetUnit = GetThreatTarget()
+        local inCombat = _UnitAffectingCombat("player")
+        local needTargetTargetPoll = targetUnit == "targettarget" and inCombat
+        local eventLed = Threat.saveddata.event_led_threat_updates == true
 
         local needPollReason = threatPollDeferred or needTargetTargetPoll
         if eventLed then

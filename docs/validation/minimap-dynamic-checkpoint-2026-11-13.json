@@ -1,0 +1,19 @@
+{
+  "task": "MINIMAP-DYNAMIC-20261113",
+  "captured_utc": "2026-11-13T14:24:51.364373+00:00",
+  "external_directory": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d3b4-b7ec-7591-94d3-6d3b3097fb8a\\minimap-dynamic-20261113T142451Z-0",
+  "branch": "main",
+  "head": "26f886e3ea5371b196ab235d2dace0c156002285",
+  "hooks_path": ".githooks",
+  "source_files": 2706,
+  "zip_verified": true,
+  "live_changed_during_capture": [],
+  "bundle_verified": true,
+  "settings_metadata_count": 99,
+  "private_settings_copied": false,
+  "archives": {
+    "source.zip": "22d044e416f1566fb014da273bb796d1b1714a1789301d54f0d52af103dc3ec1",
+    "history.bundle": "0a742931e4f0cf01251d83643f628fbeaeccfc3470406c0d52988cb4640539ef",
+    "source-sha256.json": "cab006b6824c471bd45bccbeab4b2400a5e0633de833eafa14aa767ab18869f4"
+  }
+}

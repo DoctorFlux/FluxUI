@@ -149,30 +149,35 @@ end
 -- Blizzard CastingBarMixin:HandleCastStart feeds displayName into FontString:SetText
 -- even when the string is secret (SecretAspect.Text). Do not unwrap or stringify it.
 -- Forever uses text (displayName); fall back to name if text is missing or empty.
+local function TrySetCastBarSpellLabel(fs, label)
+    if label == nil then
+        return false
+    end
+    local ok = pcall(fs.SetText, fs, label)
+    if not ok then
+        return false
+    end
+    local shown = API and API.SafeAccessibleString and API.SafeAccessibleString(label)
+    -- Secret SetText succeeded (shown nil) or nonempty accessible string.
+    return shown == nil or shown ~= ""
+end
+
 local function PaintCastBarSpellText(fs, name, text, isChannel)
     if not fs or not fs.SetText then
         return false
     end
-    local function trySet(label)
-        if label == nil then
-            return false
-        end
-        local ok = pcall(fs.SetText, fs, label)
-        if not ok then
-            return false
-        end
-        local shown = API and API.SafeAccessibleString and API.SafeAccessibleString(label)
-        -- Secret SetText succeeded (shown nil) or nonempty accessible string.
-        return shown == nil or shown ~= ""
-    end
-    if trySet(text) then
+    if TrySetCastBarSpellLabel(fs, text) then
         return true
     end
-    if trySet(name) then
+    if TrySetCastBarSpellLabel(fs, name) then
         return true
     end
     pcall(fs.SetText, fs, GenericCastLabel(isChannel))
     return false
+end
+
+local function CompareCastEventUnits(eventUnit, registeredUnit)
+    return eventUnit == registeredUnit
 end
 
 local function EventUnitMatchesRegistered(eventUnit, registeredUnit)
@@ -182,9 +187,7 @@ local function EventUnitMatchesRegistered(eventUnit, registeredUnit)
     if IsSecretValue(eventUnit) then
         return true
     end
-    local ok, matches = pcall(function()
-        return eventUnit == registeredUnit
-    end)
+    local ok, matches = pcall(CompareCastEventUnits, eventUnit, registeredUnit)
     if not ok then
         return true
     end
@@ -284,20 +287,22 @@ end
 
 -- Forever CastingBarMixin:HandleCastStart: value/maxValue from UnitCastingInfo
 -- startTime/endTime (ms), then OnUpdate adds elapsed. Same data as the client bar.
+local function ReadClientCastTiming(startTime, endTime, isChannel)
+    local maxV = (endTime - startTime) / 1000
+    local val
+    if isChannel then
+        val = (endTime / 1000) - GetTime()
+    else
+        val = GetTime() - (startTime / 1000)
+    end
+    return val, maxV
+end
+
 local function ApplyClientCastTiming(self, startTime, endTime, isChannel)
     if startTime == nil or endTime == nil then
         return false
     end
-    local ok, value, maxValue = pcall(function()
-        local maxV = (endTime - startTime) / 1000
-        local val
-        if isChannel then
-            val = (endTime / 1000) - GetTime()
-        else
-            val = GetTime() - (startTime / 1000)
-        end
-        return val, maxV
-    end)
+    local ok, value, maxValue = pcall(ReadClientCastTiming, startTime, endTime, isChannel)
     if not ok or value == nil or maxValue == nil then
         return false
     end
@@ -326,6 +331,11 @@ end
 
 -- Read the same clock that drives the displayed bar. DurationObject numbers may
 -- remain opaque: forward remaining duration to the native font sink unchanged.
+local function ReadCastBarProgress(self)
+    local _, maxValue = self:GetMinMaxValues()
+    return self:GetValue(), maxValue
+end
+
 local function AccessibleRemainingSeconds(self)
     if not self then return nil end
     if self._fluxUsedTimerDuration and self.GetTimerDuration then
@@ -339,16 +349,13 @@ local function AccessibleRemainingSeconds(self)
         end
     end
     if not self.GetValue or not self.GetMinMaxValues then return nil end
-    local ok, value, maximum = pcall(function()
-        local _, maxValue = self:GetMinMaxValues()
-        return self:GetValue(), maxValue
-    end)
+    local ok, value, maximum = pcall(ReadCastBarProgress, self)
     if not ok or IsSecretValue(value) or IsSecretValue(maximum) then return nil end
     if type(value) ~= "number" or type(maximum) ~= "number" or maximum <= 0 then return nil end
     return math.max(0, self.channeling and value or (maximum - value))
 end
 
-local function PaintCastBarRemainingTime(self)
+local function PaintCastBarRemainingTime(self, sampledRemaining, sampledTimerRevision)
     if not self or not self.Time then
         return
     end
@@ -361,7 +368,16 @@ local function PaintCastBarRemainingTime(self)
     if not self.casting and not self.channeling and not self.customTimer then
         return
     end
-    local rem = AccessibleRemainingSeconds(self)
+    local rem
+    if sampledTimerRevision ~= nil and sampledTimerRevision == self._fluxTimerRevision
+        and self._fluxUsedTimerDuration then
+        -- Only the current OnUpdate passes its successful engine sample. Other
+        -- callers, failed reads, and reentrant clock replacements query afresh.
+        rem = sampledRemaining
+        if not IsSecretValue(rem) then rem = math.max(0, rem) end
+    else
+        rem = AccessibleRemainingSeconds(self)
+    end
     local opaque = IsSecretValue(rem)
     if not opaque and rem == nil then
         self.Time:SetText("")
@@ -1143,6 +1159,52 @@ end
 -- UNITFRAME look (live + forever CastingBarMixin): interrupted atlas, keep current fill,
 -- red pip, localized Interrupted / Interrupted by. Classic Style fills red immediately
 -- (CastingBarMixin:ApplyInterruptFilledState) and does not use the interrupted atlas cap.
+local function PaintInterruptedCast(self, failed, interruptedBy)
+    local label = failed and (FAILED or "Failed") or GetInterruptText(interruptedBy)
+    if self.Text then
+        self.Text:SetText(label)
+        self.Text:ClearAllPoints()
+        self.Text:SetJustifyH("CENTER")
+        self.Text:SetPoint("CENTER", self, "CENTER", 0, 0)
+        self.Text:Show()
+    end
+
+    if self.Time then
+        self.Time:SetText("")
+        self.Time:Hide()
+    end
+
+    local cur, maxV = SnapshotCastBarProgress(self)
+    local classicFinish = UseClassicCastBarColorFinish()
+    local modern = UseModernCastBarArt() and not classicFinish
+    local freezeMax = (maxV and maxV > 0) and maxV or 1
+    local freezeVal = freezeMax
+    local sparkRatio = 1
+    if modern and cur and maxV and maxV > 0 then
+        freezeVal = math.max(0, math.min(maxV, cur))
+        sparkRatio = freezeVal / maxV
+    end
+
+    -- Freeze engine DurationObject so the bar does not keep ticking after kick.
+    self:SetMinMaxValues(0, freezeMax)
+    self:SetValue(freezeVal)
+
+    if classicFinish then
+        ApplyCastBarVertexFill(self, FLUX_CASTBAR_INTERRUPT_RED[1], FLUX_CASTBAR_INTERRUPT_RED[2], FLUX_CASTBAR_INTERRUPT_RED[3])
+        if self.Spark then
+            self.Spark:Hide()
+        end
+    else
+        ApplyCastBarFillAtlas(self, "ui-castingbar-interrupted")
+        -- Atlas already carries the red interrupt art (CastingBarMixin:UpdateBarFillTexture).
+        ApplyModernFillColor(self)
+        ShowInterruptSpark(self, sparkRatio)
+    end
+
+    SetCastBarEmpoweredBackdrop(self, false)
+    SetCastBarEmpoweredTrough(self, false)
+end
+
 local function HandleInterrupt(self, failed, interruptedBy)
     if CastThemes then CastThemes.Reset(self, true) end
     self.interrupted = true
@@ -1152,51 +1214,7 @@ local function HandleInterrupt(self, failed, interruptedBy)
     self.castGUID = nil
     self.spellID = nil
 
-    pcall(function()
-        local label = failed and (FAILED or "Failed") or GetInterruptText(interruptedBy)
-        if self.Text then
-            self.Text:SetText(label)
-            self.Text:ClearAllPoints()
-            self.Text:SetJustifyH("CENTER")
-            self.Text:SetPoint("CENTER", self, "CENTER", 0, 0)
-            self.Text:Show()
-        end
-
-        if self.Time then
-            self.Time:SetText("")
-            self.Time:Hide()
-        end
-
-        local cur, maxV = SnapshotCastBarProgress(self)
-        local classicFinish = UseClassicCastBarColorFinish()
-        local modern = UseModernCastBarArt() and not classicFinish
-        local freezeMax = (maxV and maxV > 0) and maxV or 1
-        local freezeVal = freezeMax
-        local sparkRatio = 1
-        if modern and cur and maxV and maxV > 0 then
-            freezeVal = math.max(0, math.min(maxV, cur))
-            sparkRatio = freezeVal / maxV
-        end
-
-        -- Freeze engine DurationObject so the bar does not keep ticking after kick.
-        self:SetMinMaxValues(0, freezeMax)
-        self:SetValue(freezeVal)
-
-        if classicFinish then
-            ApplyCastBarVertexFill(self, FLUX_CASTBAR_INTERRUPT_RED[1], FLUX_CASTBAR_INTERRUPT_RED[2], FLUX_CASTBAR_INTERRUPT_RED[3])
-            if self.Spark then
-                self.Spark:Hide()
-            end
-        else
-            ApplyCastBarFillAtlas(self, "ui-castingbar-interrupted")
-            -- Atlas already carries the red interrupt art (CastingBarMixin:UpdateBarFillTexture).
-            ApplyModernFillColor(self)
-            ShowInterruptSpark(self, sparkRatio)
-        end
-
-        SetCastBarEmpoweredBackdrop(self, false)
-        SetCastBarEmpoweredTrough(self, false)
-    end)
+    pcall(PaintInterruptedCast, self, failed, interruptedBy)
 
     self.holdTime = FLUX_CASTBAR_HOLD_INTERRUPT
     self:SetAlpha(1)
@@ -1877,6 +1895,81 @@ function CB.StartCustomTimer(castBar, timerOpts)
     end
 end
 
+local function ReadCastStartFields(unit, isChannel)
+    local name, text, texture, startTime, endTime, isTradeSkill, castID, notInterruptible, spellID
+    local numStages = 0
+
+    if isChannel then
+        if UnitChannelInfo then
+            name, text, texture, startTime, endTime, isTradeSkill, notInterruptible, spellID, _, numStages = UnitChannelInfo(unit)
+            castID = nil
+        end
+    else
+        if UnitCastingInfo then
+            name, text, texture, startTime, endTime, isTradeSkill, castID, notInterruptible, spellID = UnitCastingInfo(unit)
+        end
+    end
+    return name, text, texture, startTime, endTime, isTradeSkill, castID, notInterruptible, spellID, numStages
+end
+
+local function SetCastBarIcon(self, texture)
+    self.Icon:SetTexture(texture)
+end
+
+local function PaintCastStartLabel(self, unit, accessibleText, name, text, isChannel)
+    local tName = nil
+    local tUnit = nil
+    -- Determine Target (player/vehicle only; never concat secret spell text)
+    if unit == "player" or unit == "vehicle" then
+        local sent = self.sentTarget
+        if sent ~= nil and not IsSecretValue(sent) and API.CanAccessValue(sent) then
+            tName = sent
+            tUnit = FindUnitForCastTargetName(sent, nil)
+        end
+    elseif accessibleText and accessibleText:find(" > ") then
+        local _, targetName = accessibleText:match("^(.-) > (.+)$")
+        if targetName ~= nil and not IsSecretValue(targetName) and API.CanAccessValue(targetName) then
+            tName = targetName
+            tUnit = FindUnitForCastTargetName(targetName, unit)
+        end
+    end
+
+    local spellPart = accessibleText
+    if spellPart and spellPart:find(" > ") then
+        spellPart = spellPart:match("^(.-) > .+$") or spellPart
+    end
+
+    if tName ~= nil and not IsSecretValue(tName) and API.CanAccessValue(tName) and spellPart then
+        local colorHex = "ffffffff"
+
+        if tUnit and UnitExists(tUnit) then
+            if UnitIsPlayer(tUnit) then
+                local _, class = UnitClass(tUnit)
+                class = API.SafeAccessibleString(class)
+                local c = class and RAID_CLASS_COLORS[class]
+                if c then
+                    colorHex = c.colorStr
+                end
+            else
+                local reaction = UnitReaction(tUnit, "player")
+                if reaction then
+                    if reaction >= 5 then
+                        colorHex = "ff00ff00"
+                    elseif reaction == 4 then
+                        colorHex = "ffffff00"
+                    else
+                        colorHex = "ffcc0000"
+                    end
+                end
+            end
+        end
+
+        self.Text:SetText(spellPart .. " > |c" .. colorHex .. tName .. "|r")
+    else
+        PaintCastBarSpellText(self.Text, name, text, isChannel)
+    end
+end
+
 local function CastStart(self, unit, isChannel, castGUID, eventSpellID)
     if CastThemes then CastThemes.Reset(self, true) end
     if FluxUnitFrames_ShouldShowCastBar and not FluxUnitFrames_ShouldShowCastBar(unit) then
@@ -1892,21 +1985,9 @@ local function CastStart(self, unit, isChannel, castGUID, eventSpellID)
         StopCustomTimerInternal(self)
     end
 
-    local name, text, texture, startTime, endTime, isTradeSkill, castID, notInterruptible, spellID
-    local numStages = 0
-
-    pcall(function()
-        if isChannel then
-            if UnitChannelInfo then
-                name, text, texture, startTime, endTime, isTradeSkill, notInterruptible, spellID, _, numStages = UnitChannelInfo(unit)
-                castID = nil
-            end
-        else
-            if UnitCastingInfo then
-                name, text, texture, startTime, endTime, isTradeSkill, castID, notInterruptible, spellID = UnitCastingInfo(unit)
-            end
-        end
-    end)
+    local readOK, name, text, texture, startTime, endTime, isTradeSkill, castID, notInterruptible, spellID, numStages =
+        pcall(ReadCastStartFields, unit, isChannel)
+    if not readOK then name, numStages = nil, 0 end
 
     if not CastLooksActive(name, text, spellID, startTime, endTime) then
         self:Hide()
@@ -2058,16 +2139,12 @@ local function CastStart(self, unit, isChannel, castGUID, eventSpellID)
     if self.Icon then
         local painted = false
         if not IsPlaceholderIcon(texture) then
-            painted = pcall(function()
-                self.Icon:SetTexture(texture)
-            end)
+            painted = pcall(SetCastBarIcon, self, texture)
         end
         if not painted then
             local profIcon = GetProfessionIconForSpell(name, spellID)
             if profIcon then
-                painted = pcall(function()
-                    self.Icon:SetTexture(profIcon)
-                end)
+                painted = pcall(SetCastBarIcon, self, profIcon)
             end
         end
         if self.IconFrame then
@@ -2076,61 +2153,8 @@ local function CastStart(self, unit, isChannel, castGUID, eventSpellID)
     end
 
     if self.Text then
-        local tName = nil
-        local tUnit = nil
         local accessibleText = (text ~= nil and not IsSecretValue(text)) and text or nil
-
-        local okText = pcall(function()
-            -- Determine Target (player/vehicle only; never concat secret spell text)
-            if unit == "player" or unit == "vehicle" then
-                local sent = self.sentTarget
-                if sent ~= nil and not IsSecretValue(sent) and API.CanAccessValue(sent) then
-                    tName = sent
-                    tUnit = FindUnitForCastTargetName(sent, nil)
-                end
-            elseif accessibleText and accessibleText:find(" > ") then
-                local _, targetName = accessibleText:match("^(.-) > (.+)$")
-                if targetName ~= nil and not IsSecretValue(targetName) and API.CanAccessValue(targetName) then
-                    tName = targetName
-                    tUnit = FindUnitForCastTargetName(targetName, unit)
-                end
-            end
-
-            local spellPart = accessibleText
-            if spellPart and spellPart:find(" > ") then
-                spellPart = spellPart:match("^(.-) > .+$") or spellPart
-            end
-
-            if tName ~= nil and not IsSecretValue(tName) and API.CanAccessValue(tName) and spellPart then
-                local colorHex = "ffffffff"
-
-                if tUnit and UnitExists(tUnit) then
-                    if UnitIsPlayer(tUnit) then
-                        local _, class = UnitClass(tUnit)
-                        class = API.SafeAccessibleString(class)
-                        local c = class and RAID_CLASS_COLORS[class]
-                        if c then
-                            colorHex = c.colorStr
-                        end
-                    else
-                        local reaction = UnitReaction(tUnit, "player")
-                        if reaction then
-                            if reaction >= 5 then
-                                colorHex = "ff00ff00"
-                            elseif reaction == 4 then
-                                colorHex = "ffffff00"
-                            else
-                                colorHex = "ffcc0000"
-                            end
-                        end
-                    end
-                end
-
-                self.Text:SetText(spellPart .. " > |c" .. colorHex .. tName .. "|r")
-            else
-                PaintCastBarSpellText(self.Text, name, text, isChannel)
-            end
-        end)
+        local okText = pcall(PaintCastStartLabel, self, unit, accessibleText, name, text, isChannel)
 
         if not okText then
             PaintCastBarSpellText(self.Text, name, text, isChannel)
@@ -2459,6 +2483,7 @@ local function OnUpdate(self, elapsed)
     end
 
     -- Update time display and spark position using GetTimerDuration() (12.0+) or manual calculation (pre-12.0)
+    local timerRevision = self._fluxTimerRevision
     local durationObject
     if self.GetTimerDuration then
         local okDur, dur = pcall(self.GetTimerDuration, self)
@@ -2498,7 +2523,9 @@ local function OnUpdate(self, elapsed)
             end
         end
         if self.Time and _updateTimeText then
-            PaintCastBarRemainingTime(self)
+            PaintCastBarRemainingTime(self, remainingTime, self._fluxUsedTimerDuration
+                and (IsSecretValue(remainingTime) or type(remainingTime) == "number")
+                and timerRevision or nil)
         end
 
         if self.Spark then
@@ -2707,7 +2734,11 @@ function CB.CreateCastBar(frame, unit)
     -- Proxy StatusBar methods from castBar to timerBar
     castBar.SetValue = function(self, ...) timerBar:SetValue(...) end
     castBar.GetValue = function(self, ...) return timerBar:GetValue(...) end
-    castBar.SetMinMaxValues = function(self, ...) timerBar:SetMinMaxValues(...) end
+    castBar._fluxTimerRevision = 0
+    castBar.SetMinMaxValues = function(self, ...)
+        self._fluxTimerRevision = self._fluxTimerRevision + 1
+        timerBar:SetMinMaxValues(...)
+    end
     castBar.GetMinMaxValues = function(self, ...) return timerBar:GetMinMaxValues(...) end
     castBar.SetStatusBarColor = function(self, ...) timerBar:SetStatusBarColor(...) end
     castBar.SetStatusBarTexture = function(self, ...) timerBar:SetStatusBarTexture(...) end
@@ -2722,7 +2753,10 @@ function CB.CreateCastBar(frame, unit)
 
     -- Only proxy timer methods if they exist (12.0+)
     if timerBar.SetTimerDuration then
-        castBar.SetTimerDuration = function(self, ...) timerBar:SetTimerDuration(...) end
+        castBar.SetTimerDuration = function(self, ...)
+            self._fluxTimerRevision = self._fluxTimerRevision + 1
+            timerBar:SetTimerDuration(...)
+        end
     end
     if timerBar.GetTimerDuration then
         castBar.GetTimerDuration = function(self, ...) return timerBar:GetTimerDuration(...) end

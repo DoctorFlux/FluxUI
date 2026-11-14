@@ -966,10 +966,10 @@ local function MakePopup(host)
 	end)
 	popup:SetScript("OnHide", function(self)
 		self:SetScript("OnUpdate", nil)
-		if self.ClearBindings then
+		if self.ClearBindings and not (self._fluxVisibilityParent and Flyout.InLockdown()) then
 			pcall(self.ClearBindings, self)
 		end
-		if self.kids then
+		if self.kids and not (self._fluxVisibilityParent and Flyout.InLockdown()) then
 			for i = 1, #(self.kids) do
 				HideRestockEdit(self.kids[i])
 			end
@@ -1006,11 +1006,15 @@ function Popup.Place(host)
 		return
 	end
 	local opts = rec.opts or {}
+	local parent = opts.visibilityParent or UIParent
+	if Flyout.Secure and Flyout.Secure.SetVisibilityParent then
+		Flyout.Secure.SetVisibilityParent(popup, opts.visibilityParent)
+	end
 	local dir = Flyout.DirOk(opts.direction or popup.direction or "UP")
 	popup.direction = dir
 	local anchor = opts.anchorFrame or host
 	popup:ClearAllPoints()
-	popup:SetParent(UIParent)
+	popup:SetParent(parent)
 	popup:SetFrameStrata("FULLSCREEN_DIALOG")
 	popup:SetFrameLevel(5500)
 	if popup.SetToplevel then
@@ -1022,8 +1026,8 @@ function Popup.Place(host)
 		local p, rel, x, y = Flyout.DirPoints(dir)
 		popup:SetPoint(p, anchor, rel, x, y)
 	end
-	if opts.matchAnchorScale ~= false and popup.SetScale and anchor and anchor.GetEffectiveScale and UIParent.GetEffectiveScale then
-		local us = UIParent:GetEffectiveScale() or 1
+	if opts.matchAnchorScale ~= false and popup.SetScale and anchor and anchor.GetEffectiveScale and parent.GetEffectiveScale then
+		local us = parent:GetEffectiveScale() or 1
 		if us > 0 then
 			popup:SetScale((anchor:GetEffectiveScale() or us) / us)
 		end

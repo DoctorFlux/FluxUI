@@ -129,6 +129,9 @@ local function defaultState()
 end
 
 local state = defaultState()
+local function NoteFollowupCommand()
+    if state.session and state.session.auctionFollowup then state.session.followupIssued = true end
+end
 
 local frame = CreateFrame("Frame")
 frame:Hide()
@@ -615,6 +618,7 @@ local function mergeOnto(fromBag, fromSlot, toBag, toSlot)
         return false
     end
 
+    NoteFollowupCommand()
     inv.PickupContainerItem(fromBag, fromSlot)
     if not ctx.CursorHasItem() and C_Container and C_Container.PickupContainerItem then
         pcall(C_Container.PickupContainerItem, fromBag, fromSlot)
@@ -1149,6 +1153,7 @@ local function fireWithdrawBurst()
                 pending = pending + 1
             else
                 local had = ctx.GetSlotQuantity(mv.fromBag, mv.fromSlot)
+                if had > 0 then NoteFollowupCommand() end
                 if had > 0 and ctx.UseWhole(mv.fromBag, mv.fromSlot) then
                     issued = issued + 1
                     mv.withdrawIssued = true
@@ -1296,6 +1301,7 @@ local function fireOneSplit()
                 elseif not hasDest then
                     -- No partial with room and no empty slot: taking the whole
                     -- remaining stack is still progress when it fits the need.
+                    if qty >= before then NoteFollowupCommand() end
                     if qty >= before and ctx.UseWhole(mv.fromBag, mv.fromSlot) then
                         mv.sourceBefore = before
                         mv.endQty = 0
@@ -1318,6 +1324,7 @@ local function fireOneSplit()
                     DbgImportant("split", "step bank=%s:%s amt=%s -> %s:%s dest=%s (attempt %s)",
                         mv.fromBag, mv.fromSlot, takeQty, mv.toBag, mv.toSlot,
                         tostring(mv.destKind), tostring(mv.attempts))
+                    NoteFollowupCommand()
                     local ok, reason = ctx.TryBankSplitPlace(
                         mv.fromBag, mv.fromSlot, mv.toBag, mv.toSlot, takeQty)
                     if ctx.CursorHasItem() then

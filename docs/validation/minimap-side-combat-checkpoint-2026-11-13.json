@@ -1,0 +1,17 @@
+{
+  "changeId": "MINIMAP-SIDE-COMBAT-20261113",
+  "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d3b4-b7ec-7591-94d3-6d3b3097fb8a\\minimap-side-combat-20261113T091348Z",
+  "verified": true,
+  "sourceFiles": 2652,
+  "settingsMetadataEntries": 103,
+  "settingsWrites": false,
+  "settingsContentsCopied": false,
+  "revision": "26f886e3ea5371b196ab235d2dace0c156002285",
+  "branch": "main",
+  "hooksPath": ".githooks",
+  "sha256": {
+    "source.zip": "9cab69765af0acc53409630fc267c7e107e97fdac7b81bf41c4e31a9c58d2718",
+    "history.bundle": "a039566166d0df0f8a88137e599daa0cf48e48bec7c53f094d9deab068f6666f",
+    "source-manifest.json": "ae271997447073940650018a4637af2a98442e42d7b9a3576809c41a5f52fc8b"
+  }
+}

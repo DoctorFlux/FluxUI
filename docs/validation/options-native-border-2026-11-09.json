@@ -1,0 +1,119 @@
+{
+  "date": "2026-11-09",
+  "utc": "2026-11-09T22:34:22.447982+00:00",
+  "change_id": "OPTIONS-NATIVE-BORDER-20261109",
+  "requirement": "REQ-OPT-34",
+  "userReport": {
+    "client": "Classic Era",
+    "error": "Blizzard_SharedXML/NineSlice.lua:163: attempt to index local userLayout (a nil value)",
+    "route": "Chat shortcut -> ToggleConfig -> EnsureFrame -> CreateWindow -> SetBorder -> ApplyLayout",
+    "clientBuild": "Not supplied; no actual build probe"
+  },
+  "cause": "SetBorder method presence was treated as proof that the PortraitFrameTemplate NineSlice layout exists. Classic families inherit the method but omit this layout; explicit SetBorder passes nil into ApplyLayout. Classic native XML supplies separate texture borders. Retail/Forever native NineSlice child OnLoad already applies its existing layout.",
+  "fix": "Remove redundant forced SetBorder call. Preserve original PortraitFrameTemplate native setup on every client; no custom global patches, copied layout or broad error suppression.",
+  "testGap": "Previous production-shell fixture simply accepted and recorded any border string. It now loads real pinned Native NineSliceLayouts, NineSlice.lua and PortraitFrame.lua, including Classic native OnLoad/title methods. Engine frame/texture operations remain modeled.",
+  "baselineNormalizedSHA256": {
+    "AddonOptions/FluxOptionsSkin.lua": "5b85e90daaf78e088e4a8ce803c64dcd0a9e02ffe87bc9832185ee2a087eda9a",
+    "tests/options_rework.lua": "5ad4a54b97a6f21986f465ebba7ed9e4e5e7025097f79aa566a58d002f3c2aa6"
+  },
+  "ownedNormalizedSHA256": {
+    "AddonOptions/FluxOptionsSkin.lua": "fcf6b5350dd992445618e36e7a1f868629869d19d5abd1d48e717e3e98871af2",
+    "tests/options_rework.lua": "ddb728512a3e3b2942898cd792917b984809574feebfdc756bf415533b47dbbb"
+  },
+  "normalization": "CRLF to LF; all other bytes retained",
+  "luaChangesSinceCheckpoint": [
+    "AddonOptions/FluxOptionsSkin.lua",
+    "tests/options_rework.lua"
+  ],
+  "checkpoint": "options-native-border-checkpoint-2026-11-09.json",
+  "sourceEvidence": "options-native-border-sources-2026-11-09.json",
+  "sourceScope": "28 exact GitHub blob identities at existing task pins; family TOC/XML and Lua contracts. Relevant local Lua/XML match; three local TOCs differ and are not used as exact evidence. Native build/load/operation remain separate.",
+  "focused": {
+    "completeShellChecks": 1253,
+    "candidateRuns": 3,
+    "beforeControls": "Old actual Skin reproduces userLayout nil independently on progression/Era/Anniversary using exact native sources",
+    "clients": [
+      "Retail/live",
+      "Forever",
+      "Classic progression",
+      "Classic Era",
+      "Classic Anniversary"
+    ],
+    "scope": "Source contract and complete-shell engine-primitive model only"
+  },
+  "controls": "options-native-border-controls-2026-11-09.json",
+  "fullReport": "options-native-border-full-2026-11-09.json",
+  "full": {
+    "pass": 278,
+    "fail": 0,
+    "syntaxFiles": 948,
+    "syntaxFailures": 0,
+    "currentCorpusDrift": []
+  },
+  "clientCopiesMatch": {
+    "_forever_": true,
+    "_classic_": true,
+    "_classic_era_": true,
+    "_anniversary_": true
+  },
+  "manualSync": true,
+  "preservation": "Original client detection, template inheritance, native Classic textures/high-resolution OnLoad, Mainline/Forever border setup, Forever background cover and input/menu/profile/settings behavior retained. Only production Skin changes; concurrent party/raid fixes preserved.",
+  "resources": "Remove one manual layout application at window creation; keep native template initialization. No new frame/texture/event/timer/ticker/poll/hook/store/gameplay work. No native CPU/FPS comparison.",
+  "controllerAssessment": "Decorative border only. No changed focus target/hit region/input catcher/binding/glyph; original native FocusFramesInterfaceMixin remains. Native controller testing NOT RUN on all clients.",
+  "localizationAssessment": "No visible text or tooltip added/changed; existing labels unchanged.",
+  "nativeAcceptance": {
+    "before": "User-supplied Classic Era stack is native failure evidence. Other Classic failures reproduced only in source execution.",
+    "after": "NOT RUN on all five clients; no connected Witchcraft/UIForever tools available in this chat. Native reopen/pixels/resize/secure input/controller/taint/performance pending. Prior Witchcraft preference retained; unrelated live party/raid work remains paused."
+  },
+  "gameInputOrFocusControl": false,
+  "privateSettingsWrites": false,
+  "profilerWrites": false,
+  "publication": false,
+  "newGoalCreated": false,
+  "installation": {
+    "authorization": "Current user requested fix for all clients; sandbox escalation approved the reviewed one-file install. Every target matched the checkpoint baseline; only this file copied after backup.",
+    "sourceRawSHA256": "fcf6b5350dd992445618e36e7a1f868629869d19d5abd1d48e717e3e98871af2",
+    "backup": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\09\\01a1c03e-c615-7f02-a24a-3e5ed07300f1\\options-native-border-installed-20261109T223648Z",
+    "files": [
+      {
+        "Client": "_forever_",
+        "Path": "F:\\World of Warcraft\\_forever_\\Interface\\AddOns\\_FluxUI\\AddonOptions\\FluxOptionsSkin.lua",
+        "Before": "5b85e90daaf78e088e4a8ce803c64dcd0a9e02ffe87bc9832185ee2a087eda9a",
+        "After": "fcf6b5350dd992445618e36e7a1f868629869d19d5abd1d48e717e3e98871af2"
+      },
+      {
+        "Client": "_classic_",
+        "Path": "F:\\World of Warcraft\\_classic_\\Interface\\AddOns\\_FluxUI\\AddonOptions\\FluxOptionsSkin.lua",
+        "Before": "5b85e90daaf78e088e4a8ce803c64dcd0a9e02ffe87bc9832185ee2a087eda9a",
+        "After": "fcf6b5350dd992445618e36e7a1f868629869d19d5abd1d48e717e3e98871af2"
+      },
+      {
+        "Client": "_classic_era_",
+        "Path": "F:\\World of Warcraft\\_classic_era_\\Interface\\AddOns\\_FluxUI\\AddonOptions\\FluxOptionsSkin.lua",
+        "Before": "5b85e90daaf78e088e4a8ce803c64dcd0a9e02ffe87bc9832185ee2a087eda9a",
+        "After": "fcf6b5350dd992445618e36e7a1f868629869d19d5abd1d48e717e3e98871af2"
+      },
+      {
+        "Client": "_anniversary_",
+        "Path": "F:\\World of Warcraft\\_anniversary_\\Interface\\AddOns\\_FluxUI\\AddonOptions\\FluxOptionsSkin.lua",
+        "Before": "5b85e90daaf78e088e4a8ce803c64dcd0a9e02ffe87bc9832185ee2a087eda9a",
+        "After": "fcf6b5350dd992445618e36e7a1f868629869d19d5abd1d48e717e3e98871af2"
+      }
+    ],
+    "utc": "2026-11-09T22:36:48.0973514Z",
+    "artifact": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\09\\01a1c03e-c615-7f02-a24a-3e5ed07300f1\\options-native-border-install.json"
+  },
+  "finalVerification": {
+    "documentation": {
+      "command": "python docs/tools/validate_docs.py",
+      "exitCode": 0,
+      "output": "PASS: 981 classified sources; 605 TOC/XML reachable; 425 setting definitions; 24 SavedVariables; 15971 local links. Source inventory/evidence current. No files written.",
+      "scope": "Before appending installation outcome; source/verification inventory unchanged"
+    },
+    "whitespace": {
+      "command": "git -c core.safecrlf=false diff --check",
+      "exitCode": 0
+    },
+    "ownedHashDrift": []
+  }
+}

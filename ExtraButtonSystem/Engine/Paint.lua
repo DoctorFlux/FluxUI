@@ -105,6 +105,15 @@ function Paint.RequestShown(btn)
 	end
 	Paint.ClearCache(btn)
 	if Flux.Scheduler and Flux.Scheduler.Request then
+		-- Counts used to stay current through hidden inventory pulses. Refresh
+		-- that same paint lane during reveal, before the queued full eval, so
+		-- the first visible frame cannot expose a stale digit or item tint.
+		local widget = btn.Widget
+		if not Paint.IsParked(btn) and (not widget or not widget.FluxButton or widget.FluxButton == btn) then
+			Paint.UpdateCount(btn)
+			Paint.UpdateUsable(btn)
+			Paint.UpdateEquipped(btn)
+		end
 		Flux.Scheduler.Request("eval", "ebs")
 		return
 	end
@@ -118,7 +127,8 @@ function Paint.HasPendingIcon()
 	end
 	for i = 1, #list do
 		local btn = list[i]
-		if btn and btn.ActionType and btn.ActionValue ~= nil and btn.ActionType ~= "macrotext" then
+		if btn and btn.ActionType and btn.ActionValue ~= nil and btn.ActionType ~= "macrotext"
+			and not Paint.IsParked(btn) then
 			if btn._lastIcon == nil or IsQuestionTex(btn._lastIcon) then
 				return true
 			end
@@ -818,8 +828,18 @@ local function SnapshotStackCount(itemId)
 	return 0
 end
 
-local function LiveChargeCount(itemId)
-	if not itemId or SnapshotStackCount(itemId) <= 0 then
+-- Provider publication can wait on unrelated item metadata. Counts and empty
+-- tint must agree with native carried copies while that snapshot is delayed.
+local function CarriedStackCount(itemId, kind)
+	local Inv = Flux.Inventory
+	if itemId and Inv and (Inv.source == "syndicator" or kind) and Inv.GetLiveCount then
+		return SafeNum(Inv.GetLiveCount(itemId, BAG_COUNT_OPTS), 0)
+	end
+	return SnapshotStackCount(itemId)
+end
+
+local function LiveChargeCount(itemId, copies)
+	if not itemId or (copies or CarriedStackCount(itemId, "managem")) <= 0 then
 		return 0
 	end
 	-- Same SoT as combat-grid GemUses / BagCount (not C_Item, which can lag).
@@ -874,21 +894,6 @@ local function IsVanillaManaGem(itemId)
 	return false
 end
 
--- Any owned use: vanilla stack (Jade while Agate is still missing) or remaining charges.
-local function AnyManaGemHasRemainingUse()
-	for i = 1, #ALL_MANA_GEM_IDS do
-		local id = ALL_MANA_GEM_IDS[i]
-		if IsChargeBasedManaGem(id) then
-			if LiveChargeCount(id) > 0 then
-				return true
-			end
-		elseif SnapshotStackCount(id) > 0 then
-			return true
-		end
-	end
-	return false
-end
-
 local function IsConsumableItemId(itemId)
 	if not itemId then
 		return false
@@ -920,12 +925,13 @@ local function DisplayItemCount(itemId, opts)
 	end
 	opts = opts or {}
 	-- Flux window / minimap / Extra tab: charged copies show remaining uses.
-	local copies = SnapshotStackCount(itemId)
 	local charged = Flux.Item and Flux.Item.UsesConsumableCharges and Flux.Item.UsesConsumableCharges(itemId, opts.kind)
+	local consumable = charged ~= nil or IsConsumableItemId(itemId)
+	local copies = consumable and CarriedStackCount(itemId, opts.kind) or SnapshotStackCount(itemId)
 	if charged == false then
 		return copies
 	end
-	local uses = LiveChargeCount(itemId)
+	local uses = LiveChargeCount(itemId, copies)
 	-- A charged item can leave a leftover stack of 1, 0 charges.
 	if charged and copies > 0 and uses <= 0 and BagsAreReliable() then
 		return 0
@@ -1014,10 +1020,11 @@ local function SetCountText(fontString, value, btn)
 	else
 		key = tostring(value)
 	end
-	-- Same rule as bar counts: never Hide. A cache hit still rewrites when
-	-- the region is hidden or still blank, or 0→N stays empty forever.
+	-- SetCount and specialized gem/stone writers also own this FontString.
+	-- A cached value is valid only while the actual readable text still agrees.
 	local hidden = not (fontString.IsShown and fontString:IsShown())
 	local blank = false
+	local wrongText = false
 	if fontString.GetText then
 		local current = fontString:GetText()
 		local curSecret = false
@@ -1027,6 +1034,7 @@ local function SetCountText(fontString, value, btn)
 		end
 		if not curSecret then
 			blank = current == nil or current == ""
+			wrongText = current ~= key
 		end
 	end
 	if btn and btn._lastCountText == key then
@@ -1034,7 +1042,7 @@ local function SetCountText(fontString, value, btn)
 			if not hidden and blank then
 				return false
 			end
-		elseif not hidden and not blank then
+		elseif not hidden and not blank and not wrongText then
 			return false
 		end
 	elseif btn then
@@ -1921,7 +1929,14 @@ function Paint.UpdateCooldown(btn)
 	local charges, maxCharges, chargeStart, chargeDuration
 	local spellId
 	local fromItem
-	if t == "outfit" or btn._fluxUtilityOutfitID ~= nil then
+	if (btn.inventorySlot == 13 or btn.inventorySlot == 14)
+		and btn._fluxManagedFaceItemId and GetInventoryItemCooldown then
+		-- Equipped trinket faces are /use slot actions. Item-ID timers may
+		-- lag equipment/shared-cooldown changes and must not overwrite the slot.
+		start, duration, enable = GetInventoryItemCooldown("player", btn.inventorySlot)
+		fromItem = true
+		spellId = ItemSpellId(btn._fluxManagedFaceItemId)
+	elseif t == "outfit" or btn._fluxUtilityOutfitID ~= nil then
 		spellId = btn._fluxUtilityOutfitInfo and btn._fluxUtilityOutfitInfo.spell or btn.SpellId
 		if spellId then start, duration, enable = SpellCooldownForButton(btn, spellId) end
 	elseif t == "spell" then
@@ -2268,11 +2283,6 @@ local function EmptyConsumableUnusable(btn, itemId)
 			return false
 		end
 	end
-	-- Missing conjure ranks (Agate while Jade is in bags) must not gray the
-	-- owned gem. Charge leftovers (emerald 0/3) still count as empty.
-	if btn.IsManaGemButton then
-		return not AnyManaGemHasRemainingUse()
-	end
 	if not itemId then
 		return false
 	end
@@ -2304,6 +2314,14 @@ end
 
 local function ApplyIconColor(btn, r, g, b)
 	if btn.WIcon then
+		local widget = btn.Widget
+		local trinketColor = widget and widget._fluxTrinketPushIconColor
+		if widget and widget._fluxTrinketPushDimmed and trinketColor then
+			-- Release restores the newest public usability/range palette, not
+			-- the RGB captured before a held press. Retain the existing push shade.
+			trinketColor[1], trinketColor[2], trinketColor[3] = r, g, b
+			r, g, b = r * 0.62, g * 0.62, b * 0.62
+		end
 		local push = _G.FluxBindingPushPress
 		if not (push and push.SetIconColor and push.SetIconColor(btn.WIcon, r, g, b)) then
 			btn.WIcon:SetVertexColor(r, g, b)
@@ -3258,7 +3276,11 @@ function Paint.FlushChecked(polledOnly)
 	for i = 1, #list do
 		local btn = list[i]
 		local t = btn and btn.ActionType
-		if t then
+		if btn and Paint.IsParked(btn) then
+			-- Stop owned flash work, but a hidden face needs no native checked
+			-- queries or dismiss watch. Its existing reveal path repaints it.
+			Paint.UpdateFlash(btn)
+		elseif t then
 			local prone = POLL_PRONE[t] and true or false
 			local visualStuck = false
 			if polledOnly and prone and not btn._lastChecked then
@@ -3290,13 +3312,10 @@ local function AnyPollProneLit()
 	local ov = Flux.ButtonFX and Flux.ButtonFX.Overlay
 	for i = 1, #list do
 		local btn = list[i]
-		if btn and btn._lastChecked and POLL_PRONE[btn.ActionType] then
-			return true
-		end
-		if btn and POLL_PRONE[btn.ActionType] and ov and ov.CheckedVisualOn
-			and ov.CheckedVisualOn(btn.Widget)
-		then
-			return true
+		if btn and not Paint.IsParked(btn) and POLL_PRONE[btn.ActionType] then
+			if btn._lastChecked or (ov and ov.CheckedVisualOn and ov.CheckedVisualOn(btn.Widget)) then
+				return true
+			end
 		end
 	end
 	return false
@@ -3788,7 +3807,9 @@ function Paint.FlushCounts(ctx)
 	local changedIDs = not recovery and doBags and ctx and ctx.changedItemIDs
 	local any = false
 	local function CountOne(btn)
-		if not btn or not btn.ActionType then
+		-- The full eval already skips parked faces. Keep inventory pulses on
+		-- the same policy; OnShow / Badge.ShowVisual requests a fresh full eval.
+		if not btn or not btn.ActionType or Paint.IsParked(btn) then
 			return
 		end
 		local spellFace = btn.ActionType == "spell"

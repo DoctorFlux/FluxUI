@@ -1,0 +1,13 @@
+{
+  "date": "2026-11-09",
+  "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\09\\01a1c03e-c615-7f02-a24a-3e5ed07300f1\\options-awareness-checkpoint-20261109T172914Z",
+  "verified": true,
+  "sourceFiles": 2482,
+  "settingsMetadataEntries": 43,
+  "settingsBackup": "Read-only metadata only; no quiescent settings backup claimed",
+  "settingsWrites": false,
+  "sha256": {
+    "source.zip": "10166ba06d7205618c840b7a51b5672645036bf4b96c8625eef3a32f93c37502",
+    "history.bundle": "f63c3bab7f32e241739df22013e6ab46e152b9eb6d27e968065fe95a09ec6c94"
+  }
+}

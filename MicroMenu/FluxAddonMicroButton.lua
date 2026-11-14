@@ -123,34 +123,31 @@ local MINIMAP_BUTTON_PATTERNS = {
 }
 
 local EXCLUDED_BUTTONS = {
-    "Minimap",
-    "MinimapCluster",
-    "MinimapBackdrop",
-    "MinimapContainer",
-    "LFG_MinimapEye",
-    "QueueStatusMinimapButton",
-    "MiniMapTracking",
-    "MiniMapTrackingButton", -- Classic
-    "MiniMapVoiceChatFrame",
-    "TimeManagerClockButton",
-    "GameTimeFrame",
-    "GarrisonLandingPageMinimapButton",
-    "ExpansionLandingPageMinimapButton", -- Dragonflight/TWW
-    "MiniMapMailFrame",
-    "MiniMapBattlefieldFrame",
-    "FeedbackUIButton",
-    "HelpOpenTicketButton",
-    "COHCMinimapButton", -- Sometimes problematic
-    "MinimapZoomIn",
-    "MinimapZoomOut",
+    Minimap = true,
+    MinimapCluster = true,
+    MinimapBackdrop = true,
+    MinimapContainer = true,
+    LFG_MinimapEye = true,
+    QueueStatusMinimapButton = true,
+    MiniMapTracking = true,
+    MiniMapTrackingButton = true, -- Classic
+    MiniMapVoiceChatFrame = true,
+    TimeManagerClockButton = true,
+    GameTimeFrame = true,
+    GarrisonLandingPageMinimapButton = true,
+    ExpansionLandingPageMinimapButton = true, -- Dragonflight/TWW
+    MiniMapMailFrame = true,
+    MiniMapBattlefieldFrame = true,
+    FeedbackUIButton = true,
+    HelpOpenTicketButton = true,
+    COHCMinimapButton = true, -- Sometimes problematic
+    MinimapZoomIn = true,
+    MinimapZoomOut = true,
 }
 
 local function IsExcluded(name)
     if not name then return false end
-    for _, excluded in ipairs(EXCLUDED_BUTTONS) do
-        if name == excluded or string.match(name, "^LFG") then return true end
-    end
-    return false
+    return EXCLUDED_BUTTONS[name] == true or name:sub(1, 3) == "LFG"
 end
 
 local function NameLooksLikeMinimapButton(name)
@@ -189,28 +186,35 @@ end
 FluxAddonSystem.IsValidMinimapButton = IsValidMinimapButton
 FluxAddonSystem.NameLooksLikeMinimapButton = NameLooksLikeMinimapButton
 
-function FluxAddonSystem.GetMinimapScanRoots()
-    local roots = {}
-    local seen = {}
-    local function add(f)
-        if f and not seen[f] then
-            seen[f] = true
-            roots[#roots + 1] = f
-        end
+local function VisitUniqueRoot(visit, frame, a, b, c, d, e)
+    if frame and frame ~= a and frame ~= b and frame ~= c and frame ~= d and frame ~= e then
+        visit(frame)
     end
-    add(_G.Minimap)
-    add(_G.MinimapCluster)
+end
+
+local function ForEachMinimapScanRoot(visit)
+    local minimap = _G.Minimap
     local cluster = _G.MinimapCluster
-    if cluster then
-        add(cluster.MinimapContainer)
-        if cluster.MinimapContainer then
-            add(cluster.MinimapContainer.Minimap)
-        end
-        add(cluster.Minimap)
-    end
-    add(_G.MinimapBackdrop)
+    local container = cluster and cluster.MinimapContainer
+    local inner = container and container.Minimap
+    local clusterMap = cluster and cluster.Minimap
+    local backdrop = _G.MinimapBackdrop
+    if minimap then visit(minimap) end
+    VisitUniqueRoot(visit, cluster, minimap)
+    VisitUniqueRoot(visit, container, minimap, cluster)
+    VisitUniqueRoot(visit, inner, minimap, cluster, container)
+    VisitUniqueRoot(visit, clusterMap, minimap, cluster, container, inner)
+    VisitUniqueRoot(visit, backdrop, minimap, cluster, container, inner, clusterMap)
+end
+
+function FluxAddonSystem.GetMinimapScanRoots()
+    -- External callers receive an independent snapshot. The recurring scan can
+    -- visit the same fixed roots without constructing a snapshot or seen set.
+    local roots = {}
+    ForEachMinimapScanRoot(function(frame) roots[#roots + 1] = frame end)
     return roots
 end
+local DefaultMinimapScanRoots = FluxAddonSystem.GetMinimapScanRoots
 
 -- ---------------------------------------------------------------------------
 -- 3. Collection Logic
@@ -286,30 +290,30 @@ local function CollectButton(button)
     button:Hide() -- Hide determines visibility, we still want to hook it
 end
 
-function FluxAddonSystem:Scan()
-    -- Re-entrant Scan (e.g. SetParent / hooks / LibDBIcon) must not recurse — stack overflow.
-    if self._scanInProgress then
-        return
-    end
-    self._scanInProgress = true
-    local ok, err = pcall(function()
-    local function collectFromParent(parent)
-        if not parent or not parent.GetChildren then return end
-        local okPack, packed = pcall(function()
-            return { parent:GetChildren() }
-        end)
-        if not okPack or type(packed) ~= "table" then return end
-        for i = 1, #packed do
-            local child = packed[i]
-            if child and IsValidMinimapButton(child) then
-                CollectButton(child)
-            end
-        end
-    end
+local function PackChildren(parent)
+    return { parent:GetChildren() }
+end
 
-    local roots = FluxAddonSystem.GetMinimapScanRoots and FluxAddonSystem.GetMinimapScanRoots() or { _G.Minimap }
-    for i = 1, #roots do
-        collectFromParent(roots[i])
+local function CollectFromParent(parent)
+    if not parent or not parent.GetChildren then return end
+    -- Protect only enumeration, as before. A linear array snapshot also keeps
+    -- reparenting from skipping later siblings without quadratic vararg copies.
+    local ok, children = pcall(PackChildren, parent)
+    if not ok or type(children) ~= "table" then return end
+    for i = 1, #children do
+        local child = children[i]
+        if child and IsValidMinimapButton(child) then CollectButton(child) end
+    end
+end
+
+local function ScanButtons()
+    if FluxAddonSystem.GetMinimapScanRoots == DefaultMinimapScanRoots then
+        ForEachMinimapScanRoot(CollectFromParent)
+    else
+        -- Preserve the integration seam if another addon replaces the public
+        -- root provider, including its original Minimap-only missing fallback.
+        local roots = FluxAddonSystem.GetMinimapScanRoots and FluxAddonSystem.GetMinimapScanRoots() or { _G.Minimap }
+        for i = 1, #roots do CollectFromParent(roots[i]) end
     end
 
     -- 2. Scan LibDBIcon
@@ -340,7 +344,13 @@ function FluxAddonSystem:Scan()
             FluxAddonSystem.callbackRegistered = true
         end
     end
-    end)
+end
+
+function FluxAddonSystem:Scan()
+    -- Re-entrant Scan (e.g. SetParent / hooks / LibDBIcon) must not recurse — stack overflow.
+    if self._scanInProgress then return end
+    self._scanInProgress = true
+    local ok, err = pcall(ScanButtons)
     self._scanInProgress = false
     if not ok then
         local handler = geterrorhandler and geterrorhandler()

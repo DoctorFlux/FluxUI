@@ -82,11 +82,16 @@ function Compat.GetPurchasableBagSpace(itemID)
         if BagAcceptsItemFamily(theBag, itemSubType) then
             local numSlot = inv.GetContainerNumSlots(theBag)
             for theSlot = 1, numSlot do
-                local itemLink = inv.GetContainerItemLink(theBag, theSlot)
+                local itemLink, info
+                if type(inv.GetContainerItemSnapshot) == "function" then
+                    itemLink, info = inv.GetContainerItemSnapshot(theBag, theSlot)
+                else
+                    itemLink = inv.GetContainerItemLink(theBag, theSlot)
+                    if itemLink then info = inv.GetContainerItemInfo(theBag, theSlot) end
+                end
                 if not itemLink then
                     freeSpace = freeSpace + stackSize
                 else
-                    local info = inv.GetContainerItemInfo(theBag, theSlot)
                     if info and info.itemID == itemID then
                         freeSpace = freeSpace + stackSize - info.count
                     elseif strfind(itemLink, "item:" .. itemID .. ":", 1, true) then

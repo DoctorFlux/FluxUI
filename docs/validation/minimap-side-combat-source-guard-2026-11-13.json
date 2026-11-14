@@ -1,0 +1,72 @@
+{
+  "changeId": "MINIMAP-SIDE-COMBAT-20261113",
+  "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d3b4-b7ec-7591-94d3-6d3b3097fb8a\\minimap-side-combat-20261113T091348Z",
+  "expectedRuntimeOwners": [
+    "AddonOptions/FluxOptionsBattlezone.lua",
+    "Minimap/FluxMinimapButtons.lua"
+  ],
+  "changedRuntimeOwners": [
+    "AddonOptions/FluxOptionsBattlezone.lua",
+    "Inventory/Restock/Auction/FluxAuctionRestock.lua",
+    "Inventory/Restock/Auction/FluxAuctionRestockCraft.lua",
+    "Inventory/Restock/Auction/FluxAuctionRestockData.lua",
+    "Inventory/Restock/Auction/FluxAuctionRestockLocale.lua",
+    "Inventory/Restock/Auction/FluxAuctionRestockPotions.lua",
+    "Inventory/Restock/Auction/FluxAuctionRestockUI.lua",
+    "Minimap/FluxMinimapButtons.lua"
+  ],
+  "unrelatedRuntimeChangesPreserved": [
+    "Inventory/Restock/Auction/FluxAuctionRestock.lua",
+    "Inventory/Restock/Auction/FluxAuctionRestockCraft.lua",
+    "Inventory/Restock/Auction/FluxAuctionRestockData.lua",
+    "Inventory/Restock/Auction/FluxAuctionRestockLocale.lua",
+    "Inventory/Restock/Auction/FluxAuctionRestockPotions.lua",
+    "Inventory/Restock/Auction/FluxAuctionRestockUI.lua"
+  ],
+  "newRuntimeOwners": [],
+  "missingSourceFiles": [],
+  "changedSourceFiles": [
+    "AddonOptions/FluxOptionsBattlezone.lua",
+    "Inventory/Restock/Auction/FluxAuctionRestock.lua",
+    "Inventory/Restock/Auction/FluxAuctionRestockCraft.lua",
+    "Inventory/Restock/Auction/FluxAuctionRestockData.lua",
+    "Inventory/Restock/Auction/FluxAuctionRestockLocale.lua",
+    "Inventory/Restock/Auction/FluxAuctionRestockPotions.lua",
+    "Inventory/Restock/Auction/FluxAuctionRestockUI.lua",
+    "Minimap/FluxMinimapButtons.lua",
+    "docs/18-minimap-and-trackers.md",
+    "docs/26-options-map.md",
+    "docs/30-source-coverage.md",
+    "docs/AUCTION_RESTOCK.md",
+    "docs/CHARACTER_RECIPES.md",
+    "docs/MINIMAP_EXTRA_LAYOUT.md",
+    "docs/reference/declarations.md",
+    "docs/reference/interfaces.md",
+    "docs/reference/inventory.json",
+    "docs/reference/verification.json",
+    "tests/auction_restock_charges.lua",
+    "tests/auction_restock_purchase_flow.lua",
+    "tests/minimap_extra_layout.lua",
+    "tests/options_navigation.lua"
+  ],
+  "newSourceFiles": [
+    "docs/validation/minimap-side-combat-checkpoint-2026-11-13.json",
+    "docs/validation/minimap-side-combat-controls-2026-11-13.json",
+    "docs/validation/minimap-side-combat-docs-2026-11-13.json",
+    "docs/validation/minimap-side-combat-full-2026-11-13.json"
+  ],
+  "sourceHashes": {
+    "AddonOptions/FluxOptionsBattlezone.lua": "8aa27fc910a38f89adea8a26bedcf2a23a8a611e6b614845810659ab1b8b6d97",
+    "Minimap/FluxMinimapButtons.lua": "e1fc53c1737c83a8cdac9a470fcbf497903054f6d84d5fc8587ecc48da1d0e82"
+  },
+  "currentTaskFilesVerified": true,
+  "fullSuiteManifestDrift": [
+    "Inventory/Restock/Auction/FluxAuctionRestockData.lua",
+    "Inventory/Restock/Auction/FluxAuctionRestockLocale.lua",
+    "Inventory/Restock/Auction/FluxAuctionRestockUI.lua",
+    "tests/auction_restock_charges.lua"
+  ],
+  "fullSuiteAdditionalFiles": [],
+  "currentFullSuiteVerified": false,
+  "taskScopeVerified": true
+}

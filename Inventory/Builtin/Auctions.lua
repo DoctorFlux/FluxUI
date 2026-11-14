@@ -224,6 +224,7 @@ function Auctions.Start()
 		return
 	end
 	started = true
+	if Builtin.AuctionPurchases then Builtin.AuctionPurchases.Start() end
 
 	Flux.Events.Register("PLAYER_INTERACTION_MANAGER_FRAME_SHOW", function(_, kind)
 		if not IsAuctioneer(kind) then

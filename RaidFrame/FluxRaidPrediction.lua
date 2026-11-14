@@ -215,16 +215,20 @@ local function NativeValues(unit, calculator, overflowCalculators)
     local _, mine, others, overheal = calculator:GetIncomingHeals()
     local absorb, overAbsorb = calculator:GetDamageAbsorbs()
     local healAbsorb, overHealAbsorb = calculator:GetHealAbsorbs()
-    local levels = { overheal, false, false, false }
+    local level10, level25, level50 = false, false, false
     -- Each owned calculator applies its public overflow boundary natively.
     -- Secret health/healing never participates in Lua arithmetic or branching.
-    for i, overflowCalculator in ipairs(overflowCalculators or {}) do
-        UnitGetDetailedHealPrediction(unit, "player", overflowCalculator)
-        local _, _, _, clamped = overflowCalculator:GetIncomingHeals()
-        levels[i + 1] = clamped
+    if overflowCalculators then
+        for i, overflowCalculator in ipairs(overflowCalculators) do
+            UnitGetDetailedHealPrediction(unit, "player", overflowCalculator)
+            local _, _, _, clamped = overflowCalculator:GetIncomingHeals()
+            if i == 1 then level10 = clamped
+            elseif i == 2 then level25 = clamped
+            elseif i == 3 then level50 = clamped end
+        end
     end
     return calculator:GetMaximumHealth(), mine, others, absorb, healAbsorb,
-        overheal, overAbsorb, overHealAbsorb, levels
+        overheal, overAbsorb, overHealAbsorb, overheal, level10, level25, level50
 end
 
 local function LegacyValues(unit)
@@ -244,14 +248,15 @@ local function LegacyValues(unit)
     local incoming = max(0, total - healAbsorb)
     local missing = max(0, maximum - current)
     local overheal = incoming > missing
-    local levels = { overheal }
-    for i, ratio in ipairs(OVERHEAL_RATIOS) do levels[i + 1] = current + incoming > maximum * ratio end
+    local level10 = current + incoming > maximum * OVERHEAL_RATIOS[1]
+    local level25 = current + incoming > maximum * OVERHEAL_RATIOS[2]
+    local level50 = current + incoming > maximum * OVERHEAL_RATIOS[3]
     incoming = min(incoming, missing)
     mine = min(mine, incoming)
     local others = max(0, incoming - mine)
     local absorbSpace = max(0, missing - incoming)
     return maximum, mine, others, min(absorb, absorbSpace), min(visibleAbsorb, current),
-        overheal, absorb > absorbSpace, visibleAbsorb > current, levels
+        overheal, absorb > absorbSpace, visibleAbsorb > current, overheal, level10, level25, level50
 end
 
 function Prediction.Update(frame)
@@ -267,12 +272,15 @@ function Prediction.Update(frame)
         HideHealth(frame)
         return
     end
-    local ok, maximum, mine, others, absorb, healAbsorb, overheal, overAbsorb, overHealAbsorb, levels
+    local ok, maximum, mine, others, absorb, healAbsorb, overheal, overAbsorb, overHealAbsorb,
+        level, level10, level25, level50
     if state.calculator then
-        ok, maximum, mine, others, absorb, healAbsorb, overheal, overAbsorb, overHealAbsorb, levels =
+        ok, maximum, mine, others, absorb, healAbsorb, overheal, overAbsorb, overHealAbsorb,
+            level, level10, level25, level50 =
             pcall(NativeValues, unit, state.calculator, state.overhealCalculators)
     else
-        ok, maximum, mine, others, absorb, healAbsorb, overheal, overAbsorb, overHealAbsorb, levels =
+        ok, maximum, mine, others, absorb, healAbsorb, overheal, overAbsorb, overHealAbsorb,
+            level, level10, level25, level50 =
             pcall(LegacyValues, unit)
     end
     if not ok or not Present(maximum) then HideHealth(frame); return end
@@ -280,7 +288,10 @@ function Prediction.Update(frame)
     Feed(state.others, maximum, others)
     Feed(state.absorb, maximum, absorb)
     Feed(state.healAbsorb, maximum, healAbsorb)
-    for i, region in ipairs(state.overhealLevels) do Indicator(region, levels[i]) end
+    Indicator(state.overhealLevels[1], level)
+    Indicator(state.overhealLevels[2], level10)
+    Indicator(state.overhealLevels[3], level25)
+    Indicator(state.overhealLevels[4], level50)
     Indicator(state.overAbsorb, overAbsorb)
     Indicator(state.overHealAbsorb, overHealAbsorb)
 end

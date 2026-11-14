@@ -1,5 +1,391 @@
 # Development tasks
 
+14 November `ADDON-PUBLICATION-20261114`: the user requested publication of the
+full current addon snapshot to DoctorFlux/FluxUI on main, including completed
+auction, consumable, UI/options and casting/inventory work. Preserve all newer
+source and licenses. This task updates documentation, the stale commerce renderer
+regression and Git state. The regression permits fewer hidden-row writes while
+retaining native repair, opacity, reentry and exact-error propagation checks;
+addon runtime code, settings and client/profiler state remain under their owners.
+
+Both author and committer must be DoctorFlux
+`<100806234+DoctorFlux@users.noreply.github.com>`, with no co-author trailers.
+The existing identity hooks remain active. Five identity regressions and all four
+prior reachable commits passed; GitHub's pre-upload contributor API lists only
+DoctorFlux. Check the new main history and contributor/workflow state after push.
+GitHub has no contributor blacklist; enforce publication metadata at each upload.
+
+Current source evidence: 365 fresh desktop scripts passed; 52 auction/shared-grid
+dependents were replayed after the last concurrent UI edits, with all Lua stable.
+The index retains 14 unchanged meter/threat observations from their owner instead
+of rerunning them. All 1067 syntax hashes match current files; 379 passing
+observations are recorded. The adapted commerce test rejects four compiled
+harmful controls. Existing native
+acceptance gaps remain; publishing establishes no new native/performance result.
+External source/history/index checkpoint: 2794 files and
+113 settings metadata entries; no private settings copied.
+No branch/reset/force push/tag/repository replacement. [Publication record](validation/addon-publication-2026-11-14.json).
+
+Keep remaining native feature/performance acceptance under the existing task owners.
+
+14 November — current AH build is r27 (AHR-105/106). Opening Restock starts
+one shortage-only preparation. Filled targets are skipped; passive bag/mail/
+profession changes refresh counts without replacing choices, canceling searches
+or reviving completed work. Matching purchase receipts still prepare the next
+shortage. Buy next can start again after later stock changes; purchases remain
+player presses. Explicit modern Scan all is still full pricing; old AH per-item.
+
+Loot & Items → Restock: healing/mana AH upgrade prompts default on; bandage off.
+Saved independent choices retain current-tier crafting/direct restock. Compact
+native Keep / Block labels now fit; passive paints preserve native enabled states.
+76 affected scripts/82 syntax PASS; 440 checks/20 profiles; 3 matched trials and
+11 compiled harmful controls. Other verification records are historical, not a
+full rerun. External `explicit-restock-20261114T090141Z`: 2780 files/history,
+129 settings metadata; 5 installed copies match 6 runtime files read-only.
+
+Next: user-ready reload, then native shortage opening, stable upgrade cards,
+text fit/controller and purchases. No native input/reload/profiling this slice.
+Preserve the other agent's meter work and test ownership. [Evidence](validation/auction-passive-refresh-2026-11-14.json).
+
+14 November — AHR-104 is current: all healing/mana potion tiers use actual
+minimum restore, including buttons, crafting, vendor memory, AH and automatic
+junk. Minimum 600 beats 500 even if the latter's maximum is higher. Existing AH
+approval and per-purchase player presses remain; compact r26 controls stay.
+
+Saved refs/vendor records and positive thresholds migrate from verified parsed
+facts. `savedHealPotionTierBasis` / `savedManaPotionTierBasis` mark minimum-valued
+thresholds. Unknown old facts stay saved but cannot rank/promote as verified
+minimum candidates. Potion cache stores effect text/axes/minima; legacy maximum
+alone is unresolved. Food/water/bandage ranking and manual Junk precedence stay.
+74 affected scripts/79 syntax; 510 minimum checks/50 profiles; 10 harmful controls
+PASS. Global verification labels other test results historical; no full rerun.
+External `potion-minimum-20261114T083404Z`: 2778 files/history; 129 settings metadata.
+
+Next: user-ready reload and native minimum-tooltip/button/AH acceptance checks,
+without choosing an upgrade or buying for the user. No native client input or
+profiling was used in this slice. Preserve the other agent's meter work and its
+test/verification ownership. [Evidence](validation/potion-minimum-restore-2026-11-14.json).
+
+Full validation: 365 scripts and 1053 Lua syntax files PASS; complete current Lua manifest verified.
+
+14 November meter recovery: `METER-CONTROL-RECOVERY-20261114` restores direct
+type/layout/tab/setup choices, required windows and Current defaults using only
+existing native menu descriptions/original Pick with provenance guards. No native
+menu generation/opening/private setters or history reset. 476 control checks,
+12 focused scripts, both pinned native menu replays and 7 harmful controls PASS.
+Next: existing user-native route, reload outside combat and reselect the layout;
+verify matching types/Current, two fights, manual history, drilldown/controller.
+Native VM/taint/pixels/CPU/FPS NOT RUN. Preserve tooltip/header fixes, current main
+and concurrent work. [Requirements](METER_STANDALONE.md#meter-control-recovery--14-november-2026);
+[evidence](validation/meter-control-recovery-2026-11-14.json).
+
+14 November — current AH build is r26 (AHR-102/103). Upgrade cards are 44px with
+candidate icon/Upgrade above Keep/Blacklist; details are in tooltips. Order:
+healing, mana, bandage, spell reagents, consumable configuration, then others.
+Both real merged targets and virtual no-reference proposals use that order and
+keep independent actions. Auction scripts/1053 syntax; 1220 inline, 672 confirmation
+and 780 geometry checks; 8 harmful controls PASS. The verified recovery/load list
+remains intact. Existing source checkpoint is external in
+`compact-upgrades-20261114T080946Z` (2776 files/history; 129 settings metadata).
+
+The user explicitly assigned meters to another agent. Leave meter inspection,
+testing and changes to that agent while working on this AH task.
+
+Next native check: after the user's crafting is finished and they choose to
+reload/reopen AH, inspect the compact text fit, hover details, three independent
+choices, next row and scrolling. Check controller/native other-client behavior
+separately; desktop geometry is not pixel or input certification. The background
+capture showed active crafting and AH closed; no input/reload was sent. No
+upgrade decision or purchase was made for the user. Do not rerun old recovery
+scripts on newer work. [Evidence](validation/auction-compact-upgrades-2026-11-14.json).
+
+14 November — current source is r25 with inline multi-item upgrades and shared
+exclusions; the unrequested source/load-list rollback has been recovered.
+
+365 scripts/1053 syntax files PASS; full normalized source manifest matches.
+Keep the recovered TOC entries for options Skin, meters/threat, mail, auction,
+party and cast helpers. Before versions and verified archives are external in
+`restock-shared-blacklist-20261114T072300Z`; recovery scripts are historical,
+guarded operations, not commands to rerun on newer work. Writer remains unknown.
+
+Next safe native checks: wait until the user is idle, then open recovered options
+and inspect healing/mana/bandage inline choices without accepting for the user.
+Verify multiple independent actions, scrolling/controller, saved tier changes,
+mail/vendor/bank/craft follow-up and explicit purchase receipts separately.
+Keep Forever in the background; never send a chat probe without verifying current
+empty input. The last attempt produced no output during player movement and was
+excluded. Meter skin/Threat visibility after reload is observed; it does not prove
+options/input/taint/other-client parity or FPS. No agent purchase/upgrade/reload.
+
+Settings: Loot & Items → Restock contains the default-on Discolored filter and
+manual item blacklist; Loot & Items → Vendor has 3 default-on carried-upgrade junk
+protections. Manual Junk wins. Old AH still prepares one item/whole stack per
+player press, with no full Scan all restock control. [Current evidence](validation/auction-inline-upgrades-2026-11-14.json),
+[recovery evidence](validation/flux-source-recovery-2026-11-14.json).
+
+14 November Forever potion discovery and upgrade approval (AUCTION-POTION-BROWSE-20261114;
+AHR-93–95), build AH-restock-potion-browse-20261114-r24. Upgrade/Keep current now
+precedes any saved tier, inherited policy or previous-item junk change. Decline,
+Escape, combat, closing and stale callbacks preserve current state; buying needs
+its own player press. This supersedes AHR-92's automatic promotion.
+
+Independent health/mana range parsing avoids mixed axes and cooldown/level
+digits. A completed empty modern phrase browse gets one name-free potion-category
+fallback. An unsent request owns no results; the ready event wakes its existing
+bounded wait and native unavailability is shown explicitly. Dynamically linked
+spell text loads once per item/job; late text can revive a negative parse once.
+Loaded item metadata is no longer re-requested by the pending classifier, which
+otherwise repeatedly lost retry evidence to duplicate metadata events. Known
+unusable items are rejected before parsing. No new potion-name/tier/ID catalogue;
+old AH remains per-item only. Existing price/vendor/buy owners and limits remain.
+
+Actual Forever1.60.1.70938 background test: normal Buy was empty too and the native
+queue was unready. Fresh Mario Super character login restored62 catalogue rows.
+Native text parsed Superior Healing900 health at level35 and Greater Mana900
+mana at requiredlevel31. r24 Restock now displays an upgrade from Greater Healing
+to Superior Discolored Healing at22s93c/unit. Its Upgrade/Keep current prompt is
+left unanswered; the current5/5 target remains unchanged. No buy/upgrade decision
+was submitted. Native mana prompt follows the healing choice and remains pending.
+Other clients, accepted native tier/junk persistence, buys/receipts, controller,
+taint and CPU/FPS remain unverified. Earlier misfocused/protected exploratory
+probes are excluded from acceptance; errors retained, no addon disabled.
+
+Confirmation672/20 and restore/browse388/20 focused checks PASS. Three matched
+before/after trials per20 models for each regression retain raw outcomes.
+363 scripts/1051 syntax;15 harmful controls;complete current Lua manifest PASS. Four verified external source/history checkpoints
+(2769/2770/2771/2771 files), each129 settings metadata; no private contents copied.
+All five installed copies match five runtime files read-only; no manual sync.
+Main/.githooks/concurrent work retained. Explicit background testing authorization
+used; no foreground/global input/clipboard, settings/profiler write or publication.
+[Requirements/native scope](AUCTION_RESTOCK.md#forever-empty-browse-and-restore-amounts);
+[exact sources and acceptance](validation/auction-potion-browse-2026-11-14.json).
+
+14 November usable potion upgrades (AUCTION-POTION-TIER-20261114; AHR-92), build
+AH-restock-potion-tier-20261114-r20: per-item AH preparation now checks stronger
+usable healing/mana tiers even when weaker potions fill the target. A real
+eligible listing promotes the saved tier and fills the full stronger target;
+the next purchase still needs a player press. Old AH remains per-item only.
+Fresh kind catalogues are reused at the same level; character-level changes
+invalidate usable-only coverage so newly usable tiers can be found immediately
+on the next preparation. Caps/No limit, restrictions/vendor policy, target0 and
+native gesture guards remain. New240/20 checks and existing potion580, speed492,
+price820, craft836 and scan284 checks PASS. Three matched before/after trials
+per20 models retain raw tier/query observations. 361 scripts/1049 syntax;3 controls;complete current Lua manifest PASS.
+The obsolete filled-legacy-idle assertion was updated; safety checks retained.
+Verified external2767-file source/history checkpoint and 129 settings metadata;
+private contents not copied. No new event/timer/poll/frame/settings. Main/.githooks
+and concurrent work retained. No foreground/input/clipboard, settings/profiler
+write, manual client sync or publication. Native eligibility/search/tier display,
+buying/provider coexistence/controller/taint/CPU/FPS remain NOT RUN; existing
+user-native test route retained.
+[Requirements/native checks](AUCTION_RESTOCK.md#usable-potion-tier-upgrades-during-per-item-scans); [evidence](validation/auction-potion-tier-2026-11-14.json).
+
+14 November restock mail cadence (AUCTION-MAIL-SPEED-20261114; AHR-91), build
+AH-restock-mail-speed-20261114-r19: the existing Opening Speed sets the interval
+between restock take requests, including0. Reply time is no longer added; an
+acknowledged batch does not wait for a full inbox rescan before every attachment.
+Initial snapshot and live header/COD/GM/item/quantity/receipt/free-space/native
+command checks remain. Snapshot publication wakes the same worker. Successful
+message compaction preserves cadence; abort/failure resets it. Setting changes
+update an active deadline. Ordinary Select/Open All settings/behavior remain.
+Focused940/20, existing mail3100 and automation1260 PASS. Three matched trials
+per20 models at six speeds; simulated200msreply with0.5speed gives requests at
+0/0.5/1.0 versus0/0.7/1.4. These are desktop timestamps, not native throughput.
+360 scripts/1048 syntax;5 controls;complete current Lua manifest PASS. Verified external2765-file source/history checkpoint
+and 129 settings metadata; no private contents copied. No new event/frame/ticker/
+poller; existing timers and48-read/1ms/8s scan bounds retained. Main/.githooks and
+concurrent work preserved. No foreground/input/clipboard, settings/profiler write,
+manual client sync or publication. Native collection/throughput/taint/CPU/FPS
+remain NOT RUN; retain the user-native test route.
+[Requirements/native checks](AUCTION_RESTOCK.md#restock-mail-opening-speed); [evidence](validation/auction-mail-speed-2026-11-14.json).
+
+13 November duplicate system debuffs (UNIT-DEBUFF-OVERLAP-20261113; UDO-01–03):
+user confirms the two XP icons show the same effect. The larger native own group
+now also requires a player-origin flag; exact PLAYER/!PLAYER ownership filters,
+other-player effects, own sizes and separate same-spell instances remain.
+100 focused checks PASS; exact baseline and four harmful variants rejected;
+359 scripts/1,047 syntax PASS with the complete current Lua manifest verified.
+Native filter overlap is a hypothesis, not captured C behavior; actual XP removal,
+player/pet/vehicle metadata, pixels/tooltips/controller/taint/CPU/FPS NOT RUN.
+Verified external 2,758-file source/history checkpoint; 70 settings metadata entries,
+no private values copied. One native predicate; no new driver/resources/settings.
+Direct correction/user-native route retained; reload OOC and retarget. No game
+input/focus/clipboard, settings/profiler writes, manual sync or publication.
+[Requirements/native steps](14-unit-frames.md#duplicate-system-debuffs--13-november-2026); [evidence](validation/unit-debuff-overlap-2026-11-13.json).
+
+13 November steady craft completion and measured restock work (AUCTION-CRAFT-STEADY-20261113;
+AHR-89/90), build AH-restock-craft-steady-20261113-r18: known same-job craft items
+remain visible/disabled during bag settlement; reliable counts update in place
+and completion hides once. Actual service/driver/storm/HUD regression412/20
+passes, including coalesced outputs, partial/no-output cancellation and unsafe
+tokens. A public observed cast can hold presentation only, never credit inventory
+or authorize another craft. Legacy name-mismatch fallback remains native UNKNOWN.
+Data1900/20: an80-row refresh cuts deficit/bag reads160→80 and mail reads320→80;
+service carried reads275→250 per25 refreshes. UI63063 plus render1020/integration290
+pass: identical paints do no avoidable setter/layout/show/hide work; quantity-only
+updates avoid reflow. Three matched trials per20 data/service and5 proc-enabled
+UI profiles; counts are desktop work, not native timing/atlas/FPS evidence.
+358 scripts/1046 syntax;16 controls;complete current Lua manifest PASS. Verified external2758-file source/history checkpoint
+and 129 settings metadata; private contents not copied. One job-owned START
+observer; no new timer/poller. Old per-item AH, modern full scan, settings and
+native click/receipt owners preserved. Main/.githooks/concurrent work retained;
+no foreground/input/clipboard, settings/profiler write, manual sync or publication.
+Native ordering/art/controller/taint/CPU/FPS remain NOT RUN; existing user-native
+test route retained.
+[Requirements/native checks](AUCTION_RESTOCK.md#stable-craft-completion-and-restock-work); [evidence](validation/auction-craft-steady-2026-11-13.json).
+
+13 November 20:38/20:39 secret texture and tooltip follow-up
+(TOOLTIP-VISUAL-FOLLOWUP-20261113; CLASS-TIP-01–03): both class-icon paths now
+filter UnitClass filenames through the existing safe-string helper before
+concatenation. Restricted class data hides stale art until public data returns;
+ordinary art/fallback/corners/settings remain. 560 icon and 766 diagnostic checks
+PASS; checkpoint concatenation fails; four harmful variants rejected. Full
+355 scripts/1,043 syntax PASS. External 2,753-file source/history checkpoint and
+129 settings metadata verified; private contents not copied. The new color error
+names _FluxUI taint, but the originating field/build/reload status are unknown.
+Tooltip resolution remains UNRESOLVED. Existing taint logs predate this report.
+Reload out of combat; if it recurs run /fluxinput tooltip and hover within three
+seconds, then share the printed field/writer/build lines. Opt-in metadata only;
+no native tooltip data/actions/hooks, logging/profiler change or idle driver.
+Prior diagnostics/settings/roots retained. Native class/tooltip resolution,
+pixels/controller/taint/CPU/FPS NOT RUN. No client control/sync/publication.
+[Requirements and steps](SECRET_TOOLTIP_METER_ERRORS.md#secret-class-texture-and-tooltip-provenance-follow-up);
+[evidence](validation/tooltip-visual-followup-2026-11-13.json).
+
+13 November 20:29 world-cursor tooltip follow-up (WORLD-TOOLTIP-20261113;
+WORLD-TIP-01–04): binding ownership, spellbook hints, protected-gear flags and
+consumable separators use private weak-key tables. Native clear/hide callbacks
+no longer write these fields on shared GameTooltip. Content/deduplication,
+HUD/cadence, native APIs/processors, input owners and settings remain. 115 new
+bookkeeping checks; 66 spellbook checks; five pre-fix source cases and five harmful
+variants rejected. Full suite: 353 scripts and 1,041 syntax checks PASS. Verified
+external checkpoint: 2,750 files/history and 129 settings metadata entries;
+private contents not copied.
+Gethe Retail/Forever pins rechecked. The report lacks originating taint/source/
+build attribution;native resolution is NOT RUN. Reload out of combat and retest
+world units before/after addon hovers and in combat. Existing user-native route
+retained;native pixels/controller/taint/CPU/FPS pending. No new frame/hook/event/
+timer/poll or client/input/settings/profiler/publication operation.
+[Requirements and native steps](SECRET_TOOLTIP_METER_ERRORS.md#world-cursor-follow-up-at-202955);
+[evidence](validation/world-tooltip-state-2026-11-13.json).
+
+13 November old auction-house per-item flow (AUCTION-LEGACY-ITEM-20261113; AHR-88),
+build AH-restock-legacy-item-20261113-r17: old AH has no Scan all restock control
+or bulk-scan backend. The main action prepares one shortage and its relevant
+recipe inputs/current potion kind, buys one listing per player press, then
+prepares the next after its receipt. Even retained full-scan requests use this
+path. Old help describes Search then Buy; modern explicit full scans remain.
+Saved settings, caps, excess policy and native purchase/receipt guards are
+preserved. 352 scripts/1040 syntax PASS with complete current
+Lua manifest; three harmful controls rejected. Initial obsolete price-policy
+fixture failure and its correction are retained in evidence. Verified external
+2750-file source/history checkpoint and95 settings metadata;
+private contents not copied. No new event/timer/poller; one fewer old-AH button.
+Main/.githooks and concurrent work retained; no foreground/input, settings or
+profiler writes, manual client sync or publication. Native transactions, layout,
+controller, taint and CPU/FPS remain NOT RUN; use the existing native test route.
+[Requirements/native checks](AUCTION_RESTOCK.md#old-auction-house-per-item-searches); [evidence](validation/auction-legacy-item-2026-11-13.json).
+
+13 November meter title alignment (METER-TITLE-20261113; METER-TITLE-01–03):
+native labels recover Threat's five-pixel inset/shared baseline when the initial
+width is zero, the first hidden pane opens or native anchors/width reset. Combat
+resize uses existing deferred header refresh. One guarded show hook per native
+session pane; no new frame/texture/timer/event/poll. Original geometry restores
+on release; native localized text/menu/input/controller owners and saved data
+remain. 206 skin checks PASS; exact checkpoint baseline rejects 25 new cases
+(27 final failures including two hook-count expectations). Full352 scripts/
+1040 syntax PASS with complete current Lua manifest verified. External2748-file
+source/history checkpoint and76 settings metadata verified; private contents
+not copied. Prior direct implementation/user-native test route retained.
+Native pixels/localized clipping/input/controller/taint/CPU/FPS NOT RUN. No
+foreground/input/clipboard control, settings/profiler writes, manual sync or
+publication. Reload out of combat and compare reopened pane titles with Threat.
+[Fix and native steps](METER_STANDALONE.md#header-alignment-recovery--13-november-2026);
+[evidence](validation/meter-title-2026-11-13.json).
+
+13 November fast auction restock and usable pending item buttons
+(AUCTION-SPEED-READY-20261113; AHR-81–87), build AH-restock-speed-ready-20261113-r16:
+routine preparation prices the next shortage and its recipe inputs, then prepares
+the next item after its receipt. Explicit Scan all restock retains full-list and
+filled-target potion upgrades. Three direct purchases take1 query before the
+first ready item and3 total, versus4 and6 before, with3 player presses in both
+desktop models; these are query counts, not native timing. Item buttons remain
+32–44px with exact1px gaps and ordinary pressed art. Only visible actionable
+items have private proc glow; busy/submitted/closed/combat states stop it.
+Crafting updates remaining planned output quantities automatically. The mailbox
+Restock button/adjacent checkbox are removed; settings and the selective worker
+remain. Closed-profession mail→bank/vendor progression uses durable owned recipe
+facts across serialized reloads. Partial alias/roster responses preserve complete
+facts; live crafting still verifies ownership, materials and output. Snapshot
+dispatch fixes storm-listener mutation; strict receipt reconciliation protects
+new transit from stale mail. Full-bag mail retry is covered by the owner tests.
+352 scripts/1040 syntax;complete current Lua manifest PASS. Current harmful controls and exact
+source identities are linked below. Verified external2743/2745-file source/history
+checkpoints and95 settings metadata each; private values not copied. Main and
+.githooks retained; concurrent work preserved. No foreground/input, settings/
+profiler write, manual client sync or publication. Native protected transactions,
+mail/bank/vendor coexistence, login persistence, proc/pressed art/clipping,
+localized/controller behavior, taint and matched CPU/FPS remain NOT RUN. Use the
+existing user-managed native test route across all five clients.
+[Requirements/native checks](AUCTION_RESTOCK.md#fast-purchases-and-usable-pending-item-buttons); [evidence](validation/auction-speed-ready-2026-11-13.json).
+
+13 November auction follow-up overview (AUCTION-FOLLOWUP-ITEMS-20261113;
+AHR-74–80), build AH-restock-followup-items-20261113-r13: every current-step item
+has a sorted icon and physical quantity; icons shrink/wrap inside one ordinary
+stage hit/focus host. Caption is larger, outlined and contrast-backed. Matching
+live bank/vendor/mail contexts glow; cached bank views, closed contexts, waiting,
+completion and combat do not. One press delegates all scoped step items through
+existing owners, without unrelated targets or duplicate submitted work.
+Loot & Items → Restock has independent auction follow-up automation (default off),
+compatible with both existing bank/vendor auto settings. No limit defaults on for
+new/unset items; existing positive AH caps are preserved. With it off, zero is a
+real cap; saved craft/potion source policies retain the mode. Explicit Scan prices
+all listed items including full/zero/free-route inputs. Full weaker healing/mana
+stock can upgrade its saved tier and fill the entire stronger target. Clear pending
+is absent. Grouped Auctionator availability stays distinct from one-item bids.
+348 scripts/1036 syntax PASS with complete current Lua manifest;36 harmful controls
+rejected. UI16763, actual-owner integration270, automation800, price788 and scan340
+checks PASS. Fixed readiness recursion, scoped vendor price fallback and bounded
+failed-auto retry. External2729-file source/history checkpoint and95 settings
+metadata verified; private values not copied. Concurrent minimap work preserved.
+No foreground/input, settings/profiler writes, manual sync or publication. Native
+operation/glow/pixels/controller/taint/persistence/CPU/FPS remain NOT RUN; retain
+the existing user-managed reproduction across all five clients.
+[Requirements and native checks](AUCTION_RESTOCK.md#item-overview-follow-up-automation-and-explicit-price-limits);
+[evidence](validation/auction-followup-items-2026-11-13.json).
+
+13 November action counts: desktop acceptance passes for ACR-01–05. Complete native loot/vendor/trade/mail19→20 and1→0→1, spell/item charges, modifier badges, form settle, hidden reveal and combat on all five clients/both inventory providers. Keep native taint/controller/pixels/CPU/FPS pending. [Requirements and read-only comparison](ACTION_COUNT_REFRESH.md).
+
+13 November auction restock recovery (AUCTION-RESTOCK-RECOVERY-20261113;
+AHR-66–73), candidate AH-restock-recovery-20261113-r12: waiting is silent;
+changed ingredients reprice safely; each ingredient's Count Bank flag controls
+AH/vendor quantities and source costs. Latest verified vendor stock replaces the
+opposite classification. Saved recipes retain profession, recipe, materials,
+output and yield while closed. Modern commodities can buy forty at once; modern
+item bids and old listings still require their own native press. Grouped modern
+availability is separate from purchased quantity: one five-charge oil reserves
+five uses once. Excess stacks apply only to old-AH ordinary items; the control
+is hidden on modern AH. Target nine uses/five per item still rounds to two items.
+Desktop suite341/1029 PASS with all owned auction hashes matching;26 harmful
+controls rejected. Later unrelated source changes are preserved and recorded,
+so that captured suite is not a claim about newer global files. Source checkpoint
+2699/history and95 settings metadata verified; no private settings copy.
+No foreground/input, settings/profiler writes, manual sync or publication.
+Old corrupted reservations cannot safely be halved; reconcile from the mailbox.
+Native purchase/mail/vendor/bank/craft, pixels/controller/taint and CPU/FPS remain
+NOT RUN. Existing user-managed native reproduction retained.
+[Requirements and acceptance](AUCTION_RESTOCK.md#silent-waiting-and-changed-ingredient-stock);
+[evidence](validation/auction-restock-recovery-2026-11-13.json).
+
+13 November auction workflow: local implementation and40 focused desktop scripts pass; initial336/1024 broad pass predates unrelated concurrent edits.
+Complete native acceptance for AHR-57–64 across the five clients; do not infer
+secure operation, delivery, rendering/controller or FPS from mocks.
+[Requirements and native checklist](AUCTION_RESTOCK.md#integrated-restock-workflow-13-november-2026).
+
+13 November trinket follow-up: implementation and desktop regressions pass;
+native held-input/tint, empty/re-equip, shared/swap cooldown completion, flyout,
+combat and controller acceptance remain pending. [Task evidence](TRINKET_EQUIPPED_USABILITY.md#13-november-follow-up-intermittent-dark-faces-and-cooldown-overlays).
+
 Current priority, 5 November: [mail and auction performance work](MAIL_AUCTION_REWORK.md)
 tracks opening/closing, loot, posting, buyer sales, purchases and cancellation
 across all five clients and optional providers. Keep these requirements separate

@@ -1,0 +1,19 @@
+{
+  "task": "MINIMAP-SIDE-BORDER-20261113",
+  "captured_utc": "2026-11-13T14:41:09.715598+00:00",
+  "external_directory": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d3b4-b7ec-7591-94d3-6d3b3097fb8a\\minimap-side-border-20261113T144109Z-0",
+  "branch": "main",
+  "head": "26f886e3ea5371b196ab235d2dace0c156002285",
+  "hooks_path": ".githooks",
+  "source_files": 2724,
+  "zip_verified": true,
+  "live_changed_during_capture": [],
+  "bundle_verified": true,
+  "settings_metadata_count": 99,
+  "private_settings_copied": false,
+  "archives": {
+    "source.zip": "e6265e14386897ad28ee3f7eee77229eea892985ce2178d32284bd88fddb9298",
+    "history.bundle": "809d9c22a4aeed3c2e2e1754115df8b9ba345c3e141077b8fbf8620aafc78cfd",
+    "source-sha256.json": "612938863ac1969d5c5531809322a6afe714795325609cc7e3f83d38ff94a37c"
+  }
+}

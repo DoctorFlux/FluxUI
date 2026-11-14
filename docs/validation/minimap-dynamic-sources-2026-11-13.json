@@ -1,0 +1,30 @@
+{
+  "task": "MINIMAP-DYNAMIC-20261113",
+  "captured_utc": "2026-11-13",
+  "fresh_branch_resolution": [
+    {
+      "branch": "live",
+      "sha": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "message": "12.1.5 (70783)",
+      "url": "https://github.com/Gethe/wow-ui-source/commit/297d7aaaa736f346b3e036f38ee088eaf7f8c07f"
+    },
+    {
+      "branch": "forever",
+      "sha": "bebcb6bf309cf41b41bd74f8ca651e6a105b2676",
+      "message": "1.60.1 (70938)",
+      "url": "https://github.com/Gethe/wow-ui-source/commit/bebcb6bf309cf41b41bd74f8ca651e6a105b2676"
+    },
+    {
+      "branch": "classic",
+      "sha": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "message": "5.5.4 (70631)",
+      "url": "https://github.com/Gethe/wow-ui-source/commit/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf"
+    }
+  ],
+  "reused_contracts": [
+    "minimap-visibility-sources-2026-11-13.json",
+    "minimap-layout-sources-2026-11-13.json"
+  ],
+  "reason": "This follow-up changes addon-owned slot selection and offset policy using existing GetCursorInfo, CURSOR_CHANGED, saved EBS callbacks, Flux.Timer and Flux.Combat paths. It introduces no native API, new frame, timer kind, event or driver.",
+  "native": "NOT RUN; preserved five-client scope, direct implementation and user-managed native reproduction/controller choice. Source pins do not certify native registration/delivery/operation."
+}

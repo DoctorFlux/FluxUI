@@ -1,0 +1,13 @@
+{
+  "date": "2026-11-09",
+  "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\09\\01a1c03e-c615-7f02-a24a-3e5ed07300f1\\options-native-border-checkpoint-20261109T222804Z",
+  "verified": true,
+  "sourceFiles": 2490,
+  "settingsMetadataEntries": 45,
+  "settingsBackup": "Read-only metadata; no quiescent settings backup claimed",
+  "settingsWrites": false,
+  "sha256": {
+    "source.zip": "d7f3796c572811f882fb7e75a4b4ecaf9a3cf05eb44027ed8a9c13ca9112b98e",
+    "history.bundle": "fdfb57691218163c32f25f15d66adaaca7a16dca9cd3fd23f83eee2a8394eff4"
+  }
+}

@@ -1,0 +1,130 @@
+{
+  "date": "2026-11-10",
+  "allTestedLuaIdentitiesCurrent": true,
+  "unrelatedPreExistingFilesPreserved": true,
+  "changedBaselineFiles": [
+    "NEXT_SESSION.md",
+    "AddonOptions/FluxOptionsVendor.lua",
+    "docs/20-vendor-restock-junk.md",
+    "docs/26-options-map.md",
+    "docs/CLIENT_MATRIX.csv",
+    "docs/CLIENT_VALIDATION.md",
+    "docs/DECISIONS.md",
+    "docs/FEATURE_PARITY.csv",
+    "docs/PERFORMANCE_AUDIT.csv",
+    "docs/PERFORMANCE_RESULTS.csv",
+    "docs/STATUS.md",
+    "docs/WORK_LOG.md",
+    "docs/reference/declarations.md",
+    "docs/reference/interfaces.md",
+    "docs/reference/inventory.json",
+    "docs/reference/settings-details.md",
+    "docs/reference/verification.json",
+    "Inventory/Restock/Core/FluxRestockSettings.lua",
+    "Inventory/Restock/Vendor/FluxVendorGossip.lua",
+    "tests/vendor_gossip.lua"
+  ],
+  "installedCopies": [
+    {
+      "client": "_retail_",
+      "files": [
+        {
+          "path": "Inventory/Restock/Vendor/FluxVendorGossip.lua",
+          "sha256": "8a46e38dd1d0a875864a6aaf57a2c6266dec2f5a2117c4fd0de64319aa865a0f",
+          "matches": true
+        },
+        {
+          "path": "Inventory/Restock/Core/FluxRestockSettings.lua",
+          "sha256": "1acf3b02f873288fef2b1cd8664f992ad9ac5be1586a0295f62ad992db1d3336",
+          "matches": true
+        },
+        {
+          "path": "AddonOptions/FluxOptionsVendor.lua",
+          "sha256": "9b6c96c453e438d0f67a272c73b5366b0b2fb26b6549952b7817edd2c14bb75e",
+          "matches": true
+        }
+      ]
+    },
+    {
+      "client": "_forever_",
+      "files": [
+        {
+          "path": "Inventory/Restock/Vendor/FluxVendorGossip.lua",
+          "sha256": "8a46e38dd1d0a875864a6aaf57a2c6266dec2f5a2117c4fd0de64319aa865a0f",
+          "matches": true
+        },
+        {
+          "path": "Inventory/Restock/Core/FluxRestockSettings.lua",
+          "sha256": "1acf3b02f873288fef2b1cd8664f992ad9ac5be1586a0295f62ad992db1d3336",
+          "matches": true
+        },
+        {
+          "path": "AddonOptions/FluxOptionsVendor.lua",
+          "sha256": "9b6c96c453e438d0f67a272c73b5366b0b2fb26b6549952b7817edd2c14bb75e",
+          "matches": true
+        }
+      ]
+    },
+    {
+      "client": "_classic_",
+      "files": [
+        {
+          "path": "Inventory/Restock/Vendor/FluxVendorGossip.lua",
+          "sha256": "8a46e38dd1d0a875864a6aaf57a2c6266dec2f5a2117c4fd0de64319aa865a0f",
+          "matches": true
+        },
+        {
+          "path": "Inventory/Restock/Core/FluxRestockSettings.lua",
+          "sha256": "1acf3b02f873288fef2b1cd8664f992ad9ac5be1586a0295f62ad992db1d3336",
+          "matches": true
+        },
+        {
+          "path": "AddonOptions/FluxOptionsVendor.lua",
+          "sha256": "9b6c96c453e438d0f67a272c73b5366b0b2fb26b6549952b7817edd2c14bb75e",
+          "matches": true
+        }
+      ]
+    },
+    {
+      "client": "_classic_era_",
+      "files": [
+        {
+          "path": "Inventory/Restock/Vendor/FluxVendorGossip.lua",
+          "sha256": "8a46e38dd1d0a875864a6aaf57a2c6266dec2f5a2117c4fd0de64319aa865a0f",
+          "matches": true
+        },
+        {
+          "path": "Inventory/Restock/Core/FluxRestockSettings.lua",
+          "sha256": "1acf3b02f873288fef2b1cd8664f992ad9ac5be1586a0295f62ad992db1d3336",
+          "matches": true
+        },
+        {
+          "path": "AddonOptions/FluxOptionsVendor.lua",
+          "sha256": "9b6c96c453e438d0f67a272c73b5366b0b2fb26b6549952b7817edd2c14bb75e",
+          "matches": true
+        }
+      ]
+    },
+    {
+      "client": "_anniversary_",
+      "files": [
+        {
+          "path": "Inventory/Restock/Vendor/FluxVendorGossip.lua",
+          "sha256": "8a46e38dd1d0a875864a6aaf57a2c6266dec2f5a2117c4fd0de64319aa865a0f",
+          "matches": true
+        },
+        {
+          "path": "Inventory/Restock/Core/FluxRestockSettings.lua",
+          "sha256": "1acf3b02f873288fef2b1cd8664f992ad9ac5be1586a0295f62ad992db1d3336",
+          "matches": true
+        },
+        {
+          "path": "AddonOptions/FluxOptionsVendor.lua",
+          "sha256": "9b6c96c453e438d0f67a272c73b5366b0b2fb26b6549952b7817edd2c14bb75e",
+          "matches": true
+        }
+      ]
+    }
+  ],
+  "scope": "Read-only final source/copy verification;no native acceptance implied"
+}

@@ -1,0 +1,186 @@
+{
+  "date": "2026-11-10",
+  "scope": "Only the three tested bank/vendor gossip feature files; no private settings, profiler preferences, input or reload",
+  "backup": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c4d0-1465-7d32-8c0d-36447d4477b6\\bank-vendor-gossip-installed-before.zip",
+  "backupSHA256": "38bce13cbea630827ba3d47c09138bb0b0c426d733cdf9ef4246337e2987a586",
+  "files": [
+    {
+      "client": "_forever_",
+      "path": "Inventory/Restock/Core/FluxRestockSettings.lua",
+      "beforeSHA256": "484c6f75d7357fabcf836ac6245b5b39d685cb8fa7bf17e2022a67b6498e2a3c",
+      "afterSHA256": "1acf3b02f873288fef2b1cd8664f992ad9ac5be1586a0295f62ad992db1d3336",
+      "verified": true
+    },
+    {
+      "client": "_forever_",
+      "path": "AddonOptions/FluxOptionsVendor.lua",
+      "beforeSHA256": "1847f8e123219ff57b02822252634045b37ba20595cbe43c5c1dcb296fec4def",
+      "afterSHA256": "9b6c96c453e438d0f67a272c73b5366b0b2fb26b6549952b7817edd2c14bb75e",
+      "verified": true
+    },
+    {
+      "client": "_forever_",
+      "path": "Inventory/Restock/Vendor/FluxVendorGossip.lua",
+      "beforeSHA256": "61fcfdd7881711cde6576439ee6951a14d8cf8ebbceb3b55b3950f289b4e1f10",
+      "afterSHA256": "8a46e38dd1d0a875864a6aaf57a2c6266dec2f5a2117c4fd0de64319aa865a0f",
+      "verified": true
+    },
+    {
+      "client": "_classic_",
+      "path": "Inventory/Restock/Core/FluxRestockSettings.lua",
+      "beforeSHA256": "484c6f75d7357fabcf836ac6245b5b39d685cb8fa7bf17e2022a67b6498e2a3c",
+      "afterSHA256": "1acf3b02f873288fef2b1cd8664f992ad9ac5be1586a0295f62ad992db1d3336",
+      "verified": true
+    },
+    {
+      "client": "_classic_",
+      "path": "AddonOptions/FluxOptionsVendor.lua",
+      "beforeSHA256": "1847f8e123219ff57b02822252634045b37ba20595cbe43c5c1dcb296fec4def",
+      "afterSHA256": "9b6c96c453e438d0f67a272c73b5366b0b2fb26b6549952b7817edd2c14bb75e",
+      "verified": true
+    },
+    {
+      "client": "_classic_",
+      "path": "Inventory/Restock/Vendor/FluxVendorGossip.lua",
+      "beforeSHA256": "61fcfdd7881711cde6576439ee6951a14d8cf8ebbceb3b55b3950f289b4e1f10",
+      "afterSHA256": "8a46e38dd1d0a875864a6aaf57a2c6266dec2f5a2117c4fd0de64319aa865a0f",
+      "verified": true
+    },
+    {
+      "client": "_classic_era_",
+      "path": "Inventory/Restock/Core/FluxRestockSettings.lua",
+      "beforeSHA256": "484c6f75d7357fabcf836ac6245b5b39d685cb8fa7bf17e2022a67b6498e2a3c",
+      "afterSHA256": "1acf3b02f873288fef2b1cd8664f992ad9ac5be1586a0295f62ad992db1d3336",
+      "verified": true
+    },
+    {
+      "client": "_classic_era_",
+      "path": "AddonOptions/FluxOptionsVendor.lua",
+      "beforeSHA256": "1847f8e123219ff57b02822252634045b37ba20595cbe43c5c1dcb296fec4def",
+      "afterSHA256": "9b6c96c453e438d0f67a272c73b5366b0b2fb26b6549952b7817edd2c14bb75e",
+      "verified": true
+    },
+    {
+      "client": "_classic_era_",
+      "path": "Inventory/Restock/Vendor/FluxVendorGossip.lua",
+      "beforeSHA256": "61fcfdd7881711cde6576439ee6951a14d8cf8ebbceb3b55b3950f289b4e1f10",
+      "afterSHA256": "8a46e38dd1d0a875864a6aaf57a2c6266dec2f5a2117c4fd0de64319aa865a0f",
+      "verified": true
+    },
+    {
+      "client": "_anniversary_",
+      "path": "Inventory/Restock/Core/FluxRestockSettings.lua",
+      "beforeSHA256": "484c6f75d7357fabcf836ac6245b5b39d685cb8fa7bf17e2022a67b6498e2a3c",
+      "afterSHA256": "1acf3b02f873288fef2b1cd8664f992ad9ac5be1586a0295f62ad992db1d3336",
+      "verified": true
+    },
+    {
+      "client": "_anniversary_",
+      "path": "AddonOptions/FluxOptionsVendor.lua",
+      "beforeSHA256": "1847f8e123219ff57b02822252634045b37ba20595cbe43c5c1dcb296fec4def",
+      "afterSHA256": "9b6c96c453e438d0f67a272c73b5366b0b2fb26b6549952b7817edd2c14bb75e",
+      "verified": true
+    },
+    {
+      "client": "_anniversary_",
+      "path": "Inventory/Restock/Vendor/FluxVendorGossip.lua",
+      "beforeSHA256": "61fcfdd7881711cde6576439ee6951a14d8cf8ebbceb3b55b3950f289b4e1f10",
+      "afterSHA256": "8a46e38dd1d0a875864a6aaf57a2c6266dec2f5a2117c4fd0de64319aa865a0f",
+      "verified": true
+    }
+  ],
+  "nativeAcceptance": "NOT RUN; reload required",
+  "initialInstallationFiles": [
+    {
+      "client": "_forever_",
+      "path": "Inventory/Restock/Core/FluxRestockSettings.lua",
+      "beforeSHA256": "484c6f75d7357fabcf836ac6245b5b39d685cb8fa7bf17e2022a67b6498e2a3c",
+      "afterSHA256": "1acf3b02f873288fef2b1cd8664f992ad9ac5be1586a0295f62ad992db1d3336",
+      "verified": true
+    },
+    {
+      "client": "_forever_",
+      "path": "AddonOptions/FluxOptionsVendor.lua",
+      "beforeSHA256": "1847f8e123219ff57b02822252634045b37ba20595cbe43c5c1dcb296fec4def",
+      "afterSHA256": "9b6c96c453e438d0f67a272c73b5366b0b2fb26b6549952b7817edd2c14bb75e",
+      "verified": true
+    },
+    {
+      "client": "_forever_",
+      "path": "Inventory/Restock/Vendor/FluxVendorGossip.lua",
+      "beforeSHA256": "61fcfdd7881711cde6576439ee6951a14d8cf8ebbceb3b55b3950f289b4e1f10",
+      "afterSHA256": "ec2e4c00013bab158a2b0496dbd05ed40c7dd3d0123b7fc4a6d9f292b1cc4c83",
+      "verified": true
+    },
+    {
+      "client": "_classic_",
+      "path": "Inventory/Restock/Core/FluxRestockSettings.lua",
+      "beforeSHA256": "484c6f75d7357fabcf836ac6245b5b39d685cb8fa7bf17e2022a67b6498e2a3c",
+      "afterSHA256": "1acf3b02f873288fef2b1cd8664f992ad9ac5be1586a0295f62ad992db1d3336",
+      "verified": true
+    },
+    {
+      "client": "_classic_",
+      "path": "AddonOptions/FluxOptionsVendor.lua",
+      "beforeSHA256": "1847f8e123219ff57b02822252634045b37ba20595cbe43c5c1dcb296fec4def",
+      "afterSHA256": "9b6c96c453e438d0f67a272c73b5366b0b2fb26b6549952b7817edd2c14bb75e",
+      "verified": true
+    },
+    {
+      "client": "_classic_",
+      "path": "Inventory/Restock/Vendor/FluxVendorGossip.lua",
+      "beforeSHA256": "61fcfdd7881711cde6576439ee6951a14d8cf8ebbceb3b55b3950f289b4e1f10",
+      "afterSHA256": "ec2e4c00013bab158a2b0496dbd05ed40c7dd3d0123b7fc4a6d9f292b1cc4c83",
+      "verified": true
+    },
+    {
+      "client": "_classic_era_",
+      "path": "Inventory/Restock/Core/FluxRestockSettings.lua",
+      "beforeSHA256": "484c6f75d7357fabcf836ac6245b5b39d685cb8fa7bf17e2022a67b6498e2a3c",
+      "afterSHA256": "1acf3b02f873288fef2b1cd8664f992ad9ac5be1586a0295f62ad992db1d3336",
+      "verified": true
+    },
+    {
+      "client": "_classic_era_",
+      "path": "AddonOptions/FluxOptionsVendor.lua",
+      "beforeSHA256": "1847f8e123219ff57b02822252634045b37ba20595cbe43c5c1dcb296fec4def",
+      "afterSHA256": "9b6c96c453e438d0f67a272c73b5366b0b2fb26b6549952b7817edd2c14bb75e",
+      "verified": true
+    },
+    {
+      "client": "_classic_era_",
+      "path": "Inventory/Restock/Vendor/FluxVendorGossip.lua",
+      "beforeSHA256": "61fcfdd7881711cde6576439ee6951a14d8cf8ebbceb3b55b3950f289b4e1f10",
+      "afterSHA256": "ec2e4c00013bab158a2b0496dbd05ed40c7dd3d0123b7fc4a6d9f292b1cc4c83",
+      "verified": true
+    },
+    {
+      "client": "_anniversary_",
+      "path": "Inventory/Restock/Core/FluxRestockSettings.lua",
+      "beforeSHA256": "484c6f75d7357fabcf836ac6245b5b39d685cb8fa7bf17e2022a67b6498e2a3c",
+      "afterSHA256": "1acf3b02f873288fef2b1cd8664f992ad9ac5be1586a0295f62ad992db1d3336",
+      "verified": true
+    },
+    {
+      "client": "_anniversary_",
+      "path": "AddonOptions/FluxOptionsVendor.lua",
+      "beforeSHA256": "1847f8e123219ff57b02822252634045b37ba20595cbe43c5c1dcb296fec4def",
+      "afterSHA256": "9b6c96c453e438d0f67a272c73b5366b0b2fb26b6549952b7817edd2c14bb75e",
+      "verified": true
+    },
+    {
+      "client": "_anniversary_",
+      "path": "Inventory/Restock/Vendor/FluxVendorGossip.lua",
+      "beforeSHA256": "61fcfdd7881711cde6576439ee6951a14d8cf8ebbceb3b55b3950f289b4e1f10",
+      "afterSHA256": "ec2e4c00013bab158a2b0496dbd05ed40c7dd3d0123b7fc4a6d9f292b1cc4c83",
+      "verified": true
+    }
+  ],
+  "finalOptionsSync": {
+    "scope": "Only final tested gossip module synchronization;other two installed feature files unchanged",
+    "backup": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c4d0-1465-7d32-8c0d-36447d4477b6\\bank-vendor-gossip-options-sync-before.zip",
+    "backupSHA256": "e5f2b44a8f3df6df283145abee4ac3290762eba92577ea534159f0f87096863c",
+    "copies": 4,
+    "verified": true
+  }
+}

@@ -1015,7 +1015,7 @@ local function PlannedHealthHeight(frame, height)
     local inner = math.max(height - 8, 10)
     local additional = frame.isAdditionalPowerShown
     local main = frame._fluxHasMainPower ~= false or additional
-    if not main or (UF.UsesHudUnitBars() and not additional) then return inner end
+    if not main or (UF.UsesHudUnitBars() and not additional and not frame._fluxPartyMember) then return inner end
     local hp = additional and .5 or (FluxUnitFrames_GetHealthPartitionPct and FluxUnitFrames_GetHealthPartitionPct(frame.unit or "player") or .6)
     local resource = inner * (additional and .3 or (1 - hp)) - 1
     local health = inner * hp - 1
@@ -1177,9 +1177,9 @@ function UF.UpdateResourceSpark(bar, sparkInfo)
     end
     if sparkInfo.barHeight and sparkInfo.barHeight > 0 and fill then
         local okH, h = pcall(function()
-            return fill:GetHeight() + 0
+            return PublicGeometryNumber(fill:GetHeight())
         end)
-        if okH and type(h) == "number" and not ValueIsSecret(h) and h > 0 then
+        if okH and h and h > 0 then
             local scale = h / sparkInfo.barHeight
             if spark._fluxSparkScale ~= scale then
                 spark._fluxSparkScale = nil
@@ -1190,9 +1190,9 @@ function UF.UpdateResourceSpark(bar, sparkInfo)
     end
     local show = false
     local okShow, result = pcall(function()
-        local fw = fill and (fill:GetWidth() + 0) or 0
-        local bw = bar:GetWidth() + 0
-        if fw <= 1 or bw <= 0 then return false end
+        local fw = fill and PublicGeometryNumber(fill:GetWidth()) or 0
+        local bw = PublicGeometryNumber(bar:GetWidth())
+        if not fw or not bw or fw <= 1 or bw <= 0 then return false end
         if sparkInfo.showAtMax then return true end
         return fw < (bw - 1)
     end)
@@ -1401,28 +1401,62 @@ local function EnsureFullResourcePulse(bar)
     return pulse
 end
 
+do
+local function QueueFullResourcePulse(bar)
+    if bar._fluxPulsePreparePending then return end
+    local function prepare()
+        if InCombatLockdown and InCombatLockdown() then return end
+        local events = bar._fluxPulseRegenOwner
+        if events then
+            events.Unregister("PLAYER_REGEN_ENABLED", prepare)
+            bar._fluxPulseRegenOwner = nil
+        end
+        bar._fluxPulsePreparePending = nil
+        UF.SetFullResourcePulseActive(bar, bar._fluxPulseWanted)
+    end
+    bar._fluxPulsePreparePending = prepare
+    local key = "resource.pulse." .. tostring(bar)
+    if UF.DeferProtected then UF.DeferProtected(key, prepare); return end
+    local flux = ns and ns.Flux
+    if flux and flux.Combat and flux.Combat.Defer then flux.Combat.Defer("unitframes." .. key, prepare); return end
+    -- Core's shared event owner is the early-load fallback. Never replace an
+    -- existing bar script or create another event frame for pulse preparation.
+    local events = flux and flux.Events
+    if events and events.Register and events.Unregister and events.Register("PLAYER_REGEN_ENABLED", prepare) then
+        bar._fluxPulseRegenOwner = events
+        return
+    end
+    bar._fluxPulsePreparePending = nil -- Retry on the next ordinary paint.
+end
+
 function UF.SetFullResourcePulseActive(bar, active)
     if not bar then return end
-    if not active or not UF.UsesHudUnitBars() then
-        if bar.FullPowerFrame then
-            bar.FullPowerFrame.active = false
-            bar.FullPowerFrame:RemoveAnims()
+    local hud = UF.UsesHudUnitBars()
+    bar._fluxPulseWanted = active and hud and true or false
+    local pulse = bar.FullPowerFrame
+    if not hud then
+        if pulse then pulse.active = false; pulse:RemoveAnims() end
+        return
+    end
+    if not pulse then
+        if not bar._fluxPulseWanted and not bar._fluxPulseCanChangeType then return end
+        if bar._fluxPulseFailed then return end
+        if InCombatLockdown and InCombatLockdown() then
+            QueueFullResourcePulse(bar)
+            return
         end
-        return
+        -- Prepare the unchanged animation tree while secure layout is legal,
+        -- including currently-Mana bars that can reveal another unit in combat.
+        -- Inactive preparation stays transparent and adds no OnUpdate driver.
+        local ok
+        ok, pulse = pcall(EnsureFullResourcePulse, bar)
+        if not ok then bar._fluxPulseFailed = true; return end
+        if not pulse then return end
     end
-    if bar._fluxPulseFailed then return end
-    if bar.FullPowerFrame then
-        bar.FullPowerFrame.active = true
-        return
-    end
-    local ok, pulse = pcall(EnsureFullResourcePulse, bar)
-    if not ok then
-        bar._fluxPulseFailed = true
-        return
-    end
-    if not pulse then return end
-    pulse.active = true
+    pulse.active = bar._fluxPulseWanted
+    if not pulse.active then pulse:RemoveAnims() end
 end
+end -- Keep the preparation closure below the file's active-local limit.
 
 function UF.UpdateFullResourcePulse(bar, power, maxPower)
     local pulse = bar and bar.FullPowerFrame
@@ -1438,9 +1472,14 @@ function UF.UpdateFullResourcePulse(bar, power, maxPower)
     if isFull == nil then
         local ok, full = pcall(function()
             local fill = bar:GetStatusBarTexture()
-            local fw = fill and (fill:GetWidth() + 0) or 0
-            local bw = bar:GetWidth() + 0
-            return bw > 1 and fw >= (bw - 1)
+            -- A fill's geometry can inherit secret resource values. pcall
+            -- contains the Lua error but still emits native taint-log work.
+            -- Only compare geometry that passed the same public-value guard
+            -- used by the other resource art; never infer an opaque full bar.
+            local fw = fill and PublicGeometryNumber(fill:GetWidth())
+            local bw = PublicGeometryNumber(bar:GetWidth())
+            if fw and bw then return bw > 1 and fw >= (bw - 1) end
+            return false
         end)
         isFull = ok and full and true or false
     end
@@ -1770,27 +1809,31 @@ function UF.LayoutPetHappinessIcon(self)
         end
 
         local function PetHappinessIcon_OnEnter(icon)
-            if not GameTooltip or not icon.tooltip then
+            if not icon.tooltip then
                 return
             end
-            GameTooltip:SetOwner(icon, "ANCHOR_RIGHT")
-            GameTooltip:SetText(icon.tooltip)
+            local tooltip = UF.GetUnitTooltip and UF.GetUnitTooltip(true)
+            if not tooltip or tooltip:IsForbidden() then return end
+            if UF.HidePetAuraTooltip then UF.HidePetAuraTooltip() end
+            tooltip.UpdateTooltip = nil
+            tooltip._fluxUnitTipGuid = nil
+            tooltip:SetOwner(icon, "ANCHOR_RIGHT")
+            tooltip:SetText(icon.tooltip)
             if icon.tooltipDamage then
-                GameTooltip:AddLine(icon.tooltipDamage, 1, 1, 1)
+                tooltip:AddLine(icon.tooltipDamage, 1, 1, 1)
             end
             if icon.tooltipLoyalty then
-                GameTooltip:AddLine(icon.tooltipLoyalty, 1, 1, 1)
+                tooltip:AddLine(icon.tooltipLoyalty, 1, 1, 1)
             end
             if icon.tooltipDiet then
-                GameTooltip:AddLine(icon.tooltipDiet, 1, 1, 1)
+                tooltip:AddLine(icon.tooltipDiet, 1, 1, 1)
             end
-            GameTooltip:Show()
+            tooltip:Show()
+            tooltip._fluxUnitTipOwner = icon
         end
 
-        local function PetHappinessIcon_OnLeave()
-            if GameTooltip then
-                GameTooltip:Hide()
-            end
+        local function PetHappinessIcon_OnLeave(icon)
+            if UF.HideUnitTooltip then UF.HideUnitTooltip(icon) end
         end
 
         local function ApplyPetHappinessArt(tex, happiness)
@@ -3759,6 +3802,16 @@ function UF.UpdatePower(self, unit)
     local hasMainPower = nil
     if not secretMaximum and type(maxPower) == "number" then
         hasMainPower = maxPower > 0
+        if not hasMainPower and UnitExists then
+            local ok, exists = pcall(UnitExists, unit)
+            if ok and (not API.IsSecretValue or not API.IsSecretValue(exists))
+                and (not API.CanAccessValue or API.CanAccessValue(exists)) and not exists then
+                -- Empty prepared party/watched slots do not establish that the
+                -- future unit has no resource. Keep their normal power-capable
+                -- geometry ready for native reveal during combat.
+                hasMainPower = nil
+            end
+        end
     end
     if self._fluxHasMainPower ~= hasMainPower then
         self._fluxHasMainPower = hasMainPower
@@ -3768,6 +3821,14 @@ function UF.UpdatePower(self, unit)
         if (unit == "player" or unit == "target") and self.Health then
             UF.UpdateHealth(self, unit)
         end
+    end
+
+    -- Compact focus has its own decorative divider above the resource child.
+    -- Follow the same opacity without inspecting a restricted maximum in Lua.
+    if self._fluxCompactFocus and self._fluxPartyDivider then
+        local alpha = hasMainPower == false and 0 or 1
+        if UF.UsesHudUnitBars() then alpha = self._fluxMainPowerAlpha end
+        self._fluxPartyDivider:SetAlpha(alpha)
     end
 
     local displayPower = UF.PowerValueForDisplay(self.Power, power)
@@ -3919,6 +3980,10 @@ function UF.CreatePowerBar(frame)
     power.Percent = percent
     
     frame.Power = power
+    -- Future watched/party units can change resource type after secure reveal.
+    -- Only main bars need inactive preparation; extra mana/stagger never pulse.
+    power._fluxPulseCanChangeType = not (frame._fluxHealthBarOnly or frame._fluxPartyPet or frame._fluxVerticalHealthBar)
+    UF.SetFullResourcePulseActive(power, false)
 
     if ns.PowerCostOverlay and ns.PowerCostOverlay.CreateOverlay then
         ns.PowerCostOverlay.CreateOverlay(power)
@@ -5024,101 +5089,100 @@ end
 
 -- ---------------------------------------------------------------------------
 -- Unit tooltip (custom SecureUnitButton frames do not get default Blizzard tips)
--- Use SetDefaultAnchor(UIParent) so Flux HUD reposition hook runs; ANCHOR_NONE
--- without a successful SetPoint parks the tip off-screen (looks like "no tip").
--- Refresh via GameTooltip.UpdateTooltip (not owner) so we keep UIParent ownership.
--- GameTooltip:SetUnit from here is tainted, so the tooltip health bar must not
--- compare secret health. Blizzard's script always does that compare.
+-- Keep addon refresh/data/health state off the shared world-cursor GameTooltip.
+-- Its native SetWorldCursor path consumes secret unit tokens and line colors.
+-- The same native template and HUD position retain the existing presentation.
 -- ---------------------------------------------------------------------------
-function UF.GuardTooltipStatusBar()
+do
+    local unitTooltip
     local function OnValueChanged(self, value)
-        if value == nil or (issecretvalue and issecretvalue(value)) then
+        if (issecretvalue and issecretvalue(value)) or value == nil then
             return
         end
         if not self.lockColor and self.SetStatusBarColor then
             self:SetStatusBarColor(0, 1, 0)
         end
     end
-    local function Apply(bar)
-        if not bar or not bar.SetScript or not bar.GetScript then
-            return
+    function UF.GuardTooltipStatusBar()
+        local bar = unitTooltip and (unitTooltip.StatusBar or _G.FluxUnitTooltipStatusBar)
+        if bar and bar.SetScript and bar.GetScript and bar:GetScript("OnValueChanged") ~= OnValueChanged then
+            bar:SetScript("OnValueChanged", OnValueChanged)
         end
-        if bar:GetScript("OnValueChanged") == OnValueChanged then
-            return
-        end
-        pcall(bar.SetScript, bar, "OnValueChanged", OnValueChanged)
     end
-    local bar = _G.GameTooltipStatusBar
-    if not bar and GameTooltip then
-        bar = GameTooltip.StatusBar
-    end
-    Apply(bar)
-    local mixin = _G.GameTooltipUnitHealthBarMixin
-    if mixin and not mixin._fluxSecretHealth then
-        mixin._fluxSecretHealth = true
-        if type(mixin.ResetUnitHealth) == "function" then
-            local origReset = mixin.ResetUnitHealth
-            function mixin:ResetUnitHealth(...)
-                Apply(self)
-                return origReset(self, ...)
-            end
+
+    function UF.GetUnitTooltip(create)
+        if not unitTooltip and create then
+            unitTooltip = CreateFrame("GameTooltip", "FluxUnitTooltip", UIParent, "GameTooltipTemplate")
+            unitTooltip:SetScript("OnUpdate", GameTooltip_OnUpdate)
+            if GameTooltip_OnShow then unitTooltip:HookScript("OnShow", GameTooltip_OnShow) end
+            unitTooltip:HookScript("OnHide", function(self)
+                if self._fluxUnitTipRebuilding then return end
+                self.UpdateTooltip = nil
+                self._fluxUnitTipGuid = nil
+                self._fluxUnitTipOwner = nil
+            end)
+            UF.GuardTooltipStatusBar()
         end
-        if type(mixin.UpdateUnitHealth) == "function" then
-            local origUpdate = mixin.UpdateUnitHealth
-            function mixin:UpdateUnitHealth(...)
-                Apply(self)
-                return origUpdate(self, ...)
-            end
-        end
+        return unitTooltip
     end
 end
 
 function UF.ShowUnitTooltip(anchorFrame, unit, fromUpdate)
-    if not anchorFrame or not unit or not UnitExists(unit) then return end
-    if GameTooltip:IsForbidden() then return end
-    UF.GuardTooltipStatusBar()
+    if not anchorFrame or (issecretvalue and issecretvalue(unit)) or type(unit) ~= "string" or unit == "" then return end
+    local exists = UnitExists(unit)
+    if (issecretvalue and issecretvalue(exists)) or not exists then return end
+    local tooltip = UF.GetUnitTooltip(true)
+    if tooltip:IsForbidden() then return end
 
-    local guid = UnitGUID and UnitGUID(unit) or nil
+    local guid
+    if UnitGUID then guid = UnitGUID(unit) end
+    if issecretvalue and issecretvalue(guid) then guid = nil end
     -- Raid-grid OnEnter: skip a full SetUnit rebuild when the unit id is unchanged.
     -- GameTooltip_OnUpdate still refreshes (fromUpdate).
-    if not fromUpdate and guid and GameTooltip:IsShown()
-        and GameTooltip._fluxUnitTipGuid == guid and GameTooltip.UpdateTooltip then
+    if not fromUpdate and guid and tooltip:IsShown()
+        and tooltip._fluxUnitTipOwner == anchorFrame and tooltip._fluxUnitTipGuid == guid and tooltip.UpdateTooltip then
         return
     end
-    GameTooltip._fluxUnitTipGuid = guid
+    tooltip._fluxUnitTipGuid = guid
+    tooltip._fluxUnitTipOwner = anchorFrame
 
     -- Pet-aura OnHide hook must not treat SetUnit rebuild as a real dismiss.
-    GameTooltip._fluxUnitTipRebuilding = true
+    tooltip._fluxUnitTipRebuilding = true
 
     if ns.ApplyHUDTooltipPosition then
-        GameTooltip_SetDefaultAnchor(GameTooltip, UIParent)
-        GameTooltip:SetUnit(unit)
-        GameTooltip:Show()
-        ns.ApplyHUDTooltipPosition()
+        GameTooltip_SetDefaultAnchor(tooltip, UIParent)
+        tooltip:SetUnit(unit)
+        tooltip:Show()
+        ns.ApplyHUDTooltipPosition(tooltip)
     else
-        GameTooltip_SetDefaultAnchor(GameTooltip, anchorFrame)
-        GameTooltip:SetUnit(unit)
-        GameTooltip:Show()
+        GameTooltip_SetDefaultAnchor(tooltip, anchorFrame)
+        tooltip:SetUnit(unit)
+        tooltip:Show()
     end
 
     -- Keep tip alive while still hovered (GameTooltip_OnUpdate calls this).
-    GameTooltip.UpdateTooltip = function()
-        if GameTooltip:IsForbidden() then return end
-        if not UnitExists(unit) or not anchorFrame:IsMouseOver() then
-            GameTooltip.UpdateTooltip = nil
+    tooltip.UpdateTooltip = function()
+        if tooltip:IsForbidden() then return end
+        local stillExists = UnitExists(unit)
+        if (issecretvalue and issecretvalue(stillExists)) or not stillExists
+            or (anchorFrame.IsShown and not anchorFrame:IsShown()) or not anchorFrame:IsMouseOver() then
+            UF.HideUnitTooltip(anchorFrame)
             return
         end
         UF.ShowUnitTooltip(anchorFrame, unit, true)
     end
 
-    GameTooltip._fluxUnitTipRebuilding = nil
+    tooltip._fluxUnitTipRebuilding = nil
 end
 
-function UF.HideUnitTooltip()
-    if GameTooltip:IsForbidden() then return end
-    GameTooltip.UpdateTooltip = nil
-    GameTooltip._fluxUnitTipGuid = nil
-    GameTooltip:Hide()
+function UF.HideUnitTooltip(owner)
+    local tooltip = UF.GetUnitTooltip(false)
+    if not tooltip or tooltip:IsForbidden() then return end
+    if owner and tooltip._fluxUnitTipOwner ~= owner then return end
+    tooltip.UpdateTooltip = nil
+    tooltip._fluxUnitTipGuid = nil
+    tooltip._fluxUnitTipOwner = nil
+    tooltip:Hide()
 end
 
 -- ---------------------------------------------------------------------------
@@ -5892,6 +5956,9 @@ function UF.UpdateBorderColors(self)
             end
             if self._fluxCompactFocus and self._fluxPartyDivider then
                 self._fluxPartyDivider:SetVertexColor(borderR, borderG, borderB, 1)
+                local alpha = self._fluxHasMainPower == false and 0 or 1
+                if UF.UsesHudUnitBars() then alpha = self._fluxMainPowerAlpha end
+                self._fluxPartyDivider:SetAlpha(alpha)
             end
         end
 
@@ -6953,6 +7020,7 @@ function UF.UpdateOuterBorder(self)
             elseif UnitIsPlayer(self.unit) then
                 -- Show and position class icon for players
                 local _, class = UnitClass(self.unit)
+                class = API.SafeAccessibleString(class)
                 if class then
                     -- Try different class icon naming conventions
                     local classIconPath = "Interface\\Icons\\ClassIcon_" .. class
@@ -7688,37 +7756,10 @@ function UF.GetThreatBarPosition(frame)
     return v
 end
 
---- Portrait + vertical side strips respect visibility (always / group / never).
---- Legacy: threatBarGroupOnly false â†’ always; unset/true â†’ group.
-local function GetThreatBarVisibilityMode()
-    local db = FluxOptions and FluxOptions.GetUnitFrameDB and FluxOptions:GetUnitFrameDB()
-    local v = db and db.threatBarVisibility
-    if v == "always" or v == "group" or v == "never" then
-        return v
-    end
-    if db and db.threatBarGroupOnly == false then
-        return "always"
-    end
-    return "group"
-end
-
-local function ThreatBarIsGrouped()
-    return (IsInGroup and IsInGroup()) or (IsInRaid and IsInRaid()) or false
-end
-
---- Portrait / left / right respect visibility; "between" stays reserved unless Never.
+--- All positions use the same warning gate as nameplates, including between bars.
 local function ThreatBarAllowedByGroup(mode)
-    local vis = GetThreatBarVisibilityMode()
-    if vis == "never" then
-        return false
-    end
-    if mode == "between" then
-        return true
-    end
-    if vis == "always" then
-        return true
-    end
-    return ThreatBarIsGrouped()
+    local api = ns.Flux and ns.Flux.Threat
+    return api and api.IsVisibilityAllowed and api.IsVisibilityAllowed() or false
 end
 
 --- Vertical left/right are reserved only while the unit is an enemy NPC (otherwise fully hidden).
@@ -8380,6 +8421,7 @@ function UF.UpdateFrameVisualElements(self)
             elseif UnitIsPlayer(self.unit) then
                 -- Show and position class icon for players
                 local _, class = UnitClass(self.unit)
+                class = API.SafeAccessibleString(class)
                 if class then
                     -- Try different class icon naming conventions
                     local classIconPath = "Interface\\Icons\\ClassIcon_" .. class
@@ -8562,6 +8604,26 @@ function UF.UpdateFramePartition(self)
     -- Safety checks: don't update if required bars don't exist
     if not self.Health or not self.Power then return end
 
+    -- StatusBars and text-anchor Frames inherit the secure unit button's
+    -- protection. Existing anchors do not authorize SetHeight/Show (or any
+    -- other structural write) during combat. Keep the applied geometry and
+    -- its prediction dimensions intact; ordinary value/color/text paints and
+    -- the native secure roster reveal continue independently.
+    if InCombatLockdown() then
+        self.needsPartitionRelayout = true
+        if UF.DeferProtected and not self._fluxPartitionDeferred then
+            self._fluxPartitionDeferred = true
+            UF.DeferProtected("partition." .. tostring(self), function()
+                self._fluxPartitionDeferred = nil
+                if self.needsPartitionRelayout then UF.UpdateFramePartition(self) end
+            end)
+        end
+        if self.RegisterEvent and (not self.IsEventRegistered or not self:IsEventRegistered("PLAYER_REGEN_ENABLED")) then
+            self:RegisterEvent("PLAYER_REGEN_ENABLED")
+        end
+        return
+    end
+
     -- Focus target-of-target: single health bar only (width/height match focus style); atlas border, no chrome
     if self._fluxHealthBarOnly then
         local _, totalHeight = UF.GetFramePublicDimensions(self)
@@ -8574,28 +8636,6 @@ function UF.UpdateFramePartition(self)
         if innerHeight < 10 then innerHeight = 10 end
         UF.SyncPublicHealthGeometry(self, innerHeight)
         if self.Health._fluxTextAnchor then self.Health._fluxTextAnchor:SetHeight(innerHeight) end
-        local inCombat = InCombatLockdown()
-
-        if inCombat then
-            if self.Health then
-                -- TOP+TOPRIGHT+height avoids ClearAllPoints issues on some paths; matches vertical span of TOP+BOTTOM stretch
-                self.Health:ClearAllPoints()
-                self.Health:SetPoint("TOPLEFT", self, "TOPLEFT", barAreaLeft, -topInset)
-                self.Health:SetPoint("TOPRIGHT", self, "TOPRIGHT", barAreaRight, -topInset)
-                self.Health:SetHeight(innerHeight)
-            end
-            if self.Power then
-                self.Power:Hide()
-            end
-            if self.HealthPowerSeparator then self.HealthPowerSeparator:Hide() end
-            if self.PowerAdditionalSeparator then self.PowerAdditionalSeparator:Hide() end
-            UF.UpdateAtlasBorder(self)
-            if self.UpdateOuterBorder then
-                self:UpdateOuterBorder()
-            end
-            return
-        end
-
         self.needsPartitionRelayout = false
 
         -- Stretch health to top/bottom insets so no gap above atlas border under the bar
@@ -8672,66 +8712,12 @@ function UF.UpdateFramePartition(self)
         end
         self.Health._fluxTextAnchor:SetHeight(textHeight)
     end
-    if not showMainPower or (UF.UsesHudUnitBars() and not showAdditional) then
+    -- Party health ends at the split so it cannot show through the resource
+    -- layer. A known no-resource unit still uses the full health area.
+    if not showMainPower or (UF.UsesHudUnitBars() and not showAdditional and not self._fluxPartyMember) then
         hHeight = innerHeight
     end
     UF.SyncPublicHealthGeometry(self, hHeight)
-
-    local inCombat = InCombatLockdown()
-
-    -- During combat lockdown, ClearAllPoints/SetPoint on children of SecureUnitButton is blocked.
-    -- Resize bars with SetHeight only (anchors from last full layout) and defer full relayout.
-    if inCombat then
-        local function AnchorCount(f)
-            if not f or not f.GetNumPoints then return 2 end
-            local ok, n = pcall(function() return f:GetNumPoints() end)
-            if ok and type(n) == "number" and n > 0 then return n end
-            return 0
-        end
-
-        if AnchorCount(self.Health) < 1 or AnchorCount(self.Power) < 1 then
-            self.needsPartitionRelayout = true
-            if not self:IsEventRegistered("PLAYER_REGEN_ENABLED") then
-                self:RegisterEvent("PLAYER_REGEN_ENABLED")
-            end
-            return
-        end
-
-        self.Health:SetHeight(hHeight)
-        if showMainPower then
-            self.Power:SetHeight(rHeight)
-            self.Power:Show()
-        else
-            self.Power:Hide()
-        end
-
-        if self.AdditionalPower then
-            if showAdditional then
-                self.AdditionalPower:SetFrameStrata(self:GetFrameStrata())
-                self.AdditionalPower:SetFrameLevel(self.Power:GetFrameLevel() + 1)
-                self.AdditionalPower:ClearAllPoints()
-                self.AdditionalPower:SetPoint("TOPLEFT", self.Power, "BOTTOMLEFT", 0, -padding)
-                self.AdditionalPower:SetPoint("TOPRIGHT", self.Power, "BOTTOMRIGHT", 0, -padding)
-                self.AdditionalPower:SetHeight(mHeight)
-                self.AdditionalPower:Show()
-            else
-                self.AdditionalPower:Hide()
-            end
-        end
-
-        self.needsPartitionRelayout = true
-        if not self:IsEventRegistered("PLAYER_REGEN_ENABLED") then
-            self:RegisterEvent("PLAYER_REGEN_ENABLED")
-        end
-
-        UF.UpdateFramePartitionSeparators(self, splitHealthHeight, rHeight, padding, showAdditional, showMainPower)
-        UF.UpdateAtlasBorder(self)
-        UF.UpdateOuterBorder(self)
-        if hasPortrait then
-            UF.SyncPortraitModelGeometry(self)
-        end
-        return
-    end
 
     self.needsPartitionRelayout = false
 
@@ -8915,6 +8901,7 @@ local function OnEvent(self, event, unit, ...)
         self.needsPartitionRelayout = false
         local keepRegen = self.unit == "player" or self.unit == "target" or self.unit == "focus"
             or self.unit == "targettarget" or self.unit == "focustarget" or self.unit == "pet"
+            or self._fluxPartyMember or self._fluxPartyPet
         if not keepRegen then
             self:UnregisterEvent("PLAYER_REGEN_ENABLED")
         end

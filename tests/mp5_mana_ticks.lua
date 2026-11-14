@@ -176,6 +176,7 @@ do
     check(bar.FeedbackFrame.updatingGain,"energy gain can start feedback")
     s.powerType=0;bar.fill.width=150
     ns.PowerCostOverlay.AfterPowerApplied(bar,"player",75,100)
-    check(not bar.FeedbackFrame.updatingGain and not bar.FeedbackFrame:IsShown(),"mana recovery clears a lingering gain flash")
+    check(not bar.FeedbackFrame.updatingGain and not bar.FeedbackFrame.GainGlowTexture:IsShown()
+        and not bar.FeedbackFrame:GetScript("OnUpdate"),"mana recovery clears a lingering gain flash and parks its driver")
 end
 print("PASS MP5 mana ticks: "..checks.." checks (native rendering and taint unverified)")

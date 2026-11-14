@@ -1,0 +1,153 @@
+{
+  "date": "2026-11-09",
+  "change_id": "OPTIONS-REWORK-20261109",
+  "baseline": "26f886e3ea5371b196ab235d2dace0c156002285",
+  "candidate": "Uncommitted main; exact owned hashes below",
+  "ownedNormalizedSHA256": {
+    "AddonOptions/FluxOptionsCatalog.lua": "18f3b5a69fb06da73a0242bdfe9041290f74cfb6a2710223b2bdaf8f12c68194",
+    "AddonOptions/FluxOptionsRender.lua": "2a289d185f3aad54482e13a615a57dcf218ea10aa32c73204cf48dc8edeb7d58",
+    "AddonOptions/FluxOptionsShell.lua": "d46bd6f2d255c9009dad81c99ef117c24f5ec32db26b94115fbb5e910ca2d714",
+    "AddonOptions/FluxOptionsWidgets.lua": "83b0e56e17c3815b0cc05ed9342b95b43705829c1b64fce5134cbe2ecd7b0c61",
+    "AddonOptions/FluxOptionsSkin.lua": "49c06ad5f737e0f2ae6160a145b8fa988b0dd0fa185970e3daf26397b4f8db6d",
+    "AddonOptions/FluxOptionsGameMenu.lua": "7265946dfae4b45b5a3417b15ff0772dd102619e14256db510ba70938c616e16",
+    "_FluxUI.toc": "65c89db32ca4c0185e301d9de44b55ef2bbc6c8a0a1674785f6ac77e8cbd7a7a",
+    "tests/options_rework.lua": "8f8d42a57bdd0e7f293f40c41fc947d3b9dd3e43bab529f95e0e0aea5376da73"
+  },
+  "scope": "Desktop engine models and pinned-source inspection only",
+  "focused": {
+    "command": "lua tests/options_rework.lua",
+    "checks": 240,
+    "clients": [
+      "Retail",
+      "Forever",
+      "Classic progression",
+      "Classic Era",
+      "Anniversary"
+    ],
+    "result": "PASS",
+    "cases": [
+      "native window and inherited scripts",
+      "all15 catalog pages",
+      "native checkbox original setter",
+      "cross-page and tab search",
+      "hidden exclusion and category/title matches",
+      "fold reveal/restore",
+      "native tabs",
+      "narrow layout",
+      "release and accent lifecycle",
+      "existing Escape binding",
+      "lazy menu load and4rebuilds",
+      "menu click",
+      "gamepad order/wrap lifecycle"
+    ]
+  },
+  "baselineRejections": {
+    "shell": "Old source fails client-native window assertion",
+    "renderer": "Old source fails section-card assertion",
+    "rawEvidence": "External options-checkpoint/options-baseline/"
+  },
+  "related": [
+    "options_dynamic_range:298PASS",
+    "native_menu_input:121PASS",
+    "Core/_tmp_coresmoke.lua:PASS"
+  ],
+  "fullReport": "options-rework-full-2026-11-09.json",
+  "nativeResults": "NOT RUN on all clients; no pixel/input/persistence/taint/performance claim",
+  "testingChoice": "User selected Witchcraft in-game on9November2026",
+  "witchcraft": {
+    "installed": false,
+    "connected": false,
+    "sourceCommit": "6b4140914dc8f2d724f75ebedbefe04b37f98868",
+    "setupAuthorized": false,
+    "setupEffects": "3000 helper addons; complete client restart; agent session attachment; sharing starts enabled"
+  },
+  "sourceEvidence": "options-source-pins-2026-11-09.json",
+  "recovery": "options-checkpoint-2026-11-09.json",
+  "existingClientCopiesMatch": {
+    "_forever_": {
+      "AddonOptions/FluxOptionsCatalog.lua": true,
+      "AddonOptions/FluxOptionsRender.lua": true,
+      "AddonOptions/FluxOptionsShell.lua": true,
+      "AddonOptions/FluxOptionsWidgets.lua": true,
+      "AddonOptions/FluxOptionsSkin.lua": true,
+      "AddonOptions/FluxOptionsGameMenu.lua": true,
+      "_FluxUI.toc": true
+    },
+    "_classic_": {
+      "AddonOptions/FluxOptionsCatalog.lua": true,
+      "AddonOptions/FluxOptionsRender.lua": true,
+      "AddonOptions/FluxOptionsShell.lua": true,
+      "AddonOptions/FluxOptionsWidgets.lua": true,
+      "AddonOptions/FluxOptionsSkin.lua": true,
+      "AddonOptions/FluxOptionsGameMenu.lua": true,
+      "_FluxUI.toc": true
+    },
+    "_classic_era_": {
+      "AddonOptions/FluxOptionsCatalog.lua": true,
+      "AddonOptions/FluxOptionsRender.lua": true,
+      "AddonOptions/FluxOptionsShell.lua": true,
+      "AddonOptions/FluxOptionsWidgets.lua": true,
+      "AddonOptions/FluxOptionsSkin.lua": true,
+      "AddonOptions/FluxOptionsGameMenu.lua": true,
+      "_FluxUI.toc": true
+    },
+    "_anniversary_": {
+      "AddonOptions/FluxOptionsCatalog.lua": true,
+      "AddonOptions/FluxOptionsRender.lua": true,
+      "AddonOptions/FluxOptionsShell.lua": true,
+      "AddonOptions/FluxOptionsWidgets.lua": true,
+      "AddonOptions/FluxOptionsSkin.lua": true,
+      "AddonOptions/FluxOptionsGameMenu.lua": true,
+      "_FluxUI.toc": true
+    }
+  },
+  "manualSynchronization": false,
+  "gameInput": false,
+  "settingsOrProfilerWrites": false,
+  "publication": false,
+  "unrelatedChangesPreserved": [
+    "UnitFrames/FluxUnitFrames_DebuffTint.lua",
+    "tests/friendly_debuff_tint.lua"
+  ],
+  "full": {
+    "pass": 271,
+    "fail": 0,
+    "syntaxFiles": 940,
+    "syntaxFailures": 0,
+    "sourceDrift": []
+  },
+  "documentation": {
+    "result": "PASS",
+    "classifiedSources": 973,
+    "TOCXMLReachable": 604,
+    "settingDefinitions": 417,
+    "savedVariables": 24,
+    "localLinks": 15785
+  },
+  "unchangedOptionBuildersAndDefaults": [
+    "AddonOptions/FluxOptions.lua",
+    "AddonOptions/FluxOptionsActionBars.lua",
+    "AddonOptions/FluxOptionsActionBars_Bar.lua",
+    "AddonOptions/FluxOptionsActionBars_Bindings.lua",
+    "AddonOptions/FluxOptionsActionBars_Extra.lua",
+    "AddonOptions/FluxOptionsActionBars_Stance.lua",
+    "AddonOptions/FluxOptionsAppearance.lua",
+    "AddonOptions/FluxOptionsBattlezone.lua",
+    "AddonOptions/FluxOptionsBinding.lua",
+    "AddonOptions/FluxOptionsChat.lua",
+    "AddonOptions/FluxOptionsDefaults.lua",
+    "AddonOptions/FluxOptionsGeneral.lua",
+    "AddonOptions/FluxOptionsInfo.lua",
+    "AddonOptions/FluxOptionsLayout.lua",
+    "AddonOptions/FluxOptionsLoot.lua",
+    "AddonOptions/FluxOptionsMicroMenu.lua",
+    "AddonOptions/FluxOptionsNameplates.lua",
+    "AddonOptions/FluxOptionsRaidFrame.lua",
+    "AddonOptions/FluxOptionsSalvage.lua",
+    "AddonOptions/FluxOptionsStatusBars.lua",
+    "AddonOptions/FluxOptionsUnitFrames.lua",
+    "AddonOptions/FluxOptionsVendor.lua",
+    "AddonOptions/FluxOptionsWindows.lua"
+  ],
+  "supersededBy": "options-navigation-2026-11-09.json"
+}

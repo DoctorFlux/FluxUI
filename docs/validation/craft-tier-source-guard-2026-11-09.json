@@ -1,0 +1,64 @@
+{
+  "change_id": "CRAFT-TIER-FALLBACK-20261109",
+  "scope": "CRLF-normalized Lua corpus; owned runtime/test sources unchanged through complete runner",
+  "files": 942,
+  "ownedSourceManifestMatches": true,
+  "fullValidationManifestMatches": false,
+  "unrelatedConcurrentSourceChanges": [
+    "AddonOptions/FluxOptionsShell.lua",
+    "AddonOptions/FluxOptionsSkin.lua",
+    "AddonOptions/FluxOptionsWidgets.lua",
+    "tests/options_rework.lua"
+  ],
+  "owned": {
+    "Inventory/Craft.lua": "3d539a419dba681d8dcf1a1ebbd052723c3b6567c942c96a9c599d94124dd88b",
+    "tests/consumable_craft_visibility.lua": "19bce146f32aed0b2ac4384ae91f79aec6ea46ada3cf31a0435b720a591b8e08",
+    "Bars/_tmp_barsmoke.lua": "fa65489aaacd1e1ed2e5778f0110fd6a3bb7b37780ca061b6b2afe3c64cb6433"
+  },
+  "runtimeSHA256": "3d539a419dba681d8dcf1a1ebbd052723c3b6567c942c96a9c599d94124dd88b",
+  "checks": 272,
+  "syntaxFiles": 942,
+  "followupChecks": {
+    "reason": "Four unrelated options sources changed during/after full validation; retained without edits",
+    "syntax": "luac -p AddonOptions/FluxOptionsShell.lua AddonOptions/FluxOptionsSkin.lua AddonOptions/FluxOptionsWidgets.lua tests/options_rework.lua PASS",
+    "options_rework": "260checks PASS",
+    "options_navigation": "2514checks PASS",
+    "sourceIdentities": {
+      "AddonOptions/FluxOptionsShell.lua": "6d475a6606c0bd116f654cfdfca9d662bd5059fee2c2d792bf7791748082ac40",
+      "AddonOptions/FluxOptionsSkin.lua": "e95e4f2bf9e68d072c4429dad5d162c2b1e395cfdb78e3b92169b231e58ac377",
+      "AddonOptions/FluxOptionsWidgets.lua": "0ffa153ae06aca3d56cd94e48bd5b28ae599db566aae7e10bf719482aad8b417",
+      "tests/options_rework.lua": "50fef3e65d162fc1123cc14e5867b5878c4922ff3e880a10eee6c5130cef976b"
+    }
+  },
+  "currentFullRun": {
+    "report": "docs/validation/craft-tier-current-full-2026-11-09.json",
+    "testsPassed": 272,
+    "testsFailed": 0,
+    "syntaxFiles": 942,
+    "syntaxFailures": [],
+    "ownedSourcesMatch": true,
+    "reportEndManifestMatchesCurrent": true,
+    "concurrentUnrelatedChangesSinceOptionsFollowup": [
+      "AddonOptions/FluxOptions.lua",
+      "AddonOptions/FluxOptionsCatalog.lua",
+      "AddonOptions/FluxOptionsRender.lua",
+      "tests/options_navigation.lua"
+    ],
+    "note": "All consumable runtime and test sources unchanged. Full runner repeated because concurrent options work changed; whole-corpus start-to-end identity is not claimed."
+  },
+  "finalReview": {
+    "ownedSourcesMatch": true,
+    "currentFullManifestDifferences": {
+      "tests/options_navigation.lua": {
+        "validated": "9baef8814019480d639c2a45a132c233f360235e1dd0ec6fc9661eba0d9187ca",
+        "current": "d12e6f692e7c586f4f699a1e2f1e4564b2badcc892f3f6c1583242032b2c277f"
+      },
+      "tests/options_rework.lua": {
+        "validated": "50fef3e65d162fc1123cc14e5867b5878c4922ff3e880a10eee6c5130cef976b",
+        "current": "c37a89d30501a5b8908d4ebe09eaaf5693f726ad1a05cbe7f06d4ad5242dea4e"
+      }
+    },
+    "documentationCheck": "docs/validation/craft-tier-documentation-2026-11-09.json",
+    "note": "Current options test fixtures changed again after repeated full validation. Preserved concurrent work; no whole-working-tree validation or documentation pass is claimed. Craft runtime and focused regression source remain exactly validated."
+  }
+}

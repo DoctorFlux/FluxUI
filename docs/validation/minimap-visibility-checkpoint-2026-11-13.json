@@ -1,0 +1,18 @@
+{
+  "captured_utc": "2026-11-13T14:02:44.824092+00:00",
+  "external_directory": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d3b4-b7ec-7591-94d3-6d3b3097fb8a\\minimap-visibility-20261113T140244Z",
+  "branch": "main",
+  "head": "26f886e3ea5371b196ab235d2dace0c156002285",
+  "hooks_path": ".githooks",
+  "source_files": 2697,
+  "zip_verified": true,
+  "live_changed_during_capture": [],
+  "bundle_verified": true,
+  "settings_metadata_count": 99,
+  "private_settings_copied": false,
+  "archives": {
+    "source.zip": "265dbf9b330c751343b0d87859dc25afb096bb47577feed35b8cb9a9197adf54",
+    "history.bundle": "12b84831f29fb09fcc106b218c0c1201a4a0157c2c0ebde8b408d17ba3d63c98",
+    "source-sha256.json": "bf95c47f6f44e7e065040a3e988771944029b77d5cde6546ad34298869203a84"
+  }
+}

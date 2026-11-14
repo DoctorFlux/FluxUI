@@ -1,0 +1,213 @@
+{
+  "dateUTC": "2026-11-13T19:32:09.425068+00:00",
+  "changeID": "AUCTION-LEGACY-ITEM-20261113",
+  "requirement": "AHR-88",
+  "candidate": "AH-restock-legacy-item-20261113-r17",
+  "checkpoint": {
+    "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\auction-restock\\tab-crafting-followup\\legacy-per-item-20261113T192100Z\\checkpoint.json",
+    "sha256": "e9942e1c451244a8eb1a94005333f355f33080d1ddf9c0afb8b720711023f9ed",
+    "sourceFiles": 2750,
+    "settingsMetadataEntries": 95,
+    "privateSettingsCopied": false,
+    "archivesVerified": true
+  },
+  "sourceGuard": {
+    "candidateRawHashes": {
+      "Inventory/Restock/Auction/FluxAuctionRestock.lua": "5160b9573638dcdb8dc45f315cbe1d76910558ed7a7e5a06a343ea8199c18845",
+      "Inventory/Restock/Auction/FluxAuctionRestockUI.lua": "3f9a402871361f7153a578a3e70d2b923ff7984513a74ea36b7d654a88003de7",
+      "Inventory/Restock/Auction/FluxAuctionRestockLocale.lua": "53e85ff00e6cc40f98ba6d96a9d3d3009fc479061620fdd3fe5924893d5d1f88",
+      "tests/auction_restock_scan_all.lua": "7728c19ca4afbccc80ba09599dd3732890fc0946ef84182b83586ff810b9d4f0",
+      "tests/auction_restock_scroll.lua": "0290c92b64aba3e0f6cdae6ff961c4747aa615d086774c4791849bd8d0f00893",
+      "tests/auction_restock_potions.lua": "96a1597231776eddbb5bc6e4e2cf66d8c36a8d697b0e502180ed853b03315183",
+      "tests/auction_restock_market.lua": "028159286192e26f6e19367ca84d3f937ccec780f5241f434386f81af39d1d2f",
+      "tests/auction_restock_queue.lua": "ff8cd5386c0338f8c85adc8192091d1d7040934c4e42c4566a7112c48860751a",
+      "tests/auction_restock_vendor_routes.lua": "215cd1098cd12669e9d16f8c0565c48cc47108acec7f2c81877e95bf9f817eba",
+      "tests/auction_restock_vendor_queue.lua": "e94db98ad7e8e1860b9ffcab727caec44bc7e188444f747018c28d7be01f8573",
+      "tests/auction_restock_price_policy.lua": "ff9f34f60d9ee7d1868bf7aec285e4583d318616c98ecac6fde40de0c0581a63"
+    },
+    "changedLua": [
+      "Inventory/Restock/Auction/FluxAuctionRestock.lua",
+      "Inventory/Restock/Auction/FluxAuctionRestockLocale.lua",
+      "Inventory/Restock/Auction/FluxAuctionRestockUI.lua",
+      "tests/auction_restock_market.lua",
+      "tests/auction_restock_potions.lua",
+      "tests/auction_restock_price_policy.lua",
+      "tests/auction_restock_queue.lua",
+      "tests/auction_restock_scan_all.lua",
+      "tests/auction_restock_scroll.lua",
+      "tests/auction_restock_vendor_queue.lua",
+      "tests/auction_restock_vendor_routes.lua"
+    ],
+    "concurrentLuaChangesPreserved": [],
+    "fullNormalizedManifestMatches": true
+  },
+  "full": {
+    "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\auction-restock\\tab-crafting-followup\\legacy-per-item-20261113T192100Z\\full.json",
+    "sha256": "f8991b8f9be9113f1937aa1b90510e98a4026548536475d4018737e9c3b20b92",
+    "runtime": "Lua 5.4.6  Copyright (C) 1994-2023 Lua.org, PUC-Rio",
+    "scope": "Desktop Lua mocks/source checks only; native secure VM, real secret values, rendering and client performance unverified.",
+    "pass": 352,
+    "fail": 0,
+    "syntaxFiles": 1040,
+    "syntaxFailures": []
+  },
+  "initial": {
+    "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\auction-restock\\tab-crafting-followup\\legacy-per-item-20261113T192100Z\\full-initial.json",
+    "sha256": "4f873bc2c114b3ff2d6bbb521555607d837abe88680c168372468407259ef9f3",
+    "pass": 351,
+    "fail": 1,
+    "failures": [
+      {
+        "path": "tests/auction_restock_price_policy.lua",
+        "exit": 1,
+        "wallSeconds": 0.7684,
+        "output": "lua: tests\\auction_restock_price_policy.lua:161: attempt to index a nil value (field 'searchedIDs')\nstack traceback:\n\ttests\\auction_restock_price_policy.lua:161: in main chunk\n\t[C]: in ?\n"
+      }
+    ],
+    "resolution": "Price-policy fixture expected a search map and both potion kinds upfront. Legacy zero-cap now correctly has no queries; unlimited coverage follows healing buy/receipt then mana with inherited limits unchanged."
+  },
+  "controls": {
+    "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\auction-restock\\tab-crafting-followup\\legacy-per-item-20261113T192100Z\\controls.json",
+    "sha256": "8e7976dfd03b720a7ec2fb1c058c54ee442a1d1a258231479703d14e6e506a8d",
+    "report": {
+      "scope": "Actual production Lua with desktop native boundaries mocked; native transactions/art/controller/taint NOT RUN.",
+      "sources": {
+        "Inventory/Restock/Auction/FluxAuctionRestock.lua": "5160b9573638dcdb8dc45f315cbe1d76910558ed7a7e5a06a343ea8199c18845",
+        "Inventory/Restock/Auction/FluxAuctionRestockUI.lua": "3f9a402871361f7153a578a3e70d2b923ff7984513a74ea36b7d654a88003de7",
+        "Inventory/Restock/Auction/FluxAuctionRestockLocale.lua": "53e85ff00e6cc40f98ba6d96a9d3d3009fc479061620fdd3fe5924893d5d1f88",
+        "tests/auction_restock_scan_all.lua": "7728c19ca4afbccc80ba09599dd3732890fc0946ef84182b83586ff810b9d4f0",
+        "tests/auction_restock_scroll.lua": "0290c92b64aba3e0f6cdae6ff961c4747aa615d086774c4791849bd8d0f00893",
+        "tests/auction_restock_potions.lua": "96a1597231776eddbb5bc6e4e2cf66d8c36a8d697b0e502180ed853b03315183",
+        "tests/auction_restock_market.lua": "028159286192e26f6e19367ca84d3f937ccec780f5241f434386f81af39d1d2f",
+        "tests/auction_restock_queue.lua": "ff8cd5386c0338f8c85adc8192091d1d7040934c4e42c4566a7112c48860751a",
+        "tests/auction_restock_vendor_routes.lua": "215cd1098cd12669e9d16f8c0565c48cc47108acec7f2c81877e95bf9f817eba",
+        "tests/auction_restock_vendor_queue.lua": "e94db98ad7e8e1860b9ffcab727caec44bc7e188444f747018c28d7be01f8573"
+      },
+      "baseline": {
+        "tests/auction_restock_scan_all.lua": {
+          "exitCode": 0,
+          "output": "Auction all-target scans: 284 checks PASS; 20 client/provider/addon profiles; native searches/tier updates NOT RUN\n"
+        },
+        "tests/auction_restock_scroll.lua": {
+          "exitCode": 0,
+          "output": "Auction compact scrolling tab: 812 checks PASS; 20 client/addon profiles; native pixels/clipping/controller/input/taint NOT RUN\n"
+        }
+      },
+      "controls": [
+        {
+          "name": "restore-legacy-bulk-backend",
+          "target": "Inventory/Restock/Auction/FluxAuctionRestock.lua",
+          "syntaxPass": true,
+          "rejected": true,
+          "mutationSHA256": "9bb0997c709e72768a3c4f08cb27902be149a0b103601f7192f276bcde590a03",
+          "exitCode": 1,
+          "output": "C:\\Users\\mario\\AppData\\Local\\Programs\\Lua\\bin\\lua.exe: tests/auction_restock_scan_all.lua:4: an old full-scan request remains one owned current-item query without full/disabled/vendor background scans\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/auction_restock_scan_all.lua:4: in local 'check'\n\ttests/auction_restock_scan_all.lua:38: in main chunk\n\t[C]: in function 'dofile'\n\t...owup\\legacy-per-item-20261113T192100Z\\control-router.lua:8: in main chunk\n\t[C]: in ?\n"
+        },
+        {
+          "name": "restore-legacy-refresh-control",
+          "target": "Inventory/Restock/Auction/FluxAuctionRestockUI.lua",
+          "syntaxPass": true,
+          "rejected": true,
+          "mutationSHA256": "89d9d88cc3501526f9453b77d9eda0f8e13fd1868b4d6a24b94c98130305c57a",
+          "exitCode": 1,
+          "output": "C:\\Users\\mario\\AppData\\Local\\Programs\\Lua\\bin\\lua.exe: tests/auction_restock_scroll.lua:4: Scan all restock is allocated only for the modern auction house\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/auction_restock_scroll.lua:4: in local 'check'\n\ttests/auction_restock_scroll.lua:20: in main chunk\n\t[C]: in function 'dofile'\n\t...owup\\legacy-per-item-20261113T192100Z\\control-router.lua:8: in main chunk\n\t[C]: in ?\n"
+        },
+        {
+          "name": "legacy-bulk-help",
+          "target": "Inventory/Restock/Auction/FluxAuctionRestockUI.lua",
+          "syntaxPass": true,
+          "rejected": true,
+          "mutationSHA256": "974246a7e72bc1eb3bbbb9c8e3fc5dcb8f16296c739a70e11795105ba01ae11e",
+          "exitCode": 1,
+          "output": "C:\\Users\\mario\\AppData\\Local\\Programs\\Lua\\bin\\lua.exe: tests/auction_restock_scroll.lua:4: old AH help describes per-item search/buy without advertising a whole-list scan\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/auction_restock_scroll.lua:4: in local 'check'\n\ttests/auction_restock_scroll.lua:22: in main chunk\n\t[C]: in function 'dofile'\n\t...owup\\legacy-per-item-20261113T192100Z\\control-router.lua:8: in main chunk\n\t[C]: in ?\n"
+        }
+      ]
+    }
+  },
+  "installedCopies": {
+    "Retail": {
+      "path": "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI",
+      "readOnly": true,
+      "manualSync": false,
+      "matched": 3,
+      "checked": 3,
+      "nativeOperation": "NOT RUN"
+    },
+    "Forever": {
+      "path": "F:\\World of Warcraft\\_forever_\\Interface\\AddOns\\_FluxUI",
+      "readOnly": true,
+      "manualSync": false,
+      "matched": 3,
+      "checked": 3,
+      "nativeOperation": "NOT RUN"
+    },
+    "MoP": {
+      "path": "F:\\World of Warcraft\\_classic_\\Interface\\AddOns\\_FluxUI",
+      "readOnly": true,
+      "manualSync": false,
+      "matched": 3,
+      "checked": 3,
+      "nativeOperation": "NOT RUN"
+    },
+    "Era": {
+      "path": "F:\\World of Warcraft\\_classic_era_\\Interface\\AddOns\\_FluxUI",
+      "readOnly": true,
+      "manualSync": false,
+      "matched": 3,
+      "checked": 3,
+      "nativeOperation": "NOT RUN"
+    },
+    "Anniversary": {
+      "path": "F:\\World of Warcraft\\_anniversary_\\Interface\\AddOns\\_FluxUI",
+      "readOnly": true,
+      "manualSync": false,
+      "matched": 3,
+      "checked": 3,
+      "nativeOperation": "NOT RUN"
+    }
+  },
+  "behavior": {
+    "legacyFullScanControlAllocated": false,
+    "legacyFullScanBackend": false,
+    "legacyHelp": "Search then Buy per item; one whole listing per player press.",
+    "recipePricing": "Next candidate and relevant ingredients only; existing30s comparison cache retained.",
+    "potions": "Needed current kind only on old AH; full-target discovery remains modern explicit-scan behavior.",
+    "modernFullScanPreserved": true
+  },
+  "resources": {
+    "newEvents": 0,
+    "newTimers": 0,
+    "newPollers": 0,
+    "frames": "One ordinary refresh button is no longer allocated on old AH; other geometry/owners unchanged.",
+    "nativeLatencyCPUFPS": "NOT RUN"
+  },
+  "preserved": {
+    "branch": "main",
+    "hooksPath": ".githooks",
+    "savedSettings": true,
+    "nativeBuyingAndOwnershipGuards": true,
+    "manualSync": false,
+    "foregroundInputClipboard": false,
+    "settingsProfilerWrites": false,
+    "publication": false
+  },
+  "native": {
+    "status": "NOT RUN",
+    "route": "Existing user-managed native reproduction.",
+    "pending": [
+      "legacy per-item scan/listing purchase",
+      "modern full scan parity",
+      "potion/recipe progression with optional addons",
+      "clipping/controller/taint",
+      "CPU/FPS"
+    ]
+  },
+  "documentation": {
+    "validation": "PASS:1073 sources;623 reachable;438 setting definitions;24 SavedVariables;17078 links",
+    "diffCheck": "PASS",
+    "finalCompleteLuaManifestMatches": true,
+    "ownedRawHashesMatch": true,
+    "verifiedAtUTC": "2026-11-13T19:34:05.908351+00:00"
+  },
+  "independentRuntimeReview": "PASS: exact checkpoint diff limited to generation gate/control allocation/help/nil guards/build ID; modern purchase/cap/wallet/craft-budget source byte unchanged."
+}

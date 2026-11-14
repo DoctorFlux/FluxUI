@@ -12,6 +12,36 @@ local targetStatesReady = false
 local targetStatesSuppressed = false
 local partyFrames = {}
 
+-- Forever 1.60.1 can report IsInRaid() while its secure [group:raid]
+-- condition still resolves as party during conversions. Native raid tokens
+-- reflect the new roster. Include every slot so the local player still selects
+-- raid mode when earlier members are offline/unavailable. These static strings
+-- are installed OOC; Blizzard's existing driver owns all combat transitions.
+-- Use the same roster-token contract on every client, without a flavor branch.
+local raidUnitOptions, partyUnitOptions = {}, {}
+for i = 1, 40 do raidUnitOptions[i] = "[@raid" .. i .. ",exists]" end
+for i = 1, 4 do partyUnitOptions[i] = "[@party" .. i .. ",exists]" end
+raidUnitOptions = table.concat(raidUnitOptions)
+partyUnitOptions = table.concat(partyUnitOptions)
+
+local function GroupClause(kind, value)
+    return (kind == "raid" and raidUnitOptions or partyUnitOptions) .. " " .. value .. "; "
+end
+
+local function PartyUnitClause(unit)
+    return "[@" .. unit .. ",exists] show; "
+end
+
+function Secure.GetGroupConditionPolicy()
+    return "raid-units"
+end
+
+function Secure.GetCompanionVisibilityCondition(mode, unit)
+    local prefix = "[petbattle] hide; "
+    if mode == "party" then prefix = prefix .. GroupClause("raid", "hide") end
+    return prefix .. "[@" .. unit .. ",noexists] hide; " .. GroupClause(mode, "show") .. "hide"
+end
+
 -- SecureHandlers.lua Wrapped_Attribute supplies self,name,value and preserves
 -- the original handler unless this snippet explicitly returns false. It never
 -- does. Only protected frame handles are read/written in this environment.
@@ -259,8 +289,8 @@ function Secure.ConfigureHeader(header, index, isMTMA)
         controller:SetFrameRef("layout-owner", layoutOwner)
     end
     record.isMTMA = isMTMA and true or false
-    local condition = "[petbattle] hide; [group:raid] show; "
-        .. (not isMTMA and index == 1 and not normalParty and "[group:party] show; " or "") .. "hide"
+    local condition = "[petbattle] hide; " .. GroupClause("raid", "show")
+        .. (not isMTMA and index == 1 and not normalParty and GroupClause("party", "show") or "") .. "hide"
     if not restricted.SetPagingSnippet(record.controller, "_onstate-raidgroup", HEADER_VISIBILITY)
         or not restricted.RegisterPagingDriver(record.controller, "raidgroup", condition) then
         if restricted.UnregisterPagingDriver then restricted.UnregisterPagingDriver(record.controller, "raidgroup") end
@@ -387,7 +417,8 @@ function Secure.ConfigurePartyFrames(members, pets, scale, petScale, showPets, p
             local container = self:GetFrameRef("party-container")
             if container then container:Show() end
         end
-    ]]) and restricted.RegisterPagingDriver(owner, "partygroup", "[petbattle] hide; [group:raid] hide; [group:party] show; hide")
+    ]]) and restricted.RegisterPagingDriver(owner, "partygroup",
+        "[petbattle] hide; " .. GroupClause("raid", "hide") .. GroupClause("party", "show") .. "hide")
     for i = 1, 4 do
         local member, pet, target = members[i], pets[i], targets and targets[i]
         partyFrames[i], partyFrames[i + 4], partyFrames[i + 8] = member, pet, target
@@ -396,7 +427,7 @@ function Secure.ConfigurePartyFrames(members, pets, scale, petScale, showPets, p
             local unit = kind == 1 and ("party" .. i) or kind == 2 and ("partypet" .. i) or ("party" .. i .. "target")
             local enabled = kind == 1 or kind == 2 and showPets or kind == 3 and options and options.showTargets
             if frame then
-                local condition = enabled and ("[petbattle] hide; [group:raid] hide; [group:party,@" .. unit .. ",exists] show; hide") or "hide"
+                local condition = enabled and ("[petbattle] hide; " .. GroupClause("raid", "hide") .. PartyUnitClause(unit) .. "hide") or "hide"
                 ready = restricted.RegisterPagingDriver(frame, "visibility", condition) and ready
             end
         end

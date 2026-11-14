@@ -53,6 +53,7 @@ local function fixture(hud)
         function g:SetScript(k, fn) self.scripts[k] = fn end
         function g:Play() self.playing = true end
         function g:Stop() self.playing = false end
+        function g:IsPlaying() return self.playing == true end
         function g:CreateAnimation()
             return setmetatable({}, { __index = function() return function() end end })
         end

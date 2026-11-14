@@ -773,6 +773,20 @@ function GridUI.UpdateCellCooldown(cell, itemID)
     end
 end
 
+function GridUI.CreateCellEditBox(cell, maxLetters)
+    local editBox = CreateFrame("EditBox", nil, cell, "InputBoxTemplate")
+    editBox:SetSize(36, 15)
+    editBox:SetPoint("BOTTOMRIGHT", cell, "BOTTOMRIGHT", -1, 1)
+    editBox:SetFontObject("GameFontNormalSmall")
+    editBox:SetJustifyH("RIGHT")
+    editBox:SetAutoFocus(false)
+    editBox:SetNumeric(true)
+    editBox:SetMaxLetters(maxLetters)
+    editBox:Hide()
+    cell.editBox = editBox
+    return editBox
+end
+
 function GridUI.SetupCellChrome(cell, opts)
     opts = opts or {}
     local iconTex = opts.iconTex or "Interface\\Icons\\INV_Misc_QuestionMark"
@@ -795,11 +809,14 @@ function GridUI.SetupCellChrome(cell, opts)
         cell:SetBackdropColor(0.06, 0.06, 0.08, 0.72)
     end
 
-    local chrome = CreateFrame("Frame", nil, cell)
-    chrome:SetPoint("TOPLEFT", cell, "TOPLEFT", 0, 0)
-    chrome:SetPoint("TOPRIGHT", cell, "TOPRIGHT", 0, 0)
-    chrome:SetHeight(GridUI.CHROME_H)
-    cell._chrome = chrome
+    local chrome = opts.reuseChrome and cell._chrome
+    if not chrome then
+        chrome = CreateFrame("Frame", nil, cell)
+        chrome:SetPoint("TOPLEFT", cell, "TOPLEFT", 0, 0)
+        chrome:SetPoint("TOPRIGHT", cell, "TOPRIGHT", 0, 0)
+        chrome:SetHeight(GridUI.CHROME_H)
+        cell._chrome = chrome
+    end
 
     local icon = cell:CreateTexture(nil, "ARTWORK")
     icon:SetSize(GridUI.TEX, GridUI.TEX)
@@ -827,16 +844,9 @@ function GridUI.SetupCellChrome(cell, opts)
     GridUI.ConfigureCellBankCountString(bankCountStr)
     cell._bankCountStr = bankCountStr
 
-    local editBox = CreateFrame("EditBox", nil, cell, "InputBoxTemplate")
-    editBox:SetSize(36, 15)
-    editBox:SetPoint("BOTTOMRIGHT", cell, "BOTTOMRIGHT", -1, 1)
-    editBox:SetFontObject("GameFontNormalSmall")
-    editBox:SetJustifyH("RIGHT")
-    editBox:SetAutoFocus(false)
-    editBox:SetNumeric(true)
-    editBox:SetMaxLetters(maxLetters)
-    editBox:Hide()
-    cell.editBox = editBox
+    if not (opts.reuseEditBox and cell.editBox) then
+        GridUI.CreateCellEditBox(cell, maxLetters)
+    end
 
     if opts.showBank ~= false and (itemId or tierKind) then
         local bankBtn = CreateFrame("Button", nil, chrome)

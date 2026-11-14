@@ -1,0 +1,93 @@
+{
+  "date": "2026-11-09",
+  "scope": "Source-model correctness only; no native timing/secure input/pixels",
+  "controls": [
+    {
+      "name": "previous-qol-catalog",
+      "test": "tests/options_navigation.lua",
+      "overlay": "FLUX_OPTIONS_CATALOG_SOURCE",
+      "sha256": "b91e4745d1906abbc4f844d10517c70f8b8ca8be7eb968b02abd9c17a76502c9",
+      "exit": 1,
+      "output": "lua: tests/options_navigation.lua:5: live: canonical page is visible in exactly one sidebar category layout\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/options_navigation.lua:5: in upvalue 'check'\n\ttests/options_navigation.lua:70: in local 'exercise'\n\ttests/options_navigation.lua:174: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "layout-hidden-from-sidebar",
+      "test": "tests/options_navigation.lua",
+      "overlay": "FLUX_OPTIONS_CATALOG_SOURCE",
+      "sha256": "8b2c88aee87867af66be8f7054f9e4d591a829e48056d134caf85a902355a2d4",
+      "exit": 1,
+      "output": "lua: tests/options_navigation.lua:5: live: canonical page is visible in exactly one sidebar category layout\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/options_navigation.lua:5: in upvalue 'check'\n\ttests/options_navigation.lua:70: in local 'exercise'\n\ttests/options_navigation.lua:174: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "meter-shortcut-opens-general",
+      "test": "tests/options_rework.lua",
+      "overlay": "FLUX_OPTIONS_REWORK_OPTIONS",
+      "sha256": "ba3a852b3b9132670d1c7aff8f6c9254cc9f6a0e84066540db66835d2c5b2967",
+      "exit": 1,
+      "output": "lua: tests/options_rework.lua:13: live: actual Meter right-click opens Flux Window > Damage Meter\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/options_rework.lua:13: in local 'check'\n\ttests/options_rework.lua:339: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "previous-remembered-general-shortcut",
+      "test": "tests/options_rework.lua",
+      "overlay": "FLUX_OPTIONS_REWORK_OPTIONS",
+      "sha256": "911e3527d683d302b5388eb9bd3b359736b245ab78537b821bbb5748c33371e7",
+      "exit": 1,
+      "output": "lua: tests/options_rework.lua:13: live: general Flux Window shortcut remains distinct from Meter shortcut\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/options_rework.lua:13: in local 'check'\n\ttests/options_rework.lua:343: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "meter-leaks-into-general",
+      "test": "tests/options_navigation.lua",
+      "overlay": "FLUX_OPTIONS_CATALOG_SOURCE",
+      "sha256": "3ea775535931cb15c5ed027e9769a5156e474b05710220641d117d514d4168fc",
+      "exit": 1,
+      "output": "lua: tests/options_navigation.lua:5: live: one primary location for fluxwindow/headerMeter\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/options_navigation.lua:5: in upvalue 'check'\n\ttests/options_navigation.lua:82: in local 'exercise'\n\ttests/options_navigation.lua:174: in main chunk\n\t[C]: in ?\n"
+    }
+  ],
+  "candidatePasses": [
+    {
+      "test": "tests/options_navigation.lua",
+      "run": 1,
+      "exit": 0,
+      "output": "Options navigation: 6057 checks; actual builders mapped across five client contracts; native rendering pending"
+    },
+    {
+      "test": "tests/options_navigation.lua",
+      "run": 2,
+      "exit": 0,
+      "output": "Options navigation: 6057 checks; actual builders mapped across five client contracts; native rendering pending"
+    },
+    {
+      "test": "tests/options_navigation.lua",
+      "run": 3,
+      "exit": 0,
+      "output": "Options navigation: 6057 checks; actual builders mapped across five client contracts; native rendering pending"
+    },
+    {
+      "test": "tests/options_rework.lua",
+      "run": 1,
+      "exit": 0,
+      "output": "Options rework: 1217 checks; complete shell/renderer/widgets and menu lifecycle across five client models; native acceptance pending"
+    },
+    {
+      "test": "tests/options_rework.lua",
+      "run": 2,
+      "exit": 0,
+      "output": "Options rework: 1217 checks; complete shell/renderer/widgets and menu lifecycle across five client models; native acceptance pending"
+    },
+    {
+      "test": "tests/options_rework.lua",
+      "run": 3,
+      "exit": 0,
+      "output": "Options rework: 1217 checks; complete shell/renderer/widgets and menu lifecycle across five client models; native acceptance pending"
+    }
+  ],
+  "artifactRoot": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\09\\01a1c03e-c615-7f02-a24a-3e5ed07300f1\\options-hud-controls",
+  "finalCandidateNormalizedSHA256": {
+    "AddonOptions/FluxOptionsCatalog.lua": "819a030ca538d50facaff3077fa8329760fc410edc7c06539527927adb782f08",
+    "AddonOptions/FluxOptions.lua": "f2dfd1dfd43e5ad0669075667c08d7d3c42ec27339a9f8daf8f685c406c6c554",
+    "AddonOptions/FluxOptionsShell.lua": "f83d460c0f64d63d69ebcbd48ecaf985967dd7a1d47a517d63c44759fd31d38d",
+    "tests/options_navigation.lua": "03a56d6ac89378ec24fffc8db6cc2b0ff51e5d85657997123984c45ce1f3a5b8",
+    "tests/options_rework.lua": "079c1fe380a6eb8585a01e21cf0414add9a3877f2395e371352c5e638de47fbd"
+  },
+  "negativeControlNote": "Control overlays differ only in the indicated navigation/shortcut mutation; final Micro Menu gear icon does not affect the conditions. Fresh candidate passes use final identities."
+}

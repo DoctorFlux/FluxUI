@@ -1,0 +1,5 @@
+{
+  "exit": 0,
+  "output": "PASS: 975 classified sources; 605 TOC/XML reachable; 425 setting definitions; 24 SavedVariables; 15889 local links. Source inventory/evidence current. No files written.\n",
+  "scope": "Read-only repository documentation validation"
+}

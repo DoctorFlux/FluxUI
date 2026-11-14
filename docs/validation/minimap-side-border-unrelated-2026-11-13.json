@@ -1,0 +1,36 @@
+{
+  "scope": "Read-only comparison;unrelated evolving auction tests;no auction file edits by this task",
+  "results": [
+    {
+      "test": "tests/auction_restock_followup_automation.lua",
+      "full_snapshot_failure": "|cff00ffff[FluxUI]|r Vendor: -10|TInterface\\MoneyFrame\\UI-CopperIcon:0:0:2:0|t\n|cff00ffff[FluxUI]|r Vendor: -15|TInterface\\MoneyFrame\\UI-CopperIcon:0:0:2:0|t\nlua: tests\\auction_restock_followup_automation.lua:5: mail worker owns one current attachment command\nstack traceback:\n\t[C]: in function 'assert'\n\ttests\\auction_restock_followup_automation.lua:5: in local 'check'\n\ttests\\auction_restock_followup_automation.lua:168: in main chunk\n\t[C]: in ?\n",
+      "baseline": "Not present in verified checkpoint;added concurrently",
+      "current_exit": 0,
+      "current_output": "Auction follow-up automation: 640 checks PASS; 20 client/provider/global-option profiles; native actions/glow NOT RUN\n"
+    },
+    {
+      "test": "tests/auction_restock_followup_ui.lua",
+      "full_snapshot_failure": "lua: tests\\auction_restock_followup_ui.lua:3: reminder is an ordinary UIParent button\nstack traceback:\n\t[C]: in function 'assert'\n\ttests\\auction_restock_followup_ui.lua:3: in upvalue 'check'\n\ttests\\auction_restock_followup_ui.lua:50: in global 'CreateFrame'\n\t...ventory/Restock/Auction/FluxAuctionRestockFollowupUI.lua:100: in upvalue 'EnsureFrame'\n\t...ventory/Restock/Auction/FluxAuctionRestockFollowupUI.lua:200: in field 'Paint'\n\ttests\\auction_restock_followup_ui.lua:78: in field 'Refresh'\n\t...ventory/Restock/Auction/FluxAuctionRestockFollowupUI.lua:221: in function <...ventory/Restock/Auction/FluxAuctionRestockFollowupUI.lua:221>\n\ttests\\auction_restock_followup_ui.lua:96: in field 'emit'\n\ttests\\auction_restock_followup_ui.lua:116: in main chunk\n\t[C]: in ?\n",
+      "baseline_exit": 0,
+      "baseline_output": "Auction restock follow-up UI: 229 checks PASS; 5 client profiles; native pixels/input/controller/taint NOT RUN\n",
+      "current_exit": 1,
+      "current_output": "lua: ...ventory/Restock/Auction/FluxAuctionRestockFollowupUI.lua:127: attempt to call a nil value (method 'SetTextColor')\nstack traceback:\n\t...ventory/Restock/Auction/FluxAuctionRestockFollowupUI.lua:127: in upvalue 'EnsureButton'\n\t...ventory/Restock/Auction/FluxAuctionRestockFollowupUI.lua:191: in field 'Paint'\n\ttests/auction_restock_followup_ui.lua:78: in field 'Refresh'\n\t...ventory/Restock/Auction/FluxAuctionRestockFollowupUI.lua:202: in function <...ventory/Restock/Auction/FluxAuctionRestockFollowupUI.lua:202>\n\ttests/auction_restock_followup_ui.lua:96: in field 'emit'\n\ttests/auction_restock_followup_ui.lua:116: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "test": "tests/auction_restock_vendor_routes.lua",
+      "full_snapshot_failure": "lua: tests\\auction_restock_vendor_routes.lua:111: attempt to index a nil value (field 'integer index')\nstack traceback:\n\ttests\\auction_restock_vendor_routes.lua:111: in main chunk\n\t[C]: in ?\n",
+      "baseline_exit": 0,
+      "baseline_output": "Auction restock vendor routes: 468 checks PASS; 20 client/addon profiles; native price/stack/vendor/craft permissions NOT RUN\n",
+      "current_exit": 0,
+      "current_output": "Auction restock vendor routes: 468 checks PASS; 20 client/addon profiles; native price/stack/vendor/craft permissions NOT RUN\n"
+    },
+    {
+      "test": "tests/auction_restock_workflow.lua",
+      "full_snapshot_failure": "lua: tests\\auction_restock_workflow.lua:3: HUD delegates bank retrieval without crafting or buying\nstack traceback:\n\t[C]: in function 'assert'\n\ttests\\auction_restock_workflow.lua:3: in local 'check'\n\ttests\\auction_restock_workflow.lua:111: in main chunk\n\t[C]: in ?\n",
+      "baseline_exit": 0,
+      "baseline_output": "Auction restock workflow: 300 checks PASS; 10 client/provider profiles; native delivery/permissions NOT RUN\n",
+      "current_exit": 0,
+      "current_output": "Auction restock workflow: 310 checks PASS; 10 client/provider profiles; native delivery/permissions NOT RUN\n"
+    }
+  ]
+}

@@ -1,0 +1,705 @@
+{
+  "pins": {
+    "live": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+    "forever": "4cd0ab752a77164f654ccbca9d0c1fe8dafceebe",
+    "classic": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+    "classic_era": "4192ac60067fc55566182291bc67c85dd9b6794d",
+    "classic_anniversary": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49"
+  },
+  "sources": [
+    {
+      "branch": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "version.txt",
+      "sha256": "4e532c8d3beb3231ae8195704b6de0a099a19742e02505f73f292f47fe9e080b",
+      "gitBlob": "61a71eb0d9c435ad6f9f9701ab4d9c072cd3237e",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/version.txt",
+      "localMatch": false
+    },
+    {
+      "branch": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_FrameXMLUtil/AuraUtil.lua",
+      "sha256": "c273c6be5d4bfce92c54510f5a1729f84bf9762ded0a4a9c523363d713b5f909",
+      "gitBlob": "bd730b33237b8467164bde252474ad6c6516b7cf",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_FrameXMLUtil/AuraUtil.lua",
+      "localMatch": true
+    },
+    {
+      "branch": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_AuraContainer/Blizzard_AuraContainer.lua",
+      "sha256": "d5bbfef83112027f9a6f55aa2382d3c48f17e79cc45acd4e8214ab4bd9fbd681",
+      "gitBlob": "10cb45503c3f38435dcff7c3c6f24510a21fe69c",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_AuraContainer/Blizzard_AuraContainer.lua",
+      "localMatch": false
+    },
+    {
+      "branch": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_AuraContainer/Blizzard_CustomAuraContainer.lua",
+      "sha256": "4a47de0e56ba97acbea4e6a65916e9974b98303b4e7ffe6c305a98d62bbba0f1",
+      "gitBlob": "a8ce187d23916a466e6a2df9a84d4a8da6baa070",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_AuraContainer/Blizzard_CustomAuraContainer.lua",
+      "localMatch": false
+    },
+    {
+      "branch": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_AuraContainer/Blizzard_CustomAuraButton.lua",
+      "sha256": "e583c0306774cb209a7a4d1b4c29a96f39dab0761da965af173b843ef61704c5",
+      "gitBlob": "9e373b9e44e352e77771eef30f058217151dbdb7",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_AuraContainer/Blizzard_CustomAuraButton.lua",
+      "localMatch": false
+    },
+    {
+      "branch": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_AuraContainer/Blizzard_AuraContainerUtil.lua",
+      "sha256": "603cebadf285d56c46544af87588867c2aa3c4b1fdcff3665d0e43816fe3b262",
+      "gitBlob": "23acba9cee7f6917df343dd4ccfef3a8a9c9729d",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_AuraContainer/Blizzard_AuraContainerUtil.lua",
+      "localMatch": false
+    },
+    {
+      "branch": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_AuraContainer/Blizzard_AuraContainer.toc",
+      "sha256": "f85f071058aa5d96e9190e8dc036592779d0dd07470ca7ae13cf7822a27accdb",
+      "gitBlob": "c8c3a7853aca3391d52ddd7bac6b628a5cbbc3cf",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_AuraContainer/Blizzard_AuraContainer.toc",
+      "localMatch": true
+    },
+    {
+      "branch": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/UnitDocumentation.lua",
+      "sha256": "1ac4048d3d8acb63cd624c7be3c40e3149b6761b73a7d6bb271e3ace6af34c94",
+      "gitBlob": "6fa1024ea0b4881edbd14ddf43508c6a99075340",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_APIDocumentationGenerated/UnitDocumentation.lua",
+      "localMatch": false
+    },
+    {
+      "branch": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/AuraContainerUtilDocumentation.lua",
+      "sha256": "a87c322d2c43da359381d76fdda7f900e6980c5cf5115701d2ad70e1676f6380",
+      "gitBlob": "a28788fd0e14df2ecbb77e9170f099ac4b6a8a52",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_APIDocumentationGenerated/AuraContainerUtilDocumentation.lua",
+      "localMatch": false
+    },
+    {
+      "branch": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleAnimAPIDocumentation.lua",
+      "sha256": "33b4777b0c40ab1b83a8e7bff757eede9619a2c860897fc91e4aaeaa5f5d78f2",
+      "gitBlob": "45c27f2366a8da7bab846aeef8b743a03483bc16",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleAnimAPIDocumentation.lua",
+      "localMatch": false
+    },
+    {
+      "branch": "forever",
+      "commit": "4cd0ab752a77164f654ccbca9d0c1fe8dafceebe",
+      "path": "version.txt",
+      "sha256": "cda1e9ba5d7782fc757ed568df675acded1841ec72e8b76cc73124a7a0985a36",
+      "gitBlob": "5aae5d83fbb13b18885a3ac745bc004d10ea1409",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/4cd0ab752a77164f654ccbca9d0c1fe8dafceebe/version.txt",
+      "localMatch": false
+    },
+    {
+      "branch": "forever",
+      "commit": "4cd0ab752a77164f654ccbca9d0c1fe8dafceebe",
+      "path": "Interface/AddOns/Blizzard_FrameXMLUtil/AuraUtil.lua",
+      "sha256": "c273c6be5d4bfce92c54510f5a1729f84bf9762ded0a4a9c523363d713b5f909",
+      "gitBlob": "bd730b33237b8467164bde252474ad6c6516b7cf",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/4cd0ab752a77164f654ccbca9d0c1fe8dafceebe/Interface/AddOns/Blizzard_FrameXMLUtil/AuraUtil.lua",
+      "localMatch": true
+    },
+    {
+      "branch": "forever",
+      "commit": "4cd0ab752a77164f654ccbca9d0c1fe8dafceebe",
+      "path": "Interface/AddOns/Blizzard_AuraContainer/Blizzard_AuraContainer.lua",
+      "sha256": "d5bbfef83112027f9a6f55aa2382d3c48f17e79cc45acd4e8214ab4bd9fbd681",
+      "gitBlob": "10cb45503c3f38435dcff7c3c6f24510a21fe69c",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/4cd0ab752a77164f654ccbca9d0c1fe8dafceebe/Interface/AddOns/Blizzard_AuraContainer/Blizzard_AuraContainer.lua",
+      "localMatch": true
+    },
+    {
+      "branch": "forever",
+      "commit": "4cd0ab752a77164f654ccbca9d0c1fe8dafceebe",
+      "path": "Interface/AddOns/Blizzard_AuraContainer/Blizzard_CustomAuraContainer.lua",
+      "sha256": "4a47de0e56ba97acbea4e6a65916e9974b98303b4e7ffe6c305a98d62bbba0f1",
+      "gitBlob": "a8ce187d23916a466e6a2df9a84d4a8da6baa070",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/4cd0ab752a77164f654ccbca9d0c1fe8dafceebe/Interface/AddOns/Blizzard_AuraContainer/Blizzard_CustomAuraContainer.lua",
+      "localMatch": true
+    },
+    {
+      "branch": "forever",
+      "commit": "4cd0ab752a77164f654ccbca9d0c1fe8dafceebe",
+      "path": "Interface/AddOns/Blizzard_AuraContainer/Blizzard_CustomAuraButton.lua",
+      "sha256": "e583c0306774cb209a7a4d1b4c29a96f39dab0761da965af173b843ef61704c5",
+      "gitBlob": "9e373b9e44e352e77771eef30f058217151dbdb7",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/4cd0ab752a77164f654ccbca9d0c1fe8dafceebe/Interface/AddOns/Blizzard_AuraContainer/Blizzard_CustomAuraButton.lua",
+      "localMatch": true
+    },
+    {
+      "branch": "forever",
+      "commit": "4cd0ab752a77164f654ccbca9d0c1fe8dafceebe",
+      "path": "Interface/AddOns/Blizzard_AuraContainer/Blizzard_AuraContainerUtil.lua",
+      "sha256": "603cebadf285d56c46544af87588867c2aa3c4b1fdcff3665d0e43816fe3b262",
+      "gitBlob": "23acba9cee7f6917df343dd4ccfef3a8a9c9729d",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/4cd0ab752a77164f654ccbca9d0c1fe8dafceebe/Interface/AddOns/Blizzard_AuraContainer/Blizzard_AuraContainerUtil.lua",
+      "localMatch": true
+    },
+    {
+      "branch": "forever",
+      "commit": "4cd0ab752a77164f654ccbca9d0c1fe8dafceebe",
+      "path": "Interface/AddOns/Blizzard_AuraContainer/Blizzard_AuraContainer.toc",
+      "sha256": "f85f071058aa5d96e9190e8dc036592779d0dd07470ca7ae13cf7822a27accdb",
+      "gitBlob": "c8c3a7853aca3391d52ddd7bac6b628a5cbbc3cf",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/4cd0ab752a77164f654ccbca9d0c1fe8dafceebe/Interface/AddOns/Blizzard_AuraContainer/Blizzard_AuraContainer.toc",
+      "localMatch": true
+    },
+    {
+      "branch": "forever",
+      "commit": "4cd0ab752a77164f654ccbca9d0c1fe8dafceebe",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/UnitDocumentation.lua",
+      "sha256": "93004ac1b260127741471b7861360cdf7536afcb18d4c1db73b7259faa43e61c",
+      "gitBlob": "620b28ad0cc57c13501a196a42c37b8398703a84",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/4cd0ab752a77164f654ccbca9d0c1fe8dafceebe/Interface/AddOns/Blizzard_APIDocumentationGenerated/UnitDocumentation.lua",
+      "localMatch": false
+    },
+    {
+      "branch": "forever",
+      "commit": "4cd0ab752a77164f654ccbca9d0c1fe8dafceebe",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/AuraContainerUtilDocumentation.lua",
+      "sha256": "a87c322d2c43da359381d76fdda7f900e6980c5cf5115701d2ad70e1676f6380",
+      "gitBlob": "a28788fd0e14df2ecbb77e9170f099ac4b6a8a52",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/4cd0ab752a77164f654ccbca9d0c1fe8dafceebe/Interface/AddOns/Blizzard_APIDocumentationGenerated/AuraContainerUtilDocumentation.lua",
+      "localMatch": true
+    },
+    {
+      "branch": "forever",
+      "commit": "4cd0ab752a77164f654ccbca9d0c1fe8dafceebe",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleAnimAPIDocumentation.lua",
+      "sha256": "33b4777b0c40ab1b83a8e7bff757eede9619a2c860897fc91e4aaeaa5f5d78f2",
+      "gitBlob": "45c27f2366a8da7bab846aeef8b743a03483bc16",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/4cd0ab752a77164f654ccbca9d0c1fe8dafceebe/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleAnimAPIDocumentation.lua",
+      "localMatch": true
+    },
+    {
+      "branch": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "version.txt",
+      "sha256": "bcb030fe2d2febd396332d886d804ef9b397335e88f0196edc5d8dbe54c1ba38",
+      "gitBlob": "6888c66e55b78c6b76bdda185480facc60d9b5e5",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/version.txt",
+      "localMatch": false
+    },
+    {
+      "branch": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_FrameXMLUtil/AuraUtil.lua",
+      "sha256": "c386ff2182365cfeec735560319634d07dd97d5e6fe5fe1a09887e277c79457f",
+      "gitBlob": "309c7111c48129687c6001dd8707582569582bfb",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_FrameXMLUtil/AuraUtil.lua",
+      "localMatch": true
+    },
+    {
+      "branch": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_AuraContainer/Blizzard_AuraContainer.lua",
+      "error": "Command '['curl.exe', '--fail', '--silent', '--show-error', '--location', '--max-time', '45', 'https://raw.githubusercontent.com/Gethe/wow-ui-source/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_AuraContainer/Blizzard_AuraContainer.lua']' returned non-zero exit status 22.",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_AuraContainer/Blizzard_AuraContainer.lua"
+    },
+    {
+      "branch": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_AuraContainer/Blizzard_CustomAuraContainer.lua",
+      "error": "Command '['curl.exe', '--fail', '--silent', '--show-error', '--location', '--max-time', '45', 'https://raw.githubusercontent.com/Gethe/wow-ui-source/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_AuraContainer/Blizzard_CustomAuraContainer.lua']' returned non-zero exit status 22.",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_AuraContainer/Blizzard_CustomAuraContainer.lua"
+    },
+    {
+      "branch": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_AuraContainer/Blizzard_CustomAuraButton.lua",
+      "error": "Command '['curl.exe', '--fail', '--silent', '--show-error', '--location', '--max-time', '45', 'https://raw.githubusercontent.com/Gethe/wow-ui-source/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_AuraContainer/Blizzard_CustomAuraButton.lua']' returned non-zero exit status 22.",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_AuraContainer/Blizzard_CustomAuraButton.lua"
+    },
+    {
+      "branch": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_AuraContainer/Blizzard_AuraContainerUtil.lua",
+      "error": "Command '['curl.exe', '--fail', '--silent', '--show-error', '--location', '--max-time', '45', 'https://raw.githubusercontent.com/Gethe/wow-ui-source/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_AuraContainer/Blizzard_AuraContainerUtil.lua']' returned non-zero exit status 22.",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_AuraContainer/Blizzard_AuraContainerUtil.lua"
+    },
+    {
+      "branch": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_AuraContainer/Blizzard_AuraContainer.toc",
+      "error": "Command '['curl.exe', '--fail', '--silent', '--show-error', '--location', '--max-time', '45', 'https://raw.githubusercontent.com/Gethe/wow-ui-source/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_AuraContainer/Blizzard_AuraContainer.toc']' returned non-zero exit status 22.",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_AuraContainer/Blizzard_AuraContainer.toc"
+    },
+    {
+      "branch": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/UnitDocumentation.lua",
+      "sha256": "b9e8124179606c58b5b701fafd28f5f968afe0dc893a915ccc52c57e57c287b5",
+      "gitBlob": "cf3944af3635324125c3aaa3c8845b0a069e1237",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_APIDocumentationGenerated/UnitDocumentation.lua",
+      "localMatch": true
+    },
+    {
+      "branch": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/AuraContainerUtilDocumentation.lua",
+      "error": "Command '['curl.exe', '--fail', '--silent', '--show-error', '--location', '--max-time', '45', 'https://raw.githubusercontent.com/Gethe/wow-ui-source/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_APIDocumentationGenerated/AuraContainerUtilDocumentation.lua']' returned non-zero exit status 22.",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_APIDocumentationGenerated/AuraContainerUtilDocumentation.lua"
+    },
+    {
+      "branch": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleAnimAPIDocumentation.lua",
+      "sha256": "e808a7116de78734643d3955ac20943b0876449edc50c26e60f231051f62c949",
+      "gitBlob": "d15fe1b86f30d68f10d9616b93be2b1a659da474",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleAnimAPIDocumentation.lua",
+      "localMatch": true
+    },
+    {
+      "branch": "classic_era",
+      "commit": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "path": "version.txt",
+      "sha256": "5224861aa41c7bcfd9d48bdd8003eb769a8954c72e3e9682035aeff5bc236f29",
+      "gitBlob": "66bc5d3c31ec0d4ac300d1ba18ffd9490ac424d9",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/4192ac60067fc55566182291bc67c85dd9b6794d/version.txt",
+      "localMatch": false
+    },
+    {
+      "branch": "classic_era",
+      "commit": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "path": "Interface/AddOns/Blizzard_FrameXMLUtil/AuraUtil.lua",
+      "sha256": "c386ff2182365cfeec735560319634d07dd97d5e6fe5fe1a09887e277c79457f",
+      "gitBlob": "309c7111c48129687c6001dd8707582569582bfb",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_FrameXMLUtil/AuraUtil.lua",
+      "localMatch": true
+    },
+    {
+      "branch": "classic_era",
+      "commit": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "path": "Interface/AddOns/Blizzard_AuraContainer/Blizzard_AuraContainer.lua",
+      "error": "Command '['curl.exe', '--fail', '--silent', '--show-error', '--location', '--max-time', '45', 'https://raw.githubusercontent.com/Gethe/wow-ui-source/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_AuraContainer/Blizzard_AuraContainer.lua']' returned non-zero exit status 22.",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_AuraContainer/Blizzard_AuraContainer.lua"
+    },
+    {
+      "branch": "classic_era",
+      "commit": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "path": "Interface/AddOns/Blizzard_AuraContainer/Blizzard_CustomAuraContainer.lua",
+      "error": "Command '['curl.exe', '--fail', '--silent', '--show-error', '--location', '--max-time', '45', 'https://raw.githubusercontent.com/Gethe/wow-ui-source/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_AuraContainer/Blizzard_CustomAuraContainer.lua']' returned non-zero exit status 22.",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_AuraContainer/Blizzard_CustomAuraContainer.lua"
+    },
+    {
+      "branch": "classic_era",
+      "commit": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "path": "Interface/AddOns/Blizzard_AuraContainer/Blizzard_CustomAuraButton.lua",
+      "error": "Command '['curl.exe', '--fail', '--silent', '--show-error', '--location', '--max-time', '45', 'https://raw.githubusercontent.com/Gethe/wow-ui-source/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_AuraContainer/Blizzard_CustomAuraButton.lua']' returned non-zero exit status 22.",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_AuraContainer/Blizzard_CustomAuraButton.lua"
+    },
+    {
+      "branch": "classic_era",
+      "commit": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "path": "Interface/AddOns/Blizzard_AuraContainer/Blizzard_AuraContainerUtil.lua",
+      "error": "Command '['curl.exe', '--fail', '--silent', '--show-error', '--location', '--max-time', '45', 'https://raw.githubusercontent.com/Gethe/wow-ui-source/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_AuraContainer/Blizzard_AuraContainerUtil.lua']' returned non-zero exit status 22.",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_AuraContainer/Blizzard_AuraContainerUtil.lua"
+    },
+    {
+      "branch": "classic_era",
+      "commit": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "path": "Interface/AddOns/Blizzard_AuraContainer/Blizzard_AuraContainer.toc",
+      "error": "Command '['curl.exe', '--fail', '--silent', '--show-error', '--location', '--max-time', '45', 'https://raw.githubusercontent.com/Gethe/wow-ui-source/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_AuraContainer/Blizzard_AuraContainer.toc']' returned non-zero exit status 22.",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_AuraContainer/Blizzard_AuraContainer.toc"
+    },
+    {
+      "branch": "classic_era",
+      "commit": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/UnitDocumentation.lua",
+      "sha256": "b9e8124179606c58b5b701fafd28f5f968afe0dc893a915ccc52c57e57c287b5",
+      "gitBlob": "cf3944af3635324125c3aaa3c8845b0a069e1237",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_APIDocumentationGenerated/UnitDocumentation.lua",
+      "localMatch": true
+    },
+    {
+      "branch": "classic_era",
+      "commit": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/AuraContainerUtilDocumentation.lua",
+      "error": "Command '['curl.exe', '--fail', '--silent', '--show-error', '--location', '--max-time', '45', 'https://raw.githubusercontent.com/Gethe/wow-ui-source/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_APIDocumentationGenerated/AuraContainerUtilDocumentation.lua']' returned non-zero exit status 22.",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_APIDocumentationGenerated/AuraContainerUtilDocumentation.lua"
+    },
+    {
+      "branch": "classic_era",
+      "commit": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleAnimAPIDocumentation.lua",
+      "sha256": "e808a7116de78734643d3955ac20943b0876449edc50c26e60f231051f62c949",
+      "gitBlob": "d15fe1b86f30d68f10d9616b93be2b1a659da474",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleAnimAPIDocumentation.lua",
+      "localMatch": true
+    },
+    {
+      "branch": "classic_anniversary",
+      "commit": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "path": "version.txt",
+      "sha256": "53498c451665c69194d1a41b9983916109b370b6a261bb833322ae871838bdb3",
+      "gitBlob": "f81737db88bfda2cd085cc09b18ca8ce764efc42",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/version.txt",
+      "localMatch": false
+    },
+    {
+      "branch": "classic_anniversary",
+      "commit": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "path": "Interface/AddOns/Blizzard_FrameXMLUtil/AuraUtil.lua",
+      "sha256": "564e621fd045f0a4857a9124ef25ea356f6f7c3b9ad53bee7f7e141143e807de",
+      "gitBlob": "36b3d8f6c184713e996e0a9a973baf83acb5255d",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_FrameXMLUtil/AuraUtil.lua",
+      "localMatch": true
+    },
+    {
+      "branch": "classic_anniversary",
+      "commit": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "path": "Interface/AddOns/Blizzard_AuraContainer/Blizzard_AuraContainer.lua",
+      "error": "Command '['curl.exe', '--fail', '--silent', '--show-error', '--location', '--max-time', '45', 'https://raw.githubusercontent.com/Gethe/wow-ui-source/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_AuraContainer/Blizzard_AuraContainer.lua']' returned non-zero exit status 22.",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_AuraContainer/Blizzard_AuraContainer.lua"
+    },
+    {
+      "branch": "classic_anniversary",
+      "commit": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "path": "Interface/AddOns/Blizzard_AuraContainer/Blizzard_CustomAuraContainer.lua",
+      "error": "Command '['curl.exe', '--fail', '--silent', '--show-error', '--location', '--max-time', '45', 'https://raw.githubusercontent.com/Gethe/wow-ui-source/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_AuraContainer/Blizzard_CustomAuraContainer.lua']' returned non-zero exit status 22.",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_AuraContainer/Blizzard_CustomAuraContainer.lua"
+    },
+    {
+      "branch": "classic_anniversary",
+      "commit": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "path": "Interface/AddOns/Blizzard_AuraContainer/Blizzard_CustomAuraButton.lua",
+      "error": "Command '['curl.exe', '--fail', '--silent', '--show-error', '--location', '--max-time', '45', 'https://raw.githubusercontent.com/Gethe/wow-ui-source/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_AuraContainer/Blizzard_CustomAuraButton.lua']' returned non-zero exit status 22.",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_AuraContainer/Blizzard_CustomAuraButton.lua"
+    },
+    {
+      "branch": "classic_anniversary",
+      "commit": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "path": "Interface/AddOns/Blizzard_AuraContainer/Blizzard_AuraContainerUtil.lua",
+      "error": "Command '['curl.exe', '--fail', '--silent', '--show-error', '--location', '--max-time', '45', 'https://raw.githubusercontent.com/Gethe/wow-ui-source/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_AuraContainer/Blizzard_AuraContainerUtil.lua']' returned non-zero exit status 22.",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_AuraContainer/Blizzard_AuraContainerUtil.lua"
+    },
+    {
+      "branch": "classic_anniversary",
+      "commit": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "path": "Interface/AddOns/Blizzard_AuraContainer/Blizzard_AuraContainer.toc",
+      "error": "Command '['curl.exe', '--fail', '--silent', '--show-error', '--location', '--max-time', '45', 'https://raw.githubusercontent.com/Gethe/wow-ui-source/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_AuraContainer/Blizzard_AuraContainer.toc']' returned non-zero exit status 22.",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_AuraContainer/Blizzard_AuraContainer.toc"
+    },
+    {
+      "branch": "classic_anniversary",
+      "commit": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/UnitDocumentation.lua",
+      "sha256": "b9e8124179606c58b5b701fafd28f5f968afe0dc893a915ccc52c57e57c287b5",
+      "gitBlob": "cf3944af3635324125c3aaa3c8845b0a069e1237",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_APIDocumentationGenerated/UnitDocumentation.lua",
+      "localMatch": true
+    },
+    {
+      "branch": "classic_anniversary",
+      "commit": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/AuraContainerUtilDocumentation.lua",
+      "error": "Command '['curl.exe', '--fail', '--silent', '--show-error', '--location', '--max-time', '45', 'https://raw.githubusercontent.com/Gethe/wow-ui-source/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_APIDocumentationGenerated/AuraContainerUtilDocumentation.lua']' returned non-zero exit status 22.",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_APIDocumentationGenerated/AuraContainerUtilDocumentation.lua"
+    },
+    {
+      "branch": "classic_anniversary",
+      "commit": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleAnimAPIDocumentation.lua",
+      "sha256": "e808a7116de78734643d3955ac20943b0876449edc50c26e60f231051f62c949",
+      "gitBlob": "d15fe1b86f30d68f10d9616b93be2b1a659da474",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleAnimAPIDocumentation.lua",
+      "localMatch": true
+    },
+    {
+      "branch": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_FrameXMLUtil/Blizzard_FrameXMLUtil.toc",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_FrameXMLUtil/Blizzard_FrameXMLUtil.toc",
+      "sha256": "8ac7af18429a0a43b96b523709cd6b63d599ee40e479d5e88cc4bd03c240a3a5",
+      "gitBlob": "b64d63f9c83d7a96fa912a41f0e8f73154877ace",
+      "localMatch": true
+    },
+    {
+      "branch": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_FrameXMLUtil/Mainline/AuraUtil.lua",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_FrameXMLUtil/Mainline/AuraUtil.lua",
+      "sha256": "746b9e6ae8c4ddd9102faab8adc3b14a020d39b52067ceec3cf3e427db1f6e4b",
+      "gitBlob": "5bef54952bb4607796fe77c7d65a7e3d3e668227",
+      "localMatch": true
+    },
+    {
+      "branch": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleAnimGroupAPIDocumentation.lua",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleAnimGroupAPIDocumentation.lua",
+      "sha256": "1af7a2b7ccdaceb57505984ed1b5a6682cac6b13b5056175e1d9f9dfff5b0790",
+      "gitBlob": "db2992f886ebd7621f81d584b0e5c6daf33a8c5f",
+      "localMatch": false
+    },
+    {
+      "branch": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleAnimAlphaAPIDocumentation.lua",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleAnimAlphaAPIDocumentation.lua",
+      "sha256": "d646fd48d0ef5c7343e6f660dcd549c55bdc9581c3190f8b723549a0ea57e467",
+      "gitBlob": "3dcd59b425cc8a0a33824bd1762fbd00577fd558",
+      "localMatch": false
+    },
+    {
+      "branch": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleAnimFlipBookAPIDocumentation.lua",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleAnimFlipBookAPIDocumentation.lua",
+      "sha256": "6fa29487c050484ba95daa0515fbf81e98d5d9e4e000dc4cbed0936db4fc2d41",
+      "gitBlob": "99529e1aa28c3ffcab0cfda570f21d138378849d",
+      "localMatch": false
+    },
+    {
+      "branch": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_AuraContainer/Blizzard_CustomAuraButton.xml",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_AuraContainer/Blizzard_CustomAuraButton.xml",
+      "sha256": "99469860152566b58e05c03beaf7fcb41e6877430fd8e249347a2ad063adc26f",
+      "gitBlob": "cddf2cb22357d3ec02ee0a683050612752fad73b",
+      "localMatch": false
+    },
+    {
+      "branch": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_AuraContainer/Blizzard_CustomAuraContainer.xml",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_AuraContainer/Blizzard_CustomAuraContainer.xml",
+      "sha256": "9e6d3119c2ee343e40efccdd930d01bfcfc5260026f2f33c345513f0c527cdc0",
+      "gitBlob": "2e6fc065d232a138f9cb5da2fccb58d277dcc754",
+      "localMatch": false
+    },
+    {
+      "branch": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_AuraContainer/Blizzard_AuraContainerInbound.lua",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_AuraContainer/Blizzard_AuraContainerInbound.lua",
+      "sha256": "82198f2d69e86f692b163f2224c40ddc475ec4a84a3fd929077446f9935b60f4",
+      "gitBlob": "eae93b11c72f81b334adb7c3d575f0417401b42c",
+      "localMatch": true
+    },
+    {
+      "branch": "forever",
+      "commit": "4cd0ab752a77164f654ccbca9d0c1fe8dafceebe",
+      "path": "Interface/AddOns/Blizzard_FrameXMLUtil/Blizzard_FrameXMLUtil.toc",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/4cd0ab752a77164f654ccbca9d0c1fe8dafceebe/Interface/AddOns/Blizzard_FrameXMLUtil/Blizzard_FrameXMLUtil.toc",
+      "sha256": "482d04e8a389f5a9a017901f807f961eda9c5c9d9e7d215145f5c94c5f95ce08",
+      "gitBlob": "9939ff16e9f7967229e148046a95e60bffb1912b",
+      "localMatch": true
+    },
+    {
+      "branch": "forever",
+      "commit": "4cd0ab752a77164f654ccbca9d0c1fe8dafceebe",
+      "path": "Interface/AddOns/Blizzard_FrameXMLUtil/Mainline/AuraUtil.lua",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/4cd0ab752a77164f654ccbca9d0c1fe8dafceebe/Interface/AddOns/Blizzard_FrameXMLUtil/Mainline/AuraUtil.lua",
+      "sha256": "746b9e6ae8c4ddd9102faab8adc3b14a020d39b52067ceec3cf3e427db1f6e4b",
+      "gitBlob": "5bef54952bb4607796fe77c7d65a7e3d3e668227",
+      "localMatch": true
+    },
+    {
+      "branch": "forever",
+      "commit": "4cd0ab752a77164f654ccbca9d0c1fe8dafceebe",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleAnimGroupAPIDocumentation.lua",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/4cd0ab752a77164f654ccbca9d0c1fe8dafceebe/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleAnimGroupAPIDocumentation.lua",
+      "sha256": "1af7a2b7ccdaceb57505984ed1b5a6682cac6b13b5056175e1d9f9dfff5b0790",
+      "gitBlob": "db2992f886ebd7621f81d584b0e5c6daf33a8c5f",
+      "localMatch": true
+    },
+    {
+      "branch": "forever",
+      "commit": "4cd0ab752a77164f654ccbca9d0c1fe8dafceebe",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleAnimAlphaAPIDocumentation.lua",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/4cd0ab752a77164f654ccbca9d0c1fe8dafceebe/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleAnimAlphaAPIDocumentation.lua",
+      "sha256": "d646fd48d0ef5c7343e6f660dcd549c55bdc9581c3190f8b723549a0ea57e467",
+      "gitBlob": "3dcd59b425cc8a0a33824bd1762fbd00577fd558",
+      "localMatch": true
+    },
+    {
+      "branch": "forever",
+      "commit": "4cd0ab752a77164f654ccbca9d0c1fe8dafceebe",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleAnimFlipBookAPIDocumentation.lua",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/4cd0ab752a77164f654ccbca9d0c1fe8dafceebe/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleAnimFlipBookAPIDocumentation.lua",
+      "sha256": "6fa29487c050484ba95daa0515fbf81e98d5d9e4e000dc4cbed0936db4fc2d41",
+      "gitBlob": "99529e1aa28c3ffcab0cfda570f21d138378849d",
+      "localMatch": true
+    },
+    {
+      "branch": "forever",
+      "commit": "4cd0ab752a77164f654ccbca9d0c1fe8dafceebe",
+      "path": "Interface/AddOns/Blizzard_AuraContainer/Blizzard_CustomAuraButton.xml",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/4cd0ab752a77164f654ccbca9d0c1fe8dafceebe/Interface/AddOns/Blizzard_AuraContainer/Blizzard_CustomAuraButton.xml",
+      "sha256": "99469860152566b58e05c03beaf7fcb41e6877430fd8e249347a2ad063adc26f",
+      "gitBlob": "cddf2cb22357d3ec02ee0a683050612752fad73b",
+      "localMatch": true
+    },
+    {
+      "branch": "forever",
+      "commit": "4cd0ab752a77164f654ccbca9d0c1fe8dafceebe",
+      "path": "Interface/AddOns/Blizzard_AuraContainer/Blizzard_CustomAuraContainer.xml",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/4cd0ab752a77164f654ccbca9d0c1fe8dafceebe/Interface/AddOns/Blizzard_AuraContainer/Blizzard_CustomAuraContainer.xml",
+      "sha256": "9e6d3119c2ee343e40efccdd930d01bfcfc5260026f2f33c345513f0c527cdc0",
+      "gitBlob": "2e6fc065d232a138f9cb5da2fccb58d277dcc754",
+      "localMatch": true
+    },
+    {
+      "branch": "forever",
+      "commit": "4cd0ab752a77164f654ccbca9d0c1fe8dafceebe",
+      "path": "Interface/AddOns/Blizzard_AuraContainer/Blizzard_AuraContainerInbound.lua",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/4cd0ab752a77164f654ccbca9d0c1fe8dafceebe/Interface/AddOns/Blizzard_AuraContainer/Blizzard_AuraContainerInbound.lua",
+      "sha256": "82198f2d69e86f692b163f2224c40ddc475ec4a84a3fd929077446f9935b60f4",
+      "gitBlob": "eae93b11c72f81b334adb7c3d575f0417401b42c",
+      "localMatch": true
+    },
+    {
+      "branch": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_FrameXMLUtil/Blizzard_FrameXMLUtil.toc",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_FrameXMLUtil/Blizzard_FrameXMLUtil.toc",
+      "sha256": "e5f92694ea3c3f4ebae94c0fa2a673cec32a8d2ee3539241657bf0b94e8f7242",
+      "gitBlob": "7f30577cb4f1be07630b82f167e291dd83c35410",
+      "localMatch": true
+    },
+    {
+      "branch": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_FrameXMLUtil/Classic/AuraUtil.lua",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_FrameXMLUtil/Classic/AuraUtil.lua",
+      "sha256": "2ba3edac39f70465874cc9df38386381ec60fe59bd00117ed92ac29c1420e3ea",
+      "gitBlob": "9971749d1521edd08ff2d676f59573f34de02120",
+      "localMatch": true
+    },
+    {
+      "branch": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleAnimGroupAPIDocumentation.lua",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleAnimGroupAPIDocumentation.lua",
+      "sha256": "975e01c7c4d44e2e9d6f5f21d5e394003a5f0697f81a85730866def9dbe21b26",
+      "gitBlob": "a07aa1be4e63ea38b3b3c9d9dc66edccc5863d15",
+      "localMatch": true
+    },
+    {
+      "branch": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleAnimAlphaAPIDocumentation.lua",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleAnimAlphaAPIDocumentation.lua",
+      "sha256": "cb5987c8a6b5fc316050c5a3f8b35fefa1828d19b661b80c1a8526bf800fe64e",
+      "gitBlob": "a015dc4d45aaf7f6186b6a98e044df8720bb8638",
+      "localMatch": true
+    },
+    {
+      "branch": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleAnimFlipBookAPIDocumentation.lua",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleAnimFlipBookAPIDocumentation.lua",
+      "sha256": "d27366a97c2b7abf953ef6fb1b8757126c7f5a5c2f3ecf8e83de055eb4a3f681",
+      "gitBlob": "b1466fb6d78d0eaf32bd5d21f317220f25c603d6",
+      "localMatch": true
+    },
+    {
+      "branch": "classic_era",
+      "commit": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "path": "Interface/AddOns/Blizzard_FrameXMLUtil/Blizzard_FrameXMLUtil.toc",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_FrameXMLUtil/Blizzard_FrameXMLUtil.toc",
+      "sha256": "e5f92694ea3c3f4ebae94c0fa2a673cec32a8d2ee3539241657bf0b94e8f7242",
+      "gitBlob": "7f30577cb4f1be07630b82f167e291dd83c35410",
+      "localMatch": true
+    },
+    {
+      "branch": "classic_era",
+      "commit": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "path": "Interface/AddOns/Blizzard_FrameXMLUtil/Classic/AuraUtil.lua",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_FrameXMLUtil/Classic/AuraUtil.lua",
+      "sha256": "2ba3edac39f70465874cc9df38386381ec60fe59bd00117ed92ac29c1420e3ea",
+      "gitBlob": "9971749d1521edd08ff2d676f59573f34de02120",
+      "localMatch": true
+    },
+    {
+      "branch": "classic_era",
+      "commit": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleAnimGroupAPIDocumentation.lua",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleAnimGroupAPIDocumentation.lua",
+      "sha256": "975e01c7c4d44e2e9d6f5f21d5e394003a5f0697f81a85730866def9dbe21b26",
+      "gitBlob": "a07aa1be4e63ea38b3b3c9d9dc66edccc5863d15",
+      "localMatch": true
+    },
+    {
+      "branch": "classic_era",
+      "commit": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleAnimAlphaAPIDocumentation.lua",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleAnimAlphaAPIDocumentation.lua",
+      "sha256": "cb5987c8a6b5fc316050c5a3f8b35fefa1828d19b661b80c1a8526bf800fe64e",
+      "gitBlob": "a015dc4d45aaf7f6186b6a98e044df8720bb8638",
+      "localMatch": true
+    },
+    {
+      "branch": "classic_era",
+      "commit": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleAnimFlipBookAPIDocumentation.lua",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleAnimFlipBookAPIDocumentation.lua",
+      "sha256": "d27366a97c2b7abf953ef6fb1b8757126c7f5a5c2f3ecf8e83de055eb4a3f681",
+      "gitBlob": "b1466fb6d78d0eaf32bd5d21f317220f25c603d6",
+      "localMatch": true
+    },
+    {
+      "branch": "classic_anniversary",
+      "commit": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "path": "Interface/AddOns/Blizzard_FrameXMLUtil/Blizzard_FrameXMLUtil.toc",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_FrameXMLUtil/Blizzard_FrameXMLUtil.toc",
+      "sha256": "0e391de1480597e03137ec856b6097cfc8cfc2ebc996b82d5485835171155f7e",
+      "gitBlob": "28c413629383e338ae17ef7adf8bb52f4df52ddd",
+      "localMatch": true
+    },
+    {
+      "branch": "classic_anniversary",
+      "commit": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "path": "Interface/AddOns/Blizzard_FrameXMLUtil/Classic/AuraUtil.lua",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_FrameXMLUtil/Classic/AuraUtil.lua",
+      "sha256": "0882e45277e59919f6afe3b21deaee8abf20cf69d0964f4e8bd86803622c805e",
+      "gitBlob": "8361cb1411d393dd02100dc6cbef7eef09afe9e0",
+      "localMatch": true
+    },
+    {
+      "branch": "classic_anniversary",
+      "commit": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleAnimGroupAPIDocumentation.lua",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleAnimGroupAPIDocumentation.lua",
+      "sha256": "975e01c7c4d44e2e9d6f5f21d5e394003a5f0697f81a85730866def9dbe21b26",
+      "gitBlob": "a07aa1be4e63ea38b3b3c9d9dc66edccc5863d15",
+      "localMatch": true
+    },
+    {
+      "branch": "classic_anniversary",
+      "commit": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleAnimAlphaAPIDocumentation.lua",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleAnimAlphaAPIDocumentation.lua",
+      "sha256": "cb5987c8a6b5fc316050c5a3f8b35fefa1828d19b661b80c1a8526bf800fe64e",
+      "gitBlob": "a015dc4d45aaf7f6186b6a98e044df8720bb8638",
+      "localMatch": true
+    },
+    {
+      "branch": "classic_anniversary",
+      "commit": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleAnimFlipBookAPIDocumentation.lua",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleAnimFlipBookAPIDocumentation.lua",
+      "sha256": "d27366a97c2b7abf953ef6fb1b8757126c7f5a5c2f3ecf8e83de055eb4a3f681",
+      "gitBlob": "b1466fb6d78d0eaf32bd5d21f317220f25c603d6",
+      "localMatch": true
+    }
+  ],
+  "scope": "Fresh pinned source declarations and loaded Lua/XML paths; no runtime permission or native operation certification"
+}

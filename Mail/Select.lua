@@ -10,10 +10,13 @@ local takeButton, returnButton, worker
 local opened = false
 local run = 0
 local pendingWakes = {}
+local lastRestockTake
+local Step, Schedule
 local MAX_WAIT = 8
 local originalFirstPoint, originalWidths, originalExpiry = nil, {}, {}
 
 local function Option(group, key, fallback)
+	if group == "Restock" and (key == "KeepFreeSpace" or key == "SpamChat") then group = "OpenAll" end
 	local value = Mail.GetSetting and Mail.GetSetting(group, key)
 	return value == nil and fallback or value
 end
@@ -92,6 +95,10 @@ end
 
 local function Stop(message)
 	local group = worker and worker.group or "Select"
+	local callbacks = worker and worker.callbacks
+	if worker and worker.items and (not message or not message:find("Finished", 1, true)) then
+		lastRestockTake = nil -- A cancelled/failed session has no next take deadline.
+	end
 	for key, wake in pairs(pendingWakes) do
 		if wake.timer and wake.timer.Cancel then wake.timer:Cancel() end
 		pendingWakes[key] = nil
@@ -100,11 +107,21 @@ local function Stop(message)
 	run = run + 1
 	RefreshRows()
 	if Mail.OnJobStateChanged then Mail.OnJobStateChanged(false, group, message) end
+	if callbacks and callbacks.OnStop then callbacks.OnStop(message) end
 	if message and (Option(group, "SpamChat", true) or message:find("Stopped", 1, true)) then Notice(message) end
+end
+
+local function RestockDelay()
+	local speed = tonumber(Mail.GetSetting and Mail.GetSetting("OpenSpeed")) or 0.5
+	if speed < 0 or speed ~= speed or speed == math.huge then speed = 0.5 end
+	return lastRestockTake and math.max(0, lastRestockTake + speed - (GetTime and GetTime() or 0)) or 0
 end
 
 if Mail.OnSettingsChanged then
 	Mail.OnSettingsChanged(function(group, key)
+		if worker and worker.items and (group == "OpenSpeed" or group == "Modules") and Schedule then
+			Schedule(RestockDelay())
+		end
 		if group ~= "Modules" then return end
 		if worker and Mail.IsEnabled and not Mail.IsEnabled(worker.group) then
 			Stop("Stopped: mail module disabled.")
@@ -113,8 +130,7 @@ if Mail.OnSettingsChanged then
 	end)
 end
 
-local Step
-local function Schedule(delay, timeout)
+Schedule = function(delay, timeout)
 	if not C_Timer or (not C_Timer.After and not C_Timer.NewTimer) then Stop("Mail timer unavailable."); return end
 	if not worker then return end
 	local key = timeout and "timeout" or "progress"
@@ -141,7 +157,22 @@ local function ProgressPending()
 	local p = worker and worker.pending
 	if not p then return true end
 	local h = Header(p.index)
+	if worker.items and p.itemID then
+		local remaining = worker.callbacks.GetItems()[p.itemID] or 0
+		if remaining <= (worker.items[p.itemID] or 0) - p.count then
+			-- The receipt owner already proved this arrival. An identical next
+			-- mail can occupy the same index/slot; do not credit it a second time.
+			worker.items[p.itemID] = math.max(0, (worker.items[p.itemID] or 0) - p.count)
+			worker.pending = nil
+			if not Same(h, p.header) then Stop("Finished taking selected mail."); return false end
+			return true
+		end
+	end
 	if not Same(h, p.header) then
+		if worker.items then
+			Stop("Stopped: mailbox messages changed before the attachment was confirmed.")
+			return false
+		end
 		selected[p.index] = nil
 		worker.pending = nil
 		worker.position = worker.position + 1
@@ -158,8 +189,14 @@ local function ProgressPending()
 		return true
 	end
 	if p.action == "item" and GetInboxItem then
-		local name, _, _, count, _, _, isCurrency = GetInboxItem(p.index, p.slot)
-		if h.items < p.header.items or (not name and not isCurrency) or (tonumber(count) or 0) < p.count then
+		local name, itemID, _, count, _, _, isCurrency = GetInboxItem(p.index, p.slot)
+		local removed = h.items < p.header.items or (not name and not isCurrency) or (tonumber(count) or 0) < p.count
+		if worker.items then removed = not name or itemID ~= p.itemID or (tonumber(count) or 0) < p.count end
+		if removed then
+			if worker.items then
+				worker.items[p.itemID] = math.max(0, (worker.items[p.itemID] or 0) - p.count)
+				if worker.callbacks.OnTaken then worker.callbacks.OnTaken(p.itemID, p.count) end
+			end
 			worker.pending = nil
 			return true
 		end
@@ -199,10 +236,23 @@ Step = function()
 	if not worker then return end
 	if not opened or not MailFrame or not MailFrame:IsShown() then Stop(); return end
 	if Mail.IsEnabled and not Mail.IsEnabled(worker.group) then Stop("Stopped: mail module disabled."); return end
+	if worker.items and InCombatLockdown and InCombatLockdown() then Stop(); return end
+	if worker.items and OpenAllMail and OpenAllMail.timeUntilNextRetrieval ~= nil then Stop(); return end
 	-- Header/item updates can arrive before the client's command completes.
 	-- Like native Open All, wait for its command gate before advancing the job.
 	if WaitForNativeCommand() then return end
+	if worker.items and not next(worker.callbacks.GetItems()) then Stop("Finished taking selected mail."); return end
 	if not ProgressPending() then return end
+	if worker.items and not next(worker.callbacks.GetItems()) then Stop("Finished taking selected mail."); return end
+	if worker.callbacks and worker.callbacks.OnSnapshot and not worker.snapshotReady then
+		local ready = worker.callbacks.OnSnapshot()
+		if ready == nil then Stop("Stopped: mailbox data was not available. Try again after it updates."); return end
+		if ready == false then Schedule(MAX_WAIT, true); return end
+		-- The initial list has a complete snapshot. Each later attachment keeps
+		-- its live header/slot and receipt proof checks below; the background
+		-- snapshot must not add a second opening interval to every proven take.
+		worker.snapshotReady = true
+	end
 	while worker.position <= #worker.list do
 		local row = worker.list[worker.position]
 		local h = Header(row.index)
@@ -224,19 +274,25 @@ Step = function()
 			worker.skipped = true
 		elseif worker.mode == "take" and Same(h, row.header) and not h.gm and h.cod == 0 then
 			local action, slot, count
-			if h.money > 0 then
+			if h.money > 0 and not worker.items then
 				action = "money"
 			elseif h.items > 0 and GetInboxItem then
 				local free = Flux.Container and Flux.Container.GetTotalFreeBagSlots
 				if not free or free() > (tonumber(Option(worker.group, "KeepFreeSpace", 1)) or 1) then
+					local wanted = worker.items and worker.callbacks.GetItems()
+					local known = 0
 					for i = (ATTACHMENTS_MAX_RECEIVE or 12), 1, -1 do
-						local name, _, _, itemCount, _, _, isCurrency = GetInboxItem(row.index, i)
-						if name or isCurrency then
+						local name, itemID, _, itemCount, _, _, isCurrency = GetInboxItem(row.index, i)
+						if name or isCurrency then known = known + 1 end
+						local allowed = not worker.items or (name and not isCurrency and itemID and wanted
+							and (tonumber(itemCount) or 0) > 0
+							and itemCount <= math.min(worker.items[itemID] or 0, wanted[itemID] or 0))
+						if (name or isCurrency) and allowed then
 							action, slot, count = "item", i, tonumber(itemCount) or 1
 							break
 						end
 					end
-					if not action then
+					if not action and (not worker.items or known < h.items) then
 						local attempts = (worker.unavailableAttempts[row.index] or 0) + 1
 						worker.unavailableAttempts[row.index] = attempts
 						if attempts < 20 then Schedule(math.max(0.3, tonumber(Mail.GetSetting and Mail.GetSetting("OpenSpeed")) or 0.5)); return end
@@ -247,14 +303,24 @@ Step = function()
 				end
 			end
 			if action then
+				if worker.items then
+					local delay = RestockDelay()
+					if delay > 0 then Schedule(delay); return end
+				end
 				worker.pending = { action = action, index = row.index, slot = slot,
 					count = count, header = h, started = GetTime and GetTime() or 0 }
+				if worker.items then
+					local _, itemID = GetInboxItem(row.index, slot)
+					worker.pending.itemID = itemID
+					if worker.callbacks.OnTake(itemID, count) == false then worker.pending = nil; Stop(); return end
+				end
+				if worker.items then lastRestockTake = worker.pending.started end
 				if action == "money" then TakeInboxMoney(row.index) else TakeInboxItem(row.index, slot) end
 				Schedule(MAX_WAIT, true)
 				return
 			end
 		end
-		selected[row.index] = nil
+		if not worker.items then selected[row.index] = nil end
 		worker.position = worker.position + 1
 	end
 	local mode, skippedFull, skipped = worker.mode, worker.skippedFull, worker.skipped
@@ -266,6 +332,46 @@ Step = function()
 		local verb = mode == "return" and "returning" or "deleting"
 		Stop("Finished " .. verb .. " selected mail." .. (skipped and " Some messages were not eligible." or ""))
 	end
+end
+
+-- Restock shares the existing command owner and cadence, but never expands a
+-- matched attachment into a whole-message money/item collection.
+function Mail.GetJobGroup() return worker and worker.group end
+function Mail.NotifyRestockSnapshotReady()
+	-- Publish through the same command owner. Stop/close/action identity still
+	-- invalidates stale wakes, and Step rechecks the native pending command.
+	if worker and worker.items then Schedule(RestockDelay()) end
+end
+function Mail.StopRestockItems()
+	if worker and worker.group == "Restock" then Stop() end
+end
+function Mail.ProcessRestockItems(items, callbacks)
+	if worker or not opened or not MailFrame or not MailFrame:IsShown() then return false end
+	if InCombatLockdown and InCombatLockdown() then return false end
+	if OpenAllMail and OpenAllMail.timeUntilNextRetrieval ~= nil then return false end
+	if Mail.IsEnabled and not Mail.IsEnabled("Restock") then return false end
+	if type(items) ~= "table" or type(callbacks) ~= "table" or type(callbacks.GetItems) ~= "function"
+		or type(callbacks.OnTake) ~= "function" or not GetInboxNumItems then return false end
+	local subset, list = {}, callbacks.list or {}
+	for id, quantity in pairs(items) do
+		if type(id) == "number" and id > 0 and type(quantity) == "number" and quantity > 0 then subset[id] = math.floor(quantity) end
+	end
+	if not next(subset) then return false end
+	if not callbacks.list then
+		for index = GetInboxNumItems(), 1, -1 do
+			local h = Header(index)
+			if h and not h.gm and h.cod == 0 and h.items > 0 then list[#list + 1] = { index = index, header = h } end
+		end
+	end
+	if #list == 0 then return false end
+	table.sort(list, function(a, b) return a.index > b.index end)
+	run = run + 1
+	worker = { list = list, position = 1, mode = "take", group = "Restock", items = subset,
+		callbacks = callbacks, announced = {}, unavailableAttempts = {} }
+	RefreshRows()
+	if Mail.OnJobStateChanged then Mail.OnJobStateChanged(true, "Restock") end
+	Step()
+	return true
 end
 
 function Mail.ProcessSelected(mode, providedList, group)
@@ -358,6 +464,7 @@ local frame = CreateFrame("Frame")
 frame:RegisterEvent("MAIL_SHOW")
 frame:RegisterEvent("MAIL_CLOSED")
 frame:RegisterEvent("MAIL_INBOX_UPDATE")
+frame:RegisterEvent("MAIL_FAILED")
 frame:RegisterEvent("PLAYER_INTERACTION_MANAGER_FRAME_SHOW")
 frame:RegisterEvent("PLAYER_INTERACTION_MANAGER_FRAME_HIDE")
 frame:RegisterEvent("PLAYER_LEAVING_WORLD")
@@ -370,11 +477,15 @@ frame:SetScript("OnEvent", function(_, event, interactionType)
 	elseif event == "MAIL_CLOSED" or event == "PLAYER_LEAVING_WORLD" or
 		(mailType and event == "PLAYER_INTERACTION_MANAGER_FRAME_HIDE" and interactionType == mailType) then
 		opened = false
+		lastRestockTake = nil
 		lastCheck = nil
 		for index in pairs(selected) do selected[index] = nil end
 		Stop()
+	elseif event == "MAIL_FAILED" then
+		if worker and worker.items then Stop("Stopped: the mailbox rejected the attachment request.") end
 	elseif event == "MAIL_INBOX_UPDATE" then
 		RefreshRows()
-		if worker and worker.pending then Schedule(tonumber(Mail.GetSetting and Mail.GetSetting("OpenSpeed")) or 0.5) end
+		if worker and worker.items then Schedule(RestockDelay())
+		elseif worker and worker.pending then Schedule(tonumber(Mail.GetSetting and Mail.GetSetting("OpenSpeed")) or 0.5) end
 	end
 end)

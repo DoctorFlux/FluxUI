@@ -1571,7 +1571,7 @@ end
 
 --- Open the FluxUI options window on the Action Bars tab.
 function FluxOptions:OpenToActionBarsTab()
-    OpenFluxUIOptionsToGroup("actionbars")
+    OpenFluxUIOptionsToGroup("actionbars", "bars")
 end
 
 function FluxOptions:OpenToActionBarsBindingsTab()
@@ -1580,7 +1580,12 @@ end
 
 --- Open the FluxUI options window on the FluxWindow tab.
 function FluxOptions:OpenToFluxWindowTab()
-    OpenFluxUIOptionsToGroup("fluxwindow")
+    OpenFluxUIOptionsToGroup("fluxwindow", "general")
+end
+
+--- Open the Damage Meter tab inside HUD > Flux Window.
+function FluxOptions:OpenToDamageMeterTab()
+    OpenFluxUIOptionsToGroup("fluxwindow", "damageMeter")
 end
 
 --- Blizzard AddOns list and /fluxui bliz both open this window.

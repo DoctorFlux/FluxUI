@@ -1,0 +1,523 @@
+{
+  "task": "MINIMAP-LAYOUT-20261113",
+  "capturedAt": "2026-11-13 07:08:37 UTC",
+  "repository": "Gethe/wow-ui-source",
+  "compatibilityScope": {
+    "retainedRepositoryFamilies": ["Retail", "Forever", "Classic progression", "Classic Era", "Anniversary"],
+    "freshPinnedResearch": ["retail", "forever", "classic"],
+    "legacyFamilies": "Existing Era and Anniversary capability guards, button widgets, saved actions and optional integrations are retained. This task did not resolve new Era or Anniversary source pins or run those native clients; the three researched families do not certify the other two.",
+    "workspace": "Runtime edits remain in the existing Retail _FluxUI repository. No manual client copy, synchronization, input, settings/profiler write or publication was performed."
+  },
+  "method": "GitHub plugin branch resolution, commit-pinned raw files and recursive Git trees; recomputed Git blob SHA-1 for each fetched UTF-8 file.",
+  "targets": [
+    {
+      "target": "retail",
+      "branch": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "mirrorVersion": "12.1.5.70783",
+      "interface": 120105
+    },
+    {
+      "target": "forever",
+      "branch": "forever",
+      "commit": "bebcb6bf309cf41b41bd74f8ca651e6a105b2676",
+      "mirrorVersion": "1.60.1.70938",
+      "interface": 16001
+    },
+    {
+      "target": "classic",
+      "branch": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "mirrorVersion": "5.5.4.70631",
+      "interface": 50504
+    }
+  ],
+  "contracts": [
+    {
+      "owner": "wow-api-lua-environment / FrameXML",
+      "path": "Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureStateDriver.lua",
+      "lines": [
+        8,
+        26,
+        30,
+        98,
+        178,
+        193,
+        194
+      ],
+      "contract": "RegisterStateDriver(frame,state,values) bridges to RegisterAttributeDriver(frame,'state-'..state,values). Native state-visibility accepts show/hide and runs frame Show/Hide. Built-in manager listens to both combat transitions. Install and remove registrations outside combat; no addon-created per-frame combat poll required.",
+      "loading": "Blizzard_RestrictedAddOnEnvironment TOC depends on Blizzard_FrameXML and loads SecureStateDriver.lua. Forever explicitly allows camelot."
+    },
+    {
+      "owner": "wow-api-lua-environment / widget",
+      "path": "Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureHandlerTemplates.xml",
+      "lines": [
+        6,
+        13
+      ],
+      "contract": "SecureHandlerStateTemplate inherits explicitly protected SecureFrameTemplate and installs state-attribute handler. SecureHandler_OnLoad installs Execute/WrapScript/SetFrameRef helpers. SecureHandlers API installation refuses during combat. Restricted execution provides control handle for wrapper header and self for wrapped frame.",
+      "loading": "SecureHandlers.lua then SecureHandlerTemplates.xml in the restricted-environment TOC."
+    },
+    {
+      "owner": "wow-api-widget",
+      "path": "Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/RestrictedFrames.lua",
+      "lines": [
+        66,
+        394,
+        402,
+        446,
+        538,
+        614
+      ],
+      "contract": "Restricted handles expose Show/Hide/SetParent/SetPoint/ClearBindings. Header-controlled OnHide wrapper can Hide its opted-in popup and clear override bindings through the popup control handle. Referenced frames must satisfy actual handle/protection checks; source alone does not certify runtime permission."
+    },
+    {
+      "owner": "wow-api-widget",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleScriptRegionResizingAPIDocumentation.lua",
+      "contract": "SetPoint(point:FramePoint,relativeTo:ScriptRegion,relativePoint:FramePoint,offsetX:uiUnit,offsetY:uiUnit) is protected. Retail/Forever additionally check forbidden layout inheritance and annotate secret arguments AllowedWhenUntainted; Classic lacks these annotations."
+    },
+    {
+      "owner": "wow-api-widget",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleScriptRegionAPIDocumentation.lua",
+      "contract": "SetParent(parent:SimpleFrame or nil) is protected. Retail/Forever CheckAllowChangeParent and secret-argument NotAllowed annotations apply. Settings/relayout/reparent work must stay outside combat."
+    },
+    {
+      "owner": "wow-api-map-navigation / native UI",
+      "contract": "Retail and Forever MinimapCluster and ObjectiveTrackerFrame inherit EditMode/managed-layout templates. Use existing Flux positioning owners to reserve right-side width; do not secure-parent Blizzard trackers into button visibility root or move them during combat. Classic progression minimap TOC selects Classic/Minimap.xml; no modern ObjectiveTracker addon was found in its pinned tree."
+    }
+  ],
+  "localAudit": {
+    "driverPolicy": "Flux.Restricted.RegisterStateDriver legacy Forever adapter skips all ApplyAttributeDriver work in lockdown and cannot implement full secure combat hiding. Existing RegisterPagingDriver uses captured native attribute driver only after PagingWorks probe, preserving legacy caller policy. Reuse capability and native registration path; do not treat adapter success as full combat-hide support.",
+    "activeFlyout": "TOC selects ExtraButtonSystem/FlyoutEngine; ExtraButtonSystem/Flyout is unused. Active Arrow.ConfigureLayer reparents opener outside host to shared border/UIParent; Popup.Place and secure OPENER_SCRIPT parent popup to UIParent. Explicit per-host visibilityParent is required in all three paths for complete hiding.",
+    "controller": "Existing EBS button activation/flyout opener and AceGUI options interaction retained. Full mouse/keyboard/controller focus, secure opener/close, Escape restoration and layout changes need native checks per client. No custom navigation layer or input override introduced."
+  },
+  "verification": {
+    "records": 46,
+    "uniqueGitBlobs": 36,
+    "allFetchedBlobsRecomputed": true,
+    "sourceDeclarations": "PASS",
+    "loadPaths": "INSPECTED",
+    "runtimePresence": "NOT RUN",
+    "operationAndTaint": "NOT RUN",
+    "nativePixels": "NOT RUN",
+    "controller": "NOT RUN",
+    "fps": "NOT RUN",
+    "installedGetBuildInfo": "NOT CAPTURED"
+  },
+  "sources": [
+    {
+      "target": "retail",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "version.txt",
+      "gitBlob": "61a71eb0d9c435ad6f9f9701ab4d9c072cd3237e",
+      "verifiedBlob": true,
+      "bytes": 13,
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/version.txt"
+    },
+    {
+      "target": "retail",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/Blizzard_RestrictedAddOnEnvironment.toc",
+      "gitBlob": "5e819cfa94929adfc1fb516ef20862ebe4ec6b8c",
+      "verifiedBlob": true,
+      "bytes": 506,
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/Blizzard_RestrictedAddOnEnvironment.toc"
+    },
+    {
+      "target": "retail",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureStateDriver.lua",
+      "gitBlob": "4861b5fd4a3249c97f1a2fea45a4c13833d5117c",
+      "verifiedBlob": true,
+      "bytes": 6480,
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureStateDriver.lua"
+    },
+    {
+      "target": "retail",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureHandlers.lua",
+      "gitBlob": "b32476a72027855fda546118e513fa44770a3a94",
+      "verifiedBlob": true,
+      "bytes": 22311,
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureHandlers.lua"
+    },
+    {
+      "target": "retail",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureHandlerTemplates.xml",
+      "gitBlob": "1bba76f06b5c737f21c8817b4ed5e81eface2b3c",
+      "verifiedBlob": true,
+      "bytes": 3192,
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureHandlerTemplates.xml"
+    },
+    {
+      "target": "retail",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_FrameXML/SecureTemplatesBase.xml",
+      "gitBlob": "c2c831bd19dde98278f79242e83b413c93530e6b",
+      "verifiedBlob": true,
+      "bytes": 1086,
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_FrameXML/SecureTemplatesBase.xml"
+    },
+    {
+      "target": "retail",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/RestrictedActionsDocumentation.lua",
+      "gitBlob": "5acf5efde9c50029f03f3367201ee848075badf7",
+      "verifiedBlob": true,
+      "bytes": 3486,
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_APIDocumentationGenerated/RestrictedActionsDocumentation.lua"
+    },
+    {
+      "target": "retail",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleScriptRegionAPIDocumentation.lua",
+      "gitBlob": "f77b86089999d35950ce17d6ae62eace15f01f91",
+      "verifiedBlob": true,
+      "bytes": 13728,
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleScriptRegionAPIDocumentation.lua"
+    },
+    {
+      "target": "retail",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleScriptRegionResizingAPIDocumentation.lua",
+      "gitBlob": "6425c8deefe565688f200fbff9d46c364a8f539b",
+      "verifiedBlob": true,
+      "bytes": 4656,
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleScriptRegionResizingAPIDocumentation.lua"
+    },
+    {
+      "target": "retail",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_Minimap/Blizzard_Minimap_Mainline.toc",
+      "gitBlob": "988f7a92b9371898595daf4469c927110e17a0df",
+      "verifiedBlob": true,
+      "bytes": 381,
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_Minimap/Blizzard_Minimap_Mainline.toc"
+    },
+    {
+      "target": "retail",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_Minimap/Mainline/Minimap.lua",
+      "gitBlob": "e39ae6907329251cf093047aaf540a09dce1859e",
+      "verifiedBlob": true,
+      "bytes": 43133,
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_Minimap/Mainline/Minimap.lua"
+    },
+    {
+      "target": "retail",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_Minimap/Mainline/Minimap.xml",
+      "gitBlob": "3ee7241514a3d80719cb73b958a9a8242642544e",
+      "verifiedBlob": true,
+      "bytes": 17866,
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_Minimap/Mainline/Minimap.xml"
+    },
+    {
+      "target": "retail",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_ObjectiveTracker/Blizzard_ObjectiveTracker.toc",
+      "gitBlob": "ff6eac01bd70f2ec82c57515dfbc0c2fddf41d8b",
+      "verifiedBlob": true,
+      "bytes": 1792,
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_ObjectiveTracker/Blizzard_ObjectiveTracker.toc"
+    },
+    {
+      "target": "retail",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_ObjectiveTracker/Blizzard_ObjectiveTracker.xml",
+      "gitBlob": "d52eee95adbd5225762547e652a24d89c750ac31",
+      "verifiedBlob": true,
+      "bytes": 1022,
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_ObjectiveTracker/Blizzard_ObjectiveTracker.xml"
+    },
+    {
+      "target": "retail",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_ObjectiveTracker/Blizzard_ObjectiveTrackerContainer.lua",
+      "gitBlob": "ee72152bea63fde1a98fbb1a92bd474ccdcc9e21",
+      "verifiedBlob": true,
+      "bytes": 7326,
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_ObjectiveTracker/Blizzard_ObjectiveTrackerContainer.lua"
+    },
+    {
+      "target": "retail",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_ObjectiveTracker/Blizzard_ObjectiveTrackerContainer.xml",
+      "gitBlob": "e10afe59d1f9f4f1cea5546bc73cc0a07c1b7089",
+      "verifiedBlob": true,
+      "bytes": 3374,
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_ObjectiveTracker/Blizzard_ObjectiveTrackerContainer.xml"
+    },
+    {
+      "target": "retail",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/RestrictedFrames.lua",
+      "gitBlob": "058dbd2cf0e547867865c0e117df0e11b5fe13ad",
+      "verifiedBlob": true,
+      "bytes": 23328,
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/RestrictedFrames.lua"
+    },
+    {
+      "target": "retail",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_EditMode/Shared/EditModeSystemTemplates.xml",
+      "gitBlob": "76b183934bb2ae6b491afcf21cfeb75477bddf46",
+      "verifiedBlob": true,
+      "bytes": 20680,
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_EditMode/Shared/EditModeSystemTemplates.xml"
+    },
+    {
+      "target": "forever",
+      "commit": "bebcb6bf309cf41b41bd74f8ca651e6a105b2676",
+      "path": "version.txt",
+      "gitBlob": "d9e480e0da12ed6c10b3a65da1121a88c1e28848",
+      "verifiedBlob": true,
+      "bytes": 13,
+      "url": "https://github.com/Gethe/wow-ui-source/blob/bebcb6bf309cf41b41bd74f8ca651e6a105b2676/version.txt"
+    },
+    {
+      "target": "forever",
+      "commit": "bebcb6bf309cf41b41bd74f8ca651e6a105b2676",
+      "path": "Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/Blizzard_RestrictedAddOnEnvironment.toc",
+      "gitBlob": "e21ab94e052007a99f9a4aeda0983014de4710ec",
+      "verifiedBlob": true,
+      "bytes": 515,
+      "url": "https://github.com/Gethe/wow-ui-source/blob/bebcb6bf309cf41b41bd74f8ca651e6a105b2676/Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/Blizzard_RestrictedAddOnEnvironment.toc"
+    },
+    {
+      "target": "forever",
+      "commit": "bebcb6bf309cf41b41bd74f8ca651e6a105b2676",
+      "path": "Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureStateDriver.lua",
+      "gitBlob": "4861b5fd4a3249c97f1a2fea45a4c13833d5117c",
+      "verifiedBlob": true,
+      "bytes": 6480,
+      "url": "https://github.com/Gethe/wow-ui-source/blob/bebcb6bf309cf41b41bd74f8ca651e6a105b2676/Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureStateDriver.lua"
+    },
+    {
+      "target": "forever",
+      "commit": "bebcb6bf309cf41b41bd74f8ca651e6a105b2676",
+      "path": "Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureHandlers.lua",
+      "gitBlob": "b32476a72027855fda546118e513fa44770a3a94",
+      "verifiedBlob": true,
+      "bytes": 22311,
+      "url": "https://github.com/Gethe/wow-ui-source/blob/bebcb6bf309cf41b41bd74f8ca651e6a105b2676/Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureHandlers.lua"
+    },
+    {
+      "target": "forever",
+      "commit": "bebcb6bf309cf41b41bd74f8ca651e6a105b2676",
+      "path": "Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureHandlerTemplates.xml",
+      "gitBlob": "1bba76f06b5c737f21c8817b4ed5e81eface2b3c",
+      "verifiedBlob": true,
+      "bytes": 3192,
+      "url": "https://github.com/Gethe/wow-ui-source/blob/bebcb6bf309cf41b41bd74f8ca651e6a105b2676/Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureHandlerTemplates.xml"
+    },
+    {
+      "target": "forever",
+      "commit": "bebcb6bf309cf41b41bd74f8ca651e6a105b2676",
+      "path": "Interface/AddOns/Blizzard_FrameXML/SecureTemplatesBase.xml",
+      "gitBlob": "c2c831bd19dde98278f79242e83b413c93530e6b",
+      "verifiedBlob": true,
+      "bytes": 1086,
+      "url": "https://github.com/Gethe/wow-ui-source/blob/bebcb6bf309cf41b41bd74f8ca651e6a105b2676/Interface/AddOns/Blizzard_FrameXML/SecureTemplatesBase.xml"
+    },
+    {
+      "target": "forever",
+      "commit": "bebcb6bf309cf41b41bd74f8ca651e6a105b2676",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/RestrictedActionsDocumentation.lua",
+      "gitBlob": "5acf5efde9c50029f03f3367201ee848075badf7",
+      "verifiedBlob": true,
+      "bytes": 3486,
+      "url": "https://github.com/Gethe/wow-ui-source/blob/bebcb6bf309cf41b41bd74f8ca651e6a105b2676/Interface/AddOns/Blizzard_APIDocumentationGenerated/RestrictedActionsDocumentation.lua"
+    },
+    {
+      "target": "forever",
+      "commit": "bebcb6bf309cf41b41bd74f8ca651e6a105b2676",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleScriptRegionAPIDocumentation.lua",
+      "gitBlob": "e244d9eba05238cd1260a10ce34a14d07f7a6ae9",
+      "verifiedBlob": true,
+      "bytes": 15047,
+      "url": "https://github.com/Gethe/wow-ui-source/blob/bebcb6bf309cf41b41bd74f8ca651e6a105b2676/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleScriptRegionAPIDocumentation.lua"
+    },
+    {
+      "target": "forever",
+      "commit": "bebcb6bf309cf41b41bd74f8ca651e6a105b2676",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleScriptRegionResizingAPIDocumentation.lua",
+      "gitBlob": "6425c8deefe565688f200fbff9d46c364a8f539b",
+      "verifiedBlob": true,
+      "bytes": 4656,
+      "url": "https://github.com/Gethe/wow-ui-source/blob/bebcb6bf309cf41b41bd74f8ca651e6a105b2676/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleScriptRegionResizingAPIDocumentation.lua"
+    },
+    {
+      "target": "forever",
+      "commit": "bebcb6bf309cf41b41bd74f8ca651e6a105b2676",
+      "path": "Interface/AddOns/Blizzard_Minimap/Blizzard_Minimap.toc",
+      "gitBlob": "1819e0f2f2642bee95e4b6d94357692d122b1627",
+      "verifiedBlob": true,
+      "bytes": 2899,
+      "url": "https://github.com/Gethe/wow-ui-source/blob/bebcb6bf309cf41b41bd74f8ca651e6a105b2676/Interface/AddOns/Blizzard_Minimap/Blizzard_Minimap.toc"
+    },
+    {
+      "target": "forever",
+      "commit": "bebcb6bf309cf41b41bd74f8ca651e6a105b2676",
+      "path": "Interface/AddOns/Blizzard_Minimap/Mainline/Minimap.lua",
+      "gitBlob": "8afa1ce256000820dc94d5d0467c8e8def4e3bce",
+      "verifiedBlob": true,
+      "bytes": 46792,
+      "url": "https://github.com/Gethe/wow-ui-source/blob/bebcb6bf309cf41b41bd74f8ca651e6a105b2676/Interface/AddOns/Blizzard_Minimap/Mainline/Minimap.lua"
+    },
+    {
+      "target": "forever",
+      "commit": "bebcb6bf309cf41b41bd74f8ca651e6a105b2676",
+      "path": "Interface/AddOns/Blizzard_Minimap/Mainline/Minimap.xml",
+      "gitBlob": "d9e7139fff4986ab11a45654c5e49014660f3500",
+      "verifiedBlob": true,
+      "bytes": 13625,
+      "url": "https://github.com/Gethe/wow-ui-source/blob/bebcb6bf309cf41b41bd74f8ca651e6a105b2676/Interface/AddOns/Blizzard_Minimap/Mainline/Minimap.xml"
+    },
+    {
+      "target": "forever",
+      "commit": "bebcb6bf309cf41b41bd74f8ca651e6a105b2676",
+      "path": "Interface/AddOns/Blizzard_ObjectiveTracker/Blizzard_ObjectiveTracker.toc",
+      "gitBlob": "c90e01ad7ff59eebd419be42bd3e32fd64d8b3b0",
+      "verifiedBlob": true,
+      "bytes": 1870,
+      "url": "https://github.com/Gethe/wow-ui-source/blob/bebcb6bf309cf41b41bd74f8ca651e6a105b2676/Interface/AddOns/Blizzard_ObjectiveTracker/Blizzard_ObjectiveTracker.toc"
+    },
+    {
+      "target": "forever",
+      "commit": "bebcb6bf309cf41b41bd74f8ca651e6a105b2676",
+      "path": "Interface/AddOns/Blizzard_ObjectiveTracker/Blizzard_ObjectiveTracker.xml",
+      "gitBlob": "2c0e92dff88a9edce3baf55b5e058db0ab095bab",
+      "verifiedBlob": true,
+      "bytes": 1021,
+      "url": "https://github.com/Gethe/wow-ui-source/blob/bebcb6bf309cf41b41bd74f8ca651e6a105b2676/Interface/AddOns/Blizzard_ObjectiveTracker/Blizzard_ObjectiveTracker.xml"
+    },
+    {
+      "target": "forever",
+      "commit": "bebcb6bf309cf41b41bd74f8ca651e6a105b2676",
+      "path": "Interface/AddOns/Blizzard_ObjectiveTracker/Blizzard_ObjectiveTrackerContainer.lua",
+      "gitBlob": "2c0b6f4d73b5d7bc6a252ec122f450f1a337013c",
+      "verifiedBlob": true,
+      "bytes": 7913,
+      "url": "https://github.com/Gethe/wow-ui-source/blob/bebcb6bf309cf41b41bd74f8ca651e6a105b2676/Interface/AddOns/Blizzard_ObjectiveTracker/Blizzard_ObjectiveTrackerContainer.lua"
+    },
+    {
+      "target": "forever",
+      "commit": "bebcb6bf309cf41b41bd74f8ca651e6a105b2676",
+      "path": "Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/RestrictedExecution.lua",
+      "gitBlob": "65cce4fc337d15389706b81fd267ac10a74fc728",
+      "verifiedBlob": true,
+      "bytes": 14216,
+      "url": "https://github.com/Gethe/wow-ui-source/blob/bebcb6bf309cf41b41bd74f8ca651e6a105b2676/Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/RestrictedExecution.lua"
+    },
+    {
+      "target": "forever",
+      "commit": "bebcb6bf309cf41b41bd74f8ca651e6a105b2676",
+      "path": "Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/RestrictedFrames.lua",
+      "gitBlob": "058dbd2cf0e547867865c0e117df0e11b5fe13ad",
+      "verifiedBlob": true,
+      "bytes": 23328,
+      "url": "https://github.com/Gethe/wow-ui-source/blob/bebcb6bf309cf41b41bd74f8ca651e6a105b2676/Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/RestrictedFrames.lua"
+    },
+    {
+      "target": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "version.txt",
+      "gitBlob": "6888c66e55b78c6b76bdda185480facc60d9b5e5",
+      "verifiedBlob": true,
+      "bytes": 12,
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/version.txt"
+    },
+    {
+      "target": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/Blizzard_RestrictedAddOnEnvironment.toc",
+      "gitBlob": "035458cedb8fe6e36bdfedd8e7e0480417421d5b",
+      "verifiedBlob": true,
+      "bytes": 407,
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/Blizzard_RestrictedAddOnEnvironment.toc"
+    },
+    {
+      "target": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureStateDriver.lua",
+      "gitBlob": "4861b5fd4a3249c97f1a2fea45a4c13833d5117c",
+      "verifiedBlob": true,
+      "bytes": 6480,
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureStateDriver.lua"
+    },
+    {
+      "target": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureHandlers.lua",
+      "gitBlob": "51d283b3f13303723ef2eed20ae416118e63fbd7",
+      "verifiedBlob": true,
+      "bytes": 22253,
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureHandlers.lua"
+    },
+    {
+      "target": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureHandlerTemplates.xml",
+      "gitBlob": "1bba76f06b5c737f21c8817b4ed5e81eface2b3c",
+      "verifiedBlob": true,
+      "bytes": 3192,
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureHandlerTemplates.xml"
+    },
+    {
+      "target": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_FrameXML/SecureTemplatesBase.xml",
+      "gitBlob": "c2c831bd19dde98278f79242e83b413c93530e6b",
+      "verifiedBlob": true,
+      "bytes": 1086,
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_FrameXML/SecureTemplatesBase.xml"
+    },
+    {
+      "target": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/RestrictedActionsDocumentation.lua",
+      "gitBlob": "3491eac72574b1e5d94f74071a013fcffaf4b3e0",
+      "verifiedBlob": true,
+      "bytes": 3350,
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_APIDocumentationGenerated/RestrictedActionsDocumentation.lua"
+    },
+    {
+      "target": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleScriptRegionAPIDocumentation.lua",
+      "gitBlob": "6853a2cd11dbf55947bc1e6e9ae06b142bd99f0e",
+      "verifiedBlob": true,
+      "bytes": 10441,
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleScriptRegionAPIDocumentation.lua"
+    },
+    {
+      "target": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleScriptRegionResizingAPIDocumentation.lua",
+      "gitBlob": "200d3340e771de440adcc6551918a1e090c5db4b",
+      "verifiedBlob": true,
+      "bytes": 3967,
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleScriptRegionResizingAPIDocumentation.lua"
+    },
+    {
+      "target": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_Minimap/Blizzard_Minimap_Classic.toc",
+      "gitBlob": "fca8dbc277d95e98abcd9f7b9b1d9500c08aa95f",
+      "verifiedBlob": true,
+      "bytes": 1071,
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_Minimap/Blizzard_Minimap_Classic.toc"
+    },
+    {
+      "target": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_Minimap/Classic/Minimap.xml",
+      "gitBlob": "f596b58e7d037848a6b861ba53566982cf448412",
+      "verifiedBlob": true,
+      "bytes": 17116,
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_Minimap/Classic/Minimap.xml"
+    }
+  ]
+}

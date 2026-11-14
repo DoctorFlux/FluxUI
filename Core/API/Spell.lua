@@ -775,59 +775,65 @@ end
 
 -- ButtonForge Classic/TBC: name+rank. Post-DF: GetOverrideSpell(id).
 -- Try override id, raw id, then SpellNameRank / formatted name.
+local function ConsiderSpellIdent(ident, seen, fn)
+	if ident == nil or ident == "" or seen[ident] then
+		return false
+	end
+	seen[ident] = true
+	return fn(ident)
+end
+
 local function SpellEachIdent(spellId, nameRank, fn)
+	-- This small set stays local to the lookup: native callbacks may re-enter.
 	local seen = {}
-	local function consider(ident)
-		if ident == nil or ident == "" or seen[ident] then
-			return false
-		end
-		seen[ident] = true
-		return fn(ident)
-	end
 	if spellId then
-		if consider(Spell.GetOverrideSpell(spellId)) then
+		if ConsiderSpellIdent(Spell.GetOverrideSpell(spellId), seen, fn) then
 			return true
 		end
-		if consider(spellId) then
+		if ConsiderSpellIdent(spellId, seen, fn) then
 			return true
 		end
 	end
-	if consider(nameRank) then
+	if ConsiderSpellIdent(nameRank, seen, fn) then
 		return true
 	end
 	if type(spellId) == "number" then
-		if consider(Spell.FormatCastAttribute(spellId)) then
+		if ConsiderSpellIdent(Spell.FormatCastAttribute(spellId), seen, fn) then
 			return true
 		end
-		if consider(Spell.GetName(spellId)) then
+		if ConsiderSpellIdent(Spell.GetName(spellId), seen, fn) then
 			return true
 		end
 	end
 	return false
 end
 
+local function IsCurrentIdent(ident)
+	if C_Spell and SpellIdentHit(C_Spell.IsCurrentSpell, ident) then
+		return true
+	end
+	return SpellIdentHit(IsCurrentSpell, ident)
+end
+
+local function IsAutoRepeatIdent(ident)
+	if C_Spell and SpellIdentHit(C_Spell.IsAutoRepeatSpell, ident) then
+		return true
+	end
+	return SpellIdentHit(IsAutoRepeatSpell, ident)
+end
+
 function Spell.IsCurrent(spellId, nameRank)
 	if not spellId and (type(nameRank) ~= "string" or nameRank == "") then
 		return false
 	end
-	return SpellEachIdent(spellId, nameRank, function(ident)
-		if C_Spell and SpellIdentHit(C_Spell.IsCurrentSpell, ident) then
-			return true
-		end
-		return SpellIdentHit(IsCurrentSpell, ident)
-	end)
+	return SpellEachIdent(spellId, nameRank, IsCurrentIdent)
 end
 
 function Spell.IsAutoRepeat(spellId, nameRank)
 	if not spellId and (type(nameRank) ~= "string" or nameRank == "") then
 		return false
 	end
-	return SpellEachIdent(spellId, nameRank, function(ident)
-		if C_Spell and SpellIdentHit(C_Spell.IsAutoRepeatSpell, ident) then
-			return true
-		end
-		return SpellIdentHit(IsAutoRepeatSpell, ident)
-	end)
+	return SpellEachIdent(spellId, nameRank, IsAutoRepeatIdent)
 end
 
 function Spell.IsIdCast(spellId)

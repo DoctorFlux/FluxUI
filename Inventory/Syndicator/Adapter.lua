@@ -44,7 +44,7 @@ local function NumericItemID(value)
 	return nil
 end
 
-local function FillFromSlots(bagID, slotArray, byBag, counts)
+local function FillFromSlots(bagID, slotArray, byBag, counts, previous, beforeKeys)
 	local dest = {}
 	byBag[bagID] = dest
 	if type(slotArray) ~= "table" then
@@ -54,7 +54,14 @@ local function FillFromSlots(bagID, slotArray, byBag, counts)
 		local id = rec and NumericItemID(rec.itemID)
 		if id then
 			local n = tonumber(rec.itemCount or rec.count) or 1
-			dest[slot] = { itemID = id, count = n, link = rec.itemLink or rec.link }
+			local link = rec.itemLink or rec.link
+			local old = previous and previous[slot]
+			if old and old.itemID == id and old.count == n and old.link == link then
+				dest[slot] = old
+			else
+				dest[slot] = { itemID = id, count = n, link = link }
+			end
+			if beforeKeys and beforeKeys[id] == nil then beforeKeys[id] = counts[id] ~= nil end
 			counts[id] = (counts[id] or 0) + n
 		end
 	end
@@ -152,13 +159,27 @@ local function Classify(change, snap, beforeKeys, itemSets)
 	change.kind, change.added, change.removed = kind, added, removed
 end
 
+local function ClassifyTouched(change, counts, beforeKeys, itemSets)
+	local added, removed
+	for id, existed in pairs(beforeKeys) do
+		local exists = counts[id] ~= nil
+		if exists and not existed then added = added or {}; added[id] = true
+		elseif existed and not exists then removed = removed or {}; removed[id] = true end
+	end
+	local kind = (added or removed) and "identityChanged" or "countOnly"
+	if itemSets and itemSets.any then
+		kind, added, removed = Inv.MergeChangeKind(change.kind, change.added, change.removed, kind, added, removed)
+	end
+	change.kind, change.added, change.removed = kind, added, removed
+end
+
 function Adapter.RebuildBags(dirtyBags)
 	local char = CurrentCharacter()
 	local cons = Constants()
 	local snap = Inv.snapshots.bags
 	local doFull = not dirtyBags or not next(dirtyBags) or not next(snap.byBag)
-	Inv.SnapshotCountKeys(snap.counts, keyBuf)
 	if doFull then
+		Inv.SnapshotCountKeys(snap.counts, keyBuf)
 		Wipe(snap.byBag)
 		local counts = {}
 		if char and cons and cons.AllBagIndexes then
@@ -184,17 +205,21 @@ function Adapter.RebuildBags(dirtyBags)
 	end
 	local bags = char and char.bags
 	local indexByBag = BagIndexMap(cons and cons.AllBagIndexes)
-	local touched, delta = {}, {}
+	local touched, delta, beforeKeys = {}, {}, {}
 	for bagID in pairs(dirtyBags) do
 		local old = snap.byBag[bagID]
+		for _, rec in pairs(old or {}) do
+			local id = rec and NumericItemID(rec.itemID)
+			if id and beforeKeys[id] == nil then beforeKeys[id] = counts[id] ~= nil end
+		end
 		SubtractBagCounts(snap.byBag, bagID, counts)
 		local i = indexByBag[bagID]
-		FillFromSlots(bagID, bags and i and bags[i], snap.byBag, counts)
+		FillFromSlots(bagID, bags and i and bags[i], snap.byBag, counts, old, beforeKeys)
 		C.DiffSlots(old, snap.byBag[bagID], touched, delta)
 	end
 	snap.generation = (snap.generation or 0) + 1
 	NoteDirty(bagsChange, dirtyBags, nil, bagsItemSets)
-	Classify(bagsChange, snap, keyBuf, bagsItemSets)
+	ClassifyTouched(bagsChange, counts, beforeKeys, bagsItemSets)
 	C.NoteItemSets(bagsItemSets, touched, C.ChangedFromDelta(delta))
 	if Inv.NoteRefreshSettling then
 		Inv.NoteRefreshSettling()
@@ -206,8 +231,8 @@ function Adapter.RebuildBank(dirtyBags)
 	local cons = Constants()
 	local snap = Inv.snapshots.bank
 	local doFull = not dirtyBags or not next(dirtyBags) or not next(snap.byBag)
-	Inv.SnapshotCountKeys(snap.counts, keyBuf)
 	if doFull then
+		Inv.SnapshotCountKeys(snap.counts, keyBuf)
 		Wipe(snap.byBag)
 		local counts = {}
 		if char and cons and cons.AllBankIndexes then
@@ -231,17 +256,21 @@ function Adapter.RebuildBank(dirtyBags)
 		snap.counts = counts
 	end
 	local indexByBag = BagIndexMap(cons and cons.AllBankIndexes)
-	local touched, delta = {}, {}
+	local touched, delta, beforeKeys = {}, {}, {}
 	for bagID in pairs(dirtyBags) do
 		local old = snap.byBag[bagID]
+		for _, rec in pairs(old or {}) do
+			local id = rec and NumericItemID(rec.itemID)
+			if id and beforeKeys[id] == nil then beforeKeys[id] = counts[id] ~= nil end
+		end
 		SubtractBagCounts(snap.byBag, bagID, counts)
 		local i = indexByBag[bagID]
-		FillFromSlots(bagID, CharacterBankSlotArray(char, cons, i), snap.byBag, counts)
+		FillFromSlots(bagID, CharacterBankSlotArray(char, cons, i), snap.byBag, counts, nil, beforeKeys)
 		C.DiffSlots(old, snap.byBag[bagID], touched, delta)
 	end
 	snap.generation = (snap.generation or 0) + 1
 	NoteDirty(bankChange, dirtyBags, nil)
-	Classify(bankChange, snap, keyBuf)
+	ClassifyTouched(bankChange, counts, beforeKeys)
 	C.NoteItemSets(bankItemSets, touched, C.ChangedFromDelta(delta))
 	if Inv.MarkBankCountsDirty then
 		Inv.MarkBankCountsDirty()
@@ -340,16 +369,21 @@ function Adapter.RebuildEquip()
 	snap.generation = (snap.generation or 0) + 1
 end
 
+-- The adapter exclusively owns these private mail/auction index maps. A known
+-- map's cardinality avoids walking it again after every unchanged provider list.
+local listSizes = setmetatable({}, { __mode = "k" })
+
 local function FillFromList(slotArray, snap)
 	if not snap then
 		return
 	end
 	local previous = snap.byIndex
-	local byIndex, counts = {}, {}
+	local byIndex, counts, size = {}, {}, 0
 	if type(slotArray) == "table" then
 		for index, rec in pairs(slotArray) do
 			local id = rec and NumericItemID(rec.itemID)
 			if id then
+				size = size + 1
 				local n = tonumber(rec.itemCount or rec.count) or 1
 				local link = rec.itemLink or rec.link
 				local old = previous and previous[index]
@@ -365,10 +399,18 @@ local function FillFromList(slotArray, snap)
 	-- Publish completed maps together; matching rows remain immutable across generations.
 	snap.byIndex, snap.counts = byIndex, counts
 	snap.generation = (snap.generation or 0) + 1
+	listSizes[snap] = { map = byIndex, generation = snap.generation, size = size }
 end
 
 local function ListMatchesSnapshot(slotArray, snap)
 	if not snap or not snap.byIndex or not snap.generation or snap.generation == 0 then return false end
+	local known = listSizes[snap]
+	if not known or known.map ~= snap.byIndex or known.generation ~= snap.generation then
+		local size = 0
+		for _ in pairs(snap.byIndex) do size = size + 1 end
+		known = { map = snap.byIndex, generation = snap.generation, size = size }
+		listSizes[snap] = known
+	end
 	local remaining = 0
 	if type(slotArray) == "table" then
 		for index, rec in pairs(slotArray) do
@@ -381,8 +423,7 @@ local function ListMatchesSnapshot(slotArray, snap)
 			end
 		end
 	end
-	for _ in pairs(snap.byIndex) do remaining = remaining - 1 end
-	return remaining == 0
+	return remaining == known.size
 end
 
 --- Returns true when the live mail snapshot actually changed.
@@ -557,6 +598,11 @@ local function Bind()
 	local cb = syn and syn.CallbackRegistry
 	if not cb or not cb.RegisterCallback then
 		return
+	end
+	local Sync, Store = Adapter.Sync, Inv.Store
+	if Sync and Store and Store.GetSyncDB then
+		local _, name = CurrentCharacter()
+		Sync.Bind(Store.GetSyncDB(), rawget(_G, "SYNDICATOR_DATA"), syn.Constants, name)
 	end
 	bound = true
 	Inv.source = "syndicator"

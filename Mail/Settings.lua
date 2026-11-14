@@ -8,6 +8,7 @@ local defaults = {
 	OpenSpeed = 0.5, ChatOutput = 1,
 	Profile = { Default = false },
 	Select = { KeepFreeSpace = 1, SpamChat = true },
+	Restock = { AutoCollect = true },
 	OpenAll = { KeepFreeSpace = 1, SpamChat = true, AHCancelled = true,
 		AHExpired = true, AHOutbid = true, AHSuccess = true, AHWon = true,
 		Postmaster = true, Attachments = true },
@@ -21,10 +22,10 @@ local defaults = {
 	QuickAttach = { EnableBag0 = true, EnableBag1 = true, EnableBag2 = true,
 		EnableBag3 = true, EnableBag4 = true, EnableBag5 = true },
 }
-local modules = { "Express", "OpenAll", "Wire", "Select", "TradeBlock", "Rake",
+local modules = { "Express", "OpenAll", "Restock", "Wire", "Select", "TradeBlock", "Rake",
 	"BlackBook", "DoNotWant", "CarbonCopy", "Forward", "QuickAttach" }
 local keepFreeChoices = { 0, 1, 2, 3, 5, 10, 15, 20, 25, 30 }
-local configurable = { Express = true, OpenAll = true, Select = true,
+local configurable = { Express = true, OpenAll = true, Restock = true, Select = true,
 	BlackBook = true, QuickAttach = true }
 local listeners = {}
 local function CopyTable(source)
@@ -231,6 +232,9 @@ local function Fill(self, level)
 		elseif value == "Select" then
 			Add(level, "Keep free space", { noCheck = true, submenu = true, value = "SelectKeepFree" })
 			Toggle(level, "Select", "SpamChat", "Verbose mode")
+		elseif value == "Restock" then
+			local l = ns.FluxOptionsLocale or {}
+			Toggle(level, "Restock", "AutoCollect", l.MAIL_RESTOCK_AUTO_HELP or "Automatically collect auction-restock items")
 		elseif value == "Express" then
 			Toggle(level, "Express", "EnableAltClick", "Enable Alt-Click to send mail")
 			Toggle(level, "Express", "AutoSend", "Auto-Send on Alt-Click")

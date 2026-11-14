@@ -1,0 +1,2298 @@
+{
+  "dateUTC": "2026-11-13T17:24:55.164235+00:00",
+  "changeID": "AUCTION-SPEED-READY-20261113",
+  "candidate": "AH-restock-speed-ready-20261113-r16",
+  "requirements": [
+    "AHR-81",
+    "AHR-82",
+    "AHR-83",
+    "AHR-84",
+    "AHR-85",
+    "AHR-86",
+    "AHR-87"
+  ],
+  "checkpoints": [
+    {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\auction-restock\\tab-crafting-followup\\followup-overflow-audit-20261113T153032Z\\checkpoint.json",
+      "sha256": "e7957d52a99f3a99b7ff224b76edcbbf610c2444bd7933c120059aba32963025",
+      "sourceFiles": 2743,
+      "settingsMetadataEntries": 95,
+      "privateSettingsCopied": false,
+      "archivesVerified": {
+        "history-before.bundle": true,
+        "source-before.zip": true
+      }
+    },
+    {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\auction-restock\\tab-crafting-followup\\restock-speed-ready-buttons-20261113T164325Z\\checkpoint.json",
+      "sha256": "d9639420ba8c9c18944d113acceb3536618e896e4c058859f3fc0ead7e7b67ba",
+      "sourceFiles": 2745,
+      "settingsMetadataEntries": 95,
+      "privateSettingsCopied": false,
+      "archivesVerified": {
+        "history-before.bundle": true,
+        "source-before.zip": true
+      }
+    }
+  ],
+  "sourceGuard": {
+    "candidateRawHashes": {
+      "Bars/_tmp_barsmoke.lua": "734dfe7231354bd73e1aa30b47f0f416e5177c3ab95f495803b88f9463992cdd",
+      "Inventory/Init.lua": "c6223eb05320ad38a40adceafc2200b57f210f35a9eee655b2ae42d35406366e",
+      "Inventory/Professions.lua": "3788996a133adcbbfa2b0a8e111ee8e126d77a5ae32a547695f5fbbd951b3526",
+      "Inventory/Restock/Auction/FluxAuctionRestock.lua": "d681b272bc0bbbfe8a7f09a6f794809183b836972004d1fca3ceb2bf53d7ce22",
+      "Inventory/Restock/Auction/FluxAuctionRestockCraft.lua": "54bc044410e3c4512cd70274b2e67a40114a6ab39648e0e01ceb12b21b0bd587",
+      "Inventory/Restock/Auction/FluxAuctionRestockData.lua": "53a2d35c6559c8d032a820c42dc0219efa9f1e450c01d7b38847d6a7e217cf0f",
+      "Inventory/Restock/Auction/FluxAuctionRestockFollowup.lua": "50a0d35727de291f1fb7e359696fae980ba28a6e36aec6a1ede6614db118501f",
+      "Inventory/Restock/Auction/FluxAuctionRestockFollowupCraft.lua": "366e1bbed993ee73b16a0362f9af01bc73d72eabefcec3cfee1e77c8facb4246",
+      "Inventory/Restock/Auction/FluxAuctionRestockFollowupUI.lua": "3481876bcab2446b6b2e3db08afff2ab02414b519ceddceb5cb1473cb9afaed3",
+      "Inventory/Restock/Auction/FluxAuctionRestockLocale.lua": "f2471aca8b25b8f0b596113ab61cd767178ef2ac03cb19adb4f4db49bd437b05",
+      "Inventory/Restock/Auction/FluxAuctionRestockPotions.lua": "09d66943e73db9645b9438384497cfc9ce5b70870ebf949c113a521ec9028954",
+      "Inventory/Restock/Auction/FluxAuctionRestockPrices.lua": "49bd240a433ea2565daa049771dfaaaa0cbe79fa1f56c1de61cf50e471bccd6f",
+      "Inventory/Restock/Auction/FluxAuctionRestockUI.lua": "37042004daf9a0c23d8f52251200b2db06b1e9ab3e70ecb5f3f97985e0c78f85",
+      "Inventory/Restock/Auction/FluxAuctionRestockVendorCatalog.lua": "6ee6aafc4925e16a2d9e097b65f2eb1e2eb7449bc4a3e83e4b6aacaeca003583",
+      "Inventory/Restock/Auction/FluxAuctionRestockVendorCatalogRetail.lua": "93a62b55a9e7a324f66a9804e1c2c836a2e5d250bbf6d4b70e8443514ad07bc3",
+      "Inventory/Restock/Bank/FluxBankRestock.lua": "d6b136fb39d76b8c5e2e6a6b13e88ec287d72b847ba8982fad686f5d8ac62837",
+      "Inventory/Restock/Bank/FluxBankRestockMoveExec.lua": "59329cae5f62bfbbee932ca06020b990b5ab03f98f503b17b70bcdd60e9ffec9",
+      "Inventory/Restock/Vendor/FluxVendorBuy.lua": "3e0b50e0f12b17714a37038501e01340582dc488ac840e2af3b9f9ba9c4343e7",
+      "Mail/Restock.lua": "e299a94c00a2dc0196e12ade1212bb5a8d468acbd841062754c12e328fd9f13c",
+      "tests/auction_restock.lua": "bde06db450e69f4806cdee8ed327bc2386fe7530dbc010987997b067fa7c69f1",
+      "tests/auction_restock_bank_flag_ui.lua": "33ce5ad6d3ca8cbc14b745148ba9ccc81b4aa98658f23a260fd644431bfb206e",
+      "tests/auction_restock_charges.lua": "511966a3cc501d29c6e0ec75f8e9be7b8511e6d5e7d8e49a133ec2c07789027e",
+      "tests/auction_restock_crafting.lua": "8ca7f5393ea589fade4600beaea3b64e49c568d45e3af41a74c4ed0e21e7e45b",
+      "tests/auction_restock_followup.lua": "d5b051aacd11b10c6af398a9b0b213d5cbd1e925fcc1864d8126f029cdb1654c",
+      "tests/auction_restock_followup_automation.lua": "1dee1a0ffc6891c5b4d81d74ff7b9cca54b8b2f3f5b8a149b3a1f2d7a1f8b076",
+      "tests/auction_restock_followup_closed_profession.lua": "31b5a3788acd739b19ff116fa5e8fd6125e8d4b83e7b6798f989b4058b1edc3c",
+      "tests/auction_restock_followup_craft.lua": "d78573e4ca26d65ef57d47b824a4c801746d47a19e646b620af5fc8bb00e9f20",
+      "tests/auction_restock_followup_integration.lua": "fafb451edcb57c86ee1e62187bdc71c407eeaa6b908a3f30b7b5ecf024b8ee74",
+      "tests/auction_restock_followup_ui.lua": "6b5bad6d1248608d151588e6dd1b62d5be16b13cb93202dc1365d38550438dd1",
+      "tests/auction_restock_generation.lua": "0ec4f58b56da9efccb5b4cf515380b0ef9f73a8a5a641951b8510851ae8911bb",
+      "tests/auction_restock_market.lua": "1afd502c49633bb68cd1ff3d19d36a1c7ee6f8691b623c2544e42e15348d8c4a",
+      "tests/auction_restock_owner_rejection.lua": "5e793e5368b01fa6b339f691121c63956eee7bbdc59da17d0d7ef88a7f52d9bc",
+      "tests/auction_restock_potions.lua": "fb018d1170e9063c4ca72148b015662d7800b732cf68382f5faa6ddd380eb71a",
+      "tests/auction_restock_price_policy.lua": "2366a5ecc463767802cf99b2668c09b7c8013f3e41ee58803a247566ebc356e9",
+      "tests/auction_restock_purchase_flow.lua": "83e3d6a3904bd3da7783f299b526c707f4d066aafa877747b64f926b733dcd35",
+      "tests/auction_restock_queue.lua": "779035bb3a8fc6e4d9855d36a420ebfbac7f51f6f509cf60fdf0314a257dbe6a",
+      "tests/auction_restock_scan_all.lua": "4127f8bc59e786d6663000cde3e8dfff94838a8348bf06f4c1247b9d4ee45c62",
+      "tests/auction_restock_scroll.lua": "cf0607ee856e6e16867ad49c31f07120be0a2b09f9164ae699459eba49b45687",
+      "tests/auction_restock_sources.lua": "219fd1791ef20d013c85da7945b41b44628904c60c71b191e68b8c8018d3fc0b",
+      "tests/auction_restock_speed.lua": "5a9f6f3616bdd8abd2ca2728e22bb69b54e2c2c7b75fe956ea469ddd57ece8c7",
+      "tests/auction_restock_vendor_prices.lua": "6c59bc373fa1214be3cb45ba4d565bf3764ce1ffc046a6c4ff64bd925749dba3",
+      "tests/auction_restock_vendor_queue.lua": "8cf66833b09f9e67e1c35afce8dd24a1846f93ebafb9d8a703bdccf9d0f497ba",
+      "tests/auction_restock_vendor_routes.lua": "b1c28d82eebb0ec67e1954f47eba03d37e99ec4fc6135eddef043a15e5554aad",
+      "tests/auction_restock_workflow.lua": "24742717bb2ca722a22c2937958d7573f9b10d30d29fff3f3fc57bbbd4ae76cd",
+      "tests/character_recipe_cache.lua": "7a7610409c2dbb9e48b50131472252266a0e341a5977ffa9819456c90f88a925",
+      "tests/flux_mail_settings.lua": "ea961511615ae1c39d614d2b9d8403dd3ba5e45db871682c27f2112ce0c0cfbd",
+      "tests/mail_restock.lua": "77709312e160b3cfb676d72cc0039e7d1329819253c22891ab5d818704a33092",
+      "tests/profession_recipe_knowledge.lua": "c846831dbf0c69a600eb6c30eb5ae015828be9407bb3371a7d3dfc5cfa02f5f2"
+    },
+    "phaseComparisons": [
+      {
+        "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\auction-restock\\tab-crafting-followup\\followup-overflow-audit-20261113T153032Z\\checkpoint.json",
+        "changed": [
+          "Bars/_tmp_barsmoke.lua",
+          "Inventory/Init.lua",
+          "Inventory/Professions.lua",
+          "Inventory/Restock/Auction/FluxAuctionRestock.lua",
+          "Inventory/Restock/Auction/FluxAuctionRestockCraft.lua",
+          "Inventory/Restock/Auction/FluxAuctionRestockData.lua",
+          "Inventory/Restock/Auction/FluxAuctionRestockFollowup.lua",
+          "Inventory/Restock/Auction/FluxAuctionRestockFollowupCraft.lua",
+          "Inventory/Restock/Auction/FluxAuctionRestockFollowupUI.lua",
+          "Inventory/Restock/Auction/FluxAuctionRestockLocale.lua",
+          "Inventory/Restock/Auction/FluxAuctionRestockPotions.lua",
+          "Inventory/Restock/Bank/FluxBankRestock.lua",
+          "Inventory/Restock/Bank/FluxBankRestockMoveExec.lua",
+          "Inventory/Restock/Vendor/FluxVendorBuy.lua",
+          "Mail/Restock.lua",
+          "NEXT_SESSION.md",
+          "docs/10-flux-window.md",
+          "docs/15-raid-frames.md",
+          "docs/30-source-coverage.md",
+          "docs/AUCTION_RESTOCK.md",
+          "docs/CHARACTER_RECIPES.md",
+          "docs/CLIENT_MATRIX.csv",
+          "docs/CLIENT_VALIDATION.md",
+          "docs/DECISIONS.md",
+          "docs/DEVELOPMENT.md",
+          "docs/FEATURE_PARITY.csv",
+          "docs/PERFORMANCE_AUDIT.csv",
+          "docs/PERFORMANCE_RESULTS.csv",
+          "docs/STATUS.md",
+          "docs/WORK_LOG.md",
+          "docs/performance-driver-inventory.md",
+          "docs/reference/declarations.md",
+          "docs/reference/interfaces.md",
+          "docs/reference/inventory.json",
+          "docs/reference/verification.json",
+          "tests/auction_restock_charges.lua",
+          "tests/auction_restock_crafting.lua",
+          "tests/auction_restock_followup_automation.lua",
+          "tests/auction_restock_followup_craft.lua",
+          "tests/auction_restock_followup_integration.lua",
+          "tests/auction_restock_followup_ui.lua",
+          "tests/auction_restock_market.lua",
+          "tests/auction_restock_potions.lua",
+          "tests/auction_restock_purchase_flow.lua",
+          "tests/auction_restock_queue.lua",
+          "tests/auction_restock_scan_all.lua",
+          "tests/auction_restock_vendor_queue.lua",
+          "tests/auction_restock_vendor_routes.lua",
+          "tests/character_recipe_cache.lua",
+          "tests/flux_mail_settings.lua",
+          "tests/mail_restock.lua"
+        ],
+        "added": [
+          "docs/validation/auction-speed-ready-2026-11-13.json",
+          "tests/auction_restock_followup_closed_profession.lua",
+          "tests/auction_restock_owner_rejection.lua",
+          "tests/auction_restock_speed.lua",
+          "tests/profession_recipe_knowledge.lua"
+        ],
+        "deleted": []
+      },
+      {
+        "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\auction-restock\\tab-crafting-followup\\restock-speed-ready-buttons-20261113T164325Z\\checkpoint.json",
+        "changed": [
+          "Inventory/Restock/Auction/FluxAuctionRestock.lua",
+          "Inventory/Restock/Auction/FluxAuctionRestockCraft.lua",
+          "Inventory/Restock/Auction/FluxAuctionRestockFollowup.lua",
+          "Inventory/Restock/Auction/FluxAuctionRestockFollowupCraft.lua",
+          "Inventory/Restock/Auction/FluxAuctionRestockFollowupUI.lua",
+          "Inventory/Restock/Auction/FluxAuctionRestockLocale.lua",
+          "Inventory/Restock/Auction/FluxAuctionRestockPotions.lua",
+          "Inventory/Restock/Bank/FluxBankRestock.lua",
+          "Inventory/Restock/Bank/FluxBankRestockMoveExec.lua",
+          "Inventory/Restock/Vendor/FluxVendorBuy.lua",
+          "Mail/Restock.lua",
+          "NEXT_SESSION.md",
+          "docs/10-flux-window.md",
+          "docs/15-raid-frames.md",
+          "docs/30-source-coverage.md",
+          "docs/AUCTION_RESTOCK.md",
+          "docs/CHARACTER_RECIPES.md",
+          "docs/CLIENT_MATRIX.csv",
+          "docs/CLIENT_VALIDATION.md",
+          "docs/DECISIONS.md",
+          "docs/DEVELOPMENT.md",
+          "docs/FEATURE_PARITY.csv",
+          "docs/PERFORMANCE_AUDIT.csv",
+          "docs/PERFORMANCE_RESULTS.csv",
+          "docs/STATUS.md",
+          "docs/WORK_LOG.md",
+          "docs/reference/interfaces.md",
+          "docs/reference/inventory.json",
+          "docs/reference/verification.json",
+          "tests/auction_restock_crafting.lua",
+          "tests/auction_restock_followup_automation.lua",
+          "tests/auction_restock_followup_closed_profession.lua",
+          "tests/auction_restock_followup_craft.lua",
+          "tests/auction_restock_followup_integration.lua",
+          "tests/auction_restock_followup_ui.lua",
+          "tests/auction_restock_market.lua",
+          "tests/auction_restock_potions.lua",
+          "tests/auction_restock_purchase_flow.lua",
+          "tests/auction_restock_scan_all.lua",
+          "tests/auction_restock_vendor_queue.lua",
+          "tests/auction_restock_vendor_routes.lua",
+          "tests/flux_mail_settings.lua",
+          "tests/mail_restock.lua"
+        ],
+        "added": [
+          "docs/validation/auction-speed-ready-2026-11-13.json",
+          "tests/auction_restock_owner_rejection.lua",
+          "tests/auction_restock_speed.lua"
+        ],
+        "deleted": []
+      }
+    ],
+    "completeNormalizedLuaManifestMatches": true
+  },
+  "installedCopies": {
+    "Retail": {
+      "path": "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI",
+      "readOnly": true,
+      "manualSync": false,
+      "matchedRuntimeFiles": 18,
+      "missingOrDifferent": [],
+      "nativeOperation": "NOT RUN"
+    },
+    "Forever": {
+      "path": "F:\\World of Warcraft\\_forever_\\Interface\\AddOns\\_FluxUI",
+      "readOnly": true,
+      "manualSync": false,
+      "matchedRuntimeFiles": 18,
+      "missingOrDifferent": [],
+      "nativeOperation": "NOT RUN"
+    },
+    "MoP": {
+      "path": "F:\\World of Warcraft\\_classic_\\Interface\\AddOns\\_FluxUI",
+      "readOnly": true,
+      "manualSync": false,
+      "matchedRuntimeFiles": 18,
+      "missingOrDifferent": [],
+      "nativeOperation": "NOT RUN"
+    },
+    "Era": {
+      "path": "F:\\World of Warcraft\\_classic_era_\\Interface\\AddOns\\_FluxUI",
+      "readOnly": true,
+      "manualSync": false,
+      "matchedRuntimeFiles": 18,
+      "missingOrDifferent": [],
+      "nativeOperation": "NOT RUN"
+    },
+    "Anniversary": {
+      "path": "F:\\World of Warcraft\\_anniversary_\\Interface\\AddOns\\_FluxUI",
+      "readOnly": true,
+      "manualSync": false,
+      "matchedRuntimeFiles": 18,
+      "missingOrDifferent": [],
+      "nativeOperation": "NOT RUN"
+    }
+  },
+  "full": {
+    "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\auction-restock\\tab-crafting-followup\\restock-speed-ready-buttons-20261113T164325Z\\full.json",
+    "sha256": "77e1f4bd5d800c5a2d8f4ce4c416e8f02936f00d00002371686994373bbe6b87",
+    "pass": 352,
+    "fail": 0,
+    "syntaxFiles": 1040,
+    "syntaxFailures": [],
+    "failures": [],
+    "runtime": "Lua 5.4.6  Copyright (C) 1994-2023 Lua.org, PUC-Rio",
+    "scope": "Desktop Lua mocks/source checks only; native secure VM, real secret values, rendering and client performance unverified."
+  },
+  "initialMailRecipeReport": {
+    "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\auction-restock\\tab-crafting-followup\\followup-overflow-audit-20261113T153032Z\\full.json",
+    "sha256": "6b0fc73616590b528839f178f2e9bf88b4e29fb80488bbcae668320539d8341f",
+    "pass": 346,
+    "fail": 4,
+    "syntaxFiles": 1038,
+    "syntaxFailures": [],
+    "failures": [
+      {
+        "path": "Bars/_tmp_barsmoke.lua",
+        "exit": 1,
+        "wallSeconds": 1.9508,
+        "output": "bars refresh: 17454 checks passed; 19 production mutations rejected\nbars contract regression: 468 production checks across five clients; 13 mutations rejected\nBlizzard script ownership: 26 checks passed; 6 native-owner mutations rejected\nCombat grid depletion transitions: 672 checks, 0 failures\nsource contract FAILED (1)\n  Forever GetProfessions first-aid slot is not live archaeology\n"
+      },
+      {
+        "path": "tests/auction_restock_crafting.lua",
+        "exit": 1,
+        "wallSeconds": 0.0268,
+        "output": "lua: tests\\auction_restock_crafting.lua:118: attempt to index a nil value (local 'ingredient')\nstack traceback:\n\ttests\\auction_restock_crafting.lua:118: in main chunk\n\t[C]: in ?\n"
+      },
+      {
+        "path": "tests/auction_restock_market.lua",
+        "exit": 1,
+        "wallSeconds": 0.1099,
+        "output": "lua: tests\\auction_restock_market.lua:105: attempt to index a nil value (field 'offer')\nstack traceback:\n\ttests\\auction_restock_market.lua:105: in main chunk\n\t[C]: in ?\n"
+      },
+      {
+        "path": "tests/auction_restock_queue.lua",
+        "exit": 1,
+        "wallSeconds": 0.0319,
+        "output": "lua: tests\\auction_restock_queue.lua:95: attempt to index a nil value (field 'offer')\nstack traceback:\n\ttests\\auction_restock_queue.lua:95: in main chunk\n\t[C]: in ?\n"
+      }
+    ]
+  },
+  "controls": [
+    {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\auction-restock\\tab-crafting-followup\\restock-speed-ready-buttons-20261113T164325Z\\closed-profession-final-replay-results.json",
+      "sha256": "7837cb37435ff79ce4672973bb61714cd812e2a1d3a924d74f76b732aedd02ac",
+      "report": {
+        "scope": "Final process-local replay of prior twelve controls; native WoW not run",
+        "controls": [
+          {
+            "exitCode": 0,
+            "output": "REJECTED need-execution-gate: tests/auction_restock_followup_closed_profession.lua:7: mail collection advances to exact bank/vendor inputs from saved recipes without a profession event",
+            "name": "need-execution-gate"
+          },
+          {
+            "exitCode": 0,
+            "output": "REJECTED native-mailbox-bypass: tests/auction_restock_followup_closed_profession.lua:7: trusted planning progresses while the mailbox is open but AH execution stays blocked",
+            "name": "native-mailbox-bypass"
+          },
+          {
+            "exitCode": 0,
+            "output": "REJECTED missing-job-settle: tests/auction_restock_followup_closed_profession.lua:7: mail collection advances to exact bank/vendor inputs from saved recipes without a profession event",
+            "name": "missing-job-settle"
+          },
+          {
+            "exitCode": 0,
+            "output": "REJECTED missing-resume-settle: tests/auction_restock_followup_closed_profession.lua:7: the existing storm owner resumes saved work with the profession closed",
+            "name": "missing-resume-settle"
+          },
+          {
+            "exitCode": 0,
+            "output": "REJECTED unknown-catalogue-negative: tests/auction_restock_followup_closed_profession.lua:7: a verified full selected snapshot survives transient empty recipe/provider replies",
+            "name": "unknown-catalogue-negative"
+          },
+          {
+            "exitCode": 0,
+            "output": "REJECTED partial-catalogue-negative: tests/auction_restock_followup_closed_profession.lua:7: partial known recipe replies retain the selected complete source plan without opening its profession",
+            "name": "partial-catalogue-negative"
+          },
+          {
+            "exitCode": 0,
+            "output": "REJECTED nil-need-cleared: tests/auction_restock_followup_closed_profession.lua:7: a transient nil shortage retains the selected recipe and vendor-source snapshot",
+            "name": "nil-need-cleared"
+          },
+          {
+            "exitCode": 0,
+            "output": "REJECTED cold-output-cleared: tests/auction_restock_followup_closed_profession.lua:7: a temporarily empty target provider retains the exact in-memory recipe and saved source counterpart",
+            "name": "cold-output-cleared"
+          },
+          {
+            "exitCode": 0,
+            "output": "REJECTED cold-source-cleared: tests/auction_restock_followup_closed_profession.lua:7: missing target rows emit no vendor goals without destroying the selected source invoice",
+            "name": "cold-source-cleared"
+          },
+          {
+            "exitCode": 0,
+            "output": "REJECTED foreign-owner-accepted: tests/auction_restock_followup_closed_profession.lua:7: another character's selected recipe cannot authorize this character's vendor inputs",
+            "name": "foreign-owner-accepted"
+          },
+          {
+            "exitCode": 0,
+            "output": "REJECTED storm-live-iteration: invalid key to 'next'",
+            "name": "storm-live-iteration"
+          },
+          {
+            "exitCode": 0,
+            "output": "REJECTED tombstone-bypassed: tests/auction_restock_followup_closed_profession.lua:7: an explicit recipe revocation cannot be bypassed by a stale positive cached catalogue",
+            "name": "tombstone-bypassed"
+          }
+        ],
+        "sources": [
+          {
+            "sha256": "C6223EB05320AD38A40ADCEAFC2200B57F210F35A9EEE655B2AE42D35406366E",
+            "path": "Inventory/Init.lua"
+          },
+          {
+            "sha256": "3788996A133ADCBBFA2B0A8E111EE8E126D77A5AE32A547695F5FBBD951B3526",
+            "path": "Inventory/Professions.lua"
+          },
+          {
+            "sha256": "53A2D35C6559C8D032A820C42DC0219EFA9F1E450C01D7B38847D6A7E217CF0F",
+            "path": "Inventory/Restock/Auction/FluxAuctionRestockData.lua"
+          },
+          {
+            "sha256": "54BC044410E3C4512CD70274B2E67A40114A6AB39648E0E01CEB12B21B0BD587",
+            "path": "Inventory/Restock/Auction/FluxAuctionRestockCraft.lua"
+          },
+          {
+            "sha256": "50A0D35727DE291F1FB7E359696FAE980BA28A6E36AEC6A1EDE6614DB118501F",
+            "path": "Inventory/Restock/Auction/FluxAuctionRestockFollowup.lua"
+          },
+          {
+            "sha256": "31B5A3788ACD739B19FF116FA5E8FD6125E8D4B83E7B6798F989B4058B1EDC3C",
+            "path": "tests/auction_restock_followup_closed_profession.lua"
+          }
+        ],
+        "timeUtc": "2026-11-13T17:19:42.7807970Z"
+      }
+    },
+    {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\auction-restock\\tab-crafting-followup\\restock-speed-ready-buttons-20261113T164325Z\\item-buttons-readiness-controls\\results.json",
+      "sha256": "b61a669ccc248026541d0566c49d8e390b66eb5d5921fd3c16c3ab2db76b1e0c",
+      "report": {
+        "scope": "Desktop actual per-item HUD model and actual F/List/Vendor/HUD integration. Native appearance, proc art, clipping, input/controller, transactions, taint and CPU/FPS NOT RUN.",
+        "sources": {
+          "Inventory\\Restock\\Auction\\FluxAuctionRestockFollowupUI.lua": "3481876bcab2446b6b2e3db08afff2ab02414b519ceddceb5cb1473cb9afaed3",
+          "tests\\auction_restock_followup_ui.lua": "6b5bad6d1248608d151588e6dd1b62d5be16b13cb93202dc1365d38550438dd1",
+          "tests\\auction_restock_followup_integration.lua": "fafb451edcb57c86ee1e62187bdc71c407eeaa6b908a3f30b7b5ecf024b8ee74"
+        },
+        "baseline": {
+          "exitCode": 0,
+          "stdout": "Auction restock per-item follow-up UI: 67489 checks PASS; 5 client profiles plus193/500/1000 overflow; native pixels/clipping/input/controller/taint NOT RUN",
+          "stderr": ""
+        },
+        "integration": {
+          "exitCode": 0,
+          "stdout": "Auction restock follow-up integration: 290 checks PASS; 10 client/provider profiles; native actions/pixels/input/taint NOT RUN",
+          "stderr": ""
+        },
+        "controls": [
+          {
+            "name": "tooltip-all-stage",
+            "sha256": "d6ca73b6fedd0ecdb267c96fa340e6374f9de9e85105c67e6de8aa66867c90ab",
+            "exitCode": 1,
+            "stdout": "",
+            "stderr": "C:/Users/mario/AppData/Local/Programs/Lua/bin/lua.exe: ...ace\\AddOns\\_FluxUI\\tests\\auction_restock_followup_ui.lua:4: each icon owns a bounded tooltip for its own quantity/name and current stage\nstack traceback:\n\t[C]: in function 'assert'\n\t...ace\\AddOns\\_FluxUI\\tests\\auction_restock_followup_ui.lua:4: in local 'check'\n\t...ace\\AddOns\\_FluxUI\\tests\\auction_restock_followup_ui.lua:219: in main chunk\n\t[C]: in ?"
+          },
+          {
+            "name": "drop-first-button-name",
+            "sha256": "15fab95ba6979dad49fa13a3b91a402da531a107f73dfc45cb7433fd154e9698",
+            "exitCode": 1,
+            "stdout": "",
+            "stderr": "C:/Users/mario/AppData/Local/Programs/Lua/bin/lua.exe: ...ace\\AddOns\\_FluxUI\\tests\\auction_restock_followup_ui.lua:4: the first real item button preserves its existing named binding/macro target\nstack traceback:\n\t[C]: in function 'assert'\n\t...ace\\AddOns\\_FluxUI\\tests\\auction_restock_followup_ui.lua:4: in local 'check'\n\t...ace\\AddOns\\_FluxUI\\tests\\auction_restock_followup_ui.lua:215: in main chunk\n\t[C]: in ?"
+          },
+          {
+            "name": "giant-action-container",
+            "sha256": "b7968615a77633224f2d7d21c08c6d249fec280bbd928a6c579fef1814e3cb44",
+            "exitCode": 1,
+            "stdout": "",
+            "stderr": "C:/Users/mario/AppData/Local/Programs/Lua/bin/lua.exe: ...ace\\AddOns\\_FluxUI\\tests\\auction_restock_followup_ui.lua:4: container and caption are inert, never one giant action button\nstack traceback:\n\t[C]: in function 'assert'\n\t...ace\\AddOns\\_FluxUI\\tests\\auction_restock_followup_ui.lua:4: in upvalue 'check'\n\t...ace\\AddOns\\_FluxUI\\tests\\auction_restock_followup_ui.lua:184: in local 'CheckItems'\n\t...ace\\AddOns\\_FluxUI\\tests\\auction_restock_followup_ui.lua:214: in main chunk\n\t[C]: in ?"
+          },
+          {
+            "name": "selected-item-only",
+            "sha256": "e81fa35a17249059a2c70a2ee2efc4040b78ecaa73398f77daccce3651fd82b8",
+            "exitCode": 1,
+            "stdout": "",
+            "stderr": "C:/Users/mario/AppData/Local/Programs/Lua/bin/lua.exe: ...ace\\AddOns\\_FluxUI\\tests\\auction_restock_followup_ui.lua:4: every item dispatches the same no-ID whole-stage intent from a fresh press\nstack traceback:\n\t[C]: in function 'assert'\n\t...ace\\AddOns\\_FluxUI\\tests\\auction_restock_followup_ui.lua:4: in upvalue 'check'\n\t...ace\\AddOns\\_FluxUI\\tests\\auction_restock_followup_ui.lua:146: in field 'Click'\n\t...Z\\item-buttons-readiness-controls\\selected-item-only.lua:169: in function <...Z\\item-buttons-readiness-controls\\selected-item-only.lua:167>\n\t(...tail calls...)\n\t...ace\\AddOns\\_FluxUI\\tests\\auction_restock_followup_ui.lua:166: in field 'press'\n\t...ace\\AddOns\\_FluxUI\\tests\\auction_restock_followup_ui.lua:221: in main chunk\n\t[C]: in ?"
+          },
+          {
+            "name": "offscreen-callback",
+            "sha256": "a1966f23800677448a422d5a865f4406a9509f1dd6ba9bd3411a98b06f706764",
+            "exitCode": 1,
+            "stdout": "",
+            "stderr": "C:/Users/mario/AppData/Local/Programs/Lua/bin/lua.exe: ...ace\\AddOns\\_FluxUI\\tests\\auction_restock_followup_ui.lua:4: fully offscreen item callbacks cannot dispatch or show stale tooltip\nstack traceback:\n\t[C]: in function 'assert'\n\t...ace\\AddOns\\_FluxUI\\tests\\auction_restock_followup_ui.lua:4: in local 'check'\n\t...ace\\AddOns\\_FluxUI\\tests\\auction_restock_followup_ui.lua:283: in main chunk\n\t[C]: in ?"
+          },
+          {
+            "name": "offscreen-enabled",
+            "sha256": "7c0b264525cef24ed1c57ea929f53f6143168cbc723f603a32e48318c17d0b57",
+            "exitCode": 1,
+            "stdout": "",
+            "stderr": "C:/Users/mario/AppData/Local/Programs/Lua/bin/lua.exe: ...ace\\AddOns\\_FluxUI\\tests\\auction_restock_followup_ui.lua:4: only a usable visible ordinary item button owns a proc effect\nstack traceback:\n\t[C]: in function 'assert'\n\t...ace\\AddOns\\_FluxUI\\tests\\auction_restock_followup_ui.lua:4: in upvalue 'check'\n\t...ace\\AddOns\\_FluxUI\\tests\\auction_restock_followup_ui.lua:88: in upvalue 'Start'\n\t...ace\\AddOns\\_FluxUI\\tests\\auction_restock_followup_ui.lua:100: in field 'ProcGlow_Start'\n\t...5Z\\item-buttons-readiness-controls\\offscreen-enabled.lua:68: in upvalue 'Glow'\n\t...5Z\\item-buttons-readiness-controls\\offscreen-enabled.lua:268: in upvalue 'UpdateButtons'\n\t...5Z\\item-buttons-readiness-controls\\offscreen-enabled.lua:285: in field 'Paint'\n\t...ace\\AddOns\\_FluxUI\\tests\\auction_restock_followup_ui.lua:143: in field 'Refresh'\n\t...ace\\AddOns\\_FluxUI\\tests\\auction_restock_followup_ui.lua:236: in main chunk\n\t[C]: in ?"
+          },
+          {
+            "name": "stale-item-tooltip",
+            "sha256": "6abf885e97ac18b30e95bb9029868793ca358852facbfe5963b48fb4472bd6dd",
+            "exitCode": 1,
+            "stdout": "",
+            "stderr": "C:/Users/mario/AppData/Local/Programs/Lua/bin/lua.exe: ...ace\\AddOns\\_FluxUI\\tests\\auction_restock_followup_ui.lua:83: attempt to concatenate a nil value (local 'id')\nstack traceback:\n\t...ace\\AddOns\\_FluxUI\\tests\\auction_restock_followup_ui.lua:83: in field 'GetName'\n\t...Z\\item-buttons-readiness-controls\\stale-item-tooltip.lua:20: in upvalue 'ItemName'\n\t...Z\\item-buttons-readiness-controls\\stale-item-tooltip.lua:88: in function <...Z\\item-buttons-readiness-controls\\stale-item-tooltip.lua:84>\n\t(...tail calls...)\n\t...ace\\AddOns\\_FluxUI\\tests\\auction_restock_followup_ui.lua:242: in main chunk\n\t[C]: in ?"
+          },
+          {
+            "name": "micro-targets",
+            "sha256": "1feb4663a1c72caf6ecace426f03d6eef5420da7c20be031b2cc2e535e14aa58",
+            "exitCode": 1,
+            "stdout": "",
+            "stderr": "C:/Users/mario/AppData/Local/Programs/Lua/bin/lua.exe: ...ace\\AddOns\\_FluxUI\\tests\\auction_restock_followup_ui.lua:4: each item has a normal readable square click rectangle\nstack traceback:\n\t[C]: in function 'assert'\n\t...ace\\AddOns\\_FluxUI\\tests\\auction_restock_followup_ui.lua:4: in upvalue 'check'\n\t...ace\\AddOns\\_FluxUI\\tests\\auction_restock_followup_ui.lua:192: in local 'CheckItems'\n\t...ace\\AddOns\\_FluxUI\\tests\\auction_restock_followup_ui.lua:236: in main chunk\n\t[C]: in ?"
+          },
+          {
+            "name": "unbounded-height",
+            "sha256": "f305ebdbdc359fc2fef504b398cb921868edc053d3026b79f592415053614705",
+            "exitCode": 1,
+            "stdout": "",
+            "stderr": "C:/Users/mario/AppData/Local/Programs/Lua/bin/lua.exe: ...ace\\AddOns\\_FluxUI\\tests\\auction_restock_followup_ui.lua:4: large list host stays within800x600 UIParent margins without unreadable icons\nstack traceback:\n\t[C]: in function 'assert'\n\t...ace\\AddOns\\_FluxUI\\tests\\auction_restock_followup_ui.lua:4: in local 'check'\n\t...ace\\AddOns\\_FluxUI\\tests\\auction_restock_followup_ui.lua:273: in main chunk\n\t[C]: in ?"
+          },
+          {
+            "name": "caption-over-items",
+            "sha256": "db901b3b3388c380b1f83e0d389f358f9ce920c909a71bb42455899d2c9f6e12",
+            "exitCode": 1,
+            "stdout": "",
+            "stderr": "C:/Users/mario/AppData/Local/Programs/Lua/bin/lua.exe: ...ace\\AddOns\\_FluxUI\\tests\\auction_restock_followup_ui.lua:4: caption stays outside scrolling and inside bounded host\nstack traceback:\n\t[C]: in function 'assert'\n\t...ace\\AddOns\\_FluxUI\\tests\\auction_restock_followup_ui.lua:4: in upvalue 'check'\n\t...ace\\AddOns\\_FluxUI\\tests\\auction_restock_followup_ui.lua:187: in local 'CheckItems'\n\t...ace\\AddOns\\_FluxUI\\tests\\auction_restock_followup_ui.lua:214: in main chunk\n\t[C]: in ?"
+          },
+          {
+            "name": "truncate-sixty",
+            "sha256": "e097bfb5f8b2a41d0205b3b698d623c6c84579493805eed2d6fbec81dad4f988",
+            "exitCode": 1,
+            "stdout": "",
+            "stderr": "C:/Users/mario/AppData/Local/Programs/Lua/bin/lua.exe: ...ace\\AddOns\\_FluxUI\\tests\\auction_restock_followup_ui.lua:4: all current items retain pooled independent button handles\nstack traceback:\n\t[C]: in function 'assert'\n\t...ace\\AddOns\\_FluxUI\\tests\\auction_restock_followup_ui.lua:4: in upvalue 'check'\n\t...ace\\AddOns\\_FluxUI\\tests\\auction_restock_followup_ui.lua:185: in local 'CheckItems'\n\t...ace\\AddOns\\_FluxUI\\tests\\auction_restock_followup_ui.lua:271: in main chunk\n\t[C]: in ?"
+          },
+          {
+            "name": "retired-item-still-shown",
+            "sha256": "23a34ee49739b8d5bcbcdefae1b87273e2a5e0d98674b2689d17c532c92ff648",
+            "exitCode": 1,
+            "stdout": "",
+            "stderr": "C:/Users/mario/AppData/Local/Programs/Lua/bin/lua.exe: ...ace\\AddOns\\_FluxUI\\tests\\auction_restock_followup_ui.lua:4: retired pooled button clears identity/count and hides\nstack traceback:\n\t[C]: in function 'assert'\n\t...ace\\AddOns\\_FluxUI\\tests\\auction_restock_followup_ui.lua:4: in local 'check'\n\t...ace\\AddOns\\_FluxUI\\tests\\auction_restock_followup_ui.lua:241: in main chunk\n\t[C]: in ?"
+          },
+          {
+            "name": "retain-stale-scroll-offset",
+            "sha256": "70e9b42aa3129b7256e4fa324d89a39b508b758f0e111c1359cfca56721ea717",
+            "exitCode": 1,
+            "stdout": "",
+            "stderr": "C:/Users/mario/AppData/Local/Programs/Lua/bin/lua.exe: ...ace\\AddOns\\_FluxUI\\tests\\auction_restock_followup_ui.lua:4: shrinking reuses/clears overflow controls and restores original single-item geometry\nstack traceback:\n\t[C]: in function 'assert'\n\t...ace\\AddOns\\_FluxUI\\tests\\auction_restock_followup_ui.lua:4: in local 'check'\n\t...ace\\AddOns\\_FluxUI\\tests\\auction_restock_followup_ui.lua:301: in main chunk\n\t[C]: in ?"
+          },
+          {
+            "name": "replace-native-scroll-handler",
+            "sha256": "3e72b0217115e244f6ffa211c2e51493f95488f5620ae2f2288e38ba40004ee1",
+            "exitCode": 1,
+            "stdout": "",
+            "stderr": "C:/Users/mario/AppData/Local/Programs/Lua/bin/lua.exe: ...ace\\AddOns\\_FluxUI\\tests\\auction_restock_followup_ui.lua:4: wheel clamps to final row and retires tooltip leaving its viewport\nstack traceback:\n\t[C]: in function 'assert'\n\t...ace\\AddOns\\_FluxUI\\tests\\auction_restock_followup_ui.lua:4: in local 'check'\n\t...ace\\AddOns\\_FluxUI\\tests\\auction_restock_followup_ui.lua:286: in main chunk\n\t[C]: in ?"
+          },
+          {
+            "name": "ignore-display-bounds",
+            "sha256": "d2416d6c22f5859d11097fb7eaa07599b06014eaa65bd9f913050f17247e55c7",
+            "exitCode": 1,
+            "stdout": "",
+            "stderr": "C:/Users/mario/AppData/Local/Programs/Lua/bin/lua.exe: ...ace\\AddOns\\_FluxUI\\tests\\auction_restock_followup_ui.lua:4: display resize recomputes bounded viewport and leaves caption outside it\nstack traceback:\n\t[C]: in function 'assert'\n\t...ace\\AddOns\\_FluxUI\\tests\\auction_restock_followup_ui.lua:4: in local 'check'\n\t...ace\\AddOns\\_FluxUI\\tests\\auction_restock_followup_ui.lua:304: in main chunk\n\t[C]: in ?"
+          },
+          {
+            "name": "panel-pressed-art",
+            "sha256": "65fce9cbbf73fad0cc6f44e023b5c7e4770a7b936b44b33a0211145a3d6c0cb8",
+            "exitCode": 1,
+            "stdout": "",
+            "stderr": "C:/Users/mario/AppData/Local/Programs/Lua/bin/lua.exe: ...ace\\AddOns\\_FluxUI\\tests\\auction_restock_followup_ui.lua:4: normal, pressed and hover artwork belong only to each square item button\nstack traceback:\n\t[C]: in function 'assert'\n\t...ace\\AddOns\\_FluxUI\\tests\\auction_restock_followup_ui.lua:4: in upvalue 'check'\n\t...ace\\AddOns\\_FluxUI\\tests\\auction_restock_followup_ui.lua:193: in local 'CheckItems'\n\t...ace\\AddOns\\_FluxUI\\tests\\auction_restock_followup_ui.lua:214: in main chunk\n\t[C]: in ?"
+          },
+          {
+            "name": "three-pixel-gaps",
+            "sha256": "f59025782685b9910a9d0d1a664142fe7fb47321f4de0c0a4c9e65ed4c3a7ecb",
+            "exitCode": 1,
+            "stdout": "",
+            "stderr": "C:/Users/mario/AppData/Local/Programs/Lua/bin/lua.exe: ...ace\\AddOns\\_FluxUI\\tests\\auction_restock_followup_ui.lua:4: neighboring item button rectangles have exactly one pixel of horizontal or vertical gap\nstack traceback:\n\t[C]: in function 'assert'\n\t...ace\\AddOns\\_FluxUI\\tests\\auction_restock_followup_ui.lua:4: in upvalue 'check'\n\t...ace\\AddOns\\_FluxUI\\tests\\auction_restock_followup_ui.lua:204: in local 'CheckItems'\n\t...ace\\AddOns\\_FluxUI\\tests\\auction_restock_followup_ui.lua:214: in main chunk\n\t[C]: in ?"
+          },
+          {
+            "name": "ignore-published-readiness",
+            "sha256": "58b2c11699915023d5ef7de2598b59a284afb67bae09b761081f318318db95e6",
+            "exitCode": 1,
+            "stdout": "",
+            "stderr": "C:/Users/mario/AppData/Local/Programs/Lua/bin/lua.exe: ...ace\\AddOns\\_FluxUI\\tests\\auction_restock_followup_ui.lua:4: busy or accepted stages disable input and stop art despite an open context\nstack traceback:\n\t[C]: in function 'assert'\n\t...ace\\AddOns\\_FluxUI\\tests\\auction_restock_followup_ui.lua:4: in local 'check'\n\t...ace\\AddOns\\_FluxUI\\tests\\auction_restock_followup_ui.lua:227: in main chunk\n\t[C]: in ?"
+          },
+          {
+            "name": "ignore-readiness-on-click",
+            "sha256": "2b4efbfbc0a730adb5666d987031f82020c25bf27aa75e9eb4bf79c2871d227b",
+            "exitCode": 1,
+            "stdout": "",
+            "stderr": "C:/Users/mario/AppData/Local/Programs/Lua/bin/lua.exe: ...ace\\AddOns\\_FluxUI\\tests\\auction_restock_followup_ui.lua:4: a stale callback cannot act when the published stage is busy or accepted\nstack traceback:\n\t[C]: in function 'assert'\n\t...ace\\AddOns\\_FluxUI\\tests\\auction_restock_followup_ui.lua:4: in local 'check'\n\t...ace\\AddOns\\_FluxUI\\tests\\auction_restock_followup_ui.lua:229: in main chunk\n\t[C]: in ?"
+          },
+          {
+            "name": "offscreen-proc-effects",
+            "sha256": "123d743f716b2b0ee790152a292890c6c8162ca3ab8b3b0daa969aeab9177438",
+            "exitCode": 1,
+            "stdout": "",
+            "stderr": "C:/Users/mario/AppData/Local/Programs/Lua/bin/lua.exe: ...ace\\AddOns\\_FluxUI\\tests\\auction_restock_followup_ui.lua:4: only a usable visible ordinary item button owns a proc effect\nstack traceback:\n\t[C]: in function 'assert'\n\t...ace\\AddOns\\_FluxUI\\tests\\auction_restock_followup_ui.lua:4: in upvalue 'check'\n\t...ace\\AddOns\\_FluxUI\\tests\\auction_restock_followup_ui.lua:88: in upvalue 'Start'\n\t...ace\\AddOns\\_FluxUI\\tests\\auction_restock_followup_ui.lua:100: in field 'ProcGlow_Start'\n\t...em-buttons-readiness-controls\\offscreen-proc-effects.lua:68: in upvalue 'Glow'\n\t...em-buttons-readiness-controls\\offscreen-proc-effects.lua:268: in upvalue 'UpdateButtons'\n\t...em-buttons-readiness-controls\\offscreen-proc-effects.lua:285: in field 'Paint'\n\t...ace\\AddOns\\_FluxUI\\tests\\auction_restock_followup_ui.lua:143: in field 'Refresh'\n\t...ace\\AddOns\\_FluxUI\\tests\\auction_restock_followup_ui.lua:236: in main chunk\n\t[C]: in ?"
+          },
+          {
+            "name": "container-proc-effect",
+            "sha256": "3ec6d0536f81e57ec7f7905d90e39d1750a22e004aa77c86b63bf5c4c0002b2a",
+            "exitCode": 1,
+            "stdout": "",
+            "stderr": "C:/Users/mario/AppData/Local/Programs/Lua/bin/lua.exe: ...ace\\AddOns\\_FluxUI\\tests\\auction_restock_followup_ui.lua:4: only a usable visible ordinary item button owns a proc effect\nstack traceback:\n\t[C]: in function 'assert'\n\t...ace\\AddOns\\_FluxUI\\tests\\auction_restock_followup_ui.lua:4: in upvalue 'check'\n\t...ace\\AddOns\\_FluxUI\\tests\\auction_restock_followup_ui.lua:88: in upvalue 'Start'\n\t...ace\\AddOns\\_FluxUI\\tests\\auction_restock_followup_ui.lua:100: in field 'ProcGlow_Start'\n\t...tem-buttons-readiness-controls\\container-proc-effect.lua:68: in upvalue 'Glow'\n\t...tem-buttons-readiness-controls\\container-proc-effect.lua:268: in upvalue 'UpdateButtons'\n\t...tem-buttons-readiness-controls\\container-proc-effect.lua:285: in field 'Paint'\n\t...ace\\AddOns\\_FluxUI\\tests\\auction_restock_followup_ui.lua:143: in field 'Refresh'\n\t...tem-buttons-readiness-controls\\container-proc-effect.lua:301: in field '?'\n\t...ace\\AddOns\\_FluxUI\\tests\\auction_restock_followup_ui.lua:162: in field 'emit'\n\t...ace\\AddOns\\_FluxUI\\tests\\auction_restock_followup_ui.lua:214: in main chunk\n\t[C]: in ?"
+          },
+          {
+            "name": "omit-proc-cleanup",
+            "sha256": "e73c76b016594462f04bafe20fbe2f6090f437c3255440d00f344604eee098fd",
+            "exitCode": 1,
+            "stdout": "",
+            "stderr": "C:/Users/mario/AppData/Local/Programs/Lua/bin/lua.exe: ...ace\\AddOns\\_FluxUI\\tests\\auction_restock_followup_ui.lua:4: busy or accepted stages disable input and stop art despite an open context\nstack traceback:\n\t[C]: in function 'assert'\n\t...ace\\AddOns\\_FluxUI\\tests\\auction_restock_followup_ui.lua:4: in local 'check'\n\t...ace\\AddOns\\_FluxUI\\tests\\auction_restock_followup_ui.lua:227: in main chunk\n\t[C]: in ?"
+          },
+          {
+            "name": "stale-proc-size",
+            "sha256": "74dc178edf0ffe7ed74c86d37e4b8206039544bfa85f4fbadd45cc05c8f96e1f",
+            "exitCode": 1,
+            "stdout": "",
+            "stderr": "C:/Users/mario/AppData/Local/Programs/Lua/bin/lua.exe: ...ace\\AddOns\\_FluxUI\\tests\\auction_restock_followup_ui.lua:4: active private proc geometry follows adaptive item size\nstack traceback:\n\t[C]: in function 'assert'\n\t...ace\\AddOns\\_FluxUI\\tests\\auction_restock_followup_ui.lua:4: in upvalue 'check'\n\t...ace\\AddOns\\_FluxUI\\tests\\auction_restock_followup_ui.lua:200: in local 'CheckItems'\n\t...ace\\AddOns\\_FluxUI\\tests\\auction_restock_followup_ui.lua:236: in main chunk\n\t[C]: in ?"
+          },
+          {
+            "name": "ignore-atlas-capability",
+            "sha256": "158ce90a3bd15c101c12b44b8fb27d14bd16867b80fc522694fc7def57e48bf3",
+            "exitCode": 1,
+            "stdout": "",
+            "stderr": "C:/Users/mario/AppData/Local/Programs/Lua/bin/lua.exe: ...ace\\AddOns\\_FluxUI\\tests\\auction_restock_followup_ui.lua:4: missing modern artwork falls back only on the private usable item\nstack traceback:\n\t[C]: in function 'assert'\n\t...ace\\AddOns\\_FluxUI\\tests\\auction_restock_followup_ui.lua:4: in local 'check'\n\t...ace\\AddOns\\_FluxUI\\tests\\auction_restock_followup_ui.lua:342: in main chunk\n\t[C]: in ?"
+          },
+          {
+            "name": "retain-classic-fading-overlay",
+            "sha256": "88ea043739681a30bb23504e0c194fda2973ea755595641ffebb89fc557b93c1",
+            "exitCode": 1,
+            "stdout": "",
+            "stderr": "C:/Users/mario/AppData/Local/Programs/Lua/bin/lua.exe: ...ace\\AddOns\\_FluxUI\\tests\\auction_restock_followup_ui.lua:4: classic resize replaces its retained fading geometry immediately\nstack traceback:\n\t[C]: in function 'assert'\n\t...ace\\AddOns\\_FluxUI\\tests\\auction_restock_followup_ui.lua:4: in local 'check'\n\t...ace\\AddOns\\_FluxUI\\tests\\auction_restock_followup_ui.lua:344: in main chunk\n\t[C]: in ?"
+          },
+          {
+            "name": "query-action-owner-from-paint",
+            "sha256": "7802e63b7e5b53c3362ad43ef26fef5c051fd9adcec03650e88d1de92b9d7ecf",
+            "exitCode": 1,
+            "stdout": "",
+            "stderr": "C:/Users/mario/AppData/Local/Programs/Lua/bin/lua.exe: ...ace\\AddOns\\_FluxUI\\tests\\auction_restock_followup_ui.lua:135: paint must consume published canAct without querying action owners again\nstack traceback:\n\t[C]: in function 'error'\n\t...ace\\AddOns\\_FluxUI\\tests\\auction_restock_followup_ui.lua:135: in field 'CanAct'\n\t...ons-readiness-controls\\query-action-owner-from-paint.lua:261: in upvalue 'UpdateButtons'\n\t...ons-readiness-controls\\query-action-owner-from-paint.lua:285: in field 'Paint'\n\t...ace\\AddOns\\_FluxUI\\tests\\auction_restock_followup_ui.lua:143: in field 'Refresh'\n\t...ons-readiness-controls\\query-action-owner-from-paint.lua:301: in field '?'\n\t...ace\\AddOns\\_FluxUI\\tests\\auction_restock_followup_ui.lua:162: in field 'emit'\n\t...ace\\AddOns\\_FluxUI\\tests\\auction_restock_followup_ui.lua:214: in main chunk\n\t[C]: in ?"
+          },
+          {
+            "name": "recolor-native-proc",
+            "sha256": "a211630b8ee7878a0b0ecd2a0a8b6106a74c8363d4a559e475dba5351c0e2b10",
+            "exitCode": 1,
+            "stdout": "",
+            "stderr": "C:/Users/mario/AppData/Local/Programs/Lua/bin/lua.exe: ...ace\\AddOns\\_FluxUI\\tests\\auction_restock_followup_ui.lua:4: proc uses its own key, native art colors and no repeated birth animation\nstack traceback:\n\t[C]: in function 'assert'\n\t...ace\\AddOns\\_FluxUI\\tests\\auction_restock_followup_ui.lua:4: in upvalue 'check'\n\t...ace\\AddOns\\_FluxUI\\tests\\auction_restock_followup_ui.lua:98: in field 'ProcGlow_Start'\n\t...\\item-buttons-readiness-controls\\recolor-native-proc.lua:68: in upvalue 'Glow'\n\t...\\item-buttons-readiness-controls\\recolor-native-proc.lua:268: in upvalue 'UpdateButtons'\n\t...\\item-buttons-readiness-controls\\recolor-native-proc.lua:285: in field 'Paint'\n\t...ace\\AddOns\\_FluxUI\\tests\\auction_restock_followup_ui.lua:143: in field 'Refresh'\n\t...\\item-buttons-readiness-controls\\recolor-native-proc.lua:301: in field '?'\n\t...ace\\AddOns\\_FluxUI\\tests\\auction_restock_followup_ui.lua:162: in field 'emit'\n\t...ace\\AddOns\\_FluxUI\\tests\\auction_restock_followup_ui.lua:214: in main chunk\n\t[C]: in ?"
+          },
+          {
+            "name": "shared-proc-key",
+            "sha256": "0718b1675f36fa5474dfab93e13aaac089cfbc13c881057f8b7fc51c2532ab27",
+            "exitCode": 1,
+            "stdout": "",
+            "stderr": "C:/Users/mario/AppData/Local/Programs/Lua/bin/lua.exe: ...ace\\AddOns\\_FluxUI\\tests\\auction_restock_followup_ui.lua:4: proc uses its own key, native art colors and no repeated birth animation\nstack traceback:\n\t[C]: in function 'assert'\n\t...ace\\AddOns\\_FluxUI\\tests\\auction_restock_followup_ui.lua:4: in upvalue 'check'\n\t...ace\\AddOns\\_FluxUI\\tests\\auction_restock_followup_ui.lua:98: in field 'ProcGlow_Start'\n\t...325Z\\item-buttons-readiness-controls\\shared-proc-key.lua:68: in upvalue 'Glow'\n\t...325Z\\item-buttons-readiness-controls\\shared-proc-key.lua:268: in upvalue 'UpdateButtons'\n\t...325Z\\item-buttons-readiness-controls\\shared-proc-key.lua:285: in field 'Paint'\n\t...ace\\AddOns\\_FluxUI\\tests\\auction_restock_followup_ui.lua:143: in field 'Refresh'\n\t...325Z\\item-buttons-readiness-controls\\shared-proc-key.lua:301: in field '?'\n\t...ace\\AddOns\\_FluxUI\\tests\\auction_restock_followup_ui.lua:162: in field 'emit'\n\t...ace\\AddOns\\_FluxUI\\tests\\auction_restock_followup_ui.lua:214: in main chunk\n\t[C]: in ?"
+          },
+          {
+            "name": "restart-proc-birth",
+            "sha256": "a4a230810e6d71aea070cbdcafcb0f3db43de64124e5545ac6417f5db5ccae8c",
+            "exitCode": 1,
+            "stdout": "",
+            "stderr": "C:/Users/mario/AppData/Local/Programs/Lua/bin/lua.exe: ...ace\\AddOns\\_FluxUI\\tests\\auction_restock_followup_ui.lua:4: proc uses its own key, native art colors and no repeated birth animation\nstack traceback:\n\t[C]: in function 'assert'\n\t...ace\\AddOns\\_FluxUI\\tests\\auction_restock_followup_ui.lua:4: in upvalue 'check'\n\t...ace\\AddOns\\_FluxUI\\tests\\auction_restock_followup_ui.lua:98: in field 'ProcGlow_Start'\n\t...Z\\item-buttons-readiness-controls\\restart-proc-birth.lua:68: in upvalue 'Glow'\n\t...Z\\item-buttons-readiness-controls\\restart-proc-birth.lua:268: in upvalue 'UpdateButtons'\n\t...Z\\item-buttons-readiness-controls\\restart-proc-birth.lua:285: in field 'Paint'\n\t...ace\\AddOns\\_FluxUI\\tests\\auction_restock_followup_ui.lua:143: in field 'Refresh'\n\t...Z\\item-buttons-readiness-controls\\restart-proc-birth.lua:301: in field '?'\n\t...ace\\AddOns\\_FluxUI\\tests\\auction_restock_followup_ui.lua:162: in field 'emit'\n\t...ace\\AddOns\\_FluxUI\\tests\\auction_restock_followup_ui.lua:214: in main chunk\n\t[C]: in ?"
+          }
+        ],
+        "readOnlyReferences": {
+          "Core/Capabilities.lua": "825f9fa2773eda0dcdd8c3bda82b3d78b5cfe52d425bf98edd08a3ef9834f08a",
+          "Libs/LibCustomGlow-1.0/LibCustomGlow-1.0.lua": "e5ed4d1f3b5ab4bda75772cda846562cde0b929c8a3f302e91e4c5c47db91bb6",
+          "Libs/LibButtonGlow-1.0/LibButtonGlow-1.0.lua": "69c32ec22d61324fb35305b06f8bf2ba270ce3b3008d9b18b28d85960edf8038"
+        }
+      }
+    },
+    {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\auction-restock\\tab-crafting-followup\\restock-speed-ready-buttons-20261113T164325Z\\ready-owner-control-results.json",
+      "sha256": "3d37f31336cd34a2b7fc3eeedaf04f106da663104327169ad49716978cb6e6c5",
+      "report": {
+        "scope": "Process-local actual-source controls; no native WoW action or permission claim",
+        "controls": [
+          {
+            "exitCode": 0,
+            "output": "REJECTED mailbox-panel-restored: tests/mail_restock.lua:4: retail/builtin/false mailbox creates no duplicate restock button or auto checkbox",
+            "name": "mailbox-panel-restored"
+          },
+          {
+            "exitCode": 0,
+            "output": "REJECTED mail-auto-disabled: tests/mail_restock.lua:4: retail/builtin/false inbox visit automatically starts only acknowledged attachment",
+            "name": "mail-auto-disabled"
+          },
+          {
+            "exitCode": 0,
+            "output": "REJECTED mail-ready-not-published: tests/mail_restock.lua:4: retail/builtin/false global mail automation immediately publishes busy readiness without another inventory event",
+            "name": "mail-ready-not-published"
+          },
+          {
+            "exitCode": 0,
+            "output": "REJECTED accepted-ready: tests/auction_restock_followup_automation.lua:5: an accepted owner batch cannot advertise another usable pending action",
+            "name": "accepted-ready"
+          },
+          {
+            "exitCode": 0,
+            "output": "REJECTED closed-context-ready: tests/auction_restock_followup_automation.lua:5: cached bank context cannot advertise a usable pending action even with its owner loaded",
+            "name": "closed-context-ready"
+          },
+          {
+            "exitCode": 0,
+            "output": "REJECTED frozen-output-badge: tests/auction_restock_followup_closed_profession.lua:7: actual bag-storm settlement decrements the pending output badge without rewriting the submitted batch",
+            "name": "frozen-output-badge"
+          },
+          {
+            "exitCode": 0,
+            "output": "REJECTED busy-craft-ready: tests/auction_restock_followup_craft.lua:4: an active cast never advertises another craft click",
+            "name": "busy-craft-ready"
+          },
+          {
+            "exitCode": 0,
+            "output": "REJECTED vendor-busy-ignored: tests/auction_restock_followup_automation.lua:5: actual vendor native dispatch never advertises an idle follow-up owner",
+            "name": "vendor-busy-ignored"
+          },
+          {
+            "exitCode": 0,
+            "output": "REJECTED bank-busy-ignored: tests/auction_restock_followup_automation.lua:5: running shared bank mover does not advertise another follow-up click",
+            "name": "bank-busy-ignored"
+          },
+          {
+            "exitCode": 0,
+            "output": "REJECTED mail-refusal-accepted: tests/auction_restock_followup_automation.lua:5: freeing bag space retries a rejected mail attempt without reopening or another player click",
+            "name": "mail-refusal-accepted"
+          },
+          {
+            "exitCode": 0,
+            "output": "REJECTED mail-cancel-latched: tests/auction_restock_followup_automation.lua:5: freeing bag space retries a rejected mail attempt without reopening or another player click",
+            "name": "mail-cancel-latched"
+          },
+          {
+            "exitCode": 0,
+            "output": "REJECTED bank-refusal-accepted: tests/auction_restock_owner_rejection.lua:6: synchronous zero-command bank refusal cannot be overwritten by accepted submission",
+            "name": "bank-refusal-accepted"
+          },
+          {
+            "exitCode": 0,
+            "output": "REJECTED bank-deferred-refusal-latched: tests/auction_restock_owner_rejection.lua:6: early deferred bank refusal before session creation releases only its accepted request",
+            "name": "bank-deferred-refusal-latched"
+          },
+          {
+            "exitCode": 0,
+            "output": "REJECTED vendor-refusal-accepted: tests/auction_restock_owner_rejection.lua:6: a fresh manual vendor click retries a zero-command price refusal after the price returns",
+            "name": "vendor-refusal-accepted"
+          },
+          {
+            "exitCode": 0,
+            "output": "REJECTED bank-terminal-refusal-latched: tests/auction_restock_owner_rejection.lua:6: zero-command terminal bank failure permits a fresh player retry",
+            "name": "bank-terminal-refusal-latched"
+          },
+          {
+            "exitCode": 0,
+            "output": "REJECTED bank-issued-terminal-retired: tests/auction_restock_owner_rejection.lua:6: a terminal bank session with an issued possibly-unacknowledged transfer remains guarded",
+            "name": "bank-issued-terminal-retired"
+          },
+          {
+            "exitCode": 0,
+            "output": "REJECTED vendor-issued-forgotten: tests/auction_restock_owner_rejection.lua:6: an issued vendor purchase retains its accepted latch while bag publication is pending",
+            "name": "vendor-issued-forgotten"
+          },
+          {
+            "exitCode": 0,
+            "output": "REJECTED vendor-price-facts-forgotten: tests/auction_restock_owner_rejection.lua:6: restored five-copper vendor invoice retries automatically without bag money or free-space changes",
+            "name": "vendor-price-facts-forgotten"
+          }
+        ],
+        "sources": [
+          {
+            "sha256": "E299A94C00A2DC0196E12ADE1212BB5A8D468ACBD841062754C12E328FD9F13C",
+            "path": "Mail/Restock.lua"
+          },
+          {
+            "sha256": "50A0D35727DE291F1FB7E359696FAE980BA28A6E36AEC6A1EDE6614DB118501F",
+            "path": "Inventory/Restock/Auction/FluxAuctionRestockFollowup.lua"
+          },
+          {
+            "sha256": "366E1BBED993EE73B16A0362F9AF01BC73D72EABEFCEC3CFEE1E77C8FACB4246",
+            "path": "Inventory/Restock/Auction/FluxAuctionRestockFollowupCraft.lua"
+          },
+          {
+            "sha256": "3E0B50E0F12B17714A37038501E01340582DC488AC840E2AF3B9F9BA9C4343E7",
+            "path": "Inventory/Restock/Vendor/FluxVendorBuy.lua"
+          },
+          {
+            "sha256": "D6B136FB39D76B8C5E2E6A6B13E88EC287D72B847BA8982FAD686F5D8AC62837",
+            "path": "Inventory/Restock/Bank/FluxBankRestock.lua"
+          },
+          {
+            "sha256": "59329CAE5F62BFBBEE932CA06020B990B5AB03F98F503B17B70BCDD60E9FFEC9",
+            "path": "Inventory/Restock/Bank/FluxBankRestockMoveExec.lua"
+          },
+          {
+            "sha256": "77709312E160B3CFB676D72CC0039E7D1329819253C22891AB5D818704A33092",
+            "path": "tests/mail_restock.lua"
+          },
+          {
+            "sha256": "EA961511615AE1C39D614D2B9D8403DD3BA5E45DB871682C27F2112CE0C0CFBD",
+            "path": "tests/flux_mail_settings.lua"
+          },
+          {
+            "sha256": "1DEE1A0FFC6891C5B4D81D74FF7B9CCA54B8B2F3F5B8A149B3A1F2D7A1F8B076",
+            "path": "tests/auction_restock_followup_automation.lua"
+          },
+          {
+            "sha256": "D78573E4CA26D65EF57D47B824A4C801746D47A19E646B620AF5FC8BB00E9F20",
+            "path": "tests/auction_restock_followup_craft.lua"
+          },
+          {
+            "sha256": "31B5A3788ACD739B19FF116FA5E8FD6125E8D4B83E7B6798F989B4058B1EDC3C",
+            "path": "tests/auction_restock_followup_closed_profession.lua"
+          },
+          {
+            "sha256": "5E793E5368B01FA6B339F691121C63956EEE7BBDC59DA17D0D7EF88A7F52D9BC",
+            "path": "tests/auction_restock_owner_rejection.lua"
+          },
+          {
+            "sha256": "83E3D6A3904BD3DA7783F299B526C707F4D066AAFA877747B64F926B733DCD35",
+            "path": "tests/auction_restock_purchase_flow.lua"
+          }
+        ],
+        "timeUtc": "2026-11-13T17:19:42.2717568Z"
+      }
+    },
+    {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\auction-restock\\profession-recipe-knowledge\\controls.json",
+      "sha256": "bc315e47866087e5c754ac881103a3d18d68842534ab1e0fe38fe6c7e7fb4aa5",
+      "report": {
+        "baselineChecks": 524,
+        "profiles": 20,
+        "ownedSHA256": {
+          "Inventory/Professions.lua": "3788996a133adcbbfa2b0a8e111ee8e126d77a5ae32a547695f5fbbd951b3526",
+          "tests/profession_recipe_knowledge.lua": "c846831dbf0c69a600eb6c30eb5ae015828be9407bb3371a7d3dfc5cfa02f5f2",
+          "tests/character_recipe_cache.lua": "7a7610409c2dbb9e48b50131472252266a0e341a5977ffa9819456c90f88a925",
+          "Bars/_tmp_barsmoke.lua": "734dfe7231354bd73e1aa30b47f0f416e5177c3ab95f495803b88f9463992cdd"
+        },
+        "ownedSourceDrift": [],
+        "syntaxPass": true,
+        "results": [
+          {
+            "case": "baseline",
+            "pass": true,
+            "exit": 0,
+            "output": "Profession recipe knowledge: 524 checks PASS; 20 profiles; native persistence/profession ownership NOT RUN\nCONTROL baseline changed=0 compiled=false outcome=pass\n"
+          },
+          {
+            "case": "empty-roster-is-negative",
+            "pass": true,
+            "exit": 1,
+            "output": "CONTROL empty-roster-is-negative changed=2 compiled=true outcome=fail\ntests/profession_recipe_knowledge.lua:4: a closed unavailable profession roster preserves current-character learned ownership [Retail/false/false]\n"
+          },
+          {
+            "case": "root-name-revokes-expansion",
+            "pass": true,
+            "exit": 1,
+            "output": "CONTROL root-name-revokes-expansion changed=6 compiled=true outcome=fail\ntests/profession_recipe_knowledge.lua:4: the only old expansion-key cache is valid before a new parent-key observation [Retail/false/false]\n"
+          },
+          {
+            "case": "prefer-incomplete-alias",
+            "pass": true,
+            "exit": 1,
+            "output": "CONTROL prefer-incomplete-alias changed=7 compiled=true outcome=fail\ntests/profession_recipe_knowledge.lua:4: a stale incomplete name alias cannot hide the complete canonical saved recipe after reload [Retail/false/false]\n"
+          },
+          {
+            "case": "leave-stale-expansion-alias",
+            "pass": true,
+            "exit": 1,
+            "output": "CONTROL leave-stale-expansion-alias changed=8 compiled=true outcome=fail\ntests/profession_recipe_knowledge.lua:4: direct old-alias consumers cannot recover the unlearned recipe through its previous skill key [Retail/false/false]\n"
+          },
+          {
+            "case": "lose-unlearn-on-reload",
+            "pass": true,
+            "exit": 1,
+            "output": "CONTROL lose-unlearn-on-reload changed=8 compiled=true outcome=fail\ntests/profession_recipe_knowledge.lua:4: an explicit own resolved open learned-false scan records recipe revocation [Retail/false/false]\n"
+          },
+          {
+            "case": "foreign-guild-can-revoke",
+            "pass": true,
+            "exit": 1,
+            "output": "CONTROL foreign-guild-can-revoke changed=8 compiled=true outcome=fail\ntests/profession_recipe_knowledge.lua:4: foreign linked guild or NPC views cannot revoke the character recipe [Retail/false/false]\n"
+          },
+          {
+            "case": "legacy-index-is-identity",
+            "pass": true,
+            "exit": 1,
+            "output": "CONTROL legacy-index-is-identity changed=113 compiled=true outcome=fail\ntests/profession_recipe_knowledge.lua:4: legacy recipe row indices are not treated as persistent recipe identity [Era/false/false]\n"
+          },
+          {
+            "case": "borrow-another-character",
+            "pass": true,
+            "exit": 1,
+            "output": "CONTROL borrow-another-character changed=4 compiled=true outcome=fail\ntests/profession_recipe_knowledge.lua:4: another character never borrows a saved learned profession or recipe [Retail/false/false]\n"
+          },
+          {
+            "case": "unknown-open-context-can-revoke",
+            "pass": true,
+            "exit": 1,
+            "output": "CONTROL unknown-open-context-can-revoke changed=8 compiled=true outcome=fail\ntests/profession_recipe_knowledge.lua:4: unresolved modern profession identity cannot revoke a cached recipe through a stale legacy line [Retail/false/false]\n"
+          },
+          {
+            "case": "partial-parent-erases-only-alias",
+            "pass": true,
+            "exit": 1,
+            "output": "CONTROL partial-parent-erases-only-alias changed=6 compiled=true outcome=fail\ntests/profession_recipe_knowledge.lua:4: an uninformative own parent-key scan preserves the only old alias output yield and materials [Retail/false/false]\n"
+          },
+          {
+            "case": "discard-trailing-native-slots",
+            "pass": true,
+            "exit": 1,
+            "output": "CONTROL discard-trailing-native-slots changed=3 compiled=true outcome=fail\ntests/profession_recipe_knowledge.lua:4: a complete resolved nonmatching native profession roster invalidates old ownership [Retail/false/false]\n"
+          }
+        ],
+        "native": "NOT RUN"
+      }
+    },
+    {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\auction-restock\\tab-crafting-followup\\restock-speed-ready-buttons-20261113T164325Z\\speed-work\\report.json",
+      "sha256": "b8b635af2075334abd6dfb956f9c619383929d9088f96a7c51dc21b5346db33f",
+      "report": {
+        "candidate": "AH-restock-speed-ready-20261113-r16",
+        "baselineArchive": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\auction-restock\\tab-crafting-followup\\restock-speed-ready-buttons-20261113T164325Z\\source-before.zip",
+        "baselineArchiveSHA256": "ce62f22a190633f94858955d7768c5cbb37a7e94a12671ad785eb4c5f9e49969",
+        "baselineRuntimeSHA256": {
+          "Inventory/Restock/Auction/FluxAuctionRestock.lua": "a0814375e54e302be4e621684eed96eb3b2c9cdc10f6441fed71e53a458d11ec",
+          "Inventory/Restock/Auction/FluxAuctionRestockCraft.lua": "e53eaa8229dd39a86eaebae1aae30a346369b23ec652ceb46b5b1469b44cbaad",
+          "Inventory/Restock/Auction/FluxAuctionRestockPotions.lua": "11a750be8d51a8c2910f860f3f6dec22c59280a0454f635135fce25dd1444586"
+        },
+        "measuredCandidateSHA256": {
+          "Inventory/Restock/Auction/FluxAuctionRestock.lua": "d681b272bc0bbbfe8a7f09a6f794809183b836972004d1fca3ceb2bf53d7ce22",
+          "Inventory/Restock/Auction/FluxAuctionRestockCraft.lua": "54bc044410e3c4512cd70274b2e67a40114a6ab39648e0e01ceb12b21b0bd587",
+          "Inventory/Restock/Auction/FluxAuctionRestockPotions.lua": "09d66943e73db9645b9438384497cfc9ce5b70870ebf949c113a521ec9028954",
+          "tests/auction_restock_speed.lua": "5a9f6f3616bdd8abd2ca2728e22bb69b54e2c2c7b75fe956ea469ddd57ece8c7",
+          "tests/auction_restock_crafting.lua": "8ca7f5393ea589fade4600beaea3b64e49c568d45e3af41a74c4ed0e21e7e45b",
+          "tests/auction_restock_potions.lua": "fb018d1170e9063c4ca72148b015662d7800b732cf68382f5faa6ddd380eb71a",
+          "tests/auction_restock_scan_all.lua": "4127f8bc59e786d6663000cde3e8dfff94838a8348bf06f4c1247b9d4ee45c62",
+          "tests/auction_restock_market.lua": "1afd502c49633bb68cd1ff3d19d36a1c7ee6f8691b623c2544e42e15348d8c4a",
+          "tests/auction_restock_vendor_queue.lua": "8cf66833b09f9e67e1c35afce8dd24a1846f93ebafb9d8a703bdccf9d0f497ba",
+          "tests/auction_restock_vendor_routes.lua": "b1c28d82eebb0ec67e1954f47eba03d37e99ec4fc6135eddef043a15e5554aad",
+          "tests/auction_restock_purchase_flow.lua": "83e3d6a3904bd3da7783f299b526c707f4d066aafa877747b64f926b733dcd35",
+          "Inventory/Restock/Auction/FluxAuctionRestockData.lua": "53a2d35c6559c8d032a820c42dc0219efa9f1e450c01d7b38847d6a7e217cf0f",
+          "Inventory/Restock/Auction/FluxAuctionRestockPrices.lua": "49bd240a433ea2565daa049771dfaaaa0cbe79fa1f56c1de61cf50e471bccd6f",
+          "Inventory/Restock/Auction/FluxAuctionRestockUI.lua": "37042004daf9a0c23d8f52251200b2db06b1e9ab3e70ecb5f3f97985e0c78f85",
+          "Inventory/Restock/Auction/FluxAuctionRestockLocale.lua": "f2471aca8b25b8f0b596113ab61cd767178ef2ac03cb19adb4f4db49bd437b05",
+          "tests/auction_restock.lua": "bde06db450e69f4806cdee8ed327bc2386fe7530dbc010987997b067fa7c69f1",
+          "ExtraButtonSystem/Shared/FluxConsumablesGridUI.lua": "a444bc60318885cdd833f72f39dab26a56c561e475839e1692e4b37c4ea9c28f"
+        },
+        "measuredSourceDrift": [],
+        "profiles": 20,
+        "trialsPerProfile": 3,
+        "baselineQueries": {
+          "firstReady": 4,
+          "chain": 6
+        },
+        "candidateQueries": {
+          "firstReady": 1,
+          "chain": 3
+        },
+        "playerPresses": 3,
+        "purchases": 3,
+        "checks": 492,
+        "controls": [
+          {
+            "case": "automatic-bulk-scan",
+            "passed": true,
+            "exit": 1,
+            "output": "RESULT automatic-bulk-scan changed=1 compiled=true outcome=fail\ntests/auction_restock_speed.lua:4: first ready queries only the next SKU and reuses its owned native result\n"
+          },
+          {
+            "case": "duplicate-ready-query",
+            "passed": true,
+            "exit": 1,
+            "output": "RESULT duplicate-ready-query changed=1 compiled=true outcome=fail\ntests/auction_restock_speed.lua:4: first ready queries only the next SKU and reuses its owned native result\n"
+          },
+          {
+            "case": "trust-unsent-results",
+            "passed": true,
+            "exit": 1,
+            "output": "RESULT trust-unsent-results changed=2 compiled=true outcome=fail\ntests/auction_restock_speed.lua:4: the first actual owned query supplies readiness once the existing throttle gate opens\n"
+          },
+          {
+            "case": "eager-other-potion-kind",
+            "passed": true,
+            "exit": 1,
+            "output": "RESULT eager-other-potion-kind changed=10 compiled=true outcome=fail\ntests/auction_restock_speed.lua:4: healing upgrade preparation searches only its kind despite the upgrade's changed sort name\n"
+          },
+          {
+            "case": "reuse-absent-kind",
+            "passed": true,
+            "exit": 1,
+            "output": "RESULT reuse-absent-kind changed=10 compiled=true outcome=fail\ntests/auction_restock_speed.lua:4: the later mana step obtains its own catalogue rather than reusing healing-only coverage\n"
+          },
+          {
+            "case": "forget-other-blocked-kind",
+            "passed": true,
+            "exit": 1,
+            "output": "RESULT forget-other-blocked-kind changed=11 compiled=true outcome=fail\ntests/auction_restock_speed.lua:4: an unresolved healing kind stays blocked while its metadata cannot poison a mana-only job\n"
+          },
+          {
+            "case": "reuse-purchased-listing",
+            "passed": true,
+            "exit": 1,
+            "output": "RESULT reuse-purchased-listing changed=7 compiled=true outcome=fail\ntests/auction_restock_speed.lua:4: grouped-item ACK invalidates the purchased SKU and queries its next real auction ID without bidding\n"
+          },
+          {
+            "case": "reoffer-failed-quote",
+            "passed": true,
+            "exit": 1,
+            "output": "RESULT reoffer-failed-quote changed=8 compiled=true outcome=fail\ntests/auction_restock_speed.lua:4: failed quote prepares another SKU without a second gesture or purchase call\n"
+          },
+          {
+            "case": "buy-changed-legacy-index",
+            "passed": true,
+            "exit": 1,
+            "output": "RESULT buy-changed-legacy-index changed=151 compiled=true outcome=fail\ntests/auction_restock_speed.lua:4: changed legacy index identity triggers automatic fresh preparation without spending\n"
+          }
+        ],
+        "syntaxPass": true,
+        "rawMetrics": {
+          "baseline": [
+            {
+              "client": "Retail",
+              "auctionator": false,
+              "syndicator": false,
+              "trial": 1,
+              "firstReadyQueries": 4,
+              "chainQueries": 6,
+              "playerPresses": 3,
+              "purchases": 3
+            },
+            {
+              "client": "Retail",
+              "auctionator": false,
+              "syndicator": false,
+              "trial": 2,
+              "firstReadyQueries": 4,
+              "chainQueries": 6,
+              "playerPresses": 3,
+              "purchases": 3
+            },
+            {
+              "client": "Retail",
+              "auctionator": false,
+              "syndicator": false,
+              "trial": 3,
+              "firstReadyQueries": 4,
+              "chainQueries": 6,
+              "playerPresses": 3,
+              "purchases": 3
+            },
+            {
+              "client": "Retail",
+              "auctionator": false,
+              "syndicator": true,
+              "trial": 1,
+              "firstReadyQueries": 4,
+              "chainQueries": 6,
+              "playerPresses": 3,
+              "purchases": 3
+            },
+            {
+              "client": "Retail",
+              "auctionator": false,
+              "syndicator": true,
+              "trial": 2,
+              "firstReadyQueries": 4,
+              "chainQueries": 6,
+              "playerPresses": 3,
+              "purchases": 3
+            },
+            {
+              "client": "Retail",
+              "auctionator": false,
+              "syndicator": true,
+              "trial": 3,
+              "firstReadyQueries": 4,
+              "chainQueries": 6,
+              "playerPresses": 3,
+              "purchases": 3
+            },
+            {
+              "client": "Retail",
+              "auctionator": true,
+              "syndicator": false,
+              "trial": 1,
+              "firstReadyQueries": 4,
+              "chainQueries": 6,
+              "playerPresses": 3,
+              "purchases": 3
+            },
+            {
+              "client": "Retail",
+              "auctionator": true,
+              "syndicator": false,
+              "trial": 2,
+              "firstReadyQueries": 4,
+              "chainQueries": 6,
+              "playerPresses": 3,
+              "purchases": 3
+            },
+            {
+              "client": "Retail",
+              "auctionator": true,
+              "syndicator": false,
+              "trial": 3,
+              "firstReadyQueries": 4,
+              "chainQueries": 6,
+              "playerPresses": 3,
+              "purchases": 3
+            },
+            {
+              "client": "Retail",
+              "auctionator": true,
+              "syndicator": true,
+              "trial": 1,
+              "firstReadyQueries": 4,
+              "chainQueries": 6,
+              "playerPresses": 3,
+              "purchases": 3
+            },
+            {
+              "client": "Retail",
+              "auctionator": true,
+              "syndicator": true,
+              "trial": 2,
+              "firstReadyQueries": 4,
+              "chainQueries": 6,
+              "playerPresses": 3,
+              "purchases": 3
+            },
+            {
+              "client": "Retail",
+              "auctionator": true,
+              "syndicator": true,
+              "trial": 3,
+              "firstReadyQueries": 4,
+              "chainQueries": 6,
+              "playerPresses": 3,
+              "purchases": 3
+            },
+            {
+              "client": "Forever",
+              "auctionator": false,
+              "syndicator": false,
+              "trial": 1,
+              "firstReadyQueries": 4,
+              "chainQueries": 6,
+              "playerPresses": 3,
+              "purchases": 3
+            },
+            {
+              "client": "Forever",
+              "auctionator": false,
+              "syndicator": false,
+              "trial": 2,
+              "firstReadyQueries": 4,
+              "chainQueries": 6,
+              "playerPresses": 3,
+              "purchases": 3
+            },
+            {
+              "client": "Forever",
+              "auctionator": false,
+              "syndicator": false,
+              "trial": 3,
+              "firstReadyQueries": 4,
+              "chainQueries": 6,
+              "playerPresses": 3,
+              "purchases": 3
+            },
+            {
+              "client": "Forever",
+              "auctionator": false,
+              "syndicator": true,
+              "trial": 1,
+              "firstReadyQueries": 4,
+              "chainQueries": 6,
+              "playerPresses": 3,
+              "purchases": 3
+            },
+            {
+              "client": "Forever",
+              "auctionator": false,
+              "syndicator": true,
+              "trial": 2,
+              "firstReadyQueries": 4,
+              "chainQueries": 6,
+              "playerPresses": 3,
+              "purchases": 3
+            },
+            {
+              "client": "Forever",
+              "auctionator": false,
+              "syndicator": true,
+              "trial": 3,
+              "firstReadyQueries": 4,
+              "chainQueries": 6,
+              "playerPresses": 3,
+              "purchases": 3
+            },
+            {
+              "client": "Forever",
+              "auctionator": true,
+              "syndicator": false,
+              "trial": 1,
+              "firstReadyQueries": 4,
+              "chainQueries": 6,
+              "playerPresses": 3,
+              "purchases": 3
+            },
+            {
+              "client": "Forever",
+              "auctionator": true,
+              "syndicator": false,
+              "trial": 2,
+              "firstReadyQueries": 4,
+              "chainQueries": 6,
+              "playerPresses": 3,
+              "purchases": 3
+            },
+            {
+              "client": "Forever",
+              "auctionator": true,
+              "syndicator": false,
+              "trial": 3,
+              "firstReadyQueries": 4,
+              "chainQueries": 6,
+              "playerPresses": 3,
+              "purchases": 3
+            },
+            {
+              "client": "Forever",
+              "auctionator": true,
+              "syndicator": true,
+              "trial": 1,
+              "firstReadyQueries": 4,
+              "chainQueries": 6,
+              "playerPresses": 3,
+              "purchases": 3
+            },
+            {
+              "client": "Forever",
+              "auctionator": true,
+              "syndicator": true,
+              "trial": 2,
+              "firstReadyQueries": 4,
+              "chainQueries": 6,
+              "playerPresses": 3,
+              "purchases": 3
+            },
+            {
+              "client": "Forever",
+              "auctionator": true,
+              "syndicator": true,
+              "trial": 3,
+              "firstReadyQueries": 4,
+              "chainQueries": 6,
+              "playerPresses": 3,
+              "purchases": 3
+            },
+            {
+              "client": "MoP",
+              "auctionator": false,
+              "syndicator": false,
+              "trial": 1,
+              "firstReadyQueries": 4,
+              "chainQueries": 6,
+              "playerPresses": 3,
+              "purchases": 3
+            },
+            {
+              "client": "MoP",
+              "auctionator": false,
+              "syndicator": false,
+              "trial": 2,
+              "firstReadyQueries": 4,
+              "chainQueries": 6,
+              "playerPresses": 3,
+              "purchases": 3
+            },
+            {
+              "client": "MoP",
+              "auctionator": false,
+              "syndicator": false,
+              "trial": 3,
+              "firstReadyQueries": 4,
+              "chainQueries": 6,
+              "playerPresses": 3,
+              "purchases": 3
+            },
+            {
+              "client": "MoP",
+              "auctionator": false,
+              "syndicator": true,
+              "trial": 1,
+              "firstReadyQueries": 4,
+              "chainQueries": 6,
+              "playerPresses": 3,
+              "purchases": 3
+            },
+            {
+              "client": "MoP",
+              "auctionator": false,
+              "syndicator": true,
+              "trial": 2,
+              "firstReadyQueries": 4,
+              "chainQueries": 6,
+              "playerPresses": 3,
+              "purchases": 3
+            },
+            {
+              "client": "MoP",
+              "auctionator": false,
+              "syndicator": true,
+              "trial": 3,
+              "firstReadyQueries": 4,
+              "chainQueries": 6,
+              "playerPresses": 3,
+              "purchases": 3
+            },
+            {
+              "client": "MoP",
+              "auctionator": true,
+              "syndicator": false,
+              "trial": 1,
+              "firstReadyQueries": 4,
+              "chainQueries": 6,
+              "playerPresses": 3,
+              "purchases": 3
+            },
+            {
+              "client": "MoP",
+              "auctionator": true,
+              "syndicator": false,
+              "trial": 2,
+              "firstReadyQueries": 4,
+              "chainQueries": 6,
+              "playerPresses": 3,
+              "purchases": 3
+            },
+            {
+              "client": "MoP",
+              "auctionator": true,
+              "syndicator": false,
+              "trial": 3,
+              "firstReadyQueries": 4,
+              "chainQueries": 6,
+              "playerPresses": 3,
+              "purchases": 3
+            },
+            {
+              "client": "MoP",
+              "auctionator": true,
+              "syndicator": true,
+              "trial": 1,
+              "firstReadyQueries": 4,
+              "chainQueries": 6,
+              "playerPresses": 3,
+              "purchases": 3
+            },
+            {
+              "client": "MoP",
+              "auctionator": true,
+              "syndicator": true,
+              "trial": 2,
+              "firstReadyQueries": 4,
+              "chainQueries": 6,
+              "playerPresses": 3,
+              "purchases": 3
+            },
+            {
+              "client": "MoP",
+              "auctionator": true,
+              "syndicator": true,
+              "trial": 3,
+              "firstReadyQueries": 4,
+              "chainQueries": 6,
+              "playerPresses": 3,
+              "purchases": 3
+            },
+            {
+              "client": "Era",
+              "auctionator": false,
+              "syndicator": false,
+              "trial": 1,
+              "firstReadyQueries": 4,
+              "chainQueries": 6,
+              "playerPresses": 3,
+              "purchases": 3
+            },
+            {
+              "client": "Era",
+              "auctionator": false,
+              "syndicator": false,
+              "trial": 2,
+              "firstReadyQueries": 4,
+              "chainQueries": 6,
+              "playerPresses": 3,
+              "purchases": 3
+            },
+            {
+              "client": "Era",
+              "auctionator": false,
+              "syndicator": false,
+              "trial": 3,
+              "firstReadyQueries": 4,
+              "chainQueries": 6,
+              "playerPresses": 3,
+              "purchases": 3
+            },
+            {
+              "client": "Era",
+              "auctionator": false,
+              "syndicator": true,
+              "trial": 1,
+              "firstReadyQueries": 4,
+              "chainQueries": 6,
+              "playerPresses": 3,
+              "purchases": 3
+            },
+            {
+              "client": "Era",
+              "auctionator": false,
+              "syndicator": true,
+              "trial": 2,
+              "firstReadyQueries": 4,
+              "chainQueries": 6,
+              "playerPresses": 3,
+              "purchases": 3
+            },
+            {
+              "client": "Era",
+              "auctionator": false,
+              "syndicator": true,
+              "trial": 3,
+              "firstReadyQueries": 4,
+              "chainQueries": 6,
+              "playerPresses": 3,
+              "purchases": 3
+            },
+            {
+              "client": "Era",
+              "auctionator": true,
+              "syndicator": false,
+              "trial": 1,
+              "firstReadyQueries": 4,
+              "chainQueries": 6,
+              "playerPresses": 3,
+              "purchases": 3
+            },
+            {
+              "client": "Era",
+              "auctionator": true,
+              "syndicator": false,
+              "trial": 2,
+              "firstReadyQueries": 4,
+              "chainQueries": 6,
+              "playerPresses": 3,
+              "purchases": 3
+            },
+            {
+              "client": "Era",
+              "auctionator": true,
+              "syndicator": false,
+              "trial": 3,
+              "firstReadyQueries": 4,
+              "chainQueries": 6,
+              "playerPresses": 3,
+              "purchases": 3
+            },
+            {
+              "client": "Era",
+              "auctionator": true,
+              "syndicator": true,
+              "trial": 1,
+              "firstReadyQueries": 4,
+              "chainQueries": 6,
+              "playerPresses": 3,
+              "purchases": 3
+            },
+            {
+              "client": "Era",
+              "auctionator": true,
+              "syndicator": true,
+              "trial": 2,
+              "firstReadyQueries": 4,
+              "chainQueries": 6,
+              "playerPresses": 3,
+              "purchases": 3
+            },
+            {
+              "client": "Era",
+              "auctionator": true,
+              "syndicator": true,
+              "trial": 3,
+              "firstReadyQueries": 4,
+              "chainQueries": 6,
+              "playerPresses": 3,
+              "purchases": 3
+            },
+            {
+              "client": "Anniversary",
+              "auctionator": false,
+              "syndicator": false,
+              "trial": 1,
+              "firstReadyQueries": 4,
+              "chainQueries": 6,
+              "playerPresses": 3,
+              "purchases": 3
+            },
+            {
+              "client": "Anniversary",
+              "auctionator": false,
+              "syndicator": false,
+              "trial": 2,
+              "firstReadyQueries": 4,
+              "chainQueries": 6,
+              "playerPresses": 3,
+              "purchases": 3
+            },
+            {
+              "client": "Anniversary",
+              "auctionator": false,
+              "syndicator": false,
+              "trial": 3,
+              "firstReadyQueries": 4,
+              "chainQueries": 6,
+              "playerPresses": 3,
+              "purchases": 3
+            },
+            {
+              "client": "Anniversary",
+              "auctionator": false,
+              "syndicator": true,
+              "trial": 1,
+              "firstReadyQueries": 4,
+              "chainQueries": 6,
+              "playerPresses": 3,
+              "purchases": 3
+            },
+            {
+              "client": "Anniversary",
+              "auctionator": false,
+              "syndicator": true,
+              "trial": 2,
+              "firstReadyQueries": 4,
+              "chainQueries": 6,
+              "playerPresses": 3,
+              "purchases": 3
+            },
+            {
+              "client": "Anniversary",
+              "auctionator": false,
+              "syndicator": true,
+              "trial": 3,
+              "firstReadyQueries": 4,
+              "chainQueries": 6,
+              "playerPresses": 3,
+              "purchases": 3
+            },
+            {
+              "client": "Anniversary",
+              "auctionator": true,
+              "syndicator": false,
+              "trial": 1,
+              "firstReadyQueries": 4,
+              "chainQueries": 6,
+              "playerPresses": 3,
+              "purchases": 3
+            },
+            {
+              "client": "Anniversary",
+              "auctionator": true,
+              "syndicator": false,
+              "trial": 2,
+              "firstReadyQueries": 4,
+              "chainQueries": 6,
+              "playerPresses": 3,
+              "purchases": 3
+            },
+            {
+              "client": "Anniversary",
+              "auctionator": true,
+              "syndicator": false,
+              "trial": 3,
+              "firstReadyQueries": 4,
+              "chainQueries": 6,
+              "playerPresses": 3,
+              "purchases": 3
+            },
+            {
+              "client": "Anniversary",
+              "auctionator": true,
+              "syndicator": true,
+              "trial": 1,
+              "firstReadyQueries": 4,
+              "chainQueries": 6,
+              "playerPresses": 3,
+              "purchases": 3
+            },
+            {
+              "client": "Anniversary",
+              "auctionator": true,
+              "syndicator": true,
+              "trial": 2,
+              "firstReadyQueries": 4,
+              "chainQueries": 6,
+              "playerPresses": 3,
+              "purchases": 3
+            },
+            {
+              "client": "Anniversary",
+              "auctionator": true,
+              "syndicator": true,
+              "trial": 3,
+              "firstReadyQueries": 4,
+              "chainQueries": 6,
+              "playerPresses": 3,
+              "purchases": 3
+            }
+          ],
+          "candidate": [
+            {
+              "client": "Retail",
+              "auctionator": false,
+              "syndicator": false,
+              "trial": 1,
+              "firstReadyQueries": 1,
+              "chainQueries": 3,
+              "playerPresses": 3,
+              "purchases": 3
+            },
+            {
+              "client": "Retail",
+              "auctionator": false,
+              "syndicator": false,
+              "trial": 2,
+              "firstReadyQueries": 1,
+              "chainQueries": 3,
+              "playerPresses": 3,
+              "purchases": 3
+            },
+            {
+              "client": "Retail",
+              "auctionator": false,
+              "syndicator": false,
+              "trial": 3,
+              "firstReadyQueries": 1,
+              "chainQueries": 3,
+              "playerPresses": 3,
+              "purchases": 3
+            },
+            {
+              "client": "Retail",
+              "auctionator": false,
+              "syndicator": true,
+              "trial": 1,
+              "firstReadyQueries": 1,
+              "chainQueries": 3,
+              "playerPresses": 3,
+              "purchases": 3
+            },
+            {
+              "client": "Retail",
+              "auctionator": false,
+              "syndicator": true,
+              "trial": 2,
+              "firstReadyQueries": 1,
+              "chainQueries": 3,
+              "playerPresses": 3,
+              "purchases": 3
+            },
+            {
+              "client": "Retail",
+              "auctionator": false,
+              "syndicator": true,
+              "trial": 3,
+              "firstReadyQueries": 1,
+              "chainQueries": 3,
+              "playerPresses": 3,
+              "purchases": 3
+            },
+            {
+              "client": "Retail",
+              "auctionator": true,
+              "syndicator": false,
+              "trial": 1,
+              "firstReadyQueries": 1,
+              "chainQueries": 3,
+              "playerPresses": 3,
+              "purchases": 3
+            },
+            {
+              "client": "Retail",
+              "auctionator": true,
+              "syndicator": false,
+              "trial": 2,
+              "firstReadyQueries": 1,
+              "chainQueries": 3,
+              "playerPresses": 3,
+              "purchases": 3
+            },
+            {
+              "client": "Retail",
+              "auctionator": true,
+              "syndicator": false,
+              "trial": 3,
+              "firstReadyQueries": 1,
+              "chainQueries": 3,
+              "playerPresses": 3,
+              "purchases": 3
+            },
+            {
+              "client": "Retail",
+              "auctionator": true,
+              "syndicator": true,
+              "trial": 1,
+              "firstReadyQueries": 1,
+              "chainQueries": 3,
+              "playerPresses": 3,
+              "purchases": 3
+            },
+            {
+              "client": "Retail",
+              "auctionator": true,
+              "syndicator": true,
+              "trial": 2,
+              "firstReadyQueries": 1,
+              "chainQueries": 3,
+              "playerPresses": 3,
+              "purchases": 3
+            },
+            {
+              "client": "Retail",
+              "auctionator": true,
+              "syndicator": true,
+              "trial": 3,
+              "firstReadyQueries": 1,
+              "chainQueries": 3,
+              "playerPresses": 3,
+              "purchases": 3
+            },
+            {
+              "client": "Forever",
+              "auctionator": false,
+              "syndicator": false,
+              "trial": 1,
+              "firstReadyQueries": 1,
+              "chainQueries": 3,
+              "playerPresses": 3,
+              "purchases": 3
+            },
+            {
+              "client": "Forever",
+              "auctionator": false,
+              "syndicator": false,
+              "trial": 2,
+              "firstReadyQueries": 1,
+              "chainQueries": 3,
+              "playerPresses": 3,
+              "purchases": 3
+            },
+            {
+              "client": "Forever",
+              "auctionator": false,
+              "syndicator": false,
+              "trial": 3,
+              "firstReadyQueries": 1,
+              "chainQueries": 3,
+              "playerPresses": 3,
+              "purchases": 3
+            },
+            {
+              "client": "Forever",
+              "auctionator": false,
+              "syndicator": true,
+              "trial": 1,
+              "firstReadyQueries": 1,
+              "chainQueries": 3,
+              "playerPresses": 3,
+              "purchases": 3
+            },
+            {
+              "client": "Forever",
+              "auctionator": false,
+              "syndicator": true,
+              "trial": 2,
+              "firstReadyQueries": 1,
+              "chainQueries": 3,
+              "playerPresses": 3,
+              "purchases": 3
+            },
+            {
+              "client": "Forever",
+              "auctionator": false,
+              "syndicator": true,
+              "trial": 3,
+              "firstReadyQueries": 1,
+              "chainQueries": 3,
+              "playerPresses": 3,
+              "purchases": 3
+            },
+            {
+              "client": "Forever",
+              "auctionator": true,
+              "syndicator": false,
+              "trial": 1,
+              "firstReadyQueries": 1,
+              "chainQueries": 3,
+              "playerPresses": 3,
+              "purchases": 3
+            },
+            {
+              "client": "Forever",
+              "auctionator": true,
+              "syndicator": false,
+              "trial": 2,
+              "firstReadyQueries": 1,
+              "chainQueries": 3,
+              "playerPresses": 3,
+              "purchases": 3
+            },
+            {
+              "client": "Forever",
+              "auctionator": true,
+              "syndicator": false,
+              "trial": 3,
+              "firstReadyQueries": 1,
+              "chainQueries": 3,
+              "playerPresses": 3,
+              "purchases": 3
+            },
+            {
+              "client": "Forever",
+              "auctionator": true,
+              "syndicator": true,
+              "trial": 1,
+              "firstReadyQueries": 1,
+              "chainQueries": 3,
+              "playerPresses": 3,
+              "purchases": 3
+            },
+            {
+              "client": "Forever",
+              "auctionator": true,
+              "syndicator": true,
+              "trial": 2,
+              "firstReadyQueries": 1,
+              "chainQueries": 3,
+              "playerPresses": 3,
+              "purchases": 3
+            },
+            {
+              "client": "Forever",
+              "auctionator": true,
+              "syndicator": true,
+              "trial": 3,
+              "firstReadyQueries": 1,
+              "chainQueries": 3,
+              "playerPresses": 3,
+              "purchases": 3
+            },
+            {
+              "client": "MoP",
+              "auctionator": false,
+              "syndicator": false,
+              "trial": 1,
+              "firstReadyQueries": 1,
+              "chainQueries": 3,
+              "playerPresses": 3,
+              "purchases": 3
+            },
+            {
+              "client": "MoP",
+              "auctionator": false,
+              "syndicator": false,
+              "trial": 2,
+              "firstReadyQueries": 1,
+              "chainQueries": 3,
+              "playerPresses": 3,
+              "purchases": 3
+            },
+            {
+              "client": "MoP",
+              "auctionator": false,
+              "syndicator": false,
+              "trial": 3,
+              "firstReadyQueries": 1,
+              "chainQueries": 3,
+              "playerPresses": 3,
+              "purchases": 3
+            },
+            {
+              "client": "MoP",
+              "auctionator": false,
+              "syndicator": true,
+              "trial": 1,
+              "firstReadyQueries": 1,
+              "chainQueries": 3,
+              "playerPresses": 3,
+              "purchases": 3
+            },
+            {
+              "client": "MoP",
+              "auctionator": false,
+              "syndicator": true,
+              "trial": 2,
+              "firstReadyQueries": 1,
+              "chainQueries": 3,
+              "playerPresses": 3,
+              "purchases": 3
+            },
+            {
+              "client": "MoP",
+              "auctionator": false,
+              "syndicator": true,
+              "trial": 3,
+              "firstReadyQueries": 1,
+              "chainQueries": 3,
+              "playerPresses": 3,
+              "purchases": 3
+            },
+            {
+              "client": "MoP",
+              "auctionator": true,
+              "syndicator": false,
+              "trial": 1,
+              "firstReadyQueries": 1,
+              "chainQueries": 3,
+              "playerPresses": 3,
+              "purchases": 3
+            },
+            {
+              "client": "MoP",
+              "auctionator": true,
+              "syndicator": false,
+              "trial": 2,
+              "firstReadyQueries": 1,
+              "chainQueries": 3,
+              "playerPresses": 3,
+              "purchases": 3
+            },
+            {
+              "client": "MoP",
+              "auctionator": true,
+              "syndicator": false,
+              "trial": 3,
+              "firstReadyQueries": 1,
+              "chainQueries": 3,
+              "playerPresses": 3,
+              "purchases": 3
+            },
+            {
+              "client": "MoP",
+              "auctionator": true,
+              "syndicator": true,
+              "trial": 1,
+              "firstReadyQueries": 1,
+              "chainQueries": 3,
+              "playerPresses": 3,
+              "purchases": 3
+            },
+            {
+              "client": "MoP",
+              "auctionator": true,
+              "syndicator": true,
+              "trial": 2,
+              "firstReadyQueries": 1,
+              "chainQueries": 3,
+              "playerPresses": 3,
+              "purchases": 3
+            },
+            {
+              "client": "MoP",
+              "auctionator": true,
+              "syndicator": true,
+              "trial": 3,
+              "firstReadyQueries": 1,
+              "chainQueries": 3,
+              "playerPresses": 3,
+              "purchases": 3
+            },
+            {
+              "client": "Era",
+              "auctionator": false,
+              "syndicator": false,
+              "trial": 1,
+              "firstReadyQueries": 1,
+              "chainQueries": 3,
+              "playerPresses": 3,
+              "purchases": 3
+            },
+            {
+              "client": "Era",
+              "auctionator": false,
+              "syndicator": false,
+              "trial": 2,
+              "firstReadyQueries": 1,
+              "chainQueries": 3,
+              "playerPresses": 3,
+              "purchases": 3
+            },
+            {
+              "client": "Era",
+              "auctionator": false,
+              "syndicator": false,
+              "trial": 3,
+              "firstReadyQueries": 1,
+              "chainQueries": 3,
+              "playerPresses": 3,
+              "purchases": 3
+            },
+            {
+              "client": "Era",
+              "auctionator": false,
+              "syndicator": true,
+              "trial": 1,
+              "firstReadyQueries": 1,
+              "chainQueries": 3,
+              "playerPresses": 3,
+              "purchases": 3
+            },
+            {
+              "client": "Era",
+              "auctionator": false,
+              "syndicator": true,
+              "trial": 2,
+              "firstReadyQueries": 1,
+              "chainQueries": 3,
+              "playerPresses": 3,
+              "purchases": 3
+            },
+            {
+              "client": "Era",
+              "auctionator": false,
+              "syndicator": true,
+              "trial": 3,
+              "firstReadyQueries": 1,
+              "chainQueries": 3,
+              "playerPresses": 3,
+              "purchases": 3
+            },
+            {
+              "client": "Era",
+              "auctionator": true,
+              "syndicator": false,
+              "trial": 1,
+              "firstReadyQueries": 1,
+              "chainQueries": 3,
+              "playerPresses": 3,
+              "purchases": 3
+            },
+            {
+              "client": "Era",
+              "auctionator": true,
+              "syndicator": false,
+              "trial": 2,
+              "firstReadyQueries": 1,
+              "chainQueries": 3,
+              "playerPresses": 3,
+              "purchases": 3
+            },
+            {
+              "client": "Era",
+              "auctionator": true,
+              "syndicator": false,
+              "trial": 3,
+              "firstReadyQueries": 1,
+              "chainQueries": 3,
+              "playerPresses": 3,
+              "purchases": 3
+            },
+            {
+              "client": "Era",
+              "auctionator": true,
+              "syndicator": true,
+              "trial": 1,
+              "firstReadyQueries": 1,
+              "chainQueries": 3,
+              "playerPresses": 3,
+              "purchases": 3
+            },
+            {
+              "client": "Era",
+              "auctionator": true,
+              "syndicator": true,
+              "trial": 2,
+              "firstReadyQueries": 1,
+              "chainQueries": 3,
+              "playerPresses": 3,
+              "purchases": 3
+            },
+            {
+              "client": "Era",
+              "auctionator": true,
+              "syndicator": true,
+              "trial": 3,
+              "firstReadyQueries": 1,
+              "chainQueries": 3,
+              "playerPresses": 3,
+              "purchases": 3
+            },
+            {
+              "client": "Anniversary",
+              "auctionator": false,
+              "syndicator": false,
+              "trial": 1,
+              "firstReadyQueries": 1,
+              "chainQueries": 3,
+              "playerPresses": 3,
+              "purchases": 3
+            },
+            {
+              "client": "Anniversary",
+              "auctionator": false,
+              "syndicator": false,
+              "trial": 2,
+              "firstReadyQueries": 1,
+              "chainQueries": 3,
+              "playerPresses": 3,
+              "purchases": 3
+            },
+            {
+              "client": "Anniversary",
+              "auctionator": false,
+              "syndicator": false,
+              "trial": 3,
+              "firstReadyQueries": 1,
+              "chainQueries": 3,
+              "playerPresses": 3,
+              "purchases": 3
+            },
+            {
+              "client": "Anniversary",
+              "auctionator": false,
+              "syndicator": true,
+              "trial": 1,
+              "firstReadyQueries": 1,
+              "chainQueries": 3,
+              "playerPresses": 3,
+              "purchases": 3
+            },
+            {
+              "client": "Anniversary",
+              "auctionator": false,
+              "syndicator": true,
+              "trial": 2,
+              "firstReadyQueries": 1,
+              "chainQueries": 3,
+              "playerPresses": 3,
+              "purchases": 3
+            },
+            {
+              "client": "Anniversary",
+              "auctionator": false,
+              "syndicator": true,
+              "trial": 3,
+              "firstReadyQueries": 1,
+              "chainQueries": 3,
+              "playerPresses": 3,
+              "purchases": 3
+            },
+            {
+              "client": "Anniversary",
+              "auctionator": true,
+              "syndicator": false,
+              "trial": 1,
+              "firstReadyQueries": 1,
+              "chainQueries": 3,
+              "playerPresses": 3,
+              "purchases": 3
+            },
+            {
+              "client": "Anniversary",
+              "auctionator": true,
+              "syndicator": false,
+              "trial": 2,
+              "firstReadyQueries": 1,
+              "chainQueries": 3,
+              "playerPresses": 3,
+              "purchases": 3
+            },
+            {
+              "client": "Anniversary",
+              "auctionator": true,
+              "syndicator": false,
+              "trial": 3,
+              "firstReadyQueries": 1,
+              "chainQueries": 3,
+              "playerPresses": 3,
+              "purchases": 3
+            },
+            {
+              "client": "Anniversary",
+              "auctionator": true,
+              "syndicator": true,
+              "trial": 1,
+              "firstReadyQueries": 1,
+              "chainQueries": 3,
+              "playerPresses": 3,
+              "purchases": 3
+            },
+            {
+              "client": "Anniversary",
+              "auctionator": true,
+              "syndicator": true,
+              "trial": 2,
+              "firstReadyQueries": 1,
+              "chainQueries": 3,
+              "playerPresses": 3,
+              "purchases": 3
+            },
+            {
+              "client": "Anniversary",
+              "auctionator": true,
+              "syndicator": true,
+              "trial": 3,
+              "firstReadyQueries": 1,
+              "chainQueries": 3,
+              "playerPresses": 3,
+              "purchases": 3
+            }
+          ]
+        },
+        "scope": "Deterministic production Lua fixture work counts only; native latency, secure permissions, taint, pixels, controller and FPS NOT RUN"
+      }
+    }
+  ],
+  "referenceHashes": {
+    "Core/Capabilities.lua": "825f9fa2773eda0dcdd8c3bda82b3d78b5cfe52d425bf98edd08a3ef9834f08a",
+    "Libs/LibCustomGlow-1.0/LibCustomGlow-1.0.lua": "e5ed4d1f3b5ab4bda75772cda846562cde0b929c8a3f302e91e4c5c47db91bb6",
+    "Libs/LibButtonGlow-1.0/LibButtonGlow-1.0.lua": "69c32ec22d61324fb35305b06f8bf2ba270ce3b3008d9b18b28d85960edf8038"
+  },
+  "apiSourceEvidence": "Retained Gethe/client-loading/security pins in docs/AUCTION_RESTOCK.md; no new native API selected in this slice.",
+  "intentionalChanges": [
+    "Ordinary per-item buttons replace the common clickable host; inert caption and bounded native scroll remain.",
+    "Proc art is private and appears only on visible enabled items with published action readiness; exact1px item gaps.",
+    "Remaining planned physical outputs update after trusted craft inventory publications without opening the profession.",
+    "Mailbox Restock button/adjacent checkbox removed; settings and scoped selective mail worker preserved.",
+    "Routine preparation prices the next shortage and relevant recipe inputs, prepares the next after receipt and reuses exact fresh owned query proof.",
+    "Explicit Scan all restock retains full list/full-target potion upgrade discovery; routine full targets stay idle.",
+    "Durable current-character recipe/profession snapshots survive closed-profession roster/partial alias responses and actual reload serialization.",
+    "Bag-storm settlement callbacks are snapshot-dispatched so listener mutation cannot throw invalid key to next.",
+    "Native empty mail remains authoritative; inventory-only planning does not let stale provider mail consume newer transit receipts.",
+    "Known zero-command mail/bank/vendor refusals release only their scoped accepted intent; successful command-issued work remains guarded until publication."
+  ],
+  "initialFailuresResolved": [
+    "Obsolete Bars source string contract updated and supplemented with meaningful five/six-slot First Aid tests.",
+    "Synthetic legacy recipe fixtures given their actual recipe name metadata; runtime snapshot validation remains strict.",
+    "Ordinary Mail.OpenAll handoff regression found a genuine stale-provider receipt-ledger issue; strict receipt reliability restored.",
+    "Exact scan-count fixtures now distinguish explicit full refresh from routine next-shortage preparation."
+  ],
+  "performance": {
+    "newPollers": 0,
+    "newTickers": 0,
+    "newNativeSubscriptions": 0,
+    "queryComparison": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\auction-restock\\tab-crafting-followup\\restock-speed-ready-buttons-20261113T164325Z\\speed-work\\report.json",
+      "sha256": "b8b635af2075334abd6dfb956f9c619383929d9088f96a7c51dc21b5346db33f",
+      "profiles": 20,
+      "trialsPerProfile": 3,
+      "baseline": {
+        "firstReady": 4,
+        "chain": 6
+      },
+      "candidate": {
+        "firstReady": 1,
+        "chain": 3
+      },
+      "playerPressesBoth": 3,
+      "purchasesBoth": 3,
+      "measuredSourceDrift": []
+    },
+    "workMetric": "Deterministic query/gesture counts only; see speed comparison report. No native timing/FPS inference.",
+    "mail": "Existing bounded snapshot/worker retained; no mailbox controls.",
+    "glow": "Vendored proc/classic generic art only on visible actionable icon buttons; stopped while busy/offscreen/hidden/combat.",
+    "nativeMeasurements": "NOT RUN"
+  },
+  "preserved": {
+    "gitBranch": "main",
+    "hooksPath": ".githooks",
+    "privateSettingsCopied": false,
+    "foregroundOrInput": false,
+    "settingsOrProfilerWrites": false,
+    "manualClientSync": false,
+    "publication": false,
+    "globalAutoSettingsPreserved": true
+  },
+  "native": {
+    "status": "NOT RUN",
+    "clients": [
+      "Retail",
+      "Forever",
+      "MoP",
+      "Era",
+      "Anniversary"
+    ],
+    "route": "Existing user-managed native reproduction; no connected Witchcraft/UIForever/native UI tool available.",
+    "pending": [
+      "protected purchases and crafting",
+      "live receipt/mail/bank/vendor coexistence",
+      "login/reload persistence",
+      "proc geometry/pressed art/clipping/localized text",
+      "controller and native mouse input",
+      "taint and matched CPU/FPS"
+    ]
+  },
+  "documentation": {
+    "validation": "PASS:1073 classified sources;623 reachable;438 setting definitions;24 SavedVariables;17055 local links",
+    "diffCheck": "PASS",
+    "finalCompleteLuaManifestMatches": true,
+    "finalOwnedHashesMatch": true,
+    "currentControlHashSets": [
+      {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\auction-restock\\tab-crafting-followup\\restock-speed-ready-buttons-20261113T164325Z\\closed-profession-final-replay-results.json",
+        "count": 12,
+        "allCurrentHashesMatch": true
+      },
+      {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\auction-restock\\tab-crafting-followup\\restock-speed-ready-buttons-20261113T164325Z\\item-buttons-readiness-controls\\results.json",
+        "count": 29,
+        "allCurrentHashesMatch": true
+      },
+      {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\auction-restock\\tab-crafting-followup\\restock-speed-ready-buttons-20261113T164325Z\\ready-owner-control-results.json",
+        "count": 18,
+        "allCurrentHashesMatch": true
+      },
+      {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\auction-restock\\profession-recipe-knowledge\\controls.json",
+        "count": 11,
+        "allCurrentHashesMatch": true
+      },
+      {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\auction-restock\\tab-crafting-followup\\restock-speed-ready-buttons-20261113T164325Z\\speed-work\\report.json",
+        "count": 9,
+        "allCurrentHashesMatch": true
+      }
+    ],
+    "harmfulControlsRejected": 79,
+    "verifiedAtUTC": "2026-11-13T17:26:52.013165+00:00"
+  }
+}

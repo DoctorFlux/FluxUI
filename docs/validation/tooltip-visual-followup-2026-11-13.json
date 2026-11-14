@@ -1,0 +1,274 @@
+{
+  "changeID": "TOOLTIP-VISUAL-FOLLOWUP-20261113",
+  "createdUTC": "2026-11-13T19:56:12.847254+00:00",
+  "checkpoint": {
+    "changeId": "TOOLTIP-VISUAL-FOLLOWUP-20261113",
+    "createdUTC": "2026-11-13T19:51:02.562957+00:00",
+    "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\tooltip-visual-followup-20261113T195054Z",
+    "verified": true,
+    "sourceFiles": 2753,
+    "settingsMetadataEntries": 129,
+    "settingsContentsCopied": false,
+    "settingsWrites": false,
+    "revision": "26f886e3ea5371b196ab235d2dace0c156002285",
+    "branch": "main",
+    "hooksPath": ".githooks",
+    "sha256": {
+      "source.zip": "cf55f0b883cf7ba8c7a926d1b2ff281c5ea5d7ee907d99e1585fd04985477bb2",
+      "source-manifest.json": "0278d817ed08d725ebf580c45575642a0a77ba72a073d5bd2231d279cb23bf76",
+      "history.bundle": "7ce52de127a1c71fe53ab5a442c6216077a5244d29e21e92c32e143473e8d4ed"
+    }
+  },
+  "scope": "Desktop Lua caller/data/geometry and diagnostic ownership only; native secrets, taint, pixels, controller and CPU/FPS NOT RUN.",
+  "requirements": {
+    "CLASS-TIP-01": "Both class icon paths reject secret or inaccessible UnitClass filenames before concatenation",
+    "CLASS-TIP-02": "Ordinary class art/fallback/corner/size/enable policy and public recovery preserved",
+    "CLASS-TIP-03": "Opt-in build and field provenance without native data access/actions or logging/profiler changes"
+  },
+  "sourceIdentities": {
+    "UnitFrames/FluxUnitFrames_Shared.lua": {
+      "beforeSHA256": "5adf8d1089d2cfc375393c9d74ad2fff0bbad8a02973799047a16b0e82156ee7",
+      "afterSHA256": "301dca722f727dc639605e156648066ff7d4bbe7b569e81d460c621a88deba77",
+      "newFile": false
+    },
+    "Other/FluxInputDebug.lua": {
+      "beforeSHA256": "0b53c2948d11e745ff8a53069d7e0d88d35687883c66ea3cd171f73cccd20ff3",
+      "afterSHA256": "6047dc6f42a18bab1c6062dcbc483a0073b2022ede0c87d1e796a1ce039ce3fa",
+      "newFile": false
+    },
+    "tests/unit_class_icon_secrets.lua": {
+      "beforeSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "afterSHA256": "247a46907efcc57cc64c744f6b124febe9f030b64211abb77575e77fd5d41f1d",
+      "newFile": true
+    },
+    "tests/tooltip_taint_diagnostics.lua": {
+      "beforeSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "afterSHA256": "7d6368ce5967365b8a27bcabfcea87cf1d4d243b5b680cd1a8ceee22139d0727",
+      "newFile": true
+    }
+  },
+  "baseline": {
+    "label": "class-icons-baseline",
+    "command": [
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe",
+      "tests/unit_class_icon_secrets.lua",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\controls\\baseline-class-icon-shared.lua"
+    ],
+    "exit": 1,
+    "output": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe: tests/unit_class_icon_secrets.lua:12: restricted class token inspected or concatenated\nstack traceback:\n\t[C]: in function 'error'\n\ttests/unit_class_icon_secrets.lua:12: in metamethod 'concat'\n\tactual-class-icon:14: in upvalue 'update'\n\ttests/unit_class_icon_secrets.lua:54: in local 'paint'\n\ttests/unit_class_icon_secrets.lua:63: in main chunk\n\t[C]: in ?\n"
+  },
+  "focused": [
+    {
+      "label": "followup-unit_class_icon_secrets",
+      "command": [
+        "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe",
+        "tests/unit_class_icon_secrets.lua"
+      ],
+      "exit": 0,
+      "output": "unit_class_icon_secrets: 560 checks PASS; native secrets/pixels NOT RUN\n"
+    },
+    {
+      "label": "followup-tooltip_taint_diagnostics",
+      "command": [
+        "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe",
+        "tests/tooltip_taint_diagnostics.lua"
+      ],
+      "exit": 0,
+      "output": "tooltip_taint_diagnostics: 766 checks PASS; native taint VM NOT RUN\n"
+    },
+    {
+      "label": "followup-unit_spec_icon",
+      "command": [
+        "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe",
+        "tests/unit_spec_icon.lua"
+      ],
+      "exit": 0,
+      "output": "PASS 59 player spec selection checks\n"
+    },
+    {
+      "label": "followup-bag_item_targeting_diagnostics",
+      "command": [
+        "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe",
+        "tests/bag_item_targeting_diagnostics.lua"
+      ],
+      "exit": 0,
+      "output": "Bag item-targeting diagnostics: 574 checks PASS; native taint reproduction pending\n"
+    },
+    {
+      "label": "followup-edit_mode_native_ownership",
+      "command": [
+        "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe",
+        "tests/edit_mode_native_ownership.lua"
+      ],
+      "exit": 0,
+      "output": "Flux Edit Mode metadata captured; native spec event: true. /reload to save.\nFlux Edit Mode metadata captured; native spec event: true. /reload to save.\nFlux Edit Mode metadata captured; native spec event: true. /reload to save.\nFlux Edit Mode metadata captured; native spec event: true. /reload to save.\nEdit Mode resources live: base=18 overrides=0 nativeSpecUnregister=0 flags=0 saves=3 resets=5\nFlux Edit Mode metadata captured; native spec event: true. /reload to save.\nFlux Edit Mode metadata captured; native spec event: true. /reload to save.\nFlux Edit Mode metadata captured; native spec event: true. /reload to save.\nFlux Edit Mode metadata captured; native spec event: true. /reload to save.\nEdit Mode resources forever: base=18 overrides=0 nativeSpecUnregister=0 flags=0 saves=3 resets=5\nFlux Edit Mode metadata captured; native spec event: true. /reload to save.\nFlux Edit Mode metadata captured; native spec event: true. /reload to save.\nFlux Edit Mode metadata captured; native spec event: true. /reload to save.\nFlux Edit Mode metadata captured; native spec event: true. /reload to save.\nEdit Mode resources classic: base=18 overrides=0 nativeSpecUnregister=0 flags=0 saves=3 resets=5\nFlux Edit Mode metadata captured; native spec event: true. /reload to save.\nFlux Edit Mode metadata captured; native spec event: true. /reload to save.\nFlux Edit Mode metadata captured; native spec event: true. /reload to save.\nFlux Edit Mode metadata captured; native spec event: true. /reload to save.\nEdit Mode resources classic_era: base=18 overrides=0 nativeSpecUnregister=0 flags=0 saves=3 resets=5\nFlux Edit Mode metadata captured; native spec event: true. /reload to save.\nFlux Edit Mode metadata captured; native spec event: true. /reload to save.\nFlux Edit Mode metadata captured; native spec event: true. /reload to save.\nFlux Edit Mode metadata captured; native spec event: true. /reload to save.\nEdit Mode resources classic_anniversary: base=18 overrides=0 nativeSpecUnregister=0 flags=0 saves=3 resets=5\nEdit Mode native ownership: 295 checks; 0 failures; native protected execution/taint/pixels pending\n"
+    },
+    {
+      "label": "followup-tooltip_bookkeeping",
+      "command": [
+        "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe",
+        "tests/tooltip_bookkeeping.lua"
+      ],
+      "exit": 0,
+      "output": "tooltip_bookkeeping: 115 checks passed; native taint/secret VM NOT RUN\n"
+    },
+    {
+      "label": "followup-unit_tooltip_ownership",
+      "command": [
+        "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe",
+        "tests/unit_tooltip_ownership.lua"
+      ],
+      "exit": 0,
+      "output": "unit_tooltip_ownership: 290 checks passed (desktop ownership/lifecycle only)\n"
+    }
+  ],
+  "controls": [
+    {
+      "label": "class-icon-guard-1",
+      "command": [
+        "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe",
+        "tests/unit_class_icon_secrets.lua",
+        "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\controls\\class-icon-guard-1.lua"
+      ],
+      "exit": 1,
+      "output": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe: tests/unit_class_icon_secrets.lua:12: restricted class token inspected or concatenated\nstack traceback:\n\t[C]: in function 'error'\n\ttests/unit_class_icon_secrets.lua:12: in metamethod 'concat'\n\tactual-class-icon:14: in upvalue 'update'\n\ttests/unit_class_icon_secrets.lua:54: in local 'paint'\n\ttests/unit_class_icon_secrets.lua:63: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "label": "class-icon-guard-2",
+      "command": [
+        "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe",
+        "tests/unit_class_icon_secrets.lua",
+        "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\controls\\class-icon-guard-2.lua"
+      ],
+      "exit": 1,
+      "output": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe: tests/unit_class_icon_secrets.lua:12: restricted class token inspected or concatenated\nstack traceback:\n\t[C]: in function 'error'\n\ttests/unit_class_icon_secrets.lua:12: in metamethod 'concat'\n\tactual-class-icon:12: in upvalue 'update'\n\ttests/unit_class_icon_secrets.lua:54: in local 'paint'\n\ttests/unit_class_icon_secrets.lua:63: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "label": "diagnostic-native-data-read",
+      "command": [
+        "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe",
+        "tests/tooltip_taint_diagnostics.lua",
+        "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\controls\\diagnostic-native-data-read.lua"
+      ],
+      "exit": 1,
+      "output": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe: tests/tooltip_taint_diagnostics.lua:4: native tooltip data read, action invoked or driver installed\nstack traceback:\n\t[C]: in function 'error'\n\ttests/tooltip_taint_diagnostics.lua:4: in metamethod 'index'\n\t...9b-be03642eb3fc\\controls\\diagnostic-native-data-read.lua:330: in field 'CaptureTooltip'\n\ttests/tooltip_taint_diagnostics.lua:37: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "label": "diagnostic-missing-support-clean",
+      "command": [
+        "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe",
+        "tests/tooltip_taint_diagnostics.lua",
+        "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\controls\\diagnostic-missing-support-clean.lua"
+      ],
+      "exit": 1,
+      "output": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe: ...03642eb3fc\\controls\\diagnostic-missing-support-clean.lua:341: attempt to index a nil value (field 'marker')\nstack traceback:\n\t...03642eb3fc\\controls\\diagnostic-missing-support-clean.lua:341: in upvalue 'PrintTooltipSecurity'\n\t...03642eb3fc\\controls\\diagnostic-missing-support-clean.lua:383: in field 'FLUXINPUT'\n\ttests/tooltip_taint_diagnostics.lua:67: in main chunk\n\t[C]: in ?\n"
+    }
+  ],
+  "sources": {
+    "retailCommit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+    "retailBuild": "12.1.5.70783",
+    "foreverCommit": "bebcb6bf309cf41b41bd74f8ca651e6a105b2676",
+    "foreverBuild": "1.60.1.70938",
+    "UnitClassDeclaration": "Interface/AddOns/Blizzard_APIDocumentationGenerated/UnitDocumentation.lua",
+    "tooltipCleanup": "Interface/AddOns/Blizzard_SharedXML/SharedTooltipTemplates.lua",
+    "existingOtherTargets": "Era/Anniversary/Mists unchanged;five desktop models;native operation NOT RUN"
+  },
+  "observations": {
+    "userReports": [
+      "20:38:00 secret class texture at UpdateFrameVisualElements:8426",
+      "20:39:33 secret color table while execution tainted by _FluxUI",
+      "20:39:36 UnitPlayerControlled secret argument"
+    ],
+    "reloadAfterPriorPatch": "User question pending;not inferred",
+    "retailTaintLogModified": "2026-10-23 15:37:25 local",
+    "foreverTaintLogModified": "2026-11-09 19:25:37 local",
+    "currentTaintLogAvailable": false,
+    "nativeTooltipResolution": "UNRESOLVED;root field/writer and loaded build need a fresh user capture",
+    "classTextureResolution": "Guarded before concatenation in both production icon paths;restricted class hides icon until public class returns;native verification pending"
+  },
+  "diagnostic": {
+    "command": "/fluxinput tooltip",
+    "sourceMarker": "tooltip-visual-followup-20261113-r1",
+    "writes": "Existing FluxPerfCaptureDB.tooltipDebug only on explicit command;latest/previous bounded capture pairs",
+    "metadata": "Build/context/CVar read and issecurevariable provenance;control field records return convention",
+    "noNativeValues": true,
+    "noNativeMethods": true,
+    "noNativeHooks": true,
+    "noCVarWrites": true,
+    "noProfilerWrites": true,
+    "resources": "No frame/event/hook/poll;one 3-second timer only per explicitly requested capture",
+    "localization": "Debug.TooltipMessages catalog with English fallback;additional locale translations/native acceptance not run",
+    "controller": "Passive diagnostics;existing command input only;no new focus/input owner"
+  },
+  "clientControl": "None;no foreground/mouse/keyboard/clipboard,client sync,private settings copies or publication",
+  "fullValidation": {
+    "path": "docs/validation/tooltip-visual-followup-full-2026-11-13.json",
+    "passed": 355,
+    "failed": 0,
+    "syntaxFiles": 1043,
+    "syntaxFailures": []
+  },
+  "upstreamSources": [
+    {
+      "path": "source-evidence\\retail\\Blizzard_GameTooltip_Mainline.toc",
+      "sha256": "9f95ca6e75ffc0f109f46225a823d4e265e215c0669eea29dfdd9b2310eddc4d"
+    },
+    {
+      "path": "source-evidence\\retail\\EventImplementation.lua",
+      "sha256": "9214dccc8bf5d74767c803769de1d790688456828e9db79d62c2562565813e85"
+    },
+    {
+      "path": "source-evidence\\retail\\GameTooltip.lua",
+      "sha256": "5d3bf9efbd59c7f92844d97368a6750d5356fc444ea1c205c53da003ed097525"
+    },
+    {
+      "path": "source-evidence\\retail\\GameTooltip.xml",
+      "sha256": "40f020e509c5414237edaa64db7957438799d34ceeb04b252306e217deb7ed7c"
+    },
+    {
+      "path": "source-evidence\\retail\\SharedTooltipTemplates.lua",
+      "sha256": "815ef29ba2add550a9ccd6713d734b1cfa949bc495670b9034ded2d877727462"
+    },
+    {
+      "path": "source-evidence\\retail\\TooltipDataHandler.lua",
+      "sha256": "05a86b963b518a589cfebf22dec825507a5b1f564f66eb64fd7caead919f0642"
+    },
+    {
+      "path": "source-evidence\\retail\\TooltipDataRules.lua",
+      "sha256": "c87fbe81c668ce0d2d0fd80887f7124ba6e499abfab76d72aaf84354483138f3"
+    },
+    {
+      "path": "source-evidence\\retail\\TooltipUtil.lua",
+      "sha256": "4825bac4057b4002e630ffa7a6104add204f1164c0910e73bfe7b84ea6b31ec8"
+    },
+    {
+      "path": "source-evidence\\retail\\UnitDocumentation.lua",
+      "sha256": "034586d2e27cc2c74698a6a177d6bfdbcb05c3e8eac45cb471cbe8b99612d2fa"
+    }
+  ],
+  "finalSourceGuard": {
+    "completeLuaManifestVerified": 1043,
+    "ownedSourceHashesCurrent": true,
+    "upstreamHashesCurrent": true,
+    "newTrailingWhitespace": [],
+    "changedLuaXMLTOCSinceCheckpoint": [
+      "Other/FluxInputDebug.lua",
+      "UnitFrames/FluxUnitFrames_Shared.lua",
+      "tests/tooltip_taint_diagnostics.lua",
+      "tests/unit_class_icon_secrets.lua"
+    ],
+    "outsideTaskChangesPreserved": [],
+    "branch": "main",
+    "hooksPath": ".githooks"
+  },
+  "documentationValidation": {
+    "command": "python docs/tools/validate_docs.py",
+    "result": "PASS",
+    "classifiedSources": 1076,
+    "reachableTOCXML": 623,
+    "settingDefinitions": 438,
+    "savedVariables": 24,
+    "localLinks": 17113,
+    "sourceInventoryEvidenceCurrent": true
+  }
+}

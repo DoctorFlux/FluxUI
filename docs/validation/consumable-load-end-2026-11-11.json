@@ -1,0 +1,315 @@
+{
+  "changeId": "CONSUMABLE-LOAD-END-20261111",
+  "requirements": [
+    "CGLC-19",
+    "CGLC-20",
+    "CGLC-21",
+    "CGLC-22"
+  ],
+  "nativeFailure": {
+    "userCapture": "COUNTS/1 source=syndicator reliable=true hold=true load=true\nfood id=1487 action=item text=1 forced=1 live=nil slots=0 snapshot=0 modern=0 legacy=0 wrapped=0 uses=0\nwater id=3772 action=item text=7 forced=7 live=nil slots=7 snapshot=7 modern=7 legacy=7 wrapped=7 uses=7\nhealing id=929 action=item text=2 forced=2 live=nil slots=2 snapshot=2 modern=2 legacy=2 wrapped=2 uses=2\nmana id=3385 action=item text=1 forced=1 live=nil slots=1 snapshot=1 modern=1 legacy=1 wrapped=1 uses=1\nbandage id=6451 action=item text=1 forced=1 live=nil slots=1 snapshot=1 modern=1 legacy=1 wrapped=1 uses=1\ngem id=5514 action=item text=1 forced=1 live=nil slots=1 snapshot=1 modern=1 legacy=1 wrapped=1 uses=1\nstone id=nil action=nil text=nil forced=nil live=nil\nother1 id=6948 action=macrotext text=nil forced=nil live=nil slots=1 snapshot=1 modern=1 legacy=1 wrapped=1 uses=1\nUser: it does it still even if i have 0 food it show 1 food\nUser: it never really updates when its at current state\n",
+    "rawPath": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c65e-a3d3-7840-a32a-09fda47a48df\\native-load-end-recovery\\native-capture.txt",
+    "sha256": "4d547ddb3728c27497e7d77b8f6a129220f0daacd462f2e7aa910cb518e1614b",
+    "food": {
+      "id": 1487,
+      "displayed": 1,
+      "forced": 1,
+      "physicalSlots": 0,
+      "snapshot": 0,
+      "modern": 0,
+      "legacy": 0,
+      "wrapped": 0,
+      "uses": 0
+    },
+    "source": "syndicator",
+    "reliable": true,
+    "hold": true,
+    "load": true,
+    "conclusion": "The open loading latch preserves a false positive even though all food sources agree on zero. Ordinary bag updates cannot release this state. The exact earlier native event order was not captured.",
+    "otherFaces": "Water7/healing2/mana1/bandage1/gem1 agree across captured native sources;stone unassigned;hearthstone1. This trace does not show incorrect ownership on those faces.",
+    "clientBuild": "Not captured;user previously tested Forever;no new GetBuildInfo capture",
+    "status": "Prior candidate FAILED natively;new completion-handler candidate acceptance pending"
+  },
+  "implementation": {
+    "runtimeFiles": [
+      "Inventory/Init.lua"
+    ],
+    "owner": "Inventory.Start loading phase handlers",
+    "completion": "Validated optional LOADING_SCREEN_DISABLED subscription through existing Flux.Events",
+    "guard": "Only while worldLoading or Best._loadHoldOpen",
+    "work": "Restart cancelled BeginWorldRefresh generation;reuse ArmPortalSettle for bounded reliability and count/identity recovery",
+    "sameNormalPath": "Normal PEW completion and duplicate disabled events add no work;ordinary PEW retained when optional registration unavailable",
+    "addedEventSubscriptions": 1,
+    "addedFrames": 0,
+    "addedTickerCalls": 0,
+    "addedTimerCallSites": 0,
+    "addedHooks": 0,
+    "addedBackgroundPolling": 0,
+    "savedSettingsOrInputChanges": false
+  },
+  "checkpoint": {
+    "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c65e-a3d3-7840-a32a-09fda47a48df\\native-load-end-recovery\\checkpoint-20261111T180413Z",
+    "utc": "2026-11-11T18:05:26.676185+00:00",
+    "verified": true,
+    "head": "26f886e3ea5371b196ab235d2dace0c156002285",
+    "branch": "main",
+    "files": 2583,
+    "settingsMetadataEntries": 55,
+    "privateSettingsCopied": false,
+    "quiescentSettingsBackup": false,
+    "sourceZipSha256": "2622c4b3e3e4b0c414f4cce481a3cf4e7f87a57fd906295360141151d255b057",
+    "historyBundleSha256": "491352a9149947693a02ef96c997e2ff155ee14a4dd598726aebef2ff61e564a"
+  },
+  "sourceIdentitiesLF": {
+    "Inventory/Init.lua": {
+      "before": "ba561a05db2a870e205e368f9505c6c82b790913dbec3feef2007e24aba27b37",
+      "after": "72d2fe6d303afc36c7499c16be39c4a5667b6f1992d519620abfa892a6dc695e"
+    },
+    "tests/consumable_loading_end.lua": {
+      "after": "c2be177927637da737535945634d436c1b8ddfa11f3fe5dda808b09ea31329da"
+    }
+  },
+  "sourceGuard": {
+    "allPreexistingLuaXmlTocCompared": true,
+    "changed": [
+      "Inventory/Init.lua"
+    ],
+    "newLua": [
+      "tests/consumable_loading_end.lua"
+    ],
+    "unrelatedSourcePreserved": true,
+    "normalization": "CRLF to LF;other bytes preserved"
+  },
+  "comparison": {
+    "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c65e-a3d3-7840-a32a-09fda47a48df\\native-load-end-recovery\\checkpoint-20261111T180413Z",
+    "pairs": [
+      {
+        "label": "pair1-before",
+        "exit": 1,
+        "checks": 2230,
+        "failures": 660,
+        "scenarios": 240
+      },
+      {
+        "label": "pair1-after",
+        "exit": 0,
+        "checks": 2230,
+        "failures": 0,
+        "scenarios": 240
+      },
+      {
+        "label": "pair2-after",
+        "exit": 0,
+        "checks": 2230,
+        "failures": 0,
+        "scenarios": 240
+      },
+      {
+        "label": "pair2-before",
+        "exit": 1,
+        "checks": 2230,
+        "failures": 660,
+        "scenarios": 240
+      },
+      {
+        "label": "pair3-before",
+        "exit": 1,
+        "checks": 2230,
+        "failures": 660,
+        "scenarios": 240
+      },
+      {
+        "label": "pair3-after",
+        "exit": 0,
+        "checks": 2230,
+        "failures": 0,
+        "scenarios": 240
+      }
+    ],
+    "controls": [
+      {
+        "label": "control-omit-disabled-subscription",
+        "exit": 1,
+        "checks": 2230,
+        "failures": 660,
+        "scenarios": 240
+      },
+      {
+        "label": "control-leave-open-latch",
+        "exit": 1,
+        "checks": 2230,
+        "failures": 810,
+        "scenarios": 240
+      },
+      {
+        "label": "control-omit-world-refresh-restart",
+        "exit": 1,
+        "checks": 2230,
+        "failures": 170,
+        "scenarios": 240
+      },
+      {
+        "label": "control-repeat-completed-load",
+        "exit": 1,
+        "checks": 2230,
+        "failures": 250,
+        "scenarios": 240
+      },
+      {
+        "label": "control-skip-portal-settle",
+        "exit": 1,
+        "checks": 2230,
+        "failures": 160,
+        "scenarios": 240
+      }
+    ],
+    "sourceHashesLF": {
+      "Inventory/Init.lua": "72d2fe6d303afc36c7499c16be39c4a5667b6f1992d519620abfa892a6dc695e",
+      "Inventory/FluxConsumableBest/Init.lua": "24ec2905c39b15000e76c0e2a6d6780d46ef8e6a4337ae801aa092a9f48ff920",
+      "Inventory/FluxConsumableBest/FluxConsumableBest.lua": "cb60b0d33c60f7210b205a3d3f4afebf118f8e7afd2ec4e06ff3787c4942901a",
+      "Core/API/Item.lua": "2be703fae6568d44910f237c95ccb398680ba33658eb57cdceb5491100b2dbb4"
+    },
+    "testSha256LF": "c2be177927637da737535945634d436c1b8ddfa11f3fe5dda808b09ea31329da",
+    "scope": "Actual production modules in desktop event-order replays; functional/work counters only. Native candidate symptom/FPS/secure VM/pixels/input not run."
+  },
+  "comparisonPath": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c65e-a3d3-7840-a32a-09fda47a48df\\native-load-end-recovery\\comparison.json",
+  "comparisonSha256": "073b51194af7acea0d574e425478f140b5e815436b873fddf08dc4d6ea6053ec",
+  "fullValidation": {
+    "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c65e-a3d3-7840-a32a-09fda47a48df\\native-load-end-recovery\\full.json",
+    "sha256": "b53883010dd1b7fe9a391cf5eb3018a07e057a0dade4c06c16892d3485365fe5",
+    "scripts": 307,
+    "failed": 0,
+    "syntaxFiles": 980,
+    "syntaxFailures": 0,
+    "allCurrentManifestEntriesMatch": true,
+    "runtime": "Lua 5.4.6  Copyright (C) 1994-2023 Lua.org, PUC-Rio",
+    "scope": "Desktop Lua mocks/source checks only; native secure VM, real secret values, rendering and client performance unverified."
+  },
+  "regressionCoverage": "240 five-client/two-provider/seven-kind scenarios (both gem policies);late loading start;no PEW;disabled before PEW;zero-count API agreement;combat dark zero;regen placeholder;real long loading;normal PEW and duplicate completion work;cancelled slot refresh restart;newer loading generation;optional event unavailable",
+  "preservedRegressions": {
+    "holdReconciliation": 2104,
+    "itemZeroAuthority": 245,
+    "liveCounts": 2175,
+    "useEvents": 1219,
+    "depletionTransitions": 672,
+    "consumableSmoke": 1473,
+    "syndicator": 400,
+    "parkedPaintTraceHash": 723962797,
+    "parkedPaintSamples": 95,
+    "parkedChecks": 340,
+    "indexChecks": 99237,
+    "status": "PASS in full current-source run;native FPS/permissions not inferred"
+  },
+  "upstream": [
+    {
+      "client": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/LoadingScreenDocumentation.lua",
+      "gitBlob": "eaea788bf4d48b3ee4ac07d950be2f792bb567f7",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_APIDocumentationGenerated/LoadingScreenDocumentation.lua",
+      "sourceLevel": "Declarations only; native registration/delivery not captured",
+      "sha256": "b14ad5a95fd73a7403397bd77f797ab07f27dc38c0ae340ca08088c8770cfe1f",
+      "gitBlobVerified": true
+    },
+    {
+      "client": "forever",
+      "commit": "4cd0ab752a77164f654ccbca9d0c1fe8dafceebe",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/LoadingScreenDocumentation.lua",
+      "gitBlob": "eaea788bf4d48b3ee4ac07d950be2f792bb567f7",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4cd0ab752a77164f654ccbca9d0c1fe8dafceebe/Interface/AddOns/Blizzard_APIDocumentationGenerated/LoadingScreenDocumentation.lua",
+      "sourceLevel": "Declarations only; native registration/delivery not captured",
+      "sha256": "b14ad5a95fd73a7403397bd77f797ab07f27dc38c0ae340ca08088c8770cfe1f",
+      "gitBlobVerified": true
+    },
+    {
+      "client": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/LoadingScreenDocumentation.lua",
+      "gitBlob": "26d605475f25783d5e93f89604a57b36a3c8389a",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_APIDocumentationGenerated/LoadingScreenDocumentation.lua",
+      "sourceLevel": "Declarations only; native registration/delivery not captured",
+      "sha256": "d19c645a1e3e51ac982882fc78f4243bb4c5ab97794f10c58c887ea474e8a6cc",
+      "gitBlobVerified": true
+    },
+    {
+      "client": "classic_era",
+      "commit": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/LoadingScreenDocumentation.lua",
+      "gitBlob": "26d605475f25783d5e93f89604a57b36a3c8389a",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_APIDocumentationGenerated/LoadingScreenDocumentation.lua",
+      "sourceLevel": "Declarations only; native registration/delivery not captured",
+      "sha256": "d19c645a1e3e51ac982882fc78f4243bb4c5ab97794f10c58c887ea474e8a6cc",
+      "gitBlobVerified": true
+    },
+    {
+      "client": "classic_anniversary",
+      "commit": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/LoadingScreenDocumentation.lua",
+      "gitBlob": "26d605475f25783d5e93f89604a57b36a3c8389a",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_APIDocumentationGenerated/LoadingScreenDocumentation.lua",
+      "sourceLevel": "Declarations only; native registration/delivery not captured",
+      "sha256": "d19c645a1e3e51ac982882fc78f4243bb4c5ab97794f10c58c887ea474e8a6cc",
+      "gitBlobVerified": true
+    }
+  ],
+  "upstreamScope": "Five Git-blob-verified LoadingScreen event contracts at retained session pins;not fresh moving branch resolution or native addon registration/delivery proof",
+  "clientCopies": {
+    "scope": "Read-only files;existing user sync;native execution and automatic loaded source identity unverified",
+    "copies": [
+      {
+        "client": "_retail_",
+        "sameBytes": true,
+        "sha256": "72d2fe6d303afc36c7499c16be39c4a5667b6f1992d519620abfa892a6dc695e"
+      },
+      {
+        "client": "_forever_",
+        "sameBytes": true,
+        "sha256": "72d2fe6d303afc36c7499c16be39c4a5667b6f1992d519620abfa892a6dc695e"
+      },
+      {
+        "client": "_classic_",
+        "sameBytes": true,
+        "sha256": "72d2fe6d303afc36c7499c16be39c4a5667b6f1992d519620abfa892a6dc695e"
+      },
+      {
+        "client": "_classic_era_",
+        "sameBytes": true,
+        "sha256": "72d2fe6d303afc36c7499c16be39c4a5667b6f1992d519620abfa892a6dc695e"
+      },
+      {
+        "client": "_anniversary_",
+        "sameBytes": true,
+        "sha256": "72d2fe6d303afc36c7499c16be39c4a5667b6f1992d519620abfa892a6dc695e"
+      }
+    ]
+  },
+  "nativeCandidate": {
+    "status": "NOT RUN",
+    "followup": "Reload to load handler. Retest loading/food depletion;food should advance or become placeholder OOC and remain dark0 for exhausted displayed item in combat. During recurrence capture /fluxinv buttons before another reload.",
+    "eventHistory": "No retrospective native event history claimed",
+    "taintInputControllerPixelsFPSMemory": "NOT RUN"
+  },
+  "actions": {
+    "clientFocusOrInput": false,
+    "settingsOrProfilerWrite": false,
+    "manualSync": false,
+    "commitOrPublication": false
+  },
+  "documentationValidation": {
+    "status": "PASS",
+    "command": "python docs/tools/validate_docs.py",
+    "output": "PASS: 1013 classified sources; 608 TOC/XML reachable; 427 setting definitions; 24 SavedVariables; 16333 local links. Source inventory/evidence current. No files written.",
+    "rawPath": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c65e-a3d3-7840-a32a-09fda47a48df\\native-load-end-recovery\\documentation-validation.txt"
+  },
+  "finalGuard": {
+    "utc": "2026-11-11T18:14:42.317923+00:00",
+    "all980SourceManifestEntriesCurrent": true,
+    "onlyOneExistingRuntimeFileChanged": true,
+    "newLuaFile": "tests/consumable_loading_end.lua",
+    "fiveInstalledRuntimeCopiesMatchBytes": true,
+    "scopedWhitespaceCheck": "PASS",
+    "branch": "main",
+    "hooksPath": ".githooks",
+    "publication": false
+  }
+}

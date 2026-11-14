@@ -312,7 +312,7 @@ function E.RefreshLayout()
                 local index = raid and i or i-40
                 local unit = raid and ("raidpet"..i) or (index==1 and "pet" or "partypet"..(index-1))
                 local mode = raid and "raid" or "party"
-                ConfigureCell(pets[i], unit, "[group:"..mode..",@"..unit..",exists] show; hide", true,
+                ConfigureCell(pets[i], unit, FluxRaidSecure.GetCompanionVisibilityCondition(mode, unit), true,
                     floor((index-1)/5), (index-1)%5, offsetY, restricted)
             end
         else for _, pet in ipairs(pets) do DisableCell(pet) end end

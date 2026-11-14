@@ -310,12 +310,31 @@ end
 --- Unloaded item data still competes. Only permanent gates (level / skill / class).
 --- Never raw IsUsableItem — it is false in combat for food/water and would
 --- drop a still-owned stack to the Extra-button placeholder.
+function Score.IsExcludedFromBest(itemID)
+    itemID = tonumber(itemID)
+    if not itemID then return false end
+    local settings = _G.FluxRestockSettings
+    local root = settings and settings.Get and settings.Get()
+    local prefs = root and type(root.auctionRestock) == "table" and root.auctionRestock or {}
+    if type(prefs.upgradeBlacklist) == "table" and prefs.upgradeBlacklist[itemID] == true then return true end
+    if prefs.excludeDiscoloredHealingPotions == false then return false end
+    local ic = _G.FluxItemClass
+    local name = ic and ic.GetName and ic.GetName(itemID)
+    -- Configurable substring explicitly requested by the user; no tier/ID list.
+    if type(name) ~= "string" or not name:lower():find("discolored", 1, true) then return false end
+    local classify = _G.FluxConsumableClassify
+    local cls = classify and classify.Classify and classify.Classify(itemID)
+    if cls then return cls.kind == "healPotion" end
+    return ic and ic.GetClassID and ic.GetClassID(itemID) == 0
+        and ic.GetSubClassID and ic.GetSubClassID(itemID) == 1
+        and classify and classify.IsHealingPotionName and classify.IsHealingPotionName(name, "") or false
+end
 function Score.IsBlockedForBest(itemID, kind)
     itemID = tonumber(itemID)
     if not itemID then
         return true
     end
-    if Score.IsKnownUnusable(itemID, kind) then
+    if Score.IsExcludedFromBest(itemID) or Score.IsKnownUnusable(itemID, kind) then
         return true
     end
     -- Persist/latch can keep a previous healPotion ID after classify rejects it

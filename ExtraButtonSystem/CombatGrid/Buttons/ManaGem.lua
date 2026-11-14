@@ -397,8 +397,8 @@ local function AttachManaGem(btn)
                 ApplyGemCount(btn, bestID)
             end
         else
-            -- Charge-based / 0-mana conjure: latest item, not the generic placeholder.
-            -- Vanilla paid / no sticky id: placeholder.
+            -- A load hold may retain the latest face. Reliable empty ownership
+            -- must clear it, including charge remnants with no remaining use.
             local stickyID = StickyGemMode() and LatestGemItemID() or nil
             if SoftHoldOwned() then
                 local keepID = stickyID or Module._latchItemID or Module._trackedItemID
@@ -425,20 +425,16 @@ local function AttachManaGem(btn)
                     return
                 end
             end
-            if stickyID and BindGemFace(btn, stickyID, force) then
-                -- Keep the latest gem bound at count 0 so left-click stays the item.
-            else
-                Module._trackedItemID = nil
-                Module._latchItemID = nil
-                Module._latchCount = nil
-                btn.ItemId = nil
-                if btn.SetPlaceholder then
-                    btn:SetPlaceholder(PLACEHOLDER, "Mana Gem")
-                elseif btn.ClearAction then
-                    btn:ClearAction()
-                end
-                ApplyGemCount(btn, nil) -- show "0" on placeholder
+            Module._trackedItemID = nil
+            Module._latchItemID = nil
+            Module._latchCount = nil
+            btn.ItemId = nil
+            if btn.SetPlaceholder then
+                btn:SetPlaceholder(PLACEHOLDER, "Mana Gem")
+            elseif btn.ClearAction then
+                btn:ClearAction()
             end
+            ApplyGemCount(btn, nil) -- show "0" on placeholder
         end
 
         ApplyRC(btn)

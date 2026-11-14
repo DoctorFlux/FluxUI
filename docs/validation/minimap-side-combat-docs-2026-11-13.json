@@ -1,0 +1,11 @@
+{
+  "command": "python docs/tools/validate_docs.py",
+  "exitCode": 1,
+  "output": "Documentation validation FAILED:\n- Stale source inventory: Inventory/Restock/Auction/FluxAuctionRestockCraft.lua\n- Stale source inventory: Inventory/Restock/Auction/FluxAuctionRestockData.lua\n- Stale source inventory: Inventory/Restock/Auction/FluxAuctionRestockLocale.lua\n- Stale source inventory: Inventory/Restock/Auction/FluxAuctionRestockUI.lua\n- Stale source inventory: tests/auction_restock_charges.lua\n- Stale generated view: reference/declarations.md\n- Stale generated view: reference/interfaces.md\n- Recorded verification predates current source: Inventory/Restock/Auction/FluxAuctionRestockData.lua\n- Recorded verification predates current source: Inventory/Restock/Auction/FluxAuctionRestockLocale.lua\n- Recorded verification predates current source: Inventory/Restock/Auction/FluxAuctionRestockUI.lua\n- Recorded verification predates current source: tests/auction_restock_charges.lua\n- Broken link AUCTION_RESTOCK.md:40: validation/auction-purchase-charges-2026-11-13.json\n- Broken link MINIMAP_EXTRA_LAYOUT.md:77: validation/minimap-side-combat-2026-11-13.json\n- Invalid source line reference\\declarations.md:80: ../../Inventory/Restock/Auction/FluxAuctionRestockUI.lua#L326\n- Invalid source line reference\\declarations.md:81: ../../Inventory/Restock/Auction/FluxAuctionRestockUI.lua#L327\n- Invalid source line reference\\interfaces.md:6989: ../../Inventory/Restock/Auction/FluxAuctionRestockUI.lua#L327\n16 issue(s); checker made no edits.\n",
+  "supplementalTaskLinkCheck": {
+    "resolved": "MINIMAP_EXTRA_LAYOUT.md: validation/minimap-side-combat-2026-11-13.json",
+    "targetExists": true,
+    "targetValidJSON": true,
+    "note": "Primary evidence was created after the validator read that link;this task link is now resolved. Remaining global source/generated-view/auction-evidence failures are concurrent auction work outside this change."
+  }
+}

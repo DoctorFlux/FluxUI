@@ -134,31 +134,34 @@ end
 
 -- Accessible number, else last cached plain number, else fallback.
 -- Never uses SafeGetNumber's 0 default (that would freeze swing/speed caches).
+local function LastNumberOr(last, fallback)
+	if type(last) == "number" then return last end
+	return fallback
+end
+
 function Secrets.KeepLastNumber(value, last, fallback)
 	fallback = fallback or 0
-	local function useLast()
-		if type(last) == "number" then
-			return last
-		end
-		return fallback
-	end
 	if value == nil then
-		return useLast()
+		return LastNumberOr(last, fallback)
 	end
 	if Secrets.IsSecretValue(value) then
-		return useLast()
+		return LastNumberOr(last, fallback)
 	end
 	if not Secrets.CanAccessValue(value) then
-		return useLast()
+		return LastNumberOr(last, fallback)
 	end
 	local ok, num = pcall(tonumber, value)
 	if not ok or num == nil then
-		return useLast()
+		return LastNumberOr(last, fallback)
 	end
 	if Secrets.IsSecretValue(num) then
-		return useLast()
+		return LastNumberOr(last, fallback)
 	end
 	return num
+end
+
+local function AddZero(value)
+	return value + 0
 end
 
 function Secrets.CoerceNumberLoose(value, default)
@@ -166,13 +169,47 @@ function Secrets.CoerceNumberLoose(value, default)
 	if value == nil then
 		return default
 	end
-	local ok, n = pcall(function()
-		return (value + 0)
-	end)
+	local ok, n = pcall(AddZero, value)
 	if ok and type(n) == "number" and n == n and n < math.huge and n > -math.huge then
 		return n
 	end
 	return default
+end
+
+-- These protected operations run on every button/range paint. Pass operands
+-- into stable functions so a cache hit or public test allocates no closure.
+local function CompareValues(a, b, operator)
+	if operator == "~=" then
+		return a ~= b
+	elseif operator == "==" then
+		return a == b
+	elseif operator == ">" then
+		return a > b
+	elseif operator == "<" then
+		return a < b
+	elseif operator == ">=" then
+		return a >= b
+	elseif operator == "<=" then
+		return a <= b
+	end
+	return nil
+end
+
+local function EqualValues(a, b)
+	return a == b
+end
+
+local function TruthyValue(value)
+	if value then return true end
+	return false
+end
+
+local function TrueValue(value)
+	return value == true or value == 1
+end
+
+local function FalseValue(value)
+	return value == false or value == 0
 end
 
 function Secrets.SafeCompare(a, b, operator)
@@ -182,22 +219,7 @@ function Secrets.SafeCompare(a, b, operator)
 	if not Secrets.CanAccessValue(a) or not Secrets.CanAccessValue(b) then
 		return nil
 	end
-	local ok, res = pcall(function()
-		if operator == "~=" then
-			return a ~= b
-		elseif operator == "==" then
-			return a == b
-		elseif operator == ">" then
-			return a > b
-		elseif operator == "<" then
-			return a < b
-		elseif operator == ">=" then
-			return a >= b
-		elseif operator == "<=" then
-			return a <= b
-		end
-		return nil
-	end)
+	local ok, res = pcall(CompareValues, a, b, operator)
 	if not ok then
 		return nil
 	end
@@ -209,9 +231,7 @@ function Secrets.SafeEqualForCache(a, b)
 	if cmp ~= nil then
 		return cmp
 	end
-	local ok, res = pcall(function()
-		return a == b
-	end)
+	local ok, res = pcall(EqualValues, a, b)
 	return ok and res or false
 end
 
@@ -268,12 +288,7 @@ function Secrets.SafeBooleanTest(value, default)
 	if not Secrets.CanAccessValue(value) then
 		return default
 	end
-	local ok, truthy = pcall(function()
-		if value then
-			return true
-		end
-		return false
-	end)
+	local ok, truthy = pcall(TruthyValue, value)
 	if not ok then
 		return default
 	end
@@ -289,15 +304,11 @@ function Secrets.NormalizeTriBool(value)
 		if type(value) == "boolean" then
 			return nil
 		end
-		local okOne, isOne = pcall(function()
-			return value == 1
-		end)
+		local okOne, isOne = pcall(EqualValues, value, 1)
 		if okOne and isOne then
 			return true
 		end
-		local okZero, isZero = pcall(function()
-			return value == 0
-		end)
+		local okZero, isZero = pcall(EqualValues, value, 0)
 		if okZero and isZero then
 			return false
 		end
@@ -307,15 +318,11 @@ function Secrets.NormalizeTriBool(value)
 	if okAccess and not accessible then
 		return nil
 	end
-	local ok, isTrue = pcall(function()
-		return value == true or value == 1
-	end)
+	local ok, isTrue = pcall(TrueValue, value)
 	if ok and isTrue then
 		return true
 	end
-	local okFalse, isFalse = pcall(function()
-		return value == false or value == 0
-	end)
+	local okFalse, isFalse = pcall(FalseValue, value)
 	if okFalse and isFalse then
 		return false
 	end
@@ -373,6 +380,20 @@ end
 
 -- UNIT_AURA payload: true when a non-full update has no added/removed/updated
 -- work and is safe to skip. Secret/unreadable payloads are never skipable.
+local function ListLength(t)
+	return #t
+end
+
+local function AuraListHasEntries(t)
+	if t == nil then return false end
+	if Secrets.IsSecretValue(t) or Secrets.IsSecretTable(t) or not Secrets.CanAccessTable(t) then
+		return true
+	end
+	local ok, n = pcall(ListLength, t)
+	if not ok then return true end
+	return n > 0
+end
+
 function Secrets.AuraUpdateInfoIsNoop(info)
 	if type(info) ~= "table" then
 		return false
@@ -387,22 +408,7 @@ function Secrets.AuraUpdateInfoIsNoop(info)
 	if Secrets.SafeBooleanTest(full, true) then
 		return false
 	end
-	local function listHas(t)
-		if t == nil then
-			return false
-		end
-		if Secrets.IsSecretValue(t) or Secrets.IsSecretTable(t) or not Secrets.CanAccessTable(t) then
-			return true
-		end
-		local ok, n = pcall(function()
-			return #t
-		end)
-		if not ok then
-			return true
-		end
-		return n > 0
-	end
-	if listHas(info.addedAuras) or listHas(info.removedAuraInstanceIDs) or listHas(info.updatedAuraInstanceIDs) then
+	if AuraListHasEntries(info.addedAuras) or AuraListHasEntries(info.removedAuraInstanceIDs) or AuraListHasEntries(info.updatedAuraInstanceIDs) then
 		return false
 	end
 	return true
@@ -410,6 +416,15 @@ end
 
 -- True when Blizzard must not if-test isFullUpdate or ipairs secret aura lists.
 -- Tainted GetAuraSlots also fails for these payloads — skip the refresh.
+local function AuraFieldHasSecrets(v)
+	if v == nil then return false end
+	if Secrets.IsSecretValue(v) then return true end
+	if type(v) == "table" and (Secrets.IsSecretTable(v) or not Secrets.CanAccessTable(v)) then
+		return true
+	end
+	return false
+end
+
 function Secrets.AuraUpdateInfoHasSecrets(info)
 	if info == nil then
 		return false
@@ -426,19 +441,7 @@ function Secrets.AuraUpdateInfoHasSecrets(info)
 	if Secrets.IsSecretValue(info.isFullUpdate) then
 		return true
 	end
-	local function fieldSecret(v)
-		if v == nil then
-			return false
-		end
-		if Secrets.IsSecretValue(v) then
-			return true
-		end
-		if type(v) == "table" and (Secrets.IsSecretTable(v) or not Secrets.CanAccessTable(v)) then
-			return true
-		end
-		return false
-	end
-	return fieldSecret(info.addedAuras)
-		or fieldSecret(info.removedAuraInstanceIDs)
-		or fieldSecret(info.updatedAuraInstanceIDs)
+	return AuraFieldHasSecrets(info.addedAuras)
+		or AuraFieldHasSecrets(info.removedAuraInstanceIDs)
+		or AuraFieldHasSecrets(info.updatedAuraInstanceIDs)
 end

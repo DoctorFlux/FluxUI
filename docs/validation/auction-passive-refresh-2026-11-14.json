@@ -1,0 +1,125 @@
+{
+  "dateUTC": "2026-11-14T09:28:10.438693+00:00",
+  "localDate": "2026-11-14",
+  "timezone": "Europe/Copenhagen",
+  "changeID": "AUCTION-PASSIVE-REFRESH-20261114",
+  "requirements": [
+    "AHR-105",
+    "AHR-106"
+  ],
+  "checkpoint": {
+    "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\auction-restock\\tab-crafting-followup\\explicit-restock-20261114T090141Z\\checkpoint.json",
+    "sha256": "92f344685bab86703922e9beafe42a680ac9467a652a1d2971184cc7bda2eeae",
+    "sourceFiles": 2780,
+    "accessibleSettingsMetadata": 129,
+    "privateSettingsCopied": false,
+    "archives": {
+      "source-before.zip": {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\auction-restock\\tab-crafting-followup\\explicit-restock-20261114T090141Z\\source-before.zip",
+        "sha256": "9bda06d19c50368ad20897a88af06f95299280097ac6c6691dc4deb23e5e80fb"
+      },
+      "history-before.bundle": {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\auction-restock\\tab-crafting-followup\\explicit-restock-20261114T090141Z\\history-before.bundle",
+        "sha256": "b85dfea7e42748bbca08f05bf4fdb0852823f68dc6e27ad062e01a97fd65d52c"
+      }
+    }
+  },
+  "behavior": {
+    "start": "Opening Restock starts one shortage-only preparation. A player Buy press restarts preparation if later stock changes. No purchase or upgrade is automatic.",
+    "shortages": "Known filled tiers/items are skipped on opening;missing remembered potion kinds and a configured kind without a remembered SKU are eligible. Saved recipe/material shortages use the existing planner.",
+    "passive": "Bag/mail/profession pulses refresh counts without canceling owned queries,replacing proposals or restarting an idle/finished queue. A user-started initial loading wait may resume once reliable.",
+    "next": "Matching purchase ACKs prepare the next shortage;each purchase still requires its own player press. User setting edits may replan once.",
+    "scanAll": "Existing explicitly requested modern Scan all restock still refreshes all listed prices. Old AH retains scan/buy per item and has no Scan all control.",
+    "preferences": {
+      "healPotion": true,
+      "manaPotion": true,
+      "bandage": false,
+      "location": "Loot & Items -> Restock",
+      "saved": "Existing per-character auctionRestock.upgradePrompts;three independent booleans",
+      "effect": "Disabling upgrade prompts keeps current-tier direct purchases and craft-material comparisons available;stale disabled-kind choices cannot commit."
+    },
+    "ui": "Keep36px +2px gap+Block42px in existing80px card;full blacklist action in tooltip. Unchanged native enabled states are not rewritten on passive paints."
+  },
+  "tests": {
+    "pass": 76,
+    "fail": 0,
+    "syntaxFiles": 82,
+    "scoped": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\auction-restock\\tab-crafting-followup\\explicit-restock-20261114T090141Z\\scoped.json",
+      "sha256": "6bb4955a72d282d5978e011d271c05f873a11080de766b184ad55768be3ae1a8"
+    },
+    "passiveRegression": "440 checks/20 profiles",
+    "profiles": "Retail/Forever/MoP/Era/Anniversary x Auctionator present/absent x Syndicator present/absent",
+    "observations": "Zero queries for filled opening;zero extra queries and zero proposal hide/show,enabled-state writes or frame allocations across repeated bag/mail/profession/material changes;in-flight query preserved;finished queue stays idle.",
+    "matchedTrials": 3,
+    "compiledHarmfulControlsRejected": 11,
+    "controls": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\auction-restock\\tab-crafting-followup\\explicit-restock-20261114T090141Z\\results.json",
+      "sha256": "6523bd8246ab1915bd1cb4bcd661a3dc3f0f5250bd31c5ecfdb41d01eac78d27"
+    },
+    "scope": "Auction/restock/consumable/inventory/recipe/options checks;meter/threat work excluded;no native rendering/secure VM/performance certification",
+    "fixtureUpdates": "Existing upgrade tests now create actual shortages;bandage multi-choice fixture explicitly opts in;bandage classification mock now supplies its real health axis.",
+    "discardedControl": "An initial delayed revive mutation did not exercise the completion case and was replaced with an immediate idle restart. Candidate code was unchanged;final11 controls compile and fail behavioral assertions."
+  },
+  "verification": {
+    "scope": "76 fresh scripts/82 syntax files;other observations historical;no whole-suite rerun;meters excluded by user ownership",
+    "unexpectedOutsideOwned": [],
+    "indexUpdated": "Incremental;historical results retained with original timestamps;full rerun not claimed"
+  },
+  "installedCopies": {
+    "scope": "Read-only;existing automatic sync;no manual copy",
+    "clients": [
+      {
+        "client": "_retail_",
+        "files": 6,
+        "mismatches": []
+      },
+      {
+        "client": "_forever_",
+        "files": 6,
+        "mismatches": []
+      },
+      {
+        "client": "_classic_",
+        "files": 6,
+        "mismatches": []
+      },
+      {
+        "client": "_classic_era_",
+        "files": 6,
+        "mismatches": []
+      },
+      {
+        "client": "_anniversary_",
+        "files": 6,
+        "mismatches": []
+      }
+    ]
+  },
+  "native": {
+    "status": "NOT RUN for this slice",
+    "route": "Existing background Forever authorization retained;no client input/reload,purchase,upgrade acceptance or profiler change",
+    "pending": "Native flicker/text fit,directional controller navigation,secure input/taint,latency/FPS and other-client behavior"
+  },
+  "compatibility": "Existing five client auction adapters/native controls;no new WoW API calls;existing pinned primary-source identities retained",
+  "ownership": "Meters/threat source and tests excluded by user instruction",
+  "branch": "main",
+  "hooksPath": ".githooks",
+  "publication": "No commit or push",
+  "candidateRawHashes": {
+    "Inventory/Restock/Auction/FluxAuctionRestock.lua": "5200566436891b494b5a2db788c4ab9e40b52d6c70527f6a2266f1c32c483262",
+    "Inventory/Restock/Auction/FluxAuctionRestockPotions.lua": "9a48e6ca226ca045da139e540c4573835443798dd951cd9c5a0ab942355c85a6",
+    "Inventory/Restock/Auction/FluxAuctionRestockData.lua": "b6f397c41fe81870faefd6d43087d0534da90bee86b77f6209d929f65c04f928",
+    "Inventory/Restock/Auction/FluxAuctionRestockUI.lua": "6b07eb9493aa02bbf051c5bfc604597a0a90a9a3b05b611751af2fa8d276bc33",
+    "Inventory/Restock/Auction/FluxAuctionRestockLocale.lua": "f4384f5e3be6f508320e7a4a2b20e7fe48843758b44753e3cb8a35e2c2667b74",
+    "AddonOptions/FluxOptionsVendor.lua": "ee7123daee3f4483c6fe0cbb192b398ba03ac2d8b216db24b1b592851188e850",
+    "tests/auction_restock_potions.lua": "fad3ec81cca4ac80536332382a9bce1c646ea548c39a4d43c5ab9065252e2031",
+    "tests/auction_restock_inline_upgrades.lua": "96b776903a0d1f70e50ff675e18c8fd9d1a436347b0f452264e1be3394bbeaa7",
+    "tests/auction_restock_potion_confirmation.lua": "bcd5a45663e30b4a3109b07a6d99b7e7dac220716f1334ad76787539fb74ed61",
+    "tests/auction_restock_potion_restore.lua": "6e6f0bdd3e52e625ca43e614a3aaa5acbfcf1a60170d782c2f3c072451129f41",
+    "tests/auction_restock_potion_upgrade.lua": "99f68bd40c795f997f688c1c5a972c587e91a6aa7f473955d9ffabf85d0cb450",
+    "tests/auction_restock_scan_all.lua": "66af421f9109cd95183ab65c3ae5a6f0ecd750a3d4a901d39fe7053e80324d9e",
+    "tests/potion_minimum_restore.lua": "895b0199ebf296926fdece70169bbd857af01ad5ed879a5d2d2ea83dad6caa01",
+    "tests/auction_restock_passive.lua": "1d14651bd6521edf3ad2c0b604bc64c931c0cf1fb0fa4e09d9b83eb3041af988"
+  }
+}

@@ -1,0 +1,224 @@
+{
+  "changeId": "AUCTION-RESTOCK-20261112",
+  "dateUTC": "2026-11-12T10:12:35.548422+00:00",
+  "requirements": [
+    "AHR-01",
+    "AHR-02",
+    "AHR-03",
+    "AHR-04",
+    "AHR-05",
+    "AHR-06",
+    "AHR-07",
+    "AHR-08",
+    "AHR-09"
+  ],
+  "targets": [
+    "live",
+    "forever",
+    "classic",
+    "classic_era",
+    "classic_anniversary"
+  ],
+  "choices": {
+    "mockup": "Implement directly;explicit12November answer",
+    "nativeTesting": "Existing user reproduction route retained;no Witchcraft/UIForever tools available",
+    "installation": "Existing Retail folder only;user handles synchronization"
+  },
+  "checkpoint": {
+    "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\auction-restock",
+    "sourceFiles": 2587,
+    "head": "26f886e3ea5371b196ab235d2dace0c156002285",
+    "branch": "main",
+    "archives": {
+      "source-before.zip": "e861be07a5c20327f02c9cd7fb7e35e3726eed19e3ff88268b17489e547b19e2",
+      "history-before.bundle": "74888d1ddd556d65f594a6972f509e2cfa56b9a58a93108f6d275b244a9cc953"
+    },
+    "settingsMetadataEntries": 47,
+    "privateSettingsCopied": false
+  },
+  "sourceEvidence": {
+    "pins": {
+      "live": {
+        "sha": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+        "date": "2026-11-04T00:46:01Z"
+      },
+      "forever": {
+        "sha": "4cd0ab752a77164f654ccbca9d0c1fe8dafceebe",
+        "date": "2026-11-10T15:16:27Z"
+      },
+      "classic": {
+        "sha": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+        "date": "2026-10-27T14:16:09Z"
+      },
+      "classic_era": {
+        "sha": "4192ac60067fc55566182291bc67c85dd9b6794d",
+        "date": "2026-10-26T23:16:08Z"
+      },
+      "classic_anniversary": {
+        "sha": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+        "date": "2026-10-26T23:16:20Z"
+      }
+    },
+    "gitBlobVerifiedFiles": 87,
+    "evidence": "docs/validation/auction-restock-sources-2026-11-12.json",
+    "nativePresenceAndAccess": "NOT RUN;source declarations and loaded-code paths are not native certification"
+  },
+  "sourceGuard": {
+    "changedExistingLuaXmlToc": [
+      "_FluxUI.toc",
+      "AddonOptions/FluxOptionsVendor.lua",
+      "Inventory/Restock/Core/FluxRestockList.lua"
+    ],
+    "newLua": [
+      "Inventory/Restock/Auction/FluxAuctionRestock.lua",
+      "Inventory/Restock/Auction/FluxAuctionRestockData.lua",
+      "Inventory/Restock/Auction/FluxAuctionRestockLocale.lua",
+      "Inventory/Restock/Auction/FluxAuctionRestockUI.lua",
+      "tests/auction_restock.lua"
+    ],
+    "allOtherExistingLuaXmlToc": "Byte-preserved against external checkpoint",
+    "sourceHashNormalization": "CRLF to LF for final full-suite manifest",
+    "hashesLF": {
+      "_FluxUI.toc": "7dfdcd6cdf2519b02d9b2182b39a570c6a11d79ea916cd0598b0997de842e92e",
+      "AddonOptions/FluxOptionsVendor.lua": "bc549ac72982ad195862490615f12ac908b7977de66afc4067b0558d5e28ecf4",
+      "Inventory/Restock/Core/FluxRestockList.lua": "e63c7ec0d4d4c07836eb3b07835d7b71cbce1a4f4850302fef1e8779b37f7fb6",
+      "Inventory/Restock/Auction/FluxAuctionRestock.lua": "8430ee9fbde1c7557832c3f5ca1e05ebcf62c8f5908f10a6ec7102254a223d1a",
+      "Inventory/Restock/Auction/FluxAuctionRestockData.lua": "429b79cbc39793e53fc89645a590ba1110b56849542b106145d38244b472b946",
+      "Inventory/Restock/Auction/FluxAuctionRestockLocale.lua": "4b8e9a55fff544351536d25aac7392cf845e1387712a8034aeb86477fd70c722",
+      "Inventory/Restock/Auction/FluxAuctionRestockUI.lua": "e1f7d12e65a5b33ea1e9438557ec841ed0ce2f352c761bf73266677ca233d858",
+      "tests/auction_restock.lua": "685b8718787e96acd0a4001c2af29c195b3609742b5e7162de1af29e711f457b"
+    }
+  },
+  "behavior": {
+    "maxUnitPrice": "Explicit integer copper per physical item;unset/zero disables;rechecked at purchase",
+    "modernCommodities": "Same action button searches;requests exact quote on a press;confirms on another press;quantity bounded by target and affordable capped offers",
+    "legacyStacks": "One listing per press;default only stacks<=need;exact preferred;optional excess shown in full;later pages searched before offering excess",
+    "targetSources": "Real existing target owner;active preset/manual/tier reference;bank flags;charges converted to copies",
+    "vendors": "Witnessed merchant buy-price memory plus vendorItems map including free stock;no vendor sell-value inference;universal catalogue unavailable",
+    "pendingMail": "Reserve before submission;persist under existing Restock root;reconcile carried increases;retain uncertain submissions;explicit double-press clear",
+    "ownership": "Secure native post-hooks;competing queries invalidate;external quote/native dialog blocks;no native API replacement;no Auctionator implementation source used",
+    "partialResults": "Request more rows for selected item only;duplicate same-count notification cannot resend;bounded wait",
+    "idle": "No scan frame/ticker/polling;one session timer only during request/response/throttle waits"
+  },
+  "focusedValidation": {
+    "checks": 6496,
+    "profiles": 20,
+    "output": "Auction restock: 6496 checks PASS; 20 client/provider/addon profiles; native purchases/input/taint/pixels/FPS NOT RUN\n",
+    "scope": "Desktop fake APIs/widgets plus real target-list owner;does not execute optional-addon internals"
+  },
+  "negativeControls": [
+    {
+      "control": "fractional-price-rounddown",
+      "rejected": true,
+      "exit": 1,
+      "wallSeconds": 0.05994619999546558,
+      "output": "lua: tests/auction_restock.lua:5: fractional unit ceiling cannot round down\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/auction_restock.lua:5: in local 'check'\n\ttests/auction_restock.lua:248: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "control": "implicit-excess",
+      "rejected": true,
+      "exit": 1,
+      "wallSeconds": 0.05493029998615384,
+      "output": "lua: tests/auction_restock.lua:5: no implicit surplus\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/auction_restock.lua:5: in local 'check'\n\ttests/auction_restock.lua:246: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "control": "whole-commodity-stock",
+      "rejected": true,
+      "exit": 1,
+      "wallSeconds": 0.056953700026497245,
+      "output": "lua: tests/auction_restock.lua:5: exact commodity quantity and owned/account filtering\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/auction_restock.lua:5: in local 'check'\n\ttests/auction_restock.lua:253: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "control": "ignore-pending-mail",
+      "rejected": true,
+      "exit": 1,
+      "wallSeconds": 0.05911029997514561,
+      "output": "lua: tests/auction_restock.lua:5: no rebuy before mail delivery\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/auction_restock.lua:5: in local 'check'\n\ttests/auction_restock.lua:290: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "control": "trust-stale-provider-count",
+      "rejected": true,
+      "exit": 1,
+      "wallSeconds": 0.05706399999326095,
+      "output": "lua: tests/auction_restock.lua:5: delivery reconciles reservation without double credit\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/auction_restock.lua:5: in local 'check'\n\ttests/auction_restock.lua:292: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "control": "ignore-competing-addon",
+      "rejected": true,
+      "exit": 1,
+      "wallSeconds": 0.060972899955231696,
+      "output": "lua: tests/auction_restock.lua:5: foreign quote not cancelled or purchased on cleanup\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/auction_restock.lua:5: in local 'check'\n\ttests/auction_restock.lua:307: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "control": "skip-stack-identity",
+      "rejected": true,
+      "exit": 1,
+      "wallSeconds": 0.1498503999901004,
+      "output": "lua: tests/auction_restock.lua:5: legacy changed identity rejected at click\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/auction_restock.lua:5: in local 'check'\n\ttests/auction_restock.lua:275: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "control": "ignore-quote-cap",
+      "rejected": true,
+      "exit": 1,
+      "wallSeconds": 0.06880060001276433,
+      "output": "lua: tests/auction_restock.lua:5: quote over cap cannot buy\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/auction_restock.lua:5: in local 'check'\n\ttests/auction_restock.lua:295: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "control": "ignore-focused-price",
+      "rejected": true,
+      "exit": 1,
+      "wallSeconds": 0.0696369000361301,
+      "output": "lua: tests/auction_restock.lua:5: focused lower price is committed before purchase button\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/auction_restock.lua:5: in local 'check'\n\ttests/auction_restock.lua:360: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "control": "forget-pending-on-close",
+      "rejected": true,
+      "exit": 1,
+      "wallSeconds": 0.0792420000070706,
+      "output": "lua: tests/auction_restock.lua:413: attempt to index a nil value (field 'integer index')\nstack traceback:\n\ttests/auction_restock.lua:413: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "control": "accept-foreign-failure",
+      "rejected": true,
+      "exit": 1,
+      "wallSeconds": 0.06792960001621395,
+      "output": "lua: tests/auction_restock.lua:311: attempt to index a nil value (field 'integer index')\nstack traceback:\n\ttests/auction_restock.lua:311: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "control": "callback-purchase",
+      "rejected": true,
+      "exit": 1,
+      "wallSeconds": 0.05442040000343695,
+      "output": "lua: tests/auction_restock.lua:5: same button requests quote under hardware; no automatic confirm\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/auction_restock.lua:5: in local 'check'\n\ttests/auction_restock.lua:285: in main chunk\n\t[C]: in ?\n"
+    }
+  ],
+  "fullValidation": {
+    "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\auction-restock\\full-final.json",
+    "pass": 309,
+    "fail": 0,
+    "syntaxFiles": 986,
+    "syntaxFailures": [],
+    "allManifestHashesMatch": true
+  },
+  "nativeAcceptance": {
+    "clientBuildAndAPIPermissions": "NOT RUN",
+    "purchasesAndMail": "USER REPORTED FAILED: button does nothing;not even search. Follow-up AHR-10 onward supersedes UI and fixes discovery.",
+    "AuctionatorCoexistence": "NOT RUN",
+    "SyndicatorCoexistence": "NOT RUN",
+    "settingsPersistence": "NOT RUN",
+    "rendering": "NOT RUN",
+    "controller": "NOT RUN",
+    "taint": "NOT RUN",
+    "FPS": "NOT RUN"
+  },
+  "ownershipLimits": {
+    "AuctionatorMetadata": "Local version345;All Rights Reserved;both AGENTS prohibit source reference;implementation source not read/reused",
+    "appearance": "Native templates and ordinary buttons/input;no mockup requested;pixel comparison not run",
+    "controller": "Cursor path considered;Escape/paging/text input preserve bindings;native focus/back/directional checks pending",
+    "localization": "English fallback complete;other locales/layout review pending",
+    "ForegroundOrInputControl": false,
+    "settingsOrProfilerFileWrite": false,
+    "manualSync": false,
+    "commitOrPublication": false
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\09\\01a1c03e-c615-7f02-a24a-3e5ed07300f1\\options-fidelity-checkpoint-20261109T124611Z",
+  "files": 2410,
+  "verified": true,
+  "settingsMetadataFiles": 120,
+  "settingsWrites": false,
+  "settingsBackup": "Metadata only; no quiescent backup claimed",
+  "sha256": {
+    "source.zip": "0a1d7baaf982f6d83db95d9b18a543b20cd7c4af727fafebfbd813a853bcc073",
+    "history.bundle": "e24846d56f87e91e73ff6ac3ed416af337876145210aea68f08ff8384cd2eadb"
+  }
+}

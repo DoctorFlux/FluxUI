@@ -33,6 +33,7 @@ function Item.GetCount(itemID, includeBank, includeCharges, includeReagent, incl
 	includeCharges = includeCharges and true or false
 	includeReagent = includeReagent and true or false
 	includeAccount = includeAccount and true or false
+	local carriedOnly = not (includeBank or includeReagent or includeAccount)
 	local function asCount(n)
 		local num = tonumber(n)
 		if num then
@@ -47,11 +48,12 @@ function Item.GetCount(itemID, includeBank, includeCharges, includeReagent, incl
 		local api = C_Item and C_Item.GetItemCount
 		if api then
 			local ok, n = pcall(api, ...)
-			if ok then
+			if ok and n ~= nil then
+				-- Zero is a valid answer. Falling through can resurrect a stale
+				-- positive after the last carried item is gone. Extended bank
+				-- queries retain their existing legacy compatibility fallback.
 				local num = asCount(n)
-				if num > 0 then
-					return num
-				end
+				if num > 0 or (carriedOnly and num == 0) then return num end
 			end
 		end
 		if GetItemCount then

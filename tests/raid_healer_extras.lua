@@ -87,6 +87,7 @@ local function fixture(client, body)
         SetPagingSnippet=function(f,key,code)f:SetAttribute(key,code);return true end,
         RegisterPagingDriver=function(f,state,condition)legal();f.driver={state=state,condition=condition};return true end,
         UnregisterPagingDriver=function(f)legal();f.driver=nil;return true end}
+    assert(loadfile("RaidFrame/FluxRaidSecure.lua","t",e))("_FluxUI",ns)
     assert(load(body or source,"@FluxRaidHealerExtras","t",e))("_FluxUI",ns)
     local extras=e.FluxRaidHealerExtras
     local function cell(unit,mini)
@@ -149,8 +150,9 @@ local function exercise(client,body)
     check(#pets==45 and not target,client..": pet opt-in preallocates both secure roster modes OOC")
     check(pets[1].unit=="raidpet1"and pets[40].unit=="raidpet40"and pets[41].unit=="pet"and pets[45].unit=="partypet4",
         client..": fixed pet tokens cover all raid and party owners")
-    check(pets[1].driver.condition=="[group:raid,@raidpet1,exists] show; hide"and pets[41].driver.condition=="[group:party,@pet,exists] show; hide",
-        client..": secure conditions own mode and pet existence")
+    check(pets[1].driver.condition:find("@raidpet1,noexists",1,true)and pets[41].driver.condition:find("@pet,noexists",1,true)
+        and not pets[1].driver.condition:find("group:",1,true)and not pets[41].driver.condition:find("group:",1,true),
+        client..": shared roster-token conditions own mode and pet existence")
     check(pets[1].height==22 and pets[1].chrome.showPower==false,client..": pets use half-height cells without power")
     check(pets[1].template=="FluxRaidPetUnitTemplate,SecureHandlerStateTemplate",client..": pet flags belong to their template before OnLoad")
     check(e.FluxRaidState.containerFrame.width==592 and pets[1].points[1][3]=="TOPRIGHT",client..": extra cells anchor beside the existing unchanged grid")

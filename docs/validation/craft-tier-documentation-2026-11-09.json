@@ -1,0 +1,7 @@
+{
+  "date": "2026-11-09",
+  "change_id": "CRAFT-TIER-FALLBACK-20261109",
+  "exit": 1,
+  "output": "Documentation validation FAILED:\n- Stale source inventory: tests/options_navigation.lua\n- Stale source inventory: tests/options_rework.lua\n- Recorded verification predates current source: tests/options_navigation.lua\n- Recorded verification predates current source: tests/options_rework.lua\n4 issue(s); checker made no edits.\n",
+  "wallSeconds": 49.523
+}

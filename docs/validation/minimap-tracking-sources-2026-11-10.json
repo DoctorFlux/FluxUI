@@ -1,0 +1,303 @@
+{
+  "observed": "2026-11-10",
+  "sources": [
+    {
+      "branch": "forever",
+      "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "path": "version.txt",
+      "blobSHA": "e02268eacf9b586ec969cf13403a15b8dd136ae8",
+      "cachePath": "C:/Users/mario/.codex/visualizations/2026/11/10/01a1c518-4380-79c3-a979-031666ccaead/minimap-tracking-native/forever/version.txt",
+      "gitBlobVerified": true,
+      "sha256": "40632cd2240c025fafc7bb8343593d2f8bde74c1196bc678cbdaeb807c9eb6c2"
+    },
+    {
+      "branch": "forever",
+      "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/MinimapConstantsDocumentation.lua",
+      "blobSHA": "b58c086d6c2c1b591756073711fc5ed80e4ec8bf",
+      "cachePath": "C:/Users/mario/.codex/visualizations/2026/11/10/01a1c518-4380-79c3-a979-031666ccaead/minimap-tracking-native/forever/Interface/AddOns/Blizzard_APIDocumentationGenerated/MinimapConstantsDocumentation.lua",
+      "gitBlobVerified": true,
+      "sha256": "f69dd3f7241ccb7d0deffd967bf8f9ca0e4af76faea5f85a2add3f6aa541ee1a"
+    },
+    {
+      "branch": "forever",
+      "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/MinimapDocumentation.lua",
+      "blobSHA": "04dd0ed59833d3e70fdb83c19757fd9221f95a65",
+      "cachePath": "C:/Users/mario/.codex/visualizations/2026/11/10/01a1c518-4380-79c3-a979-031666ccaead/minimap-tracking-native/forever/Interface/AddOns/Blizzard_APIDocumentationGenerated/MinimapDocumentation.lua",
+      "gitBlobVerified": true,
+      "sha256": "64e244af5149ad0e3c578fc4c07795c8bdc09a2e4014138236485acffffa6ebd"
+    },
+    {
+      "branch": "forever",
+      "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "path": "Interface/AddOns/Blizzard_Minimap/Camelot/MinimapTrackingButton.lua",
+      "blobSHA": "90c3599a058ad04009e6fba7622ef1813f00daf0",
+      "cachePath": "C:/Users/mario/.codex/visualizations/2026/11/10/01a1c518-4380-79c3-a979-031666ccaead/minimap-tracking-native/forever/Interface/AddOns/Blizzard_Minimap/Camelot/MinimapTrackingButton.lua",
+      "gitBlobVerified": true,
+      "sha256": "6035e74dd388a53d2073d983289c144523526b2b82170689e71889ac32ea62f7"
+    },
+    {
+      "branch": "forever",
+      "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "path": "Interface/AddOns/Blizzard_Minimap/Camelot/MinimapConstants.lua",
+      "blobSHA": "6a3caee33b55051714fc732a832beeabe2babe20",
+      "cachePath": "C:/Users/mario/.codex/visualizations/2026/11/10/01a1c518-4380-79c3-a979-031666ccaead/minimap-tracking-native/forever/Interface/AddOns/Blizzard_Minimap/Camelot/MinimapConstants.lua",
+      "gitBlobVerified": true,
+      "sha256": "e4c9bfbd37c4cee0bbf999f432cb2fb3e5478d5b7fbebd8d643b673db2290362"
+    },
+    {
+      "branch": "forever",
+      "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "path": "Interface/AddOns/Blizzard_Minimap/Blizzard_Minimap.toc",
+      "blobSHA": "1819e0f2f2642bee95e4b6d94357692d122b1627",
+      "cachePath": "C:/Users/mario/.codex/visualizations/2026/11/10/01a1c518-4380-79c3-a979-031666ccaead/minimap-tracking-native/forever/Interface/AddOns/Blizzard_Minimap/Blizzard_Minimap.toc",
+      "gitBlobVerified": true,
+      "sha256": "4ab682413136844adc44da3ab5fc69e076d7e48f62c225cd378272e4454fd891"
+    },
+    {
+      "branch": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "version.txt",
+      "blobSHA": "61a71eb0d9c435ad6f9f9701ab4d9c072cd3237e",
+      "cachePath": "C:/Users/mario/.codex/visualizations/2026/11/10/01a1c518-4380-79c3-a979-031666ccaead/minimap-tracking-native/live/version.txt",
+      "gitBlobVerified": true,
+      "sha256": "4e532c8d3beb3231ae8195704b6de0a099a19742e02505f73f292f47fe9e080b"
+    },
+    {
+      "branch": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/MinimapConstantsDocumentation.lua",
+      "blobSHA": "9f27b5604b98768819d41e29c1f7851816164c2f",
+      "cachePath": "C:/Users/mario/.codex/visualizations/2026/11/10/01a1c518-4380-79c3-a979-031666ccaead/minimap-tracking-native/live/Interface/AddOns/Blizzard_APIDocumentationGenerated/MinimapConstantsDocumentation.lua",
+      "gitBlobVerified": true,
+      "sha256": "8e5bdef9349f5e2b9d960fe39c61c4357256b21484e49feee5f48955c2bd722e"
+    },
+    {
+      "branch": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/MinimapDocumentation.lua",
+      "blobSHA": "04dd0ed59833d3e70fdb83c19757fd9221f95a65",
+      "cachePath": "C:/Users/mario/.codex/visualizations/2026/11/10/01a1c518-4380-79c3-a979-031666ccaead/minimap-tracking-native/live/Interface/AddOns/Blizzard_APIDocumentationGenerated/MinimapDocumentation.lua",
+      "gitBlobVerified": true,
+      "sha256": "64e244af5149ad0e3c578fc4c07795c8bdc09a2e4014138236485acffffa6ebd"
+    },
+    {
+      "branch": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_Minimap/Mainline/Minimap.lua",
+      "blobSHA": "e39ae6907329251cf093047aaf540a09dce1859e",
+      "cachePath": "C:/Users/mario/.codex/visualizations/2026/11/10/01a1c518-4380-79c3-a979-031666ccaead/minimap-tracking-native/live/Interface/AddOns/Blizzard_Minimap/Mainline/Minimap.lua",
+      "gitBlobVerified": true,
+      "sha256": "08f073e6805c43e0e5147ece2aa875097797730a8b894e3abd333738aa007950"
+    },
+    {
+      "branch": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_Minimap/Blizzard_Minimap_Mainline.toc",
+      "blobSHA": "988f7a92b9371898595daf4469c927110e17a0df",
+      "cachePath": "C:/Users/mario/.codex/visualizations/2026/11/10/01a1c518-4380-79c3-a979-031666ccaead/minimap-tracking-native/live/Interface/AddOns/Blizzard_Minimap/Blizzard_Minimap_Mainline.toc",
+      "gitBlobVerified": true,
+      "sha256": "c6871795c1ae556e7cf08f1b7ec25f2bb4536820b3d8ba9f8941be73fc448124"
+    },
+    {
+      "branch": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "version.txt",
+      "blobSHA": "6888c66e55b78c6b76bdda185480facc60d9b5e5",
+      "cachePath": "C:/Users/mario/.codex/visualizations/2026/11/10/01a1c518-4380-79c3-a979-031666ccaead/minimap-tracking-native/classic/version.txt",
+      "gitBlobVerified": true,
+      "sha256": "bcb030fe2d2febd396332d886d804ef9b397335e88f0196edc5d8dbe54c1ba38"
+    },
+    {
+      "branch": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/MinimapConstantsDocumentation.lua",
+      "blobSHA": "5d8279ce6321070a23a07229cf65cac815ab41fd",
+      "cachePath": "C:/Users/mario/.codex/visualizations/2026/11/10/01a1c518-4380-79c3-a979-031666ccaead/minimap-tracking-native/classic/Interface/AddOns/Blizzard_APIDocumentationGenerated/MinimapConstantsDocumentation.lua",
+      "gitBlobVerified": true,
+      "sha256": "6b13b5814e93ede59eb9c374851139220f3cb001889c7610a4cf76d0787382e5"
+    },
+    {
+      "branch": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/MinimapDocumentation.lua",
+      "blobSHA": "245fd24e56f87dcd0d43af513495eb45c7f7491a",
+      "cachePath": "C:/Users/mario/.codex/visualizations/2026/11/10/01a1c518-4380-79c3-a979-031666ccaead/minimap-tracking-native/classic/Interface/AddOns/Blizzard_APIDocumentationGenerated/MinimapDocumentation.lua",
+      "gitBlobVerified": true,
+      "sha256": "6cd0281d34ac86790fb7cae956504142191585aafe4f23546fa207ce0585d9e5"
+    },
+    {
+      "branch": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_Minimap/Classic/MinimapTracking_Dropdown.lua",
+      "blobSHA": "707dc4c540228d056b223297c2eb4bd8527b742e",
+      "cachePath": "C:/Users/mario/.codex/visualizations/2026/11/10/01a1c518-4380-79c3-a979-031666ccaead/minimap-tracking-native/classic/Interface/AddOns/Blizzard_Minimap/Classic/MinimapTracking_Dropdown.lua",
+      "gitBlobVerified": true,
+      "sha256": "ec6ad3a9a752c83b5f794a110e15951401475a3079cf39860dd9c02c91979b35"
+    },
+    {
+      "branch": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_Minimap/Blizzard_Minimap_Classic.toc",
+      "blobSHA": "fca8dbc277d95e98abcd9f7b9b1d9500c08aa95f",
+      "cachePath": "C:/Users/mario/.codex/visualizations/2026/11/10/01a1c518-4380-79c3-a979-031666ccaead/minimap-tracking-native/classic/Interface/AddOns/Blizzard_Minimap/Blizzard_Minimap_Classic.toc",
+      "gitBlobVerified": true,
+      "sha256": "550ea1c07edecd48b029a902cfd40a05fac311b163631de28d7b6e042c8a441e"
+    },
+    {
+      "branch": "classic_era",
+      "commit": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "path": "version.txt",
+      "blobSHA": "66bc5d3c31ec0d4ac300d1ba18ffd9490ac424d9",
+      "cachePath": "C:/Users/mario/.codex/visualizations/2026/11/10/01a1c518-4380-79c3-a979-031666ccaead/minimap-tracking-native/classic_era/version.txt",
+      "gitBlobVerified": true,
+      "sha256": "5224861aa41c7bcfd9d48bdd8003eb769a8954c72e3e9682035aeff5bc236f29"
+    },
+    {
+      "branch": "classic_era",
+      "commit": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/MinimapConstantsDocumentation.lua",
+      "blobSHA": "5d8279ce6321070a23a07229cf65cac815ab41fd",
+      "cachePath": "C:/Users/mario/.codex/visualizations/2026/11/10/01a1c518-4380-79c3-a979-031666ccaead/minimap-tracking-native/classic_era/Interface/AddOns/Blizzard_APIDocumentationGenerated/MinimapConstantsDocumentation.lua",
+      "gitBlobVerified": true,
+      "sha256": "6b13b5814e93ede59eb9c374851139220f3cb001889c7610a4cf76d0787382e5"
+    },
+    {
+      "branch": "classic_era",
+      "commit": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/MinimapDocumentation.lua",
+      "blobSHA": "245fd24e56f87dcd0d43af513495eb45c7f7491a",
+      "cachePath": "C:/Users/mario/.codex/visualizations/2026/11/10/01a1c518-4380-79c3-a979-031666ccaead/minimap-tracking-native/classic_era/Interface/AddOns/Blizzard_APIDocumentationGenerated/MinimapDocumentation.lua",
+      "gitBlobVerified": true,
+      "sha256": "6cd0281d34ac86790fb7cae956504142191585aafe4f23546fa207ce0585d9e5"
+    },
+    {
+      "branch": "classic_era",
+      "commit": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "path": "Interface/AddOns/Blizzard_Minimap/Classic/MinimapTracking_Dropdown.lua",
+      "blobSHA": "707dc4c540228d056b223297c2eb4bd8527b742e",
+      "cachePath": "C:/Users/mario/.codex/visualizations/2026/11/10/01a1c518-4380-79c3-a979-031666ccaead/minimap-tracking-native/classic_era/Interface/AddOns/Blizzard_Minimap/Classic/MinimapTracking_Dropdown.lua",
+      "gitBlobVerified": true,
+      "sha256": "ec6ad3a9a752c83b5f794a110e15951401475a3079cf39860dd9c02c91979b35"
+    },
+    {
+      "branch": "classic_era",
+      "commit": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "path": "Interface/AddOns/Blizzard_Minimap/Blizzard_Minimap_Classic.toc",
+      "blobSHA": "fca8dbc277d95e98abcd9f7b9b1d9500c08aa95f",
+      "cachePath": "C:/Users/mario/.codex/visualizations/2026/11/10/01a1c518-4380-79c3-a979-031666ccaead/minimap-tracking-native/classic_era/Interface/AddOns/Blizzard_Minimap/Blizzard_Minimap_Classic.toc",
+      "gitBlobVerified": true,
+      "sha256": "550ea1c07edecd48b029a902cfd40a05fac311b163631de28d7b6e042c8a441e"
+    },
+    {
+      "branch": "classic_anniversary",
+      "commit": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "path": "version.txt",
+      "blobSHA": "f81737db88bfda2cd085cc09b18ca8ce764efc42",
+      "cachePath": "C:/Users/mario/.codex/visualizations/2026/11/10/01a1c518-4380-79c3-a979-031666ccaead/minimap-tracking-native/classic_anniversary/version.txt",
+      "gitBlobVerified": true,
+      "sha256": "53498c451665c69194d1a41b9983916109b370b6a261bb833322ae871838bdb3"
+    },
+    {
+      "branch": "classic_anniversary",
+      "commit": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/MinimapConstantsDocumentation.lua",
+      "blobSHA": "5d8279ce6321070a23a07229cf65cac815ab41fd",
+      "cachePath": "C:/Users/mario/.codex/visualizations/2026/11/10/01a1c518-4380-79c3-a979-031666ccaead/minimap-tracking-native/classic_anniversary/Interface/AddOns/Blizzard_APIDocumentationGenerated/MinimapConstantsDocumentation.lua",
+      "gitBlobVerified": true,
+      "sha256": "6b13b5814e93ede59eb9c374851139220f3cb001889c7610a4cf76d0787382e5"
+    },
+    {
+      "branch": "classic_anniversary",
+      "commit": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/MinimapDocumentation.lua",
+      "blobSHA": "245fd24e56f87dcd0d43af513495eb45c7f7491a",
+      "cachePath": "C:/Users/mario/.codex/visualizations/2026/11/10/01a1c518-4380-79c3-a979-031666ccaead/minimap-tracking-native/classic_anniversary/Interface/AddOns/Blizzard_APIDocumentationGenerated/MinimapDocumentation.lua",
+      "gitBlobVerified": true,
+      "sha256": "6cd0281d34ac86790fb7cae956504142191585aafe4f23546fa207ce0585d9e5"
+    },
+    {
+      "branch": "classic_anniversary",
+      "commit": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "path": "Interface/AddOns/Blizzard_Minimap/Classic/MinimapTracking_Dropdown.lua",
+      "blobSHA": "fac23d8fa3c5d3b954ec059eec626b8ea220bd59",
+      "cachePath": "C:/Users/mario/.codex/visualizations/2026/11/10/01a1c518-4380-79c3-a979-031666ccaead/minimap-tracking-native/classic_anniversary/Interface/AddOns/Blizzard_Minimap/Classic/MinimapTracking_Dropdown.lua",
+      "gitBlobVerified": true,
+      "sha256": "ec9c84ca05065f874df084e34337fb82440b54394090ad99b291e2ea43ba2fd9"
+    },
+    {
+      "branch": "classic_anniversary",
+      "commit": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "path": "Interface/AddOns/Blizzard_Minimap/Blizzard_Minimap_Classic.toc",
+      "blobSHA": "35a867a4c73fd53f9945b13b9132328b3d4fc168",
+      "cachePath": "C:/Users/mario/.codex/visualizations/2026/11/10/01a1c518-4380-79c3-a979-031666ccaead/minimap-tracking-native/classic_anniversary/Interface/AddOns/Blizzard_Minimap/Blizzard_Minimap_Classic.toc",
+      "gitBlobVerified": true,
+      "sha256": "d214b7ea51bc7b3559205b2ef35ef943a28b2231711451e474d79cb830a4703c"
+    },
+    {
+      "branch": "forever",
+      "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "path": "Interface/AddOns/Blizzard_Menu/Menu.lua",
+      "blobSHA": "ab0d377568c2c3f037d07cdd0d7df9b3b5492bf4",
+      "cachePath": "C:/Users/mario/.codex/visualizations/2026/11/10/01a1c518-4380-79c3-a979-031666ccaead/minimap-tracking-native/forever/Interface/AddOns/Blizzard_Menu/Menu.lua",
+      "gitBlobVerified": true,
+      "sha256": "2611f8e009e07a5c6a1d5db35dd1672466d601f1787dca90adaf86f74354af1c"
+    },
+    {
+      "branch": "forever",
+      "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "path": "Interface/AddOns/Blizzard_Menu/MenuUtil.lua",
+      "blobSHA": "088994226164360b579fa17a68dff52391634077",
+      "cachePath": "C:/Users/mario/.codex/visualizations/2026/11/10/01a1c518-4380-79c3-a979-031666ccaead/minimap-tracking-native/forever/Interface/AddOns/Blizzard_Menu/MenuUtil.lua",
+      "gitBlobVerified": true,
+      "sha256": "0d57d398766892cc5f66c046edea8f1c9a9c646d47b253db3ac30ca7c61e765c"
+    },
+    {
+      "branch": "forever",
+      "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "path": "Interface/AddOns/Blizzard_Menu/MenuTemplates.lua",
+      "blobSHA": "d94161e7bd50c2f458456475d3e21acd549765a4",
+      "cachePath": "C:/Users/mario/.codex/visualizations/2026/11/10/01a1c518-4380-79c3-a979-031666ccaead/minimap-tracking-native/forever/Interface/AddOns/Blizzard_Menu/MenuTemplates.lua",
+      "gitBlobVerified": true,
+      "sha256": "a26c548ae8d3c90c298c61ac27a3ce4c7533d934c3004f61359d61e944fc81a2"
+    },
+    {
+      "branch": "forever",
+      "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "path": "Interface/AddOns/Blizzard_Minimap/Mainline/Minimap.lua",
+      "blobSHA": "8afa1ce256000820dc94d5d0467c8e8def4e3bce",
+      "cachePath": "C:/Users/mario/.codex/visualizations/2026/11/10/01a1c518-4380-79c3-a979-031666ccaead/minimap-tracking-native/forever/Interface/AddOns/Blizzard_Minimap/Mainline/Minimap.lua",
+      "gitBlobVerified": true,
+      "sha256": "6e84303de842c59548ed8e616705a7ba49f8d60ce660bb1ce90f9879cd5a7398"
+    },
+    {
+      "branch": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_Menu/Menu.lua",
+      "blobSHA": "31226e6356966bdd90ab8953388bfce15a7d55c5",
+      "cachePath": "C:/Users/mario/.codex/visualizations/2026/11/10/01a1c518-4380-79c3-a979-031666ccaead/minimap-tracking-native/live/Interface/AddOns/Blizzard_Menu/Menu.lua",
+      "gitBlobVerified": true,
+      "sha256": "25d5bf5e7e53c2963ffa9ecebc323a27dfd07f4b3901379668a438ccfa14738d"
+    },
+    {
+      "branch": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_Menu/MenuUtil.lua",
+      "blobSHA": "5e5f72adb5482b962b640064484a6fcdb1a9c4ad",
+      "cachePath": "C:/Users/mario/.codex/visualizations/2026/11/10/01a1c518-4380-79c3-a979-031666ccaead/minimap-tracking-native/live/Interface/AddOns/Blizzard_Menu/MenuUtil.lua",
+      "gitBlobVerified": true,
+      "sha256": "21904561943c3bfb0ad8a451778e2d4cddb361ec7b1a73c0e428d870ed1581f4"
+    },
+    {
+      "branch": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_Menu/MenuTemplates.lua",
+      "blobSHA": "5a8908ad194284a1155a5644892ce181d680b642",
+      "cachePath": "C:/Users/mario/.codex/visualizations/2026/11/10/01a1c518-4380-79c3-a979-031666ccaead/minimap-tracking-native/live/Interface/AddOns/Blizzard_Menu/MenuTemplates.lua",
+      "gitBlobVerified": true,
+      "sha256": "d0652abb1342716477922694891fde3fa4c7fa523a699e8dfe4c3e436749d447"
+    }
+  ],
+  "exactUniqueBlobs": 26
+}

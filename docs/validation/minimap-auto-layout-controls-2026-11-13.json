@@ -1,0 +1,155 @@
+{
+  "changeId": "MINIMAP-AUTO-LAYOUT-20261113",
+  "scope": "Final automatic grids,25\u2013200percent scale,zero layout padding and full-column boundary fitting;native pixels/taint/input/FPS NOT RUN",
+  "baselineCheckpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d3b4-b7ec-7591-94d3-6d3b3097fb8a\\minimap-auto-embedded-20261113T075002Z",
+  "candidatePairsPerScenario": 3,
+  "baselinesRejected": true,
+  "harmfulControlsRejected": 11,
+  "builtInMapControls": 4,
+  "externalLogs": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d3b4-b7ec-7591-94d3-6d3b3097fb8a\\minimap-final-zero-gap-controls-20261113T082418Z",
+  "candidateHashes": {
+    "Minimap/FluxMinimapButtons.lua": "27fad68ebe6b24b891523c53fdf381b091dbf2951052685deec26bf2dce8dfbb",
+    "Minimap/FluxMinimap.lua": "799b8ababf0bf1fd236268a0bb813123c269995d18831f3791ec1f2f56210670",
+    "AddonOptions/FluxOptionsBattlezone.lua": "2f21020940c7cac1277f85cf6b79cbe23fe7bd3d0babc829fd065b65e8e0def0"
+  },
+  "results": [
+    {
+      "name": "baseline-grid-1",
+      "test": "tests/minimap_extra_layout.lua",
+      "exitCode": 1,
+      "summary": "lua: tests/minimap_extra_layout.lua:5: shared count default and automatic embedded columns"
+    },
+    {
+      "name": "candidate-grid-1",
+      "test": "tests/minimap_extra_layout.lua",
+      "exitCode": 0,
+      "summary": "minimap extra layout: 48866 checks PASS (runtime geometry, saved actions, reuse, deferred combat writes and state-driver model; native acceptance pending)"
+    },
+    {
+      "name": "baseline-map-1",
+      "test": "tests/minimap_window_layout.lua",
+      "exitCode": 1,
+      "summary": "lua: tests/minimap_window_layout.lua:4: automatic map leaves a usable button strip in narrow/tall/wide windows"
+    },
+    {
+      "name": "candidate-map-1",
+      "test": "tests/minimap_window_layout.lua",
+      "exitCode": 0,
+      "summary": "Minimap window integration: 113 checks; real map/window/tracker/Questie paths and four harmful controls passed"
+    },
+    {
+      "name": "baseline-grid-2",
+      "test": "tests/minimap_extra_layout.lua",
+      "exitCode": 1,
+      "summary": "lua: tests/minimap_extra_layout.lua:5: shared count default and automatic embedded columns"
+    },
+    {
+      "name": "candidate-grid-2",
+      "test": "tests/minimap_extra_layout.lua",
+      "exitCode": 0,
+      "summary": "minimap extra layout: 48866 checks PASS (runtime geometry, saved actions, reuse, deferred combat writes and state-driver model; native acceptance pending)"
+    },
+    {
+      "name": "baseline-map-2",
+      "test": "tests/minimap_window_layout.lua",
+      "exitCode": 1,
+      "summary": "lua: tests/minimap_window_layout.lua:4: automatic map leaves a usable button strip in narrow/tall/wide windows"
+    },
+    {
+      "name": "candidate-map-2",
+      "test": "tests/minimap_window_layout.lua",
+      "exitCode": 0,
+      "summary": "Minimap window integration: 113 checks; real map/window/tracker/Questie paths and four harmful controls passed"
+    },
+    {
+      "name": "baseline-grid-3",
+      "test": "tests/minimap_extra_layout.lua",
+      "exitCode": 1,
+      "summary": "lua: tests/minimap_extra_layout.lua:5: shared count default and automatic embedded columns"
+    },
+    {
+      "name": "candidate-grid-3",
+      "test": "tests/minimap_extra_layout.lua",
+      "exitCode": 0,
+      "summary": "minimap extra layout: 48866 checks PASS (runtime geometry, saved actions, reuse, deferred combat writes and state-driver model; native acceptance pending)"
+    },
+    {
+      "name": "baseline-map-3",
+      "test": "tests/minimap_window_layout.lua",
+      "exitCode": 1,
+      "summary": "lua: tests/minimap_window_layout.lua:4: automatic map leaves a usable button strip in narrow/tall/wide windows"
+    },
+    {
+      "name": "candidate-map-3",
+      "test": "tests/minimap_window_layout.lua",
+      "exitCode": 0,
+      "summary": "Minimap window integration: 113 checks; real map/window/tracker/Questie paths and four harmful controls passed"
+    },
+    {
+      "name": "cap-three-columns",
+      "test": "tests/minimap_extra_layout.lua",
+      "exitCode": 1,
+      "summary": "lua: tests/minimap_extra_layout.lua:5: embedded count 16: no larger square grid fits all buttons"
+    },
+    {
+      "name": "unbounded-button-size",
+      "test": "tests/minimap_extra_layout.lua",
+      "exitCode": 1,
+      "summary": "lua: tests/minimap_extra_layout.lua:5: embedded original row-major assignment order"
+    },
+    {
+      "name": "wide-side-strip",
+      "test": "tests/minimap_extra_layout.lua",
+      "exitCode": 1,
+      "summary": "lua: tests/minimap_extra_layout.lua:5: automatic dense columns fit two standard columns of width"
+    },
+    {
+      "name": "row-major-side",
+      "test": "tests/minimap_extra_layout.lua",
+      "exitCode": 1,
+      "summary": "lua: tests/minimap_extra_layout.lua:5: same column x: 1878.2307692308 / 1836.4615384615"
+    },
+    {
+      "name": "unsafe-combat-layout",
+      "test": "tests/minimap_extra_layout.lua",
+      "exitCode": 1,
+      "summary": "lua: tests/minimap_extra_layout.lua:20: no insecure combat mutation: Show"
+    },
+    {
+      "name": "ignore-grid-scale",
+      "test": "tests/minimap_extra_layout.lua",
+      "exitCode": 1,
+      "summary": "lua: tests/minimap_extra_layout.lua:5: whole side-grid frame scale: 1 / 0.25"
+    },
+    {
+      "name": "restore-padding",
+      "test": "tests/minimap_extra_layout.lua",
+      "exitCode": 1,
+      "summary": "lua: tests/minimap_extra_layout.lua:5: automatic dense columns fit two standard columns of width"
+    },
+    {
+      "name": "restore-screen-margin",
+      "test": "tests/minimap_extra_layout.lua",
+      "exitCode": 1,
+      "summary": "lua: tests/minimap_extra_layout.lua:5: below-minimap side bounds: button 1 outside bounds"
+    },
+    {
+      "name": "restore-window-gap",
+      "test": "tests/minimap_extra_layout.lua",
+      "exitCode": 1,
+      "summary": "lua: tests/minimap_extra_layout.lua:5: completed side columns exactly fill available height: 535.0 / 543"
+    },
+    {
+      "name": "fractional-row-gap",
+      "test": "tests/minimap_extra_layout.lua",
+      "exitCode": 1,
+      "summary": "lua: tests/minimap_extra_layout.lua:5: completed side columns exactly fill available height: 528.0 / 543"
+    },
+    {
+      "name": "scale-overflow",
+      "test": "tests/minimap_extra_layout.lua",
+      "exitCode": 1,
+      "summary": "lua: tests/minimap_extra_layout.lua:5: scaled automatic grid stays above window and inside its reservation: button 7 outside bounds"
+    }
+  ]
+}

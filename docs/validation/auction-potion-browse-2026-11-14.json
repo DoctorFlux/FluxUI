@@ -1,0 +1,580 @@
+{
+  "dateUTC": "2026-11-14T02:17:21.575978+00:00",
+  "localDate": "2026-11-14",
+  "timezone": "Europe/Copenhagen",
+  "changeID": "AUCTION-POTION-BROWSE-20261114",
+  "relatedChange": "AUCTION-POTION-CONFIRM-20261114",
+  "requirements": [
+    "AHR-93",
+    "AHR-94",
+    "AHR-95"
+  ],
+  "candidate": "AH-restock-potion-browse-20261114-r24",
+  "checkpoints": [
+    {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\auction-restock\\tab-crafting-followup\\potion-confirm-20261114T004200Z\\checkpoint.json",
+      "sha256": "be4964fec0fb588b593fd9fb6886146e641c4d504e604f415c71c76fc962e507",
+      "sourceFiles": 2769,
+      "settingsMetadataEntries": 129,
+      "archivesVerified": true,
+      "privateSettingsCopied": false,
+      "archives": {
+        "history-before.bundle": "c26655d3deaf5b961fe4b5aad78d7d1c5e53be34f77848e6382450309f2502b8",
+        "source-before.zip": "8f7b22d8d206107347e487164674d060657da883908252c8e63b17f0d63c69f5"
+      }
+    },
+    {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\auction-restock\\tab-crafting-followup\\potion-restore-20261114T005500Z\\checkpoint.json",
+      "sha256": "219f04f024fff3deca2c154a7d0daaf039c33dccebbadee84c6ee2da3c5e9e89",
+      "sourceFiles": 2770,
+      "settingsMetadataEntries": 129,
+      "archivesVerified": true,
+      "privateSettingsCopied": false,
+      "archives": {
+        "history-before.bundle": "e7a662df0c76a29579287f30fda9fa7962556fc276f0b167130b5b73ddf7ed69",
+        "source-before.zip": "10033bcb78a78ee9176164c749140d9cf9025220dee79f172d48bb5fb7f50ca4"
+      }
+    },
+    {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\auction-restock\\tab-crafting-followup\\potion-cold-spell-20261114T015100Z\\checkpoint.json",
+      "sha256": "84fef84df0e98b9a36d0099a7c20c4596b4be62737df090c775e7d65cf1d0f1f",
+      "sourceFiles": 2771,
+      "settingsMetadataEntries": 129,
+      "archivesVerified": true,
+      "privateSettingsCopied": false,
+      "archives": {
+        "history-before.bundle": "2610749a11e4fa49caaf5223ec886f616105a99e3cc332fda0cd71283b90bbd5",
+        "source-before.zip": "bd4d0eef5b9f17f3f611c5f8725713980efe5c957ec0451d6c0c4ccd17741992"
+      }
+    },
+    {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\auction-restock\\tab-crafting-followup\\potion-loaded-pending-20261114T020800Z\\checkpoint.json",
+      "sha256": "212026475ac283b25405e655d440c99e2641588f8b7ec1f4b40401ee7cb52b41",
+      "sourceFiles": 2771,
+      "settingsMetadataEntries": 129,
+      "archivesVerified": true,
+      "privateSettingsCopied": false,
+      "archives": {
+        "history-before.bundle": "b737488f887d94a6365c3d808d62eb8565aba8b3f1bef1c91f890ff20f65847d",
+        "source-before.zip": "68fcfaa5f039f6a456b1d8eca76339411a7af1049571f334b2efe3c0cd4f097c"
+      }
+    }
+  ],
+  "sources": [
+    {
+      "client": "Retail",
+      "version": "12.1.5.70783",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "nativePopup": {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\auction-restock\\tab-crafting-followup\\potion-confirm-20261114T004200Z\\Retail-StaticPopup.lua",
+        "sha256": "82dde55fa3c616703d695c76d5e98aab3ba150f142ddade2640ca547d0a7e2f6"
+      },
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_StaticPopup/StaticPopup.lua"
+    },
+    {
+      "client": "Forever",
+      "version": "1.60.1.70938",
+      "commit": "bebcb6bf309cf41b41bd74f8ca651e6a105b2676",
+      "nativePopup": {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\auction-restock\\tab-crafting-followup\\potion-confirm-20261114T004200Z\\Forever-StaticPopup.lua",
+        "sha256": "2b9402c21d8e3de07c7fdc64c4329eed95c67982a453e13eedeb6c5c05036f65"
+      },
+      "url": "https://github.com/Gethe/wow-ui-source/blob/bebcb6bf309cf41b41bd74f8ca651e6a105b2676/Interface/AddOns/Blizzard_StaticPopup/StaticPopup.lua"
+    },
+    {
+      "client": "MoP",
+      "version": "5.5.4.70631",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "nativePopup": {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\auction-restock\\tab-crafting-followup\\potion-confirm-20261114T004200Z\\MoP-StaticPopup.lua",
+        "sha256": "9aac4723d3d697b4f5abe623fcc0dbd341c8431e0c717ab1a8087fc7ece5bdd5"
+      },
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_StaticPopup/StaticPopup.lua"
+    },
+    {
+      "client": "Era",
+      "version": "1.15.9.70576",
+      "commit": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "nativePopup": {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\auction-restock\\tab-crafting-followup\\potion-confirm-20261114T004200Z\\Era-StaticPopup.lua",
+        "sha256": "9aac4723d3d697b4f5abe623fcc0dbd341c8431e0c717ab1a8087fc7ece5bdd5"
+      },
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_StaticPopup/StaticPopup.lua"
+    },
+    {
+      "client": "Anniversary",
+      "version": "2.5.6.70577",
+      "commit": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "nativePopup": {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\auction-restock\\tab-crafting-followup\\potion-confirm-20261114T004200Z\\Anniversary-StaticPopup.lua",
+        "sha256": "9aac4723d3d697b4f5abe623fcc0dbd341c8431e0c717ab1a8087fc7ece5bdd5"
+      },
+      "url": "https://github.com/Gethe/wow-ui-source/blob/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_StaticPopup/StaticPopup.lua"
+    },
+    {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\auction-restock\\tab-crafting-followup\\potion-loaded-pending-20261114T020800Z\\Forever-AuctionHouseDocumentation.lua",
+      "sha256": "18d2cd96d13d6e1f625a981bb9d925a24dbb419112f3f22f6a99f88e38f7a8e8",
+      "client": "Forever",
+      "commit": "bebcb6bf309cf41b41bd74f8ca651e6a105b2676",
+      "scope": "Pinned generated AH/spell declarations or client loading/frame source; optional C_Spell request/description guarded at runtime."
+    },
+    {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\auction-restock\\tab-crafting-followup\\potion-loaded-pending-20261114T020800Z\\Forever-Blizzard_AuctionHouseFrame.lua",
+      "sha256": "f3f120c88d569298f102b205e99b3fb161a6d70f4fb295ce6f5754b0c8614e4b",
+      "client": "Forever",
+      "commit": "bebcb6bf309cf41b41bd74f8ca651e6a105b2676",
+      "scope": "Pinned generated AH/spell declarations or client loading/frame source; optional C_Spell request/description guarded at runtime."
+    },
+    {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\auction-restock\\tab-crafting-followup\\potion-loaded-pending-20261114T020800Z\\Forever-Blizzard_AuctionHouseUI.toc",
+      "sha256": "f677e75544a95bf70087ef45c99b8612e16616b1e393a91f57a60fbcae8d3590",
+      "client": "Forever",
+      "commit": "bebcb6bf309cf41b41bd74f8ca651e6a105b2676",
+      "scope": "Pinned generated AH/spell declarations or client loading/frame source; optional C_Spell request/description guarded at runtime."
+    },
+    {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\auction-restock\\tab-crafting-followup\\potion-loaded-pending-20261114T020800Z\\Forever-SpellDocumentation.lua",
+      "sha256": "99d382ad45a244707d5880f970cd55c61961be122bc025c0154df43d01f20d88",
+      "client": "Forever",
+      "commit": "bebcb6bf309cf41b41bd74f8ca651e6a105b2676",
+      "scope": "Pinned generated AH/spell declarations or client loading/frame source; optional C_Spell request/description guarded at runtime."
+    }
+  ],
+  "sourceGuard": {
+    "candidateRawHashes": {
+      "Inventory/Restock/Auction/FluxAuctionRestockPotions.lua": "a604536306f03bfbe5ebc849c2449aa32f64cf8759aabbf142b0932e5b318d3d",
+      "Inventory/Restock/Auction/FluxAuctionRestock.lua": "e8bfa9cd2ac6aa2e2beeade2f26dc29f891aebc70312afe969e5985db29b6f86",
+      "Inventory/Restock/Auction/FluxAuctionRestockUI.lua": "6c46c43111da87a965c5b3ba8412a96b511756b4a4ca36a4e799d19f15081344",
+      "Inventory/Restock/Auction/FluxAuctionRestockLocale.lua": "68600f67ba554c90caa4dc4f38972331f2fb63e4f46451de67f1f6d84cc16599",
+      "tests/auction_restock.lua": "54a3d1ee807b5f09e0589fce3d28264e5be775d9ac12797af76b72f2804c739e",
+      "tests/auction_restock_potions.lua": "139228e68be0a1c3f7462affa0ca3de51074e46131474ea35859aca96d34c2cd",
+      "tests/auction_restock_potion_confirmation.lua": "2571a539df98f8f4850872ba6cfd7c90320d196158323e13fc9d06cb45925444",
+      "Inventory/FluxConsumableClassify.lua": "68813e6033f051f1d157e34ff367cc858b7177cc2d4e7576332b9f027b5794b9",
+      "tests/auction_restock_potion_restore.lua": "488a8df682c861bd16c652f0d9ad83710dd54212a35e0d68fb5a9c213a291f56"
+    },
+    "fullNormalizedManifestMatches": true,
+    "completeLuaFiles": 1051
+  },
+  "full": {
+    "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\auction-restock\\tab-crafting-followup\\potion-loaded-pending-20261114T020800Z\\full.json",
+    "sha256": "b4c8271a2c6456bae7d696b5e7ae6d57f5b8af1ac7a9528fecb36acb9503c3d8",
+    "pass": 363,
+    "fail": 0,
+    "syntaxFiles": 1051,
+    "syntaxFailures": [],
+    "runtime": "Lua 5.4.6  Copyright (C) 1994-2023 Lua.org, PUC-Rio",
+    "scope": "Desktop Lua mocks/source checks only; native secure VM, real secret values, rendering and client performance unverified."
+  },
+  "focused": {
+    "confirmation": "672 checks/20 profiles",
+    "restoreBrowse": "388 checks/20 profiles",
+    "scope": "Actual shared classifier/score/persist/tier/junk and AH query owners in executable desktop models; not native performance."
+  },
+  "matchedTrials": {
+    "confirmation": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\auction-restock\\tab-crafting-followup\\potion-confirm-20261114T004200Z\\r24-confirmation-results.json",
+      "sha256": "6a80451d2c490be746bdadd568d4fcebb62751a9e68efef0e37c3db882c0c6d5",
+      "report": {
+        "scope": "Desktop executable Lua mocks only; no native rendering/input/taint/performance claim.",
+        "candidateRawHashes": {
+          "Inventory/Restock/Auction/FluxAuctionRestockPotions.lua": "a604536306f03bfbe5ebc849c2449aa32f64cf8759aabbf142b0932e5b318d3d",
+          "Inventory/Restock/Auction/FluxAuctionRestock.lua": "e8bfa9cd2ac6aa2e2beeade2f26dc29f891aebc70312afe969e5985db29b6f86",
+          "Inventory/Restock/Auction/FluxAuctionRestockUI.lua": "6c46c43111da87a965c5b3ba8412a96b511756b4a4ca36a4e799d19f15081344",
+          "Inventory/Restock/Auction/FluxAuctionRestockLocale.lua": "68600f67ba554c90caa4dc4f38972331f2fb63e4f46451de67f1f6d84cc16599",
+          "tests/auction_restock.lua": "54a3d1ee807b5f09e0589fce3d28264e5be775d9ac12797af76b72f2804c739e",
+          "tests/auction_restock_potions.lua": "139228e68be0a1c3f7462affa0ca3de51074e46131474ea35859aca96d34c2cd",
+          "tests/auction_restock_potion_confirmation.lua": "2571a539df98f8f4850872ba6cfd7c90320d196158323e13fc9d06cb45925444"
+        },
+        "trials": [
+          {
+            "before": {
+              "label": "r24-before-1",
+              "exit": 1,
+              "output": "C:/Users/mario/AppData/Local/Programs/Lua/bin/lua.exe: tests/auction_restock_potion_confirmation.lua:3: a discovered upgrade pauses buying for an explicit decision: Retail\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/auction_restock_potion_confirmation.lua:3: in local 'check'\n\ttests/auction_restock_potion_confirmation.lua:21: in main chunk\n\t[C]: in function 'dofile'\n\t...\\potion-confirm-20261114T004200Z\\r24-before-1-router.lua:10: in main chunk\n\t[C]: in ?\n",
+              "raw": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\auction-restock\\tab-crafting-followup\\potion-confirm-20261114T004200Z\\r24-before-1.txt",
+              "sha256": "90bb3cf9e1b4ecc99b9f86b78e32ce4256fa2e389de289e38205335534aec70a"
+            },
+            "after": {
+              "label": "r24-after-1",
+              "exit": 0,
+              "output": "AH potion confirmation: 672 checks PASS/20 client-addon-provider profiles; native popup/input NOT RUN\n",
+              "raw": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\auction-restock\\tab-crafting-followup\\potion-confirm-20261114T004200Z\\r24-after-1.txt",
+              "sha256": "c4b546dbbdfcb251e5ddda0042b1b31104b1b488b5c663a04b2d5b0c6a3dc0ec"
+            }
+          },
+          {
+            "before": {
+              "label": "r24-before-2",
+              "exit": 1,
+              "output": "C:/Users/mario/AppData/Local/Programs/Lua/bin/lua.exe: tests/auction_restock_potion_confirmation.lua:3: a discovered upgrade pauses buying for an explicit decision: Retail\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/auction_restock_potion_confirmation.lua:3: in local 'check'\n\ttests/auction_restock_potion_confirmation.lua:21: in main chunk\n\t[C]: in function 'dofile'\n\t...\\potion-confirm-20261114T004200Z\\r24-before-2-router.lua:10: in main chunk\n\t[C]: in ?\n",
+              "raw": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\auction-restock\\tab-crafting-followup\\potion-confirm-20261114T004200Z\\r24-before-2.txt",
+              "sha256": "3eda881530184ce8f157df6110fddaaa7d7481ac323d004503edd91e2b0c680d"
+            },
+            "after": {
+              "label": "r24-after-2",
+              "exit": 0,
+              "output": "AH potion confirmation: 672 checks PASS/20 client-addon-provider profiles; native popup/input NOT RUN\n",
+              "raw": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\auction-restock\\tab-crafting-followup\\potion-confirm-20261114T004200Z\\r24-after-2.txt",
+              "sha256": "c4b546dbbdfcb251e5ddda0042b1b31104b1b488b5c663a04b2d5b0c6a3dc0ec"
+            }
+          },
+          {
+            "before": {
+              "label": "r24-before-3",
+              "exit": 1,
+              "output": "C:/Users/mario/AppData/Local/Programs/Lua/bin/lua.exe: tests/auction_restock_potion_confirmation.lua:3: a discovered upgrade pauses buying for an explicit decision: Retail\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/auction_restock_potion_confirmation.lua:3: in local 'check'\n\ttests/auction_restock_potion_confirmation.lua:21: in main chunk\n\t[C]: in function 'dofile'\n\t...\\potion-confirm-20261114T004200Z\\r24-before-3-router.lua:10: in main chunk\n\t[C]: in ?\n",
+              "raw": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\auction-restock\\tab-crafting-followup\\potion-confirm-20261114T004200Z\\r24-before-3.txt",
+              "sha256": "57e41aa117ce43bdb7fa4298cc19ffef04ca341f9e768ceab69c8c4b32408f17"
+            },
+            "after": {
+              "label": "r24-after-3",
+              "exit": 0,
+              "output": "AH potion confirmation: 672 checks PASS/20 client-addon-provider profiles; native popup/input NOT RUN\n",
+              "raw": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\auction-restock\\tab-crafting-followup\\potion-confirm-20261114T004200Z\\r24-after-3.txt",
+              "sha256": "c4b546dbbdfcb251e5ddda0042b1b31104b1b488b5c663a04b2d5b0c6a3dc0ec"
+            }
+          }
+        ],
+        "controls": [
+          {
+            "label": "r24-auto-upgrade",
+            "exit": 1,
+            "output": "C:/Users/mario/AppData/Local/Programs/Lua/bin/lua.exe: tests/auction_restock_potion_confirmation.lua:3: a discovered upgrade pauses buying for an explicit decision: Retail\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/auction_restock_potion_confirmation.lua:3: in local 'check'\n\ttests/auction_restock_potion_confirmation.lua:21: in main chunk\n\t[C]: in function 'dofile'\n\t...ion-confirm-20261114T004200Z\\r24-auto-upgrade-router.lua:7: in main chunk\n\t[C]: in ?\n",
+            "raw": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\auction-restock\\tab-crafting-followup\\potion-confirm-20261114T004200Z\\r24-auto-upgrade.txt",
+            "sha256": "7999191676c1aaf20236022b64b38e282d0b7c5aecf6faa6cd6f9e77b4b585b7",
+            "compiled": true,
+            "rejected": true
+          },
+          {
+            "label": "r24-decline-upgrades",
+            "exit": 1,
+            "output": "C:/Users/mario/AppData/Local/Programs/Lua/bin/lua.exe: tests/auction_restock_potion_confirmation.lua:3: keeping a full old tier with no money preserves its stock, tier and junk state\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/auction_restock_potion_confirmation.lua:3: in local 'check'\n\ttests/auction_restock_potion_confirmation.lua:35: in main chunk\n\t[C]: in function 'dofile'\n\t...confirm-20261114T004200Z\\r24-decline-upgrades-router.lua:7: in main chunk\n\t[C]: in ?\n",
+            "raw": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\auction-restock\\tab-crafting-followup\\potion-confirm-20261114T004200Z\\r24-decline-upgrades.txt",
+            "sha256": "5d0cde2c18da4102c7a2772324e9dc8dfb0ee39511147e0cfba410b2591f5561",
+            "compiled": true,
+            "rejected": true
+          },
+          {
+            "label": "r24-decline-junks",
+            "exit": 1,
+            "output": "C:/Users/mario/AppData/Local/Programs/Lua/bin/lua.exe: tests/auction_restock_potion_confirmation.lua:3: keeping a full old tier with no money preserves its stock, tier and junk state\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/auction_restock_potion_confirmation.lua:3: in local 'check'\n\ttests/auction_restock_potion_confirmation.lua:35: in main chunk\n\t[C]: in function 'dofile'\n\t...on-confirm-20261114T004200Z\\r24-decline-junks-router.lua:7: in main chunk\n\t[C]: in ?\n",
+            "raw": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\auction-restock\\tab-crafting-followup\\potion-confirm-20261114T004200Z\\r24-decline-junks.txt",
+            "sha256": "faeccd8bcec7a7fe3cbf1accb156ac911ef2bfeebc15a2905ce251177555beff",
+            "compiled": true,
+            "rejected": true
+          },
+          {
+            "label": "r24-omit-junk",
+            "exit": 1,
+            "output": "C:/Users/mario/AppData/Local/Programs/Lua/bin/lua.exe: tests/auction_restock_potion_confirmation.lua:3: acceptance alone promotes the tier and explicitly marks only the previous item as junk\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/auction_restock_potion_confirmation.lua:3: in local 'check'\n\ttests/auction_restock_potion_confirmation.lua:53: in main chunk\n\t[C]: in function 'dofile'\n\t...potion-confirm-20261114T004200Z\\r24-omit-junk-router.lua:7: in main chunk\n\t[C]: in ?\n",
+            "raw": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\auction-restock\\tab-crafting-followup\\potion-confirm-20261114T004200Z\\r24-omit-junk.txt",
+            "sha256": "f2d8db0462f993cee4d19d8e63fbcb7e445262d97c407991b3ca5b4f329341a3",
+            "compiled": true,
+            "rejected": true
+          },
+          {
+            "label": "r24-omit-target-check",
+            "exit": 1,
+            "output": "C:/Users/mario/AppData/Local/Programs/Lua/bin/lua.exe: tests/auction_restock_potion_confirmation.lua:3: acceptance rechecks mutable target before any upgrade or junk mutation\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/auction_restock_potion_confirmation.lua:3: in local 'check'\n\ttests/auction_restock_potion_confirmation.lua:107: in main chunk\n\t[C]: in function 'dofile'\n\t...onfirm-20261114T004200Z\\r24-omit-target-check-router.lua:7: in main chunk\n\t[C]: in ?\n",
+            "raw": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\auction-restock\\tab-crafting-followup\\potion-confirm-20261114T004200Z\\r24-omit-target-check.txt",
+            "sha256": "dccf8d8b90f5cfb9ad983c4496fd39e1242ee4e8650b484d4131463b9148f7ef",
+            "compiled": true,
+            "rejected": true
+          },
+          {
+            "label": "r24-omit-combat-observer",
+            "exit": 1,
+            "output": "C:/Users/mario/AppData/Local/Programs/Lua/bin/lua.exe: tests/auction_restock_potion_confirmation.lua:3: invalidating combat hides the pending confirmation immediately\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/auction_restock_potion_confirmation.lua:3: in local 'check'\n\ttests/auction_restock_potion_confirmation.lua:87: in main chunk\n\t[C]: in function 'dofile'\n\t...irm-20261114T004200Z\\r24-omit-combat-observer-router.lua:7: in main chunk\n\t[C]: in ?\n",
+            "raw": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\auction-restock\\tab-crafting-followup\\potion-confirm-20261114T004200Z\\r24-omit-combat-observer.txt",
+            "sha256": "7ef670be96fa7f559c0a5a0ca9bc73a9b1e1d415b9e41a8fcaa6843d073edd45",
+            "compiled": true,
+            "rejected": true
+          }
+        ],
+        "initialFindings": [
+          "First regression found that clearing session choices alone left the per-kind preparation timestamp fresh; resetting that session timestamp reuses catalogue data while permitting the choice again.",
+          "Combat initially rejected acceptance but did not hide the prompt immediately; a prompt-owned combat observer now hides/cancels it and unregisters on resolution/cancellation.",
+          "The stale-reference fixture originally proposed an unowned item, which the real persistence service correctly rejected; adding the observed item to bags makes the intended reference change real."
+        ]
+      }
+    },
+    "restore": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\auction-restock\\tab-crafting-followup\\potion-restore-20261114T005500Z\\r24-restore-results.json",
+      "sha256": "9b720dc2a903d8cde7fe36e00d157678af644b83b20bd95c0adbd1a4bd058435",
+      "report": {
+        "scope": "Desktop source/Lua observations only; native query unavailability recorded separately.",
+        "candidateRawHashes": {
+          "Inventory/Restock/Auction/FluxAuctionRestock.lua": "e8bfa9cd2ac6aa2e2beeade2f26dc29f891aebc70312afe969e5985db29b6f86",
+          "Inventory/FluxConsumableClassify.lua": "68813e6033f051f1d157e34ff367cc858b7177cc2d4e7576332b9f027b5794b9",
+          "Inventory/Restock/Auction/FluxAuctionRestockLocale.lua": "68600f67ba554c90caa4dc4f38972331f2fb63e4f46451de67f1f6d84cc16599",
+          "tests/auction_restock.lua": "54a3d1ee807b5f09e0589fce3d28264e5be775d9ac12797af76b72f2804c739e",
+          "tests/auction_restock_potion_restore.lua": "488a8df682c861bd16c652f0d9ad83710dd54212a35e0d68fb5a9c213a291f56",
+          "Inventory/Restock/Auction/FluxAuctionRestockPotions.lua": "a604536306f03bfbe5ebc849c2449aa32f64cf8759aabbf142b0932e5b318d3d"
+        },
+        "trials": [
+          {
+            "before": {
+              "label": "r24-before-1",
+              "exit": 1,
+              "output": "C:/Users/mario/AppData/Local/Programs/Lua/bin/lua.exe: tests/auction_restock_potion_restore.lua:3: ranged health and mana are independent; cooldown/level numbers cannot inflate the tier: Retail\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/auction_restock_potion_restore.lua:3: in local 'check'\n\ttests/auction_restock_potion_restore.lua:40: in main chunk\n\t[C]: in function 'dofile'\n\t...\\potion-restore-20261114T005500Z\\r24-before-1-router.lua:6: in main chunk\n\t[C]: in ?\n",
+              "raw": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\auction-restock\\tab-crafting-followup\\potion-restore-20261114T005500Z\\r24-before-1.txt",
+              "sha256": "2d2c12aebb1ec4aaee34435878bb115ee8e41adf5cc3a8d97e6c820513655c9c"
+            },
+            "after": {
+              "label": "r24-after-1",
+              "exit": 0,
+              "output": "AH potion restore/browse: 388 checks PASS/20 profiles; native server availability tested separately\n",
+              "raw": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\auction-restock\\tab-crafting-followup\\potion-restore-20261114T005500Z\\r24-after-1.txt",
+              "sha256": "3e58a06ebea15055c101201e2791fdd751a01620e53585441434afd17d52d813"
+            }
+          },
+          {
+            "before": {
+              "label": "r24-before-2",
+              "exit": 1,
+              "output": "C:/Users/mario/AppData/Local/Programs/Lua/bin/lua.exe: tests/auction_restock_potion_restore.lua:3: ranged health and mana are independent; cooldown/level numbers cannot inflate the tier: Retail\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/auction_restock_potion_restore.lua:3: in local 'check'\n\ttests/auction_restock_potion_restore.lua:40: in main chunk\n\t[C]: in function 'dofile'\n\t...\\potion-restore-20261114T005500Z\\r24-before-2-router.lua:6: in main chunk\n\t[C]: in ?\n",
+              "raw": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\auction-restock\\tab-crafting-followup\\potion-restore-20261114T005500Z\\r24-before-2.txt",
+              "sha256": "05a5797f7c203ce280c5fd9036b00e7a9d807f670a1aa646b16baeba3cb4c887"
+            },
+            "after": {
+              "label": "r24-after-2",
+              "exit": 0,
+              "output": "AH potion restore/browse: 388 checks PASS/20 profiles; native server availability tested separately\n",
+              "raw": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\auction-restock\\tab-crafting-followup\\potion-restore-20261114T005500Z\\r24-after-2.txt",
+              "sha256": "3e58a06ebea15055c101201e2791fdd751a01620e53585441434afd17d52d813"
+            }
+          },
+          {
+            "before": {
+              "label": "r24-before-3",
+              "exit": 1,
+              "output": "C:/Users/mario/AppData/Local/Programs/Lua/bin/lua.exe: tests/auction_restock_potion_restore.lua:3: ranged health and mana are independent; cooldown/level numbers cannot inflate the tier: Retail\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/auction_restock_potion_restore.lua:3: in local 'check'\n\ttests/auction_restock_potion_restore.lua:40: in main chunk\n\t[C]: in function 'dofile'\n\t...\\potion-restore-20261114T005500Z\\r24-before-3-router.lua:6: in main chunk\n\t[C]: in ?\n",
+              "raw": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\auction-restock\\tab-crafting-followup\\potion-restore-20261114T005500Z\\r24-before-3.txt",
+              "sha256": "3641f27d2b0c417cd7bc4f2f4172c3927e330a157710554c9dc41c8be5c76a44"
+            },
+            "after": {
+              "label": "r24-after-3",
+              "exit": 0,
+              "output": "AH potion restore/browse: 388 checks PASS/20 profiles; native server availability tested separately\n",
+              "raw": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\auction-restock\\tab-crafting-followup\\potion-restore-20261114T005500Z\\r24-after-3.txt",
+              "sha256": "3e58a06ebea15055c101201e2791fdd751a01620e53585441434afd17d52d813"
+            }
+          }
+        ],
+        "controls": [
+          {
+            "label": "r24-duplicate-loaded-metadata",
+            "exit": 1,
+            "output": "C:/Users/mario/AppData/Local/Programs/Lua/bin/lua.exe: tests/auction_restock_potion_restore.lua:3: loaded non-restorative catalogue entry settles without duplicate metadata events resetting its retries\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/auction_restock_potion_restore.lua:3: in local 'check'\n\ttests/auction_restock_potion_restore.lua:110: in main chunk\n\t[C]: in function 'dofile'\n\t...0261114T005500Z\\r24-duplicate-loaded-metadata-router.lua:4: in main chunk\n\t[C]: in ?\n",
+            "raw": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\auction-restock\\tab-crafting-followup\\potion-restore-20261114T005500Z\\r24-duplicate-loaded-metadata.txt",
+            "sha256": "c5053b9b167b8057d52da26263f9ef1785266aad6712e980735830bc53be3414",
+            "compiled": true,
+            "rejected": true
+          },
+          {
+            "label": "r24-omit-late-spell-refresh",
+            "exit": 1,
+            "output": "C:/Users/mario/AppData/Local/Programs/Lua/bin/lua.exe: tests/auction_restock_potion_restore.lua:3: a slow linked spell revives a name-free negative parse once and still asks before upgrading\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/auction_restock_potion_restore.lua:3: in local 'check'\n\ttests/auction_restock_potion_restore.lua:92: in main chunk\n\t[C]: in function 'dofile'\n\t...-20261114T005500Z\\r24-omit-late-spell-refresh-router.lua:4: in main chunk\n\t[C]: in ?\n",
+            "raw": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\auction-restock\\tab-crafting-followup\\potion-restore-20261114T005500Z\\r24-omit-late-spell-refresh.txt",
+            "sha256": "8a4b06a868d15fca221072f9b7ac329ed110761eb967023ebe46a23ba18a52ae",
+            "compiled": true,
+            "rejected": true
+          },
+          {
+            "label": "r24-wrong-axis",
+            "exit": 1,
+            "output": "C:/Users/mario/AppData/Local/Programs/Lua/bin/lua.exe: tests/auction_restock_potion_restore.lua:3: ranged health and mana are independent; cooldown/level numbers cannot inflate the tier: Retail\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/auction_restock_potion_restore.lua:3: in local 'check'\n\ttests/auction_restock_potion_restore.lua:40: in main chunk\n\t[C]: in function 'dofile'\n\t...otion-restore-20261114T005500Z\\r24-wrong-axis-router.lua:4: in main chunk\n\t[C]: in ?\n",
+            "raw": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\auction-restock\\tab-crafting-followup\\potion-restore-20261114T005500Z\\r24-wrong-axis.txt",
+            "sha256": "96c3e390f66a2d4d7cbef454e5e77fc99ccbcf6053e80f4a4f955b1ac3662314",
+            "compiled": true,
+            "rejected": true
+          },
+          {
+            "label": "r24-omit-category",
+            "exit": 1,
+            "output": "C:/Users/mario/AppData/Local/Programs/Lua/bin/lua.exe: tests/auction_restock_potion_restore.lua:3: an empty phrase result gets exactly one potion-category fallback with no item-name query\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/auction_restock_potion_restore.lua:3: in local 'check'\n\ttests/auction_restock_potion_restore.lua:120: in main chunk\n\t[C]: in function 'dofile'\n\t...on-restore-20261114T005500Z\\r24-omit-category-router.lua:4: in main chunk\n\t[C]: in ?\n",
+            "raw": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\auction-restock\\tab-crafting-followup\\potion-restore-20261114T005500Z\\r24-omit-category.txt",
+            "sha256": "9a37bb7f3c13373a85e8638d0d716a68f89df31c5974180f8af6e7d6bd968845",
+            "compiled": true,
+            "rejected": true
+          },
+          {
+            "label": "r24-omit-ready-wake",
+            "exit": 1,
+            "output": "C:/Users/mario/AppData/Local/Programs/Lua/bin/lua.exe: tests/auction_restock_potion_restore.lua:3: native ready wakes the queued query immediately\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/auction_restock_potion_restore.lua:3: in local 'check'\n\ttests/auction_restock_potion_restore.lua:133: in main chunk\n\t[C]: in function 'dofile'\n\t...-restore-20261114T005500Z\\r24-omit-ready-wake-router.lua:4: in main chunk\n\t[C]: in ?\n",
+            "raw": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\auction-restock\\tab-crafting-followup\\potion-restore-20261114T005500Z\\r24-omit-ready-wake.txt",
+            "sha256": "a9773dbd7ed4586d9c3de89ff22f4f1c96423c9b0e8b1032e86b2623c69c9d56",
+            "compiled": true,
+            "rejected": true
+          },
+          {
+            "label": "r24-hide-unavailability",
+            "exit": 1,
+            "output": "C:/Users/mario/AppData/Local/Programs/Lua/bin/lua.exe: tests/auction_restock_potion_restore.lua:3: native unavailability expires as unready, rather than no potions or a fabricated offer\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/auction_restock_potion_restore.lua:3: in local 'check'\n\ttests/auction_restock_potion_restore.lua:141: in main chunk\n\t[C]: in function 'dofile'\n\t...tore-20261114T005500Z\\r24-hide-unavailability-router.lua:4: in main chunk\n\t[C]: in ?\n",
+            "raw": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\auction-restock\\tab-crafting-followup\\potion-restore-20261114T005500Z\\r24-hide-unavailability.txt",
+            "sha256": "9a42bb82837305a62eeb28a83cc9846eb4882ceaf35cbd14e95d804677596af4",
+            "compiled": true,
+            "rejected": true
+          },
+          {
+            "label": "r24-unbounded-wait",
+            "exit": 1,
+            "output": "C:/Users/mario/AppData/Local/Programs/Lua/bin/lua.exe: tests/auction_restock_potion_restore.lua:3: native unavailability expires as unready, rather than no potions or a fabricated offer\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/auction_restock_potion_restore.lua:3: in local 'check'\n\ttests/auction_restock_potion_restore.lua:141: in main chunk\n\t[C]: in function 'dofile'\n\t...n-restore-20261114T005500Z\\r24-unbounded-wait-router.lua:4: in main chunk\n\t[C]: in ?\n",
+            "raw": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\auction-restock\\tab-crafting-followup\\potion-restore-20261114T005500Z\\r24-unbounded-wait.txt",
+            "sha256": "1fd5163b87d5867008976c1604c822a08b5337f41eec55a10a25a6f8054d1310",
+            "compiled": true,
+            "rejected": true
+          },
+          {
+            "label": "r24-automatic-upgrade",
+            "exit": 1,
+            "output": "C:/Users/mario/AppData/Local/Programs/Lua/bin/lua.exe: tests/auction_restock_potion_restore.lua:3: level35 discovers the stronger listed restorative without a potion name or tier list, then asks\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/auction_restock_potion_restore.lua:3: in local 'check'\n\ttests/auction_restock_potion_restore.lua:46: in main chunk\n\t[C]: in function 'dofile'\n\t...estore-20261114T005500Z\\r24-automatic-upgrade-router.lua:4: in main chunk\n\t[C]: in ?\n",
+            "raw": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\auction-restock\\tab-crafting-followup\\potion-restore-20261114T005500Z\\r24-automatic-upgrade.txt",
+            "sha256": "18e7dcde000a51783cdc565b4d120719eea05f3d33a65ce9c89cb2907972982d",
+            "compiled": true,
+            "rejected": true
+          },
+          {
+            "label": "r24-omit-cold-spell",
+            "exit": 1,
+            "output": "C:/Users/mario/AppData/Local/Programs/Lua/bin/lua.exe: tests/auction_restock_potion_restore.lua:3: metadata-ready item with only a required-level tooltip loads its linked restore spell once, then asks\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/auction_restock_potion_restore.lua:3: in local 'check'\n\ttests/auction_restock_potion_restore.lua:73: in main chunk\n\t[C]: in function 'dofile'\n\t...-restore-20261114T005500Z\\r24-omit-cold-spell-router.lua:4: in main chunk\n\t[C]: in ?\n",
+            "raw": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\auction-restock\\tab-crafting-followup\\potion-restore-20261114T005500Z\\r24-omit-cold-spell.txt",
+            "sha256": "f24ea36cea6447241a948d6c3734723c263b3fa8aa827313223453f867a13753",
+            "compiled": true,
+            "rejected": true
+          }
+        ],
+        "initialFindings": [
+          "The new throttle fixture initially drained an intentionally unsent search; it now yields until readiness.",
+          "The initial full run retained the old generic-timeout assertion. It was updated only to the intentional auctionNotReady status; no-query/no-purchase/no-idle-loop assertions remain."
+        ]
+      }
+    }
+  },
+  "harmfulControlsRejected": 15,
+  "installedCopies": {
+    "Retail": {
+      "path": "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI",
+      "checked": 5,
+      "matched": 5,
+      "readOnly": true,
+      "manualSync": false
+    },
+    "Forever": {
+      "path": "F:\\World of Warcraft\\_forever_\\Interface\\AddOns\\_FluxUI",
+      "checked": 5,
+      "matched": 5,
+      "readOnly": true,
+      "manualSync": false
+    },
+    "MoP": {
+      "path": "F:\\World of Warcraft\\_classic_\\Interface\\AddOns\\_FluxUI",
+      "checked": 5,
+      "matched": 5,
+      "readOnly": true,
+      "manualSync": false
+    },
+    "Era": {
+      "path": "F:\\World of Warcraft\\_classic_era_\\Interface\\AddOns\\_FluxUI",
+      "checked": 5,
+      "matched": 5,
+      "readOnly": true,
+      "manualSync": false
+    },
+    "Anniversary": {
+      "path": "F:\\World of Warcraft\\_anniversary_\\Interface\\AddOns\\_FluxUI",
+      "checked": 5,
+      "matched": 5,
+      "readOnly": true,
+      "manualSync": false
+    }
+  },
+  "behavior": [
+    "Explicit native Upgrade/Keep current before tier, replacement, inherited policy or old-item junk changes; separate buy press.",
+    "Revalidate live target/reference/eligibility/level/price mode on acceptance; dismiss/combat/close/stale callbacks preserve state.",
+    "Parse health/mana axes independently using effect text; no new named potion tiers or item/spell ID catalogue.",
+    "One modern name-free potion-category fallback after completed empty phrase queries; no old-AH bulk restock scan.",
+    "Unsent native query has no result generation; ready event wakes the existing bounded wait; unavailable queue is not empty market.",
+    "Load the dynamically linked restore spell once per job; reconsider a negative parse once when slow spell text becomes ready.",
+    "Loaded metadata is not re-requested by the pending classifier; duplicate item replies previously cleared retry evidence indefinitely.",
+    "Known level/skill/class rejection precedes restore parsing; caps/vendor filters/cache budgets/native purchase ownership remain."
+  ],
+  "native": {
+    "status": "PASS scoped Forever listing discovery and visible pre-commit confirmation; user decision and purchases not performed",
+    "build": "1.60.1.70938",
+    "process": 21324,
+    "window": 132486,
+    "character": "Mario Super level35 mage",
+    "route": "Explicitly authorized targeted background window messages and PrintWindow; no foreground/global mouse/keyboard/clipboard control.",
+    "observed": [
+      "User confirms ordinary Buy partial search was empty too; native ready API false and zero browse rows were observed.",
+      "Fresh character logout/login restored catalogue delivery:62 potion-category browse rows. Same named character returned to the world.",
+      "Real client classified Superior Healing Potion at requiredlevel35 as900 health and Greater Mana Potion at requiredlevel31 as900 mana.",
+      "The mana item initially had only a required-level tooltip; requesting its dynamically linked spell loaded actual700-900 mana text.",
+      "r23 returned real listings but pending non-restorative records blocked both kinds; duplicate loaded metadata resets were identified.",
+      "r24 normal Restock tab scan displays Greater Healing Potion -> Superior Discolored Healing Potion at22s93c/unit; gold9g45s23c.",
+      "Upgrade and Keep current are visible; old Greater Healing target5/5 remains visible; no decision or purchase was submitted."
+    ],
+    "evidence": [
+      {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\auction-restock\\tab-crafting-followup\\potion-loaded-pending-20261114T020800Z\\native-upgrade-awaiting-user.png",
+        "sha256": "560cb96b15f93957ea68ef2eb4e5833e90e3cd4845f33b36232a3500cadf239e"
+      },
+      {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\auction-restock\\tab-crafting-followup\\potion-loaded-pending-20261114T020800Z\\native-upgrade-window.json",
+        "sha256": "e5d81faa5dc5839f31b22c8ddc45f4f6b7bf1b92dafb3651f1fedad6ac62e696"
+      },
+      {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\auction-restock\\tab-crafting-followup\\potion-restore-20261114T005500Z\\native-r22-superior-900.png",
+        "sha256": "32b78720b83c9c913e6e34afbbcb18f1733864bfca6e4f2b9bba8b0e605b8f80"
+      },
+      {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\auction-restock\\tab-crafting-followup\\potion-restore-20261114T005500Z\\native-mana-spell-load.png",
+        "sha256": "da77e128c5319881fcc5b5e0d3d03245f719c423ad56a1e03fc274a70e30bbc0"
+      },
+      {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\auction-restock\\tab-crafting-followup\\potion-restore-20261114T005500Z\\native-verified-category-unready.png",
+        "sha256": "13df5b35c00811976bf5eb7ddedc9c78e2cc77e8a60f52b5d00415315cf67588"
+      }
+    ],
+    "excludedExploration": [
+      "Earlier blind chat input during reload entered an AH search field; excluded from acceptance.",
+      "Protected Lua InteractUnit probe was rejected; stopped that route and used normal native background mouse messages.",
+      "A legacy close-function diagnostic was unavailable; corrected to documented modern close API. Errors retained, no addon disabled."
+    ],
+    "pending": [
+      "User Upgrade/Keep current decision and persisted native tier/junk changes",
+      "Native mana upgrade prompt after the healing choice",
+      "Native buy/receipt progression",
+      "Other four native clients",
+      "Controller directional navigation and localization review",
+      "Broad taint/secure-VM and matched CPU/FPS certification"
+    ]
+  },
+  "resources": {
+    "newTickers": 0,
+    "newPollers": 0,
+    "newFrames": 0,
+    "existingTimers": "Same bounded query timeout/wait and8-ID/12-second classifier batches.",
+    "events": "Ready event added to existing active search subscription; combat observer exists only while a proposal is visible.",
+    "spellLoads": "At most one dynamic request and one ready-text invalidation per item/discovery job; no cast.",
+    "nativePerformance": "NOT RUN; deterministic work/functional checks do not establish latency, CPU or FPS."
+  },
+  "preserved": {
+    "branch": "main",
+    "hooksPath": ".githooks",
+    "unrelatedWork": true,
+    "settingsProfilerWrites": false,
+    "foregroundControl": false,
+    "globalInputClipboard": false,
+    "targetedBackgroundInputAuthorized": true,
+    "manualSync": false,
+    "publication": false
+  },
+  "finalGuardUTC": "2026-11-14T02:20:54.364910+00:00",
+  "documentation": {
+    "build": "PASS:1084 sources;623 reachable;438 settings;583 literal defaults",
+    "validate": "PASS:1084 classified sources;623 TOC/XML reachable;438 setting definitions;24 SavedVariables;17186 local links;source inventory/evidence current",
+    "sourceGuardAfterDocumentation": "Complete1051-file normalized Lua manifest and owned raw hashes still match the final full suite."
+  }
+}

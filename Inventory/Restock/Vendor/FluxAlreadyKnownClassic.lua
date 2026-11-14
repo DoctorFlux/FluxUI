@@ -529,8 +529,19 @@ end
 --[[----------------------------------------------------------------------------
 	Merchant
 ----------------------------------------------------------------------------]]--
+	local function MerchantIsHidden()
+		local frame = MerchantFrame
+		local getter = frame and frame.IsShown
+		if type(getter) ~= "function" or (issecretvalue and issecretvalue(getter)) then return false end
+		local ok, shown = pcall(getter, frame)
+		return ok and not (issecretvalue and issecretvalue(shown)) and shown == false
+	end
+
 	local function _hookMerchant() -- Most of this found from FrameXML/MerchantFrame.lua
 		if not AK.ShouldRun() then return end
+		-- Only a proven hidden merchant skips work; visible classic updates
+		-- stay synchronous, including newly learned/uncached item facts.
+		if MerchantIsHidden() then return end
 		-- https://www.townlong-yak.com/framexml/9.0.2/MerchantFrame.lua#197
 		for i = 1, MERCHANT_ITEMS_PER_PAGE do
 			local index = (((MerchantFrame.page - 1) * MERCHANT_ITEMS_PER_PAGE) + i)

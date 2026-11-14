@@ -1,5 +1,11 @@
 # Dependencies, ports and reference provenance
 
+ForeverMinimapTarget v1.0.1 by Ashtar Senior (TOC: GPL-3.0-or-later) was inspected
+read-only as the target/focus tracking behavior reference. Flux independently
+implements the native API/menu extension with its existing services; no source,
+artwork or private settings were copied. Exact reference identities and compatibility
+boundaries are in [the tracking record](MINIMAP_TARGET_FOCUS.md).
+
 6 November healer-frame reference: HealKit0.65.0 was inspected read-only under
 its all-rights-reserved license. The rewrite is independently authored; no
 HealKit implementation or custom art was copied. Original Blizzard art8036209

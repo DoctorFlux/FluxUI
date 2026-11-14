@@ -521,7 +521,7 @@ local beforeGeometry, beforeTextures = clock.timerGeometry, clock.textures
 for _ = 1,500 do clock.skin:ApplyToWindow(a,.8); clock.skin:ApplyToWindow(b,.8); elect() end
 check(clock.timerGeometry == beforeGeometry and clock.textures == beforeTextures,
     "500 repeated layouts reuse timer geometry and chrome without allocating resources")
-check(#b.scriptHooks.OnShow == 1 and #b.scriptHooks.OnHide == 1 and #b.scriptHooks.OnSizeChanged == 2,
+check(#b.scriptHooks.OnShow == 2 and #b.scriptHooks.OnHide == 1 and #b.scriptHooks.OnSizeChanged == 2,
     "repeat application installs no duplicate visibility or geometry hooks")
 clock.combat = true; b.visible = false; event(b,"OnHide")
 check(a.timerFont:GetAlpha() == .37 and clock.timerGeometry == beforeGeometry,
@@ -553,7 +553,7 @@ check(tiny.typeFont.width > 0 and type(tiny.timerFont.width) == "number" and tin
     "sub-pixel available header space clamps the timer gap and box together")
 clock.skin:ReleaseWindow(narrow); narrow.timerFont:SetAlpha(.23); clock.skin:ApplyToWindow(narrow,.8)
 clock.skin:ReleaseWindow(narrow)
-check(narrow.timerFont:GetAlpha() == .23 and #narrow.scriptHooks.OnShow == 1,
+check(narrow.timerFont:GetAlpha() == .23 and #narrow.scriptHooks.OnShow == 2,
     "reactivation snapshots the latest native alpha without duplicating permanent hooks")
 narrow.timerFont:SetAlpha(.41); clock.skin:ReleaseAllNative()
 check(narrow.timerFont:GetAlpha() == .41, "repeated cleanup leaves a retired timer's newer native alpha untouched")
@@ -649,6 +649,59 @@ if threat.clock then
     mirror.skin:ReleaseWindow(threat)
     check(threat.Title:GetWidth() == 160, "owned timer cleanup restores the title's original width")
 else check(false,"Threat clock creation is required") end
+
+-- Native anchors can be unresolved on the first hidden embed. A later show
+-- need not change the pane's size, and a cached size does not prove alignment.
+for _, scale in ipairs({.5, .8, 1, 1.5}) do
+    local ready = boot(true)
+    local window = ready.window("session")
+    local text = window.typeFont
+    local originalLeft, originalRight = text.points[1], text.points[2]
+    text.width = 0
+    ready.skin:ApplyToWindow(window, scale)
+    check(#text.points == 1 and text.points[1][1] == "BOTTOMLEFT"
+        and text.points[1][2] == window and text.points[1][4] == 5 / scale
+        and text.points[1][5] == -13 / scale,
+        "zero initial native text width still uses Threat's header anchor at scale " .. scale)
+    local resources, fontWrites = ready.textures, ready.fonts
+    text:ClearAllPoints(); text:SetPoint("LEFT", originalLeft[2], "RIGHT", 0, 3)
+    text:SetPoint("RIGHT", originalRight[2], "LEFT", -5, 0)
+    ready.skin:ApplyToWindow(window, scale)
+    check(#text.points == 1 and text.points[1][1] == "BOTTOMLEFT" and text.points[1][4] == 5 / scale,
+        "native anchor reset is repaired with unchanged cached dimensions at scale " .. scale)
+    local fittedWidth = text:GetWidth()
+    text:SetWidth(3)
+    ready.skin:ApplyToWindow(window, scale)
+    check(text:GetWidth() == fittedWidth, "native heading width reset is repaired at scale " .. scale)
+    text:ClearAllPoints(); text:SetPoint("LEFT", originalLeft[2], "RIGHT", 0, 3)
+    ready.combat = true
+    for _, fn in ipairs(window.scriptHooks.OnSizeChanged or {}) do fn(window) end
+    check(text.points[1][1] == "LEFT", "combat resize leaves title geometry alone at scale " .. scale)
+    ready.combat = false
+    ready.skin:RefreshHeaderControls()
+    check(text.points[1][1] == "BOTTOMLEFT", "deferred title alignment repairs after combat at scale " .. scale)
+    for _ = 1, 50 do
+        for _, fn in ipairs(window.scriptHooks.OnShow or {}) do fn(window) end
+        ready.skin:ApplyToWindow(window, scale)
+    end
+    check(ready.textures == resources and ready.fonts == fontWrites
+        and #window.scriptHooks.OnShow == 2 and #window.scriptHooks.OnSizeChanged == 2,
+        "reopening reuses title and timer hooks without new assets at scale " .. scale)
+    ready.skin:ReleaseWindow(window)
+    check(text:GetWidth() == 0 and #text.points == 2 and text.points[1][2] == originalLeft[2]
+        and text.points[2][2] == originalRight[2], "release restores unresolved original geometry at scale " .. scale)
+    for _, fn in ipairs(window.scriptHooks.OnShow or {}) do fn(window) end
+    check(#text.points == 2, "released title show hook stays idle at scale " .. scale)
+end
+local hidden = boot(true); local hiddenWindow = hidden.window("session")
+local resolved = false
+function hiddenWindow:GetLeft() if resolved then return 100 end end
+hidden.skin:ApplyToWindow(hiddenWindow, .8)
+check(#hiddenWindow.typeFont.points == 2, "unresolved hidden window geometry is left native")
+resolved = true
+for _, fn in ipairs(hiddenWindow.scriptHooks.OnShow or {}) do fn(hiddenWindow) end
+check(#hiddenWindow.typeFont.points == 1 and hiddenWindow.typeFont.points[1][1] == "BOTTOMLEFT",
+    "first show retries hidden native title geometry without requiring a resize")
 
 local heading = boot(true); local nativeHeading = heading.window("session")
 nativeHeading.timerFont:SetPoint("TOPLEFT",nativeHeading.Header,"TOPLEFT",1,-9)

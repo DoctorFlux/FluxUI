@@ -889,20 +889,28 @@ end
 
 -- Same thresholds as SecondsToTimeAbbrev (1.5). BuffFrame uses %d on seconds
 -- (truncates); ceil here made the stance digit sit one second behind the aura.
-local function FormatAuraRemain(rem)
+local function FormatAuraRemain(rem, owner)
 	if rem < 0 then
 		rem = 0
 	end
+	local bucket, suffix
 	if rem >= 129600 then
-		return tostring(math.ceil(rem / 86400)) .. "d"
+		bucket, suffix = math.ceil(rem / 86400), "d"
+	elseif rem >= 5400 then
+		bucket, suffix = math.ceil(rem / 3600), "h"
+	elseif rem >= 90 then
+		bucket, suffix = math.ceil(rem / 60), "m"
+	else
+		bucket, suffix = math.floor(rem + 1e-6), ""
 	end
-	if rem >= 5400 then
-		return tostring(math.ceil(rem / 3600)) .. "h"
+	if owner and owner._fluxAuraTimeBucket == bucket and owner._fluxAuraTimeSuffix == suffix then
+		return owner._fluxAuraTimeText
 	end
-	if rem >= 90 then
-		return tostring(math.ceil(rem / 60)) .. "m"
+	local text = tostring(bucket) .. suffix
+	if owner then
+		owner._fluxAuraTimeBucket, owner._fluxAuraTimeSuffix, owner._fluxAuraTimeText = bucket, suffix, text
 	end
-	return tostring(math.floor(rem + 1e-6))
+	return text
 end
 
 local function AuraRemainSeconds(btn, cd, now)
@@ -930,6 +938,15 @@ local function AuraRemainSeconds(btn, cd, now)
 	return (start and dur) and ((start + dur) - now) or 0
 end
 
+local function FindAuraCountdownRegion(...)
+	for i = 1, select("#", ...) do
+		local region = select(i, ...)
+		if region and region.GetObjectType and region:GetObjectType() == "FontString" then
+			return region
+		end
+	end
+end
+
 local function HideBlizzardAuraDigits(cd)
 	if not cd then
 		return
@@ -947,14 +964,9 @@ local function HideBlizzardAuraDigits(cd)
 		end
 	end
 	if not fs and cd.GetRegions then
-		local regions = { cd:GetRegions() }
-		for i = 1, #regions do
-			local r = regions[i]
-			if r and r.GetObjectType and r:GetObjectType() == "FontString" then
-				fs = r
-				break
-			end
-		end
+		-- Re-discover every frame: native countdown regions can be replaced or
+		-- reset. Passing the varargs through avoids a transient region table.
+		fs = FindAuraCountdownRegion(cd:GetRegions())
 	end
 	if fs then
 		if fs.SetTextColor then
@@ -1039,8 +1051,8 @@ local function UpdateAuraCountdown(btn, now)
 		return false
 	end
 	HideBlizzardAuraDigits(cd)
-	AuraCountdownSetText(fs, FormatAuraRemain(rem))
-	if holder then
+	AuraCountdownSetText(fs, FormatAuraRemain(rem, btn))
+	if holder and (not holder.IsShown or not holder:IsShown()) then
 		holder:Show()
 	end
 	return true

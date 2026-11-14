@@ -1,0 +1,288 @@
+{
+  "date": "2026-11-09",
+  "change_id": "OPTIONS-NATIVE-BORDER-20261109",
+  "source": "GitHub connector full files at existing task commits; exact Git blob SHA verified",
+  "records": [
+    {
+      "client": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_SharedXML/Blizzard_SharedXML.toc",
+      "capture": "C:/Users/mario/.codex/visualizations/2026/11/09/01a1c03e-c615-7f02-a24a-3e5ed07300f1/options-native-border-sources/live/Interface/AddOns/Blizzard_SharedXML/Blizzard_SharedXML.toc",
+      "gitBlobSHA": "5da288d439b1bc3256f49be50d9653bcdc335676",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_SharedXML/Blizzard_SharedXML.toc",
+      "normalizedSHA256": "66717cbdc7ff81337c7cfc9b714695b1c28a5d11fba701f58a291ded5e7300d1",
+      "installedMirrorNormalizedMatch": false
+    },
+    {
+      "client": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_SharedXML/PortraitFrame.lua",
+      "capture": "C:/Users/mario/.codex/visualizations/2026/11/09/01a1c03e-c615-7f02-a24a-3e5ed07300f1/options-native-border-sources/live/Interface/AddOns/Blizzard_SharedXML/PortraitFrame.lua",
+      "gitBlobSHA": "630d174bda3bed327437188cf13eb33459449647",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_SharedXML/PortraitFrame.lua",
+      "normalizedSHA256": "00d463d167ee87b547a8cc8cdf0cf39860ee2c163a8b16caaf43b9decd89c24f",
+      "installedMirrorNormalizedMatch": true
+    },
+    {
+      "client": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_SharedXML/NineSlice.lua",
+      "capture": "C:/Users/mario/.codex/visualizations/2026/11/09/01a1c03e-c615-7f02-a24a-3e5ed07300f1/options-native-border-sources/live/Interface/AddOns/Blizzard_SharedXML/NineSlice.lua",
+      "gitBlobSHA": "d6cc93aebbab6bc77192ef2c1e68886238242d72",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_SharedXML/NineSlice.lua",
+      "normalizedSHA256": "83ec4afca8f54d250a4fac1e76c398c6210580f3e09ae24d989ccebd14d7f146",
+      "installedMirrorNormalizedMatch": true
+    },
+    {
+      "client": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_SharedXML/Mainline/NineSliceLayouts.lua",
+      "capture": "C:/Users/mario/.codex/visualizations/2026/11/09/01a1c03e-c615-7f02-a24a-3e5ed07300f1/options-native-border-sources/live/Interface/AddOns/Blizzard_SharedXML/Mainline/NineSliceLayouts.lua",
+      "gitBlobSHA": "2003c046ea6e6e1249fc141edf32be0c73718b3c",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_SharedXML/Mainline/NineSliceLayouts.lua",
+      "normalizedSHA256": "679f46d39cde6cd77df3899d41a439f8daf036a992c0e36100ddb59cf98400fe",
+      "installedMirrorNormalizedMatch": true
+    },
+    {
+      "client": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_SharedXML/Mainline/SharedUIPanelTemplates.xml",
+      "capture": "C:/Users/mario/.codex/visualizations/2026/11/09/01a1c03e-c615-7f02-a24a-3e5ed07300f1/options-native-border-sources/live/Interface/AddOns/Blizzard_SharedXML/Mainline/SharedUIPanelTemplates.xml",
+      "gitBlobSHA": "fe39734fca545b6e2528080abc871c2efbd73f58",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_SharedXML/Mainline/SharedUIPanelTemplates.xml",
+      "normalizedSHA256": "cc0c3542394cf8085bddf4d32443689832ddb59fa42e1a790d6aea57b24b2962",
+      "installedMirrorNormalizedMatch": true
+    },
+    {
+      "client": "forever",
+      "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "path": "Interface/AddOns/Blizzard_SharedXML/Blizzard_SharedXML.toc",
+      "capture": "C:/Users/mario/.codex/visualizations/2026/11/09/01a1c03e-c615-7f02-a24a-3e5ed07300f1/options-native-border-sources/forever/Interface/AddOns/Blizzard_SharedXML/Blizzard_SharedXML.toc",
+      "gitBlobSHA": "597c41a440de774dbedf84094b3369677c55bce0",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_SharedXML/Blizzard_SharedXML.toc",
+      "normalizedSHA256": "533affae69a56106afb238aab68e0d54437a8fb17a54c511ad5d831dd3ae4024",
+      "installedMirrorNormalizedMatch": true
+    },
+    {
+      "client": "forever",
+      "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "path": "Interface/AddOns/Blizzard_SharedXML/PortraitFrame.lua",
+      "capture": "C:/Users/mario/.codex/visualizations/2026/11/09/01a1c03e-c615-7f02-a24a-3e5ed07300f1/options-native-border-sources/forever/Interface/AddOns/Blizzard_SharedXML/PortraitFrame.lua",
+      "gitBlobSHA": "630d174bda3bed327437188cf13eb33459449647",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_SharedXML/PortraitFrame.lua",
+      "normalizedSHA256": "00d463d167ee87b547a8cc8cdf0cf39860ee2c163a8b16caaf43b9decd89c24f",
+      "installedMirrorNormalizedMatch": true
+    },
+    {
+      "client": "forever",
+      "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "path": "Interface/AddOns/Blizzard_SharedXML/NineSlice.lua",
+      "capture": "C:/Users/mario/.codex/visualizations/2026/11/09/01a1c03e-c615-7f02-a24a-3e5ed07300f1/options-native-border-sources/forever/Interface/AddOns/Blizzard_SharedXML/NineSlice.lua",
+      "gitBlobSHA": "091e3e03a68d3a0f4b6fff48bdbc44c1aba24df7",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_SharedXML/NineSlice.lua",
+      "normalizedSHA256": "2554bdcdea78356e6bfb9b70732fd134bfbe89d5db9df2c1d08694675449d265",
+      "installedMirrorNormalizedMatch": true
+    },
+    {
+      "client": "forever",
+      "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "path": "Interface/AddOns/Blizzard_SharedXML/Mainline/NineSliceLayouts.lua",
+      "capture": "C:/Users/mario/.codex/visualizations/2026/11/09/01a1c03e-c615-7f02-a24a-3e5ed07300f1/options-native-border-sources/forever/Interface/AddOns/Blizzard_SharedXML/Mainline/NineSliceLayouts.lua",
+      "gitBlobSHA": "2003c046ea6e6e1249fc141edf32be0c73718b3c",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_SharedXML/Mainline/NineSliceLayouts.lua",
+      "normalizedSHA256": "679f46d39cde6cd77df3899d41a439f8daf036a992c0e36100ddb59cf98400fe",
+      "installedMirrorNormalizedMatch": true
+    },
+    {
+      "client": "forever",
+      "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "path": "Interface/AddOns/Blizzard_SharedXML/Mainline/SharedUIPanelTemplates.xml",
+      "capture": "C:/Users/mario/.codex/visualizations/2026/11/09/01a1c03e-c615-7f02-a24a-3e5ed07300f1/options-native-border-sources/forever/Interface/AddOns/Blizzard_SharedXML/Mainline/SharedUIPanelTemplates.xml",
+      "gitBlobSHA": "a70ea7819c4ba0fa643b7b80877c675e91647e4e",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_SharedXML/Mainline/SharedUIPanelTemplates.xml",
+      "normalizedSHA256": "3ef3c573e14f073c779018da4ca92c06a21648081a1067f966e6b92688a53ff9",
+      "installedMirrorNormalizedMatch": true
+    },
+    {
+      "client": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_SharedXML/Blizzard_SharedXML_Mists.toc",
+      "capture": "C:/Users/mario/.codex/visualizations/2026/11/09/01a1c03e-c615-7f02-a24a-3e5ed07300f1/options-native-border-sources/classic/Interface/AddOns/Blizzard_SharedXML/Blizzard_SharedXML_Mists.toc",
+      "gitBlobSHA": "12b72d8a7b28178046602acd82eb589aa5465799",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_SharedXML/Blizzard_SharedXML_Mists.toc",
+      "normalizedSHA256": "310019271f68dfb70e92ae4232464221bacd0f8b6f0e7da493a86b5e625c8775",
+      "installedMirrorNormalizedMatch": true
+    },
+    {
+      "client": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_SharedXML/PortraitFrame.lua",
+      "capture": "C:/Users/mario/.codex/visualizations/2026/11/09/01a1c03e-c615-7f02-a24a-3e5ed07300f1/options-native-border-sources/classic/Interface/AddOns/Blizzard_SharedXML/PortraitFrame.lua",
+      "gitBlobSHA": "630a8fa50e6cd4e41627f7c25a82cba379c7170d",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_SharedXML/PortraitFrame.lua",
+      "normalizedSHA256": "6339b98866deb9a00b6e22c6f2a3771c39c8f2eeaa5a253e5dad2449b728ac2f",
+      "installedMirrorNormalizedMatch": true
+    },
+    {
+      "client": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_SharedXML/NineSlice.lua",
+      "capture": "C:/Users/mario/.codex/visualizations/2026/11/09/01a1c03e-c615-7f02-a24a-3e5ed07300f1/options-native-border-sources/classic/Interface/AddOns/Blizzard_SharedXML/NineSlice.lua",
+      "gitBlobSHA": "d6cc93aebbab6bc77192ef2c1e68886238242d72",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_SharedXML/NineSlice.lua",
+      "normalizedSHA256": "83ec4afca8f54d250a4fac1e76c398c6210580f3e09ae24d989ccebd14d7f146",
+      "installedMirrorNormalizedMatch": true
+    },
+    {
+      "client": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_SharedXML/Classic/NineSliceLayouts.lua",
+      "capture": "C:/Users/mario/.codex/visualizations/2026/11/09/01a1c03e-c615-7f02-a24a-3e5ed07300f1/options-native-border-sources/classic/Interface/AddOns/Blizzard_SharedXML/Classic/NineSliceLayouts.lua",
+      "gitBlobSHA": "adc16b44076b668d0bb471c11a3f9af73a8e5c89",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_SharedXML/Classic/NineSliceLayouts.lua",
+      "normalizedSHA256": "5ef172b646b51bf726c3afe638c317cc237120eff8c716c0a46a21f2487abf51",
+      "installedMirrorNormalizedMatch": true
+    },
+    {
+      "client": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_SharedXML/Classic/SharedUIPanelTemplates.xml",
+      "capture": "C:/Users/mario/.codex/visualizations/2026/11/09/01a1c03e-c615-7f02-a24a-3e5ed07300f1/options-native-border-sources/classic/Interface/AddOns/Blizzard_SharedXML/Classic/SharedUIPanelTemplates.xml",
+      "gitBlobSHA": "68cafe7b815abdb5b3173e469fe2a6d7a9d500c6",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_SharedXML/Classic/SharedUIPanelTemplates.xml",
+      "normalizedSHA256": "c671d1ebe1f0091d05846ff6b55faf12c59c2113b93b69c3aaf448aef4a9bf1c",
+      "installedMirrorNormalizedMatch": true
+    },
+    {
+      "client": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_SharedXML/Classic/SharedUIPanelTemplates.lua",
+      "capture": "C:/Users/mario/.codex/visualizations/2026/11/09/01a1c03e-c615-7f02-a24a-3e5ed07300f1/options-native-border-sources/classic/Interface/AddOns/Blizzard_SharedXML/Classic/SharedUIPanelTemplates.lua",
+      "gitBlobSHA": "6a45f8b3a02c49db0a9b696982ef69e7630d4d31",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_SharedXML/Classic/SharedUIPanelTemplates.lua",
+      "normalizedSHA256": "615fe41326d78b962dbba4bd0949f5167fbcc0e0ffa5a95eb4d9e4b66cde6321",
+      "installedMirrorNormalizedMatch": true
+    },
+    {
+      "client": "classic_era",
+      "commit": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "path": "Interface/AddOns/Blizzard_SharedXML/Blizzard_SharedXML_Vanilla.toc",
+      "capture": "C:/Users/mario/.codex/visualizations/2026/11/09/01a1c03e-c615-7f02-a24a-3e5ed07300f1/options-native-border-sources/classic_era/Interface/AddOns/Blizzard_SharedXML/Blizzard_SharedXML_Vanilla.toc",
+      "gitBlobSHA": "9c8e39c851150a9544b9ae75414736f16d9b2904",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_SharedXML/Blizzard_SharedXML_Vanilla.toc",
+      "normalizedSHA256": "4c6d5523b01a4bf72de282d7595c8e9abdf92e55e56660952bacdb68dfb332f4",
+      "installedMirrorNormalizedMatch": false
+    },
+    {
+      "client": "classic_era",
+      "commit": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "path": "Interface/AddOns/Blizzard_SharedXML/PortraitFrame.lua",
+      "capture": "C:/Users/mario/.codex/visualizations/2026/11/09/01a1c03e-c615-7f02-a24a-3e5ed07300f1/options-native-border-sources/classic_era/Interface/AddOns/Blizzard_SharedXML/PortraitFrame.lua",
+      "gitBlobSHA": "630a8fa50e6cd4e41627f7c25a82cba379c7170d",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_SharedXML/PortraitFrame.lua",
+      "normalizedSHA256": "6339b98866deb9a00b6e22c6f2a3771c39c8f2eeaa5a253e5dad2449b728ac2f",
+      "installedMirrorNormalizedMatch": true
+    },
+    {
+      "client": "classic_era",
+      "commit": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "path": "Interface/AddOns/Blizzard_SharedXML/NineSlice.lua",
+      "capture": "C:/Users/mario/.codex/visualizations/2026/11/09/01a1c03e-c615-7f02-a24a-3e5ed07300f1/options-native-border-sources/classic_era/Interface/AddOns/Blizzard_SharedXML/NineSlice.lua",
+      "gitBlobSHA": "d6cc93aebbab6bc77192ef2c1e68886238242d72",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_SharedXML/NineSlice.lua",
+      "normalizedSHA256": "83ec4afca8f54d250a4fac1e76c398c6210580f3e09ae24d989ccebd14d7f146",
+      "installedMirrorNormalizedMatch": true
+    },
+    {
+      "client": "classic_era",
+      "commit": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "path": "Interface/AddOns/Blizzard_SharedXML/Classic/NineSliceLayouts.lua",
+      "capture": "C:/Users/mario/.codex/visualizations/2026/11/09/01a1c03e-c615-7f02-a24a-3e5ed07300f1/options-native-border-sources/classic_era/Interface/AddOns/Blizzard_SharedXML/Classic/NineSliceLayouts.lua",
+      "gitBlobSHA": "adc16b44076b668d0bb471c11a3f9af73a8e5c89",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_SharedXML/Classic/NineSliceLayouts.lua",
+      "normalizedSHA256": "5ef172b646b51bf726c3afe638c317cc237120eff8c716c0a46a21f2487abf51",
+      "installedMirrorNormalizedMatch": true
+    },
+    {
+      "client": "classic_era",
+      "commit": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "path": "Interface/AddOns/Blizzard_SharedXML/Classic/SharedUIPanelTemplates.xml",
+      "capture": "C:/Users/mario/.codex/visualizations/2026/11/09/01a1c03e-c615-7f02-a24a-3e5ed07300f1/options-native-border-sources/classic_era/Interface/AddOns/Blizzard_SharedXML/Classic/SharedUIPanelTemplates.xml",
+      "gitBlobSHA": "68cafe7b815abdb5b3173e469fe2a6d7a9d500c6",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_SharedXML/Classic/SharedUIPanelTemplates.xml",
+      "normalizedSHA256": "c671d1ebe1f0091d05846ff6b55faf12c59c2113b93b69c3aaf448aef4a9bf1c",
+      "installedMirrorNormalizedMatch": true
+    },
+    {
+      "client": "classic_era",
+      "commit": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "path": "Interface/AddOns/Blizzard_SharedXML/Classic/SharedUIPanelTemplates.lua",
+      "capture": "C:/Users/mario/.codex/visualizations/2026/11/09/01a1c03e-c615-7f02-a24a-3e5ed07300f1/options-native-border-sources/classic_era/Interface/AddOns/Blizzard_SharedXML/Classic/SharedUIPanelTemplates.lua",
+      "gitBlobSHA": "6a45f8b3a02c49db0a9b696982ef69e7630d4d31",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_SharedXML/Classic/SharedUIPanelTemplates.lua",
+      "normalizedSHA256": "615fe41326d78b962dbba4bd0949f5167fbcc0e0ffa5a95eb4d9e4b66cde6321",
+      "installedMirrorNormalizedMatch": true
+    },
+    {
+      "client": "classic_anniversary",
+      "commit": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "path": "Interface/AddOns/Blizzard_SharedXML/Blizzard_SharedXML_TBC.toc",
+      "capture": "C:/Users/mario/.codex/visualizations/2026/11/09/01a1c03e-c615-7f02-a24a-3e5ed07300f1/options-native-border-sources/classic_anniversary/Interface/AddOns/Blizzard_SharedXML/Blizzard_SharedXML_TBC.toc",
+      "gitBlobSHA": "1a9e8354fa40ccf6a9c73058b5d1d1390d23cf5b",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_SharedXML/Blizzard_SharedXML_TBC.toc",
+      "normalizedSHA256": "bef480de6d083538956809729cd5c10e2e0ca8964efb9032113b7ea1841cf910",
+      "installedMirrorNormalizedMatch": false
+    },
+    {
+      "client": "classic_anniversary",
+      "commit": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "path": "Interface/AddOns/Blizzard_SharedXML/PortraitFrame.lua",
+      "capture": "C:/Users/mario/.codex/visualizations/2026/11/09/01a1c03e-c615-7f02-a24a-3e5ed07300f1/options-native-border-sources/classic_anniversary/Interface/AddOns/Blizzard_SharedXML/PortraitFrame.lua",
+      "gitBlobSHA": "1b53fb052ae42bca4cd7fa81e7e369f3b7220348",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_SharedXML/PortraitFrame.lua",
+      "normalizedSHA256": "6339b98866deb9a00b6e22c6f2a3771c39c8f2eeaa5a253e5dad2449b728ac2f",
+      "installedMirrorNormalizedMatch": true
+    },
+    {
+      "client": "classic_anniversary",
+      "commit": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "path": "Interface/AddOns/Blizzard_SharedXML/NineSlice.lua",
+      "capture": "C:/Users/mario/.codex/visualizations/2026/11/09/01a1c03e-c615-7f02-a24a-3e5ed07300f1/options-native-border-sources/classic_anniversary/Interface/AddOns/Blizzard_SharedXML/NineSlice.lua",
+      "gitBlobSHA": "7876fcf848a6784d68b09be02badfa29b3e221e4",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_SharedXML/NineSlice.lua",
+      "normalizedSHA256": "83ec4afca8f54d250a4fac1e76c398c6210580f3e09ae24d989ccebd14d7f146",
+      "installedMirrorNormalizedMatch": true
+    },
+    {
+      "client": "classic_anniversary",
+      "commit": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "path": "Interface/AddOns/Blizzard_SharedXML/Classic/NineSliceLayouts.lua",
+      "capture": "C:/Users/mario/.codex/visualizations/2026/11/09/01a1c03e-c615-7f02-a24a-3e5ed07300f1/options-native-border-sources/classic_anniversary/Interface/AddOns/Blizzard_SharedXML/Classic/NineSliceLayouts.lua",
+      "gitBlobSHA": "b5a17556462586296541e4361c38d8dbeb846fd8",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_SharedXML/Classic/NineSliceLayouts.lua",
+      "normalizedSHA256": "5ef172b646b51bf726c3afe638c317cc237120eff8c716c0a46a21f2487abf51",
+      "installedMirrorNormalizedMatch": true
+    },
+    {
+      "client": "classic_anniversary",
+      "commit": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "path": "Interface/AddOns/Blizzard_SharedXML/Classic/SharedUIPanelTemplates.xml",
+      "capture": "C:/Users/mario/.codex/visualizations/2026/11/09/01a1c03e-c615-7f02-a24a-3e5ed07300f1/options-native-border-sources/classic_anniversary/Interface/AddOns/Blizzard_SharedXML/Classic/SharedUIPanelTemplates.xml",
+      "gitBlobSHA": "3ba9ced8626097b1532e7ade75aa8db520a6eb87",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_SharedXML/Classic/SharedUIPanelTemplates.xml",
+      "normalizedSHA256": "c671d1ebe1f0091d05846ff6b55faf12c59c2113b93b69c3aaf448aef4a9bf1c",
+      "installedMirrorNormalizedMatch": true
+    },
+    {
+      "client": "classic_anniversary",
+      "commit": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "path": "Interface/AddOns/Blizzard_SharedXML/Classic/SharedUIPanelTemplates.lua",
+      "capture": "C:/Users/mario/.codex/visualizations/2026/11/09/01a1c03e-c615-7f02-a24a-3e5ed07300f1/options-native-border-sources/classic_anniversary/Interface/AddOns/Blizzard_SharedXML/Classic/SharedUIPanelTemplates.lua",
+      "gitBlobSHA": "26f9da9be52fa95aafea431d313b24aa13456af5",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_SharedXML/Classic/SharedUIPanelTemplates.lua",
+      "normalizedSHA256": "615fe41326d78b962dbba4bd0949f5167fbcc0e0ffa5a95eb4d9e4b66cde6321",
+      "installedMirrorNormalizedMatch": true
+    }
+  ],
+  "scope": "Source/load contracts only; actual client build and native operations not observed"
+}

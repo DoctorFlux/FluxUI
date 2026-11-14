@@ -1,5 +1,528 @@
 # Baseline protocol and currency evidence
 
+14 November casting/inventory lag (LAG-HOTSPOTS-20261114; LHO-01–13):
+pre-edit 367 scripts/1,055 syntax PASS with unchanged source; external 2,781-file
+source/history checkpoint and 125 settings metadata entries, no private copy.
+Eight measured slices now change eleven runtime owners: protected cast/VFX helpers,
+same-call macro metadata, dirty-bank aggregation/publication retries, merged potion
+needs, live mail capacity, bulk merchant queue retirement and hidden merchant paints.
+Three pairs/slice; 46,925 focused checks/set; 71 compiled harmful controls rejected.
+Final 375 scripts/1,063 syntax PASS; full source stable throughout. Craft/pending
+integration adds 380 checks/120 scenarios. Independent reviews caught and fixed
+two bank retry/reentry cases; native getters slowed the AH paint experiment, so
+original UI bytes were restored. All 257 assets/XML/TOCs, 85 options/bindings,
+7 defaults/settings owners and 5 license files unchanged; all 55 owned files match
+across five installed copies read-only; external Syndicator's 41 files unchanged.
+Forever70938 native watch:2 gaps52–55ms,0observedFluxcallbacks>10ms,0newLuaerrors;
+not FPS attribution. After user reload and a specific foreground exception, food
+rank4 starts/stops were submitted; Interrupted and eight Pumpernickel/count8 are
+observed with cast cleared. No buying/selling/deletion, craft materials, focus
+activation, profiler preferences, manual sync or publication. Other native timing,
+provider-off/client/pixel/controller acceptance remains pending. Documentation validator PASS.
+[Requirements, remaining acceptance and evidence](LAG_HOTSPOT_OPTIMIZATION.md).
+
+13 November side-grid border/layering (MINIMAP-SIDE-BORDER-20261113;
+REQ-MBL-24/25): the screenshot's clarified defect was minimap cluster/clock
+layering over buttons. The screen-side root/gate/native-template widgets now use
+HIGH; embedded mode restores MEDIUM. Actual FluxBorder is applied once to a
+mouse-disabled decorative host inside the existing secure visibility gate.
+Border/backdrop inherit hover and secure combat hiding, scale and inactive/empty
+grid visibility. The backdrop stays above native chrome but below buttons, with
+border below existing flyout arrows. Native map/clock frames and handlers, grid
+geometry, saved settings/actions and dynamic minimum behavior are preserved.
+2794 actual border/arrow checks,30 atlas/legacy-scale cases,seven harmful controls,
+three paired layer trials and nine existing integration scripts PASS. Broad
+snapshot:341 pass/four unrelated auction failures;1033 syntax PASS. Concurrent
+auction work is preserved; the snapshot is not a claim about later global files.
+External2724-file source/history checkpoint and99 settings metadata verified;
+private values not copied. No new poll/event/driver;one lazy host plus the shared
+border's two frames/normal textures. Native visual/input/taint/controller/CPU/FPS
+remain NOT RUN; reload out of combat and use the retained user-native route.
+No foreground/input, settings/profiler write, manual sync or publication.
+[Requirements and acceptance](MINIMAP_EXTRA_LAYOUT.md#screen-side-border-and-minimap-clock-layering);
+[evidence](validation/minimap-side-border-2026-11-13.json).
+
+13 November action/badge/extra counts (ACTION-COUNT-REFRESH-20261113; ACR-01–05): normal bars now receive light bag-count publications; validated spell-use events refresh count/tint through existing coalesced lanes. Count-held form settle also restores badge tint. Two watch owners; no new frame/timer/poll/hook/scan or secure action change. Read-only Gethe five-client pins and Bartender4/LibActionButton/installed ButtonForge comparison retained. 666 focused checks across five client models/both providers; three exact checkpoint pairs reject224 old failures; seven harmful controls rejected. Full343scripts/1031syntax PASS with current complete manifest. External2712-file source/history checkpoint and47 settings metadata verified; private values not copied. Concurrent auction/minimap work preserved. Native event delivery/operation/taint/pixels/controller/CPU/FPS NOT RUN; existing user-native route retained. No foreground/input, settings/profiler writes, manual sync or publication.
+[Requirements, comparison and native steps](ACTION_COUNT_REFRESH.md); [evidence](validation/action-count-refresh-2026-11-13.json).
+
+13 November dynamic minimap buttons (MINIMAP-DYNAMIC-20261113; REQ-MBL-22/23)
+supersedes the earlier growth/movement choices: Dynamic button count keeps the
+configured count as a saved minimum. With fifteen full slots, carrying offers
+sixteen; cancel/drop elsewhere returns to fifteen; filling the preview keeps
+sixteen. Deleting assignments compacts toward the minimum, including interior
+holes, without renumbering saved indices. Both layouts share this behavior;
+hide-empty may still hide screen-side minimum placeholders. The independent
+movement control is removed: Always shown automatically reserves room for
+minimap/Questie/objectives/auras; mouseover overlays their normal dock. The old
+sideMoveFrames value stays saved but is ignored. Cursor observation also covers
+active embedded dynamic layouts; no new frame/timer/poll/native API is added.
+10480 dynamic checks/30 layout-scale cases/six harmful controls, paired baseline
+and candidate (three trials per layout), nine existing integration scripts and
+full 342 scripts/1030 syntax PASS for the captured snapshot. Later concurrent
+action-count edits stale global evidence; task-owned source identities match.
+External 2706-file source/history checkpoint
+and 99 settings metadata verified; private values not copied. Native input/taint/
+pixels/persistence/controller/CPU/FPS remain NOT RUN. No foreground/input,
+settings/profiler write, manual sync or publication. Reload outside combat and
+follow the retained user-managed native reproduction route.
+[Current requirements and acceptance](MINIMAP_EXTRA_LAYOUT.md#dynamic-minimum-and-automatic-frame-movement);
+[evidence](validation/minimap-dynamic-2026-11-13.json).
+
+13 November minimap extra-button visibility (MINIMAP-VISIBILITY-20261113;
+REQ-MBL-18–21): optional screen-side empty-slot filtering preserves numbered
+assignments and reveals one drop target while carrying an action. Optional shared
+auto-growth adds one slot after a full successful drop, up to 120. Movement can
+be disabled for minimap/Questie/objectives/auras. Always shown or mouseover mode
+combines with the existing secure combat-hide toggle; hover freezes during
+combat and embedded buttons ignore side-only visibility/empty filtering. Defaults
+retain the current layout. One 0.1s hover ticker runs only in active side mouseover
+mode and stops in combat/embedded/disabled/always mode; cursor observation is
+scoped to active side hide-empty mode. No input-capturing frame is added.
+4540 focused checks/15 scale cases/5 harmful controls and eight existing
+layout/options/action/ownership scripts PASS. Full 341 scripts/1029 syntax PASS;
+two transient auction failures during concurrent edits passed on the full rerun.
+Verified external 2697-file source/history checkpoint and 99 settings metadata;
+no private settings copy, foreground/input, settings/profiler write, manual sync
+or publication. Native input/taint/pixels/controller/persistence/CPU/FPS remain
+NOT RUN; reload out of combat and follow the retained user-managed reproduction.
+[Requirements and acceptance](MINIMAP_EXTRA_LAYOUT.md#empty-slots-automatic-growth-and-optional-overlay-visibility);
+[evidence](validation/minimap-visibility-2026-11-13.json).
+
+13 November tooltip/meter errors (SECRET-UI-20261113): Flux unit/pet/raid/preview
+hovers now use one private reusable native-template tooltip; shared GameTooltip
+state and health mixin methods stay native. Meter menus/configuration remain
+with actual Blizzard dropdown clicks; addon generation/open/pick removed. Saved
+layout requests/history/segments retained. Automatic native type/window/Current
+application is intentionally pending a verified clean route. Meter106checks,
+three baseline pairs/three harmful controls;tooltip three baseline pairs/two
+harmful controls;337 scripts/1025 Lua syntax files PASS.
+External2690-file source/history checkpoint and127 settings metadata verified;
+36 pinned source records. Reload needed to clear previously tainted objects.
+Native secret/taint/pixels/controller/CPU/FPS NOT RUN; user retest retained. No
+client control, settings/profiler writes, manual sync or publication.
+[Requirements, sources and acceptance](SECRET_TOOLTIP_METER_ERRORS.md).
+
+13 November combat-hide scope (MINIMAP-SIDE-COMBAT-20261113;REQ-MBL-17): the setting
+stays visible while embedded and applies only to normal-map screen-side buttons.
+Embedding removes the existing combat driver; embedded grid remains visible in
+combat. Saved hideInCombat persists and resumes on returning to the side layout.
+UI label/help clarify that scope; capability gating and deferred protected layout
+remain. Two runtime owners;no new frame,event,timer,hook,poll or native API.
+50,034 grid/113 map/2,287 aura/168 flyout/6,407 options checks PASS;three matched
+runs reject exact baseline and3harmful controls. Full snapshot 324 scripts/1,006
+syntax PASS;task files remain current. Concurrent later auction edits are preserved;
+global source freshness remains pending for that unrelated work. External
+2,652-file source/history checkpoint and103settings metadata verified. Native
+pixels/input/controller/persistence/taint/FPS NOT RUN;user-native route retained.
+No client control,private settings/profiler writes,sync,commit or publication.
+[Requirement](MINIMAP_EXTRA_LAYOUT.md#combat-hiding-applies-only-to-the-screen-side-grid); [evidence](validation/minimap-side-combat-2026-11-13.json).
+
+
+13 November side-grid scale normalization (MINIMAP-SCALE-BASIS-20261113;REQ-MBL-16):
+new displayed 100% is the previous 85% size and remains the default. The slider is
+10–200%, effective frame scale0.085–1.7. Legacy explicit scales convert by /0.85
+without rounding or rewriting records; new choices mark version2 to prevent repeat
+conversion. Old values beyond the new ceiling are capped by new200%;raw data stays.
+Automatic columns, zero padding, shared actions, aura/flyout geometry and combat
+queues retained. Two runtime owners; no new frame/event/timer/hook/poll/native API.
+50,007 grid checks;113 map/2,287 aura/168 flyout/6,397 options checks PASS. Three
+actual checkpoint comparisons preserve9,408 geometry fields/run for old25–170 and
+new100=old85;four harmful controls rejected. Full322scripts/1,004syntax PASS and
+current manifest verified. External2,644-file source/history checkpoint and103
+settings metadata entries verified;no private contents copied. Native pixels,
+input/controller/persistence/taint/FPS remain NOT RUN;existing user-native route
+retained. No client control,settings/profiler file write,sync,commit or publication.
+[Current requirement](MINIMAP_EXTRA_LAYOUT.md#scale-normalization-100-equals-the-previous-85); [evidence](validation/minimap-scale-basis-2026-11-13.json).
+
+
+13 November automatic minimap grids (MINIMAP-AUTO-LAYOUT-20261113;REQ-MBL-12–15):
+both layouts now choose columns and largest fitted button size from count/space.
+Embedded minimap size is automatic; embedded columns/map-size and side-column
+controls removed. Screen-side whole-grid scale remains 25–200%, default100%; every scale refits
+above Flux Window. User screenshot gap follow-up removes container/screen/start/
+window padding and fractional-row slack. Completed side columns touch the window;
+embedded buttons touch the map. Map/tracker/aura reservation follows scaled width. Downward side
+column order, shared numbered actions, widget reuse, hidden-tab/window state,
+flyouts and combat deferral retained. Retired saved keys preserved but ignored;
+sideScale preserved and extended. Three runtime owners; no new frame,event,timer,
+ticker,hook,polling or native API.48,866grid/113map/2,287aura/168flyout checks;6,397
+options-navigation checks;three matched pairs/scenario;11 external and4 map harmful
+controls PASS. Full322scripts/1,004syntax PASS,current complete manifest verified.
+Fresh external2,638-file source/history checkpoint and103settings metadata verified.
+Existing dated Gethe pins/direct implementation/user-native route retained;native
+pixels/input/taint/controller/persistence/FPS NOT RUN. No client control,private
+settings/profiler write,manual sync,commit or publication.
+[Current requirements](MINIMAP_EXTRA_LAYOUT.md#current-behavior-automatic-grids-and-screen-side-grid-scale); [evidence](validation/minimap-auto-layout-2026-11-13.json).
+
+
+13 November screen-side resize/aura follow-up (MINIMAP-SIDE-AURA-20261113;
+REQ-MBL-10–11): the existing 25–100% button-size slider now scales after height
+fitting, so crowded 120-slot layouts respond at 50%/25%. Defaults, shared actions,
+column order/bounds and saved setting identities stay intact. Beside-map buttons
+now reserve the same left offset for native BuffFrame/DebuffFrame. Existing aura
+placement runs from shared strip layout before the hidden branch, restoring old
+positions for below/off/embedded states. Native aura content/style/input remains
+Blizzard-owned; combat/Edit Mode guards retained. Two runtime owners; no new frame,
+event, timer, ticker, hook or polling. 3,415 resize +1,855 aura checks, three matched
+pairs per scenario and five harmful controls PASS; full 322 scripts/1,004 syntax
+PASS with the complete current Lua manifest verified. Documentation validator PASS.
+23 narrow Gethe records/21 Git blobs verified at retained source pins. Fresh
+external 2,630-file/source-history checkpoint and 69 settings metadata entries
+verified; no private contents copied. Direct implementation/user-native route
+retained; native pixels/input/controller/persistence/taint/FPS NOT RUN. No client
+control, settings/profiler write, manual sync, commit or publication.
+[Requirements and native checks](MINIMAP_EXTRA_LAYOUT.md#follow-up-screen-side-resizing-and-aura-placement); [evidence](validation/minimap-side-aura-2026-11-13.json).
+
+
+13 November Syndicator continuity (SYNDICATOR-SYNC-20261113; SYN-SYNC-01-05):
+while delegated, FluxUI saves Syndicator's live v2 root by reference, including
+alts/deletions. Next standalone startup imports detached facts once; later reloads
+retain standalone changes. Exact three-way field/container comparisons update
+unchanged stale external data; independent external edits/deletions and current
+native cash/tokens win. No scan timestamps are fabricated. Dense slots, offsets,
+capacities and list/auction metadata retained; no phantom bank tabs.
+Transition-only notifications refresh views/search without alt live-player changes;
+guild/void callbacks unchanged. No new frame/event/timer/subscription/poll; existing
+scanner records capacity without extra native queries. 309 focused checks and three
+harmful controls PASS across five desktop models; full snapshot320 scripts/1002
+syntax PASS, task sources still match. A new concurrent trinket recovery test after
+suite enumeration now passes200 checks after its separate source edits; unrelated
+work preserved and whole-workspace freshness remains pending. External2612-file/source-history checkpoint and58
+settings metadata entries verified; Syndicator290 read-only reference, ARR preserved.
+Native persistence/Baganator pixels/taint/CPU/FPS pending; existing user reproduction
+route retained. No client input/focus, private settings/profiler write, manual
+installation sync, commit or publication.
+[Requirements and native checks](SYNDICATOR_SYNC.md); [evidence](validation/syndicator-sync-2026-11-13.json).
+
+13 November minimap layouts (MINIMAP-LAYOUT-20261113; REQ-MBL-01–09): shared character
+slots now support 1–120 buttons; embedded columns auto-fit beside a 40–100% square
+right-aligned map. Optional normal-map side layout defaults off; 1/2 columns retain
+44-point buttons when space permits; 3+ fit two-column width and can shrink further.
+Fill down the rightmost column to above Flux Window, then continue left. Start
+below map or beside it from screen top; native/Questie docks reserve matching room.
+Secure combat-hide option covers buttons/arrows/open flyouts and releases Escape;
+unsupported secure engines explain unavailable. All structural changes defer;
+queued combat embed/restore reconciles correctly. Hidden slots keep actions and
+widgets; existing cadence/input/integrations retained. 760 focused checks; 22 harmful
+controls; exact old baseline rejected; combined 320 scripts/1002 syntax PASS (319/1001
+full run plus one concurrently added test checked separately). Final owned sources pass scoped retests; unrelated concurrent
+inventory edits leave global freshness pending. 46 fresh Gethe source
+records/36 Git blobs verified; Forever pin now bebcb6bf309cf41b41bd74f8ca651e6a105b2676.
+External 2608-file/source-history checkpoint and 69 settings metadata verified.
+Eight task runtime owners; unrelated concurrent inventory work preserved. No new
+addon poll/ticker/timer. Direct implementation/user-native route retained; native
+pixels/input/persistence/controller/taint/FPS/memory NOT RUN. No client control,
+settings/profiler write, manual sync, commit or publication.
+[Requirements and native checks](MINIMAP_EXTRA_LAYOUT.md); [evidence](validation/minimap-layout-2026-11-13.json).
+
+
+11 November all-consumable audit (CONSUMABLE-ALL-BUTTON-AUDIT-20261111;
+CGLC-23 through CGLC-27): all seven real Create paths and both grid count methods
+run together across five models, both providers and two gem policies. Repeated
+loading, charged remnants, isolated depletion/refill and regen placeholders PASS.
+2,580 checks; old native-failing source 940/current 0 in three matched pairs;
+ten harmful controls rejected. One shared watcher; 100 use signals coalesce to
+one immediate and one 100ms settle callback, 14 recounts; 100 unrelated events add 0;
+idle 12s adds 0 scans/timers. Full 308 scripts/981 syntax PASS; manifest current.
+No production Lua/XML/TOC changes; one new test. External 2,585-file source/history
+checkpoint and 55 settings metadata entries verified; 75 installed runtime copies
+match user sync. Current repair native acceptance/FPS/taint/pixels/input remains
+NOT RUN. No client focus/input, settings/profiler write, manual sync or publication.
+[Coverage, source ownership and native limits](COMBAT_GRID_LIVE_COUNTS.md#all-seven-real-button-modules-audited-together).
+
+11 November native loading-hold fix (CONSUMABLE-LOAD-END-20261111;CGLC-19 through
+CGLC-22): failing-state capture proves food 1 with every source 0 while inventory
+is reliable and Best's loading latch remains open. Ordinary bag events cannot
+release it. One Inventory handler now completes unfinished loads on validated
+optional LOADING_SCREEN_DISABLED, restarts cancelled existing slot refresh and
+reuses bounded portal recovery. Normal PEW/duplicate completion add no work;
+newer loads remain protected. All seven kinds/providers/five models covered.
+2,230 checks; exact checkpoint fails 660; three matched pairs and five controls;
+full 307 scripts/980 syntax PASS with current manifest. One runtime owner and
+one test added; one event subscription; no new frame/ticker/timer call site,
+background polling, settings or action writes. Five pinned blobs and external
+2,583-file source/history checkpoint verified; 55 settings metadata entries;
+all five installed runtime copies match via user sync. Prior candidate FAILED
+natively; new handler symptom/taint/pixels/input/FPS acceptance NOT RUN. Reload
+and retest loading/depletion; retain /fluxinv buttons output during recurrence.
+No foreground/input, profiler write, manual sync, commit or publication.
+[Native evidence and completion recovery](COMBAT_GRID_LIVE_COUNTS.md#native-capture-loading-completion-left-open).
+
+11 November consumable screenshot follow-up (COUNT-SOURCE-RECONCILIATION-20261111;
+CGLC-14 through CGLC-18): all seven kinds and other assigned item faces share
+count-source/recovery corrections. Actual world entry releases an orphaned
+open loading latch; startup during real loading remains held. The existing
+portal timer publishes inventory count recovery even without an identity change.
+A valid carried-only modern zero no longer falls through to a stale deprecated
+positive; missing/error and extended-bank compatibility remain. Optional
+`/fluxinv buttons` captures physical slots, APIs, provider/text/hold facts once;
+no automatic polling, new event/frame/timer/hook, settings or protected writes.
+2,104 hold/diagnostic +245 source checks PASS; exact checkpoint fails 583/150;
+three matched pairs per workstream and eight harmful controls rejected.
+Full 306 scripts/979 syntax PASS; normalized manifest current; four runtime
+owners only and two new tests. 22 fresh pinned Gethe blobs verified; external
+2,580-file source/history checkpoint and 55 settings metadata entries. All 20
+installed runtime copies match via user sync. User's healthy Syndicator/reliable/
+no-hold sample and unbound gem do not explain the intermittent screenshot.
+Follow-up food/water probe prints no rows; raw API agreement is unverified.
+Native candidate symptom/pixels/taint/input/FPS remains NOT RUN; reload and
+capture `/fluxinv buttons` during recurrence before another reload. No client
+input, settings/profiler write, manual sync or publication.
+[Requirements and remaining native acceptance](COMBAT_GRID_LIVE_COUNTS.md#screenshot-follow-up-count-sources-and-loading-holds).
+
+10 November passive pass 3 (PASSIVE-PERFORMANCE-PASS3-20261110; PP3-01–06;
+PP3-H01–12): twelve new hotspots across eight loaded runtime owners. Core numeric/
+aura/checked helpers reuse callbacks; Index avoids normalized tables and full
+first-location result construction. Mana/swing owned styles settle without slowing
+live movement/values; raid flags recycle after paint. Active Classic character
+calculations drop unused metadata/palette work; quality keeps every query/sink.
+Three pairs/workstream; 99,781 focused checks/set; 57 harmful controls rejected.
+Full 303 scripts / 975 syntax PASS; source stable throughout. One obsolete rebind
+mutation now breaks both cleanup steps; unchanged functional assertion rejects it.
+Generated 1,008 sources / 607 reachable / 427 settings / 24 saved roots. Documentation validator PASS.
+21 source records / 10 Git blobs verified; canonical native fade replay and
+35 setter-return checks. 252 appearance files / 80 options-binding sources unchanged.
+Fresh party/vendor fixes and inactive character copies are byte-preserved.
+Concurrent ConsumableBind/Paint and use-event test edits are retained and included
+in the combined full run; other runtime owners match the checkpoint. External
+2,561-file/history checkpoint; settings
+metadata only. Native FPS/memory/pixels/taint/input pending; no input, preferences/
+profiler write, manual sync or publication. Unrelated party/raid work stays paused.
+[Findings, comparisons and native limits](PASSIVE_PERFORMANCE_PASS3.md).
+
+10 November combat grid use/depletion follow-up (COMBAT-GRID-USE-EVENTS-20261110;
+CGLC-07–13): user confirmed dark gem1 after use on Forever/Syndicator; wants dark0
+in combat and next owned item/empty placeholder OOC for all seven kinds/providers.
+Cooldown-only notifications and wrong nonblank cached digits now refresh. Shared
+watch has one immediate plus one100ms settle pass; no idle ticker or predicted
+decrement. Reliable exhausted gem clears sticky face; gem/stone selection and
+charge/refill recovery use existing owners. Tint follows displayed item, including
+prepared macro faces. Combat actions and loading holds remain.
+1219use +672transition +2175prior checks PASS; three matched pairs each workstream;
+12harmful controls rejected. Full304scripts/976syntax PASS; entire source manifest
+matches. Hidden340-check trace/budgets and unrelated-bag zero-scan behavior retained.
+Three runtime owners; two new tests; two existing fixture expectations updated to
+the clarified behavior.22exact Gethe records; external2566-file/history checkpoint;
+33initial+22Anniversary settings metadata only. All15installed runtime copies match
+through user sync; no manual propagation. Candidate native symptom/taint/pixels/
+input/FPS remains NOT RUN; reload and user retest required. No input/focus,
+settings/profiler write, manual sync or publication.
+[Correction, regression and native steps](COMBAT_GRID_LIVE_COUNTS.md).
+
+10 November vendor Junk tab freeze fix (VENDOR-JUNK-TAB-FREEZE-20261110):
+two runtime owners; name snapshots remove comparator loads; visual/item completions
+share the existing 200 ms retry; reentrant/unchanged scroll painting is suppressed.
+Three matched pairs across five client models: 400 cold entries request
+13,768→1,200 loads; 400 completions rebuild 400→1 times and paint 6,834→17 rows.
+85 focused checks PASS; four harmful controls rejected; vendor/timer regressions PASS.
+Full run: 295 scripts PASS, two raid-aura failures amid concurrent unrelated edits;
+969 syntax PASS. No clean current full-suite or native freeze/FPS/pixels/taint/input
+acceptance claimed. Concurrent edits retained; exact Junk sources match full run.
+External 2,545-file/history checkpoint verified; four settings metadata entries only.
+No input/focus, settings/profiler write, manual sync or publication. Reload and
+user-performed vendor/Junk retest pending. Fresh upstream commit lookup unavailable.
+[Cause, fix, evidence and native limits](VENDOR_JUNK_TAB_FREEZE.md).
+
+10 November combat grid live counts (COMBAT-GRID-LIVE-COUNTS-20261110;
+CGLC-01–06): food/water/bandage/potions/gem/healthstone reach zero with both
+providers. Syndicator's native fallback now includes both conjured kinds;
+count/tint and ownership use live carried copies while metadata delays publishing.
+Same-frame bag bursts coalesce; combat actions and loading holds remain.
+Three matched pairs: 2,175 checks PASS; checkpoint rejects 244; seven harmful
+controls rejected. Forty provider burst fixtures: recounts2,500→40, native count
+queries2,500→159; no combat scans/rebinds/new frames. Existing craft/hidden-button
+regressions pass. Full suite completed297scripts/969syntax PASS; task source hashes
+match; unrelated subsequent/concurrent vendor/raid edits retain separate acceptance.
+Final docs check has four stale inventory/verification records in concurrently edited
+raid/debuff owners; own task sources match all passing focused checks.
+Twenty-two pinned Gethe records verified across five clients. External2,550-file/
+history checkpoint;33settings metadata entries read-only. Native input/pixels/taint/
+FPS/memory NOT RUN; no client input, settings/profiler write, manual sync or publication.
+User-managed Retail-only writes and prior party/raid native pause retained.
+[Fix, comparisons and native steps](COMBAT_GRID_LIVE_COUNTS.md).
+
+10 November additional passive optimization (PASSIVE-PERFORMANCE-PASS2-20261110;
+PP2-01–06, PP2-H01–10): ten new hotspots across eight runtime files. Combat
+class-resource retry storms coalesce; synchronous cast text shares a revision-guarded
+clock sample; raid prediction uses scalars. Parked Extra Buttons stop checked/count/
+metadata work, with count/tint/equipped state refreshed before first visible paint.
+Core protected/range helpers and meter timer election reuse functions; collector
+keeps linear child snapshots and all discovery cadence with fewer pattern matches.
+Three pairs/workstream; 783 focused checks/set; 60 harmful controls rejected.
+Full 295 scripts / 967 syntax PASS; exact source matches. Generated 1,000 sources,
+607 reachable files, 427 settings and 24 SavedVariables roots. Documentation validator PASS.
+25 pinned records / 20 Git blobs verified; Forever advanced to 4cd0ab752a77.
+252 appearance files / 80 options-binding sources and all other runtime owners
+unchanged, including prior combat/resource fixes. External 2,543-file/history
+checkpoint; settings metadata only. Native FPS/memory/pixels/taint/input pending;
+no client input, preferences/profiler writes, manual sync or publication. Guild/
+void callbacks and unrelated party/raid feature work remain excluded.
+[Findings, comparisons and limits](PASSIVE_PERFORMANCE_PASS2.md).
+
+10 November resource-effects follow-up (RESOURCE-EFFECTS-PERFORMANCE-20261110;
+RFX-01–06): power ghost bursts coalesce at the original After0 boundary;
+1,000 same-frame paints queue 1 callback instead of 1,000; unchanged public sinks
+retry only when needed. Secret animation Lua callbacks fall 120→0 in 0.5 s/240 Hz.
+Prepared shown helper containers use texture visibility and active-only drivers;
+shared spark guards geometry before arithmetic; eligible HUD main bars prewarm
+unchanged pulse trees. Bounded dormant allocation tradeoff recorded, no idle driver.
+Three pairs/workstream; 122 Shared/168 PCO checks; 9+12 controls; 3×84 combined
+checks and 2 disconnection controls. Full 290 scripts/962 syntax PASS; source attested.
+Documentation validator PASS: 995 sources, 607 reachable files, 16,146 local links.
+88 pinned records/54 blobs and 50 ownership checks; Frame Show/Hide correction.
+Earlier partition/value painter and all other runtime owners byte-preserved.
+252 appearance files/80 options-binding sources unchanged; external 2,539-file/history
+checkpoint; settings metadata only. No native FX/taint/pixels/FPS/input acceptance,
+settings/profiler write, manual sync or publication. Prior scoped pauses remain.
+[Changes, tradeoffs and evidence](RESOURCE_EFFECTS_PERFORMANCE.md).
+
+10 November combat-invite power partition correction (POWER-PARTITION-COMBAT-JOIN-20261110;
+PWRJOIN-01–06): native user trace exposed protected SetHeight/Show in ordinary
+post-reveal painting. Shared partition now defers structural geometry before all
+text-anchor/prediction/layout mutations; native reveal and value paints continue.
+Absent prepared slots retain unknown resource capability so combat joins have a
+ready power bar. Existing queue coalesces per frame; Party retains its regen owner.
+675 focused checks/15 cases across five clients; three exact-baseline pairs;
+eight harmful controls rejected; full 288 scripts / 960 syntax PASS. Documentation
+validator PASS: 993 sources / 607 reachable / 16,131 local links. 44 pinned
+source records / 31 blobs verified. Only one runtime file changed; earlier 23
+performance owners unchanged. External 2,536-file/history checkpoint; settings
+metadata only. No native retest/pixels/taint/FPS claim, input/focus, settings/profiler
+write, manual sync or publication. Prior mocks omitted protected child permissions.
+[Cause, correction and native limits](POWER_PARTITION_COMBAT_JOIN.md).
+
+10 November passive performance optimization (PASSIVE-PERFORMANCE-OPTIMIZATION-20261110;
+PPO-01–06): all 24 audited candidates optimized with preserved nominal cadence,
+features and tested geometry/input/lifecycle behavior. Three exact-checkpoint pairs
+per workstream; 23 runtime files, seven new tests. Full 287 scripts / 959 syntax
+PASS; current source matches validation and comparison hashes. Documentation
+validator PASS: 992 sources / 607 reachable / 16,117 local links; records current. Native reset reads,
+secret sinks, sparse-slot probes and complete provider validation remain where
+correctness requires them. 31 pinned source records / 25 unique Git blobs verified.
+252 appearance/XML/TOC files and 79 options/binding sources byte-preserved.
+External 2,525-file/source-history checkpoint; settings metadata only. No native
+FPS/pixels/taint/input acceptance, client input, settings/profiler writes, manual
+sync, commit or publication. Scoped optimization includes readable raid fallback;
+unrelated party/raid feature work and native sessions remain paused.
+[Before/after results and constraints](PASSIVE_PERFORMANCE_OPTIMIZATION.md).
+
+10 November passive performance audit (PASSIVE-PERFORMANCE-AUDIT-20261110;
+REQ-RPF-01–05): 24 current optimization candidates plus 2 retained feature costs.
+Priority: per-mob group/pet threat ranking; per-frame nameplate layout checks;
+settled aura styling and explicit native full-aura rebuild requests; idle observers;
+mail/provider bursts. 39 synthetic replay scenarios load unchanged production code
+or exact verified native methods; five existing focused regressions PASS. Five
+fresh Gethe branch pins; 21 source records / 17 unique blobs verified. All 953 Lua
+byte identities unchanged. No runtime/settings/profiler/client-input/sync/publication
+change; guild/void callbacks excluded. Actual native CPU/FPS/taint/pixels/memory
+remain NOT RUN. Existing generated minimap docs/verification have 10 stale issues;
+unrelated generated records not regenerated. Party/raid implementation/native-test
+pause preserved. [Findings and optimization order](PASSIVE_PERFORMANCE_AUDIT_2026-11-10.md).
+
+9 November Forever native performance follow-up (FOREVER-NATIVE-PERFORMANCE-20261109;
+REQ-RF-99): actual background-client preview stress completed with explicit
+targeted diagnostic-input authorization. Solo/OOC only; server combat/roster APIs
+untouched. Cold40-member preview196.1003ms, warm11.1176ms; warm party4.8791ms.
+These single trials do not measure live joins or an FPS improvement. Fixed secret
+resource-pulse geometry arithmetic and permission-gated vendor checkbox mouse
+setters, reusing the combat queue.185 pulse/285 vendor/17050 tint checks PASS;
+three vendor pairs and four harmful controls; full276 scripts/946 syntax PASS.
+Ten exact API blobs;15 installed file copies match. Old debuff reader is absent.
+Diagnostic18:07 errors were my lost-table readback after reload; commands guarded,
+original performance report restored with3843 equal values, preview/prefs restored.
+Real combat joins/leaves/subgroups and merchant input remain pending. Final client
+foreground preflight caused no input. Source/history checkpoints and private
+recovery data remain external; no manual sync or publication.
+[Detailed evidence and limitations](FOREVER_NATIVE_PERFORMANCE.md).
+
+9 November all-client combat roster audit (COMBAT-GROUP-LIFECYCLE-20261109;
+REQ-RF-98/83): checked current Blizzard secure header, visibility and event-manager
+code across Retail, Forever, progression, Era and Anniversary. No new runtime
+gap found. New regression executes the full native event-to-next-update manager
+plus four callback orders:247385 checks over1800 transitions per run;three repeated
+passes;six harmful controls rejected;50 exact source blobs and30 contracts.
+Both party styles, solo/group/raid conversions, full/sparse/empty raids, subgroup
+moves, MT changes, hidden parents, pets/targets and leave cleanup are covered.
+Full274 scripts/944 syntax PASS; all current Lua matches the manifest and existing
+runtime matches the external2463-source/history checkpoint.43 settings metadata
+entries read-only;25 installed runtime copies match. No runtime change, game input,
+settings/profiler write, manual sync or publication. Native taint/input/pixels/
+latency acceptance remains NOT RUN. Preparation must complete before combat;
+prepared roster changes do not wait for combat exit. [Mechanism, sources and
+acceptance](COMBAT_GROUP_LIFECYCLE.md).
+
+9 November steady party performance (PARTY-STEADY-PERFORMANCE-20261109;
+REQ-RF-97): bar/prediction traffic now uses the existing shared painters without
+full chrome/font/cast-cover rebuilds. Pet prediction is corrected, UNIT_PET is
+owner-scoped, unchanged power text anchors are reused, and cold appearance events
+refresh metadata immediately. Features, settings, range cadence and secure
+roster/binding drivers remain. Five matched pairs/model remove936 full chrome,
+800 pet style and3280 power-anchor operations in the replay; actual native lag
+and FPS remain unmeasured.305 focused,1035 party and163 roster checks PASS;
+full273 scripts/943 syntax PASS.51 exact upstream blobs across all five clients;
+external2456-source/history checkpoint and43 read-only settings metadata entries.
+All five installed copies match through existing sync. No game input, settings/
+profiler writes, manual sync or publication. Prior manual testing route retained;
+native latency/pixels/taint acceptance still pending. [Details and evidence](PARTY_STEADY_PERFORMANCE.md).
+
+NAMEPLATE-QUEST-LAYOUT-20261109 (9 November) is a layout correctness change.
+The existing0.25s quest poll reads public width/painted threat-width metadata and
+reanchors only changed layout. Five models each retain1,000 settled polls with
+zero extra data/text/frame/anchor work; geometry changes do not query quest data.
+No new driver/event/hook/ticker or profiler change. Three alternating baseline/
+candidate correctness pairs are not a native performance benchmark. CPU/FPS/
+memory and native pixels/taint remain unmeasured.
+[Raw scoped evidence](validation/nameplate-quest-layout-2026-11-09.json).
+
+9 November supported combat text audit (DEBUFF-BINDING-AUDIT-20261109): renewed
+user request checked against35 freshly fetched pinned Gethe files across Retail,
+Forever, Classic progression, Era and Anniversary.16 checks execute the actual
+Retail/Forever Lua validators: native dispel Texture registration rejects a
+FontString; aura animations reject external health/resource targets. Native type
+text supports content/symbols; duration text exposes only temporal color inputs;
+direct aura color lookup requires aura access. No supported binding was found for
+the existing numeric labels while Retail/Forever aura data is restricted. The
+all-client combat numeric-color requirement remains OPEN; no runtime workaround
+was installed. Prior forbidden read stays removed; portrait/native border path,
+readable Classic colors, options and saved data remain. Existing focused17,050
+checks PASS; owned runtime/test hashes unchanged from the correction. No new
+native operations, settings/profiler writes, sync, publication or performance claim.
+[Source findings and remaining requirement](UNITFRAME_DEBUFF_COMBAT.md#supported-route-audit--renewed-request).
+
+9 November craftable consumable tiers (CRAFT-TIER-FALLBACK-20261109): bandage,
+healing-potion and mana-potion Auto slots now use the highest ranked affordable
+learned recipe. Lower tiers remain available when stronger recipes lack bag
+materials; material gains promote normally. Supersedes the old top-only rule.
+1,609 focused checks across five client models and builtin/Syndicator; three
+baseline/candidate pairs reject old source with 540 failures and pass candidate.
+Full 272-script/942-syntax validation PASS twice; owned sources unchanged.
+Concurrent options source changes preserved and checked; see source guard.
+Existing cache/dependencies, profession routing, owned outputs and settings remain;
+no new driver resources. Verified external 2,417-source/history checkpoint and
+116 read-only settings metadata entries. Five installed source copies match.
+No game input, settings/profiler writes, manual sync or publication. Native
+clicks/pixels/taint/performance pending; no connected native tool.
+[Requirements, evidence and native steps](CONSUMABLE_CRAFT_TIERS.md).
+
+9 November forbidden debuff Texture read (DEBUFF-FORBIDDEN-READ-20261109):
+user13:45:15 native GetVertexColor failure rejects the previous color bridge;
+reported client/build unspecified. Removed both descendant getter operations,
+retained Texture reference and prepared color objects. Keep portrait border-parent
+layer fix on all five clients and native dispel border ownership. Numeric colors
+use readable types and restore normal color during aura restrictions; the original
+restricted numeric-color requirement remains OPEN. Fixture now rejects registered
+Texture descendant access too:17,050 focused checks;five baseline forbidden-error
+rejects/candidate passes;three controls;full271scripts/940syntax PASS with complete
+current Lua corpus match. All five installed runtime copies match via existing
+sync. External2411-source/history checkpoint and120 settings metadata verified.
+No new frame/event/hook/timer/polling or suppression;no game input/settings/profiler
+writes/manual sync/publication. Post-correction native error absence, portrait
+pixels and taint/performance remain pending. Original desktop result is historical
+rejected evidence, not native acceptance.
+[Correction, source restrictions and native steps](UNITFRAME_DEBUFF_COMBAT.md).
+
+Earlier DEBUFF-COMBAT-COLORS-20261109 is REJECTED by the user's13:45:15 native forbidden-object error. Its desktop mock allowed an inaccessible registered Texture. Retained comparisons are historical evidence only; see the [correction and open requirement](UNITFRAME_DEBUFF_COMBAT.md).
+
 9 November focus colors (FOCUS-TARGET-COLORS-20261109): compact focus now
 uses the shared target color painter for its own focused unit instead of the
 party/player accent policy. Main/portrait/outer/atlas borders, backdrops, compact

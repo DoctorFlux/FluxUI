@@ -285,10 +285,105 @@ function Debug.CaptureBags()
     return snapshot
 end
 
+-- Opt-in tooltip provenance only. Never read tooltip line/color/unit data or
+-- call tooltip methods: either operation can disturb the failure being traced.
+local tooltipSecurityFields = {
+    "ProcessInfo", "InternalProcessInfo", "ProcessLines", "ProcessLineData", "AddLineDataText",
+    "ClearLines", "ClearHandlerInfo", "GetPrimaryTooltipInfo", "GetPrimaryTooltipData",
+    "infoList", "processingInfo", "insertedFrames", "numMoneyFrames", "statusBarPool",
+    "progressBarPool", "widgetContainer", "shoppingTooltips", "waitingForData",
+    "updateTooltip", "updateTooltipTimer", "UpdateTooltip", "shouldRefreshData",
+    "supportsDataRefresh", "suppressAutomaticCompareItem",
+}
+Debug.TooltipMessages = { enUS = {
+    field = "Flux tooltip: %s%s = %s",
+    summary = "Flux tooltip metadata: %d tainted fields; build %s. /reload to save the capture.",
+    unavailable = "Flux tooltip security API is unavailable or unverified; metadata capture retained.",
+    start = "Flux tooltip capture: hover the unit that fails within 3 seconds. Existing logging settings are retained.",
+} }
+local function TooltipMessage(key, ...)
+    local catalog = Debug.TooltipMessages
+    local locale = GetLocale and GetLocale() or "enUS"
+    local text = catalog[locale] and catalog[locale][key] or catalog.enUS[key]
+    return string.format(text, ...)
+end
+function Debug.CaptureTooltip()
+    local snapshot = { schema = 1, source = "tooltip-visual-followup-20261113-r1",
+        time = date and date("%Y-%m-%d %H:%M:%S"), frames = {},
+        combat = InCombatLockdown and plain(InCombatLockdown()),
+        securityAvailable = type(issecurevariable) == "function" }
+    if GetBuildInfo then
+        local version, build, _, interface = GetBuildInfo()
+        snapshot.version, snapshot.build, snapshot.interface = plain(version), plain(build), plain(interface)
+    end
+    local getCVar = C_CVar and C_CVar.GetCVar or GetCVar
+    if getCVar then
+        local ok, value = pcall(getCVar, "taintLog")
+        if ok then snapshot.taintLog = plain(value) end
+    end
+    -- Record the return convention on an addon-owned field; missing/changed
+    -- diagnostic support is not interpreted as proof that native fields are clean.
+    snapshot.calibration = security({ marker = true }, { "marker" })
+    for _, key in ipairs({ "GameTooltip", "GameTooltipDefaultContainer", "SharedTooltipDefaultContainer",
+        "GameTooltipStatusBar", "GameTooltipDataMixin", "TooltipDataHandlerMixin", "TooltipDataRules" }) do
+        local object = _G[key]
+        snapshot.frames[key] = { missing = object == nil, security = security(object, tooltipSecurityFields) }
+    end
+    snapshot.globals = security(_G, { "UnitPlayerControlled", "GameTooltip_UnitColor",
+        "GameTooltip_AddColoredLine", "GameTooltip_AddColoredDoubleLine", "GameTooltip_SetDefaultAnchor",
+        "GameTooltip_ClearMoney", "SharedTooltip_ClearInsertedFrames", "TooltipDataProcessor" })
+    snapshot.complete = true
+    return snapshot
+end
+
+local function PrintTooltipSecurity(snapshot)
+    if not snapshot.securityAvailable or not snapshot.calibration.marker
+        or snapshot.calibration.marker.secure ~= false then
+        print(TooltipMessage("unavailable"))
+        return
+    end
+    local count, shown = 0, 0
+    local function report(prefix, fields)
+        for key, entry in pairs(fields) do
+            if type(entry) == "table" and entry.secure == false then
+                count = count + 1
+                if shown < 12 then
+                    shown = shown + 1
+                    print(TooltipMessage("field", prefix, key, entry.owner or "unknown writer"))
+                end
+            end
+        end
+    end
+    report("_G.", snapshot.globals)
+    for key, frame in pairs(snapshot.frames) do report(key .. ".", frame.security) end
+    print(TooltipMessage("summary", count, snapshot.build or "unknown"))
+end
+
 local pending = false
 SLASH_FLUXINPUT1 = "/fluxinput"
 SlashCmdList.FLUXINPUT = function(message)
     if pending then return end
+    if type(message) == "string" and message:lower():match("^%s*tooltip%s*$") then
+        FluxPerfCaptureDB = FluxPerfCaptureDB or {}
+        local prior = FluxPerfCaptureDB.tooltipDebug
+        local previous = type(prior) == "table" and prior.latest or nil
+        local before = Debug.CaptureTooltip()
+        FluxPerfCaptureDB.tooltipDebug = { latest = before, previous = previous }
+        print(TooltipMessage("start"))
+        if C_Timer and C_Timer.After then
+            pending = true
+            C_Timer.After(3, function()
+                pending = false
+                local snapshot = Debug.CaptureTooltip()
+                snapshot.before = before
+                FluxPerfCaptureDB.tooltipDebug = { latest = snapshot, previous = previous }
+                PrintTooltipSecurity(snapshot)
+            end)
+        else
+            PrintTooltipSecurity(before)
+        end
+        return
+    end
     if type(message) == "string" and message:lower():match("^%s*bags%s*$") then
         FluxPerfCaptureDB = FluxPerfCaptureDB or {}
         local prior = FluxPerfCaptureDB.bagInputDebug

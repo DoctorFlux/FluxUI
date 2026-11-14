@@ -484,13 +484,18 @@ local function FireStormSettled()
 		end
 		return
 	end
+	-- A settled callback can retire its login subscription and publish a new
+	-- listener. Dispatch the original registrations without iterating a table
+	-- that those callbacks can mutate; replacements/additions wait for next time.
+	local permanent = {}
+	for key, fn in pairs(stormSettlePermanent) do permanent[key] = fn end
 	local ones = stormSettleOneShots
 	stormSettleOneShots = {}
 	for i = 1, #ones do
 		Flux.Safecall(ones[i])
 	end
-	for _, fn in pairs(stormSettlePermanent) do
-		Flux.Safecall(fn)
+	for key, fn in pairs(permanent) do
+		if stormSettlePermanent[key] == fn then Flux.Safecall(fn) end
 	end
 end
 
@@ -632,6 +637,8 @@ local heavyQueue = {}
 local heavyOrder = {}
 local heavyArmed = false
 local heavyFrame
+local heavyWakeAt, heavyWakeEpoch
+local ArmHeavyQueue
 local HEAVY_MAX_PER_FRAME = 2
 local HEAVY_BUDGET_MS = 1.5
 
@@ -641,6 +648,7 @@ local function CancelHeavy(key)
 	for i = #heavyOrder, 1, -1 do
 		if heavyOrder[i] == key then table.remove(heavyOrder, i) end
 	end
+	if ArmHeavyQueue then ArmHeavyQueue() end
 end
 
 local function NormalizeRegions(regions)
@@ -712,6 +720,40 @@ local function ProcessHeavyQueue(self)
 		heavyArmed = false
 		self:SetScript("OnUpdate", nil)
 	end
+	ArmHeavyQueue()
+end
+
+ArmHeavyQueue = function()
+	if not heavyFrame then return end
+	local earliest
+	for i = 1, #heavyOrder do
+		local job = heavyQueue[heavyOrder[i]]
+		local at = job and job.at or 0
+		if not earliest or at < earliest then earliest = at end
+	end
+	if not earliest then
+		heavyArmed = false
+		heavyWakeAt, heavyWakeEpoch = nil, nil
+		heavyFrame:SetScript("OnUpdate", nil)
+		return
+	end
+	local after = Flux.Timer and Flux.Timer.HasNativeAfter ~= false and Flux.Timer.After
+	if earliest <= Now() or not after then
+		heavyWakeAt, heavyWakeEpoch = nil, nil
+		heavyFrame:SetScript("OnUpdate", ProcessHeavyQueue)
+		return
+	end
+	-- A quiet deadline needs no per-frame scan. Earlier wakes may harmlessly
+	-- recheck a postponed deadline; a newly earlier job replaces ownership.
+	if heavyWakeAt and heavyWakeAt <= earliest then return end
+	local epoch = {}
+	heavyWakeAt, heavyWakeEpoch = earliest, epoch
+	heavyFrame:SetScript("OnUpdate", nil)
+	after(math.max(0, earliest - Now()), function()
+		if heavyWakeEpoch ~= epoch then return end
+		heavyWakeAt, heavyWakeEpoch = nil, nil
+		ArmHeavyQueue()
+	end)
 end
 
 local function UnionSets(a, b)
@@ -763,12 +805,9 @@ local function EnqueueHeavy(entry, ctx)
 		job.ctx = MergeContext(job.ctx, ctx)
 	end
 	job.at = math.min(now + CurrentDebounce(), job.first + HEAVY_MAX_WAIT)
-	if heavyArmed then
-		return
-	end
 	heavyArmed = true
 	heavyFrame = heavyFrame or CreateFrame("Frame")
-	heavyFrame:SetScript("OnUpdate", ProcessHeavyQueue)
+	ArmHeavyQueue()
 end
 
 --- @return string kind, table|nil added, table|nil removed, table|nil dirtyBags
@@ -1035,7 +1074,14 @@ end
 
 --- Cold login/reload: backpack often reports 0 unique items, so the portal
 --- collapsed-snapshot test cannot gate empty-as-real. Hold until DELAYED.
-function Inv.BeginLoginHold()
+function Inv.BeginLoginHold(worldEntered)
+	-- LOADING_SCREEN_ENABLED may precede the first login/reload PEW. Release
+	-- Best's open-ended load latch only once that world-entry event has arrived;
+	-- ordinary deferred startup must keep a genuine loading screen protected.
+	if worldEntered then
+		local best = rawget(_G, "FluxConsumableBest")
+		if best and best.EndLoadHold then best.EndLoadHold() end
+	end
 	loginHold = true
 	loginSawDelayed = false
 	loginHoldGen = loginHoldGen + 1
@@ -1661,21 +1707,32 @@ function Inv.Start()
 			Best.ArmPortalSoftHold()
 		end
 	end
+	local function OnLoadingScreenFinished()
+		local Best = rawget(_G, "FluxConsumableBest")
+		-- A loading screen need not have another world-entry event. Complete
+		-- its hold and restart any refresh cancelled by the loading event.
+		-- Normal PEW completion and duplicate disabled events need no new work.
+		if worldLoading or (Best and Best._loadHoldOpen) then
+			BeginWorldRefresh()
+			ArmPortalSettle()
+		end
+	end
 	if Flux.Events and Flux.Events.Register then
-		-- Hold before bags flicker to 0 on the load screen. PEW starts the settle.
+		-- Hold before bags flicker; either world entry or screen completion settles.
 		Flux.Events.Register("PLAYER_LEAVING_WORLD", ArmLoadHold)
 		pcall(Flux.Events.Register, "LOADING_SCREEN_ENABLED", ArmLoadHold)
+		pcall(Flux.Events.Register, "LOADING_SCREEN_DISABLED", OnLoadingScreenFinished)
 		Flux.Events.Register("PLAYER_ENTERING_WORLD", function(_, isInitialLogin, isReload)
 			BeginWorldRefresh()
 			if not sawPew then
 				sawPew = true
 				if isInitialLogin == true or isReload == true then
-					Inv.BeginLoginHold()
+					Inv.BeginLoginHold(true)
 					return
 				end
 				-- Classic / missing args: first PEW of the session is login.
 				if isInitialLogin == nil and isReload == nil then
-					Inv.BeginLoginHold()
+					Inv.BeginLoginHold(true)
 					return
 				end
 			end
@@ -1725,6 +1782,90 @@ SlashCmdList["FLUXINV"] = function(msg)
 	end
 	local cmd, rest = msg:match("^(%S+)%s*(.*)$")
 	cmd = cmd and cmd:lower() or ""
+	if cmd == "buttons" then
+		-- On-demand facts only. No events, polling, setting writes or secure
+		-- mutations: keep the intermittent state available for diagnosis.
+		local function value(v)
+			local s = Flux.Secrets
+			local secret = s and s.IsSecretValue or _G.issecretvalue
+			if secret then
+				local ok, hidden = pcall(secret, v)
+				if not ok or hidden then return "restricted" end
+			end
+			return tostring(v)
+		end
+		local function read(fn, ...)
+			if type(fn) ~= "function" then return "missing" end
+			local ok, result = pcall(fn, ...)
+			return ok and value(result) or "error"
+		end
+		local function number(v)
+			if value(v) == "restricted" then return nil end
+			local ok, n = pcall(tonumber, v)
+			return ok and n or nil
+		end
+		local best = rawget(_G, "FluxConsumableBest")
+		print("COUNTS/1 source=" .. value(InvMod.source)
+			.. " reliable=" .. read(InvMod.IsReliable)
+			.. " hold=" .. read(best and best.ShouldSoftHoldOwned)
+			.. " load=" .. value(best and best._loadHoldOpen))
+		local physical, unknown = {}, {}
+		local container, bags = Flux.Container, InvMod.Containers
+		if container and bags and bags.GetCarriedBagIDs then
+			for _, bag in ipairs(bags.GetCarriedBagIDs()) do
+				for slot = 1, container.GetNumSlots(bag) do
+					local info = container.GetItemInfo(bag, slot)
+					local id = number(info and info.itemID or container.GetItemID(bag, slot))
+					if id then
+						local n = info and number(info.stackCount)
+						if n then physical[id] = (physical[id] or 0) + n
+						else unknown[id] = true end
+					end
+				end
+			end
+		end
+		local seen = {}
+		local function row(label, btn, probe)
+			if btn then seen[btn] = true end
+			local id = btn and (btn.ItemId or btn._liveCountItemId) or probe
+			id = number(id) or number(probe)
+			local text = btn and btn.WCount
+			local base = label .. " id=" .. value(id)
+				.. " action=" .. value(btn and btn.ActionType)
+				.. " text=" .. read(text and text.GetText, text)
+				.. " forced=" .. value(btn and btn._forcedCount)
+				.. " live=" .. value(btn and btn._forcedCountLive)
+			if id then
+				base = base .. " slots=" .. (unknown[id] and "pending" or value(physical[id] or 0))
+					.. " snapshot=" .. read(InvMod.GetCount, id)
+					.. " modern=" .. read(C_Item and C_Item.GetItemCount, id, false, false)
+					.. " legacy=" .. read(_G.GetItemCount, id, false, false)
+					.. " wrapped=" .. read(Flux.Item and Flux.Item.GetCount, id, false, false)
+					.. " uses=" .. read(InvMod.GetLiveCount, id, { charges = true, bank = false, warband = false })
+			end
+			print(base)
+		end
+		for _, spec in ipairs({ { "food", "FluxNCFood" }, { "water", "FluxNCWater" },
+			{ "healing", "FluxCombatHealPotion" }, { "mana", "FluxCombatManaPotion" },
+			{ "bandage", "FluxCombatBandage" }, { "gem", "FluxCombatManaGem" },
+			{ "stone", "FluxCombatHealthstone" } }) do
+			local module = rawget(_G, spec[2])
+			row(spec[1], module and module.Button, module and (module._trackedItemID or module._observedEmptyItemID))
+		end
+		local count = 0
+		local function others(list)
+			for _, btn in ipairs(list or {}) do
+				local id = btn.ItemId or btn._liveCountItemId or (btn.ActionType == "item" and btn.ActionValue)
+				if not seen[btn] and btn.kind ~= "strip" and number(id) and count < 12 then
+					count = count + 1
+					row("other" .. count, btn, id)
+				end
+			end
+		end
+		others(Flux.EBS and Flux.EBS.buttons)
+		others(Flux.EBS and Flux.EBS.badges)
+		return
+	end
 	if cmd == "count" then
 		local itemID = tonumber(rest)
 		if not itemID then

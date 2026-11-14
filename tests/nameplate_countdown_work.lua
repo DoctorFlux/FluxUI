@@ -164,7 +164,8 @@ for _, branch in ipairs({ "era", "anniversary", "progression", "live", "forever"
     check(ah.level == 19 and a.digitData.alpha == 0, branch .. " level and native fade")
     local writes = s.labelWrites
     s:tick(0.099); check(s.labelWrites == writes, branch .. " no early poll")
-    s:tick(0.0011); check(s.labelWrites == writes + 3, branch .. " original tenth-second poll")
+    s:tick(0.0011); check(s.labelWrites == writes + 1 and ah.text.value == "8" and bh.text.value == "8",
+        branch .. " original tenth-second poll forwards opaque text and reuses readable output")
     a.text = "7.9"; a.replaceDigits(); s:tick(0.1)
     check(ah.text.value == "7.9" and a.digitData.alpha == 0, branch .. " rereads replacement text region next poll")
     a.text = ""; s:tick(0.1); check(ah.text.value == "4.0", branch .. " readable-time fallback")
@@ -181,7 +182,7 @@ for _, branch in ipairs({ "era", "anniversary", "progression", "live", "forever"
     a.accessible = false; s:tick(0.1); check(not ah.shown and a.digitData.alpha == 1, branch .. " inaccessible restores digits")
     a.accessible = true; a.shown = false; s:tick(0.1); check(not ah.shown, branch .. " hidden aura stays hidden")
     a.shown = true; s:tick(0.1); check(ah.shown, branch .. " reuses visible host")
-    ah.rejectPoint = true; s:tick(0.1); check(not ah.shown and a.digitData.alpha == 1, branch .. " failed placement restores digits")
+    ah.rejectPoint = true; ah.parent = nil; s:tick(0.1); check(not ah.shown and a.digitData.alpha == 1, branch .. " failed placement restores digits")
     ah.rejectPoint = false; s:tick(0.1)
     local cycleFonts, cycleRegions, cycleLevels, cycleLabels, cycleAnchors = s.fontReads, s.regionReads,
         s.levelReads, s.labelWrites, s.anchors
@@ -216,8 +217,8 @@ for _, branch in ipairs({ "era", "anniversary", "progression", "live", "forever"
     check((mode == "modern" and m.fontReads - fonts == 10000 and m.regionReads == regions)
         or (mode == "legacy" and m.regionReads - regions == 10000 and m.fontReads == fonts),
         branch .. " " .. mode .. " one font-region lookup per visible aura per poll")
-    check(m.levelReads - levels == 30000 and m.labelWrites - labels == 10000 and m.anchors - anchors == 10000,
-        branch .. " all display work and level reads retained")
+    check(m.levelReads - levels == 30000 and m.labelWrites - labels == 0 and m.anchors - anchors == 0,
+        branch .. " native levels retain cadence while stable owned output avoids writes")
     check(#m.frames == 102, branch .. " steady frame count bounded")
     if mode == "modern" then check(allocated < 16, branch .. " no per-aura temporary frame-level tables") end
     print(("METRIC %s_%s font_reads=%d region_reads=%d level_reads=%d label_writes=%d anchors=%d frames=%d heap_kib=%.6f cpu_seconds=%.6f")

@@ -1,5 +1,39 @@
 # Extra buttons, consumables, travel and flyouts
 
+14 November casting/inventory lag: Macros reuse warm spell/item metadata only within one invocation; next invocation and cold-link retries stay live. [Comparisons and limits](LAG_HOTSPOT_OPTIMIZATION.md).
+
+14 November AHR-104: minimum restore now determines healing/mana potion tiers
+globally, including owned buttons, crafting, vendor memory/restocking and automatic
+junk. A higher maximum cannot displace a higher minimum. Saved data normalizes
+when verified; unresolved old values stay saved without promoting. Manual Junk
+priority remains. [Rules and acceptance](AUCTION_RESTOCK.md#global-potion-minimum-restore).
+
+14 November AHR-96–101: independent inline healing/mana/bandage upgrade choices,
+shared manual exclusions and default-on automatic `discolored` healing-name filter.
+Best/button/persist/vendor/AH/tier owners use the same policy, with combat binding
+writes deferred. Three default-on global carried-upgrade Junk settings live under
+Loot & Items → Vendor; manual Junk wins. [Behavior](AUCTION_RESTOCK.md#inline-upgrades-bandages-and-item-exclusions)
+and [365-script/1053-syntax validation](validation/auction-inline-upgrades-2026-11-14.json).
+
+13 November reagent/charge counts: native spell-use signals refresh visible extras and badges through existing count/usability lanes. Count-held form settle replays digit and tint together; ordinary form-only usability stays narrow. Existing inventory filters and parked visibility remain. [Requirements, comparison and666 focused checks](ACTION_COUNT_REFRESH.md).
+
+13 November trinket visual recovery: held presses restore the newest usability
+color; empty/same-item transitions invalidate old tint; all equipped cooldown
+refreshes share the slot timer and paint cache. Passive trinkets stay dim and
+real cooldowns remain visible. [Integrated regressions and native checks](TRINKET_EQUIPPED_USABILITY.md#13-november-follow-up-intermittent-dark-faces-and-cooldown-overlays).
+
+11 November all-consumable audit: all seven real button modules execute together with both grid count methods across five client models and both providers. Loading/depletion/refill/charges/regen and bounded shared work PASS; no additional runtime changes. [2,580 integrated checks, source guard and pending native acceptance](COMBAT_GRID_LIVE_COUNTS.md#all-seven-real-button-modules-audited-together).
+
+11 November native loading-hold fix: the capture proves food 1 with all sources 0 because an open loading latch pins it. A guarded loading-screen completion event now resumes the existing world refresh and bounded settle. All seven kinds and both providers share the fix; no new background driver or protected write. [Captured failure, tests and pending native retest](COMBAT_GRID_LIVE_COUNTS.md#native-capture-loading-completion-left-open).
+
+11 November screenshot follow-up: loading/world-entry handoff and portal count-only recovery now share inventory ownership; valid carried-only modern zero is retained. Covers all seven kinds and other item faces with either provider. Optional `/fluxinv buttons` captures an intermittent bad state without polling. Desktop regressions pass; native symptom acceptance stays open. [Source reconciliation and evidence](COMBAT_GRID_LIVE_COUNTS.md#screenshot-follow-up-count-sources-and-loading-holds).
+
+10 November use/depletion follow-up: all seven kinds show dark0 for the displayed exhausted item in combat; OOC selection advances or clears to the empty placeholder. Cooldown-only signals, stale text-cache hits and conjured recharge recovery use existing owners with both providers. Same-frame work coalesces with one100ms follow-up. [User symptom,4066 focused checks and native limits](COMBAT_GRID_LIVE_COUNTS.md).
+
+10 November combat grid count correction: all seven consumable kinds use the existing native bag-event fallback with Syndicator, including gems/stones. Reliable live copies keep count/tint and charged ownership current; same-frame recounts coalesce. Built-in dispatch, loading holds and combat action ownership remain. [Requirements, 2,175 checks and native limits](COMBAT_GRID_LIVE_COUNTS.md).
+
+10 November passive pass 2: Parked checked/count/icon work stops; reveal refreshes count/tint/equipped state before queued eval. [Before/after evidence and native limits](PASSIVE_PERFORMANCE_PASS2.md).
+
 9 November menu press input (MENU-PRESS-20261109): food/water/bandage/healing
 potion/mana gem/mana potion/healthstone/trinket HUD mouse and use/conjure bindings
 now activate on press. Shared wrapped policy ignores release CVar for HUD keys;
@@ -39,6 +73,11 @@ Macro parsing identifies required display probes and watches relevant context. S
 [Grid](../ExtraButtonSystem/CombatGrid/Grid.lua) supplies slots; [GridManager](../ExtraButtonSystem/CombatGrid/GridManager.lua) anchors them, creates modules and coordinates inventory/combat refresh. Loaded kinds are bandage, healing potion, mana potion, mana gem, healthstone and ammo. Consumables read shared inventory/best-of-kind facts rather than scanning every paint.
 
 [ConsumableBind.lua](../ExtraButtonSystem/Engine/ConsumableBind.lua) supplies owned ladders, better-tier promotion, charge-aware counts, use/conjure macros, creation right-clicks, key overrides and tooltips. Mana gems distinguish charged later gems from single-use Vanilla gems, retaining the preferred usable item and choosing the next conjure spell. Healthstones similarly separate creation/use and learned-spell support.
+
+9 November craft-tier correction: Auto bandage and potion buttons also appear
+for a lower affordable learned recipe. Tooltips and right-click crafts select
+the highest ranked tier that current bag materials afford, promoting when better
+materials arrive. [Checks and native steps](CONSUMABLE_CRAFT_TIERS.md).
 
 Mana gem and healthstone item faces follow live item usability once bags are reliable, and both darken while dead or ghost. Empty charges remain dark; an unreliable load-screen snapshot retains the prior face. [The correction record](COMBAT_GRID_CONJURED_USABILITY.md) separates desktop checks from pending native tint and secure-use validation.
 

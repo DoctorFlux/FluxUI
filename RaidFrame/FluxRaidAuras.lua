@@ -20,6 +20,26 @@ local function Readable(value)
 end
 local function Locked() return InCombatLockdown and InCombatLockdown() end
 local function Unit(frame) return frame.displayedUnit or frame.unit end
+local function PartyUnit(frame,unit)
+    return frame._fluxPartyMember or unit=="player" or type(unit)=="string" and unit:match("^party[1-4]$")~=nil
+end
+local function OnlyDispellable(frame)
+    if FluxRaidVisuals.ShouldDisplayOnlyDispellableDebuffs then
+        return FluxRaidVisuals.ShouldDisplayOnlyDispellableDebuffs(frame)
+    end
+    return (frame.optionTable or {}).displayOnlyDispellableDebuffs==true
+end
+local function Friendly(unit)
+    if unit=="player" then return true end
+    if UnitCanAttack then
+        local ok,value=pcall(UnitCanAttack,"player",unit)
+        if not ok or Secret(value) or value==true then return false end
+    end
+    local query=UnitIsFriend or UnitCanAssist
+    if not query then return false end
+    local ok,value=pcall(query,"player",unit)
+    return ok and not Secret(value) and value==true
+end
 local function RetireOwners(frame)
     for _,box in pairs(frame._fluxAuraContainers or {}) do box:SetUnit("none");box:Hide() end
     if frame._fluxAuraNativeState then frame._fluxAuraNativeState.units={} end
@@ -259,12 +279,16 @@ local function DecorateDispel(button,frame,metrics)
     edge:SetAllPoints(button); edge:SetTexture("Interface\\Buttons\\UI-Debuff-Overlays")
     edge:SetTexCoord(.296875,.5703125,0,.515625); button:AddDispelTypeTexture(edge)
 end
-local function InitializeDispelBorder(button,frame,parent)
+local function InitializeDispelBorder(button,frame,parent,glowOwner)
     -- This single native slot stays outside the clipped icon blocks. Every
     -- color sink is a descendant of the native slot, and native assignment
     -- alone controls their visibility. No aura value is returned to addon Lua.
     button:SetAllPoints(frame); button:EnableMouse(false)
     if button.SetFrameLevel and parent.GetFrameLevel then button:SetFrameLevel(parent:GetFrameLevel()+2) end
+    if glowOwner then
+        FluxRaidVisuals.CreatePartyDispelGlow(button,frame,true,glowOwner)
+        return
+    end
     local style=Enum and Enum.CustomAuraButtonDispelTypeTextureStyle
     local options=style and {style=style.PreserveAsset} or nil
     for _,point in ipairs({"TOP","BOTTOM","LEFT","RIGHT"}) do
@@ -322,13 +346,16 @@ local function BuildNative(frame)
         return guarded(function(button)
             if debuff and frame._fluxPartyMember then
                 InitializeNative(button,iconMetrics,frame)
-                local edge=FluxRaidVisuals.EnsurePartyDebuffBorder(button,frame)
+                FluxRaidVisuals.EnsurePartyDebuffBorder(button,frame)
                 local styles=Enum and Enum.CustomAuraButtonDispelTypeTextureStyle
-                -- Classic's SetAuraBorderAtlas only tints the original asset;
-                -- PreserveAsset keeps that color instead of resetting it white.
-                local borderStyle=client and client.isAnyClassic and styles and styles.PreserveAsset or styles and styles.Border or 0
+                -- Preserve the rectangular artwork on every client; native
+                -- Border style would replace it with the default aura atlas.
+                local borderStyle=styles and styles.PreserveAsset or 3
                 if button.AddDispelTypeTexture then
-                    button:AddDispelTypeTexture(edge,{style=borderStyle,showWithoutDispelType=true})
+                    for _,edge in ipairs(button._fluxPartyDebuffBorders) do
+                        button:AddDispelTypeTexture(edge,{style=borderStyle,showWhenHarmful=true,
+                            showWhenHelpful=false,showWithoutDispelType=true})
+                    end
                 end
             elseif decorated then DecorateDispel(button,frame,iconMetrics)
             else InitializeNative(button,iconMetrics,frame) end
@@ -381,6 +408,17 @@ local function BuildNative(frame)
         border:AddAuraSlot("dispel","HARMFUL|RAID",{templateNames={"FluxRaidDispelBorderTemplate"},
             initializeFrame=guarded(function(button) InitializeDispelBorder(button,frame,parent) end),
             candidateFilters={processedAuraType=kinds.Dispel},sortMethod=AuraContainerSortMethod.UnitFrameDebuff})
+        -- Prepare before combat even when a secure raid cell has no party unit
+        -- yet. Only party/player tokens enable this independent native owner.
+        local glow=CreateFrame("AuraContainer",nil,parent,"CustomAuraContainerTemplate")
+        boxes.partyDispelGlow=glow
+        glow:SetAllPoints(frame);glow:EnableMouse(false)
+        glow:SetFrameLevel(parent:GetFrameLevel()+3)
+        if glow.SetEditModePreviewEnabled then glow:SetEditModePreviewEnabled(false) end
+        glow:AddAuraSlot("partyDispel","HARMFUL|RAID",{templateNames={"FluxRaidDispelBorderTemplate"},
+            initializeFrame=guarded(function(button) InitializeDispelBorder(button,frame,parent,glow) end),
+            candidateFilters={includeDispelTypes={Magic=true,Curse=true,Disease=true,Poison=true,Bleed=true}},
+            sortMethod=AuraContainerSortMethod.Default})
         if initializerError then error(initializerError) end
         for _,box in pairs(boxes) do box:SetUnit("none"); box:Hide() end
     end)
@@ -448,11 +486,19 @@ local function ConfigureReadable(frame)
         end
     end
 end
+local function PrepareReadableGlow(frame)
+    -- Prepare while unit tokens may still be absent. Combat joins and the first
+    -- dispellable aura must use existing widgets rather than allocate children.
+    local glow=CreateFrame("Frame",nil,frame._fluxHighlightLayer or frame._fluxAuraLayer or frame)
+    glow:SetAllPoints(frame);glow:EnableMouse(false);glow:Hide()
+    FluxRaidVisuals.CreatePartyDispelGlow(glow,frame,false)
+    frame._fluxPartyDispelGlow=glow
+end
 function A.Setup(frame)
     if not frame or frame._fluxRaidMini then return false end
     if frame._fluxHealerAuras then return true end
     if Locked() then frame._fluxNeedsPrivateAuraSync=true; return true end
-    if not BuildNative(frame) then BuildReadable(frame) end
+    if not BuildNative(frame) then BuildReadable(frame);PrepareReadableGlow(frame) end
     ConfigureRows(frame)
     if frame._fluxAuraCorners then ConfigureReadable(frame) end
     frame._fluxHealerAuras,frame._fluxNeedsPrivateAuraSync=true,nil
@@ -494,7 +540,7 @@ local function UpdateNative(frame,unit,valid,opt)
         end
     end
     local highlight=not FluxRaid_IsDispelHighlightEnabled or FluxRaid_IsDispelHighlightEnabled()
-    local strict=opt.displayOnlyDispellableDebuffs==true
+    local strict=OnlyDispellable(frame)
     for _,key in ipairs(DEBUFF_BOXES) do
         if frame._fluxAuraContainers[key] then
             local tail=key:find("Tail",1,true)~=nil
@@ -519,7 +565,9 @@ local function UpdateNative(frame,unit,valid,opt)
             BindBox(frame,key,unit,enabled)
         end
     end
-    BindBox(frame,"dispelBorder",unit,valid and opt.displayDebuffs~=false and highlight)
+    local party=PartyUnit(frame,unit)
+    BindBox(frame,"dispelBorder",unit,valid and opt.displayDebuffs~=false and highlight and not party)
+    BindBox(frame,"partyDispelGlow",unit,valid and opt.displayDebuffs~=false and highlight and party and Friendly(unit))
     frame._fluxAuraRows.top:SetShown(buffs)
     frame._fluxAuraRows.bottom:SetShown(valid and opt.displayDebuffs~=false)
 end
@@ -655,11 +703,7 @@ local function PaintList(list,auras,limit,geometry,side)
             icon.Icon:SetTexture(aura.icon)
             if icon._fluxPartyDebuffBorder then
                 local kind=Readable(aura.dispelName) and aura.dispelName
-                if Readable(aura.isHelpful) and aura.isHelpful==true then icon._fluxPartyDebuffBorder:Hide()
-                else
-                    FluxRaidVisuals.SetPartyDebuffBorderType(icon,kind)
-                    icon._fluxPartyDebuffBorder:Show()
-                end
+                FluxRaidVisuals.SetPartyDebuffBorderType(icon,kind,Readable(aura.isHelpful) and aura.isHelpful==true)
             end
             local n=aura.applications; icon.Count:SetText(Readable(n) and type(n)=="number" and n>1 and n or "")
             local duration,expiration=aura.duration,aura.expirationTime
@@ -681,40 +725,52 @@ function A.Update(frame)
     local unit,opt=Unit(frame),frame.optionTable or {}
     local valid=type(unit)=="string" and unit~=""
     if frame._fluxAuraNative then UpdateNative(frame,unit,valid,opt); return end
+    local strict=OnlyDispellable(frame)
     local buffs,debuffs,dispel={},{},{}
     local buffSeen,debuffSeen={},{}
+    -- All consumers of a readable filter share this refresh's snapshot. This
+    -- preserves ordering and distinct RAID membership without rescanning APIs.
+    local scanned={}
+    local function Snapshot(filter,accept)
+        local list=scanned[filter]
+        if not list then list=Scan(unit,filter);scanned[filter]=list end
+        if not accept then return list end
+        local selected={}
+        for _,aura in ipairs(list) do if accept(aura) then selected[#selected+1]=aura end end
+        return selected
+    end
     local kinds=AuraUtil and AuraUtil.AuraUpdateChangedType
     local ids,names=ClassBuffFilter()
     local classBuffs=ShowClassBuffs()
     -- Match the client's spell/spec visibility and ordering, including boss
     -- helpful auras on the debuff side. Duration never decides eligibility.
-    if valid and kinds then
+    if valid and kinds and (opt.displayBuffs~=false or opt.displayDebuffs~=false) then
         for _,filter in ipairs({"HARMFUL","HARMFUL|RAID","HELPFUL"}) do
-            for _,aura in ipairs(Scan(unit,filter)) do
+            for _,aura in ipairs(Snapshot(filter)) do
                 local copy,kind=Classify(aura)
                 if copy then
                     if kind==kinds.Buff and opt.displayBuffs~=false and not HiddenBuffs()[copy.spellId]
                         and not (classBuffs and ids[copy.spellId]) then AddUnique(buffs,buffSeen,copy)
                     elseif (kind==kinds.Debuff or kind==kinds.Dispel) and opt.displayDebuffs~=false
-                        and opt.displayOnlyDispellableDebuffs~=true then AddUnique(debuffs,debuffSeen,copy) end
+                        and not strict then AddUnique(debuffs,debuffSeen,copy) end
                 end
             end
         end
         Sort(buffs,false); Sort(debuffs,true)
     end
     if valid and opt.displayBuffs~=false then
-        if classBuffs and #buffs<SLOTS then Append(buffs,buffSeen,Scan(unit,"HELPFUL",function(aura)
+        if classBuffs and #buffs<SLOTS then Append(buffs,buffSeen,Snapshot("HELPFUL",function(aura)
             local id,name=aura.spellId,aura.name
             return Readable(id) and Readable(aura.hideOnPartyFrames) and not aura.hideOnPartyFrames
                 and ((id~=nil and ids[id]) or (Readable(name) and name~=nil and names[name]))
         end)) end
     end
     if valid and opt.displayDebuffs~=false then
-        dispel=Scan(unit,"HARMFUL|RAID",function(aura)
+        dispel=Snapshot("HARMFUL|RAID",function(aura)
             return Readable(aura.canActivePlayerDispel) and aura.canActivePlayerDispel~=false
                 and Readable(aura.hideOnPartyFrames) and not aura.hideOnPartyFrames
         end)
-        if opt.displayOnlyDispellableDebuffs==true then
+        if strict then
             for _,aura in ipairs(dispel) do
                 local copy=StrictRaidAura(aura)
                 if copy then AddUnique(debuffs,debuffSeen,copy) end
@@ -727,13 +783,37 @@ function A.Update(frame)
     PaintList(frame._fluxAuraCorners.debuffs,debuffs,geometry.debuffs.count,geometry,geometry.debuffs)
     frame._fluxAuraRows.top:SetShown(valid and opt.displayBuffs~=false)
     frame._fluxAuraRows.bottom:SetShown(valid and opt.displayDebuffs~=false)
-    local kind=dispel[1] and dispel[1].dispelName; frame._fluxDispelType=Readable(kind) and kind or nil
+    frame._fluxDispelType=nil
+    for _,aura in ipairs(dispel) do
+        local kind=aura.dispelName
+        if Readable(kind) and TYPE_COLORS[kind] then frame._fluxDispelType=kind;break end
+    end
+    A.UpdateDispel(frame)
 end
 function A.UpdateDispel(frame)
-    local highlight=frame.dispelHighlight; if not highlight then return end
-    if frame._fluxAuraNative or (FluxRaid_IsDispelHighlightEnabled and not FluxRaid_IsDispelHighlightEnabled()) then highlight:Hide(); return end
+    local highlight,glow=frame.dispelHighlight,frame._fluxPartyDispelGlow
+    if frame._fluxAuraNative or (FluxRaid_IsDispelHighlightEnabled and not FluxRaid_IsDispelHighlightEnabled()) then
+        if highlight then highlight:Hide() end
+        if glow then glow:Hide() end
+        return
+    end
     local kind=frame._fluxDispelType; local color=Readable(kind) and TYPE_COLORS[kind]
-    if not color then highlight:Hide(); return end
+    if not color then
+        if highlight then highlight:Hide() end
+        if glow then glow:Hide() end
+        return
+    end
+    local unit=Unit(frame)
+    local party=PartyUnit(frame,unit)
+    if glow then
+        if party and Friendly(unit) then
+            if AuraUtil and AuraUtil.SetAuraBorderColor then AuraUtil.SetAuraBorderColor(glow._fluxDispelGlowTexture,kind)
+            else glow._fluxDispelGlowTexture:SetVertexColor(color[1],color[2],color[3]) end
+            glow:Show();if highlight then highlight:Hide() end;return
+        else glow:Hide() end
+    end
+    if party then if highlight then highlight:Hide() end;return end
+    if not highlight then return end
     if highlight.fill then highlight.fill:SetVertexColor(color[1],color[2],color[3],.12) end
     if highlight.border then highlight.border:SetVertexColor(color[1],color[2],color[3]) end
     highlight:Show()
@@ -756,6 +836,7 @@ function A.Clear(frame)
     if frame._fluxAuraNativeState then frame._fluxAuraNativeState.units={} end
     frame._fluxDispelType=nil
     if frame.dispelHighlight then frame.dispelHighlight:Hide() end
+    if frame._fluxPartyDispelGlow then frame._fluxPartyDispelGlow:Hide() end
 end
 function A.Diagnostics()
     local selected,prepared

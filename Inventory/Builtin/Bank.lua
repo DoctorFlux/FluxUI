@@ -20,6 +20,16 @@ local lastAdded, lastRemoved
 local lastRefreshedDirty = {}
 local charKeys = {}
 local warKeys = {}
+-- A failed slot scan may leave newer bag rows beside the previous aggregate.
+-- Remember only complete views, so the next successful pass rebuilds totals.
+local aggregateState = {}
+local publicationPending = false
+local publicationRevision = 0
+
+local function OwePublication()
+	publicationPending = true
+	publicationRevision = publicationRevision + 1
+end
 
 local function Wipe(t)
 	if wipe then
@@ -98,16 +108,21 @@ end
 --- @return boolean stillAllDirty, string kind, table|nil added, table|nil removed
 local function RefreshRegion(ids, snap, allDirtyFlag, dirtyMap, keyBuf)
 	if not allDirtyFlag and not next(dirtyMap) then
-		return allDirtyFlag, "none", nil, nil
+		return allDirtyFlag, "none", nil, nil, false
 	end
 	-- Do not wipe Syndicator / last-visit snapshots with an empty scan when
 	-- bank bags are not readable yet (open tick) or IDs were wrong.
 	if allDirtyFlag and not AnyReadable(ids) then
-		return true, "none", nil, nil
+		return true, "none", nil, nil, false
 	end
-	Inv.SnapshotCountKeys(snap.counts, keyBuf)
 	local byBag = snap.byBag
+	local state = aggregateState[snap]
+	local wasCoherent = state and type(snap.counts) == "table"
+		and state.byBag == byBag and state.counts == snap.counts
+	local kind, added, removed
 	if allDirtyFlag then
+		Inv.SnapshotCountKeys(snap.counts, keyBuf)
+		if state then state.counts = nil end
 		Wipe(byBag)
 		for i = 1, #ids do
 			local bag = ids[i]
@@ -115,35 +130,61 @@ local function RefreshRegion(ids, snap, allDirtyFlag, dirtyMap, keyBuf)
 			lastRefreshedDirty[bag] = true
 		end
 		Wipe(dirtyMap)
+		snap.counts = C.CountsFromByBag(byBag)
+		kind, added, removed = Inv.ClassifyCountKeys(keyBuf, snap.counts)
 	else
+		-- Keep the old aggregate immutable for retained readers and nested scans.
+		-- Stage all deltas before publishing, as a slot read can fail or reenter.
+		local previous, generation = snap.counts, snap.generation
+		local delta = {}
 		for bag in pairs(dirtyMap) do
-			byBag[bag] = C.ScanBag(bag)
+			local old = byBag[bag]
+			local scanned = C.ScanBag(bag)
+			for _, rec in pairs(old or {}) do
+				local id = tonumber(rec.itemID)
+				if id then delta[id] = (delta[id] or 0) - (rec.count or 1) end
+			end
+			for _, rec in pairs(scanned) do
+				local id = tonumber(rec.itemID)
+				if id then delta[id] = (delta[id] or 0) + (rec.count or 1) end
+			end
+			if state then state.counts = nil end
+			byBag[bag] = scanned
 			lastRefreshedDirty[bag] = true
 		end
 		Wipe(dirtyMap)
+		local counts = {}
+		if snap.generation ~= generation or not wasCoherent then
+			-- Nested/failed reads or replaced maps require the completed live view,
+			-- rather than a delta based on an obsolete or partial aggregate.
+			counts = C.CountsFromByBag(byBag)
+			kind, added, removed = Inv.ClassifyCountKeys(previous or {}, counts)
+		else
+			for id, count in pairs(previous) do counts[id] = count end
+			kind = "countOnly"
+			for id, change in pairs(delta) do
+				local before = previous[id]
+				local after = (before or 0) + change
+				counts[id] = after > 0 and after or nil
+				if before == nil and after > 0 then
+					added = added or {}; added[id] = true
+				elseif before ~= nil and after <= 0 then
+					removed = removed or {}; removed[id] = true
+				end
+			end
+			if added or removed then kind = "identityChanged" end
+		end
+		snap.counts = counts
 	end
-	snap.counts = C.CountsFromByBag(byBag)
 	snap.generation = (snap.generation or 0) + 1
-	local kind, added, removed = Inv.ClassifyCountKeys(keyBuf, snap.counts)
-	return false, kind, added, removed
+	state = state or {}
+	state.byBag, state.counts = byBag, snap.counts
+	aggregateState[snap] = state
+	return false, kind, added, removed, true
 end
 
-function Bank.Refresh()
-	if not open and not (C.IsBankReadable and C.IsBankReadable()) then
-		return
-	end
-	open = true
-	Wipe(lastRefreshedDirty)
-	local charKind, charAdd, charRem
-	allCharDirty, charKind, charAdd, charRem =
-		RefreshRegion(C.GetCharacterBankIDs(), Inv.snapshots.bank, allCharDirty, dirtyChar, charKeys)
-	local warKind, warAdd, warRem = "none", nil, nil
-	if Inv.HasWarband() then
-		allWarDirty, warKind, warAdd, warRem =
-			RefreshRegion(C.GetWarbandBankIDs(), Inv.snapshots.warband, allWarDirty, dirtyWar, warKeys)
-	end
-	lastChangeKind, lastAdded, lastRemoved =
-		Inv.MergeChangeKind(charKind, charAdd, charRem, warKind, warAdd, warRem)
+local function PublishBankFacts()
+	local published = false
 	local Store = Inv.Store
 	if Store and Store.BindLive then
 		Store.BindLive("bank", Inv.snapshots.bank.byBag)
@@ -152,9 +193,48 @@ function Bank.Refresh()
 			Store.BindWarbandBank(Inv.snapshots.warband.byBag)
 			Store.MarkWarbandPending()
 		end
+		published = true
 	end
 	if Inv.PersistBankCounts then
 		Inv.PersistBankCounts()
+	else
+		published = false
+	end
+	return published
+end
+
+function Bank.Refresh()
+	if not open and not (C.IsBankReadable and C.IsBankReadable()) then
+		return
+	end
+	open = true
+	Wipe(lastRefreshedDirty)
+	local charKind, charAdd, charRem, charRefreshed
+	allCharDirty, charKind, charAdd, charRem, charRefreshed =
+		RefreshRegion(C.GetCharacterBankIDs(), Inv.snapshots.bank, allCharDirty, dirtyChar, charKeys)
+	if charRefreshed then OwePublication() end
+	local warKind, warAdd, warRem, warRefreshed = "none", nil, nil, false
+	if Inv.HasWarband() then
+		allWarDirty, warKind, warAdd, warRem, warRefreshed =
+			RefreshRegion(C.GetWarbandBankIDs(), Inv.snapshots.warband, allWarDirty, dirtyWar, warKeys)
+		if warRefreshed then OwePublication() end
+	end
+	lastChangeKind, lastAdded, lastRemoved =
+		Inv.MergeChangeKind(charKind, charAdd, charRem, warKind, warAdd, warRem)
+	if not publicationPending then return end
+	-- Publication may fail after the slot maps committed, or reenter Refresh.
+	-- Keep its retry owed without suppressing the original error or nested call.
+	local revision = publicationRevision
+	local ok, published = pcall(PublishBankFacts)
+	if not ok then
+		OwePublication()
+		error(published, 0)
+	end
+	if not published then
+		OwePublication()
+	elseif publicationRevision == revision then
+		-- A completed outer attempt must not erase a newer nested failure.
+		publicationPending = false
 	end
 end
 

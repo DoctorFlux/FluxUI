@@ -1,0 +1,223 @@
+{
+  "date": "2026-11-09",
+  "change_id": "OPTIONS-MERGED-LAYOUT-20261109",
+  "utc": "2026-11-09T16:33:10.642670+00:00",
+  "requirements": "REQ-OPT-23 through29; retains previous requirements with their explicit supersessions",
+  "userChoice": "Individual Frames contains four unit tabs rather than one long page; prior implement-directly/Witchcraft preferences retained; user cleared background goal, no new goal created",
+  "navigation": {
+    "Quality of Life tabs": [
+      "Windows",
+      "Chat",
+      "Info",
+      "Micro Menu",
+      "Flux Window",
+      "Status Bars",
+      "Damage Meter"
+    ],
+    "Unit Frame header": [
+      "General",
+      "Individual Frames",
+      "Party Frames",
+      "Raid Frames",
+      "Cast Bars",
+      "Nameplates"
+    ],
+    "Individual Frames tabs": [
+      "Player",
+      "Target",
+      "Focus",
+      "Pet"
+    ],
+    "Combat": [
+      "Action Bars",
+      "Bindings",
+      "Keybindings"
+    ],
+    "Loot & Items header": [
+      "Loot",
+      "Vendor",
+      "Restock"
+    ],
+    "Utilities": [
+      "Professions"
+    ],
+    "fixedFooter": [
+      "Settings",
+      "Profiles",
+      "Patch Notes",
+      "Credits"
+    ]
+  },
+  "ownedNormalizedSHA256": {
+    "AddonOptions/FluxOptions.lua": "911e3527d683d302b5388eb9bd3b359736b245ab78537b821bbb5748c33371e7",
+    "AddonOptions/FluxOptionsCatalog.lua": "b91e4745d1906abbc4f844d10517c70f8b8ca8be7eb968b02abd9c17a76502c9",
+    "AddonOptions/FluxOptionsNavigation.lua": "4be2e872cdf93a55dc848bf01870c06df5d513f388c174e45048d2f2fb8c8f4f",
+    "AddonOptions/FluxOptionsRender.lua": "d891a227a481648c67d6cab1ace2acfdeb1ffb75e179c3307d7a94f8164553aa",
+    "AddonOptions/FluxOptionsShell.lua": "bc2b75450b2352fc46e5cef48547979c3f333f7c4fbe5d78f38b3eef34e20c1d",
+    "AddonOptions/FluxOptionsWidgets.lua": "4c030354c09a5f8addaa3cdf3ea5a17b57ed561ff41b570bdda90e8a05151d32",
+    "AddonOptions/FluxOptionsSkin.lua": "5b85e90daaf78e088e4a8ce803c64dcd0a9e02ffe87bc9832185ee2a087eda9a",
+    "AddonOptions/FluxOptionsGameMenu.lua": "7265946dfae4b45b5a3417b15ff0772dd102619e14256db510ba70938c616e16",
+    "_FluxUI.toc": "f40a0ee261ba97aeeba9205c280a5cd0f2962c02e6a4dcd03b6ae166b5329aac",
+    "Battlezonemap/FluxWindowFrame.lua": "406c3b0c2ff6d9bafc5aa94b895e7f8d812a03a45da50c1476d9847eeef132c3",
+    "tests/options_navigation.lua": "c7d6a418dd7007c0b62774f4e3c07cbb3af7104aa40627bee80c3d6ed9ba1cf1",
+    "tests/options_rework.lua": "8ce6a81e6cbcf54e60482c88fa2c31317b7f022b5fd1a34e64e8911a696118bc",
+    "AddonOptions/FluxOptionsRaidFrame.lua": "19f9c2f5e4b07fd25dd40d1dc8e99262ba97b42415d7e55f4ebc243c6d9f6c71",
+    "RaidFrame/FluxRaidPreview.lua": "0006881f76c5afca0f4f596039484c09874d2a0d782e075e7bfa6e83b19bbf07",
+    "tests/raid_aura_options.lua": "aa96ac101411abbfe921e95cf9e23f66ebba8fe7c743b1e47de754afc0657cfa"
+  },
+  "baselineNormalizedSHA256": {
+    "AddonOptions/FluxOptions.lua": "911e3527d683d302b5388eb9bd3b359736b245ab78537b821bbb5748c33371e7",
+    "AddonOptions/FluxOptionsCatalog.lua": "f47cc16b54cd9380f7279d6fe4f17ea2884b2370432be6a52c6f8558975a6cf6",
+    "AddonOptions/FluxOptionsNavigation.lua": "e845d5cff87fc88340327fadcfc96d7b71b6a9dc948b4c7e9984a8fe2c197024",
+    "AddonOptions/FluxOptionsRender.lua": "d891a227a481648c67d6cab1ace2acfdeb1ffb75e179c3307d7a94f8164553aa",
+    "AddonOptions/FluxOptionsShell.lua": "259b0b09d327287a089d9c8b3e80b0d1a84558cf2dcb701a47dc5537272aaebe",
+    "AddonOptions/FluxOptionsWidgets.lua": "4c030354c09a5f8addaa3cdf3ea5a17b57ed561ff41b570bdda90e8a05151d32",
+    "AddonOptions/FluxOptionsSkin.lua": "3f22be01e5333caa5564f42745cd6c7a530994209be476522dba5da4b856a981",
+    "AddonOptions/FluxOptionsGameMenu.lua": "7265946dfae4b45b5a3417b15ff0772dd102619e14256db510ba70938c616e16",
+    "_FluxUI.toc": "f40a0ee261ba97aeeba9205c280a5cd0f2962c02e6a4dcd03b6ae166b5329aac",
+    "Battlezonemap/FluxWindowFrame.lua": "406c3b0c2ff6d9bafc5aa94b895e7f8d812a03a45da50c1476d9847eeef132c3",
+    "tests/options_navigation.lua": "07edefe047facf15a32afbc4ddbe2cdc966a8c5fae158e42ba2a81a15af1ece0",
+    "tests/options_rework.lua": "b903d471bb00112b5b1af7ebd01fb91ed2389569af7ae80804fcf1cb53ea90fc",
+    "AddonOptions/FluxOptionsRaidFrame.lua": "e35c9f3547b4953095a091bd509b8dea2586ff6a56ef95bea7212d7cf8a7f622",
+    "RaidFrame/FluxRaidPreview.lua": "bbe78127fa6df3b2b6c1e67e044f2f6a7f72e91be279fca1aa74c0486adf1224",
+    "tests/raid_aura_options.lua": "82869729b3daaaf3df3c3c1873d3ce40e10ed40c9e017ea208dd0d2708106f37"
+  },
+  "normalization": "CRLF to LF; other bytes retained",
+  "recovery": "options-merged-layout-checkpoint-2026-11-09.json",
+  "mapping": "options-navigation-map-2026-11-09.csv",
+  "mappedDeclarationsByClient": {
+    "live": 468,
+    "forever": 468,
+    "classic": 471,
+    "classic_era": 471,
+    "classic_anniversary": 471
+  },
+  "focused": {
+    "actualBuilderChecks": 5847,
+    "completeShellChecks": 877,
+    "raidOptionsAndSessionChecks": 280,
+    "partyContracts": 78,
+    "scope": "Desktop models/source-pinned code execution only; no native rendering/input/secure VM/performance"
+  },
+  "fullReport": "options-merged-layout-full-2026-11-09.json",
+  "full": {
+    "pass": 275,
+    "fail": 0,
+    "syntaxFiles": 945,
+    "syntaxFailures": 0,
+    "currentCorpusDrift": []
+  },
+  "negativeControls": "options-merged-layout-controls-2026-11-09.json",
+  "preservation": "Original unit/window/chat/info/menu/status/vendor/nameplate builders and callbacks retained; original raw roots/info paths/handlers/scopes preserved in new standalone views and unit tabs. Raid roster options intentionally changed; original saved key/default40 retained. Legacy UI IDs redirect without schema migration.",
+  "raidPreview": {
+    "before": "Raid dropdown and generic Show allowed5; Toggle could just hide an active party sample",
+    "after": "Raid choices/get/set normalize10\u201340 by5. Getter displays10 for old5 without write. Explicit generic Show promotes old5; generic Toggle switches active party5 to raid10. Explicit ToggleParty uses Show(true) and remains5. Combat Show exits before size changes.",
+    "dataScope": "Original selected party/raid scope; no new saved key; default40 unchanged"
+  },
+  "sidebarMinimize": "Clickable native-styled header buttons and +/- glyph. Query temporarily reveals matches without resetting minimize state; ordinary reopen preserves state, explicit links expand parent; header clicks preserve sidebar scroll; no new SavedVariables.",
+  "background": {
+    "reported": "User says background disappears when resized lower",
+    "finding": "Pinned Forever portrait XML declares Bg horizTile=true/vertTile=true. Retaining tiling on a cover atlas is a plausible cause, not a native-confirmed root cause.",
+    "fix": "SetAtlas then disable both tiling flags; restore Show/alpha1 after cover crop at existing size hook. Other clients retain native tiled backgrounds.",
+    "primaryXML": "options-source-pins-2026-11-09.json: Forever9dc84f0d3bbae1768ac3405b3716000bd93eda06 SharedUIPanelTemplates.xml PortraitFrameTexturedBaseTemplate",
+    "supplementaryWidgetContract": {
+      "commit": "eac30af597e5aaa43a60f6675ef5fdcea100375f",
+      "build": "1.60.1.70790",
+      "symbols": [
+        "SimpleTextureBaseAPI:SetHorizTile",
+        "SimpleTextureBaseAPI:SetVertTile"
+      ],
+      "argument": "non-nil bool; plain false used",
+      "secretArguments": "AllowedWhenUntainted",
+      "evidence": "Packaged source declaration only; actual runtime/access unverified; existing task pins unchanged. Existing addon MP5/shared texture code already uses these methods."
+    }
+  },
+  "restockIcon": "Replaced unverified INV_Misc_Crate_01 path with existing native INV_Misc_Bag_10; sidebar visibility/texture/click checked in models; native asset display pending",
+  "resources": "Two fewer sidebar buttons than prior20-row layout, one additional header, four indicators; native horizontal tabs now max7 for QoL and4 for units. Existing size hook/coalescers/scrolling reused. No new polling/event/ticker/timer or saved root. Additional direct-source declarations cached by original module generations; no offscreen editor construction. No native performance claim.",
+  "clientCopiesMatch": {
+    "_forever_": {
+      "AddonOptions/FluxOptions.lua": true,
+      "AddonOptions/FluxOptionsCatalog.lua": true,
+      "AddonOptions/FluxOptionsNavigation.lua": true,
+      "AddonOptions/FluxOptionsRender.lua": true,
+      "AddonOptions/FluxOptionsShell.lua": true,
+      "AddonOptions/FluxOptionsWidgets.lua": true,
+      "AddonOptions/FluxOptionsSkin.lua": true,
+      "AddonOptions/FluxOptionsGameMenu.lua": true,
+      "_FluxUI.toc": true,
+      "Battlezonemap/FluxWindowFrame.lua": true,
+      "AddonOptions/FluxOptionsRaidFrame.lua": true,
+      "RaidFrame/FluxRaidPreview.lua": true
+    },
+    "_classic_": {
+      "AddonOptions/FluxOptions.lua": true,
+      "AddonOptions/FluxOptionsCatalog.lua": true,
+      "AddonOptions/FluxOptionsNavigation.lua": true,
+      "AddonOptions/FluxOptionsRender.lua": true,
+      "AddonOptions/FluxOptionsShell.lua": true,
+      "AddonOptions/FluxOptionsWidgets.lua": true,
+      "AddonOptions/FluxOptionsSkin.lua": true,
+      "AddonOptions/FluxOptionsGameMenu.lua": true,
+      "_FluxUI.toc": true,
+      "Battlezonemap/FluxWindowFrame.lua": true,
+      "AddonOptions/FluxOptionsRaidFrame.lua": true,
+      "RaidFrame/FluxRaidPreview.lua": true
+    },
+    "_classic_era_": {
+      "AddonOptions/FluxOptions.lua": true,
+      "AddonOptions/FluxOptionsCatalog.lua": true,
+      "AddonOptions/FluxOptionsNavigation.lua": true,
+      "AddonOptions/FluxOptionsRender.lua": true,
+      "AddonOptions/FluxOptionsShell.lua": true,
+      "AddonOptions/FluxOptionsWidgets.lua": true,
+      "AddonOptions/FluxOptionsSkin.lua": true,
+      "AddonOptions/FluxOptionsGameMenu.lua": true,
+      "_FluxUI.toc": true,
+      "Battlezonemap/FluxWindowFrame.lua": true,
+      "AddonOptions/FluxOptionsRaidFrame.lua": true,
+      "RaidFrame/FluxRaidPreview.lua": true
+    },
+    "_anniversary_": {
+      "AddonOptions/FluxOptions.lua": true,
+      "AddonOptions/FluxOptionsCatalog.lua": true,
+      "AddonOptions/FluxOptionsNavigation.lua": true,
+      "AddonOptions/FluxOptionsRender.lua": true,
+      "AddonOptions/FluxOptionsShell.lua": true,
+      "AddonOptions/FluxOptionsWidgets.lua": true,
+      "AddonOptions/FluxOptionsSkin.lua": true,
+      "AddonOptions/FluxOptionsGameMenu.lua": true,
+      "_FluxUI.toc": true,
+      "Battlezonemap/FluxWindowFrame.lua": true,
+      "AddonOptions/FluxOptionsRaidFrame.lua": true,
+      "RaidFrame/FluxRaidPreview.lua": true
+    }
+  },
+  "manualSync": false,
+  "nativeAcceptance": "NOT RUN: Witchcraft selected but absent/unconnected, prior setup question unanswered. Native resize pixels/icon/input/persistence/taint/FPS acceptance remains pending; user performs reproduction after reload.",
+  "gameInputOrFocusControl": false,
+  "privateSettingsWrites": false,
+  "profilerWrites": false,
+  "publication": false,
+  "sourcePins": [
+    "options-source-pins-2026-11-09.json",
+    "options-fidelity-sources-2026-11-09.json",
+    "options-scroll-sources-2026-11-09.json"
+  ],
+  "acceptedSidebar": "options-sidebar-reference-2026-11-09.json",
+  "updated_utc": "2026-11-09T16:39:35.937722+00:00",
+  "concurrentChanges": "Documentation first detected later UnitFrames_Shared/resource-pulse test edits. Preserved them; refreshed complete current full suite. Owned runtime/test hashes unchanged.",
+  "finalVerification": {
+    "ownedHashDrift": [],
+    "fullCorpusHashDrift": [],
+    "documentation": {
+      "command": "python docs/tools/validate_docs.py",
+      "exitCode": 0,
+      "result": "PASS: 978 classified sources; 605 TOC/XML reachable; 425 setting definitions; 24 SavedVariables; 15934 local links. Source inventory/evidence current."
+    },
+    "whitespace": {
+      "command": "git -c core.safecrlf=false diff --check",
+      "exitCode": 0
+    }
+  },
+  "supersededBy": "options-hud-2026-11-09.json: HUD/Utilities navigation and Meter accessor supersede earlier QoL presentation; prior resize/raid/unit fixes retained"
+}

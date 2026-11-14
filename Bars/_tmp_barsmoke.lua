@@ -4470,8 +4470,8 @@ has(combatAmmo, "ShouldHoldItemIdentity()", "ammo load-screen hold uses shared i
 local combatManaGem = readEbs("CombatGrid/Buttons/ManaGem.lua")
 has(combatManaGem, "SoftHoldOwned", "mana gem holds identity across portal")
 has(combatManaGem, "GetPreferredManaGemItemID", "mana gem falls back to last/preferred id")
-has(combatManaGem, "latest item, not the generic placeholder", "sticky mana gem keeps the latest item")
-has(combatManaGem, "Vanilla paid / no sticky id: placeholder", "vanilla mana gem placeholders when none owned")
+behavior("combat_grid_depletion_transitions", "combatZero", "combat gem keeps its action but paints dark zero")
+behavior("combat_grid_depletion_transitions", "emptyPlaceholder", "reliably exhausted gems use the empty placeholder OOC")
 has(combatManaGem, "function BindGemFace", "mana gem binds the real item face")
 has(combatManaGem, "btn:UpdateUsable()", "mana gem re-tints after writing count 0")
 has(combatManaGem, "DisplayItemCount", "mana gem display uses Extra DisplayItemCount")
@@ -4584,7 +4584,7 @@ has(bindSrc, 'HookScript("OnMouseDown"', "craft RC OnMouseDown is hardware (not 
 has(bindSrc, 'HookScript("PostClick"', "craft RC PostClick retries after opening the profession")
 has(bindSrc, "_fluxHardwareCraftKind", "craft kind lives on the HUD widget")
 if bindSrc:find("craft:open:", 1, true) then
-	failures[#failures + 1] = "craft RC must not bind craft:open when the top recipe is unaffordable"
+	failures[#failures + 1] = "craft RC must not bind craft:open when no known recipe is affordable"
 end
 has(bindSrc, "function Bridge.SuppressCheckedVisual", "ConsumableBind SuppressCheckedVisual")
 has(bindSrc, "function Bridge.SuppressCheckedVisualSettle", "craft RC re-clears gold after tradeskill open")
@@ -4867,18 +4867,8 @@ if spellReagents:find('RegisterEvent("SPELLS_CHANGED")', 1, true) then
 end
 local invCraft = readInv("Craft.lua")
 has(invCraft, "function Craft.GetBestCraftable", "Craft GetBestCraftable")
-has(invCraft, "Never falls back to a worse recipe", "Craft only crafts the top scanned recipe")
-do
-	local i = invCraft:find("function Craft.GetBestCraftable", 1, true)
-	local j = i and invCraft:find("function Craft.CanCraftKind", i + 10, true)
-	local body = (i and j and invCraft:sub(i, j)) or ""
-	if not body:find("local top = list[1]", 1, true) then
-		failures[#failures + 1] = "GetBestCraftable must only consider the top scanned recipe"
-	end
-	if body:find("for i = 1, #list do", 1, true) then
-		failures[#failures + 1] = "GetBestCraftable must not walk down to a worse recipe"
-	end
-end
+-- Ranked affordable fallback, HUD visibility and dispatch are exercised by
+-- tests/consumable_craft_visibility.lua with the production craft service.
 has(invCraft, "function Craft.HasProfessionForKind", "Craft HasProfessionForKind")
 has(invCraft, "FillReagentsFromStatic", "Craft static ladders only fill scanned reagent IDs")
 if invCraft:find("AppendStaticRecipes", 1, true) then
@@ -4927,7 +4917,12 @@ has(invProf, "function Prof.GetOpenProfessionInfo", "Forever profession info use
 has(invProf, "GetChildProfessionInfo", "Forever GetChildProfessionInfo")
 has(invProf, "GetProfessionSpells", "Forever merges GetProfessionSpells into the recipe list")
 has(invProf, "IsDataSourceChanging", "Forever waits until profession data is ready")
-has(invProf, "indices = { GetProfessions() }", "Forever GetProfessions first-aid slot is not live archaeology")
+has(invProf, "PackProfessionIndices(GetProfessions())", "profession book retains every native client slot")
+has(invProf, 'n = select("#", ...)', "profession book preserves nil holes and trailing native slots")
+has(invProf, "for i = 1, indices.n do", "profession roles come from native metadata across five/six-slot books")
+if invProf:find("GetProfessions%s*=") or invProf:find("indices%[%s*%d+%s*%]") then
+	failures[#failures + 1] = "Professions must not replace the native book or assign roles by fixed slot"
+end
 if invProf:find("_G.FluxInv = Inv", 1, true) then
 	failures[#failures + 1] = "Professions must not replace the FluxInv facade"
 end
@@ -5134,8 +5129,8 @@ has(ebsPaint, "local function EmptyConsumableUnusable", "Paint darkens 0-count g
 has(ebsPaint, "Recuperate (spell on the food Extra)", "Recuperate uses SpellUsable not empty-food darken")
 has(ebsPaint, "local function KindItemCountFace", "food Recuperate skips consumable item count")
 has(ebsPaint, "leftover stack of 1, 0 charges", "Paint darkens unique gems at 0 charges")
-has(ebsPaint, "Missing conjure ranks", "owned jade stays lit while agate is still missing")
-has(ebsPaint, "function AnyManaGemHasRemainingUse", "mana gem usable if any owned use remains")
+behavior("combat_grid_depletion_transitions", "ownedGemUsable", "owned gem stays bright while the other tier is missing")
+behavior("combat_grid_depletion_transitions", "combatZero", "gem tint follows the displayed item count even when another gem remains")
 has(ebsPaint, "skip KeepOr so a leftover true does not stay lit", "0-charge gem skips usable KeepOr")
 has(ebsPaint, "ConjuredCombatItemUsable", "mana gem and healthstone use live item usability")
 has(ebsPaint, 'UnitIsDeadOrGhost("player")', "conjured combat items darken while dead or ghost")

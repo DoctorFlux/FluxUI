@@ -1,0 +1,181 @@
+{
+  "changeID": "METER-TITLE-20261113",
+  "createdUTC": "2026-11-13T19:03:54.805793+00:00",
+  "requirements": [
+    "METER-TITLE-01",
+    "METER-TITLE-02",
+    "METER-TITLE-03"
+  ],
+  "acceptedAppearance": "Threat label in user screenshot; five display-unit left inset and shared baseline",
+  "implementationChoice": "Retained direct implementation; accepted Threat appearance",
+  "nativeTestChoice": "Retained user-performed native reproduction",
+  "targets": {
+    "retail": {
+      "branch": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "sourceBuild": "12.1.5.70783"
+    },
+    "forever": {
+      "branch": "forever",
+      "commit": "bebcb6bf309cf41b41bd74f8ca651e6a105b2676",
+      "sourceBuild": "1.60.1.70938"
+    },
+    "otherClients": "Existing Era/Anniversary/Mists targets and Details behavior preserved; no target/API additions"
+  },
+  "sourceFiles": [
+    "Interface/AddOns/Blizzard_DamageMeter/DamageMeterSessionWindow.xml",
+    "Interface/AddOns/Blizzard_DamageMeter/DamageMeterSessionWindow.lua"
+  ],
+  "checkpoint": {
+    "createdUTC": "2026-11-13T18:17:44.128830+00:00",
+    "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d61f-1a9c-7421-8f9c-70127408e1e0\\meter-title-20261113T181737Z",
+    "head": "26f886e3ea5371b196ab235d2dace0c156002285",
+    "branch": "main",
+    "sourceFiles": 2748,
+    "sourceSHA256": "dec207e5be883de9fba8e0f2ec9f71c28aefc21b196851e0034e69ae0f5c761f",
+    "historySHA256": "ea5ca69f8c351597b284b1e8e1e9853e8297990917fa2f4fbeb028b660d3814f",
+    "verifiedSourceEntries": 2748,
+    "historyVerified": true,
+    "settingsMetadataEntries": 76,
+    "privateSettingsCopied": false,
+    "clientSettingsModified": false
+  },
+  "beforeRawSHA256": {
+    "Battlezonemap/FluxMeterSkin.lua": "55127ff278b8d1fc339546ef4b6b240454f5c4cb1ac6fb15d9819ef6f747d427",
+    "tests/native_meter_skin.lua": "68f6b5286c5ac315cbbd5402df8aade96a72ba637bf1d8eeafbe0ce70fc918c1"
+  },
+  "afterRawSHA256": {
+    "Battlezonemap/FluxMeterSkin.lua": "0f2640441dd3fd027bace5afab7d3d0d02f4e28bab3fea1befeefdfc4bace781",
+    "tests/native_meter_skin.lua": "69e26437e86be33bbd65c118ba8bc76c9be0f7056a0d498385d573b274a5190c"
+  },
+  "baseline": {
+    "chunk_id": "5165dc",
+    "wall_time_seconds": 0.1809612,
+    "exit_code": 1,
+    "original_token_count": 570,
+    "output": "FAIL repeat application installs no duplicate visibility or geometry hooks\r\nFAIL reactivation snapshots the latest native alpha without duplicating permanent hooks\r\nFAIL zero initial native text width still uses Threat's header anchor at scale 0.5\r\nFAIL native anchor reset is repaired with unchanged cached dimensions at scale 0.5\r\nFAIL native heading width reset is repaired at scale 0.5\r\nFAIL deferred title alignment repairs after combat at scale 0.5\r\nFAIL reopening reuses title and timer hooks without new assets at scale 0.5\r\nFAIL release restores unresolved original geometry at scale 0.5\r\nFAIL zero initial native text width still uses Threat's header anchor at scale 0.8\r\nFAIL native anchor reset is repaired with unchanged cached dimensions at scale 0.8\r\nFAIL native heading width reset is repaired at scale 0.8\r\nFAIL deferred title alignment repairs after combat at scale 0.8\r\nFAIL reopening reuses title and timer hooks without new assets at scale 0.8\r\nFAIL release restores unresolved original geometry at scale 0.8\r\nFAIL zero initial native text width still uses Threat's header anchor at scale 1\r\nFAIL native anchor reset is repaired with unchanged cached dimensions at scale 1\r\nFAIL native heading width reset is repaired at scale 1\r\nFAIL deferred title alignment repairs after combat at scale 1\r\nFAIL reopening reuses title and timer hooks without new assets at scale 1\r\nFAIL release restores unresolved original geometry at scale 1\r\nFAIL zero initial native text width still uses Threat's header anchor at scale 1.5\r\nFAIL native anchor reset is repaired with unchanged cached dimensions at scale 1.5\r\nFAIL native heading width reset is repaired at scale 1.5\r\nFAIL deferred title alignment repairs after combat at scale 1.5\r\nFAIL reopening reuses title and timer hooks without new assets at scale 1.5\r\nFAIL release restores unresolved original geometry at scale 1.5\r\nFAIL first show retries hidden native title geometry without requiring a resize\r\nnative meter skin: 206 checks, 27 failures; no native secrets/rendering/taint emulated\r\nC:\\Users\\mario\\AppData\\Local\\Programs\\Lua\\bin\\lua.exe: tests/native_meter_skin.lua:912: native meter skin regressions\r\nstack traceback:\r\n\t[C]: in function 'assert'\r\n\ttests/native_meter_skin.lua:912: in main chunk\r\n\t[C]: in ?\r\n"
+  },
+  "baselineScope": "206 checks; 27 failures include 25 new regression failures and two updated show-hook count expectations",
+  "candidateMeter": {
+    "path": "tests/native_meter_skin.lua",
+    "exit": 0,
+    "wallSeconds": 0.0892,
+    "output": "native meter skin: 206 checks, 0 failures; no native secrets/rendering/taint emulated\n"
+  },
+  "focusedExistingResults": [
+    {
+      "path": "tests/meter_timer_allocation.lua",
+      "exit": 0,
+      "wallSeconds": 0.0421,
+      "output": "SAMPLE syncs=10000 panes=3 visible=30000 top=30000 left=30000 scale=30000 alpha=30000 text=10000 uncollectedHeapKB=0.031\nmeter timer allocation: 24 checks, 0 failures\n"
+    },
+    {
+      "path": "tests/native_meter_all_options.lua",
+      "exit": 0,
+      "wallSeconds": 0.0219,
+      "output": "native meter all options: 128 checks; native pixels/taint/FPS pending\n"
+    },
+    {
+      "path": "tests/native_meter_controls.lua",
+      "exit": 0,
+      "wallSeconds": 0.0245,
+      "output": "native_meter_controls: 106 checks passed\n"
+    },
+    {
+      "path": "tests/native_meter_docking.lua",
+      "exit": 0,
+      "wallSeconds": 0.0183,
+      "output": "native docking: 60 checks, 0 failures; 500burstTimers=2 frames=4 addonSnapWrites=0 nativeSnapWrites=4048 pinnedNative=false\n"
+    },
+    {
+      "path": "tests/native_meter_grid_parity.lua",
+      "exit": 0,
+      "wallSeconds": 0.4495,
+      "output": "native grid parity: 28992 checks, 0 failures; actual Details layouts=4920; native pixels/taint unverified\n"
+    },
+    {
+      "path": "tests/native_meter_ownership.lua",
+      "exit": 0,
+      "wallSeconds": 0.1906,
+      "output": "meter visibility: policyWrites=0 setterCalls=0 nativeEvents=4032 timerDispatches=4032 repeatedAddonRootShows=0 timerWrites=8064 pinnedNative=false\nnative backgrounds: updates=2000 skinCalls=2052\nmeter tab transitions: cycles=4000 threatResurrections=0 rootResurrections=0\nnative meter ownership: 561 checks, 0 failures; geometry typeCalls=0 sessionCalls=0 entryWalks=0 gamepadPatchTimers=0\n"
+    },
+    {
+      "path": "tests/native_meter_skin.lua",
+      "exit": 0,
+      "wallSeconds": 0.0892,
+      "output": "native meter skin: 206 checks, 0 failures; no native secrets/rendering/taint emulated\n"
+    },
+    {
+      "path": "tests/native_meter_startup.lua",
+      "exit": 0,
+      "wallSeconds": 0.0329,
+      "output": "native meter startup: 64 checks, 0 failures; pre-embed ownership, explicit cleanup and deferred startup mocked\n"
+    },
+    {
+      "path": "tests/native_meter_writer_provenance.lua",
+      "exit": 0,
+      "wallSeconds": 0.0521,
+      "output": "native writer provenance: 126 checks, 0 failures; explicit model, native secure VM unverified\n"
+    },
+    {
+      "path": "tests/native_threat_layout.lua",
+      "exit": 0,
+      "wallSeconds": 0.0776,
+      "output": "native threat layout: 71 checks, 0 failures; nativeMax=3 ownedFrames=1 permanentEntryHooks=1\n"
+    },
+    {
+      "path": "tests/native_timer_ownership.lua",
+      "exit": 0,
+      "wallSeconds": 0.0545,
+      "output": "Native timer ownership: 54 checks; After/NewTimer cancel/replace, exact cadence, resize/embed/hover/current-list/hide reuse\n"
+    },
+    {
+      "path": "tests/standalone_threat_meter.lua",
+      "exit": 0,
+      "wallSeconds": 1.9206,
+      "output": "standalone threat meter: 87 checks passed; 500-event scans=1; raid facts=80; retained rows=80\n"
+    },
+    {
+      "path": "tests/threat_meter_sample.lua",
+      "exit": 0,
+      "wallSeconds": 0.0129,
+      "output": "threat meter sample: 510 checks, 0 failures; Forever queries per500=500\n"
+    }
+  ],
+  "full": {
+    "path": "docs/validation/meter-title-full-2026-11-13.json",
+    "sha256": "32476d1f22dfef0d24c1fadc2b0d136a2fb5f098f37f555c203e1b460cd20854",
+    "pass": 352,
+    "fail": 0,
+    "syntaxFiles": 1040,
+    "syntaxFailures": [],
+    "completeCurrentLuaManifestVerified": true
+  },
+  "resources": {
+    "newFrames": 0,
+    "newTextures": 0,
+    "newTimers": 0,
+    "newTickers": 0,
+    "newEvents": 0,
+    "newPolling": 0,
+    "newOnShowHooks": "One per native session pane; guarded and inactive after release"
+  },
+  "controller": "Passive title retains native dropdown focus/input/action hints; no navigation target added; native controller operation NOT RUN",
+  "native": "NOT RUN: pixels/localized clipping/input/controller/taint/CPU/FPS; running build not captured",
+  "userSteps": [
+    "Reload out of combat",
+    "Reopen Meter and compare Damage Done/Healing Done/Dispels title inset and baseline with Threat",
+    "Change panes/layouts and reopen the same-sized window",
+    "Check before/after combat and normal native dropdown use"
+  ],
+  "preserved": "Existing concurrent edits including timer allocation work; settings/data/fonts/art/colors/type/segments and controls unchanged",
+  "noClientControl": true,
+  "noSettingsOrProfilerWrites": true,
+  "noManualSync": true,
+  "noCommitOrPublication": true,
+  "documentation": {
+    "buildReference": "PASS:1073 sources;623 reachable;438 setting definitions;583 defaults",
+    "validation": "PASS:1073 classified sources;623 TOC/XML reachable;438 settings;24 SavedVariables;17067 local links;source inventory/evidence current",
+    "diffCheck": "PASS for task-owned files;existing CRLF conversion notices only"
+  }
+}

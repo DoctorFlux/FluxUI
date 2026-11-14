@@ -1,0 +1,10 @@
+{
+  "luaChangesSinceExternalCheckpoint": [
+    "NamePlates/Core.lua",
+    "NamePlates/Threat.lua",
+    "tests/nameplate_quest_progress.lua"
+  ],
+  "ownedFinalDrift": [],
+  "fullLuaManifestDrift": [],
+  "scope": "Earlier unrelated dirty files preserved; compared current source with fresh external manifest"
+}

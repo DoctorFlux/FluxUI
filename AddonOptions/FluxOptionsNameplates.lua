@@ -99,28 +99,7 @@ local function BuildNameplatesOptions()
             order = 2,
             fontSize = "small",
         },
-        visibilityMode = {
-            type = "select",
-            name = "Threat visibility",
-            desc = "When Flux nameplate threat visuals are shown. Group = party/raid only.",
-            order = 3,
-            width = "full",
-            values = {
-                group = "In group only",
-                always = "Always",
-                never = "Never",
-            },
-            get = function()
-                return EnsureNameplateThreatDB().visibilityMode or "group"
-            end,
-            set = function(_, v)
-                if v ~= "always" and v ~= "never" and v ~= "group" then
-                    v = "group"
-                end
-                EnsureNameplateThreatDB().visibilityMode = v
-                RefreshNameplatesFromDB()
-            end,
-        },
+        visibilityMode = ns.FluxOptionsThreatVisibilityOption(3),
         npcThreatBorder = {
             type = "toggle",
             name = "NPC threat border + rank/%",
@@ -190,37 +169,6 @@ local function BuildNameplatesOptions()
             "Blizzard aggro flash on enemy nameplates.", 6.3),
         blizzardHealthBarColor = BlizzardThreatToggle("HealthBarColor", "Health Bar Color",
             "Blizzard threat coloring on the nameplate health bar. The Flux border is separate.", 6.4),
-        threatWarning = {
-            type = "select",
-            name = "Threat warning",
-            desc = "Blizzard threatWarning CVar (tanking/losing aggro indicator). Off / party / raid / always.",
-            order = 6.5,
-            width = "full",
-            values = {
-                [0] = "Off",
-                [1] = "In party",
-                [2] = "In raid",
-                [3] = "Always",
-            },
-            sorting = { 0, 1, 2, 3 },
-            hidden = function()
-                local api = ThreatAPI()
-                return not (api and api.HasWarningCVar and api.HasWarningCVar())
-            end,
-            get = function()
-                local api = ThreatAPI()
-                if api and api.GetWarningMode then
-                    return api.GetWarningMode()
-                end
-                return 3
-            end,
-            set = function(_, v)
-                local api = ThreatAPI()
-                if api and api.SetWarningMode then
-                    api.SetWarningMode(v)
-                end
-            end,
-        },
     }
 
     if IsLevelOverlaySupported() then

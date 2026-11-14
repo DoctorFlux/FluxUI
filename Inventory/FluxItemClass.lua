@@ -431,6 +431,11 @@ function IC.GetRestore(itemID, itemLink)
     local rec = {
         health = parsed.effectiveH or 0,
         mana = parsed.effectiveM or 0,
+        minimumH = parsed.minimumH,
+        minimumM = parsed.minimumM,
+        healthAxis = parsed.isPotion and parsed.health or nil,
+        manaAxis = parsed.isPotion and parsed.mana or nil,
+        tooltipText = parsed.isPotion and text or nil,
         conjured = parsed.isConjured == true,
         bandage = parsed.isBandage == true,
         excludeFromFoodWater = parsed.excludeFromFoodWater == true,

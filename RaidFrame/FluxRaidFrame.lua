@@ -139,6 +139,20 @@ function FluxRaid_ApplyOptionsFromDB()
 end
 
 local function RefreshFromCVar(cvarName)
+    if type(cvarName) == "string" and cvarName:lower() == "raidframesdisplayonlydispellabledebuffs" then
+        -- Public aura owners can change their filters in combat; this setting
+        -- needs no protected header configuration or full chrome/layout pass.
+        if State.isInitialized and FluxRaid_IsFluxRaidEnabled() and FluxRaid_ForEachHeaderChild and FluxRaidAuras then
+            FluxRaid_ForEachHeaderChild(function(frame)
+                local unit = frame.displayedUnit or frame.unit
+                if not frame._fluxRaidMini and frame:IsVisible() and (unit == "player"
+                    or type(unit) == "string" and unit:match("^party[1-4]$")) then
+                    FluxRaidAuras.Update(frame)
+                end
+            end)
+        end
+        return
+    end
     if type(cvarName) == "string" and string.lower(cvarName) == "unitsurnameown" then
         if FluxRaid_RefreshSelfDisplayNames then
             FluxRaid_RefreshSelfDisplayNames()

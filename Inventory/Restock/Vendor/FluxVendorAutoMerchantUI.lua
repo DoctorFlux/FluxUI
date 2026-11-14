@@ -782,6 +782,32 @@ local function ShowAutoToggleTooltip(toggle)
     GameTooltip:Show()
 end
 
+local function ConfigureAutoToggleInput(toggle)
+    if toggle.fluxInputConfigured then return end
+    local combat = InCombatLockdown and InCombatLockdown()
+    local restricted = C_RestrictedActions
+    local allowed = not combat
+    if allowed and restricted and restricted.CheckAllowProtectedFunctions then
+        local ok, permitted = pcall(restricted.CheckAllowProtectedFunctions, toggle, true)
+        allowed = ok and not (issecretvalue and issecretvalue(permitted)) and permitted == true
+    end
+    if not allowed then
+        -- These input setters are protected even on a newly created checkbox.
+        -- Keep native checkbox defaults, and use the existing lockdown queue
+        -- for the initialization that can become legal after combat.
+        local queue = ns and ns.Flux and ns.Flux.Combat
+        if combat and queue and queue.Defer then
+            queue.Defer("vendor.toggle.input." .. tostring(toggle), function()
+                ConfigureAutoToggleInput(toggle)
+            end)
+        end
+        return
+    end
+    if toggle.SetPropagateMouseClicks then toggle:SetPropagateMouseClicks(false) end
+    if toggle.SetPropagateMouseMotion then toggle:SetPropagateMouseMotion(false) end
+    toggle.fluxInputConfigured = true
+end
+
 local function CreateCompactAutoToggle(hostButton)
     local parent = hostButton
     if hostButton == _G.MerchantSellAllJunkButton
@@ -799,12 +825,7 @@ local function CreateCompactAutoToggle(hostButton)
         toggle:SetFrameStrata(hostButton:GetFrameStrata())
         toggle:SetFrameLevel(hostButton:GetFrameLevel() + 10)
     end
-    if toggle.SetPropagateMouseClicks then
-        toggle:SetPropagateMouseClicks(false)
-    end
-    if toggle.SetPropagateMouseMotion then
-        toggle:SetPropagateMouseMotion(false)
-    end
+    ConfigureAutoToggleInput(toggle)
 
     ApplyAutoToggleChrome(toggle)
     toggle.fluxIsCompactToggle = true
@@ -852,6 +873,7 @@ local function AttachAutoToggle(hostButton, config)
     else
         ApplyAutoToggleChrome(toggle)
         toggle:SetSize(AUTO_TOGGLE_SIZE, AUTO_TOGGLE_SIZE)
+        ConfigureAutoToggleInput(toggle)
     end
 
     if hostButton == _G.MerchantSellAllJunkButton

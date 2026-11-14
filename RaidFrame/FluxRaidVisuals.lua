@@ -199,34 +199,93 @@ function FluxRaidVisuals.GetFrameAuraAnchor(frame, helpful)
     return frame.healthBar or frame, helpful and "TOPRIGHT" or "TOPLEFT"
 end
 
--- Use Blizzard's aura border above the cooldown. Native aura owners select its
--- type asset/color; readable icons and preview use the same client AuraUtil.
+-- Rectangular aura-panel chrome above the cooldown. Native owners tint only
+-- registered Texture sinks; readable icons and previews use the same palette.
 function FluxRaidVisuals.EnsurePartyDebuffBorder(button, frame)
     if not frame._fluxPartyMember then return end
     if button._fluxPartyDebuffBorder then return button._fluxPartyDebuffBorder end
     local parent = button.AuraTextLayer or button.textLayer or button
-    local edge = parent:CreateTexture(nil, "ARTWORK", nil, 1)
-    edge:SetAllPoints(button)
-    -- Classic's SetAuraBorderAtlas colors this original border texture.
-    edge:SetTexture("Interface\\Buttons\\UI-Debuff-Overlays")
-    edge:SetTexCoord(.296875, .5703125, 0, .515625)
-    button._fluxPartyDebuffBorder = edge
-    return edge
+    local edges = {}
+    for _, point in ipairs({"TOP", "BOTTOM", "LEFT", "RIGHT"}) do
+        local outline = parent:CreateTexture(nil, "ARTWORK", nil, 0)
+        local edge = parent:CreateTexture(nil, "ARTWORK", nil, 1)
+        outline:SetColorTexture(0, 0, 0, 1); edge:SetColorTexture(1, 1, 1, 1)
+        if point == "TOP" or point == "BOTTOM" then
+            local y = 0
+            outline:SetHeight(3); edge:SetHeight(1.5)
+            for _, texture in ipairs({outline, edge}) do
+                texture:SetPoint(point .. "LEFT", button, point .. "LEFT", 0, y)
+                texture:SetPoint(point .. "RIGHT", button, point .. "RIGHT", 0, y)
+            end
+        else
+            local x = 0
+            outline:SetWidth(3); edge:SetWidth(1.5)
+            for _, texture in ipairs({outline, edge}) do
+                texture:SetPoint("TOP" .. point, button, "TOP" .. point, x, 0)
+                texture:SetPoint("BOTTOM" .. point, button, "BOTTOM" .. point, x, 0)
+            end
+        end
+        edges[#edges + 1] = edge
+    end
+    button._fluxPartyDebuffBorders = edges
+    button._fluxPartyDebuffBorder = edges[1]
+    return edges[1]
 end
 
-function FluxRaidVisuals.SetPartyDebuffBorderType(button, kind)
+function FluxRaidVisuals.SetPartyDebuffBorderType(button, kind, helpful)
     local edge = button._fluxPartyDebuffBorder
     if not edge then return end
-    local client = ns and ns.Flux and ns.Flux.Client
-    if AuraUtil and AuraUtil.SetAuraBorderAtlas then
-        if not (client and client.isAnyClassic) then
-            edge:SetTexCoord(0, 1, 0, 1)
-            edge:SetVertexColor(1, 1, 1, 1)
+    for _, texture in ipairs(button._fluxPartyDebuffBorders or {edge}) do
+        if AuraUtil and AuraUtil.SetAuraBorderColor then AuraUtil.SetAuraBorderColor(texture, kind)
+        else
+            local color = DebuffTypeColor and (DebuffTypeColor[kind or "none"] or DebuffTypeColor.none)
+            texture:SetVertexColor(color and color.r or .8, color and color.g or 0, color and color.b or 0, 1)
         end
-        AuraUtil.SetAuraBorderAtlas(edge, kind, false)
+        texture:SetShown(not helpful)
+    end
+end
+
+-- Salvage's desaturated proc loop, with a pulse of the existing glow artwork
+-- when the client has no proc atlas. Setup runs OOC before native adoption.
+-- Native textures are never retained or inspected after registration.
+function FluxRaidVisuals.CreatePartyDispelGlow(owner, frame, native, publicOwner)
+    local texture = owner:CreateTexture(nil, "OVERLAY", nil, 6)
+    texture:SetPoint("TOPLEFT", frame, "TOPLEFT", -8, 8)
+    texture:SetPoint("BOTTOMRIGHT", frame, "BOTTOMRIGHT", 8, -8)
+    local atlas = "UI-HUD-ActionBar-Proc-Loop-Flipbook"
+    local getAtlas = C_Texture and C_Texture.GetAtlasInfo or GetAtlasInfo
+    local available = getAtlas and getAtlas(atlas)
+    local clock = native and owner.AddAuraShownAnimation and owner or publicOwner or owner
+    local animation = clock:CreateAnimationGroup()
+    animation:SetLooping("REPEAT")
+    if available then
+        texture:SetAtlas(atlas); texture:SetDesaturated(true)
+        local flip = animation:CreateAnimation("FlipBook")
+        flip:SetTarget(texture); flip:SetDuration(1)
+        flip:SetFlipBookColumns(5); flip:SetFlipBookRows(6); flip:SetFlipBookFrames(30)
     else
-        local color = DebuffTypeColor and (DebuffTypeColor[kind or "none"] or DebuffTypeColor.none)
-        edge:SetVertexColor(color and color.r or .8, color and color.g or 0, color and color.b or 0, 1)
+        texture:SetTexture("Interface\\AddOns\\_FluxUI\\Texture\\borders\\glow-border")
+        for index, alpha in ipairs({{.45, 1}, {1, .45}}) do
+            local pulse = animation:CreateAnimation("Alpha")
+            pulse:SetTarget(texture); pulse:SetOrder(index); pulse:SetDuration(.5)
+            pulse:SetFromAlpha(alpha[1]); pulse:SetToAlpha(alpha[2])
+        end
+    end
+    if native then
+        owner:AddDispelTypeTexture(texture, {style = Enum.CustomAuraButtonDispelTypeTextureStyle.PreserveAsset,
+            showWhenHarmful = true, showWhenHelpful = false, showWithoutDispelType = false})
+        if owner.AddAuraShownAnimation then owner:AddAuraShownAnimation(animation)
+        else
+            -- Retail's current container lacks aura-shown animation bindings.
+            -- A public owner drives this prepared engine loop only while the
+            -- party highlight is enabled; no Lua aura polling or callbacks.
+            publicOwner:HookScript("OnShow", function() animation:Play() end)
+            publicOwner:HookScript("OnHide", function() animation:Stop() end)
+        end
+    else
+        owner._fluxDispelGlowTexture = texture
+        owner:HookScript("OnShow", function() animation:Play() end)
+        owner:HookScript("OnHide", function() animation:Stop() end)
     end
 end
 
@@ -632,6 +691,17 @@ local function RaidOptionFlag(db, key, defaultOn)
         return defaultOn and true or false
     end
     return db[key] and true or false
+end
+
+function FluxRaidVisuals.ShouldDisplayOnlyDispellableDebuffs(frame, partyPreview)
+    local opt = frame and frame.optionTable or FluxRaidVisuals.GetFluxRaidOptionTable()
+    if opt.displayOnlyDispellableDebuffs == true then return true end
+    local unit = frame and (frame.displayedUnit or frame.unit)
+    local party = partyPreview or frame and frame._fluxPartyMember or unit == "player"
+        or type(unit) == "string" and unit:match("^party[1-4]$") ~= nil
+    -- Read Blizzard's compact-party preference without writing CUF settings or
+    -- changing the shared option table used by actual raid/focus cells.
+    return party and CVarBool("raidFramesDisplayOnlyDispellableDebuffs", false) or false
 end
 
 -- Native CUF CVars stay owned by Blizzard on secret clients. Flux-owned

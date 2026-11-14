@@ -1,0 +1,71 @@
+{
+  "changeId": "FOCUS-NO-RESOURCE-20261110",
+  "request": "No HP/resource divider on a focused unit without a resource bar",
+  "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c6bd-9795-7872-8262-11e62eca4825\\focus-no-resource-20261110T192251Z",
+  "priorCompleteCheckpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c6bd-9795-7872-8262-11e62eca4825\\party-health-20261110T183659Z",
+  "checkpointHead": "26f886e3ea5371b196ab235d2dace0c156002285",
+  "historyVerified": true,
+  "settingsMetadataEntries": 4,
+  "privateSettingsCopied": false,
+  "beforeRawSha256": "fa7e3d64739b75e5ca1ddfc49ac14f5b11073b492263af88911abe8995e91e32",
+  "afterRawSha256": "407a236fc3216ae60fb5593c294afa0ce18c1a14b84e0c1b4ac74f53aa76b687",
+  "afterNormalizedSha256": "627b4ef839b6a76d456989d78fb1a7a6099e3b5f54283392eec7eb9c3047da0b",
+  "runtimeChanges": [
+    "UnitFrames/FluxUnitFrames_Shared.lua"
+  ],
+  "focusedResults": [
+    {
+      "test": "tests/unit_power_visibility.lua",
+      "baseline": true,
+      "exit": 1,
+      "output": "lua: tests/unit_power_visibility.lua:194: zero current resource retains the focus divider\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/unit_power_visibility.lua:194: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "test": "tests/unit_power_visibility.lua",
+      "baseline": false,
+      "exit": 0,
+      "output": "unit power visibility: main split, combat, secret and raid checks passed\n"
+    },
+    {
+      "test": "tests/focus_target_colors.lua",
+      "baseline": true,
+      "exit": 1,
+      "output": "lua: tests/focus_target_colors.lua:8: focus chrome preserves no-resource and native opaque divider opacity\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/focus_target_colors.lua:8: in local 'check'\n\ttests/focus_target_colors.lua:90: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "test": "tests/focus_target_colors.lua",
+      "baseline": false,
+      "exit": 0,
+      "output": "Focus target colors: 22015 checks; five client models; focused-unit class/NPC/opaque colors; combat restoration and all accents; native pixels pending\n"
+    }
+  ],
+  "sources": {
+    "scope": "Existing dated five-client pins from party-health-fit task; fresh heads unavailable earlier in this chat. No new API or load path.",
+    "retailSetAlpha": "https://raw.githubusercontent.com/Gethe/wow-ui-source/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleRegionAPIDocumentation.lua",
+    "contract": "SetAlpha accepts secret alpha directly; no opaque value comparison/getter. Public tri-state capability selects legacy opacity."
+  },
+  "requirements": [
+    "No divider with no resource;full-height focus HP retained",
+    "Current zero with positive resource capacity keeps divider",
+    "Resource return and focused-unit chrome repaint restore correct opacity",
+    "HUD opaque alpha is forwarded directly;legacy known-zero uses public flag",
+    "Combat structural layout stays deferred;no new settings, strings,bindings,events,timers or hooks"
+  ],
+  "controller": "Decorative texture alpha only;no new focus stop,input handler or binding;actual controller operation NOT RUN",
+  "native": "NOT RUN;user reproduction selected. No input/focus/clipboard/reload/settings/profiler/manual sync/publication.",
+  "performance": "One extra texture alpha sink per compact focus power/chrome paint;no new driver or cadence change;native FPS unmeasured",
+  "fullValidation": "docs/validation/focus-no-resource-full-2026-11-10.json",
+  "fullResult": {
+    "passed": 304,
+    "failed": 0,
+    "syntaxFiles": 976,
+    "syntaxFailures": 0,
+    "allCurrentLuaMatchesManifest": true
+  },
+  "documentationValidation": {
+    "result": "PASS",
+    "classifiedSources": 1009,
+    "reachable": 607,
+    "localLinks": 16275
+  }
+}

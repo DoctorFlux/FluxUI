@@ -1,0 +1,256 @@
+{
+  "dateUTC": "2026-11-13T22:17:53.674146+00:00",
+  "changeID": "UNIT-DEBUFF-OVERLAP-20261113",
+  "requirements": [
+    "UDO-01",
+    "UDO-02",
+    "UDO-03"
+  ],
+  "status": "Candidate implemented; reported native duplicate still requires user retest",
+  "report": {
+    "screenshotSHA256": "a3b2812d15023d4267fa3cd48cb2c1f1ae9663db77b88194ff069f83a85f7231",
+    "userConfirmed": "Same effect twice in both tooltips",
+    "nativeAuraInstanceIDs": "NOT CAPTURED",
+    "nativeSpellID": "NOT CAPTURED",
+    "nativeBuild": "NOT CAPTURED"
+  },
+  "causeScope": "Native ownership-filter overlap for a non-player system aura is hypothesized; the test deliberately supplies overlapping query results and does not reproduce the C filters. This guard does not resolve an overlap involving a player-origin aura.",
+  "implementation": "Add native isFromPlayerOrPlayerPet=true candidate guard only to the exact PLAYER-filtered own group. Retain unguarded !PLAYER other group and full-harmful fallback; do not deduplicate by spell/name/icon.",
+  "recovery": {
+    "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\auction-restock\\tab-crafting-followup\\craft-settle-performance-20261113T203900Z\\checkpoint.json",
+    "dateUTC": "2026-11-13T20:39:01.271233+00:00",
+    "checkpointSHA256": "86bf9600c43ca37b4f0c51d38d3f2b38d7ad677b917d47eda1c9a7baf73d93ec",
+    "sourceFilesVerified": 2758,
+    "archiveHashes": {
+      "history-before.bundle": "9017c835286b6838b337efdc4093dbe6e0a4525cc19f2cb17985eca52edcf37e",
+      "source-before.zip": "77d55eded6249e784af09afad0e3a3dfc92d82baefbf8c8fd6bedc9b15cc17c6"
+    },
+    "historyVerified": true,
+    "ownedSourcesMatch": true,
+    "settingsMetadataEntries": 70,
+    "privateSettingsCopied": false
+  },
+  "beforeSource": {
+    "UnitFrames/FluxUnitFrames_AurasEngine.lua": "0ca0562f7260a265e62f5ade0250eb6cceb382f488ac1c637f0f3b31c58df6c4"
+  },
+  "candidateRawSHA256": {
+    "UnitFrames/FluxUnitFrames_AurasEngine.lua": "a07013515dc417cb61ba45407535a1b89698b662fa7a25c517ec7cf9600b6b54",
+    "tests/unit_debuff_group_overlap.lua": "36ad84cca01afd31eb8c77ed22f99d45028486efbb760de73641b961b2416647"
+  },
+  "upstream": {
+    "pins": {
+      "forever": "bebcb6bf309cf41b41bd74f8ca651e6a105b2676",
+      "live": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f"
+    },
+    "sources": [
+      {
+        "branch": "forever",
+        "commit": "bebcb6bf309cf41b41bd74f8ca651e6a105b2676",
+        "path": "version.txt",
+        "sha256": "2341b29857364de5d7bf79957a6c228b9f87da9efd65f16e1e434a5376ff212d"
+      },
+      {
+        "branch": "forever",
+        "commit": "bebcb6bf309cf41b41bd74f8ca651e6a105b2676",
+        "path": "Interface/AddOns/Blizzard_AuraContainer/Blizzard_AuraContainerGroups.lua",
+        "sha256": "21f62505285d105cb17cf13aece975212b7a18b7223632165b97e3ebf1f400ba"
+      },
+      {
+        "branch": "forever",
+        "commit": "bebcb6bf309cf41b41bd74f8ca651e6a105b2676",
+        "path": "Interface/AddOns/Blizzard_AuraContainer/Blizzard_AuraContainerShared.lua",
+        "sha256": "9eda989a81824d6084e3b652282761d563c70fd11ed60e42753c96ea988fd245"
+      },
+      {
+        "branch": "forever",
+        "commit": "bebcb6bf309cf41b41bd74f8ca651e6a105b2676",
+        "path": "Interface/AddOns/Blizzard_AuraContainer/Blizzard_AuraContainerSources.lua",
+        "sha256": "0f27d8724eecc8134faf44696520b996d47d2905cd26ab4a0a965226090749b4"
+      },
+      {
+        "branch": "forever",
+        "commit": "bebcb6bf309cf41b41bd74f8ca651e6a105b2676",
+        "path": "Interface/AddOns/Blizzard_AuraContainer/Blizzard_AuraContainerUtil.lua",
+        "sha256": "603cebadf285d56c46544af87588867c2aa3c4b1fdcff3665d0e43816fe3b262"
+      },
+      {
+        "branch": "forever",
+        "commit": "bebcb6bf309cf41b41bd74f8ca651e6a105b2676",
+        "path": "Interface/AddOns/Blizzard_AuraContainer/Blizzard_CustomAuraContainer.lua",
+        "sha256": "4a47de0e56ba97acbea4e6a65916e9974b98303b4e7ffe6c305a98d62bbba0f1"
+      },
+      {
+        "branch": "forever",
+        "commit": "bebcb6bf309cf41b41bd74f8ca651e6a105b2676",
+        "path": "Interface/AddOns/Blizzard_FrameXMLUtil/AuraUtil.lua",
+        "sha256": "c273c6be5d4bfce92c54510f5a1729f84bf9762ded0a4a9c523363d713b5f909"
+      },
+      {
+        "branch": "live",
+        "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+        "path": "version.txt",
+        "sha256": "4e532c8d3beb3231ae8195704b6de0a099a19742e02505f73f292f47fe9e080b"
+      },
+      {
+        "branch": "live",
+        "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+        "path": "Interface/AddOns/Blizzard_AuraContainer/Blizzard_AuraContainerGroups.lua",
+        "sha256": "21f62505285d105cb17cf13aece975212b7a18b7223632165b97e3ebf1f400ba"
+      },
+      {
+        "branch": "live",
+        "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+        "path": "Interface/AddOns/Blizzard_AuraContainer/Blizzard_AuraContainerShared.lua",
+        "sha256": "9eda989a81824d6084e3b652282761d563c70fd11ed60e42753c96ea988fd245"
+      },
+      {
+        "branch": "live",
+        "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+        "path": "Interface/AddOns/Blizzard_AuraContainer/Blizzard_AuraContainerSources.lua",
+        "sha256": "0f27d8724eecc8134faf44696520b996d47d2905cd26ab4a0a965226090749b4"
+      },
+      {
+        "branch": "live",
+        "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+        "path": "Interface/AddOns/Blizzard_AuraContainer/Blizzard_AuraContainerUtil.lua",
+        "sha256": "603cebadf285d56c46544af87588867c2aa3c4b1fdcff3665d0e43816fe3b262"
+      },
+      {
+        "branch": "live",
+        "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+        "path": "Interface/AddOns/Blizzard_AuraContainer/Blizzard_CustomAuraContainer.lua",
+        "sha256": "4a47de0e56ba97acbea4e6a65916e9974b98303b4e7ffe6c305a98d62bbba0f1"
+      },
+      {
+        "branch": "live",
+        "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+        "path": "Interface/AddOns/Blizzard_FrameXMLUtil/AuraUtil.lua",
+        "sha256": "c273c6be5d4bfce92c54510f5a1729f84bf9762ded0a4a9c523363d713b5f909"
+      }
+    ],
+    "latestPinsResolved": true
+  },
+  "regression": {
+    "checks": 100,
+    "cases": "Retail/Forever;target/focus;system/casterless overlap;player/pet/vehicle;NPC/other-player;separate identical-spell/icon instances;buffs;fallback;reuse;unit binding",
+    "runs": [
+      {
+        "case": "baseline",
+        "command": [
+          "C:/Users/mario/.codex/visualizations/2026/11/13/01a1d663-d601-7f93-879b-be03642eb3fc/lua-runtime/lua.exe",
+          "tests/unit_debuff_group_overlap.lua",
+          "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d6ed-15bf-71e1-bfcf-5213580d74f0\\debuff-duplicates\\before\\UnitFrames\\FluxUnitFrames_AurasEngine.lua",
+          "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d6ed-15bf-71e1-bfcf-5213580d74f0\\debuff-duplicates"
+        ],
+        "exitCode": 1,
+        "output": "C:/Users/mario/.codex/visualizations/2026/11/13/01a1d663-d601-7f93-879b-be03642eb3fc/lua-runtime/lua.exe: tests/unit_debuff_group_overlap.lua:15: overlapping system effect appears once\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/unit_debuff_group_overlap.lua:15: in local 'check'\n\ttests/unit_debuff_group_overlap.lua:101: in main chunk\n\t[C]: in ?\n"
+      },
+      {
+        "case": "candidate",
+        "command": [
+          "C:/Users/mario/.codex/visualizations/2026/11/13/01a1d663-d601-7f93-879b-be03642eb3fc/lua-runtime/lua.exe",
+          "tests/unit_debuff_group_overlap.lua",
+          "UnitFrames\\FluxUnitFrames_AurasEngine.lua",
+          "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d6ed-15bf-71e1-bfcf-5213580d74f0\\debuff-duplicates"
+        ],
+        "exitCode": 0,
+        "output": "Unit debuff group overlap: 100 checks passed; simulated filter overlap; native acceptance pending\n"
+      },
+      {
+        "case": "remove-caster-guard",
+        "command": [
+          "C:/Users/mario/.codex/visualizations/2026/11/13/01a1d663-d601-7f93-879b-be03642eb3fc/lua-runtime/lua.exe",
+          "tests/unit_debuff_group_overlap.lua",
+          "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d6ed-15bf-71e1-bfcf-5213580d74f0\\debuff-duplicates\\remove-caster-guard.lua",
+          "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d6ed-15bf-71e1-bfcf-5213580d74f0\\debuff-duplicates"
+        ],
+        "exitCode": 1,
+        "output": "C:/Users/mario/.codex/visualizations/2026/11/13/01a1d663-d601-7f93-879b-be03642eb3fc/lua-runtime/lua.exe: tests/unit_debuff_group_overlap.lua:15: overlapping system effect appears once\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/unit_debuff_group_overlap.lua:15: in local 'check'\n\ttests/unit_debuff_group_overlap.lua:101: in main chunk\n\t[C]: in ?\n"
+      },
+      {
+        "case": "reverse-caster-guard",
+        "command": [
+          "C:/Users/mario/.codex/visualizations/2026/11/13/01a1d663-d601-7f93-879b-be03642eb3fc/lua-runtime/lua.exe",
+          "tests/unit_debuff_group_overlap.lua",
+          "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d6ed-15bf-71e1-bfcf-5213580d74f0\\debuff-duplicates\\reverse-caster-guard.lua",
+          "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d6ed-15bf-71e1-bfcf-5213580d74f0\\debuff-duplicates"
+        ],
+        "exitCode": 1,
+        "output": "C:/Users/mario/.codex/visualizations/2026/11/13/01a1d663-d601-7f93-879b-be03642eb3fc/lua-runtime/lua.exe: tests/unit_debuff_group_overlap.lua:15: overlapping system effect appears once\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/unit_debuff_group_overlap.lua:15: in local 'check'\n\ttests/unit_debuff_group_overlap.lua:101: in main chunk\n\t[C]: in ?\n"
+      },
+      {
+        "case": "lose-player-ownership",
+        "command": [
+          "C:/Users/mario/.codex/visualizations/2026/11/13/01a1d663-d601-7f93-879b-be03642eb3fc/lua-runtime/lua.exe",
+          "tests/unit_debuff_group_overlap.lua",
+          "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d6ed-15bf-71e1-bfcf-5213580d74f0\\debuff-duplicates\\lose-player-ownership.lua",
+          "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d6ed-15bf-71e1-bfcf-5213580d74f0\\debuff-duplicates"
+        ],
+        "exitCode": 1,
+        "output": "C:/Users/mario/.codex/visualizations/2026/11/13/01a1d663-d601-7f93-879b-be03642eb3fc/lua-runtime/lua.exe: tests/unit_debuff_group_overlap.lua:15: exact self/pet/vehicle filter retained\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/unit_debuff_group_overlap.lua:15: in local 'check'\n\ttests/unit_debuff_group_overlap.lua:89: in main chunk\n\t[C]: in ?\n"
+      },
+      {
+        "case": "hide-other-players",
+        "command": [
+          "C:/Users/mario/.codex/visualizations/2026/11/13/01a1d663-d601-7f93-879b-be03642eb3fc/lua-runtime/lua.exe",
+          "tests/unit_debuff_group_overlap.lua",
+          "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d6ed-15bf-71e1-bfcf-5213580d74f0\\debuff-duplicates\\hide-other-players.lua",
+          "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d6ed-15bf-71e1-bfcf-5213580d74f0\\debuff-duplicates"
+        ],
+        "exitCode": 1,
+        "output": "C:/Users/mario/.codex/visualizations/2026/11/13/01a1d663-d601-7f93-879b-be03642eb3fc/lua-runtime/lua.exe: tests/unit_debuff_group_overlap.lua:15: missing system caster cannot enter own group\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/unit_debuff_group_overlap.lua:15: in local 'check'\n\ttests/unit_debuff_group_overlap.lua:102: in main chunk\n\t[C]: in ?\n"
+      }
+    ],
+    "scope": "Actual Flux module and native Lua candidate predicate; C query membership and widgets simulated"
+  },
+  "fullValidation": {
+    "path": "docs/validation/unit-debuff-overlap-full-2026-11-13.json",
+    "pass": 359,
+    "fail": 0,
+    "syntaxFiles": 1047,
+    "syntaxFailures": 0,
+    "completeCurrentLuaManifestVerified": true
+  },
+  "native": {
+    "result": "NOT RUN",
+    "pending": [
+      "reported XP duplicate after OOC reload",
+      "actual caster metadata for player/pet/vehicle effects",
+      "other-player/NPC effects",
+      "target/focus changes and combat",
+      "native tooltip/controller behavior",
+      "pixels/taint",
+      "CPU/FPS"
+    ],
+    "testRoute": "Retained user-managed native reproduction"
+  },
+  "resources": {
+    "newFrames": 0,
+    "newEvents": 0,
+    "newHooks": 0,
+    "newTimers": 0,
+    "newPollers": 0,
+    "newSettings": 0,
+    "addonAuraDataReads": 0,
+    "nativePredicateCost": "Native own-group candidate evaluation, including Blizzard identity/reaction helper and caster-flag check; native timing unmeasured"
+  },
+  "operations": {
+    "branch": "main",
+    "hooksPath": ".githooks",
+    "gameInput": false,
+    "foreground": false,
+    "clipboard": false,
+    "settingsOrProfilerWrites": false,
+    "manualClientSync": false,
+    "publication": false
+  },
+  "documentationValidation": {
+    "exitCode": 0,
+    "classifiedSources": 1080,
+    "reachableTOCXML": 623,
+    "settingDefinitions": 438,
+    "savedVariables": 24,
+    "localLinks": 17142,
+    "sourceInventoryAndEvidenceCurrent": true
+  }
+}

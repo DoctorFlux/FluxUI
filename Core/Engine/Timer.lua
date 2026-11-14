@@ -15,7 +15,12 @@ local pcall = pcall
 local geterrorhandler = geterrorhandler
 
 local _After = C_Timer and C_Timer.After
+Timer.HasNativeAfter = type(_After) == "function"
 local _NewTicker = C_Timer and C_Timer.NewTicker
+-- Captured capability, unaffected by later legacy compatibility globals.
+-- Frame observers retain their error/retry semantics when only a polyfill
+-- (which reschedules after the callback) is available.
+Timer.HasNativeTicker = type(_NewTicker) == "function"
 
 -- Local polyfill only when C_Timer is missing. Self-disarming; never touches _G.C_Timer.
 local waits = {}

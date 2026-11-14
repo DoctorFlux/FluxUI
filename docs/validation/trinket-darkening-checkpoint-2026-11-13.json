@@ -1,0 +1,17 @@
+{
+  "date": "2026-11-13",
+  "createdUTC": "2026-11-13T07:26:24.359362+00:00",
+  "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d3c9-c166-71f2-b8b4-0d21db493723\\trinket-darkening-20261113T072613Z",
+  "verified": true,
+  "sourceFiles": 2627,
+  "revision": "26f886e3ea5371b196ab235d2dace0c156002285",
+  "branch": "main",
+  "hooksPath": ".githooks",
+  "settingsMetadataEntries": 7,
+  "settingsPolicy": "Retail on-disk settings hashed read-only; no settings values copied; no quiescent backup claimed.",
+  "sha256": {
+    "source.zip": "096b6165dce9f5f8e6e1d14576e50e571fc73994ffeaa308ebd0bec82470c2ab",
+    "history.bundle": "988d4acdf210f72f8cf2aa08ace9b84385af8d97086c6815aa1c25ed7243fef9",
+    "source-manifest.json": "77f70e490d5f26b3f7a24c970352ff443dde618c905908908065aa5913da4473"
+  }
+}

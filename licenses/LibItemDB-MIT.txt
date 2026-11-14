@@ -1,0 +1,37 @@
+MIT License
+
+Copyright (c) 2026 Pimptasty
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+Bundled data: LibItemDB-v1.9.0 generated vendor BUY-price maps only.
+Release: https://www.curseforge.com/wow/addons/libitemdb/files/9580874
+Download: https://mediafilez.forgecdn.net/files/9580/874/ItemDB-ItemDB-v1.9.0.zip
+ZIP SHA256: 852b091101bf709f54026369abe240cd3060b8fe20b601f3a457209740693afa
+Input headers and map/CSV SHA256 identities are retained in the catalog.
+Stock eligibility uses Wrath/Cata emulator npc_vendor maxcount == 0 and
+ExtendedCost == 0; each profile's raw ItemSparse.BuyPrice is divided by its
+verified max(VendorStackCount, 1) for a physical-item price. All 11617 raw
+prices matched the exact-build CSV; default counts are exhaustive.
+Unit inputs: tools/data/vendor_catalog_units.json; SHA256: 12a63943be34629dacdad2e9823e636e48eb36cc1e7bcc98c8c9c4e935811e67
+Formula facts verified in TrinityCore ItemTemplate.h/GetBuyCount and Player.cpp,
+pin 01df6f3e1f66c9df867bceb27c7cdc7c4ecf737c; no C++ implementation copied.
+Dated generated evidence is not native stock/access or character-discount
+proof. Missing rows stay unknown. No ItemDB runtime is included.
+Retail is separate GPL-2.0-or-later data; see TrinityCore-VendorData.txt.

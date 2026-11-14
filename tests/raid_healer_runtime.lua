@@ -313,7 +313,11 @@ local function exercise(client,body)
 end
 
 for _,client in ipairs({"live","forever","classic","classic_era","classic_anniversary"})do exercise(client)end
-local stale=unitSource:gsub('pendingPaint%[frame%]=nil','-- stale work intentionally retained')
+-- Rebind now both removes the map entry and clears/recycles its dirty flags.
+-- Retaining the entry alone is harmless when those flags were already cleared.
+local stale,changed=unitSource:gsub('local discarded = pendingPaint%[frame%]%s+pendingPaint%[frame%]=nil%s+ReleasePaintFlags%(frame, discarded%)',
+    '-- stale work and its old-unit flags intentionally retained')
+check(changed==1,"negative control mutates the current rebind cleanup")
 check(not pcall(exercise,"live",stale),"negative control rejects retained old-unit work on rebind")
 local noHide=unitSource:gsub('if FluxRaidAuras then FluxRaidAuras.Clear%(self%) end','-- missing hide cleanup')
 check(not pcall(exercise,"live",noHide),"negative control rejects missing hide cleanup")

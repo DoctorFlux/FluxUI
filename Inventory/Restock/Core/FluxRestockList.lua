@@ -472,8 +472,31 @@ end
 function List.RecordMerchantPrices(merchantIndex)
     if type(merchantIndex) ~= "table" then return end
     local prices = GetPriceStore()
+    local s = Settings()
+    s.vendorItems = type(s.vendorItems) == "table" and s.vendorItems or {}
+    s.merchantSources = type(s.merchantSources) == "table" and s.merchantSources or {}
     for itemID, meta in pairs(merchantIndex) do
-        if meta.unitPrice and meta.unitPrice > 0 then
+        s.vendorItems[itemID] = true
+        local stock = tonumber(meta.numAvailable)
+        local source = s.merchantSources[itemID] or {}
+        -- A remembered buy price alone says nothing about replenishable stock.
+        -- Limited/unknown supplies remain auction eligible. Never infer by name.
+        if stock == -1 and meta.isPurchasable ~= false and not meta.hasExtendedCost then
+            source.unlimited = true
+            source.limited = nil
+            source.unitPrice = meta.unitPrice
+            local price, count = tonumber(meta.price), tonumber(meta.batchQty)
+            if price and price >= 0 and price % 1 == 0 and count and count >= 1 and count % 1 == 0
+                and price / count == meta.unitPrice then
+                source.priceNumerator, source.priceDenominator = price, count
+            else source.priceNumerator, source.priceDenominator = nil, nil end
+        elseif stock and stock >= 0 and stock % 1 == 0 then
+            source.limited = true
+            source.unlimited = nil
+            source.lastAvailable = stock
+        end
+        s.merchantSources[itemID] = source
+        if meta.unitPrice and meta.unitPrice >= 0 then
             prices[itemID] = meta.unitPrice
         end
     end
@@ -604,6 +627,8 @@ local function EnrichItemEntryBankCounts(entry)
     local bank = Bank()
     if entry.isChronoboon and Cons and Cons.GetChronoboonBankCount then
         entry.bankCount = Cons.GetChronoboonBankCount()
+    elseif entry.restockSource == "craftMaterial" and bank then
+        entry.bankCount = bank.GetCount(entry.itemID, { charges = false })
     elseif IsChargeRestockItem(entry.itemID) and bank then
         entry.bankCount = bank.GetCount(entry.itemID, { charges = true })
     elseif bank then
@@ -798,6 +823,37 @@ function FV.GetRestockTargetItems(opts)
         end
     end
 
+    local auction = _G.FluxAuctionRestock
+    if auction and auction.GetVendorCraftTargets then
+        local temporary = auction.GetVendorCraftTargets(list)
+        for itemID, extra in pairs(temporary) do
+            local entry
+            for _, row in ipairs(list) do if row.itemID == itemID then entry = row; break end end
+            if not entry then
+                local name, texture = GetItemNameIcon(itemID)
+                entry = { itemID = itemID, name = name, texture = texture, target = 0,
+                    bagCount = GetBagCountFor(itemID, false), restockSource = "craftMaterial" }
+                EnrichItemEntryBankCounts(entry)
+                ApplyMerchantAvailability(entry, merchantIndex)
+                list[#list + 1] = entry
+            end
+            entry.craftBaseTarget = entry.target
+            local scale = 1
+            if entry.restockSource ~= "craftMaterial" and auction.SetItemUnits then
+                local units = auction.SetItemUnits({ itemID = itemID })
+                scale = units.unitsPerItem
+            end
+            -- Recipe quantities are physical copies; an existing direct target
+            -- can use charges. Keep its target in the units it already owns.
+            if scale then
+                entry.craftUnitsPerItem = scale
+                entry.craftTarget, entry.craftVendorLimit = extra.target * scale, extra.maxUnitPrice
+                entry.craftPending = math.min(extra.target, extra.pending or 0) * scale
+                entry.craftNeed = extra.need ~= nil and extra.need * scale or nil
+                entry.target = entry.target + entry.craftTarget
+            end
+        end
+    end
     if not opts.merchantAware then
         optionsPanelCache = list
         optionsPanelCacheTime = GetTime and GetTime() or 0
@@ -909,14 +965,33 @@ function FV.RefreshRestockCacheEntries(items, merchantIndex)
         if entry.itemID then
             local Registry = _G.FluxRestockItemRegistry
             local isCharge = Registry and Registry.IsChargeItem and Registry.IsChargeItem(entry.itemID)
-            entry.bagCount = GetBagCountFor(entry.itemID, isCharge)
+            entry.bagCount = GetBagCountFor(entry.itemID, entry.restockSource ~= "craftMaterial" and isCharge)
             if entry.restockSource == "consumable" then
                 local Cons = _G.FluxNCConsumables
                 entry.target = (Cons and Cons.GetPresetRestockTarget and Cons.GetPresetRestockTarget(entry.itemID)) or entry.target
-            else
+            elseif entry.restockSource ~= "craftMaterial" then
                 entry.target = FV.GetRestockTargetForItem(entry.itemID)
             end
+            if entry.craftTarget then entry.target = (entry.craftBaseTarget or 0) + entry.craftTarget end
             EnrichItemEntryBankCounts(entry)
+        end
+    end
+    local auction = _G.FluxAuctionRestock
+    if auction and auction.GetVendorCraftTargets then
+        local bases = {}
+        for _, entry in ipairs(items) do
+            local base = {}; for key, value in pairs(entry) do base[key] = value end
+            if base.craftBaseTarget ~= nil then base.target = base.craftBaseTarget end
+            bases[#bases + 1] = base
+        end
+        local temporary = auction.GetVendorCraftTargets(bases)
+        for _, entry in ipairs(items) do
+            if entry.craftTarget ~= nil then
+                local extra = temporary[entry.itemID]
+                local scale = entry.craftUnitsPerItem or 1
+                entry.craftNeed = extra and extra.need ~= nil and extra.need * scale or 0
+                if not extra then entry.target, entry.craftTarget = entry.craftBaseTarget or 0, 0 end
+            end
         end
     end
 end
@@ -929,7 +1004,10 @@ local function EntryNeed(entry)
     if entry.countBank then
         have = have + (entry.bankCount or 0)
     end
-    return math.max(0, entry.target - have)
+    if entry.craftNeed ~= nil then
+        return math.max(0, (entry.craftBaseTarget or 0) - have) + entry.craftNeed
+    end
+    return math.max(0, entry.target - have - (entry.craftPending or 0))
 end
 List.EntryNeed = EntryNeed
 
@@ -949,6 +1027,7 @@ function FV.GetRestockTotalCost(list)
     for _, entry in ipairs(list) do
         local need = EntryNeed(entry)
         if need > 0 and entry.unitPrice and FV.IsRestockEntrySoldAtVendor(entry) then
+            if entry.craftUnitsPerItem and entry.craftUnitsPerItem > 1 then need = math.ceil(need / entry.craftUnitsPerItem) end
             total = total + need * entry.unitPrice
         end
     end
@@ -961,6 +1040,8 @@ end
 
 function FV.RefreshMerchantOptionsCheckboxes(opts)
     opts = type(opts) == "table" and opts or {}
+    local auction = _G.FluxAuctionRestock
+    if auction and auction.SettingsChanged then auction.SettingsChanged() end
     if not opts.skipRestockPanelRebuild and FV.InvalidateRestockOptionsPanelCache then
         FV.InvalidateRestockOptionsPanelCache()
     end

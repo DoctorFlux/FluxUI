@@ -1,0 +1,11 @@
+{
+  "snapshot": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\09\\01a1c03e-c615-7f02-a24a-3e5ed07300f1\\options-loot-tabs-before-20261109T141808Z",
+  "rawSHA256": {
+    "AddonOptions/FluxOptionsCatalog.lua": "bdcbff04a2503631f6a936489349fc714f7ee5cd39c38098f955d5b8f19e3f5c",
+    "tests/options_navigation.lua": "61e2b69f1edbc2cb8fc01e7040d0dc662e048d87ec066814bd42f8a91426f134",
+    "tests/options_rework.lua": "6b1c60500e74e8f06dc18909200666f27eace1f9d214c32613c7f32911bfe5b0",
+    "docs/validation/options-sorting-2026-11-09.json": "da5103fc61b8da790e188c034bb372ef72a0cb147436bd77874703c57bceb9f3"
+  },
+  "fullRecovery": "options-sorting-checkpoint-2026-11-09.json",
+  "settings": "Existing read-only metadata; no settings writes"
+}

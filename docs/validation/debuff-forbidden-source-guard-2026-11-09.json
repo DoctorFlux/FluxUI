@@ -1,0 +1,37 @@
+{
+  "change_id": "DEBUFF-FORBIDDEN-READ-20261109",
+  "full": {
+    "pass": 271,
+    "fail": 0,
+    "syntaxFiles": 940
+  },
+  "sourceGuard": "Complete current LF-normalized Lua corpus equals full manifest;owned sources equal comparison hashes",
+  "copies": [
+    {
+      "client": "_retail_",
+      "matches": true
+    },
+    {
+      "client": "_forever_",
+      "matches": true
+    },
+    {
+      "client": "_classic_",
+      "matches": true
+    },
+    {
+      "client": "_classic_era_",
+      "matches": true
+    },
+    {
+      "client": "_anniversary_",
+      "matches": true
+    }
+  ],
+  "candidate": {
+    "UnitFrames/FluxUnitFrames_DebuffTint.lua": "abee3277e58429709eb7b89200a0a23e0d40ced64fdbe3985c4904500cd2ea96",
+    "tests/friendly_debuff_tint.lua": "e11e7ab9010e7c5816553fad900928733af5fe9055621b7c0da8b6a131badc95"
+  },
+  "native": "Original candidate FAIL per user13:45:15;correction not yet tested natively",
+  "openRequirement": "Restricted numeric dispel colors unresolved;portrait layer retained"
+}

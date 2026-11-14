@@ -1,5 +1,5 @@
 -- Friendly debuff chrome. Native aura slots own restricted border colors;
--- readable types also color the existing numeric labels. Never tint backdrops.
+-- Readable types color numeric labels; restricted native descendants are never read.
 local _, ns = ...
 local UF = ns.UnitFrames
 local states, dirty = {}, {}
@@ -22,9 +22,15 @@ local function Eligible(frame)
 end
 local function Friendly(unit)
     if unit == "player" then return true end
-    local query = UnitCanAssist or UnitIsFriend
+    -- Assist rules can differ from reaction (duels/charm). Enemy frames must
+    -- never inherit friendly debuff chrome, even when an assist probe succeeds.
+    if UnitCanAttack then
+        local ok, value = pcall(UnitCanAttack, "player", unit)
+        if not ok or Secret(value) or value == true then return false end
+    end
+    local query = UnitIsFriend or UnitCanAssist
     if not query then return false end
-    local ok, value = pcall(query, "player", unit, true, true)
+    local ok, value = pcall(query, "player", unit)
     return ok and not Secret(value) and value == true
 end
 local function Enabled(frame)
@@ -91,7 +97,12 @@ local function Parts(frame)
     local root = BorderSources(frame)
     for _, texture in ipairs(BorderSources(frame.atlasBorderFrame)) do root[#root + 1] = texture end
     local parts = {{parent = frame, sources = root}}
-    if frame.PortraitFrame then parts[#parts + 1] = {parent = frame.PortraitFrame, sources = BorderSources(frame.PortraitFrame)} end
+    if frame.PortraitFrame then
+        -- Combat raises the portrait border. Inherit that move so its native
+        -- debuff overlay stays above it without touching a restricted button.
+        parts[#parts + 1] = {parent = frame.PortraitFrame.FluxBorderFrame or frame.PortraitFrame,
+            sources = BorderSources(frame.PortraitFrame)}
+    end
     local separator = frame._fluxPartyDivider or frame.HealthPowerSeparator
     if separator then parts[#parts + 1] = {parent = frame, sources = {separator}, alphaSource = separator} end
     for _, part in ipairs(parts) do
@@ -128,6 +139,17 @@ local function PaintText(state, kind)
         else item.label:SetTextColor(item.r, item.g, item.b, item.a) end
     end
     state.textKind = kind
+end
+local function Suspend(state)
+    -- Retire the public owners synchronously on a reaction/identity change.
+    -- Waiting for After(0) lets a native UNIT_AURA paint the new enemy first.
+    -- Never touch the registered, potentially forbidden descendants.
+    for _, part in ipairs(state.parts) do
+        for _, box in ipairs(part.boxes or {}) do box:Hide(); box:SetUnit("none") end
+        if part.host then part.host:Hide() end
+    end
+    state.unit = "none"
+    PaintText(state, nil)
 end
 local function BuildNative(state)
     if not (AuraContainerSortMethod and Enum and Enum.CustomAuraButtonDispelTypeTextureStyle) then return false end
@@ -212,6 +234,7 @@ local function Update(state, refreshNative)
                 if state.filter ~= filter then box:SetAuraSlotFilterString("friendlyTint", filter) end
                 if state.unit ~= unit then box:SetUnit(unit)
                 elseif state.filter == filter and refreshNative and unit ~= "none" then box:UpdateAllAuras() end
+                if unit == "none" then box:Hide() else box:Show() end
             end
         end
         state.unit, state.filter = unit, filter
@@ -263,6 +286,10 @@ local function Flush()
     for frame, refreshNative in pairs(batch) do if states[frame] then Update(states[frame], refreshNative) end end
 end
 local function Queue(frame, refreshNative)
+    if states[frame] and (frame.unit == "target" or frame.unit == "focus") and not Friendly(frame.unit) then
+        Suspend(states[frame]); dirty[frame] = nil
+        return
+    end
     dirty[frame] = dirty[frame] == true or refreshNative == true
     if scheduled then return end
     scheduled = true

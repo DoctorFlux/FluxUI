@@ -282,19 +282,20 @@ function ns.FluxOptionsBuildPartyRaidTab()
                 rosterSize = {
                     type = "select",
                     name = "Roster size",
+                    desc = "Raid previews show 10 to 40 members. Use Party Frames for the five-member party preview.",
                     order = 3,
                     width = "normal",
                     values = {
-                        ["5"] = "5",  ["10"] = "10", ["15"] = "15", ["20"] = "20",
+                        ["10"] = "10", ["15"] = "15", ["20"] = "20",
                         ["25"] = "25", ["30"] = "30", ["35"] = "35", ["40"] = "40",
                     },
-                    sorting = { "5", "10", "15", "20", "25", "30", "35", "40" },
+                    sorting = { "10", "15", "20", "25", "30", "35", "40" },
                     get = function()
                         local n = tonumber(GetRaidDB().previewRosterSize) or 40
-                        return tostring(max(5, min(40, floor(n / 5) * 5)))
+                        return tostring(max(10, min(40, floor(n / 5) * 5)))
                     end,
                     set = function(_, val)
-                        GetRaidDB().previewRosterSize = tonumber(val) or 40
+                        GetRaidDB().previewRosterSize = max(10, min(40, floor((tonumber(val) or 40) / 5) * 5))
                         AfterPreviewChange()
                     end,
                 },

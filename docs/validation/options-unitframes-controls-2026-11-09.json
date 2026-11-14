@@ -1,0 +1,56 @@
+{
+  "date": "2026-11-09",
+  "scope": "Latest Unit Frames/Combat organization; actual original builder placements and complete production shell on five desktop models; no native VM/rendering",
+  "negativeControls": [
+    {
+      "control": "bars-left-in-utilities",
+      "test": "tests/options_navigation.lua",
+      "exit": 1,
+      "firstFailure": "lua: tests/options_navigation.lua:5: live: Combat owns frames, bars and both binding features"
+    },
+    {
+      "control": "nameplates-left-in-qol",
+      "test": "tests/options_navigation.lua",
+      "exit": 1,
+      "firstFailure": "lua: tests/options_navigation.lua:5: live: canonical placement nameplates/questOverlayEnabled -> unitframes/nameplates"
+    },
+    {
+      "control": "appearance-left-in-general",
+      "test": "tests/options_navigation.lua",
+      "exit": 1,
+      "firstFailure": "lua: tests/options_navigation.lua:5: live: canonical placement unitframes/general/use3DPortraits -> unitframes/appearance"
+    },
+    {
+      "control": "party-duplicated-in-raid",
+      "test": "tests/options_navigation.lua",
+      "exit": 1,
+      "firstFailure": "lua: tests/options_navigation.lua:5: live: one primary location for unitframes/partyRaid/partyStyle/auraScale"
+    },
+    {
+      "control": "raid-helper-wrong-tab",
+      "test": "tests/options_navigation.lua",
+      "exit": 1,
+      "firstFailure": "lua: tests/options_navigation.lua:5: live: consolidated old route unitframes/partyRaid"
+    },
+    {
+      "control": "lost-parent-hidden-gate",
+      "test": "tests/options_rework.lua",
+      "exit": 1,
+      "firstFailure": "lua: tests/options_rework.lua:11: live: split tabs retain original parent/client hidden gates"
+    },
+    {
+      "control": "stale-nameplates-generation",
+      "test": "tests/options_rework.lua",
+      "exit": 1,
+      "firstFailure": "lua: tests/options_rework.lua:11: live: Unit Frames invalidates when its Nameplates source changes"
+    }
+  ],
+  "candidate": "5777 actual-builder and441 complete-shell checks PASS",
+  "candidateNormalizedSHA256": {
+    "AddonOptions/FluxOptionsCatalog.lua": "d6ddb74472989acd99855fbbc8e56bf7615166026edd0e04f23fdfbdee8e452c",
+    "AddonOptions/FluxOptionsNavigation.lua": "e845d5cff87fc88340327fadcfc96d7b71b6a9dc948b4c7e9984a8fe2c197024",
+    "AddonOptions/FluxOptionsRender.lua": "d891a227a481648c67d6cab1ace2acfdeb1ffb75e179c3307d7a94f8164553aa",
+    "tests/options_navigation.lua": "3ef3d58e56a6d1e714a4de31c22c9d6e4c1447f6e069f06dc6581f5c598a36c1",
+    "tests/options_rework.lua": "f2509c6e3e81904335ba34ad10287cc45c4b93742706b7028d62fb1dd92da7b9"
+  }
+}

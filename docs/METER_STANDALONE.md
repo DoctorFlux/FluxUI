@@ -1,5 +1,121 @@
 # Native meter skin and standalone threat pane
 
+## Meter control recovery — 14 November 2026
+
+Full validation: 365 scripts and 1053 Lua syntax files PASS; complete current Lua manifest verified.
+
+`METER-CONTROL-RECOVERY-20261114` addresses the lost Current defaults and the
+reported Damage Taken header over a requested Dispels setup pane. The audit
+traces these behaviors to the 13 November `SECRET-UI-20261113` removal of native
+selection helpers. The 14 November source recovery restored that already-limited
+version; repeating that recovery would retain the same missing controls.
+
+This section supersedes the meter capability withdrawal below. Its tooltip
+ownership correction and the later header alignment fix remain required. The
+existing direct-implementation and user-performed native testing choices apply.
+
+| ID | Required result | Acceptance |
+| --- | --- | --- |
+| MCR-01 | Preset, custom, structure, type, Meter-tab and setup choices apply their requested native types | Production control regressions; native operation pending |
+| MCR-02 | Every displayed native pane defaults to Current after an explicit layout/type choice | Mixed Overall/history, same-layout reselection and historical-ID regressions; native rollover pending |
+| MCR-03 | A required extra native window is created through its original menu entry, within Blizzard's three-window limit | Native menu/window regression; Threat remains independent |
+| MCR-04 | Later manual Overall/history choices survive geometry, background refresh and ordinary reopen | No background selection or history reset; existing lifecycle regressions |
+| MCR-05 | Selection consumes only existing native menu descriptions with verified field/method provenance | Missing or tainted cache refuses selection; no native menu regeneration or direct configuration setter calls |
+| MCR-06 | Existing appearance, saved layouts, native localized text and input ownership remain | Desktop preservation checks; native pixels, localization and controller checks NOT RUN |
+
+The selection path reads Blizzard's existing `menuDescription` cache after
+`issecurevariable` checks. It resolves the original local menu proxy methods
+through their native metatable and checks the fields used for selection. The
+original proxy `Pick` fetches its original responder/data through native
+`SecureCallResponder`; Flux supplies no replacement type/session data. Current
+uses the original native `{type=Current, sessionID=nil}` entry. Native setup owns
+initial cache creation and newly created windows.
+
+Flux does not call `GenerateMenu`, `RegisterMenu`, `OpenMenu`,
+`DropdownButton:Pick`, private configuration setters or copied responders.
+Unavailable or tainted descriptions retain truthful setup feedback; reload
+outside combat and reselect the layout. These guards are observable provenance
+checks, not certification of WoW's secure VM. There is no new event, hook,
+timer, ticker or recurring driver. Existing coalesced layout work remains.
+
+Retail source pin `297d7aaaa736f346b3e036f38ee088eaf7f8c07f` and Forever pin
+`bebcb6bf309cf41b41bd74f8ca651e6a105b2676` were rechecked. The
+[native menu selection implementation](https://github.com/Gethe/wow-ui-source/blob/bebcb6bf309cf41b41bd74f8ca651e6a105b2676/Interface/AddOns/Blizzard_Menu/Menu.lua)
+supports custom `Pick` callers; the
+[native meter menus](https://github.com/Gethe/wow-ui-source/blob/bebcb6bf309cf41b41bd74f8ca651e6a105b2676/Interface/AddOns/Blizzard_DamageMeter/DamageMeterSessionWindow.lua)
+own the type, Current and New Window entries. Other established clients and the
+Details backend retain their existing paths.
+
+The external `meter-recovery/checkpoint-20261114T081300Z` preserves 2,771 source
+files and all-ref Git history on main with `.githooks`. Available settings were
+hashed into 53 metadata entries; no private contents were copied or restored.
+No client input, foreground/clipboard control, settings/profiler write, manual
+sync, reset or publication is part of this recovery.
+
+Native acceptance remains NOT RUN: reload outside combat, choose the Dispels and
+Interrupts presets, verify matching titles/data and Current in every pane, then
+test two fights and manual Overall/history through reopen and layout reselection.
+Check native/Flux controller reachability, focus, activation, back and selection
+indication through the existing controls. No new focus targets or bindings are
+introduced; controller, combat/taint, localized clipping, pixels and CPU/FPS need
+separate client evidence. Desktop results and exact identities are recorded in
+[recovery evidence](validation/meter-control-recovery-2026-11-14.json).
+
+## Header alignment recovery — 13 November 2026
+
+`METER-TITLE-20261113` follows the supplied screenshot: Damage Done, Healing Done
+and Dispels can retain the native dropdown offset while Threat keeps the intended
+five-pixel left inset and shared baseline. Threat in the screenshot is the accepted
+appearance; the existing direct-implementation and user-performed native testing
+choices continue to apply.
+
+| ID | Required result | Acceptance |
+| --- | --- | --- |
+| METER-TITLE-01 | Every native type label uses Threat's existing header inset and baseline, including initially unresolved panes | Actual skin regression at four scales; native screenshot comparison pending |
+| METER-TITLE-02 | Reopen, anchor/width resets and combat deferral recover alignment | Hidden first show, unchanged cached dimensions, combat resize and deferred refresh regressions |
+| METER-TITLE-03 | Native wording, menus, timers, input ownership and saved settings survive | Existing native skin/ownership/timer tests; actual localized/controller/combat operation pending |
+
+The skin now accepts a public zero initial label width, retries alignment on
+`OnShow`, and checks actual label anchors and width before reusing its cached
+layout. Combat-time resize queues the existing out-of-combat header refresh.
+Saved original geometry is restored on release, including an initial zero width;
+released hooks remain idle. One guarded show hook per native session pane is added;
+there is no new frame, texture, timer, ticker, event registration or polling loop.
+The native type label remains a passive region inside its original dropdown.
+Native mouse/keyboard/controller handlers, focus owners, labels and action hints
+remain unchanged; no decorative region becomes a focus target.
+
+Retail `297d7aaaa736f346b3e036f38ee088eaf7f8c07f` (12.1.5.70783) and Forever
+`bebcb6bf309cf41b41bd74f8ca651e6a105b2676` (1.60.1.70938) were resolved from
+Gethe/wow-ui-source for this task. Their `DamageMeterSessionWindow.xml` declares
+the native label's LEFT-to-arrow and RIGHT-to-session anchors; the Lua getter
+returns that region and the native type setter supplies its localized text.
+These are source builds; the running client build was not captured. The existing
+Era, Anniversary and Mists targets/Details backend are preserved and unchanged.
+
+- [Retail native header template](https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_DamageMeter/DamageMeterSessionWindow.xml)
+- [Retail native label owner](https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_DamageMeter/DamageMeterSessionWindow.lua)
+- [Forever native label owner](https://github.com/Gethe/wow-ui-source/blob/bebcb6bf309cf41b41bd74f8ca651e6a105b2676/Interface/AddOns/Blizzard_DamageMeter/DamageMeterSessionWindow.lua)
+
+Verified external checkpoint `meter-title-20261113T181737Z` preserves all 2,748
+source files and all-ref Git history on main. Available settings were read and
+hashed into 76 external metadata entries; private contents were not copied.
+No client input, foreground/clipboard control, settings/profiler write, manual
+sync, commit or publication occurred. The supplied screenshot establishes the
+reported visual defect; no candidate native capture was made. After an
+out-of-combat reload, reopen Meter, switch panes/layouts and confirm the title
+insets and baselines match Threat before/after a fight. Native pixel parity,
+localized clipping, menus/controller operation, taint and CPU/FPS remain NOT RUN.
+
+[Exact source identities and desktop results](validation/meter-title-2026-11-13.json).
+[Full validation report](validation/meter-title-full-2026-11-13.json).
+
+13 November SECRET-UI-20261113 supersedes earlier automatic native meter
+selection claims: Blizzard controls own types/window creation/Current; Flux
+keeps saved layout requests with explicit setup feedback. Unit/pet/raid/preview
+hover state is isolated from the world-cursor tooltip. Reload/native retest
+required. [Fix, capability limit and evidence](SECRET_TOOLTIP_METER_ERRORS.md).
+
 ## FluxUI menu and Meter-tab routes — 7 November 2026
 
 7 November meter menu/tab routes (METER-WINDOW-ROUTES-20261107): fixed the

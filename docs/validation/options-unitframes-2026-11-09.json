@@ -1,0 +1,181 @@
+{
+  "date": "2026-11-09",
+  "change_id": "OPTIONS-UNITFRAMES-20261109",
+  "utc": "2026-11-09T14:48:34.281663+00:00",
+  "requirements": "REQ-OPT-01 through20; latest additions18-20",
+  "userConfirmation": "Yes: move Quality of Life > Combat Nameplates and Cast Bar settings into Unit Frames; group Unit Frames, Action Bars, Bindings and Keybindings under Combat",
+  "navigation": {
+    "Quality of Life": [
+      "Interface",
+      "Status Bars",
+      "Damage Meter"
+    ],
+    "Combat": [
+      "Unit Frames",
+      "Action Bars",
+      "Bindings",
+      "Keybindings"
+    ],
+    "Utilities": [
+      "Loot & Items",
+      "Professions"
+    ],
+    "Unit Frames": [
+      "General",
+      "Appearance",
+      "Player",
+      "Target",
+      "Focus",
+      "Pet",
+      "Party Frames",
+      "Raid Frames",
+      "Cast Bars",
+      "Nameplates"
+    ],
+    "Loot & Items": [
+      "Loot",
+      "Vendor & Junk",
+      "Restock"
+    ],
+    "Action Bars": [
+      "Bars",
+      "Extra Buttons",
+      "Stance Order"
+    ],
+    "fixedFooter": [
+      "Settings",
+      "Profiles",
+      "Patch Notes",
+      "Credits"
+    ]
+  },
+  "ownedNormalizedSHA256": {
+    "AddonOptions/FluxOptions.lua": "911e3527d683d302b5388eb9bd3b359736b245ab78537b821bbb5748c33371e7",
+    "AddonOptions/FluxOptionsCatalog.lua": "d6ddb74472989acd99855fbbc8e56bf7615166026edd0e04f23fdfbdee8e452c",
+    "AddonOptions/FluxOptionsNavigation.lua": "e845d5cff87fc88340327fadcfc96d7b71b6a9dc948b4c7e9984a8fe2c197024",
+    "AddonOptions/FluxOptionsRender.lua": "d891a227a481648c67d6cab1ace2acfdeb1ffb75e179c3307d7a94f8164553aa",
+    "AddonOptions/FluxOptionsShell.lua": "80fda8d10361309604f80717a1868173cdd398029befc940ec9eef1281010510",
+    "AddonOptions/FluxOptionsWidgets.lua": "4c030354c09a5f8addaa3cdf3ea5a17b57ed561ff41b570bdda90e8a05151d32",
+    "AddonOptions/FluxOptionsSkin.lua": "3f22be01e5333caa5564f42745cd6c7a530994209be476522dba5da4b856a981",
+    "AddonOptions/FluxOptionsGameMenu.lua": "7265946dfae4b45b5a3417b15ff0772dd102619e14256db510ba70938c616e16",
+    "_FluxUI.toc": "f40a0ee261ba97aeeba9205c280a5cd0f2962c02e6a4dcd03b6ae166b5329aac",
+    "Battlezonemap/FluxWindowFrame.lua": "406c3b0c2ff6d9bafc5aa94b895e7f8d812a03a45da50c1476d9847eeef132c3",
+    "tests/options_navigation.lua": "3ef3d58e56a6d1e714a4de31c22c9d6e4c1447f6e069f06dc6581f5c598a36c1",
+    "tests/options_rework.lua": "f2509c6e3e81904335ba34ad10287cc45c4b93742706b7028d62fb1dd92da7b9"
+  },
+  "normalization": "CRLF to LF; other bytes retained",
+  "originalBuildersUnchangedFromCheckpoint": {
+    "AddonOptions/FluxOptionsUnitFrames.lua": true,
+    "AddonOptions/FluxOptionsRaidFrame.lua": true,
+    "AddonOptions/FluxOptionsNameplates.lua": true
+  },
+  "originalBuilderNormalizedSHA256": {
+    "AddonOptions/FluxOptionsUnitFrames.lua": "f36b14499d2a989206178e3ed8c1300b4a84595961d2e85545aad4fffb85fce6",
+    "AddonOptions/FluxOptionsRaidFrame.lua": "e35c9f3547b4953095a091bd509b8dea2586ff6a56ef95bea7212d7cf8a7f622",
+    "AddonOptions/FluxOptionsNameplates.lua": "8e377a3f713f3b1a2aeaaeb5b7f0d5eab672b24c3d92a2087a4f7c84888617cb"
+  },
+  "focused": {
+    "actualBuilderChecks": 5777,
+    "completeShellChecks": 441,
+    "mappedDeclarationsByClient": {
+      "live": 468,
+      "forever": 468,
+      "classic": 471,
+      "classic_era": 471,
+      "classic_anniversary": 471
+    },
+    "scope": "Five desktop client models; declarations include headers/descriptions, not visible controls for one character"
+  },
+  "fullReport": "options-unitframes-full-2026-11-09.json",
+  "full": {
+    "pass": 272,
+    "fail": 0,
+    "syntaxFiles": 942,
+    "syntaxFailures": 0,
+    "currentCorpusDrift": []
+  },
+  "mapping": "options-navigation-map-2026-11-09.csv",
+  "negativeControls": "options-unitframes-controls-2026-11-09.json",
+  "checkpoint": "options-unitframes-checkpoint-2026-11-09.json",
+  "sourceContext": "Original selected option objects/root/handler/info paths; no original builder or stored data changes. Original parent hidden and disabled gates retained, including split nested party-style group.",
+  "scopeBehavior": "General keeps independent individual-unit and party/raid scopes, switches and resets. Appearance holds shared visuals, aura timing and threat. Raid Frames configures compact raid and party; Party Frames keeps player-style party controls.",
+  "generationBehavior": "Unit Frames depends on both original unitframes and nameplates generations. Source refresh replaces/release cached view. Actual shell regression and lost-generation negative control verify this.",
+  "routeCompatibility": "QoL Combat and original Nameplates -> Unit Frames/Nameplates; castBarThemes -> Cast Bars; old partyRaid/helper -> Raid Frames. Other previous routes retained.",
+  "resources": "Catalog-only runtime change; no added polling, frame event, hook, timer or SavedVariables root. Up to10 pooled native tab buttons versus prior6 Unit Frames tabs; extra per-page section titles/cards built on demand with existing release ownership. No native CPU/FPS measurement.",
+  "clientCopiesMatch": {
+    "_forever_": {
+      "AddonOptions/FluxOptions.lua": true,
+      "AddonOptions/FluxOptionsCatalog.lua": true,
+      "AddonOptions/FluxOptionsNavigation.lua": true,
+      "AddonOptions/FluxOptionsRender.lua": true,
+      "AddonOptions/FluxOptionsShell.lua": true,
+      "AddonOptions/FluxOptionsWidgets.lua": true,
+      "AddonOptions/FluxOptionsSkin.lua": true,
+      "AddonOptions/FluxOptionsGameMenu.lua": true,
+      "_FluxUI.toc": true,
+      "Battlezonemap/FluxWindowFrame.lua": true
+    },
+    "_classic_": {
+      "AddonOptions/FluxOptions.lua": true,
+      "AddonOptions/FluxOptionsCatalog.lua": true,
+      "AddonOptions/FluxOptionsNavigation.lua": true,
+      "AddonOptions/FluxOptionsRender.lua": true,
+      "AddonOptions/FluxOptionsShell.lua": true,
+      "AddonOptions/FluxOptionsWidgets.lua": true,
+      "AddonOptions/FluxOptionsSkin.lua": true,
+      "AddonOptions/FluxOptionsGameMenu.lua": true,
+      "_FluxUI.toc": true,
+      "Battlezonemap/FluxWindowFrame.lua": true
+    },
+    "_classic_era_": {
+      "AddonOptions/FluxOptions.lua": true,
+      "AddonOptions/FluxOptionsCatalog.lua": true,
+      "AddonOptions/FluxOptionsNavigation.lua": true,
+      "AddonOptions/FluxOptionsRender.lua": true,
+      "AddonOptions/FluxOptionsShell.lua": true,
+      "AddonOptions/FluxOptionsWidgets.lua": true,
+      "AddonOptions/FluxOptionsSkin.lua": true,
+      "AddonOptions/FluxOptionsGameMenu.lua": true,
+      "_FluxUI.toc": true,
+      "Battlezonemap/FluxWindowFrame.lua": true
+    },
+    "_anniversary_": {
+      "AddonOptions/FluxOptions.lua": true,
+      "AddonOptions/FluxOptionsCatalog.lua": true,
+      "AddonOptions/FluxOptionsNavigation.lua": true,
+      "AddonOptions/FluxOptionsRender.lua": true,
+      "AddonOptions/FluxOptionsShell.lua": true,
+      "AddonOptions/FluxOptionsWidgets.lua": true,
+      "AddonOptions/FluxOptionsSkin.lua": true,
+      "AddonOptions/FluxOptionsGameMenu.lua": true,
+      "_FluxUI.toc": true,
+      "Battlezonemap/FluxWindowFrame.lua": true
+    }
+  },
+  "sourcePins": [
+    "options-source-pins-2026-11-09.json",
+    "options-fidelity-sources-2026-11-09.json",
+    "options-scroll-sources-2026-11-09.json"
+  ],
+  "acceptedSidebar": "options-sidebar-reference-2026-11-09.json",
+  "reference": {
+    "path": "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\__AddonsForRef\\Naowth Forever\\NaowhForever\\Core\\Options\\Modules.lua",
+    "version": "1.2.19",
+    "rawSHA256": "6158e1a09faf1cf5a4b8cc61a03c35d9f86d42b6044d6d53dc928091a764ef4f",
+    "license": "Own source/art all rights reserved; design inspection only"
+  },
+  "nativeAcceptance": "NOT RUN: selected Witchcraft route remains unavailable, previous setup request unanswered. No game interaction or source/build-loaded claim. Prior blocked audit predates this user-authorized implementation; fresh audit starts from this updated scope.",
+  "gameInputOrFocusControl": false,
+  "settingsWrites": false,
+  "profilerWrites": false,
+  "manualSync": false,
+  "publication": false,
+  "documentation": {
+    "command": "python docs/tools/build_reference.py; python docs/tools/validate_docs.py",
+    "exit": 0,
+    "result": "PASS: 975 classified sources; 605 TOC/XML reachable; 425 setting definitions; 24 SavedVariables; 15895 local links. Source inventory/evidence current. No files written."
+  },
+  "diffWhitespaceCheck": "PASS",
+  "supersededBy": "options-unit-frame-category-2026-11-09.json",
+  "evidenceStatus": "Historical Combat placement; latest user correction makes Unit Frame its own category"
+}

@@ -1,5 +1,12 @@
 # Unit-frame combat clicks, target-strip width and absorbs
 
+10 November native counterexample: the secure roster reveal remained valid, but
+its ordinary power repaint reached blocked partition SetHeight/Show. Earlier
+roster tests stubbed these painters; their results did not prove end-to-end child
+geometry permissions. The shared path is corrected and strict production-path
+coverage added. Native post-fix acceptance remains pending.
+[Correction and exact evidence](POWER_PARTITION_COMBAT_JOIN.md).
+
 9 November 2026 · UNITFRAME-COMBAT-20261109.
 
 The user reported an unusable target right-click menu in combat, a wide focus-target

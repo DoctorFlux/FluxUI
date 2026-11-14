@@ -306,6 +306,63 @@ local function CreateFluxLFGButton()
         -- Animation Logic
         btn.currentFrame = 0
         btn.isAnimating = false
+
+        local animationGeneration, animationStartedAt = 0, nil
+        local function AdvanceEyeFrame()
+            btn.currentFrame = (btn.currentFrame + 1) % 29
+            local frameX = (btn.currentFrame % 8) * 64
+            local frameY = math.floor(btn.currentFrame / 8) * 64
+            if eyeTexture then
+                eyeTexture:SetTexCoord(frameX/512, (frameX+64)/512, frameY/256, (frameY+64)/256)
+            end
+        end
+
+        local function StopEyeTimer()
+            animationGeneration = animationGeneration + 1
+            if animationStartedAt then
+                btn.totalElapsed = (btn.totalElapsed or 0) + math.max(0, GetTime() - animationStartedAt)
+                animationStartedAt = nil
+            end
+        end
+
+        local function StartEyeTimer()
+            StopEyeTimer()
+            if not btn.isAnimating or (btn.IsVisible and not btn:IsVisible()) then return end
+            local timer = _G.Flux and _G.Flux.Timer
+            if not (timer and timer.After and timer.HasNativeAfter ~= false and GetTime and btn.HookScript) then
+                -- Retain native frame visibility and the exact old fallback
+                -- when the managed timer service is unavailable.
+                btn:SetScript("OnUpdate", function(self, elapsed)
+                    if not self.isAnimating then return end
+                    self.totalElapsed = (self.totalElapsed or 0) + elapsed
+                    if self.totalElapsed >= 0.1 then
+                        self.totalElapsed = 0
+                        AdvanceEyeFrame()
+                    end
+                end)
+                return
+            end
+            btn:SetScript("OnUpdate", nil)
+            local generation = animationGeneration
+            animationStartedAt = GetTime()
+            timer.After(math.max(0, 0.1 - (btn.totalElapsed or 0)), function()
+                if generation ~= animationGeneration or not btn.isAnimating then return end
+                animationStartedAt = nil
+                if btn.IsVisible and not btn:IsVisible() then return end
+                btn.totalElapsed = 0
+                -- Rearm before painting, so a transient texture error cannot
+                -- permanently stop the eye (the old OnUpdate recovered too).
+                StartEyeTimer()
+                AdvanceEyeFrame()
+            end)
+        end
+
+        -- This is the owned Flux button. Parent visibility pauses the same
+        -- animation phase; stale one-shots are invalidated on hide/stop.
+        if btn.HookScript then
+            btn:HookScript("OnHide", StopEyeTimer)
+            btn:HookScript("OnShow", StartEyeTimer)
+        end
         
         local function UpdateLFGStatus()
             local shouldAnimate = false
@@ -347,26 +404,11 @@ local function CreateFluxLFGButton()
             if shouldAnimate and not btn.isAnimating then
                 btn.isAnimating = true
                 btn.currentFrame = 0
-                btn:SetScript("OnUpdate", function(self, elapsed)
-                    if not self.isAnimating then return end
-
-                    self.totalElapsed = (self.totalElapsed or 0) + elapsed
-                    if self.totalElapsed >= 0.1 then -- 0.1 second delay between frames
-                        self.totalElapsed = 0
-                        self.currentFrame = (self.currentFrame + 1) % 29 -- 29 frames total
-
-                        -- Calculate texture coordinates for current frame
-                        local frameX = (self.currentFrame % 8) * 64 -- 8 frames per row
-                        local frameY = math.floor(self.currentFrame / 8) * 64
-                        
-                        if eyeTexture then
-                            eyeTexture:SetTexCoord(frameX/512, (frameX+64)/512, frameY/256, (frameY+64)/256)
-                        end
-                    end
-                end)
+                StartEyeTimer()
             elseif not shouldAnimate and btn.isAnimating then
                 btn.isAnimating = false
                 btn.currentFrame = 0
+                StopEyeTimer()
                 btn:SetScript("OnUpdate", nil)
                 if eyeTexture then
                     -- Reset to first frame

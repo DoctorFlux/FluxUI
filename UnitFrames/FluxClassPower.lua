@@ -458,6 +458,47 @@ local function SchedulePosition(parentFrame, delay)
     end
 end
 
+-- Combat power events can arrive many times per second. They cannot move the
+-- native holder, so keep one latest-parent request instead of one repeating
+-- timer chain per event. The shared queue restores it immediately on regen.
+local combatPositionParent
+local combatPositionQueued = false
+local function RetryCombatPosition()
+    local parent = combatPositionParent
+    combatPositionParent = nil
+    combatPositionQueued = false
+    pcall(ns.ClassPower.UpdatePosition, parent)
+end
+
+local function QueueCombatPosition(parentFrame)
+    combatPositionParent = parentFrame
+    if combatPositionQueued then return end
+    if UF and UF.DeferProtected then
+        combatPositionQueued = true
+        UF.DeferProtected("classpower.position", RetryCombatPosition)
+    elseif C_Timer and C_Timer.After then
+        combatPositionQueued = true
+        C_Timer.After(0.5, RetryCombatPosition)
+    end
+end
+
+local combatVisibilityQueued = false
+local function RetryCombatVisibility()
+    combatVisibilityQueued = false
+    pcall(ns.ClassPower.ApplyVisibility)
+end
+
+local function QueueCombatVisibility()
+    if combatVisibilityQueued then return end
+    if UF and UF.DeferProtected then
+        combatVisibilityQueued = true
+        UF.DeferProtected("classpower.visibility", RetryCombatVisibility)
+    elseif C_Timer and C_Timer.After then
+        combatVisibilityQueued = true
+        C_Timer.After(0.5, RetryCombatVisibility)
+    end
+end
+
 function ns.ClassPower.ApplyVisibility()
     if ns.ForeverComboPoints then
         ns.ForeverComboPoints.RefreshAll(true)
@@ -466,9 +507,7 @@ function ns.ClassPower.ApplyVisibility()
     local show = not FluxUnitFrames_ShouldShowClassPower or FluxUnitFrames_ShouldShowClassPower()
     if not show then
         if InCombatLockdown() then
-            if C_Timer and C_Timer.After then
-                C_Timer.After(0.5, ns.ClassPower.ApplyVisibility)
-            end
+            QueueCombatVisibility()
             return
         end
         HideClassPowerFrames()
@@ -492,12 +531,13 @@ function ns.ClassPower.UpdatePosition(parentFrame)
         return
     end
     parentFrame = ResolveClassPowerParent(parentFrame)
+    if combatPositionQueued then combatPositionParent = parentFrame end
     local powerContainer = ResolvePowerContainer()
     if not powerContainer or not parentFrame then
         return
     end
     if InCombatLockdown() then
-        SchedulePosition(parentFrame, 0.5)
+        QueueCombatPosition(parentFrame)
         return
     end
 

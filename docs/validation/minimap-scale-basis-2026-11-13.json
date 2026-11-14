@@ -1,0 +1,53 @@
+{
+  "changeId": "MINIMAP-SCALE-BASIS-20261113",
+  "createdUTC": "2026-11-13T08:47:06.062797+00:00",
+  "requirement": "REQ-MBL-16",
+  "implemented": true,
+  "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d3b4-b7ec-7591-94d3-6d3b3097fb8a\\minimap-scale-basis-20261113T083834Z",
+  "baselineSourceFiles": 2644,
+  "settingsMetadataEntries": 103,
+  "settingsWrites": false,
+  "branch": "main",
+  "sourceHashes": {
+    "AddonOptions/FluxOptionsBattlezone.lua": "6a5e0953c5414bc15b4e275cf3d7eef585d131e989f4bacc9e00927f2cc73d7b",
+    "Minimap/FluxMinimapButtons.lua": "3de42882f769e90c594dd82888fefca59a1ed9e2ccef9aad3d8c1497c764f8f2"
+  },
+  "scope": "Default displayed100 is effective0.85;range10\u2013200 is effective0.085\u20131.7;existing character scale conversions retained within new range;upper outliers capped without rewriting original records",
+  "desktop": {
+    "gridChecks": 50007,
+    "mapChecks": 113,
+    "auraChecks": 2287,
+    "flyoutChecks": 168,
+    "optionsChecks": 6397,
+    "matchedRuns": 3,
+    "geometryFieldsComparedPerRun": 9408,
+    "harmfulControlsRejected": 4,
+    "scripts": 322,
+    "failures": 0,
+    "syntaxFiles": 1004,
+    "syntaxFailures": 0,
+    "currentFullSuiteVerified": true,
+    "fullSuiteReport": "docs/validation/minimap-scale-basis-full-2026-11-13.json"
+  },
+  "controls": "docs/validation/minimap-scale-basis-controls-2026-11-13.json",
+  "sourceGuard": "docs/validation/minimap-scale-basis-source-guard-2026-11-13.json",
+  "ownership": "Two existing runtime owners;three existing tests;no new frame/event/timer/ticker/hook/polling/native API",
+  "native": {
+    "pixels": "NOT RUN",
+    "input": "NOT RUN",
+    "taint": "NOT RUN",
+    "controller": "NOT RUN",
+    "persistence": "NOT RUN",
+    "FPS": "NOT RUN"
+  },
+  "preferences": "Direct implementation/user-native route retained;existing slider/input and English fallback;no new focus controls or bindings",
+  "clientActions": "No client foreground/input/clipboard,private settings/profiler file write,manual sync,commit or publication",
+  "documentationValidation": {
+    "result": "PASS",
+    "report": "docs/validation/minimap-scale-basis-docs-2026-11-13.json",
+    "sources": 1037,
+    "reachable": 617,
+    "settings": 433,
+    "localLinks": 16689
+  }
+}

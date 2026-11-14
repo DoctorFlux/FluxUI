@@ -553,6 +553,14 @@ local function RegisterUnitEvents(frame, unit)
 end
 
 local pendingPaint, paintDriver, paintArmed = {}, nil, false
+local function ReleasePaintFlags(frame, dirty)
+    if not dirty then return end
+    for key in pairs(dirty) do dirty[key] = nil end
+    -- Keep one spare per cell. A paint may synchronously queue another buffer;
+    -- the buffer being painted never becomes available until that paint ends.
+    if not frame._fluxPaintFlagsSpare then frame._fluxPaintFlagsSpare = dirty end
+end
+
 local function FlushPaint()
     paintArmed = false
     paintDriver:SetScript("OnUpdate", nil)
@@ -575,12 +583,17 @@ local function FlushPaint()
                 if dirty.center then FluxRaid_UpdateCenterStatus(frame) end
             end
         end
+        ReleasePaintFlags(frame, dirty)
     end
 end
 
 local function MarkPaint(frame, part)
     local dirty = pendingPaint[frame]
-    if not dirty then dirty={}; pendingPaint[frame]=dirty end
+    if not dirty then
+        dirty = frame._fluxPaintFlagsSpare or {}
+        frame._fluxPaintFlagsSpare = nil
+        pendingPaint[frame] = dirty
+    end
     dirty[part]=true
     if not paintDriver then paintDriver=CreateFrame("Frame") end
     if not paintArmed then
@@ -632,7 +645,9 @@ end
 function FluxRaid_BindUnit(frame, unit)
     if not frame then return end
     if unit == "" then unit = nil end
+    local discarded = pendingPaint[frame]
     pendingPaint[frame]=nil
+    ReleasePaintFlags(frame, discarded)
     if frame.UnregisterAllEvents then frame:UnregisterAllEvents() end
     frame.unit = unit
     frame.displayedUnit = unit
@@ -732,6 +747,8 @@ function FluxRaidUnit_OnHide(self)
     if FluxRaidHealerExtras then FluxRaidHealerExtras.Clear(self) end
     if FluxRaidHoTs then FluxRaidHoTs.Clear(self) end
     self.UpdateTooltip=nil
+    local uf = ns.UnitFrames
+    if uf and uf.HideUnitTooltip then uf.HideUnitTooltip(self) end
     EnsureRangePoll()
     FluxRaid_RequestJoinedBorderRefresh()
 end
@@ -740,21 +757,40 @@ end
 -- (unbound header children); replacing that global would taint every unit frame.
 local function FluxRaidUnit_UpdateTooltip(self)
     local unit = self.unit
-    if type(unit) ~= "string" or unit == "" then
+    local uf = ns.UnitFrames
+    if IsSecret(unit) or type(unit) ~= "string" or unit == "" then
         self.UpdateTooltip = nil
+        if uf and uf.HideUnitTooltip then uf.HideUnitTooltip(self) end
         return
     end
-    GameTooltip_SetDefaultAnchor(GameTooltip, self)
-    if GameTooltip:SetUnit(unit, self.hideStatusOnTooltip) then
+    local tooltip = uf and uf.GetUnitTooltip and uf.GetUnitTooltip(true)
+    if not tooltip or tooltip:IsForbidden() then self.UpdateTooltip = nil; return end
+    -- UIParent ownership avoids retaining an addon callback on a secure cell;
+    -- the tooltip's own update callback keeps the existing native cadence.
+    tooltip._fluxUnitTipRebuilding = true
+    GameTooltip_SetDefaultAnchor(tooltip, UIParent)
+    tooltip._fluxUnitTipOwner = self
+    if tooltip:SetUnit(unit, self.hideStatusOnTooltip) then
         if GameTooltip_AddBlankLineToTooltip and GameTooltip_AddInstructionLine and UNIT_POPUP_RIGHT_CLICK then
-            GameTooltip_AddBlankLineToTooltip(GameTooltip)
-            GameTooltip_AddInstructionLine(GameTooltip, UNIT_POPUP_RIGHT_CLICK)
+            GameTooltip_AddBlankLineToTooltip(tooltip)
+            GameTooltip_AddInstructionLine(tooltip, UNIT_POPUP_RIGHT_CLICK)
         end
-        GameTooltip:Show()
+        tooltip:Show()
+        if ns.ApplyHUDTooltipPosition then ns.ApplyHUDTooltipPosition(tooltip) end
         self.UpdateTooltip = FluxRaidUnit_UpdateTooltip
+        tooltip.UpdateTooltip = function()
+            if (self.IsShown and not self:IsShown()) or (self.IsMouseOver and not self:IsMouseOver()) then
+                self.UpdateTooltip = nil
+                if uf.HideUnitTooltip then uf.HideUnitTooltip(self) end
+                return
+            end
+            FluxRaidUnit_UpdateTooltip(self)
+        end
     else
         self.UpdateTooltip = nil
+        tooltip.UpdateTooltip = nil
     end
+    tooltip._fluxUnitTipRebuilding = nil
 end
 
 function FluxRaidUnit_OnEnter(self)
@@ -767,10 +803,11 @@ end
 
 function FluxRaidUnit_OnLeave(self)
     self.UpdateTooltip = nil
-    if GameTooltip.FadeOut then
-        GameTooltip:FadeOut()
-    else
-        GameTooltip:Hide()
+    local uf = ns.UnitFrames
+    local tooltip = uf and uf.GetUnitTooltip and uf.GetUnitTooltip(false)
+    if tooltip and not tooltip:IsForbidden() and tooltip._fluxUnitTipOwner == self then
+        tooltip.UpdateTooltip = nil
+        if tooltip.FadeOut then tooltip:FadeOut() else tooltip:Hide() end
     end
     ShowRegion(self.mouseOverHighlight, false)
 end

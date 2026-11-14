@@ -1,0 +1,275 @@
+{
+  "task": "ACTION-COUNTS-20261113",
+  "checkedDate": "2026-11-13",
+  "purpose": "Read-only comparison explicitly requested by user: Bartender4 and installed ButtonForge item/reagent/spell-charge update strategies.",
+  "method": "GitHub connector commit-pinned source reads; read-only local inspection and raw-byte SHA256 hashing. No third-party code copied, no reference files modified, no game client control.",
+  "evidenceLimit": "Source strategy only. Does not establish native event delivery, operation, taint, controller, CPU or lag/FPS results.",
+  "bartender4": {
+    "repository": "Nevcairiel/Bartender4",
+    "branch": "master",
+    "commit": "2ced21c0415ce50374ec6c38283a20a284616d25",
+    "commitDate": "2026-11-03T04:59:27Z",
+    "latestRelease": "4.18.4",
+    "releasePublished": "2026-11-03T05:02:21Z",
+    "releaseUrl": "https://github.com/Nevcairiel/Bartender4/releases/tag/4.18.4",
+    "tocVersion": "@project-version@",
+    "interfaces": [
+      120100,
+      120105,
+      11509,
+      50504,
+      20506,
+      16001
+    ],
+    "license": "TOC X-License and ActionBar.lua header say All rights reserved. Read-only analysis; no source imported.",
+    "dependencyBoundary": "ActionBar.lua line10 obtains LibActionButton-1.0; line282 creates buttons through it. .pkgmeta declares floating WoWAce LibActionButton external and GitHub Ennea reagent library. Current dependency commits below do not certify the exact external bytes bundled in release 4.18.4.",
+    "sources": [
+      {
+        "path": ".pkgmeta",
+        "blob": "763a839577ac32cdc9743ff11a548bc1d1294594",
+        "url": "https://github.com/Nevcairiel/Bartender4/blob/2ced21c0415ce50374ec6c38283a20a284616d25/.pkgmeta"
+      },
+      {
+        "path": "Bartender4.toc",
+        "blob": "72cfcd37b2c34bc9d9af541b57fd2333a6a4c36d",
+        "url": "https://github.com/Nevcairiel/Bartender4/blob/2ced21c0415ce50374ec6c38283a20a284616d25/Bartender4.toc"
+      },
+      {
+        "path": "ActionBar.lua",
+        "blob": "d88c624cddc5fd47f179182e78bffdbd8759b614",
+        "url": "https://github.com/Nevcairiel/Bartender4/blob/2ced21c0415ce50374ec6c38283a20a284616d25/ActionBar.lua"
+      }
+    ]
+  },
+  "libActionButton": {
+    "repository": "Nevcairiel/LibActionButton-1.0",
+    "branch": "master",
+    "commit": "bc1da7a581d21dad5d7da114263c6a513f448f32",
+    "commitDate": "2026-10-02T18:52:59Z",
+    "minorVersion": 168,
+    "license": "BSD 3-Clause style redistribution conditions in Lua header, copyright Hendrik Leppkes 2010-2022; no source imported.",
+    "sources": [
+      {
+        "path": "LibActionButton-1.0.lua",
+        "blob": "9c7388ffc6f1057c6f6429ef22f8132a41728ef2",
+        "url": "https://github.com/Nevcairiel/LibActionButton-1.0/blob/bc1da7a581d21dad5d7da114263c6a513f448f32/LibActionButton-1.0.lua"
+      }
+    ],
+    "findings": [
+      {
+        "lines": [
+          1333,
+          1339,
+          1350,
+          1383,
+          1640
+        ],
+        "behavior": "One shared eventFrame; SPELL_UPDATE_CHARGES immediately calls UpdateCount for action-bearing ActiveButtons. No BAG_UPDATE, BAG_UPDATE_DELAYED or SPELL_UPDATE_USES registration in this file."
+      },
+      {
+        "lines": [
+          1198,
+          1203,
+          1951,
+          1971
+        ],
+        "behavior": "ActiveButtons tracks HasAction rather than visibility; OnShow performs full update; OnHide only reevaluates per-frame state/flash update demand."
+      },
+      {
+        "lines": [
+          2143,
+          2714,
+          2847,
+          2925
+        ],
+        "behavior": "UpdateCount writes GetDisplayCount directly. Modern action/spell implementations use native display-count APIs; generic legacy fallback chooses consumable/stackable count or multi-charge count."
+      },
+      {
+        "lines": [
+          2862,
+          2864,
+          2866
+        ],
+        "behavior": "Classic Era optional LibClassicSpellActionCount replaces Action.GetCount with live reagent item count; .pkgmeta dependency is not a repaint scheduler."
+      },
+      {
+        "lines": [
+          1429,
+          1724
+        ],
+        "behavior": "Shared OnUpdate services dirty state/flash and range work; it does not poll item/reagent counts."
+      }
+    ]
+  },
+  "classicReagentLibrary": {
+    "repository": "Ennea/LibClassicSpellActionCount-1.0",
+    "branch": "master",
+    "commit": "c224c0a9ffc5b9e80d7304da4add3e6abc740a95",
+    "commitDate": "2019-12-16T16:53:20Z",
+    "license": "MIT; Alexander Heubner 2019. No source imported.",
+    "sources": [
+      {
+        "path": "LibClassicSpellActionCount-1.0.lua",
+        "blob": "16963e939500701ad5e0ce6e271c9405dd397967",
+        "url": "https://github.com/Ennea/LibClassicSpellActionCount-1.0/blob/c224c0a9ffc5b9e80d7304da4add3e6abc740a95/LibClassicSpellActionCount-1.0.lua"
+      },
+      {
+        "path": "LICENSE",
+        "blob": "aa13e7fdbb43a344312fcce1b7f9293e8fa2c4bf",
+        "url": "https://github.com/Ennea/LibClassicSpellActionCount-1.0/blob/c224c0a9ffc5b9e80d7304da4add3e6abc740a95/LICENSE"
+      },
+      {
+        "path": "README.md",
+        "blob": "3bfd52579e0c93a8b0c9f99e365b327f2ec3e774",
+        "url": "https://github.com/Ennea/LibClassicSpellActionCount-1.0/blob/c224c0a9ffc5b9e80d7304da4add3e6abc740a95/README.md"
+      }
+    ],
+    "findings": "Maps known Classic spell IDs to reagent item IDs and reads GetItemCount on demand. Provides no bag-event queue or per-frame count polling. This library fixes a historical count API limitation rather than update scheduling."
+  },
+  "buttonForge": {
+    "root": "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\ButtonForge",
+    "files": 102,
+    "totalBytes": 1068115,
+    "treeManifestSha256": "dbb9e53d5d2f911e4111f01cfe6c88eff787fa2beed33a19ac7d52ae5e2ce0b6",
+    "manifestFormat": "sorted relative path + tab + raw file SHA256 + LF; paths case-insensitive sort",
+    "inspectedFiles": [
+      {
+        "path": "Button.lua",
+        "bytes": 93344,
+        "sha256": "48fc79e9b91cc6af58fe7f2225341c7f4cc29f99d029499242ceada8e317a5d7",
+        "modifiedUtc": "2026-11-13T14:33:03.921082+00:00"
+      },
+      {
+        "path": "ButtonForge.toc",
+        "bytes": 940,
+        "sha256": "83dfeddfce24d5253160aba6b92105ec2ae36586c7171ec2cfe801b9a8c68e9c",
+        "modifiedUtc": "2026-11-13T14:33:03.923104+00:00"
+      },
+      {
+        "path": "EventManager.lua",
+        "bytes": 22804,
+        "sha256": "392285cdc3120544c041af706e5715aee3aba802b59f8afe8632cbd2ca7c1655",
+        "modifiedUtc": "2026-11-13T14:33:03.928101+00:00"
+      },
+      {
+        "path": "Flyout_Custom.lua",
+        "bytes": 24227,
+        "sha256": "d31daab0a33d0ef484fbe32648d763b283aef51b480a2847e260759fae5cf4c6",
+        "modifiedUtc": "2026-11-13T14:33:03.928101+00:00"
+      },
+      {
+        "path": "ReadMe.txt",
+        "bytes": 28077,
+        "sha256": "d032f1b36304e5db91b842f28b106ff93310dbd24e3e64ce12b21bc519a62c67",
+        "modifiedUtc": "2026-11-13T14:33:03.977758+00:00"
+      },
+      {
+        "path": "Util.lua",
+        "bytes": 91295,
+        "sha256": "cf7333075b0f4c54c88feac6ad3befb518e0f0303b5c67eddeb8cf4d00b11727",
+        "modifiedUtc": "2026-11-13T14:33:03.984973+00:00"
+      }
+    ],
+    "version": "1.3.5.0",
+    "interface": 120100,
+    "tocAuthor": "Massiner of Nathrezim",
+    "readmeReleaseDate": "2026-08-12",
+    "gitIdentity": "No .git metadata in inspected installed addon directory; identity is exact local version and file/tree hashes above.",
+    "license": "Inspected local Lua headers identify Alternator (Massiner of Nathrezim), copyright 2010, flyout copyright2023; no explicit redistribution license grant was found in local Lua/TXT/TOC search. Read-only analysis only.",
+    "findings": [
+      {
+        "path": "EventManager.lua",
+        "lines": [
+          15,
+          18,
+          20,
+          128,
+          152,
+          153,
+          154,
+          360,
+          368
+        ],
+        "behavior": "Distinct shared Usable/Text owners: BAG_UPDATE marks usability and text; SPELL_UPDATE_CHARGES marks text; player UNIT_AURA marks text. Event handlers only set Full dirty flags, coalescing repeated same-frame events."
+      },
+      {
+        "path": "Util.lua",
+        "lines": [
+          2507,
+          2538,
+          2544,
+          2559,
+          2569,
+          2592
+        ],
+        "behavior": "One generated shared OnUpdate sees RefreshButtons, loops allocated ActiveButtons for requested facets, then clears flags. It updates texture for every dirty batch as well. Count work is dirty-driven; the OnUpdate remains installed."
+      },
+      {
+        "path": "Util.lua",
+        "lines": [
+          806,
+          819,
+          830,
+          840
+        ],
+        "behavior": "ActiveButtons means allocated rather than visible. Hidden allocated buttons remain in count loops."
+      },
+      {
+        "path": "EventManager.lua",
+        "lines": [
+          80,
+          440
+        ],
+        "behavior": "BAG_UPDATE also immediately invokes the separate global bag-index cache rebuild."
+      },
+      {
+        "path": "Util.lua",
+        "lines": [
+          2278,
+          2284,
+          2285
+        ],
+        "behavior": "CacheBagItems scans all carried bag slots per BAG_UPDATE. This part should not be copied into Flux's lightweight count refresh."
+      },
+      {
+        "path": "Button.lua",
+        "lines": [
+          1973,
+          1975,
+          1976,
+          1988,
+          1989,
+          1996,
+          2011
+        ],
+        "behavior": "Spell counts resolve active override then write native display-count string; item counts request uses; macros delegate to their displayed item/spell mode; bonus actions use native action display count."
+      },
+      {
+        "path": "Flyout_Custom.lua",
+        "lines": [
+          83,
+          102,
+          189,
+          191,
+          228,
+          232
+        ],
+        "behavior": "Shown flyout observes BAG_UPDATE and refreshes visible child count/usability. Hiding unregisters BAG_UPDATE."
+      },
+      {
+        "path": "EventManager.lua",
+        "lines": [
+          152,
+          153
+        ],
+        "behavior": "No SPELL_UPDATE_USES or BAG_UPDATE_DELAYED registration in inspected local addon. It uses bag changes to keep reagents current."
+      }
+    ]
+  },
+  "recommendation": {
+    "productionChangesRequiredByComparison": false,
+    "reason": "Flux's existing shared inventory notifications plus new coalesced count/usability invalidation cover the behavior demonstrated by these references. Nothing here requires merchant, loot, mail or trade-specific handlers, count polling, copied third-party code or another framework.",
+    "retain": "Keep current native/legacy API adapters, modern opaque display-text handling, visibility/demand ownership, next-frame coalescing and FormStorm held dirty flags. Keep cooldown, identity, secure attributes and inventory scans outside count-only invalidation.",
+    "nativeAcceptance": "Still required for Light Feather 19->20 through loot/vendor/trade/mail, depletion/refill, charges, macro/modifier displays, hidden reveal and combat on each supported client; comparison cannot prove no lag."
+  }
+}

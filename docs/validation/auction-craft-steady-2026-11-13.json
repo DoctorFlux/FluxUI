@@ -1,0 +1,4942 @@
+{
+  "dateUTC": "2026-11-13T21:06:18.932798+00:00",
+  "changeID": "AUCTION-CRAFT-STEADY-20261113",
+  "candidate": "AH-restock-craft-steady-20261113-r18",
+  "requirements": [
+    "AHR-89",
+    "AHR-90"
+  ],
+  "checkpoint": {
+    "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\auction-restock\\tab-crafting-followup\\craft-settle-performance-20261113T203900Z\\checkpoint.json",
+    "sha256": "86bf9600c43ca37b4f0c51d38d3f2b38d7ad677b917d47eda1c9a7baf73d93ec",
+    "sourceFiles": 2758,
+    "settingsMetadataEntries": 129,
+    "privateSettingsCopied": false,
+    "archivesVerified": true
+  },
+  "sourceGuard": {
+    "candidateRawHashes": {
+      "Inventory/Restock/Auction/FluxAuctionRestockData.lua": "f89f556b5a851395a6bc650d539f28153968ac84100cd643cf7d5e1a865f0651",
+      "tests/auction_restock_data_work.lua": "84b2a50edbe78fdedd63621fa9e24ac32d9c390f2c0c1c035ecf28ad75c98793",
+      "tests/auction_restock.lua": "bde06db450e69f4806cdee8ed327bc2386fe7530dbc010987997b067fa7c69f1",
+      "Inventory/Restock/Auction/FluxAuctionRestockCraft.lua": "54bc044410e3c4512cd70274b2e67a40114a6ab39648e0e01ceb12b21b0bd587",
+      "Inventory/Restock/Auction/FluxAuctionRestockPotions.lua": "09d66943e73db9645b9438384497cfc9ce5b70870ebf949c113a521ec9028954",
+      "Inventory/Restock/Auction/FluxAuctionRestockPrices.lua": "49bd240a433ea2565daa049771dfaaaa0cbe79fa1f56c1de61cf50e471bccd6f",
+      "Inventory/Restock/Auction/FluxAuctionRestock.lua": "85f2c813f852a8bd07455d649fd66c6daa56aab4d2cdf5d764b45c72fc801132",
+      "Inventory/Restock/Auction/FluxAuctionRestockUI.lua": "3f9a402871361f7153a578a3e70d2b923ff7984513a74ea36b7d654a88003de7",
+      "Inventory/Restock/Auction/FluxAuctionRestockLocale.lua": "53e85ff00e6cc40f98ba6d96a9d3d3009fc479061620fdd3fe5924893d5d1f88",
+      "ExtraButtonSystem/Shared/FluxConsumablesGridUI.lua": "a444bc60318885cdd833f72f39dab26a56c561e475839e1692e4b37c4ea9c28f",
+      "Inventory/Restock/Auction/FluxAuctionRestockFollowupUI.lua": "d11d45abb6ec46d8925cdada8a0de2e4e6d6d87cdfff86b3e43a1723c48c1aa2",
+      "tests/auction_restock_followup_ui.lua": "ba061a4d16a7836bdf1abbbf2c0f5b44dbdb5e1e9abcf52d5699d69c49d66d3f",
+      "tests/auction_restock_followup_render_work.lua": "148a576d6f793defc3c8479b244b202036cb585eaec7412820967002008dbdfd",
+      "Inventory/Restock/Auction/FluxAuctionRestockFollowup.lua": "428d277c1a4f5b518bb1c281bf7ec4c806735cb6bc9e2c5efe11190f79295fd5",
+      "tests/auction_restock_craft_settle.lua": "050c0a3c174f90a84b80bfc8a69c4534fb8ddeee297e26b7626640c1f324cb03"
+    },
+    "changedLua": [
+      "Inventory/Restock/Auction/FluxAuctionRestock.lua",
+      "Inventory/Restock/Auction/FluxAuctionRestockData.lua",
+      "Inventory/Restock/Auction/FluxAuctionRestockFollowup.lua",
+      "Inventory/Restock/Auction/FluxAuctionRestockFollowupUI.lua",
+      "tests/auction_restock_followup_ui.lua"
+    ],
+    "addedLua": [
+      "tests/auction_restock_craft_settle.lua",
+      "tests/auction_restock_data_work.lua",
+      "tests/auction_restock_followup_render_work.lua"
+    ],
+    "concurrentLuaChangesPreserved": [],
+    "completeNormalizedLuaManifestMatches": true
+  },
+  "full": {
+    "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\auction-restock\\tab-crafting-followup\\craft-settle-performance-20261113T203900Z\\full.json",
+    "sha256": "c61315081977de23eebaabb82fbf60c7a0e22a90830932c4b8e129e9ad086f72",
+    "runtime": "Lua 5.4.6  Copyright (C) 1994-2023 Lua.org, PUC-Rio",
+    "scope": "Desktop Lua mocks/source checks only; native secure VM, real secret values, rendering and client performance unverified.",
+    "pass": 358,
+    "fail": 0,
+    "syntaxFiles": 1046,
+    "syntaxFailures": []
+  },
+  "componentEvidence": [
+    {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\auction-restock\\tab-crafting-followup\\craft-settle-performance-20261113T203900Z\\data-work\\report.json",
+      "sha256": "9000ca60dbac66d79819fa540b7e4766dc74e525dfbd1d7ce084a703a85ae348",
+      "report": {
+        "scope": "Actual source and desktop fixture boundary operation counts; native latency/CPU/FPS/permissions NOT RUN.",
+        "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\auction-restock\\tab-crafting-followup\\craft-settle-performance-20261113T203900Z\\checkpoint.json",
+        "baselineArchiveSHA256": "77d55eded6249e784af09afad0e3a3dfc92d82baefbf8c8fd6bedc9b15cc17c6",
+        "baselineDataSHA256": "53a2d35c6559c8d032a820c42dc0219efa9f1e450c01d7b38847d6a7e217cf0f",
+        "candidateSHA256": {
+          "Inventory/Restock/Auction/FluxAuctionRestockData.lua": "f89f556b5a851395a6bc650d539f28153968ac84100cd643cf7d5e1a865f0651",
+          "tests/auction_restock_data_work.lua": "84b2a50edbe78fdedd63621fa9e24ac32d9c390f2c0c1c035ecf28ad75c98793",
+          "tests/auction_restock.lua": "bde06db450e69f4806cdee8ed327bc2386fe7530dbc010987997b067fa7c69f1",
+          "Inventory/Restock/Auction/FluxAuctionRestockCraft.lua": "54bc044410e3c4512cd70274b2e67a40114a6ab39648e0e01ceb12b21b0bd587",
+          "Inventory/Restock/Auction/FluxAuctionRestockPotions.lua": "09d66943e73db9645b9438384497cfc9ce5b70870ebf949c113a521ec9028954",
+          "Inventory/Restock/Auction/FluxAuctionRestockPrices.lua": "49bd240a433ea2565daa049771dfaaaa0cbe79fa1f56c1de61cf50e471bccd6f",
+          "Inventory/Restock/Auction/FluxAuctionRestock.lua": "85f2c813f852a8bd07455d649fd66c6daa56aab4d2cdf5d764b45c72fc801132",
+          "Inventory/Restock/Auction/FluxAuctionRestockUI.lua": "3f9a402871361f7153a578a3e70d2b923ff7984513a74ea36b7d654a88003de7",
+          "Inventory/Restock/Auction/FluxAuctionRestockLocale.lua": "53e85ff00e6cc40f98ba6d96a9d3d3009fc479061620fdd3fe5924893d5d1f88",
+          "ExtraButtonSystem/Shared/FluxConsumablesGridUI.lua": "a444bc60318885cdd833f72f39dab26a56c561e475839e1692e4b37c4ea9c28f"
+        },
+        "measuredSourceDrift": [],
+        "profiles": 20,
+        "trialsPerProfile": 3,
+        "scenario": "One ordinary80-item GetRows(true) refresh",
+        "before": {
+          "needCalls": 160,
+          "bagReads": 160,
+          "mailReads": 320
+        },
+        "after": {
+          "needCalls": 80,
+          "bagReads": 80,
+          "mailReads": 80
+        },
+        "range": "Each measured value constant across all3 trials and20 profiles; identical row values/checksums.",
+        "raw": [
+          {
+            "trial": 1,
+            "mode": "baseline",
+            "exitCode": 0,
+            "output": "METRIC Retail false false 1 160 160 320 80 84328\nMETRIC Retail false true 1 160 160 320 80 84328\nMETRIC Retail true false 1 160 160 320 80 84328\nMETRIC Retail true true 1 160 160 320 80 84328\nMETRIC Forever false false 1 160 160 320 80 84328\nMETRIC Forever false true 1 160 160 320 80 84328\nMETRIC Forever true false 1 160 160 320 80 84328\nMETRIC Forever true true 1 160 160 320 80 84328\nMETRIC MoP false false 1 160 160 320 80 84328\nMETRIC MoP false true 1 160 160 320 80 84328\nMETRIC MoP true false 1 160 160 320 80 84328\nMETRIC MoP true true 1 160 160 320 80 84328\nMETRIC Era false false 1 160 160 320 80 84328\nMETRIC Era false true 1 160 160 320 80 84328\nMETRIC Era true false 1 160 160 320 80 84328\nMETRIC Era true true 1 160 160 320 80 84328\nMETRIC Anniversary false false 1 160 160 320 80 84328\nMETRIC Anniversary false true 1 160 160 320 80 84328\nMETRIC Anniversary true false 1 160 160 320 80 84328\nMETRIC Anniversary true true 1 160 160 320 80 84328\n"
+          },
+          {
+            "trial": 1,
+            "mode": "candidate",
+            "exitCode": 0,
+            "output": "METRIC Retail false false 1 80 80 80 80 84328\nMETRIC Retail false true 1 80 80 80 80 84328\nMETRIC Retail true false 1 80 80 80 80 84328\nMETRIC Retail true true 1 80 80 80 80 84328\nMETRIC Forever false false 1 80 80 80 80 84328\nMETRIC Forever false true 1 80 80 80 80 84328\nMETRIC Forever true false 1 80 80 80 80 84328\nMETRIC Forever true true 1 80 80 80 80 84328\nMETRIC MoP false false 1 80 80 80 80 84328\nMETRIC MoP false true 1 80 80 80 80 84328\nMETRIC MoP true false 1 80 80 80 80 84328\nMETRIC MoP true true 1 80 80 80 80 84328\nMETRIC Era false false 1 80 80 80 80 84328\nMETRIC Era false true 1 80 80 80 80 84328\nMETRIC Era true false 1 80 80 80 80 84328\nMETRIC Era true true 1 80 80 80 80 84328\nMETRIC Anniversary false false 1 80 80 80 80 84328\nMETRIC Anniversary false true 1 80 80 80 80 84328\nMETRIC Anniversary true false 1 80 80 80 80 84328\nMETRIC Anniversary true true 1 80 80 80 80 84328\n"
+          },
+          {
+            "trial": 2,
+            "mode": "baseline",
+            "exitCode": 0,
+            "output": "METRIC Retail false false 2 160 160 320 80 84328\nMETRIC Retail false true 2 160 160 320 80 84328\nMETRIC Retail true false 2 160 160 320 80 84328\nMETRIC Retail true true 2 160 160 320 80 84328\nMETRIC Forever false false 2 160 160 320 80 84328\nMETRIC Forever false true 2 160 160 320 80 84328\nMETRIC Forever true false 2 160 160 320 80 84328\nMETRIC Forever true true 2 160 160 320 80 84328\nMETRIC MoP false false 2 160 160 320 80 84328\nMETRIC MoP false true 2 160 160 320 80 84328\nMETRIC MoP true false 2 160 160 320 80 84328\nMETRIC MoP true true 2 160 160 320 80 84328\nMETRIC Era false false 2 160 160 320 80 84328\nMETRIC Era false true 2 160 160 320 80 84328\nMETRIC Era true false 2 160 160 320 80 84328\nMETRIC Era true true 2 160 160 320 80 84328\nMETRIC Anniversary false false 2 160 160 320 80 84328\nMETRIC Anniversary false true 2 160 160 320 80 84328\nMETRIC Anniversary true false 2 160 160 320 80 84328\nMETRIC Anniversary true true 2 160 160 320 80 84328\n"
+          },
+          {
+            "trial": 2,
+            "mode": "candidate",
+            "exitCode": 0,
+            "output": "METRIC Retail false false 2 80 80 80 80 84328\nMETRIC Retail false true 2 80 80 80 80 84328\nMETRIC Retail true false 2 80 80 80 80 84328\nMETRIC Retail true true 2 80 80 80 80 84328\nMETRIC Forever false false 2 80 80 80 80 84328\nMETRIC Forever false true 2 80 80 80 80 84328\nMETRIC Forever true false 2 80 80 80 80 84328\nMETRIC Forever true true 2 80 80 80 80 84328\nMETRIC MoP false false 2 80 80 80 80 84328\nMETRIC MoP false true 2 80 80 80 80 84328\nMETRIC MoP true false 2 80 80 80 80 84328\nMETRIC MoP true true 2 80 80 80 80 84328\nMETRIC Era false false 2 80 80 80 80 84328\nMETRIC Era false true 2 80 80 80 80 84328\nMETRIC Era true false 2 80 80 80 80 84328\nMETRIC Era true true 2 80 80 80 80 84328\nMETRIC Anniversary false false 2 80 80 80 80 84328\nMETRIC Anniversary false true 2 80 80 80 80 84328\nMETRIC Anniversary true false 2 80 80 80 80 84328\nMETRIC Anniversary true true 2 80 80 80 80 84328\n"
+          },
+          {
+            "trial": 3,
+            "mode": "baseline",
+            "exitCode": 0,
+            "output": "METRIC Retail false false 3 160 160 320 80 84328\nMETRIC Retail false true 3 160 160 320 80 84328\nMETRIC Retail true false 3 160 160 320 80 84328\nMETRIC Retail true true 3 160 160 320 80 84328\nMETRIC Forever false false 3 160 160 320 80 84328\nMETRIC Forever false true 3 160 160 320 80 84328\nMETRIC Forever true false 3 160 160 320 80 84328\nMETRIC Forever true true 3 160 160 320 80 84328\nMETRIC MoP false false 3 160 160 320 80 84328\nMETRIC MoP false true 3 160 160 320 80 84328\nMETRIC MoP true false 3 160 160 320 80 84328\nMETRIC MoP true true 3 160 160 320 80 84328\nMETRIC Era false false 3 160 160 320 80 84328\nMETRIC Era false true 3 160 160 320 80 84328\nMETRIC Era true false 3 160 160 320 80 84328\nMETRIC Era true true 3 160 160 320 80 84328\nMETRIC Anniversary false false 3 160 160 320 80 84328\nMETRIC Anniversary false true 3 160 160 320 80 84328\nMETRIC Anniversary true false 3 160 160 320 80 84328\nMETRIC Anniversary true true 3 160 160 320 80 84328\n"
+          },
+          {
+            "trial": 3,
+            "mode": "candidate",
+            "exitCode": 0,
+            "output": "METRIC Retail false false 3 80 80 80 80 84328\nMETRIC Retail false true 3 80 80 80 80 84328\nMETRIC Retail true false 3 80 80 80 80 84328\nMETRIC Retail true true 3 80 80 80 80 84328\nMETRIC Forever false false 3 80 80 80 80 84328\nMETRIC Forever false true 3 80 80 80 80 84328\nMETRIC Forever true false 3 80 80 80 80 84328\nMETRIC Forever true true 3 80 80 80 80 84328\nMETRIC MoP false false 3 80 80 80 80 84328\nMETRIC MoP false true 3 80 80 80 80 84328\nMETRIC MoP true false 3 80 80 80 80 84328\nMETRIC MoP true true 3 80 80 80 80 84328\nMETRIC Era false false 3 80 80 80 80 84328\nMETRIC Era false true 3 80 80 80 80 84328\nMETRIC Era true false 3 80 80 80 80 84328\nMETRIC Era true true 3 80 80 80 80 84328\nMETRIC Anniversary false false 3 80 80 80 80 84328\nMETRIC Anniversary false true 3 80 80 80 80 84328\nMETRIC Anniversary true false 3 80 80 80 80 84328\nMETRIC Anniversary true true 3 80 80 80 80 84328\n"
+          }
+        ],
+        "measurements": [
+          {
+            "baseline": [
+              {
+                "client": "Retail",
+                "auctionator": "false",
+                "syndicator": "false",
+                "trial": 1,
+                "needCalls": 160,
+                "bagReads": 160,
+                "mailReads": 320,
+                "rows": 80,
+                "checksum": 84328
+              },
+              {
+                "client": "Retail",
+                "auctionator": "false",
+                "syndicator": "true",
+                "trial": 1,
+                "needCalls": 160,
+                "bagReads": 160,
+                "mailReads": 320,
+                "rows": 80,
+                "checksum": 84328
+              },
+              {
+                "client": "Retail",
+                "auctionator": "true",
+                "syndicator": "false",
+                "trial": 1,
+                "needCalls": 160,
+                "bagReads": 160,
+                "mailReads": 320,
+                "rows": 80,
+                "checksum": 84328
+              },
+              {
+                "client": "Retail",
+                "auctionator": "true",
+                "syndicator": "true",
+                "trial": 1,
+                "needCalls": 160,
+                "bagReads": 160,
+                "mailReads": 320,
+                "rows": 80,
+                "checksum": 84328
+              },
+              {
+                "client": "Forever",
+                "auctionator": "false",
+                "syndicator": "false",
+                "trial": 1,
+                "needCalls": 160,
+                "bagReads": 160,
+                "mailReads": 320,
+                "rows": 80,
+                "checksum": 84328
+              },
+              {
+                "client": "Forever",
+                "auctionator": "false",
+                "syndicator": "true",
+                "trial": 1,
+                "needCalls": 160,
+                "bagReads": 160,
+                "mailReads": 320,
+                "rows": 80,
+                "checksum": 84328
+              },
+              {
+                "client": "Forever",
+                "auctionator": "true",
+                "syndicator": "false",
+                "trial": 1,
+                "needCalls": 160,
+                "bagReads": 160,
+                "mailReads": 320,
+                "rows": 80,
+                "checksum": 84328
+              },
+              {
+                "client": "Forever",
+                "auctionator": "true",
+                "syndicator": "true",
+                "trial": 1,
+                "needCalls": 160,
+                "bagReads": 160,
+                "mailReads": 320,
+                "rows": 80,
+                "checksum": 84328
+              },
+              {
+                "client": "MoP",
+                "auctionator": "false",
+                "syndicator": "false",
+                "trial": 1,
+                "needCalls": 160,
+                "bagReads": 160,
+                "mailReads": 320,
+                "rows": 80,
+                "checksum": 84328
+              },
+              {
+                "client": "MoP",
+                "auctionator": "false",
+                "syndicator": "true",
+                "trial": 1,
+                "needCalls": 160,
+                "bagReads": 160,
+                "mailReads": 320,
+                "rows": 80,
+                "checksum": 84328
+              },
+              {
+                "client": "MoP",
+                "auctionator": "true",
+                "syndicator": "false",
+                "trial": 1,
+                "needCalls": 160,
+                "bagReads": 160,
+                "mailReads": 320,
+                "rows": 80,
+                "checksum": 84328
+              },
+              {
+                "client": "MoP",
+                "auctionator": "true",
+                "syndicator": "true",
+                "trial": 1,
+                "needCalls": 160,
+                "bagReads": 160,
+                "mailReads": 320,
+                "rows": 80,
+                "checksum": 84328
+              },
+              {
+                "client": "Era",
+                "auctionator": "false",
+                "syndicator": "false",
+                "trial": 1,
+                "needCalls": 160,
+                "bagReads": 160,
+                "mailReads": 320,
+                "rows": 80,
+                "checksum": 84328
+              },
+              {
+                "client": "Era",
+                "auctionator": "false",
+                "syndicator": "true",
+                "trial": 1,
+                "needCalls": 160,
+                "bagReads": 160,
+                "mailReads": 320,
+                "rows": 80,
+                "checksum": 84328
+              },
+              {
+                "client": "Era",
+                "auctionator": "true",
+                "syndicator": "false",
+                "trial": 1,
+                "needCalls": 160,
+                "bagReads": 160,
+                "mailReads": 320,
+                "rows": 80,
+                "checksum": 84328
+              },
+              {
+                "client": "Era",
+                "auctionator": "true",
+                "syndicator": "true",
+                "trial": 1,
+                "needCalls": 160,
+                "bagReads": 160,
+                "mailReads": 320,
+                "rows": 80,
+                "checksum": 84328
+              },
+              {
+                "client": "Anniversary",
+                "auctionator": "false",
+                "syndicator": "false",
+                "trial": 1,
+                "needCalls": 160,
+                "bagReads": 160,
+                "mailReads": 320,
+                "rows": 80,
+                "checksum": 84328
+              },
+              {
+                "client": "Anniversary",
+                "auctionator": "false",
+                "syndicator": "true",
+                "trial": 1,
+                "needCalls": 160,
+                "bagReads": 160,
+                "mailReads": 320,
+                "rows": 80,
+                "checksum": 84328
+              },
+              {
+                "client": "Anniversary",
+                "auctionator": "true",
+                "syndicator": "false",
+                "trial": 1,
+                "needCalls": 160,
+                "bagReads": 160,
+                "mailReads": 320,
+                "rows": 80,
+                "checksum": 84328
+              },
+              {
+                "client": "Anniversary",
+                "auctionator": "true",
+                "syndicator": "true",
+                "trial": 1,
+                "needCalls": 160,
+                "bagReads": 160,
+                "mailReads": 320,
+                "rows": 80,
+                "checksum": 84328
+              }
+            ],
+            "candidate": [
+              {
+                "client": "Retail",
+                "auctionator": "false",
+                "syndicator": "false",
+                "trial": 1,
+                "needCalls": 80,
+                "bagReads": 80,
+                "mailReads": 80,
+                "rows": 80,
+                "checksum": 84328
+              },
+              {
+                "client": "Retail",
+                "auctionator": "false",
+                "syndicator": "true",
+                "trial": 1,
+                "needCalls": 80,
+                "bagReads": 80,
+                "mailReads": 80,
+                "rows": 80,
+                "checksum": 84328
+              },
+              {
+                "client": "Retail",
+                "auctionator": "true",
+                "syndicator": "false",
+                "trial": 1,
+                "needCalls": 80,
+                "bagReads": 80,
+                "mailReads": 80,
+                "rows": 80,
+                "checksum": 84328
+              },
+              {
+                "client": "Retail",
+                "auctionator": "true",
+                "syndicator": "true",
+                "trial": 1,
+                "needCalls": 80,
+                "bagReads": 80,
+                "mailReads": 80,
+                "rows": 80,
+                "checksum": 84328
+              },
+              {
+                "client": "Forever",
+                "auctionator": "false",
+                "syndicator": "false",
+                "trial": 1,
+                "needCalls": 80,
+                "bagReads": 80,
+                "mailReads": 80,
+                "rows": 80,
+                "checksum": 84328
+              },
+              {
+                "client": "Forever",
+                "auctionator": "false",
+                "syndicator": "true",
+                "trial": 1,
+                "needCalls": 80,
+                "bagReads": 80,
+                "mailReads": 80,
+                "rows": 80,
+                "checksum": 84328
+              },
+              {
+                "client": "Forever",
+                "auctionator": "true",
+                "syndicator": "false",
+                "trial": 1,
+                "needCalls": 80,
+                "bagReads": 80,
+                "mailReads": 80,
+                "rows": 80,
+                "checksum": 84328
+              },
+              {
+                "client": "Forever",
+                "auctionator": "true",
+                "syndicator": "true",
+                "trial": 1,
+                "needCalls": 80,
+                "bagReads": 80,
+                "mailReads": 80,
+                "rows": 80,
+                "checksum": 84328
+              },
+              {
+                "client": "MoP",
+                "auctionator": "false",
+                "syndicator": "false",
+                "trial": 1,
+                "needCalls": 80,
+                "bagReads": 80,
+                "mailReads": 80,
+                "rows": 80,
+                "checksum": 84328
+              },
+              {
+                "client": "MoP",
+                "auctionator": "false",
+                "syndicator": "true",
+                "trial": 1,
+                "needCalls": 80,
+                "bagReads": 80,
+                "mailReads": 80,
+                "rows": 80,
+                "checksum": 84328
+              },
+              {
+                "client": "MoP",
+                "auctionator": "true",
+                "syndicator": "false",
+                "trial": 1,
+                "needCalls": 80,
+                "bagReads": 80,
+                "mailReads": 80,
+                "rows": 80,
+                "checksum": 84328
+              },
+              {
+                "client": "MoP",
+                "auctionator": "true",
+                "syndicator": "true",
+                "trial": 1,
+                "needCalls": 80,
+                "bagReads": 80,
+                "mailReads": 80,
+                "rows": 80,
+                "checksum": 84328
+              },
+              {
+                "client": "Era",
+                "auctionator": "false",
+                "syndicator": "false",
+                "trial": 1,
+                "needCalls": 80,
+                "bagReads": 80,
+                "mailReads": 80,
+                "rows": 80,
+                "checksum": 84328
+              },
+              {
+                "client": "Era",
+                "auctionator": "false",
+                "syndicator": "true",
+                "trial": 1,
+                "needCalls": 80,
+                "bagReads": 80,
+                "mailReads": 80,
+                "rows": 80,
+                "checksum": 84328
+              },
+              {
+                "client": "Era",
+                "auctionator": "true",
+                "syndicator": "false",
+                "trial": 1,
+                "needCalls": 80,
+                "bagReads": 80,
+                "mailReads": 80,
+                "rows": 80,
+                "checksum": 84328
+              },
+              {
+                "client": "Era",
+                "auctionator": "true",
+                "syndicator": "true",
+                "trial": 1,
+                "needCalls": 80,
+                "bagReads": 80,
+                "mailReads": 80,
+                "rows": 80,
+                "checksum": 84328
+              },
+              {
+                "client": "Anniversary",
+                "auctionator": "false",
+                "syndicator": "false",
+                "trial": 1,
+                "needCalls": 80,
+                "bagReads": 80,
+                "mailReads": 80,
+                "rows": 80,
+                "checksum": 84328
+              },
+              {
+                "client": "Anniversary",
+                "auctionator": "false",
+                "syndicator": "true",
+                "trial": 1,
+                "needCalls": 80,
+                "bagReads": 80,
+                "mailReads": 80,
+                "rows": 80,
+                "checksum": 84328
+              },
+              {
+                "client": "Anniversary",
+                "auctionator": "true",
+                "syndicator": "false",
+                "trial": 1,
+                "needCalls": 80,
+                "bagReads": 80,
+                "mailReads": 80,
+                "rows": 80,
+                "checksum": 84328
+              },
+              {
+                "client": "Anniversary",
+                "auctionator": "true",
+                "syndicator": "true",
+                "trial": 1,
+                "needCalls": 80,
+                "bagReads": 80,
+                "mailReads": 80,
+                "rows": 80,
+                "checksum": 84328
+              }
+            ]
+          },
+          {
+            "baseline": [
+              {
+                "client": "Retail",
+                "auctionator": "false",
+                "syndicator": "false",
+                "trial": 2,
+                "needCalls": 160,
+                "bagReads": 160,
+                "mailReads": 320,
+                "rows": 80,
+                "checksum": 84328
+              },
+              {
+                "client": "Retail",
+                "auctionator": "false",
+                "syndicator": "true",
+                "trial": 2,
+                "needCalls": 160,
+                "bagReads": 160,
+                "mailReads": 320,
+                "rows": 80,
+                "checksum": 84328
+              },
+              {
+                "client": "Retail",
+                "auctionator": "true",
+                "syndicator": "false",
+                "trial": 2,
+                "needCalls": 160,
+                "bagReads": 160,
+                "mailReads": 320,
+                "rows": 80,
+                "checksum": 84328
+              },
+              {
+                "client": "Retail",
+                "auctionator": "true",
+                "syndicator": "true",
+                "trial": 2,
+                "needCalls": 160,
+                "bagReads": 160,
+                "mailReads": 320,
+                "rows": 80,
+                "checksum": 84328
+              },
+              {
+                "client": "Forever",
+                "auctionator": "false",
+                "syndicator": "false",
+                "trial": 2,
+                "needCalls": 160,
+                "bagReads": 160,
+                "mailReads": 320,
+                "rows": 80,
+                "checksum": 84328
+              },
+              {
+                "client": "Forever",
+                "auctionator": "false",
+                "syndicator": "true",
+                "trial": 2,
+                "needCalls": 160,
+                "bagReads": 160,
+                "mailReads": 320,
+                "rows": 80,
+                "checksum": 84328
+              },
+              {
+                "client": "Forever",
+                "auctionator": "true",
+                "syndicator": "false",
+                "trial": 2,
+                "needCalls": 160,
+                "bagReads": 160,
+                "mailReads": 320,
+                "rows": 80,
+                "checksum": 84328
+              },
+              {
+                "client": "Forever",
+                "auctionator": "true",
+                "syndicator": "true",
+                "trial": 2,
+                "needCalls": 160,
+                "bagReads": 160,
+                "mailReads": 320,
+                "rows": 80,
+                "checksum": 84328
+              },
+              {
+                "client": "MoP",
+                "auctionator": "false",
+                "syndicator": "false",
+                "trial": 2,
+                "needCalls": 160,
+                "bagReads": 160,
+                "mailReads": 320,
+                "rows": 80,
+                "checksum": 84328
+              },
+              {
+                "client": "MoP",
+                "auctionator": "false",
+                "syndicator": "true",
+                "trial": 2,
+                "needCalls": 160,
+                "bagReads": 160,
+                "mailReads": 320,
+                "rows": 80,
+                "checksum": 84328
+              },
+              {
+                "client": "MoP",
+                "auctionator": "true",
+                "syndicator": "false",
+                "trial": 2,
+                "needCalls": 160,
+                "bagReads": 160,
+                "mailReads": 320,
+                "rows": 80,
+                "checksum": 84328
+              },
+              {
+                "client": "MoP",
+                "auctionator": "true",
+                "syndicator": "true",
+                "trial": 2,
+                "needCalls": 160,
+                "bagReads": 160,
+                "mailReads": 320,
+                "rows": 80,
+                "checksum": 84328
+              },
+              {
+                "client": "Era",
+                "auctionator": "false",
+                "syndicator": "false",
+                "trial": 2,
+                "needCalls": 160,
+                "bagReads": 160,
+                "mailReads": 320,
+                "rows": 80,
+                "checksum": 84328
+              },
+              {
+                "client": "Era",
+                "auctionator": "false",
+                "syndicator": "true",
+                "trial": 2,
+                "needCalls": 160,
+                "bagReads": 160,
+                "mailReads": 320,
+                "rows": 80,
+                "checksum": 84328
+              },
+              {
+                "client": "Era",
+                "auctionator": "true",
+                "syndicator": "false",
+                "trial": 2,
+                "needCalls": 160,
+                "bagReads": 160,
+                "mailReads": 320,
+                "rows": 80,
+                "checksum": 84328
+              },
+              {
+                "client": "Era",
+                "auctionator": "true",
+                "syndicator": "true",
+                "trial": 2,
+                "needCalls": 160,
+                "bagReads": 160,
+                "mailReads": 320,
+                "rows": 80,
+                "checksum": 84328
+              },
+              {
+                "client": "Anniversary",
+                "auctionator": "false",
+                "syndicator": "false",
+                "trial": 2,
+                "needCalls": 160,
+                "bagReads": 160,
+                "mailReads": 320,
+                "rows": 80,
+                "checksum": 84328
+              },
+              {
+                "client": "Anniversary",
+                "auctionator": "false",
+                "syndicator": "true",
+                "trial": 2,
+                "needCalls": 160,
+                "bagReads": 160,
+                "mailReads": 320,
+                "rows": 80,
+                "checksum": 84328
+              },
+              {
+                "client": "Anniversary",
+                "auctionator": "true",
+                "syndicator": "false",
+                "trial": 2,
+                "needCalls": 160,
+                "bagReads": 160,
+                "mailReads": 320,
+                "rows": 80,
+                "checksum": 84328
+              },
+              {
+                "client": "Anniversary",
+                "auctionator": "true",
+                "syndicator": "true",
+                "trial": 2,
+                "needCalls": 160,
+                "bagReads": 160,
+                "mailReads": 320,
+                "rows": 80,
+                "checksum": 84328
+              }
+            ],
+            "candidate": [
+              {
+                "client": "Retail",
+                "auctionator": "false",
+                "syndicator": "false",
+                "trial": 2,
+                "needCalls": 80,
+                "bagReads": 80,
+                "mailReads": 80,
+                "rows": 80,
+                "checksum": 84328
+              },
+              {
+                "client": "Retail",
+                "auctionator": "false",
+                "syndicator": "true",
+                "trial": 2,
+                "needCalls": 80,
+                "bagReads": 80,
+                "mailReads": 80,
+                "rows": 80,
+                "checksum": 84328
+              },
+              {
+                "client": "Retail",
+                "auctionator": "true",
+                "syndicator": "false",
+                "trial": 2,
+                "needCalls": 80,
+                "bagReads": 80,
+                "mailReads": 80,
+                "rows": 80,
+                "checksum": 84328
+              },
+              {
+                "client": "Retail",
+                "auctionator": "true",
+                "syndicator": "true",
+                "trial": 2,
+                "needCalls": 80,
+                "bagReads": 80,
+                "mailReads": 80,
+                "rows": 80,
+                "checksum": 84328
+              },
+              {
+                "client": "Forever",
+                "auctionator": "false",
+                "syndicator": "false",
+                "trial": 2,
+                "needCalls": 80,
+                "bagReads": 80,
+                "mailReads": 80,
+                "rows": 80,
+                "checksum": 84328
+              },
+              {
+                "client": "Forever",
+                "auctionator": "false",
+                "syndicator": "true",
+                "trial": 2,
+                "needCalls": 80,
+                "bagReads": 80,
+                "mailReads": 80,
+                "rows": 80,
+                "checksum": 84328
+              },
+              {
+                "client": "Forever",
+                "auctionator": "true",
+                "syndicator": "false",
+                "trial": 2,
+                "needCalls": 80,
+                "bagReads": 80,
+                "mailReads": 80,
+                "rows": 80,
+                "checksum": 84328
+              },
+              {
+                "client": "Forever",
+                "auctionator": "true",
+                "syndicator": "true",
+                "trial": 2,
+                "needCalls": 80,
+                "bagReads": 80,
+                "mailReads": 80,
+                "rows": 80,
+                "checksum": 84328
+              },
+              {
+                "client": "MoP",
+                "auctionator": "false",
+                "syndicator": "false",
+                "trial": 2,
+                "needCalls": 80,
+                "bagReads": 80,
+                "mailReads": 80,
+                "rows": 80,
+                "checksum": 84328
+              },
+              {
+                "client": "MoP",
+                "auctionator": "false",
+                "syndicator": "true",
+                "trial": 2,
+                "needCalls": 80,
+                "bagReads": 80,
+                "mailReads": 80,
+                "rows": 80,
+                "checksum": 84328
+              },
+              {
+                "client": "MoP",
+                "auctionator": "true",
+                "syndicator": "false",
+                "trial": 2,
+                "needCalls": 80,
+                "bagReads": 80,
+                "mailReads": 80,
+                "rows": 80,
+                "checksum": 84328
+              },
+              {
+                "client": "MoP",
+                "auctionator": "true",
+                "syndicator": "true",
+                "trial": 2,
+                "needCalls": 80,
+                "bagReads": 80,
+                "mailReads": 80,
+                "rows": 80,
+                "checksum": 84328
+              },
+              {
+                "client": "Era",
+                "auctionator": "false",
+                "syndicator": "false",
+                "trial": 2,
+                "needCalls": 80,
+                "bagReads": 80,
+                "mailReads": 80,
+                "rows": 80,
+                "checksum": 84328
+              },
+              {
+                "client": "Era",
+                "auctionator": "false",
+                "syndicator": "true",
+                "trial": 2,
+                "needCalls": 80,
+                "bagReads": 80,
+                "mailReads": 80,
+                "rows": 80,
+                "checksum": 84328
+              },
+              {
+                "client": "Era",
+                "auctionator": "true",
+                "syndicator": "false",
+                "trial": 2,
+                "needCalls": 80,
+                "bagReads": 80,
+                "mailReads": 80,
+                "rows": 80,
+                "checksum": 84328
+              },
+              {
+                "client": "Era",
+                "auctionator": "true",
+                "syndicator": "true",
+                "trial": 2,
+                "needCalls": 80,
+                "bagReads": 80,
+                "mailReads": 80,
+                "rows": 80,
+                "checksum": 84328
+              },
+              {
+                "client": "Anniversary",
+                "auctionator": "false",
+                "syndicator": "false",
+                "trial": 2,
+                "needCalls": 80,
+                "bagReads": 80,
+                "mailReads": 80,
+                "rows": 80,
+                "checksum": 84328
+              },
+              {
+                "client": "Anniversary",
+                "auctionator": "false",
+                "syndicator": "true",
+                "trial": 2,
+                "needCalls": 80,
+                "bagReads": 80,
+                "mailReads": 80,
+                "rows": 80,
+                "checksum": 84328
+              },
+              {
+                "client": "Anniversary",
+                "auctionator": "true",
+                "syndicator": "false",
+                "trial": 2,
+                "needCalls": 80,
+                "bagReads": 80,
+                "mailReads": 80,
+                "rows": 80,
+                "checksum": 84328
+              },
+              {
+                "client": "Anniversary",
+                "auctionator": "true",
+                "syndicator": "true",
+                "trial": 2,
+                "needCalls": 80,
+                "bagReads": 80,
+                "mailReads": 80,
+                "rows": 80,
+                "checksum": 84328
+              }
+            ]
+          },
+          {
+            "baseline": [
+              {
+                "client": "Retail",
+                "auctionator": "false",
+                "syndicator": "false",
+                "trial": 3,
+                "needCalls": 160,
+                "bagReads": 160,
+                "mailReads": 320,
+                "rows": 80,
+                "checksum": 84328
+              },
+              {
+                "client": "Retail",
+                "auctionator": "false",
+                "syndicator": "true",
+                "trial": 3,
+                "needCalls": 160,
+                "bagReads": 160,
+                "mailReads": 320,
+                "rows": 80,
+                "checksum": 84328
+              },
+              {
+                "client": "Retail",
+                "auctionator": "true",
+                "syndicator": "false",
+                "trial": 3,
+                "needCalls": 160,
+                "bagReads": 160,
+                "mailReads": 320,
+                "rows": 80,
+                "checksum": 84328
+              },
+              {
+                "client": "Retail",
+                "auctionator": "true",
+                "syndicator": "true",
+                "trial": 3,
+                "needCalls": 160,
+                "bagReads": 160,
+                "mailReads": 320,
+                "rows": 80,
+                "checksum": 84328
+              },
+              {
+                "client": "Forever",
+                "auctionator": "false",
+                "syndicator": "false",
+                "trial": 3,
+                "needCalls": 160,
+                "bagReads": 160,
+                "mailReads": 320,
+                "rows": 80,
+                "checksum": 84328
+              },
+              {
+                "client": "Forever",
+                "auctionator": "false",
+                "syndicator": "true",
+                "trial": 3,
+                "needCalls": 160,
+                "bagReads": 160,
+                "mailReads": 320,
+                "rows": 80,
+                "checksum": 84328
+              },
+              {
+                "client": "Forever",
+                "auctionator": "true",
+                "syndicator": "false",
+                "trial": 3,
+                "needCalls": 160,
+                "bagReads": 160,
+                "mailReads": 320,
+                "rows": 80,
+                "checksum": 84328
+              },
+              {
+                "client": "Forever",
+                "auctionator": "true",
+                "syndicator": "true",
+                "trial": 3,
+                "needCalls": 160,
+                "bagReads": 160,
+                "mailReads": 320,
+                "rows": 80,
+                "checksum": 84328
+              },
+              {
+                "client": "MoP",
+                "auctionator": "false",
+                "syndicator": "false",
+                "trial": 3,
+                "needCalls": 160,
+                "bagReads": 160,
+                "mailReads": 320,
+                "rows": 80,
+                "checksum": 84328
+              },
+              {
+                "client": "MoP",
+                "auctionator": "false",
+                "syndicator": "true",
+                "trial": 3,
+                "needCalls": 160,
+                "bagReads": 160,
+                "mailReads": 320,
+                "rows": 80,
+                "checksum": 84328
+              },
+              {
+                "client": "MoP",
+                "auctionator": "true",
+                "syndicator": "false",
+                "trial": 3,
+                "needCalls": 160,
+                "bagReads": 160,
+                "mailReads": 320,
+                "rows": 80,
+                "checksum": 84328
+              },
+              {
+                "client": "MoP",
+                "auctionator": "true",
+                "syndicator": "true",
+                "trial": 3,
+                "needCalls": 160,
+                "bagReads": 160,
+                "mailReads": 320,
+                "rows": 80,
+                "checksum": 84328
+              },
+              {
+                "client": "Era",
+                "auctionator": "false",
+                "syndicator": "false",
+                "trial": 3,
+                "needCalls": 160,
+                "bagReads": 160,
+                "mailReads": 320,
+                "rows": 80,
+                "checksum": 84328
+              },
+              {
+                "client": "Era",
+                "auctionator": "false",
+                "syndicator": "true",
+                "trial": 3,
+                "needCalls": 160,
+                "bagReads": 160,
+                "mailReads": 320,
+                "rows": 80,
+                "checksum": 84328
+              },
+              {
+                "client": "Era",
+                "auctionator": "true",
+                "syndicator": "false",
+                "trial": 3,
+                "needCalls": 160,
+                "bagReads": 160,
+                "mailReads": 320,
+                "rows": 80,
+                "checksum": 84328
+              },
+              {
+                "client": "Era",
+                "auctionator": "true",
+                "syndicator": "true",
+                "trial": 3,
+                "needCalls": 160,
+                "bagReads": 160,
+                "mailReads": 320,
+                "rows": 80,
+                "checksum": 84328
+              },
+              {
+                "client": "Anniversary",
+                "auctionator": "false",
+                "syndicator": "false",
+                "trial": 3,
+                "needCalls": 160,
+                "bagReads": 160,
+                "mailReads": 320,
+                "rows": 80,
+                "checksum": 84328
+              },
+              {
+                "client": "Anniversary",
+                "auctionator": "false",
+                "syndicator": "true",
+                "trial": 3,
+                "needCalls": 160,
+                "bagReads": 160,
+                "mailReads": 320,
+                "rows": 80,
+                "checksum": 84328
+              },
+              {
+                "client": "Anniversary",
+                "auctionator": "true",
+                "syndicator": "false",
+                "trial": 3,
+                "needCalls": 160,
+                "bagReads": 160,
+                "mailReads": 320,
+                "rows": 80,
+                "checksum": 84328
+              },
+              {
+                "client": "Anniversary",
+                "auctionator": "true",
+                "syndicator": "true",
+                "trial": 3,
+                "needCalls": 160,
+                "bagReads": 160,
+                "mailReads": 320,
+                "rows": 80,
+                "checksum": 84328
+              }
+            ],
+            "candidate": [
+              {
+                "client": "Retail",
+                "auctionator": "false",
+                "syndicator": "false",
+                "trial": 3,
+                "needCalls": 80,
+                "bagReads": 80,
+                "mailReads": 80,
+                "rows": 80,
+                "checksum": 84328
+              },
+              {
+                "client": "Retail",
+                "auctionator": "false",
+                "syndicator": "true",
+                "trial": 3,
+                "needCalls": 80,
+                "bagReads": 80,
+                "mailReads": 80,
+                "rows": 80,
+                "checksum": 84328
+              },
+              {
+                "client": "Retail",
+                "auctionator": "true",
+                "syndicator": "false",
+                "trial": 3,
+                "needCalls": 80,
+                "bagReads": 80,
+                "mailReads": 80,
+                "rows": 80,
+                "checksum": 84328
+              },
+              {
+                "client": "Retail",
+                "auctionator": "true",
+                "syndicator": "true",
+                "trial": 3,
+                "needCalls": 80,
+                "bagReads": 80,
+                "mailReads": 80,
+                "rows": 80,
+                "checksum": 84328
+              },
+              {
+                "client": "Forever",
+                "auctionator": "false",
+                "syndicator": "false",
+                "trial": 3,
+                "needCalls": 80,
+                "bagReads": 80,
+                "mailReads": 80,
+                "rows": 80,
+                "checksum": 84328
+              },
+              {
+                "client": "Forever",
+                "auctionator": "false",
+                "syndicator": "true",
+                "trial": 3,
+                "needCalls": 80,
+                "bagReads": 80,
+                "mailReads": 80,
+                "rows": 80,
+                "checksum": 84328
+              },
+              {
+                "client": "Forever",
+                "auctionator": "true",
+                "syndicator": "false",
+                "trial": 3,
+                "needCalls": 80,
+                "bagReads": 80,
+                "mailReads": 80,
+                "rows": 80,
+                "checksum": 84328
+              },
+              {
+                "client": "Forever",
+                "auctionator": "true",
+                "syndicator": "true",
+                "trial": 3,
+                "needCalls": 80,
+                "bagReads": 80,
+                "mailReads": 80,
+                "rows": 80,
+                "checksum": 84328
+              },
+              {
+                "client": "MoP",
+                "auctionator": "false",
+                "syndicator": "false",
+                "trial": 3,
+                "needCalls": 80,
+                "bagReads": 80,
+                "mailReads": 80,
+                "rows": 80,
+                "checksum": 84328
+              },
+              {
+                "client": "MoP",
+                "auctionator": "false",
+                "syndicator": "true",
+                "trial": 3,
+                "needCalls": 80,
+                "bagReads": 80,
+                "mailReads": 80,
+                "rows": 80,
+                "checksum": 84328
+              },
+              {
+                "client": "MoP",
+                "auctionator": "true",
+                "syndicator": "false",
+                "trial": 3,
+                "needCalls": 80,
+                "bagReads": 80,
+                "mailReads": 80,
+                "rows": 80,
+                "checksum": 84328
+              },
+              {
+                "client": "MoP",
+                "auctionator": "true",
+                "syndicator": "true",
+                "trial": 3,
+                "needCalls": 80,
+                "bagReads": 80,
+                "mailReads": 80,
+                "rows": 80,
+                "checksum": 84328
+              },
+              {
+                "client": "Era",
+                "auctionator": "false",
+                "syndicator": "false",
+                "trial": 3,
+                "needCalls": 80,
+                "bagReads": 80,
+                "mailReads": 80,
+                "rows": 80,
+                "checksum": 84328
+              },
+              {
+                "client": "Era",
+                "auctionator": "false",
+                "syndicator": "true",
+                "trial": 3,
+                "needCalls": 80,
+                "bagReads": 80,
+                "mailReads": 80,
+                "rows": 80,
+                "checksum": 84328
+              },
+              {
+                "client": "Era",
+                "auctionator": "true",
+                "syndicator": "false",
+                "trial": 3,
+                "needCalls": 80,
+                "bagReads": 80,
+                "mailReads": 80,
+                "rows": 80,
+                "checksum": 84328
+              },
+              {
+                "client": "Era",
+                "auctionator": "true",
+                "syndicator": "true",
+                "trial": 3,
+                "needCalls": 80,
+                "bagReads": 80,
+                "mailReads": 80,
+                "rows": 80,
+                "checksum": 84328
+              },
+              {
+                "client": "Anniversary",
+                "auctionator": "false",
+                "syndicator": "false",
+                "trial": 3,
+                "needCalls": 80,
+                "bagReads": 80,
+                "mailReads": 80,
+                "rows": 80,
+                "checksum": 84328
+              },
+              {
+                "client": "Anniversary",
+                "auctionator": "false",
+                "syndicator": "true",
+                "trial": 3,
+                "needCalls": 80,
+                "bagReads": 80,
+                "mailReads": 80,
+                "rows": 80,
+                "checksum": 84328
+              },
+              {
+                "client": "Anniversary",
+                "auctionator": "true",
+                "syndicator": "false",
+                "trial": 3,
+                "needCalls": 80,
+                "bagReads": 80,
+                "mailReads": 80,
+                "rows": 80,
+                "checksum": 84328
+              },
+              {
+                "client": "Anniversary",
+                "auctionator": "true",
+                "syndicator": "true",
+                "trial": 3,
+                "needCalls": 80,
+                "bagReads": 80,
+                "mailReads": 80,
+                "rows": 80,
+                "checksum": 84328
+              }
+            ]
+          }
+        ],
+        "focused": {
+          "exitCode": 0,
+          "output": "Auction restock data work: 1900 checks PASS; 20 profiles; native latency/CPU/FPS NOT RUN\n"
+        },
+        "controls": [
+          {
+            "name": "duplicate-early-base-need",
+            "compiled": true,
+            "rejected": true,
+            "sha256": "02f5ed28dd461d89c58141ae24197d352c9661db37608758b77641c918bb93c7",
+            "exitCode": 1,
+            "output": "C:\\Users\\mario\\AppData\\Local\\Programs\\Lua\\bin\\lua.exe: tests/auction_restock_data_work.lua:4: an ordinary eighty-item refresh computes each final deficit once and reads its mail once\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/auction_restock_data_work.lua:4: in local 'check'\n\ttests/auction_restock_data_work.lua:29: in main chunk\n\t[C]: in function 'dofile'\n\t...settle-performance-20261113T203900Z\\data-work\\router.lua:10: in main chunk\n\t[C]: in ?\n"
+          },
+          {
+            "name": "omit-final-stock-calculation",
+            "compiled": true,
+            "rejected": true,
+            "sha256": "b54590f82f093a7b157ddb74249738e7844a72c3d7834171657069c9037971b3",
+            "exitCode": 1,
+            "output": "C:\\Users\\mario\\AppData\\Local\\Programs\\Lua\\bin\\lua.exe: tests/auction_restock_data_work.lua:4: an ordinary eighty-item refresh computes each final deficit once and reads its mail once\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/auction_restock_data_work.lua:4: in local 'check'\n\ttests/auction_restock_data_work.lua:29: in main chunk\n\t[C]: in function 'dofile'\n\t...settle-performance-20261113T203900Z\\data-work\\router.lua:10: in main chunk\n\t[C]: in ?\n"
+          },
+          {
+            "name": "reuse-stale-row-mail",
+            "compiled": true,
+            "rejected": true,
+            "sha256": "666420f9ff23f61a7462e1f66cd3e4b97439f163972edbd3f1b175d3dfd7c1c3",
+            "exitCode": 1,
+            "output": "C:\\Users\\mario\\AppData\\Local\\Programs\\Lua\\bin\\lua.exe: tests/auction_restock_data_work.lua:4: new authoritative mail retires its receipt once even when the caller reuses its row\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/auction_restock_data_work.lua:4: in local 'check'\n\ttests/auction_restock_data_work.lua:53: in main chunk\n\t[C]: in function 'dofile'\n\t...settle-performance-20261113T203900Z\\data-work\\router.lua:10: in main chunk\n\t[C]: in ?\n"
+          }
+        ]
+      }
+    },
+    {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\auction-restock\\tab-crafting-followup\\craft-settle-performance-20261113T203900Z\\followup-render\\results.json",
+      "sha256": "41ce6625947a74d758296c0d169866e62001023ba6f85da01d03cbbbb79fef70",
+      "report": {
+        "scope": "Actual renderer with desktop widget boundaries; native pixels/input/controller/taint/latency/FPS NOT RUN.",
+        "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\auction-restock\\tab-crafting-followup\\craft-settle-performance-20261113T203900Z\\checkpoint.json",
+        "baselineArchiveSHA256": "77d55eded6249e784af09afad0e3a3dfc92d82baefbf8c8fd6bedc9b15cc17c6",
+        "baselineUISHA256": "3481876bcab2446b6b2e3db08afff2ab02414b519ceddceb5cb1473cb9afaed3",
+        "candidateSHA256": {
+          "Inventory/Restock/Auction/FluxAuctionRestockFollowupUI.lua": "d11d45abb6ec46d8925cdada8a0de2e4e6d6d87cdfff86b3e43a1723c48c1aa2",
+          "tests/auction_restock_followup_ui.lua": "ba061a4d16a7836bdf1abbbf2c0f5b44dbdb5e1e9abcf52d5699d69c49d66d3f",
+          "tests/auction_restock_followup_render_work.lua": "148a576d6f793defc3c8479b244b202036cb585eaec7412820967002008dbdfd"
+        },
+        "profiles": 5,
+        "trialsPerProfile": 3,
+        "paintsPerPhase": 50,
+        "baseline": [
+          {
+            "client": "Retail",
+            "trial": 1,
+            "phase": "unchanged",
+            "calls": {
+              "SetPoint": 1200,
+              "ClearAllPoints": 1200,
+              "SetSize": 1200,
+              "SetFont": 250,
+              "SetTexture": 250,
+              "SetText": 300,
+              "Show": 300,
+              "Hide": 0,
+              "SetEnabled": 0,
+              "EnableMouseWheel": 0,
+              "Sort": 50,
+              "ArtLookup": 50,
+              "AtlasLookup": 100,
+              "TipClear": 50,
+              "TipShow": 50,
+              "TipHide": 0
+            }
+          },
+          {
+            "client": "Retail",
+            "trial": 1,
+            "phase": "quantity",
+            "calls": {
+              "SetPoint": 1200,
+              "ClearAllPoints": 1200,
+              "SetSize": 1200,
+              "SetFont": 250,
+              "SetTexture": 250,
+              "SetText": 300,
+              "Show": 300,
+              "Hide": 0,
+              "SetEnabled": 0,
+              "EnableMouseWheel": 0,
+              "Sort": 50,
+              "ArtLookup": 50,
+              "AtlasLookup": 100,
+              "TipClear": 50,
+              "TipShow": 50,
+              "TipHide": 0
+            }
+          },
+          {
+            "client": "Retail",
+            "trial": 1,
+            "phase": "hidden",
+            "calls": {
+              "SetPoint": 0,
+              "ClearAllPoints": 0,
+              "SetSize": 0,
+              "SetFont": 0,
+              "SetTexture": 0,
+              "SetText": 0,
+              "Show": 0,
+              "Hide": 50,
+              "SetEnabled": 250,
+              "EnableMouseWheel": 0,
+              "Sort": 0,
+              "ArtLookup": 0,
+              "AtlasLookup": 0,
+              "TipClear": 0,
+              "TipShow": 0,
+              "TipHide": 50
+            }
+          },
+          {
+            "client": "Retail",
+            "trial": 2,
+            "phase": "unchanged",
+            "calls": {
+              "SetPoint": 1200,
+              "ClearAllPoints": 1200,
+              "SetSize": 1200,
+              "SetFont": 250,
+              "SetTexture": 250,
+              "SetText": 300,
+              "Show": 300,
+              "Hide": 0,
+              "SetEnabled": 0,
+              "EnableMouseWheel": 0,
+              "Sort": 50,
+              "ArtLookup": 50,
+              "AtlasLookup": 100,
+              "TipClear": 50,
+              "TipShow": 50,
+              "TipHide": 0
+            }
+          },
+          {
+            "client": "Retail",
+            "trial": 2,
+            "phase": "quantity",
+            "calls": {
+              "SetPoint": 1200,
+              "ClearAllPoints": 1200,
+              "SetSize": 1200,
+              "SetFont": 250,
+              "SetTexture": 250,
+              "SetText": 300,
+              "Show": 300,
+              "Hide": 0,
+              "SetEnabled": 0,
+              "EnableMouseWheel": 0,
+              "Sort": 50,
+              "ArtLookup": 50,
+              "AtlasLookup": 100,
+              "TipClear": 50,
+              "TipShow": 50,
+              "TipHide": 0
+            }
+          },
+          {
+            "client": "Retail",
+            "trial": 2,
+            "phase": "hidden",
+            "calls": {
+              "SetPoint": 0,
+              "ClearAllPoints": 0,
+              "SetSize": 0,
+              "SetFont": 0,
+              "SetTexture": 0,
+              "SetText": 0,
+              "Show": 0,
+              "Hide": 50,
+              "SetEnabled": 250,
+              "EnableMouseWheel": 0,
+              "Sort": 0,
+              "ArtLookup": 0,
+              "AtlasLookup": 0,
+              "TipClear": 0,
+              "TipShow": 0,
+              "TipHide": 50
+            }
+          },
+          {
+            "client": "Retail",
+            "trial": 3,
+            "phase": "unchanged",
+            "calls": {
+              "SetPoint": 1200,
+              "ClearAllPoints": 1200,
+              "SetSize": 1200,
+              "SetFont": 250,
+              "SetTexture": 250,
+              "SetText": 300,
+              "Show": 300,
+              "Hide": 0,
+              "SetEnabled": 0,
+              "EnableMouseWheel": 0,
+              "Sort": 50,
+              "ArtLookup": 50,
+              "AtlasLookup": 100,
+              "TipClear": 50,
+              "TipShow": 50,
+              "TipHide": 0
+            }
+          },
+          {
+            "client": "Retail",
+            "trial": 3,
+            "phase": "quantity",
+            "calls": {
+              "SetPoint": 1200,
+              "ClearAllPoints": 1200,
+              "SetSize": 1200,
+              "SetFont": 250,
+              "SetTexture": 250,
+              "SetText": 300,
+              "Show": 300,
+              "Hide": 0,
+              "SetEnabled": 0,
+              "EnableMouseWheel": 0,
+              "Sort": 50,
+              "ArtLookup": 50,
+              "AtlasLookup": 100,
+              "TipClear": 50,
+              "TipShow": 50,
+              "TipHide": 0
+            }
+          },
+          {
+            "client": "Retail",
+            "trial": 3,
+            "phase": "hidden",
+            "calls": {
+              "SetPoint": 0,
+              "ClearAllPoints": 0,
+              "SetSize": 0,
+              "SetFont": 0,
+              "SetTexture": 0,
+              "SetText": 0,
+              "Show": 0,
+              "Hide": 50,
+              "SetEnabled": 250,
+              "EnableMouseWheel": 0,
+              "Sort": 0,
+              "ArtLookup": 0,
+              "AtlasLookup": 0,
+              "TipClear": 0,
+              "TipShow": 0,
+              "TipHide": 50
+            }
+          },
+          {
+            "client": "Forever",
+            "trial": 1,
+            "phase": "unchanged",
+            "calls": {
+              "SetPoint": 1200,
+              "ClearAllPoints": 1200,
+              "SetSize": 1200,
+              "SetFont": 250,
+              "SetTexture": 250,
+              "SetText": 300,
+              "Show": 300,
+              "Hide": 0,
+              "SetEnabled": 0,
+              "EnableMouseWheel": 0,
+              "Sort": 50,
+              "ArtLookup": 50,
+              "AtlasLookup": 100,
+              "TipClear": 50,
+              "TipShow": 50,
+              "TipHide": 0
+            }
+          },
+          {
+            "client": "Forever",
+            "trial": 1,
+            "phase": "quantity",
+            "calls": {
+              "SetPoint": 1200,
+              "ClearAllPoints": 1200,
+              "SetSize": 1200,
+              "SetFont": 250,
+              "SetTexture": 250,
+              "SetText": 300,
+              "Show": 300,
+              "Hide": 0,
+              "SetEnabled": 0,
+              "EnableMouseWheel": 0,
+              "Sort": 50,
+              "ArtLookup": 50,
+              "AtlasLookup": 100,
+              "TipClear": 50,
+              "TipShow": 50,
+              "TipHide": 0
+            }
+          },
+          {
+            "client": "Forever",
+            "trial": 1,
+            "phase": "hidden",
+            "calls": {
+              "SetPoint": 0,
+              "ClearAllPoints": 0,
+              "SetSize": 0,
+              "SetFont": 0,
+              "SetTexture": 0,
+              "SetText": 0,
+              "Show": 0,
+              "Hide": 50,
+              "SetEnabled": 250,
+              "EnableMouseWheel": 0,
+              "Sort": 0,
+              "ArtLookup": 0,
+              "AtlasLookup": 0,
+              "TipClear": 0,
+              "TipShow": 0,
+              "TipHide": 50
+            }
+          },
+          {
+            "client": "Forever",
+            "trial": 2,
+            "phase": "unchanged",
+            "calls": {
+              "SetPoint": 1200,
+              "ClearAllPoints": 1200,
+              "SetSize": 1200,
+              "SetFont": 250,
+              "SetTexture": 250,
+              "SetText": 300,
+              "Show": 300,
+              "Hide": 0,
+              "SetEnabled": 0,
+              "EnableMouseWheel": 0,
+              "Sort": 50,
+              "ArtLookup": 50,
+              "AtlasLookup": 100,
+              "TipClear": 50,
+              "TipShow": 50,
+              "TipHide": 0
+            }
+          },
+          {
+            "client": "Forever",
+            "trial": 2,
+            "phase": "quantity",
+            "calls": {
+              "SetPoint": 1200,
+              "ClearAllPoints": 1200,
+              "SetSize": 1200,
+              "SetFont": 250,
+              "SetTexture": 250,
+              "SetText": 300,
+              "Show": 300,
+              "Hide": 0,
+              "SetEnabled": 0,
+              "EnableMouseWheel": 0,
+              "Sort": 50,
+              "ArtLookup": 50,
+              "AtlasLookup": 100,
+              "TipClear": 50,
+              "TipShow": 50,
+              "TipHide": 0
+            }
+          },
+          {
+            "client": "Forever",
+            "trial": 2,
+            "phase": "hidden",
+            "calls": {
+              "SetPoint": 0,
+              "ClearAllPoints": 0,
+              "SetSize": 0,
+              "SetFont": 0,
+              "SetTexture": 0,
+              "SetText": 0,
+              "Show": 0,
+              "Hide": 50,
+              "SetEnabled": 250,
+              "EnableMouseWheel": 0,
+              "Sort": 0,
+              "ArtLookup": 0,
+              "AtlasLookup": 0,
+              "TipClear": 0,
+              "TipShow": 0,
+              "TipHide": 50
+            }
+          },
+          {
+            "client": "Forever",
+            "trial": 3,
+            "phase": "unchanged",
+            "calls": {
+              "SetPoint": 1200,
+              "ClearAllPoints": 1200,
+              "SetSize": 1200,
+              "SetFont": 250,
+              "SetTexture": 250,
+              "SetText": 300,
+              "Show": 300,
+              "Hide": 0,
+              "SetEnabled": 0,
+              "EnableMouseWheel": 0,
+              "Sort": 50,
+              "ArtLookup": 50,
+              "AtlasLookup": 100,
+              "TipClear": 50,
+              "TipShow": 50,
+              "TipHide": 0
+            }
+          },
+          {
+            "client": "Forever",
+            "trial": 3,
+            "phase": "quantity",
+            "calls": {
+              "SetPoint": 1200,
+              "ClearAllPoints": 1200,
+              "SetSize": 1200,
+              "SetFont": 250,
+              "SetTexture": 250,
+              "SetText": 300,
+              "Show": 300,
+              "Hide": 0,
+              "SetEnabled": 0,
+              "EnableMouseWheel": 0,
+              "Sort": 50,
+              "ArtLookup": 50,
+              "AtlasLookup": 100,
+              "TipClear": 50,
+              "TipShow": 50,
+              "TipHide": 0
+            }
+          },
+          {
+            "client": "Forever",
+            "trial": 3,
+            "phase": "hidden",
+            "calls": {
+              "SetPoint": 0,
+              "ClearAllPoints": 0,
+              "SetSize": 0,
+              "SetFont": 0,
+              "SetTexture": 0,
+              "SetText": 0,
+              "Show": 0,
+              "Hide": 50,
+              "SetEnabled": 250,
+              "EnableMouseWheel": 0,
+              "Sort": 0,
+              "ArtLookup": 0,
+              "AtlasLookup": 0,
+              "TipClear": 0,
+              "TipShow": 0,
+              "TipHide": 50
+            }
+          },
+          {
+            "client": "MoP",
+            "trial": 1,
+            "phase": "unchanged",
+            "calls": {
+              "SetPoint": 1200,
+              "ClearAllPoints": 1200,
+              "SetSize": 1200,
+              "SetFont": 250,
+              "SetTexture": 250,
+              "SetText": 300,
+              "Show": 300,
+              "Hide": 0,
+              "SetEnabled": 0,
+              "EnableMouseWheel": 0,
+              "Sort": 50,
+              "ArtLookup": 50,
+              "AtlasLookup": 100,
+              "TipClear": 50,
+              "TipShow": 50,
+              "TipHide": 0
+            }
+          },
+          {
+            "client": "MoP",
+            "trial": 1,
+            "phase": "quantity",
+            "calls": {
+              "SetPoint": 1200,
+              "ClearAllPoints": 1200,
+              "SetSize": 1200,
+              "SetFont": 250,
+              "SetTexture": 250,
+              "SetText": 300,
+              "Show": 300,
+              "Hide": 0,
+              "SetEnabled": 0,
+              "EnableMouseWheel": 0,
+              "Sort": 50,
+              "ArtLookup": 50,
+              "AtlasLookup": 100,
+              "TipClear": 50,
+              "TipShow": 50,
+              "TipHide": 0
+            }
+          },
+          {
+            "client": "MoP",
+            "trial": 1,
+            "phase": "hidden",
+            "calls": {
+              "SetPoint": 0,
+              "ClearAllPoints": 0,
+              "SetSize": 0,
+              "SetFont": 0,
+              "SetTexture": 0,
+              "SetText": 0,
+              "Show": 0,
+              "Hide": 50,
+              "SetEnabled": 250,
+              "EnableMouseWheel": 0,
+              "Sort": 0,
+              "ArtLookup": 0,
+              "AtlasLookup": 0,
+              "TipClear": 0,
+              "TipShow": 0,
+              "TipHide": 50
+            }
+          },
+          {
+            "client": "MoP",
+            "trial": 2,
+            "phase": "unchanged",
+            "calls": {
+              "SetPoint": 1200,
+              "ClearAllPoints": 1200,
+              "SetSize": 1200,
+              "SetFont": 250,
+              "SetTexture": 250,
+              "SetText": 300,
+              "Show": 300,
+              "Hide": 0,
+              "SetEnabled": 0,
+              "EnableMouseWheel": 0,
+              "Sort": 50,
+              "ArtLookup": 50,
+              "AtlasLookup": 100,
+              "TipClear": 50,
+              "TipShow": 50,
+              "TipHide": 0
+            }
+          },
+          {
+            "client": "MoP",
+            "trial": 2,
+            "phase": "quantity",
+            "calls": {
+              "SetPoint": 1200,
+              "ClearAllPoints": 1200,
+              "SetSize": 1200,
+              "SetFont": 250,
+              "SetTexture": 250,
+              "SetText": 300,
+              "Show": 300,
+              "Hide": 0,
+              "SetEnabled": 0,
+              "EnableMouseWheel": 0,
+              "Sort": 50,
+              "ArtLookup": 50,
+              "AtlasLookup": 100,
+              "TipClear": 50,
+              "TipShow": 50,
+              "TipHide": 0
+            }
+          },
+          {
+            "client": "MoP",
+            "trial": 2,
+            "phase": "hidden",
+            "calls": {
+              "SetPoint": 0,
+              "ClearAllPoints": 0,
+              "SetSize": 0,
+              "SetFont": 0,
+              "SetTexture": 0,
+              "SetText": 0,
+              "Show": 0,
+              "Hide": 50,
+              "SetEnabled": 250,
+              "EnableMouseWheel": 0,
+              "Sort": 0,
+              "ArtLookup": 0,
+              "AtlasLookup": 0,
+              "TipClear": 0,
+              "TipShow": 0,
+              "TipHide": 50
+            }
+          },
+          {
+            "client": "MoP",
+            "trial": 3,
+            "phase": "unchanged",
+            "calls": {
+              "SetPoint": 1200,
+              "ClearAllPoints": 1200,
+              "SetSize": 1200,
+              "SetFont": 250,
+              "SetTexture": 250,
+              "SetText": 300,
+              "Show": 300,
+              "Hide": 0,
+              "SetEnabled": 0,
+              "EnableMouseWheel": 0,
+              "Sort": 50,
+              "ArtLookup": 50,
+              "AtlasLookup": 100,
+              "TipClear": 50,
+              "TipShow": 50,
+              "TipHide": 0
+            }
+          },
+          {
+            "client": "MoP",
+            "trial": 3,
+            "phase": "quantity",
+            "calls": {
+              "SetPoint": 1200,
+              "ClearAllPoints": 1200,
+              "SetSize": 1200,
+              "SetFont": 250,
+              "SetTexture": 250,
+              "SetText": 300,
+              "Show": 300,
+              "Hide": 0,
+              "SetEnabled": 0,
+              "EnableMouseWheel": 0,
+              "Sort": 50,
+              "ArtLookup": 50,
+              "AtlasLookup": 100,
+              "TipClear": 50,
+              "TipShow": 50,
+              "TipHide": 0
+            }
+          },
+          {
+            "client": "MoP",
+            "trial": 3,
+            "phase": "hidden",
+            "calls": {
+              "SetPoint": 0,
+              "ClearAllPoints": 0,
+              "SetSize": 0,
+              "SetFont": 0,
+              "SetTexture": 0,
+              "SetText": 0,
+              "Show": 0,
+              "Hide": 50,
+              "SetEnabled": 250,
+              "EnableMouseWheel": 0,
+              "Sort": 0,
+              "ArtLookup": 0,
+              "AtlasLookup": 0,
+              "TipClear": 0,
+              "TipShow": 0,
+              "TipHide": 50
+            }
+          },
+          {
+            "client": "Era",
+            "trial": 1,
+            "phase": "unchanged",
+            "calls": {
+              "SetPoint": 1200,
+              "ClearAllPoints": 1200,
+              "SetSize": 1200,
+              "SetFont": 250,
+              "SetTexture": 250,
+              "SetText": 300,
+              "Show": 300,
+              "Hide": 0,
+              "SetEnabled": 0,
+              "EnableMouseWheel": 0,
+              "Sort": 50,
+              "ArtLookup": 50,
+              "AtlasLookup": 100,
+              "TipClear": 50,
+              "TipShow": 50,
+              "TipHide": 0
+            }
+          },
+          {
+            "client": "Era",
+            "trial": 1,
+            "phase": "quantity",
+            "calls": {
+              "SetPoint": 1200,
+              "ClearAllPoints": 1200,
+              "SetSize": 1200,
+              "SetFont": 250,
+              "SetTexture": 250,
+              "SetText": 300,
+              "Show": 300,
+              "Hide": 0,
+              "SetEnabled": 0,
+              "EnableMouseWheel": 0,
+              "Sort": 50,
+              "ArtLookup": 50,
+              "AtlasLookup": 100,
+              "TipClear": 50,
+              "TipShow": 50,
+              "TipHide": 0
+            }
+          },
+          {
+            "client": "Era",
+            "trial": 1,
+            "phase": "hidden",
+            "calls": {
+              "SetPoint": 0,
+              "ClearAllPoints": 0,
+              "SetSize": 0,
+              "SetFont": 0,
+              "SetTexture": 0,
+              "SetText": 0,
+              "Show": 0,
+              "Hide": 50,
+              "SetEnabled": 250,
+              "EnableMouseWheel": 0,
+              "Sort": 0,
+              "ArtLookup": 0,
+              "AtlasLookup": 0,
+              "TipClear": 0,
+              "TipShow": 0,
+              "TipHide": 50
+            }
+          },
+          {
+            "client": "Era",
+            "trial": 2,
+            "phase": "unchanged",
+            "calls": {
+              "SetPoint": 1200,
+              "ClearAllPoints": 1200,
+              "SetSize": 1200,
+              "SetFont": 250,
+              "SetTexture": 250,
+              "SetText": 300,
+              "Show": 300,
+              "Hide": 0,
+              "SetEnabled": 0,
+              "EnableMouseWheel": 0,
+              "Sort": 50,
+              "ArtLookup": 50,
+              "AtlasLookup": 100,
+              "TipClear": 50,
+              "TipShow": 50,
+              "TipHide": 0
+            }
+          },
+          {
+            "client": "Era",
+            "trial": 2,
+            "phase": "quantity",
+            "calls": {
+              "SetPoint": 1200,
+              "ClearAllPoints": 1200,
+              "SetSize": 1200,
+              "SetFont": 250,
+              "SetTexture": 250,
+              "SetText": 300,
+              "Show": 300,
+              "Hide": 0,
+              "SetEnabled": 0,
+              "EnableMouseWheel": 0,
+              "Sort": 50,
+              "ArtLookup": 50,
+              "AtlasLookup": 100,
+              "TipClear": 50,
+              "TipShow": 50,
+              "TipHide": 0
+            }
+          },
+          {
+            "client": "Era",
+            "trial": 2,
+            "phase": "hidden",
+            "calls": {
+              "SetPoint": 0,
+              "ClearAllPoints": 0,
+              "SetSize": 0,
+              "SetFont": 0,
+              "SetTexture": 0,
+              "SetText": 0,
+              "Show": 0,
+              "Hide": 50,
+              "SetEnabled": 250,
+              "EnableMouseWheel": 0,
+              "Sort": 0,
+              "ArtLookup": 0,
+              "AtlasLookup": 0,
+              "TipClear": 0,
+              "TipShow": 0,
+              "TipHide": 50
+            }
+          },
+          {
+            "client": "Era",
+            "trial": 3,
+            "phase": "unchanged",
+            "calls": {
+              "SetPoint": 1200,
+              "ClearAllPoints": 1200,
+              "SetSize": 1200,
+              "SetFont": 250,
+              "SetTexture": 250,
+              "SetText": 300,
+              "Show": 300,
+              "Hide": 0,
+              "SetEnabled": 0,
+              "EnableMouseWheel": 0,
+              "Sort": 50,
+              "ArtLookup": 50,
+              "AtlasLookup": 100,
+              "TipClear": 50,
+              "TipShow": 50,
+              "TipHide": 0
+            }
+          },
+          {
+            "client": "Era",
+            "trial": 3,
+            "phase": "quantity",
+            "calls": {
+              "SetPoint": 1200,
+              "ClearAllPoints": 1200,
+              "SetSize": 1200,
+              "SetFont": 250,
+              "SetTexture": 250,
+              "SetText": 300,
+              "Show": 300,
+              "Hide": 0,
+              "SetEnabled": 0,
+              "EnableMouseWheel": 0,
+              "Sort": 50,
+              "ArtLookup": 50,
+              "AtlasLookup": 100,
+              "TipClear": 50,
+              "TipShow": 50,
+              "TipHide": 0
+            }
+          },
+          {
+            "client": "Era",
+            "trial": 3,
+            "phase": "hidden",
+            "calls": {
+              "SetPoint": 0,
+              "ClearAllPoints": 0,
+              "SetSize": 0,
+              "SetFont": 0,
+              "SetTexture": 0,
+              "SetText": 0,
+              "Show": 0,
+              "Hide": 50,
+              "SetEnabled": 250,
+              "EnableMouseWheel": 0,
+              "Sort": 0,
+              "ArtLookup": 0,
+              "AtlasLookup": 0,
+              "TipClear": 0,
+              "TipShow": 0,
+              "TipHide": 50
+            }
+          },
+          {
+            "client": "Anniversary",
+            "trial": 1,
+            "phase": "unchanged",
+            "calls": {
+              "SetPoint": 1200,
+              "ClearAllPoints": 1200,
+              "SetSize": 1200,
+              "SetFont": 250,
+              "SetTexture": 250,
+              "SetText": 300,
+              "Show": 300,
+              "Hide": 0,
+              "SetEnabled": 0,
+              "EnableMouseWheel": 0,
+              "Sort": 50,
+              "ArtLookup": 50,
+              "AtlasLookup": 100,
+              "TipClear": 50,
+              "TipShow": 50,
+              "TipHide": 0
+            }
+          },
+          {
+            "client": "Anniversary",
+            "trial": 1,
+            "phase": "quantity",
+            "calls": {
+              "SetPoint": 1200,
+              "ClearAllPoints": 1200,
+              "SetSize": 1200,
+              "SetFont": 250,
+              "SetTexture": 250,
+              "SetText": 300,
+              "Show": 300,
+              "Hide": 0,
+              "SetEnabled": 0,
+              "EnableMouseWheel": 0,
+              "Sort": 50,
+              "ArtLookup": 50,
+              "AtlasLookup": 100,
+              "TipClear": 50,
+              "TipShow": 50,
+              "TipHide": 0
+            }
+          },
+          {
+            "client": "Anniversary",
+            "trial": 1,
+            "phase": "hidden",
+            "calls": {
+              "SetPoint": 0,
+              "ClearAllPoints": 0,
+              "SetSize": 0,
+              "SetFont": 0,
+              "SetTexture": 0,
+              "SetText": 0,
+              "Show": 0,
+              "Hide": 50,
+              "SetEnabled": 250,
+              "EnableMouseWheel": 0,
+              "Sort": 0,
+              "ArtLookup": 0,
+              "AtlasLookup": 0,
+              "TipClear": 0,
+              "TipShow": 0,
+              "TipHide": 50
+            }
+          },
+          {
+            "client": "Anniversary",
+            "trial": 2,
+            "phase": "unchanged",
+            "calls": {
+              "SetPoint": 1200,
+              "ClearAllPoints": 1200,
+              "SetSize": 1200,
+              "SetFont": 250,
+              "SetTexture": 250,
+              "SetText": 300,
+              "Show": 300,
+              "Hide": 0,
+              "SetEnabled": 0,
+              "EnableMouseWheel": 0,
+              "Sort": 50,
+              "ArtLookup": 50,
+              "AtlasLookup": 100,
+              "TipClear": 50,
+              "TipShow": 50,
+              "TipHide": 0
+            }
+          },
+          {
+            "client": "Anniversary",
+            "trial": 2,
+            "phase": "quantity",
+            "calls": {
+              "SetPoint": 1200,
+              "ClearAllPoints": 1200,
+              "SetSize": 1200,
+              "SetFont": 250,
+              "SetTexture": 250,
+              "SetText": 300,
+              "Show": 300,
+              "Hide": 0,
+              "SetEnabled": 0,
+              "EnableMouseWheel": 0,
+              "Sort": 50,
+              "ArtLookup": 50,
+              "AtlasLookup": 100,
+              "TipClear": 50,
+              "TipShow": 50,
+              "TipHide": 0
+            }
+          },
+          {
+            "client": "Anniversary",
+            "trial": 2,
+            "phase": "hidden",
+            "calls": {
+              "SetPoint": 0,
+              "ClearAllPoints": 0,
+              "SetSize": 0,
+              "SetFont": 0,
+              "SetTexture": 0,
+              "SetText": 0,
+              "Show": 0,
+              "Hide": 50,
+              "SetEnabled": 250,
+              "EnableMouseWheel": 0,
+              "Sort": 0,
+              "ArtLookup": 0,
+              "AtlasLookup": 0,
+              "TipClear": 0,
+              "TipShow": 0,
+              "TipHide": 50
+            }
+          },
+          {
+            "client": "Anniversary",
+            "trial": 3,
+            "phase": "unchanged",
+            "calls": {
+              "SetPoint": 1200,
+              "ClearAllPoints": 1200,
+              "SetSize": 1200,
+              "SetFont": 250,
+              "SetTexture": 250,
+              "SetText": 300,
+              "Show": 300,
+              "Hide": 0,
+              "SetEnabled": 0,
+              "EnableMouseWheel": 0,
+              "Sort": 50,
+              "ArtLookup": 50,
+              "AtlasLookup": 100,
+              "TipClear": 50,
+              "TipShow": 50,
+              "TipHide": 0
+            }
+          },
+          {
+            "client": "Anniversary",
+            "trial": 3,
+            "phase": "quantity",
+            "calls": {
+              "SetPoint": 1200,
+              "ClearAllPoints": 1200,
+              "SetSize": 1200,
+              "SetFont": 250,
+              "SetTexture": 250,
+              "SetText": 300,
+              "Show": 300,
+              "Hide": 0,
+              "SetEnabled": 0,
+              "EnableMouseWheel": 0,
+              "Sort": 50,
+              "ArtLookup": 50,
+              "AtlasLookup": 100,
+              "TipClear": 50,
+              "TipShow": 50,
+              "TipHide": 0
+            }
+          },
+          {
+            "client": "Anniversary",
+            "trial": 3,
+            "phase": "hidden",
+            "calls": {
+              "SetPoint": 0,
+              "ClearAllPoints": 0,
+              "SetSize": 0,
+              "SetFont": 0,
+              "SetTexture": 0,
+              "SetText": 0,
+              "Show": 0,
+              "Hide": 50,
+              "SetEnabled": 250,
+              "EnableMouseWheel": 0,
+              "Sort": 0,
+              "ArtLookup": 0,
+              "AtlasLookup": 0,
+              "TipClear": 0,
+              "TipShow": 0,
+              "TipHide": 50
+            }
+          }
+        ],
+        "candidate": [
+          {
+            "client": "Retail",
+            "trial": 1,
+            "phase": "unchanged",
+            "calls": {
+              "SetPoint": 0,
+              "ClearAllPoints": 0,
+              "SetSize": 0,
+              "SetFont": 0,
+              "SetTexture": 0,
+              "SetText": 0,
+              "Show": 0,
+              "Hide": 0,
+              "SetEnabled": 0,
+              "EnableMouseWheel": 0,
+              "Sort": 0,
+              "ArtLookup": 0,
+              "AtlasLookup": 0,
+              "TipClear": 0,
+              "TipShow": 0,
+              "TipHide": 0
+            }
+          },
+          {
+            "client": "Retail",
+            "trial": 1,
+            "phase": "quantity",
+            "calls": {
+              "SetPoint": 0,
+              "ClearAllPoints": 0,
+              "SetSize": 0,
+              "SetFont": 0,
+              "SetTexture": 0,
+              "SetText": 100,
+              "Show": 0,
+              "Hide": 0,
+              "SetEnabled": 0,
+              "EnableMouseWheel": 0,
+              "Sort": 0,
+              "ArtLookup": 0,
+              "AtlasLookup": 0,
+              "TipClear": 50,
+              "TipShow": 50,
+              "TipHide": 0
+            }
+          },
+          {
+            "client": "Retail",
+            "trial": 1,
+            "phase": "hidden",
+            "calls": {
+              "SetPoint": 0,
+              "ClearAllPoints": 0,
+              "SetSize": 0,
+              "SetFont": 0,
+              "SetTexture": 0,
+              "SetText": 0,
+              "Show": 0,
+              "Hide": 0,
+              "SetEnabled": 0,
+              "EnableMouseWheel": 0,
+              "Sort": 0,
+              "ArtLookup": 0,
+              "AtlasLookup": 0,
+              "TipClear": 0,
+              "TipShow": 0,
+              "TipHide": 0
+            }
+          },
+          {
+            "client": "Retail",
+            "trial": 2,
+            "phase": "unchanged",
+            "calls": {
+              "SetPoint": 0,
+              "ClearAllPoints": 0,
+              "SetSize": 0,
+              "SetFont": 0,
+              "SetTexture": 0,
+              "SetText": 0,
+              "Show": 0,
+              "Hide": 0,
+              "SetEnabled": 0,
+              "EnableMouseWheel": 0,
+              "Sort": 0,
+              "ArtLookup": 0,
+              "AtlasLookup": 0,
+              "TipClear": 0,
+              "TipShow": 0,
+              "TipHide": 0
+            }
+          },
+          {
+            "client": "Retail",
+            "trial": 2,
+            "phase": "quantity",
+            "calls": {
+              "SetPoint": 0,
+              "ClearAllPoints": 0,
+              "SetSize": 0,
+              "SetFont": 0,
+              "SetTexture": 0,
+              "SetText": 100,
+              "Show": 0,
+              "Hide": 0,
+              "SetEnabled": 0,
+              "EnableMouseWheel": 0,
+              "Sort": 0,
+              "ArtLookup": 0,
+              "AtlasLookup": 0,
+              "TipClear": 50,
+              "TipShow": 50,
+              "TipHide": 0
+            }
+          },
+          {
+            "client": "Retail",
+            "trial": 2,
+            "phase": "hidden",
+            "calls": {
+              "SetPoint": 0,
+              "ClearAllPoints": 0,
+              "SetSize": 0,
+              "SetFont": 0,
+              "SetTexture": 0,
+              "SetText": 0,
+              "Show": 0,
+              "Hide": 0,
+              "SetEnabled": 0,
+              "EnableMouseWheel": 0,
+              "Sort": 0,
+              "ArtLookup": 0,
+              "AtlasLookup": 0,
+              "TipClear": 0,
+              "TipShow": 0,
+              "TipHide": 0
+            }
+          },
+          {
+            "client": "Retail",
+            "trial": 3,
+            "phase": "unchanged",
+            "calls": {
+              "SetPoint": 0,
+              "ClearAllPoints": 0,
+              "SetSize": 0,
+              "SetFont": 0,
+              "SetTexture": 0,
+              "SetText": 0,
+              "Show": 0,
+              "Hide": 0,
+              "SetEnabled": 0,
+              "EnableMouseWheel": 0,
+              "Sort": 0,
+              "ArtLookup": 0,
+              "AtlasLookup": 0,
+              "TipClear": 0,
+              "TipShow": 0,
+              "TipHide": 0
+            }
+          },
+          {
+            "client": "Retail",
+            "trial": 3,
+            "phase": "quantity",
+            "calls": {
+              "SetPoint": 0,
+              "ClearAllPoints": 0,
+              "SetSize": 0,
+              "SetFont": 0,
+              "SetTexture": 0,
+              "SetText": 100,
+              "Show": 0,
+              "Hide": 0,
+              "SetEnabled": 0,
+              "EnableMouseWheel": 0,
+              "Sort": 0,
+              "ArtLookup": 0,
+              "AtlasLookup": 0,
+              "TipClear": 50,
+              "TipShow": 50,
+              "TipHide": 0
+            }
+          },
+          {
+            "client": "Retail",
+            "trial": 3,
+            "phase": "hidden",
+            "calls": {
+              "SetPoint": 0,
+              "ClearAllPoints": 0,
+              "SetSize": 0,
+              "SetFont": 0,
+              "SetTexture": 0,
+              "SetText": 0,
+              "Show": 0,
+              "Hide": 0,
+              "SetEnabled": 0,
+              "EnableMouseWheel": 0,
+              "Sort": 0,
+              "ArtLookup": 0,
+              "AtlasLookup": 0,
+              "TipClear": 0,
+              "TipShow": 0,
+              "TipHide": 0
+            }
+          },
+          {
+            "client": "Forever",
+            "trial": 1,
+            "phase": "unchanged",
+            "calls": {
+              "SetPoint": 0,
+              "ClearAllPoints": 0,
+              "SetSize": 0,
+              "SetFont": 0,
+              "SetTexture": 0,
+              "SetText": 0,
+              "Show": 0,
+              "Hide": 0,
+              "SetEnabled": 0,
+              "EnableMouseWheel": 0,
+              "Sort": 0,
+              "ArtLookup": 0,
+              "AtlasLookup": 0,
+              "TipClear": 0,
+              "TipShow": 0,
+              "TipHide": 0
+            }
+          },
+          {
+            "client": "Forever",
+            "trial": 1,
+            "phase": "quantity",
+            "calls": {
+              "SetPoint": 0,
+              "ClearAllPoints": 0,
+              "SetSize": 0,
+              "SetFont": 0,
+              "SetTexture": 0,
+              "SetText": 100,
+              "Show": 0,
+              "Hide": 0,
+              "SetEnabled": 0,
+              "EnableMouseWheel": 0,
+              "Sort": 0,
+              "ArtLookup": 0,
+              "AtlasLookup": 0,
+              "TipClear": 50,
+              "TipShow": 50,
+              "TipHide": 0
+            }
+          },
+          {
+            "client": "Forever",
+            "trial": 1,
+            "phase": "hidden",
+            "calls": {
+              "SetPoint": 0,
+              "ClearAllPoints": 0,
+              "SetSize": 0,
+              "SetFont": 0,
+              "SetTexture": 0,
+              "SetText": 0,
+              "Show": 0,
+              "Hide": 0,
+              "SetEnabled": 0,
+              "EnableMouseWheel": 0,
+              "Sort": 0,
+              "ArtLookup": 0,
+              "AtlasLookup": 0,
+              "TipClear": 0,
+              "TipShow": 0,
+              "TipHide": 0
+            }
+          },
+          {
+            "client": "Forever",
+            "trial": 2,
+            "phase": "unchanged",
+            "calls": {
+              "SetPoint": 0,
+              "ClearAllPoints": 0,
+              "SetSize": 0,
+              "SetFont": 0,
+              "SetTexture": 0,
+              "SetText": 0,
+              "Show": 0,
+              "Hide": 0,
+              "SetEnabled": 0,
+              "EnableMouseWheel": 0,
+              "Sort": 0,
+              "ArtLookup": 0,
+              "AtlasLookup": 0,
+              "TipClear": 0,
+              "TipShow": 0,
+              "TipHide": 0
+            }
+          },
+          {
+            "client": "Forever",
+            "trial": 2,
+            "phase": "quantity",
+            "calls": {
+              "SetPoint": 0,
+              "ClearAllPoints": 0,
+              "SetSize": 0,
+              "SetFont": 0,
+              "SetTexture": 0,
+              "SetText": 100,
+              "Show": 0,
+              "Hide": 0,
+              "SetEnabled": 0,
+              "EnableMouseWheel": 0,
+              "Sort": 0,
+              "ArtLookup": 0,
+              "AtlasLookup": 0,
+              "TipClear": 50,
+              "TipShow": 50,
+              "TipHide": 0
+            }
+          },
+          {
+            "client": "Forever",
+            "trial": 2,
+            "phase": "hidden",
+            "calls": {
+              "SetPoint": 0,
+              "ClearAllPoints": 0,
+              "SetSize": 0,
+              "SetFont": 0,
+              "SetTexture": 0,
+              "SetText": 0,
+              "Show": 0,
+              "Hide": 0,
+              "SetEnabled": 0,
+              "EnableMouseWheel": 0,
+              "Sort": 0,
+              "ArtLookup": 0,
+              "AtlasLookup": 0,
+              "TipClear": 0,
+              "TipShow": 0,
+              "TipHide": 0
+            }
+          },
+          {
+            "client": "Forever",
+            "trial": 3,
+            "phase": "unchanged",
+            "calls": {
+              "SetPoint": 0,
+              "ClearAllPoints": 0,
+              "SetSize": 0,
+              "SetFont": 0,
+              "SetTexture": 0,
+              "SetText": 0,
+              "Show": 0,
+              "Hide": 0,
+              "SetEnabled": 0,
+              "EnableMouseWheel": 0,
+              "Sort": 0,
+              "ArtLookup": 0,
+              "AtlasLookup": 0,
+              "TipClear": 0,
+              "TipShow": 0,
+              "TipHide": 0
+            }
+          },
+          {
+            "client": "Forever",
+            "trial": 3,
+            "phase": "quantity",
+            "calls": {
+              "SetPoint": 0,
+              "ClearAllPoints": 0,
+              "SetSize": 0,
+              "SetFont": 0,
+              "SetTexture": 0,
+              "SetText": 100,
+              "Show": 0,
+              "Hide": 0,
+              "SetEnabled": 0,
+              "EnableMouseWheel": 0,
+              "Sort": 0,
+              "ArtLookup": 0,
+              "AtlasLookup": 0,
+              "TipClear": 50,
+              "TipShow": 50,
+              "TipHide": 0
+            }
+          },
+          {
+            "client": "Forever",
+            "trial": 3,
+            "phase": "hidden",
+            "calls": {
+              "SetPoint": 0,
+              "ClearAllPoints": 0,
+              "SetSize": 0,
+              "SetFont": 0,
+              "SetTexture": 0,
+              "SetText": 0,
+              "Show": 0,
+              "Hide": 0,
+              "SetEnabled": 0,
+              "EnableMouseWheel": 0,
+              "Sort": 0,
+              "ArtLookup": 0,
+              "AtlasLookup": 0,
+              "TipClear": 0,
+              "TipShow": 0,
+              "TipHide": 0
+            }
+          },
+          {
+            "client": "MoP",
+            "trial": 1,
+            "phase": "unchanged",
+            "calls": {
+              "SetPoint": 0,
+              "ClearAllPoints": 0,
+              "SetSize": 0,
+              "SetFont": 0,
+              "SetTexture": 0,
+              "SetText": 0,
+              "Show": 0,
+              "Hide": 0,
+              "SetEnabled": 0,
+              "EnableMouseWheel": 0,
+              "Sort": 0,
+              "ArtLookup": 0,
+              "AtlasLookup": 0,
+              "TipClear": 0,
+              "TipShow": 0,
+              "TipHide": 0
+            }
+          },
+          {
+            "client": "MoP",
+            "trial": 1,
+            "phase": "quantity",
+            "calls": {
+              "SetPoint": 0,
+              "ClearAllPoints": 0,
+              "SetSize": 0,
+              "SetFont": 0,
+              "SetTexture": 0,
+              "SetText": 100,
+              "Show": 0,
+              "Hide": 0,
+              "SetEnabled": 0,
+              "EnableMouseWheel": 0,
+              "Sort": 0,
+              "ArtLookup": 0,
+              "AtlasLookup": 0,
+              "TipClear": 50,
+              "TipShow": 50,
+              "TipHide": 0
+            }
+          },
+          {
+            "client": "MoP",
+            "trial": 1,
+            "phase": "hidden",
+            "calls": {
+              "SetPoint": 0,
+              "ClearAllPoints": 0,
+              "SetSize": 0,
+              "SetFont": 0,
+              "SetTexture": 0,
+              "SetText": 0,
+              "Show": 0,
+              "Hide": 0,
+              "SetEnabled": 0,
+              "EnableMouseWheel": 0,
+              "Sort": 0,
+              "ArtLookup": 0,
+              "AtlasLookup": 0,
+              "TipClear": 0,
+              "TipShow": 0,
+              "TipHide": 0
+            }
+          },
+          {
+            "client": "MoP",
+            "trial": 2,
+            "phase": "unchanged",
+            "calls": {
+              "SetPoint": 0,
+              "ClearAllPoints": 0,
+              "SetSize": 0,
+              "SetFont": 0,
+              "SetTexture": 0,
+              "SetText": 0,
+              "Show": 0,
+              "Hide": 0,
+              "SetEnabled": 0,
+              "EnableMouseWheel": 0,
+              "Sort": 0,
+              "ArtLookup": 0,
+              "AtlasLookup": 0,
+              "TipClear": 0,
+              "TipShow": 0,
+              "TipHide": 0
+            }
+          },
+          {
+            "client": "MoP",
+            "trial": 2,
+            "phase": "quantity",
+            "calls": {
+              "SetPoint": 0,
+              "ClearAllPoints": 0,
+              "SetSize": 0,
+              "SetFont": 0,
+              "SetTexture": 0,
+              "SetText": 100,
+              "Show": 0,
+              "Hide": 0,
+              "SetEnabled": 0,
+              "EnableMouseWheel": 0,
+              "Sort": 0,
+              "ArtLookup": 0,
+              "AtlasLookup": 0,
+              "TipClear": 50,
+              "TipShow": 50,
+              "TipHide": 0
+            }
+          },
+          {
+            "client": "MoP",
+            "trial": 2,
+            "phase": "hidden",
+            "calls": {
+              "SetPoint": 0,
+              "ClearAllPoints": 0,
+              "SetSize": 0,
+              "SetFont": 0,
+              "SetTexture": 0,
+              "SetText": 0,
+              "Show": 0,
+              "Hide": 0,
+              "SetEnabled": 0,
+              "EnableMouseWheel": 0,
+              "Sort": 0,
+              "ArtLookup": 0,
+              "AtlasLookup": 0,
+              "TipClear": 0,
+              "TipShow": 0,
+              "TipHide": 0
+            }
+          },
+          {
+            "client": "MoP",
+            "trial": 3,
+            "phase": "unchanged",
+            "calls": {
+              "SetPoint": 0,
+              "ClearAllPoints": 0,
+              "SetSize": 0,
+              "SetFont": 0,
+              "SetTexture": 0,
+              "SetText": 0,
+              "Show": 0,
+              "Hide": 0,
+              "SetEnabled": 0,
+              "EnableMouseWheel": 0,
+              "Sort": 0,
+              "ArtLookup": 0,
+              "AtlasLookup": 0,
+              "TipClear": 0,
+              "TipShow": 0,
+              "TipHide": 0
+            }
+          },
+          {
+            "client": "MoP",
+            "trial": 3,
+            "phase": "quantity",
+            "calls": {
+              "SetPoint": 0,
+              "ClearAllPoints": 0,
+              "SetSize": 0,
+              "SetFont": 0,
+              "SetTexture": 0,
+              "SetText": 100,
+              "Show": 0,
+              "Hide": 0,
+              "SetEnabled": 0,
+              "EnableMouseWheel": 0,
+              "Sort": 0,
+              "ArtLookup": 0,
+              "AtlasLookup": 0,
+              "TipClear": 50,
+              "TipShow": 50,
+              "TipHide": 0
+            }
+          },
+          {
+            "client": "MoP",
+            "trial": 3,
+            "phase": "hidden",
+            "calls": {
+              "SetPoint": 0,
+              "ClearAllPoints": 0,
+              "SetSize": 0,
+              "SetFont": 0,
+              "SetTexture": 0,
+              "SetText": 0,
+              "Show": 0,
+              "Hide": 0,
+              "SetEnabled": 0,
+              "EnableMouseWheel": 0,
+              "Sort": 0,
+              "ArtLookup": 0,
+              "AtlasLookup": 0,
+              "TipClear": 0,
+              "TipShow": 0,
+              "TipHide": 0
+            }
+          },
+          {
+            "client": "Era",
+            "trial": 1,
+            "phase": "unchanged",
+            "calls": {
+              "SetPoint": 0,
+              "ClearAllPoints": 0,
+              "SetSize": 0,
+              "SetFont": 0,
+              "SetTexture": 0,
+              "SetText": 0,
+              "Show": 0,
+              "Hide": 0,
+              "SetEnabled": 0,
+              "EnableMouseWheel": 0,
+              "Sort": 0,
+              "ArtLookup": 0,
+              "AtlasLookup": 0,
+              "TipClear": 0,
+              "TipShow": 0,
+              "TipHide": 0
+            }
+          },
+          {
+            "client": "Era",
+            "trial": 1,
+            "phase": "quantity",
+            "calls": {
+              "SetPoint": 0,
+              "ClearAllPoints": 0,
+              "SetSize": 0,
+              "SetFont": 0,
+              "SetTexture": 0,
+              "SetText": 100,
+              "Show": 0,
+              "Hide": 0,
+              "SetEnabled": 0,
+              "EnableMouseWheel": 0,
+              "Sort": 0,
+              "ArtLookup": 0,
+              "AtlasLookup": 0,
+              "TipClear": 50,
+              "TipShow": 50,
+              "TipHide": 0
+            }
+          },
+          {
+            "client": "Era",
+            "trial": 1,
+            "phase": "hidden",
+            "calls": {
+              "SetPoint": 0,
+              "ClearAllPoints": 0,
+              "SetSize": 0,
+              "SetFont": 0,
+              "SetTexture": 0,
+              "SetText": 0,
+              "Show": 0,
+              "Hide": 0,
+              "SetEnabled": 0,
+              "EnableMouseWheel": 0,
+              "Sort": 0,
+              "ArtLookup": 0,
+              "AtlasLookup": 0,
+              "TipClear": 0,
+              "TipShow": 0,
+              "TipHide": 0
+            }
+          },
+          {
+            "client": "Era",
+            "trial": 2,
+            "phase": "unchanged",
+            "calls": {
+              "SetPoint": 0,
+              "ClearAllPoints": 0,
+              "SetSize": 0,
+              "SetFont": 0,
+              "SetTexture": 0,
+              "SetText": 0,
+              "Show": 0,
+              "Hide": 0,
+              "SetEnabled": 0,
+              "EnableMouseWheel": 0,
+              "Sort": 0,
+              "ArtLookup": 0,
+              "AtlasLookup": 0,
+              "TipClear": 0,
+              "TipShow": 0,
+              "TipHide": 0
+            }
+          },
+          {
+            "client": "Era",
+            "trial": 2,
+            "phase": "quantity",
+            "calls": {
+              "SetPoint": 0,
+              "ClearAllPoints": 0,
+              "SetSize": 0,
+              "SetFont": 0,
+              "SetTexture": 0,
+              "SetText": 100,
+              "Show": 0,
+              "Hide": 0,
+              "SetEnabled": 0,
+              "EnableMouseWheel": 0,
+              "Sort": 0,
+              "ArtLookup": 0,
+              "AtlasLookup": 0,
+              "TipClear": 50,
+              "TipShow": 50,
+              "TipHide": 0
+            }
+          },
+          {
+            "client": "Era",
+            "trial": 2,
+            "phase": "hidden",
+            "calls": {
+              "SetPoint": 0,
+              "ClearAllPoints": 0,
+              "SetSize": 0,
+              "SetFont": 0,
+              "SetTexture": 0,
+              "SetText": 0,
+              "Show": 0,
+              "Hide": 0,
+              "SetEnabled": 0,
+              "EnableMouseWheel": 0,
+              "Sort": 0,
+              "ArtLookup": 0,
+              "AtlasLookup": 0,
+              "TipClear": 0,
+              "TipShow": 0,
+              "TipHide": 0
+            }
+          },
+          {
+            "client": "Era",
+            "trial": 3,
+            "phase": "unchanged",
+            "calls": {
+              "SetPoint": 0,
+              "ClearAllPoints": 0,
+              "SetSize": 0,
+              "SetFont": 0,
+              "SetTexture": 0,
+              "SetText": 0,
+              "Show": 0,
+              "Hide": 0,
+              "SetEnabled": 0,
+              "EnableMouseWheel": 0,
+              "Sort": 0,
+              "ArtLookup": 0,
+              "AtlasLookup": 0,
+              "TipClear": 0,
+              "TipShow": 0,
+              "TipHide": 0
+            }
+          },
+          {
+            "client": "Era",
+            "trial": 3,
+            "phase": "quantity",
+            "calls": {
+              "SetPoint": 0,
+              "ClearAllPoints": 0,
+              "SetSize": 0,
+              "SetFont": 0,
+              "SetTexture": 0,
+              "SetText": 100,
+              "Show": 0,
+              "Hide": 0,
+              "SetEnabled": 0,
+              "EnableMouseWheel": 0,
+              "Sort": 0,
+              "ArtLookup": 0,
+              "AtlasLookup": 0,
+              "TipClear": 50,
+              "TipShow": 50,
+              "TipHide": 0
+            }
+          },
+          {
+            "client": "Era",
+            "trial": 3,
+            "phase": "hidden",
+            "calls": {
+              "SetPoint": 0,
+              "ClearAllPoints": 0,
+              "SetSize": 0,
+              "SetFont": 0,
+              "SetTexture": 0,
+              "SetText": 0,
+              "Show": 0,
+              "Hide": 0,
+              "SetEnabled": 0,
+              "EnableMouseWheel": 0,
+              "Sort": 0,
+              "ArtLookup": 0,
+              "AtlasLookup": 0,
+              "TipClear": 0,
+              "TipShow": 0,
+              "TipHide": 0
+            }
+          },
+          {
+            "client": "Anniversary",
+            "trial": 1,
+            "phase": "unchanged",
+            "calls": {
+              "SetPoint": 0,
+              "ClearAllPoints": 0,
+              "SetSize": 0,
+              "SetFont": 0,
+              "SetTexture": 0,
+              "SetText": 0,
+              "Show": 0,
+              "Hide": 0,
+              "SetEnabled": 0,
+              "EnableMouseWheel": 0,
+              "Sort": 0,
+              "ArtLookup": 0,
+              "AtlasLookup": 0,
+              "TipClear": 0,
+              "TipShow": 0,
+              "TipHide": 0
+            }
+          },
+          {
+            "client": "Anniversary",
+            "trial": 1,
+            "phase": "quantity",
+            "calls": {
+              "SetPoint": 0,
+              "ClearAllPoints": 0,
+              "SetSize": 0,
+              "SetFont": 0,
+              "SetTexture": 0,
+              "SetText": 100,
+              "Show": 0,
+              "Hide": 0,
+              "SetEnabled": 0,
+              "EnableMouseWheel": 0,
+              "Sort": 0,
+              "ArtLookup": 0,
+              "AtlasLookup": 0,
+              "TipClear": 50,
+              "TipShow": 50,
+              "TipHide": 0
+            }
+          },
+          {
+            "client": "Anniversary",
+            "trial": 1,
+            "phase": "hidden",
+            "calls": {
+              "SetPoint": 0,
+              "ClearAllPoints": 0,
+              "SetSize": 0,
+              "SetFont": 0,
+              "SetTexture": 0,
+              "SetText": 0,
+              "Show": 0,
+              "Hide": 0,
+              "SetEnabled": 0,
+              "EnableMouseWheel": 0,
+              "Sort": 0,
+              "ArtLookup": 0,
+              "AtlasLookup": 0,
+              "TipClear": 0,
+              "TipShow": 0,
+              "TipHide": 0
+            }
+          },
+          {
+            "client": "Anniversary",
+            "trial": 2,
+            "phase": "unchanged",
+            "calls": {
+              "SetPoint": 0,
+              "ClearAllPoints": 0,
+              "SetSize": 0,
+              "SetFont": 0,
+              "SetTexture": 0,
+              "SetText": 0,
+              "Show": 0,
+              "Hide": 0,
+              "SetEnabled": 0,
+              "EnableMouseWheel": 0,
+              "Sort": 0,
+              "ArtLookup": 0,
+              "AtlasLookup": 0,
+              "TipClear": 0,
+              "TipShow": 0,
+              "TipHide": 0
+            }
+          },
+          {
+            "client": "Anniversary",
+            "trial": 2,
+            "phase": "quantity",
+            "calls": {
+              "SetPoint": 0,
+              "ClearAllPoints": 0,
+              "SetSize": 0,
+              "SetFont": 0,
+              "SetTexture": 0,
+              "SetText": 100,
+              "Show": 0,
+              "Hide": 0,
+              "SetEnabled": 0,
+              "EnableMouseWheel": 0,
+              "Sort": 0,
+              "ArtLookup": 0,
+              "AtlasLookup": 0,
+              "TipClear": 50,
+              "TipShow": 50,
+              "TipHide": 0
+            }
+          },
+          {
+            "client": "Anniversary",
+            "trial": 2,
+            "phase": "hidden",
+            "calls": {
+              "SetPoint": 0,
+              "ClearAllPoints": 0,
+              "SetSize": 0,
+              "SetFont": 0,
+              "SetTexture": 0,
+              "SetText": 0,
+              "Show": 0,
+              "Hide": 0,
+              "SetEnabled": 0,
+              "EnableMouseWheel": 0,
+              "Sort": 0,
+              "ArtLookup": 0,
+              "AtlasLookup": 0,
+              "TipClear": 0,
+              "TipShow": 0,
+              "TipHide": 0
+            }
+          },
+          {
+            "client": "Anniversary",
+            "trial": 3,
+            "phase": "unchanged",
+            "calls": {
+              "SetPoint": 0,
+              "ClearAllPoints": 0,
+              "SetSize": 0,
+              "SetFont": 0,
+              "SetTexture": 0,
+              "SetText": 0,
+              "Show": 0,
+              "Hide": 0,
+              "SetEnabled": 0,
+              "EnableMouseWheel": 0,
+              "Sort": 0,
+              "ArtLookup": 0,
+              "AtlasLookup": 0,
+              "TipClear": 0,
+              "TipShow": 0,
+              "TipHide": 0
+            }
+          },
+          {
+            "client": "Anniversary",
+            "trial": 3,
+            "phase": "quantity",
+            "calls": {
+              "SetPoint": 0,
+              "ClearAllPoints": 0,
+              "SetSize": 0,
+              "SetFont": 0,
+              "SetTexture": 0,
+              "SetText": 100,
+              "Show": 0,
+              "Hide": 0,
+              "SetEnabled": 0,
+              "EnableMouseWheel": 0,
+              "Sort": 0,
+              "ArtLookup": 0,
+              "AtlasLookup": 0,
+              "TipClear": 50,
+              "TipShow": 50,
+              "TipHide": 0
+            }
+          },
+          {
+            "client": "Anniversary",
+            "trial": 3,
+            "phase": "hidden",
+            "calls": {
+              "SetPoint": 0,
+              "ClearAllPoints": 0,
+              "SetSize": 0,
+              "SetFont": 0,
+              "SetTexture": 0,
+              "SetText": 0,
+              "Show": 0,
+              "Hide": 0,
+              "SetEnabled": 0,
+              "EnableMouseWheel": 0,
+              "Sort": 0,
+              "ArtLookup": 0,
+              "AtlasLookup": 0,
+              "TipClear": 0,
+              "TipShow": 0,
+              "TipHide": 0
+            }
+          }
+        ],
+        "controls": [
+          {
+            "name": "always-reflow",
+            "syntaxPass": true,
+            "rejected": true,
+            "sha256": "a8639e37973d0a75f3a6f0b18a785dbfec2758170cb5825c1686e0a3495a543d",
+            "exitCode": 1,
+            "output": "RENDER_WORK Retail trial=1 phase=unchanged SetPoint=1150,ClearAllPoints=1150,SetSize=1200,SetFont=250,SetTexture=0,SetText=0,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=0,TipShow=0,TipHide=0\nC:\\Users\\mario\\AppData\\Local\\Programs\\Lua\\bin\\lua.exe: tests/auction_restock_followup_render_work.lua:4: unchanged publication changes no native art/geometry/text: SetPoint\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/auction_restock_followup_render_work.lua:4: in upvalue 'check'\n\ttests/auction_restock_followup_render_work.lua:19: in local 'NoWork'\n\ttests/auction_restock_followup_render_work.lua:31: in main chunk\n\t[C]: in ?\n"
+          },
+          {
+            "name": "always-badge-write",
+            "syntaxPass": true,
+            "rejected": true,
+            "sha256": "0cd94f68e9f18b786dc9e9963d0363659a04cea7debb26bfb63b25ec03b6bbef",
+            "exitCode": 1,
+            "output": "RENDER_WORK Retail trial=1 phase=unchanged SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=250,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=0,TipShow=0,TipHide=0\nC:\\Users\\mario\\AppData\\Local\\Programs\\Lua\\bin\\lua.exe: tests/auction_restock_followup_render_work.lua:4: unchanged publication changes no native art/geometry/text: SetText\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/auction_restock_followup_render_work.lua:4: in upvalue 'check'\n\ttests/auction_restock_followup_render_work.lua:19: in local 'NoWork'\n\ttests/auction_restock_followup_render_work.lua:31: in main chunk\n\t[C]: in ?\n"
+          },
+          {
+            "name": "repeat-visible-show",
+            "syntaxPass": true,
+            "rejected": true,
+            "sha256": "31e41334796dffaf914ac87ac2c8c6ef1c3072db2ce141c4349465b78ffad8d7",
+            "exitCode": 1,
+            "output": "RENDER_WORK Retail trial=1 phase=unchanged SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=0,Show=50,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=0,TipShow=0,TipHide=0\nC:\\Users\\mario\\AppData\\Local\\Programs\\Lua\\bin\\lua.exe: tests/auction_restock_followup_render_work.lua:4: unchanged publication changes no native art/geometry/text: Show\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/auction_restock_followup_render_work.lua:4: in upvalue 'check'\n\ttests/auction_restock_followup_render_work.lua:19: in local 'NoWork'\n\ttests/auction_restock_followup_render_work.lua:31: in main chunk\n\t[C]: in ?\n"
+          },
+          {
+            "name": "freeze-badge",
+            "syntaxPass": true,
+            "rejected": true,
+            "sha256": "5ea21a31819a16d1f3b7ec30f335bb7ea3c665466f9968eec9e6b325afe99562",
+            "exitCode": 1,
+            "output": "RENDER_WORK Retail trial=1 phase=unchanged SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=0,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=0,TipShow=0,TipHide=0\nRENDER_WORK Retail trial=1 phase=quantity SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=50,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=50,TipShow=50,TipHide=0\nC:\\Users\\mario\\AppData\\Local\\Programs\\Lua\\bin\\lua.exe: tests/auction_restock_followup_render_work.lua:4: fifty count updates change only fifty badges and captions\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/auction_restock_followup_render_work.lua:4: in local 'check'\n\ttests/auction_restock_followup_render_work.lua:38: in main chunk\n\t[C]: in ?\n"
+          },
+          {
+            "name": "freeze-metadata",
+            "syntaxPass": true,
+            "rejected": true,
+            "sha256": "a0ccdf748c161468a8ee9f5623d7a19e1dd352811f3f4c79beea8dbac24e1e07",
+            "exitCode": 1,
+            "output": "RENDER_WORK Retail trial=1 phase=unchanged SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=0,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=0,TipShow=0,TipHide=0\nRENDER_WORK Retail trial=1 phase=quantity SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=100,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=50,TipShow=50,TipHide=0\nC:\\Users\\mario\\AppData\\Local\\Programs\\Lua\\bin\\lua.exe: tests/auction_restock_followup_render_work.lua:4: late metadata changes the one item image without reflow\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/auction_restock_followup_render_work.lua:4: in local 'check'\n\ttests/auction_restock_followup_render_work.lua:44: in main chunk\n\t[C]: in ?\n"
+          },
+          {
+            "name": "hide-settling",
+            "syntaxPass": true,
+            "rejected": true,
+            "sha256": "0d4c3d9badce862dd24cd7b0547cbb96360c94952c8f2afd9d001ae6bf157269",
+            "exitCode": 1,
+            "output": "RENDER_WORK Retail trial=1 phase=unchanged SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=0,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=0,TipShow=0,TipHide=0\nRENDER_WORK Retail trial=1 phase=quantity SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=100,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=50,TipShow=50,TipHide=0\nC:\\Users\\mario\\AppData\\Local\\Programs\\Lua\\bin\\lua.exe: tests/auction_restock_followup_render_work.lua:4: a known settling craft stays visible on the same disabled item button\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/auction_restock_followup_render_work.lua:4: in local 'check'\n\ttests/auction_restock_followup_render_work.lua:52: in main chunk\n\t[C]: in ?\n"
+          },
+          {
+            "name": "freeze-fallback-art",
+            "syntaxPass": true,
+            "rejected": true,
+            "sha256": "00ca93debafd23034703d936d99458a2f098def6fd28e1f00d6d29109e41d33a",
+            "exitCode": 1,
+            "output": "C:\\Users\\mario\\AppData\\Local\\Programs\\Lua\\bin\\lua.exe: tests/auction_restock_followup_ui.lua:4: late modern artwork replaces a currently active private fallback without hiding its item\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/auction_restock_followup_ui.lua:4: in local 'check'\n\ttests/auction_restock_followup_ui.lua:369: in main chunk\n\t[C]: in ?\n"
+          }
+        ],
+        "baselineRaw": {
+          "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\auction-restock\\tab-crafting-followup\\craft-settle-performance-20261113T203900Z\\followup-render\\baseline-raw.txt",
+          "sha256": "f2c253da70fa779acb2dda91785f0d3af9492dfb6f1cbf197dd130942fbf5990"
+        },
+        "candidateRaw": {
+          "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\auction-restock\\tab-crafting-followup\\craft-settle-performance-20261113T203900Z\\followup-render\\candidate-raw.txt",
+          "sha256": "b280ad059e9f365033047f0b674f4af383b4d5af2126f0f8423aa8ac131f781c"
+        },
+        "rendererScenario": "Proc-enabled widget models across five client/anchor profiles. Native atlas availability is not inferred; classic/button/late-art parity is covered separately by the UI lifecycle fixture."
+      }
+    },
+    {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\auction-restock\\tab-crafting-followup\\craft-settle-performance-20261113T203900Z\\state-results.json",
+      "sha256": "d749d7cc05af750ad37a7301c04297189f174ee1a4184e8f16f2ac0480446e3e",
+      "report": {
+        "scope": "Desktop actual F/craft/storm/HUD plus conservative native stubs; native timing/permissions/art/taint NOT RUN.",
+        "baselineSourceSHA256": "50a0d35727de291f1fb7e359696fae980ba28a6e36aec6a1ede6614db118501f",
+        "ownedSHA256": {
+          "Inventory/Restock/Auction/FluxAuctionRestockFollowup.lua": "428d277c1a4f5b518bb1c281bf7ec4c806735cb6bc9e2c5efe11190f79295fd5",
+          "tests/auction_restock_craft_settle.lua": "050c0a3c174f90a84b80bfc8a69c4534fb8ddeee297e26b7626640c1f324cb03"
+        },
+        "baselineRegression": {
+          "exitCode": 1,
+          "output": "C:\\Users\\mario\\AppData\\Local\\Programs\\Lua\\bin\\lua.exe: tests/auction_restock_craft_settle.lua:83: temporary untrusted inventory retains the same real item/task disabled instead of a hidden waiting state\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/auction_restock_craft_settle.lua:83: in local 'check'\n\ttests/auction_restock_craft_settle.lua:99: in main chunk\n\t[C]: in function 'dofile'\n\t...craft-settle-performance-20261113T203900Z\\state-work.lua:8: in main chunk\n\t[C]: in ?\n"
+        },
+        "candidateRegression": {
+          "exitCode": 0,
+          "output": "Auction craft settlement: 412 checks PASS; 20 client/provider/yield profiles; native event timing/art/input NOT RUN\n"
+        },
+        "trialsPerProfile": 3,
+        "profiles": 20,
+        "refreshesPerTrial": 25,
+        "baseline": [
+          {
+            "client": "Retail",
+            "provider": "absent",
+            "yield": 1,
+            "trial": 1,
+            "counts": 275,
+            "rows": 175,
+            "paints": 25
+          },
+          {
+            "client": "Retail",
+            "provider": "absent",
+            "yield": 3,
+            "trial": 1,
+            "counts": 275,
+            "rows": 175,
+            "paints": 25
+          },
+          {
+            "client": "Retail",
+            "provider": "ready",
+            "yield": 1,
+            "trial": 1,
+            "counts": 275,
+            "rows": 175,
+            "paints": 25
+          },
+          {
+            "client": "Retail",
+            "provider": "ready",
+            "yield": 3,
+            "trial": 1,
+            "counts": 275,
+            "rows": 175,
+            "paints": 25
+          },
+          {
+            "client": "Forever",
+            "provider": "absent",
+            "yield": 1,
+            "trial": 1,
+            "counts": 275,
+            "rows": 175,
+            "paints": 25
+          },
+          {
+            "client": "Forever",
+            "provider": "absent",
+            "yield": 3,
+            "trial": 1,
+            "counts": 275,
+            "rows": 175,
+            "paints": 25
+          },
+          {
+            "client": "Forever",
+            "provider": "ready",
+            "yield": 1,
+            "trial": 1,
+            "counts": 275,
+            "rows": 175,
+            "paints": 25
+          },
+          {
+            "client": "Forever",
+            "provider": "ready",
+            "yield": 3,
+            "trial": 1,
+            "counts": 275,
+            "rows": 175,
+            "paints": 25
+          },
+          {
+            "client": "MoP",
+            "provider": "absent",
+            "yield": 1,
+            "trial": 1,
+            "counts": 275,
+            "rows": 175,
+            "paints": 25
+          },
+          {
+            "client": "MoP",
+            "provider": "absent",
+            "yield": 3,
+            "trial": 1,
+            "counts": 275,
+            "rows": 175,
+            "paints": 25
+          },
+          {
+            "client": "MoP",
+            "provider": "ready",
+            "yield": 1,
+            "trial": 1,
+            "counts": 275,
+            "rows": 175,
+            "paints": 25
+          },
+          {
+            "client": "MoP",
+            "provider": "ready",
+            "yield": 3,
+            "trial": 1,
+            "counts": 275,
+            "rows": 175,
+            "paints": 25
+          },
+          {
+            "client": "Era",
+            "provider": "absent",
+            "yield": 1,
+            "trial": 1,
+            "counts": 275,
+            "rows": 175,
+            "paints": 25
+          },
+          {
+            "client": "Era",
+            "provider": "absent",
+            "yield": 3,
+            "trial": 1,
+            "counts": 275,
+            "rows": 175,
+            "paints": 25
+          },
+          {
+            "client": "Era",
+            "provider": "ready",
+            "yield": 1,
+            "trial": 1,
+            "counts": 275,
+            "rows": 175,
+            "paints": 25
+          },
+          {
+            "client": "Era",
+            "provider": "ready",
+            "yield": 3,
+            "trial": 1,
+            "counts": 275,
+            "rows": 175,
+            "paints": 25
+          },
+          {
+            "client": "Anniversary",
+            "provider": "absent",
+            "yield": 1,
+            "trial": 1,
+            "counts": 275,
+            "rows": 175,
+            "paints": 25
+          },
+          {
+            "client": "Anniversary",
+            "provider": "absent",
+            "yield": 3,
+            "trial": 1,
+            "counts": 275,
+            "rows": 175,
+            "paints": 25
+          },
+          {
+            "client": "Anniversary",
+            "provider": "ready",
+            "yield": 1,
+            "trial": 1,
+            "counts": 275,
+            "rows": 175,
+            "paints": 25
+          },
+          {
+            "client": "Anniversary",
+            "provider": "ready",
+            "yield": 3,
+            "trial": 1,
+            "counts": 275,
+            "rows": 175,
+            "paints": 25
+          },
+          {
+            "client": "Retail",
+            "provider": "absent",
+            "yield": 1,
+            "trial": 2,
+            "counts": 275,
+            "rows": 175,
+            "paints": 25
+          },
+          {
+            "client": "Retail",
+            "provider": "absent",
+            "yield": 3,
+            "trial": 2,
+            "counts": 275,
+            "rows": 175,
+            "paints": 25
+          },
+          {
+            "client": "Retail",
+            "provider": "ready",
+            "yield": 1,
+            "trial": 2,
+            "counts": 275,
+            "rows": 175,
+            "paints": 25
+          },
+          {
+            "client": "Retail",
+            "provider": "ready",
+            "yield": 3,
+            "trial": 2,
+            "counts": 275,
+            "rows": 175,
+            "paints": 25
+          },
+          {
+            "client": "Forever",
+            "provider": "absent",
+            "yield": 1,
+            "trial": 2,
+            "counts": 275,
+            "rows": 175,
+            "paints": 25
+          },
+          {
+            "client": "Forever",
+            "provider": "absent",
+            "yield": 3,
+            "trial": 2,
+            "counts": 275,
+            "rows": 175,
+            "paints": 25
+          },
+          {
+            "client": "Forever",
+            "provider": "ready",
+            "yield": 1,
+            "trial": 2,
+            "counts": 275,
+            "rows": 175,
+            "paints": 25
+          },
+          {
+            "client": "Forever",
+            "provider": "ready",
+            "yield": 3,
+            "trial": 2,
+            "counts": 275,
+            "rows": 175,
+            "paints": 25
+          },
+          {
+            "client": "MoP",
+            "provider": "absent",
+            "yield": 1,
+            "trial": 2,
+            "counts": 275,
+            "rows": 175,
+            "paints": 25
+          },
+          {
+            "client": "MoP",
+            "provider": "absent",
+            "yield": 3,
+            "trial": 2,
+            "counts": 275,
+            "rows": 175,
+            "paints": 25
+          },
+          {
+            "client": "MoP",
+            "provider": "ready",
+            "yield": 1,
+            "trial": 2,
+            "counts": 275,
+            "rows": 175,
+            "paints": 25
+          },
+          {
+            "client": "MoP",
+            "provider": "ready",
+            "yield": 3,
+            "trial": 2,
+            "counts": 275,
+            "rows": 175,
+            "paints": 25
+          },
+          {
+            "client": "Era",
+            "provider": "absent",
+            "yield": 1,
+            "trial": 2,
+            "counts": 275,
+            "rows": 175,
+            "paints": 25
+          },
+          {
+            "client": "Era",
+            "provider": "absent",
+            "yield": 3,
+            "trial": 2,
+            "counts": 275,
+            "rows": 175,
+            "paints": 25
+          },
+          {
+            "client": "Era",
+            "provider": "ready",
+            "yield": 1,
+            "trial": 2,
+            "counts": 275,
+            "rows": 175,
+            "paints": 25
+          },
+          {
+            "client": "Era",
+            "provider": "ready",
+            "yield": 3,
+            "trial": 2,
+            "counts": 275,
+            "rows": 175,
+            "paints": 25
+          },
+          {
+            "client": "Anniversary",
+            "provider": "absent",
+            "yield": 1,
+            "trial": 2,
+            "counts": 275,
+            "rows": 175,
+            "paints": 25
+          },
+          {
+            "client": "Anniversary",
+            "provider": "absent",
+            "yield": 3,
+            "trial": 2,
+            "counts": 275,
+            "rows": 175,
+            "paints": 25
+          },
+          {
+            "client": "Anniversary",
+            "provider": "ready",
+            "yield": 1,
+            "trial": 2,
+            "counts": 275,
+            "rows": 175,
+            "paints": 25
+          },
+          {
+            "client": "Anniversary",
+            "provider": "ready",
+            "yield": 3,
+            "trial": 2,
+            "counts": 275,
+            "rows": 175,
+            "paints": 25
+          },
+          {
+            "client": "Retail",
+            "provider": "absent",
+            "yield": 1,
+            "trial": 3,
+            "counts": 275,
+            "rows": 175,
+            "paints": 25
+          },
+          {
+            "client": "Retail",
+            "provider": "absent",
+            "yield": 3,
+            "trial": 3,
+            "counts": 275,
+            "rows": 175,
+            "paints": 25
+          },
+          {
+            "client": "Retail",
+            "provider": "ready",
+            "yield": 1,
+            "trial": 3,
+            "counts": 275,
+            "rows": 175,
+            "paints": 25
+          },
+          {
+            "client": "Retail",
+            "provider": "ready",
+            "yield": 3,
+            "trial": 3,
+            "counts": 275,
+            "rows": 175,
+            "paints": 25
+          },
+          {
+            "client": "Forever",
+            "provider": "absent",
+            "yield": 1,
+            "trial": 3,
+            "counts": 275,
+            "rows": 175,
+            "paints": 25
+          },
+          {
+            "client": "Forever",
+            "provider": "absent",
+            "yield": 3,
+            "trial": 3,
+            "counts": 275,
+            "rows": 175,
+            "paints": 25
+          },
+          {
+            "client": "Forever",
+            "provider": "ready",
+            "yield": 1,
+            "trial": 3,
+            "counts": 275,
+            "rows": 175,
+            "paints": 25
+          },
+          {
+            "client": "Forever",
+            "provider": "ready",
+            "yield": 3,
+            "trial": 3,
+            "counts": 275,
+            "rows": 175,
+            "paints": 25
+          },
+          {
+            "client": "MoP",
+            "provider": "absent",
+            "yield": 1,
+            "trial": 3,
+            "counts": 275,
+            "rows": 175,
+            "paints": 25
+          },
+          {
+            "client": "MoP",
+            "provider": "absent",
+            "yield": 3,
+            "trial": 3,
+            "counts": 275,
+            "rows": 175,
+            "paints": 25
+          },
+          {
+            "client": "MoP",
+            "provider": "ready",
+            "yield": 1,
+            "trial": 3,
+            "counts": 275,
+            "rows": 175,
+            "paints": 25
+          },
+          {
+            "client": "MoP",
+            "provider": "ready",
+            "yield": 3,
+            "trial": 3,
+            "counts": 275,
+            "rows": 175,
+            "paints": 25
+          },
+          {
+            "client": "Era",
+            "provider": "absent",
+            "yield": 1,
+            "trial": 3,
+            "counts": 275,
+            "rows": 175,
+            "paints": 25
+          },
+          {
+            "client": "Era",
+            "provider": "absent",
+            "yield": 3,
+            "trial": 3,
+            "counts": 275,
+            "rows": 175,
+            "paints": 25
+          },
+          {
+            "client": "Era",
+            "provider": "ready",
+            "yield": 1,
+            "trial": 3,
+            "counts": 275,
+            "rows": 175,
+            "paints": 25
+          },
+          {
+            "client": "Era",
+            "provider": "ready",
+            "yield": 3,
+            "trial": 3,
+            "counts": 275,
+            "rows": 175,
+            "paints": 25
+          },
+          {
+            "client": "Anniversary",
+            "provider": "absent",
+            "yield": 1,
+            "trial": 3,
+            "counts": 275,
+            "rows": 175,
+            "paints": 25
+          },
+          {
+            "client": "Anniversary",
+            "provider": "absent",
+            "yield": 3,
+            "trial": 3,
+            "counts": 275,
+            "rows": 175,
+            "paints": 25
+          },
+          {
+            "client": "Anniversary",
+            "provider": "ready",
+            "yield": 1,
+            "trial": 3,
+            "counts": 275,
+            "rows": 175,
+            "paints": 25
+          },
+          {
+            "client": "Anniversary",
+            "provider": "ready",
+            "yield": 3,
+            "trial": 3,
+            "counts": 275,
+            "rows": 175,
+            "paints": 25
+          }
+        ],
+        "candidate": [
+          {
+            "client": "Retail",
+            "provider": "absent",
+            "yield": 1,
+            "trial": 1,
+            "counts": 250,
+            "rows": 175,
+            "paints": 25
+          },
+          {
+            "client": "Retail",
+            "provider": "absent",
+            "yield": 3,
+            "trial": 1,
+            "counts": 250,
+            "rows": 175,
+            "paints": 25
+          },
+          {
+            "client": "Retail",
+            "provider": "ready",
+            "yield": 1,
+            "trial": 1,
+            "counts": 250,
+            "rows": 175,
+            "paints": 25
+          },
+          {
+            "client": "Retail",
+            "provider": "ready",
+            "yield": 3,
+            "trial": 1,
+            "counts": 250,
+            "rows": 175,
+            "paints": 25
+          },
+          {
+            "client": "Forever",
+            "provider": "absent",
+            "yield": 1,
+            "trial": 1,
+            "counts": 250,
+            "rows": 175,
+            "paints": 25
+          },
+          {
+            "client": "Forever",
+            "provider": "absent",
+            "yield": 3,
+            "trial": 1,
+            "counts": 250,
+            "rows": 175,
+            "paints": 25
+          },
+          {
+            "client": "Forever",
+            "provider": "ready",
+            "yield": 1,
+            "trial": 1,
+            "counts": 250,
+            "rows": 175,
+            "paints": 25
+          },
+          {
+            "client": "Forever",
+            "provider": "ready",
+            "yield": 3,
+            "trial": 1,
+            "counts": 250,
+            "rows": 175,
+            "paints": 25
+          },
+          {
+            "client": "MoP",
+            "provider": "absent",
+            "yield": 1,
+            "trial": 1,
+            "counts": 250,
+            "rows": 175,
+            "paints": 25
+          },
+          {
+            "client": "MoP",
+            "provider": "absent",
+            "yield": 3,
+            "trial": 1,
+            "counts": 250,
+            "rows": 175,
+            "paints": 25
+          },
+          {
+            "client": "MoP",
+            "provider": "ready",
+            "yield": 1,
+            "trial": 1,
+            "counts": 250,
+            "rows": 175,
+            "paints": 25
+          },
+          {
+            "client": "MoP",
+            "provider": "ready",
+            "yield": 3,
+            "trial": 1,
+            "counts": 250,
+            "rows": 175,
+            "paints": 25
+          },
+          {
+            "client": "Era",
+            "provider": "absent",
+            "yield": 1,
+            "trial": 1,
+            "counts": 250,
+            "rows": 175,
+            "paints": 25
+          },
+          {
+            "client": "Era",
+            "provider": "absent",
+            "yield": 3,
+            "trial": 1,
+            "counts": 250,
+            "rows": 175,
+            "paints": 25
+          },
+          {
+            "client": "Era",
+            "provider": "ready",
+            "yield": 1,
+            "trial": 1,
+            "counts": 250,
+            "rows": 175,
+            "paints": 25
+          },
+          {
+            "client": "Era",
+            "provider": "ready",
+            "yield": 3,
+            "trial": 1,
+            "counts": 250,
+            "rows": 175,
+            "paints": 25
+          },
+          {
+            "client": "Anniversary",
+            "provider": "absent",
+            "yield": 1,
+            "trial": 1,
+            "counts": 250,
+            "rows": 175,
+            "paints": 25
+          },
+          {
+            "client": "Anniversary",
+            "provider": "absent",
+            "yield": 3,
+            "trial": 1,
+            "counts": 250,
+            "rows": 175,
+            "paints": 25
+          },
+          {
+            "client": "Anniversary",
+            "provider": "ready",
+            "yield": 1,
+            "trial": 1,
+            "counts": 250,
+            "rows": 175,
+            "paints": 25
+          },
+          {
+            "client": "Anniversary",
+            "provider": "ready",
+            "yield": 3,
+            "trial": 1,
+            "counts": 250,
+            "rows": 175,
+            "paints": 25
+          },
+          {
+            "client": "Retail",
+            "provider": "absent",
+            "yield": 1,
+            "trial": 2,
+            "counts": 250,
+            "rows": 175,
+            "paints": 25
+          },
+          {
+            "client": "Retail",
+            "provider": "absent",
+            "yield": 3,
+            "trial": 2,
+            "counts": 250,
+            "rows": 175,
+            "paints": 25
+          },
+          {
+            "client": "Retail",
+            "provider": "ready",
+            "yield": 1,
+            "trial": 2,
+            "counts": 250,
+            "rows": 175,
+            "paints": 25
+          },
+          {
+            "client": "Retail",
+            "provider": "ready",
+            "yield": 3,
+            "trial": 2,
+            "counts": 250,
+            "rows": 175,
+            "paints": 25
+          },
+          {
+            "client": "Forever",
+            "provider": "absent",
+            "yield": 1,
+            "trial": 2,
+            "counts": 250,
+            "rows": 175,
+            "paints": 25
+          },
+          {
+            "client": "Forever",
+            "provider": "absent",
+            "yield": 3,
+            "trial": 2,
+            "counts": 250,
+            "rows": 175,
+            "paints": 25
+          },
+          {
+            "client": "Forever",
+            "provider": "ready",
+            "yield": 1,
+            "trial": 2,
+            "counts": 250,
+            "rows": 175,
+            "paints": 25
+          },
+          {
+            "client": "Forever",
+            "provider": "ready",
+            "yield": 3,
+            "trial": 2,
+            "counts": 250,
+            "rows": 175,
+            "paints": 25
+          },
+          {
+            "client": "MoP",
+            "provider": "absent",
+            "yield": 1,
+            "trial": 2,
+            "counts": 250,
+            "rows": 175,
+            "paints": 25
+          },
+          {
+            "client": "MoP",
+            "provider": "absent",
+            "yield": 3,
+            "trial": 2,
+            "counts": 250,
+            "rows": 175,
+            "paints": 25
+          },
+          {
+            "client": "MoP",
+            "provider": "ready",
+            "yield": 1,
+            "trial": 2,
+            "counts": 250,
+            "rows": 175,
+            "paints": 25
+          },
+          {
+            "client": "MoP",
+            "provider": "ready",
+            "yield": 3,
+            "trial": 2,
+            "counts": 250,
+            "rows": 175,
+            "paints": 25
+          },
+          {
+            "client": "Era",
+            "provider": "absent",
+            "yield": 1,
+            "trial": 2,
+            "counts": 250,
+            "rows": 175,
+            "paints": 25
+          },
+          {
+            "client": "Era",
+            "provider": "absent",
+            "yield": 3,
+            "trial": 2,
+            "counts": 250,
+            "rows": 175,
+            "paints": 25
+          },
+          {
+            "client": "Era",
+            "provider": "ready",
+            "yield": 1,
+            "trial": 2,
+            "counts": 250,
+            "rows": 175,
+            "paints": 25
+          },
+          {
+            "client": "Era",
+            "provider": "ready",
+            "yield": 3,
+            "trial": 2,
+            "counts": 250,
+            "rows": 175,
+            "paints": 25
+          },
+          {
+            "client": "Anniversary",
+            "provider": "absent",
+            "yield": 1,
+            "trial": 2,
+            "counts": 250,
+            "rows": 175,
+            "paints": 25
+          },
+          {
+            "client": "Anniversary",
+            "provider": "absent",
+            "yield": 3,
+            "trial": 2,
+            "counts": 250,
+            "rows": 175,
+            "paints": 25
+          },
+          {
+            "client": "Anniversary",
+            "provider": "ready",
+            "yield": 1,
+            "trial": 2,
+            "counts": 250,
+            "rows": 175,
+            "paints": 25
+          },
+          {
+            "client": "Anniversary",
+            "provider": "ready",
+            "yield": 3,
+            "trial": 2,
+            "counts": 250,
+            "rows": 175,
+            "paints": 25
+          },
+          {
+            "client": "Retail",
+            "provider": "absent",
+            "yield": 1,
+            "trial": 3,
+            "counts": 250,
+            "rows": 175,
+            "paints": 25
+          },
+          {
+            "client": "Retail",
+            "provider": "absent",
+            "yield": 3,
+            "trial": 3,
+            "counts": 250,
+            "rows": 175,
+            "paints": 25
+          },
+          {
+            "client": "Retail",
+            "provider": "ready",
+            "yield": 1,
+            "trial": 3,
+            "counts": 250,
+            "rows": 175,
+            "paints": 25
+          },
+          {
+            "client": "Retail",
+            "provider": "ready",
+            "yield": 3,
+            "trial": 3,
+            "counts": 250,
+            "rows": 175,
+            "paints": 25
+          },
+          {
+            "client": "Forever",
+            "provider": "absent",
+            "yield": 1,
+            "trial": 3,
+            "counts": 250,
+            "rows": 175,
+            "paints": 25
+          },
+          {
+            "client": "Forever",
+            "provider": "absent",
+            "yield": 3,
+            "trial": 3,
+            "counts": 250,
+            "rows": 175,
+            "paints": 25
+          },
+          {
+            "client": "Forever",
+            "provider": "ready",
+            "yield": 1,
+            "trial": 3,
+            "counts": 250,
+            "rows": 175,
+            "paints": 25
+          },
+          {
+            "client": "Forever",
+            "provider": "ready",
+            "yield": 3,
+            "trial": 3,
+            "counts": 250,
+            "rows": 175,
+            "paints": 25
+          },
+          {
+            "client": "MoP",
+            "provider": "absent",
+            "yield": 1,
+            "trial": 3,
+            "counts": 250,
+            "rows": 175,
+            "paints": 25
+          },
+          {
+            "client": "MoP",
+            "provider": "absent",
+            "yield": 3,
+            "trial": 3,
+            "counts": 250,
+            "rows": 175,
+            "paints": 25
+          },
+          {
+            "client": "MoP",
+            "provider": "ready",
+            "yield": 1,
+            "trial": 3,
+            "counts": 250,
+            "rows": 175,
+            "paints": 25
+          },
+          {
+            "client": "MoP",
+            "provider": "ready",
+            "yield": 3,
+            "trial": 3,
+            "counts": 250,
+            "rows": 175,
+            "paints": 25
+          },
+          {
+            "client": "Era",
+            "provider": "absent",
+            "yield": 1,
+            "trial": 3,
+            "counts": 250,
+            "rows": 175,
+            "paints": 25
+          },
+          {
+            "client": "Era",
+            "provider": "absent",
+            "yield": 3,
+            "trial": 3,
+            "counts": 250,
+            "rows": 175,
+            "paints": 25
+          },
+          {
+            "client": "Era",
+            "provider": "ready",
+            "yield": 1,
+            "trial": 3,
+            "counts": 250,
+            "rows": 175,
+            "paints": 25
+          },
+          {
+            "client": "Era",
+            "provider": "ready",
+            "yield": 3,
+            "trial": 3,
+            "counts": 250,
+            "rows": 175,
+            "paints": 25
+          },
+          {
+            "client": "Anniversary",
+            "provider": "absent",
+            "yield": 1,
+            "trial": 3,
+            "counts": 250,
+            "rows": 175,
+            "paints": 25
+          },
+          {
+            "client": "Anniversary",
+            "provider": "absent",
+            "yield": 3,
+            "trial": 3,
+            "counts": 250,
+            "rows": 175,
+            "paints": 25
+          },
+          {
+            "client": "Anniversary",
+            "provider": "ready",
+            "yield": 1,
+            "trial": 3,
+            "counts": 250,
+            "rows": 175,
+            "paints": 25
+          },
+          {
+            "client": "Anniversary",
+            "provider": "ready",
+            "yield": 3,
+            "trial": 3,
+            "counts": 250,
+            "rows": 175,
+            "paints": 25
+          }
+        ],
+        "controls": [
+          {
+            "name": "hide-known-settlement",
+            "compiled": true,
+            "rejected": true,
+            "exitCode": 1,
+            "output": "C:\\Users\\mario\\AppData\\Local\\Programs\\Lua\\bin\\lua.exe: tests/auction_restock_craft_settle.lua:83: temporary untrusted inventory retains the same real item/task disabled instead of a hidden waiting state\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/auction_restock_craft_settle.lua:83: in local 'check'\n\ttests/auction_restock_craft_settle.lua:99: in main chunk\n\t[C]: in function 'dofile'\n\t...craft-settle-performance-20261113T203900Z\\state-work.lua:8: in main chunk\n\t[C]: in ?\n"
+          },
+          {
+            "name": "premature-stop-release",
+            "compiled": true,
+            "rejected": true,
+            "exitCode": 1,
+            "output": "C:\\Users\\mario\\AppData\\Local\\Programs\\Lua\\bin\\lua.exe: tests/auction_restock_craft_settle.lua:83: natural final stop before bag publication never re-advertises another craft\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/auction_restock_craft_settle.lua:83: in local 'check'\n\ttests/auction_restock_craft_settle.lua:115: in main chunk\n\t[C]: in function 'dofile'\n\t...craft-settle-performance-20261113T203900Z\\state-work.lua:8: in main chunk\n\t[C]: in ?\n"
+          },
+          {
+            "name": "noncumulative-output-hold",
+            "compiled": true,
+            "rejected": true,
+            "exitCode": 1,
+            "output": "C:\\Users\\mario\\AppData\\Local\\Programs\\Lua\\bin\\lua.exe: tests/auction_restock_craft_settle.lua:83: multiple observed casts before any bags publish retain a cumulative lower bound after only the first output arrives\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/auction_restock_craft_settle.lua:83: in local 'check'\n\ttests/auction_restock_craft_settle.lua:194: in main chunk\n\t[C]: in function 'dofile'\n\t...craft-settle-performance-20261113T203900Z\\state-work.lua:8: in main chunk\n\t[C]: in ?\n"
+          },
+          {
+            "name": "unrelated-token-hold",
+            "compiled": true,
+            "rejected": true,
+            "exitCode": 1,
+            "output": "C:\\Users\\mario\\AppData\\Local\\Programs\\Lua\\bin\\lua.exe: tests/auction_restock_craft_settle.lua:83: an unrelated stopped token cannot add a settlement expectation to the owned craft\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/auction_restock_craft_settle.lua:83: in local 'check'\n\ttests/auction_restock_craft_settle.lua:170: in main chunk\n\t[C]: in function 'dofile'\n\t...craft-settle-performance-20261113T203900Z\\state-work.lua:8: in main chunk\n\t[C]: in ?\n"
+          },
+          {
+            "name": "settling-permission",
+            "compiled": true,
+            "rejected": true,
+            "exitCode": 1,
+            "output": "C:\\Users\\mario\\AppData\\Local\\Programs\\Lua\\bin\\lua.exe: tests/auction_restock_craft_settle.lua:83: a retained settling payload cannot grant permission before it is republished even if global reliability returns\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/auction_restock_craft_settle.lua:83: in local 'check'\n\ttests/auction_restock_craft_settle.lua:207: in main chunk\n\t[C]: in function 'dofile'\n\t...craft-settle-performance-20261113T203900Z\\state-work.lua:8: in main chunk\n\t[C]: in ?\n"
+          },
+          {
+            "name": "ignore-secret-token",
+            "compiled": true,
+            "rejected": true,
+            "exitCode": 1,
+            "output": "C:\\Users\\mario\\AppData\\Local\\Programs\\Lua\\bin\\lua.exe: tests/auction_restock_craft_settle.lua:83: unknown/unowned/restricted cast observations cannot manufacture an output hold or strand a stopped batch\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/auction_restock_craft_settle.lua:83: in local 'check'\n\ttests/auction_restock_craft_settle.lua:163: in main chunk\n\t[C]: in function 'dofile'\n\t...craft-settle-performance-20261113T203900Z\\state-work.lua:8: in main chunk\n\t[C]: in ?\n"
+          }
+        ]
+      }
+    }
+  ],
+  "harmfulControlsRejected": 16,
+  "installedCopies": {
+    "Retail": {
+      "path": "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI",
+      "checked": 4,
+      "matched": 4,
+      "readOnly": true,
+      "manualSync": false,
+      "nativeOperation": "NOT RUN"
+    },
+    "Forever": {
+      "path": "F:\\World of Warcraft\\_forever_\\Interface\\AddOns\\_FluxUI",
+      "checked": 4,
+      "matched": 4,
+      "readOnly": true,
+      "manualSync": false,
+      "nativeOperation": "NOT RUN"
+    },
+    "MoP": {
+      "path": "F:\\World of Warcraft\\_classic_\\Interface\\AddOns\\_FluxUI",
+      "checked": 4,
+      "matched": 4,
+      "readOnly": true,
+      "manualSync": false,
+      "nativeOperation": "NOT RUN"
+    },
+    "Era": {
+      "path": "F:\\World of Warcraft\\_classic_era_\\Interface\\AddOns\\_FluxUI",
+      "checked": 4,
+      "matched": 4,
+      "readOnly": true,
+      "manualSync": false,
+      "nativeOperation": "NOT RUN"
+    },
+    "Anniversary": {
+      "path": "F:\\World of Warcraft\\_anniversary_\\Interface\\AddOns\\_FluxUI",
+      "checked": 4,
+      "matched": 4,
+      "readOnly": true,
+      "manualSync": false,
+      "nativeOperation": "NOT RUN"
+    }
+  },
+  "primarySourceEvidence": [
+    {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\auction-restock\\tab-crafting-followup\\craft-settle-performance-20261113T203900Z\\event-source\\contracts.json",
+      "sha256": "33b9b2a8b0c88e81ecfeba029ce3b4758243067ec2762c23f6818073f9d7a765"
+    },
+    {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\auction-restock\\tab-crafting-followup\\craft-settle-performance-20261113T203900Z\\event-source\\analysis.json",
+      "sha256": "9298354b9469522c411d6706bc06a3ccb9572b7a7cdddbe8e7599d27fd1a3923"
+    },
+    {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\auction-restock\\tab-crafting-followup\\craft-settle-performance-20261113T203900Z\\event-source\\name-check.json",
+      "sha256": "d3771b97c91a3579bbff9802a05842d75a108c03101a80c2e0423e6a0f2499ce"
+    }
+  ],
+  "correctness": [
+    "Same-job known craft items retain disabled presentation through untrusted inventory settlement.",
+    "No generic waiting/questionmark resurrection; true completion/cancellation/combat/invalid ownership remain authoritative.",
+    "Public observed START/STOP tokens provide a bounded potential-output hold only; never inventory credit or native purchase/craft authorization.",
+    "Cumulative coalesced outputs, interruption/failure both orders, partial/no-output cancellation, secret/unrelated/duplicate tokens are covered.",
+    "Modern observed public spell-ID equality or public recipe-name equality; legacy name mismatch remains fail-closed fallback and needs native validation."
+  ],
+  "performance": {
+    "data80Rows": {
+      "before": {
+        "need": 160,
+        "bagReads": 160,
+        "mailReads": 320
+      },
+      "after": {
+        "need": 80,
+        "bagReads": 80,
+        "mailReads": 80
+      },
+      "profiles": 20,
+      "trials": 3
+    },
+    "service25Refreshes": {
+      "carriedReadsBefore": 275,
+      "carriedReadsAfter": 250,
+      "profiles": 20,
+      "trials": 3
+    },
+    "renderer": "50 identical paints: avoidable layout/art/text/show/hide/sort work becomes0. Count-only changes update badge/caption and required hovered tooltip only.",
+    "rendererScope": "Three trials per5 proc-enabled desktop profiles. Real per-client atlas availability is not inferred; existing regression separately covers fallbacks/late artwork.",
+    "newTimers": 0,
+    "newPollers": 0,
+    "newNativeEventSubscriptions": 1,
+    "eventLifecycle": "UNIT_SPELLCAST_START is job-owned; capture returns without another full Refresh.",
+    "cacheScope": "Count memo exists only during one Build, split by physical/charge mode; reliability checked before reuse and cleared before dispatch.",
+    "nativeLatencyCPUFPS": "NOT RUN"
+  },
+  "preserved": {
+    "branch": "main",
+    "hooksPath": ".githooks",
+    "settingsAndGlobalAutoFlags": true,
+    "oldAHPerItemOnly": true,
+    "modernExplicitFullScan": true,
+    "nativePurchaseAndCraftClickPaths": true,
+    "foregroundInputClipboard": false,
+    "settingsProfilerWrites": false,
+    "manualSync": false,
+    "publication": false
+  },
+  "native": {
+    "status": "NOT RUN",
+    "route": "Existing user-managed native reproduction; no connected native UI tool available.",
+    "pending": [
+      "actual craft event order and recipe-name fallback",
+      "live visible flicker/proc/pressed art",
+      "protected buying/crafting and mail/bank/vendor coexistence",
+      "controller/localized clipping/taint",
+      "matched CPU/FPS"
+    ]
+  },
+  "documentation": {
+    "validation": "PASS:1079 sources;623 reachable;438 settings;24 SavedVariables;17129 local links",
+    "diffCheck": "PASS",
+    "finalCompleteLuaManifestMatches": true,
+    "ownedRawHashesMatch": true,
+    "verifiedAtUTC": "2026-11-13T21:09:51.197933+00:00"
+  },
+  "independentReview": "PASS: coalesced stopped outputs remain disabled until trusted quantities catch up; direct clicks cannot start another batch; count memo and same-job settling guard reviewed; no native permission/art claim."
+}

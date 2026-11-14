@@ -1,0 +1,106 @@
+{
+  "dateUTC": "2026-11-14T08:54:51.316208+00:00",
+  "localDate": "2026-11-14",
+  "timezone": "Europe/Copenhagen",
+  "changeID": "POTION-MINIMUM-RESTORE-20261114",
+  "requirements": [
+    "AHR-104"
+  ],
+  "checkpoint": {
+    "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\auction-restock\\tab-crafting-followup\\potion-minimum-20261114T083404Z\\checkpoint.json",
+    "sha256": "a9dce3515b9065711c4a4444f40613556aacaeccce5ea169140a468baacfcb56",
+    "sourceFiles": 2778,
+    "accessibleSettingsMetadata": 129,
+    "privateSettingsCopied": false,
+    "archives": {
+      "source-before.zip": {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\auction-restock\\tab-crafting-followup\\potion-minimum-20261114T083404Z\\source-before.zip",
+        "sha256": "197f9a55d0f51664384920c6eb2c5821d6d78d825f1aab69e5ba3432f6609b99"
+      },
+      "history-before.bundle": {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\auction-restock\\tab-crafting-followup\\potion-minimum-20261114T083404Z\\history-before.bundle",
+        "sha256": "502745484868080a54de49ff6a8f5a34b099b4b9deba45917d2b98b960bd7e87"
+      }
+    }
+  },
+  "behavior": {
+    "rule": "Healing/mana potion restore tiers use the actual minimum roll across classifier,Best/buttons,recipe ranking,vendor memory,restock thresholds and automatic junk. A larger maximum cannot outrank a higher minimum.",
+    "example": "500\u20131500 cannot replace600\u2013800;650\u2013700 can",
+    "unchanged": "Food/water/bandage ranking;manual Junk wins;blacklists;prices/targets;explicit AH approval and one purchase per player press",
+    "migration": "Persisted potion references/vendor observations normalize from verified classification;two saved tier Basis fields mark minimum values. Deferred unknown facts are retained but cannot compete/promote as verified minima.",
+    "cache": "Potion-only cached text/axes/minima survive transient live-tooltip gaps;legacy maximum-only caches remain unresolved;settled records avoid repeated range parsing",
+    "formats": "to;ASCII/en/em dashes;thousands;fixed/ranged percentages;zero/up-to minima;independent resources;no item ID/name tier catalogue"
+  },
+  "tests": {
+    "pass": 74,
+    "fail": 0,
+    "syntaxFiles": 79,
+    "scoped": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\auction-restock\\tab-crafting-followup\\potion-minimum-20261114T083404Z\\scoped.json",
+      "sha256": "3981fc17c9ba18efaebc51972f2fc0e3f73494cb92af9b2d27c10693b51c6226"
+    },
+    "minimumRegression": "510 checks/50 profiles",
+    "restoreRegression": "388 checks/20 profiles",
+    "matchedTrials": 3,
+    "compiledHarmfulControlsRejected": 10,
+    "controls": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\auction-restock\\tab-crafting-followup\\potion-minimum-20261114T083404Z\\results.json",
+      "sha256": "f5966cb16cdbf5ffe5eb963b3858235a398fa293f6d03f1aaa3b3c0248e4f962"
+    },
+    "scope": "Shared consumable/inventory/restock/profession regressions;meters/threat excluded by explicit user ownership;native VM/pixels/performance not certified"
+  },
+  "verification": {
+    "scope": "74 fresh scripts/79 syntax files;other observations historical;no whole-suite rerun;meters excluded by user ownership",
+    "unexpectedOutsideOwned": [],
+    "indexUpdated": "Incremental;historical results labeled;full rerun not claimed"
+  },
+  "installedCopies": {
+    "scope": "Read-only;existing automatic sync;no manual copy",
+    "clients": [
+      {
+        "client": "_retail_",
+        "files": 5,
+        "mismatches": []
+      },
+      {
+        "client": "_forever_",
+        "files": 5,
+        "mismatches": []
+      },
+      {
+        "client": "_classic_",
+        "files": 5,
+        "mismatches": []
+      },
+      {
+        "client": "_classic_era_",
+        "files": 5,
+        "mismatches": []
+      },
+      {
+        "client": "_anniversary_",
+        "files": 5,
+        "mismatches": []
+      }
+    ]
+  },
+  "native": {
+    "status": "NOT RUN for minimum ranking",
+    "route": "Existing background Forever authorization retained;no client input/reload/purchase/upgrade/profiling change for this slice",
+    "pending": "Native restore text,accepted tiers,purchases,controller/other clients,protected VM and FPS;prior native captures are historical"
+  },
+  "compatibility": "Existing Retail/Forever/MoP/Era/Anniversary item/tooltip/tier interfaces;no new WoW API calls;existing source pins retained",
+  "ownership": "Meters explicitly owned by another agent;no meter source/test work",
+  "branch": "main",
+  "hooksPath": ".githooks",
+  "publication": "No commit or push",
+  "candidateRawHashes": {
+    "Inventory/FluxConsumableClassify.lua": "5a4664ea84e639c40973a5fde0efbef90232ba5064b22b854b77396e23530beb",
+    "Inventory/FluxItemClass.lua": "c416fa65d9d3c15d15ce0a0e9d7dbca48e3208bfc85abefafeb27e9066d880d2",
+    "Inventory/FluxConsumableBest/Persist.lua": "e2f68fd0cc9e7de4d98c68d00b95dd88690b1c0a6be82cb1297012f1791ed9a1",
+    "Inventory/FluxConsumableBest/VendorMemory.lua": "fe5e63c72a844f1b391c1344547e1025dfd4571f9c42d4da0e095c019df9b23a",
+    "Inventory/Restock/Core/Tiers/FluxRestockTiers_Init.lua": "8a5ebc8e81c1ae3b8f6f0cd49bbb7acd20ef27cf432e01a26557e3080f3e717e",
+    "tests/potion_minimum_restore.lua": "01b4bc884ca083fdd3809ad0b8d5a13d130c760be03af90f518b0bad29cd0002",
+    "tests/auction_restock_potion_restore.lua": "b0e39f1bb2d8fee7abb7ee5968bbe07cd209a6212516c63b43a469666e99c61e"
+  }
+}

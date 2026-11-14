@@ -53,6 +53,42 @@ end
 -- Expand overlay beyond mana bar (padding in px) - makes effect more prominent
 local OVERLAY_PADDING = 6
 
+-- These overlays belong to this module. Their anchors follow the mana bar's
+-- live dimensions; only a different bar needs new attachment points.
+local function AttachOverlay(overlay, manaBar)
+    if overlay._fluxMP5Anchor == manaBar then return end
+    local revision = (overlay._fluxMP5AnchorRevision or 0) + 1
+    overlay._fluxMP5AnchorRevision = revision
+    overlay._fluxMP5Anchor = nil
+    overlay:ClearAllPoints()
+    overlay:SetPoint("TOPLEFT", manaBar, "TOPLEFT", -OVERLAY_PADDING, OVERLAY_PADDING)
+    overlay:SetPoint("BOTTOMRIGHT", manaBar, "BOTTOMRIGHT", OVERLAY_PADDING, -OVERLAY_PADDING)
+    if overlay._fluxMP5AnchorRevision == revision then overlay._fluxMP5Anchor = manaBar
+    else overlay._fluxMP5Anchor = nil end
+end
+
+local function SetOverlayLevel(overlay, level)
+    local readable = CanRead(level) and type(level) == "number"
+    if readable and overlay._fluxMP5Level == level then return end
+    local revision = (overlay._fluxMP5LevelRevision or 0) + 1
+    overlay._fluxMP5LevelRevision = revision
+    overlay._fluxMP5Level = nil
+    overlay:SetFrameLevel(level)
+    if readable and overlay._fluxMP5LevelRevision == revision then overlay._fluxMP5Level = level
+    else overlay._fluxMP5Level = nil end
+end
+
+local function SetSparkHeight(spark, height)
+    local readable = CanRead(height) and type(height) == "number"
+    if readable and spark._fluxMP5Height == height then return end
+    local revision = (spark._fluxMP5HeightRevision or 0) + 1
+    spark._fluxMP5HeightRevision = revision
+    spark._fluxMP5Height = nil
+    spark:SetHeight(height)
+    if readable and spark._fluxMP5HeightRevision == revision then spark._fluxMP5Height = height
+    else spark._fluxMP5Height = nil end
+end
+
 -- Reposition overlays over mana bar, extending beyond its bounds for more visible effect
 local function RefreshOverlays()
     local manaBar = GetManaBar()
@@ -62,15 +98,12 @@ local function RefreshOverlays()
         return
     end
 
-    local pad = OVERLAY_PADDING
     for _, overlay in ipairs({ fsrOverlay, tickOverlay }) do
         if overlay then
             -- UIParent: ClearAllPoints is blocked on children of SecureUnitButton during combat lockdown
-            overlay:ClearAllPoints()
-            overlay:SetPoint("TOPLEFT", manaBar, "TOPLEFT", -pad, pad)
-            overlay:SetPoint("BOTTOMRIGHT", manaBar, "BOTTOMRIGHT", pad, -pad)
+            AttachOverlay(overlay, manaBar)
             overlay:SetFrameStrata(manaBar:GetFrameStrata())
-            overlay:SetFrameLevel(manaBar:GetFrameLevel() + 5)
+            SetOverlayLevel(overlay, manaBar:GetFrameLevel() + 5)
         end
     end
 end
@@ -182,17 +215,15 @@ OnUpdate = function(self, elapsed)
         local remaining = mp5StartTime - now
         if remaining > 0 then
             active = true
-            fsrOverlay:ClearAllPoints()
-            fsrOverlay:SetPoint("TOPLEFT", manaBar, "TOPLEFT", -OVERLAY_PADDING, OVERLAY_PADDING)
-            fsrOverlay:SetPoint("BOTTOMRIGHT", manaBar, "BOTTOMRIGHT", OVERLAY_PADDING, -OVERLAY_PADDING)
-            fsrOverlay:SetFrameLevel(manaBar:GetFrameLevel() + 5)
+            AttachOverlay(fsrOverlay, manaBar)
+            SetOverlayLevel(fsrOverlay, manaBar:GetFrameLevel() + 5)
             fsrOverlay:Show()
             fsrOverlay:SetValue(remaining)
             if fsrOverlay.spark then
                 local barWidth = fsrOverlay:GetWidth()
                 local barHeight = fsrOverlay:GetHeight()
                 local posLeft = (remaining / mp5Delay) * (barWidth or 100)
-                fsrOverlay.spark:SetHeight(barHeight or 12)
+                SetSparkHeight(fsrOverlay.spark, barHeight or 12)
                 fsrOverlay.spark:ClearAllPoints()
                 fsrOverlay.spark:SetPoint("CENTER", fsrOverlay, "LEFT", posLeft, 0)
             end
@@ -209,10 +240,8 @@ OnUpdate = function(self, elapsed)
     if gainingMana then
         if manaTickTime > 0 and powerNum < powerMaxNum then
             active = true
-            tickOverlay:ClearAllPoints()
-            tickOverlay:SetPoint("TOPLEFT", manaBar, "TOPLEFT", -OVERLAY_PADDING, OVERLAY_PADDING)
-            tickOverlay:SetPoint("BOTTOMRIGHT", manaBar, "BOTTOMRIGHT", OVERLAY_PADDING, -OVERLAY_PADDING)
-            tickOverlay:SetFrameLevel(manaBar:GetFrameLevel() + 6) -- Above FSR
+            AttachOverlay(tickOverlay, manaBar)
+            SetOverlayLevel(tickOverlay, manaBar:GetFrameLevel() + 6) -- Above FSR
             tickOverlay:Show()
 
             local val = manaTickTime - now
@@ -225,7 +254,7 @@ OnUpdate = function(self, elapsed)
                 local barWidth = tickOverlay:GetWidth()
                 local barHeight = tickOverlay:GetHeight()
                 local posLeft = (1 - val / powerRegenTime) * (barWidth or 100)
-                tickOverlay.spark:SetHeight(barHeight or 12)
+                SetSparkHeight(tickOverlay.spark, barHeight or 12)
                 tickOverlay.spark:ClearAllPoints()
                 tickOverlay.spark:SetPoint("CENTER", tickOverlay, "LEFT", math.min(posLeft, barWidth or 100) - 2, 0)
             end

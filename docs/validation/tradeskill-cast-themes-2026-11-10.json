@@ -1,0 +1,223 @@
+{
+  "changeId": "TRADESKILL-CAST-THEMES-20261110",
+  "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c6f9-8123-7722-ae2f-79d9d432a623\\tradeskill-casts-20261110T194353Z",
+  "head": "26f886e3ea5371b196ab235d2dace0c156002285",
+  "sourceFilesVerified": 2574,
+  "historyVerified": true,
+  "settingsMetadataEntries": 4,
+  "settingsCopied": false,
+  "runtimeChanges": [
+    "UnitFrames/FluxCastBarTradeskills.lua",
+    "UnitFrames/FluxCastBarThemes.lua"
+  ],
+  "tocChange": "Load profession visuals between school lookup and shared renderer; all pre-existing TOC changes preserved",
+  "controls": [
+    {
+      "case": "baseline",
+      "rejected": true,
+      "exit": 1,
+      "output": "lua: ...0\\01a1c6f9-8123-7722-ae2f-79d9d432a623\\baseline-test.lua:5: live uses native Enchanting art\nstack traceback:\n\t[C]: in function 'assert'\n\t...0\\01a1c6f9-8123-7722-ae2f-79d9d432a623\\baseline-test.lua:5: in local 'check'\n\t...0\\01a1c6f9-8123-7722-ae2f-79d9d432a623\\baseline-test.lua:341: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "case": "lost-alpha-restore",
+      "rejected": true,
+      "exit": 1,
+      "output": "lua: ...-8123-7722-ae2f-79d9d432a623\\lost-alpha-restore-test.lua:5: live hiding stops animation and restores fill\nstack traceback:\n\t[C]: in function 'assert'\n\t...-8123-7722-ae2f-79d9d432a623\\lost-alpha-restore-test.lua:5: in local 'check'\n\t...-8123-7722-ae2f-79d9d432a623\\lost-alpha-restore-test.lua:360: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "case": "lost-progress-clipping",
+      "rejected": true,
+      "exit": 1,
+      "output": "lua: ...3-7722-ae2f-79d9d432a623\\lost-progress-clipping-test.lua:5: live full art is engine-clipped at cast progress\nstack traceback:\n\t[C]: in function 'assert'\n\t...3-7722-ae2f-79d9d432a623\\lost-progress-clipping-test.lua:5: in local 'check'\n\t...3-7722-ae2f-79d9d432a623\\lost-progress-clipping-test.lua:343: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "case": "repeated-recipe-query",
+      "rejected": true,
+      "exit": 1,
+      "output": "lua: ...23-7722-ae2f-79d9d432a623\\repeated-recipe-query-test.lua:5: live refresh reuses metadata and animation\nstack traceback:\n\t[C]: in function 'assert'\n\t...23-7722-ae2f-79d9d432a623\\repeated-recipe-query-test.lua:5: in local 'check'\n\t...23-7722-ae2f-79d9d432a623\\repeated-recipe-query-test.lua:353: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "case": "animation-leaks-on-hide",
+      "rejected": true,
+      "exit": 1,
+      "output": "lua: ...-7722-ae2f-79d9d432a623\\animation-leaks-on-hide-test.lua:5: live hiding stops animation and restores fill\nstack traceback:\n\t[C]: in function 'assert'\n\t...-7722-ae2f-79d9d432a623\\animation-leaks-on-hide-test.lua:5: in local 'check'\n\t...-7722-ae2f-79d9d432a623\\animation-leaks-on-hide-test.lua:360: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "case": "wrong-profession-art",
+      "rejected": true,
+      "exit": 1,
+      "output": "lua: ...123-7722-ae2f-79d9d432a623\\wrong-profession-art-test.lua:5: live uses native Herbalism art\nstack traceback:\n\t[C]: in function 'assert'\n\t...123-7722-ae2f-79d9d432a623\\wrong-profession-art-test.lua:5: in local 'check'\n\t...123-7722-ae2f-79d9d432a623\\wrong-profession-art-test.lua:341: in main chunk\n\t[C]: in ?\n"
+    }
+  ],
+  "sources": [
+    {
+      "target": "forever",
+      "commit": "4cd0ab752a77164f654ccbca9d0c1fe8dafceebe",
+      "path": "Interface/AddOns/Blizzard_ProfessionsTemplates/Blizzard_Professions.lua",
+      "gitBlobSha1": "f8e3e62523fd15f46d2ce05d48b3aa1137e91021",
+      "sha256": "6adda16ef89074f83ac033ebca705081bbfbc88eb98fc32faa14a747f4a5b1ca",
+      "blobVerifiedAgainstPinnedTree": true,
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4cd0ab752a77164f654ccbca9d0c1fe8dafceebe/Interface/AddOns/Blizzard_ProfessionsTemplates/Blizzard_Professions.lua"
+    },
+    {
+      "target": "forever",
+      "commit": "4cd0ab752a77164f654ccbca9d0c1fe8dafceebe",
+      "path": "Interface/AddOns/Blizzard_ProfessionsTemplates/Blizzard_ProfessionsRankBar.xml",
+      "gitBlobSha1": "51c77320cd3b85223065f692179b7e87d56e3517",
+      "sha256": "eff126d7bc6dd84ded258c53644568830aacdf10245c8fff54c8454ad06622ce",
+      "blobVerifiedAgainstPinnedTree": true,
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4cd0ab752a77164f654ccbca9d0c1fe8dafceebe/Interface/AddOns/Blizzard_ProfessionsTemplates/Blizzard_ProfessionsRankBar.xml"
+    },
+    {
+      "target": "forever",
+      "commit": "4cd0ab752a77164f654ccbca9d0c1fe8dafceebe",
+      "path": "Interface/AddOns/Blizzard_ProfessionsTemplates/Blizzard_ProfessionsTemplates.toc",
+      "gitBlobSha1": "bec65911bac37f792be4a4acab26faa1ac9328b0",
+      "sha256": "e92cda99686305b914442f83132e6a3c357bceb093db2eba4ee3aaaebe321a1c",
+      "blobVerifiedAgainstPinnedTree": true,
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4cd0ab752a77164f654ccbca9d0c1fe8dafceebe/Interface/AddOns/Blizzard_ProfessionsTemplates/Blizzard_ProfessionsTemplates.toc"
+    },
+    {
+      "target": "forever",
+      "commit": "4cd0ab752a77164f654ccbca9d0c1fe8dafceebe",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/TradeSkillUITypesDocumentation.lua",
+      "gitBlobSha1": "8bfb8bdbb810718b8c59a27d72d6dc15176f0625",
+      "sha256": "c1fcec130e314052873d0246311f1a554141b0cf5ace55ea849ad8c7275be29b",
+      "blobVerifiedAgainstPinnedTree": true,
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4cd0ab752a77164f654ccbca9d0c1fe8dafceebe/Interface/AddOns/Blizzard_APIDocumentationGenerated/TradeSkillUITypesDocumentation.lua"
+    },
+    {
+      "target": "forever",
+      "commit": "4cd0ab752a77164f654ccbca9d0c1fe8dafceebe",
+      "path": "Interface/AddOns/Blizzard_NamePlates/Blizzard_NamePlateCastingBar.xml",
+      "gitBlobSha1": "467c8054e27d7c251be5bd3c54577bcc76d10172",
+      "sha256": "939760e2c7ad873ee903596d9d6ab850ffe8bf506d8a09967529241f0307acf9",
+      "blobVerifiedAgainstPinnedTree": true,
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4cd0ab752a77164f654ccbca9d0c1fe8dafceebe/Interface/AddOns/Blizzard_NamePlates/Blizzard_NamePlateCastingBar.xml"
+    },
+    {
+      "target": "forever",
+      "commit": "4cd0ab752a77164f654ccbca9d0c1fe8dafceebe",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleAnimFlipBookAPIDocumentation.lua",
+      "gitBlobSha1": "99529e1aa28c3ffcab0cfda570f21d138378849d",
+      "sha256": "6fa29487c050484ba95daa0515fbf81e98d5d9e4e000dc4cbed0936db4fc2d41",
+      "blobVerifiedAgainstPinnedTree": true,
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4cd0ab752a77164f654ccbca9d0c1fe8dafceebe/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleAnimFlipBookAPIDocumentation.lua"
+    },
+    {
+      "target": "forever",
+      "commit": "4cd0ab752a77164f654ccbca9d0c1fe8dafceebe",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/TradeSkillUIDocumentation.lua",
+      "gitBlobSha1": "794ebc9d94989cab9c8205bc63f6a14ed47f3bbb",
+      "sha256": "e3392e58403283ef5e307268ce51781ef25e7e0d955a199906b9b37278503fd2",
+      "blobVerifiedAgainstPinnedTree": true,
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4cd0ab752a77164f654ccbca9d0c1fe8dafceebe/Interface/AddOns/Blizzard_APIDocumentationGenerated/TradeSkillUIDocumentation.lua"
+    },
+    {
+      "target": "retail",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_ProfessionsTemplates/Blizzard_Professions.lua",
+      "gitBlobSha1": "c1458d1960912da8d26ab720230bab88679b339d",
+      "sha256": "aee937b2e462a8217d96acbacbb6e20c112f5921647b32250e6a89fef63849c7",
+      "blobVerifiedAgainstPinnedTree": true,
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_ProfessionsTemplates/Blizzard_Professions.lua"
+    },
+    {
+      "target": "retail",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_Professions/Blizzard_ProfessionsRankBar.lua",
+      "gitBlobSha1": "d8d80a0370cae616e6ae671fc6e6ac3144700636",
+      "sha256": "a8b63172ca25c78c05096ed1ebaf44f0a0ebc9a7f75e39a2ad323487a8866e11",
+      "blobVerifiedAgainstPinnedTree": true,
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_Professions/Blizzard_ProfessionsRankBar.lua"
+    },
+    {
+      "target": "retail",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_Professions/Blizzard_ProfessionsRankBar.xml",
+      "gitBlobSha1": "21a06ed88fb89162c7dee4606e5ecd0c07199cab",
+      "sha256": "e448a3069c779ffe2e519274f33c328043494e5bd471ce199dca049497571cc3",
+      "blobVerifiedAgainstPinnedTree": true,
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_Professions/Blizzard_ProfessionsRankBar.xml"
+    },
+    {
+      "target": "retail",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_Professions/Blizzard_Professions.toc",
+      "gitBlobSha1": "861077ed0ca5e2b0070babb0c7585f75bb324787",
+      "sha256": "661e0be454aced4d114ce61c6ac2d73fff9a9bf4a67b860db1461fca234a7dd4",
+      "blobVerifiedAgainstPinnedTree": true,
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_Professions/Blizzard_Professions.toc"
+    },
+    {
+      "target": "retail",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleAnimFlipBookAPIDocumentation.lua",
+      "gitBlobSha1": "99529e1aa28c3ffcab0cfda570f21d138378849d",
+      "sha256": "6fa29487c050484ba95daa0515fbf81e98d5d9e4e000dc4cbed0936db4fc2d41",
+      "blobVerifiedAgainstPinnedTree": true,
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleAnimFlipBookAPIDocumentation.lua"
+    },
+    {
+      "target": "retail",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/TradeSkillUIDocumentation.lua",
+      "gitBlobSha1": "88723be07b7cdc117e4d0381642a0f55770cf99b",
+      "sha256": "b1b886b0103d8293a390fdf15f139cf5dd657916574f02ef71e8ff32ae647118",
+      "blobVerifiedAgainstPinnedTree": true,
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_APIDocumentationGenerated/TradeSkillUIDocumentation.lua"
+    },
+    {
+      "target": "forever",
+      "commit": "4cd0ab752a77164f654ccbca9d0c1fe8dafceebe",
+      "path": "Interface/AddOns/Blizzard_ProfessionsTemplates/Blizzard_ProfessionsRankBar.lua",
+      "gitBlobSha1": "a16e45b5b709607ae6a2aa63e98ec81dcab9dcd7",
+      "sha256": "a6d9745e85d2a713d3feead60591bf052b5f1815259d18e55ebe45894042b03b",
+      "blobVerifiedAgainstPinnedTree": true,
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4cd0ab752a77164f654ccbca9d0c1fe8dafceebe/Interface/AddOns/Blizzard_ProfessionsTemplates/Blizzard_ProfessionsRankBar.lua"
+    }
+  ],
+  "requirements": {
+    "TCAST-01": "Use native profession rank-bar animated fill and optional flare on capable clients",
+    "TCAST-02": "Resolve readable recipe profession through client API and Enum.Profession; no current-window guess or spell catalog",
+    "TCAST-03": "Preserve cast/channel timing, text, chrome, completion, interruption and following magic cast lifecycle",
+    "TCAST-04": "Honor existing master/unit/colors/edge/glow options; retain normal art when metadata or native graphics unavailable",
+    "TCAST-05": "Native animation only; bounded per-bar allocation; no new OnUpdate, ticker, timer, event, hook or saved data"
+  },
+  "native": "NOT RUN; existing direct implementation and user-reproduction preference retained. No game input/focus/clipboard/settings/profiler/manual sync/publication.",
+  "controller": "Decorative fill and flare; clipping frame has mouse disabled; no new focus/input target. Native controller/input acceptance NOT RUN.",
+  "performance": "Work-count/ownership checks only; no FPS, CPU, memory or pixel claim. Successful cast identity reuses metadata and native animation on refresh.",
+  "changedCheckpointFilesAtReview": [
+    "_FluxUI.toc",
+    "docs/reference/verification.json",
+    "tests/castbar_school_themes.lua",
+    "UnitFrames/FluxCastBarThemes.lua"
+  ],
+  "focusedOutput": "PASS tradeskill cast themes: 395 checks; native rendering/input/taint pending\nParticle Lua texture writes over 2s: native=300, fallback=6197 (mock call counts, not native FPS)\nValidated 116 fills against original base-school palette compositing\nPASS cast-bar school themes: 14337 checks across five client families (native rendering/taint unverified)\n",
+  "fullValidation": "docs/validation/tradeskill-cast-themes-full-2026-11-10.json",
+  "fullResult": {
+    "passed": 304,
+    "failed": 0,
+    "syntaxFiles": 977,
+    "syntaxFailures": 0,
+    "allCurrentLuaMatchesManifest": true
+  },
+  "candidateSources": {
+    "UnitFrames/FluxCastBarTradeskills.lua": "0eabe8bef7b3b7110252408df92bc63e7bb65be9b1f8c846f4123bcce085fdab",
+    "UnitFrames/FluxCastBarThemes.lua": "b44d8c4e357c788b94566dfc459376c51dba37f1e31070214120c150872f7829",
+    "_FluxUI.toc": "78e822dd7f59f38d92d5122fc2ab43007688f5d42b238af72233c9ed39d1781b",
+    "tests/castbar_school_themes.lua": "a0eef0223aabfb9627b5430e67508e558b3ba062b686b9b544c234a4208dedd6"
+  },
+  "focusedProfessionChecks": 395,
+  "documentationValidation": {
+    "result": "PASS",
+    "classifiedSources": 1010,
+    "reachable": 608,
+    "settingsDefinitions": 427,
+    "savedRoots": 24,
+    "localLinks": 16295
+  },
+  "unrelatedLuaXmlTocFilesBytePreserved": 1014,
+  "tocMatchesCheckpointPlusOnlyNewModule": true,
+  "diffWhitespaceCheck": "PASS for task files"
+}

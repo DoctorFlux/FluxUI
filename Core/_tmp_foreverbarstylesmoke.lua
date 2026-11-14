@@ -18,8 +18,8 @@ local healthEnd = assert(source:find('\n-- -------------------------------------
 local pcoSource = Read("UnitFrames/FluxPowerCostOverlay.lua")
 local segStart = assert(pcoSource:find('function PCO.ApplySegmentArt(', 1, true))
 local segEnd = assert(pcoSource:find('\nfunction PCO.UpdateOverlayColor', segStart, true))
-local ghostStart = assert(pcoSource:find('local function MatchGhostArt(', 1, true))
-local ghostEnd = assert(pcoSource:find('\nlocal function CommitPowerGhost', ghostStart, true))
+local ghostStart = assert(pcoSource:find('local function GhostArt(', 1, true))
+local ghostEnd = assert(pcoSource:find('\nlocal function PublicArt', ghostStart, true))
 local plain = "Interface\\TargetingFrame\\UI-StatusBar"
 local function ColorEquals(actual, r, g, b, a)
     assert(actual[1] == r and actual[2] == g and actual[3] == b and actual[4] == (a or 1), table.concat(actual, ','))
@@ -48,6 +48,7 @@ local function Bar()
         assert(type(value) == "string", "status bar received a raw atlas texture object")
         self.asset = value
         self.fill:SetAtlas(value)
+        return true -- Native SetStatusBarTexture reports whether the asset was accepted.
     end
     function bar:GetStatusBarTexture() return self.fill end
     function bar:SetStatusBarColor(r, g, b, a) self.color = { r, g, b, a or 1 } end
@@ -80,8 +81,10 @@ local function Boot(family, fallback, missingAtlases)
     Compile(helpers, env)(ns, UF, ns.API)
     -- Prediction segments and the old-fill ghost must not put the rim back.
     local pco = {}; ns.PowerCostOverlay = pco
-    local matchGhost = Compile("local PCO, UF, TEXTURE_BAR = ...\n" .. pcoSource:sub(segStart, segEnd - 1)
-        .. pcoSource:sub(ghostStart, ghostEnd - 1) .. "\nreturn MatchGhostArt", env)(pco, UF, plain)
+    local matchGhost = Compile("local PCO, UF, TEXTURE_BAR, ns = ...\nlocal function CanRead() return true end\n"
+        .. pcoSource:sub(segStart, segEnd - 1) .. pcoSource:sub(ghostStart, ghostEnd - 1)
+        .. "\nreturn function(bar, ghost) local path,r,g,b=GhostArt(bar); ghost:SetStatusBarTexture(path); ghost:SetStatusBarColor(r,g,b) end",
+        env)(pco, UF, plain, ns)
     return UF, env.PowerBarColor, matchGhost, function(c, d, a) connected, dead, afk = c, d, a end
 end
 

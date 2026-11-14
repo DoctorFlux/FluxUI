@@ -1,5 +1,310 @@
 # Vendor, junk, tier targets, and bank restock
 
+14 November casting/inventory lag: Potion needs calculate after final merge; bulk buying retires on merchant close/error; verified hidden merchants skip metadata/tint work. [Comparisons and limits](LAG_HOTSPOT_OPTIMIZATION.md).
+
+14 November AHR-105/106: AH Restock opens with one shortage-only preparation.
+Passive inventory/profession updates preserve live choices and do not restart
+finished searches. Restock settings have independent AH upgrade prompt toggles:
+healing on, mana on, bandages off by default. Direct/craft comparisons remain.
+[Rules and acceptance](AUCTION_RESTOCK.md#shortage-only-opening-and-stable-passive-refresh).
+
+14 November AHR-104: minimum restore now determines healing/mana potion tiers
+globally, including owned buttons, crafting, vendor memory/restocking and automatic
+junk. A higher maximum cannot displace a higher minimum. Saved data normalizes
+when verified; unresolved old values stay saved without promoting. Manual Junk
+priority remains. [Rules and acceptance](AUCTION_RESTOCK.md#global-potion-minimum-restore).
+
+14 November AHR-102/103: AH upgrade actions use compact 44px cards with full
+details in tooltips. Potions precede bandage presets, then spell reagents,
+consumable configuration and other items; source metadata includes merged and
+virtual presets. [Requirements and checks](AUCTION_RESTOCK.md#compact-upgrade-cards-and-preset-order).
+
+14 November AHR-96–101: independent inline healing/mana/bandage upgrade choices,
+shared manual exclusions and default-on automatic `discolored` healing-name filter.
+Best/button/persist/vendor/AH/tier owners use the same policy, with combat binding
+writes deferred. Three default-on global carried-upgrade Junk settings live under
+Loot & Items → Vendor; manual Junk wins. [Behavior](AUCTION_RESTOCK.md#inline-upgrades-bandages-and-item-exclusions)
+and [365-script/1053-syntax validation](validation/auction-inline-upgrades-2026-11-14.json).
+
+13 November AUCTION-VENDOR-ROUTES-20261113: client-scoped vendor catalogue plus typed observations; strict cheaper-AH exceptions, exact physical-unit pricing and mixed recipe routes; configured visits learn without enabling automation. [Rules and native limits](AUCTION_RESTOCK.md#vendor-catalogue-observations-and-auction-discounts).
+
+13 November AUCTION-FOLLOWUP-20261113: acknowledged AH restock jobs retain exact recipes for a conditional mail/vendor/craft HUD button. Closed-profession comparison uses saved learned facts. [Workflow and native limits](AUCTION_RESTOCK.md#follow-up-button-and-closed-profession-recipes).
+
+13 November AUCTION-PURCHASE-CHARGES-20261113: matching purchase receipts, live commodity quantities, clearer selected cells and charged-item targets now share the existing restock/recipe/mail owners. [Behavior and native limits](AUCTION_RESTOCK.md#purchase-identity-selection-and-charged-items); [validation](validation/auction-purchase-charges-2026-11-13.json).
+
+13 November saved character recipes (CHARACTER-RECIPES-20261113; CRP-01–06): existing
+profession SavedVariables now retain complete learned material/output/yield/slot
+facts for AH and future shared consumers. Filtered and partial scans preserve
+known facts; explicit unlearn removes them; unknown learned state and NPC/legacy
+linked knowledge are rejected. Output-based per-character queries deduplicate
+modern aliases. Proven deterministic recipes work after closing/reloading the
+profession; uncertain grades still require native operation proof. Finished-item
+caps include crafting/vendor acquisition cost;0 stays unlimited. Selected missing
+vendor inputs create temporary per-character targets in the ordinary vendor list.
+They sum shared requirements, subtract bags/mail once, survive the vendor trip
+and reload, and retire on completion/invalidation without changing permanent
+targets. Live vendor price ceilings protect the plan; permanent base targets
+still buy independently. Pure temporary rows are read-only; no new controls.
+704 new recipe checks;20 models;17 harmful controls;320 scripts/1002 syntax PASS at captured run;17,229 combined auction/recipe checks. Five repeated
+work models:4→2 schematic reads,4→2 duplicate-free catalogue rows,0→1 usable
+closed-profession AH variants. These are work models, not native time/FPS.
+Scoped guard:5 existing runtime files and1 new test;2,609-file external checkpoint
+and47 settings metadata entries verified. Concurrent unrelated workspace edits
+are retained and listed separately; captured full-run scope is explicit.
+Open each relevant profession once after updating to populate the new facts.
+Current native capture/reload/vendor/coexistence/controller/taint acceptance and
+the prior Forever purchase BLOCKED resolution remain pending. No client input,
+private settings/profiler write, manual sync, commit or publication.
+[Behavior/API](CHARACTER_RECIPES.md);[evidence](validation/character-recipes-2026-11-13.json).
+
+12 November potion discovery stall (AUCTION-POTION-STALL-20261112; AHR-38–40): the new
+screenshot remains Finding stronger usable potions. The real parser reproduced
+a spent shared-budget failure that the earlier classification stub missed. Each
+deferred AH batch now renews that budget (still at most8 IDs). Potion results mark
+whether restore is known; name-only placeholders retry until real tooltip data
+arrives and cannot be ranked as restore1. Known unusable potions are skipped first.
+Native ADDED browse payloads now contribute later rows and cumulative unique-key
+progress, preserving the initial catalog instead of repeatedly reading its first
+batch. Read-only /fluxah debug adds search phase/term/results/page/deadline.
+Five repeated desktop work models: baseline refs100/101,734 load requests and
+timeout; candidate refs201/300,30 requests and ready. Simulated elapsed times are
+not native measurements. 552 potion/16525 auction checks;20 restock/15 receipt models;6 new harmful controls;314 scripts/995 syntax PASS.
+Four existing runtime/test files changed;0 new; external2,608-file source/history
+checkpoint and47 settings metadata entries verified. Existing UI, settings,
+unquoted terms, price/usability/shared tiers and per-press buying are preserved.
+User native reproduction route/direct implementation remain selected. Current
+native retest and earlier Forever purchase BLOCKED resolution remain pending.
+No client input/focus, private settings/profiler write, manual sync or publication.
+[Current behavior](AUCTION_RESTOCK.md);[evidence](validation/auction-restock-potion-stall-2026-11-12.json).
+
+12 November auction density/source/potion correction (AUCTION-DENSE-STOCK-20261112; AHR-28–37)
+replaces the recipe/cost pane with a full-width paged grid and Direct/Craftable
+labels (24cells at modeled800×600), retaining three money fields and one Buy next.
+Old/unacknowledged pending attempts are pruned; real receipt/private/provider
+incoming credits still reconcile once. Only typed unlimited merchant supply
+excludes an item; limited/unknown/price-only/extended-cost records stay eligible.
+Food/water are absent, including manual entries; vendor spell reagents use that
+same unlimited-supply rule. All listed eligible items, including full/zero targets,
+are price-scanned. Optional Auctionator public hints and guarded unit-price/history
+write-back coalesce one notification; historical prices never authorize buys.
+Plain unquoted partial healing potion / mana potion searches collect all native
+result pages, validate usability/live offers/caps, choose stronger tiers and update
+the real shared reference/tier. Weaker bag/bank stock cannot fill the stronger
+target. Original caps survive a scrubbed ref; unknown metadata holds potion buys.
+Craft preference, exact yields/shared inputs, price caps and one transaction per
+press remain. 16413 focused checks;20 restock/15 receipt models;41 harmful controls;314 scripts/995 syntax PASS;226 pinned upstream blobs verified.
+Source guard:15 existing changed runtime/test files and4 new since the verified
+2,602-file external checkpoint;47 settings metadata entries, no private values.
+Earlier Forever mouse BLOCKED failures and screenshot defects remain prior native
+evidence; current live purchases/pixels/coexistence/controller/taint/FPS NOT RUN.
+No client input/focus, manual sync, settings/profiler write, commit or publication.
+[Behavior and remaining native checks](AUCTION_RESTOCK.md);
+[current evidence](validation/auction-restock-dense-potions-2026-11-12.json).
+
+## Automatic auction restock follow-up — 12 November 2026
+
+12 November auction follow-up (AUCTION-AUTO-CRAFT-TAB-20261112; AHR-10–27) supersedes the
+initial popup/two-press/zero-disables/clear-pending design below. Real AH tab uses
+shared restock cells/current icons and three currency fields; top edge/height
+match neighboring tabs. Whole-list/material planning is automatic; cell selection
+only edits. One press quotes/confirms one qualifying transaction; next needs a new
+press. Zero/unset is unlimited. Saved Prefer crafting materials toggle is in AH
+and Vendor→Restock; equal/cheaper learned recipes use exact missing inputs/yield,
+vendor costs/shared stock and finite parent budgets. Incoming inbox plus transit
+credit reconciles automatically (19/20 feathers +1 pending blocks rebuy); there is
+no Clear pending UI/API. Built-in inventory now publishes confirmed AH purchases
+to its mail snapshot/ledger immediately, including other auction controls; provider
+Ready handoff stays inert. Prediction/private transit credit counts once and an
+early empty inbox cannot discard the own reservation. Proven owned failures and
+synchronously blocked calls release their own credits without phantom delivery.
+13078 focused checks;20 restock/15 receipt models;34 harmful controls;312 scripts/991 syntax PASS;202 upstream Git blobs verified;
+source guard permits10 existing changed files/5 new files in this follow-up;
+shared cells/professions/Syndicator adapter remain byte-identical. Built-in Mail/
+Auctions are intentionally extended. External2,595/2,598-
+file source/history checkpoint and47 settings metadata entries verified.
+Two prior Forever mouse-click BLOCKED failures remain native evidence; direct
+calls/action-before-disable candidate has NOT passed native retest. No-search,
+pixels, transactions/coexistence, persistence, controller, taint and FPS acceptance
+pending. Auctionator345/TSM4.15.6/Syndicator290 inspected read-only at explicit request;
+ARR notices preserved; no copied code. No client focus/input, settings/profiler
+write, manual sync or publication. Reload after user-managed synchronization.
+[Current behavior and native checks](AUCTION_RESTOCK.md).
+
+## Auction restock — 12 November 2026
+
+12 November auction restock (AUCTION-RESTOCK-20261112; AHR-01–09): native-API
+standalone implementation for Retail/Forever/MoP and Era/Anniversary. One action
+button searches/quotes/buys; every purchase requires a press. Per-item saved unit
+caps include active presets; known vendor stock excluded, unclassified items need
+an explicit cap. Legacy default fits whole stacks; optional excess shows surplus
+and total. Charge/tier/bank math and persistent pending-mail reservations prevent
+duplicate refill. Competing queries/quotes yield; partial batches request more
+selected-item rows. No Auctionator source/dependency or new inventory provider.
+6,496 focused checks/20 models;12 harmful controls; full309 scripts/986 syntax PASS;
+all final manifest hashes match. 87 pinned Git blobs verified. External2,587-file
+source/history checkpoint and47 WTF metadata entries; private settings not copied.
+Four new modules,one test;three existing runtime files changed;all other existing
+Lua/XML/TOC bytes preserved. Direct implementation selected12November; prior
+user native reproduction route retained. Native transactions/addon coexistence,
+pixels/controller/persistence/taint/FPS NOT RUN. Reload after user-managed sync;
+use Vendor→Restock→Auction restock & prices, `/fluxah` or auction-house button.
+No foreground/input, settings/profiler-file write, manual sync or publication.
+[Controls, target/price rules, recovery and native steps](AUCTION_RESTOCK.md).
+
+## Junk tab freeze follow-up — 10 November 2026
+
+`VENDOR-JUNK-TAB-FREEZE-20261110` fixes repeated cold-name requests, recursive
+metadata-driven panel rebuilds and scroll geometry repainting. Junk/Useful content,
+selling protection, editing, scrolling and saved data remain. Visual notifications
+share the existing 200 ms item metadata retry; explicit edits stay immediate.
+85 focused checks across five models, three matched pairs and four harmful controls
+pass. Actual freeze removal needs the user's reload/retest; broader validation has
+two raid-aura failures amid concurrent unrelated edits.
+[Requirements, measurements and limitations](VENDOR_JUNK_TAB_FREEZE.md).
+
+## Bank and vendor gossip checkbox — 10 November 2026
+
+Follow-up `BANK-VENDOR-GOSSIP-20261110` / `REQ-VG-05–07` extends the existing
+vendor feature to a separate per-character `Restock.autoOpenBankGossip` boolean,
+default false. Preserve the original vendor key and choice. Both settings remain
+under Loot & Items → Vendor → Automation.
+
+For exactly one available bank/vendor choice and no quests, show a native
+22-unit checkbox in the gossip footer's lower-left, beside Goodbye. Its label is
+Auto open bank or Auto open vendor and its value matches the corresponding
+options setting. Checking it saves the preference and immediately selects the
+current eligible choice unless Shift is held. Shift reveals the saved checkbox
+on later visits so it can be unchecked. Other NPC choices never show it.
+
+Reuse the existing dispatcher and one lazily created checkbox. The requested
+visible control needs GOSSIP_SHOW/CLOSED subscriptions even with automation off;
+this intentionally supersedes the earlier disabled-zero-subscription rule.
+Forever's declared GOSSIP_OPTIONS_REFRESHED event updates eligibility while open.
+No new poll/timer/ticker/native-script hook or input-propagation setter. Closing
+or changing choices clears the checkbox; stale clicks must revalidate the owner.
+Native panels, Goodbye, confirmations, bank operations and merchant actions stay
+with Blizzard. Retail remains outside this request's automation/UI scope.
+
+The supplied screenshot and prior direct implementation choice establish the
+layout; no new mock-up is requested. Use the native UICheckButtonTemplate and
+its text/state art. Reuse English fallback catalog keys; other language review
+and native layout remain pending. Controller cursor reachability, focus cue,
+activation, Back, native gossip→bank/merchant handoff and label clearance need
+per-client native checks. No bindings or user input-mode settings are changed.
+User-performed native testing remains the route; no connected Witchcraft tools
+are available. Earlier paused party/raid work remains paused.
+
+Speed follow-up `REQ-VG-08`: submit the eligible choice in the same GOSSIP_SHOW
+callback, before creating any checkbox. Resolve the two native icon assets at
+login, outside the interaction path. No timer, polling or deferred selection;
+the remaining server response and native panel work cannot be eliminated by
+this gossip option. Opening/latency/FPS improvements require native measurement;
+desktop operation counts only establish the removal of asset lookups/UI setup
+from the automatic path. Refresh notifications update the checkbox without
+submitting a second selection while a response is pending.
+
+The gossip checkbox also refreshes an already-visible FluxUI options page through
+its existing coalescer, after submitting the NPC interaction. Closed options and
+fully automatic openings do no options-refresh work. The two controls therefore
+share both saved intent and visible state without delaying selection.
+
+Final desktop validation: 702 focused checks in three fresh processes; ten
+harmful controls and the earlier vendor-only source rejected. Full suite:
+279 scripts/950 Lua syntax checks PASS. Navigation 6,237, complete options shell
+1,253 and data-integrity 36 checks PASS. Source/loading evidence verifies 82 exact
+Gethe Git blobs at the same five pinned client commits documented below.
+These checks establish same-event submission and zero interaction-time icon
+lookups/checkbox allocations on the automatic path; actual native opening time,
+NPC behavior, visuals/input/controller, persistence and taint remain NOT RUN.
+Three feature files were installed to Forever/progression/Era/Anniversary with
+external original backups after approved filesystem escalation; reload required.
+
+[Checkpoint](validation/bank-vendor-gossip-checkpoint-2026-11-10.json),
+[requirements/results](validation/bank-vendor-gossip-2026-11-10.json),
+[source and template contracts](validation/bank-vendor-gossip-sources-2026-11-10.json),
+[final controls](validation/bank-vendor-gossip-controls-final-2026-11-10.json),
+[full validation](validation/bank-vendor-gossip-full-2026-11-10.json),
+[installation](validation/bank-vendor-gossip-install-2026-11-10.json),
+[final source/copy guard](validation/bank-vendor-gossip-source-guard-2026-11-10.json).
+
+## Single-choice vendor gossip — 10 November 2026
+
+`VENDOR-GOSSIP-20261110` / `REQ-VG-01`: add **Auto open vendor** under
+Loot & Items → Vendor → Automation. Store the opt-in boolean per character in
+`_FluxUI_CharSavedVars.Restock.autoOpenVendorGossip`, default false. Enable it
+immediately without a reload. Retain the existing direct-implementation and
+user-performed native testing choices recorded in NEXT_SESSION.md.
+
+`REQ-VG-02`: on `GOSSIP_SHOW`, select immediately only when there is exactly one
+option, its original icon is the native vendor icon, its status is Available,
+and there are no active or available quests. Hold Shift to keep the gossip open.
+Use Blizzard's `orderIndex` with `SelectOptionByIndex`; IDs may be hidden. Do not
+auto-confirm a purchase, coded response or confirmation. Leave native automatic
+single-option selection to Blizzard when it already applies.
+
+`REQ-VG-03`: use the existing Flux.Events dispatcher; subscribe only while enabled
+on Forever or the existing Classic progression/Era/Anniversary families. Add no
+frame, polling, timer, global API replacement or gossip-frame manipulation.
+Retail remains outside the requested automation scope. Keep all merchant repair,
+sale, restock, Shift suppression and saved data behavior.
+
+`REQ-VG-04`: reuse the options renderer's ordinary toggle, search, scrolling and
+native settings launcher. English catalog fallback covers the new label/help;
+other translations and native localized layout remain unreviewed. Controller
+cursor reachability, focus indication, toggle activation, scrolling, Back/close
+and the native gossip→merchant focus handoff require per-client checks. No new
+bindings or input capture; directional/controller acceptance remains NOT RUN.
+
+Native acceptance: enable/disable, reload persistence, the pictured Edna Mullby
+vendor, a translated vendor, Shift, multi-choice/quest/trainer/banker NPCs, native
+auto-selection and merchant handoff. Check Lua errors/taint and normal manual
+merchant actions. Local fixtures do not certify pixels, input, taint or latency.
+Witchcraft is unavailable in the current tools; no PC foreground/input is taken.
+Fresh Gethe branch resolution on 10 November found these exact source identities:
+
+| Client | Version | Commit |
+|---|---|---|
+| Forever | 1.60.1.70862 | [9dc84f0d3bbae1768ac3405b3716000bd93eda06](https://github.com/Gethe/wow-ui-source/tree/9dc84f0d3bbae1768ac3405b3716000bd93eda06) |
+| Classic progression | 5.5.4.70631 | [e5d9b3a22c3f0f6f41ebac0e454f4969594261cf](https://github.com/Gethe/wow-ui-source/tree/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf) |
+| Era | 1.15.9.70576 | [4192ac60067fc55566182291bc67c85dd9b6794d](https://github.com/Gethe/wow-ui-source/tree/4192ac60067fc55566182291bc67c85dd9b6794d) |
+| Anniversary | 2.5.6.70577 | [68e0a2ec559d9761dfc4e7f864c3944f9d758a49](https://github.com/Gethe/wow-ui-source/tree/68e0a2ec559d9761dfc4e7f864c3944f9d758a49) |
+| Retail comparison; automation inactive | 12.1.5.70783 | [297d7aaaa736f346b3e036f38ee088eaf7f8c07f](https://github.com/Gethe/wow-ui-source/tree/297d7aaaa736f346b3e036f38ee088eaf7f8c07f) |
+
+The generated `GossipOptionUIInfo` provides an icon, status and `orderIndex`, not
+a vendor-type field. `GetFileIDFromPath` resolves the named native
+`Interface\GossipFrame\VendorGossipIcon.blp`; compare the original icon rather
+than a cosmetic `overrideIconID` or localized NPC text. The loaded
+`Blizzard_UIPanels_Game/Shared/GossipFrameShared.lua` calls `SelectOptionByIndex`
+with `orderIndex`, including its native single-option shortcut. FluxUI leaves
+that shortcut alone when `ForceGossip()` is false. Selection supplies only the
+index; native code owns any confirmation or code-entry interaction. Generated
+declarations and native Lua establish the source contract; actual addon access
+and NPC behavior remain separate native acceptance items.
+
+Validation: 321 focused checks PASS in three fresh processes, including the real
+settings/options/navigation/search code and pinned native `HandleShow` under
+both handler orders. Six harmful controls are rejected. Full suite: 279 scripts
+and 950 Lua syntax checks PASS. New gameplay resource cost: one shared event
+subscription only while enabled; zero new frames/timers/tickers/hooks/OnUpdate.
+This does not establish server latency, FPS, native input, taint or pixel parity.
+Before edits, verified an external 2,495-file source archive/history bundle and
+105 read-only on-disk FluxUI settings metadata entries; private settings were not
+modified and no quiescent settings backup is claimed.
+After approved filesystem escalation, the four feature files were installed in
+Forever, progression, Era and Anniversary. All 20 source/installed copies match;
+the 16 external copies' originals are archived outside AddOns. No game reload
+or input was performed. Documentation validation also passes: 983 classified
+sources, 606 reachable sources, 426 setting definitions and 15,994 local links.
+
+[Checkpoint](validation/vendor-gossip-checkpoint-2026-11-10.json),
+[source identities](validation/vendor-gossip-sources-2026-11-10.json),
+[loaded contracts](validation/vendor-gossip-load-contracts-2026-11-10.json),
+[focused evidence and limits](validation/vendor-gossip-2026-11-10.json),
+[controls](validation/vendor-gossip-controls-2026-11-10.json),
+[full validation](validation/vendor-gossip-full-2026-11-10.json),
+[installation backup and hashes](validation/vendor-gossip-install-2026-11-10.json),
+[installed copies](validation/vendor-gossip-client-copies-2026-11-10.json).
+
 9 November Baganator detector activation: FluxUI now selects its own junk detector
 once per active Baganator profile, with a saved previous detector and normal
 setting/widget/search/layout notifications. Existing RXPGuides/poor-quality/none
@@ -117,6 +422,8 @@ FluxUI extends merchant and bank windows with repairs, junk classification/selli
 |---|---|
 | `autoRepair`, `autoSellGray`, `autoRestock`, `autoBankRestock` | All false unless explicitly enabled. `autoSellGray` is the historical key for the broader Flux junk queue, not only gray items. |
 | `repairPriority` | `personal`; guild-first is an optional choice when the game exposes guild repair. |
+| `autoOpenVendorGossip` | False; per-character opt-in for a sole available vendor gossip choice without quests on Forever/Classic. Shift bypasses it. |
+| `autoOpenBankGossip` | False; separate per-character opt-in for a sole available banker choice without quests. Gossip footer and options share the setting; Shift reveals its checkbox. |
 | `restockItems` | Item-ID entries with target quantities and flags, including bank counting. `restockShowNotSold` defaults false. |
 | `restockFoodWater` | Food/water targets default zero, inferior marking true. |
 | `restockCombat` | Bandage/healing-potion/mana-potion targets default zero, inferior marking true. |
@@ -272,3 +579,9 @@ checks; full 89 scripts/730 syntax; five alternating native Era getter pairs wit
 identical quantities and lower CPU. The baseline vendor hitch is reproduced;
 foreground after hitch resolution, positive native bank/warband counts, pixels,
 security and other clients remain pending.
+
+
+9 November native follow-up: conservative public geometry for full-resource pulses;
+permission-gated vendor checkbox input configuration; old debuff reader absent.
+Native preview stress and cleanup completed; combat roster/merchant acceptance
+remain pending. [Exact scope and evidence](FOREVER_NATIVE_PERFORMANCE.md).

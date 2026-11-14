@@ -1,0 +1,335 @@
+{
+  "task": "MINIMAP-SIDE-AURAS-20261113",
+  "capturedAt": "2026-11-13 07:41:18 UTC",
+  "parentEvidence": "minimap-layout-sources-2026-11-13.json",
+  "scope": {
+    "retainedClients": [
+      "Retail",
+      "Forever",
+      "Classic progression",
+      "Classic Era",
+      "Anniversary"
+    ],
+    "freshPinnedResearch": [
+      "retail",
+      "forever",
+      "classic"
+    ],
+    "legacyLimit": "Era and Anniversary retain existing native frame/capability fallbacks and are covered by desktop layout models only; no new source pins or native certification for those two clients.",
+    "workspace": "Existing Retail repository only; user-managed synchronization preserved.",
+    "preferences": "Existing direct implementation and user native reproduction route retained."
+  },
+  "targets": [
+    {
+      "client": "retail",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "mirrorVersion": "12.1.5.70783"
+    },
+    {
+      "client": "forever",
+      "commit": "bebcb6bf309cf41b41bd74f8ca651e6a105b2676",
+      "mirrorVersion": "1.60.1.70938"
+    },
+    {
+      "client": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "mirrorVersion": "5.5.4.70631"
+    }
+  ],
+  "sourceVerification": {
+    "method": "Reuse earlier task's exact branch pins and recursive trees; fetch only native aura/EditMode load and ownership files, recomputing each Git blob SHA-1 from fetched UTF-8 bytes.",
+    "records": 23,
+    "uniqueGitBlobs": 21,
+    "allBlobsMatched": true
+  },
+  "contracts": [
+    {
+      "path": "Interface/AddOns/Blizzard_BuffFrame/Blizzard_BuffFrame.toc",
+      "contract": "Native aura addon depends on Blizzard_Minimap, Blizzard_EditMode and Blizzard_FrameXMLUtil, then loads BuffFrame.lua, BuffFrameTemplates.xml and BuffFrame.xml. Classic progression additionally selects Classic/BuffFrame.lua. Forever retains Camelot load allowances; no copied native code."
+    },
+    {
+      "path": "Interface/AddOns/Blizzard_BuffFrame/BuffFrame.xml",
+      "lines": [
+        4,
+        6,
+        87
+      ],
+      "contract": "BuffFrame and DebuffFrame inherit BaseAuraFrameTemplate, whose parent is UIParent. Native frame ownership, visibility, own scale, button layout, events and painter remain Blizzard-owned."
+    },
+    {
+      "path": "Interface/AddOns/Blizzard_BuffFrame/BuffFrameTemplates.xml",
+      "lines": [
+        137
+      ],
+      "contract": "AuraFrameEditModeTemplate inherits EditModeAuraFrameSystemTemplate and AuraFrameEventListenerTemplate. Shared aura behavior and secure/managed integration remain native."
+    },
+    {
+      "path": "Interface/AddOns/Blizzard_EditMode/Shared/EditModeSystemTemplates.lua",
+      "lines": [
+        13,
+        16,
+        350
+      ],
+      "contract": "EditMode captures SetPointBase and ClearAllPointsBase before replacing widget methods for snapping/layout bookkeeping. Existing Flux aura service uses the captured methods where present and ordinary methods as the established fallback. Captured methods retain engine protection rules; using them grants no permission to change protected geometry in combat."
+    },
+    {
+      "path": "Interface/AddOns/Blizzard_EditMode/Blizzard_EditMode.toc",
+      "contract": "Shared EditModeSystemTemplates.lua and XML load into the Global environment on all three researched clients. Forever also loads Camelot/EditModeSystemTemplates.lua, inspected with no Buff/Aura/Debuff or ApplySystemAnchor override found."
+    },
+    {
+      "path": "Interface/AddOns/Blizzard_BuffFrame/BuffFrame.lua",
+      "contract": "Native AuraFrameEventListenerMixin owns player/vehicle UNIT_AURA registration and dispatch. This correction neither reads aura payloads nor calls or replaces its update/painter methods."
+    },
+    {
+      "parentEvidence": "minimap-layout-sources-2026-11-13.json",
+      "paths": [
+        "Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleScriptRegionResizingAPIDocumentation.lua",
+        "Interface/AddOns/Blizzard_APIDocumentationGenerated/RestrictedActionsDocumentation.lua"
+      ],
+      "contract": "Previously verified protected SetPoint/InCombatLockdown contracts remain sufficient for the existing guarded positioning service. No new engine API introduced."
+    }
+  ],
+  "integration": {
+    "owner": "Minimap/FluxBuffDebuffFrames.lua",
+    "geometry": "Aura x remains -(normal minimap width + 10), plus FluxMinimapButtons:GetMinimapOffset(). Debuff keeps x-15/y-145 relative separation. Offset is negative only for enabled non-embedded beside-map strip; below, disabled and embedded modes restore original dock.",
+    "scale": "Place() keeps each native frame's scale and divides screen x/y offsets by that local scale. Native aura frames remain children of UIParent.",
+    "lifecycle": "One call to existing FluxMinimap:PositionBuffFrames() inside M.RefreshLayout after mode selection and before the hidden/no-layout early return covers settings, PositionInWindow, OnEmbedStateChanged, window resize, native map watchers and deferred combat layout. No additional EnforcePosition/embed/restore hooks are needed.",
+    "guards": "M.RefreshLayout returns during combat; aura owner independently holds during combat, local EditMode Enter/Exit state, or FluxEditModeBusy(). Existing aura watcher handles regen, late Blizzard_BuffFrame load, display/UI scale, native ApplySystemAnchor and EditMode exit.",
+    "resources": "No new production frame, event, timer, hook, subscription or polling. Existing two weak-key native ApplySystemAnchor hooks coalesce a zero-delay callback. Aura callbacks do not re-enter strip layout.",
+    "sizeControl": "Existing screen-side 25–100% size preference stays stable and now multiplies the height-fitted base size, ensuring the slider reduces already-fitted dense layouts.",
+    "controller": "Aura system frames introduce no new controls or focus stops. Existing native aura hover/tooltips and addon options interaction remain; native keyboard/controller/pixels acceptance is not claimed."
+  },
+  "validation": {
+    "test": "tests/minimap_side_auras.lua",
+    "checks": 1855,
+    "desktopClientModels": 5,
+    "scaleCases": 15,
+    "harmfulControlsRejected": 4,
+    "coverage": [
+      "Immediate enabled/beside/below/off transitions",
+      "PositionInWindow and inactive embedded tab",
+      "Direct restore callback",
+      "Column/size reservation",
+      "UIParent and independent native aura scale",
+      "Combat saves/deferred regen without native geometry writes",
+      "Independent native UNIT_AURA dispatch during combat",
+      "EditMode hold/exit",
+      "Deferred coalesced native layout hook"
+    ],
+    "existingAuraSmoke": "Core/_tmp_playeraurassmoke.lua PASS",
+    "nativeTaint": "NOT RUN",
+    "nativeFramesAndRendering": "NOT RUN",
+    "nativeInputAndController": "NOT RUN",
+    "fps": "NOT RUN",
+    "installedBuild": "NOT CAPTURED"
+  },
+  "sources": [
+    {
+      "target": "retail",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_BuffFrame/Blizzard_BuffFrame.toc",
+      "gitBlob": "14e9bc8ec611b2e503b0c2a725e36c051aed1f84",
+      "verifiedBlob": true,
+      "bytes": 386,
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_BuffFrame/Blizzard_BuffFrame.toc"
+    },
+    {
+      "target": "retail",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_BuffFrame/BuffFrame.lua",
+      "gitBlob": "8734bd57649688a8b8f06da5310e61b241472de5",
+      "verifiedBlob": true,
+      "bytes": 43021,
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_BuffFrame/BuffFrame.lua"
+    },
+    {
+      "target": "retail",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_BuffFrame/BuffFrame.xml",
+      "gitBlob": "780c4d1f55ff2124f901245c0295af734b861ed7",
+      "verifiedBlob": true,
+      "bytes": 6249,
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_BuffFrame/BuffFrame.xml"
+    },
+    {
+      "target": "retail",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_BuffFrame/BuffFrameTemplates.xml",
+      "gitBlob": "389bafbe214f38553483be4fcb5d8ca32737d8e3",
+      "verifiedBlob": true,
+      "bytes": 4972,
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_BuffFrame/BuffFrameTemplates.xml"
+    },
+    {
+      "target": "retail",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_EditMode/Shared/EditModeSystemTemplates.xml",
+      "gitBlob": "76b183934bb2ae6b491afcf21cfeb75477bddf46",
+      "verifiedBlob": true,
+      "bytes": 20680,
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_EditMode/Shared/EditModeSystemTemplates.xml"
+    },
+    {
+      "target": "retail",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_EditMode/Shared/EditModeSystemTemplates.lua",
+      "gitBlob": "aa524c95fb4306446702428ded1e2e7dfe542a10",
+      "verifiedBlob": true,
+      "bytes": 130810,
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_EditMode/Shared/EditModeSystemTemplates.lua"
+    },
+    {
+      "target": "retail",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_EditMode/Blizzard_EditMode.toc",
+      "gitBlob": "221ff3374db8825addb413c77715006f14856d0a",
+      "verifiedBlob": true,
+      "bytes": 1729,
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_EditMode/Blizzard_EditMode.toc"
+    },
+    {
+      "target": "forever",
+      "commit": "bebcb6bf309cf41b41bd74f8ca651e6a105b2676",
+      "path": "Interface/AddOns/Blizzard_BuffFrame/Blizzard_BuffFrame.toc",
+      "gitBlob": "73474e1a6d20ea7816e32817ec82d907ae9ce3f8",
+      "verifiedBlob": true,
+      "bytes": 404,
+      "url": "https://github.com/Gethe/wow-ui-source/blob/bebcb6bf309cf41b41bd74f8ca651e6a105b2676/Interface/AddOns/Blizzard_BuffFrame/Blizzard_BuffFrame.toc"
+    },
+    {
+      "target": "forever",
+      "commit": "bebcb6bf309cf41b41bd74f8ca651e6a105b2676",
+      "path": "Interface/AddOns/Blizzard_BuffFrame/BuffFrame.lua",
+      "gitBlob": "0402dbb8251448aa3804e7d6900f58319d98c422",
+      "verifiedBlob": true,
+      "bytes": 52826,
+      "url": "https://github.com/Gethe/wow-ui-source/blob/bebcb6bf309cf41b41bd74f8ca651e6a105b2676/Interface/AddOns/Blizzard_BuffFrame/BuffFrame.lua"
+    },
+    {
+      "target": "forever",
+      "commit": "bebcb6bf309cf41b41bd74f8ca651e6a105b2676",
+      "path": "Interface/AddOns/Blizzard_BuffFrame/BuffFrame.xml",
+      "gitBlob": "780c4d1f55ff2124f901245c0295af734b861ed7",
+      "verifiedBlob": true,
+      "bytes": 6249,
+      "url": "https://github.com/Gethe/wow-ui-source/blob/bebcb6bf309cf41b41bd74f8ca651e6a105b2676/Interface/AddOns/Blizzard_BuffFrame/BuffFrame.xml"
+    },
+    {
+      "target": "forever",
+      "commit": "bebcb6bf309cf41b41bd74f8ca651e6a105b2676",
+      "path": "Interface/AddOns/Blizzard_BuffFrame/BuffFrameTemplates.xml",
+      "gitBlob": "21b82f9b6d442e69f6a899529e7bb13dca03d207",
+      "verifiedBlob": true,
+      "bytes": 4985,
+      "url": "https://github.com/Gethe/wow-ui-source/blob/bebcb6bf309cf41b41bd74f8ca651e6a105b2676/Interface/AddOns/Blizzard_BuffFrame/BuffFrameTemplates.xml"
+    },
+    {
+      "target": "forever",
+      "commit": "bebcb6bf309cf41b41bd74f8ca651e6a105b2676",
+      "path": "Interface/AddOns/Blizzard_EditMode/Shared/EditModeSystemTemplates.xml",
+      "gitBlob": "8f69e11558582d85372cfad7bd7203320d172daa",
+      "verifiedBlob": true,
+      "bytes": 23447,
+      "url": "https://github.com/Gethe/wow-ui-source/blob/bebcb6bf309cf41b41bd74f8ca651e6a105b2676/Interface/AddOns/Blizzard_EditMode/Shared/EditModeSystemTemplates.xml"
+    },
+    {
+      "target": "forever",
+      "commit": "bebcb6bf309cf41b41bd74f8ca651e6a105b2676",
+      "path": "Interface/AddOns/Blizzard_EditMode/Shared/EditModeSystemTemplates.lua",
+      "gitBlob": "e75aeddd6234b555178c50e7cce358e87a0f2182",
+      "verifiedBlob": true,
+      "bytes": 139911,
+      "url": "https://github.com/Gethe/wow-ui-source/blob/bebcb6bf309cf41b41bd74f8ca651e6a105b2676/Interface/AddOns/Blizzard_EditMode/Shared/EditModeSystemTemplates.lua"
+    },
+    {
+      "target": "forever",
+      "commit": "bebcb6bf309cf41b41bd74f8ca651e6a105b2676",
+      "path": "Interface/AddOns/Blizzard_EditMode/Blizzard_EditMode.toc",
+      "gitBlob": "6ed0a809600e2126bac6e690680e6fb83922e95f",
+      "verifiedBlob": true,
+      "bytes": 2027,
+      "url": "https://github.com/Gethe/wow-ui-source/blob/bebcb6bf309cf41b41bd74f8ca651e6a105b2676/Interface/AddOns/Blizzard_EditMode/Blizzard_EditMode.toc"
+    },
+    {
+      "target": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_BuffFrame/Blizzard_BuffFrame.toc",
+      "gitBlob": "3cc5e813d0cd3aa464064f52c59557d896aba0e7",
+      "verifiedBlob": true,
+      "bytes": 321,
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_BuffFrame/Blizzard_BuffFrame.toc"
+    },
+    {
+      "target": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_BuffFrame/BuffFrame.lua",
+      "gitBlob": "0e746fb2c7473fcc69518d95836d2f710d21af06",
+      "verifiedBlob": true,
+      "bytes": 44342,
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_BuffFrame/BuffFrame.lua"
+    },
+    {
+      "target": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_BuffFrame/BuffFrame.xml",
+      "gitBlob": "84684c5e95643a1cd3a629a12865c9e2d40c36d8",
+      "verifiedBlob": true,
+      "bytes": 6249,
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_BuffFrame/BuffFrame.xml"
+    },
+    {
+      "target": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_BuffFrame/BuffFrameTemplates.xml",
+      "gitBlob": "389bafbe214f38553483be4fcb5d8ca32737d8e3",
+      "verifiedBlob": true,
+      "bytes": 4972,
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_BuffFrame/BuffFrameTemplates.xml"
+    },
+    {
+      "target": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_EditMode/Shared/EditModeSystemTemplates.xml",
+      "gitBlob": "45c9813887ba90ecb7526cca8c4d9896de25f97e",
+      "verifiedBlob": true,
+      "bytes": 19471,
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_EditMode/Shared/EditModeSystemTemplates.xml"
+    },
+    {
+      "target": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_EditMode/Shared/EditModeSystemTemplates.lua",
+      "gitBlob": "07b823c624fec619fbc01a37dcf6909957d7f24f",
+      "verifiedBlob": true,
+      "bytes": 128503,
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_EditMode/Shared/EditModeSystemTemplates.lua"
+    },
+    {
+      "target": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_EditMode/Blizzard_EditMode.toc",
+      "gitBlob": "0b94be148c93a971053ebf2c0f4008b56ef16ba9",
+      "verifiedBlob": true,
+      "bytes": 1674,
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_EditMode/Blizzard_EditMode.toc"
+    },
+    {
+      "target": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_BuffFrame/Classic/BuffFrame.lua",
+      "gitBlob": "bc131e8c49c3fddd92efb759c48c3c090cb27799",
+      "verifiedBlob": true,
+      "bytes": 250,
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_BuffFrame/Classic/BuffFrame.lua"
+    },
+    {
+      "target": "forever",
+      "commit": "bebcb6bf309cf41b41bd74f8ca651e6a105b2676",
+      "path": "Interface/AddOns/Blizzard_EditMode/Camelot/EditModeSystemTemplates.lua",
+      "gitBlob": "a231187ac746890a1c95cbf1415833741a684d6f",
+      "verifiedBlob": true,
+      "bytes": 258,
+      "url": "https://github.com/Gethe/wow-ui-source/blob/bebcb6bf309cf41b41bd74f8ca651e6a105b2676/Interface/AddOns/Blizzard_EditMode/Camelot/EditModeSystemTemplates.lua"
+    }
+  ]
+}

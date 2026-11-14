@@ -1,0 +1,17 @@
+{
+  "scope": "Desktop source placement/name contract; native pixels/input pending",
+  "candidate": "5782 navigation checks and441 complete-shell checks PASS",
+  "negativeControls": [
+    {
+      "control": "back-under-combat",
+      "exit": 1,
+      "firstFailure": "lua: tests/options_navigation.lua:5: live: Unit Frame is its own top-level category with the exact singular name"
+    },
+    {
+      "control": "plural-category-name",
+      "exit": 1,
+      "firstFailure": "lua: tests/options_navigation.lua:5: live: Unit Frame is its own top-level category with the exact singular name"
+    }
+  ],
+  "candidateCatalogNormalizedSHA256": "7dab9f443b5a22eae52f8789d3f00b5a89cbc14e928680733bd73bd52a0a3797"
+}

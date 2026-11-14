@@ -1203,19 +1203,21 @@ end
 --- Append conjure spell lines: Right-click / Shift-Right + icon + rank (blue).
 --- When the spell needs reagents, cast count is on the same line.
 --- Spacing: one blank before the whole Flux block (via _EnsureFluxTooltipGap), none between lines.
+local tooltipGaps = setmetatable({}, { __mode = "k" })
+
 function Bridge.ResetFluxTooltipGap(tip)
     if tip then
-        tip._fluxEbsGapDone = nil
+        tooltipGaps[tip] = nil
     end
 end
 
 --- Exactly one blank between item/placeholder body and the first Flux line for this tip show.
 function Bridge._EnsureFluxTooltipGap(tip)
-    if not tip or tip._fluxEbsGapDone then
+    if not tip or tooltipGaps[tip] then
         return
     end
     tip:AddLine(" ")
-    tip._fluxEbsGapDone = true
+    tooltipGaps[tip] = true
 end
 
 function Bridge.AppendConjureSpellLines(tip, primary, secondary, opts)

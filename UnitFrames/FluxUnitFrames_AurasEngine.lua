@@ -520,7 +520,11 @@ function UF.AttachEngineAuras(container, frame)
 		local splitOk = false
 		if otherFilter then
 			local ownOk = AddGroup(engine, "own", ownFilter, GroupOptions(
-				maxAuras, sort, dir, MakeInitializer(container, ownW, ownH), GroupLayout(ownW, ownH, spacing, 1)
+				maxAuras, sort, dir, MakeInitializer(container, ownW, ownH), GroupLayout(ownW, ownH, spacing, 1),
+				-- Keep system/casterless effects out of the larger-icon group if
+				-- native ownership queries overlap. PLAYER still selects you/pet/
+				-- vehicle; this extra native check alone would include other players.
+				{ isFromPlayerOrPlayerPet = true }
 			))
 			local otherOk = ownOk and AddGroup(engine, "other", otherFilter, GroupOptions(
 				maxAuras, sort, dir, MakeInitializer(container, width, height), GroupLayout(width, height, spacing, 2)

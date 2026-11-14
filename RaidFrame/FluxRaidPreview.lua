@@ -237,7 +237,7 @@ local function DemoAuraDuration(button, index, member, frame)
     clock:Show()
 end
 
-local function GetPreviewAuraSettings()
+local function GetPreviewAuraSettings(frame)
     local db = FluxOptions and FluxOptions.GetRaidFrameDB and FluxOptions:GetRaidFrameDB() or {}
     local flags = FluxRaidVisuals.GetFluxRaidOptionTable and FluxRaidVisuals.GetFluxRaidOptionTable() or db
     local focus = (FluxRaidVisuals and FluxRaidVisuals.GetAuraFocusMode and FluxRaidVisuals.GetAuraFocusMode())
@@ -249,7 +249,9 @@ local function GetPreviewAuraSettings()
         demoDebuffs = db.previewDemoDebuffsEnabled ~= false,
         displayBuffs = flags.displayBuffs ~= false,
         displayDebuffs = flags.displayDebuffs ~= false,
-        onlyDispellable = flags.displayOnlyDispellableDebuffs == true,
+        onlyDispellable = flags.displayOnlyDispellableDebuffs == true
+            or FluxRaidVisuals.ShouldDisplayOnlyDispellableDebuffs
+                and FluxRaidVisuals.ShouldDisplayOnlyDispellableDebuffs(frame, tonumber(db.previewRosterSize) == 5),
         nBuff = max(0, min(tonumber(db.previewBuffCount) or defaultBuff, 6)),
         nDebuff = max(0, min(tonumber(db.previewDebuffCount) or defaultDebuff, 6)),
         focus = focus,
@@ -274,7 +276,7 @@ local function ApplyDemoAuras(frame, idx)
     if frame._fluxRaidMini then return end
     EnsurePreviewAuraIcons(frame)
     local layout = LayoutPreviewAuraIcons(frame)
-    local aur = GetPreviewAuraSettings()
+    local aur = GetPreviewAuraSettings(frame)
     local alpha = FluxRaidVisuals.AURA_ICON_ALPHA or 1
     for i = 1, PREVIEW_AURA_SLOTS do
         if frame._fluxAuraDebuff[i] then frame._fluxAuraDebuff[i]:Hide() end
@@ -839,11 +841,15 @@ function FluxRaidPreview.PaintPartyAuras(frame, index)
     end
 end
 
-function FluxRaidPreview.Show()
+function FluxRaidPreview.Show(partyPreview)
     EnsureContainer()
     if InCombatLockdown() then
         print("|cffff8800[FluxUI]|r Raid preview cannot be shown during combat.|r")
         return
+    end
+    if partyPreview ~= true then
+        local db = FluxOptions and FluxOptions.GetRaidFrameDB and FluxOptions:GetRaidFrameDB()
+        if db then db.previewRosterSize = max(10, min(40, floor((tonumber(db.previewRosterSize) or 40) / 5) * 5)) end
     end
     previewSessionVisible = true
     FluxRaidPreview_RefreshLayout()
@@ -858,7 +864,7 @@ function FluxRaidPreview.Hide()
 end
 
 function FluxRaidPreview.Toggle()
-    if previewSessionVisible then
+    if previewSessionVisible and not FluxRaidPreview.IsPartyShown() then
         FluxRaidPreview.Hide()
     else
         FluxRaidPreview.Show()
@@ -874,7 +880,7 @@ function FluxRaidPreview.ToggleParty()
     if FluxRaidPreview.IsPartyShown() then FluxRaidPreview.Hide(); return end
     local db = FluxOptions and FluxOptions.GetRaidFrameDB and FluxOptions:GetRaidFrameDB()
     if db then db.previewRosterSize = 5 end
-    FluxRaidPreview.Show()
+    FluxRaidPreview.Show(true)
 end
 
 function FluxRaidPreview.RefreshFromOptions()
@@ -893,17 +899,18 @@ function FluxRaidPreviewUnit_OnEnter(self)
         self.mouseOverHighlight:SetAlpha(1)
     end
     if self._previewUnit and PreviewUnitExists(self._previewUnit) then
-        GameTooltip_SetDefaultAnchor(GameTooltip, self)
-        GameTooltip:SetUnit(self._previewUnit)
-        GameTooltip:Show()
+        local uf = ns.UnitFrames
+        if uf and uf.ShowUnitTooltip then uf.ShowUnitTooltip(self, self._previewUnit) end
     else
-        GameTooltip:Hide()
+        local uf = ns.UnitFrames
+        if uf and uf.HideUnitTooltip then uf.HideUnitTooltip(self) end
     end
 end
 
 function FluxRaidPreviewUnit_OnLeave(self)
     self._previewHover = false
-    GameTooltip:Hide()
+    local uf = ns.UnitFrames
+    if uf and uf.HideUnitTooltip then uf.HideUnitTooltip(self) end
     FluxRaidPreview_ApplyIdleHighlights(self)
 end
 
@@ -912,11 +919,13 @@ previewCvarListener:RegisterEvent("CVAR_UPDATE")
 previewCvarListener:SetScript("OnEvent", function(_, _, cvarName)
     if not cvarName or type(cvarName) ~= "string" then return end
     if not previewSessionVisible then return end
-    if cvarName:match("^raidFrames") or cvarName:match("^raidOption") then
+    if cvarName:lower() == "raidframesdisplayonlydispellabledebuffs"
+        or cvarName:match("^raidFrames") or cvarName:match("^raidOption") then
         -- Defer past Blizzard CUF CVar â†’ ApplyCurrentSettings (same CVAR_UPDATE wave).
         if C_Timer and C_Timer.After then
             C_Timer.After(0, function()
-                if previewContainer and previewContainer:IsShown() then
+                -- Player-style party previews hide the compact container.
+                if previewSessionVisible then
                     FluxRaidPreview_RefreshLayout()
                 end
             end)

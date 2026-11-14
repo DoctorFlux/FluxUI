@@ -1,0 +1,18 @@
+{
+  "date": "2026-11-09",
+  "change_id": "DEBUFF-FORBIDDEN-READ-20261109",
+  "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\09\\01a1c04a-6ed8-71d1-ab6f-fabaa447ebc2\\debuff-combat-20261109T124631Z",
+  "head": "26f886e3ea5371b196ab235d2dace0c156002285",
+  "sourceFiles": 2411,
+  "verified": true,
+  "settingsMetadataFiles": 120,
+  "settingsScope": "Read-only metadata; no live settings writes or quiescent settings backup claimed",
+  "archives": {
+    "source.zip": "d02c4b13925af50fdb4c681407f15827b3466d4990c3840909d2ed4b271c46bb",
+    "history.bundle": "cd97d2f937123e26f4a9a2ecc80685e0963be06157b0b9ef48fee986a2c196ff"
+  },
+  "baseline": {
+    "UnitFrames/FluxUnitFrames_DebuffTint.lua": "53166b4ac1ca3b2b534f631c900d6ac9da3329298655c55a94946a025e50c8b5",
+    "tests/friendly_debuff_tint.lua": "7d2945e5b39a34756bbdaa37f221632716b710b11dab97719211e540938a7fc4"
+  }
+}

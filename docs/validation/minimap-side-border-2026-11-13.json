@@ -1,0 +1,136 @@
+{
+  "task": "MINIMAP-SIDE-BORDER-20261113",
+  "captured_utc": "2026-11-13T14:52:15.522835+00:00",
+  "requirements": [
+    "REQ-MBL-24",
+    "REQ-MBL-25"
+  ],
+  "checkpoint": "minimap-side-border-checkpoint-2026-11-13.json",
+  "sources": "minimap-side-border-sources-2026-11-13.json",
+  "controls": "minimap-side-border-controls-2026-11-13.json",
+  "full_suite": "minimap-side-border-full-2026-11-13.json",
+  "results": [
+    {
+      "path": "tests/minimap_side_border.lua",
+      "exit": 0,
+      "output": "Minimap side border: 2794 checks;actual FluxBorder/arrow layers;5 client models;30 art/scale cases;7 harmful controls PASS\n"
+    },
+    {
+      "path": "tests/minimap_extra_layout.lua",
+      "exit": 0,
+      "output": "minimap extra layout: 50034 checks PASS (runtime geometry, saved actions, reuse, deferred combat writes and state-driver model; native acceptance pending)\n"
+    },
+    {
+      "path": "tests/minimap_extra_visibility.lua",
+      "exit": 0,
+      "output": "Minimap extra visibility: 875 checks; 5 client models; 15 scale cases; 4 harmful controls PASS\n"
+    },
+    {
+      "path": "tests/minimap_dynamic_buttons.lua",
+      "exit": 0,
+      "output": "Minimap dynamic buttons: 10480 checks; 5 client models; 30 layout/scale cases; 6 harmful controls PASS\n"
+    },
+    {
+      "path": "tests/minimap_side_auras.lua",
+      "exit": 0,
+      "output": "Minimap side aura positioning: 2543 checks; 5 client models; 15 scale cases; 4 harmful controls PASS\n"
+    },
+    {
+      "path": "tests/minimap_window_layout.lua",
+      "exit": 0,
+      "output": "Minimap window integration: 113 checks; real map/window/tracker/Questie paths and four harmful controls passed\n"
+    },
+    {
+      "path": "tests/minimap_flyout_visibility.lua",
+      "exit": 0,
+      "output": "PASS minimap flyout visibility: 168 checks; 4 client models; 9 harmful controls\n"
+    },
+    {
+      "path": "tests/options_navigation.lua",
+      "exit": 0,
+      "output": "Options navigation: 6532 checks; actual builders mapped across five client contracts; native rendering pending\n"
+    },
+    {
+      "path": "tests/transmog_actions.lua",
+      "exit": 0,
+      "output": "Transmog actions: 6485 checks; five branches, capability adapters, six negative controls passed\n"
+    },
+    {
+      "path": "tests/edit_mode_native_ownership.lua",
+      "exit": 0,
+      "output": "Flux Edit Mode metadata captured; native spec event: true. /reload to save.\nFlux Edit Mode metadata captured; native spec event: true. /reload to save.\nFlux Edit Mode metadata captured; native spec event: true. /reload to save.\nFlux Edit Mode metadata captured; native spec event: true. /reload to save.\nEdit Mode resources live: base=18 overrides=0 nativeSpecUnregister=0 flags=0 saves=3 resets=5\nFlux Edit Mode metadata captured; native spec event: true. /reload to save.\nFlux Edit Mode metadata captured; native spec event: true. /reload to save.\nFlux Edit Mode metadata captured; native spec event: true. /reload to save.\nFlux Edit Mode metadata captured; native spec event: true. /reload to save.\nEdit Mode resources forever: base=18 overrides=0 nativeSpecUnregister=0 flags=0 saves=3 resets=5\nFlux Edit Mode metadata captured; native spec event: true. /reload to save.\nFlux Edit Mode metadata captured; native spec event: true. /reload to save.\nFlux Edit Mode metadata captured; native spec event: true. /reload to save.\nFlux Edit Mode metadata captured; native spec event: true. /reload to save.\nEdit Mode resources classic: base=18 overrides=0 nativeSpecUnregister=0 flags=0 saves=3 resets=5\nFlux Edit Mode metadata captured; native spec event: true. /reload to save.\nFlux Edit Mode metadata captured; native spec event: true. /reload to save.\nFlux Edit Mode metadata captured; native spec event: true. /reload to save.\nFlux Edit Mode metadata captured; native spec event: true. /reload to save.\nEdit Mode resources classic_era: base=18 overrides=0 nativeSpecUnregister=0 flags=0 saves=3 resets=5\nFlux Edit Mode metadata captured; native spec event: true. /reload to save.\nFlux Edit Mode metadata captured; native spec event: true. /reload to save.\nFlux Edit Mode metadata captured; native spec event: true. /reload to save.\nFlux Edit Mode metadata captured; native spec event: true. /reload to save.\nEdit Mode resources classic_anniversary: base=18 overrides=0 nativeSpecUnregister=0 flags=0 saves=3 resets=5\nEdit Mode native ownership: 295 checks; 0 failures; native protected execution/taint/pixels pending\n"
+    }
+  ],
+  "source_identities": [
+    {
+      "path": "Minimap/FluxMinimapButtons.lua",
+      "baseline_raw_sha256": "d4f3f3cd045f75321c74a233183fb43085ee4427f82d97cad9e57514551bc26d",
+      "candidate_raw_sha256": "528b18d9ac66bd99a29555f5ff2e855e79c42e81244f1a16e81b5f549b02aa4b",
+      "candidate_lf_sha256": "528b18d9ac66bd99a29555f5ff2e855e79c42e81244f1a16e81b5f549b02aa4b"
+    },
+    {
+      "path": "tests/minimap_extra_layout.lua",
+      "baseline_raw_sha256": "319e13887024448053ce40909bef493fbab7482291404cbc0e3dd2504a9742bb",
+      "candidate_raw_sha256": "c70958de3b106920bc0353f1ba7425c2b5f887c30023f968a22167be4b7914ae",
+      "candidate_lf_sha256": "c70958de3b106920bc0353f1ba7425c2b5f887c30023f968a22167be4b7914ae"
+    },
+    {
+      "path": "tests/minimap_side_border.lua",
+      "baseline_raw_sha256": null,
+      "candidate_raw_sha256": "dbda08ca8f8e8403af4ffb070aabacac290069cc7f6cd6c29ee49e6d1c8d2c97",
+      "candidate_lf_sha256": "dbda08ca8f8e8403af4ffb070aabacac290069cc7f6cd6c29ee49e6d1c8d2c97"
+    }
+  ],
+  "screenshot": {
+    "name": "codex-clipboard-ea938547-d85b-4754-8207-90a06c7bf3cb.png",
+    "sha256": "de966f096d1c14f458cd5ba28f0da6003e7a8eb24368aff1133bda915b4cb6af",
+    "scope": "Reported native symptom;user clarified cluster and timer layer above buttons. Build/settings not captured."
+  },
+  "native": {
+    "input_taint_pixels_controller_cpu_fps": "NOT RUN:Retail/Forever/Classic progression/Era/Anniversary",
+    "no_foreground_or_input": true,
+    "no_settings_profiler_write": true,
+    "no_manual_sync_or_publication": true
+  },
+  "scope": "Strict desktop models of actual FluxBorder/controller/arrow code;no native secure VM or visual certification",
+  "dependency_identities": [
+    {
+      "path": "FluxBorder.lua",
+      "candidate_lf_sha256": "32f95e3c04bb7ea3154973b2dff3fee6f9cd302cb913d17f430a1627d852707b"
+    },
+    {
+      "path": "ExtraButtonSystem/FlyoutEngine/Arrow.lua",
+      "candidate_lf_sha256": "1a2a5e2624aed31dba590e486fe1d6a46bb105f0c3567dd202a497ccf8e7ccf9"
+    },
+    {
+      "path": "Minimap/FluxMinimap.lua",
+      "candidate_lf_sha256": "799b8ababf0bf1fd236268a0bb813123c269995d18831f3791ec1f2f56210670"
+    }
+  ],
+  "source_guard": "minimap-side-border-source-guard-2026-11-13.json",
+  "documentation": "minimap-side-border-docs-2026-11-13.json",
+  "unrelated": "minimap-side-border-unrelated-2026-11-13.json",
+  "full_result": {
+    "pass": 341,
+    "fail": 4,
+    "syntax_files": 1033,
+    "current_manifest_mismatches": [
+      "Inventory/Restock/Auction/FluxAuctionRestock.lua",
+      "Inventory/Restock/Auction/FluxAuctionRestockCraft.lua",
+      "Inventory/Restock/Auction/FluxAuctionRestockFollowup.lua",
+      "Inventory/Restock/Auction/FluxAuctionRestockFollowupUI.lua",
+      "Inventory/Restock/Auction/FluxAuctionRestockUI.lua",
+      "Inventory/Restock/Vendor/FluxVendorBuy.lua",
+      "tests/auction_restock_followup.lua",
+      "tests/auction_restock_followup_automation.lua",
+      "tests/auction_restock_vendor_routes.lua",
+      "tests/auction_restock_workflow.lua"
+    ],
+    "failures_scope": "Unrelated auction tests during concurrent edits;see comparison evidence"
+  },
+  "documentation_result": {
+    "task_links_pass": 57,
+    "global_exit": 1,
+    "scope": "Stale concurrent auction source/views;see docs evidence"
+  }
+}

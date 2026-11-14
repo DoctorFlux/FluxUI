@@ -1,0 +1,38 @@
+{
+  "task": "MINIMAP-SIDE-BORDER-20261113",
+  "captured_utc": "2026-11-13",
+  "fresh_branch_resolution": [
+    {
+      "branch": "live",
+      "sha": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "message": "12.1.5 (70783)"
+    },
+    {
+      "branch": "forever",
+      "sha": "bebcb6bf309cf41b41bd74f8ca651e6a105b2676",
+      "message": "1.60.1 (70938)"
+    },
+    {
+      "branch": "classic",
+      "sha": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "message": "5.5.4 (70631)"
+    }
+  ],
+  "reused_security_contracts": [
+    "minimap-layout-sources-2026-11-13.json",
+    "minimap-visibility-sources-2026-11-13.json"
+  ],
+  "source_inspection": {
+    "native_minimap_url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_Minimap/Mainline/Minimap.xml",
+    "native_minimap_finding": "Pinned Retail MinimapCluster declares LOW; addon-owned info bar/zone hit/clock use MEDIUM with clock above border+zone levels. Existing side grid MEDIUM25 could be covered by clock MEDIUM45. Side grid/widgets/chrome now use HIGH; embedded restores MEDIUM.",
+    "addon_owned_sources": [
+      "Minimap/FluxMinimap.lua:CreateInfoBar",
+      "FluxBorder.lua:ApplyTo/SetClassColor",
+      "ExtraButtonSystem/FlyoutEngine/Arrow.lua:ConfigureLayer",
+      "Minimap/FluxMinimapButtons.lua:LayoutSlots/UpdateSideBorder"
+    ],
+    "scope": "No native function/template/event/driver kind added; current shared border and secure visibility gates reused. No native frames moved or restyled for layering fix."
+  },
+  "clarification": "User confirmed screenshot issue is minimap cluster/timer drawing over buttons; this task changes draw/input order, not geometry.",
+  "native": "NOT RUN on five clients; retained direct implementation/user-managed reload/retest and controller assessment. Source declarations and mock layer ordering do not certify native pixels or taint."
+}

@@ -1,0 +1,18 @@
+{
+  "date": "2026-11-09",
+  "change_id": "DEBUFF-COMBAT-COLORS-20261109",
+  "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\09\\01a1c04a-6ed8-71d1-ab6f-fabaa447ebc2\\debuff-combat-20261109T123609Z",
+  "head": "26f886e3ea5371b196ab235d2dace0c156002285",
+  "sourceFiles": 2403,
+  "verified": true,
+  "settingsMetadataFiles": 120,
+  "settingsScope": "Read-only metadata; no live settings writes or quiescent settings backup claimed",
+  "archives": {
+    "source.zip": "c5fe3222d524763624a56b5378f43972de2be3e894e4d1f6779fbe57bc5764d4",
+    "history.bundle": "1348008497c90f8cebaba571470ef66b3437a490e4395e5c575d744677230e21"
+  },
+  "baseline": {
+    "UnitFrames/FluxUnitFrames_DebuffTint.lua": "e302df314b366274f33c016ad6f86c6fc42e8269e46dcf986b924870592c76c0",
+    "tests/friendly_debuff_tint.lua": "9b1b917135d3a32eab9e550ef6b017b497a5750da57885beace1ae0432458042"
+  }
+}

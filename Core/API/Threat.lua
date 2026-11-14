@@ -31,6 +31,40 @@ local THREAT_WARNING_CVAR = "threatWarning"
 
 local numericOverride = nil
 
+-- One scoped preference owns Flux nameplate and target/focus warnings.
+-- Preserve the existing saved keys: group includes parties and raids; never is Off.
+function Threat.GetVisibilityMode()
+	local db = FluxOptions and FluxOptions.GetUnitFrameDB and FluxOptions:GetUnitFrameDB()
+	local mode = db and db.threatBarVisibility
+	if mode == "always" or mode == "raid" or mode == "group" or mode == "never" then
+		return mode
+	end
+	return db and db.threatBarGroupOnly == false and "always" or "group"
+end
+
+function Threat.IsVisibilityAllowed()
+	local mode = Threat.GetVisibilityMode()
+	if mode == "never" then return false end
+	if mode == "always" then return true end
+	if mode == "raid" then return IsInRaid and IsInRaid() and true or false end
+	return ((IsInGroup and IsInGroup()) or (IsInRaid and IsInRaid())) and true or false
+end
+
+function Threat.SetVisibilityMode(mode)
+	if mode ~= "always" and mode ~= "raid" and mode ~= "group" and mode ~= "never" then mode = "group" end
+	local db = FluxOptions and FluxOptions.GetUnitFrameDB and FluxOptions:GetUnitFrameDB()
+	if not db then return false end
+	db.threatBarVisibility = mode
+	db.threatBarGroupOnly = mode == "group" or mode == "raid"
+	-- Change the native warning preference only for an explicit user selection.
+	if Threat.HasWarningCVar() then
+		Threat.SetWarningMode(({ always = 3, raid = 2, group = 1, never = 0 })[mode])
+	end
+	if FluxUnitFrames_ApplyThreatBarOptionsFromDB then FluxUnitFrames_ApplyThreatBarOptionsFromDB() end
+	if FluxNamePlates_RefreshFromDB then FluxNamePlates_RefreshFromDB() end
+	return true
+end
+
 local function IsSecret(v)
 	return Secrets and Secrets.IsSecretValue and Secrets.IsSecretValue(v)
 end
@@ -83,7 +117,7 @@ end
 
 local function CVarExists(name)
 	if CVar and CVar.Get then
-		local ok, v = pcall(CVar.Get, CVar, name)
+		local ok, v = pcall(CVar.Get, name)
 		if ok and v ~= nil and v ~= "" then
 			return true
 		end
@@ -786,45 +820,46 @@ end
 
 function Threat.SetPercentText(fs, percent)
 	if not fs then
-		return
+		return false
 	end
 	percent = Threat.DisplayNumber(percent)
 	if not Threat.HasNonZeroDisplay(percent) then
 		if fs.SetText then
-			pcall(fs.SetText, fs, "")
+			return pcall(fs.SetText, fs, "")
 		end
-		return
+		return false
 	end
 	if fs.SetFormattedText then
 		if pcall(fs.SetFormattedText, fs, "%.0f%%", percent) then
-			return
+			return true
 		end
 		if pcall(fs.SetFormattedText, fs, "%d%%", percent) then
-			return
+			return true
 		end
 		if pcall(fs.SetFormattedText, fs, "%s%%", percent) then
-			return
+			return true
 		end
 	end
 	if fs.SetText then
-		pcall(fs.SetText, fs, percent)
+		return pcall(fs.SetText, fs, percent)
 	end
+	return false
 end
 
 function Threat.SetRankPercentText(fs, rank, percent)
 	if not fs then
-		return
+		return false
 	end
 	local rankN = Threat.AccessibleNumber(rank)
 	if rankN and percent ~= nil then
 		if fs.SetFormattedText and pcall(fs.SetFormattedText, fs, "%d  %.0f%%", rankN, percent) then
-			return
+			return true
 		end
 		if fs.SetFormattedText and pcall(fs.SetFormattedText, fs, "%d  %s%%", rankN, percent) then
-			return
+			return true
 		end
 	end
-	Threat.SetPercentText(fs, percent)
+	return Threat.SetPercentText(fs, percent)
 end
 
 local function UnitsAreSame(a, b)
@@ -884,15 +919,23 @@ function Threat.GetPlayerRank(targetUnit)
 		return nil
 	end
 
-	local list = {}
+	local list, byGUID, unknownGUID = {}, {}, {}
 	local function addUnit(unit)
 		if not unit or not Threat.UnitExists(unit) then
 			return
 		end
-		for i = 1, #list do
-			if UnitsAreSame(list[i].unit, unit) then
-				return
-			end
+		-- Public GUIDs identify aliases without comparing every pair of group
+		-- tokens. Unknown/secret GUIDs retain the original identity walk, so
+		-- vehicles, unavailable APIs and restricted clients keep their behavior.
+		local guid
+		if type(UnitGUID) == "function" then
+			local ok, value = pcall(UnitGUID, unit)
+			if ok and not IsSecret(value) and CanAccess(value) and type(value) == "string" and value ~= "" then guid = value end
+		end
+		if guid and byGUID[guid] then return end
+		local compare = guid and unknownGUID or list
+		for i = 1, #compare do
+			if UnitsAreSame(compare[i].unit, unit) then return end
 		end
 		local detailed = Threat.GetDetailed(unit, targetUnit)
 		if not HasThreatPayload(detailed) then
@@ -906,6 +949,7 @@ function Threat.GetPlayerRank(targetUnit)
 				or Threat.AccessibleNumber(detailed.rawPercentage),
 			isTanking = SafeBool(detailed.isTanking, false),
 		}
+		if guid then byGUID[guid] = true else unknownGUID[#unknownGUID + 1] = list[#list] end
 	end
 
 	addUnit("player")

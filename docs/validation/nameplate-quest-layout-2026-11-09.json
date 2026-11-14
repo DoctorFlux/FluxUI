@@ -1,0 +1,155 @@
+{
+  "changeID": "NAMEPLATE-QUEST-LAYOUT-20261109",
+  "checkpoint": {
+    "date": "2026-11-09",
+    "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\09\\01a1c0d6-4da8-7212-a0b5-d49a632d9752\\nameplate-quest-layout-before-20261109T150633Z",
+    "sourceFiles": 2455,
+    "sourceZipVerified": true,
+    "historyVerified": true,
+    "head": "26f886e3ea5371b196ab235d2dace0c156002285",
+    "settingsMetadataFiles": 87,
+    "settingsContentBackup": false,
+    "settingsWrites": false,
+    "sha256": {
+      "source.zip": "d013da306f7ac84bb9cedffc8960cb09a02f1a468209e892271a4683f121c095",
+      "history.bundle": "f9a8518adb985047570a2991a7ca6a5cebedb7049f6ec6d9c79c9e5ab326f3d5"
+    },
+    "baseline": {
+      "NamePlates/Core.lua": "f6c537838c26809954b623be2796387c7681d521554f6bf17e299ce23302a380",
+      "NamePlates/Threat.lua": "37c4a2c54811274e3e6d8c03b8f41974e9ebc4ef4b564e9c832d157f8957d3db",
+      "tests/nameplate_quest_progress.lua": "918eb2fc0d9bb1c5d8420a29957e38ee57c9a606771cba38c5cb4a2a6b6360e7"
+    }
+  },
+  "candidateSHA256": {
+    "NamePlates/Core.lua": "5f96a7c7856269606f03d5bfe7a4ba95ac9186400871d7b6d59f45a131f708b9",
+    "NamePlates/Threat.lua": "25079301ce51f37fc43b7529a2ea3d7f61060fe0df959a0544fecf54bf50b947",
+    "tests/nameplate_quest_progress.lua": "8bdd02d49705087689ef7316d0e50aebff7a391f7a501bad31ce30c176ee9358"
+  },
+  "pairs": [
+    {
+      "trial": 1,
+      "variant": "baseline",
+      "exit": 1,
+      "output": "lua: tests/nameplate_quest_progress.lua:5: kill and loot share one baseline beside threat; no second row over cast bar\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/nameplate_quest_progress.lua:5: in upvalue 'check'\n\ttests/nameplate_quest_progress.lua:172: in local 'scenario'\n\ttests/nameplate_quest_progress.lua:404: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "trial": 1,
+      "variant": "candidate",
+      "exit": 0,
+      "output": "QUEST_PROGRESS client=live frames=5 checks=256 idle_polls=1000 idle_queries=0\nQUEST_PROGRESS client=forever frames=5 checks=512 idle_polls=1000 idle_queries=0\nQUEST_PROGRESS client=classic frames=5 checks=760 idle_polls=1000 idle_queries=0\nQUEST_PROGRESS client=classic_era frames=5 checks=1008 idle_polls=1000 idle_queries=0\nQUEST_PROGRESS client=classic_anniversary frames=5 checks=1256 idle_polls=1000 idle_queries=0\nQUEST_PROGRESS checks=1261 failures=0 native_pixels_taint_performance=NOT_RUN\n"
+    },
+    {
+      "trial": 2,
+      "variant": "baseline",
+      "exit": 1,
+      "output": "lua: tests/nameplate_quest_progress.lua:5: kill and loot share one baseline beside threat; no second row over cast bar\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/nameplate_quest_progress.lua:5: in upvalue 'check'\n\ttests/nameplate_quest_progress.lua:172: in local 'scenario'\n\ttests/nameplate_quest_progress.lua:404: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "trial": 2,
+      "variant": "candidate",
+      "exit": 0,
+      "output": "QUEST_PROGRESS client=live frames=5 checks=256 idle_polls=1000 idle_queries=0\nQUEST_PROGRESS client=forever frames=5 checks=512 idle_polls=1000 idle_queries=0\nQUEST_PROGRESS client=classic frames=5 checks=760 idle_polls=1000 idle_queries=0\nQUEST_PROGRESS client=classic_era frames=5 checks=1008 idle_polls=1000 idle_queries=0\nQUEST_PROGRESS client=classic_anniversary frames=5 checks=1256 idle_polls=1000 idle_queries=0\nQUEST_PROGRESS checks=1261 failures=0 native_pixels_taint_performance=NOT_RUN\n"
+    },
+    {
+      "trial": 3,
+      "variant": "baseline",
+      "exit": 1,
+      "output": "lua: tests/nameplate_quest_progress.lua:5: kill and loot share one baseline beside threat; no second row over cast bar\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/nameplate_quest_progress.lua:5: in upvalue 'check'\n\ttests/nameplate_quest_progress.lua:172: in local 'scenario'\n\ttests/nameplate_quest_progress.lua:404: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "trial": 3,
+      "variant": "candidate",
+      "exit": 0,
+      "output": "QUEST_PROGRESS client=live frames=5 checks=256 idle_polls=1000 idle_queries=0\nQUEST_PROGRESS client=forever frames=5 checks=512 idle_polls=1000 idle_queries=0\nQUEST_PROGRESS client=classic frames=5 checks=760 idle_polls=1000 idle_queries=0\nQUEST_PROGRESS client=classic_era frames=5 checks=1008 idle_polls=1000 idle_queries=0\nQUEST_PROGRESS client=classic_anniversary frames=5 checks=1256 idle_polls=1000 idle_queries=0\nQUEST_PROGRESS checks=1261 failures=0 native_pixels_taint_performance=NOT_RUN\n"
+    }
+  ],
+  "controls": [
+    {
+      "control": "ignore_threat",
+      "exit": 1,
+      "output": "lua: tests/nameplate_quest_progress.lua:5: quest artwork clears centered threat and stays left of level\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/nameplate_quest_progress.lua:5: in upvalue 'check'\n\ttests/nameplate_quest_progress.lua:204: in local 'readableStrip'\n\ttests/nameplate_quest_progress.lua:215: in local 'scenario'\n\ttests/nameplate_quest_progress.lua:404: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "control": "shrink_text",
+      "exit": 1,
+      "output": "lua: tests/nameplate_quest_progress.lua:5: smaller quest badge and count text\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/nameplate_quest_progress.lua:5: in upvalue 'check'\n\ttests/nameplate_quest_progress.lua:173: in local 'scenario'\n\ttests/nameplate_quest_progress.lua:404: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "control": "stale_geometry",
+      "exit": 1,
+      "output": "lua: tests/nameplate_quest_progress.lua:5: quest artwork clears centered threat and stays left of level\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/nameplate_quest_progress.lua:5: in upvalue 'check'\n\ttests/nameplate_quest_progress.lua:204: in local 'readableStrip'\n\ttests/nameplate_quest_progress.lua:215: in local 'scenario'\n\ttests/nameplate_quest_progress.lua:404: in main chunk\n\t[C]: in ?\n"
+    }
+  ],
+  "native": "NOT RUN: prior direct implementation/local validation and user-owned native testing retained; no connected Witchcraft/UIForever tool; pixels/cast clearance/combat/taint/CPU/FPS pending",
+  "gameInput": false,
+  "settingsOrProfilerWrites": false,
+  "newDriverResources": 0,
+  "sourceDeclarations": [
+    {
+      "client": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleScriptRegionAPIDocumentation.lua",
+      "sha256": "34c57917b3c1e95a2f1054e3dbc6901222311b716322be31c78e62a119d37747",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleScriptRegionAPIDocumentation.lua"
+    },
+    {
+      "client": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_NamePlates/Blizzard_NamePlateUnitFrame.lua",
+      "sha256": "573e7b5e0a6cf2765d91579ca2c55c052fec41c9d5af2a689f1c46d264ab220b",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_NamePlates/Blizzard_NamePlateUnitFrame.lua"
+    },
+    {
+      "client": "forever",
+      "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleScriptRegionAPIDocumentation.lua",
+      "sha256": "3718e5f81b99525819264d2f50e473080541d655978f88ca85582acc4073fd82",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleScriptRegionAPIDocumentation.lua"
+    },
+    {
+      "client": "forever",
+      "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "path": "Interface/AddOns/Blizzard_NamePlates/Blizzard_NamePlateUnitFrame.lua",
+      "sha256": "5a3f506c65d645bee3ad3e82fbf70313839705095a618efeca3a919303bfa422",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_NamePlates/Blizzard_NamePlateUnitFrame.lua"
+    },
+    {
+      "client": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleScriptRegionAPIDocumentation.lua",
+      "sha256": "9cf580688388b332d87e8126703892a1e1e4c0ea04173abb36bbebced26555b8",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleScriptRegionAPIDocumentation.lua"
+    },
+    {
+      "client": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_NamePlates/Blizzard_NamePlateUnitFrame.lua",
+      "sha256": "fd3c5c8f2b78f627809af7d0f3f240639f070fb9350d9cc5c6d8633df8692af4",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_NamePlates/Blizzard_NamePlateUnitFrame.lua"
+    }
+  ],
+  "threatIntegration": {
+    "script": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\09\\01a1c0d6-4da8-7212-a0b5-d49a632d9752\\quest-threat-integration.lua",
+    "sha256": "a4d3056c8d2010829e4467c88b3c06eefd09b9869269a058af1df0d1b6d3243c",
+    "output": "THREAT_QUEST_INTEGRATION checks=8 failures=0 anchored_getters=0\n",
+    "scope": "Actual complete Threat module under desktop widget/API doubles; hidden/off/width/removed/failed-anchor; anchored getters reject access"
+  },
+  "full": {
+    "record": "docs/validation/nameplate-quest-layout-full-2026-11-09.json",
+    "pass": 272,
+    "fail": 0,
+    "syntaxFiles": 942,
+    "syntaxFailures": 0,
+    "currentLuaManifestDrift": []
+  },
+  "requirements": {
+    "REQ-NPQ-07": "All objectives on one 12-high row; no downward stacking",
+    "REQ-NPQ-08": "Text/icon10 minimum retained; text+16 width; extend left beside actual painted threat label",
+    "REQ-NPQ-09": "Existing0.25s poll; only changed geometry writes anchors; no data rescans for geometry"
+  },
+  "manualSync": false,
+  "publication": false,
+  "scope": "Layout-only Core/Threat change; providers/quest progress/settings/native cast lifecycle unchanged; no new driver resources",
+  "documentationValidation": "PASS:975 classified sources;605 TOC/XML reachable;425 setting definitions;24 SavedVariables;15908 local links; source inventory/evidence current",
+  "sourceGuard": "docs/validation/nameplate-quest-layout-source-guard-2026-11-09.json; only Core/Threat/focused test Lua changed since external checkpoint; owned and full manifest drift empty"
+}

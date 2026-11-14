@@ -1,5 +1,25 @@
 # Combat consumable junk uses current carried tiers
 
+14 November AHR-104: minimum restore now determines healing/mana potion tiers
+globally, including owned buttons, crafting, vendor memory/restocking and automatic
+junk. A higher maximum cannot displace a higher minimum. Saved data normalizes
+when verified; unresolved old values stay saved without promoting. Manual Junk
+priority remains. [Rules and acceptance](AUCTION_RESTOCK.md#global-potion-minimum-restore).
+
+14 November global settings and shared exclusions (AHR-99–101): three independent
+default-on controls under Loot & Items → Vendor protect weaker bandages, healing
+and mana potions until a strictly better usable tier is physically in bags. Turning
+one off restores ordinary remembered-tier automatic junk for that kind. Manual
+Junk wins, as explicitly chosen by the user; Useful and existing manual marks keep
+their precedence. Accepting an AH tier no longer manufactures an explicit Junk mark.
+
+Manual consumable exclusions and the default-on `discolored` healing substring
+filter also remove those items as eligible carried replacements. Toggling policies
+invalidates existing Best/tier/junk caches. Excluded items can remain carried without
+making the permitted tier Junk. Global 1230 checks/30 scenarios; inline 880/20;
+shared scanner/button 240/10 and 22 compiled harmful controls PASS. Native acceptance
+remains scoped separately. [Current evidence](validation/auction-inline-upgrades-2026-11-14.json).
+
 8 November 2026, JUNK-CARRIED-COMBAT-20261108. For each of bandages, healing
 potions and mana potions, retain the highest usable tier actually carried.
 Only a strictly better usable output in bags can make a lower tier automatic

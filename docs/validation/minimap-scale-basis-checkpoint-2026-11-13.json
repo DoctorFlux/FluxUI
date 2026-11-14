@@ -1,0 +1,17 @@
+{
+  "changeId": "MINIMAP-SCALE-BASIS-20261113",
+  "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d3b4-b7ec-7591-94d3-6d3b3097fb8a\\minimap-scale-basis-20261113T083834Z",
+  "verified": true,
+  "sourceFiles": 2644,
+  "settingsMetadataEntries": 103,
+  "settingsWrites": false,
+  "settingsContentsCopied": false,
+  "revision": "26f886e3ea5371b196ab235d2dace0c156002285",
+  "branch": "main",
+  "hooksPath": ".githooks",
+  "sha256": {
+    "source.zip": "8b269eaec359eb08c6366dff708d727d661a50939c4e3e6394cac47b354bd43d",
+    "history.bundle": "f0d479109f91f7c218397aab1e66a2f267e871c5c1fbc856e51cc001961b78dd",
+    "source-manifest.json": "b0f9d393dc239e4224a0a424a209501802fd7f6b5317b4b78dc1fb4273eb0de1"
+  }
+}

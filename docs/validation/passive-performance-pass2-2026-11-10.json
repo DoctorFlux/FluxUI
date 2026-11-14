@@ -1,0 +1,557 @@
+{
+  "changeId": "PASSIVE-PERFORMANCE-PASS2-20261110",
+  "requirements": [
+    "PP2-01",
+    "PP2-02",
+    "PP2-03",
+    "PP2-04",
+    "PP2-05",
+    "PP2-06"
+  ],
+  "hotspots": [
+    "PP2-H01",
+    "PP2-H02",
+    "PP2-H03",
+    "PP2-H04",
+    "PP2-H05",
+    "PP2-H06",
+    "PP2-H07",
+    "PP2-H08",
+    "PP2-H09",
+    "PP2-H10"
+  ],
+  "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\passive-performance-pass2\\checkpoint-20261110T160229Z",
+  "checkpointFiles": 2543,
+  "branch": "main",
+  "sourceHashes": {
+    "Battlezonemap/FluxMeterSkin.lua": "55127ff278b8d1fc339546ef4b6b240454f5c4cb1ac6fb15d9819ef6f747d427",
+    "Core/API/Secrets.lua": "284a63ff34055c2c9f6060e6e4c01ee71928b566424ca6fdc8836ff36d1d1426",
+    "Core/Engine/Range.lua": "50c9600e4779fdd8a5fc341b64d447bdbcfe1876762e64139410607946d55dab",
+    "ExtraButtonSystem/Engine/Paint.lua": "a3afd9482161ee081b18d036fbd4e26815f63cd145d3c92b6a1a6aa238ea8a77",
+    "MicroMenu/FluxAddonMicroButton.lua": "433ce723e1a9d9b5702da5e82e30070f87ce8897718de9c0e38fcbaf08fd65af",
+    "RaidFrame/FluxRaidPrediction.lua": "3d4b208cddc0144a64f56af630bcf92030230ae65565a6f9e5e3286ede0ef41a",
+    "UnitFrames/FluxCastBar.lua": "088b72180e83c04674468db7db3902c8fc08d91fe12837359ece9363c13de10e",
+    "UnitFrames/FluxClassPower.lua": "dfd00625eea83257b4d8cf43df01768bae4940636d2cfa9ece004d4b5acdb60c",
+    "tests/meter_timer_allocation.lua": "36e2a5e577887a63544f565c93db9817f5abb79ddac6686090033982f50b1566",
+    "tests/passive_core_allocation_work.lua": "91d8d3ba5cd2727dd9a495c549a1e33668b8458cb43f3eb193effa895e1cdcd9",
+    "tests/passive_ebs_visibility.lua": "54c0aab17f4aad708235d009f344cd4065e3a7cfe781d251de043822cc3c5451",
+    "tests/passive_unit_updates.lua": "6e3d1170cb8354cce530a4034937e0131f16e3df3f3cf382d07bd25c144f1b0e",
+    "tests/passive_world_pass2.lua": "4dabeeb643a0bb70394027dbe3b595b20f0d1a33ff9f1fae28588f07f9617f53"
+  },
+  "runtimeFiles": 8,
+  "newTests": 5,
+  "settingsMetadataEntries": 53,
+  "privateSettingsCopied": false,
+  "sourcePins": {
+    "live": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+    "forever": "4cd0ab752a77164f654ccbca9d0c1fe8dafceebe",
+    "classic": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+    "classic_era": "4192ac60067fc55566182291bc67c85dd9b6794d",
+    "classic_anniversary": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49"
+  },
+  "core": {
+    "matchedPairs": 3,
+    "candidateChecks": 233,
+    "controlsRejected": 12,
+    "runs": [
+      {
+        "label": "pair1-before",
+        "metrics": {
+          "iterations": 10000.0,
+          "probeFunctions": 30000.0,
+          "protectedFunctions": 50006.0,
+          "heapKiB": 10000.151,
+          "nativeProbes": 3.0
+        }
+      },
+      {
+        "label": "pair1-after",
+        "metrics": {
+          "iterations": 10000.0,
+          "probeFunctions": 3.0,
+          "protectedFunctions": 9.0,
+          "heapKiB": 0.026,
+          "nativeProbes": 3.0
+        }
+      },
+      {
+        "label": "pair2-after",
+        "metrics": {
+          "iterations": 10000.0,
+          "probeFunctions": 3.0,
+          "protectedFunctions": 9.0,
+          "heapKiB": 0.026,
+          "nativeProbes": 3.0
+        }
+      },
+      {
+        "label": "pair2-before",
+        "metrics": {
+          "iterations": 10000.0,
+          "probeFunctions": 30000.0,
+          "protectedFunctions": 50006.0,
+          "heapKiB": 10000.151,
+          "nativeProbes": 3.0
+        }
+      },
+      {
+        "label": "pair3-before",
+        "metrics": {
+          "iterations": 10000.0,
+          "probeFunctions": 30000.0,
+          "protectedFunctions": 50006.0,
+          "heapKiB": 10000.151,
+          "nativeProbes": 3.0
+        }
+      },
+      {
+        "label": "pair3-after",
+        "metrics": {
+          "iterations": 10000.0,
+          "probeFunctions": 3.0,
+          "protectedFunctions": 9.0,
+          "heapKiB": 0.026,
+          "nativeProbes": 3.0
+        }
+      }
+    ],
+    "scope": "Actual production modules; public/opaque/error/reentrant and identity cache contracts; no schedule/widget/native call reduction or secret policy change.",
+    "heapScope": "Lua5.4.6 garbage collection paused over10000 unchanged-frame workloads after warmup; heap growth is uncollected desktop Lua allocation, not native retained memory/CPU/FPS."
+  },
+  "unit": {
+    "matchedPairs": 3,
+    "candidateChecks": 96,
+    "controlsRejected": 14,
+    "pairs": [
+      {
+        "pair": 1,
+        "before": {
+          "cast_144fps_duration_reads": 9720,
+          "cast_144fps_remaining_reads": 9720,
+          "cast_144fps_text_paints": 1080,
+          "cast_240fps_duration_reads": 15508,
+          "cast_240fps_remaining_reads": 15508,
+          "cast_240fps_text_paints": 1108,
+          "cast_60fps_duration_reads": 4800,
+          "cast_60fps_remaining_reads": 4800,
+          "cast_60fps_text_paints": 1200,
+          "class_10hz_callbacks": 35700,
+          "class_10hz_outstanding": 600,
+          "class_10hz_recovery_layouts": 1200,
+          "class_10hz_requests": 36300,
+          "class_10hz_timers": 36300,
+          "class_1hz_callbacks": 3540,
+          "class_1hz_outstanding": 60,
+          "class_1hz_recovery_layouts": 120,
+          "class_1hz_requests": 3600,
+          "class_1hz_timers": 3600,
+          "raid_false_severity_arrays": 48000,
+          "raid_true_severity_arrays": 48000
+        },
+        "after": {
+          "cast_144fps_duration_reads": 8640,
+          "cast_144fps_remaining_reads": 8640,
+          "cast_144fps_text_paints": 1080,
+          "cast_240fps_duration_reads": 14400,
+          "cast_240fps_remaining_reads": 14400,
+          "cast_240fps_text_paints": 1108,
+          "cast_60fps_duration_reads": 3600,
+          "cast_60fps_remaining_reads": 3600,
+          "cast_60fps_text_paints": 1200,
+          "class_10hz_callbacks": 0,
+          "class_10hz_outstanding": 0,
+          "class_10hz_recovery_layouts": 2,
+          "class_10hz_requests": 600,
+          "class_10hz_timers": 0,
+          "class_1hz_callbacks": 0,
+          "class_1hz_outstanding": 0,
+          "class_1hz_recovery_layouts": 2,
+          "class_1hz_requests": 60,
+          "class_1hz_timers": 0,
+          "raid_false_severity_arrays": 0,
+          "raid_true_severity_arrays": 0
+        },
+        "traceEqual": true,
+        "traces": {
+          "cast": "7.0,6.5,1.1,0.0,secret,4.2,3.2,2.2",
+          "cast_reentrant": "getter:3.2,remaining:3.2,predicate:3.2,same-guid:3.2,minmax:6.0,manual-delay:4.0,failed-bind:3.2,secret-guid:3.2,rebind:3.2",
+          "class_ooc_false": "A,A,A,A",
+          "class_ooc_true": "A,A,A,A",
+          "raid_false": "0,0,30,10,false,false,false,false;40,0,0,0,false,false,false,false;40,0,0,0,true,true,true,false;40,0,0,0,true,true,true,false;40,0,0,0,true,true,true,true",
+          "raid_true": "0,0,30,10,nil,nil,nil,nil;50,0,30,10,true,nil,nil,nil;80,0,30,10,true,true,true,nil;100,0,30,10,true,true,true,true;150,0,30,10,true,true,true,true"
+        }
+      },
+      {
+        "pair": 2,
+        "before": {
+          "cast_144fps_duration_reads": 9720,
+          "cast_144fps_remaining_reads": 9720,
+          "cast_144fps_text_paints": 1080,
+          "cast_240fps_duration_reads": 15508,
+          "cast_240fps_remaining_reads": 15508,
+          "cast_240fps_text_paints": 1108,
+          "cast_60fps_duration_reads": 4800,
+          "cast_60fps_remaining_reads": 4800,
+          "cast_60fps_text_paints": 1200,
+          "class_10hz_callbacks": 35700,
+          "class_10hz_outstanding": 600,
+          "class_10hz_recovery_layouts": 1200,
+          "class_10hz_requests": 36300,
+          "class_10hz_timers": 36300,
+          "class_1hz_callbacks": 3540,
+          "class_1hz_outstanding": 60,
+          "class_1hz_recovery_layouts": 120,
+          "class_1hz_requests": 3600,
+          "class_1hz_timers": 3600,
+          "raid_false_severity_arrays": 48000,
+          "raid_true_severity_arrays": 48000
+        },
+        "after": {
+          "cast_144fps_duration_reads": 8640,
+          "cast_144fps_remaining_reads": 8640,
+          "cast_144fps_text_paints": 1080,
+          "cast_240fps_duration_reads": 14400,
+          "cast_240fps_remaining_reads": 14400,
+          "cast_240fps_text_paints": 1108,
+          "cast_60fps_duration_reads": 3600,
+          "cast_60fps_remaining_reads": 3600,
+          "cast_60fps_text_paints": 1200,
+          "class_10hz_callbacks": 0,
+          "class_10hz_outstanding": 0,
+          "class_10hz_recovery_layouts": 2,
+          "class_10hz_requests": 600,
+          "class_10hz_timers": 0,
+          "class_1hz_callbacks": 0,
+          "class_1hz_outstanding": 0,
+          "class_1hz_recovery_layouts": 2,
+          "class_1hz_requests": 60,
+          "class_1hz_timers": 0,
+          "raid_false_severity_arrays": 0,
+          "raid_true_severity_arrays": 0
+        },
+        "traceEqual": true,
+        "traces": {
+          "cast": "7.0,6.5,1.1,0.0,secret,4.2,3.2,2.2",
+          "cast_reentrant": "getter:3.2,remaining:3.2,predicate:3.2,same-guid:3.2,minmax:6.0,manual-delay:4.0,failed-bind:3.2,secret-guid:3.2,rebind:3.2",
+          "class_ooc_false": "A,A,A,A",
+          "class_ooc_true": "A,A,A,A",
+          "raid_false": "0,0,30,10,false,false,false,false;40,0,0,0,false,false,false,false;40,0,0,0,true,true,true,false;40,0,0,0,true,true,true,false;40,0,0,0,true,true,true,true",
+          "raid_true": "0,0,30,10,nil,nil,nil,nil;50,0,30,10,true,nil,nil,nil;80,0,30,10,true,true,true,nil;100,0,30,10,true,true,true,true;150,0,30,10,true,true,true,true"
+        }
+      },
+      {
+        "pair": 3,
+        "before": {
+          "cast_144fps_duration_reads": 9720,
+          "cast_144fps_remaining_reads": 9720,
+          "cast_144fps_text_paints": 1080,
+          "cast_240fps_duration_reads": 15508,
+          "cast_240fps_remaining_reads": 15508,
+          "cast_240fps_text_paints": 1108,
+          "cast_60fps_duration_reads": 4800,
+          "cast_60fps_remaining_reads": 4800,
+          "cast_60fps_text_paints": 1200,
+          "class_10hz_callbacks": 35700,
+          "class_10hz_outstanding": 600,
+          "class_10hz_recovery_layouts": 1200,
+          "class_10hz_requests": 36300,
+          "class_10hz_timers": 36300,
+          "class_1hz_callbacks": 3540,
+          "class_1hz_outstanding": 60,
+          "class_1hz_recovery_layouts": 120,
+          "class_1hz_requests": 3600,
+          "class_1hz_timers": 3600,
+          "raid_false_severity_arrays": 48000,
+          "raid_true_severity_arrays": 48000
+        },
+        "after": {
+          "cast_144fps_duration_reads": 8640,
+          "cast_144fps_remaining_reads": 8640,
+          "cast_144fps_text_paints": 1080,
+          "cast_240fps_duration_reads": 14400,
+          "cast_240fps_remaining_reads": 14400,
+          "cast_240fps_text_paints": 1108,
+          "cast_60fps_duration_reads": 3600,
+          "cast_60fps_remaining_reads": 3600,
+          "cast_60fps_text_paints": 1200,
+          "class_10hz_callbacks": 0,
+          "class_10hz_outstanding": 0,
+          "class_10hz_recovery_layouts": 2,
+          "class_10hz_requests": 600,
+          "class_10hz_timers": 0,
+          "class_1hz_callbacks": 0,
+          "class_1hz_outstanding": 0,
+          "class_1hz_recovery_layouts": 2,
+          "class_1hz_requests": 60,
+          "class_1hz_timers": 0,
+          "raid_false_severity_arrays": 0,
+          "raid_true_severity_arrays": 0
+        },
+        "traceEqual": true,
+        "traces": {
+          "cast": "7.0,6.5,1.1,0.0,secret,4.2,3.2,2.2",
+          "cast_reentrant": "getter:3.2,remaining:3.2,predicate:3.2,same-guid:3.2,minmax:6.0,manual-delay:4.0,failed-bind:3.2,secret-guid:3.2,rebind:3.2",
+          "class_ooc_false": "A,A,A,A",
+          "class_ooc_true": "A,A,A,A",
+          "raid_false": "0,0,30,10,false,false,false,false;40,0,0,0,false,false,false,false;40,0,0,0,true,true,true,false;40,0,0,0,true,true,true,false;40,0,0,0,true,true,true,true",
+          "raid_true": "0,0,30,10,nil,nil,nil,nil;50,0,30,10,true,nil,nil,nil;80,0,30,10,true,true,true,nil;100,0,30,10,true,true,true,true;150,0,30,10,true,true,true,true"
+        }
+      }
+    ],
+    "intentionalBugFix": "Class-holder combat retry chains become one immediate shared-regen restoration; direct events and OOC delayed recovery retain their original behavior.",
+    "sameStackSample": "Public owned timer revision invalidates getter/remaining/predicate/sameGUID/manual/failedbind/rebind replacement before text uses the synchronous sample."
+  },
+  "extraButtons": {
+    "matchedPairs": 3,
+    "candidateChecks": 340,
+    "controlsRejected": 20,
+    "beforePerClient": {
+      "bagQueries": 52000,
+      "equipQueries": 96000,
+      "hiddenCheckedCallbacks": 120,
+      "hiddenIconRequests": 1000,
+      "hiddenMountQueries": 4800,
+      "spellCountQueries": 2000,
+      "usableQueries": 52000,
+      "visibleIconRequests": 1000
+    },
+    "afterPerClient": {
+      "bagQueries": 4000,
+      "equipQueries": 8000,
+      "hiddenCheckedCallbacks": 0,
+      "hiddenIconRequests": 0,
+      "hiddenMountQueries": 0,
+      "spellCountQueries": 2000,
+      "usableQueries": 4000,
+      "visibleIconRequests": 1000
+    },
+    "visibleSamples": 95,
+    "traceSHA256": [
+      "678edc443b6d419cf2cb3d43820d99cf58d722ad9839e886d252f1f05426bafd",
+      "678edc443b6d419cf2cb3d43820d99cf58d722ad9839e886d252f1f05426bafd",
+      "678edc443b6d419cf2cb3d43820d99cf58d722ad9839e886d252f1f05426bafd"
+    ],
+    "revealTradeoff": "Three synchronous existing count-lane methods per visible current-owner reveal before original scheduler request; hidden parents/stale widgets remain skipped."
+  },
+  "world": {
+    "matchedPairs": 3,
+    "candidateChecks": 114,
+    "controlsRejected": 14,
+    "collector": {
+      "source_sha256": "433ce723e1a9d9b5702da5e82e30070f87ce8897718de9c0e38fcbaf08fd65af",
+      "trigger": "Original immediate load/login/world-entry/user-open scans, library-created callback, and every10-second scan. No cadence or native-read reductions.",
+      "settled360scans": {
+        "child_name_reads": [
+          72000,
+          72000
+        ],
+        "root_enumerations": [
+          720,
+          720
+        ],
+        "pattern_matches": [
+          1620000,
+          252000
+        ],
+        "protected_function_identities": [
+          1083,
+          5
+        ],
+        "uncollected_heap_kib": [
+          1375.312,
+          1164.402
+        ]
+      },
+      "preserved": [
+        "independent public root snapshots and provider replacement/missing fallback",
+        "all six fixed root candidates and alias order",
+        "root snapshot before collection hooks can rebind global backdrop",
+        "one linear child table snapshot per parent; per-root enumeration failure isolation",
+        "all names, prefixes, library APIs, callback identity and immediate delivery",
+        "recursive scan lock; error reporting and transient-error recovery",
+        "original ten-second After chain"
+      ],
+      "peer_review": "Unit agent found backdrop root snapshot bug before seal; fixed and regression/control added. Select vararg implementation rejected after larger-child CPU regression; current source restores linear child array."
+    },
+    "meterTimer": {
+      "source_sha256": "55127ff278b8d1fc339546ef4b6b240454f5c4cb1ac6fb15d9819ef6f747d427",
+      "trigger": "Existing native/owned meter show/hide/size/style/layout synchronization calls; allocation-only helper hoist.",
+      "sync10000x3panes": {
+        "visibility_reads": [
+          30000,
+          30000
+        ],
+        "top_reads": [
+          30000,
+          30000
+        ],
+        "left_reads": [
+          30000,
+          30000
+        ],
+        "scale_reads": [
+          30000,
+          30000
+        ],
+        "alpha_sinks": [
+          30000,
+          30000
+        ],
+        "text_sinks": [
+          10000,
+          10000
+        ],
+        "uncollected_heap_kib": [
+          3437.531,
+          0.031
+        ]
+      },
+      "preserved": [
+        "fresh candidate visibility and coordinates every call",
+        "scale/order/winner/donor election and native/owned visibility",
+        "opaque text forwarding, fallback separation, errors, reentrant sinks, release lifecycle"
+      ],
+      "retained_native_row_cost": "Separate exact baseline10k settled ApplyToEntry produced50k setters:10k white value text,10k brush,10k fill,20k alpha. All retained; no new native texture/data getters or hooks."
+    },
+    "rejectedApproach": "Vararg select traversal copied quadratically; final static PackChildren retains linear child snapshots. Earlier zeroheap/select figures are superseded.",
+    "cpuScope": "Larger-root Lua mock CPU diagnostics retained; unnamed-root timings overlap/no benefit claimed. No native CPU/FPS measurements."
+  },
+  "focusedCandidateChecksPerSet": 783,
+  "harmfulControlsRejected": 60,
+  "validation": {
+    "scriptsPass": 295,
+    "scriptsFail": 0,
+    "syntaxPass": 967,
+    "syntaxFail": 0,
+    "sourceMatches": true,
+    "generatedSources": 1000,
+    "reachable": 607,
+    "settings": 427,
+    "savedVariableRoots": 24,
+    "documentation": "PASS",
+    "documentationLocalLinks": 16182
+  },
+  "nativeSources": {
+    "records": 25,
+    "distinctGitBlobs": 20,
+    "allBlobSHA1Verified": true,
+    "scope": "Fresh five-client PlayerFrame/class/managed-holder and native meter source; no ordinary regen holder reset found. Native operation/order acceptance remains NOT RUN."
+  },
+  "preservation": {
+    "appearanceFilesUnchanged": 252,
+    "optionsBindingSourcesUnchanged": 80,
+    "otherRuntimePreserved": true,
+    "previousCombatAndResourceFixesBytePreserved": true,
+    "settingsWrites": false,
+    "profilerWrites": false,
+    "clientInput": false,
+    "manualSync": false,
+    "publication": false
+  },
+  "nativeAcceptance": "NOT RUN: real client frame time/FPS, memory, rendered pixels/clipping, secure operation permissions, actual event/next-frame ordering and physical/controller input.",
+  "retainedCosts": [
+    "Native meter row styling: no new native texture/atlas/color getters or skipped setters",
+    "Native embedded-map pipeline and secure character-button frame mirroring",
+    "Necessary native value/query cadence and child snapshots"
+  ],
+  "scopeExclusions": [
+    "Guild-bank and void-storage callbacks",
+    "Unrelated party/raid feature expansion/native sessions"
+  ],
+  "commands": [
+    "lua tests/passive_core_allocation_work.lua",
+    "lua tests/passive_unit_updates.lua",
+    "lua tests/passive_ebs_visibility.lua",
+    "lua tests/passive_world_pass2.lua",
+    "lua tests/meter_timer_allocation.lua",
+    "python tests/run_validation.py --output <external>/full-validation.json --sync-docs",
+    "python docs/tools/build_reference.py",
+    "python docs/tools/validate_docs.py"
+  ],
+  "artifacts": {
+    "core/comparison.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\passive-performance-pass2\\core\\comparison.json",
+      "sha256": "37760c0559a772d9be5c1fef8a6e981f3bbf5ac4cf8649b4f37b46718201c8a8"
+    },
+    "core/compare.py": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\passive-performance-pass2\\core\\compare.py",
+      "sha256": "cb0dd314150420570f7aa063129e839b98e0e096d02c48a7a7e2b0c5eb240e23"
+    },
+    "unit/summary.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\passive-performance-pass2\\unit\\summary.json",
+      "sha256": "b5810da1e4b0adcd87ad9d0342306b58b82b4da81a38184f97795ed39286b1da"
+    },
+    "unit/compare.py": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\passive-performance-pass2\\unit\\compare.py",
+      "sha256": "19d3a0a06c2f3f35c55fb22b5ba2d9c48a636eed83900789c31c374d5a81c8bc"
+    },
+    "inventory/comparison.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\passive-performance-pass2\\inventory\\comparison.json",
+      "sha256": "e221ddf596d1c389f6586c735ebab7197913f4552112c2b6a3bc7330db6359fa"
+    },
+    "inventory/compare.py": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\passive-performance-pass2\\inventory\\compare.py",
+      "sha256": "d9ded1282daf5ca3d2745b0074ed9317f84b8c17c23e968a2cc9f023d8810d8f"
+    },
+    "inventory/focused-results.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\passive-performance-pass2\\inventory\\focused-results.json",
+      "sha256": "46628ccd86ef8549bb48e0c741398f02db08be9f3a4e8a8dd6c9f9d2571da695"
+    },
+    "inventory/unit-review-before.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\passive-performance-pass2\\inventory\\unit-review-before.json",
+      "sha256": "9949c855784f493ce792c3e1d01306712dffaf382a266b902bcb18f6fb11726e"
+    },
+    "inventory/unit-review-after.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\passive-performance-pass2\\inventory\\unit-review-after.json",
+      "sha256": "4ff50786db39019e82fb654744e27fb72e5d7ee6a5e0aeddfdbd2feab8fa6df6"
+    },
+    "world/comparison.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\passive-performance-pass2\\world\\comparison.json",
+      "sha256": "4c745de677f33829e425743189475348c3838f5467d80a6d854bd00eeea17a12"
+    },
+    "world/summary.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\passive-performance-pass2\\world\\summary.json",
+      "sha256": "eb5fe81b1eaebebc882e2700bea783beb2a16d47c69bf59d0f95b6db59e6c124"
+    },
+    "world/seal.py": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\passive-performance-pass2\\world\\seal.py",
+      "sha256": "6e563703df6272fe52eaad6d278c06661dd8d39c5df68f403ff6d8941fc78403"
+    },
+    "world/pins.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\passive-performance-pass2\\world\\pins.json",
+      "sha256": "668417c7b4e59b4104e67f50e54c6d69363f9fed8fae23eff61ebf29c91d4dd0"
+    },
+    "world/collector-linear-benchmark.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\passive-performance-pass2\\world\\collector-linear-benchmark.json",
+      "sha256": "a01b227f2ad7d22e6b55b0d5dc9dcb688e38bf3a37cc02a98ee44bd8818e376f"
+    },
+    "world/native-meter-sources.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\passive-performance-pass2\\world\\native-meter-sources.json",
+      "sha256": "04f629717c1db3ee80c7a50dc618f1bc09ed3656041a28e4d97503093851cfd1"
+    },
+    "world/classpower-native-sources.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\passive-performance-pass2\\world\\classpower-native-sources.json",
+      "sha256": "673ef67e7f2eac47bcab5c2c46e389d5a7c348d752c909d65415e6dbfa71bbcf"
+    },
+    "world/classpower-native-verification.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\passive-performance-pass2\\world\\classpower-native-verification.json",
+      "sha256": "eefc4311c95e1d935e6c3550a0f645153168f885dc8b342746988ec4cf044b44"
+    },
+    "full-validation.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\passive-performance-pass2\\full-validation.json",
+      "sha256": "acda09faf903a1eaf5177cdf3365a062bd6025d554cdf4e8b9922918e0db15b5"
+    },
+    "final-verification.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\passive-performance-pass2\\final-verification.json",
+      "sha256": "2a5e21bec280626ad967f510f1ad64e5f5d2fd29d054fdb9de0742939d2492e4"
+    },
+    "implementation.patch": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\passive-performance-pass2\\implementation.patch",
+      "sha256": "aad5ac4a604e0385ffc400282985cd79bc17fedf8a609cffbfa2ae309afd6dfe"
+    },
+    "docs-validation.txt": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\passive-performance-pass2\\docs-validation.txt",
+      "sha256": "071b99e8362091a4d1f507efa7678de4e204042921b1ba3eab5db70f2d7acda7"
+    }
+  }
+}

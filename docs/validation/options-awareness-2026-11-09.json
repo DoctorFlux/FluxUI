@@ -1,0 +1,74 @@
+{
+  "date": "2026-11-09",
+  "utc": "2026-11-09T17:32:21.810425+00:00",
+  "change_id": "OPTIONS-AWARENESS-20261109",
+  "requirement": "REQ-OPT-33",
+  "change": "Inventory Awareness moved from HUD > Status Bars into Loot & Items > Loot; no new entry/tab",
+  "implementation": "Existing onlyPrefix/exceptPrefix selectors split original statusBars/invTip* option objects. Status Bars retains other controls/section order; source contexts and module-generation dependencies preserved.",
+  "baselineNormalizedSHA256": {
+    "AddonOptions/FluxOptionsCatalog.lua": "819a030ca538d50facaff3077fa8329760fc410edc7c06539527927adb782f08",
+    "tests/options_navigation.lua": "03a56d6ac89378ec24fffc8db6cc2b0ff51e5d85657997123984c45ce1f3a5b8",
+    "tests/options_rework.lua": "079c1fe380a6eb8585a01e21cf0414add9a3877f2395e371352c5e638de47fbd"
+  },
+  "ownedNormalizedSHA256": {
+    "AddonOptions/FluxOptionsCatalog.lua": "a679e7d73d8ee4b61e76d0e0f683ee0ec699f3159f250d743dde5504095e8665",
+    "tests/options_navigation.lua": "9a8b677c2d9eac6e61809eccc25bbe178bd7cdc15c142bd65b86e702cf531be3",
+    "tests/options_rework.lua": "5ad4a54b97a6f21986f465ebba7ed9e4e5e7025097f79aa566a58d002f3c2aa6"
+  },
+  "preservedRuntimeIdentity": {
+    "AddonOptions/FluxOptionsStatusBars.lua": true,
+    "Inventory/Tooltip.lua": true,
+    "AddonOptions/FluxOptionsNavigation.lua": true,
+    "AddonOptions/FluxOptionsRender.lua": true,
+    "AddonOptions/FluxOptionsShell.lua": true
+  },
+  "normalization": "CRLF to LF; all other bytes retained",
+  "checkpoint": "options-awareness-checkpoint-2026-11-09.json",
+  "sourcePins": "options-source-pins-2026-11-09.json; no new API/template/client detection selected",
+  "movedDeclarationsByClient": {
+    "live": 11,
+    "forever": 11,
+    "classic": 11,
+    "classic_era": 11,
+    "classic_anniversary": 11
+  },
+  "focused": {
+    "builderChecks": 6207,
+    "shellChecks": 1242,
+    "scope": "Five desktop client models; original leaf identity and getter/setter info context; Syndicator disabled gate; search selects Loot"
+  },
+  "controls": "options-awareness-controls-2026-11-09.json",
+  "fullReport": "options-awareness-full-2026-11-09.json",
+  "full": {
+    "pass": 276,
+    "fail": 0,
+    "syntaxFiles": 946,
+    "syntaxFailures": 0,
+    "currentCorpusDrift": []
+  },
+  "mapping": "options-navigation-map-2026-11-09.csv",
+  "clientCopiesMatch": {
+    "_forever_": true,
+    "_classic_": true,
+    "_classic_era_": true,
+    "_anniversary_": true
+  },
+  "manualSync": false,
+  "resources": "No added rows/tabs/headers/events/timers/tickers/hooks/stores or gameplay callbacks. Existing declaration/source caches and lifecycle reused; Loot now depends on original statusBars module generation. No native performance measurement.",
+  "scopeAndData": "Original Status Bars settings storage scope and all saved keys/get/set callbacks unchanged. No migration/reset. Guild-bank and void-storage runtime callbacks untouched.",
+  "nativeAcceptance": "NOT RUN; existing Witchcraft preference retained but no Witchcraft/UIForever tools connected. No game input/focus/capture or settings/profiler writes.",
+  "publication": false,
+  "newGoalCreated": false,
+  "finalVerification": {
+    "documentation": {
+      "command": "python docs/tools/validate_docs.py",
+      "exitCode": 0,
+      "output": "PASS: 979 classified sources; 605 TOC/XML reachable; 425 setting definitions; 24 SavedVariables; 15947 local links. Source inventory/evidence current. No files written."
+    },
+    "whitespace": {
+      "command": "git -c core.safecrlf=false diff --check",
+      "exitCode": 0
+    },
+    "ownedHashDrift": []
+  }
+}

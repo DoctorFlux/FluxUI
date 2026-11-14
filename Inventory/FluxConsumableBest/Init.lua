@@ -201,6 +201,12 @@ function Best.ShouldSoftHoldOwned()
     return false
 end
 
+--- World entry hands ownership back to the inventory login-settle window.
+function Best.EndLoadHold()
+    Best._loadHoldOpen = false
+    Best._portalHoldUntil = 0
+end
+
 --- Load screen started: freeze before BAG_UPDATE can publish an empty snapshot.
 function Best.BeginLoadHold()
     Best._loadHoldOpen = true
@@ -243,7 +249,11 @@ function Best.ArmPortalSoftHold()
             if Best._portalHoldUntil ~= untilT then
                 return
             end
-            if Best.RequestRecompute then
+            -- Count latches also need recovery when the selected item ID stays
+            -- unchanged. The existing inventory fan-out owns that refresh/scan.
+            if api and api.Notify then
+                api.Notify({ bags = true, recovery = true })
+            elseif Best.RequestRecompute then
                 Best.RequestRecompute({ reason = "portalHoldEnd", delay = 0.05 })
             end
         end)

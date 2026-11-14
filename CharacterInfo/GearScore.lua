@@ -159,14 +159,12 @@ local function GetItemScore(ItemLink)
             Table = GS_Formula["A"]
         end
         if ItemRarity >= 2 and ItemRarity <= 4 then
-            local Red, Green, Blue = GetQuality((math.floor(((ItemLevel - Table[ItemRarity].A) / Table[ItemRarity].B) * 1 * Scale)) * 11.25)
             GearScore = math.floor(((ItemLevel - Table[ItemRarity].A) / Table[ItemRarity].B) * GS_ItemTypes[ItemEquipLoc].SlotMOD * Scale * QualityScale)
             if ItemLevel == 187.05 then
                 ItemLevel = 0
             end
             if GearScore < 0 then
                 GearScore = 0
-                Red, Green, Blue = GetQuality(1)
             end
             return GearScore, ItemEquipLoc
         end
@@ -191,7 +189,6 @@ local function ComputeGearScorePlayerInternal()
 
     local GearScore = 0
     local ItemCount = 0
-    local LevelTotal = 0
     local TitanGrip = 1
 
     local mainHandLink = GetInventoryItemLink("player", 16)
@@ -215,8 +212,6 @@ local function ComputeGearScorePlayerInternal()
         end
         GearScore = GearScore + TempScore * TitanGrip
         ItemCount = ItemCount + 1
-        local _n2, _l2, _r2, ilvl = GetItemInfo(offHandLink)
-        if ilvl then LevelTotal = LevelTotal + ilvl end
     end
 
     for i = 1, 18 do
@@ -224,7 +219,6 @@ local function ComputeGearScorePlayerInternal()
             local link = GetInventoryItemLink("player", i)
             if link then
                 local TempScore, ItemEquipLoc = GetItemScore(link)
-                local _n, _l, _r, ItemLevel = GetItemInfo(link)
                 if PlayerEnglishClass == "HUNTER" then
                     if i == 16 then
                         TempScore = TempScore * 0.3164
@@ -237,7 +231,6 @@ local function ComputeGearScorePlayerInternal()
                 end
                 GearScore = GearScore + TempScore
                 ItemCount = ItemCount + 1
-                if ItemLevel then LevelTotal = LevelTotal + ItemLevel end
             end
         end
     end

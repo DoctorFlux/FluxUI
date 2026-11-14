@@ -64,11 +64,15 @@ local function SetRecipient(key, value)
 	if value == "" then RecipientDB()[key] = nil else RecipientDB()[key] = value end
 end
 
-local function FreeSendSlots()
+local function FreeSendSlots(firstOnly)
 	if not HasSendMailItem then return 0 end
 	local free = 0
 	for i = 1, (ATTACHMENTS_MAX_SEND or 12) do
-		if not HasSendMailItem(i) then free = free + 1 end
+		if not HasSendMailItem(i) then
+			free = free + 1
+			-- The per-slot gate needs current availability, not a full recount.
+			if firstOnly then return free end
+		end
 	end
 	return free
 end
@@ -87,7 +91,7 @@ function Mail.AttachCategory(classID, subClassID)
 		if Mail.GetSetting("QuickAttach", "EnableBag" .. bag) ~= false then
 			local slots = Flux.Container.GetNumSlots and Flux.Container.GetNumSlots(bag) or 0
 			for slot = 1, slots do
-				if added >= limit or FreeSendSlots() == 0 then return added end
+				if added >= limit or FreeSendSlots(true) == 0 then return added end
 				local info = Flux.Container.GetItemInfo and Flux.Container.GetItemInfo(bag, slot)
 				if info and info.itemID and not info.isLocked and not info.isBound then
 					local _, _, _, _, _, _, _, _, _, _, _, itemClass, itemSubclass, bindType = Flux.Item.GetInfo(info.itemID)

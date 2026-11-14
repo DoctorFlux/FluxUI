@@ -1,0 +1,93 @@
+{
+  "dateUTC": "2026-11-09T14:19:16.183368+00:00",
+  "scope": "Desktop mocked maps only; optional installed HBD provider methods executed with deterministic coordinate data. Not complete RXP guide code, native rendering, secure VM, taint, CPU or FPS acceptance.",
+  "baselineSHA256": "79c2f7bb0661844c702eb8c6968f9907aec180af7d184759ddf1dce7df195c7b",
+  "candidateSHA256": "74d9d550fd12f2998be46fcbbaaf68eeecb98421459dd30b8defdb25e7c79d0a",
+  "testSHA256": "3eeca57b2df62fcea230a6736f993318478c779fab4eb564f191731c75115fb3",
+  "rows": [
+    {
+      "provider": "self-contained-mock",
+      "run": 1,
+      "source": "baseline",
+      "exit": 1,
+      "output": "lua: Battlezonemap/_tmp_questiepinsmoke.lua:254: assertion failed!\nstack traceback:\n\t[C]: in function 'assert'\n\tBattlezonemap/_tmp_questiepinsmoke.lua:254: in local 'Check'\n\tBattlezonemap/_tmp_questiepinsmoke.lua:288: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "provider": "self-contained-mock",
+      "run": 1,
+      "source": "candidate",
+      "exit": 0,
+      "output": "RestedXP standard HBD pins OK: Forever (ownership, styling, tooltip, owner reset, zone, World Map priority, combat, both toggles)\nRestedXP standard HBD pins OK: Classic (ownership, styling, tooltip, owner reset, zone, World Map priority, combat, both toggles)\nQuestie/RestedXP battlefield pins smoke OK (native coexistence, Classic route, settings/icons, handoff, filters, tooltips, late loading, combat recovery, Map Pins off and live retail isolation)\n1000 incremental pins: 9.00 ms mock CPU, 0 pin-list visits, 1000 acquisitions, 0 full refreshes\n2000 incremental pins: 24.00 ms mock CPU, 0 pin-list visits, 2000 acquisitions, 0 full refreshes\n"
+    },
+    {
+      "provider": "self-contained-mock",
+      "run": 2,
+      "source": "baseline",
+      "exit": 1,
+      "output": "lua: Battlezonemap/_tmp_questiepinsmoke.lua:254: assertion failed!\nstack traceback:\n\t[C]: in function 'assert'\n\tBattlezonemap/_tmp_questiepinsmoke.lua:254: in local 'Check'\n\tBattlezonemap/_tmp_questiepinsmoke.lua:288: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "provider": "self-contained-mock",
+      "run": 2,
+      "source": "candidate",
+      "exit": 0,
+      "output": "RestedXP standard HBD pins OK: Forever (ownership, styling, tooltip, owner reset, zone, World Map priority, combat, both toggles)\nRestedXP standard HBD pins OK: Classic (ownership, styling, tooltip, owner reset, zone, World Map priority, combat, both toggles)\nQuestie/RestedXP battlefield pins smoke OK (native coexistence, Classic route, settings/icons, handoff, filters, tooltips, late loading, combat recovery, Map Pins off and live retail isolation)\n1000 incremental pins: 11.00 ms mock CPU, 0 pin-list visits, 1000 acquisitions, 0 full refreshes\n2000 incremental pins: 24.00 ms mock CPU, 0 pin-list visits, 2000 acquisitions, 0 full refreshes\n"
+    },
+    {
+      "provider": "self-contained-mock",
+      "run": 3,
+      "source": "baseline",
+      "exit": 1,
+      "output": "lua: Battlezonemap/_tmp_questiepinsmoke.lua:254: assertion failed!\nstack traceback:\n\t[C]: in function 'assert'\n\tBattlezonemap/_tmp_questiepinsmoke.lua:254: in local 'Check'\n\tBattlezonemap/_tmp_questiepinsmoke.lua:288: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "provider": "self-contained-mock",
+      "run": 3,
+      "source": "candidate",
+      "exit": 0,
+      "output": "RestedXP standard HBD pins OK: Forever (ownership, styling, tooltip, owner reset, zone, World Map priority, combat, both toggles)\nRestedXP standard HBD pins OK: Classic (ownership, styling, tooltip, owner reset, zone, World Map priority, combat, both toggles)\nQuestie/RestedXP battlefield pins smoke OK (native coexistence, Classic route, settings/icons, handoff, filters, tooltips, late loading, combat recovery, Map Pins off and live retail isolation)\n1000 incremental pins: 11.00 ms mock CPU, 0 pin-list visits, 1000 acquisitions, 0 full refreshes\n2000 incremental pins: 24.00 ms mock CPU, 0 pin-list visits, 2000 acquisitions, 0 full refreshes\n"
+    },
+    {
+      "provider": "installed-HBD-provider",
+      "run": 1,
+      "source": "baseline",
+      "exit": 1,
+      "output": "lua: Battlezonemap/_tmp_questiepinsmoke.lua:254: assertion failed!\nstack traceback:\n\t[C]: in function 'assert'\n\tBattlezonemap/_tmp_questiepinsmoke.lua:254: in local 'Check'\n\tBattlezonemap/_tmp_questiepinsmoke.lua:288: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "provider": "installed-HBD-provider",
+      "run": 1,
+      "source": "candidate",
+      "exit": 0,
+      "output": "RestedXP standard HBD pins OK: Forever (ownership, styling, tooltip, owner reset, zone, World Map priority, combat, both toggles)\nRestedXP standard HBD pins OK: Classic (ownership, styling, tooltip, owner reset, zone, World Map priority, combat, both toggles)\nQuestie/RestedXP battlefield pins smoke OK (native coexistence, Classic route, settings/icons, handoff, filters, tooltips, late loading, combat recovery, Map Pins off and live retail isolation)\n1000 incremental pins: 10.00 ms mock CPU, 0 pin-list visits, 1000 acquisitions, 0 full refreshes\n2000 incremental pins: 25.00 ms mock CPU, 0 pin-list visits, 2000 acquisitions, 0 full refreshes\n"
+    },
+    {
+      "provider": "installed-HBD-provider",
+      "run": 2,
+      "source": "baseline",
+      "exit": 1,
+      "output": "lua: Battlezonemap/_tmp_questiepinsmoke.lua:254: assertion failed!\nstack traceback:\n\t[C]: in function 'assert'\n\tBattlezonemap/_tmp_questiepinsmoke.lua:254: in local 'Check'\n\tBattlezonemap/_tmp_questiepinsmoke.lua:288: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "provider": "installed-HBD-provider",
+      "run": 2,
+      "source": "candidate",
+      "exit": 0,
+      "output": "RestedXP standard HBD pins OK: Forever (ownership, styling, tooltip, owner reset, zone, World Map priority, combat, both toggles)\nRestedXP standard HBD pins OK: Classic (ownership, styling, tooltip, owner reset, zone, World Map priority, combat, both toggles)\nQuestie/RestedXP battlefield pins smoke OK (native coexistence, Classic route, settings/icons, handoff, filters, tooltips, late loading, combat recovery, Map Pins off and live retail isolation)\n1000 incremental pins: 9.00 ms mock CPU, 0 pin-list visits, 1000 acquisitions, 0 full refreshes\n2000 incremental pins: 22.00 ms mock CPU, 0 pin-list visits, 2000 acquisitions, 0 full refreshes\n"
+    },
+    {
+      "provider": "installed-HBD-provider",
+      "run": 3,
+      "source": "baseline",
+      "exit": 1,
+      "output": "lua: Battlezonemap/_tmp_questiepinsmoke.lua:254: assertion failed!\nstack traceback:\n\t[C]: in function 'assert'\n\tBattlezonemap/_tmp_questiepinsmoke.lua:254: in local 'Check'\n\tBattlezonemap/_tmp_questiepinsmoke.lua:288: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "provider": "installed-HBD-provider",
+      "run": 3,
+      "source": "candidate",
+      "exit": 0,
+      "output": "RestedXP standard HBD pins OK: Forever (ownership, styling, tooltip, owner reset, zone, World Map priority, combat, both toggles)\nRestedXP standard HBD pins OK: Classic (ownership, styling, tooltip, owner reset, zone, World Map priority, combat, both toggles)\nQuestie/RestedXP battlefield pins smoke OK (native coexistence, Classic route, settings/icons, handoff, filters, tooltips, late loading, combat recovery, Map Pins off and live retail isolation)\n1000 incremental pins: 9.00 ms mock CPU, 0 pin-list visits, 1000 acquisitions, 0 full refreshes\n2000 incremental pins: 23.00 ms mock CPU, 0 pin-list visits, 2000 acquisitions, 0 full refreshes\n"
+    }
+  ]
+}

@@ -14,6 +14,7 @@ local FONT_SIZE_MAX = 11
 local SKULL_TEXTURE = "Interface\\TargetingFrame\\UI-TargetingFrame-Skull"
 
 local overlays = {}
+local unused = {}
 
 local function IsEnabled()
 	return NP.IsLevelSupported() and NP.GetDB().levelOverlayEnabled ~= false
@@ -55,6 +56,11 @@ end
 local function EnsureOverlay(unit)
 	local overlay = overlays[unit]
 	if overlay then
+		return overlay
+	end
+	overlay = table.remove(unused)
+	if overlay then
+		overlays[unit] = overlay
 		return overlay
 	end
 	local host = NP.CreateClientPlate("level")
@@ -159,8 +165,11 @@ local function UpdateUnit(unit)
 	local overlay = EnsureOverlay(unit)
 	local base = (NamePlateSetupOptions and NamePlateSetupOptions.levelFontHeight) or 10
 	local size = math.max(FONT_SIZE_MIN, math.min(FONT_SIZE_MAX, math.floor(base * FONT_SIZE_MULT + 0.5)))
-	overlay.text:SetFont(NP.FONT, size, "OUTLINE")
-	overlay.skull:SetSize(size + 2, size + 2)
+	if overlay.fontSize ~= size or overlay.font ~= NP.FONT then
+		overlay.text:SetFont(NP.FONT, size, "OUTLINE")
+		overlay.skull:SetSize(size + 2, size + 2)
+		overlay.fontSize, overlay.font = size, NP.FONT
+	end
 
 	local showSkull = false
 	if secretLevel then
@@ -184,20 +193,29 @@ local function UpdateUnit(unit)
 				overlay.text:SetText("Lvl.")
 			end
 		else
-			overlay.text:SetText("Lvl. " .. tostring(level))
+			if overlay.level ~= level then overlay.text:SetText("Lvl. " .. tostring(level)) end
 		end
+		overlay.level = not secretLevel and level or nil
 		overlay.text:SetTextColor(r, g, b, 1)
 		overlay.text:Show()
 	end
 
-	NP.FitPlate(overlay.host, showSkull and overlay.skull or overlay.text)
+	if secretLevel or overlay.fitSize ~= size or overlay.fitSkull ~= showSkull or overlay.fitLevel ~= level then
+		local _, measured = NP.FitPlate(overlay.host, showSkull and overlay.skull or overlay.text)
+		-- Missing/secret font metrics keep the old next-poll recovery path.
+		overlay.fitSize, overlay.fitSkull = measured and size or nil, showSkull
+		overlay.fitLevel = not secretLevel and level or nil
+	end
 	NP.ShowPlate(overlay.host, unit)
 
 	NP.AttachHost(overlay.host, plate, 1)
-	overlay.host:ClearAllPoints()
-	if not pcall(overlay.host.SetPoint, overlay.host, "RIGHT", container, "BOTTOMRIGHT", -2, -3) then
-		Hide(unit, uf)
-		return
+	if overlay.container ~= container then
+		overlay.host:ClearAllPoints()
+		if not pcall(overlay.host.SetPoint, overlay.host, "RIGHT", container, "BOTTOMRIGHT", -2, -3) then
+			Hide(unit, uf)
+			return
+		end
+		overlay.container = container
 	end
 	SetBlizzardLevelShown(uf, false)
 	overlay.host:Show()
@@ -213,6 +231,8 @@ function Level.Removed(unit)
 	local overlay = overlays[unit]
 	if overlay then
 		NP.ReleaseHost(overlay.host)
+		overlay.container = nil
+		unused[#unused + 1] = overlay
 		overlays[unit] = nil
 	end
 end

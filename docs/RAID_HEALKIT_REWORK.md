@@ -1291,3 +1291,35 @@ exposed APIs and must not be marked complete. [Evidence](COMBAT_NUMERIC_TINT.md)
 | ID | Requirement | Acceptance |
 |---|---|---|
 | REQ-RF-96 | Actual HP/resource numeric values and percent follow native debuff border color during restricted combat on every client/frame |UNIMPLEMENTED on restricted Retail/Forever: verified native sinks accept Texture only; native text binding replaces numbers.106source probes;13230existing checks; no runtime fix claimed |
+
+
+9 November ongoing party lag (PARTY-STEADY-PERFORMANCE-20261109; REQ-RF-97):
+health/resource/prediction paths reuse shared painters without periodic chrome
+rebuilds; pet predictions and owner scoping corrected, explicit cold metadata
+refreshes retained. No changes to secure layout, visibility, settings or features.
+Five matched operation-count pairs/model, eight harmful controls,305 focused
+checks and full273-script/943-syntax PASS. Native lag/FPS/pixels/taint pending.
+[Source identities, measurements and acceptance](PARTY_STEADY_PERFORMANCE.md).
+
+| Requirement | Behavior | Evidence |
+| --- | --- | --- |
+| REQ-RF-97 | Optimize steady player-style party events without losing features; retain all five clients, secure membership, appearance and integrations |305 focused;1035 party;163 roster;5matched pairs;8controls;273scripts/943syntaxPASS; native latency/FPS/taint/pixels PENDING |
+
+
+9 November combat group lifecycle audit (COMBAT-GROUP-LIFECYCLE-20261109;
+REQ-RF-98, reaffirming83): current native group/state/template code verified for
+all five clients. Full native state-manager event wake and actual header/wrapper
+implementations tested under four callback orders and both party styles.247385
+checks/1800transitions per run;three repeated passes;six harmful controls;50exact
+upstream blobs;30source contracts;full274scripts/944syntaxPASS. No runtime gap
+found or runtime changes. Native taint, input, pixels and latency NOT RUN.
+[Detailed mechanism and boundary](COMBAT_GROUP_LIFECYCLE.md).
+
+| Requirement | Behavior | Evidence |
+| --- | --- | --- |
+| REQ-RF-98 | Audit/retain native secure combat joins, leaves, conversions, subgroup/MT/roster changes across all five clients and both party styles |247385checks/1800transitions per run;3passes;6controls;50blobs;30contracts;274scripts/944syntaxPASS; native acceptance pending |
+
+
+| Requirement | Behavior | Evidence |
+| --- | --- | --- |
+| REQ-RF-99 | Native Forever background performance testing/simulation and conservative error fixes without losing features | Native solo/OOC previews measured; full276scripts/946syntaxPASS; all preview/profiler/report state restored; actual combat roster and grouped spike attribution remain pending. [Evidence](FOREVER_NATIVE_PERFORMANCE.md) |

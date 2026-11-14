@@ -1,0 +1,102 @@
+{
+  "date": "2026-11-10",
+  "clients": [
+    {
+      "target": "forever",
+      "sourceDeclarations": true,
+      "nativeSelectByOrderIndex": true,
+      "loadedVia": [
+        {
+          "path": "Interface/AddOns/Blizzard_UIPanels_Game/Blizzard_UIPanels_Game.toc",
+          "loadConditions": [
+            "## Dep: Blizzard_EditMode [AllowLoadGameType mainline]",
+            "## Dep: Blizzard_CharacterFrame [AllowLoadGameType classic]",
+            "## Dep: Blizzard_ActionBar [AllowLoadGameType classic]",
+            "## Dep: Blizzard_Minimap [AllowLoadGameType classic]",
+            "## Dep: Blizzard_POIButton [AllowLoadGameType mainline]",
+            "## Dep: Blizzard_MoneyFrame [AllowLoadGameType mainline]",
+            "## Dep: Blizzard_Colors [AllowLoadGameType mainline]",
+            "## Dep: Blizzard_TransmogShared [AllowLoadGameType mainline]",
+            "## Dep: Blizzard_StatusTrackingBar [AllowLoadGameType mainline]",
+            "## OptionalDep: Blizzard_GamepadSharedUtility [AllowLoadGameType mainline]",
+            "## LoadFirst: 1 [AllowLoadGameType classic]"
+          ],
+          "gossipLines": [
+            "[Family]\\GossipFrameAPI.lua\t\t\t\t[AllowLoadGameType mainline]",
+            "[Family]\\CustomGossipFrameBase.lua\t\t[AllowLoadGameType mainline]",
+            "[Family]\\CustomGossipFrameBase.xml\t\t[AllowLoadGameType mainline]",
+            "Shared\\GossipFrameShared.lua",
+            "Shared\\GossipFrameShared.xml",
+            "[Family]\\GossipFrameAPI.lua\t\t\t\t[AllowLoadGameType classic]",
+            "[Family]\\GossipFrame.lua",
+            "[Family]\\GossipFrame.xml"
+          ]
+        }
+      ],
+      "nativeRuntime": "NOT RUN"
+    },
+    {
+      "target": "classic",
+      "sourceDeclarations": true,
+      "nativeSelectByOrderIndex": true,
+      "loadedVia": [
+        {
+          "path": "Interface/AddOns/Blizzard_UIPanels_Game/Blizzard_UIPanels_Game_Classic.toc",
+          "loadConditions": [
+            "## AllowLoad: game",
+            "## AllowLoadGameType: classic"
+          ],
+          "gossipLines": [
+            "Shared\\GossipFrameShared.lua",
+            "Shared\\GossipFrameShared.xml",
+            "Classic\\GossipFrame.lua",
+            "Classic\\GossipFrame.xml"
+          ]
+        }
+      ],
+      "nativeRuntime": "NOT RUN"
+    },
+    {
+      "target": "classic_era",
+      "sourceDeclarations": true,
+      "nativeSelectByOrderIndex": true,
+      "loadedVia": [
+        {
+          "path": "Interface/AddOns/Blizzard_UIPanels_Game/Blizzard_UIPanels_Game_Classic.toc",
+          "loadConditions": [
+            "## AllowLoad: game",
+            "## AllowLoadGameType: classic"
+          ],
+          "gossipLines": [
+            "Shared\\GossipFrameShared.lua",
+            "Shared\\GossipFrameShared.xml",
+            "Classic\\GossipFrame.lua",
+            "Classic\\GossipFrame.xml"
+          ]
+        }
+      ],
+      "nativeRuntime": "NOT RUN"
+    },
+    {
+      "target": "classic_anniversary",
+      "sourceDeclarations": true,
+      "nativeSelectByOrderIndex": true,
+      "loadedVia": [
+        {
+          "path": "Interface/AddOns/Blizzard_UIPanels_Game/Blizzard_UIPanels_Game_Classic.toc",
+          "loadConditions": [
+            "## AllowLoad: game",
+            "## AllowLoadGameType: classic"
+          ],
+          "gossipLines": [
+            "Shared\\GossipFrameShared.lua",
+            "Shared\\GossipFrameShared.xml",
+            "Classic\\GossipFrame.lua",
+            "Classic\\GossipFrame.xml"
+          ]
+        }
+      ],
+      "nativeRuntime": "NOT RUN"
+    }
+  ]
+}

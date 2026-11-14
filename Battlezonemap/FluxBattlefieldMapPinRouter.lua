@@ -3,8 +3,8 @@
 -- BattlefieldMapFrame when the Battlezone map is active and the world map is closed.
 -- World map takes priority while open. Also mirrors third-party WorldMapFrame pin pools
 -- onto the battlefield map so AcquirePin does not fail on missing XML templates.
--- Forever has native quest providers too; only Questie's HBD provider is routed
--- there, keeping its original world-map icons, filters and appearance settings.
+-- Forever has native quest providers too; Questie's and standard HBD providers
+-- (including RestedXP) keep their original world-map icons, filters and styling.
 
 local addonName, addonTable = ...
 
@@ -60,7 +60,8 @@ end
 
 function FluxBattlefieldMapPinRouter:IsLibrarySupported(name)
     if not BlizzardHasQuestPins() then return true end
-    return IsForeverClient() and name == "HereBeDragonsQuestie-Pins-2.0"
+    return IsForeverClient() and (name == "HereBeDragonsQuestie-Pins-2.0"
+        or name == "HereBeDragons-Pins-2.0")
 end
 
 local function IsPinRouterWanted()

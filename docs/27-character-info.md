@@ -1,5 +1,7 @@
 # Character Info and character stat providers
 
+10 November passive pass 3: Loaded Classic GearScore drops unused metadata/palette work; quality hoists constant names/helper while preserving all queries/paints. [Before/after and native limits](PASSIVE_PERFORMANCE_PASS3.md).
+
 Flux adds statistics and paperdoll helpers to Blizzard CharacterFrame. Character/reputation/skills/currency tabs remain Blizzard-owned. This is distinct from the player unit frame and the Info Frame HUD. [Shared.lua](../CharacterInfo/Shared.lua) defines `ns.CharacterStats`; [Init.lua](../CharacterInfo/Init.lua) exposes `Flux.CharacterInfo.TryInstall()` and installs eligible overlays.
 
 ## Client paths and installation

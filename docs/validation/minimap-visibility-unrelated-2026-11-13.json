@@ -1,0 +1,16 @@
+{
+  "scope": "Read-only execution of unrelated failing tests against verified pre-edit external snapshot",
+  "baseline": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d3b4-b7ec-7591-94d3-6d3b3097fb8a\\minimap-visibility-20261113T140244Z\\comparison-baseline",
+  "results": [
+    {
+      "test": "tests/auction_restock_charges.lua",
+      "baseline_exit": 0,
+      "baseline_output": "Auction restock charges: 19952 checks PASS; 20 profiles; native charges/mail/purchases NOT RUN\n"
+    },
+    {
+      "test": "tests/auction_restock_crafting.lua",
+      "baseline_exit": 0,
+      "baseline_output": "Auction restock crafting/tab: 824 checks PASS; 20 profiles; native quote permissions/rendering/controller NOT RUN\n"
+    }
+  ]
+}

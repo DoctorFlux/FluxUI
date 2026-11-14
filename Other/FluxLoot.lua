@@ -89,7 +89,13 @@ anchor:SetScript("OnUpdate", function(self)
     for index = #rows, 1, -1 do
         local row = rows[index]
         if row.deadline > now then
-            row:SetAlpha(math.min(1, (row.deadline - now) * 2))
+            local alpha = math.min(1, (row.deadline - now) * 2)
+            -- These pooled rows are owned here. Keep the frame-synchronous fade,
+            -- without reapplying full opacity throughout the steady display.
+            if row._fluxLootAlpha ~= alpha then
+                row:SetAlpha(alpha)
+                row._fluxLootAlpha = alpha
+            end
         else
             row:Hide()
             row.deadline = nil

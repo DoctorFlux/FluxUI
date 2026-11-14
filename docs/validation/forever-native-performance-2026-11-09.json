@@ -1,0 +1,502 @@
+{
+  "changeID": "FOREVER-NATIVE-PERFORMANCE-20261109",
+  "requirements": [
+    "REQ-RF-99",
+    "REQ-RF-83"
+  ],
+  "fixes": [
+    "RESOURCE-PULSE-SECRET-GEOMETRY-20261109",
+    "VENDOR-INPUT-PERMISSIONS-20261109"
+  ],
+  "native": {
+    "client": "Forever",
+    "build": "1.60.1/70862/interface16001",
+    "userReadback": {
+      "scriptProfile": "0",
+      "taintLog": "2",
+      "combat": false,
+      "groupMembers": 0,
+      "fpsInstant": 157.27391052246
+    },
+    "soloPilot": {
+      "capturedAtLocal": "2026-11-09 17:44:28",
+      "seconds": 20.00100000018,
+      "scriptProfile": "0",
+      "fpsAverage": 145.01703681946,
+      "fpsMin": 72.137054443359,
+      "profilerSamples": 20,
+      "recentProfilerMs": {
+        "addon": 0.34350366666667,
+        "allAddons": 0.48924675,
+        "application": 8.25
+      },
+      "BugTabsSessionErrors": 0,
+      "evidenceImage": "baseline-result.png",
+      "scope": "Native solo background sample only, no A/B performance improvement or actual grouped/combat acceptance."
+    },
+    "permissions": {
+      "targetedDiagnosticInputExplicitlyApproved": true,
+      "globalInputUsed": false,
+      "foregroundActivationUsed": false,
+      "gameplayAutomationUsed": false
+    },
+    "pending": [
+      "Actual mid-combat join/leave/subgroup acceptance requires real group/combat state; user could not reproduce and requested simulation instead",
+      "Matched grouped spike attribution not established; do not claim full optimization or universal taint freedom"
+    ],
+    "simulation": {
+      "scope": "Real native client render/painter simulation through existing nonsecure previews; server group/combat APIs unchanged; all actions outside combat and solo",
+      "measureAPI": "C_AddOnProfiler.MeasureCall",
+      "trials": 1,
+      "rows": [
+        {
+          "label": "raid40-first",
+          "ms": 196.1003,
+          "allocatedBytes": 3405545,
+          "deallocatedBytes": 673792
+        },
+        {
+          "label": "raid40-warm",
+          "ms": 11.1176,
+          "allocatedBytes": 438592,
+          "deallocatedBytes": 38024
+        },
+        {
+          "label": "raid10",
+          "ms": 4.6555,
+          "allocatedBytes": 131128,
+          "deallocatedBytes": 10808
+        },
+        {
+          "label": "raid20",
+          "ms": 7.2995,
+          "allocatedBytes": 233616,
+          "deallocatedBytes": 19880
+        },
+        {
+          "label": "raid40",
+          "ms": 13.3116,
+          "allocatedBytes": 438592,
+          "deallocatedBytes": 38024
+        },
+        {
+          "label": "column-move",
+          "ms": 1.0121,
+          "allocatedBytes": 2122,
+          "deallocatedBytes": 0
+        },
+        {
+          "label": "raid40-reflow",
+          "ms": 15.0475,
+          "allocatedBytes": 438592,
+          "deallocatedBytes": 38024
+        },
+        {
+          "label": "party-first",
+          "ms": 25.3566,
+          "allocatedBytes": 1300767,
+          "deallocatedBytes": 364392
+        },
+        {
+          "label": "party-warm",
+          "ms": 4.8791,
+          "allocatedBytes": 383968,
+          "deallocatedBytes": 261632
+        },
+        {
+          "label": "hide",
+          "ms": 0.134,
+          "allocatedBytes": 0,
+          "deallocatedBytes": 0
+        },
+        {
+          "label": "party-return",
+          "ms": 4.6818,
+          "allocatedBytes": 384640,
+          "deallocatedBytes": 261632
+        }
+      ],
+      "evidence": [
+        "simulation-setup-complete.png",
+        "simulation-phases.png"
+      ],
+      "interpretation": "First shows include native preview-pool creation. Warm preview rebuilds are not the live prepared-roster path. Do not claim these costs occur on actual group joins or benchmark an FPS improvement from unmatched camera/UI phases."
+    },
+    "secondCaptureReadback": {
+      "fpsAverage": 156.95936508179,
+      "fpsMin": 68.007934570312,
+      "recentProfilerMs": {
+        "addon": 0.2477905,
+        "application": 7.7066668333333
+      },
+      "evidence": "simulation-results1.png",
+      "caveat": "Reloads and changed scene/UI invalidate a matched solo-versus-raid comparison; temporary per-step readback table was lost. The earlier screenshots retain the measured values. Diagnostic readbacks of the lost table raised errors; these are not addon group-frame failures."
+    },
+    "cleanup": {
+      "previewRosterSize": 5,
+      "previewMainTankCount": "nil as before",
+      "previewShowMTColumn": "nil as before",
+      "previewHidden": true,
+      "scriptProfile": "0",
+      "temporaryGlobalsCleared": true,
+      "originalReportCapturedAt": "2026-11-06 16:25:27",
+      "savedOriginalReportValuesComparedEqual": 3843,
+      "originalRootRecoveredFrom": "Private external verified pre-test .bak root; preserved before further reloads",
+      "evidence": [
+        "cleanup-result.png",
+        "cleanup-verified.png",
+        "settings-recovery/root-restore-check.log"
+      ],
+      "noLiveCaptureLeft": true
+    },
+    "screenshotHashes": {
+      "after-user-reload.png": "069779be9240f8a6b9916a755352dd1a49f7704caeff0d6006adb66a920de312",
+      "baseline-result.png": "e736296d4b73205396ec116853d9b15068f723900478943171616a7cb08619fc",
+      "cleanup-availability.png": "6c2f3a34592cc09baeff76268f6f9063ce7d9253e18eda7b43f041aa0709bd47",
+      "cleanup-result.png": "841e90bb547bf2aab3ad0502754c59485de2b80620f36f327f50e8b2411732c4",
+      "cleanup-verified.png": "12265e1f42b3249aefa3062085199a7170c6658af6158711e66a41926050ca36",
+      "foreground-pause-state.png": "f66ef1227a0ae8de7d8c8c93797f6f258780614e70b56550426bfbc10f1136a3",
+      "preflight.png": "a537b5cbbbad79f4bdf224f8e0959f4007fde0ba3256cab78ed6e788c86cd024",
+      "profiler-readback.png": "54e08506b5f8b6964d4a7be26308e3c27ce4da0cafbc341df68fe59cc693b047",
+      "simulation-phases.png": "dcab5d8998e8f56184b283e82167e7c4f151d39444a5676aa48934c742e4ea32",
+      "simulation-preflight.png": "b2c250157ab3b08fffdc42b103329b301c7d577c70d9efe5b4a6458b42b0c0f3",
+      "simulation-results1.png": "bb91aa3ac841c8685b0699596c841e9e4db69bce6c94716ca34d379972221845",
+      "simulation-results2.png": "5069d7a78a37eac130bcf846bef334068e52f30ffcb8df6411e353afbe2cc0df",
+      "simulation-setup-complete.png": "da3a266992f8b16d2558d4616b3e93081f7436bfff52106d11f1330fe1d6d359",
+      "spike-watch-start.png": "15ffd7852f6dec931660c6e08dfd8cb287de9775640a942ae1aabb7c3780efa7"
+    }
+  },
+  "pulse": {
+    "change": "RESOURCE-PULSE-SECRET-GEOMETRY-20261109",
+    "before": "8593c20228f3d8a40f79bfcd3a743832e106060e0dd851b7cf24721412b0a75d",
+    "after": {
+      "UnitFrames/FluxUnitFrames_Shared.lua": "c37f21486144f891aabac1e855339a3a492ed4c08770b1f22e2434ed777055d4",
+      "tests/resource_pulse_secret_geometry.lua": "a9a1a9de4407d58b4c6eb815fba7c35caa64a2ad724496fe68ad62109c5a05d1"
+    },
+    "replays": [
+      {
+        "run": 1,
+        "exit": 0,
+        "output": "Resource pulse secret geometry: 185 checks PASS; native taint acceptance pending\n"
+      },
+      {
+        "run": 2,
+        "exit": 0,
+        "output": "Resource pulse secret geometry: 185 checks PASS; native taint acceptance pending\n"
+      },
+      {
+        "run": 3,
+        "exit": 0,
+        "output": "Resource pulse secret geometry: 185 checks PASS; native taint acceptance pending\n"
+      }
+    ],
+    "baselineLog": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\06\\01a1b0ac-547f-7972-8df9-fa26882e0e03\\forever-party-live-20261109T163017Z\\pulse-baseline.log",
+    "fullPassAtRecordedSnapshot": 275,
+    "fullSyntax": 945,
+    "nativeObservation": "Native before log contains secret arithmetic errors at old line1441; current post-reload OOC generation contains0 actual blocked operations; matched restricted/combat reproduction not performed. Background idle capture is not grouped acceptance or an FPS improvement comparison."
+  },
+  "vendor": {
+    "changeID": "VENDOR-INPUT-PERMISSIONS-20261109",
+    "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\06\\01a1b0ac-547f-7972-8df9-fa26882e0e03\\vendor-input-checkpoint-20261109T171808Z\\checkpoint.json",
+    "beforeSHA256": "8ce45eb7d6550e1546d56705715852b4f48d015c54619eee3041973a48b462da",
+    "afterSHA256": "69bed000cc42717614e22abab5ccc394990605a32b55a6b3039a78c68ca4740c",
+    "pairs": [
+      {
+        "beforeExit": 1,
+        "beforeOutput": "lua: tests/vendor_toggle_input_permissions.lua:9: click setter never runs without permission\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/vendor_toggle_input_permissions.lua:9: in upvalue 'check'\n\ttests/vendor_toggle_input_permissions.lua:18: in method 'SetPropagateMouseClicks'\n\tproduction-vendor-input:19: in local 'create'\n\ttests/vendor_toggle_input_permissions.lua:33: in main chunk\n\t[C]: in ?\n",
+        "afterExit": 0,
+        "afterOutput": "Vendor toggle input permissions: 285 checks PASS; native merchant/combat acceptance pending\n"
+      },
+      {
+        "beforeExit": 1,
+        "beforeOutput": "lua: tests/vendor_toggle_input_permissions.lua:9: click setter never runs without permission\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/vendor_toggle_input_permissions.lua:9: in upvalue 'check'\n\ttests/vendor_toggle_input_permissions.lua:18: in method 'SetPropagateMouseClicks'\n\tproduction-vendor-input:19: in local 'create'\n\ttests/vendor_toggle_input_permissions.lua:33: in main chunk\n\t[C]: in ?\n",
+        "afterExit": 0,
+        "afterOutput": "Vendor toggle input permissions: 285 checks PASS; native merchant/combat acceptance pending\n"
+      },
+      {
+        "beforeExit": 1,
+        "beforeOutput": "lua: tests/vendor_toggle_input_permissions.lua:9: click setter never runs without permission\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/vendor_toggle_input_permissions.lua:9: in upvalue 'check'\n\ttests/vendor_toggle_input_permissions.lua:18: in method 'SetPropagateMouseClicks'\n\tproduction-vendor-input:19: in local 'create'\n\ttests/vendor_toggle_input_permissions.lua:33: in main chunk\n\t[C]: in ?\n",
+        "afterExit": 0,
+        "afterOutput": "Vendor toggle input permissions: 285 checks PASS; native merchant/combat acceptance pending\n"
+      }
+    ],
+    "controls": [
+      {
+        "label": "combat-unguarded",
+        "exit": 1,
+        "output": "lua: tests/vendor_toggle_input_permissions.lua:9: click setter never runs without permission\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/vendor_toggle_input_permissions.lua:9: in upvalue 'check'\n\ttests/vendor_toggle_input_permissions.lua:18: in method 'SetPropagateMouseClicks'\n\tproduction-vendor-input:22: in upvalue 'ConfigureAutoToggleInput'\n\tproduction-vendor-input:44: in local 'create'\n\ttests/vendor_toggle_input_permissions.lua:33: in main chunk\n\t[C]: in ?\n"
+      },
+      {
+        "label": "permission-ignored",
+        "exit": 1,
+        "output": "lua: tests/vendor_toggle_input_permissions.lua:9: click setter never runs without permission\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/vendor_toggle_input_permissions.lua:9: in upvalue 'check'\n\ttests/vendor_toggle_input_permissions.lua:18: in method 'SetPropagateMouseClicks'\n\tproduction-vendor-input:22: in upvalue 'ConfigureAutoToggleInput'\n\tproduction-vendor-input:44: in local 'create'\n\ttests/vendor_toggle_input_permissions.lua:41: in main chunk\n\t[C]: in ?\n"
+      },
+      {
+        "label": "lost-defer",
+        "exit": 1,
+        "output": "lua: tests/vendor_toggle_input_permissions.lua:9: combat retries coalesce separately for each owned toggle\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/vendor_toggle_input_permissions.lua:9: in local 'check'\n\ttests/vendor_toggle_input_permissions.lua:37: in main chunk\n\t[C]: in ?\n"
+      },
+      {
+        "label": "duplicate-setters",
+        "exit": 1,
+        "output": "lua: tests/vendor_toggle_input_permissions.lua:9: settled toggle does not requery or rewrite input\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/vendor_toggle_input_permissions.lua:9: in local 'check'\n\ttests/vendor_toggle_input_permissions.lua:31: in main chunk\n\t[C]: in ?\n"
+      }
+    ],
+    "focusedChecks": 285,
+    "nativeAcceptance": "Pending after reload; no physical merchant/combat input tested."
+  },
+  "upstream": [
+    {
+      "client": "live",
+      "ref": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/RestrictedActionsDocumentation.lua",
+      "sha": "5acf5efde9c50029f03f3367201ee848075badf7",
+      "verified": true,
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_APIDocumentationGenerated/RestrictedActionsDocumentation.lua"
+    },
+    {
+      "client": "live",
+      "ref": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleScriptRegionAPIDocumentation.lua",
+      "sha": "f77b86089999d35950ce17d6ae62eace15f01f91",
+      "verified": true,
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleScriptRegionAPIDocumentation.lua"
+    },
+    {
+      "client": "forever",
+      "ref": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/RestrictedActionsDocumentation.lua",
+      "sha": "5acf5efde9c50029f03f3367201ee848075badf7",
+      "verified": true,
+      "url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_APIDocumentationGenerated/RestrictedActionsDocumentation.lua"
+    },
+    {
+      "client": "forever",
+      "ref": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleScriptRegionAPIDocumentation.lua",
+      "sha": "e244d9eba05238cd1260a10ce34a14d07f7a6ae9",
+      "verified": true,
+      "url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleScriptRegionAPIDocumentation.lua"
+    },
+    {
+      "client": "classic",
+      "ref": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/RestrictedActionsDocumentation.lua",
+      "sha": "3491eac72574b1e5d94f74071a013fcffaf4b3e0",
+      "verified": true,
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_APIDocumentationGenerated/RestrictedActionsDocumentation.lua"
+    },
+    {
+      "client": "classic",
+      "ref": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleScriptRegionAPIDocumentation.lua",
+      "sha": "6853a2cd11dbf55947bc1e6e9ae06b142bd99f0e",
+      "verified": true,
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleScriptRegionAPIDocumentation.lua"
+    },
+    {
+      "client": "classic_era",
+      "ref": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/RestrictedActionsDocumentation.lua",
+      "sha": "3491eac72574b1e5d94f74071a013fcffaf4b3e0",
+      "verified": true,
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_APIDocumentationGenerated/RestrictedActionsDocumentation.lua"
+    },
+    {
+      "client": "classic_era",
+      "ref": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleScriptRegionAPIDocumentation.lua",
+      "sha": "6853a2cd11dbf55947bc1e6e9ae06b142bd99f0e",
+      "verified": true,
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleScriptRegionAPIDocumentation.lua"
+    },
+    {
+      "client": "classic_anniversary",
+      "ref": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/RestrictedActionsDocumentation.lua",
+      "sha": "3491eac72574b1e5d94f74071a013fcffaf4b3e0",
+      "verified": true,
+      "url": "https://github.com/Gethe/wow-ui-source/blob/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_APIDocumentationGenerated/RestrictedActionsDocumentation.lua"
+    },
+    {
+      "client": "classic_anniversary",
+      "ref": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleScriptRegionAPIDocumentation.lua",
+      "sha": "6853a2cd11dbf55947bc1e6e9ae06b142bd99f0e",
+      "verified": true,
+      "url": "https://github.com/Gethe/wow-ui-source/blob/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleScriptRegionAPIDocumentation.lua"
+    }
+  ],
+  "installedCopies": [
+    {
+      "client": "_retail_",
+      "path": "UnitFrames/FluxUnitFrames_DebuffTint.lua",
+      "sha256": "abee3277e58429709eb7b89200a0a23e0d40ced64fdbe3985c4904500cd2ea96",
+      "matches": true
+    },
+    {
+      "client": "_retail_",
+      "path": "UnitFrames/FluxUnitFrames_Shared.lua",
+      "sha256": "c37f21486144f891aabac1e855339a3a492ed4c08770b1f22e2434ed777055d4",
+      "matches": true
+    },
+    {
+      "client": "_retail_",
+      "path": "Inventory/Restock/Vendor/FluxVendorAutoMerchantUI.lua",
+      "sha256": "69bed000cc42717614e22abab5ccc394990605a32b55a6b3039a78c68ca4740c",
+      "matches": true
+    },
+    {
+      "client": "_forever_",
+      "path": "UnitFrames/FluxUnitFrames_DebuffTint.lua",
+      "sha256": "abee3277e58429709eb7b89200a0a23e0d40ced64fdbe3985c4904500cd2ea96",
+      "matches": true
+    },
+    {
+      "client": "_forever_",
+      "path": "UnitFrames/FluxUnitFrames_Shared.lua",
+      "sha256": "c37f21486144f891aabac1e855339a3a492ed4c08770b1f22e2434ed777055d4",
+      "matches": true
+    },
+    {
+      "client": "_forever_",
+      "path": "Inventory/Restock/Vendor/FluxVendorAutoMerchantUI.lua",
+      "sha256": "69bed000cc42717614e22abab5ccc394990605a32b55a6b3039a78c68ca4740c",
+      "matches": true
+    },
+    {
+      "client": "_classic_",
+      "path": "UnitFrames/FluxUnitFrames_DebuffTint.lua",
+      "sha256": "abee3277e58429709eb7b89200a0a23e0d40ced64fdbe3985c4904500cd2ea96",
+      "matches": true
+    },
+    {
+      "client": "_classic_",
+      "path": "UnitFrames/FluxUnitFrames_Shared.lua",
+      "sha256": "c37f21486144f891aabac1e855339a3a492ed4c08770b1f22e2434ed777055d4",
+      "matches": true
+    },
+    {
+      "client": "_classic_",
+      "path": "Inventory/Restock/Vendor/FluxVendorAutoMerchantUI.lua",
+      "sha256": "69bed000cc42717614e22abab5ccc394990605a32b55a6b3039a78c68ca4740c",
+      "matches": true
+    },
+    {
+      "client": "_classic_era_",
+      "path": "UnitFrames/FluxUnitFrames_DebuffTint.lua",
+      "sha256": "abee3277e58429709eb7b89200a0a23e0d40ced64fdbe3985c4904500cd2ea96",
+      "matches": true
+    },
+    {
+      "client": "_classic_era_",
+      "path": "UnitFrames/FluxUnitFrames_Shared.lua",
+      "sha256": "c37f21486144f891aabac1e855339a3a492ed4c08770b1f22e2434ed777055d4",
+      "matches": true
+    },
+    {
+      "client": "_classic_era_",
+      "path": "Inventory/Restock/Vendor/FluxVendorAutoMerchantUI.lua",
+      "sha256": "69bed000cc42717614e22abab5ccc394990605a32b55a6b3039a78c68ca4740c",
+      "matches": true
+    },
+    {
+      "client": "_anniversary_",
+      "path": "UnitFrames/FluxUnitFrames_DebuffTint.lua",
+      "sha256": "abee3277e58429709eb7b89200a0a23e0d40ced64fdbe3985c4904500cd2ea96",
+      "matches": true
+    },
+    {
+      "client": "_anniversary_",
+      "path": "UnitFrames/FluxUnitFrames_Shared.lua",
+      "sha256": "c37f21486144f891aabac1e855339a3a492ed4c08770b1f22e2434ed777055d4",
+      "matches": true
+    },
+    {
+      "client": "_anniversary_",
+      "path": "Inventory/Restock/Vendor/FluxVendorAutoMerchantUI.lua",
+      "sha256": "69bed000cc42717614e22abab5ccc394990605a32b55a6b3039a78c68ca4740c",
+      "matches": true
+    }
+  ],
+  "full": {
+    "passed": 276,
+    "failed": 0,
+    "syntaxFiles": 946,
+    "syntaxFailures": [],
+    "manifestVerifiedCurrent": true,
+    "externalReport": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\06\\01a1b0ac-547f-7972-8df9-fa26882e0e03\\vendor-input-checkpoint-20261109T171808Z\\full-final.json"
+  },
+  "ownedSourceIdentities": {
+    "UnitFrames/FluxUnitFrames_Shared.lua": "c37f21486144f891aabac1e855339a3a492ed4c08770b1f22e2434ed777055d4",
+    "Inventory/Restock/Vendor/FluxVendorAutoMerchantUI.lua": "69bed000cc42717614e22abab5ccc394990605a32b55a6b3039a78c68ca4740c",
+    "tests/resource_pulse_secret_geometry.lua": "a9a1a9de4407d58b4c6eb815fba7c35caa64a2ad724496fe68ad62109c5a05d1",
+    "tests/vendor_toggle_input_permissions.lua": "3a48e2b7be8d8bac3e0063d7078eabac5ec08ab165016428d9a3c00455df9fa7"
+  },
+  "finalPreflight": {
+    "utc": "2026-11-09T17:35:25.0256123Z",
+    "pid": 49960,
+    "window": 361306470,
+    "executable": "F:\\World of Warcraft\\_forever_\\Wow.exe",
+    "title": "World of Warcraft",
+    "foregroundUnchanged": true,
+    "gameWasForeground": true,
+    "width": 1890,
+    "height": 993,
+    "printWindowSucceeded": true,
+    "image": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\06\\01a1b0ac-547f-7972-8df9-fa26882e0e03\\forever-party-live-20261109T163017Z\\vendor-fix-preflight.png"
+  },
+  "interpretation": "Single native preview trials and solo capture only. No matched FPS improvement or actual combat roster/merchant acceptance; no additional native input because final window was foreground.",
+  "cleanup": "Original report restored and all3843 values equal; profiling0 and original preview fields restored; temporary probes cleared. Private recovery files remain external.",
+  "nativeContinuation": {
+    "capturedAtUTC": "2026-11-09T17:40:14.2788703Z",
+    "source": "Verified native background Forever screenshot and targeted read-only diagnostic commands",
+    "client": "1.60.1",
+    "combat": false,
+    "groupMembers": 0,
+    "scriptProfile": "0",
+    "BugTabsSessionErrors": 0,
+    "merchantInputConfigured": {
+      "MerchantRepairAllButton": true,
+      "MerchantGuildBankRepairButton": true,
+      "MerchantSellAllJunkButton": true
+    },
+    "party": {
+      "diagnosticsVersion": "party-display-v7",
+      "group": "solo",
+      "raidStyle": false,
+      "ready": true,
+      "secure": true,
+      "dockShown": true,
+      "memberShown": [
+        false,
+        false,
+        false,
+        false
+      ]
+    },
+    "nativeScope": "Current OOC startup initialization observed; no merchant click, combat or group transition acceptance.",
+    "screenshotSHA256": "e31042e1018ac9a72ecec72935def258c76bc26610aac2583d087ca0285d4ba6",
+    "taintLogSHA256": "bc7995341fef2ef356b20c05b41b28e266dd35f706a2f37f6677d335b3675124",
+    "gameplayActions": false,
+    "settingsWrites": false,
+    "noRuntimeChangesThisContinuation": true,
+    "remainingBlocker": "User states real test party/raid and combat roster changes are not available now; no actual group/combat acceptance can be observed.",
+    "previousGoalTurnClassification": "progress: production permission/geometry fixes; complete regression checks and native probe cleanup",
+    "blockedAudit": {
+      "consecutiveUnavailableGoalTurns": 1,
+      "status": "active;below three-turn blocked threshold"
+    }
+  },
+  "blockedAudit": {
+    "consecutiveUnavailableGoalTurns": 3,
+    "previousGoalTurnClassification": "no progress; same unavailable real group/combat scenario revalidated through read-only client capture",
+    "currentGoalTurnClassification": "no progress; user availability unchanged; no actual roster/combat scenario or live profiling job to observe",
+    "status": "blocked",
+    "pending": [
+      "Actual mid-combat party/raid join/leave/conversion/subgroup visibility and taint acceptance",
+      "Reproducible grouped performance capture and matched optimization evidence"
+    ],
+    "resumeCondition": "Real test party/raid available with user-triggered combat roster changes or a reproducible grouped lag capture"
+  }
+}

@@ -1,0 +1,1854 @@
+{
+  "change_id": "POWER-PARTITION-COMBAT-JOIN-20261110",
+  "date": "2026-11-10",
+  "requirements": [
+    "PWRJOIN-01",
+    "PWRJOIN-02",
+    "PWRJOIN-03",
+    "PWRJOIN-04",
+    "PWRJOIN-05",
+    "PWRJOIN-06"
+  ],
+  "user_native_trace": {
+    "time_local": "15:13:28",
+    "trigger": "Invite someone while in combat",
+    "errors": [
+      "ADDON BLOCKED: StatusBar:SetHeight()",
+      "ADDON BLOCKED: StatusBar:Show()"
+    ],
+    "baseline_path": "UnitFrames/FluxUnitFrames_Shared.lua:8705 and8708;UpdatePartition→UpdatePower:3770→Party Paint:488/518"
+  },
+  "baseline": {
+    "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\combat-power-partition\\checkpoint-20261110T141810Z",
+    "files": 2536,
+    "head": "26f886e3ea5371b196ab235d2dace0c156002285",
+    "branch": "main",
+    "source_sha256": "3d7fd705a123b33fc501edbc80183c20b5942b52428dc7ff034ce32e18f05d72",
+    "history_sha256": "817ad39f229490807bba228dcff88ed1dc198bd8bd9d5e7dd00c7583cc77ad98",
+    "history_verified": true,
+    "settings_metadata_entries": 24,
+    "settings_backup": "Metadata only;no quiescent settings backup claim"
+  },
+  "external_artifacts": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\combat-power-partition",
+  "source_changes": {
+    "tests/unit_power_visibility.lua": {
+      "before": "f82d47da5c113c06ac986dfc233b0b8b22d991370cbfa57ea16439f2283b6beb",
+      "after": "fd3d5d2bfa595d7982eab7523d5aba30d9555c5d57ae8abb0bdecda7879e07bb"
+    },
+    "UnitFrames/FluxUnitFrames_Shared.lua": {
+      "before": "c37f21486144f891aabac1e855339a3a492ed4c08770b1f22e2434ed777055d4",
+      "after": "59f66a930a2d118681d4ed8d2ead4581b26b443ace0f4c25fff161657095176f"
+    }
+  },
+  "new_tests": {
+    "tests/power_partition_combat_join.lua": "2d9bc960007f9ae8fe36eb3d188c579858ae423b959e24b45b5a3bbfe8f6fe46"
+  },
+  "all_other_original_lua_unchanged": true,
+  "previous_23_runtime_optimizations_unchanged": true,
+  "assets_xml_toc_unchanged": 252,
+  "regression": {
+    "checkpoint": "checkpoint-20261110T141810Z",
+    "baseline_sha256": {
+      "UnitFrames/FluxUnitFrames_Shared.lua": "c37f21486144f891aabac1e855339a3a492ed4c08770b1f22e2434ed777055d4",
+      "UnitFrames/FluxUnitFrames_Party.lua": "1b81cdc7f27d74951f5ddec6bf06cfc59fd54a7a33285bb19a50cf1e4ea4129b"
+    },
+    "candidate_sha256": {
+      "UnitFrames/FluxUnitFrames_Shared.lua": "59f66a930a2d118681d4ed8d2ead4581b26b443ace0f4c25fff161657095176f",
+      "UnitFrames/FluxUnitFrames_Party.lua": "1b81cdc7f27d74951f5ddec6bf06cfc59fd54a7a33285bb19a50cf1e4ea4129b",
+      "tests/power_partition_combat_join.lua": "2d9bc960007f9ae8fe36eb3d188c579858ae423b959e24b45b5a3bbfe8f6fe46"
+    },
+    "pairs": 3,
+    "mutations_rejected": 8,
+    "source_drift": false,
+    "runs": [
+      {
+        "label": "pair-1-baseline",
+        "command": [
+          "lua",
+          "tests/power_partition_combat_join.lua",
+          "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\combat-power-partition\\baseline",
+          "--measure"
+        ],
+        "exit_code": 0,
+        "metrics": [
+          {
+            "client": "live",
+            "permission": "strict",
+            "attempts": 9,
+            "blocked": 9,
+            "errors": 9,
+            "first": "SetHeight:party1.Health",
+            "firstBlocked": "SetHeight:party1.Health",
+            "nativeSinks": 6,
+            "partitions": 25,
+            "regen": 16,
+            "defers": 0
+          },
+          {
+            "client": "live",
+            "permission": "show-only",
+            "attempts": 32,
+            "blocked": 7,
+            "errors": 7,
+            "first": "SetHeight:party1.Health",
+            "firstBlocked": "Show:party1.Power",
+            "nativeSinks": 8,
+            "partitions": 26,
+            "regen": 17,
+            "defers": 0
+          },
+          {
+            "client": "live",
+            "permission": "regen-only",
+            "attempts": 1,
+            "blocked": 1,
+            "errors": 1,
+            "first": "SetHeight:party1.Health",
+            "firstBlocked": "SetHeight:party1.Health",
+            "nativeSinks": 5,
+            "partitions": 13,
+            "regen": 12,
+            "defers": 0
+          },
+          {
+            "client": "forever",
+            "permission": "strict",
+            "attempts": 9,
+            "blocked": 9,
+            "errors": 9,
+            "first": "SetHeight:party1.Health",
+            "firstBlocked": "SetHeight:party1.Health",
+            "nativeSinks": 6,
+            "partitions": 25,
+            "regen": 16,
+            "defers": 0
+          },
+          {
+            "client": "forever",
+            "permission": "show-only",
+            "attempts": 32,
+            "blocked": 7,
+            "errors": 7,
+            "first": "SetHeight:party1.Health",
+            "firstBlocked": "Show:party1.Power",
+            "nativeSinks": 8,
+            "partitions": 26,
+            "regen": 17,
+            "defers": 0
+          },
+          {
+            "client": "forever",
+            "permission": "regen-only",
+            "attempts": 1,
+            "blocked": 1,
+            "errors": 1,
+            "first": "SetHeight:party1.Health",
+            "firstBlocked": "SetHeight:party1.Health",
+            "nativeSinks": 5,
+            "partitions": 13,
+            "regen": 12,
+            "defers": 0
+          },
+          {
+            "client": "classic",
+            "permission": "strict",
+            "attempts": 9,
+            "blocked": 9,
+            "errors": 9,
+            "first": "SetHeight:party1.Health",
+            "firstBlocked": "SetHeight:party1.Health",
+            "nativeSinks": 6,
+            "partitions": 25,
+            "regen": 16,
+            "defers": 0
+          },
+          {
+            "client": "classic",
+            "permission": "show-only",
+            "attempts": 32,
+            "blocked": 7,
+            "errors": 7,
+            "first": "SetHeight:party1.Health",
+            "firstBlocked": "Show:party1.Power",
+            "nativeSinks": 8,
+            "partitions": 26,
+            "regen": 17,
+            "defers": 0
+          },
+          {
+            "client": "classic",
+            "permission": "regen-only",
+            "attempts": 1,
+            "blocked": 1,
+            "errors": 1,
+            "first": "SetHeight:party1.Health",
+            "firstBlocked": "SetHeight:party1.Health",
+            "nativeSinks": 5,
+            "partitions": 13,
+            "regen": 12,
+            "defers": 0
+          },
+          {
+            "client": "classic_era",
+            "permission": "strict",
+            "attempts": 9,
+            "blocked": 9,
+            "errors": 9,
+            "first": "SetHeight:party1.Health",
+            "firstBlocked": "SetHeight:party1.Health",
+            "nativeSinks": 6,
+            "partitions": 25,
+            "regen": 16,
+            "defers": 0
+          },
+          {
+            "client": "classic_era",
+            "permission": "show-only",
+            "attempts": 32,
+            "blocked": 7,
+            "errors": 7,
+            "first": "SetHeight:party1.Health",
+            "firstBlocked": "Show:party1.Power",
+            "nativeSinks": 8,
+            "partitions": 26,
+            "regen": 17,
+            "defers": 0
+          },
+          {
+            "client": "classic_era",
+            "permission": "regen-only",
+            "attempts": 1,
+            "blocked": 1,
+            "errors": 1,
+            "first": "SetHeight:party1.Health",
+            "firstBlocked": "SetHeight:party1.Health",
+            "nativeSinks": 5,
+            "partitions": 13,
+            "regen": 12,
+            "defers": 0
+          },
+          {
+            "client": "classic_anniversary",
+            "permission": "strict",
+            "attempts": 9,
+            "blocked": 9,
+            "errors": 9,
+            "first": "SetHeight:party1.Health",
+            "firstBlocked": "SetHeight:party1.Health",
+            "nativeSinks": 6,
+            "partitions": 25,
+            "regen": 16,
+            "defers": 0
+          },
+          {
+            "client": "classic_anniversary",
+            "permission": "show-only",
+            "attempts": 32,
+            "blocked": 7,
+            "errors": 7,
+            "first": "SetHeight:party1.Health",
+            "firstBlocked": "Show:party1.Power",
+            "nativeSinks": 8,
+            "partitions": 26,
+            "regen": 17,
+            "defers": 0
+          },
+          {
+            "client": "classic_anniversary",
+            "permission": "regen-only",
+            "attempts": 1,
+            "blocked": 1,
+            "errors": 1,
+            "first": "SetHeight:party1.Health",
+            "firstBlocked": "SetHeight:party1.Health",
+            "nativeSinks": 5,
+            "partitions": 13,
+            "regen": 12,
+            "defers": 0
+          }
+        ],
+        "last_line": "power partition combat join: 150 checks PASS; production paths, modeled permissions; native client acceptance pending"
+      },
+      {
+        "label": "pair-1-candidate",
+        "command": [
+          "lua",
+          "tests/power_partition_combat_join.lua",
+          "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI"
+        ],
+        "exit_code": 0,
+        "metrics": [
+          {
+            "client": "live",
+            "permission": "strict",
+            "attempts": 0,
+            "blocked": 0,
+            "errors": 0,
+            "first": "none",
+            "firstBlocked": "none",
+            "nativeSinks": 14,
+            "partitions": 25,
+            "regen": 16,
+            "defers": 4
+          },
+          {
+            "client": "live",
+            "permission": "show-only",
+            "attempts": 0,
+            "blocked": 0,
+            "errors": 0,
+            "first": "none",
+            "firstBlocked": "none",
+            "nativeSinks": 14,
+            "partitions": 25,
+            "regen": 16,
+            "defers": 4
+          },
+          {
+            "client": "live",
+            "permission": "regen-only",
+            "attempts": 0,
+            "blocked": 0,
+            "errors": 0,
+            "first": "none",
+            "firstBlocked": "none",
+            "nativeSinks": 6,
+            "partitions": 10,
+            "regen": 9,
+            "defers": 0
+          },
+          {
+            "client": "forever",
+            "permission": "strict",
+            "attempts": 0,
+            "blocked": 0,
+            "errors": 0,
+            "first": "none",
+            "firstBlocked": "none",
+            "nativeSinks": 14,
+            "partitions": 25,
+            "regen": 16,
+            "defers": 4
+          },
+          {
+            "client": "forever",
+            "permission": "show-only",
+            "attempts": 0,
+            "blocked": 0,
+            "errors": 0,
+            "first": "none",
+            "firstBlocked": "none",
+            "nativeSinks": 14,
+            "partitions": 25,
+            "regen": 16,
+            "defers": 4
+          },
+          {
+            "client": "forever",
+            "permission": "regen-only",
+            "attempts": 0,
+            "blocked": 0,
+            "errors": 0,
+            "first": "none",
+            "firstBlocked": "none",
+            "nativeSinks": 6,
+            "partitions": 10,
+            "regen": 9,
+            "defers": 0
+          },
+          {
+            "client": "classic",
+            "permission": "strict",
+            "attempts": 0,
+            "blocked": 0,
+            "errors": 0,
+            "first": "none",
+            "firstBlocked": "none",
+            "nativeSinks": 14,
+            "partitions": 25,
+            "regen": 16,
+            "defers": 4
+          },
+          {
+            "client": "classic",
+            "permission": "show-only",
+            "attempts": 0,
+            "blocked": 0,
+            "errors": 0,
+            "first": "none",
+            "firstBlocked": "none",
+            "nativeSinks": 14,
+            "partitions": 25,
+            "regen": 16,
+            "defers": 4
+          },
+          {
+            "client": "classic",
+            "permission": "regen-only",
+            "attempts": 0,
+            "blocked": 0,
+            "errors": 0,
+            "first": "none",
+            "firstBlocked": "none",
+            "nativeSinks": 6,
+            "partitions": 10,
+            "regen": 9,
+            "defers": 0
+          },
+          {
+            "client": "classic_era",
+            "permission": "strict",
+            "attempts": 0,
+            "blocked": 0,
+            "errors": 0,
+            "first": "none",
+            "firstBlocked": "none",
+            "nativeSinks": 14,
+            "partitions": 25,
+            "regen": 16,
+            "defers": 4
+          },
+          {
+            "client": "classic_era",
+            "permission": "show-only",
+            "attempts": 0,
+            "blocked": 0,
+            "errors": 0,
+            "first": "none",
+            "firstBlocked": "none",
+            "nativeSinks": 14,
+            "partitions": 25,
+            "regen": 16,
+            "defers": 4
+          },
+          {
+            "client": "classic_era",
+            "permission": "regen-only",
+            "attempts": 0,
+            "blocked": 0,
+            "errors": 0,
+            "first": "none",
+            "firstBlocked": "none",
+            "nativeSinks": 6,
+            "partitions": 10,
+            "regen": 9,
+            "defers": 0
+          },
+          {
+            "client": "classic_anniversary",
+            "permission": "strict",
+            "attempts": 0,
+            "blocked": 0,
+            "errors": 0,
+            "first": "none",
+            "firstBlocked": "none",
+            "nativeSinks": 14,
+            "partitions": 25,
+            "regen": 16,
+            "defers": 4
+          },
+          {
+            "client": "classic_anniversary",
+            "permission": "show-only",
+            "attempts": 0,
+            "blocked": 0,
+            "errors": 0,
+            "first": "none",
+            "firstBlocked": "none",
+            "nativeSinks": 14,
+            "partitions": 25,
+            "regen": 16,
+            "defers": 4
+          },
+          {
+            "client": "classic_anniversary",
+            "permission": "regen-only",
+            "attempts": 0,
+            "blocked": 0,
+            "errors": 0,
+            "first": "none",
+            "firstBlocked": "none",
+            "nativeSinks": 6,
+            "partitions": 10,
+            "regen": 9,
+            "defers": 0
+          }
+        ],
+        "last_line": "power partition combat join: 675 checks PASS; production paths, modeled permissions; native client acceptance pending"
+      },
+      {
+        "label": "pair-2-candidate",
+        "command": [
+          "lua",
+          "tests/power_partition_combat_join.lua",
+          "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI"
+        ],
+        "exit_code": 0,
+        "metrics": [
+          {
+            "client": "live",
+            "permission": "strict",
+            "attempts": 0,
+            "blocked": 0,
+            "errors": 0,
+            "first": "none",
+            "firstBlocked": "none",
+            "nativeSinks": 14,
+            "partitions": 25,
+            "regen": 16,
+            "defers": 4
+          },
+          {
+            "client": "live",
+            "permission": "show-only",
+            "attempts": 0,
+            "blocked": 0,
+            "errors": 0,
+            "first": "none",
+            "firstBlocked": "none",
+            "nativeSinks": 14,
+            "partitions": 25,
+            "regen": 16,
+            "defers": 4
+          },
+          {
+            "client": "live",
+            "permission": "regen-only",
+            "attempts": 0,
+            "blocked": 0,
+            "errors": 0,
+            "first": "none",
+            "firstBlocked": "none",
+            "nativeSinks": 6,
+            "partitions": 10,
+            "regen": 9,
+            "defers": 0
+          },
+          {
+            "client": "forever",
+            "permission": "strict",
+            "attempts": 0,
+            "blocked": 0,
+            "errors": 0,
+            "first": "none",
+            "firstBlocked": "none",
+            "nativeSinks": 14,
+            "partitions": 25,
+            "regen": 16,
+            "defers": 4
+          },
+          {
+            "client": "forever",
+            "permission": "show-only",
+            "attempts": 0,
+            "blocked": 0,
+            "errors": 0,
+            "first": "none",
+            "firstBlocked": "none",
+            "nativeSinks": 14,
+            "partitions": 25,
+            "regen": 16,
+            "defers": 4
+          },
+          {
+            "client": "forever",
+            "permission": "regen-only",
+            "attempts": 0,
+            "blocked": 0,
+            "errors": 0,
+            "first": "none",
+            "firstBlocked": "none",
+            "nativeSinks": 6,
+            "partitions": 10,
+            "regen": 9,
+            "defers": 0
+          },
+          {
+            "client": "classic",
+            "permission": "strict",
+            "attempts": 0,
+            "blocked": 0,
+            "errors": 0,
+            "first": "none",
+            "firstBlocked": "none",
+            "nativeSinks": 14,
+            "partitions": 25,
+            "regen": 16,
+            "defers": 4
+          },
+          {
+            "client": "classic",
+            "permission": "show-only",
+            "attempts": 0,
+            "blocked": 0,
+            "errors": 0,
+            "first": "none",
+            "firstBlocked": "none",
+            "nativeSinks": 14,
+            "partitions": 25,
+            "regen": 16,
+            "defers": 4
+          },
+          {
+            "client": "classic",
+            "permission": "regen-only",
+            "attempts": 0,
+            "blocked": 0,
+            "errors": 0,
+            "first": "none",
+            "firstBlocked": "none",
+            "nativeSinks": 6,
+            "partitions": 10,
+            "regen": 9,
+            "defers": 0
+          },
+          {
+            "client": "classic_era",
+            "permission": "strict",
+            "attempts": 0,
+            "blocked": 0,
+            "errors": 0,
+            "first": "none",
+            "firstBlocked": "none",
+            "nativeSinks": 14,
+            "partitions": 25,
+            "regen": 16,
+            "defers": 4
+          },
+          {
+            "client": "classic_era",
+            "permission": "show-only",
+            "attempts": 0,
+            "blocked": 0,
+            "errors": 0,
+            "first": "none",
+            "firstBlocked": "none",
+            "nativeSinks": 14,
+            "partitions": 25,
+            "regen": 16,
+            "defers": 4
+          },
+          {
+            "client": "classic_era",
+            "permission": "regen-only",
+            "attempts": 0,
+            "blocked": 0,
+            "errors": 0,
+            "first": "none",
+            "firstBlocked": "none",
+            "nativeSinks": 6,
+            "partitions": 10,
+            "regen": 9,
+            "defers": 0
+          },
+          {
+            "client": "classic_anniversary",
+            "permission": "strict",
+            "attempts": 0,
+            "blocked": 0,
+            "errors": 0,
+            "first": "none",
+            "firstBlocked": "none",
+            "nativeSinks": 14,
+            "partitions": 25,
+            "regen": 16,
+            "defers": 4
+          },
+          {
+            "client": "classic_anniversary",
+            "permission": "show-only",
+            "attempts": 0,
+            "blocked": 0,
+            "errors": 0,
+            "first": "none",
+            "firstBlocked": "none",
+            "nativeSinks": 14,
+            "partitions": 25,
+            "regen": 16,
+            "defers": 4
+          },
+          {
+            "client": "classic_anniversary",
+            "permission": "regen-only",
+            "attempts": 0,
+            "blocked": 0,
+            "errors": 0,
+            "first": "none",
+            "firstBlocked": "none",
+            "nativeSinks": 6,
+            "partitions": 10,
+            "regen": 9,
+            "defers": 0
+          }
+        ],
+        "last_line": "power partition combat join: 675 checks PASS; production paths, modeled permissions; native client acceptance pending"
+      },
+      {
+        "label": "pair-2-baseline",
+        "command": [
+          "lua",
+          "tests/power_partition_combat_join.lua",
+          "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\combat-power-partition\\baseline",
+          "--measure"
+        ],
+        "exit_code": 0,
+        "metrics": [
+          {
+            "client": "live",
+            "permission": "strict",
+            "attempts": 9,
+            "blocked": 9,
+            "errors": 9,
+            "first": "SetHeight:party1.Health",
+            "firstBlocked": "SetHeight:party1.Health",
+            "nativeSinks": 6,
+            "partitions": 25,
+            "regen": 16,
+            "defers": 0
+          },
+          {
+            "client": "live",
+            "permission": "show-only",
+            "attempts": 32,
+            "blocked": 7,
+            "errors": 7,
+            "first": "SetHeight:party1.Health",
+            "firstBlocked": "Show:party1.Power",
+            "nativeSinks": 8,
+            "partitions": 26,
+            "regen": 17,
+            "defers": 0
+          },
+          {
+            "client": "live",
+            "permission": "regen-only",
+            "attempts": 1,
+            "blocked": 1,
+            "errors": 1,
+            "first": "SetHeight:party1.Health",
+            "firstBlocked": "SetHeight:party1.Health",
+            "nativeSinks": 5,
+            "partitions": 13,
+            "regen": 12,
+            "defers": 0
+          },
+          {
+            "client": "forever",
+            "permission": "strict",
+            "attempts": 9,
+            "blocked": 9,
+            "errors": 9,
+            "first": "SetHeight:party1.Health",
+            "firstBlocked": "SetHeight:party1.Health",
+            "nativeSinks": 6,
+            "partitions": 25,
+            "regen": 16,
+            "defers": 0
+          },
+          {
+            "client": "forever",
+            "permission": "show-only",
+            "attempts": 32,
+            "blocked": 7,
+            "errors": 7,
+            "first": "SetHeight:party1.Health",
+            "firstBlocked": "Show:party1.Power",
+            "nativeSinks": 8,
+            "partitions": 26,
+            "regen": 17,
+            "defers": 0
+          },
+          {
+            "client": "forever",
+            "permission": "regen-only",
+            "attempts": 1,
+            "blocked": 1,
+            "errors": 1,
+            "first": "SetHeight:party1.Health",
+            "firstBlocked": "SetHeight:party1.Health",
+            "nativeSinks": 5,
+            "partitions": 13,
+            "regen": 12,
+            "defers": 0
+          },
+          {
+            "client": "classic",
+            "permission": "strict",
+            "attempts": 9,
+            "blocked": 9,
+            "errors": 9,
+            "first": "SetHeight:party1.Health",
+            "firstBlocked": "SetHeight:party1.Health",
+            "nativeSinks": 6,
+            "partitions": 25,
+            "regen": 16,
+            "defers": 0
+          },
+          {
+            "client": "classic",
+            "permission": "show-only",
+            "attempts": 32,
+            "blocked": 7,
+            "errors": 7,
+            "first": "SetHeight:party1.Health",
+            "firstBlocked": "Show:party1.Power",
+            "nativeSinks": 8,
+            "partitions": 26,
+            "regen": 17,
+            "defers": 0
+          },
+          {
+            "client": "classic",
+            "permission": "regen-only",
+            "attempts": 1,
+            "blocked": 1,
+            "errors": 1,
+            "first": "SetHeight:party1.Health",
+            "firstBlocked": "SetHeight:party1.Health",
+            "nativeSinks": 5,
+            "partitions": 13,
+            "regen": 12,
+            "defers": 0
+          },
+          {
+            "client": "classic_era",
+            "permission": "strict",
+            "attempts": 9,
+            "blocked": 9,
+            "errors": 9,
+            "first": "SetHeight:party1.Health",
+            "firstBlocked": "SetHeight:party1.Health",
+            "nativeSinks": 6,
+            "partitions": 25,
+            "regen": 16,
+            "defers": 0
+          },
+          {
+            "client": "classic_era",
+            "permission": "show-only",
+            "attempts": 32,
+            "blocked": 7,
+            "errors": 7,
+            "first": "SetHeight:party1.Health",
+            "firstBlocked": "Show:party1.Power",
+            "nativeSinks": 8,
+            "partitions": 26,
+            "regen": 17,
+            "defers": 0
+          },
+          {
+            "client": "classic_era",
+            "permission": "regen-only",
+            "attempts": 1,
+            "blocked": 1,
+            "errors": 1,
+            "first": "SetHeight:party1.Health",
+            "firstBlocked": "SetHeight:party1.Health",
+            "nativeSinks": 5,
+            "partitions": 13,
+            "regen": 12,
+            "defers": 0
+          },
+          {
+            "client": "classic_anniversary",
+            "permission": "strict",
+            "attempts": 9,
+            "blocked": 9,
+            "errors": 9,
+            "first": "SetHeight:party1.Health",
+            "firstBlocked": "SetHeight:party1.Health",
+            "nativeSinks": 6,
+            "partitions": 25,
+            "regen": 16,
+            "defers": 0
+          },
+          {
+            "client": "classic_anniversary",
+            "permission": "show-only",
+            "attempts": 32,
+            "blocked": 7,
+            "errors": 7,
+            "first": "SetHeight:party1.Health",
+            "firstBlocked": "Show:party1.Power",
+            "nativeSinks": 8,
+            "partitions": 26,
+            "regen": 17,
+            "defers": 0
+          },
+          {
+            "client": "classic_anniversary",
+            "permission": "regen-only",
+            "attempts": 1,
+            "blocked": 1,
+            "errors": 1,
+            "first": "SetHeight:party1.Health",
+            "firstBlocked": "SetHeight:party1.Health",
+            "nativeSinks": 5,
+            "partitions": 13,
+            "regen": 12,
+            "defers": 0
+          }
+        ],
+        "last_line": "power partition combat join: 150 checks PASS; production paths, modeled permissions; native client acceptance pending"
+      },
+      {
+        "label": "pair-3-baseline",
+        "command": [
+          "lua",
+          "tests/power_partition_combat_join.lua",
+          "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\combat-power-partition\\baseline",
+          "--measure"
+        ],
+        "exit_code": 0,
+        "metrics": [
+          {
+            "client": "live",
+            "permission": "strict",
+            "attempts": 9,
+            "blocked": 9,
+            "errors": 9,
+            "first": "SetHeight:party1.Health",
+            "firstBlocked": "SetHeight:party1.Health",
+            "nativeSinks": 6,
+            "partitions": 25,
+            "regen": 16,
+            "defers": 0
+          },
+          {
+            "client": "live",
+            "permission": "show-only",
+            "attempts": 32,
+            "blocked": 7,
+            "errors": 7,
+            "first": "SetHeight:party1.Health",
+            "firstBlocked": "Show:party1.Power",
+            "nativeSinks": 8,
+            "partitions": 26,
+            "regen": 17,
+            "defers": 0
+          },
+          {
+            "client": "live",
+            "permission": "regen-only",
+            "attempts": 1,
+            "blocked": 1,
+            "errors": 1,
+            "first": "SetHeight:party1.Health",
+            "firstBlocked": "SetHeight:party1.Health",
+            "nativeSinks": 5,
+            "partitions": 13,
+            "regen": 12,
+            "defers": 0
+          },
+          {
+            "client": "forever",
+            "permission": "strict",
+            "attempts": 9,
+            "blocked": 9,
+            "errors": 9,
+            "first": "SetHeight:party1.Health",
+            "firstBlocked": "SetHeight:party1.Health",
+            "nativeSinks": 6,
+            "partitions": 25,
+            "regen": 16,
+            "defers": 0
+          },
+          {
+            "client": "forever",
+            "permission": "show-only",
+            "attempts": 32,
+            "blocked": 7,
+            "errors": 7,
+            "first": "SetHeight:party1.Health",
+            "firstBlocked": "Show:party1.Power",
+            "nativeSinks": 8,
+            "partitions": 26,
+            "regen": 17,
+            "defers": 0
+          },
+          {
+            "client": "forever",
+            "permission": "regen-only",
+            "attempts": 1,
+            "blocked": 1,
+            "errors": 1,
+            "first": "SetHeight:party1.Health",
+            "firstBlocked": "SetHeight:party1.Health",
+            "nativeSinks": 5,
+            "partitions": 13,
+            "regen": 12,
+            "defers": 0
+          },
+          {
+            "client": "classic",
+            "permission": "strict",
+            "attempts": 9,
+            "blocked": 9,
+            "errors": 9,
+            "first": "SetHeight:party1.Health",
+            "firstBlocked": "SetHeight:party1.Health",
+            "nativeSinks": 6,
+            "partitions": 25,
+            "regen": 16,
+            "defers": 0
+          },
+          {
+            "client": "classic",
+            "permission": "show-only",
+            "attempts": 32,
+            "blocked": 7,
+            "errors": 7,
+            "first": "SetHeight:party1.Health",
+            "firstBlocked": "Show:party1.Power",
+            "nativeSinks": 8,
+            "partitions": 26,
+            "regen": 17,
+            "defers": 0
+          },
+          {
+            "client": "classic",
+            "permission": "regen-only",
+            "attempts": 1,
+            "blocked": 1,
+            "errors": 1,
+            "first": "SetHeight:party1.Health",
+            "firstBlocked": "SetHeight:party1.Health",
+            "nativeSinks": 5,
+            "partitions": 13,
+            "regen": 12,
+            "defers": 0
+          },
+          {
+            "client": "classic_era",
+            "permission": "strict",
+            "attempts": 9,
+            "blocked": 9,
+            "errors": 9,
+            "first": "SetHeight:party1.Health",
+            "firstBlocked": "SetHeight:party1.Health",
+            "nativeSinks": 6,
+            "partitions": 25,
+            "regen": 16,
+            "defers": 0
+          },
+          {
+            "client": "classic_era",
+            "permission": "show-only",
+            "attempts": 32,
+            "blocked": 7,
+            "errors": 7,
+            "first": "SetHeight:party1.Health",
+            "firstBlocked": "Show:party1.Power",
+            "nativeSinks": 8,
+            "partitions": 26,
+            "regen": 17,
+            "defers": 0
+          },
+          {
+            "client": "classic_era",
+            "permission": "regen-only",
+            "attempts": 1,
+            "blocked": 1,
+            "errors": 1,
+            "first": "SetHeight:party1.Health",
+            "firstBlocked": "SetHeight:party1.Health",
+            "nativeSinks": 5,
+            "partitions": 13,
+            "regen": 12,
+            "defers": 0
+          },
+          {
+            "client": "classic_anniversary",
+            "permission": "strict",
+            "attempts": 9,
+            "blocked": 9,
+            "errors": 9,
+            "first": "SetHeight:party1.Health",
+            "firstBlocked": "SetHeight:party1.Health",
+            "nativeSinks": 6,
+            "partitions": 25,
+            "regen": 16,
+            "defers": 0
+          },
+          {
+            "client": "classic_anniversary",
+            "permission": "show-only",
+            "attempts": 32,
+            "blocked": 7,
+            "errors": 7,
+            "first": "SetHeight:party1.Health",
+            "firstBlocked": "Show:party1.Power",
+            "nativeSinks": 8,
+            "partitions": 26,
+            "regen": 17,
+            "defers": 0
+          },
+          {
+            "client": "classic_anniversary",
+            "permission": "regen-only",
+            "attempts": 1,
+            "blocked": 1,
+            "errors": 1,
+            "first": "SetHeight:party1.Health",
+            "firstBlocked": "SetHeight:party1.Health",
+            "nativeSinks": 5,
+            "partitions": 13,
+            "regen": 12,
+            "defers": 0
+          }
+        ],
+        "last_line": "power partition combat join: 150 checks PASS; production paths, modeled permissions; native client acceptance pending"
+      },
+      {
+        "label": "pair-3-candidate",
+        "command": [
+          "lua",
+          "tests/power_partition_combat_join.lua",
+          "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI"
+        ],
+        "exit_code": 0,
+        "metrics": [
+          {
+            "client": "live",
+            "permission": "strict",
+            "attempts": 0,
+            "blocked": 0,
+            "errors": 0,
+            "first": "none",
+            "firstBlocked": "none",
+            "nativeSinks": 14,
+            "partitions": 25,
+            "regen": 16,
+            "defers": 4
+          },
+          {
+            "client": "live",
+            "permission": "show-only",
+            "attempts": 0,
+            "blocked": 0,
+            "errors": 0,
+            "first": "none",
+            "firstBlocked": "none",
+            "nativeSinks": 14,
+            "partitions": 25,
+            "regen": 16,
+            "defers": 4
+          },
+          {
+            "client": "live",
+            "permission": "regen-only",
+            "attempts": 0,
+            "blocked": 0,
+            "errors": 0,
+            "first": "none",
+            "firstBlocked": "none",
+            "nativeSinks": 6,
+            "partitions": 10,
+            "regen": 9,
+            "defers": 0
+          },
+          {
+            "client": "forever",
+            "permission": "strict",
+            "attempts": 0,
+            "blocked": 0,
+            "errors": 0,
+            "first": "none",
+            "firstBlocked": "none",
+            "nativeSinks": 14,
+            "partitions": 25,
+            "regen": 16,
+            "defers": 4
+          },
+          {
+            "client": "forever",
+            "permission": "show-only",
+            "attempts": 0,
+            "blocked": 0,
+            "errors": 0,
+            "first": "none",
+            "firstBlocked": "none",
+            "nativeSinks": 14,
+            "partitions": 25,
+            "regen": 16,
+            "defers": 4
+          },
+          {
+            "client": "forever",
+            "permission": "regen-only",
+            "attempts": 0,
+            "blocked": 0,
+            "errors": 0,
+            "first": "none",
+            "firstBlocked": "none",
+            "nativeSinks": 6,
+            "partitions": 10,
+            "regen": 9,
+            "defers": 0
+          },
+          {
+            "client": "classic",
+            "permission": "strict",
+            "attempts": 0,
+            "blocked": 0,
+            "errors": 0,
+            "first": "none",
+            "firstBlocked": "none",
+            "nativeSinks": 14,
+            "partitions": 25,
+            "regen": 16,
+            "defers": 4
+          },
+          {
+            "client": "classic",
+            "permission": "show-only",
+            "attempts": 0,
+            "blocked": 0,
+            "errors": 0,
+            "first": "none",
+            "firstBlocked": "none",
+            "nativeSinks": 14,
+            "partitions": 25,
+            "regen": 16,
+            "defers": 4
+          },
+          {
+            "client": "classic",
+            "permission": "regen-only",
+            "attempts": 0,
+            "blocked": 0,
+            "errors": 0,
+            "first": "none",
+            "firstBlocked": "none",
+            "nativeSinks": 6,
+            "partitions": 10,
+            "regen": 9,
+            "defers": 0
+          },
+          {
+            "client": "classic_era",
+            "permission": "strict",
+            "attempts": 0,
+            "blocked": 0,
+            "errors": 0,
+            "first": "none",
+            "firstBlocked": "none",
+            "nativeSinks": 14,
+            "partitions": 25,
+            "regen": 16,
+            "defers": 4
+          },
+          {
+            "client": "classic_era",
+            "permission": "show-only",
+            "attempts": 0,
+            "blocked": 0,
+            "errors": 0,
+            "first": "none",
+            "firstBlocked": "none",
+            "nativeSinks": 14,
+            "partitions": 25,
+            "regen": 16,
+            "defers": 4
+          },
+          {
+            "client": "classic_era",
+            "permission": "regen-only",
+            "attempts": 0,
+            "blocked": 0,
+            "errors": 0,
+            "first": "none",
+            "firstBlocked": "none",
+            "nativeSinks": 6,
+            "partitions": 10,
+            "regen": 9,
+            "defers": 0
+          },
+          {
+            "client": "classic_anniversary",
+            "permission": "strict",
+            "attempts": 0,
+            "blocked": 0,
+            "errors": 0,
+            "first": "none",
+            "firstBlocked": "none",
+            "nativeSinks": 14,
+            "partitions": 25,
+            "regen": 16,
+            "defers": 4
+          },
+          {
+            "client": "classic_anniversary",
+            "permission": "show-only",
+            "attempts": 0,
+            "blocked": 0,
+            "errors": 0,
+            "first": "none",
+            "firstBlocked": "none",
+            "nativeSinks": 14,
+            "partitions": 25,
+            "regen": 16,
+            "defers": 4
+          },
+          {
+            "client": "classic_anniversary",
+            "permission": "regen-only",
+            "attempts": 0,
+            "blocked": 0,
+            "errors": 0,
+            "first": "none",
+            "firstBlocked": "none",
+            "nativeSinks": 6,
+            "partitions": 10,
+            "regen": 9,
+            "defers": 0
+          }
+        ],
+        "last_line": "power partition combat join: 675 checks PASS; production paths, modeled permissions; native client acceptance pending"
+      },
+      {
+        "label": "baseline-safety-rejection",
+        "command": [
+          "lua",
+          "tests/power_partition_combat_join.lua",
+          "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\combat-power-partition\\baseline"
+        ],
+        "exit_code": 1,
+        "metrics": [],
+        "last_line": "\t[C]: in ?"
+      },
+      {
+        "label": "mutant-combat-preflight-disabled",
+        "command": [
+          "lua",
+          "tests/power_partition_combat_join.lua",
+          "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\combat-power-partition\\party-regression\\mutants\\combat-preflight-disabled"
+        ],
+        "exit_code": 1,
+        "metrics": [],
+        "last_line": "\t[C]: in ?"
+      },
+      {
+        "label": "mutant-pending-layout-dropped",
+        "command": [
+          "lua",
+          "tests/power_partition_combat_join.lua",
+          "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\combat-power-partition\\party-regression\\mutants\\pending-layout-dropped"
+        ],
+        "exit_code": 1,
+        "metrics": [],
+        "last_line": "\t[C]: in ?"
+      },
+      {
+        "label": "mutant-callback-coalescing-removed",
+        "command": [
+          "lua",
+          "tests/power_partition_combat_join.lua",
+          "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\combat-power-partition\\party-regression\\mutants\\callback-coalescing-removed"
+        ],
+        "exit_code": 1,
+        "metrics": [],
+        "last_line": "\t[C]: in ?"
+      },
+      {
+        "label": "mutant-absent-unit-resource-hidden",
+        "command": [
+          "lua",
+          "tests/power_partition_combat_join.lua",
+          "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\combat-power-partition\\party-regression\\mutants\\absent-unit-resource-hidden"
+        ],
+        "exit_code": 1,
+        "metrics": [],
+        "last_line": "\t[C]: in ?"
+      },
+      {
+        "label": "mutant-combat-native-value-paints-skipped",
+        "command": [
+          "lua",
+          "tests/power_partition_combat_join.lua",
+          "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\combat-power-partition\\party-regression\\mutants\\combat-native-value-paints-skipped"
+        ],
+        "exit_code": 1,
+        "metrics": [],
+        "last_line": "\t[C]: in ?"
+      },
+      {
+        "label": "mutant-regen-fallback-registration-removed",
+        "command": [
+          "lua",
+          "tests/power_partition_combat_join.lua",
+          "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\combat-power-partition\\party-regression\\mutants\\regen-fallback-registration-removed"
+        ],
+        "exit_code": 1,
+        "metrics": [
+          {
+            "client": "live",
+            "permission": "strict",
+            "attempts": 0,
+            "blocked": 0,
+            "errors": 0,
+            "first": "none",
+            "firstBlocked": "none",
+            "nativeSinks": 14,
+            "partitions": 25,
+            "regen": 16,
+            "defers": 4
+          },
+          {
+            "client": "live",
+            "permission": "show-only",
+            "attempts": 0,
+            "blocked": 0,
+            "errors": 0,
+            "first": "none",
+            "firstBlocked": "none",
+            "nativeSinks": 14,
+            "partitions": 25,
+            "regen": 16,
+            "defers": 4
+          }
+        ],
+        "last_line": "\t[C]: in ?"
+      },
+      {
+        "label": "mutant-party-regen-owner-removed",
+        "command": [
+          "lua",
+          "tests/power_partition_combat_join.lua",
+          "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\combat-power-partition\\party-regression\\mutants\\party-regen-owner-removed"
+        ],
+        "exit_code": 1,
+        "metrics": [
+          {
+            "client": "live",
+            "permission": "strict",
+            "attempts": 0,
+            "blocked": 0,
+            "errors": 0,
+            "first": "none",
+            "firstBlocked": "none",
+            "nativeSinks": 14,
+            "partitions": 25,
+            "regen": 16,
+            "defers": 4
+          }
+        ],
+        "last_line": "\t[C]: in ?"
+      },
+      {
+        "label": "mutant-deferred-replay-removed",
+        "command": [
+          "lua",
+          "tests/power_partition_combat_join.lua",
+          "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\combat-power-partition\\party-regression\\mutants\\deferred-replay-removed"
+        ],
+        "exit_code": 1,
+        "metrics": [],
+        "last_line": "\t[C]: in ?"
+      }
+    ],
+    "limitations": "Production Lua calls with synthetic facts and permission-denying native setters; not native secure-VM, taint, FPS, pixels or real invitation acceptance."
+  },
+  "native_sources": [
+    {
+      "target": "forever",
+      "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "path": "Interface/AddOns/Blizzard_UnitFrame/Shared/UnitFrame.lua",
+      "sha": "5aa326d93c532d866558226e50da9e583a873e21",
+      "display_url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_UnitFrame/Shared/UnitFrame.lua",
+      "sha256": "c90aed7b678621553a788e516f8e9c1e01722fb2c88fb345610130e781e845a1"
+    },
+    {
+      "target": "forever",
+      "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "path": "Interface/AddOns/Blizzard_UnitFrame/Mainline/UnitFrame.lua",
+      "sha": "a2f83aa0770c947555a305166611c097ef75b3a8",
+      "display_url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_UnitFrame/Mainline/UnitFrame.lua",
+      "sha256": "735226fa0d98d227227fecbebba99912e7d587424dd1ac226723c59444c73338"
+    },
+    {
+      "target": "forever",
+      "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "path": "Interface/AddOns/Blizzard_UnitFrame/Camelot/PartyMemberFrame.lua",
+      "sha": "feb5d77ee15b1baf8c43da6d42513e1c31c9a9b0",
+      "display_url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_UnitFrame/Camelot/PartyMemberFrame.lua",
+      "sha256": "bb256673cee406be7fe90853246e0b10aca1ea9e8e08574d059f8a42092b65e8"
+    },
+    {
+      "target": "forever",
+      "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "path": "Interface/AddOns/Blizzard_UnitFrame/Shared/PartyFrameTemplates.xml",
+      "sha": "f2af85ca2e31e1087ef2b7baa77130fbd0c25f28",
+      "display_url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_UnitFrame/Shared/PartyFrameTemplates.xml",
+      "sha256": "9991fa0b678fcb6305a66cb9840e780b1c2fbb86065cb1005f432c356438ee0e"
+    },
+    {
+      "target": "forever",
+      "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "path": "Interface/AddOns/Blizzard_UnitFrame/Mainline/PartyFrameTemplates.xml",
+      "sha": "3d34e35488e2154fd9ada654859e2ecd71a839c2",
+      "display_url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_UnitFrame/Mainline/PartyFrameTemplates.xml",
+      "sha256": "98b8715e6703e04854f0d2a4f104fb63026e3ca3f180baf56aae2888695c99dc"
+    },
+    {
+      "target": "forever",
+      "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "path": "Interface/AddOns/Blizzard_UnitFrame/Shared/CompactUnitFrame.lua",
+      "sha": "bf81a55c61228133a80394b7f0547bf2758c364e",
+      "display_url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_UnitFrame/Shared/CompactUnitFrame.lua",
+      "sha256": "dd73cda4ae14c5da0346675daf33470a1b8b3434dcb57cd900a038ffc57b58a8"
+    },
+    {
+      "target": "forever",
+      "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/RestrictedActionsDocumentation.lua",
+      "sha": "5acf5efde9c50029f03f3367201ee848075badf7",
+      "display_url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_APIDocumentationGenerated/RestrictedActionsDocumentation.lua",
+      "sha256": "3b22f5e0249d53d492432648c92295aabb4a3a211f50f7e617bd7eaca3676680"
+    },
+    {
+      "target": "forever",
+      "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleStatusBarAPIDocumentation.lua",
+      "sha": "99dd0b3ad25e5bdf33bfeb9d694652b6badfeb90",
+      "display_url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleStatusBarAPIDocumentation.lua",
+      "sha256": "8a1adba0e8b921e31b3d537f5a24095a946bb69ea9014db134f2c175245265e0"
+    },
+    {
+      "target": "forever",
+      "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleScriptRegionResizingAPIDocumentation.lua",
+      "sha": "6425c8deefe565688f200fbff9d46c364a8f539b",
+      "display_url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleScriptRegionResizingAPIDocumentation.lua",
+      "sha256": "0763ec5e3bb560b94ad7d1b12439fc5c53ea5de33290ffb8fd8de2737225f9af"
+    },
+    {
+      "target": "forever",
+      "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleScriptRegionAPIDocumentation.lua",
+      "sha": "e244d9eba05238cd1260a10ce34a14d07f7a6ae9",
+      "display_url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleScriptRegionAPIDocumentation.lua",
+      "sha256": "3718e5f81b99525819264d2f50e473080541d655978f88ca85582acc4073fd82"
+    },
+    {
+      "target": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleStatusBarAPIDocumentation.lua",
+      "sha": "99dd0b3ad25e5bdf33bfeb9d694652b6badfeb90",
+      "display_url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleStatusBarAPIDocumentation.lua",
+      "sha256": "8a1adba0e8b921e31b3d537f5a24095a946bb69ea9014db134f2c175245265e0"
+    },
+    {
+      "target": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleScriptRegionResizingAPIDocumentation.lua",
+      "sha": "6425c8deefe565688f200fbff9d46c364a8f539b",
+      "display_url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleScriptRegionResizingAPIDocumentation.lua",
+      "sha256": "0763ec5e3bb560b94ad7d1b12439fc5c53ea5de33290ffb8fd8de2737225f9af"
+    },
+    {
+      "target": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleScriptRegionAPIDocumentation.lua",
+      "sha": "f77b86089999d35950ce17d6ae62eace15f01f91",
+      "display_url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleScriptRegionAPIDocumentation.lua",
+      "sha256": "34c57917b3c1e95a2f1054e3dbc6901222311b716322be31c78e62a119d37747"
+    },
+    {
+      "target": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleStatusBarAPIDocumentation.lua",
+      "sha": "69a59671fe2caf76b1b82c9fbe68f0b0a6b6ef42",
+      "display_url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleStatusBarAPIDocumentation.lua",
+      "sha256": "1048fdcdc3018992cf2a004f1faeacdb30d1b0eaf3aa0d62ef23f3ec6964cab7"
+    },
+    {
+      "target": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleScriptRegionResizingAPIDocumentation.lua",
+      "sha": "200d3340e771de440adcc6551918a1e090c5db4b",
+      "display_url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleScriptRegionResizingAPIDocumentation.lua",
+      "sha256": "c5368b827f3499f815665d3383667a185e188b0c70e7c31a3657997263f69710"
+    },
+    {
+      "target": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleScriptRegionAPIDocumentation.lua",
+      "sha": "6853a2cd11dbf55947bc1e6e9ae06b142bd99f0e",
+      "display_url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleScriptRegionAPIDocumentation.lua",
+      "sha256": "9cf580688388b332d87e8126703892a1e1e4c0ea04173abb36bbebced26555b8"
+    },
+    {
+      "target": "classic_era",
+      "commit": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleStatusBarAPIDocumentation.lua",
+      "sha": "69a59671fe2caf76b1b82c9fbe68f0b0a6b6ef42",
+      "display_url": "https://github.com/Gethe/wow-ui-source/blob/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleStatusBarAPIDocumentation.lua",
+      "sha256": "1048fdcdc3018992cf2a004f1faeacdb30d1b0eaf3aa0d62ef23f3ec6964cab7"
+    },
+    {
+      "target": "classic_era",
+      "commit": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleScriptRegionResizingAPIDocumentation.lua",
+      "sha": "200d3340e771de440adcc6551918a1e090c5db4b",
+      "display_url": "https://github.com/Gethe/wow-ui-source/blob/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleScriptRegionResizingAPIDocumentation.lua",
+      "sha256": "c5368b827f3499f815665d3383667a185e188b0c70e7c31a3657997263f69710"
+    },
+    {
+      "target": "classic_era",
+      "commit": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleScriptRegionAPIDocumentation.lua",
+      "sha": "6853a2cd11dbf55947bc1e6e9ae06b142bd99f0e",
+      "display_url": "https://github.com/Gethe/wow-ui-source/blob/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleScriptRegionAPIDocumentation.lua",
+      "sha256": "9cf580688388b332d87e8126703892a1e1e4c0ea04173abb36bbebced26555b8"
+    },
+    {
+      "target": "classic_anniversary",
+      "commit": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleStatusBarAPIDocumentation.lua",
+      "sha": "69a59671fe2caf76b1b82c9fbe68f0b0a6b6ef42",
+      "display_url": "https://github.com/Gethe/wow-ui-source/blob/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleStatusBarAPIDocumentation.lua",
+      "sha256": "1048fdcdc3018992cf2a004f1faeacdb30d1b0eaf3aa0d62ef23f3ec6964cab7"
+    },
+    {
+      "target": "classic_anniversary",
+      "commit": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleScriptRegionResizingAPIDocumentation.lua",
+      "sha": "200d3340e771de440adcc6551918a1e090c5db4b",
+      "display_url": "https://github.com/Gethe/wow-ui-source/blob/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleScriptRegionResizingAPIDocumentation.lua",
+      "sha256": "c5368b827f3499f815665d3383667a185e188b0c70e7c31a3657997263f69710"
+    },
+    {
+      "target": "classic_anniversary",
+      "commit": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleScriptRegionAPIDocumentation.lua",
+      "sha": "6853a2cd11dbf55947bc1e6e9ae06b142bd99f0e",
+      "display_url": "https://github.com/Gethe/wow-ui-source/blob/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleScriptRegionAPIDocumentation.lua",
+      "sha256": "9cf580688388b332d87e8126703892a1e1e4c0ea04173abb36bbebced26555b8"
+    },
+    {
+      "target": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_UnitFrame/Blizzard_UnitFrame_Mainline.toc",
+      "sha": "976f1f7286b169c0eae8b70c809150426bdd5895",
+      "display_url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_UnitFrame/Blizzard_UnitFrame_Mainline.toc",
+      "sha256": "ad8e629155605a17421ea3443a346c04984810217594b31f94ac3a4b28f00770"
+    },
+    {
+      "target": "forever",
+      "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "path": "Interface/AddOns/Blizzard_UnitFrame/Blizzard_UnitFrame.toc",
+      "sha": "7353b5592dd82102d306e55f7190161b6e992ee2",
+      "display_url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_UnitFrame/Blizzard_UnitFrame.toc",
+      "sha256": "b96f2139f2e673b63fdca3e1f54c15897dc2d5fe8263f13a751a714057a0afc0"
+    },
+    {
+      "target": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_UnitFrame/Blizzard_UnitFrame_Classic.toc",
+      "sha": "466caa008387f1bb8027d225cc42b1e3544c4a8b",
+      "display_url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_UnitFrame/Blizzard_UnitFrame_Classic.toc",
+      "sha256": "d5f48b6eafc6d2f96e8d17b741ded946730a1f47d145e9bbcbe578e4ce171522"
+    },
+    {
+      "target": "classic_era",
+      "commit": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "path": "Interface/AddOns/Blizzard_UnitFrame/Blizzard_UnitFrame_Classic.toc",
+      "sha": "466caa008387f1bb8027d225cc42b1e3544c4a8b",
+      "display_url": "https://github.com/Gethe/wow-ui-source/blob/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_UnitFrame/Blizzard_UnitFrame_Classic.toc",
+      "sha256": "d5f48b6eafc6d2f96e8d17b741ded946730a1f47d145e9bbcbe578e4ce171522"
+    },
+    {
+      "target": "classic_anniversary",
+      "commit": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "path": "Interface/AddOns/Blizzard_UnitFrame/Blizzard_UnitFrame_Classic.toc",
+      "sha": "15695935397a6a2e79cdbaaac6d662b1d5de31a3",
+      "display_url": "https://github.com/Gethe/wow-ui-source/blob/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_UnitFrame/Blizzard_UnitFrame_Classic.toc",
+      "sha256": "3071e223feac22985d84519219c483b00ca1d82014370a0f127c6da5b613180b"
+    },
+    {
+      "target": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_UnitFrame/Shared/CompactUnitFrame.lua",
+      "sha": "bb88b9c96c5da24e4782f99948c9001dfae44271",
+      "display_url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_UnitFrame/Shared/CompactUnitFrame.lua",
+      "sha256": "16caf70b280e4a723b53eb031eff005da1353923d5622a898ac5c6f2495f422d"
+    },
+    {
+      "target": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_UnitFrame/Shared/CompactUnitFrame.xml",
+      "sha": "185a7e98f7e818004665f5cf5d98df7c92b8cf7b",
+      "display_url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_UnitFrame/Shared/CompactUnitFrame.xml",
+      "sha256": "72322e9dbcb06c962647f0a73689bc7685d215c3765a9e7ca3f96b59bb9151bc"
+    },
+    {
+      "target": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_UnitFrame/Mainline/UnitFrame.lua",
+      "sha": "b0c5302b4770a59e7910ce9fc131a3af0b666f03",
+      "display_url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_UnitFrame/Mainline/UnitFrame.lua",
+      "sha256": "bd36e112a91c8e3c2d58c13b7f591b0973ba8e881e851c1c67721f40440fcc4a"
+    },
+    {
+      "target": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_UnitFrame/Mainline/PartyFrameTemplates.xml",
+      "sha": "a2dd30dcb0cf6992316917fafb5d93de4b075e96",
+      "display_url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_UnitFrame/Mainline/PartyFrameTemplates.xml",
+      "sha256": "7c1fe28ed580d13e5adb6c6a4e627310f5e98ebcf0979388c8673ace5ba9ee5f"
+    },
+    {
+      "target": "forever",
+      "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "path": "Interface/AddOns/Blizzard_UnitFrame/Shared/CompactUnitFrame.xml",
+      "sha": "2e49bb8f2bdd22e8e30afe3f3b156b4912a2e5f3",
+      "display_url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_UnitFrame/Shared/CompactUnitFrame.xml",
+      "sha256": "af851f574a88a1a37ec6696516b3b912e6f138bb6493a4b4e454ac3c79ba5406"
+    },
+    {
+      "target": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_UnitFrame/Shared/CompactUnitFrame.lua",
+      "sha": "64b6cc8714a4c728cd8f3e3c2f13ca20c18cce16",
+      "display_url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_UnitFrame/Shared/CompactUnitFrame.lua",
+      "sha256": "006c3254a6d9f6a011ecd33e2d70237a6aaf1719f433eefb16ed37cc9b0def9f"
+    },
+    {
+      "target": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_UnitFrame/Shared/CompactUnitFrame.xml",
+      "sha": "3f978b242c46d2d4500bcc4ff6adf2cd1a5cd2d8",
+      "display_url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_UnitFrame/Shared/CompactUnitFrame.xml",
+      "sha256": "2c338cab362c3788e93c9b33ff5aec2a13901eb0001fe7a298b70ad5fc6089aa"
+    },
+    {
+      "target": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_UnitFrame/Classic/UnitFrame.lua",
+      "sha": "2eed0ece999e00d26f6ae80dce06cc80d0426e2d",
+      "display_url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_UnitFrame/Classic/UnitFrame.lua",
+      "sha256": "0fb347ece27de14901cae448f09f3faa07f50aca9e5230328bec4844cf875518"
+    },
+    {
+      "target": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_UnitFrame/Classic/PartyFrameTemplates.xml",
+      "sha": "aadaf9943aaaeb4f649ec0f811c008377a4b87ed",
+      "display_url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_UnitFrame/Classic/PartyFrameTemplates.xml",
+      "sha256": "de3bb0ef0164acf4a2c073a843c2099afa92b101a0428a2271fea15a632b8053"
+    },
+    {
+      "target": "classic_era",
+      "commit": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "path": "Interface/AddOns/Blizzard_UnitFrame/Shared/CompactUnitFrame.lua",
+      "sha": "64b6cc8714a4c728cd8f3e3c2f13ca20c18cce16",
+      "display_url": "https://github.com/Gethe/wow-ui-source/blob/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_UnitFrame/Shared/CompactUnitFrame.lua",
+      "sha256": "006c3254a6d9f6a011ecd33e2d70237a6aaf1719f433eefb16ed37cc9b0def9f"
+    },
+    {
+      "target": "classic_era",
+      "commit": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "path": "Interface/AddOns/Blizzard_UnitFrame/Shared/CompactUnitFrame.xml",
+      "sha": "3f978b242c46d2d4500bcc4ff6adf2cd1a5cd2d8",
+      "display_url": "https://github.com/Gethe/wow-ui-source/blob/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_UnitFrame/Shared/CompactUnitFrame.xml",
+      "sha256": "2c338cab362c3788e93c9b33ff5aec2a13901eb0001fe7a298b70ad5fc6089aa"
+    },
+    {
+      "target": "classic_era",
+      "commit": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "path": "Interface/AddOns/Blizzard_UnitFrame/Classic/UnitFrame.lua",
+      "sha": "2eed0ece999e00d26f6ae80dce06cc80d0426e2d",
+      "display_url": "https://github.com/Gethe/wow-ui-source/blob/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_UnitFrame/Classic/UnitFrame.lua",
+      "sha256": "0fb347ece27de14901cae448f09f3faa07f50aca9e5230328bec4844cf875518"
+    },
+    {
+      "target": "classic_era",
+      "commit": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "path": "Interface/AddOns/Blizzard_UnitFrame/Classic/PartyFrameTemplates.xml",
+      "sha": "aadaf9943aaaeb4f649ec0f811c008377a4b87ed",
+      "display_url": "https://github.com/Gethe/wow-ui-source/blob/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_UnitFrame/Classic/PartyFrameTemplates.xml",
+      "sha256": "de3bb0ef0164acf4a2c073a843c2099afa92b101a0428a2271fea15a632b8053"
+    },
+    {
+      "target": "classic_anniversary",
+      "commit": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "path": "Interface/AddOns/Blizzard_UnitFrame/Shared/CompactUnitFrame.lua",
+      "sha": "5e32fb987b9b907125f6fb826ed81be9679f2236",
+      "display_url": "https://github.com/Gethe/wow-ui-source/blob/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_UnitFrame/Shared/CompactUnitFrame.lua",
+      "sha256": "19e054c3cf00e462aca98fcc6af0d60e0a4a1822ebd855c2ed11802490482454"
+    },
+    {
+      "target": "classic_anniversary",
+      "commit": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "path": "Interface/AddOns/Blizzard_UnitFrame/Shared/CompactUnitFrame.xml",
+      "sha": "9d5f8b266a64a6d5b260a00776fcb2116eda727c",
+      "display_url": "https://github.com/Gethe/wow-ui-source/blob/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_UnitFrame/Shared/CompactUnitFrame.xml",
+      "sha256": "8d6a97ac96e56fb8e9c7a98b74aa6ab5b21242b40b15e2d97281b4bff7b65b5c"
+    },
+    {
+      "target": "classic_anniversary",
+      "commit": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "path": "Interface/AddOns/Blizzard_UnitFrame/Classic/UnitFrame.lua",
+      "sha": "4312737b49f7608a1b26a5d0f4442c2554128378",
+      "display_url": "https://github.com/Gethe/wow-ui-source/blob/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_UnitFrame/Classic/UnitFrame.lua",
+      "sha256": "d293d122796008ef9b07633c013213b11f13ff05630497fa9075e6a1e3aa7d78"
+    },
+    {
+      "target": "classic_anniversary",
+      "commit": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "path": "Interface/AddOns/Blizzard_UnitFrame/Classic/PartyFrameTemplates.xml",
+      "sha": "76c752df0a0faef3be58e3f75baa3a1f38ba84e7",
+      "display_url": "https://github.com/Gethe/wow-ui-source/blob/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_UnitFrame/Classic/PartyFrameTemplates.xml",
+      "sha256": "a3b003cd6bb2202bb639eae3f3610eb35d6c06d8a6cb3a80b2c4f79a9908fdb3"
+    }
+  ],
+  "unique_native_blobs": 31,
+  "full_validation": {
+    "scripts_passed": 288,
+    "scripts_failed": 0,
+    "syntax_files": 960,
+    "syntax_failures": [],
+    "all_hashes_match_current": true,
+    "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\combat-power-partition\\full-validation.json",
+    "sha256": "96a2538911f145c458d7332cbd731a6020cf6984e2992a3636e68d4f07d3cd82"
+  },
+  "documentation_validation": {
+    "command": "python docs/tools/validate_docs.py",
+    "exit": 0,
+    "classified_sources": 993,
+    "toc_xml_reachable": 607,
+    "setting_definitions": 427,
+    "saved_variable_declarations": 24,
+    "local_links": 16131,
+    "result": "Source inventory/evidence current;no writes by validator"
+  },
+  "native_acceptance": "NOT RUN afterfix;userfailure is native evidence;modeled headers/widgets/effect helpers do not certify actual operation permissions,pixels,input,taint orFPS",
+  "new_frames": 0,
+  "new_tickers": 0,
+  "new_onupdate_drivers": 0,
+  "queue": "ExistingUF.DeferProtected;one outstanding callback/frame;REGENfallback",
+  "settings_writes": false,
+  "profiler_changes": false,
+  "client_input": false,
+  "manual_sync": false,
+  "publication": false,
+  "broader_fx_scope": "Other resource-effect helpers modeled;not represented as fully audited/proved safe",
+  "independent_pair_verification": [
+    {
+      "pair": 1,
+      "baseline_reproduces_both_reported_methods": true,
+      "candidate_zero_protected_attempts_all_15_cases": true
+    },
+    {
+      "pair": 2,
+      "baseline_reproduces_both_reported_methods": true,
+      "candidate_zero_protected_attempts_all_15_cases": true
+    },
+    {
+      "pair": 3,
+      "baseline_reproduces_both_reported_methods": true,
+      "candidate_zero_protected_attempts_all_15_cases": true
+    }
+  ]
+}

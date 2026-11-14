@@ -1,0 +1,528 @@
+{
+  "generator": {
+    "exit": 0,
+    "sources": 1062,
+    "toc_xml_reachable": 623,
+    "settings": 438,
+    "literal_defaults": 583
+  },
+  "global_validation": {
+    "exit": 1,
+    "issues": [
+      "Missing heading 14-unit-frames.md:991: PARTY_DEBUFF_VISIBILITY.md#blizzards-dispellable-only-checkbox--13-november-2026",
+      "Missing heading CLIENT_VALIDATION.md:83: PARTY_DEBUFF_VISIBILITY.md#blizzards-dispellable-only-checkbox--13-november-2026",
+      "Missing heading DECISIONS.md:83: PARTY_DEBUFF_VISIBILITY.md#blizzards-dispellable-only-checkbox--13-november-2026",
+      "Missing heading STATUS.md:86: PARTY_DEBUFF_VISIBILITY.md#blizzards-dispellable-only-checkbox--13-november-2026",
+      "Missing heading WORK_LOG.md:86: PARTY_DEBUFF_VISIBILITY.md#blizzards-dispellable-only-checkbox--13-november-2026"
+    ],
+    "scope": "Read-only checker observed only unrelated party documentation heading links; no task-owned failures. Concurrent source edits may stale the global corpus after validation."
+  },
+  "task_links": {
+    "passed": 125,
+    "errors": [],
+    "links": [
+      {
+        "from": "docs/MINIMAP_EXTRA_LAYOUT.md",
+        "to": "validation/minimap-visibility-sources-2026-11-13.json"
+      },
+      {
+        "from": "docs/MINIMAP_EXTRA_LAYOUT.md",
+        "to": "validation/minimap-visibility-checkpoint-2026-11-13.json"
+      },
+      {
+        "from": "docs/MINIMAP_EXTRA_LAYOUT.md",
+        "to": "validation/minimap-visibility-2026-11-13.json"
+      },
+      {
+        "from": "docs/MINIMAP_EXTRA_LAYOUT.md",
+        "to": "validation/minimap-auto-embedded-checkpoint-2026-11-13.json"
+      },
+      {
+        "from": "docs/MINIMAP_EXTRA_LAYOUT.md",
+        "to": "validation/minimap-auto-layout-2026-11-13.json"
+      },
+      {
+        "from": "docs/MINIMAP_EXTRA_LAYOUT.md",
+        "to": "validation/minimap-auto-layout-controls-2026-11-13.json"
+      },
+      {
+        "from": "docs/MINIMAP_EXTRA_LAYOUT.md",
+        "to": "validation/minimap-side-combat-checkpoint-2026-11-13.json"
+      },
+      {
+        "from": "docs/MINIMAP_EXTRA_LAYOUT.md",
+        "to": "validation/minimap-side-combat-2026-11-13.json"
+      },
+      {
+        "from": "docs/MINIMAP_EXTRA_LAYOUT.md",
+        "to": "validation/minimap-scale-basis-checkpoint-2026-11-13.json"
+      },
+      {
+        "from": "docs/MINIMAP_EXTRA_LAYOUT.md",
+        "to": "validation/minimap-scale-basis-2026-11-13.json"
+      },
+      {
+        "from": "docs/MINIMAP_EXTRA_LAYOUT.md",
+        "to": "validation/minimap-side-aura-checkpoint-2026-11-13.json"
+      },
+      {
+        "from": "docs/MINIMAP_EXTRA_LAYOUT.md",
+        "to": "validation/minimap-side-aura-2026-11-13.json"
+      },
+      {
+        "from": "docs/MINIMAP_EXTRA_LAYOUT.md",
+        "to": "validation/minimap-layout-sources-2026-11-13.json"
+      },
+      {
+        "from": "docs/MINIMAP_EXTRA_LAYOUT.md",
+        "to": "validation/minimap-layout-checkpoint-2026-11-13.json"
+      },
+      {
+        "from": "docs/MINIMAP_EXTRA_LAYOUT.md",
+        "to": "validation/minimap-extra-layout-controls-2026-11-13.json"
+      },
+      {
+        "from": "docs/MINIMAP_EXTRA_LAYOUT.md",
+        "to": "validation/minimap-layout-full-2026-11-13.json"
+      },
+      {
+        "from": "docs/MINIMAP_EXTRA_LAYOUT.md",
+        "to": "validation/minimap-layout-source-guard-2026-11-13.json"
+      },
+      {
+        "from": "docs/MINIMAP_EXTRA_LAYOUT.md",
+        "to": "validation/minimap-layout-docs-2026-11-13.json"
+      },
+      {
+        "from": "docs/18-minimap-and-trackers.md",
+        "to": "MINIMAP_TARGET_FOCUS.md"
+      },
+      {
+        "from": "docs/18-minimap-and-trackers.md",
+        "to": "../Minimap/FluxMinimap.lua"
+      },
+      {
+        "from": "docs/18-minimap-and-trackers.md",
+        "to": "MINIMAP_NATIVE_INDICATORS.md"
+      },
+      {
+        "from": "docs/18-minimap-and-trackers.md",
+        "to": "MINIMAP_MAIL_LIFECYCLE.md"
+      },
+      {
+        "from": "docs/18-minimap-and-trackers.md",
+        "to": "03-midnight-constraints.md"
+      },
+      {
+        "from": "docs/18-minimap-and-trackers.md",
+        "to": "MINIMAP_EXTRA_LAYOUT.md#empty-slots-automatic-growth-and-optional-overlay-visibility"
+      },
+      {
+        "from": "docs/18-minimap-and-trackers.md",
+        "to": "../Minimap/FluxMinimapButtons.lua"
+      },
+      {
+        "from": "docs/18-minimap-and-trackers.md",
+        "to": "MINIMAP_EXTRA_LAYOUT.md"
+      },
+      {
+        "from": "docs/18-minimap-and-trackers.md",
+        "to": "12-extra-button-system.md"
+      },
+      {
+        "from": "docs/18-minimap-and-trackers.md",
+        "to": "OBJECTIVE_TRACKER_TOP.md"
+      },
+      {
+        "from": "docs/18-minimap-and-trackers.md",
+        "to": "../Minimap/FluxObjectiveTrackerScroll.lua"
+      },
+      {
+        "from": "docs/18-minimap-and-trackers.md",
+        "to": "../tests/objective_tracker_scroll.lua"
+      },
+      {
+        "from": "docs/18-minimap-and-trackers.md",
+        "to": "../Minimap/_tmp_trackercombatsmoke.lua"
+      },
+      {
+        "from": "docs/18-minimap-and-trackers.md",
+        "to": "../Minimap/FluxQuestie.lua"
+      },
+      {
+        "from": "docs/18-minimap-and-trackers.md",
+        "to": "10-flux-window.md"
+      },
+      {
+        "from": "docs/18-minimap-and-trackers.md",
+        "to": "../Minimap/_tmp_questiesmoke.lua"
+      },
+      {
+        "from": "docs/18-minimap-and-trackers.md",
+        "to": "../Minimap/FluxBuffDebuffFrames.lua"
+      },
+      {
+        "from": "docs/18-minimap-and-trackers.md",
+        "to": "26-options-map.md"
+      },
+      {
+        "from": "docs/18-minimap-and-trackers.md",
+        "to": "31-commands-and-bindings.md"
+      },
+      {
+        "from": "docs/18-minimap-and-trackers.md",
+        "to": "41-verification.md#current-compatibility-scenarios"
+      },
+      {
+        "from": "docs/26-options-map.md",
+        "to": "MINIMAP_EXTRA_LAYOUT.md"
+      },
+      {
+        "from": "docs/26-options-map.md",
+        "to": "20-vendor-restock-junk.md#bank-and-vendor-gossip-checkbox--10-november-2026"
+      },
+      {
+        "from": "docs/26-options-map.md",
+        "to": "20-vendor-restock-junk.md#single-choice-vendor-gossip--10-november-2026"
+      },
+      {
+        "from": "docs/26-options-map.md",
+        "to": "OPTIONS_REWORK.md"
+      },
+      {
+        "from": "docs/26-options-map.md",
+        "to": "../AddonOptions/FluxOptionsCatalog.lua"
+      },
+      {
+        "from": "docs/26-options-map.md",
+        "to": "../AddonOptions/FluxOptions.lua"
+      },
+      {
+        "from": "docs/26-options-map.md",
+        "to": "../AddonOptions/FluxOptionsShell.lua"
+      },
+      {
+        "from": "docs/26-options-map.md",
+        "to": "../AddonOptions/FluxOptionsRender.lua"
+      },
+      {
+        "from": "docs/26-options-map.md",
+        "to": "reference/settings-details.md"
+      },
+      {
+        "from": "docs/26-options-map.md",
+        "to": "reference/defaults.md"
+      },
+      {
+        "from": "docs/26-options-map.md",
+        "to": "35-custom-widget-controls.md"
+      },
+      {
+        "from": "docs/26-options-map.md",
+        "to": "32-saved-variables.md"
+      },
+      {
+        "from": "docs/26-options-map.md",
+        "to": "31-commands-and-bindings.md"
+      },
+      {
+        "from": "docs/26-options-map.md",
+        "to": "13-binding-system.md"
+      },
+      {
+        "from": "docs/26-options-map.md",
+        "to": "23-respec.md"
+      },
+      {
+        "from": "docs/26-options-map.md",
+        "to": "12-extra-button-system.md"
+      },
+      {
+        "from": "docs/26-options-map.md",
+        "to": "reference/inventory.json"
+      },
+      {
+        "from": "docs/26-options-map.md",
+        "to": "OPTIONS_REWORK.md#13-november-sidebar-bindings-and-shared-threat-warnings"
+      },
+      {
+        "from": "docs/26-options-map.md",
+        "to": "validation/options-navigation-map-2026-11-09.csv"
+      },
+      {
+        "from": "docs/26-options-map.md",
+        "to": "OPTIONS_REWORK.md"
+      },
+      {
+        "from": "docs/26-options-map.md",
+        "to": "../AddonOptions/FluxOptionsNavigation.lua"
+      },
+      {
+        "from": "docs/26-options-map.md",
+        "to": "09-persistence.md"
+      },
+      {
+        "from": "docs/26-options-map.md",
+        "to": "../AddonOptions/FluxOptionsGeneral.lua"
+      },
+      {
+        "from": "docs/26-options-map.md",
+        "to": "NAMEPLATE_CASTBAR_SCHOOLS.md"
+      },
+      {
+        "from": "docs/26-options-map.md",
+        "to": "../AddonOptions/FluxOptionsNameplates.lua"
+      },
+      {
+        "from": "docs/26-options-map.md",
+        "to": "../Core/API/Threat.lua"
+      },
+      {
+        "from": "docs/26-options-map.md",
+        "to": "19-nameplates.md"
+      },
+      {
+        "from": "docs/26-options-map.md",
+        "to": "../AddonOptions/FluxOptionsWindows.lua"
+      },
+      {
+        "from": "docs/26-options-map.md",
+        "to": "28-window-mover.md"
+      },
+      {
+        "from": "docs/26-options-map.md",
+        "to": "../libs/AceDBOptions-3.0/AceDBOptions-3.0.lua"
+      },
+      {
+        "from": "docs/26-options-map.md",
+        "to": "../AddonOptions/FluxOptions.lua"
+      },
+      {
+        "from": "docs/26-options-map.md",
+        "to": "06-layout.md"
+      },
+      {
+        "from": "docs/26-options-map.md",
+        "to": "35-custom-widget-controls.md"
+      },
+      {
+        "from": "docs/26-options-map.md",
+        "to": "../AddonOptions/FluxOptionsLayout.lua"
+      },
+      {
+        "from": "docs/26-options-map.md",
+        "to": "../AddonOptions/FluxLayoutPreviewUI.lua"
+      },
+      {
+        "from": "docs/26-options-map.md",
+        "to": "../AddonOptions/FluxOptionsActionBars.lua"
+      },
+      {
+        "from": "docs/26-options-map.md",
+        "to": "08-shared-services.md"
+      },
+      {
+        "from": "docs/26-options-map.md",
+        "to": "11-action-bars.md"
+      },
+      {
+        "from": "docs/26-options-map.md",
+        "to": "40-findings.md"
+      },
+      {
+        "from": "docs/26-options-map.md",
+        "to": "reference/defaults.md"
+      },
+      {
+        "from": "docs/26-options-map.md",
+        "to": "35-custom-widget-controls.md"
+      },
+      {
+        "from": "docs/26-options-map.md",
+        "to": "../AddonOptions/FluxOptionsStatusBars.lua"
+      },
+      {
+        "from": "docs/26-options-map.md",
+        "to": "../StatusBars/FluxItemCurrencyTracking.lua"
+      },
+      {
+        "from": "docs/26-options-map.md",
+        "to": "35-custom-widget-controls.md"
+      },
+      {
+        "from": "docs/26-options-map.md",
+        "to": "16-status-bars.md"
+      },
+      {
+        "from": "docs/26-options-map.md",
+        "to": "../AddonOptions/FluxOptionsInfo.lua"
+      },
+      {
+        "from": "docs/26-options-map.md",
+        "to": "../StatusBars/FluxInfoFrame.lua"
+      },
+      {
+        "from": "docs/26-options-map.md",
+        "to": "27-character-info.md"
+      },
+      {
+        "from": "docs/26-options-map.md",
+        "to": "../AddonOptions/FluxOptionsMicroMenu.lua"
+      },
+      {
+        "from": "docs/26-options-map.md",
+        "to": "../MicroMenu/FluxTradeSkillMicro.lua"
+      },
+      {
+        "from": "docs/26-options-map.md",
+        "to": "17-micromenu.md"
+      },
+      {
+        "from": "docs/26-options-map.md",
+        "to": "../AddonOptions/FluxOptionsChat.lua"
+      },
+      {
+        "from": "docs/26-options-map.md",
+        "to": "reference/defaults.md"
+      },
+      {
+        "from": "docs/26-options-map.md",
+        "to": "25-other-qol.md"
+      },
+      {
+        "from": "docs/26-options-map.md",
+        "to": "14-unit-frames.md"
+      },
+      {
+        "from": "docs/26-options-map.md",
+        "to": "15-raid-frames.md"
+      },
+      {
+        "from": "docs/26-options-map.md",
+        "to": "UNIT_FRAME_SCALE.md"
+      },
+      {
+        "from": "docs/26-options-map.md",
+        "to": "reference/defaults.md"
+      },
+      {
+        "from": "docs/26-options-map.md",
+        "to": "reference/settings-details.md"
+      },
+      {
+        "from": "docs/26-options-map.md",
+        "to": "../AddonOptions/FluxOptionsUnitFrames.lua"
+      },
+      {
+        "from": "docs/26-options-map.md",
+        "to": "../AddonOptions/FluxOptionsRaidFrame.lua"
+      },
+      {
+        "from": "docs/26-options-map.md",
+        "to": "../AddonOptions/FluxOptionsBattlezone.lua"
+      },
+      {
+        "from": "docs/26-options-map.md",
+        "to": "35-custom-widget-controls.md"
+      },
+      {
+        "from": "docs/26-options-map.md",
+        "to": "10-flux-window.md"
+      },
+      {
+        "from": "docs/26-options-map.md",
+        "to": "35-custom-widget-controls.md"
+      },
+      {
+        "from": "docs/26-options-map.md",
+        "to": "../AddonOptions/FluxOptionsVendor.lua"
+      },
+      {
+        "from": "docs/26-options-map.md",
+        "to": "../AddonOptions/FluxOptionsSalvage.lua"
+      },
+      {
+        "from": "docs/26-options-map.md",
+        "to": "32-saved-variables.md"
+      },
+      {
+        "from": "docs/26-options-map.md",
+        "to": "20-vendor-restock-junk.md"
+      },
+      {
+        "from": "docs/26-options-map.md",
+        "to": "13-binding-system.md"
+      },
+      {
+        "from": "docs/26-options-map.md",
+        "to": "35-custom-widget-controls.md"
+      },
+      {
+        "from": "docs/26-options-map.md",
+        "to": "32-saved-variables.md"
+      },
+      {
+        "from": "docs/26-options-map.md",
+        "to": "../AddonOptions/FluxOptionsBinding.lua"
+      },
+      {
+        "from": "docs/26-options-map.md",
+        "to": "40-findings.md"
+      },
+      {
+        "from": "docs/26-options-map.md",
+        "to": "41-verification.md"
+      },
+      {
+        "from": "docs/STATUS.md",
+        "to": "MINIMAP_EXTRA_LAYOUT.md#empty-slots-automatic-growth-and-optional-overlay-visibility"
+      },
+      {
+        "from": "docs/STATUS.md",
+        "to": "validation/minimap-visibility-2026-11-13.json"
+      },
+      {
+        "from": "docs/DECISIONS.md",
+        "to": "MINIMAP_EXTRA_LAYOUT.md#empty-slots-automatic-growth-and-optional-overlay-visibility"
+      },
+      {
+        "from": "docs/DECISIONS.md",
+        "to": "validation/minimap-visibility-2026-11-13.json"
+      },
+      {
+        "from": "docs/WORK_LOG.md",
+        "to": "MINIMAP_EXTRA_LAYOUT.md#empty-slots-automatic-growth-and-optional-overlay-visibility"
+      },
+      {
+        "from": "docs/WORK_LOG.md",
+        "to": "validation/minimap-visibility-2026-11-13.json"
+      },
+      {
+        "from": "NEXT_SESSION.md",
+        "to": "docs/MINIMAP_EXTRA_LAYOUT.md#empty-slots-automatic-growth-and-optional-overlay-visibility"
+      },
+      {
+        "from": "NEXT_SESSION.md",
+        "to": "docs/validation/minimap-visibility-2026-11-13.json"
+      },
+      {
+        "from": "docs/CLIENT_VALIDATION.md",
+        "to": "MINIMAP_EXTRA_LAYOUT.md#empty-slots-automatic-growth-and-optional-overlay-visibility"
+      },
+      {
+        "from": "docs/CLIENT_VALIDATION.md",
+        "to": "validation/minimap-visibility-2026-11-13.json"
+      },
+      {
+        "from": "docs/PERFORMANCE_PROTOCOL.md",
+        "to": "MINIMAP_EXTRA_LAYOUT.md#empty-slots-automatic-growth-and-optional-overlay-visibility"
+      },
+      {
+        "from": "docs/PERFORMANCE_PROTOCOL.md",
+        "to": "validation/minimap-visibility-2026-11-13.json"
+      }
+    ]
+  },
+  "task_diff_whitespace": "git diff --check PASS",
+  "native": "NOT RUN"
+}

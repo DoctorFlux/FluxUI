@@ -1,0 +1,88 @@
+{
+  "date": "2026-11-10",
+  "scope": "Desktop only; native input/pixels/taint/latency not established",
+  "candidateSHA256": "8a46e38dd1d0a875864a6aaf57a2c6266dec2f5a2117c4fd0de64319aa865a0f",
+  "runs": [
+    {
+      "name": "candidate-1",
+      "exit": 0,
+      "output": "vendor_gossip: 702 checks PASS; native input/taint/rendering/server interaction NOT RUN\n"
+    },
+    {
+      "name": "candidate-2",
+      "exit": 0,
+      "output": "vendor_gossip: 702 checks PASS; native input/taint/rendering/server interaction NOT RUN\n"
+    },
+    {
+      "name": "candidate-3",
+      "exit": 0,
+      "output": "vendor_gossip: 702 checks PASS; native input/taint/rendering/server interaction NOT RUN\n"
+    },
+    {
+      "name": "multi-choice",
+      "exit": 1,
+      "rejected": true,
+      "output": "lua: tests/vendor_gossip.lua:4: forever: two vendor choices preserved\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/vendor_gossip.lua:4: in upvalue 'check'\n\ttests/vendor_gossip.lua:170: in local 'rejected'\n\ttests/vendor_gossip.lua:175: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "non-vendor",
+      "exit": 1,
+      "rejected": true,
+      "output": "lua: tests/vendor_gossip.lua:4: automation off shows the unchecked checkbox without selecting\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/vendor_gossip.lua:4: in local 'check'\n\ttests/vendor_gossip.lua:153: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "ignore-quests",
+      "exit": 1,
+      "rejected": true,
+      "output": "lua: tests/vendor_gossip.lua:4: forever: active quests preserved\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/vendor_gossip.lua:4: in upvalue 'check'\n\ttests/vendor_gossip.lua:170: in local 'rejected'\n\ttests/vendor_gossip.lua:173: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "ignore-shift",
+      "exit": 1,
+      "rejected": true,
+      "output": "lua: tests/vendor_gossip.lua:4: forever: Shift preserves gossip\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/vendor_gossip.lua:4: in upvalue 'check'\n\ttests/vendor_gossip.lua:170: in local 'rejected'\n\ttests/vendor_gossip.lua:172: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "wrong-index",
+      "exit": 1,
+      "rejected": true,
+      "output": "lua: tests/vendor_gossip.lua:4: select exact orderIndex synchronously\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/vendor_gossip.lua:4: in local 'check'\n\ttests/vendor_gossip.lua:160: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "duplicate-native",
+      "exit": 1,
+      "rejected": true,
+      "output": "lua: tests/vendor_gossip.lua:4: exactly one selection with native handler in either event order\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/vendor_gossip.lua:4: in local 'check'\n\ttests/vendor_gossip.lua:205: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "bank-overwrites-vendor",
+      "exit": 1,
+      "rejected": true,
+      "output": "lua: tests/vendor_gossip.lua:4: forever: gossip/bank/taxi/binder/trainer not selected even with an overridden vendor icon\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/vendor_gossip.lua:4: in upvalue 'check'\n\ttests/vendor_gossip.lua:170: in local 'rejected'\n\ttests/vendor_gossip.lua:180: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "stale-click",
+      "exit": 1,
+      "rejected": true,
+      "output": "lua: tests/vendor_gossip.lua:4: stale vendor click cannot change the bank preference\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/vendor_gossip.lua:4: in local 'check'\n\ttests/vendor_gossip.lua:250: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "pending-checkbox",
+      "exit": 1,
+      "rejected": true,
+      "output": "lua: tests/vendor_gossip.lua:4: refresh does not duplicate selection or resurrect a pending checkbox\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/vendor_gossip.lua:4: in local 'check'\n\ttests/vendor_gossip.lua:238: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "options-stale",
+      "exit": 1,
+      "rejected": true,
+      "output": "lua: tests/vendor_gossip.lua:4: selection is submitted before refreshing simultaneously open options\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/vendor_gossip.lua:4: in local 'check'\n\ttests/vendor_gossip.lua:227: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "before-followup",
+      "exit": 1,
+      "rejected": true,
+      "output": "lua: tests/vendor_gossip.lua:4: prime two icons at login; lifecycle enables a lazy visible checkbox\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/vendor_gossip.lua:4: in local 'check'\n\ttests/vendor_gossip.lua:152: in main chunk\n\t[C]: in ?\n"
+    }
+  ]
+}

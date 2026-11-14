@@ -873,6 +873,7 @@ end
 
 local function EntryCountBankEnabled(entry)
     if not entry then return false end
+    if entry.restockSource == "craftMaterial" and entry.countBank == false then return false end
     if entry.tierKind then
         local T = TiersMod()
         return T and T.GetCountBankFlag and T.GetCountBankFlag(entry.tierKind) or false
@@ -977,6 +978,35 @@ end
 local function GetMaxCharges(itemID)
     local reg = Registry()
     return reg and reg.GetItemMaxCharges and reg.GetItemMaxCharges(itemID)
+end
+
+local function BankTargetList()
+    local reg = Registry()
+    local list, byItem = {}, {}
+    for _, entry in ipairs(reg and reg.GetBankTargetList() or {}) do
+        local copy = {}; for key, value in pairs(entry) do copy[key] = value end
+        list[#list + 1] = copy
+        if not copy.isTierBankEntry and copy.restock ~= false then byItem[copy.itemID] = copy end
+    end
+    local auction = _G.FluxAuctionRestock
+    local followup = auction and auction.Followup
+    for _, entry in ipairs(followup and followup.GetBankTargets and followup.GetBankTargets() or {}) do
+        local physical = LiveBagCountForItem(entry.itemID, false)
+        local surplus = math.max(0, (tonumber(entry.target) or 0) - physical)
+        if surplus > 0 then
+            local direct = byItem[entry.itemID]
+            local scale = direct and direct.mode == "charge" and GetMaxCharges(entry.itemID) or 1
+            if direct and scale and scale > 0 then
+                direct.target = math.max(tonumber(direct.target) or 0, BagCountFor(direct)) + surplus * scale
+                direct.isCraftBankTarget = true
+            elseif not direct then
+                local copy = {}; for key, value in pairs(entry) do copy[key] = value end
+                copy.mode, copy.restock, copy.isCraftBankTarget = "stack", true, true
+                list[#list + 1] = copy
+            end
+        end
+    end
+    return list
 end
 
 StacksForTask = function(entry)
@@ -1285,7 +1315,7 @@ local function SortRestockTasks(tasks)
 end
 
 local function EntryCoveredByActiveTier(entry, tierKindsActive, T)
-    if not entry or entry.isTierBankEntry or not entry.itemID or not T or not tierKindsActive then
+    if not entry or entry.isTierBankEntry or entry.isCraftBankTarget or not entry.itemID or not T or not tierKindsActive then
         return false
     end
     for kind in pairs(tierKindsActive) do
@@ -1300,7 +1330,7 @@ local function EntryCoveredByActiveTier(entry, tierKindsActive, T)
     return false
 end
 
-local function BuildTasks()
+local function BuildTasks(followupOnly)
     local reg = Registry()
     local rules = Rules()
     if not reg or not rules then return {} end
@@ -1311,13 +1341,19 @@ local function BuildTasks()
     local tasks = {}
     local tierKindSeen = {}
     local tierKindsActive = {}
-    for _, entry in ipairs(reg.GetBankTargetList()) do
+    local list
+    if followupOnly then
+        local auction = _G.FluxAuctionRestock
+        local followup = auction and auction.Followup
+        list = followup and followup.GetBankTargets and followup.GetBankTargets() or {}
+    else list = BankTargetList() end
+    for _, entry in ipairs(list) do
         if entry.isTierBankEntry and entry.tierKind then
             tierKindsActive[entry.tierKind] = true
         end
     end
     local T = TiersMod()
-    for _, entry in ipairs(reg.GetBankTargetList()) do
+    for _, entry in ipairs(list) do
         if entry.isTierBankEntry and entry.tierKind then
             if not tierKindSeen[entry.tierKind] then
                 tierKindSeen[entry.tierKind] = true
@@ -1679,7 +1715,7 @@ local function StartRestockEngine()
     local moveExec = MoveExecMod()
     if not moveExec or not moveExec.Start then
         DbgImportant("session", "MoveExec missing — cannot start")
-        return
+        return false
     end
     local ok = moveExec.Start(session, {
         resolveMaxStack = ResolveMaxStack,
@@ -1699,6 +1735,7 @@ local function StartRestockEngine()
         DbgImportant("session", "MoveExec nothing to do")
         FinishSession("empty")
     end
+    return ok == true
 end
 
 
@@ -1749,6 +1786,8 @@ FinishSession = function(reason)
         return
     end
     finishSessionRunning = true
+    local rejectedFollowup = session.auctionFollowup and not session.followupIssued
+        and (session.stepsCompleted or 0) == 0
     local moveExec = MoveExecMod()
     if moveExec and moveExec.Stop then
         moveExec.Stop()
@@ -1801,6 +1840,7 @@ FinishSession = function(reason)
         ledger.Reset()
     end
     session.manual = false
+    session.auctionFollowup, session.followupIssued = nil, nil
     ClearSkips()
     StopRestockEvents()
     FireSessionEndCallbacks()
@@ -1816,6 +1856,11 @@ FinishSession = function(reason)
         SchedulePostSessionRefresh(reason)
     end
     finishSessionRunning = false
+    if rejectedFollowup then
+        local auction = _G.FluxAuctionRestock
+        local followup = auction and auction.Followup
+        if followup and followup.OwnerRejected then followup.OwnerRejected("bank") end
+    end
 end
 
 -- ---------------------------------------------------------------------------
@@ -1829,7 +1874,7 @@ end
 
 local startDeferred = false
 
-function BR.Start(isManual)
+function BR.Start(isManual, followupOnly)
     local inv = Inv()
     local bank = Bank()
     local moves = MovesMod()
@@ -1840,6 +1885,7 @@ function BR.Start(isManual)
         DbgImportant("session", "MoveExec not loaded")
         return false
     end
+    if session.running and followupOnly then return "busy" end
     if session.running then
         session.aborted = true
         FinishSession()
@@ -1864,7 +1910,7 @@ function BR.Start(isManual)
     if bank.Refresh then
         bank.Refresh({ force = true })
     end
-    local tasks = BuildTasks()
+    local tasks = BuildTasks(followupOnly)
     if #tasks == 0 then
         return false
     end
@@ -1878,6 +1924,7 @@ function BR.Start(isManual)
     session.manual = isManual and true or false
 
     session.running = true
+    session.auctionFollowup, session.followupIssued = followupOnly == true, false
     session.tasks = tasks
     DbgImportant("session", "Start manual=%s tasks=%d", tostring(isManual and true or false), #tasks)
     session.aborted = false
@@ -1912,8 +1959,9 @@ function BR.Start(isManual)
     session.deferredMoves = nil
 
     StartRestockEvents()
-    StartRestockEngine()
+    local started = StartRestockEngine()
     BR.RunFastButtonRefresh()
+    if followupOnly then return started end
     return true
 end
 
@@ -1954,6 +2002,44 @@ function BR.RunManual()
         return true
     end
     return BR.Start(true)
+end
+
+-- Share the mover/session with ordinary restock, but a follow-up press or its
+-- own automation may only withdraw this auction job's ingredient targets.
+function BR.CanAuctionFollowup()
+    if session.running or startDeferred or (InCombatLockdown and InCombatLockdown()) then return false end
+    local bank, mover = Bank(), Mover()
+    if not bank or not bank.IsOpen or not bank.IsOpen() or not bank.IsLive or not bank.IsLive()
+        or not MoveExecMod() or (mover and mover.CursorHasItem and mover.CursorHasItem()) then return false end
+    local tasks = BuildTasks(true)
+    if #tasks == 0 then return false end
+    local planner = Planner()
+    if not planner or not planner.BuildSessionPlan then return true end
+    local context, queue = BuildSessionPlan(tasks)
+    return context ~= nil and #queue > 0
+end
+function BR.RunAuctionFollowup(manual)
+    if session.running or startDeferred then return "busy" end
+    if InCombatLockdown and InCombatLockdown() then return false end
+    local bank = Bank()
+    if not bank or not bank.IsOpen or not bank.IsOpen() or not bank.IsLive or not bank.IsLive() then return false end
+    local mover = Mover()
+    if mover and mover.CursorHasItem and mover.CursorHasItem() then return false end
+    if HasUnifiedBankUI() then
+        startDeferred = true
+        After(0.05, function()
+            startDeferred = false
+            local started = BR.Start(manual == true, true)
+            if started ~= true then
+                local auction = _G.FluxAuctionRestock
+                local followup = auction and auction.Followup
+                if followup and followup.OwnerRejected then followup.OwnerRejected("bank") end
+            end
+            BR.RunFastButtonRefresh()
+        end)
+        return true
+    end
+    return BR.Start(manual == true, true)
 end
 
 -- ---------------------------------------------------------------------------
@@ -2036,7 +2122,7 @@ function BR.GetPendingSummary()
     local pull = 0
     local seenTierKinds = {}
     local tierKindsActive = {}
-    local list = reg.GetBankTargetList()
+    local list = BankTargetList()
     for _, entry in ipairs(list) do
         if entry.isTierBankEntry and entry.tierKind then
             tierKindsActive[entry.tierKind] = true
@@ -2117,7 +2203,7 @@ function BR.GetTooltipItems()
     local ic = IC()
     if not reg or not rules then return {} end
     local out = {}
-    for _, entry in ipairs(reg.GetBankTargetList()) do
+    for _, entry in ipairs(BankTargetList()) do
         local bagCount = BagCountFor(entry)
         local bankAvail = BankAvailableForEntry(entry)
         local target = entry.target or 0

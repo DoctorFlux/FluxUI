@@ -1,0 +1,1325 @@
+{
+  "audit_id": "PASSIVE-PERFORMANCE-AUDIT-20261110",
+  "date": "2026-11-10",
+  "requirements": [
+    "REQ-RPF-01",
+    "REQ-RPF-02",
+    "REQ-RPF-03",
+    "REQ-RPF-04",
+    "REQ-RPF-05"
+  ],
+  "scope": "Read-only audit of unchanged production Lua with synthetic counted API/widget stubs; no native CPU/FPS/taint/pixel/memory claim",
+  "head": "26f886e3ea5371b196ab235d2dace0c156002285",
+  "branch": "main",
+  "external_artifacts": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\passive-performance-audit",
+  "source_guard": {
+    "all_lua_files": 953,
+    "changed_lua_files": [],
+    "added_lua_files": [],
+    "removed_lua_files": [],
+    "all_lua_sha256_manifest": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\passive-performance-audit\\source-before.json",
+    "corpus_sha256": "3e2cfb24235274c44d52b5afa4844bb548efde3f5a820dee69aa6cf103b80f1e"
+  },
+  "native_sources": [
+    {
+      "target": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "version.txt",
+      "sha": "61a71eb0d9c435ad6f9f9701ab4d9c072cd3237e",
+      "display_url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/version.txt",
+      "sha256": "4e532c8d3beb3231ae8195704b6de0a099a19742e02505f73f292f47fe9e080b"
+    },
+    {
+      "target": "forever",
+      "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "path": "version.txt",
+      "sha": "e02268eacf9b586ec969cf13403a15b8dd136ae8",
+      "display_url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/version.txt",
+      "sha256": "40632cd2240c025fafc7bb8343593d2f8bde74c1196bc678cbdaeb807c9eb6c2"
+    },
+    {
+      "target": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "version.txt",
+      "sha": "6888c66e55b78c6b76bdda185480facc60d9b5e5",
+      "display_url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/version.txt",
+      "sha256": "bcb030fe2d2febd396332d886d804ef9b397335e88f0196edc5d8dbe54c1ba38"
+    },
+    {
+      "target": "forever",
+      "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "path": "Interface/AddOns/Blizzard_SharedXMLBase/GlobalCallbackRegistry.lua",
+      "sha": "4bf8ea88bd71c2ddc04aacf8f5b230aee14128f6",
+      "display_url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_SharedXMLBase/GlobalCallbackRegistry.lua",
+      "sha256": "4614d57e7f651101302b8371ecdbdcde3d7a4fee33736bef0ec746dbe15be3f0"
+    },
+    {
+      "target": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_SharedXMLBase/GlobalCallbackRegistry.lua",
+      "sha": "4bf8ea88bd71c2ddc04aacf8f5b230aee14128f6",
+      "display_url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_SharedXMLBase/GlobalCallbackRegistry.lua",
+      "sha256": "4614d57e7f651101302b8371ecdbdcde3d7a4fee33736bef0ec746dbe15be3f0"
+    },
+    {
+      "target": "forever",
+      "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "path": "Interface/AddOns/Blizzard_MapCanvas/Blizzard_MapCanvas.lua",
+      "sha": "7fbef4053928ce826ab0951950dac8ce1f7e7873",
+      "display_url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_MapCanvas/Blizzard_MapCanvas.lua",
+      "sha256": "1360239aa43996f74b1793e800bc384a1baa8eb2b307ea61a8873ea5ec461143"
+    },
+    {
+      "target": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/NamePlateDocumentation.lua",
+      "sha": "745926c485b8c54805f784ebbc1adef6046cddb3",
+      "display_url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_APIDocumentationGenerated/NamePlateDocumentation.lua",
+      "sha256": "1af6fb8f2428211ce696b2af18d09503116a12920d28ca76231bedb72a88292c"
+    },
+    {
+      "target": "forever",
+      "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "path": "Interface/AddOns/Blizzard_MapCanvas/Blizzard_MapCanvas.toc",
+      "sha": "9ae04c3789cbe98b6944f95bfe83e7ad92358ec0",
+      "display_url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_MapCanvas/Blizzard_MapCanvas.toc",
+      "sha256": "480cadc152ac31a0ef8b9dd78e477247578ffe5e88bb2fa079a2968c199b8af7"
+    },
+    {
+      "target": "forever",
+      "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "path": "Interface/AddOns/Blizzard_WorldMap/Blizzard_WorldMap.lua",
+      "sha": "6b17b93085e6793627885c296a5f79a3a01d2289",
+      "display_url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_WorldMap/Blizzard_WorldMap.lua",
+      "sha256": "59e33942e2cc5e2d775636e050e28ff61d2e0a35ac7daca154874b0b55c65389"
+    },
+    {
+      "target": "forever",
+      "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "path": "Interface/AddOns/Blizzard_AuraContainer/Blizzard_AuraContainer.lua",
+      "sha": "10cb45503c3f38435dcff7c3c6f24510a21fe69c",
+      "display_url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_AuraContainer/Blizzard_AuraContainer.lua",
+      "sha256": "d5bbfef83112027f9a6f55aa2382d3c48f17e79cc45acd4e8214ab4bd9fbd681"
+    },
+    {
+      "target": "forever",
+      "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "path": "Interface/AddOns/Blizzard_AuraContainer/Blizzard_AuraContainerInbound.lua",
+      "sha": "eae93b11c72f81b334adb7c3d575f0417401b42c",
+      "display_url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_AuraContainer/Blizzard_AuraContainerInbound.lua",
+      "sha256": "82198f2d69e86f692b163f2224c40ddc475ec4a84a3fd929077446f9935b60f4"
+    },
+    {
+      "target": "forever",
+      "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "path": "Interface/AddOns/Blizzard_AuraContainer/Blizzard_AuraContainer.toc",
+      "sha": "c8c3a7853aca3391d52ddd7bac6b628a5cbbc3cf",
+      "display_url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_AuraContainer/Blizzard_AuraContainer.toc",
+      "sha256": "f85f071058aa5d96e9190e8dc036592779d0dd07470ca7ae13cf7822a27accdb"
+    },
+    {
+      "target": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_AuraContainer/Blizzard_AuraContainer.lua",
+      "sha": "10cb45503c3f38435dcff7c3c6f24510a21fe69c",
+      "display_url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_AuraContainer/Blizzard_AuraContainer.lua",
+      "sha256": "d5bbfef83112027f9a6f55aa2382d3c48f17e79cc45acd4e8214ab4bd9fbd681"
+    },
+    {
+      "target": "forever",
+      "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "path": "Interface/AddOns/Blizzard_MapCanvas/Blizzard_MapCanvas.xml",
+      "sha": "5c4976cd25ef300f386d92f6d11e31e7e9e505c3",
+      "display_url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_MapCanvas/Blizzard_MapCanvas.xml",
+      "sha256": "bba399f21798f0ed1e661ced31fb2c7a86cb72956ac1db15fd14b2d47bec6dd8"
+    },
+    {
+      "target": "forever",
+      "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "path": "Interface/AddOns/Blizzard_AuraContainer/Blizzard_CustomAuraContainer.lua",
+      "sha": "a8ce187d23916a466e6a2df9a84d4a8da6baa070",
+      "display_url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_AuraContainer/Blizzard_CustomAuraContainer.lua",
+      "sha256": "4a47de0e56ba97acbea4e6a65916e9974b98303b4e7ffe6c305a98d62bbba0f1"
+    },
+    {
+      "target": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_AuraContainer/Blizzard_CustomAuraContainer.xml",
+      "sha": "2e6fc065d232a138f9cb5da2fccb58d277dcc754",
+      "display_url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_AuraContainer/Blizzard_CustomAuraContainer.xml",
+      "sha256": "9e6d3119c2ee343e40efccdd930d01bfcfc5260026f2f33c345513f0c527cdc0"
+    },
+    {
+      "target": "forever",
+      "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "path": "Interface/AddOns/Blizzard_AuraContainer/Blizzard_ManagedAuraContainer.lua",
+      "sha": "6edc22e31848aa27cf0a4c0e8787e4c3fa0d1881",
+      "display_url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_AuraContainer/Blizzard_ManagedAuraContainer.lua",
+      "sha256": "a31f6e6c79a2166fabdcdb945bb44abf0cf8854dcc39221a9271e7c9eb907363"
+    },
+    {
+      "target": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_AuraContainer/Blizzard_ManagedAuraContainer.lua",
+      "sha": "6edc22e31848aa27cf0a4c0e8787e4c3fa0d1881",
+      "display_url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_AuraContainer/Blizzard_ManagedAuraContainer.lua",
+      "sha256": "a31f6e6c79a2166fabdcdb945bb44abf0cf8854dcc39221a9271e7c9eb907363"
+    },
+    {
+      "target": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_AuraContainer/Blizzard_CustomAuraContainer.lua",
+      "sha": "a8ce187d23916a466e6a2df9a84d4a8da6baa070",
+      "display_url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_AuraContainer/Blizzard_CustomAuraContainer.lua",
+      "sha256": "4a47de0e56ba97acbea4e6a65916e9974b98303b4e7ffe6c305a98d62bbba0f1"
+    },
+    {
+      "target": "classic_era",
+      "commit": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "path": "version.txt",
+      "sha": "66bc5d3c31ec0d4ac300d1ba18ffd9490ac424d9",
+      "display_url": "https://github.com/Gethe/wow-ui-source/blob/4192ac60067fc55566182291bc67c85dd9b6794d/version.txt",
+      "sha256": "5224861aa41c7bcfd9d48bdd8003eb769a8954c72e3e9682035aeff5bc236f29"
+    },
+    {
+      "target": "classic_anniversary",
+      "commit": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "path": "version.txt",
+      "sha": "f81737db88bfda2cd085cc09b18ca8ce764efc42",
+      "display_url": "https://github.com/Gethe/wow-ui-source/blob/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/version.txt",
+      "sha256": "53498c451665c69194d1a41b9983916109b370b6a261bb833322ae871838bdb3"
+    }
+  ],
+  "source_sha256": {
+    "Bars/ProgramFace.lua": "40d7bc0133f68f38cace6a464503ca2d98185f1df96b4be3b279cfa4528cf4a1",
+    "Bars/SpellRank.lua": "01c566f23be68779d8d7ff9eb5630951349c5eb9320ec5f9f1287e6a3ce2927f",
+    "Bars/Stance/Extras.lua": "26bdef971675ece8388be025c324c3a337ca108bc61ea97da142df96d725e81f",
+    "Battlezonemap/FluxBattlefieldMap.lua": "d27d9188e328f21492e179a23cfc6b5cc307c3f8b5ee687688945b01cecb8438",
+    "Battlezonemap/FluxThreat.lua": "520b3f721e48afba9ebd0cd32e90ee583d835983ed4057f57f4b85a2cdf54885",
+    "Battlezonemap/FluxThreatMeter.lua": "c69df568538d4101cac2fded1d7cd9b5fd83e0e28cef4eb1953ae2c1ff75d235",
+    "Binding/UI/SpellbookBindingHooks.lua": "d4c60b24af8349b5973d980113a53d509c17110aba31a6af9b0f85ddac6368a4",
+    "Core/API/Threat.lua": "b2b9bec1eaa111a88467d6e9ab889847adacfdadf6ebeaa5330fc3db68e52c82",
+    "Core/ButtonFX/Overlay.lua": "50dc114bcd3fbd0a2ff51eef289ea9d599df331f55caf453a0c57f49a2f5eeab",
+    "Core/Engine/MouseoverCast.lua": "47632336a61f354b9c878b01a19d3b2c2375d4b925abacc9d07db38646e93586",
+    "Core/Engine/Restricted.lua": "73413b82c0dd4c26770d82e3f0524200971a5a04288e6c67bc47b66f20c7f806",
+    "Core/Engine/SpellBookChrome.lua": "71027cca57997d61a43a628c6d105afd2a424f1bb92ec0eff44ec8bb36524983",
+    "ExtraButtonSystem/TrinketMenu/FluxTrinketMenu.lua": "3ab177e4885568df30d2a1a813e4412194e73af4344ba42be29468e53e21d355",
+    "Inventory/Builtin/Mail.lua": "e01251d91221f5d2d5d70bf3a069fb6632c1dc94991ad93c87782532526156ff",
+    "Inventory/Init.lua": "3271e22d40fc52bb9640d344ba8de4acba239bdd3099ddd76a5f6412d2041e8d",
+    "Inventory/Summaries.lua": "921fdc06521a2d36dec9c1af7ace454a9423e0869c0b58a35a825d8b5d3e676c",
+    "Inventory/Syndicator/Adapter.lua": "f824f7fa2f1ab670f6024911851a25974a93ebc228bf78efa75ad7ad0b7433d3",
+    "MicroMenu/FluxLFGMicroButton.lua": "65c682daeeb2f499d99bef9e45a633ca3ff636dbadf7e8b3083eda4fca0c960f",
+    "Minimap/FluxQuestie.lua": "534793c994a163af6a3702690cf2512fbc706cd5da98b8c80f113155cb626569",
+    "NamePlates/Core.lua": "5f96a7c7856269606f03d5bfe7a4ba95ac9186400871d7b6d59f45a131f708b9",
+    "NamePlates/Countdown.lua": "e43f0bfb60bb6a66b801cd5d8d6dbe65ce8ff6b452247c39012e3c5ffb073271",
+    "NamePlates/Level.lua": "e0d5656f064adae94e5cf1dc1adfde7ec13113fad87a2df475902ba27a1e0a21",
+    "NamePlates/Threat.lua": "25079301ce51f37fc43b7529a2ea3d7f61060fe0df959a0544fecf54bf50b947",
+    "Other/FluxChatColumnMicros.lua": "daa47b18396b6a293e610f0e9a78bd38c57ef77b48fc644f5b58a767f875a2f0",
+    "Other/FluxLoot.lua": "6955923f07024af645678f63b77c2a53281c88654a7ef4e350eefb889c13c687",
+    "RaidFrame/FluxRaidAuras.lua": "cb0548383836ae05c01b4231a6b4911a50b6f0cb9decc8e872339c31851805e9",
+    "UnitFrames/FluxUnitFrames_Auras.lua": "d03b919981a07726e32d2577d8fd172d9ab6d4dafe16fbd6f816eaf613278d6a",
+    "UnitFrames/FluxUnitFrames_AurasEngine.lua": "0ca0562f7260a265e62f5ade0250eb6cceb382f488ac1c637f0f3b31c58df6c4",
+    "_FluxUI.toc": "879492280af590edefa2b7786239e864b2d14991a20efe2f786cbc4cab6cef84"
+  },
+  "findings": [
+    {
+      "id": "RPF-01",
+      "report_row": "| RPF-01 | [NamePlates/Core.lua](../NamePlates/Core.lua), line 1171; Forever, active plates, options closed | Every rendered frame walks all plates and calls `ApplyForeverPlate`. Settled state still reads level-region alpha and verifies health/aura anchors. The 0.25s throttle controls text placement only. | Cache stable plate/layout inputs and invalidate on native layout changes. Retain immediate correction when combat badges shorten the bar; do not simply slow the entire driver. |",
+      "sources": [
+        "NamePlates/Core.lua"
+      ]
+    },
+    {
+      "id": "RPF-02",
+      "report_row": "| RPF-02 | [NamePlates/Core.lua](../NamePlates/Core.lua), line 1220; Retail, active plates, options closed | Every frame resolves every plate and checks up to two native level regions. The already-hidden regions avoid Hide writes, but the lookups/checks remain. | Apply suppression at plate creation/show/rebind with a verified recovery path for native resets. Avoid adding insecure native hooks without testing. |",
+      "sources": [
+        "NamePlates/Core.lua"
+      ]
+    },
+    {
+      "id": "RPF-03",
+      "report_row": "| RPF-03 | [NamePlates/Threat.lua](../NamePlates/Threat.lua), line 248; [Core/API/Threat.lua](../Core/API/Threat.lua), line 882 | Each eligible NPC at the existing 0.25s cadence builds group+pets again, linearly deduplicates identities, allocates detailed/row tables and sorts the complete list. Rank is computed before numeric-display gating. | Cache roster identity across mobs, reuse scratch storage, determine player placement without sorting every row, and skip rank when neither enabled text nor tint requires it. Preserve threat semantics and secret-safe output. |",
+      "sources": [
+        "NamePlates/Threat.lua",
+        "Core/API/Threat.lua"
+      ]
+    },
+    {
+      "id": "RPF-04",
+      "report_row": "| RPF-04 | [NamePlates/Countdown.lua](../NamePlates/Countdown.lua), lines 182 and 257; active aura labels, 0.1s cadence | Even unchanged labels receive SetText, ClearAllPoints, SetPoint, SetFrameLevel, Show and native digit suppression. List traversal also allocates a child-results table. | Cache readable label, anchor target and level; apply only changes. Retain countdown freshness, native digit recovery and reparent/recycle handling. Pool/list overlap is a separate unverified topology risk, not an assumed live doubling. |",
+      "sources": [
+        "NamePlates/Countdown.lua"
+      ]
+    },
+    {
+      "id": "RPF-05",
+      "report_row": "| RPF-05 | [NamePlates/Level.lua](../NamePlates/Level.lua), lines 128–203 and 226; supported non-Retail clients, 0.25s cadence | Settled level badges repeat unit metadata reads, font/style updates, text measurement, fit/show and anchor work. | Cache level/classification/color/geometry and invalidate at binding, level, layout and appearance changes. Keep the existing 4Hz fallback until native lifecycle coverage is proven. |",
+      "sources": [
+        "NamePlates/Level.lua"
+      ]
+    },
+    {
+      "id": "RPF-06",
+      "report_row": "| RPF-06 | [NamePlates/Level.lua](../NamePlates/Level.lua), line 212; [NamePlates/Threat.lua](../NamePlates/Threat.lua), line 286 | Removal releases/hides the host then drops its state reference. A later binding allocates another host rather than acquiring a released one. Churn accumulates widget allocations even though warm steady state creates none. | Pool the addon-owned overlay hosts or retain them per recyclable plate. Completely reset unit association, pending clears, anchors and visibility. Actual native retained memory was not measured. |",
+      "sources": [
+        "NamePlates/Level.lua",
+        "NamePlates/Threat.lua"
+      ]
+    },
+    {
+      "id": "RPF-07",
+      "report_row": "| RPF-07 | [UnitFrames/FluxUnitFrames_Auras.lua](../UnitFrames/FluxUnitFrames_Auras.lua), line 2265; [AurasEngine.lua](../UnitFrames/FluxUnitFrames_AurasEngine.lua), line 398; Retail/Forever engine aura path | Each matching UNIT_AURA explicitly calls UpdateAllAuras on both existing buff/debuff engines. Native containers already register unit events and process incremental updates. Explicit UpdateAllAuras marks FullAuraRebuild, including for an empty incremental payload. | Let native unit-event delivery own incremental updates; retain explicit refreshes for actual rebinding and recovery. Native dirty phases coalesce requests: this is not evidence of two synchronous full scans per event. Same-token SetUnit already has a native equality guard. |",
+      "sources": [
+        "UnitFrames/FluxUnitFrames_Auras.lua",
+        "UnitFrames/FluxUnitFrames_AurasEngine.lua"
+      ]
+    },
+    {
+      "id": "RPF-24",
+      "report_row": "| RPF-24 | [RaidFrame/FluxRaidAuras.lua](../RaidFrame/FluxRaidAuras.lua), lines 683–713; readable fallback only when native aura ownership is unavailable | Three initial aura scans run even with both buff/debuff displays disabled. Class-buff and dispel handling can rescan HELPFUL and HARMFUL\\|RAID. The five-pass case makes 2×helpful + harmful + 2×raid-harmful + five terminating queries. | Reuse scanned lists and honor display gates while preserving filters/sort/order. Native _fluxAuraNative returns before this work; do not generalize to all Classic or every raid frame. Existing per-frame event coalescing remains. Lower-priority fallback finding; no raid implementation change. |",
+      "sources": [
+        "RaidFrame/FluxRaidAuras.lua"
+      ]
+    },
+    {
+      "id": "RPF-08",
+      "report_row": "| RPF-08 | [Core/Engine/SpellBookChrome.lua](../Core/Engine/SpellBookChrome.lua), line 21; modern Retail/Forever observers | One permanently attached OnUpdate checks a 0.1s accumulator; even a closed book resolves its host, checks visibility, traverses observers and invokes onPoll. No unregister lifecycle exists. | A managed timer can preserve the 0.1s observation policy while eliminating frame-frequency deadline checks. Sleeping completely also needs reliable wake sources; preserve the independent observer/no-native-hook policy. |",
+      "sources": [
+        "Core/Engine/SpellBookChrome.lua"
+      ]
+    },
+    {
+      "id": "RPF-09",
+      "report_row": "| RPF-09 | [Bars/ProgramFace.lua](../Bars/ProgramFace.lua), line 1298; any configured hover program | Watcher stays shown while HasHover is true even with no current hover context. Every-frame dispatch delivers a 0.05s context check. | Wake through existing hover paths and sleep without a relevant context; retain active 50ms fallback and existing coalescing. Verify entering/leaving all native/Flux hover surfaces. |",
+      "sources": [
+        "Bars/ProgramFace.lua"
+      ]
+    },
+    {
+      "id": "RPF-10",
+      "report_row": "| RPF-10 | [FluxTrinketMenu.lua](../ExtraButtonSystem/TrinketMenu/FluxTrinketMenu.lua), lines 787 and 836; trinket grid visible | Watcher runs even with two empty binding lists and no active presses; visits binding lists, wipes scratch state and walks presses each frame. | Demand-gate the empty state and wake through binding/mouse changes. Preserve secure release-only clicks and held-key release detection. |",
+      "sources": [
+        "ExtraButtonSystem/TrinketMenu/FluxTrinketMenu.lua"
+      ]
+    },
+    {
+      "id": "RPF-11",
+      "report_row": "| RPF-11 | [Battlezonemap/FluxThreat.lua](../Battlezonemap/FluxThreat.lua), line 850; optional Details threat plugin active | Per-frame plugin/target/combat reads happen before event-led/deadline exits, including OOC. Event-led mode defaults on. | Sleep when no fallback/deferred/targettarget/combat work exists; wake through the existing threat/target/combat events. Preserve immediate updates and fallback targeting. |",
+      "sources": [
+        "Battlezonemap/FluxThreat.lua"
+      ]
+    },
+    {
+      "id": "RPF-12",
+      "report_row": "| RPF-12 | [Core/Engine/Restricted.lua](../Core/Engine/Restricted.lua), lines 292–302; compatibility fallback active and OOC | Event callback sets its timer to zero and runs ApplyAll; next OnUpdate necessarily runs ApplyAll again. The regular 0.2s sweep also uses a frame-frequency deadline check. | Remove the redundant scheduling condition only after event-order tests. Timer dispatch can retain cadence; native secure drivers and lockdown rules must remain intact. Existing per-string parser deduplication is already fixed. |",
+      "sources": [
+        "Core/Engine/Restricted.lua"
+      ]
+    },
+    {
+      "id": "RPF-13",
+      "report_row": "| RPF-13 | [Bars/Stance/Extras.lua](../Bars/Stance/Extras.lua), lines 933 and 1077; readable active aura timer | Each frame repeats native countdown suppression, font-string discovery and alpha/text-color writes. The displayed integer text itself is already cached. | Cache owned suppression state, reconcile after native resets, retain frame-responsive expiry and current swipe animation. |",
+      "sources": [
+        "Bars/Stance/Extras.lua"
+      ]
+    },
+    {
+      "id": "RPF-14",
+      "report_row": "| RPF-14 | [Core/ButtonFX/Overlay.lua](../Core/ButtonFX/Overlay.lua), lines 140, 383 and 552; active cast/channel widgets | Per-widget cast-time queries plus unchanged parent/level setters; channel underlay repeats anchors, color, alpha and draw layer during progress animation. | Share supported per-unit/per-frame timing reads and cache static style/geometry with invalidation. Keep animation frame-synchronous; native timing/secret behavior needs testing. |",
+      "sources": [
+        "Core/ButtonFX/Overlay.lua"
+      ]
+    },
+    {
+      "id": "RPF-21",
+      "report_row": "| RPF-21 | [Battlezonemap/FluxThreatMeter.lua](../Battlezonemap/FluxThreatMeter.lua), lines 89 and 206; Forever, Details absent, visible Meter tab, combat | Existing 0.2s collection rebuilds sample tables and repaints identity/style for unchanged rows. A 40-member group can require up to 80 player/pet existence checks per collection. | Reuse sample rows and cache readable identity/style. Keep fresh values and secret-safe native sinks; do not reduce cadence. |",
+      "sources": [
+        "Battlezonemap/FluxThreatMeter.lua"
+      ]
+    },
+    {
+      "id": "RPF-22",
+      "report_row": "| RPF-22 | [Other/FluxLoot.lua](../Other/FluxLoot.lua), line 86; up to three active alerts | Writes alpha=1 every frame throughout the stable display, before the final 0.5s fade. Default duration is 3s. | Skip unchanged owned-alpha writes while preserving the same per-frame fade and expiry. Small bounded saving. |",
+      "sources": [
+        "Other/FluxLoot.lua"
+      ]
+    },
+    {
+      "id": "RPF-23",
+      "report_row": "| RPF-23 | [MicroMenu/FluxLFGMicroButton.lua](../MicroMenu/FluxLFGMicroButton.lua), line 350; queued/listing/applications | Per-frame accumulator dispatch for an approximately 10Hz texture animation; already stops when inactive. | Consider a timer/native animation preserving 0.1s texture cadence and hidden visibility. Small conditional saving. |",
+      "sources": [
+        "MicroMenu/FluxLFGMicroButton.lua"
+      ]
+    },
+    {
+      "id": "RPF-15",
+      "report_row": "| RPF-15 | [Inventory/Builtin/Mail.lua](../Inventory/Builtin/Mail.lua), lines 110 and 137–187; builtin mail scans | Probes every possible attachment position even after collecting the numeric expected count. Unchanged scans still allocate capture records. | Verify native count reliability per client, then consider early completion once the expected attachments have actually been found. Preserve sparse slots, boolean-header clients and incomplete-data retries. |",
+      "sources": [
+        "Inventory/Builtin/Mail.lua"
+      ]
+    },
+    {
+      "id": "RPF-16",
+      "report_row": "| RPF-16 | [Inventory/Syndicator/Adapter.lua](../Inventory/Syndicator/Adapter.lua), lines 343–422; mail/owned-auction provider snapshots | ListMatchesSnapshot walks the provider list and old keys; changed generations synchronously traverse the list again in FillFromList and rebuild index/count maps. Normalized row reuse does not remove these traversals. | Use stable provider identities/deltas where available or stage complete generations. Preserve sparse keys, metadata, immediate authoritative facts and atomic publication. Existing progressive-growth evidence remains relevant; no new native transaction timing was taken. |",
+      "sources": [
+        "Inventory/Syndicator/Adapter.lua"
+      ]
+    },
+    {
+      "id": "RPF-17",
+      "report_row": "| RPF-17 | [Inventory/Syndicator/Adapter.lua](../Inventory/Syndicator/Adapter.lua), lines 155–199 and 562–600; BagCacheUpdate bursts | Affected bag snapshots rebuild before downstream token coalescing. Even incremental refresh classifies the item-count key set and replaces dirty-bag rows per callback. | Merge compatible dirty sets before expensive work or update per-item deltas. Do not defer facts that protect transfer/vendor/crafting correctness. |",
+      "sources": [
+        "Inventory/Syndicator/Adapter.lua"
+      ]
+    },
+    {
+      "id": "RPF-18",
+      "report_row": "| RPF-18 | [Inventory/Init.lua](../Inventory/Init.lua), lines 690 and 754; deferred heavy jobs awaiting quiet deadlines | Frame callback repeatedly visits waiting jobs/reads clocks during 0.05/0.12/0.18s settle periods, bounded by 0.6s maximum wait. The 2-callback/1.5ms limit cannot preempt one long callback. | Wake at the nearest deadline and retain the existing bounded drain. Split genuinely long listeners into cooperative slices; preserve final publication. |",
+      "sources": [
+        "Inventory/Init.lua"
+      ]
+    },
+    {
+      "id": "RPF-19",
+      "report_row": "| RPF-19 | [Inventory/Summaries.lua](../Inventory/Summaries.lua), lines 56, 156 and 212; first inventory tooltip after changes | Tooltip read synchronously flushes all pending character summaries; each rebuild visits retained locations beyond the hovered item. Cross-character stored data increases the burst. | Prepare summaries incrementally or maintain per-item totals. Preserve complete character/location awareness. This is a summary consumer finding; excluded guild/void callbacks were not audited. |",
+      "sources": [
+        "Inventory/Summaries.lua"
+      ]
+    },
+    {
+      "id": "RPF-20",
+      "report_row": "| RPF-20 | [Minimap/FluxQuestie.lua](../Minimap/FluxQuestie.lua), lines 81, 207 and 371; optional Questie tracker Update, OOC | Every update triggers layout/style over the pool high-water mark, repeated anchors/width/wrapping and string-height measurement, then another scroll-range walk. | Cache content/width/mode per recycled line, invalidate on assignment and actual layout changes; preserve immediate wrapping and scroll bounds. |",
+      "sources": [
+        "Minimap/FluxQuestie.lua"
+      ]
+    }
+  ],
+  "simulations": {
+    "nameplate": {
+      "lua": "Lua 5.4",
+      "scenarios": [
+        {
+          "branch": "retail",
+          "calls": {
+            "ClearAllPoints": 2281,
+            "GetChildren": 1542,
+            "GetCountdownFontString": 2056,
+            "GetFrameLevel": 6393,
+            "GetNamePlateForUnit": 4339,
+            "GetStringWidth": 225,
+            "GetText": 2056,
+            "IsShown": 13368,
+            "SetFrameLevel": 2281,
+            "SetPoint": 2281,
+            "SetSize": 225,
+            "SetText": 2281,
+            "SetTextColor": 2281,
+            "SetVertexColor": 1350,
+            "Show": 2731,
+            "ThreatDisplay": 225
+          },
+          "fps": 60,
+          "mode": "steady",
+          "plates": 1,
+          "seconds": 60,
+          "stub_limitations": "plain values; native widget costs not timed; four unchanging aura labels per plate; quest overlay disabled; threat always visible",
+          "topology": "pool-only"
+        },
+        {
+          "branch": "retail",
+          "calls": {
+            "ClearAllPoints": 2544,
+            "GetChildren": 1728,
+            "GetCountdownFontString": 2304,
+            "GetFrameLevel": 7152,
+            "GetNamePlateForUnit": 9456,
+            "GetStringWidth": 240,
+            "GetText": 2304,
+            "IsShown": 24192,
+            "SetFrameLevel": 2544,
+            "SetPoint": 2544,
+            "SetSize": 240,
+            "SetText": 2544,
+            "SetTextColor": 2544,
+            "SetVertexColor": 1440,
+            "Show": 3024,
+            "ThreatDisplay": 240
+          },
+          "fps": 144,
+          "mode": "steady",
+          "plates": 1,
+          "seconds": 60,
+          "stub_limitations": "plain values; native widget costs not timed; four unchanging aura labels per plate; quest overlay disabled; threat always visible",
+          "topology": "pool-only"
+        },
+        {
+          "branch": "retail",
+          "calls": {
+            "ClearAllPoints": 2544,
+            "GetChildren": 1728,
+            "GetCountdownFontString": 2304,
+            "GetFrameLevel": 7152,
+            "GetNamePlateForUnit": 15216,
+            "GetStringWidth": 240,
+            "GetText": 2304,
+            "IsShown": 35712,
+            "SetFrameLevel": 2544,
+            "SetPoint": 2544,
+            "SetSize": 240,
+            "SetText": 2544,
+            "SetTextColor": 2544,
+            "SetVertexColor": 1440,
+            "Show": 3024,
+            "ThreatDisplay": 240
+          },
+          "fps": 240,
+          "mode": "steady",
+          "plates": 1,
+          "seconds": 60,
+          "stub_limitations": "plain values; native widget costs not timed; four unchanging aura labels per plate; quest overlay disabled; threat always visible",
+          "topology": "pool-only"
+        },
+        {
+          "branch": "retail",
+          "calls": {
+            "ClearAllPoints": 45620,
+            "GetChildren": 30840,
+            "GetCountdownFontString": 41120,
+            "GetFrameLevel": 127860,
+            "GetNamePlateForUnit": 86780,
+            "GetStringWidth": 4500,
+            "GetText": 41120,
+            "IsShown": 267360,
+            "SetFrameLevel": 45620,
+            "SetPoint": 45620,
+            "SetSize": 4500,
+            "SetText": 45620,
+            "SetTextColor": 45620,
+            "SetVertexColor": 27000,
+            "Show": 54620,
+            "ThreatDisplay": 4500
+          },
+          "fps": 60,
+          "mode": "steady",
+          "plates": 20,
+          "seconds": 60,
+          "stub_limitations": "plain values; native widget costs not timed; four unchanging aura labels per plate; quest overlay disabled; threat always visible",
+          "topology": "pool-only"
+        },
+        {
+          "branch": "retail",
+          "calls": {
+            "ClearAllPoints": 50880,
+            "GetChildren": 34560,
+            "GetCountdownFontString": 46080,
+            "GetFrameLevel": 143040,
+            "GetNamePlateForUnit": 189120,
+            "GetStringWidth": 4800,
+            "GetText": 46080,
+            "IsShown": 483840,
+            "SetFrameLevel": 50880,
+            "SetPoint": 50880,
+            "SetSize": 4800,
+            "SetText": 50880,
+            "SetTextColor": 50880,
+            "SetVertexColor": 28800,
+            "Show": 60480,
+            "ThreatDisplay": 4800
+          },
+          "fps": 144,
+          "mode": "steady",
+          "plates": 20,
+          "seconds": 60,
+          "stub_limitations": "plain values; native widget costs not timed; four unchanging aura labels per plate; quest overlay disabled; threat always visible",
+          "topology": "pool-only"
+        },
+        {
+          "branch": "retail",
+          "calls": {
+            "ClearAllPoints": 50880,
+            "GetChildren": 34560,
+            "GetCountdownFontString": 46080,
+            "GetFrameLevel": 143040,
+            "GetNamePlateForUnit": 304320,
+            "GetStringWidth": 4800,
+            "GetText": 46080,
+            "IsShown": 714240,
+            "SetFrameLevel": 50880,
+            "SetPoint": 50880,
+            "SetSize": 4800,
+            "SetText": 50880,
+            "SetTextColor": 50880,
+            "SetVertexColor": 28800,
+            "Show": 60480,
+            "ThreatDisplay": 4800
+          },
+          "fps": 240,
+          "mode": "steady",
+          "plates": 20,
+          "seconds": 60,
+          "stub_limitations": "plain values; native widget costs not timed; four unchanging aura labels per plate; quest overlay disabled; threat always visible",
+          "topology": "pool-only"
+        },
+        {
+          "branch": "retail",
+          "calls": {
+            "ClearAllPoints": 91240,
+            "GetChildren": 61680,
+            "GetCountdownFontString": 82240,
+            "GetFrameLevel": 255720,
+            "GetNamePlateForUnit": 173560,
+            "GetStringWidth": 9000,
+            "GetText": 82240,
+            "IsShown": 534720,
+            "SetFrameLevel": 91240,
+            "SetPoint": 91240,
+            "SetSize": 9000,
+            "SetText": 91240,
+            "SetTextColor": 91240,
+            "SetVertexColor": 54000,
+            "Show": 109240,
+            "ThreatDisplay": 9000
+          },
+          "fps": 60,
+          "mode": "steady",
+          "plates": 40,
+          "seconds": 60,
+          "stub_limitations": "plain values; native widget costs not timed; four unchanging aura labels per plate; quest overlay disabled; threat always visible",
+          "topology": "pool-only"
+        },
+        {
+          "branch": "retail",
+          "calls": {
+            "ClearAllPoints": 101760,
+            "GetChildren": 69120,
+            "GetCountdownFontString": 92160,
+            "GetFrameLevel": 286080,
+            "GetNamePlateForUnit": 378240,
+            "GetStringWidth": 9600,
+            "GetText": 92160,
+            "IsShown": 967680,
+            "SetFrameLevel": 101760,
+            "SetPoint": 101760,
+            "SetSize": 9600,
+            "SetText": 101760,
+            "SetTextColor": 101760,
+            "SetVertexColor": 57600,
+            "Show": 120960,
+            "ThreatDisplay": 9600
+          },
+          "fps": 144,
+          "mode": "steady",
+          "plates": 40,
+          "seconds": 60,
+          "stub_limitations": "plain values; native widget costs not timed; four unchanging aura labels per plate; quest overlay disabled; threat always visible",
+          "topology": "pool-only"
+        },
+        {
+          "branch": "retail",
+          "calls": {
+            "ClearAllPoints": 101760,
+            "GetChildren": 69120,
+            "GetCountdownFontString": 92160,
+            "GetFrameLevel": 286080,
+            "GetNamePlateForUnit": 608640,
+            "GetStringWidth": 9600,
+            "GetText": 92160,
+            "IsShown": 1428480,
+            "SetFrameLevel": 101760,
+            "SetPoint": 101760,
+            "SetSize": 9600,
+            "SetText": 101760,
+            "SetTextColor": 101760,
+            "SetVertexColor": 57600,
+            "Show": 120960,
+            "ThreatDisplay": 9600
+          },
+          "fps": 240,
+          "mode": "steady",
+          "plates": 40,
+          "seconds": 60,
+          "stub_limitations": "plain values; native widget costs not timed; four unchanging aura labels per plate; quest overlay disabled; threat always visible",
+          "topology": "pool-only"
+        },
+        {
+          "branch": "retail",
+          "calls": {
+            "ClearAllPoints": 96960,
+            "GetChildren": 34560,
+            "GetCountdownFontString": 92160,
+            "GetFrameLevel": 281280,
+            "GetNamePlateForUnit": 189120,
+            "GetStringWidth": 4800,
+            "GetText": 92160,
+            "IsShown": 529920,
+            "SetFrameLevel": 96960,
+            "SetPoint": 96960,
+            "SetSize": 4800,
+            "SetText": 96960,
+            "SetTextColor": 96960,
+            "SetVertexColor": 28800,
+            "Show": 106560,
+            "ThreatDisplay": 4800
+          },
+          "fps": 144,
+          "mode": "steady",
+          "plates": 20,
+          "seconds": 60,
+          "stub_limitations": "plain values; native widget costs not timed; four unchanging aura labels per plate; quest overlay disabled; threat always visible",
+          "topology": "pool+list"
+        },
+        {
+          "branch": "retail",
+          "calls": {
+            "ClearAllPoints": 7000,
+            "CreateFontString": 1004,
+            "CreateFrame": 1004,
+            "CreateTexture": 1000,
+            "GetChildren": 3000,
+            "GetCountdownFontString": 4000,
+            "GetFrameLevel": 13000,
+            "GetNamePlateForUnit": 2000,
+            "GetStringWidth": 1000,
+            "GetText": 4000,
+            "Hide": 6004,
+            "IsShown": 12000,
+            "SetFont": 1004,
+            "SetFrameLevel": 5000,
+            "SetParent": 2004,
+            "SetPoint": 8004,
+            "SetSize": 2004,
+            "SetText": 5000,
+            "SetTextColor": 5004,
+            "SetVertexColor": 11000,
+            "Show": 9000,
+            "ThreatDisplay": 1000
+          },
+          "fps": 60,
+          "frames_created": 1004,
+          "mode": "1000-add-remove-cycles",
+          "note": "Retained stub objects model native widgets; frame persistence is a native contract, not measured memory bytes.",
+          "objects_created": 3008,
+          "plates": 1,
+          "seconds": 60,
+          "stub_limitations": "plain values; native widget costs not timed; four unchanging aura labels per plate; quest overlay disabled; threat always visible",
+          "topology": "pool-only",
+          "visible_units": 0
+        },
+        {
+          "branch": "forever",
+          "calls": {
+            "ClearAllPoints": 2506,
+            "GetAlpha": 21600,
+            "GetChildren": 1542,
+            "GetCountdownFontString": 2056,
+            "GetFrameLevel": 6618,
+            "GetNamePlateForUnit": 4564,
+            "GetNumPoints": 7200,
+            "GetPoint": 7200,
+            "GetStringWidth": 450,
+            "GetText": 2056,
+            "Hide": 225,
+            "IsShown": 6168,
+            "SetAlpha": 225,
+            "SetFont": 225,
+            "SetFrameLevel": 2506,
+            "SetPoint": 2506,
+            "SetSize": 675,
+            "SetText": 2506,
+            "SetTextColor": 2506,
+            "SetVertexColor": 1575,
+            "Show": 3181,
+            "ThreatDisplay": 225,
+            "UnitLevel": 450
+          },
+          "fps": 60,
+          "mode": "steady",
+          "plates": 1,
+          "seconds": 60,
+          "stub_limitations": "plain values; native widget costs not timed; four unchanging aura labels per plate; quest overlay disabled; threat always visible",
+          "topology": "pool-only"
+        },
+        {
+          "branch": "forever",
+          "calls": {
+            "ClearAllPoints": 2784,
+            "GetAlpha": 51840,
+            "GetChildren": 1728,
+            "GetCountdownFontString": 2304,
+            "GetFrameLevel": 7392,
+            "GetNamePlateForUnit": 9696,
+            "GetNumPoints": 17280,
+            "GetPoint": 17280,
+            "GetStringWidth": 480,
+            "GetText": 2304,
+            "Hide": 240,
+            "IsShown": 6912,
+            "SetAlpha": 240,
+            "SetFont": 240,
+            "SetFrameLevel": 2784,
+            "SetPoint": 2784,
+            "SetSize": 720,
+            "SetText": 2784,
+            "SetTextColor": 2784,
+            "SetVertexColor": 1680,
+            "Show": 3504,
+            "ThreatDisplay": 240,
+            "UnitLevel": 480
+          },
+          "fps": 144,
+          "mode": "steady",
+          "plates": 1,
+          "seconds": 60,
+          "stub_limitations": "plain values; native widget costs not timed; four unchanging aura labels per plate; quest overlay disabled; threat always visible",
+          "topology": "pool-only"
+        },
+        {
+          "branch": "forever",
+          "calls": {
+            "ClearAllPoints": 2784,
+            "GetAlpha": 86400,
+            "GetChildren": 1728,
+            "GetCountdownFontString": 2304,
+            "GetFrameLevel": 7392,
+            "GetNamePlateForUnit": 15456,
+            "GetNumPoints": 28800,
+            "GetPoint": 28800,
+            "GetStringWidth": 480,
+            "GetText": 2304,
+            "Hide": 240,
+            "IsShown": 6912,
+            "SetAlpha": 240,
+            "SetFont": 240,
+            "SetFrameLevel": 2784,
+            "SetPoint": 2784,
+            "SetSize": 720,
+            "SetText": 2784,
+            "SetTextColor": 2784,
+            "SetVertexColor": 1680,
+            "Show": 3504,
+            "ThreatDisplay": 240,
+            "UnitLevel": 480
+          },
+          "fps": 240,
+          "mode": "steady",
+          "plates": 1,
+          "seconds": 60,
+          "stub_limitations": "plain values; native widget costs not timed; four unchanging aura labels per plate; quest overlay disabled; threat always visible",
+          "topology": "pool-only"
+        },
+        {
+          "branch": "forever",
+          "calls": {
+            "ClearAllPoints": 50120,
+            "GetAlpha": 432000,
+            "GetChildren": 30840,
+            "GetCountdownFontString": 41120,
+            "GetFrameLevel": 132360,
+            "GetNamePlateForUnit": 91280,
+            "GetNumPoints": 144000,
+            "GetPoint": 144000,
+            "GetStringWidth": 9000,
+            "GetText": 41120,
+            "Hide": 4500,
+            "IsShown": 123360,
+            "SetAlpha": 4500,
+            "SetFont": 4500,
+            "SetFrameLevel": 50120,
+            "SetPoint": 50120,
+            "SetSize": 13500,
+            "SetText": 50120,
+            "SetTextColor": 50120,
+            "SetVertexColor": 31500,
+            "Show": 63620,
+            "ThreatDisplay": 4500,
+            "UnitLevel": 9000
+          },
+          "fps": 60,
+          "mode": "steady",
+          "plates": 20,
+          "seconds": 60,
+          "stub_limitations": "plain values; native widget costs not timed; four unchanging aura labels per plate; quest overlay disabled; threat always visible",
+          "topology": "pool-only"
+        },
+        {
+          "branch": "forever",
+          "calls": {
+            "ClearAllPoints": 55680,
+            "GetAlpha": 1036800,
+            "GetChildren": 34560,
+            "GetCountdownFontString": 46080,
+            "GetFrameLevel": 147840,
+            "GetNamePlateForUnit": 193920,
+            "GetNumPoints": 345600,
+            "GetPoint": 345600,
+            "GetStringWidth": 9600,
+            "GetText": 46080,
+            "Hide": 4800,
+            "IsShown": 138240,
+            "SetAlpha": 4800,
+            "SetFont": 4800,
+            "SetFrameLevel": 55680,
+            "SetPoint": 55680,
+            "SetSize": 14400,
+            "SetText": 55680,
+            "SetTextColor": 55680,
+            "SetVertexColor": 33600,
+            "Show": 70080,
+            "ThreatDisplay": 4800,
+            "UnitLevel": 9600
+          },
+          "fps": 144,
+          "mode": "steady",
+          "plates": 20,
+          "seconds": 60,
+          "stub_limitations": "plain values; native widget costs not timed; four unchanging aura labels per plate; quest overlay disabled; threat always visible",
+          "topology": "pool-only"
+        },
+        {
+          "branch": "forever",
+          "calls": {
+            "ClearAllPoints": 55680,
+            "GetAlpha": 1728000,
+            "GetChildren": 34560,
+            "GetCountdownFontString": 46080,
+            "GetFrameLevel": 147840,
+            "GetNamePlateForUnit": 309120,
+            "GetNumPoints": 576000,
+            "GetPoint": 576000,
+            "GetStringWidth": 9600,
+            "GetText": 46080,
+            "Hide": 4800,
+            "IsShown": 138240,
+            "SetAlpha": 4800,
+            "SetFont": 4800,
+            "SetFrameLevel": 55680,
+            "SetPoint": 55680,
+            "SetSize": 14400,
+            "SetText": 55680,
+            "SetTextColor": 55680,
+            "SetVertexColor": 33600,
+            "Show": 70080,
+            "ThreatDisplay": 4800,
+            "UnitLevel": 9600
+          },
+          "fps": 240,
+          "mode": "steady",
+          "plates": 20,
+          "seconds": 60,
+          "stub_limitations": "plain values; native widget costs not timed; four unchanging aura labels per plate; quest overlay disabled; threat always visible",
+          "topology": "pool-only"
+        },
+        {
+          "branch": "forever",
+          "calls": {
+            "ClearAllPoints": 100240,
+            "GetAlpha": 864000,
+            "GetChildren": 61680,
+            "GetCountdownFontString": 82240,
+            "GetFrameLevel": 264720,
+            "GetNamePlateForUnit": 182560,
+            "GetNumPoints": 288000,
+            "GetPoint": 288000,
+            "GetStringWidth": 18000,
+            "GetText": 82240,
+            "Hide": 9000,
+            "IsShown": 246720,
+            "SetAlpha": 9000,
+            "SetFont": 9000,
+            "SetFrameLevel": 100240,
+            "SetPoint": 100240,
+            "SetSize": 27000,
+            "SetText": 100240,
+            "SetTextColor": 100240,
+            "SetVertexColor": 63000,
+            "Show": 127240,
+            "ThreatDisplay": 9000,
+            "UnitLevel": 18000
+          },
+          "fps": 60,
+          "mode": "steady",
+          "plates": 40,
+          "seconds": 60,
+          "stub_limitations": "plain values; native widget costs not timed; four unchanging aura labels per plate; quest overlay disabled; threat always visible",
+          "topology": "pool-only"
+        },
+        {
+          "branch": "forever",
+          "calls": {
+            "ClearAllPoints": 111360,
+            "GetAlpha": 2073600,
+            "GetChildren": 69120,
+            "GetCountdownFontString": 92160,
+            "GetFrameLevel": 295680,
+            "GetNamePlateForUnit": 387840,
+            "GetNumPoints": 691200,
+            "GetPoint": 691200,
+            "GetStringWidth": 19200,
+            "GetText": 92160,
+            "Hide": 9600,
+            "IsShown": 276480,
+            "SetAlpha": 9600,
+            "SetFont": 9600,
+            "SetFrameLevel": 111360,
+            "SetPoint": 111360,
+            "SetSize": 28800,
+            "SetText": 111360,
+            "SetTextColor": 111360,
+            "SetVertexColor": 67200,
+            "Show": 140160,
+            "ThreatDisplay": 9600,
+            "UnitLevel": 19200
+          },
+          "fps": 144,
+          "mode": "steady",
+          "plates": 40,
+          "seconds": 60,
+          "stub_limitations": "plain values; native widget costs not timed; four unchanging aura labels per plate; quest overlay disabled; threat always visible",
+          "topology": "pool-only"
+        },
+        {
+          "branch": "forever",
+          "calls": {
+            "ClearAllPoints": 111360,
+            "GetAlpha": 3456000,
+            "GetChildren": 69120,
+            "GetCountdownFontString": 92160,
+            "GetFrameLevel": 295680,
+            "GetNamePlateForUnit": 618240,
+            "GetNumPoints": 1152000,
+            "GetPoint": 1152000,
+            "GetStringWidth": 19200,
+            "GetText": 92160,
+            "Hide": 9600,
+            "IsShown": 276480,
+            "SetAlpha": 9600,
+            "SetFont": 9600,
+            "SetFrameLevel": 111360,
+            "SetPoint": 111360,
+            "SetSize": 28800,
+            "SetText": 111360,
+            "SetTextColor": 111360,
+            "SetVertexColor": 67200,
+            "Show": 140160,
+            "ThreatDisplay": 9600,
+            "UnitLevel": 19200
+          },
+          "fps": 240,
+          "mode": "steady",
+          "plates": 40,
+          "seconds": 60,
+          "stub_limitations": "plain values; native widget costs not timed; four unchanging aura labels per plate; quest overlay disabled; threat always visible",
+          "topology": "pool-only"
+        },
+        {
+          "branch": "forever",
+          "calls": {
+            "ClearAllPoints": 101760,
+            "GetAlpha": 1036800,
+            "GetChildren": 34560,
+            "GetCountdownFontString": 92160,
+            "GetFrameLevel": 286080,
+            "GetNamePlateForUnit": 193920,
+            "GetNumPoints": 345600,
+            "GetPoint": 345600,
+            "GetStringWidth": 9600,
+            "GetText": 92160,
+            "Hide": 4800,
+            "IsShown": 184320,
+            "SetAlpha": 4800,
+            "SetFont": 4800,
+            "SetFrameLevel": 101760,
+            "SetPoint": 101760,
+            "SetSize": 14400,
+            "SetText": 101760,
+            "SetTextColor": 101760,
+            "SetVertexColor": 33600,
+            "Show": 116160,
+            "ThreatDisplay": 4800,
+            "UnitLevel": 9600
+          },
+          "fps": 144,
+          "mode": "steady",
+          "plates": 20,
+          "seconds": 60,
+          "stub_limitations": "plain values; native widget costs not timed; four unchanging aura labels per plate; quest overlay disabled; threat always visible",
+          "topology": "pool+list"
+        },
+        {
+          "branch": "forever",
+          "calls": {
+            "ClearAllPoints": 10000,
+            "CreateFontString": 2004,
+            "CreateFrame": 2004,
+            "CreateTexture": 3000,
+            "GetChildren": 3000,
+            "GetCountdownFontString": 4000,
+            "GetFrameLevel": 14000,
+            "GetNamePlateForUnit": 3000,
+            "GetStringWidth": 2000,
+            "GetText": 4000,
+            "Hide": 10004,
+            "IsShown": 12000,
+            "SetAlpha": 1000,
+            "SetFont": 3004,
+            "SetFrameLevel": 6000,
+            "SetParent": 4004,
+            "SetPoint": 13004,
+            "SetSize": 5004,
+            "SetText": 6000,
+            "SetTextColor": 6004,
+            "SetTexture": 1000,
+            "SetVertexColor": 12000,
+            "Show": 12000,
+            "ThreatDisplay": 1000,
+            "UnitLevel": 2000
+          },
+          "fps": 60,
+          "frames_created": 2004,
+          "mode": "1000-add-remove-cycles",
+          "note": "Retained stub objects model native widgets; frame persistence is a native contract, not measured memory bytes.",
+          "objects_created": 7008,
+          "plates": 1,
+          "seconds": 60,
+          "stub_limitations": "plain values; native widget costs not timed; four unchanging aura labels per plate; quest overlay disabled; threat always visible",
+          "topology": "pool-only",
+          "visible_units": 0
+        }
+      ],
+      "scope": "actual unchanged NamePlates Core/Level/Threat/Countdown operation replay",
+      "source_paths": [
+        "NamePlates/Core.lua",
+        "NamePlates/Level.lua",
+        "NamePlates/Threat.lua",
+        "NamePlates/Countdown.lua"
+      ]
+    },
+    "threat_rank": {
+      "lua": "Lua 5.4",
+      "rows": [
+        {
+          "counts": {
+            "UnitDetailedThreatSituation": 4800,
+            "UnitExists": 14400,
+            "UnitIsUnit": 0,
+            "rankCalls": 4800
+          },
+          "group": 1,
+          "per_rank_call": {
+            "UnitDetailedThreatSituation": 1.0,
+            "UnitExists": 3.0,
+            "UnitIsUnit": 0.0,
+            "rankCalls": 1.0
+          },
+          "pets": false,
+          "plates": 20,
+          "polls": 240,
+          "seconds": 60
+        },
+        {
+          "counts": {
+            "UnitDetailedThreatSituation": 9600,
+            "UnitExists": 14400,
+            "UnitIsUnit": 4800,
+            "rankCalls": 4800
+          },
+          "group": 1,
+          "per_rank_call": {
+            "UnitDetailedThreatSituation": 2.0,
+            "UnitExists": 3.0,
+            "UnitIsUnit": 1.0,
+            "rankCalls": 1.0
+          },
+          "pets": true,
+          "plates": 20,
+          "polls": 240,
+          "seconds": 60
+        },
+        {
+          "counts": {
+            "UnitDetailedThreatSituation": 24000,
+            "UnitExists": 62400,
+            "UnitIsUnit": 57600,
+            "rankCalls": 4800
+          },
+          "group": 5,
+          "per_rank_call": {
+            "UnitDetailedThreatSituation": 5.0,
+            "UnitExists": 13.0,
+            "UnitIsUnit": 12.0,
+            "rankCalls": 1.0
+          },
+          "pets": false,
+          "plates": 20,
+          "polls": 240,
+          "seconds": 60
+        },
+        {
+          "counts": {
+            "UnitDetailedThreatSituation": 48000,
+            "UnitExists": 62400,
+            "UnitIsUnit": 225600,
+            "rankCalls": 4800
+          },
+          "group": 5,
+          "per_rank_call": {
+            "UnitDetailedThreatSituation": 10.0,
+            "UnitExists": 13.0,
+            "UnitIsUnit": 47.0,
+            "rankCalls": 1.0
+          },
+          "pets": true,
+          "plates": 20,
+          "polls": 240,
+          "seconds": 60
+        },
+        {
+          "counts": {
+            "UnitDetailedThreatSituation": 192000,
+            "UnitExists": 398400,
+            "UnitIsUnit": 3758400,
+            "rankCalls": 4800
+          },
+          "group": 40,
+          "per_rank_call": {
+            "UnitDetailedThreatSituation": 40.0,
+            "UnitExists": 83.0,
+            "UnitIsUnit": 783.0,
+            "rankCalls": 1.0
+          },
+          "pets": false,
+          "plates": 20,
+          "polls": 240,
+          "seconds": 60
+        },
+        {
+          "counts": {
+            "UnitDetailedThreatSituation": 384000,
+            "UnitExists": 398400,
+            "UnitIsUnit": 15192000,
+            "rankCalls": 4800
+          },
+          "group": 40,
+          "per_rank_call": {
+            "UnitDetailedThreatSituation": 80.0,
+            "UnitExists": 83.0,
+            "UnitIsUnit": 3165.0,
+            "rankCalls": 1.0
+          },
+          "pets": true,
+          "plates": 20,
+          "polls": 240,
+          "seconds": 60
+        }
+      ],
+      "scope": "actual GetPlayerRank operation counts under positive public threat for every group member/pet; not native latency/FPS",
+      "source": "Core/API/Threat.lua"
+    },
+    "spellbook_csv": "scenario,fps,seconds,bookShown,OnUpdateCalls,hostVisibilityReads,ownerPolls,showCallbacks,hideCallbacks,pageUpdates\nspellbook,60,60,false,3600,514,514,0,0,0\nspellbook,60,60,true,3600,514,514,3,0,0\nspellbook,144,60,false,8640,576,576,0,0,0\nspellbook,144,60,true,8640,576,576,3,0,0\nspellbook,240,60,false,14400,576,576,0,0,0\nspellbook,240,60,true,14400,576,576,3,0,0\n",
+    "mail": [
+      {
+        "scenario": "50 single attachments in slot 1",
+        "slots": 12,
+        "phase": "arrival",
+        "header_and_attachment_reads": 650,
+        "max_reads_per_frame": 48,
+        "capture_rows": 50,
+        "normalized_rows": 50,
+        "notifications": 1
+      },
+      {
+        "scenario": "50 single attachments in slot 1",
+        "slots": 12,
+        "phase": "unchanged",
+        "header_and_attachment_reads": 650,
+        "max_reads_per_frame": 48,
+        "capture_rows": 50,
+        "normalized_rows": 0,
+        "notifications": 0
+      },
+      {
+        "scenario": "50 single attachments in slot 1",
+        "slots": 16,
+        "phase": "arrival",
+        "header_and_attachment_reads": 850,
+        "max_reads_per_frame": 48,
+        "capture_rows": 50,
+        "normalized_rows": 50,
+        "notifications": 1
+      },
+      {
+        "scenario": "50 single attachments in slot 1",
+        "slots": 16,
+        "phase": "unchanged",
+        "header_and_attachment_reads": 850,
+        "max_reads_per_frame": 48,
+        "capture_rows": 50,
+        "normalized_rows": 0,
+        "notifications": 0
+      }
+    ],
+    "aura_dirty": [
+      {
+        "scenario": "native empty incremental aura payload then unchanged Flux poke",
+        "native_dirty_requests": 0,
+        "after_flux_poke_full_rebuild_requests": 1,
+        "scope": "dirty requests only; no native rendering or rebuild-time claim"
+      }
+    ]
+  },
+  "focused_checks": [
+    {
+      "path": "tests/nameplate_quest_progress.lua",
+      "exit": 0,
+      "output": "QUEST_PROGRESS client=live frames=5 checks=256 idle_polls=1000 idle_queries=0\nQUEST_PROGRESS client=forever frames=5 checks=512 idle_polls=1000 idle_queries=0\nQUEST_PROGRESS client=classic frames=5 checks=760 idle_polls=1000 idle_queries=0\nQUEST_PROGRESS client=classic_era frames=5 checks=1008 idle_polls=1000 idle_queries=0\nQUEST_PROGRESS client=classic_anniversary frames=5 checks=1256 idle_polls=1000 idle_queries=0\nQUEST_PROGRESS checks=1261 failures=0 native_pixels_taint_performance=NOT_RUN\n"
+    },
+    {
+      "path": "tests/party_steady_performance.lua",
+      "exit": 0,
+      "output": "PARTY_STEADY|live|health=800|power=400|prediction=1200|chrome=0|portrait=0|style=0|indicators=0|auras=40|modes=1200|cover=0|powerAnchors=0\nPARTY_STEADY|forever|health=800|power=400|prediction=1200|chrome=0|portrait=0|style=0|indicators=0|auras=40|modes=1200|cover=0|powerAnchors=0\nPARTY_STEADY|classic|health=800|power=400|prediction=1200|chrome=0|portrait=0|style=0|indicators=0|auras=40|modes=1200|cover=0|powerAnchors=0\nPARTY_STEADY|classic_era|health=800|power=400|prediction=1200|chrome=0|portrait=0|style=0|indicators=0|auras=40|modes=1200|cover=0|powerAnchors=0\nPARTY_STEADY|classic_anniversary|health=800|power=400|prediction=1200|chrome=0|portrait=0|style=0|indicators=0|auras=40|modes=1200|cover=0|powerAnchors=0\nParty steady performance: 305 checks PASS; modeled operation counts, native performance pending\n"
+    },
+    {
+      "path": "tests/builtin_mail_publication.lua",
+      "exit": 0,
+      "output": "builtin mail publication: 8194 checks, 0 failures; arrival normalized=1600 peak=46 fingerprint fields=0; unchanged capture=8000 normalized=0 fingerprint fields=0; one-change normalized=1 cleared=0; money-only cleared=0\n"
+    },
+    {
+      "path": "tests/performance_work_budgets.lua",
+      "exit": 0,
+      "output": "performance work budgets: 697 checks passed (PERF-01..04; production code, native timing/taint pending)\n"
+    },
+    {
+      "path": "tests/idle_chat.lua",
+      "exit": 0,
+      "output": "idle chat: 70 checks; 5 mutations rejected; open-panel writes/2400frames 26400 -> 0; 200-event bag callbacks 200 -> 2\n"
+    }
+  ],
+  "documentation_validation": {
+    "command": "python docs/tools/validate_docs.py",
+    "exit": 1,
+    "issues": [
+      "Stale source inventory: Minimap/FluxMinimap.lua",
+      "Stale source inventory: Minimap/FluxMinimapTracking.lua",
+      "Stale source inventory: tests/minimap_tracking.lua",
+      "Stale generated view: reference/interfaces.md",
+      "Stale generated view: performance-driver-inventory.md",
+      "Recorded verification predates current source: Minimap/FluxMinimap.lua",
+      "Recorded verification predates current source: Minimap/FluxMinimapTracking.lua",
+      "Recorded verification predates current source: tests/minimap_tracking.lua",
+      "Invalid source line reference interfaces.md:8290: ../../Minimap/FluxMinimapTracking.lua#L60",
+      "Invalid source line reference interfaces.md:8291: ../../Minimap/FluxMinimapTracking.lua#L66"
+    ],
+    "scope": "Existing generated minimap inventory/views and recorded validation stale relative to the same unchanged starting Lua; audit files not flagged; no unrelated regeneration"
+  },
+  "native_validation": "NOT RUN on all five supported source families",
+  "fps_loss_measured": false,
+  "runtime_changes": false,
+  "settings_writes": false,
+  "profiler_changes": false,
+  "client_input": false,
+  "publication": false,
+  "excluded_callbacks": [
+    "guild-bank",
+    "void-storage"
+  ]
+}

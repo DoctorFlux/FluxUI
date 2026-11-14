@@ -1,0 +1,12 @@
+{
+  "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\09\\01a1c03e-c615-7f02-a24a-3e5ed07300f1\\options-sorting-checkpoint-20261109T135316Z",
+  "verified": true,
+  "sourceFiles": 2434,
+  "settingsMetadataFiles": 120,
+  "settingsWrites": false,
+  "settingsBackup": "Read-only metadata only; no quiescent backup claimed",
+  "sha256": {
+    "source.zip": "90d9f55db5dbb9f4d3bc878f9c1c6f0e849144e3bb47b6609584e36e26b54cae",
+    "history.bundle": "13a0afda42ad3b3a86e82b5c0729df5358c473c2f4e85073601dbe0e63f58def"
+  }
+}

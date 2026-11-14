@@ -1,0 +1,186 @@
+{
+  "date": "2026-11-09",
+  "change_id": "OPTIONS-UNIT-FRAME-SIDEBAR-20261109",
+  "utc": "2026-11-09T15:36:34.297342+00:00",
+  "requirements": "REQ-OPT-01 through22; REQ-OPT-22 clarifies category as framed sidebar header plus child rows",
+  "userConfirmation": "Unit Frame should be a sidebar header like Combat, with General, Appearance, Player, Target and every other former tab listed below it",
+  "navigation": {
+    "Ungrouped": [
+      "Quality of Life"
+    ],
+    "Unit Frame header": [
+      "General",
+      "Appearance",
+      "Player",
+      "Target",
+      "Focus",
+      "Pet",
+      "Party Frames",
+      "Raid Frames",
+      "Cast Bars",
+      "Nameplates"
+    ],
+    "Combat header": [
+      "Action Bars",
+      "Bindings",
+      "Keybindings"
+    ],
+    "Utilities header": [
+      "Loot & Items",
+      "Professions"
+    ],
+    "fixedFooter": [
+      "Settings",
+      "Profiles",
+      "Patch Notes",
+      "Credits"
+    ],
+    "Quality of Life tabs": [
+      "Interface",
+      "Status Bars",
+      "Damage Meter"
+    ],
+    "Action Bars tabs": [
+      "Bars",
+      "Extra Buttons",
+      "Stance Order"
+    ],
+    "Loot & Items tabs": [
+      "Loot",
+      "Vendor & Junk",
+      "Restock"
+    ]
+  },
+  "ownedNormalizedSHA256": {
+    "AddonOptions/FluxOptions.lua": "911e3527d683d302b5388eb9bd3b359736b245ab78537b821bbb5748c33371e7",
+    "AddonOptions/FluxOptionsCatalog.lua": "f47cc16b54cd9380f7279d6fe4f17ea2884b2370432be6a52c6f8558975a6cf6",
+    "AddonOptions/FluxOptionsNavigation.lua": "e845d5cff87fc88340327fadcfc96d7b71b6a9dc948b4c7e9984a8fe2c197024",
+    "AddonOptions/FluxOptionsRender.lua": "d891a227a481648c67d6cab1ace2acfdeb1ffb75e179c3307d7a94f8164553aa",
+    "AddonOptions/FluxOptionsShell.lua": "259b0b09d327287a089d9c8b3e80b0d1a84558cf2dcb701a47dc5537272aaebe",
+    "AddonOptions/FluxOptionsWidgets.lua": "4c030354c09a5f8addaa3cdf3ea5a17b57ed561ff41b570bdda90e8a05151d32",
+    "AddonOptions/FluxOptionsSkin.lua": "3f22be01e5333caa5564f42745cd6c7a530994209be476522dba5da4b856a981",
+    "AddonOptions/FluxOptionsGameMenu.lua": "7265946dfae4b45b5a3417b15ff0772dd102619e14256db510ba70938c616e16",
+    "_FluxUI.toc": "f40a0ee261ba97aeeba9205c280a5cd0f2962c02e6a4dcd03b6ae166b5329aac",
+    "Battlezonemap/FluxWindowFrame.lua": "406c3b0c2ff6d9bafc5aa94b895e7f8d812a03a45da50c1476d9847eeef132c3",
+    "tests/options_navigation.lua": "07edefe047facf15a32afbc4ddbe2cdc966a8c5fae158e42ba2a81a15af1ece0",
+    "tests/options_rework.lua": "b903d471bb00112b5b1af7ebd01fb91ed2389569af7ae80804fcf1cb53ea90fc"
+  },
+  "normalization": "CRLF to LF; other bytes retained",
+  "originalBuildersUnchangedFromCheckpoint": {
+    "AddonOptions/FluxOptionsUnitFrames.lua": true,
+    "AddonOptions/FluxOptionsRaidFrame.lua": true,
+    "AddonOptions/FluxOptionsNameplates.lua": true
+  },
+  "originalBuilderNormalizedSHA256": {
+    "AddonOptions/FluxOptionsUnitFrames.lua": "f36b14499d2a989206178e3ed8c1300b4a84595961d2e85545aad4fffb85fce6",
+    "AddonOptions/FluxOptionsRaidFrame.lua": "e35c9f3547b4953095a091bd509b8dea2586ff6a56ef95bea7212d7cf8a7f622",
+    "AddonOptions/FluxOptionsNameplates.lua": "8e377a3f713f3b1a2aeaaeb5b7f0d5eab672b24c3d92a2087a4f7c84888617cb"
+  },
+  "focused": {
+    "actualBuilderChecks": 5832,
+    "completeShellChecks": 876,
+    "mappedDeclarationsByClient": {
+      "live": 468,
+      "forever": 468,
+      "classic": 471,
+      "classic_era": 471,
+      "classic_anniversary": 471
+    },
+    "scope": "Five desktop client models; declarations include headers/descriptions, not visible controls for one character"
+  },
+  "fullReport": "options-unit-frame-sidebar-full-2026-11-09.json",
+  "full": {
+    "pass": 273,
+    "fail": 0,
+    "syntaxFiles": 943,
+    "syntaxFailures": 0,
+    "currentCorpusDrift": []
+  },
+  "mapping": "options-navigation-map-2026-11-09.csv",
+  "negativeControls": "options-unit-frame-sidebar-controls-2026-11-09.json",
+  "checkpoint": "options-unit-frame-sidebar-checkpoint-2026-11-09.json",
+  "sourceContext": "Original selected option objects/root/handler/info paths; no original builder or stored data changes. Original parent hidden and disabled gates retained, including split nested party-style group.",
+  "scopeBehavior": "General keeps independent individual-unit and party/raid scopes, switches and resets. Appearance holds shared visuals, aura timing and threat. Raid Frames configures compact raid and party; Party Frames keeps player-style party controls.",
+  "generationBehavior": "Unit Frames depends on both original unitframes and nameplates generations. Source refresh replaces/release cached view. Actual shell regression and lost-generation negative control verify this.",
+  "routeCompatibility": "Internal unitframes page ID and all ten subkeys/aliases retained. Legacy helpers open and select the corresponding sidebar child; source roots/info paths/scopes unchanged.",
+  "resources": "Nine additional sidebar child buttons and one framed header versus prior single category button. Each retains 16-unit native icons/24-unit rows. Unit Frame creates no horizontal tab buttons. No new recurring driver, event, hook, timer or SavedVariables root; existing page/row release ownership retained. Native CPU/FPS not measured.",
+  "clientCopiesMatch": {
+    "_forever_": {
+      "AddonOptions/FluxOptions.lua": true,
+      "AddonOptions/FluxOptionsCatalog.lua": true,
+      "AddonOptions/FluxOptionsNavigation.lua": true,
+      "AddonOptions/FluxOptionsRender.lua": true,
+      "AddonOptions/FluxOptionsShell.lua": true,
+      "AddonOptions/FluxOptionsWidgets.lua": true,
+      "AddonOptions/FluxOptionsSkin.lua": true,
+      "AddonOptions/FluxOptionsGameMenu.lua": true,
+      "_FluxUI.toc": true,
+      "Battlezonemap/FluxWindowFrame.lua": true
+    },
+    "_classic_": {
+      "AddonOptions/FluxOptions.lua": true,
+      "AddonOptions/FluxOptionsCatalog.lua": true,
+      "AddonOptions/FluxOptionsNavigation.lua": true,
+      "AddonOptions/FluxOptionsRender.lua": true,
+      "AddonOptions/FluxOptionsShell.lua": true,
+      "AddonOptions/FluxOptionsWidgets.lua": true,
+      "AddonOptions/FluxOptionsSkin.lua": true,
+      "AddonOptions/FluxOptionsGameMenu.lua": true,
+      "_FluxUI.toc": true,
+      "Battlezonemap/FluxWindowFrame.lua": true
+    },
+    "_classic_era_": {
+      "AddonOptions/FluxOptions.lua": true,
+      "AddonOptions/FluxOptionsCatalog.lua": true,
+      "AddonOptions/FluxOptionsNavigation.lua": true,
+      "AddonOptions/FluxOptionsRender.lua": true,
+      "AddonOptions/FluxOptionsShell.lua": true,
+      "AddonOptions/FluxOptionsWidgets.lua": true,
+      "AddonOptions/FluxOptionsSkin.lua": true,
+      "AddonOptions/FluxOptionsGameMenu.lua": true,
+      "_FluxUI.toc": true,
+      "Battlezonemap/FluxWindowFrame.lua": true
+    },
+    "_anniversary_": {
+      "AddonOptions/FluxOptions.lua": true,
+      "AddonOptions/FluxOptionsCatalog.lua": true,
+      "AddonOptions/FluxOptionsNavigation.lua": true,
+      "AddonOptions/FluxOptionsRender.lua": true,
+      "AddonOptions/FluxOptionsShell.lua": true,
+      "AddonOptions/FluxOptionsWidgets.lua": true,
+      "AddonOptions/FluxOptionsSkin.lua": true,
+      "AddonOptions/FluxOptionsGameMenu.lua": true,
+      "_FluxUI.toc": true,
+      "Battlezonemap/FluxWindowFrame.lua": true
+    }
+  },
+  "sourcePins": [
+    "options-source-pins-2026-11-09.json",
+    "options-fidelity-sources-2026-11-09.json",
+    "options-scroll-sources-2026-11-09.json"
+  ],
+  "acceptedSidebar": "options-sidebar-reference-2026-11-09.json",
+  "reference": {
+    "path": "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\__AddonsForRef\\Naowth Forever\\NaowhForever\\Core\\Options\\Modules.lua",
+    "version": "1.2.19",
+    "rawSHA256": "6158e1a09faf1cf5a4b8cc61a03c35d9f86d42b6044d6d53dc928091a764ef4f",
+    "license": "Own source/art all rights reserved; design inspection only"
+  },
+  "nativeAcceptance": "NOT RUN: selected Witchcraft route remains unavailable, previous setup request unanswered. No game interaction or source/build-loaded claim. Prior blocked audit predates this user-authorized implementation; fresh audit starts from this updated scope.",
+  "gameInputOrFocusControl": false,
+  "settingsWrites": false,
+  "profilerWrites": false,
+  "manualSync": false,
+  "publication": false,
+  "presentation": "Actual framed header and ten individually named/iconed sidebar buttons. No Unit Frame category button or horizontal Unit Frame tab strip. Each child directly selects its original canonical page/subpage; right title and breadcrumb identify the section.",
+  "selectionSearchAvailability": "Exactly one child selected; hover applies to other same-page children; search/counts computed per visible section using one declaration group cache per filter; original source hidden/disabled conditions retained.",
+  "scrolling": "Scrollable sidebar remains above fixed system footer. Filtering/resizing/legacy entry selection brings the active row into view; manual wheel scrolling still uses the existing slider.",
+  "documentation": {
+    "exit": 0,
+    "result": "PASS: 976 classified sources; 605 TOC/XML reachable; 425 setting definitions; 24 SavedVariables; 15931 local links. Source inventory/evidence current. No files written."
+  },
+  "diffWhitespaceCheck": "PASS",
+  "declarationLifecycle": "Sidebar availability resolves/caches Unit Frame declarations when the shell opens; per-filter cache avoids rescanning the whole category for every child. Off-screen embedded editors are not constructed.",
+  "supersededBy": "options-merged-layout-2026-11-09.json",
+  "evidenceStatus": "Historical ten-entry frame sidebar; latest user requested merges and new fixes"
+}

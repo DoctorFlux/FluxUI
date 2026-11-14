@@ -1,0 +1,278 @@
+{
+  "date": "2026-11-10",
+  "scope": "Read-only final comparison after approved selective four-file installation; originals externally backed up",
+  "clients": [
+    {
+      "client": "_retail_",
+      "files": [
+        {
+          "path": "Inventory/Restock/Vendor/FluxVendorGossip.lua",
+          "exists": true,
+          "matches": true,
+          "sha256": "61fcfdd7881711cde6576439ee6951a14d8cf8ebbceb3b55b3950f289b4e1f10"
+        },
+        {
+          "path": "Inventory/Restock/Core/FluxRestockSettings.lua",
+          "exists": true,
+          "matches": true,
+          "sha256": "484c6f75d7357fabcf836ac6245b5b39d685cb8fa7bf17e2022a67b6498e2a3c"
+        },
+        {
+          "path": "AddonOptions/FluxOptionsVendor.lua",
+          "exists": true,
+          "matches": true,
+          "sha256": "1847f8e123219ff57b02822252634045b37ba20595cbe43c5c1dcb296fec4def"
+        },
+        {
+          "path": "_FluxUI.toc",
+          "exists": true,
+          "matches": true,
+          "sha256": "48e8b60e98ec5376d426f1746b73174cc2bd67aea0b686459ba12c9bdbf56982"
+        }
+      ]
+    },
+    {
+      "client": "_forever_",
+      "files": [
+        {
+          "path": "Inventory/Restock/Vendor/FluxVendorGossip.lua",
+          "exists": true,
+          "matches": true,
+          "sha256": "61fcfdd7881711cde6576439ee6951a14d8cf8ebbceb3b55b3950f289b4e1f10"
+        },
+        {
+          "path": "Inventory/Restock/Core/FluxRestockSettings.lua",
+          "exists": true,
+          "matches": true,
+          "sha256": "484c6f75d7357fabcf836ac6245b5b39d685cb8fa7bf17e2022a67b6498e2a3c"
+        },
+        {
+          "path": "AddonOptions/FluxOptionsVendor.lua",
+          "exists": true,
+          "matches": true,
+          "sha256": "1847f8e123219ff57b02822252634045b37ba20595cbe43c5c1dcb296fec4def"
+        },
+        {
+          "path": "_FluxUI.toc",
+          "exists": true,
+          "matches": true,
+          "sha256": "48e8b60e98ec5376d426f1746b73174cc2bd67aea0b686459ba12c9bdbf56982"
+        }
+      ]
+    },
+    {
+      "client": "_classic_",
+      "files": [
+        {
+          "path": "Inventory/Restock/Vendor/FluxVendorGossip.lua",
+          "exists": true,
+          "matches": true,
+          "sha256": "61fcfdd7881711cde6576439ee6951a14d8cf8ebbceb3b55b3950f289b4e1f10"
+        },
+        {
+          "path": "Inventory/Restock/Core/FluxRestockSettings.lua",
+          "exists": true,
+          "matches": true,
+          "sha256": "484c6f75d7357fabcf836ac6245b5b39d685cb8fa7bf17e2022a67b6498e2a3c"
+        },
+        {
+          "path": "AddonOptions/FluxOptionsVendor.lua",
+          "exists": true,
+          "matches": true,
+          "sha256": "1847f8e123219ff57b02822252634045b37ba20595cbe43c5c1dcb296fec4def"
+        },
+        {
+          "path": "_FluxUI.toc",
+          "exists": true,
+          "matches": true,
+          "sha256": "48e8b60e98ec5376d426f1746b73174cc2bd67aea0b686459ba12c9bdbf56982"
+        }
+      ]
+    },
+    {
+      "client": "_classic_era_",
+      "files": [
+        {
+          "path": "Inventory/Restock/Vendor/FluxVendorGossip.lua",
+          "exists": true,
+          "matches": true,
+          "sha256": "61fcfdd7881711cde6576439ee6951a14d8cf8ebbceb3b55b3950f289b4e1f10"
+        },
+        {
+          "path": "Inventory/Restock/Core/FluxRestockSettings.lua",
+          "exists": true,
+          "matches": true,
+          "sha256": "484c6f75d7357fabcf836ac6245b5b39d685cb8fa7bf17e2022a67b6498e2a3c"
+        },
+        {
+          "path": "AddonOptions/FluxOptionsVendor.lua",
+          "exists": true,
+          "matches": true,
+          "sha256": "1847f8e123219ff57b02822252634045b37ba20595cbe43c5c1dcb296fec4def"
+        },
+        {
+          "path": "_FluxUI.toc",
+          "exists": true,
+          "matches": true,
+          "sha256": "48e8b60e98ec5376d426f1746b73174cc2bd67aea0b686459ba12c9bdbf56982"
+        }
+      ]
+    },
+    {
+      "client": "_anniversary_",
+      "files": [
+        {
+          "path": "Inventory/Restock/Vendor/FluxVendorGossip.lua",
+          "exists": true,
+          "matches": true,
+          "sha256": "61fcfdd7881711cde6576439ee6951a14d8cf8ebbceb3b55b3950f289b4e1f10"
+        },
+        {
+          "path": "Inventory/Restock/Core/FluxRestockSettings.lua",
+          "exists": true,
+          "matches": true,
+          "sha256": "484c6f75d7357fabcf836ac6245b5b39d685cb8fa7bf17e2022a67b6498e2a3c"
+        },
+        {
+          "path": "AddonOptions/FluxOptionsVendor.lua",
+          "exists": true,
+          "matches": true,
+          "sha256": "1847f8e123219ff57b02822252634045b37ba20595cbe43c5c1dcb296fec4def"
+        },
+        {
+          "path": "_FluxUI.toc",
+          "exists": true,
+          "matches": true,
+          "sha256": "48e8b60e98ec5376d426f1746b73174cc2bd67aea0b686459ba12c9bdbf56982"
+        }
+      ]
+    }
+  ],
+  "beforeInstall": [
+    {
+      "client": "_retail_",
+      "files": [
+        {
+          "path": "Inventory/Restock/Vendor/FluxVendorGossip.lua",
+          "exists": true,
+          "matches": true
+        },
+        {
+          "path": "Inventory/Restock/Core/FluxRestockSettings.lua",
+          "exists": true,
+          "matches": true
+        },
+        {
+          "path": "AddonOptions/FluxOptionsVendor.lua",
+          "exists": true,
+          "matches": true
+        },
+        {
+          "path": "_FluxUI.toc",
+          "exists": true,
+          "matches": true
+        }
+      ]
+    },
+    {
+      "client": "_forever_",
+      "files": [
+        {
+          "path": "Inventory/Restock/Vendor/FluxVendorGossip.lua",
+          "exists": false,
+          "matches": false
+        },
+        {
+          "path": "Inventory/Restock/Core/FluxRestockSettings.lua",
+          "exists": true,
+          "matches": false
+        },
+        {
+          "path": "AddonOptions/FluxOptionsVendor.lua",
+          "exists": true,
+          "matches": false
+        },
+        {
+          "path": "_FluxUI.toc",
+          "exists": true,
+          "matches": false
+        }
+      ]
+    },
+    {
+      "client": "_classic_",
+      "files": [
+        {
+          "path": "Inventory/Restock/Vendor/FluxVendorGossip.lua",
+          "exists": false,
+          "matches": false
+        },
+        {
+          "path": "Inventory/Restock/Core/FluxRestockSettings.lua",
+          "exists": true,
+          "matches": false
+        },
+        {
+          "path": "AddonOptions/FluxOptionsVendor.lua",
+          "exists": true,
+          "matches": false
+        },
+        {
+          "path": "_FluxUI.toc",
+          "exists": true,
+          "matches": false
+        }
+      ]
+    },
+    {
+      "client": "_classic_era_",
+      "files": [
+        {
+          "path": "Inventory/Restock/Vendor/FluxVendorGossip.lua",
+          "exists": false,
+          "matches": false
+        },
+        {
+          "path": "Inventory/Restock/Core/FluxRestockSettings.lua",
+          "exists": true,
+          "matches": false
+        },
+        {
+          "path": "AddonOptions/FluxOptionsVendor.lua",
+          "exists": true,
+          "matches": false
+        },
+        {
+          "path": "_FluxUI.toc",
+          "exists": true,
+          "matches": false
+        }
+      ]
+    },
+    {
+      "client": "_anniversary_",
+      "files": [
+        {
+          "path": "Inventory/Restock/Vendor/FluxVendorGossip.lua",
+          "exists": false,
+          "matches": false
+        },
+        {
+          "path": "Inventory/Restock/Core/FluxRestockSettings.lua",
+          "exists": true,
+          "matches": false
+        },
+        {
+          "path": "AddonOptions/FluxOptionsVendor.lua",
+          "exists": true,
+          "matches": false
+        },
+        {
+          "path": "_FluxUI.toc",
+          "exists": true,
+          "matches": false
+        }
+      ]
+    }
+  ]
+}

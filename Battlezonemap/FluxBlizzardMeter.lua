@@ -640,9 +640,9 @@ local function ShowSetupNotice(index, root, window, slot, left, right, top, bott
     if T and slot.damageMeterType == T.Absorbs then
         instruction = "Blizzard does not offer Absorbs in its type menu on this client."
     elseif window then
-        instruction = "Click here to use this meter type."
+        instruction = "Choose this type in Blizzard's title dropdown above."
     else
-        instruction = "Click here to add this Blizzard meter."
+        instruction = "Use an existing Blizzard meter's settings menu to add a window, then choose this type."
     end
     notice.text:SetText((window and (label .. "\n\n") or "") .. instruction)
     notice:Show()
@@ -684,8 +684,11 @@ local function InstallNativeLayoutHooks(root)
     if type(root.ShowNewSecondarySessionWindow) == "function" then hooksecurefunc(root, "ShowNewSecondarySessionWindow", Changed) end
 end
 
---- Open the actual native dropdown; its menu callbacks retain type/session/settings ownership.
--- No copied responders, simulated clicks, configuration writers or replacement menus.
+-- Native dropdown generation stores menu/selection caches on Blizzard's controls.
+-- Calling OpenMenu/GenerateMenu from Flux can therefore persist addon provenance
+-- even though Pick later invokes an original responder through a secure boundary.
+-- Opening menus remains on the original controls. Explicit Flux choices below
+-- can select an existing native entry without regenerating or editing its cache.
 function FluxBlizzardMeter:OpenNativeMenu(row, column, kind)
     if InCombatLockdown() then return false, "Meter settings are available outside combat." end
     if not isEmbedded or pendingCleanup or not self:IsAvailable() then return false, "Open the Meter tab first." end
@@ -699,40 +702,65 @@ function FluxBlizzardMeter:OpenNativeMenu(row, column, kind)
         if pane.row == row and pane.column == column then window = pane.window; break end
     end
     if not window then
-        -- A not-yet-created slot needs Blizzard's real New Window action first.
-        local root = GetDamageMeterFrame()
-        window = embedPaneLayouts[1] and embedPaneLayouts[1].window
-            or (root and root.GetPrimarySessionWindow and root:GetPrimarySessionWindow())
-        field = "SettingsDropdown"
+        return false, "Use an existing Blizzard meter's settings menu to add a window, then choose the requested type."
     end
-    local button = window and window[field]
-    if not button or type(button.OpenMenu) ~= "function" then return false, "This native meter menu is not available yet." end
-    button:OpenMenu()
-    return true
+    if not window[field] then return false, "This native meter menu is not available yet." end
+    local instructions = {
+        type = "Click this Blizzard meter's title dropdown to choose its type.",
+        session = "Click this Blizzard meter's session dropdown to choose Current, Overall or history.",
+        settings = "Click this Blizzard meter's settings button to change its options.",
+    }
+    return false, instructions[kind]
 end
 
-local function NativeMenuText(description)
-    local value = MenuUtil and MenuUtil.GetElementText and MenuUtil.GetElementText(description)
-    if not (issecretvalue and issecretvalue(value)) and type(value) == "string" then return value end
+-- Blizzard generates these descriptions during its own dropdown initialization.
+-- Read only that existing cache. GenerateMenu/RegisterMenu/OpenMenu would write
+-- native state from Flux and are deliberately excluded from this selection path.
+local function NativeField(object, key)
+    return not (issecretvalue and issecretvalue(object)) and type(object) == "table" and type(issecurevariable) == "function"
+        and issecurevariable(object, key) == true
+end
+
+local function NativeProxyMethod(proxy, key)
+    if type(proxy) ~= "table" or (issecretvalue and issecretvalue(proxy)) then return end
+    local owner = getmetatable(proxy)
+    if type(owner) ~= "table" or not NativeField(owner, key) or not NativeField(proxy, key) then return end
+    local method = owner[key]
+    if type(method) == "function" and proxy[key] == method then return method end
+end
+
+local function NativeMenuDescription(button)
+    if not NativeField(button, "menuDescription") then return end
+    local description = button.menuDescription
+    if NativeProxyMethod(description, "EnumerateElementDescriptions") then return description end
 end
 
 local function VisitNativeMenu(description, visit, depth)
-    if not description or not description.EnumerateElementDescriptions or (depth or 0) > 8 then return end
-    for _, child in description:EnumerateElementDescriptions() do
+    local enumerate = NativeProxyMethod(description, "EnumerateElementDescriptions")
+    if not enumerate or (depth or 0) > 8 then return end
+    for _, child in enumerate(description) do
         if visit(child) then return child end
         local found = VisitNativeMenu(child, visit, (depth or 0) + 1)
         if found then return found end
     end
 end
 
-local function NativeMenuDescription(button, regenerate)
-    if not button or not button.GetMenuDescription then return end
-    local description = button:GetMenuDescription()
-    if (regenerate or not description) and button.GenerateMenu then
-        button:GenerateMenu()
-        description = button:GetMenuDescription()
+local function NativeMenuData(description)
+    local getData = NativeProxyMethod(description, "GetData")
+    if getData and NativeField(description, "data") and NativeField(description, "responder") then
+        return getData(description)
     end
-    return description
+end
+
+local function NativeRadio(description)
+    local isRadio = NativeProxyMethod(description, "IsRadio")
+    return isRadio and NativeField(description, "isRadio") and isRadio(description) == true
+end
+
+local function NativeMenuText(description)
+    if not NativeField(description, "text") or not (MenuUtil and NativeField(MenuUtil, "GetElementText")) then return end
+    local value = MenuUtil.GetElementText(description)
+    if not (issecretvalue and issecretvalue(value)) and type(value) == "string" then return value end
 end
 
 local function NativeWindowForSlot(row, column)
@@ -748,21 +776,31 @@ local function NativeMenuWindow()
 end
 
 local function FindNativeType(button, meterType)
-    return VisitNativeMenu(NativeMenuDescription(button, true), function(description)
-        local data = description.GetData and description:GetData()
-        return PlainNumber(data) and data == meterType and description.IsRadio and description:IsRadio()
+    return VisitNativeMenu(NativeMenuDescription(button), function(description)
+        local data = NativeMenuData(description)
+        return PlainNumber(data) and data == meterType and NativeRadio(description)
     end)
 end
 
 local function PickNativeDescription(description, buttonName)
-    if not description or not description.Pick or not MenuInputContext or not MenuInputContext.MouseButton then
-        return false, "Blizzard's menu selection interface is unavailable."
+    local pick = NativeProxyMethod(description, "Pick")
+    if not pick or not NativeField(description, "data") or not NativeField(description, "responder")
+        or not MenuInputContext or not NativeField(MenuInputContext, "MouseButton") then
+        return false, "Blizzard's meter menu is not ready. Reload outside combat, then choose the layout again."
     end
-    if not description.CanSelect or not description:CanSelect() then return false, "Blizzard has disabled this menu option." end
-    -- Public native MenuElementDescriptionProxyMixin:Pick is also used by native
-    -- radio buttons and custom controls. Its original responder reads its original
-    -- native data; no addon enum/closure is installed or passed to a private setter.
-    description:Pick(MenuInputContext.MouseButton, buttonName or "LeftButton")
+    for _, key in ipairs({ "isEnabled", "canSelect", "defaultResponse" }) do
+        if not NativeField(description, key) then return false, "Use this Blizzard meter's original dropdown, then choose the layout again." end
+    end
+    for _, key in ipairs({ "CanSelect", "IsEnabled", "GetDefaultResponse", "GetData", "HasResponder" }) do
+        if not NativeProxyMethod(description, key) then return false, "Use this Blizzard meter's original dropdown, then choose the layout again." end
+    end
+    -- The public native Pick supports custom controls. It fetches the original
+    -- responder/data itself through SecureCallResponder; Flux supplies no type or
+    -- session data and never calls private setters. Do not use DropdownButton:Pick,
+    -- which also writes native selection state. Native combat/taint testing remains
+    -- separate from these observable field-provenance guards.
+    local selected = pick(description, MenuInputContext.MouseButton, buttonName or "LeftButton")
+    if selected ~= true then return false, "Blizzard has disabled this meter option." end
     return true
 end
 
@@ -770,16 +808,15 @@ function FluxBlizzardMeter:GetNativeTypeChoices(row, column)
     if InCombatLockdown() or not self:IsAvailable() then return {} end
     local window = NativeWindowForSlot(row, column) or NativeMenuWindow()
     local description = NativeMenuDescription(window and window.DamageMeterTypeDropdown)
+    local enumerate = NativeProxyMethod(description, "EnumerateElementDescriptions")
     local groups = {}
-    if not description or not description.EnumerateElementDescriptions then return groups end
-    for _, category in description:EnumerateElementDescriptions() do
-        local group = {label = NativeMenuText(category) or "Blizzard meter", items = {}}
+    if not enumerate then return groups end
+    for _, category in enumerate(description) do
+        local group = { label = NativeMenuText(category) or "Blizzard meter", items = {} }
         VisitNativeMenu(category, function(choice)
-            local data = choice.GetData and choice:GetData()
-            local label = NativeMenuText(choice)
-            if PlainNumber(data) and label and choice.IsRadio and choice:IsRadio() then
-                group.items[#group.items + 1] = {label = label, nativeType = data,
-                    disabled = choice.CanSelect and not choice:CanSelect() or false}
+            local data, label = NativeMenuData(choice), NativeMenuText(choice)
+            if PlainNumber(data) and label and NativeRadio(choice) then
+                group.items[#group.items + 1] = { label = label, nativeType = data }
             end
         end)
         if #group.items > 0 then groups[#groups + 1] = group end
@@ -787,8 +824,6 @@ function FluxBlizzardMeter:GetNativeTypeChoices(row, column)
     return groups
 end
 
---- Called only by an explicit type-row/setup-button click. Use the original
--- native menu entries, including New Window, rather than native data writers.
 function FluxBlizzardMeter:SelectNativeType(row, column, meterType, buttonName)
     if InCombatLockdown() then return false, "Meter settings are available outside combat." end
     if not isEmbedded or pendingCleanup or not self:IsAvailable() then return false, "Open the Meter tab first." end
@@ -797,18 +832,16 @@ function FluxBlizzardMeter:SelectNativeType(row, column, meterType, buttonName)
     if not slot or slot.kind == "plugin" then return false, "Select a Blizzard meter window first." end
     if not PlainNumber(meterType) then return false, "Invalid Blizzard meter type." end
     local window = NativeWindowForSlot(row, column)
-    local actualType = window and window.GetDamageMeterType and window:GetDamageMeterType()
     local donor = window or NativeMenuWindow()
-    -- Check native availability before creating anything (Absorbs is omitted
-    -- from current native menus). Never synthesize a replacement menu entry.
     if not FindNativeType(donor and donor.DamageMeterTypeDropdown, meterType) then
-        return false, "Blizzard does not offer this meter type in its menu."
+        return false, "Blizzard's type menu is not ready or does not offer this type. Reload outside combat, then choose the layout again."
     end
-    if PlainNumber(actualType) and actualType == meterType and slot.damageMeterType == meterType then return true end
+    local actual = window and window.GetDamageMeterType and window:GetDamageMeterType()
+    if PlainNumber(actual) and actual == meterType and slot.damageMeterType == meterType then return true end
     if not window then
-        local settings = NativeMenuDescription(donor and donor.SettingsDropdown, true)
-        local create = VisitNativeMenu(settings, function(choice)
-            return DAMAGE_METER_SHOW_NEW_WINDOW and NativeMenuText(choice) == DAMAGE_METER_SHOW_NEW_WINDOW
+        local create = VisitNativeMenu(NativeMenuDescription(donor and donor.SettingsDropdown), function(choice)
+            return NativeField(_G, "DAMAGE_METER_SHOW_NEW_WINDOW") and DAMAGE_METER_SHOW_NEW_WINDOW
+                and NativeMenuText(choice) == DAMAGE_METER_SHOW_NEW_WINDOW
         end)
         local ok, reason = PickNativeDescription(create, buttonName)
         if not ok then return false, reason end
@@ -816,20 +849,23 @@ function FluxBlizzardMeter:SelectNativeType(row, column, meterType, buttonName)
         window = NativeWindowForSlot(row, column)
         if not window then return false, "Blizzard did not create another meter window." end
     end
-    local choice = FindNativeType(window.DamageMeterTypeDropdown, meterType)
-    return PickNativeDescription(choice, buttonName)
+    local ok, reason = PickNativeDescription(FindNativeType(window.DamageMeterTypeDropdown, meterType), buttonName)
+    if ok then self:RefreshEmbeddedLayout() end
+    return ok, reason
 end
 
---- Explicit preset/custom-layout/structure click only; never used by startup,
--- geometry repair or combat events. Preserve desired slots before responders run.
+-- Only explicit preset/custom/structure/tab choices reach this method. Preserve
+-- all desired slots before a native response can update the runtime/editor copy.
 function FluxBlizzardMeter:ApplyRequestedTypes()
     if InCombatLockdown() then return false, "Meter layout choices are available outside combat." end
     if not isEmbedded or pendingCleanup or not self:IsAvailable() or not currentLayoutConfig then return false, "Open the Meter tab first." end
     local choices = {}
-    for _, row in ipairs({"top","bottom"}) do
+    for _, row in ipairs({ "top", "bottom" }) do
         local slots = row == "top" and currentLayoutConfig.topSlots or currentLayoutConfig.bottomSlots
-        for i, slot in ipairs(slots or {}) do
-            if slot.kind ~= "plugin" then choices[#choices+1] = {row=row,column=i,meterType=SlotToDamageMeterType(slot)} end
+        for column, slot in ipairs(slots or {}) do
+            if slot.kind ~= "plugin" then
+                choices[#choices + 1] = { row = row, column = column, meterType = SlotToDamageMeterType(slot) }
+            end
         end
     end
     for _, choice in ipairs(choices) do
@@ -846,8 +882,6 @@ function FluxBlizzardMeter:QueueUserLayoutApply()
     return true
 end
 
---- Current is the default for an explicit Flux layout/type choice. Pick the
--- original native session entry so its original {type,sessionID} stays native.
 function FluxBlizzardMeter:ApplyCurrentSegments()
     if InCombatLockdown() then return false, "Meter segment choices are available outside combat." end
     if not isEmbedded or pendingCleanup or not self:IsAvailable() then return false, "Open the Meter tab first." end
@@ -859,11 +893,12 @@ function FluxBlizzardMeter:ApplyCurrentSegments()
         local sessionID = window.GetSessionID and window:GetSessionID()
         if not (PlainNumber(selected) and selected == current and window.GetSessionID
             and not (issecretvalue and issecretvalue(sessionID)) and sessionID == nil) then
-            local choice = VisitNativeMenu(NativeMenuDescription(window.SessionDropdown, true), function(description)
-                local data = description.GetData and description:GetData()
+            local choice = VisitNativeMenu(NativeMenuDescription(window.SessionDropdown), function(description)
+                local data = NativeMenuData(description)
                 if (issecretvalue and issecretvalue(data)) or type(data) ~= "table" then return false end
+                if not NativeField(data, "type") or not NativeField(data, "sessionID") then return false end
                 local kind, id = data.type, data.sessionID
-                return description.IsRadio and description:IsRadio() and PlainNumber(kind) and kind == current
+                return NativeRadio(description) and PlainNumber(kind) and kind == current
                     and not (issecretvalue and issecretvalue(id)) and id == nil
             end)
             local ok, reason = PickNativeDescription(choice)

@@ -1,0 +1,5 @@
+{
+  "command": "python docs/tools/validate_docs.py",
+  "exitCode": 0,
+  "output": "PASS: 1037 classified sources; 617 TOC/XML reachable; 433 setting definitions; 24 SavedVariables; 16689 local links. Source inventory/evidence current. No files written.\n"
+}

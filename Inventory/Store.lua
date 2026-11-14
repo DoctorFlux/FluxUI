@@ -1,5 +1,5 @@
 -- Inventory/Store.lua — account-wide character ledger (Flux's Syndicator facts).
--- When Syndicator is loaded this proxies Syndicator.API instead of writing FluxUIInventoryDB.
+-- When delegated, queries proxy Syndicator.API; Sync retains its live saved root.
 local addonName, ns = ...
 local Flux = ns.Flux
 local Inv = Flux.Inventory
@@ -88,7 +88,14 @@ local function EnsureDB()
 	db.Summaries.Guilds = db.Summaries.Guilds or { ByRealm = {} }
 	db.Summaries.Guilds.ByRealm = db.Summaries.Guilds.ByRealm or {}
 	db.Summaries.Warband = db.Summaries.Warband or { Summary = {}, Pending = true }
+	local Sync = Inv.Syndicator and Inv.Syndicator.Sync
+	if Sync then Sync.Restore(db) end
 	return db
+end
+
+-- The transition bridge needs the local ledger even while queries delegate.
+function Store.GetSyncDB()
+	return EnsureDB()
 end
 
 function Store.GetDB()

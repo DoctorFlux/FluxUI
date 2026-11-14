@@ -1,0 +1,58 @@
+{
+  "changeId": "MINIMAP-SIDE-COMBAT-20261113",
+  "baselineCheckpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d3b4-b7ec-7591-94d3-6d3b3097fb8a\\minimap-side-combat-20261113T091348Z",
+  "scope": "Actual addon module desktop visibility-driver and protected-write fixtures;native taint/input/pixels NOT RUN",
+  "candidateRepeatedPass": 3,
+  "baselineRejected": true,
+  "checksPerCandidateRun": 50034,
+  "harmfulControlsRejected": 3,
+  "sourceSHA256": "e1fc53c1737c83a8cdac9a470fcbf497903054f6d84d5fc8587ecc48da1d0e82",
+  "externalLogs": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d3b4-b7ec-7591-94d3-6d3b3097fb8a\\minimap-side-combat-20261113T091348Z\\regression-controls",
+  "results": [
+    {
+      "name": "baseline-1",
+      "exitCode": 1,
+      "summary": "lua: tests/minimap_extra_layout.lua:5: embedding unregisters screen-side combat driver"
+    },
+    {
+      "name": "candidate-1",
+      "exitCode": 0,
+      "summary": "minimap extra layout: 50034 checks PASS (runtime geometry, saved actions, reuse, deferred combat writes and state-driver model; native acceptance pending)"
+    },
+    {
+      "name": "baseline-2",
+      "exitCode": 1,
+      "summary": "lua: tests/minimap_extra_layout.lua:5: embedding unregisters screen-side combat driver"
+    },
+    {
+      "name": "candidate-2",
+      "exitCode": 0,
+      "summary": "minimap extra layout: 50034 checks PASS (runtime geometry, saved actions, reuse, deferred combat writes and state-driver model; native acceptance pending)"
+    },
+    {
+      "name": "baseline-3",
+      "exitCode": 1,
+      "summary": "lua: tests/minimap_extra_layout.lua:5: embedding unregisters screen-side combat driver"
+    },
+    {
+      "name": "candidate-3",
+      "exitCode": 0,
+      "summary": "minimap extra layout: 50034 checks PASS (runtime geometry, saved actions, reuse, deferred combat writes and state-driver model; native acceptance pending)"
+    },
+    {
+      "name": "hide-both-layouts",
+      "exitCode": 1,
+      "summary": "lua: tests/minimap_extra_layout.lua:5: embedding unregisters screen-side combat driver"
+    },
+    {
+      "name": "leave-driver-armed",
+      "exitCode": 1,
+      "summary": "lua: tests/minimap_extra_layout.lua:5: turning combat hide off unregisters secure driver"
+    },
+    {
+      "name": "discard-preference",
+      "exitCode": 1,
+      "summary": "lua: tests/minimap_extra_layout.lua:5: embedding keeps saved combat preference"
+    }
+  ]
+}

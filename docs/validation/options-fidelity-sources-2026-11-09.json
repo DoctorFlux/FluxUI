@@ -1,0 +1,49 @@
+{
+  "date": "2026-11-09",
+  "client": "Forever",
+  "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+  "records": [
+    {
+      "path": "Interface/AddOns/Blizzard_SharedXML/Shared/Tabs/MinimalTab.xml",
+      "capture": "C:/Users/mario/.codex/visualizations/2026/11/09/01a1c03e-c615-7f02-a24a-3e5ed07300f1/options-fidelity-sources/MinimalTab.xml",
+      "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "normalizedSHA256": "a89e0d8976ef4424cb0751832234a972d2ba42e1311795349edd22d5c13f9855",
+      "installedMirrorMatches": true
+    },
+    {
+      "path": "Interface/AddOns/Blizzard_SharedXML/Shared/Tabs/MinimalTab.lua",
+      "capture": "C:/Users/mario/.codex/visualizations/2026/11/09/01a1c03e-c615-7f02-a24a-3e5ed07300f1/options-fidelity-sources/MinimalTab.lua",
+      "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "normalizedSHA256": "8e3bff39022e1cb10aaec18c5a8e5e4c9b98ad8317d4eb3220f0fd6994def145",
+      "installedMirrorMatches": false
+    },
+    {
+      "path": "Interface/AddOns/Blizzard_SharedXML/SelectableButton.lua",
+      "capture": "C:/Users/mario/.codex/visualizations/2026/11/09/01a1c03e-c615-7f02-a24a-3e5ed07300f1/options-fidelity-sources/SelectableButton.lua",
+      "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "normalizedSHA256": "7b1a4021b2ef069c935e3bf4c30c78f2d80bad94a3cd40829e79b100415e6819",
+      "installedMirrorMatches": false
+    },
+    {
+      "path": "Interface/AddOns/Blizzard_SharedXML/Shared/Slider/MinimalSlider.xml",
+      "capture": "C:/Users/mario/.codex/visualizations/2026/11/09/01a1c03e-c615-7f02-a24a-3e5ed07300f1/options-fidelity-sources/MinimalSlider.xml",
+      "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "normalizedSHA256": "38e14c913bcc90be4804d7c6ad5ea864bc306696c82a87dab3713a16cf77e3e4",
+      "installedMirrorMatches": false
+    },
+    {
+      "path": "Interface/AddOns/Blizzard_SharedXML/Shared/Slider/MinimalSlider.lua",
+      "capture": "C:/Users/mario/.codex/visualizations/2026/11/09/01a1c03e-c615-7f02-a24a-3e5ed07300f1/options-fidelity-sources/MinimalSlider.lua",
+      "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "normalizedSHA256": "c5ce270ea91c02326db936c07fbca5b148ccff2168639cf077523301900456e5",
+      "installedMirrorMatches": true
+    },
+    {
+      "path": "Interface/AddOns/Blizzard_EncounterJournal/Mainline/Blizzard_Journeys.lua",
+      "capture": "C:/Users/mario/.codex/visualizations/2026/11/09/01a1c03e-c615-7f02-a24a-3e5ed07300f1/options-fidelity-sources/Blizzard_Journeys.lua",
+      "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "normalizedSHA256": "f6510d3099d1861dba6ff5f3c4730b220cb936710f93222b9ea2f947a6a74481",
+      "installedMirrorMatches": true
+    }
+  ]
+}

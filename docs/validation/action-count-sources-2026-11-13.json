@@ -1,0 +1,509 @@
+{
+  "task": "ACTION-COUNTS-20261113",
+  "checkedDate": "2026-11-13",
+  "repository": "Gethe/wow-ui-source",
+  "method": "GitHub connector GET reads; branch commits resolved once, all file reads commit-pinned; packaged narrow symbol query used for ownership routing only.",
+  "scope": "Source declarations and loaded Blizzard Lua/TOC evidence only. No native addon event-registration, delivery, operation, taint, pixels, controller, CPU or FPS acceptance.",
+  "contracts": {
+    "SPELL_UPDATE_USES": {
+      "owner": "SpellBookDocumentation.lua",
+      "payload": [
+        {
+          "name": "spellID",
+          "type": "number",
+          "nilable": false
+        },
+        {
+          "name": "baseSpellID",
+          "type": "number",
+          "nilable": true
+        }
+      ],
+      "semantics": "spellID can be base or override; optional baseSpellID accompanies override.",
+      "use": "Treat as invalidation hint. Coalesced refresh of visible count/usability faces can safely ignore both arguments."
+    },
+    "SPELL_UPDATE_CHARGES": {
+      "owner": "SpellBookDocumentation.lua",
+      "payload": [],
+      "synchronous": true,
+      "unique": true
+    },
+    "BAG_UPDATE": {
+      "owner": "ContainerDocumentation.lua",
+      "payload": [
+        {
+          "name": "bagID",
+          "type": "BagIndex",
+          "nilable": false
+        }
+      ],
+      "synchronous": true
+    },
+    "BAG_UPDATE_DELAYED": {
+      "owner": "ContainerDocumentation.lua",
+      "payload": [],
+      "unique": true
+    },
+    "C_Spell.GetSpellDisplayCount": {
+      "arguments": "spellIdentifier; optional maxDisplayCount=9999, replacementString='*'",
+      "returns": "string containing use count or charge count",
+      "retailForever": "SecretWhenCooldownsRestricted=true; SecretArguments=AllowedWhenUntainted",
+      "classicEraAnniversary": "No secret annotation at pinned definitions",
+      "use": "Keep native display text opaque and write through to FontString. This task does not require an API change."
+    },
+    "C_Spell.GetSpellCastCount": {
+      "arguments": "spellIdentifier",
+      "returns": "number of casts allowed by reagents; zero for missing spell",
+      "retailForever": "SecretWhenCooldownsRestricted=true; SecretArguments=AllowedWhenTainted",
+      "classicEraAnniversary": "No secret annotation at pinned definitions"
+    },
+    "C_Spell.GetSpellCharges": {
+      "arguments": "spellIdentifier",
+      "returns": "SpellChargeInfo or no result for absent/non-charge spell",
+      "retailForever": "SecretWhenCooldownsRestricted=true; SecretArguments=AllowedWhenTainted"
+    },
+    "C_ActionBar.GetActionDisplayCount": {
+      "arguments": "valid actionID; optional maxDisplayCount=9999, replacementString='*'",
+      "returns": "string containing use count or charges",
+      "retailForever": "SecretWhenCooldownsRestricted=true; SecretArguments=AllowedWhenUntainted"
+    },
+    "Blizzard.ActionButton": {
+      "behavior": "Shared ActionButton refreshes Count on SPELL_UPDATE_CHARGES and full Update. Neither shared code nor inspected loaded overrides register/handle SPELL_UPDATE_USES."
+    },
+    "Blizzard.SpellFlyout": {
+      "behavior": "While visible, BAG_UPDATE refreshes shown popup counts and usability; hiding unregisters BAG_UPDATE. Uses C_Spell.GetSpellDisplayCount."
+    },
+    "Flux.LibClassicSpellActionCount": {
+      "path": "libs/LibClassicSpellActionCount-1.0/LibClassicSpellActionCount-1.0.lua",
+      "license": "MIT; retained Alexander Heubner 2019 copyright",
+      "behavior": "Bundled existing library maps Light Feather reagent for Slow Fall 130 and Levitate 1706. Its item-count lookup is live; only id/name to spell identity is cached. No code imported or modified."
+    }
+  },
+  "targets": [
+    {
+      "branch": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "version": "12.1.5.70783",
+      "resolvedDate": "2026-11-04T00:46:01Z",
+      "source": [
+        {
+          "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/SpellDocumentation.lua",
+          "blob": "d927bfda89f697146dacc9df8cb68b5745232c25",
+          "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_APIDocumentationGenerated/SpellDocumentation.lua",
+          "lines": [
+            216,
+            250,
+            339
+          ]
+        },
+        {
+          "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/SpellBookDocumentation.lua",
+          "blob": "c3c5a55b9073ccb2515be4056d2ba26644e0e20e",
+          "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_APIDocumentationGenerated/SpellBookDocumentation.lua",
+          "lines": [
+            853,
+            860,
+            890
+          ]
+        },
+        {
+          "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/ContainerDocumentation.lua",
+          "blob": "d8ccac7e60f0a575d5ca27fda9b6900a92f1c709",
+          "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_APIDocumentationGenerated/ContainerDocumentation.lua",
+          "lines": [
+            659,
+            675
+          ]
+        },
+        {
+          "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/ActionBarFrameDocumentation.lua",
+          "blob": "d3ddd5eed3b1d1b0efe997f0ff9e7ff6724265a8",
+          "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_APIDocumentationGenerated/ActionBarFrameDocumentation.lua",
+          "lines": [
+            138,
+            190
+          ]
+        },
+        {
+          "path": "Interface/AddOns/Blizzard_ActionBar/Shared/ActionButton.lua",
+          "blob": "34ce1b2f5ef3c4eb679da7e8b02b1222ea122db1",
+          "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_ActionBar/Shared/ActionButton.lua",
+          "lines": [
+            248,
+            808,
+            1015
+          ]
+        },
+        {
+          "path": "Interface/AddOns/Blizzard_ActionBar/Shared/SpellFlyout.lua",
+          "blob": "aea6ba79ebb7b0e6bb69f4341ac93f229efd4154",
+          "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_ActionBar/Shared/SpellFlyout.lua",
+          "lines": [
+            157,
+            207,
+            364,
+            382
+          ]
+        },
+        {
+          "path": "Interface/AddOns/Blizzard_ActionBar/Blizzard_ActionBar.toc",
+          "blob": "3f63d114fcc74c5d4b27efa2c6f88628dd2bd1fc",
+          "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_ActionBar/Blizzard_ActionBar.toc"
+        },
+        {
+          "path": "Interface/AddOns/Blizzard_ActionBar/Mainline/ActionButtonOverrides.lua",
+          "blob": "1e0432d096005364ea1fd807fdf39b46476e5df7",
+          "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_ActionBar/Mainline/ActionButtonOverrides.lua"
+        },
+        {
+          "path": "version.txt",
+          "blob": "61a71eb0d9c435ad6f9f9701ab4d9c072cd3237e",
+          "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/version.txt"
+        }
+      ],
+      "eventRegistration": "NOT RUN",
+      "eventDelivery": "NOT RUN",
+      "operation": "NOT RUN"
+    },
+    {
+      "branch": "forever",
+      "commit": "bebcb6bf309cf41b41bd74f8ca651e6a105b2676",
+      "version": "1.60.1.70938",
+      "resolvedDate": "2026-11-13T01:46:40Z",
+      "source": [
+        {
+          "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/SpellDocumentation.lua",
+          "blob": "9395b8da63a8a49ff073d18a847cb87c1dd235da",
+          "url": "https://github.com/Gethe/wow-ui-source/blob/bebcb6bf309cf41b41bd74f8ca651e6a105b2676/Interface/AddOns/Blizzard_APIDocumentationGenerated/SpellDocumentation.lua",
+          "lines": [
+            257,
+            291,
+            380
+          ]
+        },
+        {
+          "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/SpellBookDocumentation.lua",
+          "blob": "a7ed5b73985ddfa23d045e1bdbcc9713e9921a42",
+          "url": "https://github.com/Gethe/wow-ui-source/blob/bebcb6bf309cf41b41bd74f8ca651e6a105b2676/Interface/AddOns/Blizzard_APIDocumentationGenerated/SpellBookDocumentation.lua",
+          "lines": [
+            918,
+            925,
+            955
+          ]
+        },
+        {
+          "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/ContainerDocumentation.lua",
+          "blob": "d8ccac7e60f0a575d5ca27fda9b6900a92f1c709",
+          "url": "https://github.com/Gethe/wow-ui-source/blob/bebcb6bf309cf41b41bd74f8ca651e6a105b2676/Interface/AddOns/Blizzard_APIDocumentationGenerated/ContainerDocumentation.lua",
+          "lines": [
+            659,
+            675
+          ]
+        },
+        {
+          "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/ActionBarFrameDocumentation.lua",
+          "blob": "06ea2e9b6998f88e2a33905e6caebfce54f44157",
+          "url": "https://github.com/Gethe/wow-ui-source/blob/bebcb6bf309cf41b41bd74f8ca651e6a105b2676/Interface/AddOns/Blizzard_APIDocumentationGenerated/ActionBarFrameDocumentation.lua",
+          "lines": [
+            147,
+            199
+          ]
+        },
+        {
+          "path": "Interface/AddOns/Blizzard_ActionBar/Shared/ActionButton.lua",
+          "blob": "ade2b56a266cc44f7b727c77818fa237fab585d5",
+          "url": "https://github.com/Gethe/wow-ui-source/blob/bebcb6bf309cf41b41bd74f8ca651e6a105b2676/Interface/AddOns/Blizzard_ActionBar/Shared/ActionButton.lua",
+          "lines": [
+            258,
+            852,
+            1059
+          ]
+        },
+        {
+          "path": "Interface/AddOns/Blizzard_ActionBar/Shared/SpellFlyout.lua",
+          "blob": "18f380dc91fdf9ec55a6771cbf1c7c1e5502e1b4",
+          "url": "https://github.com/Gethe/wow-ui-source/blob/bebcb6bf309cf41b41bd74f8ca651e6a105b2676/Interface/AddOns/Blizzard_ActionBar/Shared/SpellFlyout.lua",
+          "lines": [
+            160,
+            246,
+            446,
+            476
+          ]
+        },
+        {
+          "path": "Interface/AddOns/Blizzard_ActionBar/Blizzard_ActionBar.toc",
+          "blob": "5f95586c9cc81a02e8e059711c3b28d8df9ea1e8",
+          "url": "https://github.com/Gethe/wow-ui-source/blob/bebcb6bf309cf41b41bd74f8ca651e6a105b2676/Interface/AddOns/Blizzard_ActionBar/Blizzard_ActionBar.toc"
+        },
+        {
+          "path": "Interface/AddOns/Blizzard_ActionBar/Camelot/ActionButtonOverrides.lua",
+          "blob": "05615252160587b28bbc16760fb79aafcdf91b93",
+          "url": "https://github.com/Gethe/wow-ui-source/blob/bebcb6bf309cf41b41bd74f8ca651e6a105b2676/Interface/AddOns/Blizzard_ActionBar/Camelot/ActionButtonOverrides.lua"
+        },
+        {
+          "path": "version.txt",
+          "blob": "d9e480e0da12ed6c10b3a65da1121a88c1e28848",
+          "url": "https://github.com/Gethe/wow-ui-source/blob/bebcb6bf309cf41b41bd74f8ca651e6a105b2676/version.txt"
+        }
+      ],
+      "eventRegistration": "NOT RUN",
+      "eventDelivery": "NOT RUN",
+      "operation": "NOT RUN"
+    },
+    {
+      "branch": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "version": "5.5.4.70631",
+      "resolvedDate": "2026-10-27T14:16:09Z",
+      "source": [
+        {
+          "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/SpellDocumentation.lua",
+          "blob": "718c2ccd76ec410fc322b5ff2b54bb6e56de9f4b",
+          "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_APIDocumentationGenerated/SpellDocumentation.lua",
+          "lines": [
+            61,
+            92,
+            157
+          ]
+        },
+        {
+          "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/SpellBookDocumentation.lua",
+          "blob": "abf607ebadab81d768d30c152bf57cd5bd1ecf3c",
+          "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_APIDocumentationGenerated/SpellBookDocumentation.lua",
+          "lines": [
+            198,
+            205,
+            234
+          ]
+        },
+        {
+          "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/ContainerDocumentation.lua",
+          "blob": "bdf5586ff128f3394d4a7f50b696f8601a36a210",
+          "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_APIDocumentationGenerated/ContainerDocumentation.lua",
+          "lines": [
+            503,
+            519
+          ]
+        },
+        {
+          "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/ActionBarFrameDocumentation.lua",
+          "blob": "27365f59541db86c016d217747cb1e320a6e4a2c",
+          "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_APIDocumentationGenerated/ActionBarFrameDocumentation.lua",
+          "lines": [
+            105,
+            152
+          ]
+        },
+        {
+          "path": "Interface/AddOns/Blizzard_ActionBar/Shared/ActionButton.lua",
+          "blob": "1d6bcdfda44143959d2bd657ebae8e13c8d9d3a9",
+          "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_ActionBar/Shared/ActionButton.lua",
+          "lines": [
+            248,
+            808,
+            1051
+          ]
+        },
+        {
+          "path": "Interface/AddOns/Blizzard_ActionBar/Shared/SpellFlyout.lua",
+          "blob": "edafcb0f34d1eb2940de502408272d9d0a0154df",
+          "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_ActionBar/Shared/SpellFlyout.lua",
+          "lines": [
+            146,
+            182,
+            339,
+            357
+          ]
+        },
+        {
+          "path": "Interface/AddOns/Blizzard_ActionBar/Blizzard_ActionBar_Classic.toc",
+          "blob": "a2f2054a1d1dd13ffb6f093b8dce7cee11c3b61d",
+          "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_ActionBar/Blizzard_ActionBar_Classic.toc"
+        },
+        {
+          "path": "Interface/AddOns/Blizzard_ActionBar/Classic/ActionButtonOverrides.lua",
+          "blob": "d36b3aec22e32d14c627ce169c0de38485fd77de",
+          "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_ActionBar/Classic/ActionButtonOverrides.lua"
+        },
+        {
+          "path": "version.txt",
+          "blob": "6888c66e55b78c6b76bdda185480facc60d9b5e5",
+          "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/version.txt"
+        }
+      ],
+      "eventRegistration": "NOT RUN",
+      "eventDelivery": "NOT RUN",
+      "operation": "NOT RUN"
+    },
+    {
+      "branch": "classic_anniversary",
+      "commit": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "version": "2.5.6.70577",
+      "resolvedDate": "2026-10-26T23:16:20Z",
+      "source": [
+        {
+          "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/SpellDocumentation.lua",
+          "blob": "718c2ccd76ec410fc322b5ff2b54bb6e56de9f4b",
+          "url": "https://github.com/Gethe/wow-ui-source/blob/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_APIDocumentationGenerated/SpellDocumentation.lua",
+          "lines": [
+            61,
+            92,
+            157
+          ]
+        },
+        {
+          "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/SpellBookDocumentation.lua",
+          "blob": "abf607ebadab81d768d30c152bf57cd5bd1ecf3c",
+          "url": "https://github.com/Gethe/wow-ui-source/blob/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_APIDocumentationGenerated/SpellBookDocumentation.lua",
+          "lines": [
+            198,
+            205,
+            234
+          ]
+        },
+        {
+          "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/ContainerDocumentation.lua",
+          "blob": "bdf5586ff128f3394d4a7f50b696f8601a36a210",
+          "url": "https://github.com/Gethe/wow-ui-source/blob/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_APIDocumentationGenerated/ContainerDocumentation.lua",
+          "lines": [
+            503,
+            519
+          ]
+        },
+        {
+          "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/ActionBarFrameDocumentation.lua",
+          "blob": "27365f59541db86c016d217747cb1e320a6e4a2c",
+          "url": "https://github.com/Gethe/wow-ui-source/blob/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_APIDocumentationGenerated/ActionBarFrameDocumentation.lua",
+          "lines": [
+            105,
+            152
+          ]
+        },
+        {
+          "path": "Interface/AddOns/Blizzard_ActionBar/Shared/ActionButton.lua",
+          "blob": "7cade90eea5465dbb34b5b9c5faffb940ce8ae6f",
+          "url": "https://github.com/Gethe/wow-ui-source/blob/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_ActionBar/Shared/ActionButton.lua",
+          "lines": [
+            248,
+            808,
+            1051
+          ]
+        },
+        {
+          "path": "Interface/AddOns/Blizzard_ActionBar/Shared/SpellFlyout.lua",
+          "blob": "3abc689e80dbb3cb88bd805611d6f8f61af46c6c",
+          "url": "https://github.com/Gethe/wow-ui-source/blob/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_ActionBar/Shared/SpellFlyout.lua",
+          "lines": [
+            146,
+            182,
+            339,
+            357
+          ]
+        },
+        {
+          "path": "Interface/AddOns/Blizzard_ActionBar/Blizzard_ActionBar_Classic.toc",
+          "blob": "4893b1e476cd3d040f23203a3a06756b21bd0592",
+          "url": "https://github.com/Gethe/wow-ui-source/blob/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_ActionBar/Blizzard_ActionBar_Classic.toc"
+        },
+        {
+          "path": "Interface/AddOns/Blizzard_ActionBar/Classic/ActionButtonOverrides.lua",
+          "blob": "e221a297358193aeec2e31659881235d7ea7d6e0",
+          "url": "https://github.com/Gethe/wow-ui-source/blob/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_ActionBar/Classic/ActionButtonOverrides.lua"
+        },
+        {
+          "path": "version.txt",
+          "blob": "f81737db88bfda2cd085cc09b18ca8ce764efc42",
+          "url": "https://github.com/Gethe/wow-ui-source/blob/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/version.txt"
+        }
+      ],
+      "eventRegistration": "NOT RUN",
+      "eventDelivery": "NOT RUN",
+      "operation": "NOT RUN"
+    },
+    {
+      "branch": "classic_era",
+      "commit": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "version": "1.15.9.70576",
+      "resolvedDate": "2026-10-26T23:16:08Z",
+      "source": [
+        {
+          "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/SpellDocumentation.lua",
+          "blob": "718c2ccd76ec410fc322b5ff2b54bb6e56de9f4b",
+          "url": "https://github.com/Gethe/wow-ui-source/blob/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_APIDocumentationGenerated/SpellDocumentation.lua",
+          "lines": [
+            61,
+            92,
+            157
+          ]
+        },
+        {
+          "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/SpellBookDocumentation.lua",
+          "blob": "abf607ebadab81d768d30c152bf57cd5bd1ecf3c",
+          "url": "https://github.com/Gethe/wow-ui-source/blob/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_APIDocumentationGenerated/SpellBookDocumentation.lua",
+          "lines": [
+            198,
+            205,
+            234
+          ]
+        },
+        {
+          "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/ContainerDocumentation.lua",
+          "blob": "bdf5586ff128f3394d4a7f50b696f8601a36a210",
+          "url": "https://github.com/Gethe/wow-ui-source/blob/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_APIDocumentationGenerated/ContainerDocumentation.lua",
+          "lines": [
+            503,
+            519
+          ]
+        },
+        {
+          "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/ActionBarFrameDocumentation.lua",
+          "blob": "27365f59541db86c016d217747cb1e320a6e4a2c",
+          "url": "https://github.com/Gethe/wow-ui-source/blob/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_APIDocumentationGenerated/ActionBarFrameDocumentation.lua",
+          "lines": [
+            105,
+            152
+          ]
+        },
+        {
+          "path": "Interface/AddOns/Blizzard_ActionBar/Shared/ActionButton.lua",
+          "blob": "1d6bcdfda44143959d2bd657ebae8e13c8d9d3a9",
+          "url": "https://github.com/Gethe/wow-ui-source/blob/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_ActionBar/Shared/ActionButton.lua",
+          "lines": [
+            248,
+            808,
+            1051
+          ]
+        },
+        {
+          "path": "Interface/AddOns/Blizzard_ActionBar/Shared/SpellFlyout.lua",
+          "blob": "edafcb0f34d1eb2940de502408272d9d0a0154df",
+          "url": "https://github.com/Gethe/wow-ui-source/blob/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_ActionBar/Shared/SpellFlyout.lua",
+          "lines": [
+            146,
+            182,
+            339,
+            357
+          ]
+        },
+        {
+          "path": "Interface/AddOns/Blizzard_ActionBar/Blizzard_ActionBar_Classic.toc",
+          "blob": "a2f2054a1d1dd13ffb6f093b8dce7cee11c3b61d",
+          "url": "https://github.com/Gethe/wow-ui-source/blob/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_ActionBar/Blizzard_ActionBar_Classic.toc"
+        },
+        {
+          "path": "Interface/AddOns/Blizzard_ActionBar/Classic/ActionButtonOverrides.lua",
+          "blob": "d36b3aec22e32d14c627ce169c0de38485fd77de",
+          "url": "https://github.com/Gethe/wow-ui-source/blob/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_ActionBar/Classic/ActionButtonOverrides.lua"
+        },
+        {
+          "path": "version.txt",
+          "blob": "66bc5d3c31ec0d4ac300d1ba18ffd9490ac424d9",
+          "url": "https://github.com/Gethe/wow-ui-source/blob/4192ac60067fc55566182291bc67c85dd9b6794d/version.txt"
+        }
+      ],
+      "eventRegistration": "NOT RUN",
+      "eventDelivery": "NOT RUN",
+      "operation": "NOT RUN"
+    }
+  ]
+}

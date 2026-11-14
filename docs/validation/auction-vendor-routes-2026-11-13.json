@@ -1,0 +1,1420 @@
+{
+  "dateUTC": "2026-11-13T11:09:42.171927+00:00",
+  "changeID": "AUCTION-VENDOR-ROUTES-20261113",
+  "requirements": "AHR-52 through AHR-56; retained AHR-46 through AHR-51",
+  "candidate": "AH-vendor-catalog-20261113-r10",
+  "userChoice": "Bundled vendor catalogue plus learned observations; no item-specific code exceptions",
+  "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\auction-restock\\tab-crafting-followup\\vendor-opportunity-20261113\\checkpoint.json",
+  "sourceGuard": {
+    "dateUTC": "2026-11-13T10:55:08.971069+00:00",
+    "proof": {
+      "checkpointSourceFiles": 2670,
+      "settingsMetadataEntries": 95,
+      "professionsGitBlobsVerified": 26,
+      "itemDBFilesVerified": 17,
+      "itemDBArchiveSHA256": "852b091101bf709f54026369abe240cd3060b8fe20b601f3a457209740693afa",
+      "MITNoticePreserved": true,
+      "sourceZipAndHistoryBundleVerified": true,
+      "privateSettingsCopied": false
+    },
+    "changedScopedRuntimeOrTests": [
+      "Inventory/Restock/Auction/FluxAuctionRestock.lua",
+      "Inventory/Restock/Auction/FluxAuctionRestockCraft.lua",
+      "Inventory/Restock/Auction/FluxAuctionRestockData.lua",
+      "Inventory/Restock/Auction/FluxAuctionRestockFollowup.lua",
+      "Inventory/Restock/Auction/FluxAuctionRestockLocale.lua",
+      "Inventory/Restock/Auction/FluxAuctionRestockPotions.lua",
+      "Inventory/Restock/Auction/FluxAuctionRestockPrices.lua",
+      "Inventory/Restock/Auction/FluxAuctionRestockUI.lua",
+      "Inventory/Restock/Core/FluxRestockList.lua",
+      "Inventory/Restock/Vendor/FluxVendorBuy.lua",
+      "_FluxUI.toc",
+      "tests/auction_restock_market.lua"
+    ],
+    "addedScopedRuntimeOrTests": [
+      "Inventory/Restock/Auction/FluxAuctionRestockVendorCatalog.lua",
+      "Inventory/Restock/Auction/FluxAuctionRestockVendorCatalogRetail.lua",
+      "licenses/LibItemDB-MIT.txt",
+      "licenses/TrinityCore-GPL-2.0.txt",
+      "licenses/TrinityCore-VendorData.txt",
+      "tests/auction_restock_vendor_prices.lua",
+      "tests/auction_restock_vendor_queue.lua",
+      "tests/auction_restock_vendor_routes.lua",
+      "tests/auction_vendor_catalog.lua",
+      "tests/auction_vendor_learning.lua",
+      "tools/build_vendor_catalog.py",
+      "tools/data/vendor_catalog_retail.json",
+      "tools/data/vendor_catalog_units.json"
+    ],
+    "concurrentChangesPreserved": [],
+    "concurrentNewPreserved": [],
+    "capturedSnapshotRawHashes": {
+      "_FluxUI.toc": "ca5de5ee68ce6100a07f3c93902584e1e15bf91bf6db43d84c789e6af9dab417",
+      "ExtraButtonSystem/Shared/FluxConsumablesGridUI.lua": "a444bc60318885cdd833f72f39dab26a56c561e475839e1692e4b37c4ea9c28f",
+      "Inventory/Restock/FluxRestock_Inv.lua": "925d68b91c127ee7659e4706064a6aa312367073a88cc335c94acca80972f010",
+      "Inventory/Restock/Auction/FluxAuctionRestock.lua": "aa866fa646c1c1c676ce2327fe43521cecac9eb30189202e597ff03029ed1665",
+      "Inventory/Restock/Auction/FluxAuctionRestockCraft.lua": "f64b65877e1dfdf59eddeec10044277e74983f23f8589a78291b6281ebcc436a",
+      "Inventory/Restock/Auction/FluxAuctionRestockData.lua": "f9ab193e77d4bf13b84577052292ed8ab31142200e87cf7cbf4c51aee9396de7",
+      "Inventory/Restock/Auction/FluxAuctionRestockFollowup.lua": "bd3480cd3fdf37b8b41ac97da3cf883a54a595c3cb23164c7b134aba41ba16ff",
+      "Inventory/Restock/Auction/FluxAuctionRestockFollowupCraft.lua": "c12fd19343de2c00eb5c45a0e6bf60b2654064ee5f64be90c8e23478bf0293dc",
+      "Inventory/Restock/Auction/FluxAuctionRestockFollowupUI.lua": "e13fdc875e702d4e61f10db47bfd569e75c5b73e0e26f989abe844826ef20aa8",
+      "Inventory/Restock/Auction/FluxAuctionRestockLocale.lua": "d837251af2e2ab4c55583856e584e5c1e47bc7cd6ca3f93252e73e8ab5a48ff6",
+      "Inventory/Restock/Auction/FluxAuctionRestockPotions.lua": "4896348cdefd12fb0deefee6da2d63a020b22f47451a130556cb12c7afd9950b",
+      "Inventory/Restock/Auction/FluxAuctionRestockPrices.lua": "19aafe8825fde50adf0d6a68da6903cf68a62b29724cf3af982a0d47c8516c1c",
+      "Inventory/Restock/Auction/FluxAuctionRestockUI.lua": "403996209ef38e4ffff8350335741179a7cf700220ed166a22fa047b843a8bd2",
+      "Inventory/Restock/Auction/FluxAuctionRestockVendorCatalog.lua": "6ee6aafc4925e16a2d9e097b65f2eb1e2eb7449bc4a3e83e4b6aacaeca003583",
+      "Inventory/Restock/Auction/FluxAuctionRestockVendorCatalogRetail.lua": "93a62b55a9e7a324f66a9804e1c2c836a2e5d250bbf6d4b70e8443514ad07bc3",
+      "Inventory/Restock/Bank/FluxBankRestock.lua": "74d7319c9a6f9d9d78ca559ebc588be47bc5b122d2b94dbd934226979645ff37",
+      "Inventory/Restock/Bank/FluxBankRestockButton.lua": "b684b61a0b874efea3555953dfd408a9bbad3abd03deb2d51fd6ecc8f73de7b8",
+      "Inventory/Restock/Bank/FluxBankRestockDebug.lua": "96c9e1446a5381f90fda86d744651aaf6ce0a6e5f14bd086092da5b3c05da35a",
+      "Inventory/Restock/Bank/FluxBankRestockInventory.lua": "7c475e793a8b4568ecb77c1d6f0301e39ecec637fa9ea4bcd28fc967a0a010ca",
+      "Inventory/Restock/Bank/FluxBankRestockLedger.lua": "2fb4701f84c1b5bc13d337f553da5e43a59df368ddb29d052693a438e3c7aaca",
+      "Inventory/Restock/Bank/FluxBankRestockMoveContext.lua": "32b68ee17fd21de704380273dbd8440c5ac0ec7fb14bb623a0c2dcb3ff002ae8",
+      "Inventory/Restock/Bank/FluxBankRestockMoveExec.lua": "c73c888295cf74842d1b8f2d7cdb877985346fcdb8b5909969fbbda7931c0a09",
+      "Inventory/Restock/Bank/FluxBankRestockMovePlan.lua": "b559c9b89e4b6d6441858079641adad38eb634c9d6e7c43ed24fda4f07ebfc78",
+      "Inventory/Restock/Bank/FluxBankRestockMoves.lua": "86d138e6e3b6a971261a0265553c31a426466d8b0ff0fefa1983b0cee646a11e",
+      "Inventory/Restock/Bank/FluxBankRestockNeed.lua": "5304a4842128b8883137afad27eb8cfa9b1f89f7a419c1b5c3e2c8630ef36701",
+      "Inventory/Restock/Bank/FluxBankRestockRules.lua": "704a0fb38dbd2f75f2048b0f3e08a5d21117be7c7b743ef987e920902385ebdd",
+      "Inventory/Restock/Core/FluxRestockList.lua": "bbe56a60257a4aea6a64da3942f4bd698c9d9d143873cf8b3ed1847c10ea1a66",
+      "Inventory/Restock/Core/FluxRestockSession.lua": "4d70874a1da1cb82d35c5c97394de72b31e2ec795315a13ac9912d6c9a62b583",
+      "Inventory/Restock/Core/FluxRestockSettings.lua": "1acf3b02f873288fef2b1cd8664f992ad9ac5be1586a0295f62ad992db1d3336",
+      "Inventory/Restock/Core/Tiers/FluxRestockTiers.lua": "c5aedf7e7af82dfcd98b292666bc7d1c3d95d1901b587cc52c7318864bf379cc",
+      "Inventory/Restock/Core/Tiers/FluxRestockTiers_Bank.lua": "ccddd30e5efc1a0b2dc6276ad066bf3371c4a6b708086c482a557941e3f9e37c",
+      "Inventory/Restock/Core/Tiers/FluxRestockTiers_Inferior.lua": "ed8f0b5676921be4680bc72a8a85250e52f964e2f2394c02d87cb0f1bc92ecb0",
+      "Inventory/Restock/Core/Tiers/FluxRestockTiers_Init.lua": "5c55d8e65283cee1db34fae014c6493bbc9eb2b42f330c31b5b15a1417addfa4",
+      "Inventory/Restock/Core/Tiers/FluxRestockTiers_Match.lua": "314ce32a66ec0bd3e72533b901950ec0fdcbed3310a1d3ff48bad891088efd52",
+      "Inventory/Restock/Core/Tiers/FluxRestockTiers_Settings.lua": "6ccd6c096e5927dad355f34953df22dcfaa742adf3b698a069d67fa938228443",
+      "Inventory/Restock/Core/Tiers/FluxRestockTiers_UI.lua": "89e0901db2af3e7718f90fdb40a45f2575e95b6458a5674202b692fa7eb35e58",
+      "Inventory/Restock/Core/Tiers/FluxRestockTiers_Vendor.lua": "f4bcdd2eb4fee3b0ad9dbf4bb4ce692686cd525acecb2f24cc38d722e971911e",
+      "Inventory/Restock/Junk/FluxJunk.lua": "e4fc5d0a7f38a1ad1a91f0a6dde5a59bfda4ea5f211eab686a8d85e67b1157fc",
+      "Inventory/Restock/Junk/FluxJunkOverlay.lua": "ef94f0c14defe12b12c513de5795c9a25eea2b84d3396a700a849ab8049dfaaf",
+      "Inventory/Restock/Junk/FluxSellJunk.lua": "02614249d5063181bf592014ebdb3dfe68fd2c02fee881f7a458e433cd605f9a",
+      "Inventory/Restock/Junk/FluxVendorJunkPanel.lua": "240ffcc8f1c5a6155b6038aec5d2e2f45596cd80282600b7fe1d09929f8721ad",
+      "Inventory/Restock/Junk/_tmp_junksmoke.lua": "d8f8f396a30f30a0cdc47cd197a0208da713280d182d5b0a084222a471feee30",
+      "Inventory/Restock/Vendor/FluxAlreadyKnown.lua": "f17741c195fde39fd4898535ab072df67684296df61d5bc25c27525ecda82688",
+      "Inventory/Restock/Vendor/FluxAlreadyKnownClassic.lua": "4affef74ac1cfbc8bfbcac7ba8ab115a03cf8eb12847adca2069935086dd477e",
+      "Inventory/Restock/Vendor/FluxAlreadyKnownShared.lua": "05f3443d04cc550ad98ae0234fd9a24cd41194b0cfa5b394e85d63c68b568cbe",
+      "Inventory/Restock/Vendor/FluxVendorAutoMerchantUI.lua": "69bed000cc42717614e22abab5ccc394990605a32b55a6b3039a78c68ca4740c",
+      "Inventory/Restock/Vendor/FluxVendorBuy.lua": "925926ca95f2539a912673694ba6195fbc32b3896103b3fd80d94adc45ab6441",
+      "Inventory/Restock/Vendor/FluxVendorGossip.lua": "8a46e38dd1d0a875864a6aaf57a2c6266dec2f5a2117c4fd0de64319aa865a0f",
+      "Inventory/Restock/Vendor/FluxVendorItemDisplay.lua": "ff67a771dd316beab66fa9a9008f01fdfbb19e5ca85353b11dfb42b2b3010980",
+      "Inventory/Restock/Vendor/FluxVendorRepairUI.lua": "9588cca9baf40afe9d08938404a2ea2054ad4cc8c051d1068ce24f3ef5c82ea2",
+      "Inventory/Restock/Vendor/FluxVendorRestockPanel.lua": "0d0d7edb53147f2962a605bee21136017e174c4ee8778cd6f0b323b129e2ad1a",
+      "Inventory/Restock/Vendor/FluxVendorSession.lua": "6b84ca26ef5bee395c2dc60a1498442054f108ce458723469b08b5ed6b73211b",
+      "Inventory/Restock/Vendor/BuyEmAll/FluxBuyEmAll.lua": "d1aa23938b150848822bee3eac0d28cc15c4ad551629a165ce2cdf2c2207ff7b",
+      "Inventory/Restock/Vendor/BuyEmAll/FluxBuyEmAll.xml": "6c0e29a3c256b3b564b620b8d37922f75dac95b7f0c7029467cc1555d94f4096",
+      "Inventory/Restock/Vendor/BuyEmAll/FluxBuyEmAll_Compat.lua": "3ec2c2a14bc8aa661a33e1afd20df665a5e6852f977e899530dcf9d34e995d6e",
+      "Inventory/Restock/Vendor/BuyEmAll/Localization/Localization.deDE.lua": "15d4f22f3619173144fc0d1f15a4d99e9a1431aa9a76e8c12c33f160c4eacf26",
+      "Inventory/Restock/Vendor/BuyEmAll/Localization/Localization.enUS.lua": "f4661ca1399316723f9526c33a33c5b95d17a3cf85a204fb6bb75f5a59eb6f79",
+      "Inventory/Restock/Vendor/BuyEmAll/Localization/Localization.esES.lua": "67de12ffac32620a1420b9cb4ab93d4b294717a414687457816190c120554e72",
+      "Inventory/Restock/Vendor/BuyEmAll/Localization/Localization.frFR.lua": "6ec5f4d2c8ebf29d58c67d5a00af0baf07c9b476fa6ac9073822080b6e6c34a0",
+      "Inventory/Restock/Vendor/BuyEmAll/Localization/Localization.koKR.lua": "a22541bab28cdfcfd7c534db0408114f90ec1c5799e46e8986b26a72c8cf2ad3",
+      "Inventory/Restock/Vendor/BuyEmAll/Localization/Localization.ptBR.lua": "9f31d8a523113d2cb1b75eef6e2f576d77c0d302f48b1468ebc5620d66a7ba3a",
+      "Inventory/Restock/Vendor/BuyEmAll/Localization/Localization.ruRU.Alternate.lua": "0979e4f99948c5dbb9ca8858ff6299af77ee012a8726ac93fd7277cadaad26e8",
+      "Inventory/Restock/Vendor/BuyEmAll/Localization/Localization.ruRU.lua": "188a1da3c70b9ff4e3360c08da7b73f53a7f15ca7e0b21da20110dedba54e5c4",
+      "Inventory/Restock/Vendor/BuyEmAll/Localization/Localization.zhCN.lua": "de75fafbc3915f46b1bc98fc5e63929322596c6f5aa4255f16513d985f58ef86",
+      "Inventory/Restock/Vendor/BuyEmAll/Localization/Localization.zhTW.lua": "a47904d9ff77ffd3a969402242c980258efd75ecd2d452f037a5eae087dc5e02",
+      "licenses/LibItemDB-MIT.txt": "26d0d26d7aa68e1165ac4e6713d57c9290638ddf763955e2ce757b7708260edd",
+      "licenses/TrinityCore-GPL-2.0.txt": "3e4282f9203a67553d018d486ca9ef11728933ab50319783bdf9cf77effc0810",
+      "licenses/TrinityCore-VendorData.txt": "4651554a8303320db07ca971278f07af9def7e552146a09a022c9d87e5991a7f",
+      "tests/auction_active_rows.lua": "85a06d214725fc2fc067527a08a6f048bd3ca9e9c7dea1f028e700451eec35ad",
+      "tests/auction_cold_tooltip.lua": "3426a081e9fb7c9167c6d3effbc54ee8f7a057cac4326afd99731ee8df22dcba",
+      "tests/auction_incoming_mail.lua": "478a13b4ea360f76d7aa47408fecc665be166400ed09856d644fa15e218dbc09",
+      "tests/auction_metadata_work.lua": "308275070db85b91dd37ea39911c0a6304bfc5a4f1c56c94e4a4a3124135cf3d",
+      "tests/auction_query_ownership.lua": "5b4a3c2ee372fe3b240bcc0c293f4f2eacae67e3b1cd07421cd71ab99552fecb",
+      "tests/auction_refresh_batching.lua": "dd3b3b76cd2ae5e6b981cc818af0f7127bdcdbce102479df2d2e704b4e333750",
+      "tests/auction_restock.lua": "58857d0c14afe69eebafe2947ca763e98d937a63b671574d4480d16e7632f5a2",
+      "tests/auction_restock_charges.lua": "8a924f36e99cb4fa97e36082986f4f0c15ed911ce486cb23d0151b492f3899ef",
+      "tests/auction_restock_crafting.lua": "c7b22413f862cf21d19e5599ed5ebd13f975ccf0136ff2a43c3b3e082643d6ff",
+      "tests/auction_restock_followup.lua": "d65e5e4a9f70d1182951552895dbcbf90e83449c20d13c9b3f144a2d8f324c44",
+      "tests/auction_restock_followup_craft.lua": "2ae972169982b309e504d17c9ccf1b8639e4237c967f94720ae3663faeb1e830",
+      "tests/auction_restock_followup_ui.lua": "668269b589e9acf6d3895f7634c26925a5cce5d99c8feaccfce2d735ccc876f7",
+      "tests/auction_restock_market.lua": "05cc6fa9b18272c5556c61d650314cd3b4bc29c2c4b3f2de34b9dd71ed837b33",
+      "tests/auction_restock_potions.lua": "80d027e188605310acafc71bd6c84ed311d057616a8f25106fda3f1cd083f9a9",
+      "tests/auction_restock_purchase_flow.lua": "4d0ab0483c14d2e1574d499490282a112e67433882dd668253709909274e3cbd",
+      "tests/auction_restock_queue.lua": "0e5c603eea758a276f59c813e92cda7f6fbffebd748d9bfb25a9143b23686a3a",
+      "tests/auction_restock_vendor_prices.lua": "6c59bc373fa1214be3cb45ba4d565bf3764ce1ffc046a6c4ff64bd925749dba3",
+      "tests/auction_restock_vendor_queue.lua": "9015b64f993bff41c4925a1a6167bfb4ecd4332d14b98f82544f52e0790c46ef",
+      "tests/auction_restock_vendor_routes.lua": "bd16456a8f1a9b4cf25ea592feb230106711254d4ae4ee00691e9cbb1bbd8e9f",
+      "tests/auction_vendor_catalog.lua": "58af8b09b43ee587efb6d607e687aae2dd2c2c8b7a01de3fcf9a8a53d6733f07",
+      "tests/auction_vendor_learning.lua": "5c635d3d434ca7a802bab5e1bec9e0e80b62defafacec01a341a6452183938cc",
+      "tests/character_recipe_cache.lua": "9f4c218261e68be782dfe6e4f06effbfa8f1cad3ad234f3023313f1ab5be5c8c",
+      "tools/build_vendor_catalog.py": "c70ae837d80be25c4e64888f3b9f5b9b3341f8bf1a487731ddb8c776ab031f44",
+      "tools/data/vendor_catalog_retail.json": "8bf14c546b2bb8087c73986364d4975d7cdc366e5f5c16d1b3fbb765af717b0d",
+      "tools/data/vendor_catalog_units.json": "12a63943be34629dacdad2e9823e636e48eb36cc1e7bcc98c8c9c4e935811e67"
+    },
+    "workingCopyDriftSinceSnapshot": [],
+    "acceptance": [
+      {
+        "test": "tests/auction_restock_vendor_prices.lua",
+        "exit": 0,
+        "output": "Auction vendor opportunity prices: 1170 checks PASS; 20 profiles; native vendor/AH prices/input NOT RUN\n"
+      },
+      {
+        "test": "tests/auction_restock_vendor_routes.lua",
+        "exit": 0,
+        "output": "Auction restock vendor routes: 600 checks PASS; 20 client/addon profiles; native price/stack/vendor/craft permissions NOT RUN\n"
+      },
+      {
+        "test": "tests/auction_vendor_catalog.lua",
+        "exit": 0,
+        "output": "Auction vendor catalog: 30990 checks PASS; 12 client/alias profiles; native stock/access/discounts NOT RUN\n"
+      },
+      {
+        "test": "tests/auction_vendor_learning.lua",
+        "exit": 0,
+        "output": "Auction vendor source learning: 415 checks PASS; 30 configured client/source profiles; native merchant operation/FPS NOT RUN\n"
+      },
+      {
+        "test": "tests/auction_restock_followup.lua",
+        "exit": 0,
+        "output": "Auction restock follow-up: 854 checks PASS; 10 client/provider profiles; native mail/vendor/craft permissions NOT RUN\n"
+      },
+      {
+        "test": "tests/auction_restock_followup_craft.lua",
+        "exit": 0,
+        "output": "Auction restock follow-up craft: 1692 checks PASS; 20 profiles; native open/craft/input/taint NOT RUN\n"
+      },
+      {
+        "test": "tests/auction_restock_followup_ui.lua",
+        "exit": 0,
+        "output": "Auction restock follow-up UI: 209 checks PASS; 5 client profiles; native pixels/input/controller/taint NOT RUN\n"
+      },
+      {
+        "test": "tests/character_recipe_cache.lua",
+        "exit": 0,
+        "output": "Character recipe persistence/vendor crafting: 848 checks PASS; 20 profiles; native persistence/buying NOT RUN\n"
+      },
+      {
+        "test": "tests/auction_restock_vendor_queue.lua",
+        "exit": 0,
+        "output": "Auction vendor opportunity queue: 1130 checks PASS; 20 profiles; native purchasing/taint/provider coexistence NOT RUN\n"
+      }
+    ],
+    "native": "NOT RUN: desktop correctness / mutation checks only; no native input, permission, pixels, latency, CPU or FPS claim.",
+    "generatedCatalogOriginalSourceCheck": {
+      "command": [
+        "python",
+        "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\auction-restock\\tab-crafting-followup\\vendor-opportunity-20261113\\control-candidate\\tools\\build_vendor_catalog.py",
+        "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\auction-restock\\tab-crafting-followup\\vendor-opportunity-20261113\\ItemDB-ItemDB-v1.9.0.zip",
+        "--retail-source-dir",
+        "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\auction-restock\\tab-crafting-followup\\vendor-opportunity-20261113\\retail-source",
+        "--check"
+      ],
+      "output": "Vendor catalog verified: 15327 stock IDs, 15310 physical-unit prices, seven selected-client source profiles\n",
+      "exit": 0
+    },
+    "controlSourceHashes": {
+      "equal-vendor-price-admitted": "19aafe8825fde50adf0d6a68da6903cf68a62b29724cf3af982a0d47c8516c1c",
+      "hidden-vendor-probe-omitted": "aa866fa646c1c1c676ce2327fe43521cecac9eb30189202e597ff03029ed1665",
+      "quote-vendor-recheck-bypassed": "aa866fa646c1c1c676ce2327fe43521cecac9eb30189202e597ff03029ed1665",
+      "changed-merchant-slot-bought": "bd3480cd3fdf37b8b41ac97da3cf883a54a595c3cb23164c7b134aba41ba16ff",
+      "cod-restock-attachment-taken": "bd3480cd3fdf37b8b41ac97da3cf883a54a595c3cb23164c7b134aba41ba16ff",
+      "bag-callback-auto-action": "bd3480cd3fdf37b8b41ac97da3cf883a54a595c3cb23164c7b134aba41ba16ff",
+      "direct-stock-consumed": "f64b65877e1dfdf59eddeec10044277e74983f23f8589a78291b6281ebcc436a",
+      "closed-profession-overrides-cache": "f64b65877e1dfdf59eddeec10044277e74983f23f8589a78291b6281ebcc436a",
+      "catalog-fallback-missing": "f9ab193e77d4bf13b84577052292ed8ab31142200e87cf7cbf4c51aee9396de7",
+      "observed-limited-stock-ignored": "f9ab193e77d4bf13b84577052292ed8ab31142200e87cf7cbf4c51aee9396de7",
+      "merchant-source-learning-omitted": "925926ca95f2539a912673694ba6195fbc32b3896103b3fd80d94adc45ab6441",
+      "owned-mail-take-proof-ignored": "bd3480cd3fdf37b8b41ac97da3cf883a54a595c3cb23164c7b134aba41ba16ff",
+      "raw-vendor-bundle-used-as-unit-price": "6ee6aafc4925e16a2d9e097b65f2eb1e2eb7449bc4a3e83e4b6aacaeca003583",
+      "stock-only-vendor-rows-forgotten": "6ee6aafc4925e16a2d9e097b65f2eb1e2eb7449bc4a3e83e4b6aacaeca003583"
+    },
+    "controlFailuresVerifiedAsRequirementAssertions": 14,
+    "additionalRoundingControls": {
+      "file": "exact-unit-controls.txt",
+      "sha256": "f3748886a2553b035434f94ab6b5143b9a493cbba2d7f1e97063500601971cfd",
+      "count": 2,
+      "output": "REJECTED rounded-division control: Inventory/Restock/Auction/FluxAuctionRestockCraft.lua -> tests/auction_restock_vendor_routes.lua:3: twenty-five ingredients priced seven per twenty-five exactly tie the seven-copper finished item\nREJECTED rounded-division control: Inventory/Restock/Vendor/FluxVendorBuy.lua -> tests/auction_vendor_learning.lua:3: seven copper affords all twenty-five physical items from exact merchant terms\n"
+    },
+    "harmfulControlsRejectedTotal": 16,
+    "runtimeBudget": {
+      "baseCatalogBytes": 296634,
+      "retailCatalogBytes": 79873,
+      "selectedProfileOnly": true,
+      "unitLookups": "O(1)",
+      "addedEvents": 0,
+      "addedTimers": 0,
+      "addedScanners": 0,
+      "nativeActions": 0
+    }
+  },
+  "finalRawHashes": {
+    "_FluxUI.toc": "ca5de5ee68ce6100a07f3c93902584e1e15bf91bf6db43d84c789e6af9dab417",
+    "ExtraButtonSystem/Shared/FluxConsumablesGridUI.lua": "a444bc60318885cdd833f72f39dab26a56c561e475839e1692e4b37c4ea9c28f",
+    "Inventory/Restock/FluxRestock_Inv.lua": "925d68b91c127ee7659e4706064a6aa312367073a88cc335c94acca80972f010",
+    "Inventory/Restock/Auction/FluxAuctionRestock.lua": "aa866fa646c1c1c676ce2327fe43521cecac9eb30189202e597ff03029ed1665",
+    "Inventory/Restock/Auction/FluxAuctionRestockCraft.lua": "f64b65877e1dfdf59eddeec10044277e74983f23f8589a78291b6281ebcc436a",
+    "Inventory/Restock/Auction/FluxAuctionRestockData.lua": "f9ab193e77d4bf13b84577052292ed8ab31142200e87cf7cbf4c51aee9396de7",
+    "Inventory/Restock/Auction/FluxAuctionRestockFollowup.lua": "bd3480cd3fdf37b8b41ac97da3cf883a54a595c3cb23164c7b134aba41ba16ff",
+    "Inventory/Restock/Auction/FluxAuctionRestockFollowupCraft.lua": "c12fd19343de2c00eb5c45a0e6bf60b2654064ee5f64be90c8e23478bf0293dc",
+    "Inventory/Restock/Auction/FluxAuctionRestockFollowupUI.lua": "e13fdc875e702d4e61f10db47bfd569e75c5b73e0e26f989abe844826ef20aa8",
+    "Inventory/Restock/Auction/FluxAuctionRestockLocale.lua": "d837251af2e2ab4c55583856e584e5c1e47bc7cd6ca3f93252e73e8ab5a48ff6",
+    "Inventory/Restock/Auction/FluxAuctionRestockPotions.lua": "4896348cdefd12fb0deefee6da2d63a020b22f47451a130556cb12c7afd9950b",
+    "Inventory/Restock/Auction/FluxAuctionRestockPrices.lua": "19aafe8825fde50adf0d6a68da6903cf68a62b29724cf3af982a0d47c8516c1c",
+    "Inventory/Restock/Auction/FluxAuctionRestockUI.lua": "bc64888b9df230a465c881930c51ce57820fbbf0e9a802eea424ba419377ae93",
+    "Inventory/Restock/Auction/FluxAuctionRestockVendorCatalog.lua": "6ee6aafc4925e16a2d9e097b65f2eb1e2eb7449bc4a3e83e4b6aacaeca003583",
+    "Inventory/Restock/Auction/FluxAuctionRestockVendorCatalogRetail.lua": "93a62b55a9e7a324f66a9804e1c2c836a2e5d250bbf6d4b70e8443514ad07bc3",
+    "Inventory/Restock/Bank/FluxBankRestock.lua": "74d7319c9a6f9d9d78ca559ebc588be47bc5b122d2b94dbd934226979645ff37",
+    "Inventory/Restock/Bank/FluxBankRestockButton.lua": "b684b61a0b874efea3555953dfd408a9bbad3abd03deb2d51fd6ecc8f73de7b8",
+    "Inventory/Restock/Bank/FluxBankRestockDebug.lua": "96c9e1446a5381f90fda86d744651aaf6ce0a6e5f14bd086092da5b3c05da35a",
+    "Inventory/Restock/Bank/FluxBankRestockInventory.lua": "7c475e793a8b4568ecb77c1d6f0301e39ecec637fa9ea4bcd28fc967a0a010ca",
+    "Inventory/Restock/Bank/FluxBankRestockLedger.lua": "2fb4701f84c1b5bc13d337f553da5e43a59df368ddb29d052693a438e3c7aaca",
+    "Inventory/Restock/Bank/FluxBankRestockMoveContext.lua": "32b68ee17fd21de704380273dbd8440c5ac0ec7fb14bb623a0c2dcb3ff002ae8",
+    "Inventory/Restock/Bank/FluxBankRestockMoveExec.lua": "c73c888295cf74842d1b8f2d7cdb877985346fcdb8b5909969fbbda7931c0a09",
+    "Inventory/Restock/Bank/FluxBankRestockMovePlan.lua": "b559c9b89e4b6d6441858079641adad38eb634c9d6e7c43ed24fda4f07ebfc78",
+    "Inventory/Restock/Bank/FluxBankRestockMoves.lua": "86d138e6e3b6a971261a0265553c31a426466d8b0ff0fefa1983b0cee646a11e",
+    "Inventory/Restock/Bank/FluxBankRestockNeed.lua": "5304a4842128b8883137afad27eb8cfa9b1f89f7a419c1b5c3e2c8630ef36701",
+    "Inventory/Restock/Bank/FluxBankRestockRules.lua": "704a0fb38dbd2f75f2048b0f3e08a5d21117be7c7b743ef987e920902385ebdd",
+    "Inventory/Restock/Core/FluxRestockList.lua": "bbe56a60257a4aea6a64da3942f4bd698c9d9d143873cf8b3ed1847c10ea1a66",
+    "Inventory/Restock/Core/FluxRestockSession.lua": "4d70874a1da1cb82d35c5c97394de72b31e2ec795315a13ac9912d6c9a62b583",
+    "Inventory/Restock/Core/FluxRestockSettings.lua": "1acf3b02f873288fef2b1cd8664f992ad9ac5be1586a0295f62ad992db1d3336",
+    "Inventory/Restock/Core/Tiers/FluxRestockTiers.lua": "c5aedf7e7af82dfcd98b292666bc7d1c3d95d1901b587cc52c7318864bf379cc",
+    "Inventory/Restock/Core/Tiers/FluxRestockTiers_Bank.lua": "ccddd30e5efc1a0b2dc6276ad066bf3371c4a6b708086c482a557941e3f9e37c",
+    "Inventory/Restock/Core/Tiers/FluxRestockTiers_Inferior.lua": "ed8f0b5676921be4680bc72a8a85250e52f964e2f2394c02d87cb0f1bc92ecb0",
+    "Inventory/Restock/Core/Tiers/FluxRestockTiers_Init.lua": "5c55d8e65283cee1db34fae014c6493bbc9eb2b42f330c31b5b15a1417addfa4",
+    "Inventory/Restock/Core/Tiers/FluxRestockTiers_Match.lua": "314ce32a66ec0bd3e72533b901950ec0fdcbed3310a1d3ff48bad891088efd52",
+    "Inventory/Restock/Core/Tiers/FluxRestockTiers_Settings.lua": "6ccd6c096e5927dad355f34953df22dcfaa742adf3b698a069d67fa938228443",
+    "Inventory/Restock/Core/Tiers/FluxRestockTiers_UI.lua": "89e0901db2af3e7718f90fdb40a45f2575e95b6458a5674202b692fa7eb35e58",
+    "Inventory/Restock/Core/Tiers/FluxRestockTiers_Vendor.lua": "f4bcdd2eb4fee3b0ad9dbf4bb4ce692686cd525acecb2f24cc38d722e971911e",
+    "Inventory/Restock/Junk/FluxJunk.lua": "e4fc5d0a7f38a1ad1a91f0a6dde5a59bfda4ea5f211eab686a8d85e67b1157fc",
+    "Inventory/Restock/Junk/FluxJunkOverlay.lua": "ef94f0c14defe12b12c513de5795c9a25eea2b84d3396a700a849ab8049dfaaf",
+    "Inventory/Restock/Junk/FluxSellJunk.lua": "02614249d5063181bf592014ebdb3dfe68fd2c02fee881f7a458e433cd605f9a",
+    "Inventory/Restock/Junk/FluxVendorJunkPanel.lua": "240ffcc8f1c5a6155b6038aec5d2e2f45596cd80282600b7fe1d09929f8721ad",
+    "Inventory/Restock/Junk/_tmp_junksmoke.lua": "d8f8f396a30f30a0cdc47cd197a0208da713280d182d5b0a084222a471feee30",
+    "Inventory/Restock/Vendor/FluxAlreadyKnown.lua": "f17741c195fde39fd4898535ab072df67684296df61d5bc25c27525ecda82688",
+    "Inventory/Restock/Vendor/FluxAlreadyKnownClassic.lua": "4affef74ac1cfbc8bfbcac7ba8ab115a03cf8eb12847adca2069935086dd477e",
+    "Inventory/Restock/Vendor/FluxAlreadyKnownShared.lua": "05f3443d04cc550ad98ae0234fd9a24cd41194b0cfa5b394e85d63c68b568cbe",
+    "Inventory/Restock/Vendor/FluxVendorAutoMerchantUI.lua": "69bed000cc42717614e22abab5ccc394990605a32b55a6b3039a78c68ca4740c",
+    "Inventory/Restock/Vendor/FluxVendorBuy.lua": "925926ca95f2539a912673694ba6195fbc32b3896103b3fd80d94adc45ab6441",
+    "Inventory/Restock/Vendor/FluxVendorGossip.lua": "8a46e38dd1d0a875864a6aaf57a2c6266dec2f5a2117c4fd0de64319aa865a0f",
+    "Inventory/Restock/Vendor/FluxVendorItemDisplay.lua": "ff67a771dd316beab66fa9a9008f01fdfbb19e5ca85353b11dfb42b2b3010980",
+    "Inventory/Restock/Vendor/FluxVendorRepairUI.lua": "9588cca9baf40afe9d08938404a2ea2054ad4cc8c051d1068ce24f3ef5c82ea2",
+    "Inventory/Restock/Vendor/FluxVendorRestockPanel.lua": "0d0d7edb53147f2962a605bee21136017e174c4ee8778cd6f0b323b129e2ad1a",
+    "Inventory/Restock/Vendor/FluxVendorSession.lua": "6b84ca26ef5bee395c2dc60a1498442054f108ce458723469b08b5ed6b73211b",
+    "Inventory/Restock/Vendor/BuyEmAll/FluxBuyEmAll.lua": "d1aa23938b150848822bee3eac0d28cc15c4ad551629a165ce2cdf2c2207ff7b",
+    "Inventory/Restock/Vendor/BuyEmAll/FluxBuyEmAll.xml": "6c0e29a3c256b3b564b620b8d37922f75dac95b7f0c7029467cc1555d94f4096",
+    "Inventory/Restock/Vendor/BuyEmAll/FluxBuyEmAll_Compat.lua": "3ec2c2a14bc8aa661a33e1afd20df665a5e6852f977e899530dcf9d34e995d6e",
+    "Inventory/Restock/Vendor/BuyEmAll/Localization/Localization.deDE.lua": "15d4f22f3619173144fc0d1f15a4d99e9a1431aa9a76e8c12c33f160c4eacf26",
+    "Inventory/Restock/Vendor/BuyEmAll/Localization/Localization.enUS.lua": "f4661ca1399316723f9526c33a33c5b95d17a3cf85a204fb6bb75f5a59eb6f79",
+    "Inventory/Restock/Vendor/BuyEmAll/Localization/Localization.esES.lua": "67de12ffac32620a1420b9cb4ab93d4b294717a414687457816190c120554e72",
+    "Inventory/Restock/Vendor/BuyEmAll/Localization/Localization.frFR.lua": "6ec5f4d2c8ebf29d58c67d5a00af0baf07c9b476fa6ac9073822080b6e6c34a0",
+    "Inventory/Restock/Vendor/BuyEmAll/Localization/Localization.koKR.lua": "a22541bab28cdfcfd7c534db0408114f90ec1c5799e46e8986b26a72c8cf2ad3",
+    "Inventory/Restock/Vendor/BuyEmAll/Localization/Localization.ptBR.lua": "9f31d8a523113d2cb1b75eef6e2f576d77c0d302f48b1468ebc5620d66a7ba3a",
+    "Inventory/Restock/Vendor/BuyEmAll/Localization/Localization.ruRU.Alternate.lua": "0979e4f99948c5dbb9ca8858ff6299af77ee012a8726ac93fd7277cadaad26e8",
+    "Inventory/Restock/Vendor/BuyEmAll/Localization/Localization.ruRU.lua": "188a1da3c70b9ff4e3360c08da7b73f53a7f15ca7e0b21da20110dedba54e5c4",
+    "Inventory/Restock/Vendor/BuyEmAll/Localization/Localization.zhCN.lua": "de75fafbc3915f46b1bc98fc5e63929322596c6f5aa4255f16513d985f58ef86",
+    "Inventory/Restock/Vendor/BuyEmAll/Localization/Localization.zhTW.lua": "a47904d9ff77ffd3a969402242c980258efd75ecd2d452f037a5eae087dc5e02",
+    "licenses/LibItemDB-MIT.txt": "26d0d26d7aa68e1165ac4e6713d57c9290638ddf763955e2ce757b7708260edd",
+    "licenses/TrinityCore-GPL-2.0.txt": "3e4282f9203a67553d018d486ca9ef11728933ab50319783bdf9cf77effc0810",
+    "licenses/TrinityCore-VendorData.txt": "4651554a8303320db07ca971278f07af9def7e552146a09a022c9d87e5991a7f",
+    "tests/auction_active_rows.lua": "85a06d214725fc2fc067527a08a6f048bd3ca9e9c7dea1f028e700451eec35ad",
+    "tests/auction_cold_tooltip.lua": "3426a081e9fb7c9167c6d3effbc54ee8f7a057cac4326afd99731ee8df22dcba",
+    "tests/auction_incoming_mail.lua": "478a13b4ea360f76d7aa47408fecc665be166400ed09856d644fa15e218dbc09",
+    "tests/auction_metadata_work.lua": "308275070db85b91dd37ea39911c0a6304bfc5a4f1c56c94e4a4a3124135cf3d",
+    "tests/auction_query_ownership.lua": "5b4a3c2ee372fe3b240bcc0c293f4f2eacae67e3b1cd07421cd71ab99552fecb",
+    "tests/auction_refresh_batching.lua": "dd3b3b76cd2ae5e6b981cc818af0f7127bdcdbce102479df2d2e704b4e333750",
+    "tests/auction_restock.lua": "58857d0c14afe69eebafe2947ca763e98d937a63b671574d4480d16e7632f5a2",
+    "tests/auction_restock_charges.lua": "8a924f36e99cb4fa97e36082986f4f0c15ed911ce486cb23d0151b492f3899ef",
+    "tests/auction_restock_crafting.lua": "c7b22413f862cf21d19e5599ed5ebd13f975ccf0136ff2a43c3b3e082643d6ff",
+    "tests/auction_restock_followup.lua": "d65e5e4a9f70d1182951552895dbcbf90e83449c20d13c9b3f144a2d8f324c44",
+    "tests/auction_restock_followup_craft.lua": "2ae972169982b309e504d17c9ccf1b8639e4237c967f94720ae3663faeb1e830",
+    "tests/auction_restock_followup_ui.lua": "668269b589e9acf6d3895f7634c26925a5cce5d99c8feaccfce2d735ccc876f7",
+    "tests/auction_restock_market.lua": "05cc6fa9b18272c5556c61d650314cd3b4bc29c2c4b3f2de34b9dd71ed837b33",
+    "tests/auction_restock_potions.lua": "80d027e188605310acafc71bd6c84ed311d057616a8f25106fda3f1cd083f9a9",
+    "tests/auction_restock_purchase_flow.lua": "4d0ab0483c14d2e1574d499490282a112e67433882dd668253709909274e3cbd",
+    "tests/auction_restock_queue.lua": "0e5c603eea758a276f59c813e92cda7f6fbffebd748d9bfb25a9143b23686a3a",
+    "tests/auction_restock_vendor_prices.lua": "6c59bc373fa1214be3cb45ba4d565bf3764ce1ffc046a6c4ff64bd925749dba3",
+    "tests/auction_restock_vendor_queue.lua": "9015b64f993bff41c4925a1a6167bfb4ecd4332d14b98f82544f52e0790c46ef",
+    "tests/auction_restock_vendor_routes.lua": "bd16456a8f1a9b4cf25ea592feb230106711254d4ae4ee00691e9cbb1bbd8e9f",
+    "tests/auction_vendor_catalog.lua": "58af8b09b43ee587efb6d607e687aae2dd2c2c8b7a01de3fcf9a8a53d6733f07",
+    "tests/auction_vendor_learning.lua": "5c635d3d434ca7a802bab5e1bec9e0e80b62defafacec01a341a6452183938cc",
+    "tests/character_recipe_cache.lua": "9f4c218261e68be782dfe6e4f06effbfa8f1cad3ad234f3023313f1ab5be5c8c",
+    "tools/build_vendor_catalog.py": "c70ae837d80be25c4e64888f3b9f5b9b3341f8bf1a487731ddb8c776ab031f44",
+    "tools/data/vendor_catalog_retail.json": "8bf14c546b2bb8087c73986364d4975d7cdc366e5f5c16d1b3fbb765af717b0d",
+    "tools/data/vendor_catalog_units.json": "12a63943be34629dacdad2e9823e636e48eb36cc1e7bcc98c8c9c4e935811e67"
+  },
+  "changesSinceControlSnapshot": [
+    "Inventory/Restock/Auction/FluxAuctionRestockUI.lua"
+  ],
+  "snapshotChangeScope": "Unit-price display uses exact fractional formatting; latest full suite covers it; control-target behavior unchanged",
+  "full": {
+    "pass": 332,
+    "fail": 0,
+    "syntaxFiles": 1019,
+    "currentCompleteLuaManifestVerified": true,
+    "raw": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\auction-restock\\tab-crafting-followup\\vendor-opportunity-20261113\\full-final.json"
+  },
+  "focused": {
+    "tests/auction_active_rows.lua": "auction active rows: 156 checks, 0 failures; burst visits=600, classifications=200",
+    "tests/auction_cold_tooltip.lua": "provider-absent nilReplies=500 missingLinesReplies=1 errors=0 frames=1 timers=0 nativeRequests=0 continuations=0 knownRows=3\nprovider-present nilReplies=500 missingLinesReplies=1 errors=0 frames=1 timers=0 nativeRequests=0 continuations=0 knownRows=3\nauction cold tooltip: 48 checks, 0 failures; desktop production replay only",
+    "tests/auction_incoming_mail.lua": "Auction incoming mail: 743 checks PASS; 15 client/provider profiles; native purchase/taint/latency NOT RUN",
+    "tests/auction_metadata_work.lua": "auction metadata: 230 checks, 0 failures; burst names=0 info=0 walks=0 junk=0 invalidations=0 cacheEntries=0",
+    "tests/auction_query_ownership.lua": "auction query ownership: 628 checks, 0 failures; duplicate-burst legacy queries=4 modern queries=6 foreign queries=0 reentrant queries=10",
+    "tests/auction_refresh_batching.lua": "auction refresh batching: 365 checks, 0 failures; progressive rebuilds=10 snapshot rows=5000 maps=10 publications=10 scheduler requests=10",
+    "tests/auction_restock.lua": "Auction restock: 16096 checks PASS; 20 client/provider/addon profiles; native purchases/input/taint/pixels/FPS NOT RUN",
+    "tests/auction_restock_charges.lua": "Auction restock charges: 14292 checks PASS; 20 profiles; native charges/mail/purchases NOT RUN",
+    "tests/auction_restock_crafting.lua": "Auction restock crafting/tab: 824 checks PASS; 20 profiles; native quote permissions/rendering/controller NOT RUN",
+    "tests/auction_restock_followup.lua": "Auction restock follow-up: 854 checks PASS; 10 client/provider profiles; native mail/vendor/craft permissions NOT RUN",
+    "tests/auction_restock_followup_craft.lua": "Auction restock follow-up craft: 1692 checks PASS; 20 profiles; native open/craft/input/taint NOT RUN",
+    "tests/auction_restock_followup_ui.lua": "Auction restock follow-up UI: 209 checks PASS; 5 client profiles; native pixels/input/controller/taint NOT RUN",
+    "tests/auction_restock_market.lua": "Auction dense grid/stock/price bridge: 2508 checks PASS; 20 profiles; native pixels/vendor coverage/coexistence NOT RUN",
+    "tests/auction_restock_potions.lua": "Auction potion upgrades: 552 checks PASS; 20 profiles; native browse/usability/tier/input NOT RUN",
+    "tests/auction_restock_purchase_flow.lua": "Auction restock purchase flow: 400 checks PASS; 20 client/provider/excess profiles; native purchasing/taint/latency NOT RUN",
+    "tests/auction_restock_queue.lua": "Auction restock automatic queue: 928 checks PASS; 20 profiles; native purchase permissions/pixels NOT RUN",
+    "tests/auction_restock_vendor_prices.lua": "Auction vendor opportunity prices: 1170 checks PASS; 20 profiles; native vendor/AH prices/input NOT RUN",
+    "tests/auction_restock_vendor_queue.lua": "Auction vendor opportunity queue: 1130 checks PASS; 20 profiles; native purchasing/taint/provider coexistence NOT RUN",
+    "tests/auction_restock_vendor_routes.lua": "Auction restock vendor routes: 600 checks PASS; 20 client/addon profiles; native price/stack/vendor/craft permissions NOT RUN",
+    "tests/auction_vendor_catalog.lua": "Auction vendor catalog: 30990 checks PASS; 12 client/alias profiles; native stock/access/discounts NOT RUN",
+    "tests/auction_vendor_learning.lua": "Auction vendor source learning: 415 checks PASS; 30 configured client/source profiles; native merchant operation/FPS NOT RUN",
+    "tests/character_recipe_cache.lua": "Character recipe persistence/vendor crafting: 848 checks PASS; 20 profiles; native persistence/buying NOT RUN"
+  },
+  "catalog": {
+    "sourceProfiles": 7,
+    "stockRecords": 15327,
+    "pricedRecords": 15310,
+    "selectedProfileOnly": true,
+    "selectedClientRows": {
+      "Retail": {
+        "stock": 3710,
+        "priced": 3693
+      },
+      "Forever": {
+        "stock": 849,
+        "priced": 849
+      },
+      "MoP": {
+        "stock": 3005,
+        "priced": 3005
+      },
+      "Era": {
+        "stock": 862,
+        "priced": 862
+      },
+      "AnniversaryTBC": {
+        "stock": 1708,
+        "priced": 1708
+      }
+    },
+    "legacyRawPriceAndCountRowsVerified": 11617,
+    "retailIndependentSourceChecks": 36405,
+    "stockOnlyRetail": 17,
+    "itemDBSource": {
+      "release": "ItemDB-v1.9.0",
+      "fileID": 9580874,
+      "releaseDate": "2026-11-12",
+      "downloadURL": "https://mediafilez.forgecdn.net/files/9580/874/ItemDB-ItemDB-v1.9.0.zip",
+      "projectURL": "https://www.curseforge.com/wow/addons/libitemdb/files/9580874",
+      "licenseURL": "https://www.curseforge.com/wow/addons/libitemdb/license",
+      "archiveSHA256": "852b091101bf709f54026369abe240cd3060b8fe20b601f3a457209740693afa",
+      "files": [
+        {
+          "path": "ItemDB/ItemDB_Wrath.toc",
+          "sha256": "e22c3db118136a287381c3a846324cfbd3f8cecda74d172748d1544faea94411",
+          "bytes": 4048
+        },
+        {
+          "path": "ItemDB/ItemDB_Cata.toc",
+          "sha256": "00356f55e09b3c0ffd2f9bfcd2118f4f85c8c53aa4e32bd168af0cdbcb81e6ec",
+          "bytes": 4064
+        },
+        {
+          "path": "ItemDB/CHANGELOG.md",
+          "sha256": "106974fbde6bf5089dd0b6fc39f257f4bbf153c3b0cb796d7dd39e3639d5ff2d",
+          "bytes": 108175
+        },
+        {
+          "path": "ItemDB/ItemDB_Mainline.toc",
+          "sha256": "d83a4e5f8e6c2ef53f3bd2cc1ce1f5db50410f012713e27c808c6a695595b19d",
+          "bytes": 2826
+        },
+        {
+          "path": "ItemDB/LibItemDB-1.0.lua",
+          "sha256": "bab002b573c52eb877f6bc012fa573b1ccd1a677e6ea833a980a1e8bca8b7f8f",
+          "bytes": 220338
+        },
+        {
+          "path": "ItemDB/README.md",
+          "sha256": "9dc74bffac1eac91f848962ebb6f9cfae33401d9bce1214497793c087b8f8784",
+          "bytes": 153531
+        },
+        {
+          "path": "ItemDB/LICENSE",
+          "sha256": "0333c25c451f6f0d12bc9bbd38d996fc80a44f5ba05900fe50d045b4769a0a15",
+          "bytes": 1066
+        },
+        {
+          "path": "ItemDB/ItemDB_Mists.toc",
+          "sha256": "d2e7e27c16a15af0f9cd9d1e86f805d541fbb8a4e522036ab593237e8f04dad6",
+          "bytes": 5019
+        },
+        {
+          "path": "ItemDB/ItemDB_TBC.toc",
+          "sha256": "9bdc0b16c5142b5f6adf562b09bffc8c8217af22a308bb0b591dc917d3594ed6",
+          "bytes": 4451
+        },
+        {
+          "path": "ItemDB/Data/Vanilla/_core/VendorPrices.lua",
+          "sha256": "150f0142961ffcf91508b8a7869562a93485a5fdf2a094d20e9d0e298a394c60",
+          "bytes": 13332,
+          "count": 862,
+          "header": "-- partitioned by tools/split-seasonal.py: this version's seasonal rows are in _seasonal/\r\n-- LibItemDB vendor BUY prices - WoW Vanilla (locale-independent)\r\n-- Auto-generated by tools/build-vendor-prices.py. Do not hand-edit.\r\n-- What a vendor CHARGES you, in copper. NOT GetItemInfo's sellPrice,\r\n-- which is what a vendor pays you and which the client already has.\r\n-- BASE price = what a NEUTRAL player pays. Reputation discounts are\r\n-- applied server-side at purchase and exist in no client table.\r\n-- Gate: wago ItemSparse.BuyPrice INTERSECTED with emulator npc_vendor\r\n-- (maxcount == 0 AND ExtendedCost == 0). BuyPrice alone is ~sellPrice*4\r\n-- on nearly every item and would price farmed mats no vendor sells.\r\n-- The dumps are Wrath/Cata-era; see the builder on the era mismatch.\r\n-- client build 1.15.9.69722 - 862 of 24127 shipped items\r\n-- source azerothcore_wrath_npc_vendor.sql sha256:5320038ec8b0\r\n-- source trinity_cata_npc_vendor.sql sha256:2daeb515d004\r\n\r\n",
+          "examples": {
+            "17031": 1000,
+            "17032": 2000,
+            "2450": null,
+            "2589": null,
+            "3371": 20,
+            "17056": null,
+            "2447": null,
+            "765": null
+          }
+        },
+        {
+          "path": "ItemDB/Data/TBC/_core/VendorPrices.lua",
+          "sha256": "f4da74e448e59a84a2f48d44429fbea4eca4c440cbecff1d2994b78029670bb2",
+          "bytes": 26872,
+          "count": 1708,
+          "header": "-- LibItemDB vendor BUY prices - WoW TBC (locale-independent)\r\n-- Auto-generated by tools/build-vendor-prices.py. Do not hand-edit.\r\n-- What a vendor CHARGES you, in copper. NOT GetItemInfo's sellPrice,\r\n-- which is what a vendor pays you and which the client already has.\r\n-- BASE price = what a NEUTRAL player pays. Reputation discounts are\r\n-- applied server-side at purchase and exist in no client table.\r\n-- Gate: wago ItemSparse.BuyPrice INTERSECTED with emulator npc_vendor\r\n-- (maxcount == 0 AND ExtendedCost == 0). BuyPrice alone is ~sellPrice*4\r\n-- on nearly every item and would price farmed mats no vendor sells.\r\n-- The dumps are Wrath/Cata-era; see the builder on the era mismatch.\r\n-- client build 2.5.6.68941 - 1708 of 30032 shipped items\r\n-- source azerothcore_wrath_npc_vendor.sql sha256:5320038ec8b0\r\n-- source trinity_cata_npc_vendor.sql sha256:2daeb515d004\r\n\r\n",
+          "examples": {
+            "17031": 1000,
+            "17032": 2000,
+            "2450": null,
+            "2589": null,
+            "3371": 20,
+            "17056": null,
+            "2447": null,
+            "765": null
+          }
+        },
+        {
+          "path": "ItemDB/Data/Forever/_core/VendorPrices.lua",
+          "sha256": "4271a6828f8f4f92a7d65ea83d1ce6e36bd5c75df97742a37f5ce5d345bcc495",
+          "bytes": 13009,
+          "count": 849,
+          "header": "-- LibItemDB vendor BUY prices - WoW Forever (locale-independent)\r\n-- Auto-generated by tools/build-vendor-prices.py. Do not hand-edit.\r\n-- What a vendor CHARGES you, in copper. NOT GetItemInfo's sellPrice,\r\n-- which is what a vendor pays you and which the client already has.\r\n-- BASE price = what a NEUTRAL player pays. Reputation discounts are\r\n-- applied server-side at purchase and exist in no client table.\r\n-- Gate: wago ItemSparse.BuyPrice INTERSECTED with emulator npc_vendor\r\n-- (maxcount == 0 AND ExtendedCost == 0). BuyPrice alone is ~sellPrice*4\r\n-- on nearly every item and would price farmed mats no vendor sells.\r\n-- The dumps are Wrath/Cata-era; see the builder on the era mismatch.\r\n-- client build 1.60.1.70888 - 849 of 24473 shipped items\r\n-- source azerothcore_wrath_npc_vendor.sql sha256:5320038ec8b0\r\n-- source trinity_cata_npc_vendor.sql sha256:2daeb515d004\r\n\r\n",
+          "examples": {
+            "17031": 1000,
+            "17032": 2000,
+            "2450": null,
+            "2589": null,
+            "3371": 20,
+            "17056": null,
+            "2447": null,
+            "765": null
+          }
+        },
+        {
+          "path": "ItemDB/Data/Wrath/_core/VendorPrices.lua",
+          "sha256": "5030815524fa9398031deebd6a206ef7b1d7837bc8b9d894b9f087323a92861a",
+          "bytes": 34496,
+          "count": 2180,
+          "header": "-- LibItemDB vendor BUY prices - WoW Wrath (locale-independent)\r\n-- Auto-generated by tools/build-vendor-prices.py. Do not hand-edit.\r\n-- What a vendor CHARGES you, in copper. NOT GetItemInfo's sellPrice,\r\n-- which is what a vendor pays you and which the client already has.\r\n-- BASE price = what a NEUTRAL player pays. Reputation discounts are\r\n-- applied server-side at purchase and exist in no client table.\r\n-- Gate: wago ItemSparse.BuyPrice INTERSECTED with emulator npc_vendor\r\n-- (maxcount == 0 AND ExtendedCost == 0). BuyPrice alone is ~sellPrice*4\r\n-- on nearly every item and would price farmed mats no vendor sells.\r\n-- The dumps are Wrath/Cata-era; see the builder on the era mismatch.\r\n-- client build 3.4.3.58936 - 2180 of 45155 shipped items\r\n-- source azerothcore_wrath_npc_vendor.sql sha256:5320038ec8b0\r\n-- source trinity_cata_npc_vendor.sql sha256:2daeb515d004\r\n\r\n",
+          "examples": {
+            "17031": 1000,
+            "17032": 2000,
+            "2450": null,
+            "2589": null,
+            "3371": 20,
+            "17056": null,
+            "2447": null,
+            "765": null
+          }
+        },
+        {
+          "path": "ItemDB/Data/Cata/_core/VendorPrices.lua",
+          "sha256": "3850217557eab6c2ac934d416a50b86e7626e99879c50587175ff01d63408ae9",
+          "bytes": 48186,
+          "count": 3013,
+          "header": "-- LibItemDB vendor BUY prices - WoW Cata (locale-independent)\r\n-- Auto-generated by tools/build-vendor-prices.py. Do not hand-edit.\r\n-- What a vendor CHARGES you, in copper. NOT GetItemInfo's sellPrice,\r\n-- which is what a vendor pays you and which the client already has.\r\n-- BASE price = what a NEUTRAL player pays. Reputation discounts are\r\n-- applied server-side at purchase and exist in no client table.\r\n-- Gate: wago ItemSparse.BuyPrice INTERSECTED with emulator npc_vendor\r\n-- (maxcount == 0 AND ExtendedCost == 0). BuyPrice alone is ~sellPrice*4\r\n-- on nearly every item and would price farmed mats no vendor sells.\r\n-- The dumps are Wrath/Cata-era; see the builder on the era mismatch.\r\n-- client build 4.4.2.60895 - 3013 of 65762 shipped items\r\n-- source azerothcore_wrath_npc_vendor.sql sha256:5320038ec8b0\r\n-- source trinity_cata_npc_vendor.sql sha256:2daeb515d004\r\n\r\n",
+          "examples": {
+            "17031": 1000,
+            "17032": 2000,
+            "2450": null,
+            "2589": null,
+            "3371": 100,
+            "17056": null,
+            "2447": null,
+            "765": null
+          }
+        },
+        {
+          "path": "ItemDB/Data/Mists/_core/VendorPrices.lua",
+          "sha256": "2aa514c0d4fccd420a7b60251163ee67a8cd9a0126d463512c9b0ef773b58c32",
+          "bytes": 48032,
+          "count": 3005,
+          "header": "-- LibItemDB vendor BUY prices - WoW Mists (locale-independent)\r\n-- Auto-generated by tools/build-vendor-prices.py. Do not hand-edit.\r\n-- What a vendor CHARGES you, in copper. NOT GetItemInfo's sellPrice,\r\n-- which is what a vendor pays you and which the client already has.\r\n-- BASE price = what a NEUTRAL player pays. Reputation discounts are\r\n-- applied server-side at purchase and exist in no client table.\r\n-- Gate: wago ItemSparse.BuyPrice INTERSECTED with emulator npc_vendor\r\n-- (maxcount == 0 AND ExtendedCost == 0). BuyPrice alone is ~sellPrice*4\r\n-- on nearly every item and would price farmed mats no vendor sells.\r\n-- The dumps are Wrath/Cata-era; see the builder on the era mismatch.\r\n-- client build 5.5.4.68806 - 3005 of 88265 shipped items\r\n-- source azerothcore_wrath_npc_vendor.sql sha256:5320038ec8b0\r\n-- source trinity_cata_npc_vendor.sql sha256:2daeb515d004\r\n\r\n",
+          "examples": {
+            "17031": 1000,
+            "17032": 2000,
+            "2450": null,
+            "2589": null,
+            "3371": 100,
+            "17056": null,
+            "2447": null,
+            "765": null
+          }
+        },
+        {
+          "path": "ItemDB/ItemDB_Camelot.toc",
+          "sha256": "13f9f3c6cb13611b83bd76cfc96aa95ab5259acb35446d01c31e139c55fa4aee",
+          "bytes": 7369
+        },
+        {
+          "path": "ItemDB/ItemDB.toc",
+          "sha256": "522b208a8a7694ef87c88af48f29283ed91570683a753a040af23001e9631e49",
+          "bytes": 6513
+        }
+      ],
+      "limitations": [
+        "Stock eligibility comes from Wrath/Cata emulator npc_vendor dumps, not matching-client native stock observations.",
+        "Base price is neutral; native merchant metadata and actual reputation price should take precedence.",
+        "Missing catalog row means unknown, not proof item is not sold.",
+        "No Retail VendorPrices.lua in this artifact."
+      ]
+    },
+    "unitFactsSHA256": "12a63943be34629dacdad2e9823e636e48eb36cc1e7bcc98c8c9c4e935811e67",
+    "retailFactsSHA256": "8bf14c546b2bb8087c73986364d4975d7cdc366e5f5c16d1b3fbb765af717b0d",
+    "retailSource": {
+      "archive_source": {
+        "archive_sha256": "fc5513334d7534a19f533124a95910193c8150379e5ed8d0db3e547ac2c5a3f5",
+        "full_world_materialized": false,
+        "license": "GPL-2.0",
+        "member": "TDB_full_world_1210.26091_2026_09_09.sql",
+        "source": "https://github.com/TrinityCore/TrinityCore/releases/tag/TDB1210.26091",
+        "tables": {
+          "conditions": {
+            "bytes": 1570558,
+            "file": "retail-conditions.sql",
+            "rows": 17389,
+            "sha256": "2d50b4eec9ada675bc874a849beccd5764a8746caf55bc87d3c8abe4d890926e"
+          },
+          "npc_vendor": {
+            "bytes": 1885649,
+            "file": "retail-npc_vendor.sql",
+            "rows": 49852,
+            "sha256": "29b24606042950ff3bf8f92ed4300c0c2d8fe0c59ed89bae621af5efd433c5c0"
+          }
+        }
+      },
+      "client_build": "12.1.5.70783",
+      "distinct_stock_items": 3710,
+      "fractional_prices": [
+        {
+          "denominator": 3,
+          "itemID": 30615,
+          "numerator": 16000,
+          "unit_price": 5333.333333333333
+        },
+        {
+          "denominator": 5,
+          "itemID": 63251,
+          "numerator": 33333,
+          "unit_price": 6666.6
+        }
+      ],
+      "full_world_materialized": false,
+      "gates": {
+        "accepted_vendor_rows": 28939,
+        "extended_cost": 18852,
+        "limited_stock": 1621,
+        "nonpositive_or_reference": 3,
+        "not_item": 1,
+        "player_condition": 393,
+        "server_vendor_condition": 44
+      },
+      "generated_files": [
+        {
+          "bytes": 51742,
+          "file": "retail-vendor-unit-pairs.json",
+          "sha256": "b4133dee8a0818fbb60e05ac631a3545cff0a61572d4907de0ddf11c476471a2"
+        },
+        {
+          "bytes": 10408776,
+          "file": "retail-vendor-evidence.json",
+          "sha256": "0d4bd4d7db233debc9908b24490ec10cefd1b491b3dc4a6010f0bf8e08d2cc1c"
+        }
+      ],
+      "generation_files": [
+        {
+          "bytes": 11169,
+          "file": "build_retail_vendor_catalog.py",
+          "sha256": "03d78aa69b67359dbacf64d101c6ff36801c9054793b939384700f6d285631c5"
+        },
+        {
+          "bytes": 1941,
+          "file": "extract_vendor_tables.py",
+          "sha256": "4465ae52ebcbeb05d2c57cd5e409ffec7eed2151c74dcc582514a580791038e7"
+        },
+        {
+          "bytes": 1365,
+          "file": "download_itemsparse.py",
+          "sha256": "35a483a087da83c996a523dff1c7211ca65f07368978ff7ecd32c3142795e201"
+        },
+        {
+          "bytes": 30674,
+          "file": "updates-index.json",
+          "sha256": "d4e459bf52a6712e2434ea9b6f8ae265cf7dea7b74b2bba4080c7569fab60326"
+        }
+      ],
+      "input_files": [
+        {
+          "bytes": 1885649,
+          "file": "retail-npc_vendor.sql",
+          "sha256": "29b24606042950ff3bf8f92ed4300c0c2d8fe0c59ed89bae621af5efd433c5c0"
+        },
+        {
+          "bytes": 1570558,
+          "file": "retail-conditions.sql",
+          "sha256": "2d50b4eec9ada675bc874a849beccd5764a8746caf55bc87d3c8abe4d890926e"
+        },
+        {
+          "bytes": 247,
+          "file": "world-updates/2026_09_09_10_world.sql",
+          "sha256": "a25cf727a24f4137bf608645d1e77dae06a8e50490d35ded9b2b18aca19e0c03"
+        },
+        {
+          "bytes": 1173,
+          "file": "world-updates/2026_09_09_11_world.sql",
+          "sha256": "9947f17732eeb1e465b680af934ff5d5d35a15a42f4291484a21c6f06ee19d9e"
+        },
+        {
+          "bytes": 8394,
+          "file": "world-updates/2026_09_10_00_world.sql",
+          "sha256": "3b6a07a7b29e59664c73998a9956e3b659d786011c83e59c18e89af81b931915"
+        },
+        {
+          "bytes": 38099,
+          "file": "world-updates/2026_09_10_01_world.sql",
+          "sha256": "e57d213284b0b6cd658a910fb3486816ca3b54b274aa734794347b5204c5529c"
+        },
+        {
+          "bytes": 119,
+          "file": "world-updates/2026_09_11_00_world.sql",
+          "sha256": "0503bceda5850e3536c218e2b4ffe685e01b4567359f71309dcd2725c5eeacc5"
+        },
+        {
+          "bytes": 1047,
+          "file": "world-updates/2026_09_13_00_world.sql",
+          "sha256": "daaa1dddea172fc4bf1ded750f0f1c72354472cf6bc2e0406ffadbd965c7f716"
+        },
+        {
+          "bytes": 1357,
+          "file": "world-updates/2026_09_14_00_world.sql",
+          "sha256": "3668eb789c15e672a3477b2f48a3e7c8c027034acb9192c00ac01306fcdef730"
+        },
+        {
+          "bytes": 140,
+          "file": "world-updates/2026_09_14_01_world.sql",
+          "sha256": "3aaa509a816d91c2d9d8c803ad0e76aa2861c3e4ea9da533e5c0687cb7d20d5f"
+        },
+        {
+          "bytes": 7718,
+          "file": "world-updates/2026_09_15_00_world.sql",
+          "sha256": "d5a59860c658eb0d0bee20e582dc89416554e679bc1aac4d80d0d38739109656"
+        },
+        {
+          "bytes": 477,
+          "file": "world-updates/2026_09_16_00_world.sql",
+          "sha256": "e8d4822eed755d49715cb51b2838004e345110d954af119a0d3b6b156b61140d"
+        },
+        {
+          "bytes": 184,
+          "file": "world-updates/2026_09_17_00_world.sql",
+          "sha256": "bcfeba2eb8e63f3556148dac4451aa2d82dab4fdf7ff7909f705ae1964c7b20a"
+        },
+        {
+          "bytes": 210,
+          "file": "world-updates/2026_09_17_01_world.sql",
+          "sha256": "15161d71d0148d1b4e4999b0291b3815a3fab9c797f12c13f60eeb095f1fa700"
+        },
+        {
+          "bytes": 1895,
+          "file": "world-updates/2026_09_20_00_world.sql",
+          "sha256": "73338b62f87b025ba044e54d3ac5f586bb5767b2973385912cd25e82881666c6"
+        },
+        {
+          "bytes": 1154,
+          "file": "world-updates/2026_09_20_01_world.sql",
+          "sha256": "503c76c2438a705480cdeca3bdb84d9e600008d4ba977ec0a9559cb9152876a5"
+        },
+        {
+          "bytes": 2436,
+          "file": "world-updates/2026_09_20_02_world.sql",
+          "sha256": "eb8e3c13256315c2cfef53157f6ccf85ae2e5bae93120581947643fb40d5a4a4"
+        },
+        {
+          "bytes": 1320,
+          "file": "world-updates/2026_09_20_03_world.sql",
+          "sha256": "51cb5eb8401816ffa7525f01cd1764f01b8808666a9c62140e7dbebf1c97f800"
+        },
+        {
+          "bytes": 90385,
+          "file": "world-updates/2026_09_20_04_world.sql",
+          "sha256": "f4785088dd3b0d68bc56756cde52c2d84ca5c7d336d9c6eba30e5f6a9371851b"
+        },
+        {
+          "bytes": 664,
+          "file": "world-updates/2026_09_21_00_world.sql",
+          "sha256": "54afdca09c94197b77ff7a7edf0e99df6c795ce3881291ead017f63fdc9ea76e"
+        },
+        {
+          "bytes": 661,
+          "file": "world-updates/2026_09_21_01_world.sql",
+          "sha256": "85399e576a0213546cb3131609f8934a15167fff6e52c15f13341b0f49a7dbff"
+        },
+        {
+          "bytes": 802,
+          "file": "world-updates/2026_09_21_02_world.sql",
+          "sha256": "40f5b5acc2259062e3fb2b7b6e3860becd04db5ff2a2775b943710cc6b971482"
+        },
+        {
+          "bytes": 651,
+          "file": "world-updates/2026_09_21_03_world.sql",
+          "sha256": "54ff9cac354d77666dd9aac2107b781964fb265358e97bd3903e0d9e6c877497"
+        },
+        {
+          "bytes": 492,
+          "file": "world-updates/2026_09_22_00_world_2026_08_06_00_world.sql",
+          "sha256": "fea1cfd493dc226067bf03e8bb81824c12bba5e5628f6aa0542c38fbf8b6328a"
+        },
+        {
+          "bytes": 484,
+          "file": "world-updates/2026_09_22_01_world_2026_08_23_00_world.sql",
+          "sha256": "e73ac4a6c16b28eae1dcea7c4270d8cb8c85eb7e9b6b27e3f8bfa8ad9db4e471"
+        },
+        {
+          "bytes": 19854,
+          "file": "world-updates/2026_09_22_02_world_2026_09_11_00_world.sql",
+          "sha256": "74601058d6ffb5ecc8921afc8a38a0240c04f9dd61832b2fcbb1f2ca0dad65f4"
+        },
+        {
+          "bytes": 523,
+          "file": "world-updates/2026_09_22_03_world_2026_09_14_00_world.sql",
+          "sha256": "9e7250651f390158548b47c00e2dfeb98c9d36671762fa446b79d06c4b27f251"
+        },
+        {
+          "bytes": 1954,
+          "file": "world-updates/2026_09_22_04_world_2026_09_15_00_world.sql",
+          "sha256": "efb08a1a7227668f2bdd8e553dc5fba20eff95af2f6b18be7ac070e429a8ba6b"
+        },
+        {
+          "bytes": 5499,
+          "file": "world-updates/2026_09_22_05_world_2026_09_18_00_world.sql",
+          "sha256": "54eeb5f53375b9533e40eceffbf633087c5373ee3c7c2a2aaa728a6adfbe377d"
+        },
+        {
+          "bytes": 7651,
+          "file": "world-updates/2026_09_22_06_world_2026_09_22_00_world.sql",
+          "sha256": "b9e081b0723a7a50558a5e16e84f8749bbca92b4e1ddfe597c5f1a8e0bd558ca"
+        },
+        {
+          "bytes": 1971,
+          "file": "world-updates/2026_09_22_07_world_2026_09_22_01_world.sql",
+          "sha256": "c4013e06fa31991ca05884226284143a347203cb6e1908a743684550a9ede382"
+        },
+        {
+          "bytes": 2159,
+          "file": "world-updates/2026_09_22_08_world_2026_09_22_02_world.sql",
+          "sha256": "fb76bca1661a627b6ce303adcfcfa883a81fe9e23535bd66ade5acaa06b25467"
+        },
+        {
+          "bytes": 194,
+          "file": "world-updates/2026_09_23_00_world.sql",
+          "sha256": "e257833b08131134e73e19db3f6335fc80abed55b67a1b365ba6ede8d7767f44"
+        },
+        {
+          "bytes": 671,
+          "file": "world-updates/2026_09_24_00_world.sql",
+          "sha256": "75dc5c22e80a9b6fedb77ba037729a0b4d5145748f5357f3065af8bf57263a74"
+        },
+        {
+          "bytes": 188,
+          "file": "world-updates/2026_09_25_00_world.sql",
+          "sha256": "e4f91c6b486e90fcfa1746e4151dcd50ff24d40d0264edb18af9d48b692f9da4"
+        },
+        {
+          "bytes": 179,
+          "file": "world-updates/2026_09_26_00_world.sql",
+          "sha256": "8524b2e733a8886f273723b8163927deafaf12e1b317bfa320d5df26e77eaf91"
+        },
+        {
+          "bytes": 480,
+          "file": "world-updates/2026_09_26_01_world.sql",
+          "sha256": "b1c9a1a51d3efd3e1e65c2cc91f97c7b4a54fa21f7865a73bc9b4fabcf583da4"
+        },
+        {
+          "bytes": 1059,
+          "file": "world-updates/2026_09_26_02_world.sql",
+          "sha256": "33700323e248bac9fde2339c2513793afc7fed719bd27b88bb020c70e7093b2c"
+        },
+        {
+          "bytes": 173,
+          "file": "world-updates/2026_09_27_00_world.sql",
+          "sha256": "34ce0d812af38d83ade02114dfd934f3f0b6c787c4598dbc0f24b1010a5030a1"
+        },
+        {
+          "bytes": 476,
+          "file": "world-updates/2026_09_27_01_world.sql",
+          "sha256": "57adeedaf9d06c9a749f52a321f32b95be1d4fba5fbd3e6a395adaa0a3a3bd58"
+        },
+        {
+          "bytes": 723,
+          "file": "world-updates/2026_09_27_02_world.sql",
+          "sha256": "ae6c502b9e138c152720052e9435bee88863d2f1153a367a0d6a746c5bab57f0"
+        },
+        {
+          "bytes": 181,
+          "file": "world-updates/2026_09_27_03_world.sql",
+          "sha256": "24928bf7e5c04ea28e8433bb375757e860c17429151338de620943dd16501490"
+        },
+        {
+          "bytes": 775,
+          "file": "world-updates/2026_09_27_04_world.sql",
+          "sha256": "014cb2b3b7c8e904836c9153a8bda37b2f51b3f5493806dec8a504b44d1d5146"
+        },
+        {
+          "bytes": 670,
+          "file": "world-updates/2026_09_27_05_world.sql",
+          "sha256": "efb92380254adca3a8d99f2c45cd988ad3aff92a0199d6a1817fb007708fb177"
+        },
+        {
+          "bytes": 156,
+          "file": "world-updates/2026_09_28_00_world.sql",
+          "sha256": "5b581bfef7176da0403ddbc341f768282dec61001b0fe7d9ccd2c91b9b480073"
+        },
+        {
+          "bytes": 179,
+          "file": "world-updates/2026_09_28_01_world.sql",
+          "sha256": "1d8a42b9c68e629351249679831a26a804c64ecf454043293c5fbc7e81c2e718"
+        },
+        {
+          "bytes": 2413,
+          "file": "world-updates/2026_09_29_00_world.sql",
+          "sha256": "810cb4dad26836a52bfea333aca4a464037d5f7eb00da468c8b874e299f6f5ee"
+        },
+        {
+          "bytes": 428,
+          "file": "world-updates/2026_09_30_00_world.sql",
+          "sha256": "08f5e317add3fa1010a10bba4e4e12fffed4a0bc73b9c980d9d08334e9ee3e1b"
+        },
+        {
+          "bytes": 1119,
+          "file": "world-updates/2026_09_30_01_world.sql",
+          "sha256": "caadd74d6d4ebeb4574d85dec7566561894667816b165a2e0a1ed126f53c46b8"
+        },
+        {
+          "bytes": 1415,
+          "file": "world-updates/2026_09_30_02_world.sql",
+          "sha256": "6415aeb956f62be0197726945d16d7aeb88e6df38d2f5047d8dea42690ea473f"
+        },
+        {
+          "bytes": 181,
+          "file": "world-updates/2026_10_01_00_world.sql",
+          "sha256": "04d6dd6d2ec63f27fb3eac74825076e63ecdc503224c2ebf3f66e20c316905a6"
+        },
+        {
+          "bytes": 1183,
+          "file": "world-updates/2026_10_01_01_world.sql",
+          "sha256": "584c903c94899056126e181a773cfec3f66228332c58f946da9c1f59351b02ad"
+        },
+        {
+          "bytes": 780,
+          "file": "world-updates/2026_10_01_02_world.sql",
+          "sha256": "31d615c8b72af540f2f9864b89735d0ade68afe07bc8ed78d8c74af5bd1741ae"
+        },
+        {
+          "bytes": 653,
+          "file": "world-updates/2026_10_01_03_world.sql",
+          "sha256": "fe6edb346c2f32cbcf4664ddd9b6750e6a5f18998df56d4d868468cde1261a97"
+        },
+        {
+          "bytes": 95,
+          "file": "world-updates/2026_10_01_04_world.sql",
+          "sha256": "fdccb107d212a63e35ea626f6c1509b5931ea42b7c62485a5f3caacf8ad89a11"
+        },
+        {
+          "bytes": 185,
+          "file": "world-updates/2026_10_01_05_world.sql",
+          "sha256": "819fadd0ef53501feb04e605c6d2b55663c7af4ff80e0787243c33eadea2f128"
+        },
+        {
+          "bytes": 1104,
+          "file": "world-updates/2026_10_02_00_world.sql",
+          "sha256": "39137823cf3ab5ec1ab13e6d2e1c23e487c2707b2e9ddbd448936db6ac5cabf5"
+        },
+        {
+          "bytes": 876,
+          "file": "world-updates/2026_10_02_01_world.sql",
+          "sha256": "957d8f07782b8b5f47e4e23764b98c0a228cf11ab9b48a83296c8c1d6cac6e1b"
+        },
+        {
+          "bytes": 211,
+          "file": "world-updates/2026_10_02_02_world.sql",
+          "sha256": "588ebf571677aae0778763bfdb0c3ac4bc20c69adf5dc0c6dffa560312b32f1c"
+        },
+        {
+          "bytes": 126,
+          "file": "world-updates/2026_10_02_03_world.sql",
+          "sha256": "9e01fc6febb24a6e32d353f04bdda05c7ff4fda2cc950eb458fce5fafc16d49f"
+        },
+        {
+          "bytes": 4254,
+          "file": "world-updates/2026_10_03_00_world.sql",
+          "sha256": "2dcb9bc12086a5694b55e4e4f7799c64826a609305e842c4b3ba444f7aa72ffd"
+        },
+        {
+          "bytes": 2603,
+          "file": "world-updates/2026_10_03_01_world.sql",
+          "sha256": "370100ffb5cca40c64d7ea67d39394e0f61911ebcd2bf584eb82f69bf6fee41c"
+        },
+        {
+          "bytes": 173,
+          "file": "world-updates/2026_10_03_02_world.sql",
+          "sha256": "9c2430a3d56ec6d75e0123c245b0dd24fddf9795309098147293ab2927ccb957"
+        },
+        {
+          "bytes": 191,
+          "file": "world-updates/2026_10_03_03_world.sql",
+          "sha256": "d999e3883ee1c7157fff29edee5ce66bf647c125462128b3d871646c9d02779b"
+        },
+        {
+          "bytes": 183,
+          "file": "world-updates/2026_10_04_00_world.sql",
+          "sha256": "2cef47cabdb0908fa4327663e6956bf464e48d5b7d5a6553a15c70452c323c7f"
+        },
+        {
+          "bytes": 95,
+          "file": "world-updates/2026_10_07_00_world.sql",
+          "sha256": "6b19519ec055963b1a80608e836048e8d5c5334fc40a1853c1ccbd6756b05ce2"
+        },
+        {
+          "bytes": 778,
+          "file": "world-updates/2026_10_12_00_world.sql",
+          "sha256": "4bceb1201b16a447fb79ce60be4909e5866383607ef3a5f0be845b62e340f1e2"
+        },
+        {
+          "bytes": 7461,
+          "file": "world-updates/2026_10_12_01_world.sql",
+          "sha256": "c058afa2bdc8ee62b0716f0bae58dbe2f46f1a3a5d4e610c801ee1c5e41b756c"
+        },
+        {
+          "bytes": 363,
+          "file": "world-updates/2026_10_15_00_world.sql",
+          "sha256": "c27c431c0a5c33c346276c02c9f593be1d30248f9dfb2f26bf2e52114e3246ec"
+        },
+        {
+          "bytes": 556,
+          "file": "world-updates/2026_10_18_00_world.sql",
+          "sha256": "054a738380caf4a53db2088449141cc00abc0b4222df451b6197903656711b10"
+        },
+        {
+          "bytes": 471,
+          "file": "world-updates/2026_10_18_01_world.sql",
+          "sha256": "ec29af6339ba9bd7a270087ba09460de325d7081e280c088f2b4560d079e009b"
+        },
+        {
+          "bytes": 956,
+          "file": "world-updates/2026_10_19_00_world.sql",
+          "sha256": "e1e6c5f0a422c236a4cb327823b02f77316c0dd5b32cd4acecfca81e6477e800"
+        },
+        {
+          "bytes": 1082,
+          "file": "world-updates/2026_10_19_01_world_2026_10_19_00_world.sql",
+          "sha256": "a8e22507248a426a54213c09e59d3a342a8a427d88f028490081b86be815ceaa"
+        },
+        {
+          "bytes": 208,
+          "file": "world-updates/2026_10_20_00_world.sql",
+          "sha256": "e3bf2638edd3e033a2bdcc8df2acf7e72949a198f8964bff05b02f4931270fde"
+        },
+        {
+          "bytes": 203,
+          "file": "world-updates/2026_10_24_00_world_2026_10_19_00_world.sql",
+          "sha256": "46ae85fe4ae7c8d154ccbb3f85d1d49eecd0fabd67ffb783dcc663e3dc92d9fa"
+        },
+        {
+          "bytes": 356,
+          "file": "world-updates/2026_10_25_00_world.sql",
+          "sha256": "297be483772a49a36774b5173f14756e36d2784316a9fbbc8961a2efd6c109d4"
+        },
+        {
+          "bytes": 199,
+          "file": "world-updates/2026_10_25_01_world.sql",
+          "sha256": "1c104d6275e10b07266451d5453e6482eb3ba44c21a5ce197e70c7db544b3f41"
+        },
+        {
+          "bytes": 657,
+          "file": "world-updates/2026_10_26_00_world.sql",
+          "sha256": "acacee2ace51bf09fe398151a462cf3090c011b1bc37469fa70a8df272fee03a"
+        },
+        {
+          "bytes": 14612,
+          "file": "world-updates/2026_10_26_01_world.sql",
+          "sha256": "f31b2405a2fcb98925237ac690f5d7b5dc476b94bd8788b424f1d8abdf89871c"
+        },
+        {
+          "bytes": 645,
+          "file": "world-updates/2026_10_27_00_world.sql",
+          "sha256": "b0f83d61793476a82b47001d77fc789ed30a0cb07494983c3ee1b7139825b4c2"
+        },
+        {
+          "bytes": 8441,
+          "file": "world-updates/2026_10_29_00_world.sql",
+          "sha256": "5bbae18c4814eb8e11ead1a242db0670de84ca1ee145960018a85686079f3afc"
+        },
+        {
+          "bytes": 1272,
+          "file": "world-updates/2026_10_29_01_world.sql",
+          "sha256": "6de213a9df12335074beccc75777cc20bc6567597c275ab9f03964e564054e47"
+        },
+        {
+          "bytes": 589,
+          "file": "world-updates/2026_11_01_00_world.sql",
+          "sha256": "3b558bfcc915641fa6829ad2a02c90b2a9d5d6a5091e2dc01962c772f86babbb"
+        },
+        {
+          "bytes": 186,
+          "file": "world-updates/2026_11_01_01_world.sql",
+          "sha256": "3536e32903e16ebc0801ce73cafa809b9a654b73719504c888d92cfcdcab2275"
+        },
+        {
+          "bytes": 83,
+          "file": "world-updates/2026_11_01_02_world.sql",
+          "sha256": "d76aa4e356c301e704840f9da083c47148d0b3050f40f6c7bc12cd90274a7059"
+        },
+        {
+          "bytes": 202,
+          "file": "world-updates/2026_11_02_00_world.sql",
+          "sha256": "ab26162e305cb47dd57966ced255d4cbf8dca51091d5c9e6b0ec48c0dcdaa46e"
+        },
+        {
+          "bytes": 264,
+          "file": "world-updates/2026_11_02_01_world.sql",
+          "sha256": "746fe19ad21bb0653ad9d8f6eb7cd7b3f4b213be7ff8c9d56b52b6b02d3839a1"
+        },
+        {
+          "bytes": 178,
+          "file": "world-updates/2026_11_02_02_world.sql",
+          "sha256": "d7d4eb5278cb282131002e643e77ccc2aebec71a7f86975734cfd1c35e1eadd5"
+        },
+        {
+          "bytes": 662,
+          "file": "world-updates/2026_11_02_03_world.sql",
+          "sha256": "2021ae8d94f309d81e3acfe74e1b4b4d2f9f75a6f28d42d332688a0d15713d1a"
+        },
+        {
+          "bytes": 686,
+          "file": "world-updates/2026_11_03_00_world.sql",
+          "sha256": "5480a72373819da05da8ed9016f6a414500723f77be7065f7a948be25e5d103e"
+        },
+        {
+          "bytes": 1164,
+          "file": "world-updates/2026_11_03_01_world.sql",
+          "sha256": "ce2857abd11002de228bd9beada4611bcc4d4037e8bd540c85cccf6b7f975b6f"
+        },
+        {
+          "bytes": 1487,
+          "file": "world-updates/2026_11_03_02_world.sql",
+          "sha256": "6c07494c51833af143f58e2a7c976d544e438c52a8bcced2da321d8a4b4b4385"
+        },
+        {
+          "bytes": 663,
+          "file": "world-updates/2026_11_04_00_world.sql",
+          "sha256": "289f475efb337822913f05ccdd748947a9d178d2dd3a7ff52c819d42d60ac388"
+        },
+        {
+          "bytes": 181,
+          "file": "world-updates/2026_11_04_01_world.sql",
+          "sha256": "4b7af00f87563691f2e51df019831ceeb105fed5422f1fe3d76c1b48e37ec030"
+        },
+        {
+          "bytes": 331,
+          "file": "world-updates/2026_11_04_02_world.sql",
+          "sha256": "b48552e2040351b5bacae876c59efe8e6d089af81efb0c0f2795b6cd4a2acaa1"
+        },
+        {
+          "bytes": 626,
+          "file": "world-updates/2026_11_04_03_world.sql",
+          "sha256": "a2c0c59f4bace0a53e906e37d552e894a009aa5f4f77fed44de5846273bdc712"
+        },
+        {
+          "bytes": 193,
+          "file": "world-updates/2026_11_05_00_world.sql",
+          "sha256": "0ee7e4c778fa3c9fd830aa41c9ce50bedcfea10bf459ac1b12b71d1332440ca0"
+        },
+        {
+          "bytes": 585,
+          "file": "world-updates/2026_11_05_01_world.sql",
+          "sha256": "1f1e6768b47976802be457f84dea3c25f1cd261edd200fd8ce0b154f3ff0c31c"
+        },
+        {
+          "bytes": 613,
+          "file": "world-updates/2026_11_06_00_world.sql",
+          "sha256": "43e24dc1ac7f5c1538a3413b6d763134a836ca25dfdc2ce5f0e39b5b47d0124f"
+        },
+        {
+          "bytes": 12229,
+          "file": "world-updates/2026_11_07_00_world.sql",
+          "sha256": "394a75474bfbecdf12e0b0844ff4916d3042d9a735e78a72a111600564bab6c0"
+        },
+        {
+          "bytes": 393,
+          "file": "world-updates/2026_11_07_01_world.sql",
+          "sha256": "80c45e1d2e376b82c41ef40d387270b811e5c2edce2c0f73271891c0dfe2dc33"
+        },
+        {
+          "bytes": 1305,
+          "file": "world-updates/2026_11_07_02_world.sql",
+          "sha256": "7944c152d7ac3f0e3420bcb7d02cd5e39440ef7ff0a805ef73f551e6a49fe90b"
+        },
+        {
+          "bytes": 321,
+          "file": "world-updates/2026_11_07_03_world.sql",
+          "sha256": "a47d04ee6c195a94b3c4387fcd66edd09f0809380110b42f95b9b1d5107089de"
+        },
+        {
+          "bytes": 1004,
+          "file": "world-updates/2026_11_09_00_world.sql",
+          "sha256": "16ee8ef0720b8a4da972ead42724d5f7a6477fe2df5bd7d4a5fa2746cc2644e8"
+        }
+      ],
+      "itemsparse_source": {
+        "client_build": "12.1.5.70783",
+        "compressed_bytes": 6496298,
+        "file": "ItemSparse-12.1.5.70783.csv.gz",
+        "raw_bytes": 51699329,
+        "retrieved_utc": "2026-11-13T10:34:07.010980+00:00",
+        "sha256_compressed": "5b08963b0e5f2cf2e033822b57d62cb6bf8dd458a8de0cda1026974330a3288f",
+        "sha256_raw": "89910dad9e9a56a4446a0f8ad9c64f79c10267c26ee4f866bd7265db32e433a8",
+        "url": "https://wago.tools/db2/ItemSparse/csv?build=12.1.5.70783"
+      },
+      "license": "GPL-2.0-or-later; preserve COPYING.TrinityCore and source provenance",
+      "missing_sparse_ids": [
+        56162,
+        60405
+      ],
+      "override_gold_cost": "No OverrideGoldCost/OverlayGoldCost column exists in the pinned official npc_vendor schema. All nonzero ExtendedCost rows are excluded; these use ItemSparse BuyPrice, not ItemExtendedCost.Money.",
+      "patches_applied": [
+        {
+          "changed_rows": 2,
+          "file": "2026_09_22_02_world_2026_09_11_00_world.sql",
+          "statement": "UPDATE `conditions` SET `ConditionValue2` = 25971 WHERE `SourceTypeOrReferenceId` = 13 AND `SourceEntry` IN (46398,46396)"
+        },
+        {
+          "changed_rows": 3,
+          "file": "2026_09_22_02_world_2026_09_11_00_world.sql",
+          "statement": "DELETE FROM `conditions` WHERE `SourceTypeOrReferenceId` = 13 AND `SourceEntry` IN (46236,46143,46176,46382)"
+        },
+        {
+          "changed_rows": 4,
+          "file": "2026_09_22_02_world_2026_09_11_00_world.sql",
+          "statement": "INSERT INTO `conditions` (`SourceTypeOrReferenceId`,`SourceGroup`,`SourceEntry`,`SourceId`,`ElseGroup`,`ConditionTypeOrReference`,`ConditionTarget`,`ConditionValue1`,`ConditionValue2`,`ConditionValue3`,`NegativeCondition`,`ErrorType`,`ErrorTextId`,`ScriptName`,`Comment`) VALUES\n(13,1,46236,0,0,31,0,3,25754,0,0,0,0,\"\",\"Group 0: Spell 'Close Opening Visual' (Effect 0) targets creature 'Earthen Ring Flamecaller'\"),\n(13,1,46143,0,0,31,0,3,25746,0,0,0,0,\"\",\"Group 0: Spell 'Summon Minion Missile, Minion 2' (Effect 0) targets creature '[PH] Ahune Loot Loc Bunny'\"),\n(13,1,46176,0,0,31,0,3,25746,0,0,0,0,\"\",\"Group 0: Spell 'Summon Minion Missile, Higher' (Effect 0) targets creature '[PH] Ahune Loot Loc Bunny'\"),\n(13,1,46382,0,0,31,0,3,25746,0,0,0,0,\"\",\"Group 0: Spell 'Summon Minion Missile, Minion 3' (Effect 0) targets creature '[PH] Ahune Loot Loc Bunny'\")"
+        },
+        {
+          "changed_rows": 0,
+          "file": "2026_09_29_00_world.sql",
+          "statement": "DELETE FROM `conditions` WHERE `SourceTypeOrReferenceId` = 13 AND `SourceEntry` = 45339"
+        },
+        {
+          "changed_rows": 5,
+          "file": "2026_09_29_00_world.sql",
+          "statement": "INSERT INTO `conditions` (`SourceTypeOrReferenceId`,`SourceGroup`,`SourceEntry`,`SourceId`,`ElseGroup`,`ConditionTypeOrReference`,`ConditionTarget`,`ConditionValue1`,`ConditionValue2`,`ConditionValue3`,`NegativeCondition`,`ErrorType`,`ErrorTextId`,`ScriptName`,`Comment`) VALUES\n(13,1,45339,0,0,31,0,3,19300,0,0,0,0,\"\",\"Group 0: Spell 'Inciter Trigger Threat Trigger' (Effect 0) targets creature 'Blackheart the Inciter'\"),\n(13,1,45339,0,1,31,0,3,19301,0,0,0,0,\"\",\"Group 1: Spell 'Inciter Trigger Threat Trigger' (Effect 0) targets creature 'Blackheart the Inciter'\"),\n(13,1,45339,0,2,31,0,3,19302,0,0,0,0,\"\",\"Group 2: Spell 'Inciter Trigger Threat Trigger' (Effect 0) targets creature 'Blackheart the Inciter'\"),\n(13,1,45339,0,3,31,0,3,19303,0,0,0,0,\"\",\"Group 3: Spell 'Inciter Trigger Threat Trigger' (Effect 0) targets creature 'Blackheart the Inciter'\"),\n(13,1,45339,0,4,31,0,3,19304,0,0,0,0,\"\",\"Group 4: Spell 'Inciter Trigger Threat Trigger' (Effect 0) targets creature 'Blackheart the Inciter'\")"
+        },
+        {
+          "changed_rows": 0,
+          "file": "2026_10_01_01_world.sql",
+          "statement": "DELETE FROM `npc_vendor` WHERE `entry`=50488 AND `item`=253168 AND `ExtendedCost`=0 AND `type`=1"
+        },
+        {
+          "changed_rows": 1,
+          "file": "2026_10_01_01_world.sql",
+          "statement": "INSERT INTO `npc_vendor` (`entry`, `slot`, `item`, `maxcount`, `ExtendedCost`, `type`, `PlayerConditionID`, `IgnoreFiltering`, `VerifiedBuild`) VALUES\n(50488, 1, 253168, 0, 0, 1, 0, 0, 69933)"
+        },
+        {
+          "changed_rows": 1,
+          "file": "2026_10_01_01_world.sql",
+          "statement": "UPDATE `npc_vendor` SET `slot`=6, `PlayerConditionID`=12248, `VerifiedBuild`=69933 WHERE (`entry`=50488 AND `item`=64908 AND `ExtendedCost`=0 AND `type`=1)"
+        },
+        {
+          "changed_rows": 1,
+          "file": "2026_10_01_01_world.sql",
+          "statement": "UPDATE `npc_vendor` SET `slot`=5, `PlayerConditionID`=12248, `VerifiedBuild`=69933 WHERE (`entry`=50488 AND `item`=64909 AND `ExtendedCost`=0 AND `type`=1)"
+        },
+        {
+          "changed_rows": 1,
+          "file": "2026_10_01_01_world.sql",
+          "statement": "UPDATE `npc_vendor` SET `slot`=4, `PlayerConditionID`=12248, `VerifiedBuild`=69933 WHERE (`entry`=50488 AND `item`=64910 AND `ExtendedCost`=0 AND `type`=1)"
+        },
+        {
+          "changed_rows": 1,
+          "file": "2026_10_01_01_world.sql",
+          "statement": "UPDATE `npc_vendor` SET `slot`=3, `PlayerConditionID`=12247, `VerifiedBuild`=69933 WHERE (`entry`=50488 AND `item`=67533 AND `ExtendedCost`=0 AND `type`=1)"
+        },
+        {
+          "changed_rows": 1,
+          "file": "2026_10_01_01_world.sql",
+          "statement": "UPDATE `npc_vendor` SET `slot`=2, `VerifiedBuild`=69933 WHERE (`entry`=50488 AND `item`=45581 AND `ExtendedCost`=0 AND `type`=1)"
+        },
+        {
+          "changed_rows": 0,
+          "file": "2026_10_03_00_world.sql",
+          "statement": "DELETE FROM `conditions` WHERE `SourceTypeOrReferenceId` IN (14, 15) AND `SourceGroup`=@GOSSIP"
+        },
+        {
+          "changed_rows": 3,
+          "file": "2026_10_03_00_world.sql",
+          "statement": "INSERT INTO `conditions` (`SourceTypeOrReferenceId`, `SourceGroup`, `SourceEntry`, `SourceId`, `ElseGroup`, `ConditionTypeOrReference`, `ConditionTarget`, `ConditionValue1`, `ConditionValue2`, `ConditionValue3`, `ConditionStringValue1`, `NegativeCondition`, `ErrorType`, `ErrorTextId`, `ScriptName`, `Comment`) VALUES \n(14, @GOSSIP, @TEXTNO, 0, 0, 15, 0, 8063, 0, 0, '', 0, 0, 0, '', 'Show gossip text if player is not a mage'),\n(14, @GOSSIP, @TEXTYES, 0, 0, 15, 0, 128, 0, 0, '', 0, 0, 0, '', 'Show gossip text if player is a mage'),\n(15, @GOSSIP, @OPTIONID, 0, 0, 15, 0, 128, 0, 0, '', 0, 0, 0, '', 'Show gossip option if player is a mage')"
+        },
+        {
+          "changed_rows": 1,
+          "file": "2026_10_12_00_world.sql",
+          "statement": "UPDATE `conditions` SET `ConditionValue1`=86852, `Comment`='Apply Phase 27731 If Quest 86852 is not rewarded' WHERE  `SourceTypeOrReferenceId`=26 AND `SourceGroup`=27731 AND `SourceEntry`=16079"
+        },
+        {
+          "changed_rows": 1,
+          "file": "2026_10_12_00_world.sql",
+          "statement": "UPDATE `conditions` SET `ConditionValue1`=86852, `Comment`='Apply Phase 27732 If Quest 86852 is not rewarded' WHERE  `SourceTypeOrReferenceId`=26 AND `SourceGroup`=27732 AND `SourceEntry`=5151"
+        },
+        {
+          "changed_rows": 1,
+          "file": "2026_10_12_00_world.sql",
+          "statement": "UPDATE `conditions` SET `ConditionValue1`=86852, `Comment`='Apply Phase 27733 If Quest 86852 is not rewarded' WHERE  `SourceTypeOrReferenceId`=26 AND `SourceGroup`=27733 AND `SourceEntry`=5170"
+        },
+        {
+          "changed_rows": 1,
+          "file": "2026_10_12_00_world.sql",
+          "statement": "UPDATE `conditions` SET `ConditionValue1`=86852, `Comment`='Apply Phase 27734 If Quest 86852 is not rewarded' WHERE  `SourceTypeOrReferenceId`=26 AND `SourceGroup`=27734 AND `SourceEntry`=15042"
+        },
+        {
+          "changed_rows": 0,
+          "file": "2026_10_26_01_world.sql",
+          "statement": "DELETE FROM `conditions` WHERE `SourceTypeOrReferenceId`=26 AND `SourceGroup` = 23759 AND `SourceEntry`=0"
+        },
+        {
+          "changed_rows": 1,
+          "file": "2026_10_26_01_world.sql",
+          "statement": "INSERT INTO `conditions` (`SourceTypeOrReferenceId`, `SourceGroup`, `SourceEntry`, `SourceId`, `ElseGroup`, `ConditionTypeOrReference`, `ConditionTarget`, `ConditionValue1`, `ConditionValue2`, `ConditionValue3`, `NegativeCondition`, `Comment`) VALUE\n(26, 23759, 0, 0, 0, 47, 0, 86900, 2|8|64, 0, 1, 'Apply Phase 23759 if Quest 86900 is not in progress | complete | rewarded')"
+        },
+        {
+          "changed_rows": 0,
+          "file": "2026_10_26_01_world.sql",
+          "statement": "DELETE FROM `conditions` WHERE `SourceTypeOrReferenceId`=28 AND `SourceGroup`=@ATID+0 AND `SourceEntry`=1"
+        },
+        {
+          "changed_rows": 1,
+          "file": "2026_10_26_01_world.sql",
+          "statement": "INSERT INTO `conditions` (`SourceTypeOrReferenceId`, `SourceGroup`, `SourceEntry`, `SourceId`, `ElseGroup`, `ConditionTypeOrReference`, `ConditionTarget`, `ConditionValue1`, `ConditionValue2`, `ConditionValue3`, `ConditionStringValue1`, `NegativeCondition`, `ErrorType`, `ErrorTextId`, `ScriptName`, `Comment`) VALUES\n(28, @ATID+0, 1, 0, 0, 47, 0, 79200, 2|8|64, 0, '', 1, 0, 0, '', 'Only trigger areatrigger when quest 79200 is not in progress | complete | rewarded')"
+        },
+        {
+          "changed_rows": 0,
+          "file": "2026_10_29_00_world.sql",
+          "statement": "DELETE FROM `conditions` WHERE `SourceTypeOrReferenceId`=26 AND `SourceGroup` = 23761 AND `SourceEntry`=0"
+        },
+        {
+          "changed_rows": 1,
+          "file": "2026_10_29_00_world.sql",
+          "statement": "INSERT INTO `conditions` (`SourceTypeOrReferenceId`, `SourceGroup`, `SourceEntry`, `SourceId`, `ElseGroup`, `ConditionTypeOrReference`, `ConditionTarget`, `ConditionValue1`, `ConditionValue2`, `ConditionValue3`, `NegativeCondition`, `Comment`) VALUE\n(26, 23761, 0, 0, 0, 47, 0, 79200, 2|8|64, 0, 0, 'Apply Phase 23761 if Quest 79200 is in progress | complete | rewarded')"
+        },
+        {
+          "changed_rows": 1,
+          "file": "2026_10_29_00_world.sql",
+          "statement": "DELETE FROM `conditions` WHERE `SourceTypeOrReferenceId`=26 AND `SourceGroup` = 23759 AND `SourceEntry`=0"
+        },
+        {
+          "changed_rows": 1,
+          "file": "2026_10_29_00_world.sql",
+          "statement": "INSERT INTO `conditions` (`SourceTypeOrReferenceId`, `SourceGroup`, `SourceEntry`, `SourceId`, `ElseGroup`, `ConditionTypeOrReference`, `ConditionTarget`, `ConditionValue1`, `ConditionValue2`, `ConditionValue3`, `NegativeCondition`, `Comment`) VALUE\n(26, 23759, 0, 0, 0, 47, 0, 79200, 2|8|64, 0, 1, 'Apply Phase 23759 if Quest 79200 is not in progress | complete | rewarded')"
+        }
+      ],
+      "patches_inspected": 102,
+      "priced_items": 3693,
+      "proof_files": [
+        {
+          "bytes": 18745,
+          "file": "COPYING.TrinityCore",
+          "sha256": "3e4282f9203a67553d018d486ca9ef11728933ab50319783bdf9cf77effc0810"
+        },
+        {
+          "bytes": 47137,
+          "file": "ItemTemplate.h",
+          "sha256": "c7258f902655762a7a9b4080872389411488a63788d680f0451db747399b9bbd"
+        },
+        {
+          "bytes": 1233528,
+          "file": "Player.cpp",
+          "sha256": "a6497ba3e2e8c77503c9efaee064d441c51304bce1a5e0fa3a5f32025f9b6a27"
+        },
+        {
+          "bytes": 47854,
+          "file": "ItemHandler.cpp",
+          "sha256": "c930076f5d45fcc828dabc7fd9c54741e424205595a254e0b774abee298e8c53"
+        },
+        {
+          "bytes": 26484,
+          "file": "ConditionMgr.h",
+          "sha256": "ef5d92cf0472985fdd80e779c0bfefdbf38946140a12e353988fbe46a4f13a8b"
+        }
+      ],
+      "scope": "Reference unlimited gold item vendor rows with no row PlayerConditionID or server vendor conditions. Character faction/class/reputation, NPC spawn/phasing/access and live availability are not certified.",
+      "source_proof": {
+        "ItemHandler.cpp": [
+          643,
+          665
+        ],
+        "ItemTemplate.h": [
+          858,
+          859
+        ],
+        "Player.cpp": [
+          23858,
+          23866
+        ]
+      },
+      "source_release": "TDB1210.26091",
+      "trinity_commit": "01df6f3e1f66c9df867bceb27c7cdc7c4ecf737c",
+      "unit_rule": "ItemSparse.BuyPrice / max(ItemSparse.VendorStackCount, 1)",
+      "zero_or_negative_buy_price_ids": [
+        19484,
+        32233,
+        37198,
+        61931,
+        61935,
+        61936,
+        61937,
+        61942,
+        61958,
+        62038,
+        62039,
+        62040,
+        69887,
+        69892,
+        210695
+      ]
+    },
+    "formula": "physical unit buy price=raw BuyPrice/max(VendorStackCount,1); exact numerator/denominator comparisons",
+    "limitations": "Reference stock/base prices; character access/faction/phasing/native discounts not certified; missing rows unknown; learned typed data takes priority"
+  },
+  "resources": {
+    "catalogRuntime": "selected-client maps only; O(1) getters; no events/timers/scanners/actions",
+    "merchantLearning": "existing paced index; configured auto-off/Shift visits learn without purchases; peak16 reads/slice in48-row model; settled30bagpulses add0reads; idle unconfigured0reads",
+    "auctionPlanning": "read-only hidden vendor probes and all recipe ingredients; existing queue/timer/caching; legacy missing-name hidden rows cannot stop ordinary targets"
+  },
+  "savedData": "Existing roots/preferences/targets/caps retained; learned exact priceNumerator/priceDenominator appended only with coherent native price/physical-count proof",
+  "native": "NOT RUN: stock/access/discounts, actual buying/crafting/opening permission, mail delivery/latency, HUD/controller/taint/CPU/FPS; earlier Forever blocked call still requires user-native reproduction",
+  "operations": "Existing main folder; no foreground/input/private settings or profiler writes/manual client sync/commit/publication",
+  "documentationValidation": {
+    "pass": true,
+    "classifiedSources": 1052,
+    "reachable": 622,
+    "settings": 433,
+    "savedVariableRoots": 24,
+    "localLinks": 16804
+  },
+  "workspaceVerification": {
+    "branch": "main",
+    "hooksPath": ".githooks",
+    "whitespaceCheck": "PASS",
+    "finalCompleteLuaManifestDrift": []
+  }
+}

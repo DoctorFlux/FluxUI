@@ -591,17 +591,23 @@ function Cap.HasAuctionHouse()
 end
 
 function Cap.HasLegacyAuctionHouse()
-	if Client.isEra then
-		return true
-	end
 	local fn = rawget(_G, "IsUsingLegacyAuctionClient")
 	if type(fn) == "function" then
 		local ok, legacy = pcall(fn)
-		if ok and legacy then
-			return true
+		if ok and type(legacy) == "boolean" then
+			return legacy
 		end
 	end
-	if C_AuctionHouse ~= nil then
+	-- Clients can expose compatibility namespaces and both loaded UI addons.
+	-- Prefer the native owner actually shown when no typed client result exists.
+	local oldFrame, newFrame = rawget(_G, "AuctionFrame"), rawget(_G, "AuctionHouseFrame")
+	local oldShown = oldFrame and type(oldFrame.IsShown) == "function" and oldFrame:IsShown() == true or false
+	local newShown = newFrame and type(newFrame.IsShown) == "function" and newFrame:IsShown() == true or false
+	if oldShown ~= newShown then return oldShown end
+	if Client.isEra then
+		return true
+	end
+	if C_AuctionHouse and type(C_AuctionHouse.SendSearchQuery) == "function" then
 		return false
 	end
 	return type(GetNumAuctionItems) == "function"

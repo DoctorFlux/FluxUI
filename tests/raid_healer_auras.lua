@@ -40,6 +40,9 @@ local function NativePolicy(e,client)
     e.EnumUtil={MakeEnum=function(...)local enum={};for i,name in ipairs({...})do enum[name]=i-1 end;return enum end}
     e.securecallfunction=function(fn,...)return fn(...)end
     e.unpack=unpack or table.unpack
+    for kind,rgb in pairs({MAGIC={.2,.6,1},CURSE={.6,0,1},DISEASE={.6,.4,0},POISON={0,.6,0},BLEED={1,.2,.2},NONE={.8,0,0}}) do
+        e["DEBUFF_TYPE_"..kind.."_COLOR"]={GetRGBA=function()return rgb[1],rgb[2],rgb[3],1 end}
+    end
     e.UnitAffectingCombat=function()return e.combat or false end
     e.UnitIsUnit=function(a,b)return a==b end
     e.UnitClass=function()return "Priest",e.playerClass or "PRIEST" end
@@ -64,6 +67,8 @@ local function Fixture(native, failAt, source,client)
     e.FluxRaidCompat={IsSecret=function(value)return type(value)=="table" and value.secret==true end}
     e.issecretvalue=e.FluxRaidCompat.IsSecret
     e.InCombatLockdown=function()return e.combat or false end
+    e.UnitIsFriend=function()return true end
+    e.UnitCanAttack=function()return false end
     e.raidDB={}
     e.addonNS={Flux={Client={branch=client or "forever",isAnyClassic=client=="classic"or client=="classic_era"or client=="classic_anniversary"}}}
     e.FluxOptions={GetRaidFrameDB=function()return e.raidDB end}
@@ -115,6 +120,8 @@ local function Fixture(native, failAt, source,client)
     function methods:ClearAllPoints()legal(self);self.points={}end
     function methods:SetTexture(value)legal(self);self.texture=value end
     function methods:SetTexCoord(...)legal(self);self.coords={...}end
+    function methods:SetAtlas(value)legal(self);self.atlas=value end
+    function methods:SetDesaturated(value)legal(self);self.desaturated=value end
     function methods:SetColorTexture(...)legal(self);self.color={...}end
     function methods:SetVertexColor(...)legal(self);self.color={...}end
     function methods:SetText(value)legal(self);self.text=value end
@@ -139,8 +146,26 @@ local function Fixture(native, failAt, source,client)
     function methods:SetSwipeColor(...)legal(self);self.swipeColor={...}end
     function methods:SetSwipeTexture(...)legal(self);self.swipeTexture={...}end
     function methods:GetCountdownFontString()legal(self);return self.countdown end
-    function methods:Show()legal(self);self.shown=true;self.events=self.kind=="AuraContainer" and self.enabled==true and self.unit~="none" or false end
-    function methods:Hide()legal(self);self.shown=false;self.events=false end
+    function methods:HookScript(event,fn)self.hooks=self.hooks or {};self.hooks[event]=fn end
+    function methods:Show()legal(self);local changed=not self.shown;self.shown=true;self.events=self.kind=="AuraContainer" and self.enabled==true and self.unit~="none" or false;if changed and self.hooks and self.hooks.OnShow then self.hooks.OnShow(self)end end
+    function methods:Hide()legal(self);local changed=self.shown;self.shown=false;self.events=false;if changed and self.hooks and self.hooks.OnHide then self.hooks.OnHide(self)end end
+    function methods:CreateAnimationGroup()
+        legal(self)
+        local group={owner=self,animations={},playing=false}
+        self.animations=self.animations or {};self.animations[#self.animations+1]=group
+        function group:SetLooping(value)self.looping=value end
+        function group:Play()self.playing=true end
+        function group:Stop()self.playing=false end
+        function group:CreateAnimation(kind)
+            local animation={kind=kind};self.animations[#self.animations+1]=animation
+            for _,key in ipairs({"Target","Duration","FlipBookColumns","FlipBookRows","FlipBookFrames","FromAlpha","ToAlpha","Order"})do
+                animation["Set"..key]=function(a,value)a[key]=value end
+            end
+            return animation
+        end
+        return group
+    end
+    if client=="forever" then function methods:AddAuraShownAnimation(group)self.shownAnimation=group end end
     function methods:SetShown(value)if value then self:Show()else self:Hide()end end
     function methods:IsShown()legal(self);return self.shown end
     function methods:IsVisible()
@@ -261,7 +286,7 @@ end
 for _,client in ipairs({"retail","forever"})do
     local e,auras,frame,frames,boxes=Fixture(true,nil,nil,client=="retail"and"live"or"forever")
     check(auras.Setup(frame),client.." native setup succeeds")
-    check(frame._fluxAuraNative==true and #boxes==4,"three native icon containers and one unclipped native border owner")
+    check(frame._fluxAuraNative==true and #boxes==5,"three native icon containers plus independent raid border and party glow owners")
     local groups,rows=frame._fluxAuraContainers,frame._fluxAuraRows
     local geometry=e.FluxRaidVisuals.GetAuraLayout(e.FluxRaidVisuals.FRAME_WIDTH-7,frame.healthBar:GetHeight(),e.raidDB)
     check(rows.top.clips and rows.bottom.clips and rows.top.width==geometry.buffs.blockWidth
@@ -286,7 +311,7 @@ for _,client in ipairs({"retail","forever"})do
         and groups.dispel.groups.debuffs.options.candidateFilters.isPriorityAura==false,"native debuff categories are disjoint by gameplay priority")
     local buttons=0
     for key,box in pairs(groups)do
-      if key~="dispelBorder"then
+      if key~="dispelBorder"and key~="partyDispelGlow"then
         local slot=11
         check(box.maxLine==2*slot+geometry.base.gap and box.axis==e.AnchorUtil.FlowLayoutAxis.Vertical and box.growth[2]==e.AnchorUtil.FlowDirection.Down,"native flow wraps after three icons and grows down")
         for groupKey,group in pairs(box.groups)do
@@ -340,7 +365,7 @@ for _,client in ipairs({"retail","forever"})do
     auras.Update(frame)
     check(groups.buffs.groups.classBuffs.enabled and groups.buffs.groups.raidBuffs.enabled
         and groups.buffs.unit=="party1","native present class buffs remain visible out of combat")
-    check(border.shown and border.unit=="party1","valid dispel highlight binds its independent native border owner")
+    check(not border.shown and groups.partyDispelGlow.shown and groups.partyDispelGlow.unit=="party1","party uses its independent native glow owner")
     e.restricted=true;e.combat=true;auras.Update(frame)
     check(not groups.buffs.groups.classBuffs.enabled and groups.buffs.groups.raidBuffs.enabled,"combat disables class group without disabling short buffs")
     e.combat=false;e.dispelHighlight=false;auras.Update(frame)
@@ -359,7 +384,7 @@ for _,client in ipairs({"retail","forever"})do
     frame.optionTable={};frame.unit="party2";auras.Update(frame)
     check(groups.buffs.unit=="party2"and groups.dispelPlain.unit=="party2","native row owners follow unit reassignment")
     e.dispelHighlight=true;auras.Update(frame)
-    check(border.shown and border.unit=="party2","native border resumes on the reassigned unit through its public owner")
+    check(not border.shown and groups.partyDispelGlow.shown and groups.partyDispelGlow.unit=="party2","native party glow follows the reassigned unit through its public owner")
     local count=#frames
     for i=1,50 do auras.Refresh(frame)end
     check(#frames==count,"repeated native refreshes allocate no pools, frames or containers")
@@ -603,7 +628,7 @@ do
         end end
         local allocated=#frames
         for repeatIndex=1,12 do e.raidDB.maxBuffs=repeatIndex%6+1;e.raidDB.maxDebuffs=7-e.raidDB.maxBuffs;module.Refresh(frame);module.Update(frame)end
-        check(#frames==allocated and #boxes==7,"count toggles reuse the lazily created native pools")
+        check(#frames==allocated and #boxes==8,"count toggles reuse the lazily created native pools")
         e.raidDB.maxBuffs=6;e.raidDB.maxDebuffs=6;module.Refresh(frame);module.Update(frame)
         for key,box in pairs(frame._fluxAuraContainers)do if key:find("Tail",1,true)then check(not box.shown and box.unit=="none"and not box.events,"six-slot layout retires duplicate-row subscriptions")end end
         data.HELPFUL={};data.HARMFUL={};data["HARMFUL|RAID"]={};e.raidDB.maxBuffs=3;e.raidDB.maxDebuffs=5;module.Refresh(frame);module.Update(frame)
@@ -791,10 +816,10 @@ do
 
         local before=#frames
         e.combat=true;e.raidDB.maxBuffs=3;e.raidDB.maxDebuffs=5;module.Refresh(frame);module.Update(frame)
-        check(#frames==before and #boxes==4 and frame._fluxNeedsPrivateAuraSync,
+        check(#frames==before and #boxes==5 and frame._fluxNeedsPrivateAuraSync,
             "first partial-row request in combat defers new viewports and native pools")
         e.combat=false;module.Refresh(frame);module.Update(frame)
-        check(#boxes==7 and frame._fluxAuraContainers.buffsTail.unit==frame.unit and frame._fluxAuraContainers.dispelTail.unit==frame.unit,
+        check(#boxes==8 and frame._fluxAuraContainers.buffsTail.unit==frame.unit and frame._fluxAuraContainers.dispelTail.unit==frame.unit,
             "deferred partial rows initialize and bind after combat using existing public owners")
         local complete=#frames
         for repeatIndex=1,8 do e.raidDB.maxBuffs=repeatIndex%2==0 and 4 or 5;e.raidDB.maxDebuffs=9-e.raidDB.maxBuffs;module.Refresh(frame);module.Update(frame)end
@@ -858,7 +883,7 @@ do
     check(not frame._fluxAuraNative and frame._fluxAuraNativeError
         and frame._fluxAuraNativeError:find("bare native dispel border",1,true),
         "missing native slot template retains the exact setup failure reason")
-    check(#boxes==4 and frame._fluxAuraCorners~=nil,"slot initialization failure retains four excluded owners and uses readable fallback")
+    check(#boxes==4 and frame._fluxAuraCorners~=nil,"slot initialization failure retires all excluded owners and uses readable fallback")
     for _,box in ipairs(boxes)do check(not box.shown and box.unit=="none"and not box.events,"slot setup failure retires every partial native subscription")end
     local count=#frames;auras.Setup(frame);check(#frames==count,"failed native slot setup never reallocates its partial trees")
 end

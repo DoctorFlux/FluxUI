@@ -154,13 +154,13 @@ local function BagCount(itemID, includeCharges, kind)
         stacks = inv.Bags.GetCount(itemID) or 0
     end
     stacks = tonumber(stacks) or 0
+    -- Native copies also gate charged and single-use conjured items. A delayed
+    -- provider can retain several copies after the last one was consumed.
+    if inv.GetLiveCount and inv.IsReliable and inv.IsReliable() and not SoftHolding() then
+        stacks = tonumber(inv.GetLiveCount(itemID, { charges = false, bags = true, bank = false, warband = false })) or stacks
+    end
     local Item = _G.Flux and _G.Flux.Item
     if not includeCharges or (Item and Item.UsesConsumableCharges and Item.UsesConsumableCharges(itemID, kind) == false) then
-        -- Syndicator can wait for unrelated item metadata before publishing.
-        -- Once bags are reliable, a live zero must release the old action.
-        if inv.source == "syndicator" and inv.GetLiveCount and inv.IsReliable and inv.IsReliable() and not SoftHolding() then
-            return tonumber(inv.GetLiveCount(itemID, { charges = false, bags = true, bank = false, warband = false })) or stacks
-        end
         return stacks
     end
     if stacks <= 0 then
@@ -1519,19 +1519,21 @@ end
 --- Append conjure spell lines: Right-click / Shift-Right + icon + rank (blue).
 --- When the spell needs reagents, cast count is on the same line.
 --- Spacing: one blank before the whole Flux block (via _EnsureFluxTooltipGap), none between lines.
+local tooltipGaps = setmetatable({}, { __mode = "k" })
+
 function Bridge.ResetFluxTooltipGap(tip)
     if tip then
-        tip._fluxEbsGapDone = nil
+        tooltipGaps[tip] = nil
     end
 end
 
 --- Exactly one blank between item/placeholder body and the first Flux line for this tip show.
 function Bridge._EnsureFluxTooltipGap(tip)
-    if not tip or tip._fluxEbsGapDone then
+    if not tip or tooltipGaps[tip] then
         return
     end
     tip:AddLine(" ")
-    tip._fluxEbsGapDone = true
+    tooltipGaps[tip] = true
 end
 
 function Bridge.AppendConjureSpellLines(tip, primary, secondary, opts)
@@ -2550,6 +2552,8 @@ local FACE_MODULES = {
     { key = "FluxCombatHealPotion", kind = "healPotion" },
     { key = "FluxCombatManaPotion", kind = "manaPotion" },
     { key = "FluxCombatBandage", kind = "bandage" },
+    { key = "FluxCombatManaGem", kind = "managem" },
+    { key = "FluxCombatHealthstone", kind = "healthstone" },
 }
 local faceRefreshQueued = false
 
@@ -2656,6 +2660,61 @@ do
     watch:RegisterEvent("PLAYER_REGEN_DISABLED")
     watch:RegisterEvent("PLAYER_REGEN_ENABLED")
     watch:RegisterEvent("BAG_UPDATE_DELAYED")
+    watch:RegisterEvent("BAG_UPDATE_COOLDOWN")
+    -- Retail/Forever supply item IDs here. Older clients keep the common bag
+    -- cooldown signal; optional registration must not break their initialization.
+    pcall(watch.RegisterEvent, watch, "ITEM_COUNT_CHANGED")
+    local liveRefreshQueued = false
+    local settleRefreshQueued = false
+    local function RefreshLiveCounts()
+        local inv = Inv()
+        if not inv or SoftHolding() then return end
+        -- One bounded recount for all seven kinds, independent of provider
+        -- metadata readiness. Identity/secure changes keep their existing owners.
+        local inCombat = SwapSecureBusy()
+        for i = 1, #FACE_MODULES do
+            local spec = FACE_MODULES[i]
+            local module = _G[spec.key]
+            local conjured = spec.kind == "managem" or spec.kind == "healthstone"
+            if module and module.RefreshCountOnly and (module._trackedItemID or module._latchItemID
+                or (module.Button and module.Button._fluxCombatSwapBody)
+                or (conjured and module._observedEmptyItemID)) then
+                if conjured and not (module._trackedItemID or module._latchItemID) then
+                    -- Recharge/reacquisition can precede provider publication.
+                    -- The remembered zero is a probe identity, never ownership.
+                    local id = module._observedEmptyItemID
+                    if not inCombat and id and Bridge.BagCount(id, { charges = true, kind = spec.kind }) > 0 and module.Update then
+                        module._observedEmptyItemID = nil
+                        module.Update()
+                    end
+                else
+                    if inCombat then module._pendingUpdate = true end
+                    module.RefreshCountOnly()
+                    -- Gem/stone count overrides only paint. Their existing Update
+                    -- must also select the next usable item or empty the slot OOC.
+                    if not inCombat and conjured then
+                        local id = module._trackedItemID or module._latchItemID
+                        if id then
+                            local n = Bridge.BagCount(id, { charges = true, kind = spec.kind })
+                            if n > 0 then module._observedEmptyItemID = nil
+                            elseif module._observedEmptyItemID ~= id and module.Update then
+                                module._observedEmptyItemID = id
+                                module.Update()
+                            end
+                        end
+                    end
+                end
+            end
+        end
+    end
+    local function FlushLiveCounts()
+        liveRefreshQueued = false
+        RefreshLiveCounts()
+    end
+    local function FlushSettledCounts()
+        settleRefreshQueued = false
+        RefreshLiveCounts()
+    end
     local function PaintSwapFaces()
         local Flux = _G.Flux
         local Action = Flux and Flux.EBS and Flux.EBS.Action
@@ -2677,26 +2736,53 @@ do
             end
         end
     end
-    watch:SetScript("OnEvent", function(_, event)
-        if event == "BAG_UPDATE_DELAYED" then
+    watch:SetScript("OnEvent", function(_, event, itemID)
+        local delayed = event == "BAG_UPDATE_DELAYED"
+        local itemChanged = event == "ITEM_COUNT_CHANGED"
+        if delayed or itemChanged or event == "BAG_UPDATE_COOLDOWN" then
             local inv = Inv()
-            if not inv or inv.source ~= "syndicator" or SoftHolding() then return end
-            local craft = CraftApi()
-            if craft and craft.InvalidateCanCraftCache then
-                craft.InvalidateCanCraftCache()
+            if not inv or SoftHolding() then return end
+            -- Built-in bag publication already owns ordinary delayed-bag work.
+            -- Only the independent use/count signals need this fallback there.
+            if delayed and inv.source ~= "syndicator" then return end
+            if itemChanged then
+                itemID = tonumber(itemID)
+                if not itemID then return end
             end
-            -- Use the existing count/reset path while the provider callback is
-            -- pending. Empty placeholders do not need another selection pass.
+            if delayed then
+                local craft = CraftApi()
+                if craft and craft.InvalidateCanCraftCache then
+                    craft.InvalidateCanCraftCache()
+                end
+            end
+            local needsCount = false
             for i = 1, #FACE_MODULES do
-                local module = _G[FACE_MODULES[i].key]
-                if module and module.RefreshCraftState then
-                    module.RefreshCraftState()
-                end
+                local spec = FACE_MODULES[i]
+                local module = _G[spec.key]
+                local conjured = spec.kind == "managem" or spec.kind == "healthstone"
+                if delayed and module and module.RefreshCraftState then module.RefreshCraftState() end
                 if module and module.RefreshCountOnly and (module._trackedItemID or module._latchItemID
-                    or (module.Button and module.Button._fluxCombatSwapBody)) then
-                    if SwapSecureBusy() then module._pendingUpdate = true end
-                    module.RefreshCountOnly()
+                    or (module.Button and module.Button._fluxCombatSwapBody)
+                    or (conjured and module._observedEmptyItemID)) then
+                    local btn = module.Button
+                    if not itemChanged or itemID == module._trackedItemID or itemID == module._latchItemID
+                        or (conjured and itemID == module._observedEmptyItemID)
+                        or (btn and (itemID == btn.ItemId or itemID == btn._liveCountItemId)) then
+                        needsCount = true
+                    end
                 end
+            end
+            if not needsCount then return end
+            if not liveRefreshQueued then
+                liveRefreshQueued = true
+                if C_Timer and C_Timer.After then C_Timer.After(0, FlushLiveCounts)
+                else FlushLiveCounts() end
+            end
+            -- Native count getters can settle after the use/cooldown signal.
+            -- One shared bounded retry; no idle ticker or predicted decrement.
+            if not delayed and not settleRefreshQueued and C_Timer and C_Timer.After then
+                settleRefreshQueued = true
+                C_Timer.After(0.1, FlushSettledCounts)
             end
             return
         end
@@ -2876,12 +2962,7 @@ function Refresh.Attach(opts)
         end
         -- Reliable path: copies when copies > 1, else remaining uses (including 0).
         -- keep live tracking at 0 so Paint does not blank the digit.
-        local inv = Inv()
-        if not charges and inv and inv.source == "syndicator" then
-            -- BagCount already verified this stack against live bags. Keep
-            -- Paint from replacing it with the delayed provider snapshot.
-            btn:SetCount(count, nil)
-        elseif itemID then
+        if itemID then
             local B = Bridge()
             if B and B.DisplayItemCount then
                 count = B.DisplayItemCount(itemID, { preferCopies = charges, kind = kind }) or count
@@ -3389,16 +3470,21 @@ function Refresh.Attach(opts)
         local regions = opts.listenerRegions or { "bags" }
         inv.RegisterListener(listenerKey, function(ctx)
             local B = Bridge()
+            local wasEmpty = not (Module._trackedItemID or Module._latchItemID)
+            -- A zero-charge copy can recharge without a stack/identity delta.
             local id = SwapFaceItemID() or Module._trackedItemID or Module._latchItemID
+                or (charges and Module._observedEmptyItemID)
             local changed = ctx and ctx.changedItemIDs
             local countChanged = id and (charges or not changed or changed[id] or ctx.recovery)
             local depleted = false
+            local replenished = false
             if B and countChanged then
                 local n = B.BagCount(id, { charges = charges, kind = kind }) or 0
                 depleted = n <= 0 and Module._observedEmptyItemID ~= id
                 Module._observedEmptyItemID = n <= 0 and id or nil
                 if n > 0 and not SwapFaceItemID() then
                     CommitLatch(id, n)
+                    replenished = wasEmpty
                 end
                 -- Count writes only. In particular, an empty slot must not call
                 -- RefreshCountOnly -> Update -> classify every carried item.
@@ -3421,7 +3507,7 @@ function Refresh.Attach(opts)
                     ScheduleCraftRefresh()
                 end
             end
-            if depleted or Module._pendingUpdate or (ctx and (ctx.force or ctx.recovery)) then
+            if depleted or replenished or Module._pendingUpdate or (ctx and (ctx.force or ctx.recovery)) then
                 ScheduleUpdate(ctx and (ctx.force or ctx.recovery))
             end
             -- Newly owned/better items arrive through Best's batched publish.

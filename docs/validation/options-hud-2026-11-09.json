@@ -1,0 +1,131 @@
+{
+  "date": "2026-11-09",
+  "change_id": "OPTIONS-HUD-20261109",
+  "utc": "2026-11-09T17:00:36.816438+00:00",
+  "requirements": [
+    "REQ-OPT-30",
+    "REQ-OPT-31",
+    "REQ-OPT-32"
+  ],
+  "navigation": {
+    "HUD": [
+      "Layout",
+      "Chat",
+      "Info",
+      "Micro Menu",
+      "Flux Window",
+      "Status Bars"
+    ],
+    "Flux Window tabs": [
+      "General",
+      "Damage Meter"
+    ],
+    "Utilities": [
+      "Windows",
+      "Professions"
+    ],
+    "Quality of Life": "Removed from sidebar; legacy links redirect",
+    "otherCategories": "Unit Frame/Combat/Loot & Items and fixed footer retained"
+  },
+  "baselineNormalizedSHA256": {
+    "AddonOptions/FluxOptionsCatalog.lua": "b91e4745d1906abbc4f844d10517c70f8b8ca8be7eb968b02abd9c17a76502c9",
+    "AddonOptions/FluxOptions.lua": "911e3527d683d302b5388eb9bd3b359736b245ab78537b821bbb5748c33371e7",
+    "AddonOptions/FluxOptionsShell.lua": "bc2b75450b2352fc46e5cef48547979c3f333f7c4fbe5d78f38b3eef34e20c1d",
+    "tests/options_navigation.lua": "c7d6a418dd7007c0b62774f4e3c07cbb3af7104aa40627bee80c3d6ed9ba1cf1",
+    "tests/options_rework.lua": "8ce6a81e6cbcf54e60482c88fa2c31317b7f022b5fd1a34e64e8911a696118bc"
+  },
+  "ownedNormalizedSHA256": {
+    "AddonOptions/FluxOptionsCatalog.lua": "819a030ca538d50facaff3077fa8329760fc410edc7c06539527927adb782f08",
+    "AddonOptions/FluxOptions.lua": "f2dfd1dfd43e5ad0669075667c08d7d3c42ec27339a9f8daf8f685c406c6c554",
+    "AddonOptions/FluxOptionsShell.lua": "f83d460c0f64d63d69ebcbd48ecaf985967dd7a1d47a517d63c44759fd31d38d",
+    "tests/options_navigation.lua": "03a56d6ac89378ec24fffc8db6cc2b0ff51e5d85657997123984c45ce1f3a5b8",
+    "tests/options_rework.lua": "079c1fe380a6eb8585a01e21cf0414add9a3877f2395e371352c5e638de47fbd"
+  },
+  "normalization": "CRLF to LF; all other bytes retained",
+  "checkpoint": "options-hud-checkpoint-2026-11-09.json",
+  "sourcePins": "options-source-pins-2026-11-09.json; same task pins and client-native skin contracts; no new API/template/detection chosen",
+  "preservedRuntimeNormalizedIdentity": {
+    "AddonOptions/FluxOptionsLayout.lua": true,
+    "AddonOptions/FluxOptionsBattlezone.lua": true,
+    "AddonOptions/FluxOptionsSkin.lua": true,
+    "Battlezonemap/FluxWindowFrame.lua": true
+  },
+  "layoutBug": {
+    "before": "Original layout builder/editor still loaded but catalog.hiddenNavigation omitted it from all sidebar categories; only top HUD Editor shortcut remained",
+    "after": "Visible HUD > Layout retains original module, independent scope/reset and FluxLayoutPreview; unknown page fallback/default opens Layout",
+    "regression": "Every canonical catalog page must appear once in visible sidebar groups; actual builder identity plus preview acquisition/width/hide/release on the complete shell"
+  },
+  "meterBug": {
+    "destination": "HUD > Flux Window > Damage Meter",
+    "actualClick": "Existing production Meter OnClick -> ShowMeterLayoutMenu -> OpenToDamageMeterTab -> shell; expands minimized HUD",
+    "generalShortcut": "OpenToFluxWindowTab explicitly selects general, avoiding remembered meter subtab",
+    "compatibility": "Old QoL tabs and fluxwindow/settings redirect; existing no-sub canonical user selection may remember a subtab"
+  },
+  "focused": {
+    "actualBuilderChecks": 6057,
+    "completeShellChecks": 1217,
+    "candidateRuns": 3,
+    "negativeControls": 5,
+    "scope": "Desktop source/engine-primitive models across five client contracts; not native input/rendering/performance"
+  },
+  "controls": "options-hud-controls-2026-11-09.json",
+  "fullReport": "options-hud-full-2026-11-09.json",
+  "full": {
+    "pass": 275,
+    "fail": 0,
+    "syntaxFiles": 945,
+    "syntaxFailures": 0,
+    "currentCorpusDrift": []
+  },
+  "mapping": "options-navigation-map-2026-11-09.csv",
+  "clientCopiesMatch": {
+    "_forever_": {
+      "AddonOptions/FluxOptionsCatalog.lua": true,
+      "AddonOptions/FluxOptions.lua": true,
+      "AddonOptions/FluxOptionsShell.lua": true
+    },
+    "_classic_": {
+      "AddonOptions/FluxOptionsCatalog.lua": true,
+      "AddonOptions/FluxOptions.lua": true,
+      "AddonOptions/FluxOptionsShell.lua": true
+    },
+    "_classic_era_": {
+      "AddonOptions/FluxOptionsCatalog.lua": true,
+      "AddonOptions/FluxOptions.lua": true,
+      "AddonOptions/FluxOptionsShell.lua": true
+    },
+    "_anniversary_": {
+      "AddonOptions/FluxOptionsCatalog.lua": true,
+      "AddonOptions/FluxOptions.lua": true,
+      "AddonOptions/FluxOptionsShell.lua": true
+    }
+  },
+  "manualSync": false,
+  "preservation": "Original feature builder/control objects, raw roots/info paths/scopes/handlers and saved fields retained. Existing skins, category minimize/search/scroll/footer and prior unit/raid behavior remain. No schema migration or new saved root.",
+  "resources": "Six additional sidebar rows and one framed header/indicator; former seven QoL tabs replaced by direct feature panes and two Flux Window tabs. Existing declaration caches/release lifecycle/coalescers reused. No new event/timer/ticker/poll/hook or gameplay loop. Native performance not measured.",
+  "nativeAcceptance": "NOT RUN: existing Witchcraft preference retained; no Witchcraft/UIForever tool connection available; prior setup request unanswered. No input/focus/capture. Actual Layout drag/persistence, icons/skin/resize, Meter interaction/taint/FPS pending.",
+  "gameInputOrFocusControl": false,
+  "privateSettingsWrites": false,
+  "profilerWrites": false,
+  "publication": false,
+  "newGoalCreated": false,
+  "luaChangesSinceCheckpoint": [
+    "AddonOptions/FluxOptions.lua",
+    "AddonOptions/FluxOptionsCatalog.lua",
+    "AddonOptions/FluxOptionsShell.lua",
+    "tests/options_navigation.lua",
+    "tests/options_rework.lua"
+  ],
+  "finalVerification": {
+    "documentation": {
+      "command": "python docs/tools/validate_docs.py",
+      "exitCode": 0,
+      "result": "PASS: 978 classified sources; 605 TOC/XML reachable; 425 setting definitions; 24 SavedVariables; 15941 local links. Source inventory/evidence current."
+    },
+    "whitespace": {
+      "command": "git -c core.safecrlf=false diff --check",
+      "exitCode": 0
+    },
+    "ownedHashDrift": []
+  }
+}

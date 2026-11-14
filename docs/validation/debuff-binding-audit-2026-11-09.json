@@ -1,0 +1,356 @@
+{
+  "change_id": "DEBUFF-BINDING-AUDIT-20261109",
+  "date": "2026-11-09",
+  "pins": [
+    {
+      "branch": "live",
+      "sha": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "message": "12.1.5 (70783)"
+    },
+    {
+      "branch": "forever",
+      "sha": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "message": "1.60.1 (70862)"
+    },
+    {
+      "branch": "classic",
+      "sha": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "message": "5.5.4 (70631)"
+    },
+    {
+      "branch": "classic_era",
+      "sha": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "message": "1.15.9 (70576)"
+    },
+    {
+      "branch": "classic_anniversary",
+      "sha": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "message": "2.5.6 (70577)"
+    }
+  ],
+  "sources": [
+    {
+      "client": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_FrameXMLUtil/AuraUtil.lua",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_FrameXMLUtil/AuraUtil.lua",
+      "local": "C:/Users/mario/.codex/visualizations/2026/11/09/01a1c04a-6ed8-71d1-ab6f-fabaa447ebc2/binding-audit/live-AuraUtil.lua",
+      "sha256": "c273c6be5d4bfce92c54510f5a1729f84bf9762ded0a4a9c523363d713b5f909"
+    },
+    {
+      "client": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/UnitAuraDocumentation.lua",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_APIDocumentationGenerated/UnitAuraDocumentation.lua",
+      "local": "C:/Users/mario/.codex/visualizations/2026/11/09/01a1c04a-6ed8-71d1-ab6f-fabaa447ebc2/binding-audit/live-UnitAuraDocumentation.lua",
+      "sha256": "1ed5f39843d60ab1b4ba8842d60c753ba8ff066be1abe8451f9008a216de1846"
+    },
+    {
+      "client": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleFontStringAPIDocumentation.lua",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleFontStringAPIDocumentation.lua",
+      "local": "C:/Users/mario/.codex/visualizations/2026/11/09/01a1c04a-6ed8-71d1-ab6f-fabaa447ebc2/binding-audit/live-SimpleFontStringAPIDocumentation.lua",
+      "sha256": "9e614c6a0159727e373250268f64d3b4ff3a1d7e67edb0b3efdf2d16a72773df"
+    },
+    {
+      "client": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_AuraContainer/Blizzard_CustomAuraButton.lua",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_AuraContainer/Blizzard_CustomAuraButton.lua",
+      "local": "C:/Users/mario/.codex/visualizations/2026/11/09/01a1c04a-6ed8-71d1-ab6f-fabaa447ebc2/binding-audit/live-Blizzard_CustomAuraButton.lua",
+      "sha256": "e583c0306774cb209a7a4d1b4c29a96f39dab0761da965af173b843ef61704c5"
+    },
+    {
+      "client": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_AuraContainer/Blizzard_AuraContainerUtil.lua",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_AuraContainer/Blizzard_AuraContainerUtil.lua",
+      "local": "C:/Users/mario/.codex/visualizations/2026/11/09/01a1c04a-6ed8-71d1-ab6f-fabaa447ebc2/binding-audit/live-Blizzard_AuraContainerUtil.lua",
+      "sha256": "603cebadf285d56c46544af87588867c2aa3c4b1fdcff3665d0e43816fe3b262"
+    },
+    {
+      "client": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_AuraContainer/Blizzard_AuraContainerFrameProviders.lua",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_AuraContainer/Blizzard_AuraContainerFrameProviders.lua",
+      "local": "C:/Users/mario/.codex/visualizations/2026/11/09/01a1c04a-6ed8-71d1-ab6f-fabaa447ebc2/binding-audit/live-Blizzard_AuraContainerFrameProviders.lua",
+      "sha256": "2d1e3f6486636b7a285978aa6ee240205aacb38a5c255c23cfb294987192925e"
+    },
+    {
+      "client": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_AuraContainer/Blizzard_AuraContainerShared.lua",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_AuraContainer/Blizzard_AuraContainerShared.lua",
+      "local": "C:/Users/mario/.codex/visualizations/2026/11/09/01a1c04a-6ed8-71d1-ab6f-fabaa447ebc2/binding-audit/live-Blizzard_AuraContainerShared.lua",
+      "sha256": "9eda989a81824d6084e3b652282761d563c70fd11ed60e42753c96ea988fd245"
+    },
+    {
+      "client": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/AuraContainerUtilDocumentation.lua",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_APIDocumentationGenerated/AuraContainerUtilDocumentation.lua",
+      "local": "C:/Users/mario/.codex/visualizations/2026/11/09/01a1c04a-6ed8-71d1-ab6f-fabaa447ebc2/binding-audit/live-AuraContainerUtilDocumentation.lua",
+      "sha256": "dd5e37868b7a0cb38bf2828327afefca06f50675e091ef23548b4c41012551c8"
+    },
+    {
+      "client": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/DurationTextBindingObjectAPIDocumentation.lua",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_APIDocumentationGenerated/DurationTextBindingObjectAPIDocumentation.lua",
+      "local": "C:/Users/mario/.codex/visualizations/2026/11/09/01a1c04a-6ed8-71d1-ab6f-fabaa447ebc2/binding-audit/live-DurationTextBindingObjectAPIDocumentation.lua",
+      "sha256": "bf45bd69df445e4daa07880447aca390c3a90c4a2cddf64c310898c6c880fa1d"
+    },
+    {
+      "client": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/DurationTextBindingSharedDocumentation.lua",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_APIDocumentationGenerated/DurationTextBindingSharedDocumentation.lua",
+      "local": "C:/Users/mario/.codex/visualizations/2026/11/09/01a1c04a-6ed8-71d1-ab6f-fabaa447ebc2/binding-audit/live-DurationTextBindingSharedDocumentation.lua",
+      "sha256": "43862deb19769b69f75ddfde6762ac48290cf04665671bcd4c9cc9a68dbcbebd"
+    },
+    {
+      "client": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/LuaDurationObjectAPIDocumentation.lua",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_APIDocumentationGenerated/LuaDurationObjectAPIDocumentation.lua",
+      "local": "C:/Users/mario/.codex/visualizations/2026/11/09/01a1c04a-6ed8-71d1-ab6f-fabaa447ebc2/binding-audit/live-LuaDurationObjectAPIDocumentation.lua",
+      "sha256": "8cf6c7adc617e2364eacb9f3817ee159433ab6dbe06655026696dcbfa8c92755"
+    },
+    {
+      "client": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleOffScreenFrameAPIDocumentation.lua",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleOffScreenFrameAPIDocumentation.lua",
+      "local": "C:/Users/mario/.codex/visualizations/2026/11/09/01a1c04a-6ed8-71d1-ab6f-fabaa447ebc2/binding-audit/live-SimpleOffScreenFrameAPIDocumentation.lua",
+      "sha256": "fd5508aa0913f17780f79bc159224ba25fa7c6ec0afc199eec6b434d8db86ebe"
+    },
+    {
+      "client": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleTextureAPIDocumentation.lua",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleTextureAPIDocumentation.lua",
+      "local": "C:/Users/mario/.codex/visualizations/2026/11/09/01a1c04a-6ed8-71d1-ab6f-fabaa447ebc2/binding-audit/live-SimpleTextureAPIDocumentation.lua",
+      "sha256": "4a7003d009eb6c0d6132f687d6d0a2e33e0fc805f3cd1c0585f91b7e664f3867"
+    },
+    {
+      "client": "forever",
+      "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "path": "Interface/AddOns/Blizzard_FrameXMLUtil/AuraUtil.lua",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_FrameXMLUtil/AuraUtil.lua",
+      "local": "C:/Users/mario/.codex/visualizations/2026/11/09/01a1c04a-6ed8-71d1-ab6f-fabaa447ebc2/binding-audit/forever-AuraUtil.lua",
+      "sha256": "c273c6be5d4bfce92c54510f5a1729f84bf9762ded0a4a9c523363d713b5f909"
+    },
+    {
+      "client": "forever",
+      "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/UnitAuraDocumentation.lua",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_APIDocumentationGenerated/UnitAuraDocumentation.lua",
+      "local": "C:/Users/mario/.codex/visualizations/2026/11/09/01a1c04a-6ed8-71d1-ab6f-fabaa447ebc2/binding-audit/forever-UnitAuraDocumentation.lua",
+      "sha256": "e9d4ebbea36da0d990fc1e7f7318dcf0db9f408212bb82ac87160759ae783849"
+    },
+    {
+      "client": "forever",
+      "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleFontStringAPIDocumentation.lua",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleFontStringAPIDocumentation.lua",
+      "local": "C:/Users/mario/.codex/visualizations/2026/11/09/01a1c04a-6ed8-71d1-ab6f-fabaa447ebc2/binding-audit/forever-SimpleFontStringAPIDocumentation.lua",
+      "sha256": "9e614c6a0159727e373250268f64d3b4ff3a1d7e67edb0b3efdf2d16a72773df"
+    },
+    {
+      "client": "forever",
+      "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "path": "Interface/AddOns/Blizzard_AuraContainer/Blizzard_CustomAuraButton.lua",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_AuraContainer/Blizzard_CustomAuraButton.lua",
+      "local": "C:/Users/mario/.codex/visualizations/2026/11/09/01a1c04a-6ed8-71d1-ab6f-fabaa447ebc2/binding-audit/forever-Blizzard_CustomAuraButton.lua",
+      "sha256": "e583c0306774cb209a7a4d1b4c29a96f39dab0761da965af173b843ef61704c5"
+    },
+    {
+      "client": "forever",
+      "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "path": "Interface/AddOns/Blizzard_AuraContainer/Blizzard_AuraContainerUtil.lua",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_AuraContainer/Blizzard_AuraContainerUtil.lua",
+      "local": "C:/Users/mario/.codex/visualizations/2026/11/09/01a1c04a-6ed8-71d1-ab6f-fabaa447ebc2/binding-audit/forever-Blizzard_AuraContainerUtil.lua",
+      "sha256": "603cebadf285d56c46544af87588867c2aa3c4b1fdcff3665d0e43816fe3b262"
+    },
+    {
+      "client": "forever",
+      "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "path": "Interface/AddOns/Blizzard_AuraContainer/Blizzard_AuraContainerFrameProviders.lua",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_AuraContainer/Blizzard_AuraContainerFrameProviders.lua",
+      "local": "C:/Users/mario/.codex/visualizations/2026/11/09/01a1c04a-6ed8-71d1-ab6f-fabaa447ebc2/binding-audit/forever-Blizzard_AuraContainerFrameProviders.lua",
+      "sha256": "2d1e3f6486636b7a285978aa6ee240205aacb38a5c255c23cfb294987192925e"
+    },
+    {
+      "client": "forever",
+      "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "path": "Interface/AddOns/Blizzard_AuraContainer/Blizzard_AuraContainerShared.lua",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_AuraContainer/Blizzard_AuraContainerShared.lua",
+      "local": "C:/Users/mario/.codex/visualizations/2026/11/09/01a1c04a-6ed8-71d1-ab6f-fabaa447ebc2/binding-audit/forever-Blizzard_AuraContainerShared.lua",
+      "sha256": "9eda989a81824d6084e3b652282761d563c70fd11ed60e42753c96ea988fd245"
+    },
+    {
+      "client": "forever",
+      "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/AuraContainerUtilDocumentation.lua",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_APIDocumentationGenerated/AuraContainerUtilDocumentation.lua",
+      "local": "C:/Users/mario/.codex/visualizations/2026/11/09/01a1c04a-6ed8-71d1-ab6f-fabaa447ebc2/binding-audit/forever-AuraContainerUtilDocumentation.lua",
+      "sha256": "dd5e37868b7a0cb38bf2828327afefca06f50675e091ef23548b4c41012551c8"
+    },
+    {
+      "client": "forever",
+      "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/DurationTextBindingObjectAPIDocumentation.lua",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_APIDocumentationGenerated/DurationTextBindingObjectAPIDocumentation.lua",
+      "local": "C:/Users/mario/.codex/visualizations/2026/11/09/01a1c04a-6ed8-71d1-ab6f-fabaa447ebc2/binding-audit/forever-DurationTextBindingObjectAPIDocumentation.lua",
+      "sha256": "bf45bd69df445e4daa07880447aca390c3a90c4a2cddf64c310898c6c880fa1d"
+    },
+    {
+      "client": "forever",
+      "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/DurationTextBindingSharedDocumentation.lua",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_APIDocumentationGenerated/DurationTextBindingSharedDocumentation.lua",
+      "local": "C:/Users/mario/.codex/visualizations/2026/11/09/01a1c04a-6ed8-71d1-ab6f-fabaa447ebc2/binding-audit/forever-DurationTextBindingSharedDocumentation.lua",
+      "sha256": "43862deb19769b69f75ddfde6762ac48290cf04665671bcd4c9cc9a68dbcbebd"
+    },
+    {
+      "client": "forever",
+      "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/LuaDurationObjectAPIDocumentation.lua",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_APIDocumentationGenerated/LuaDurationObjectAPIDocumentation.lua",
+      "local": "C:/Users/mario/.codex/visualizations/2026/11/09/01a1c04a-6ed8-71d1-ab6f-fabaa447ebc2/binding-audit/forever-LuaDurationObjectAPIDocumentation.lua",
+      "sha256": "8cf6c7adc617e2364eacb9f3817ee159433ab6dbe06655026696dcbfa8c92755"
+    },
+    {
+      "client": "forever",
+      "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleOffScreenFrameAPIDocumentation.lua",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleOffScreenFrameAPIDocumentation.lua",
+      "local": "C:/Users/mario/.codex/visualizations/2026/11/09/01a1c04a-6ed8-71d1-ab6f-fabaa447ebc2/binding-audit/forever-SimpleOffScreenFrameAPIDocumentation.lua",
+      "sha256": "fd5508aa0913f17780f79bc159224ba25fa7c6ec0afc199eec6b434d8db86ebe"
+    },
+    {
+      "client": "forever",
+      "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleTextureAPIDocumentation.lua",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleTextureAPIDocumentation.lua",
+      "local": "C:/Users/mario/.codex/visualizations/2026/11/09/01a1c04a-6ed8-71d1-ab6f-fabaa447ebc2/binding-audit/forever-SimpleTextureAPIDocumentation.lua",
+      "sha256": "4a7003d009eb6c0d6132f687d6d0a2e33e0fc805f3cd1c0585f91b7e664f3867"
+    },
+    {
+      "client": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_FrameXMLUtil/AuraUtil.lua",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_FrameXMLUtil/AuraUtil.lua",
+      "local": "C:/Users/mario/.codex/visualizations/2026/11/09/01a1c04a-6ed8-71d1-ab6f-fabaa447ebc2/binding-audit/classic-AuraUtil.lua",
+      "sha256": "c386ff2182365cfeec735560319634d07dd97d5e6fe5fe1a09887e277c79457f"
+    },
+    {
+      "client": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/UnitAuraDocumentation.lua",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_APIDocumentationGenerated/UnitAuraDocumentation.lua",
+      "local": "C:/Users/mario/.codex/visualizations/2026/11/09/01a1c04a-6ed8-71d1-ab6f-fabaa447ebc2/binding-audit/classic-UnitAuraDocumentation.lua",
+      "sha256": "214ed1a3cb0f570051a090434102ad4a21fcc9f0a644bd7043ab66ed8dffc2ce"
+    },
+    {
+      "client": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleFontStringAPIDocumentation.lua",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleFontStringAPIDocumentation.lua",
+      "local": "C:/Users/mario/.codex/visualizations/2026/11/09/01a1c04a-6ed8-71d1-ab6f-fabaa447ebc2/binding-audit/classic-SimpleFontStringAPIDocumentation.lua",
+      "sha256": "0e5d85392a5c381ae6a173046e1a148f4bed9500d4cad43d9ea244affd57c08f"
+    },
+    {
+      "client": "classic_era",
+      "commit": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "path": "Interface/AddOns/Blizzard_FrameXMLUtil/AuraUtil.lua",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_FrameXMLUtil/AuraUtil.lua",
+      "local": "C:/Users/mario/.codex/visualizations/2026/11/09/01a1c04a-6ed8-71d1-ab6f-fabaa447ebc2/binding-audit/classic_era-AuraUtil.lua",
+      "sha256": "c386ff2182365cfeec735560319634d07dd97d5e6fe5fe1a09887e277c79457f"
+    },
+    {
+      "client": "classic_era",
+      "commit": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/UnitAuraDocumentation.lua",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_APIDocumentationGenerated/UnitAuraDocumentation.lua",
+      "local": "C:/Users/mario/.codex/visualizations/2026/11/09/01a1c04a-6ed8-71d1-ab6f-fabaa447ebc2/binding-audit/classic_era-UnitAuraDocumentation.lua",
+      "sha256": "214ed1a3cb0f570051a090434102ad4a21fcc9f0a644bd7043ab66ed8dffc2ce"
+    },
+    {
+      "client": "classic_era",
+      "commit": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleFontStringAPIDocumentation.lua",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleFontStringAPIDocumentation.lua",
+      "local": "C:/Users/mario/.codex/visualizations/2026/11/09/01a1c04a-6ed8-71d1-ab6f-fabaa447ebc2/binding-audit/classic_era-SimpleFontStringAPIDocumentation.lua",
+      "sha256": "0e5d85392a5c381ae6a173046e1a148f4bed9500d4cad43d9ea244affd57c08f"
+    },
+    {
+      "client": "classic_anniversary",
+      "commit": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "path": "Interface/AddOns/Blizzard_FrameXMLUtil/AuraUtil.lua",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_FrameXMLUtil/AuraUtil.lua",
+      "local": "C:/Users/mario/.codex/visualizations/2026/11/09/01a1c04a-6ed8-71d1-ab6f-fabaa447ebc2/binding-audit/classic_anniversary-AuraUtil.lua",
+      "sha256": "c386ff2182365cfeec735560319634d07dd97d5e6fe5fe1a09887e277c79457f"
+    },
+    {
+      "client": "classic_anniversary",
+      "commit": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/UnitAuraDocumentation.lua",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_APIDocumentationGenerated/UnitAuraDocumentation.lua",
+      "local": "C:/Users/mario/.codex/visualizations/2026/11/09/01a1c04a-6ed8-71d1-ab6f-fabaa447ebc2/binding-audit/classic_anniversary-UnitAuraDocumentation.lua",
+      "sha256": "214ed1a3cb0f570051a090434102ad4a21fcc9f0a644bd7043ab66ed8dffc2ce"
+    },
+    {
+      "client": "classic_anniversary",
+      "commit": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleFontStringAPIDocumentation.lua",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleFontStringAPIDocumentation.lua",
+      "local": "C:/Users/mario/.codex/visualizations/2026/11/09/01a1c04a-6ed8-71d1-ab6f-fabaa447ebc2/binding-audit/classic_anniversary-SimpleFontStringAPIDocumentation.lua",
+      "sha256": "0e5d85392a5c381ae6a173046e1a148f4bed9500d4cad43d9ea244affd57c08f"
+    }
+  ],
+  "routes": [
+    {
+      "route": "Read native border color or visibility",
+      "finding": "Native13:45:15 GetVertexColor failure;descendant is forbidden;no attempt repeated"
+    },
+    {
+      "route": "Pass existing FontString to AddDispelTypeTexture",
+      "finding": "Pinned Lua validator requires Texture;actual validator replay rejects FontString"
+    },
+    {
+      "route": "Native SetDispelTypeText",
+      "finding": "Content/symbol map only;no dispel-color binding option for independently updated health/resource numbers"
+    },
+    {
+      "route": "Native aura animation targeting existing numeric labels",
+      "finding": "Pinned validator requires owner/descendant target;replay rejects external FontString before adoption"
+    },
+    {
+      "route": "Direct GetAuraDispelTypeColor",
+      "finding": "RequiresUnitAuraAccess;does not authorize forbidden/blocked aura access"
+    },
+    {
+      "route": "DurationTextBinding",
+      "finding": "Properties are duration/time only;no dispel-type property;synthetic duration setters and format setters disallow secret inputs in tainted addon execution"
+    },
+    {
+      "route": "Offscreen/mask display",
+      "finding": "No verified live-FontString color binding;ApplySnapshot requires a Texture target;cannot assume forbidden-target access;not implemented or certified"
+    }
+  ],
+  "checks": {
+    "pinnedLuaValidationReplay": "Pinned native color route audit: 16 checks PASS; no supported all-client numeric-color implementation established; no native execution\n",
+    "focused": "17050 checks PASS across five existing client models/current and legacy providers"
+  },
+  "runtimeChanges": false,
+  "runtimeAndTestHashesUnchanged": {
+    "UnitFrames/FluxUnitFrames_DebuffTint.lua": "abee3277e58429709eb7b89200a0a23e0d40ced64fdbe3985c4904500cd2ea96",
+    "tests/friendly_debuff_tint.lua": "e11e7ab9010e7c5816553fad900928733af5fe9055621b7c0da8b6a131badc95"
+  },
+  "conclusion": "No supported all-client implementation found for existing HP/resource FontStrings in inspected current source. Restricted Retail/Forever numeric-color requirement remains OPEN;Classic readable path and native border/portrait fixes retained.",
+  "native": "No new native operation or acceptance;prior user forbidden-object report remains decisive",
+  "performance": "No runtime change or new resources;no fresh native measurement",
+  "scope": "35 pinned public source files across all five branches;16 desktop source-contract checks;not a native/protected VM test"
+}

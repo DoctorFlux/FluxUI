@@ -191,8 +191,10 @@ function Party.ApplyTextModes(frame)
     frame.Power.Percent:SetShown(power == "percent" or power == "both")
     local label = power == "percent" and frame.Power.Percent or power == "values" and frame.Power.Value
     if label then
-        label:ClearAllPoints(); label:SetPoint("CENTER", frame._fluxPartyPowerTextAnchor, "CENTER", 0, 0)
-        label._fluxPartyTextMode = power
+        if label._fluxPartyTextMode ~= power then
+            label:ClearAllPoints(); label:SetPoint("CENTER", frame._fluxPartyPowerTextAnchor, "CENTER", 0, 0)
+            label._fluxPartyTextMode = power
+        end
     elseif power == "both" then
         for _, item in ipairs({{frame.Power.Percent, "LEFT", 5}, {frame.Power.Value, "RIGHT", -5}}) do
             local text = item[1]
@@ -480,11 +482,11 @@ local function ApplyScale(frame, scale)
     if frame.SeparatorContainer then frame.SeparatorContainer:SetScale(relative) end
 end
 
-local function Paint(frame)
+local function Paint(frame, keepPortrait)
     if not InCombatLockdown() and frame.needsPartitionRelayout then frame:UpdatePartition() end
     UF.UpdateHealth(frame, frame.unit)
     if not frame._fluxPartyPet then UF.UpdatePower(frame, frame.unit) end
-    if frame.Portrait then UF.UpdatePortrait(frame, frame.unit) end
+    if frame.Portrait and not keepPortrait then UF.UpdatePortrait(frame, frame.unit) end
     frame:UpdateOuterBorder()
     Party.StyleText(frame)
     Party.ApplyTextModes(frame)
@@ -527,6 +529,7 @@ local function Build(unit, parent, pet, preview)
     local frame = UF.CreateBaseFrame(unit, parent, pet and 60 or width, pet and 28 or height, nil,
         preview and {preview = true, name = "FluxPartyPreview_" .. unit} or nil)
     frame._fluxPartyPet, frame._fluxPartyMember = pet or nil, not pet or nil
+    frame._fluxPartyOwnerUnit = pet and unit:gsub("^partypet", "party") or unit
     frame.portraitPosition = not pet and "LEFT" or nil
     frame.outerBorderAlignment, frame.outerBorderPadding = "BOTTOM", pet and 0 or 36
     frame:Hide()
@@ -549,8 +552,16 @@ local function Build(unit, parent, pet, preview)
     frame:RegisterEvent("UNIT_PET")
     frame:RegisterUnitEvent("UNIT_FLAGS", unit)
     frame:RegisterUnitEvent("PLAYER_FLAGS_CHANGED", unit)
+    frame:RegisterUnitEvent("UNIT_FACTION", unit)
+    frame:RegisterUnitEvent("UNIT_LEVEL", unit)
+    frame:RegisterUnitEvent("UNIT_CLASSIFICATION_CHANGED", unit)
     frame:RegisterEvent("PLAYER_REGEN_ENABLED")
     if not pet then
+        -- These replace discovery through the old health/power chrome refresh.
+        -- Safe registration keeps clients without specialization/inspect events.
+        FluxSafeRegisterUnitEvent(frame, "UNIT_SPECIALIZATION_CHANGED", unit)
+        pcall(frame.RegisterEvent, frame, "INSPECT_READY")
+        frame:RegisterEvent("PLAYER_LEVEL_UP")
         frame._fluxRangeEventSupported = pcall(frame.RegisterUnitEvent, frame, "UNIT_IN_RANGE_UPDATE", unit)
         frame.healthBar = frame.Health
         frame.displayedUnit = unit
@@ -589,26 +600,84 @@ local function Build(unit, parent, pet, preview)
     frame:SetScript("OnEvent", function(self, event, ...)
         if not self:IsVisible() then return end
         if event == "GROUP_ROSTER_UPDATE" then QueueRosterPaint(self); return end
-        if self._fluxPartyPet then Paint(self); return end
+        -- UNIT_PET is global and carries the owner token. A change to one pet
+        -- must not rebuild all eight prepared member/pet cells.
+        if event == "UNIT_PET" then
+            local owner = ...
+            if Secret(owner) or owner ~= self._fluxPartyOwnerUnit then return end
+        end
+        -- Bar events have no name/icon/model/layout dependency. Keep the exact
+        -- shared painters (including prediction, loss trails and resource FX),
+        -- without the shared dispatcher's periodic full outer-border rebuild.
+        if event == "UNIT_HEALTH" or event == "UNIT_MAXHEALTH" then
+            UF.UpdateHealth(self, self.unit)
+            Party.ApplyTextModes(self)
+            return
+        elseif event == "UNIT_POWER_UPDATE" or event == "UNIT_MAXPOWER" or event == "UNIT_DISPLAYPOWER" then
+            if not self._fluxPartyPet then
+                self._fluxPowerSpentEvent = event == "UNIT_POWER_UPDATE"
+                UF.UpdatePower(self, self.unit)
+                self._fluxPowerSpentEvent = nil
+                Party.ApplyTextModes(self)
+            end
+            return
+        elseif event == "UNIT_HEAL_PREDICTION" or event == "UNIT_ABSORB_AMOUNT_CHANGED" or event == "UNIT_HEAL_ABSORB_AMOUNT_CHANGED" then
+            UF.UpdateHealPrediction(self)
+            return
+        elseif event == "UNIT_FLAGS" then
+            -- Combat/death flags affect status and portrait tint, not geometry.
+            UF.UpdateHealth(self, self.unit)
+            if not self._fluxPartyPet then
+                UF.UpdatePower(self, self.unit)
+                Party.ApplyTextModes(self)
+                UF.UpdatePortraitCombatTint(self)
+                Party.UpdateThreat(self)
+            end
+            return
+        end
+        if self._fluxPartyPet then
+            if event == "UNIT_PET" or event == "UNIT_CONNECTION" or event == "UNIT_NAME_UPDATE"
+                or event == "UNIT_FLAGS" or event == "PLAYER_FLAGS_CHANGED" or event == "UNIT_FACTION"
+                or event == "PLAYER_ENTERING_WORLD" or event == "PLAYER_REGEN_ENABLED"
+                or event == "UI_SCALE_CHANGED" or event == "DISPLAY_SIZE_CHANGED" then Paint(self) end
+            return
+        end
         if event == "READY_CHECK" then self._fluxPartyReadyActive = true
         elseif event == "READY_CHECK_FINISHED" then self._fluxPartyReadyActive = false end
-        if INDICATOR_EVENTS[event] then Party.UpdateIndicators(self); return end
-        if event == "UNIT_THREAT_SITUATION_UPDATE" or event == "UNIT_THREAT_LIST_UPDATE" or event == "CVAR_UPDATE" then
+        if INDICATOR_EVENTS[event] then
+            -- Shared leader/loot/marker painters must run even without bar ticks.
+            if sharedEvent then sharedEvent(self, event, ...) end
+            Party.UpdateIndicators(self); return
+        end
+        if event == "CVAR_UPDATE" then
+            local cvarName = ...
+            if type(cvarName) == "string" and cvarName:lower() == "raidframesdisplayonlydispellabledebuffs" then
+                FluxRaidAuras.Update(self)
+            end
+            Party.UpdateThreat(self); return
+        end
+        if event == "UNIT_THREAT_SITUATION_UPDATE" or event == "UNIT_THREAT_LIST_UPDATE" then
             Party.UpdateThreat(self); return
         end
         if event == "UNIT_IN_RANGE_UPDATE" then
             if FluxRaidCompat and FluxRaidCompat.ApplyRangeAlpha then FluxRaidCompat.ApplyRangeAlpha(self) end
             return
         end
+        if event == "UNIT_AURA" then FluxRaidAuras.Update(self); return
+        elseif event == "UNIT_PET" or event == "UNIT_CONNECTION"
+            or event == "UNIT_NAME_UPDATE" or event == "UNIT_PORTRAIT_UPDATE" or event == "UNIT_MODEL_CHANGED"
+            or event == "UNIT_FLAGS" or event == "PLAYER_FLAGS_CHANGED" or event == "UNIT_FACTION" then
+            Paint(self, event == "UNIT_FLAGS" or event == "PLAYER_FLAGS_CHANGED" or event == "UNIT_FACTION")
+            return
+        elseif event == "UNIT_LEVEL" or event == "UNIT_CLASSIFICATION_CHANGED"
+            or event == "UNIT_SPECIALIZATION_CHANGED" or event == "INSPECT_READY" or event == "PLAYER_LEVEL_UP" then
+            self:UpdateOuterBorder()
+            Party.UpdateIndicators(self)
+            return
+        end
         if sharedEvent then sharedEvent(self, event, ...) end
         Party.ApplyTextModes(self)
         Party.SyncCastCover(self)
-        if event == "UNIT_AURA" then FluxRaidAuras.Update(self)
-        elseif event == "UNIT_PET" or event == "UNIT_CONNECTION"
-            or event == "UNIT_NAME_UPDATE" or event == "UNIT_PORTRAIT_UPDATE" or event == "UNIT_MODEL_CHANGED"
-            or event == "UNIT_FLAGS" or event == "PLAYER_FLAGS_CHANGED" then
-            Paint(self)
-        end
     end)
     frame:HookScript("OnShow", function(self)
         -- Native state dispatch owns visibility; paint after its secure call.

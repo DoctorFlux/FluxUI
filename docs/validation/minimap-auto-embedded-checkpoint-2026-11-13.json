@@ -1,0 +1,18 @@
+{
+  "changeId": "MINIMAP-AUTO-EMBEDDED-20261113",
+  "createdUTC": "2026-11-13T07:50:10.960085+00:00",
+  "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d3b4-b7ec-7591-94d3-6d3b3097fb8a\\minimap-auto-embedded-20261113T075002Z",
+  "verified": true,
+  "sourceFiles": 2638,
+  "revision": "26f886e3ea5371b196ab235d2dace0c156002285",
+  "branch": "main",
+  "hooksPath": ".githooks",
+  "settingsMetadataEntries": 103,
+  "settingsWrites": false,
+  "settingsContentsCopied": false,
+  "sha256": {
+    "source.zip": "1df05f0600c255c64abad59386bbace1cc8730f9006339d5e63ffb84f9b880dd",
+    "history.bundle": "46081b136264a795539b9cde536f0c42f999bd1558bee73c57f991689d80207e",
+    "source-manifest.json": "68d20fe0cf361e11c5cc4fedcb16fb8c14b4f7427a7342535d46c0f73e9cb664"
+  }
+}

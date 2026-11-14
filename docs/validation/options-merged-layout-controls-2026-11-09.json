@@ -1,0 +1,116 @@
+{
+  "date": "2026-11-09",
+  "scope": "Source regressions and modeled UI/session behavior; no native VM/pixels/performance",
+  "negativeControls": [
+    {
+      "control": "qol-still-combined",
+      "test": "tests/options_navigation.lua",
+      "exit": 1,
+      "firstFailure": "lua: tests/options_navigation.lua:5: live: QoL contains only implemented feature groups"
+    },
+    {
+      "control": "general-appearance-still-tabs",
+      "test": "tests/options_navigation.lua",
+      "exit": 1,
+      "firstFailure": "lua: tests/options_navigation.lua:5: live: canonical placement unitframes/general/useFluxPlayer -> ufGeneral/"
+    },
+    {
+      "control": "focus-controls-lost",
+      "test": "tests/options_navigation.lua",
+      "exit": 1,
+      "firstFailure": "lua: tests/options_navigation.lua:5: live: unmapped original settings: unitframes/unitFocus/focusAbsorb, unitframes/unitFocus/focusAuraBuffSize, unitframes/unitFocus/focusAuraBuffSpacing, unitframes/unitFocus/focusAuraDebuffSize, unitframes/unitFocus/focusAuraDebuffSpacing, unitframes/unitFocus/focusAuraLockOwnDebuffSize, unitframes/unitFocus/focusAuraMaxBuffs, unitframes/unitFocus/focusAuraMaxDebuffs, unitframes/unitFocus/focusAuraOwnDebuffMinScale, unitframes/unitFocus/focusAurasHeader, unitframes/unitFocus/focusCastBar, unitframes/unitFocus/focusCastTime, unitframes/unitFocus/focusClassIcon, unitframes/unitFocus/focusFrameScale, unitframes/unitFocus/focusHeal, unitframes/unitFocus/focusHealthSplit, unitframes/unitFocus/focusHealthText, unitframes/unitFocus/focusHeight, unitframes/unitFocus/focusIconHeader, unitframes/unitFocus/focusLevel, unitframes/unitFocus/focusMouseover, unitframes/unitFocus/focusPortraitCombat, unitframes/unitFocus/focusPowerText, unitframes/unitFocus/focusPvp, unitframes/unitFocus/focusRaidIcon, unitframes/unitFocus/focusShowBuffs, unitframes/unitFocus/focusShowDebuffs, unitframes/unitFocus/focusShowPortrait, unitframes/unitFocus/focusTargetDesc, unitframes/unitFocus/focusTargetHeader, unitframes/unitFocus/focusTextHeader, unitframes/unitFocus/focusThreatBarPosition, unitframes/unitFocus/focusThreatHeader, unitframes/unitFocus/focusWidth, unitframes/unitFocus/focustargetAbsorb, unitframes/unitFocus/focustargetClassHP, unitframes/unitFocus/focustargetHeal, unitframes/unitFocus/focustargetHealthText, unitframes/unitFocus/focustargetMouseover, unitframes/unitFocus/focustargetPowerText, unitframes/unitFocus/focustargetRaidIcon, unitframes/unitFocus/focustargetTextHeader"
+    },
+    {
+      "control": "vendor-restock-not-sidebar",
+      "test": "tests/options_navigation.lua",
+      "exit": 1,
+      "firstFailure": "lua: tests/options_navigation.lua:5: live: Vendor/Restock are sidebar children with a working stock bag icon"
+    },
+    {
+      "control": "restock-missing-icon",
+      "test": "tests/options_navigation.lua",
+      "exit": 1,
+      "firstFailure": "lua: tests/options_navigation.lua:5: live: Vendor/Restock are sidebar children with a working stock bag icon"
+    },
+    {
+      "control": "headers-cannot-minimize",
+      "test": "tests/options_rework.lua",
+      "exit": 1,
+      "firstFailure": "lua: tests/options_rework.lua:11: live: category minimizes without hiding its header"
+    },
+    {
+      "control": "search-forgets-minimized-state",
+      "test": "tests/options_rework.lua",
+      "exit": 1,
+      "firstFailure": "lua: tests/options_rework.lua:11: live: clearing search restores minimized category"
+    },
+    {
+      "control": "direct-source-generation-missing",
+      "test": "tests/options_rework.lua",
+      "exit": 1,
+      "firstFailure": "lua: tests/options_rework.lua:11: live: direct source page invalidates on original module generation"
+    },
+    {
+      "control": "before-raid-size-options",
+      "test": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\09\\01a1c03e-c615-7f02-a24a-3e5ed07300f1\\options-merged-layout-controls\\raid-source-overlay-test.lua",
+      "exit": 1,
+      "firstFailure": "lua: ...ions-merged-layout-controls\\raid-source-overlay-test.lua:11: raid preview choices start at ten"
+    },
+    {
+      "control": "before-raid-runtime",
+      "test": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\09\\01a1c03e-c615-7f02-a24a-3e5ed07300f1\\options-merged-layout-controls\\raid-source-overlay-test.lua",
+      "exit": 1,
+      "firstFailure": "lua: ...ions-merged-layout-controls\\raid-source-overlay-test.lua:11: raid Show promotes old five-member requests to ten"
+    },
+    {
+      "control": "before-tiled-background",
+      "test": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\09\\01a1c03e-c615-7f02-a24a-3e5ed07300f1\\options-merged-layout-controls\\shell-skin-overlay-test.lua",
+      "exit": 1,
+      "firstFailure": "lua: ...tions-merged-layout-controls\\shell-skin-overlay-test.lua:12: forever: atlas background disables inherited native tiling"
+    },
+    {
+      "control": "background-not-restored",
+      "test": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\09\\01a1c03e-c615-7f02-a24a-3e5ed07300f1\\options-merged-layout-controls\\shell-skin-overlay-test.lua",
+      "exit": 1,
+      "firstFailure": "lua: ...tions-merged-layout-controls\\shell-skin-overlay-test.lua:12: forever: background stays visible with bounded cover crop when resized smaller"
+    },
+    {
+      "control": "reopen-forgets-minimized-state",
+      "test": "tests/options_rework.lua",
+      "exit": 1,
+      "firstFailure": "lua: tests/options_rework.lua:11: live: ordinary close/reopen remembers minimized categories"
+    }
+  ],
+  "candidate": "5847 builder/877 shell/280 raid option-session/78 party checks PASS",
+  "pairedHarnesses": {
+    "raid-source-overlay-test.lua": {
+      "candidateFreshProcessPasses": 3,
+      "outputs": [
+        "Raid aura options/preview: 280 checks; actual scopes/resets and synthetic native-relative widgets; desktop only",
+        "Raid aura options/preview: 280 checks; actual scopes/resets and synthetic native-relative widgets; desktop only",
+        "Raid aura options/preview: 280 checks; actual scopes/resets and synthetic native-relative widgets; desktop only"
+      ],
+      "scope": "Same assertions; absolute overlay-path support only; desktop model"
+    },
+    "shell-skin-overlay-test.lua": {
+      "candidateFreshProcessPasses": 3,
+      "outputs": [
+        "Options rework: 877 checks; complete shell/renderer/widgets and menu lifecycle across five client models; native acceptance pending",
+        "Options rework: 877 checks; complete shell/renderer/widgets and menu lifecycle across five client models; native acceptance pending",
+        "Options rework: 877 checks; complete shell/renderer/widgets and menu lifecycle across five client models; native acceptance pending"
+      ],
+      "scope": "Same assertions; absolute overlay-path support only; desktop model"
+    }
+  },
+  "candidateNormalizedSHA256": {
+    "AddonOptions/FluxOptionsCatalog.lua": "b91e4745d1906abbc4f844d10517c70f8b8ca8be7eb968b02abd9c17a76502c9",
+    "AddonOptions/FluxOptionsNavigation.lua": "4be2e872cdf93a55dc848bf01870c06df5d513f388c174e45048d2f2fb8c8f4f",
+    "AddonOptions/FluxOptionsShell.lua": "bc2b75450b2352fc46e5cef48547979c3f333f7c4fbe5d78f38b3eef34e20c1d",
+    "AddonOptions/FluxOptionsSkin.lua": "5b85e90daaf78e088e4a8ce803c64dcd0a9e02ffe87bc9832185ee2a087eda9a",
+    "AddonOptions/FluxOptionsRaidFrame.lua": "19f9c2f5e4b07fd25dd40d1dc8e99262ba97b42415d7e55f4ebc243c6d9f6c71",
+    "RaidFrame/FluxRaidPreview.lua": "0006881f76c5afca0f4f596039484c09874d2a0d782e075e7bfa6e83b19bbf07",
+    "tests/options_navigation.lua": "c7d6a418dd7007c0b62774f4e3c07cbb3af7104aa40627bee80c3d6ed9ba1cf1",
+    "tests/options_rework.lua": "8ce6a81e6cbcf54e60482c88fa2c31317b7f022b5fd1a34e64e8911a696118bc",
+    "tests/raid_aura_options.lua": "aa96ac101411abbfe921e95cf9e23f66ebba8fe7c743b1e47de754afc0657cfa"
+  }
+}

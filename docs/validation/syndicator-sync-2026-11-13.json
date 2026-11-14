@@ -1,0 +1,202 @@
+{
+  "dateUTC": "2026-11-13T07:31:09.164881+00:00",
+  "changeID": "SYNDICATOR-SYNC-20261113",
+  "requirements": [
+    "SYN-SYNC-01",
+    "SYN-SYNC-02",
+    "SYN-SYNC-03",
+    "SYN-SYNC-04",
+    "SYN-SYNC-05"
+  ],
+  "head": "26f886e3ea5371b196ab235d2dace0c156002285",
+  "branch": "main",
+  "checkpoint": {
+    "dateUTC": "2026-11-13T07:08:47.055261+00:00",
+    "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d3ba-46ca-7a10-aba0-c8cf297a281f\\syndicator-sync-checkpoint",
+    "head": "26f886e3ea5371b196ab235d2dace0c156002285",
+    "sourceFiles": 2612,
+    "archives": {
+      "source-before.zip": "577ac5c85ca08382451863277d336097a3d6241c0ffe239f32efa8fd0cfbdc50",
+      "history.bundle": "1bb7bb494446c39da2a43a7ce5a499fadf6f3e118c70b61117a686f7d277195f"
+    },
+    "verified": true,
+    "historyVerify": "C:/Users/mario/.codex/visualizations/2026/11/13/01a1d3ba-46ca-7a10-aba0-c8cf297a281f/syndicator-sync-checkpoint/history.bundle is okay",
+    "settingsMetadataEntries": 58,
+    "settingsScope": "Read-only metadata; no private settings content copied or modified; client state unknown"
+  },
+  "externalReference": {
+    "path": "F:\\World of Warcraft\\_forever_\\Interface\\AddOns\\Syndicator",
+    "version": 290,
+    "author": "plusmouse",
+    "license": "All Rights Reserved; copyright 2023-2026; inspected read-only; no third-party source copied",
+    "schemaVersion": 2,
+    "summaryVersion": 5,
+    "filesSha256": {
+      "Syndicator.toc": "d78b2bf574a00c81c41c2467021e3ed2c03ee64931875e943d3040587ac2b098",
+      "API/Main.lua": "892f6607d05953dc22504b33fd8294b2908ca45f77157d3ef24767d8e76de393",
+      "Tracking/Initialize.lua": "3108999df9b599533802ac88bbfab10ef01c4bbd94458af63957704c85b10054",
+      "Tracking/ItemSummaries.lua": "4db2b0428345789192b047fd1f0229f59382f871e21c58126a29a76591200545",
+      "Core/Constants.lua": "ca692b676c2e06aca81021c2d89502100e18641c482b923d61f4988cd9ddf83b",
+      "Tracking/BagCache.lua": "c34a06b0d3a5d87c9ae319fd9212c4efb0603709ba2b5114bb7b9988195a9d8a",
+      "Tracking/EquippedCache.lua": "77c6b4dcf0f5db5abd0a0a2945fdead9a437b40f4117d1ecbf89fcbcc489023c",
+      "Tracking/CurrencyCache.lua": "d19792e4bd7249da4d45202a4edaafe2ac97f944f47cc538ef17e6f4cb098aab",
+      "Core/Utilities.lua": "d13266ade02df377a4fe21510e41e1e04ed4962a685bba5ebd699d637d0cf962",
+      "Search/SearchEverywhere.lua": "db00ae332376079b104c017fee93bd0dacdecaa9fe99316d7daf056b7f6f9eca",
+      "LICENSE": "8ab1f878ab363dbb42591f062190386662a0aaaae36f90cc518dcf3494bafb7d"
+    },
+    "sourceScope": "Exact installed local source contract; no new native API dependency or latest upstream verification claim"
+  },
+  "sourceIdentity": {
+    "Inventory/Syndicator/Sync.lua": {
+      "beforeSha256": null,
+      "afterSha256": "80074a7574589f51db039534bfc47ac8dd232d77944b20934c9fc32ec0c57b80",
+      "afterNormalizedSha256": "80074a7574589f51db039534bfc47ac8dd232d77944b20934c9fc32ec0c57b80"
+    },
+    "Inventory/Store.lua": {
+      "beforeSha256": "c7930c139f42602ef03d697731141d577eb4c0507c0551bcf6a3f924a3eb0f27",
+      "afterSha256": "dad969c1591dba31b587b5e5ce1a9e7fe815cb6b1174bea126fb2f6abdf68482",
+      "afterNormalizedSha256": "dad969c1591dba31b587b5e5ce1a9e7fe815cb6b1174bea126fb2f6abdf68482"
+    },
+    "Inventory/Containers.lua": {
+      "beforeSha256": "81cef9d8bd8d2cee37fd3b49d85360ff4ef9a6d8206fdc17b88a0f631091feac",
+      "afterSha256": "9bdfc0cad6a5fff1b091f1c3ec02c7a4c7287ebfe298ff948294eb8d79a11d10",
+      "afterNormalizedSha256": "9bdfc0cad6a5fff1b091f1c3ec02c7a4c7287ebfe298ff948294eb8d79a11d10"
+    },
+    "Inventory/Syndicator/Adapter.lua": {
+      "beforeSha256": "dadae3fdd7234306d623c0fe0b81fa152960384359bd3808053396762b40c883",
+      "afterSha256": "1ef88dabf3af316e2de735a41959fb4bf84a7762ba600f7f822841f5f2ab8504",
+      "afterNormalizedSha256": "1ef88dabf3af316e2de735a41959fb4bf84a7762ba600f7f822841f5f2ab8504"
+    },
+    "_FluxUI.toc": {
+      "beforeSha256": "774b4f014ba3278171176d27e67f8d95f67c00797bcdda46a4579e461bff9826",
+      "afterSha256": "ac566f5696dab4775d787eeb8268a8703965a04675fff6abaf21fa3f672ffcce",
+      "afterNormalizedSha256": "ac566f5696dab4775d787eeb8268a8703965a04675fff6abaf21fa3f672ffcce"
+    },
+    "tests/syndicator_sync.lua": {
+      "beforeSha256": null,
+      "afterSha256": "35e31cbff0cf3a98a6acf664f28961cdb6fc843f33cf389d3c29f865cddd36e3",
+      "afterNormalizedSha256": "35e31cbff0cf3a98a6acf664f28961cdb6fc843f33cf389d3c29f865cddd36e3"
+    }
+  },
+  "storage": {
+    "root": "FluxUIInventoryDB.SyndicatorSync",
+    "version": 1,
+    "whileDelegated": "data references live SYNDICATOR_DATA; automatic capture without callbacks or copies",
+    "standalone": "one detached normalization after active marker; retain frozen external ancestor; subsequent standalone reloads do not reimport",
+    "writeback": "Exact three-way fields/containers, including capacity. Local changed plus remote unchanged from ancestor writes local. Independent external edits/deletions preserved. First encounter keeps existing external facts. Current native cash/tokens preserved.",
+    "schemaGuard": "Unknown external/bridge versions preserved without attachment/writeback",
+    "metadata": "Dense empty slots; equipment offsets; tab defaults; real list metadata/auction IDs/expiry retained; linkless known items gain minimal ordinary item hyperlink; no invented pet species/variant metadata",
+    "notifications": "Only transition writes emit bounded existing current-player/neutral character Mail/account callbacks to refresh views/search. Alt Bag events avoided; no guild/void callback changes."
+  },
+  "focused": {
+    "command": "lua tests/syndicator_sync.lua",
+    "checks": 309,
+    "fail": 0,
+    "rawOutput": "syndicator_sync: 309 checks, 0 failures\ndesktop initial-bind/serialization/restore/reconcile seconds (five samples): 0.001000/0.044000/0.015000/0.030000, 0.001000/0.091000/0.025000/0.023000, 0.001000/0.076000/0.009000/0.020000, 0.001000/0.066000/0.011000/0.025000, 0.001000/0.042000/0.017000/0.019000\n",
+    "clientModels": [
+      "Retail",
+      "Forever",
+      "Mists",
+      "Era",
+      "Anniversary"
+    ],
+    "controls": [
+      "historical handoff-only without sync",
+      "detached snapshot loses later changes",
+      "unsafe local-wins overwrites independent remote changes"
+    ],
+    "realOwners": "Actual Sync/Store/Adapter startup and Ready path; native APIs/provider mocked"
+  },
+  "performance": {
+    "model": "103 characters; 100 enlarged with 72 occupied bag slots; five repetitions",
+    "samples": [
+      {
+        "initialBindSeconds": 0.001,
+        "syntheticSerializationSeconds": 0.044,
+        "restoreSeconds": 0.015,
+        "reconcileSeconds": 0.03
+      },
+      {
+        "initialBindSeconds": 0.001,
+        "syntheticSerializationSeconds": 0.091,
+        "restoreSeconds": 0.025,
+        "reconcileSeconds": 0.023
+      },
+      {
+        "initialBindSeconds": 0.001,
+        "syntheticSerializationSeconds": 0.076,
+        "restoreSeconds": 0.009,
+        "reconcileSeconds": 0.02
+      },
+      {
+        "initialBindSeconds": 0.001,
+        "syntheticSerializationSeconds": 0.066,
+        "restoreSeconds": 0.011,
+        "reconcileSeconds": 0.025
+      },
+      {
+        "initialBindSeconds": 0.001,
+        "syntheticSerializationSeconds": 0.042,
+        "restoreSeconds": 0.017,
+        "reconcileSeconds": 0.019
+      }
+    ],
+    "whileProviderActive": "10000 mutations per client model; zero added bridge traversals/notifications/subscriptions/timers/frames/native scans",
+    "builtinHotPath": "One constant-time capacity recording per existing ScanBag; no extra native query",
+    "native": "NOT RUN; desktop timing and synthetic serialization are not native FPS/taint/SavedVariables persistence evidence",
+    "limits": "One startup account reconciliation/conversion and an additional saved mirror; native storage/logout/startup cost remains to measure"
+  },
+  "fullSuite": {
+    "command": "python tests/run_validation.py --output <external>/syndicator-sync-full.json",
+    "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d3ba-46ca-7a10-aba0-c8cf297a281f\\syndicator-sync-full.json",
+    "sha256": "bb0fd0b6c3b461570ff8f48ff18af8a997db2a32b85cd47dcac782453d5fe974",
+    "pass": 320,
+    "fail": 0,
+    "syntaxFiles": 1002,
+    "syntaxFailures": 0,
+    "ownedSourcesMatchSnapshot": true,
+    "entireManifestMatchesCurrent": false,
+    "changedAfterSnapshot": [
+      "ExtraButtonSystem/Engine/Paint.lua",
+      "ExtraButtonSystem/TrinketMenu/FluxTrinketMenu.lua"
+    ],
+    "addedAfterSnapshot": [
+      "tests/trinket_visual_recovery.lua"
+    ],
+    "removedAfterSnapshot": [],
+    "concurrentWork": "Unrelated trinket recovery test and two trinket source edits appeared after runner enumeration. Initial test reproduced 45/115 failed assertions before those edits; targeted retest now passes 200 assertions and all three changed/new files parse. No trinket edits performed here; broader current whole-workspace suite freshness remains with the separate task.",
+    "corpusSha256": "ccdaf5ebdf959318615c979f072d1d8c9158899c7c84ca5c13f9f1dea863a67d",
+    "concurrentTargetedRetest": {
+      "pass": 200,
+      "fail": 0,
+      "rawOutput": "trinket visual recovery: 200 checks; 0 failures; five desktop client models\n",
+      "syntaxFiles": 3
+    }
+  },
+  "native": {
+    "route": "Existing user native reproduction preference retained; no Witchcraft/UIForever tools exposed",
+    "result": "NOT RUN",
+    "pending": [
+      "Actual enable/disable/edit/re-enable and repeated SavedVariables reload persistence",
+      "Current and alt inventory/bank/mail/AH plus independent external edits/deletions",
+      "Baganator/search appearance/metadata; capacities and purchased tabs",
+      "Matched native startup/logout/interaction CPU/FPS/memory/taint with same addon list and profiler preferences"
+    ]
+  },
+  "scope": {
+    "existingRuntimeOwnersChanged": 4,
+    "newRuntimeOwners": 1,
+    "newTests": 1,
+    "newFrames": 0,
+    "newEventSubscriptions": 0,
+    "newTimerCallsites": 0,
+    "newCallbackSubscriptions": 0,
+    "newPolling": 0,
+    "uiOrSettingsDefaultsChanged": false,
+    "privateSettingsOrProfilerWrites": false,
+    "clientFocusOrInput": false,
+    "manualInstallationSync": false,
+    "commitOrPublication": false,
+    "unrelatedLocalChanges": "Preserved on main; source guard covers this task owners against original external checkpoint."
+  }
+}

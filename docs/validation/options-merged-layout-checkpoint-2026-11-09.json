@@ -1,0 +1,13 @@
+{
+  "date": "2026-11-09",
+  "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\09\\01a1c03e-c615-7f02-a24a-3e5ed07300f1\\options-merged-layout-checkpoint-20261109T155922Z",
+  "verified": true,
+  "sourceFiles": 2468,
+  "settingsMetadataEntries": 43,
+  "settingsBackup": "Read-only metadata; no live/quiescent contents backup claimed",
+  "settingsWrites": false,
+  "sha256": {
+    "source.zip": "2a56ed348bbd819bb49e591b8ac2b3e80c612195677124146071e2b5d7504735",
+    "history.bundle": "e9fc5c8d7120a57d48080fc0eb38a253bd5f1b08b841330bc373b25032e2a8b5"
+  }
+}

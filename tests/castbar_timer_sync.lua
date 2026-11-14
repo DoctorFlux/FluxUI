@@ -4,7 +4,7 @@ local function read(path)local f=assert(io.open(path,"rb"),path);local s=f:read(
 local checks=0
 local function check(v,label)checks=checks+1;assert(v,label)end
 local source=read(os.getenv("FLUX_CAST_TIMER_SOURCE")or"UnitFrames/FluxCastBar.lua")
-local a=assert(source:find("local function AccessibleRemainingSeconds",1,true))
+local a=assert(source:find("local function ReadCastBarProgress",1,true) or source:find("local function AccessibleRemainingSeconds",1,true))
 local b=assert(source:find("local function SafeCompareGUID",a,true))
 local opaque=setmetatable({},{__lt=function()error("opaque comparison")end,__sub=function()error("opaque subtraction")end,__tostring=function()error("opaque formatting in Lua")end})
 local E=setmetatable({IsSecretValue=function(v)return rawequal(v,opaque)end,GetTime=function()return 100 end,

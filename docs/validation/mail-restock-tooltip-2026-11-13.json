@@ -1,0 +1,50 @@
+{
+  "dateUTC": "2026-11-13T13:07:38.059873+00:00",
+  "changeID": "MAIL-RESTOCK-TOOLTIP-20261113",
+  "requirement": "AHR-65; regression of AHR-59",
+  "reported": "Mail/Restock.lua:152 SetText numeric alpha rejected boolean true on mailbox hover",
+  "fix": "Keep owner/anchor, clear lines and add one wrapped white help line using AddLine(text,1,1,1,true); both Restock and Auto helper callers share the fix.",
+  "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\auction-restock\\tab-crafting-followup\\mail-tooltip-20261113T130347Z\\checkpoint.json",
+  "checkpointVerified": true,
+  "sourceFiles": 2695,
+  "settingsMetadataEntries": 95,
+  "privateSettingsCopied": false,
+  "sourceSHA256": {
+    "Mail/Restock.lua": "6424215f4b3a538ee916ced5cbbafdc3043de1e3e4033f6ccd1851bf8c5ac4f6",
+    "tests/mail_restock.lua": "18af92047f7b1197a83c8d7ab6c94e7be51c252e5746030406c9d4cef72b3a94"
+  },
+  "focused": {
+    "mailRestock": "3160 PASS /20 client-provider-timer profiles; includes both hover controls with strict tooltip types, localized text, wrapping, owner/anchor, hide and no mail side effects",
+    "mailSelect": "21 PASS",
+    "mailOpenAll": "18 PASS",
+    "mailJobLifecycle": "880 PASS",
+    "auctionFollowup": "654 PASS",
+    "auctionWorkflow": "300 PASS",
+    "ownedSyntax": "PASS"
+  },
+  "negativeControl": {
+    "restoredBadCallRejected": true,
+    "assertion": "tooltip SetText alpha must be numeric",
+    "raw": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\auction-restock\\tab-crafting-followup\\mail-tooltip-20261113T130347Z\\negative-control.txt",
+    "noRuntimeRollback": true
+  },
+  "sourceContract": "Existing AH Restock helpers already use ClearLines/AddLine wrapped white text. Packaged wow-api-widget FRAME-SPECIALIZED.md24/29/30 documents AddLine wrap vs SetText numeric alpha as historical corroboration; user native error proves the rejected old call. Existing five-client pinned source/TOC contracts retained; no new client detection or protected operation.",
+  "optionsLocalizationController": "No new settings, strings, bindings or focus targets. Existing localized help, owner/anchor, mouse/gamepad-cursor hover and leave handlers remain. Native hover/controller/visual checks pending.",
+  "native": "User-native reproduction retained. No foreground/input, settings/profiler writes, manual sync or publication. Actual in-game hover retest NOT RUN.",
+  "full": {
+    "pass": 338,
+    "fail": 0,
+    "syntaxFiles": 1026,
+    "raw": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\auction-restock\\tab-crafting-followup\\mail-tooltip-20261113T130347Z\\full.json",
+    "currentLuaManifestVerified": true
+  },
+  "documentationValidation": {
+    "pass": true,
+    "sources": 1059,
+    "reachable": 623,
+    "settingsDefinitions": 434,
+    "savedVariableRoots": 24,
+    "localLinks": 16885,
+    "currentSourceInventoryAndEvidence": true
+  }
+}

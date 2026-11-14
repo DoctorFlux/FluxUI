@@ -1,0 +1,746 @@
+{
+  "date": "2026-11-10",
+  "source": "Gethe/wow-ui-source; reuse exact task pins resolved earlier on10November",
+  "pins": {
+    "forever": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+    "classic": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+    "classic_era": "4192ac60067fc55566182291bc67c85dd9b6794d",
+    "classic_anniversary": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+    "live": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f"
+  },
+  "blobCount": 82,
+  "files": [
+    {
+      "target": "forever",
+      "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/ClientDocumentation.lua",
+      "gitBlob": "5105403cdb3f643e40c245acac165bafde6d3e77",
+      "sha256": "0fcb4fe81b243137169973c10cec8b0237a61c370fd0b37315e4912d1e36d60a",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_APIDocumentationGenerated/ClientDocumentation.lua"
+    },
+    {
+      "target": "forever",
+      "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/GossipConstantsDocumentation.lua",
+      "gitBlob": "23610c19f8bd06b4a50037114aaa4734c94890e0",
+      "sha256": "877edc888454c3351ce35f7dfb4a602e66557dda37dbd5873f6e9e2743141b12",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_APIDocumentationGenerated/GossipConstantsDocumentation.lua"
+    },
+    {
+      "target": "forever",
+      "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/GossipInfoDocumentation.lua",
+      "gitBlob": "16929e1ed1539cc6b574d49992ba89de3165951b",
+      "sha256": "22cd6a48eded91316753af2e40624e542a91c728c713636549b7d3a6ef7916a5",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_APIDocumentationGenerated/GossipInfoDocumentation.lua"
+    },
+    {
+      "target": "forever",
+      "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "path": "Interface/AddOns/Blizzard_SettingsDefinitions_Shared/Blizzard_SettingsDefinitions_Shared.toc",
+      "gitBlob": "7dcafe4e37c01de0674b09bdfcf249b988ce6c46",
+      "sha256": "b905235c1827860e9bf56d074345df986fe929031ce1af6490c074580b129b38",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_SettingsDefinitions_Shared/Blizzard_SettingsDefinitions_Shared.toc"
+    },
+    {
+      "target": "forever",
+      "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "path": "Interface/AddOns/Blizzard_SharedXML/Blizzard_SharedXML.toc",
+      "gitBlob": "597c41a440de774dbedf84094b3369677c55bce0",
+      "sha256": "533affae69a56106afb238aab68e0d54437a8fb17a54c511ad5d831dd3ae4024",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_SharedXML/Blizzard_SharedXML.toc"
+    },
+    {
+      "target": "forever",
+      "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "path": "Interface/AddOns/Blizzard_SharedXML/CommonUIPanelTemplates.xml",
+      "gitBlob": "e80b147fa703003843a45617025996a774a3cc7f",
+      "sha256": "295706f57fecc50c12b11a27df25556058220ddd2e92cfac4004ea4c2fae0eda",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_SharedXML/CommonUIPanelTemplates.xml"
+    },
+    {
+      "target": "forever",
+      "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "path": "Interface/AddOns/Blizzard_SharedXML/Shared/Button/CheckButtonTemplates.xml",
+      "gitBlob": "e9513264d51fd3cac88899b043d2fa4827d1232a",
+      "sha256": "a52e29e44750e81154ce423e1b16f1d2c8126ce893275c8d22070240d55eab4e",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_SharedXML/Shared/Button/CheckButtonTemplates.xml"
+    },
+    {
+      "target": "forever",
+      "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "path": "Interface/AddOns/Blizzard_UIPanels_Game/Blizzard_UIPanels_Game.toc",
+      "gitBlob": "7b6537794b17e8a2d1c7eef582f1f724c0e180f7",
+      "sha256": "c4f57e9b6df5597c134f8434391e71f8019d9bd7a2f7682d87f3b893449ba7b1",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_UIPanels_Game/Blizzard_UIPanels_Game.toc"
+    },
+    {
+      "target": "forever",
+      "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "path": "Interface/AddOns/Blizzard_UIPanels_Game/Mainline/CustomGossipFrameBase.lua",
+      "gitBlob": "20c30502ec8690153889b82bfee22a3e7959d6b7",
+      "sha256": "694a0db67f15d222d30e8925813daff45d83aa5fa9e8b12db059301d4a9db050",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_UIPanels_Game/Mainline/CustomGossipFrameBase.lua"
+    },
+    {
+      "target": "forever",
+      "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "path": "Interface/AddOns/Blizzard_UIPanels_Game/Mainline/CustomGossipFrameBase.xml",
+      "gitBlob": "7e673eecab8a685882c339abd7cc500bf053f146",
+      "sha256": "6f780138e8b0da30767b864b1add07b3f2a803c1b89a15a2dc59b00fe48c0f4a",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_UIPanels_Game/Mainline/CustomGossipFrameBase.xml"
+    },
+    {
+      "target": "forever",
+      "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "path": "Interface/AddOns/Blizzard_UIPanels_Game/Mainline/GossipFrame.lua",
+      "gitBlob": "e706a41cded01b69d05bfa584e45f07bdba5a48b",
+      "sha256": "f37cbda8617f46b82240bb4a9fb498a201cec51a8498296ef469d7befcffd616",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_UIPanels_Game/Mainline/GossipFrame.lua"
+    },
+    {
+      "target": "forever",
+      "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "path": "Interface/AddOns/Blizzard_UIPanels_Game/Mainline/GossipFrame.xml",
+      "gitBlob": "82022ed54a5685a3d92401448827080d4febe333",
+      "sha256": "b3ccffdab4a7e9d556914c0d64539e2c746244eac87adb04fa300d50fd6afca2",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_UIPanels_Game/Mainline/GossipFrame.xml"
+    },
+    {
+      "target": "forever",
+      "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "path": "Interface/AddOns/Blizzard_UIPanels_Game/Mainline/GossipFrameAPI.lua",
+      "gitBlob": "cf7c8c0d7a9aa0bd1dc5eb62807353142f84683a",
+      "sha256": "a5adc92d46291129244a96e62f0de227aace0c5f8787aa592e69e5ccb77e85d2",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_UIPanels_Game/Mainline/GossipFrameAPI.lua"
+    },
+    {
+      "target": "forever",
+      "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "path": "Interface/AddOns/Blizzard_UIPanels_Game/Shared/GossipFrameShared.lua",
+      "gitBlob": "a8d28c8a9d0b1b29b4dbee5df66513066099f838",
+      "sha256": "89073a44f81864990cdaa1e6914bdaf64dd3942738ada5132d1e7abafe9e20a3",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_UIPanels_Game/Shared/GossipFrameShared.lua"
+    },
+    {
+      "target": "forever",
+      "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "path": "Interface/AddOns/Blizzard_UIPanels_Game/Shared/GossipFrameShared.xml",
+      "gitBlob": "66c07151340f8c693d4f945f6cc5ce5b5a43a392",
+      "sha256": "f423810a724094d3fddee4fcff643903dab8466f55aca89c0c429b3b3bf23911",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_UIPanels_Game/Shared/GossipFrameShared.xml"
+    },
+    {
+      "target": "forever",
+      "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "path": "Interface/AddOns/Blizzard_UIPanelTemplates/Blizzard_UIPanelTemplates.toc",
+      "gitBlob": "4f09c952ea93970bd84c361abab3cc3ba8f11b45",
+      "sha256": "7dd3f9c257ef9a86e1ac70292b5f1e76f48b6ac00bb1b7d416f7c24168bfcfca",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_UIPanelTemplates/Blizzard_UIPanelTemplates.toc"
+    },
+    {
+      "target": "forever",
+      "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "path": "Interface/AddOns/Blizzard_UIPanelTemplates/Mainline/UIPanelTemplates.xml",
+      "gitBlob": "e66e619ef3e3c6b0a80d8ace4ac96d549bc3c162",
+      "sha256": "5ea3c9dd37e269d9b5676294fd044d59700f3fecff7c9ba0c384d28ac6c6b180",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_UIPanelTemplates/Mainline/UIPanelTemplates.xml"
+    },
+    {
+      "target": "forever",
+      "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "path": "version.txt",
+      "gitBlob": "e02268eacf9b586ec969cf13403a15b8dd136ae8",
+      "sha256": "40632cd2240c025fafc7bb8343593d2f8bde74c1196bc678cbdaeb807c9eb6c2",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/version.txt"
+    },
+    {
+      "target": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/ClientDocumentation.lua",
+      "gitBlob": "060b1bfa1cffab108b06c3ab0eaabbf0eb24bfb2",
+      "sha256": "32ade0e0825145d8e38f4399291604566d2d1ded878773ac64028192ce486564",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_APIDocumentationGenerated/ClientDocumentation.lua"
+    },
+    {
+      "target": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/GossipConstantsDocumentation.lua",
+      "gitBlob": "1147bf602e3a0e33658d871589bf90a312fb761c",
+      "sha256": "88f8f0e85b0e452f15ae369ed350a3537dcd088b402aca0b8e05215ae75aad12",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_APIDocumentationGenerated/GossipConstantsDocumentation.lua"
+    },
+    {
+      "target": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/GossipInfoDocumentation.lua",
+      "gitBlob": "47abd85f8babbcc03bfddff0f4e54a13e05ed2af",
+      "sha256": "0e3532d6be02fe345e1ef1dac53fabfe6b4358a07279e3fe69b5534306b8c826",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_APIDocumentationGenerated/GossipInfoDocumentation.lua"
+    },
+    {
+      "target": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_SettingsDefinitions_Shared/Blizzard_SettingsDefinitions_Shared.toc",
+      "gitBlob": "4635e9aebec4cf3cecca024b45ebb161314e9f5e",
+      "sha256": "113d4414d35b2c13d3227b7d4dbe49d5abc6fa69088ce416f563e560741d87a4",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_SettingsDefinitions_Shared/Blizzard_SettingsDefinitions_Shared.toc"
+    },
+    {
+      "target": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_SharedXML/Blizzard_SharedXML_Cata.toc",
+      "gitBlob": "fec3100458f2880b3cd6e5ed9cb013514d3df17a",
+      "sha256": "0773a5c8b8cabaf201f600c20cf4cd6f60fe3df50bbc75cac415e48a182d5dd0",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_SharedXML/Blizzard_SharedXML_Cata.toc"
+    },
+    {
+      "target": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_SharedXML/Blizzard_SharedXML_Mists.toc",
+      "gitBlob": "12b72d8a7b28178046602acd82eb589aa5465799",
+      "sha256": "310019271f68dfb70e92ae4232464221bacd0f8b6f0e7da493a86b5e625c8775",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_SharedXML/Blizzard_SharedXML_Mists.toc"
+    },
+    {
+      "target": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_SharedXML/Blizzard_SharedXML_TBC.toc",
+      "gitBlob": "59fd0223c268ffff922d130402e9b3197f0aeb32",
+      "sha256": "88f3c0c34688c8f90dc07bde4d63b43d2fb3abeab842257196531e7336c393da",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_SharedXML/Blizzard_SharedXML_TBC.toc"
+    },
+    {
+      "target": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_SharedXML/Blizzard_SharedXML_Vanilla.toc",
+      "gitBlob": "eb22ea396e8b31a4edac0b158fabfe2af05ddbbf",
+      "sha256": "25a511604dd86f2fbdad30ddd354c5fe06bb28c5e3215b15ba4db9c463e453f9",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_SharedXML/Blizzard_SharedXML_Vanilla.toc"
+    },
+    {
+      "target": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_SharedXML/Blizzard_SharedXML_Wrath.toc",
+      "gitBlob": "825708ed613c44047d55ca2b6cedcad9e8008953",
+      "sha256": "5e2f04e3cada750080d8c54e1065df7782a31bac0eb0a55841f429fb584978f4",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_SharedXML/Blizzard_SharedXML_Wrath.toc"
+    },
+    {
+      "target": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_SharedXML/CommonUIPanelTemplates.xml",
+      "gitBlob": "e80b147fa703003843a45617025996a774a3cc7f",
+      "sha256": "295706f57fecc50c12b11a27df25556058220ddd2e92cfac4004ea4c2fae0eda",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_SharedXML/CommonUIPanelTemplates.xml"
+    },
+    {
+      "target": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_SharedXML/Shared/Button/CheckButtonTemplates.xml",
+      "gitBlob": "c6e6c07d8562c2095cd0ebcca2af63b75132db88",
+      "sha256": "004f99e99c06bb38674054a0f9147eb5bc49664e57fafdf038ce2f7e0e73f41e",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_SharedXML/Shared/Button/CheckButtonTemplates.xml"
+    },
+    {
+      "target": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_UIPanels_Game/Blizzard_UIPanels_Game_Classic.toc",
+      "gitBlob": "1f400a399e608a57a5d6519bfa9e1d47fe66fa11",
+      "sha256": "9c24a09e2e50dbe8f481e85112055ef67d7ef77c1242c9be22e31133cb9ba29e",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_UIPanels_Game/Blizzard_UIPanels_Game_Classic.toc"
+    },
+    {
+      "target": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_UIPanels_Game/Classic/GossipFrame.lua",
+      "gitBlob": "7037afd5a0fdeb0ad4a478e0e5e85429be1d025d",
+      "sha256": "8d72355f482879fc1785002412ea385f0ee0e576e94d104935710f8bc52b7433",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_UIPanels_Game/Classic/GossipFrame.lua"
+    },
+    {
+      "target": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_UIPanels_Game/Classic/GossipFrame.xml",
+      "gitBlob": "dc66eb25d9a594ab34feae77e4497a72442dfc57",
+      "sha256": "e38801ff8c2f3a5cdd86c5a84769d2e3ca776525f81b5d68bcd7f5dbc864039a",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_UIPanels_Game/Classic/GossipFrame.xml"
+    },
+    {
+      "target": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_UIPanels_Game/Shared/GossipFrameShared.lua",
+      "gitBlob": "f327d6d4d1dc65de4084fed15f2a4647365e9c7a",
+      "sha256": "b6ff7386dca484bdfb4a89753eb0a2632e3490fa02ae44b803e45cd1fb69cb95",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_UIPanels_Game/Shared/GossipFrameShared.lua"
+    },
+    {
+      "target": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_UIPanels_Game/Shared/GossipFrameShared.xml",
+      "gitBlob": "66c07151340f8c693d4f945f6cc5ce5b5a43a392",
+      "sha256": "f423810a724094d3fddee4fcff643903dab8466f55aca89c0c429b3b3bf23911",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_UIPanels_Game/Shared/GossipFrameShared.xml"
+    },
+    {
+      "target": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_UIPanelTemplates/Blizzard_UIPanelTemplates_Classic.toc",
+      "gitBlob": "f14cb82ae33302d5c46fa373c0d743154c3cdf9e",
+      "sha256": "75910b35c3a4c13fc48fb880b0568b17941d145e83329a5feb61afa4bf4aeba7",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_UIPanelTemplates/Blizzard_UIPanelTemplates_Classic.toc"
+    },
+    {
+      "target": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_UIPanelTemplates/Classic/UIPanelTemplates.xml",
+      "gitBlob": "49ff8d9b9f730789d7604de650f328f8cff69740",
+      "sha256": "13b5378194a80338406b607b9e328a43f0393e88abf7217ab59aca0e942be093",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_UIPanelTemplates/Classic/UIPanelTemplates.xml"
+    },
+    {
+      "target": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "version.txt",
+      "gitBlob": "6888c66e55b78c6b76bdda185480facc60d9b5e5",
+      "sha256": "bcb030fe2d2febd396332d886d804ef9b397335e88f0196edc5d8dbe54c1ba38",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/version.txt"
+    },
+    {
+      "target": "classic_era",
+      "commit": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/ClientDocumentation.lua",
+      "gitBlob": "060b1bfa1cffab108b06c3ab0eaabbf0eb24bfb2",
+      "sha256": "32ade0e0825145d8e38f4399291604566d2d1ded878773ac64028192ce486564",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_APIDocumentationGenerated/ClientDocumentation.lua"
+    },
+    {
+      "target": "classic_era",
+      "commit": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/GossipConstantsDocumentation.lua",
+      "gitBlob": "1147bf602e3a0e33658d871589bf90a312fb761c",
+      "sha256": "88f8f0e85b0e452f15ae369ed350a3537dcd088b402aca0b8e05215ae75aad12",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_APIDocumentationGenerated/GossipConstantsDocumentation.lua"
+    },
+    {
+      "target": "classic_era",
+      "commit": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/GossipInfoDocumentation.lua",
+      "gitBlob": "47abd85f8babbcc03bfddff0f4e54a13e05ed2af",
+      "sha256": "0e3532d6be02fe345e1ef1dac53fabfe6b4358a07279e3fe69b5534306b8c826",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_APIDocumentationGenerated/GossipInfoDocumentation.lua"
+    },
+    {
+      "target": "classic_era",
+      "commit": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "path": "Interface/AddOns/Blizzard_SettingsDefinitions_Shared/Blizzard_SettingsDefinitions_Shared.toc",
+      "gitBlob": "4635e9aebec4cf3cecca024b45ebb161314e9f5e",
+      "sha256": "113d4414d35b2c13d3227b7d4dbe49d5abc6fa69088ce416f563e560741d87a4",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_SettingsDefinitions_Shared/Blizzard_SettingsDefinitions_Shared.toc"
+    },
+    {
+      "target": "classic_era",
+      "commit": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "path": "Interface/AddOns/Blizzard_SharedXML/Blizzard_SharedXML_Cata.toc",
+      "gitBlob": "fec3100458f2880b3cd6e5ed9cb013514d3df17a",
+      "sha256": "0773a5c8b8cabaf201f600c20cf4cd6f60fe3df50bbc75cac415e48a182d5dd0",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_SharedXML/Blizzard_SharedXML_Cata.toc"
+    },
+    {
+      "target": "classic_era",
+      "commit": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "path": "Interface/AddOns/Blizzard_SharedXML/Blizzard_SharedXML_Mists.toc",
+      "gitBlob": "12b72d8a7b28178046602acd82eb589aa5465799",
+      "sha256": "310019271f68dfb70e92ae4232464221bacd0f8b6f0e7da493a86b5e625c8775",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_SharedXML/Blizzard_SharedXML_Mists.toc"
+    },
+    {
+      "target": "classic_era",
+      "commit": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "path": "Interface/AddOns/Blizzard_SharedXML/Blizzard_SharedXML_TBC.toc",
+      "gitBlob": "cf738e0ddd1c7f3d9fdab462bda55d4b68a848bd",
+      "sha256": "bef480de6d083538956809729cd5c10e2e0ca8964efb9032113b7ea1841cf910",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_SharedXML/Blizzard_SharedXML_TBC.toc"
+    },
+    {
+      "target": "classic_era",
+      "commit": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "path": "Interface/AddOns/Blizzard_SharedXML/Blizzard_SharedXML_Vanilla.toc",
+      "gitBlob": "9c8e39c851150a9544b9ae75414736f16d9b2904",
+      "sha256": "4c6d5523b01a4bf72de282d7595c8e9abdf92e55e56660952bacdb68dfb332f4",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_SharedXML/Blizzard_SharedXML_Vanilla.toc"
+    },
+    {
+      "target": "classic_era",
+      "commit": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "path": "Interface/AddOns/Blizzard_SharedXML/Blizzard_SharedXML_Wrath.toc",
+      "gitBlob": "825708ed613c44047d55ca2b6cedcad9e8008953",
+      "sha256": "5e2f04e3cada750080d8c54e1065df7782a31bac0eb0a55841f429fb584978f4",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_SharedXML/Blizzard_SharedXML_Wrath.toc"
+    },
+    {
+      "target": "classic_era",
+      "commit": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "path": "Interface/AddOns/Blizzard_SharedXML/CommonUIPanelTemplates.xml",
+      "gitBlob": "e80b147fa703003843a45617025996a774a3cc7f",
+      "sha256": "295706f57fecc50c12b11a27df25556058220ddd2e92cfac4004ea4c2fae0eda",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_SharedXML/CommonUIPanelTemplates.xml"
+    },
+    {
+      "target": "classic_era",
+      "commit": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "path": "Interface/AddOns/Blizzard_SharedXML/Shared/Button/CheckButtonTemplates.xml",
+      "gitBlob": "c6e6c07d8562c2095cd0ebcca2af63b75132db88",
+      "sha256": "004f99e99c06bb38674054a0f9147eb5bc49664e57fafdf038ce2f7e0e73f41e",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_SharedXML/Shared/Button/CheckButtonTemplates.xml"
+    },
+    {
+      "target": "classic_era",
+      "commit": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "path": "Interface/AddOns/Blizzard_UIPanels_Game/Blizzard_UIPanels_Game_Classic.toc",
+      "gitBlob": "1f400a399e608a57a5d6519bfa9e1d47fe66fa11",
+      "sha256": "9c24a09e2e50dbe8f481e85112055ef67d7ef77c1242c9be22e31133cb9ba29e",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_UIPanels_Game/Blizzard_UIPanels_Game_Classic.toc"
+    },
+    {
+      "target": "classic_era",
+      "commit": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "path": "Interface/AddOns/Blizzard_UIPanels_Game/Classic/GossipFrame.lua",
+      "gitBlob": "7037afd5a0fdeb0ad4a478e0e5e85429be1d025d",
+      "sha256": "8d72355f482879fc1785002412ea385f0ee0e576e94d104935710f8bc52b7433",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_UIPanels_Game/Classic/GossipFrame.lua"
+    },
+    {
+      "target": "classic_era",
+      "commit": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "path": "Interface/AddOns/Blizzard_UIPanels_Game/Classic/GossipFrame.xml",
+      "gitBlob": "dc66eb25d9a594ab34feae77e4497a72442dfc57",
+      "sha256": "e38801ff8c2f3a5cdd86c5a84769d2e3ca776525f81b5d68bcd7f5dbc864039a",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_UIPanels_Game/Classic/GossipFrame.xml"
+    },
+    {
+      "target": "classic_era",
+      "commit": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "path": "Interface/AddOns/Blizzard_UIPanels_Game/Shared/GossipFrameShared.lua",
+      "gitBlob": "f327d6d4d1dc65de4084fed15f2a4647365e9c7a",
+      "sha256": "b6ff7386dca484bdfb4a89753eb0a2632e3490fa02ae44b803e45cd1fb69cb95",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_UIPanels_Game/Shared/GossipFrameShared.lua"
+    },
+    {
+      "target": "classic_era",
+      "commit": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "path": "Interface/AddOns/Blizzard_UIPanels_Game/Shared/GossipFrameShared.xml",
+      "gitBlob": "66c07151340f8c693d4f945f6cc5ce5b5a43a392",
+      "sha256": "f423810a724094d3fddee4fcff643903dab8466f55aca89c0c429b3b3bf23911",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_UIPanels_Game/Shared/GossipFrameShared.xml"
+    },
+    {
+      "target": "classic_era",
+      "commit": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "path": "Interface/AddOns/Blizzard_UIPanelTemplates/Blizzard_UIPanelTemplates_Classic.toc",
+      "gitBlob": "f14cb82ae33302d5c46fa373c0d743154c3cdf9e",
+      "sha256": "75910b35c3a4c13fc48fb880b0568b17941d145e83329a5feb61afa4bf4aeba7",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_UIPanelTemplates/Blizzard_UIPanelTemplates_Classic.toc"
+    },
+    {
+      "target": "classic_era",
+      "commit": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "path": "Interface/AddOns/Blizzard_UIPanelTemplates/Classic/UIPanelTemplates.xml",
+      "gitBlob": "49ff8d9b9f730789d7604de650f328f8cff69740",
+      "sha256": "13b5378194a80338406b607b9e328a43f0393e88abf7217ab59aca0e942be093",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_UIPanelTemplates/Classic/UIPanelTemplates.xml"
+    },
+    {
+      "target": "classic_era",
+      "commit": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "path": "version.txt",
+      "gitBlob": "66bc5d3c31ec0d4ac300d1ba18ffd9490ac424d9",
+      "sha256": "5224861aa41c7bcfd9d48bdd8003eb769a8954c72e3e9682035aeff5bc236f29",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4192ac60067fc55566182291bc67c85dd9b6794d/version.txt"
+    },
+    {
+      "target": "classic_anniversary",
+      "commit": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/ClientDocumentation.lua",
+      "gitBlob": "060b1bfa1cffab108b06c3ab0eaabbf0eb24bfb2",
+      "sha256": "32ade0e0825145d8e38f4399291604566d2d1ded878773ac64028192ce486564",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_APIDocumentationGenerated/ClientDocumentation.lua"
+    },
+    {
+      "target": "classic_anniversary",
+      "commit": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/GossipConstantsDocumentation.lua",
+      "gitBlob": "1147bf602e3a0e33658d871589bf90a312fb761c",
+      "sha256": "88f8f0e85b0e452f15ae369ed350a3537dcd088b402aca0b8e05215ae75aad12",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_APIDocumentationGenerated/GossipConstantsDocumentation.lua"
+    },
+    {
+      "target": "classic_anniversary",
+      "commit": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/GossipInfoDocumentation.lua",
+      "gitBlob": "47abd85f8babbcc03bfddff0f4e54a13e05ed2af",
+      "sha256": "0e3532d6be02fe345e1ef1dac53fabfe6b4358a07279e3fe69b5534306b8c826",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_APIDocumentationGenerated/GossipInfoDocumentation.lua"
+    },
+    {
+      "target": "classic_anniversary",
+      "commit": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "path": "Interface/AddOns/Blizzard_SettingsDefinitions_Shared/Blizzard_SettingsDefinitions_Shared.toc",
+      "gitBlob": "33765037f736af2ddcf967291a628a1b152f35fe",
+      "sha256": "16d3d68515cd9a7befde924de5575387deb328523ac1844d8ceed4462cdd91f9",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_SettingsDefinitions_Shared/Blizzard_SettingsDefinitions_Shared.toc"
+    },
+    {
+      "target": "classic_anniversary",
+      "commit": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "path": "Interface/AddOns/Blizzard_SharedXML/Blizzard_SharedXML_Cata.toc",
+      "gitBlob": "727642d6ac8aa6e551d4dc4a1d28680e88daeed4",
+      "sha256": "da81ac6a1da8f87311ecc1beb9d0095ba7305a7b36dab55e308eeb70883ca95b",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_SharedXML/Blizzard_SharedXML_Cata.toc"
+    },
+    {
+      "target": "classic_anniversary",
+      "commit": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "path": "Interface/AddOns/Blizzard_SharedXML/Blizzard_SharedXML_Mists.toc",
+      "gitBlob": "4c9051dc87d4968db4ec2be6e3645445c19d9af9",
+      "sha256": "82399a0d7f8b2f55c09776629e51ee5684c7158ffe07130a3b72e6b21e5422c3",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_SharedXML/Blizzard_SharedXML_Mists.toc"
+    },
+    {
+      "target": "classic_anniversary",
+      "commit": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "path": "Interface/AddOns/Blizzard_SharedXML/Blizzard_SharedXML_TBC.toc",
+      "gitBlob": "1a9e8354fa40ccf6a9c73058b5d1d1390d23cf5b",
+      "sha256": "e75c73d6c2c953c8229560e8d68468de1a2a5901915cf8492e086a306c866508",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_SharedXML/Blizzard_SharedXML_TBC.toc"
+    },
+    {
+      "target": "classic_anniversary",
+      "commit": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "path": "Interface/AddOns/Blizzard_SharedXML/Blizzard_SharedXML_Vanilla.toc",
+      "gitBlob": "35861bf20448ca7c7e123fa6d7c080bb42efa769",
+      "sha256": "18cb6fe6ceb610e272429ae078fedd4031aa6df3e0d8ce7d358485c8d1873b1a",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_SharedXML/Blizzard_SharedXML_Vanilla.toc"
+    },
+    {
+      "target": "classic_anniversary",
+      "commit": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "path": "Interface/AddOns/Blizzard_SharedXML/Blizzard_SharedXML_Wrath.toc",
+      "gitBlob": "b8dd27c8ce3519c97481dc0572377e64a599c0b7",
+      "sha256": "d3bd917be267beea6ab33dbc9763ce37debb54dbb1d51456dc07cc0238794cc7",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_SharedXML/Blizzard_SharedXML_Wrath.toc"
+    },
+    {
+      "target": "classic_anniversary",
+      "commit": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "path": "Interface/AddOns/Blizzard_SharedXML/CommonUIPanelTemplates.xml",
+      "gitBlob": "62be58884fc10dd649a2d298f93ccb6b3123349b",
+      "sha256": "f6d83fa17a22dc4b8fe90e7fc3574cc16d370cd88993fb0941d7bc613c677f20",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_SharedXML/CommonUIPanelTemplates.xml"
+    },
+    {
+      "target": "classic_anniversary",
+      "commit": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "path": "Interface/AddOns/Blizzard_SharedXML/Shared/Button/CheckButtonTemplates.xml",
+      "gitBlob": "e8531a85082507d9d99679fdd913055e3e62bc9f",
+      "sha256": "7442bb8066e00631d692dc14f6556f52ca520ccc949569c9b2321299cdb081a9",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_SharedXML/Shared/Button/CheckButtonTemplates.xml"
+    },
+    {
+      "target": "classic_anniversary",
+      "commit": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "path": "Interface/AddOns/Blizzard_UIPanels_Game/Blizzard_UIPanels_Game_Classic.toc",
+      "gitBlob": "476cee00ddd4f9eb0784fb7132bbab2681727f86",
+      "sha256": "1b37ebb91cfd3689a89b4f6569886b236c3e33717fc38e2918859ef94d71dbc8",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_UIPanels_Game/Blizzard_UIPanels_Game_Classic.toc"
+    },
+    {
+      "target": "classic_anniversary",
+      "commit": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "path": "Interface/AddOns/Blizzard_UIPanels_Game/Classic/GossipFrame.lua",
+      "gitBlob": "b962266ba105e0b5915264896f5a5e3e94869cf7",
+      "sha256": "aaaa0c2ef341b673e4284ae81c8742a49ef0a9aa3579f13969ee836fbe6de388",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_UIPanels_Game/Classic/GossipFrame.lua"
+    },
+    {
+      "target": "classic_anniversary",
+      "commit": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "path": "Interface/AddOns/Blizzard_UIPanels_Game/Classic/GossipFrame.xml",
+      "gitBlob": "4ae845f8fef7800ce9ae1fd205b8401c4c39e4ff",
+      "sha256": "2ac3b9620dd4869ff98361514cf5972d5c67e2a450016cea52f09f0aa7aed5c8",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_UIPanels_Game/Classic/GossipFrame.xml"
+    },
+    {
+      "target": "classic_anniversary",
+      "commit": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "path": "Interface/AddOns/Blizzard_UIPanels_Game/Shared/GossipFrameShared.lua",
+      "gitBlob": "43be55620379d7c3b8bdbb5a49101076db411d28",
+      "sha256": "1f14a731c0b10bd5c9c6c5d0ffeebc8763ccf0b6ca39f0714cb27dfd0b71a060",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_UIPanels_Game/Shared/GossipFrameShared.lua"
+    },
+    {
+      "target": "classic_anniversary",
+      "commit": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "path": "Interface/AddOns/Blizzard_UIPanels_Game/Shared/GossipFrameShared.xml",
+      "gitBlob": "8f4d1e71daf882f7f99399c88ac9ca388e967ae7",
+      "sha256": "6bcce57a2e9e14b1ad0834c72dca00351ec4ee6ee1bbcadc1e47640fe83b8f52",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_UIPanels_Game/Shared/GossipFrameShared.xml"
+    },
+    {
+      "target": "classic_anniversary",
+      "commit": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "path": "Interface/AddOns/Blizzard_UIPanelTemplates/Blizzard_UIPanelTemplates_Classic.toc",
+      "gitBlob": "14a3b12906f7a0e35b660b688f555e7f198d83fb",
+      "sha256": "4fb7a2a7fec50ae6dd3c836a2314a16acec36ae4ab75777aa0ea6d13b34f46f5",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_UIPanelTemplates/Blizzard_UIPanelTemplates_Classic.toc"
+    },
+    {
+      "target": "classic_anniversary",
+      "commit": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "path": "Interface/AddOns/Blizzard_UIPanelTemplates/Classic/UIPanelTemplates.xml",
+      "gitBlob": "2992db7063a11bc8749242add6b7bff464c06528",
+      "sha256": "f1ef24f1005692dd754eb3c516e65c34956cf6332a2797d6a386891e295465ec",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_UIPanelTemplates/Classic/UIPanelTemplates.xml"
+    },
+    {
+      "target": "classic_anniversary",
+      "commit": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "path": "version.txt",
+      "gitBlob": "f81737db88bfda2cd085cc09b18ca8ce764efc42",
+      "sha256": "53498c451665c69194d1a41b9983916109b370b6a261bb833322ae871838bdb3",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/version.txt"
+    },
+    {
+      "target": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/GossipInfoDocumentation.lua",
+      "gitBlob": "16929e1ed1539cc6b574d49992ba89de3165951b",
+      "sha256": "22cd6a48eded91316753af2e40624e542a91c728c713636549b7d3a6ef7916a5",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_APIDocumentationGenerated/GossipInfoDocumentation.lua"
+    },
+    {
+      "target": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_UIPanels_Game/Shared/GossipFrameShared.lua",
+      "gitBlob": "f327d6d4d1dc65de4084fed15f2a4647365e9c7a",
+      "sha256": "b6ff7386dca484bdfb4a89753eb0a2632e3490fa02ae44b803e45cd1fb69cb95",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_UIPanels_Game/Shared/GossipFrameShared.lua"
+    },
+    {
+      "target": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "version.txt",
+      "gitBlob": "61a71eb0d9c435ad6f9f9701ab4d9c072cd3237e",
+      "sha256": "4e532c8d3beb3231ae8195704b6de0a099a19742e02505f73f292f47fe9e080b",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/version.txt"
+    },
+    {
+      "target": "forever",
+      "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "path": "Interface/AddOns/Blizzard_SharedXML/Mainline/SharedUIPanelTemplates.lua",
+      "gitBlob": "46328dd3b11741e7f389200a53c975e06a27d5ad",
+      "sha256": "12f9600965f41d0c0ace7b2270c7928f0f4d3229d634e881f1daaf5ef1f03e65",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_SharedXML/Mainline/SharedUIPanelTemplates.lua"
+    },
+    {
+      "target": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_SharedXML/Classic/SharedUIPanelTemplates.lua",
+      "gitBlob": "6a45f8b3a02c49db0a9b696982ef69e7630d4d31",
+      "sha256": "615fe41326d78b962dbba4bd0949f5167fbcc0e0ffa5a95eb4d9e4b66cde6321",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_SharedXML/Classic/SharedUIPanelTemplates.lua"
+    },
+    {
+      "target": "classic_era",
+      "commit": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "path": "Interface/AddOns/Blizzard_SharedXML/Classic/SharedUIPanelTemplates.lua",
+      "gitBlob": "6a45f8b3a02c49db0a9b696982ef69e7630d4d31",
+      "sha256": "615fe41326d78b962dbba4bd0949f5167fbcc0e0ffa5a95eb4d9e4b66cde6321",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_SharedXML/Classic/SharedUIPanelTemplates.lua"
+    },
+    {
+      "target": "classic_anniversary",
+      "commit": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "path": "Interface/AddOns/Blizzard_SharedXML/Classic/SharedUIPanelTemplates.lua",
+      "gitBlob": "26f9da9be52fa95aafea431d313b24aa13456af5",
+      "sha256": "8327c8b752ed3225626bcc370c9e16c626c57cf3ecb98759e9982fc52da148d7",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_SharedXML/Classic/SharedUIPanelTemplates.lua"
+    }
+  ],
+  "checkboxContracts": [
+    {
+      "target": "forever",
+      "template": "UICheckButtonTemplate",
+      "stateArt": "Native checked/unchecked/highlight/pushed/disabled",
+      "textParentKey": "Text",
+      "inheritedFrameScripts": "None; FontString OnLoad retains native alias helper",
+      "templateLoadTOCs": [
+        "Interface/AddOns/Blizzard_SharedXML/Blizzard_SharedXML.toc"
+      ],
+      "gossipEvents": [
+        "GOSSIP_SHOW",
+        "GOSSIP_CLOSED",
+        "GOSSIP_OPTIONS_REFRESHED"
+      ],
+      "nativeAcceptance": "NOT RUN"
+    },
+    {
+      "target": "classic",
+      "template": "UICheckButtonTemplate",
+      "stateArt": "Native checked/unchecked/highlight/pushed/disabled",
+      "textParentKey": "Text",
+      "inheritedFrameScripts": "None; FontString OnLoad retains native alias helper",
+      "templateLoadTOCs": [
+        "Interface/AddOns/Blizzard_SharedXML/Blizzard_SharedXML_Cata.toc",
+        "Interface/AddOns/Blizzard_SharedXML/Blizzard_SharedXML_Mists.toc",
+        "Interface/AddOns/Blizzard_SharedXML/Blizzard_SharedXML_TBC.toc",
+        "Interface/AddOns/Blizzard_SharedXML/Blizzard_SharedXML_Vanilla.toc",
+        "Interface/AddOns/Blizzard_SharedXML/Blizzard_SharedXML_Wrath.toc"
+      ],
+      "gossipEvents": [
+        "GOSSIP_SHOW",
+        "GOSSIP_CLOSED"
+      ],
+      "nativeAcceptance": "NOT RUN"
+    },
+    {
+      "target": "classic_era",
+      "template": "UICheckButtonTemplate",
+      "stateArt": "Native checked/unchecked/highlight/pushed/disabled",
+      "textParentKey": "Text",
+      "inheritedFrameScripts": "None; FontString OnLoad retains native alias helper",
+      "templateLoadTOCs": [
+        "Interface/AddOns/Blizzard_SharedXML/Blizzard_SharedXML_Cata.toc",
+        "Interface/AddOns/Blizzard_SharedXML/Blizzard_SharedXML_Mists.toc",
+        "Interface/AddOns/Blizzard_SharedXML/Blizzard_SharedXML_TBC.toc",
+        "Interface/AddOns/Blizzard_SharedXML/Blizzard_SharedXML_Vanilla.toc",
+        "Interface/AddOns/Blizzard_SharedXML/Blizzard_SharedXML_Wrath.toc"
+      ],
+      "gossipEvents": [
+        "GOSSIP_SHOW",
+        "GOSSIP_CLOSED"
+      ],
+      "nativeAcceptance": "NOT RUN"
+    },
+    {
+      "target": "classic_anniversary",
+      "template": "UICheckButtonTemplate",
+      "stateArt": "Native checked/unchecked/highlight/pushed/disabled",
+      "textParentKey": "Text",
+      "inheritedFrameScripts": "None; FontString OnLoad retains native alias helper",
+      "templateLoadTOCs": [
+        "Interface/AddOns/Blizzard_SharedXML/Blizzard_SharedXML_Cata.toc",
+        "Interface/AddOns/Blizzard_SharedXML/Blizzard_SharedXML_Mists.toc",
+        "Interface/AddOns/Blizzard_SharedXML/Blizzard_SharedXML_TBC.toc",
+        "Interface/AddOns/Blizzard_SharedXML/Blizzard_SharedXML_Vanilla.toc",
+        "Interface/AddOns/Blizzard_SharedXML/Blizzard_SharedXML_Wrath.toc"
+      ],
+      "gossipEvents": [
+        "GOSSIP_SHOW",
+        "GOSSIP_CLOSED"
+      ],
+      "nativeAcceptance": "NOT RUN"
+    }
+  ],
+  "scope": "Source/loading contracts only; asset IDs resolved by native GetFileIDFromPath at login; actual client lookup/operation/visuals/input/taint untested."
+}

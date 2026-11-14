@@ -61,8 +61,8 @@ local function fixture(branch,source)
         env.GetSpellBookItemName=function()return "Fireball",nil,133 end
         s.button=object(false,book);s.button.name="SpellButton1";env.SpellButton1=s.button
     end
-    env.GameTooltip={IsShown=function()return true end,GetOwner=function()return s.button end,AddLine=function()s.tipLines=(s.tipLines or 0)+1 end,
-        Show=function()end,Hide=function()end}
+    env.GameTooltip=setmetatable({IsShown=function()return true end,GetOwner=function()return s.button end,AddLine=function()s.tipLines=(s.tipLines or 0)+1 end,
+        Show=function()end,Hide=function()end}, {__newindex=function(_,key)error("native tooltip field written: "..key)end})
     s.button.scripts.OnEnter=function()
         assert(s.nativeContext,"native hover forwarded from addon")
         s.nativeEnter=s.nativeEnter+1
@@ -98,8 +98,15 @@ local function exercise(branch,source)
     -- Old code manually called native handlers from these addon callbacks.
     for _,key in ipairs({"OnEnter","OnLeave"})do if catcher.scripts[key]then catcher.scripts[key](catcher)end end
     check(s.nativeEnter==0 and s.nativeLeave==0,branch.." catcher never calls native hover handlers")
-    s.NativeHover("OnEnter");s.Flush();s.NativeHover("OnLeave")
+    s.NativeHover("OnEnter");s.Flush()
+    -- Row/Button duplicate hovers share one line; leave permits the next fill.
+    for _,fn in ipairs(s.button.hooks.OnEnter or {})do fn(s.button)end
+    s.Flush()
+    check(s.tipLines==1,branch.." duplicate spellbook hint suppressed without tooltip fields")
+    s.NativeHover("OnLeave")
     check(s.nativeEnter==1 and s.nativeLeave==1 and s.tipLines==1,branch.." native hover and binding hint preserved")
+    s.NativeHover("OnEnter");s.Flush();s.NativeHover("OnLeave")
+    check(s.tipLines==2,branch.." next spellbook hover restores binding hint")
     catcher.scripts.OnClick(catcher,"LeftButton")
     check(s.bindings==0 and s.nativeClicks==0,branch.." addon does not cast or bind on left click")
     s.nativeContext=true;s.button.scripts.OnClick(s.button,"LeftButton");s.nativeContext=false

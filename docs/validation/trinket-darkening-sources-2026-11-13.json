@@ -1,0 +1,435 @@
+{
+  "task": "TRINKET-DARKENING-20261113",
+  "date": "2026-11-13",
+  "method": "GitHub connector branch resolution and recursive tree; commit-pinned raw source inspection; upstream blob identities from Git tree.",
+  "contracts": [
+    "Slot cooldown follows the native PaperDoll GetInventoryItemCooldown('player', slot) -> CooldownFrame_Set path; helper clears disabled or zero timers. FrameXMLUtil TOC loads Cooldown.lua; client PaperDoll TOCs select Mainline/Camelot/Cata(mists) as recorded.",
+    "SetVertexColor takes public RGB and optional alpha. Retail/Forever declaration allows secret arguments with aspect changes; this fix passes only the painter's existing public palette constants. Native access and rendering were not tested."
+  ],
+  "compatibility": "Retail/Forever/Classic progression freshly resolved. Existing Era/Anniversary code paths retained and desktop modeled, with no fresh source pin or native acceptance for those clients.",
+  "runtime": "NOT RUN; native secure execution, cooldown semantics, pixels, controller and FPS remain pending.",
+  "records": [
+    {
+      "branch": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "message": "12.1.5 (70783)",
+      "path": "Interface/AddOns/Blizzard_FrameXMLUtil/Cooldown.lua",
+      "blob": "9883a1167dc2059adf3efb09c4fdc82bbc71b66a",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_FrameXMLUtil/Cooldown.lua",
+      "lines": [
+        {
+          "line": 2,
+          "text": "function CooldownFrame_Set(self, start, duration, enable, forceShowDrawEdge, modRate)"
+        },
+        {
+          "line": 7,
+          "text": "\t\tCooldownFrame_Clear(self);"
+        },
+        {
+          "line": 11,
+          "text": "function CooldownFrame_Clear(self)"
+        }
+      ]
+    },
+    {
+      "branch": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "message": "12.1.5 (70783)",
+      "path": "Interface/AddOns/Blizzard_UIPanels_Game/Mainline/PaperDollFrame.lua",
+      "blob": "d2d657d8671475d6063a761d95e28a8b3ad5be27",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_UIPanels_Game/Mainline/PaperDollFrame.lua",
+      "lines": [
+        {
+          "line": 1710,
+          "text": "\t\t\tlocal start, duration, enable = GetInventoryItemCooldown(\"player\", self:GetID());"
+        },
+        {
+          "line": 1711,
+          "text": "\t\t\tCooldownFrame_Set(cooldown, start, duration, enable);"
+        }
+      ]
+    },
+    {
+      "branch": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "message": "12.1.5 (70783)",
+      "path": "Interface/AddOns/Blizzard_FrameXMLUtil/Blizzard_FrameXMLUtil.toc",
+      "blob": "b64d63f9c83d7a96fa912a41f0e8f73154877ace",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_FrameXMLUtil/Blizzard_FrameXMLUtil.toc",
+      "lines": [
+        {
+          "line": 45,
+          "text": "Cooldown.lua"
+        }
+      ]
+    },
+    {
+      "branch": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "message": "12.1.5 (70783)",
+      "path": "Interface/AddOns/Blizzard_UIPanels_Game/Blizzard_UIPanels_Game_Mainline.toc",
+      "blob": "4f9ea15807a2cee1c3bec14e83def0c8f60201b7",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_UIPanels_Game/Blizzard_UIPanels_Game_Mainline.toc",
+      "lines": [
+        {
+          "line": 20,
+          "text": "Mainline\\PaperDollFrame.lua"
+        }
+      ]
+    },
+    {
+      "branch": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "message": "12.1.5 (70783)",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleRegionAPIDocumentation.lua",
+      "blob": "ca66eb6c9e70d9e30c8f92139c184442c368d136",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleRegionAPIDocumentation.lua",
+      "lines": [
+        {
+          "line": 191,
+          "text": "\t\t\tName = \"SetVertexColor\","
+        },
+        {
+          "line": 192,
+          "text": "\t\t\tType = \"Function\","
+        },
+        {
+          "line": 193,
+          "text": "\t\t\tSecretArgumentsAddAspect = { Enum.SecretAspect.VertexColor, Enum.SecretAspect.Alpha },"
+        },
+        {
+          "line": 194,
+          "text": "\t\t\tSecretArguments = \"AllowedWhenTainted\","
+        },
+        {
+          "line": 195,
+          "text": ""
+        },
+        {
+          "line": 196,
+          "text": "\t\t\tArguments ="
+        },
+        {
+          "line": 197,
+          "text": "\t\t\t{"
+        },
+        {
+          "line": 198,
+          "text": "\t\t\t\t{ Name = \"colorR\", Type = \"number\", Nilable = false },"
+        },
+        {
+          "line": 199,
+          "text": "\t\t\t\t{ Name = \"colorG\", Type = \"number\", Nilable = false },"
+        },
+        {
+          "line": 200,
+          "text": "\t\t\t\t{ Name = \"colorB\", Type = \"number\", Nilable = false },"
+        },
+        {
+          "line": 201,
+          "text": "\t\t\t\t{ Name = \"a\", Type = \"SingleColorValue\", Nilable = true },"
+        },
+        {
+          "line": 202,
+          "text": "\t\t\t},"
+        },
+        {
+          "line": 203,
+          "text": "\t\t},"
+        }
+      ]
+    },
+    {
+      "branch": "forever",
+      "commit": "bebcb6bf309cf41b41bd74f8ca651e6a105b2676",
+      "message": "1.60.1 (70938)",
+      "path": "Interface/AddOns/Blizzard_FrameXMLUtil/Cooldown.lua",
+      "blob": "9883a1167dc2059adf3efb09c4fdc82bbc71b66a",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/bebcb6bf309cf41b41bd74f8ca651e6a105b2676/Interface/AddOns/Blizzard_FrameXMLUtil/Cooldown.lua",
+      "lines": [
+        {
+          "line": 2,
+          "text": "function CooldownFrame_Set(self, start, duration, enable, forceShowDrawEdge, modRate)"
+        },
+        {
+          "line": 7,
+          "text": "\t\tCooldownFrame_Clear(self);"
+        },
+        {
+          "line": 11,
+          "text": "function CooldownFrame_Clear(self)"
+        }
+      ]
+    },
+    {
+      "branch": "forever",
+      "commit": "bebcb6bf309cf41b41bd74f8ca651e6a105b2676",
+      "message": "1.60.1 (70938)",
+      "path": "Interface/AddOns/Blizzard_UIPanels_Game/Camelot/PaperDollFrame.lua",
+      "blob": "858542532f3668a7fe522e59dbaca088abdf9fc1",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/bebcb6bf309cf41b41bd74f8ca651e6a105b2676/Interface/AddOns/Blizzard_UIPanels_Game/Camelot/PaperDollFrame.lua",
+      "lines": [
+        {
+          "line": 2196,
+          "text": "\t\t\tlocal start, duration, enable = GetInventoryItemCooldown(\"player\", self:GetID());"
+        },
+        {
+          "line": 2197,
+          "text": "\t\t\tCooldownFrame_Set(cooldown, start, duration, enable);"
+        }
+      ]
+    },
+    {
+      "branch": "forever",
+      "commit": "bebcb6bf309cf41b41bd74f8ca651e6a105b2676",
+      "message": "1.60.1 (70938)",
+      "path": "Interface/AddOns/Blizzard_FrameXMLUtil/Blizzard_FrameXMLUtil.toc",
+      "blob": "9939ff16e9f7967229e148046a95e60bffb1912b",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/bebcb6bf309cf41b41bd74f8ca651e6a105b2676/Interface/AddOns/Blizzard_FrameXMLUtil/Blizzard_FrameXMLUtil.toc",
+      "lines": [
+        {
+          "line": 50,
+          "text": "Cooldown.lua"
+        }
+      ]
+    },
+    {
+      "branch": "forever",
+      "commit": "bebcb6bf309cf41b41bd74f8ca651e6a105b2676",
+      "message": "1.60.1 (70938)",
+      "path": "Interface/AddOns/Blizzard_UIPanels_Game/Blizzard_UIPanels_Game.toc",
+      "blob": "7b6537794b17e8a2d1c7eef582f1f724c0e180f7",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/bebcb6bf309cf41b41bd74f8ca651e6a105b2676/Interface/AddOns/Blizzard_UIPanels_Game/Blizzard_UIPanels_Game.toc",
+      "lines": [
+        {
+          "line": 52,
+          "text": "[Family]\\PaperDollFrame.lua\t\t\t\t[AllowLoadGameType mainline] [ExcludeLoadGameType camelot]"
+        },
+        {
+          "line": 53,
+          "text": "[Game]\\PaperDollFrame.lua\t\t\t\t[AllowLoadGameType camelot]"
+        }
+      ]
+    },
+    {
+      "branch": "forever",
+      "commit": "bebcb6bf309cf41b41bd74f8ca651e6a105b2676",
+      "message": "1.60.1 (70938)",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleRegionAPIDocumentation.lua",
+      "blob": "ca66eb6c9e70d9e30c8f92139c184442c368d136",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/bebcb6bf309cf41b41bd74f8ca651e6a105b2676/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleRegionAPIDocumentation.lua",
+      "lines": [
+        {
+          "line": 191,
+          "text": "\t\t\tName = \"SetVertexColor\","
+        },
+        {
+          "line": 192,
+          "text": "\t\t\tType = \"Function\","
+        },
+        {
+          "line": 193,
+          "text": "\t\t\tSecretArgumentsAddAspect = { Enum.SecretAspect.VertexColor, Enum.SecretAspect.Alpha },"
+        },
+        {
+          "line": 194,
+          "text": "\t\t\tSecretArguments = \"AllowedWhenTainted\","
+        },
+        {
+          "line": 195,
+          "text": ""
+        },
+        {
+          "line": 196,
+          "text": "\t\t\tArguments ="
+        },
+        {
+          "line": 197,
+          "text": "\t\t\t{"
+        },
+        {
+          "line": 198,
+          "text": "\t\t\t\t{ Name = \"colorR\", Type = \"number\", Nilable = false },"
+        },
+        {
+          "line": 199,
+          "text": "\t\t\t\t{ Name = \"colorG\", Type = \"number\", Nilable = false },"
+        },
+        {
+          "line": 200,
+          "text": "\t\t\t\t{ Name = \"colorB\", Type = \"number\", Nilable = false },"
+        },
+        {
+          "line": 201,
+          "text": "\t\t\t\t{ Name = \"a\", Type = \"SingleColorValue\", Nilable = true },"
+        },
+        {
+          "line": 202,
+          "text": "\t\t\t},"
+        },
+        {
+          "line": 203,
+          "text": "\t\t},"
+        }
+      ]
+    },
+    {
+      "branch": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "message": "5.5.4 (70631)",
+      "path": "Interface/AddOns/Blizzard_FrameXMLUtil/Cooldown.lua",
+      "blob": "602031cfe92518166ce56a0cbb15ff05d7394473",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_FrameXMLUtil/Cooldown.lua",
+      "lines": [
+        {
+          "line": 2,
+          "text": "function CooldownFrame_Set(self, start, duration, enable, forceShowDrawEdge, modRate)"
+        },
+        {
+          "line": 7,
+          "text": "\t\tCooldownFrame_Clear(self);"
+        },
+        {
+          "line": 11,
+          "text": "function CooldownFrame_Clear(self)"
+        }
+      ]
+    },
+    {
+      "branch": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "message": "5.5.4 (70631)",
+      "path": "Interface/AddOns/Blizzard_CharacterFrame/Cata/PaperDollFrame.lua",
+      "blob": "9773b2587bbdc46e6d3c3c55a255d46f78915ebb",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_CharacterFrame/Cata/PaperDollFrame.lua",
+      "lines": [
+        {
+          "line": 2650,
+          "text": "\t\t\tlocal start, duration, enable = GetInventoryItemCooldown(\"player\", self:GetID());"
+        },
+        {
+          "line": 2651,
+          "text": "\t\t\tCooldownFrame_Set(cooldown, start, duration, enable);"
+        }
+      ]
+    },
+    {
+      "branch": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "message": "5.5.4 (70631)",
+      "path": "Interface/AddOns/Blizzard_FrameXMLUtil/Blizzard_FrameXMLUtil.toc",
+      "blob": "7f30577cb4f1be07630b82f167e291dd83c35410",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_FrameXMLUtil/Blizzard_FrameXMLUtil.toc",
+      "lines": [
+        {
+          "line": 39,
+          "text": "Cooldown.lua"
+        }
+      ]
+    },
+    {
+      "branch": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "message": "5.5.4 (70631)",
+      "path": "Interface/AddOns/Blizzard_CharacterFrame/Blizzard_CharacterFrame.toc",
+      "blob": "d943ed3063ee7a1db7aac861f6f655eda8ad7d20",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_CharacterFrame/Blizzard_CharacterFrame.toc",
+      "lines": [
+        {
+          "line": 18,
+          "text": "Vanilla\\PaperDollFrame.lua      [AllowLoadGameType vanilla]"
+        },
+        {
+          "line": 19,
+          "text": "TBC\\PaperDollFrame.lua          [AllowLoadGameType tbc]"
+        },
+        {
+          "line": 20,
+          "text": "Wrath\\PaperDollFrame.lua        [AllowLoadGameType wrath]"
+        },
+        {
+          "line": 21,
+          "text": "Cata\\PaperDollFrame.lua         [AllowLoadGameType cata, mists]"
+        },
+        {
+          "line": 26,
+          "text": "Vanilla\\PetPaperDollFrame.lua   [AllowLoadGameType vanilla]"
+        },
+        {
+          "line": 27,
+          "text": "TBC\\PetPaperDollFrame.lua       [AllowLoadGameType tbc]"
+        },
+        {
+          "line": 28,
+          "text": "Wrath\\PetPaperDollFrame.lua     [AllowLoadGameType wrath]"
+        },
+        {
+          "line": 29,
+          "text": "Cata\\PetPaperDollFrame.lua      [AllowLoadGameType cata, mists]"
+        }
+      ]
+    },
+    {
+      "branch": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "message": "5.5.4 (70631)",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleRegionAPIDocumentation.lua",
+      "blob": "b936682a752963f3c52c07f423df04012c52d41d",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleRegionAPIDocumentation.lua",
+      "lines": [
+        {
+          "line": 178,
+          "text": "\t\t\tName = \"SetVertexColor\","
+        },
+        {
+          "line": 179,
+          "text": "\t\t\tType = \"Function\","
+        },
+        {
+          "line": 180,
+          "text": ""
+        },
+        {
+          "line": 181,
+          "text": "\t\t\tArguments ="
+        },
+        {
+          "line": 182,
+          "text": "\t\t\t{"
+        },
+        {
+          "line": 183,
+          "text": "\t\t\t\t{ Name = \"colorR\", Type = \"number\", Nilable = false },"
+        },
+        {
+          "line": 184,
+          "text": "\t\t\t\t{ Name = \"colorG\", Type = \"number\", Nilable = false },"
+        },
+        {
+          "line": 185,
+          "text": "\t\t\t\t{ Name = \"colorB\", Type = \"number\", Nilable = false },"
+        },
+        {
+          "line": 186,
+          "text": "\t\t\t\t{ Name = \"a\", Type = \"SingleColorValue\", Nilable = true },"
+        },
+        {
+          "line": 187,
+          "text": "\t\t\t},"
+        },
+        {
+          "line": 188,
+          "text": "\t\t},"
+        },
+        {
+          "line": 189,
+          "text": "\t\t{"
+        },
+        {
+          "line": 190,
+          "text": "\t\t\tName = \"SetVertexColorFromBoolean\","
+        }
+      ]
+    }
+  ]
+}

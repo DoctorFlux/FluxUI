@@ -13,24 +13,21 @@ local CLEAR_GRACE_SEC = 0.6
 local TEXT_SIZE = 12
 
 local states = {}
+local unused = {}
+
+-- The quest strip reserves the actual Flux-owned label width, including the
+-- normal clear grace. Hidden numeric text needs no space; native frames stay untouched.
+function NP.GetThreatPlateWidth(unit)
+	local state = states[unit]
+	return state and state.textShown and state.width or 0
+end
 
 -- ---------------------------------------------------------------------------
 -- Settings
 -- ---------------------------------------------------------------------------
-local function IsGrouped()
-	return (IsInGroup and IsInGroup()) or (IsInRaid and IsInRaid()) or false
-end
-
 local function IsVisibilityAllowed()
-	local db = NP.GetDB()
-	local mode = db.visibilityMode or "group"
-	if mode == "never" then
-		return false
-	end
-	if mode == "always" then
-		return true
-	end
-	return IsGrouped()
+	local api = Flux.Threat
+	return api and api.IsVisibilityAllowed and api.IsVisibilityAllowed() or false
 end
 
 local function IsNpcThreatEnabled()
@@ -47,6 +44,12 @@ end
 local function EnsureState(unit)
 	local state = states[unit]
 	if state then
+		return state
+	end
+	state = table.remove(unused)
+	if state then
+		states[unit] = state
+		state.unit = unit
 		return state
 	end
 	state = { unit = unit }
@@ -76,6 +79,7 @@ local function Clear(state, healthBar)
 	local bar = healthBar or state.healthBar
 	local tinted = state.active or state.healthBar
 	state.active = false
+	state.textShown = false
 	state.clearAt = nil
 	state.healthBar = nil
 	NP.SetThreatTint(state.unit, nil)
@@ -107,27 +111,42 @@ local function Show(state, plate, container, healthBar, r, g, b, rank, percent, 
 	NP.TintPlateChrome(healthBar, r, g, b)
 	NP.SetThreatTint(state.unit, r, g, b)
 	state.active = true
+	state.textShown = false
 
 	if not showText then
 		state.host:Hide()
 		return
 	end
 	local ThreatAPI = Flux.Threat
-	if ThreatAPI and ThreatAPI.SetRankPercentText then
-		ThreatAPI.SetRankPercentText(state.text, rank, percent)
-	elseif percent ~= nil then
-		pcall(state.text.SetFormattedText, state.text, "%.0f%%", percent)
-	else
-		state.text:SetText("")
+	local plain = not NP.IsSecret(rank) and not NP.IsSecret(percent)
+		and (rank == nil or type(rank) == "number") and (percent == nil or type(percent) == "number")
+	local changed = not plain or not state.labelReady or state.rank ~= rank or state.percent ~= percent
+	if changed then
+		local painted = true
+		if ThreatAPI and ThreatAPI.SetRankPercentText then
+			painted = ThreatAPI.SetRankPercentText(state.text, rank, percent)
+		elseif percent ~= nil then
+			painted = pcall(state.text.SetFormattedText, state.text, "%.0f%%", percent)
+		else state.text:SetText("") end
+		-- Failed display sinks retry at the next original 0.25s deadline.
+		state.rank, state.percent, state.labelReady = plain and rank or nil, plain and percent or nil, plain and painted ~= false
+	end
+	if changed or not state.widthMeasured then
+		state.width, state.widthMeasured = NP.FitPlate(state.host, state.text)
 	end
 	state.text:SetTextColor(r, g, b, 1)
-	NP.FitPlate(state.host, state.text)
 	NP.ShowPlate(state.host, state.unit)
 
 	NP.AttachHost(state.host, plate, 1)
-	state.host:ClearAllPoints()
-	if pcall(state.host.SetPoint, state.host, "CENTER", container, "BOTTOM", 0, -3) then
+	local placed = state.container == container
+	if not placed then
+		state.host:ClearAllPoints()
+		placed = pcall(state.host.SetPoint, state.host, "CENTER", container, "BOTTOM", 0, -3)
+		state.container = placed and container or nil
+	end
+	if placed then
 		state.host:Show()
+		state.textShown = true
 	else
 		state.host:Hide()
 	end
@@ -235,7 +254,8 @@ local function UpdateUnit(unit)
 		return
 	end
 
-	local rank = ThreatAPI.GetPlayerRank and ThreatAPI.GetPlayerRank(unit) or nil
+	local showText = not ThreatAPI.ShouldShowNumericOnUnit or ThreatAPI.ShouldShowNumericOnUnit(unit)
+	local rank
 	local r, g, b
 	if foreverFrame and ThreatAPI.GetStatusColor then
 		if ThreatAPI.GetForeverNameplateStatus then
@@ -245,6 +265,9 @@ local function UpdateUnit(unit)
 			r, g, b = ThreatAPI.GetStatusColor(status)
 		end
 	end
+	-- Forever's resolved status color does not consume rank. With numeric
+	-- text disabled, avoid constructing a rank that no visible sink needs.
+	if showText or not r then rank = ThreatAPI.GetPlayerRank and ThreatAPI.GetPlayerRank(unit) or nil end
 	if not r and ThreatAPI.GetTintColor then
 		r, g, b = ThreatAPI.GetTintColor(percent, status, isTanking, rank)
 	end
@@ -261,7 +284,6 @@ local function UpdateUnit(unit)
 			r, g, b = RED_R, RED_G, RED_B
 		end
 	end
-	local showText = not ThreatAPI.ShouldShowNumericOnUnit or ThreatAPI.ShouldShowNumericOnUnit(unit)
 	Show(state, plate, container, healthBar, r, g, b, rank, percent, showText)
 end
 
@@ -279,6 +301,9 @@ function Threat.Removed(unit)
 	end
 	Clear(state)
 	NP.ReleaseHost(state.host)
+	state.container = nil
+	state.unit = nil
+	unused[#unused + 1] = state
 	states[unit] = nil
 end
 

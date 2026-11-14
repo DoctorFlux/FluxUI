@@ -6,8 +6,10 @@ local Inv = Flux.Inventory
 local Index = {}
 Inv.Index = Index
 
-local function DefaultOpts(opts)
-	opts = opts or {}
+local EMPTY_OPTS = {}
+
+local function ReadOpts(opts)
+	opts = opts or EMPTY_OPTS
 	-- Bags-only unless the caller opts into bank / warband / equipped
 	-- (same default as GetUniqueItems). includeBank remains a legacy alias.
 	local bags = opts.bags ~= false
@@ -27,6 +29,11 @@ local function DefaultOpts(opts)
 	if not Inv.HasWarband() then
 		warband = false
 	end
+	return bags, bank, warband, equipped, mail, void, auctions, guild, opts.charges
+end
+
+local function DefaultOpts(opts)
+	local bags, bank, warband, equipped, mail, void, auctions, guild, charges = ReadOpts(opts)
 	return {
 		bags = bags,
 		bank = bank,
@@ -36,7 +43,7 @@ local function DefaultOpts(opts)
 		void = void,
 		auctions = auctions,
 		guild = guild,
-		charges = opts.charges,
+		charges = charges,
 	}
 end
 
@@ -53,33 +60,44 @@ function Index.GetCount(itemID, opts)
 	if not itemID then
 		return 0
 	end
-	opts = DefaultOpts(opts)
+	local bags, bank, warband, equipped, mail, void, auctions, guild = ReadOpts(opts)
 	local n = 0
-	if opts.bags then
+	if bags then
 		n = n + SnapCount("bags", itemID)
 	end
-	if opts.bank then
+	if bank then
 		n = n + SnapCount("bank", itemID)
 	end
-	if opts.warband then
+	if warband then
 		n = n + SnapCount("warband", itemID)
 	end
-	if opts.equipped then
+	if equipped then
 		n = n + SnapCount("equip", itemID)
 	end
-	if opts.mail then
+	if mail then
 		n = n + SnapCount("mail", itemID)
 	end
-	if opts.void then
+	if void then
 		n = n + SnapCount("void", itemID)
 	end
-	if opts.auctions then
+	if auctions then
 		n = n + SnapCount("auctions", itemID)
 	end
-	if opts.guild then
+	if guild then
 		n = n + SnapCount("guild", itemID)
 	end
 	return n
+end
+
+local function asCount(n)
+	local num = tonumber(n)
+	if num then
+		return num
+	end
+	if Flux.Secrets and Flux.Secrets.SafeGetNumber then
+		return Flux.Secrets.SafeGetNumber(n, 0)
+	end
+	return 0
 end
 
 function Index.GetLiveCount(itemID, opts)
@@ -98,16 +116,6 @@ function Index.GetLiveCount(itemID, opts)
 	-- Empty snapshot + live stacks (Syndicator lag, post-buy) must use live.
 	if Inv.IsReliable and not Inv.IsReliable() and snap > 0 then
 		return snap
-	end
-	local function asCount(n)
-		local num = tonumber(n)
-		if num then
-			return num
-		end
-		if Flux.Secrets and Flux.Secrets.SafeGetNumber then
-			return Flux.Secrets.SafeGetNumber(n, 0)
-		end
-		return 0
 	end
 	if Flux.Item and Flux.Item.GetCount then
 		local n = asCount(Flux.Item.GetCount(itemID, includeBank, includeCharges, includeBank, o.warband))
@@ -209,9 +217,72 @@ function Index.Find(itemID, opts)
 	return locations
 end
 
+local FindAllLocations = Index.Find
+
+local function FirstInByBag(byBag, itemID, region)
+	if not byBag then return nil end
+	for bag, slots in pairs(byBag) do
+		for slot, rec in pairs(slots) do
+			if rec.itemID == itemID then
+				return { bag = bag, slot = slot, count = rec.count, region = region, link = rec.link }
+			end
+		end
+	end
+end
+
+local function FirstInByIndex(byIndex, itemID, region)
+	if not byIndex then return nil end
+	for index, rec in pairs(byIndex) do
+		if rec.itemID == itemID then
+			return { bag = nil, slot = index, count = rec.count, region = region, link = rec.link }
+		end
+	end
+end
+
 function Index.GetFirst(itemID, opts)
-	local locs = Index.Find(itemID, opts)
-	return locs[1]
+	-- Preserve the existing extension seam when a caller replaces Find.
+	if Index.Find ~= FindAllLocations then
+		local locs = Index.Find(itemID, opts)
+		return locs[1]
+	end
+	itemID = tonumber(itemID)
+	if not itemID then return nil end
+	local bags, bank, warband, equipped, mail, void, auctions, guild = ReadOpts(opts)
+	local row
+	if bags then
+		row = FirstInByBag(Inv.snapshots.bags.byBag, itemID, "bags")
+		if row then return row end
+	end
+	if bank then
+		row = FirstInByBag(Inv.snapshots.bank.byBag, itemID, "bank")
+		if row then return row end
+	end
+	if warband then
+		row = FirstInByBag(Inv.snapshots.warband.byBag, itemID, "warband")
+		if row then return row end
+	end
+	if equipped then
+		for slot, rec in pairs(Inv.snapshots.equip.bySlot) do
+			if rec.itemID == itemID then
+				return { bag = nil, slot = slot, count = rec.count, region = "equip", invSlot = slot, link = rec.link }
+			end
+		end
+	end
+	if mail then
+		row = FirstInByIndex(Inv.snapshots.mail and Inv.snapshots.mail.byIndex, itemID, "mail")
+		if row then return row end
+	end
+	if void then
+		row = FirstInByBag(Inv.snapshots.void and Inv.snapshots.void.byBag, itemID, "void")
+		if row then return row end
+	end
+	if auctions then
+		row = FirstInByIndex(Inv.snapshots.auctions and Inv.snapshots.auctions.byIndex, itemID, "auctions")
+		if row then return row end
+	end
+	if guild then
+		return FirstInByBag(Inv.snapshots.guild and Inv.snapshots.guild.byBag, itemID, "guild")
+	end
 end
 
 --- Unique item map from snapshots. Default: bags only.

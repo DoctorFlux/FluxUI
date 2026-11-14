@@ -479,13 +479,39 @@ local function NeedsFullVendorTierPass()
     return NeedsBlockingVendorTierPass()
 end
 
---- Index is for restock / upgrade detection — not for sell-only or repair-only.
+local function NeedsMerchantSourceLearning()
+    local tiers = Tiers()
+    if tiers and tiers.GetTarget then
+        for _, kind in ipairs(TIER_KINDS) do
+            if tiers.IsTierEligible and tiers.IsTierEligible(kind) and (tiers.GetTarget(kind) or 0) > 0 then return true end
+        end
+    end
+    -- Zero targets and already fulfilled targets still need vendor-source facts
+    -- for auction planning. Read configured owners, without scanning bags/spells.
+    for _, entry in pairs(Settings().restockItems or {}) do
+        if type(entry) == "table" and entry.dismissed ~= true and tonumber(entry.targetQuantity) then return true end
+    end
+    local consumables = _G.FluxNCConsumables
+    if consumables and consumables.GetRestockUIItemIDs then
+        local ok, ids = pcall(consumables.GetRestockUIItemIDs)
+        if ok and type(ids) == "table" and next(ids) then return true end
+    end
+    local inv = Inv()
+    local spells = inv and inv.Spells
+    if spells and spells.GetReagentItemIDSet then
+        local ok, ids = pcall(spells.GetReagentItemIDSet)
+        if ok and type(ids) == "table" and next(ids) then return true end
+    end
+    return false
+end
+
+--- Index supports configured restock source learning independently of automation.
 local function NeedsMerchantIndexOnOpen()
     local s = Settings()
     if s.autoRestock then
         return true
     end
-    return NeedsBlockingVendorTierPass()
+    return NeedsBlockingVendorTierPass() or NeedsMerchantSourceLearning()
 end
 
 --- After sell/buy: warm + inferior for overlays when tier features are configured.
@@ -699,7 +725,7 @@ end
 local function IndexSlot(index, slotIndex)
     local itemID = ResolveMerchantSlotItemID(slotIndex)
     if not itemID then return end
-    local _, _, price, quantity, numAvailable, isPurchasable = GetMerchantSlotInfo(slotIndex)
+    local _, _, price, quantity, numAvailable, isPurchasable, _, hasExtendedCost = GetMerchantSlotInfo(slotIndex)
     quantity = math.max(1, tonumber(quantity) or 1)
     local maxStack = (GetMerchantItemMaxStack and GetMerchantItemMaxStack(slotIndex)) or quantity
     local link = GetMerchantItemLink and GetMerchantItemLink(slotIndex) or nil
@@ -710,6 +736,7 @@ local function IndexSlot(index, slotIndex)
         unitPrice = (price or 0) / quantity,
         maxStack = math.max(1, tonumber(maxStack) or quantity),
         numAvailable = numAvailable,
+        hasExtendedCost = hasExtendedCost == true,
         isPurchasable = isPurchasable ~= false,
         link = link,
     }
@@ -1017,7 +1044,16 @@ function FV.ComputeRestockPurchaseQty(needed, meta, playerMoney, itemID, wallet)
 
     local unitPrice = ResolveUnitPrice(meta)
     if unitPrice > 0 and playerMoney ~= nil then
-        local affordable = math.floor((tonumber(playerMoney) or 0) / unitPrice)
+        local money = tonumber(playerMoney) or 0
+        local price, batchQty = tonumber(meta.price), tonumber(meta.batchQty)
+        local affordable
+        if price and price > 0 and price < math.huge and price % 1 == 0
+            and batchQty and batchQty > 0 and batchQty < math.huge and batchQty % 1 == 0
+            and price / batchQty == unitPrice then
+            -- Keep exact merchant terms until after multiplication. Dividing
+            -- 7 copper by the rounded 7/25 unit price otherwise affords 24.
+            affordable = math.floor(money * batchQty / price)
+        else affordable = math.floor(money / unitPrice) end
         buyQty = math.min(buyQty, math.max(0, affordable))
     end
 
@@ -1065,7 +1101,7 @@ end
 -- BUY QUEUE
 -- ---------------------------------------------------------------------------
 
-local function BuildBuyQueue()
+local function BuildBuyQueue(scope)
     local index = FV.GetMerchantItemIndex(false)
     if not index or indexBuildPending then
         return nil
@@ -1083,7 +1119,7 @@ local function BuildBuyQueue()
             end
         end
         local need = ListMod and ListMod.EntryNeed(entry) or 0
-        if need > 0 then
+        if need > 0 and (not scope or not entry.isTierRestock and (scope[entry.itemID] or 0) > 0) then
             if entry.isTierRestock then
                 -- Skip lower-tier-only vendors: never restock below threshold.
                 if entry.vendorHasStock and entry.merchantSlot and entry.merchantItemID then
@@ -1100,12 +1136,24 @@ local function BuildBuyQueue()
                 end
             elseif entry.vendorSold and entry.itemID then
                 local meta = index[entry.itemID]
-                if ShouldQueueRestockBuy(meta, need, wallet) then
+                local baseNeed = math.max(0, (entry.craftBaseTarget or 0) - (entry.bagCount or 0)
+                    - (entry.countBank and (entry.bankCount or 0) or 0))
+                if entry.craftUnitsPerItem and entry.craftUnitsPerItem > 1 then
+                    need = math.ceil(need / entry.craftUnitsPerItem)
+                    baseNeed = math.ceil(baseNeed / entry.craftUnitsPerItem)
+                end
+                if entry.craftVendorLimit ~= nil and meta and ResolveUnitPrice(meta) > entry.craftVendorLimit then
+                    need = scope and 0 or math.min(need, baseNeed)
+                end
+                if scope then need = math.min(need, scope[entry.itemID] or 0) end
+                if need > 0 and ShouldQueueRestockBuy(meta, need, wallet) then
                     queue[#queue + 1] = {
                         itemID = entry.itemID,
                         slot = meta.slot,
                         need = need,
                         meta = meta,
+                        craftVendorLimit = entry.craftVendorLimit,
+                        craftBaseNeed = scope and 0 or baseNeed,
                     }
                 end
             end
@@ -1117,12 +1165,14 @@ end
 local function FinishBuySession()
     local wasManual = buyState.manual
     local boughtAny = buyState.boughtAny
+    local rejectedFollowup = buyState.followupOnly and not buyState.followupIssued
     local flushAfter = buyState.flushUIAfterBuy
     buyState.active = false
     buyState.manual = false
     buyState.queue = nil
     buyState.passes = 0
     buyState.flushUIAfterBuy = nil
+    buyState.followupOnly = nil
     if boughtAny then
         local TiersMod = Tiers()
         if TiersMod and TiersMod.InvalidateTierQueryCache then
@@ -1147,6 +1197,11 @@ local function FinishBuySession()
     end
     if not batchState.active and buyState.boughtAny and wasManual then
         buyState.boughtAny = false
+    end
+    if rejectedFollowup then
+        local auction = _G.FluxAuctionRestock
+        local followup = auction and auction.Followup
+        if followup and followup.OwnerRejected then followup.OwnerRejected("vendor") end
     end
 end
 
@@ -1184,11 +1239,19 @@ local function RunBuyPass()
             or ResolveMerchantSlotItemID(task.slot) ~= task.itemID then
             table.remove(queue, i)
         else
+            if task.craftVendorLimit ~= nil then
+                local _, _, price, batchQty, stock, _, _, extended = GetMerchantSlotInfo(task.slot)
+                local unit = tonumber(price) and tonumber(batchQty) and batchQty > 0 and price / batchQty
+                if not unit or extended or unit > task.craftVendorLimit then task.need = math.min(task.need, task.craftBaseNeed or 0) end
+                if unit then task.meta.price, task.meta.batchQty, task.meta.unitPrice = price, batchQty, unit end
+                if tonumber(stock) then task.meta.numAvailable = stock end
+            end
             local buyQty, received = FV.ComputeRestockPurchaseQty(
                 task.need, task.meta, wallet.money, task.itemID, wallet)
             if buyQty <= 0 then
                 table.remove(queue, i)
             else
+                if buyState.followupOnly then buyState.followupIssued = true end
                 BuyMerchantItem(task.slot, buyQty)
                 -- Reserve finite stock across purchases sharing this index entry.
                 if task.meta.numAvailable and task.meta.numAvailable > 0 then
@@ -1198,6 +1261,7 @@ local function RunBuyPass()
                 local unitPrice = ResolveUnitPrice(task.meta)
                 FV.AddBatchCopper(-math.floor(unitPrice * received + 0.5))
                 task.need = task.need - received
+                if task.craftBaseNeed then task.craftBaseNeed = math.max(0, task.craftBaseNeed - received) end
                 buyState.boughtAny = true
                 calls = calls + 1
                 if inv then inv.NotifyAutomationPulse(0.5) end
@@ -1214,7 +1278,7 @@ local function RunBuyPass()
     -- Otherwise the next merchant bag pulse continues the queue.
 end
 
-local function StartBuySession(manual)
+local function StartBuySession(manual, followupOnly)
     if not IsMerchantOpen() then
         return false
     end
@@ -1223,13 +1287,21 @@ local function StartBuySession(manual)
     end
     -- Index not ready yet: arm pending start and kick a build if needed.
     if indexBuildPending or not merchantIndex then
+        local wasPending = buyState.pendingStart ~= nil
         buyState.pendingStart = manual and "manual" or "auto"
+        buyState.pendingFollowup = followupOnly == true and (not wasPending or buyState.pendingFollowup == true)
         if not merchantIndex and not indexBuildPending then
             FV.GetMerchantItemIndex(false)
         end
         return true
     end
-    local queue = BuildBuyQueue()
+    local scope
+    if followupOnly then
+        local auction = _G.FluxAuctionRestock
+        local followup = auction and auction.Followup
+        scope = followup and followup.GetVendorTargets and followup.GetVendorTargets() or {}
+    end
+    local queue = BuildBuyQueue(scope)
     if not queue or #queue == 0 then
         return false
     end
@@ -1238,7 +1310,9 @@ local function StartBuySession(manual)
     buyState.queue = queue
     buyState.passes = 0
     buyState.boughtAny = false
+    buyState.followupOnly, buyState.followupIssued = followupOnly == true, false
     RunBuyPass()
+    if followupOnly and not buyState.active and not buyState.followupIssued then return false end
     return true
 end
 
@@ -1257,13 +1331,44 @@ function Buy.OnIndexReady(mode)
     end
     if buyState.pendingStart then
         local mode = buyState.pendingStart
+        local followupOnly = buyState.pendingFollowup
         buyState.pendingStart = nil
-        StartBuySession(mode == "manual")
+        buyState.pendingFollowup = nil
+        local started = StartBuySession(mode == "manual", followupOnly)
+        if followupOnly and started == false then
+            local auction = _G.FluxAuctionRestock
+            local followup = auction and auction.Followup
+            if followup and followup.OwnerRejected then followup.OwnerRejected("vendor") end
+        end
     end
+    local auction = _G.FluxAuctionRestock
+    local followup = auction and auction.Followup
+    if followup and followup.Refresh then followup.Refresh() end
 end
 
 function FV.IsRestockBuyActive()
     return buyState.active
+end
+function FV.IsAuctionFollowupBusy()
+    return buyState.active or buyState.pendingStart or batchState.active or false
+end
+
+function FV.DoAuctionFollowup(manual)
+    if not IsMerchantOpen() then return false end
+    if InCombatLockdown and InCombatLockdown() then return false end
+    -- Never replace an ordinary auto/manual queue or reserve its stock twice.
+    -- Followup retains a request and retries its remaining goals after it settles.
+    if buyState.active or buyState.pendingStart or batchState.active then return "busy" end
+    return StartBuySession(manual == true, true)
+end
+function FV.CanAuctionFollowup()
+    if not IsMerchantOpen() or indexBuildPending then return false end
+    local auction = _G.FluxAuctionRestock
+    local followup = auction and auction.Followup
+    local targets = followup and followup.GetVendorTargets and followup.GetVendorTargets() or {}
+    if not next(targets) then return false end
+    local queue = BuildBuyQueue(targets)
+    return queue ~= nil and #queue > 0
 end
 
 function FV.IsVendorBurstActive()
@@ -1731,6 +1836,7 @@ frame:SetScript("OnEvent", function(_, event, arg1, arg2)
         buyState.deferredAutoBuy = nil
         buyState.deferredSellAllJunk = nil
         buyState.pendingStart = nil
+        buyState.pendingFollowup = nil
         FV.InvalidateMerchantIndex()
         FinishBatch()
         local ui = MUI()

@@ -2,7 +2,7 @@
 ## Title: _FLUXUI
 ## Version: 0.0.1
 ## Notes: UI overhaul (Retail Midnight, Forever, Classic Era, Anniversary, MoP Classic)
-## OptionalDeps: Blizzard_UnitFrame, Blizzard_CompactRaidFrames, Blizzard_AuraContainer
+## OptionalDeps: Blizzard_UnitFrame, Blizzard_CompactRaidFrames, Blizzard_AuraContainer, ForeverMinimapTarget
 ## Dep: Blizzard_CombatLog [AllowLoadGameType camelot]
 ## SavedVariables: FluxUI_DB, FluxUI_Options, FluxNonCombatGridDB, FluxFlyoutFavorites_Data, FluxUIGoldLedger, FluxSalvageDB, FluxInvDB, FluxUIInventoryDB, FluxPerfCaptureDB, FluxMailDB
 ## SavedVariablesPerCharacter: _FluxUI_CharSavedVars, FluxSpellBookSlotsDB, FluxNCUtilitySlotsDB, FluxSpellBindingProfilesDB, FluxSpellDirectBindDB, FluxSpellProfileBindingsDB, FluxBindingProfilesPerStateDB, FluxBindingDBv2, FluxBindingDB3, FluxTradeSkillScannerDB, TrinketMenuOptions, TrinketMenuPerOptions, TrinketMenuQueue, FluxNCFlyoutCharDB
@@ -77,6 +77,7 @@ Inventory\Init.lua
 Inventory\Containers.lua
 Inventory\Index.lua
 Inventory\Store.lua
+Inventory\Syndicator\Sync.lua
 Inventory\Summaries.lua
 Inventory\Ledger.lua
 Inventory\Tooltip.lua
@@ -86,6 +87,7 @@ Inventory\Builtin\FluxClassicCombinedBank.lua
 Inventory\Builtin\Bank.lua
 Inventory\Builtin\Equip.lua
 Inventory\Builtin\Mail.lua
+Inventory\Builtin\AuctionPurchases.lua
 Inventory\Builtin\Auctions.lua
 Inventory\Builtin\Void.lua
 Inventory\Builtin\Guild.lua
@@ -98,6 +100,7 @@ Mail\QuickAttach.lua
 Mail\CategoryAttach.lua
 Mail\Select.lua
 Mail\OpenAll.lua
+Mail\Restock.lua
 Mail\DoNotWant.lua
 Mail\TradeBlock.lua
 Inventory\Syndicator\Adapter.lua
@@ -289,9 +292,12 @@ AddonOptions\AceGUIWidget-FluxItemCurrencySlots.lua
 AddonOptions\FluxOptionsDefaults.lua
 AddonOptions\FluxOptions.lua
 AddonOptions\FluxOptionsCatalog.lua
+AddonOptions\FluxOptionsNavigation.lua
 AddonOptions\FluxOptionsWidgets.lua
+AddonOptions\FluxOptionsSkin.lua
 AddonOptions\FluxOptionsRender.lua
 AddonOptions\FluxOptionsShell.lua
+AddonOptions\FluxOptionsGameMenu.lua
 AddonOptions\FluxOptionsBinding.lua
 AddonOptions\AceGUIWidget-FluxExtraButtonVisibility.lua
 AddonOptions\AceGUIWidget-FluxSpellBlacklistPanel.lua
@@ -339,6 +345,7 @@ UnitFrames\FluxPowerCostOverlay.lua
 UnitFrames\FluxHealthLossOverlay.lua
 UnitFrames\FluxCastBarSchools.lua
 UnitFrames\FluxCastBarVisuals.lua
+UnitFrames\FluxCastBarTradeskills.lua
 UnitFrames\FluxCastBarThemes.lua
 UnitFrames\FluxCastBar.lua
 UnitFrames\FlightPath\Data_mainline.xml [AllowLoadGameType mainline]
@@ -394,6 +401,7 @@ ConsoleportCompat\Loader.lua
 
 Minimap\FluxObjectiveTrackerScroll.lua
 Minimap\FluxMinimap.lua
+Minimap\FluxMinimapTracking.lua
 Minimap\FluxBuffDebuffFrames.lua
 Other\FluxBossFramePosition.lua
 Other\FluxArenaFramePosition.lua
@@ -528,7 +536,20 @@ Inventory\Restock\Core\Tiers\FluxRestockTiers_Inferior.lua
 Inventory\Restock\Core\Tiers\FluxRestockTiers_UI.lua
 Inventory\Restock\Core\Tiers\FluxRestockTiers.lua
 Inventory\Restock\Core\FluxRestockList.lua
+Inventory\Restock\Auction\FluxAuctionRestockLocale.lua
+Inventory\Restock\Auction\FluxAuctionRestockVendorCatalogRetail.lua
+Inventory\Restock\Auction\FluxAuctionRestockVendorCatalog.lua
+Inventory\Restock\Auction\FluxAuctionRestockData.lua
+Inventory\Restock\Auction\FluxAuctionRestockPrices.lua
+Inventory\Restock\Auction\FluxAuctionRestockCraft.lua
+Inventory\Restock\Auction\FluxAuctionRestockPotions.lua
+Inventory\Restock\Auction\FluxAuctionRestock.lua
+Inventory\Restock\Auction\FluxAuctionRestockUI.lua
+Inventory\Restock\Auction\FluxAuctionRestockFollowup.lua
+Inventory\Restock\Auction\FluxAuctionRestockFollowupCraft.lua
+Inventory\Restock\Auction\FluxAuctionRestockFollowupUI.lua
 Inventory\Restock\Vendor\FluxVendorSession.lua
+Inventory\Restock\Vendor\FluxVendorGossip.lua
 Inventory\Restock\Vendor\FluxVendorBuy.lua
 Inventory\Restock\Bank\FluxBankRestockDebug.lua
 Inventory\Restock\Bank\FluxBankRestockRules.lua

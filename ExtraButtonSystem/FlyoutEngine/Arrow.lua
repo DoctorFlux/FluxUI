@@ -40,7 +40,13 @@ function Arrow.ConfigureLayer(arrowFrame, anchorWidget)
 	-- draws over the atlas without HIGH / FULLSCREEN_DIALOG.
 	local ub = _G.FluxUnifiedBorderFrame
 	local borderArt = ub and ub.FluxBorderFrame
-	if ub and ub.IsShown and ub:IsShown() and borderArt then
+	local rec = Flyout.HostOf(anchorWidget)
+	local visibilityParent = rec and rec.opts and rec.opts.visibilityParent
+	if visibilityParent then
+		arrowFrame:SetParent(visibilityParent)
+		arrowFrame:SetFrameStrata((anchorWidget.GetFrameStrata and anchorWidget:GetFrameStrata()) or ARROW_STRATA)
+		arrowFrame:SetFrameLevel(math.min((anchorWidget:GetFrameLevel() or 1) + 6, 65535))
+	elseif ub and ub.IsShown and ub:IsShown() and borderArt then
 		arrowFrame:SetParent(ub)
 		arrowFrame:SetFrameStrata((ub.GetFrameStrata and ub:GetFrameStrata()) or ARROW_STRATA)
 		local bLevel = (borderArt.GetFrameLevel and borderArt:GetFrameLevel()) or 0
@@ -50,8 +56,9 @@ function Arrow.ConfigureLayer(arrowFrame, anchorWidget)
 		arrowFrame:SetFrameStrata(ARROW_STRATA)
 		arrowFrame:SetFrameLevel(ARROW_FRAME_LEVEL)
 	end
-	if arrowFrame.SetScale and anchorWidget.GetEffectiveScale and UIParent.GetEffectiveScale then
-		local us = UIParent:GetEffectiveScale() or 1
+	local scaleParent = visibilityParent or UIParent
+	if arrowFrame.SetScale and anchorWidget.GetEffectiveScale and scaleParent.GetEffectiveScale then
+		local us = scaleParent:GetEffectiveScale() or 1
 		if us > 0 then
 			arrowFrame:SetScale((anchorWidget:GetEffectiveScale() or us) / us)
 		end

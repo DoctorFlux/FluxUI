@@ -1,0 +1,15 @@
+{
+  "date": "2026-11-10",
+  "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c4d0-1465-7d32-8c0d-36447d4477b6\\vendor-gossip-checkpoint-20261110T093805Z",
+  "verified": true,
+  "sourceFiles": 2495,
+  "revision": "26f886e3ea5371b196ab235d2dace0c156002285",
+  "branch": "main",
+  "settingsMetadataEntries": 105,
+  "settingsBackup": "Read-only metadata; no quiescent settings backup claimed",
+  "settingsWrites": false,
+  "sha256": {
+    "source.zip": "d8b26fd5dcd4060ea4217215afa07f028d09b7a7a51c533755f0848dc960e9f7",
+    "history.bundle": "5783ac06cde1ba4f79bbaf34edf1fd4136a880baf2d9dbf90495ddcc24adc379"
+  }
+}

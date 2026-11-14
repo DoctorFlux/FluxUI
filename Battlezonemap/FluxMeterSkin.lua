@@ -533,22 +533,26 @@ local function RestoreHeaderControls(state)
 end
 
 AlignTitle = function(frame, state, scale)
-    if InCombat() then return end
+    if InCombat() then state.headerControlsPending = true; return end
     local text = frame.GetDamageMeterTypeName and frame:GetDamageMeterTypeName()
     if not (text and frame.Header and text.GetNumPoints and text.GetPoint and text.GetWidth
         and text.SetWidth and text.ClearAllPoints and text.SetPoint and frame.GetLeft and frame.GetEffectiveScale) then return end
     if frame.HookScript and not state.titleHooked then
         state.titleHooked = true
-        frame:HookScript("OnSizeChanged", function()
+        local function align()
             if nativeWindows[frame] and not state.titleApplying then AlignTitle(frame, state, state.scale) end
-        end)
+        end
+        frame:HookScript("OnSizeChanged", align)
+        -- A hidden first embed may have no resolved screen coordinates. Showing
+        -- the same-size pane must retry the layout without another resize.
+        frame:HookScript("OnShow", align)
     end
     local points, originalWidth = state.titlePoints, state.titleOriginalWidth
     if state.titleFont ~= text then
         if not RestoreTitle(state) then return end
         local count = text:GetNumPoints()
         originalWidth = text:GetWidth()
-        if not FiniteNumber(count) or count < 1 or count > 8 or not FiniteNumber(originalWidth) or originalWidth <= 0 then return end
+        if not FiniteNumber(count) or count < 1 or count > 8 or not FiniteNumber(originalWidth) or originalWidth < 0 then return end
         points = {}
         for i = 1, count do
             local point = {text:GetPoint(i)}
@@ -608,7 +612,15 @@ AlignTitle = function(frame, state, scale)
         end
     end
     state.titleFont, state.titlePoints, state.titleOriginalWidth = text, points, originalWidth
-    if state.titleScale == scale and state.titleWidth == width and state.titleHeader == frame.Header then return end
+    -- Native layout can reset the region while our cached dimensions stay the
+    -- same. Check the actual anchor/width before treating the title as fitted.
+    local pointCount = text:GetNumPoints()
+    if state.titleScale == scale and state.titleWidth == width and state.titleHeader == frame.Header
+        and FiniteNumber(pointCount) and pointCount == 1 and HeaderPointMatches(text, 1, "BOTTOMLEFT", frame, "TOPLEFT",
+            5 / scale, -(HEADER_HEIGHT - 1) / scale) then
+        local currentWidth = text:GetWidth()
+        if FiniteNumber(currentWidth) and currentWidth == width then return end
+    end
     state.titleScale, state.titleWidth, state.titleHeader = scale, width, frame.Header
     state.titleApplying = true
     text:ClearAllPoints()
@@ -693,32 +705,40 @@ local function EnsureThemeHook()
     hooksecurefunc(FluxBorder, "RefreshAppearanceDependents", function() Skin:RefreshTheme() end)
 end
 
-function Skin:SyncNativeTimer()
-    local winner, winnerTop, winnerLeft, donor, donorTop, donorLeft
-    local function consider(window, state, native)
-        if window.IsVisible and PlainTrue(window:IsVisible()) then
-            local top = window.GetTop and window:GetTop()
-            local left = window.GetLeft and window:GetLeft()
-            local scale = window.GetEffectiveScale and window:GetEffectiveScale()
-            local readable = FiniteNumber(top) and FiniteNumber(left) and FiniteNumber(scale) and scale > 0
-            top, left = readable and top * scale or -math.huge, readable and left * scale or math.huge
-            if not winner or top > winnerTop or (top == winnerTop and (left < winnerLeft
-                or (left == winnerLeft and state.timerOrder < chrome[winner].timerOrder))) then
-                winner, winnerTop, winnerLeft = window, top, left
-            end
-            if native and (not donor or top > donorTop or (top == donorTop and (left < donorLeft
-                or (left == donorLeft and state.timerOrder < chrome[donor].timerOrder)))) then
-                donor, donorTop, donorLeft = window, top, left
-            end
+local function ConsiderTimer(window, state, native, winner, winnerTop, winnerLeft, donor, donorTop, donorLeft)
+    if window.IsVisible and PlainTrue(window:IsVisible()) then
+        local top = window.GetTop and window:GetTop()
+        local left = window.GetLeft and window:GetLeft()
+        local scale = window.GetEffectiveScale and window:GetEffectiveScale()
+        local readable = FiniteNumber(top) and FiniteNumber(left) and FiniteNumber(scale) and scale > 0
+        top, left = readable and top * scale or -math.huge, readable and left * scale or math.huge
+        if not winner or top > winnerTop or (top == winnerTop and (left < winnerLeft
+            or (left == winnerLeft and state.timerOrder < chrome[winner].timerOrder))) then
+            winner, winnerTop, winnerLeft = window, top, left
+        end
+        if native and (not donor or top > donorTop or (top == donorTop and (left < donorLeft
+            or (left == donorLeft and state.timerOrder < chrome[donor].timerOrder)))) then
+            donor, donorTop, donorLeft = window, top, left
         end
     end
+    return winner, winnerTop, winnerLeft, donor, donorTop, donorLeft
+end
+
+function Skin:SyncNativeTimer()
+    local winner, winnerTop, winnerLeft, donor, donorTop, donorLeft
     for window in pairs(nativeWindows) do
         local state = chrome[window]
-        if state.timerTracked then consider(window, state, true) end
+        if state.timerTracked then
+            winner, winnerTop, winnerLeft, donor, donorTop, donorLeft =
+                ConsiderTimer(window, state, true, winner, winnerTop, winnerLeft, donor, donorTop, donorLeft)
+        end
     end
     for window in pairs(ownedPanes) do
         local state = chrome[window]
-        if state.ownedTimer then consider(window, state, false) end
+        if state.ownedTimer then
+            winner, winnerTop, winnerLeft, donor, donorTop, donorLeft =
+                ConsiderTimer(window, state, false, winner, winnerTop, winnerLeft, donor, donorTop, donorLeft)
+        end
     end
     timerWinner, timerDonor = winner, donor
     for window in pairs(nativeWindows) do

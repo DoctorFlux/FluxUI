@@ -1,0 +1,29 @@
+{
+  "date": "2026-11-13",
+  "createdUTC": "2026-11-13T07:37:29.372107+00:00",
+  "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d3b4-b7ec-7591-94d3-6d3b3097fb8a\\minimap-side-aura-20261113T073724Z",
+  "verified": true,
+  "sourceFiles": 2630,
+  "revision": "26f886e3ea5371b196ab235d2dace0c156002285",
+  "branch": "main",
+  "hooksPath": ".githooks",
+  "settingsMetadataEntries": 69,
+  "settingsByClient": {
+    "_anniversary_": 29,
+    "_Ascension": 4,
+    "_beta_": 0,
+    "_classic_": 4,
+    "_classic_era_": 8,
+    "_classic_era_ptr_": 4,
+    "_forever_": 12,
+    "_ptr_": 4,
+    "_retail_": 4
+  },
+  "settingsBackup": "Read-only metadata; no quiescent settings backup claimed; no client process or input action",
+  "settingsWrites": false,
+  "sha256": {
+    "source.zip": "a0718575bfcf1dc1d127166514ad8a9f3c3b1f9a3bc60d122aafdbff171d5682",
+    "history.bundle": "8f9a4534168efc1f034fed0a77ab9215bf2513e8c32dd0ebdb2116f418cd4ff4",
+    "source-manifest.json": "b6f7068facabffe842e7e2eeda102b3c5789b518552592f91728443914c13866"
+  }
+}

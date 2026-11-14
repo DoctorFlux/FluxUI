@@ -1,0 +1,3008 @@
+{
+  "changeId": "CONSUMABLE-ALL-BUTTON-AUDIT-20261111",
+  "requirements": [
+    "CGLC-23",
+    "CGLC-24",
+    "CGLC-25",
+    "CGLC-26",
+    "CGLC-27"
+  ],
+  "request": "Audit every consumable button so the food loading freeze does not affect other kinds;all clients;with and without Syndicator;keep work optimized.",
+  "runtimeChanges": [],
+  "newTest": "tests/consumable_all_buttons_recovery.lua",
+  "sourceHashesLF": {
+    "Core/API/Item.lua": "2be703fae6568d44910f237c95ccb398680ba33658eb57cdceb5491100b2dbb4",
+    "ExtraButtonSystem/CombatGrid/Buttons/Bandage.lua": "faf6d2208ea25de56d3af3ef7ffe00c7397edc74540a2c76d7c497216da66532",
+    "ExtraButtonSystem/CombatGrid/Buttons/HealPotion.lua": "9fce2630be5cc5a16e30cb73d0eeb1bbf18ea792d3deebf1a1932b538b019639",
+    "ExtraButtonSystem/CombatGrid/Buttons/Healthstone.lua": "04f0fb127be86d0183e1cf669a16f60530efc26f6f0d0fe2d1e47431bafcebc1",
+    "ExtraButtonSystem/CombatGrid/Buttons/ManaGem.lua": "d4e52ea11a03ca2834f2154375977f5dee33d19aba54883c3047b728e0d4320e",
+    "ExtraButtonSystem/CombatGrid/Buttons/ManaPotion.lua": "fc47f8deefd8e030a8948f09d146045b7276cc6e96f2a2e71085c943b001dfb3",
+    "ExtraButtonSystem/CombatGrid/Grid.lua": "5b06b4f65545f08c455f2a828d5d85509a7c73b707c6596d9a532274b89510bd",
+    "ExtraButtonSystem/Engine/ConsumableBind.lua": "9a4989da299d0e0e509d1c04f65bf2afe3157ac1d9720c92b25923d1a59ce9b8",
+    "ExtraButtonSystem/Engine/Paint.lua": "6fe2aaa29a92c0fb0cf07037747039ae3ff8a00e6309e9f997c85c67dc385858",
+    "ExtraButtonSystem/NonCombatGrid/Buttons/Food.lua": "842edde076d64f5a96f73ebfa48327ac614d91695d98ca550fc5070489c4872b",
+    "ExtraButtonSystem/NonCombatGrid/Buttons/Water.lua": "36537724d48a94b2c14543087937d9985d240b2a45537fcd37675eb6f84bfa9b",
+    "ExtraButtonSystem/NonCombatGrid/Grid.lua": "c77a19abbe02794c95b644c0ab83dfc8906f77910c59e50a39700fe2cc385676",
+    "Inventory/FluxConsumableBest/FluxConsumableBest.lua": "cb60b0d33c60f7210b205a3d3f4afebf118f8e7afd2ec4e06ff3787c4942901a",
+    "Inventory/FluxConsumableBest/Init.lua": "24ec2905c39b15000e76c0e2a6d6780d46ef8e6a4337ae801aa092a9f48ff920",
+    "Inventory/Init.lua": "72d2fe6d303afc36c7499c16be39c4a5667b6f1992d519620abfa892a6dc695e"
+  },
+  "testHashLF": "a99a87c2a0bee0ceb8dbd3f35c36633a6c5eb3efb741d33a1fdbfddf6f28a903",
+  "moduleAudit": {
+    "food": "Real Food.Create plus NonCombatGrid.SetCount;shared Attach;Recuperate preference remains off in new numeric replay",
+    "water": "Real Water.Create plus NonCombatGrid.SetCount;shared Attach;pure-water mode",
+    "healingPotion": "Real HealPotion.Create;shared Attach;craft/coalescing configuration retained",
+    "manaPotion": "Real ManaPotion.Create;shared Attach;mana relevance and craft configuration retained",
+    "bandage": "Real Bandage.Create;shared Attach;craft/coalescing configuration retained",
+    "manaGem": "Real ManaGem.Create;specialized GemDisplay/ApplyGemCount/Update overrides;both single and charged policies",
+    "healthstone": "Real Healthstone.Create;specialized StoneDisplay/ApplyStoneCount/Update overrides;client-dependent charge policy",
+    "common": "Current Inventory.Start loading-completion owner;Best soft hold;one shared seven-kind live-use watcher;shared painter;production combat and noncombat SetCount methods",
+    "inactiveSource": "Old Inventory/FluxInv/FluxInv_Events.lua load holder is outside current TOC closure;runtime LegacyBridge delegates to current Flux.Inventory;no inactive source edited"
+  },
+  "coverage": {
+    "profiles": 20,
+    "factors": "Five existing client branch models x builtin/Syndicator x single/charged mana gem",
+    "checks": 2580,
+    "loadingCyclesPerProfile": 3,
+    "loadingFailurePattern": "Reliable inventory and open hold with depleted faces;completion releases all seven",
+    "chargedRemnant": "Cycle2 keeps physical copies of charged items with uses0",
+    "combat": "Dark0 for exhausted displayed item;protected action writes unchanged",
+    "refill": "Each face returns from zero without provider publication while bound",
+    "isolatedUse": "Consume each kind while other six are owned;validate all seven;then refill",
+    "regen": "All exhausted tracked identities clear to placeholder OOC",
+    "otherOptions": "Existing full suite retains fallback promotion/combat-swap/Recuperate/input tests;new fixture uses default item faces",
+    "scope": "Production module logic with mock game APIs/widgets;exact native build/event delivery/permissions/pixels/FPS not certified"
+  },
+  "budgets": {
+    "watchersForSeven": 1,
+    "sameFrameUseSignals": 100,
+    "immediateCallbacks": 1,
+    "settleCallbacks": 1,
+    "settleSeconds": 0.1,
+    "totalRecountsForSeven": 14,
+    "unrelatedItemSignals": 100,
+    "unrelatedAddedWork": 0,
+    "idleMeasuredSeconds": 12,
+    "idleAddedScans": 0,
+    "idleAddedTimers": 0,
+    "newRuntimeDrivers": 0,
+    "scope": "Functional work counters;no new performance optimization or native FPS claim"
+  },
+  "comparison": {
+    "nativeFailingCheckpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c65e-a3d3-7840-a32a-09fda47a48df\\native-load-end-recovery\\checkpoint-20261111T180413Z",
+    "pairs": [
+      {
+        "label": "pair1-before",
+        "exit": 1,
+        "checks": 2580,
+        "failures": 940,
+        "profiles": 20,
+        "samples": [
+          {
+            "profile": "forever/builtin/single",
+            "burstTimers": 2,
+            "totalRecounts": 14,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "forever/builtin/charged",
+            "burstTimers": 2,
+            "totalRecounts": 14,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "forever/syndicator/single",
+            "burstTimers": 2,
+            "totalRecounts": 14,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "forever/syndicator/charged",
+            "burstTimers": 2,
+            "totalRecounts": 14,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "retail/builtin/single",
+            "burstTimers": 2,
+            "totalRecounts": 14,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "retail/builtin/charged",
+            "burstTimers": 2,
+            "totalRecounts": 14,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "retail/syndicator/single",
+            "burstTimers": 2,
+            "totalRecounts": 14,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "retail/syndicator/charged",
+            "burstTimers": 2,
+            "totalRecounts": 14,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "mists/builtin/single",
+            "burstTimers": 2,
+            "totalRecounts": 14,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "mists/builtin/charged",
+            "burstTimers": 2,
+            "totalRecounts": 14,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "mists/syndicator/single",
+            "burstTimers": 2,
+            "totalRecounts": 14,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "mists/syndicator/charged",
+            "burstTimers": 2,
+            "totalRecounts": 14,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "era/builtin/single",
+            "burstTimers": 2,
+            "totalRecounts": 14,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "era/builtin/charged",
+            "burstTimers": 2,
+            "totalRecounts": 14,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "era/syndicator/single",
+            "burstTimers": 2,
+            "totalRecounts": 14,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "era/syndicator/charged",
+            "burstTimers": 2,
+            "totalRecounts": 14,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "anniversary/builtin/single",
+            "burstTimers": 2,
+            "totalRecounts": 14,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "anniversary/builtin/charged",
+            "burstTimers": 2,
+            "totalRecounts": 14,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "anniversary/syndicator/single",
+            "burstTimers": 2,
+            "totalRecounts": 14,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "anniversary/syndicator/charged",
+            "burstTimers": 2,
+            "totalRecounts": 14,
+            "idleScans": 0,
+            "idleTimers": 0
+          }
+        ]
+      },
+      {
+        "label": "pair1-after",
+        "exit": 0,
+        "checks": 2580,
+        "failures": 0,
+        "profiles": 20,
+        "samples": [
+          {
+            "profile": "forever/builtin/single",
+            "burstTimers": 2,
+            "totalRecounts": 266,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "forever/builtin/charged",
+            "burstTimers": 2,
+            "totalRecounts": 266,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "forever/syndicator/single",
+            "burstTimers": 2,
+            "totalRecounts": 266,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "forever/syndicator/charged",
+            "burstTimers": 2,
+            "totalRecounts": 266,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "retail/builtin/single",
+            "burstTimers": 2,
+            "totalRecounts": 266,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "retail/builtin/charged",
+            "burstTimers": 2,
+            "totalRecounts": 266,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "retail/syndicator/single",
+            "burstTimers": 2,
+            "totalRecounts": 266,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "retail/syndicator/charged",
+            "burstTimers": 2,
+            "totalRecounts": 266,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "mists/builtin/single",
+            "burstTimers": 2,
+            "totalRecounts": 266,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "mists/builtin/charged",
+            "burstTimers": 2,
+            "totalRecounts": 266,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "mists/syndicator/single",
+            "burstTimers": 2,
+            "totalRecounts": 266,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "mists/syndicator/charged",
+            "burstTimers": 2,
+            "totalRecounts": 266,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "era/builtin/single",
+            "burstTimers": 2,
+            "totalRecounts": 266,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "era/builtin/charged",
+            "burstTimers": 2,
+            "totalRecounts": 266,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "era/syndicator/single",
+            "burstTimers": 2,
+            "totalRecounts": 266,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "era/syndicator/charged",
+            "burstTimers": 2,
+            "totalRecounts": 266,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "anniversary/builtin/single",
+            "burstTimers": 2,
+            "totalRecounts": 266,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "anniversary/builtin/charged",
+            "burstTimers": 2,
+            "totalRecounts": 266,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "anniversary/syndicator/single",
+            "burstTimers": 2,
+            "totalRecounts": 266,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "anniversary/syndicator/charged",
+            "burstTimers": 2,
+            "totalRecounts": 266,
+            "idleScans": 0,
+            "idleTimers": 0
+          }
+        ]
+      },
+      {
+        "label": "pair2-after",
+        "exit": 0,
+        "checks": 2580,
+        "failures": 0,
+        "profiles": 20,
+        "samples": [
+          {
+            "profile": "forever/builtin/single",
+            "burstTimers": 2,
+            "totalRecounts": 266,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "forever/builtin/charged",
+            "burstTimers": 2,
+            "totalRecounts": 266,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "forever/syndicator/single",
+            "burstTimers": 2,
+            "totalRecounts": 266,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "forever/syndicator/charged",
+            "burstTimers": 2,
+            "totalRecounts": 266,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "retail/builtin/single",
+            "burstTimers": 2,
+            "totalRecounts": 266,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "retail/builtin/charged",
+            "burstTimers": 2,
+            "totalRecounts": 266,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "retail/syndicator/single",
+            "burstTimers": 2,
+            "totalRecounts": 266,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "retail/syndicator/charged",
+            "burstTimers": 2,
+            "totalRecounts": 266,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "mists/builtin/single",
+            "burstTimers": 2,
+            "totalRecounts": 266,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "mists/builtin/charged",
+            "burstTimers": 2,
+            "totalRecounts": 266,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "mists/syndicator/single",
+            "burstTimers": 2,
+            "totalRecounts": 266,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "mists/syndicator/charged",
+            "burstTimers": 2,
+            "totalRecounts": 266,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "era/builtin/single",
+            "burstTimers": 2,
+            "totalRecounts": 266,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "era/builtin/charged",
+            "burstTimers": 2,
+            "totalRecounts": 266,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "era/syndicator/single",
+            "burstTimers": 2,
+            "totalRecounts": 266,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "era/syndicator/charged",
+            "burstTimers": 2,
+            "totalRecounts": 266,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "anniversary/builtin/single",
+            "burstTimers": 2,
+            "totalRecounts": 266,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "anniversary/builtin/charged",
+            "burstTimers": 2,
+            "totalRecounts": 266,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "anniversary/syndicator/single",
+            "burstTimers": 2,
+            "totalRecounts": 266,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "anniversary/syndicator/charged",
+            "burstTimers": 2,
+            "totalRecounts": 266,
+            "idleScans": 0,
+            "idleTimers": 0
+          }
+        ]
+      },
+      {
+        "label": "pair2-before",
+        "exit": 1,
+        "checks": 2580,
+        "failures": 940,
+        "profiles": 20,
+        "samples": [
+          {
+            "profile": "forever/builtin/single",
+            "burstTimers": 2,
+            "totalRecounts": 14,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "forever/builtin/charged",
+            "burstTimers": 2,
+            "totalRecounts": 14,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "forever/syndicator/single",
+            "burstTimers": 2,
+            "totalRecounts": 14,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "forever/syndicator/charged",
+            "burstTimers": 2,
+            "totalRecounts": 14,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "retail/builtin/single",
+            "burstTimers": 2,
+            "totalRecounts": 14,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "retail/builtin/charged",
+            "burstTimers": 2,
+            "totalRecounts": 14,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "retail/syndicator/single",
+            "burstTimers": 2,
+            "totalRecounts": 14,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "retail/syndicator/charged",
+            "burstTimers": 2,
+            "totalRecounts": 14,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "mists/builtin/single",
+            "burstTimers": 2,
+            "totalRecounts": 14,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "mists/builtin/charged",
+            "burstTimers": 2,
+            "totalRecounts": 14,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "mists/syndicator/single",
+            "burstTimers": 2,
+            "totalRecounts": 14,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "mists/syndicator/charged",
+            "burstTimers": 2,
+            "totalRecounts": 14,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "era/builtin/single",
+            "burstTimers": 2,
+            "totalRecounts": 14,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "era/builtin/charged",
+            "burstTimers": 2,
+            "totalRecounts": 14,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "era/syndicator/single",
+            "burstTimers": 2,
+            "totalRecounts": 14,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "era/syndicator/charged",
+            "burstTimers": 2,
+            "totalRecounts": 14,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "anniversary/builtin/single",
+            "burstTimers": 2,
+            "totalRecounts": 14,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "anniversary/builtin/charged",
+            "burstTimers": 2,
+            "totalRecounts": 14,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "anniversary/syndicator/single",
+            "burstTimers": 2,
+            "totalRecounts": 14,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "anniversary/syndicator/charged",
+            "burstTimers": 2,
+            "totalRecounts": 14,
+            "idleScans": 0,
+            "idleTimers": 0
+          }
+        ]
+      },
+      {
+        "label": "pair3-before",
+        "exit": 1,
+        "checks": 2580,
+        "failures": 940,
+        "profiles": 20,
+        "samples": [
+          {
+            "profile": "forever/builtin/single",
+            "burstTimers": 2,
+            "totalRecounts": 14,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "forever/builtin/charged",
+            "burstTimers": 2,
+            "totalRecounts": 14,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "forever/syndicator/single",
+            "burstTimers": 2,
+            "totalRecounts": 14,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "forever/syndicator/charged",
+            "burstTimers": 2,
+            "totalRecounts": 14,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "retail/builtin/single",
+            "burstTimers": 2,
+            "totalRecounts": 14,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "retail/builtin/charged",
+            "burstTimers": 2,
+            "totalRecounts": 14,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "retail/syndicator/single",
+            "burstTimers": 2,
+            "totalRecounts": 14,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "retail/syndicator/charged",
+            "burstTimers": 2,
+            "totalRecounts": 14,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "mists/builtin/single",
+            "burstTimers": 2,
+            "totalRecounts": 14,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "mists/builtin/charged",
+            "burstTimers": 2,
+            "totalRecounts": 14,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "mists/syndicator/single",
+            "burstTimers": 2,
+            "totalRecounts": 14,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "mists/syndicator/charged",
+            "burstTimers": 2,
+            "totalRecounts": 14,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "era/builtin/single",
+            "burstTimers": 2,
+            "totalRecounts": 14,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "era/builtin/charged",
+            "burstTimers": 2,
+            "totalRecounts": 14,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "era/syndicator/single",
+            "burstTimers": 2,
+            "totalRecounts": 14,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "era/syndicator/charged",
+            "burstTimers": 2,
+            "totalRecounts": 14,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "anniversary/builtin/single",
+            "burstTimers": 2,
+            "totalRecounts": 14,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "anniversary/builtin/charged",
+            "burstTimers": 2,
+            "totalRecounts": 14,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "anniversary/syndicator/single",
+            "burstTimers": 2,
+            "totalRecounts": 14,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "anniversary/syndicator/charged",
+            "burstTimers": 2,
+            "totalRecounts": 14,
+            "idleScans": 0,
+            "idleTimers": 0
+          }
+        ]
+      },
+      {
+        "label": "pair3-after",
+        "exit": 0,
+        "checks": 2580,
+        "failures": 0,
+        "profiles": 20,
+        "samples": [
+          {
+            "profile": "forever/builtin/single",
+            "burstTimers": 2,
+            "totalRecounts": 266,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "forever/builtin/charged",
+            "burstTimers": 2,
+            "totalRecounts": 266,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "forever/syndicator/single",
+            "burstTimers": 2,
+            "totalRecounts": 266,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "forever/syndicator/charged",
+            "burstTimers": 2,
+            "totalRecounts": 266,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "retail/builtin/single",
+            "burstTimers": 2,
+            "totalRecounts": 266,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "retail/builtin/charged",
+            "burstTimers": 2,
+            "totalRecounts": 266,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "retail/syndicator/single",
+            "burstTimers": 2,
+            "totalRecounts": 266,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "retail/syndicator/charged",
+            "burstTimers": 2,
+            "totalRecounts": 266,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "mists/builtin/single",
+            "burstTimers": 2,
+            "totalRecounts": 266,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "mists/builtin/charged",
+            "burstTimers": 2,
+            "totalRecounts": 266,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "mists/syndicator/single",
+            "burstTimers": 2,
+            "totalRecounts": 266,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "mists/syndicator/charged",
+            "burstTimers": 2,
+            "totalRecounts": 266,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "era/builtin/single",
+            "burstTimers": 2,
+            "totalRecounts": 266,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "era/builtin/charged",
+            "burstTimers": 2,
+            "totalRecounts": 266,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "era/syndicator/single",
+            "burstTimers": 2,
+            "totalRecounts": 266,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "era/syndicator/charged",
+            "burstTimers": 2,
+            "totalRecounts": 266,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "anniversary/builtin/single",
+            "burstTimers": 2,
+            "totalRecounts": 266,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "anniversary/builtin/charged",
+            "burstTimers": 2,
+            "totalRecounts": 266,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "anniversary/syndicator/single",
+            "burstTimers": 2,
+            "totalRecounts": 266,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "anniversary/syndicator/charged",
+            "burstTimers": 2,
+            "totalRecounts": 266,
+            "idleScans": 0,
+            "idleTimers": 0
+          }
+        ]
+      }
+    ],
+    "controls": [
+      {
+        "label": "control-omit-live-food",
+        "exit": 1,
+        "checks": 2580,
+        "failures": 240,
+        "profiles": 20,
+        "samples": [
+          {
+            "profile": "forever/builtin/single",
+            "burstTimers": 2,
+            "totalRecounts": 228,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "forever/builtin/charged",
+            "burstTimers": 2,
+            "totalRecounts": 228,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "forever/syndicator/single",
+            "burstTimers": 2,
+            "totalRecounts": 228,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "forever/syndicator/charged",
+            "burstTimers": 2,
+            "totalRecounts": 228,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "retail/builtin/single",
+            "burstTimers": 2,
+            "totalRecounts": 228,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "retail/builtin/charged",
+            "burstTimers": 2,
+            "totalRecounts": 228,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "retail/syndicator/single",
+            "burstTimers": 2,
+            "totalRecounts": 228,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "retail/syndicator/charged",
+            "burstTimers": 2,
+            "totalRecounts": 228,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "mists/builtin/single",
+            "burstTimers": 2,
+            "totalRecounts": 228,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "mists/builtin/charged",
+            "burstTimers": 2,
+            "totalRecounts": 228,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "mists/syndicator/single",
+            "burstTimers": 2,
+            "totalRecounts": 228,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "mists/syndicator/charged",
+            "burstTimers": 2,
+            "totalRecounts": 228,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "era/builtin/single",
+            "burstTimers": 2,
+            "totalRecounts": 228,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "era/builtin/charged",
+            "burstTimers": 2,
+            "totalRecounts": 228,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "era/syndicator/single",
+            "burstTimers": 2,
+            "totalRecounts": 228,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "era/syndicator/charged",
+            "burstTimers": 2,
+            "totalRecounts": 228,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "anniversary/builtin/single",
+            "burstTimers": 2,
+            "totalRecounts": 228,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "anniversary/builtin/charged",
+            "burstTimers": 2,
+            "totalRecounts": 228,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "anniversary/syndicator/single",
+            "burstTimers": 2,
+            "totalRecounts": 228,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "anniversary/syndicator/charged",
+            "burstTimers": 2,
+            "totalRecounts": 228,
+            "idleScans": 0,
+            "idleTimers": 0
+          }
+        ]
+      },
+      {
+        "label": "control-omit-live-water",
+        "exit": 1,
+        "checks": 2580,
+        "failures": 240,
+        "profiles": 20,
+        "samples": [
+          {
+            "profile": "forever/builtin/single",
+            "burstTimers": 2,
+            "totalRecounts": 228,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "forever/builtin/charged",
+            "burstTimers": 2,
+            "totalRecounts": 228,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "forever/syndicator/single",
+            "burstTimers": 2,
+            "totalRecounts": 228,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "forever/syndicator/charged",
+            "burstTimers": 2,
+            "totalRecounts": 228,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "retail/builtin/single",
+            "burstTimers": 2,
+            "totalRecounts": 228,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "retail/builtin/charged",
+            "burstTimers": 2,
+            "totalRecounts": 228,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "retail/syndicator/single",
+            "burstTimers": 2,
+            "totalRecounts": 228,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "retail/syndicator/charged",
+            "burstTimers": 2,
+            "totalRecounts": 228,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "mists/builtin/single",
+            "burstTimers": 2,
+            "totalRecounts": 228,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "mists/builtin/charged",
+            "burstTimers": 2,
+            "totalRecounts": 228,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "mists/syndicator/single",
+            "burstTimers": 2,
+            "totalRecounts": 228,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "mists/syndicator/charged",
+            "burstTimers": 2,
+            "totalRecounts": 228,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "era/builtin/single",
+            "burstTimers": 2,
+            "totalRecounts": 228,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "era/builtin/charged",
+            "burstTimers": 2,
+            "totalRecounts": 228,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "era/syndicator/single",
+            "burstTimers": 2,
+            "totalRecounts": 228,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "era/syndicator/charged",
+            "burstTimers": 2,
+            "totalRecounts": 228,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "anniversary/builtin/single",
+            "burstTimers": 2,
+            "totalRecounts": 228,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "anniversary/builtin/charged",
+            "burstTimers": 2,
+            "totalRecounts": 228,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "anniversary/syndicator/single",
+            "burstTimers": 2,
+            "totalRecounts": 228,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "anniversary/syndicator/charged",
+            "burstTimers": 2,
+            "totalRecounts": 228,
+            "idleScans": 0,
+            "idleTimers": 0
+          }
+        ]
+      },
+      {
+        "label": "control-omit-live-healPotion",
+        "exit": 1,
+        "checks": 2580,
+        "failures": 240,
+        "profiles": 20,
+        "samples": [
+          {
+            "profile": "forever/builtin/single",
+            "burstTimers": 2,
+            "totalRecounts": 228,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "forever/builtin/charged",
+            "burstTimers": 2,
+            "totalRecounts": 228,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "forever/syndicator/single",
+            "burstTimers": 2,
+            "totalRecounts": 228,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "forever/syndicator/charged",
+            "burstTimers": 2,
+            "totalRecounts": 228,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "retail/builtin/single",
+            "burstTimers": 2,
+            "totalRecounts": 228,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "retail/builtin/charged",
+            "burstTimers": 2,
+            "totalRecounts": 228,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "retail/syndicator/single",
+            "burstTimers": 2,
+            "totalRecounts": 228,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "retail/syndicator/charged",
+            "burstTimers": 2,
+            "totalRecounts": 228,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "mists/builtin/single",
+            "burstTimers": 2,
+            "totalRecounts": 228,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "mists/builtin/charged",
+            "burstTimers": 2,
+            "totalRecounts": 228,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "mists/syndicator/single",
+            "burstTimers": 2,
+            "totalRecounts": 228,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "mists/syndicator/charged",
+            "burstTimers": 2,
+            "totalRecounts": 228,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "era/builtin/single",
+            "burstTimers": 2,
+            "totalRecounts": 228,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "era/builtin/charged",
+            "burstTimers": 2,
+            "totalRecounts": 228,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "era/syndicator/single",
+            "burstTimers": 2,
+            "totalRecounts": 228,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "era/syndicator/charged",
+            "burstTimers": 2,
+            "totalRecounts": 228,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "anniversary/builtin/single",
+            "burstTimers": 2,
+            "totalRecounts": 228,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "anniversary/builtin/charged",
+            "burstTimers": 2,
+            "totalRecounts": 228,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "anniversary/syndicator/single",
+            "burstTimers": 2,
+            "totalRecounts": 228,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "anniversary/syndicator/charged",
+            "burstTimers": 2,
+            "totalRecounts": 228,
+            "idleScans": 0,
+            "idleTimers": 0
+          }
+        ]
+      },
+      {
+        "label": "control-omit-live-manaPotion",
+        "exit": 1,
+        "checks": 2580,
+        "failures": 240,
+        "profiles": 20,
+        "samples": [
+          {
+            "profile": "forever/builtin/single",
+            "burstTimers": 2,
+            "totalRecounts": 228,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "forever/builtin/charged",
+            "burstTimers": 2,
+            "totalRecounts": 228,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "forever/syndicator/single",
+            "burstTimers": 2,
+            "totalRecounts": 228,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "forever/syndicator/charged",
+            "burstTimers": 2,
+            "totalRecounts": 228,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "retail/builtin/single",
+            "burstTimers": 2,
+            "totalRecounts": 228,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "retail/builtin/charged",
+            "burstTimers": 2,
+            "totalRecounts": 228,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "retail/syndicator/single",
+            "burstTimers": 2,
+            "totalRecounts": 228,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "retail/syndicator/charged",
+            "burstTimers": 2,
+            "totalRecounts": 228,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "mists/builtin/single",
+            "burstTimers": 2,
+            "totalRecounts": 228,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "mists/builtin/charged",
+            "burstTimers": 2,
+            "totalRecounts": 228,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "mists/syndicator/single",
+            "burstTimers": 2,
+            "totalRecounts": 228,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "mists/syndicator/charged",
+            "burstTimers": 2,
+            "totalRecounts": 228,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "era/builtin/single",
+            "burstTimers": 2,
+            "totalRecounts": 228,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "era/builtin/charged",
+            "burstTimers": 2,
+            "totalRecounts": 228,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "era/syndicator/single",
+            "burstTimers": 2,
+            "totalRecounts": 228,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "era/syndicator/charged",
+            "burstTimers": 2,
+            "totalRecounts": 228,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "anniversary/builtin/single",
+            "burstTimers": 2,
+            "totalRecounts": 228,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "anniversary/builtin/charged",
+            "burstTimers": 2,
+            "totalRecounts": 228,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "anniversary/syndicator/single",
+            "burstTimers": 2,
+            "totalRecounts": 228,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "anniversary/syndicator/charged",
+            "burstTimers": 2,
+            "totalRecounts": 228,
+            "idleScans": 0,
+            "idleTimers": 0
+          }
+        ]
+      },
+      {
+        "label": "control-omit-live-bandage",
+        "exit": 1,
+        "checks": 2580,
+        "failures": 240,
+        "profiles": 20,
+        "samples": [
+          {
+            "profile": "forever/builtin/single",
+            "burstTimers": 2,
+            "totalRecounts": 228,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "forever/builtin/charged",
+            "burstTimers": 2,
+            "totalRecounts": 228,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "forever/syndicator/single",
+            "burstTimers": 2,
+            "totalRecounts": 228,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "forever/syndicator/charged",
+            "burstTimers": 2,
+            "totalRecounts": 228,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "retail/builtin/single",
+            "burstTimers": 2,
+            "totalRecounts": 228,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "retail/builtin/charged",
+            "burstTimers": 2,
+            "totalRecounts": 228,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "retail/syndicator/single",
+            "burstTimers": 2,
+            "totalRecounts": 228,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "retail/syndicator/charged",
+            "burstTimers": 2,
+            "totalRecounts": 228,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "mists/builtin/single",
+            "burstTimers": 2,
+            "totalRecounts": 228,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "mists/builtin/charged",
+            "burstTimers": 2,
+            "totalRecounts": 228,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "mists/syndicator/single",
+            "burstTimers": 2,
+            "totalRecounts": 228,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "mists/syndicator/charged",
+            "burstTimers": 2,
+            "totalRecounts": 228,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "era/builtin/single",
+            "burstTimers": 2,
+            "totalRecounts": 228,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "era/builtin/charged",
+            "burstTimers": 2,
+            "totalRecounts": 228,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "era/syndicator/single",
+            "burstTimers": 2,
+            "totalRecounts": 228,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "era/syndicator/charged",
+            "burstTimers": 2,
+            "totalRecounts": 228,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "anniversary/builtin/single",
+            "burstTimers": 2,
+            "totalRecounts": 228,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "anniversary/builtin/charged",
+            "burstTimers": 2,
+            "totalRecounts": 228,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "anniversary/syndicator/single",
+            "burstTimers": 2,
+            "totalRecounts": 228,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "anniversary/syndicator/charged",
+            "burstTimers": 2,
+            "totalRecounts": 228,
+            "idleScans": 0,
+            "idleTimers": 0
+          }
+        ]
+      },
+      {
+        "label": "control-omit-live-managem",
+        "exit": 1,
+        "checks": 2580,
+        "failures": 240,
+        "profiles": 20,
+        "samples": [
+          {
+            "profile": "forever/builtin/single",
+            "burstTimers": 2,
+            "totalRecounts": 228,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "forever/builtin/charged",
+            "burstTimers": 2,
+            "totalRecounts": 228,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "forever/syndicator/single",
+            "burstTimers": 2,
+            "totalRecounts": 228,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "forever/syndicator/charged",
+            "burstTimers": 2,
+            "totalRecounts": 228,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "retail/builtin/single",
+            "burstTimers": 2,
+            "totalRecounts": 228,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "retail/builtin/charged",
+            "burstTimers": 2,
+            "totalRecounts": 228,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "retail/syndicator/single",
+            "burstTimers": 2,
+            "totalRecounts": 228,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "retail/syndicator/charged",
+            "burstTimers": 2,
+            "totalRecounts": 228,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "mists/builtin/single",
+            "burstTimers": 2,
+            "totalRecounts": 228,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "mists/builtin/charged",
+            "burstTimers": 2,
+            "totalRecounts": 228,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "mists/syndicator/single",
+            "burstTimers": 2,
+            "totalRecounts": 228,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "mists/syndicator/charged",
+            "burstTimers": 2,
+            "totalRecounts": 228,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "era/builtin/single",
+            "burstTimers": 2,
+            "totalRecounts": 228,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "era/builtin/charged",
+            "burstTimers": 2,
+            "totalRecounts": 228,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "era/syndicator/single",
+            "burstTimers": 2,
+            "totalRecounts": 228,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "era/syndicator/charged",
+            "burstTimers": 2,
+            "totalRecounts": 228,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "anniversary/builtin/single",
+            "burstTimers": 2,
+            "totalRecounts": 228,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "anniversary/builtin/charged",
+            "burstTimers": 2,
+            "totalRecounts": 228,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "anniversary/syndicator/single",
+            "burstTimers": 2,
+            "totalRecounts": 228,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "anniversary/syndicator/charged",
+            "burstTimers": 2,
+            "totalRecounts": 228,
+            "idleScans": 0,
+            "idleTimers": 0
+          }
+        ]
+      },
+      {
+        "label": "control-omit-live-healthstone",
+        "exit": 1,
+        "checks": 2580,
+        "failures": 220,
+        "profiles": 20,
+        "samples": [
+          {
+            "profile": "forever/builtin/single",
+            "burstTimers": 2,
+            "totalRecounts": 228,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "forever/builtin/charged",
+            "burstTimers": 2,
+            "totalRecounts": 228,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "forever/syndicator/single",
+            "burstTimers": 2,
+            "totalRecounts": 228,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "forever/syndicator/charged",
+            "burstTimers": 2,
+            "totalRecounts": 228,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "retail/builtin/single",
+            "burstTimers": 2,
+            "totalRecounts": 228,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "retail/builtin/charged",
+            "burstTimers": 2,
+            "totalRecounts": 228,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "retail/syndicator/single",
+            "burstTimers": 2,
+            "totalRecounts": 228,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "retail/syndicator/charged",
+            "burstTimers": 2,
+            "totalRecounts": 228,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "mists/builtin/single",
+            "burstTimers": 2,
+            "totalRecounts": 228,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "mists/builtin/charged",
+            "burstTimers": 2,
+            "totalRecounts": 228,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "mists/syndicator/single",
+            "burstTimers": 2,
+            "totalRecounts": 228,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "mists/syndicator/charged",
+            "burstTimers": 2,
+            "totalRecounts": 228,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "era/builtin/single",
+            "burstTimers": 2,
+            "totalRecounts": 228,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "era/builtin/charged",
+            "burstTimers": 2,
+            "totalRecounts": 228,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "era/syndicator/single",
+            "burstTimers": 2,
+            "totalRecounts": 228,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "era/syndicator/charged",
+            "burstTimers": 2,
+            "totalRecounts": 228,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "anniversary/builtin/single",
+            "burstTimers": 2,
+            "totalRecounts": 228,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "anniversary/builtin/charged",
+            "burstTimers": 2,
+            "totalRecounts": 228,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "anniversary/syndicator/single",
+            "burstTimers": 2,
+            "totalRecounts": 228,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "anniversary/syndicator/charged",
+            "burstTimers": 2,
+            "totalRecounts": 228,
+            "idleScans": 0,
+            "idleTimers": 0
+          }
+        ]
+      },
+      {
+        "label": "control-pin-gem-positive",
+        "exit": 1,
+        "checks": 2580,
+        "failures": 20,
+        "profiles": 20,
+        "samples": [
+          {
+            "profile": "forever/builtin/single",
+            "burstTimers": 2,
+            "totalRecounts": 266,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "forever/builtin/charged",
+            "burstTimers": 2,
+            "totalRecounts": 266,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "forever/syndicator/single",
+            "burstTimers": 2,
+            "totalRecounts": 266,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "forever/syndicator/charged",
+            "burstTimers": 2,
+            "totalRecounts": 266,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "retail/builtin/single",
+            "burstTimers": 2,
+            "totalRecounts": 266,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "retail/builtin/charged",
+            "burstTimers": 2,
+            "totalRecounts": 266,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "retail/syndicator/single",
+            "burstTimers": 2,
+            "totalRecounts": 266,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "retail/syndicator/charged",
+            "burstTimers": 2,
+            "totalRecounts": 266,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "mists/builtin/single",
+            "burstTimers": 2,
+            "totalRecounts": 266,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "mists/builtin/charged",
+            "burstTimers": 2,
+            "totalRecounts": 266,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "mists/syndicator/single",
+            "burstTimers": 2,
+            "totalRecounts": 266,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "mists/syndicator/charged",
+            "burstTimers": 2,
+            "totalRecounts": 266,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "era/builtin/single",
+            "burstTimers": 2,
+            "totalRecounts": 266,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "era/builtin/charged",
+            "burstTimers": 2,
+            "totalRecounts": 266,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "era/syndicator/single",
+            "burstTimers": 2,
+            "totalRecounts": 266,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "era/syndicator/charged",
+            "burstTimers": 2,
+            "totalRecounts": 266,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "anniversary/builtin/single",
+            "burstTimers": 2,
+            "totalRecounts": 266,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "anniversary/builtin/charged",
+            "burstTimers": 2,
+            "totalRecounts": 266,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "anniversary/syndicator/single",
+            "burstTimers": 2,
+            "totalRecounts": 266,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "anniversary/syndicator/charged",
+            "burstTimers": 2,
+            "totalRecounts": 266,
+            "idleScans": 0,
+            "idleTimers": 0
+          }
+        ]
+      },
+      {
+        "label": "control-pin-stone-positive",
+        "exit": 1,
+        "checks": 2580,
+        "failures": 20,
+        "profiles": 20,
+        "samples": [
+          {
+            "profile": "forever/builtin/single",
+            "burstTimers": 2,
+            "totalRecounts": 266,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "forever/builtin/charged",
+            "burstTimers": 2,
+            "totalRecounts": 266,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "forever/syndicator/single",
+            "burstTimers": 2,
+            "totalRecounts": 266,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "forever/syndicator/charged",
+            "burstTimers": 2,
+            "totalRecounts": 266,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "retail/builtin/single",
+            "burstTimers": 2,
+            "totalRecounts": 266,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "retail/builtin/charged",
+            "burstTimers": 2,
+            "totalRecounts": 266,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "retail/syndicator/single",
+            "burstTimers": 2,
+            "totalRecounts": 266,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "retail/syndicator/charged",
+            "burstTimers": 2,
+            "totalRecounts": 266,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "mists/builtin/single",
+            "burstTimers": 2,
+            "totalRecounts": 266,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "mists/builtin/charged",
+            "burstTimers": 2,
+            "totalRecounts": 266,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "mists/syndicator/single",
+            "burstTimers": 2,
+            "totalRecounts": 266,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "mists/syndicator/charged",
+            "burstTimers": 2,
+            "totalRecounts": 266,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "era/builtin/single",
+            "burstTimers": 2,
+            "totalRecounts": 266,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "era/builtin/charged",
+            "burstTimers": 2,
+            "totalRecounts": 266,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "era/syndicator/single",
+            "burstTimers": 2,
+            "totalRecounts": 266,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "era/syndicator/charged",
+            "burstTimers": 2,
+            "totalRecounts": 266,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "anniversary/builtin/single",
+            "burstTimers": 2,
+            "totalRecounts": 266,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "anniversary/builtin/charged",
+            "burstTimers": 2,
+            "totalRecounts": 266,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "anniversary/syndicator/single",
+            "burstTimers": 2,
+            "totalRecounts": 266,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "anniversary/syndicator/charged",
+            "burstTimers": 2,
+            "totalRecounts": 266,
+            "idleScans": 0,
+            "idleTimers": 0
+          }
+        ]
+      },
+      {
+        "label": "control-remove-burst-coalescing",
+        "exit": 1,
+        "checks": 2580,
+        "failures": 60,
+        "profiles": 20,
+        "samples": [
+          {
+            "profile": "forever/builtin/single",
+            "burstTimers": 101,
+            "totalRecounts": 959,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "forever/builtin/charged",
+            "burstTimers": 101,
+            "totalRecounts": 959,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "forever/syndicator/single",
+            "burstTimers": 101,
+            "totalRecounts": 959,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "forever/syndicator/charged",
+            "burstTimers": 101,
+            "totalRecounts": 959,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "retail/builtin/single",
+            "burstTimers": 101,
+            "totalRecounts": 959,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "retail/builtin/charged",
+            "burstTimers": 101,
+            "totalRecounts": 959,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "retail/syndicator/single",
+            "burstTimers": 101,
+            "totalRecounts": 959,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "retail/syndicator/charged",
+            "burstTimers": 101,
+            "totalRecounts": 959,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "mists/builtin/single",
+            "burstTimers": 101,
+            "totalRecounts": 959,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "mists/builtin/charged",
+            "burstTimers": 101,
+            "totalRecounts": 959,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "mists/syndicator/single",
+            "burstTimers": 101,
+            "totalRecounts": 959,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "mists/syndicator/charged",
+            "burstTimers": 101,
+            "totalRecounts": 959,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "era/builtin/single",
+            "burstTimers": 101,
+            "totalRecounts": 959,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "era/builtin/charged",
+            "burstTimers": 101,
+            "totalRecounts": 959,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "era/syndicator/single",
+            "burstTimers": 101,
+            "totalRecounts": 959,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "era/syndicator/charged",
+            "burstTimers": 101,
+            "totalRecounts": 959,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "anniversary/builtin/single",
+            "burstTimers": 101,
+            "totalRecounts": 959,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "anniversary/builtin/charged",
+            "burstTimers": 101,
+            "totalRecounts": 959,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "anniversary/syndicator/single",
+            "burstTimers": 101,
+            "totalRecounts": 959,
+            "idleScans": 0,
+            "idleTimers": 0
+          },
+          {
+            "profile": "anniversary/syndicator/charged",
+            "burstTimers": 101,
+            "totalRecounts": 959,
+            "idleScans": 0,
+            "idleTimers": 0
+          }
+        ]
+      }
+    ],
+    "currentSourceHashesLF": {
+      "Inventory/Init.lua": "72d2fe6d303afc36c7499c16be39c4a5667b6f1992d519620abfa892a6dc695e",
+      "ExtraButtonSystem/Engine/ConsumableBind.lua": "9a4989da299d0e0e509d1c04f65bf2afe3157ac1d9720c92b25923d1a59ce9b8",
+      "ExtraButtonSystem/CombatGrid/Buttons/ManaGem.lua": "d4e52ea11a03ca2834f2154375977f5dee33d19aba54883c3047b728e0d4320e",
+      "ExtraButtonSystem/CombatGrid/Buttons/Healthstone.lua": "04f0fb127be86d0183e1cf669a16f60530efc26f6f0d0fe2d1e47431bafcebc1"
+    },
+    "testHashLF": "a99a87c2a0bee0ceb8dbd3f35c36633a6c5eb3efb741d33a1fdbfddf6f28a903",
+    "scope": "Desktop real module Create/bind/paint/scan/event replays;unchanged production code. Old native-failing baseline used to reject regressions;not a new runtime optimization or native symptom/FPS claim."
+  },
+  "comparisonPath": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c65e-a3d3-7840-a32a-09fda47a48df\\all-consumable-recovery-audit\\comparison.json",
+  "comparisonSha256": "777fd77c225fc45939bea4036701ad1d02b37778eee2c1cedb07b7b3d97d5a09",
+  "comparisonScope": "Three matched old-native-failing/current pairs reject baseline940/current0;ten controls reject dropped live refresh for each kind, positive-pinned gem/stone and uncoalesced bursts. Current runtime unchanged by this audit.",
+  "checkpoint": {
+    "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c65e-a3d3-7840-a32a-09fda47a48df\\all-consumable-recovery-audit\\checkpoint-20261111T185127Z",
+    "verified": true,
+    "files": 2585,
+    "head": "26f886e3ea5371b196ab235d2dace0c156002285",
+    "branch": "main",
+    "dateUTC": "2026-11-11T18:52:00.881353+00:00",
+    "sourceZipSha256": "f09fe0761c128ab72063996980ab9312f7d885eace797d4f361d6746f0afa577",
+    "historyBundleSha256": "d7fe8b4a854df5308753f2ca2f55fb512f981c535bcf0203a87cefee32a41670",
+    "settingsMetadataEntries": 55,
+    "privateSettingsCopied": false,
+    "quiescentSettingsBackup": false
+  },
+  "sourceGuard": {
+    "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c65e-a3d3-7840-a32a-09fda47a48df\\all-consumable-recovery-audit\\checkpoint-20261111T185127Z",
+    "changedExistingLuaXmlToc": [],
+    "newLua": [
+      "tests/consumable_all_buttons_recovery.lua"
+    ],
+    "settingsContentCopied": false,
+    "settingsMetadataEntries": 55,
+    "scope": "CRLF normalized to LF;all other source bytes preserved"
+  },
+  "fullValidation": {
+    "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c65e-a3d3-7840-a32a-09fda47a48df\\all-consumable-recovery-audit\\full.json",
+    "sha256": "6a40237f03f21321d987af35e8b7259d175eaf4981b3be343bedafe87c08c37c",
+    "scripts": 308,
+    "failed": 0,
+    "syntaxFiles": 981,
+    "syntaxFailures": 0,
+    "allCurrentManifestEntriesMatch": true,
+    "scope": "Desktop Lua mocks/source checks only; native secure VM, real secret values, rendering and client performance unverified.",
+    "runtime": "Lua 5.4.6  Copyright (C) 1994-2023 Lua.org, PUC-Rio"
+  },
+  "priorRegressions": {
+    "loadingCompletion": 2230,
+    "holdReconciliation": 2104,
+    "itemCountZero": 245,
+    "liveCounts": 2175,
+    "useEvents": 1219,
+    "depletionTransitions": 672,
+    "consumableSmoke": 1473,
+    "syndicator": 400,
+    "parkedPaintChecks": 340,
+    "parkedPaintTraceHash": 723962797,
+    "parkedPaintSamples": 95,
+    "indexChecks": 99237,
+    "status": "PASS in current full run"
+  },
+  "clientCopies": {
+    "scope": "Read-only hashes;existing user sync;no manual propagation or native loaded-source claim",
+    "copies": [
+      {
+        "client": "_retail_",
+        "file": "ExtraButtonSystem/NonCombatGrid/Buttons/Food.lua",
+        "sameBytes": true,
+        "sha256": "842edde076d64f5a96f73ebfa48327ac614d91695d98ca550fc5070489c4872b"
+      },
+      {
+        "client": "_retail_",
+        "file": "ExtraButtonSystem/NonCombatGrid/Buttons/Water.lua",
+        "sameBytes": true,
+        "sha256": "36537724d48a94b2c14543087937d9985d240b2a45537fcd37675eb6f84bfa9b"
+      },
+      {
+        "client": "_retail_",
+        "file": "ExtraButtonSystem/CombatGrid/Buttons/HealPotion.lua",
+        "sameBytes": true,
+        "sha256": "9fce2630be5cc5a16e30cb73d0eeb1bbf18ea792d3deebf1a1932b538b019639"
+      },
+      {
+        "client": "_retail_",
+        "file": "ExtraButtonSystem/CombatGrid/Buttons/ManaPotion.lua",
+        "sameBytes": true,
+        "sha256": "fc47f8deefd8e030a8948f09d146045b7276cc6e96f2a2e71085c943b001dfb3"
+      },
+      {
+        "client": "_retail_",
+        "file": "ExtraButtonSystem/CombatGrid/Buttons/Bandage.lua",
+        "sameBytes": true,
+        "sha256": "c1a60b84320f9caa2ec444e52ae42f54b5c0018c050d0682ab630bbff0b95597"
+      },
+      {
+        "client": "_retail_",
+        "file": "ExtraButtonSystem/CombatGrid/Buttons/ManaGem.lua",
+        "sameBytes": true,
+        "sha256": "e77af2c17e8cb792822f5593820cdeb2c23a2f655e6b76b63d2ede0b58cf4be5"
+      },
+      {
+        "client": "_retail_",
+        "file": "ExtraButtonSystem/CombatGrid/Buttons/Healthstone.lua",
+        "sameBytes": true,
+        "sha256": "3b8e33adebdcda476de7ea4426daa46ceaecb39076c248c1c8eee202bcc2f003"
+      },
+      {
+        "client": "_retail_",
+        "file": "ExtraButtonSystem/Engine/ConsumableBind.lua",
+        "sameBytes": true,
+        "sha256": "9a4989da299d0e0e509d1c04f65bf2afe3157ac1d9720c92b25923d1a59ce9b8"
+      },
+      {
+        "client": "_retail_",
+        "file": "ExtraButtonSystem/Engine/Paint.lua",
+        "sameBytes": true,
+        "sha256": "6fe2aaa29a92c0fb0cf07037747039ae3ff8a00e6309e9f997c85c67dc385858"
+      },
+      {
+        "client": "_retail_",
+        "file": "Inventory/Init.lua",
+        "sameBytes": true,
+        "sha256": "72d2fe6d303afc36c7499c16be39c4a5667b6f1992d519620abfa892a6dc695e"
+      },
+      {
+        "client": "_retail_",
+        "file": "Inventory/FluxConsumableBest/Init.lua",
+        "sameBytes": true,
+        "sha256": "24ec2905c39b15000e76c0e2a6d6780d46ef8e6a4337ae801aa092a9f48ff920"
+      },
+      {
+        "client": "_retail_",
+        "file": "Inventory/FluxConsumableBest/FluxConsumableBest.lua",
+        "sameBytes": true,
+        "sha256": "a7def5ca3845b0aaaded8807c5a5ad9dfd7c9c108ae9bfffa6c77bce490f0367"
+      },
+      {
+        "client": "_retail_",
+        "file": "Core/API/Item.lua",
+        "sameBytes": true,
+        "sha256": "2be703fae6568d44910f237c95ccb398680ba33658eb57cdceb5491100b2dbb4"
+      },
+      {
+        "client": "_forever_",
+        "file": "ExtraButtonSystem/NonCombatGrid/Buttons/Food.lua",
+        "sameBytes": true,
+        "sha256": "842edde076d64f5a96f73ebfa48327ac614d91695d98ca550fc5070489c4872b"
+      },
+      {
+        "client": "_forever_",
+        "file": "ExtraButtonSystem/NonCombatGrid/Buttons/Water.lua",
+        "sameBytes": true,
+        "sha256": "36537724d48a94b2c14543087937d9985d240b2a45537fcd37675eb6f84bfa9b"
+      },
+      {
+        "client": "_forever_",
+        "file": "ExtraButtonSystem/CombatGrid/Buttons/HealPotion.lua",
+        "sameBytes": true,
+        "sha256": "9fce2630be5cc5a16e30cb73d0eeb1bbf18ea792d3deebf1a1932b538b019639"
+      },
+      {
+        "client": "_forever_",
+        "file": "ExtraButtonSystem/CombatGrid/Buttons/ManaPotion.lua",
+        "sameBytes": true,
+        "sha256": "fc47f8deefd8e030a8948f09d146045b7276cc6e96f2a2e71085c943b001dfb3"
+      },
+      {
+        "client": "_forever_",
+        "file": "ExtraButtonSystem/CombatGrid/Buttons/Bandage.lua",
+        "sameBytes": true,
+        "sha256": "c1a60b84320f9caa2ec444e52ae42f54b5c0018c050d0682ab630bbff0b95597"
+      },
+      {
+        "client": "_forever_",
+        "file": "ExtraButtonSystem/CombatGrid/Buttons/ManaGem.lua",
+        "sameBytes": true,
+        "sha256": "e77af2c17e8cb792822f5593820cdeb2c23a2f655e6b76b63d2ede0b58cf4be5"
+      },
+      {
+        "client": "_forever_",
+        "file": "ExtraButtonSystem/CombatGrid/Buttons/Healthstone.lua",
+        "sameBytes": true,
+        "sha256": "3b8e33adebdcda476de7ea4426daa46ceaecb39076c248c1c8eee202bcc2f003"
+      },
+      {
+        "client": "_forever_",
+        "file": "ExtraButtonSystem/Engine/ConsumableBind.lua",
+        "sameBytes": true,
+        "sha256": "9a4989da299d0e0e509d1c04f65bf2afe3157ac1d9720c92b25923d1a59ce9b8"
+      },
+      {
+        "client": "_forever_",
+        "file": "ExtraButtonSystem/Engine/Paint.lua",
+        "sameBytes": true,
+        "sha256": "6fe2aaa29a92c0fb0cf07037747039ae3ff8a00e6309e9f997c85c67dc385858"
+      },
+      {
+        "client": "_forever_",
+        "file": "Inventory/Init.lua",
+        "sameBytes": true,
+        "sha256": "72d2fe6d303afc36c7499c16be39c4a5667b6f1992d519620abfa892a6dc695e"
+      },
+      {
+        "client": "_forever_",
+        "file": "Inventory/FluxConsumableBest/Init.lua",
+        "sameBytes": true,
+        "sha256": "24ec2905c39b15000e76c0e2a6d6780d46ef8e6a4337ae801aa092a9f48ff920"
+      },
+      {
+        "client": "_forever_",
+        "file": "Inventory/FluxConsumableBest/FluxConsumableBest.lua",
+        "sameBytes": true,
+        "sha256": "a7def5ca3845b0aaaded8807c5a5ad9dfd7c9c108ae9bfffa6c77bce490f0367"
+      },
+      {
+        "client": "_forever_",
+        "file": "Core/API/Item.lua",
+        "sameBytes": true,
+        "sha256": "2be703fae6568d44910f237c95ccb398680ba33658eb57cdceb5491100b2dbb4"
+      },
+      {
+        "client": "_classic_",
+        "file": "ExtraButtonSystem/NonCombatGrid/Buttons/Food.lua",
+        "sameBytes": true,
+        "sha256": "842edde076d64f5a96f73ebfa48327ac614d91695d98ca550fc5070489c4872b"
+      },
+      {
+        "client": "_classic_",
+        "file": "ExtraButtonSystem/NonCombatGrid/Buttons/Water.lua",
+        "sameBytes": true,
+        "sha256": "36537724d48a94b2c14543087937d9985d240b2a45537fcd37675eb6f84bfa9b"
+      },
+      {
+        "client": "_classic_",
+        "file": "ExtraButtonSystem/CombatGrid/Buttons/HealPotion.lua",
+        "sameBytes": true,
+        "sha256": "9fce2630be5cc5a16e30cb73d0eeb1bbf18ea792d3deebf1a1932b538b019639"
+      },
+      {
+        "client": "_classic_",
+        "file": "ExtraButtonSystem/CombatGrid/Buttons/ManaPotion.lua",
+        "sameBytes": true,
+        "sha256": "fc47f8deefd8e030a8948f09d146045b7276cc6e96f2a2e71085c943b001dfb3"
+      },
+      {
+        "client": "_classic_",
+        "file": "ExtraButtonSystem/CombatGrid/Buttons/Bandage.lua",
+        "sameBytes": true,
+        "sha256": "c1a60b84320f9caa2ec444e52ae42f54b5c0018c050d0682ab630bbff0b95597"
+      },
+      {
+        "client": "_classic_",
+        "file": "ExtraButtonSystem/CombatGrid/Buttons/ManaGem.lua",
+        "sameBytes": true,
+        "sha256": "e77af2c17e8cb792822f5593820cdeb2c23a2f655e6b76b63d2ede0b58cf4be5"
+      },
+      {
+        "client": "_classic_",
+        "file": "ExtraButtonSystem/CombatGrid/Buttons/Healthstone.lua",
+        "sameBytes": true,
+        "sha256": "3b8e33adebdcda476de7ea4426daa46ceaecb39076c248c1c8eee202bcc2f003"
+      },
+      {
+        "client": "_classic_",
+        "file": "ExtraButtonSystem/Engine/ConsumableBind.lua",
+        "sameBytes": true,
+        "sha256": "9a4989da299d0e0e509d1c04f65bf2afe3157ac1d9720c92b25923d1a59ce9b8"
+      },
+      {
+        "client": "_classic_",
+        "file": "ExtraButtonSystem/Engine/Paint.lua",
+        "sameBytes": true,
+        "sha256": "6fe2aaa29a92c0fb0cf07037747039ae3ff8a00e6309e9f997c85c67dc385858"
+      },
+      {
+        "client": "_classic_",
+        "file": "Inventory/Init.lua",
+        "sameBytes": true,
+        "sha256": "72d2fe6d303afc36c7499c16be39c4a5667b6f1992d519620abfa892a6dc695e"
+      },
+      {
+        "client": "_classic_",
+        "file": "Inventory/FluxConsumableBest/Init.lua",
+        "sameBytes": true,
+        "sha256": "24ec2905c39b15000e76c0e2a6d6780d46ef8e6a4337ae801aa092a9f48ff920"
+      },
+      {
+        "client": "_classic_",
+        "file": "Inventory/FluxConsumableBest/FluxConsumableBest.lua",
+        "sameBytes": true,
+        "sha256": "a7def5ca3845b0aaaded8807c5a5ad9dfd7c9c108ae9bfffa6c77bce490f0367"
+      },
+      {
+        "client": "_classic_",
+        "file": "Core/API/Item.lua",
+        "sameBytes": true,
+        "sha256": "2be703fae6568d44910f237c95ccb398680ba33658eb57cdceb5491100b2dbb4"
+      },
+      {
+        "client": "_classic_era_",
+        "file": "ExtraButtonSystem/NonCombatGrid/Buttons/Food.lua",
+        "sameBytes": true,
+        "sha256": "842edde076d64f5a96f73ebfa48327ac614d91695d98ca550fc5070489c4872b"
+      },
+      {
+        "client": "_classic_era_",
+        "file": "ExtraButtonSystem/NonCombatGrid/Buttons/Water.lua",
+        "sameBytes": true,
+        "sha256": "36537724d48a94b2c14543087937d9985d240b2a45537fcd37675eb6f84bfa9b"
+      },
+      {
+        "client": "_classic_era_",
+        "file": "ExtraButtonSystem/CombatGrid/Buttons/HealPotion.lua",
+        "sameBytes": true,
+        "sha256": "9fce2630be5cc5a16e30cb73d0eeb1bbf18ea792d3deebf1a1932b538b019639"
+      },
+      {
+        "client": "_classic_era_",
+        "file": "ExtraButtonSystem/CombatGrid/Buttons/ManaPotion.lua",
+        "sameBytes": true,
+        "sha256": "fc47f8deefd8e030a8948f09d146045b7276cc6e96f2a2e71085c943b001dfb3"
+      },
+      {
+        "client": "_classic_era_",
+        "file": "ExtraButtonSystem/CombatGrid/Buttons/Bandage.lua",
+        "sameBytes": true,
+        "sha256": "c1a60b84320f9caa2ec444e52ae42f54b5c0018c050d0682ab630bbff0b95597"
+      },
+      {
+        "client": "_classic_era_",
+        "file": "ExtraButtonSystem/CombatGrid/Buttons/ManaGem.lua",
+        "sameBytes": true,
+        "sha256": "e77af2c17e8cb792822f5593820cdeb2c23a2f655e6b76b63d2ede0b58cf4be5"
+      },
+      {
+        "client": "_classic_era_",
+        "file": "ExtraButtonSystem/CombatGrid/Buttons/Healthstone.lua",
+        "sameBytes": true,
+        "sha256": "3b8e33adebdcda476de7ea4426daa46ceaecb39076c248c1c8eee202bcc2f003"
+      },
+      {
+        "client": "_classic_era_",
+        "file": "ExtraButtonSystem/Engine/ConsumableBind.lua",
+        "sameBytes": true,
+        "sha256": "9a4989da299d0e0e509d1c04f65bf2afe3157ac1d9720c92b25923d1a59ce9b8"
+      },
+      {
+        "client": "_classic_era_",
+        "file": "ExtraButtonSystem/Engine/Paint.lua",
+        "sameBytes": true,
+        "sha256": "6fe2aaa29a92c0fb0cf07037747039ae3ff8a00e6309e9f997c85c67dc385858"
+      },
+      {
+        "client": "_classic_era_",
+        "file": "Inventory/Init.lua",
+        "sameBytes": true,
+        "sha256": "72d2fe6d303afc36c7499c16be39c4a5667b6f1992d519620abfa892a6dc695e"
+      },
+      {
+        "client": "_classic_era_",
+        "file": "Inventory/FluxConsumableBest/Init.lua",
+        "sameBytes": true,
+        "sha256": "24ec2905c39b15000e76c0e2a6d6780d46ef8e6a4337ae801aa092a9f48ff920"
+      },
+      {
+        "client": "_classic_era_",
+        "file": "Inventory/FluxConsumableBest/FluxConsumableBest.lua",
+        "sameBytes": true,
+        "sha256": "a7def5ca3845b0aaaded8807c5a5ad9dfd7c9c108ae9bfffa6c77bce490f0367"
+      },
+      {
+        "client": "_classic_era_",
+        "file": "Core/API/Item.lua",
+        "sameBytes": true,
+        "sha256": "2be703fae6568d44910f237c95ccb398680ba33658eb57cdceb5491100b2dbb4"
+      },
+      {
+        "client": "_anniversary_",
+        "file": "ExtraButtonSystem/NonCombatGrid/Buttons/Food.lua",
+        "sameBytes": true,
+        "sha256": "842edde076d64f5a96f73ebfa48327ac614d91695d98ca550fc5070489c4872b"
+      },
+      {
+        "client": "_anniversary_",
+        "file": "ExtraButtonSystem/NonCombatGrid/Buttons/Water.lua",
+        "sameBytes": true,
+        "sha256": "36537724d48a94b2c14543087937d9985d240b2a45537fcd37675eb6f84bfa9b"
+      },
+      {
+        "client": "_anniversary_",
+        "file": "ExtraButtonSystem/CombatGrid/Buttons/HealPotion.lua",
+        "sameBytes": true,
+        "sha256": "9fce2630be5cc5a16e30cb73d0eeb1bbf18ea792d3deebf1a1932b538b019639"
+      },
+      {
+        "client": "_anniversary_",
+        "file": "ExtraButtonSystem/CombatGrid/Buttons/ManaPotion.lua",
+        "sameBytes": true,
+        "sha256": "fc47f8deefd8e030a8948f09d146045b7276cc6e96f2a2e71085c943b001dfb3"
+      },
+      {
+        "client": "_anniversary_",
+        "file": "ExtraButtonSystem/CombatGrid/Buttons/Bandage.lua",
+        "sameBytes": true,
+        "sha256": "c1a60b84320f9caa2ec444e52ae42f54b5c0018c050d0682ab630bbff0b95597"
+      },
+      {
+        "client": "_anniversary_",
+        "file": "ExtraButtonSystem/CombatGrid/Buttons/ManaGem.lua",
+        "sameBytes": true,
+        "sha256": "e77af2c17e8cb792822f5593820cdeb2c23a2f655e6b76b63d2ede0b58cf4be5"
+      },
+      {
+        "client": "_anniversary_",
+        "file": "ExtraButtonSystem/CombatGrid/Buttons/Healthstone.lua",
+        "sameBytes": true,
+        "sha256": "3b8e33adebdcda476de7ea4426daa46ceaecb39076c248c1c8eee202bcc2f003"
+      },
+      {
+        "client": "_anniversary_",
+        "file": "ExtraButtonSystem/Engine/ConsumableBind.lua",
+        "sameBytes": true,
+        "sha256": "9a4989da299d0e0e509d1c04f65bf2afe3157ac1d9720c92b25923d1a59ce9b8"
+      },
+      {
+        "client": "_anniversary_",
+        "file": "ExtraButtonSystem/Engine/Paint.lua",
+        "sameBytes": true,
+        "sha256": "6fe2aaa29a92c0fb0cf07037747039ae3ff8a00e6309e9f997c85c67dc385858"
+      },
+      {
+        "client": "_anniversary_",
+        "file": "Inventory/Init.lua",
+        "sameBytes": true,
+        "sha256": "72d2fe6d303afc36c7499c16be39c4a5667b6f1992d519620abfa892a6dc695e"
+      },
+      {
+        "client": "_anniversary_",
+        "file": "Inventory/FluxConsumableBest/Init.lua",
+        "sameBytes": true,
+        "sha256": "24ec2905c39b15000e76c0e2a6d6780d46ef8e6a4337ae801aa092a9f48ff920"
+      },
+      {
+        "client": "_anniversary_",
+        "file": "Inventory/FluxConsumableBest/FluxConsumableBest.lua",
+        "sameBytes": true,
+        "sha256": "a7def5ca3845b0aaaded8807c5a5ad9dfd7c9c108ae9bfffa6c77bce490f0367"
+      },
+      {
+        "client": "_anniversary_",
+        "file": "Core/API/Item.lua",
+        "sameBytes": true,
+        "sha256": "2be703fae6568d44910f237c95ccb398680ba33658eb57cdceb5491100b2dbb4"
+      },
+      {
+        "client": "_retail_",
+        "file": "ExtraButtonSystem/NonCombatGrid/Grid.lua",
+        "sameBytes": true,
+        "sha256": "c77a19abbe02794c95b644c0ab83dfc8906f77910c59e50a39700fe2cc385676"
+      },
+      {
+        "client": "_retail_",
+        "file": "ExtraButtonSystem/CombatGrid/Grid.lua",
+        "sameBytes": true,
+        "sha256": "5b06b4f65545f08c455f2a828d5d85509a7c73b707c6596d9a532274b89510bd"
+      },
+      {
+        "client": "_forever_",
+        "file": "ExtraButtonSystem/NonCombatGrid/Grid.lua",
+        "sameBytes": true,
+        "sha256": "c77a19abbe02794c95b644c0ab83dfc8906f77910c59e50a39700fe2cc385676"
+      },
+      {
+        "client": "_forever_",
+        "file": "ExtraButtonSystem/CombatGrid/Grid.lua",
+        "sameBytes": true,
+        "sha256": "5b06b4f65545f08c455f2a828d5d85509a7c73b707c6596d9a532274b89510bd"
+      },
+      {
+        "client": "_classic_",
+        "file": "ExtraButtonSystem/NonCombatGrid/Grid.lua",
+        "sameBytes": true,
+        "sha256": "c77a19abbe02794c95b644c0ab83dfc8906f77910c59e50a39700fe2cc385676"
+      },
+      {
+        "client": "_classic_",
+        "file": "ExtraButtonSystem/CombatGrid/Grid.lua",
+        "sameBytes": true,
+        "sha256": "5b06b4f65545f08c455f2a828d5d85509a7c73b707c6596d9a532274b89510bd"
+      },
+      {
+        "client": "_classic_era_",
+        "file": "ExtraButtonSystem/NonCombatGrid/Grid.lua",
+        "sameBytes": true,
+        "sha256": "c77a19abbe02794c95b644c0ab83dfc8906f77910c59e50a39700fe2cc385676"
+      },
+      {
+        "client": "_classic_era_",
+        "file": "ExtraButtonSystem/CombatGrid/Grid.lua",
+        "sameBytes": true,
+        "sha256": "5b06b4f65545f08c455f2a828d5d85509a7c73b707c6596d9a532274b89510bd"
+      },
+      {
+        "client": "_anniversary_",
+        "file": "ExtraButtonSystem/NonCombatGrid/Grid.lua",
+        "sameBytes": true,
+        "sha256": "c77a19abbe02794c95b644c0ab83dfc8906f77910c59e50a39700fe2cc385676"
+      },
+      {
+        "client": "_anniversary_",
+        "file": "ExtraButtonSystem/CombatGrid/Grid.lua",
+        "sameBytes": true,
+        "sha256": "5b06b4f65545f08c455f2a828d5d85509a7c73b707c6596d9a532274b89510bd"
+      }
+    ]
+  },
+  "upstream": "Retained five-client session pins and verified contracts in consumable-load-end-2026-11-11.json and count-source-reconciliation-2026-11-11.json;no new API selection or moving-branch claim in this audit",
+  "native": {
+    "priorFailure": "User food0/display1 with reliable/open loading hold, retained in preceding evidence",
+    "currentCandidate": "NOT RUN;no new native capture supplied",
+    "toolAvailability": "No Witchcraft/UIForever/computer tools available;direct implementation and user reproduction preference retained",
+    "next": "Load the shared repair with OOC reload if not done;then retest loading/use/refill. On recurrence capture /fluxinv buttons before another reload.",
+    "allFiveProviderMatrix": "Native pending",
+    "FPSMemoryTaintPixelsInputController": "NOT RUN"
+  },
+  "actions": {
+    "clientFocusOrInput": false,
+    "settingsOrProfilerWrite": false,
+    "manualSync": false,
+    "commitOrPublication": false
+  },
+  "documentationValidation": {
+    "status": "PASS",
+    "command": "python docs/tools/validate_docs.py",
+    "output": "PASS: 1014 classified sources; 608 TOC/XML reachable; 427 setting definitions; 24 SavedVariables; 16345 local links. Source inventory/evidence current. No files written.",
+    "rawPath": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c65e-a3d3-7840-a32a-09fda47a48df\\all-consumable-recovery-audit\\documentation-validation.txt"
+  },
+  "finalGuard": {
+    "atUTC": "2026-11-11T19:04:43.581638+00:00",
+    "all981CurrentSourceManifestEntriesMatch": true,
+    "allExistingLuaXmlTocUnchanged": true,
+    "newLuaOnly": "tests/consumable_all_buttons_recovery.lua",
+    "all75InstalledRuntimeHashesMatchBytes": true,
+    "branch": "main",
+    "hooksPath": ".githooks",
+    "commitOrPublication": false
+  }
+}

@@ -6,6 +6,7 @@
 FluxBuyEmAll = FluxBuyEmAll or {}
 local M = FluxBuyEmAll
 local Compat = FluxBuyEmAllCompat
+local CancelPurchaseLoop
 
 BUYEMALL_LOCALS = BUYEMALL_LOCALS or {
     MAX = "Max",
@@ -158,6 +159,7 @@ initFrame:SetScript("OnEvent", function(_, event, addon)
 end)
 
 function M:MerchantFrame_OnHide(...)
+    if CancelPurchaseLoop then CancelPurchaseLoop() end
     BuyEmAllFrame:Hide()
     if self.OrigMerchantFrame_OnHide then
         return self.OrigMerchantFrame_OnHide(...)
@@ -360,28 +362,47 @@ end
 
 local framePurchAmount, frameNumLoops, frameLeftover = 0, 0, 0
 local frameItemIndex
+local purchaseGeneration = 0
 
 local PurchaseLoopFrame = CreateFrame("Frame")
+CancelPurchaseLoop = function()
+    purchaseGeneration = purchaseGeneration + 1
+    framePurchAmount, frameNumLoops, frameLeftover, frameItemIndex = 0, 0, 0, nil
+    PurchaseLoopFrame.sinceLastUpdate = 0
+    PurchaseLoopFrame:SetScript("OnUpdate", nil)
+end
 function M:onUpdate(sinceLastUpdate)
     self.sinceLastUpdate = (self.sinceLastUpdate or 0) + sinceLastUpdate
     if self.sinceLastUpdate >= 0.5 then
-        if frameNumLoops == 0 and frameLeftover == 0 then
-            PurchaseLoopFrame:SetScript("OnUpdate", nil)
+        -- Detach before native dispatch: an error must not leave a per-frame
+        -- retry loop. A close/new request inside BuyMerchantItem owns its state.
+        PurchaseLoopFrame:SetScript("OnUpdate", nil)
+        if not MerchantFrame or not MerchantFrame:IsShown()
+            or (frameNumLoops == 0 and frameLeftover == 0) then
+            CancelPurchaseLoop()
             return
         end
+        local slot, quantity, generation = frameItemIndex, nil, purchaseGeneration
         if frameNumLoops == 0 and frameLeftover ~= 0 then
-            BuyMerchantItem(frameItemIndex, frameLeftover)
+            quantity = frameLeftover
             frameLeftover = 0
         elseif frameNumLoops > 0 then
-            BuyMerchantItem(frameItemIndex, framePurchAmount)
+            quantity = framePurchAmount
             frameNumLoops = frameNumLoops - 1
         end
         self.sinceLastUpdate = 0
+        BuyMerchantItem(slot, quantity)
+        if generation ~= purchaseGeneration then return end
+        if frameNumLoops == 0 and frameLeftover == 0 then CancelPurchaseLoop()
+        else PurchaseLoopFrame:SetScript("OnUpdate", M.onUpdate) end
     end
 end
 
 function M:DoPurchase(amount)
+    CancelPurchaseLoop()
+    local generation = purchaseGeneration
     BuyEmAllFrame:Hide()
+    if generation ~= purchaseGeneration or not MerchantFrame or not MerchantFrame:IsShown() then return end
     local numLoops, purchAmount, leftover
 
     if amount <= self.stack then

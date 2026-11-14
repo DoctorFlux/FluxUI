@@ -1,0 +1,104 @@
+{
+  "date": "2026-11-10",
+  "change_id": "BANK-VENDOR-GOSSIP-20261110",
+  "requirements": [
+    "REQ-VG-05",
+    "REQ-VG-06",
+    "REQ-VG-07",
+    "REQ-VG-08"
+  ],
+  "checkpoint": {
+    "date": "2026-11-10",
+    "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c4d0-1465-7d32-8c0d-36447d4477b6\\bank-vendor-gossip-checkpoint-20261110T095943Z",
+    "verified": true,
+    "sourceFiles": 2505,
+    "revision": "26f886e3ea5371b196ab235d2dace0c156002285",
+    "settingsMetadataEntries": 105,
+    "settingsBackup": "Read-only metadata; no quiescent settings backup claimed",
+    "settingsWrites": false,
+    "sha256": {
+      "source.zip": "d07549af70ccaa0ba642c9c065385d051eca13756425e6b8fb24582af41e1fe2",
+      "history.bundle": "11ef1e964ca6e2e469c84ef09f30adad771cc601ccf9968481c5c86faaa8ba9c"
+    }
+  },
+  "sourcePins": {
+    "forever": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+    "classic": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+    "classic_era": "4192ac60067fc55566182291bc67c85dd9b6794d",
+    "classic_anniversary": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+    "live": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f"
+  },
+  "sourceBlobCount": 82,
+  "candidate": {
+    "Inventory/Restock/Vendor/FluxVendorGossip.lua": "8a46e38dd1d0a875864a6aaf57a2c6266dec2f5a2117c4fd0de64319aa865a0f",
+    "Inventory/Restock/Core/FluxRestockSettings.lua": "1acf3b02f873288fef2b1cd8664f992ad9ac5be1586a0295f62ad992db1d3336",
+    "AddonOptions/FluxOptionsVendor.lua": "9b6c96c453e438d0f67a272c73b5366b0b2fb26b6549952b7817edd2c14bb75e",
+    "tests/vendor_gossip.lua": "f3d84deb75d3211a248e7726673bc63123b6c4329d219fd73e5db2f8b7756844"
+  },
+  "settings": {
+    "vendor": "_FluxUI_CharSavedVars.Restock.autoOpenVendorGossip",
+    "bank": "_FluxUI_CharSavedVars.Restock.autoOpenBankGossip",
+    "bankDefault": false,
+    "vendorPreference": "Preserved",
+    "scope": "Per-character",
+    "privateSettingsWrites": false
+  },
+  "behavior": {
+    "control": "One lazily created native UICheckButtonTemplate in GossipFrame.GreetingPanel",
+    "anchor": "BOTTOMLEFT of GossipFrame;8,4;22x22;160-unit single-line label and expanded hit rectangle",
+    "eligibility": "Exactly one available bank/vendor original icon;no active/available quests;valid orderIndex",
+    "click": "Revalidate same service;save corresponding setting;select now unless Shift held",
+    "modifier": "Shift reveals checked control to disable automation",
+    "close": "Clear owner/hide control and owned tooltip",
+    "refresh": "Only update eligibility;never duplicate pending selection",
+    "retail": "Inactive",
+    "optionsSync": "Refresh only visible options through existing coalescer after interaction submission;none on automatic path"
+  },
+  "performance": {
+    "selection": "Same GOSSIP_SHOW callback;no timer/deferred selection",
+    "firstAndWarmAutomaticOpen": {
+      "interactionIconLookups": 0,
+      "checkboxAllocations": 0,
+      "selections": 1
+    },
+    "startupIconLookups": 2,
+    "newUIFrames": "One lazy reused CheckButton;zero on fully automatic path",
+    "sharedEvents": "GOSSIP_SHOW/CLOSED on supported targets;GOSSIP_OPTIONS_REFRESHED only when valid (Forever)",
+    "newTimers": 0,
+    "newTickers": 0,
+    "newHooks": 0,
+    "newOnUpdate": 0,
+    "nativeLatencyFPS": "NOT MEASURED;server response/native panel loading remain"
+  },
+  "validation": {
+    "focusedChecks": 702,
+    "freshFocusedPasses": 3,
+    "harmfulControlsRejected": 10,
+    "beforeSourceRejected": true,
+    "optionsNavigation": 6237,
+    "completeShell": 1253,
+    "dataIntegrity": 36,
+    "scriptsPassed": 279,
+    "syntaxFiles": 950,
+    "failures": 0,
+    "nativeInputPixelsTaintPersistenceLatencyController": "NOT RUN",
+    "finalControls": "docs/validation/bank-vendor-gossip-controls-final-2026-11-10.json",
+    "documentation": {
+      "result": "PASS",
+      "classifiedSources": 983,
+      "reachableSources": 606,
+      "settingDefinitions": 427,
+      "savedVariableDeclarations": 24,
+      "localLinksChecked": 16014,
+      "all950TestedLuaIdentitiesCurrent": true,
+      "all15SourceInstalledCopiesMatch": true
+    }
+  },
+  "installation": "Three files installed toForever/progression/Era/Anniversary after approved escalation;12copies verified;originals external;no game reload/input",
+  "choices": {
+    "design": "User screenshot and prior direct-implementation preference;native footer checkbox",
+    "testing": "Existing user-performed native reproduction route;no Witchcraft tools",
+    "localization": "English fallback catalog;non-English review/layout untested",
+    "controller": "Native checkbox/cursor path considered;focus/activation/Back/handoff pending;no bindings changed"
+  }
+}

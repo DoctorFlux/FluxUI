@@ -1,0 +1,14 @@
+{
+  "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\09\\01a1c0a6-8624-7182-986b-1a4c1cdb0d05\\rxp-map-pins-checkpoint-20261109T141527Z",
+  "verified": true,
+  "sourceFiles": 2438,
+  "settingsMetadataFiles": 60,
+  "settingsWrites": false,
+  "settingsBackup": "Read-only metadata only; no quiescent settings backup claimed",
+  "head": "26f886e3ea5371b196ab235d2dace0c156002285",
+  "branch": "main",
+  "sha256": {
+    "source.zip": "cd7b1f69d9484b2eaecf48ccb31572371d89c7ade6572725f75477fda5755c25",
+    "history.bundle": "ecf9159f4accd01e734279a202f31fa1f47b2b047775aa99a38c628bf259dcdf"
+  }
+}

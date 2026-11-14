@@ -1,0 +1,30 @@
+{
+  "date": "2026-11-09",
+  "reference": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\09\\01a1c03e-c615-7f02-a24a-3e5ed07300f1\\options-sidebar-before-20261109T132656Z\\accepted-sidebar.png",
+  "referenceSHA256": "9dd8c2bde3b021b2d1ba25c97243f2747ec4a591c8e5399e52ce3a62df55d098",
+  "referencePixels": [
+    180,
+    675
+  ],
+  "sourceCheckpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\09\\01a1c03e-c615-7f02-a24a-3e5ed07300f1\\options-sidebar-before-20261109T132656Z",
+  "sourceSHA256": {
+    "AddonOptions/FluxOptionsSkin.lua": "be634455709902a64be7a60bfdd00c422410699046c7851afb76659fe2c3ebe0",
+    "AddonOptions/FluxOptionsShell.lua": "494641b0ed9342721318abed90c1c90a0a032296b82507026bb1ff2bfff687fb",
+    "AddonOptions/FluxOptionsCatalog.lua": "8add5c219a230d39eb9050beda91280d16a52c7e35a35a1579147440b1273a7d",
+    "tests/options_rework.lua": "c37a89d30501a5b8908d4ebe09eaaf5693f726ad1a05cbe7f06d4ad5242dea4e"
+  },
+  "requested": "Match compact framed sidebar and add fitting icons to names",
+  "nativeComparison": "NOT RUN",
+  "candidateDimensions": {
+    "sidebarWidth": 220,
+    "featureRowHeight": 24,
+    "headingHeight": 18,
+    "systemRowHeight": 22,
+    "iconSize": 16
+  },
+  "iconRequirement": "Visible fitting catalog icon on every feature and system row, including Forever",
+  "negativeControl": {
+    "hiddenIconsExit": 1,
+    "firstFailure": "lua: ...e-c615-7f02-a24a-3e5ed07300f1\\sidebar-icons-contract.txt:10: live: visible fitting icon beside qol"
+  }
+}

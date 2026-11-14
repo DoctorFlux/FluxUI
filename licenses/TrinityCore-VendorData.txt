@@ -1,0 +1,31 @@
+TrinityCore Project - generated Retail vendor data
+SPDX-License-Identifier: GPL-2.0-or-later
+Original GPL notice: TrinityCore-GPL-2.0.txt
+Attribution/AUTHORS: TrinityCore Project; see https://github.com/TrinityCore/TrinityCore/blob/01df6f3e1f66c9df867bceb27c7cdc7c4ecf737c/AUTHORS
+Source: https://github.com/TrinityCore/TrinityCore/tree/01df6f3e1f66c9df867bceb27c7cdc7c4ecf737c
+Base archive: https://github.com/TrinityCore/TrinityCore/releases/download/TDB1210.26091/TDB_full_1210.26091_2026_09_09.7z
+Base archive SHA256: fc5513334d7534a19f533124a95910193c8150379e5ed8d0db3e547ac2c5a3f5
+Compact facts: tools/data/vendor_catalog_retail.json
+Compact facts SHA256: 8bf14c546b2bb8087c73986364d4975d7cdc366e5f5c16d1b3fbb765af717b0d
+Original per-item evidence SHA256: 0d4bd4d7db233debc9908b24490ec10cefd1b491b3dc4a6010f0bf8e08d2cc1c
+ItemSparse CSV: https://wago.tools/db2/ItemSparse/csv?build=12.1.5.70783
+Raw CSV SHA256: 89910dad9e9a56a4446a0f8ad9c64f79c10267c26ee4f866bd7265db32e433a8
+
+Transformation: only npc_vendor and conditions were extracted from the base
+archive. All 102 current pinned world updates were inspected; 26 relevant SQL
+statements were replayed for these two tables. Accept unlimited (maxcount=0),
+gold-only (ExtendedCost=0), positive item rows (type=1), with no row
+PlayerConditionID or server vendor condition. Distinct stock IDs: 3710.
+Client-build 12.1.5.70783 ItemSparse supplies raw BuyPrice and VendorStackCount.
+Physical-item price = BuyPrice/max(VendorStackCount,1). 3693 positive prices;
+15 zero and 2 missing ItemSparse rows stay stock-only with unknown prices.
+No engine implementation copied, full world database materialized, native UI
+automation or addon dependency added. Input SQL/patch/proof hashes, build,
+gates and generation identities are preserved in the compact JSON manifest.
+Source-derived reference data does not certify character faction/class/
+reputation, NPC spawn/phasing/access, native availability or discounts.
+Typed in-game merchant observations override it.
+
+Rebuild: python tools/build_vendor_catalog.py <pinned ItemDB ZIP>
+Append --retail-source-dir <directory matching compact manifest> to verify
+original Retail SQL/proof/CSV/evidence. Append --check to compare, not write.

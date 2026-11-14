@@ -1,0 +1,154 @@
+{
+  "changeId": "TRADESKILL-CAST-FILL-FIX-20261110",
+  "userObservedBaselineFailure": "No visible profession skill-bar fill; only the end glow is visible and too strong. User then requested the skill-up appearance and reported the softened glow was no longer visible.",
+  "baselineNativeEvidence": "User reproduction;client/build/profession not captured;not an independent screenshot or runtime capture",
+  "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c6f9-8123-7722-ae2f-79d9d432a623\\tradeskill-fill-fix-20261110T195852Z",
+  "checkpointHead": "26f886e3ea5371b196ab235d2dace0c156002285",
+  "sourceFilesVerified": 2578,
+  "historyVerified": true,
+  "settingsMetadataEntries": 4,
+  "privateSettingsCopied": false,
+  "change": "Native animated profession fill moved onto TimerBar ARTWORK sublevel 7; opaque rectangular MaskTexture follows native progress texture using black-outside wrap. Separate equal-level clipping frame removed. Flare explicitly above fill at OVERLAY0 and below native text/shields at OVERLAY1;alpha multiplied by0.6;dimensions53x16 to44x14 at18px bar height. Glow remains through completion hold/fade.",
+  "diagnosticLimit": "Separate-frame layering/clipping was not modeled by previous mocks. The replacement uses the established direct school-fill parent/layer. Exact native failure mechanism and candidate pixels remain unverified.",
+  "runtimeChanges": [
+    "UnitFrames/FluxCastBarTradeskills.lua"
+  ],
+  "controller": "Decorative textures/mask only;no new frames,input handlers,focus targets or bindings;native input/controller NOT RUN",
+  "requirements": {
+    "TCAST-06": "Make the profession fill visible through direct StatusBar texture ownership and native progress mask",
+    "TCAST-07": "Keep a visible softer glow above the fill;60percent intensity and slightly smaller while retaining the existing glow setting",
+    "TCAST-08": "Resemble the native profession skill-up bar;retain animated fill and moving glow through the normal completion fade"
+  },
+  "performance": "Removes one clipping frame per themed bar;adds one MaskTexture. Native animation and lifecycle unchanged;no new events/timers/hooks/OnUpdate. Desktop work assertions only;native FPS/CPU/memory unmeasured.",
+  "controls": [
+    {
+      "case": "baseline",
+      "rejected": true,
+      "exit": 1,
+      "output": "lua: ...9-8123-7722-ae2f-79d9d432a623\\fill-fix-baseline-test.lua:5: live uses native Alchemy art\nstack traceback:\n\t[C]: in function 'assert'\n\t...9-8123-7722-ae2f-79d9d432a623\\fill-fix-baseline-test.lua:5: in local 'check'\n\t...9-8123-7722-ae2f-79d9d432a623\\fill-fix-baseline-test.lua:347: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "case": "unmasked-art",
+      "rejected": true,
+      "exit": 1,
+      "output": "lua: ...23-7722-ae2f-79d9d432a623\\fill-fix-unmasked-art-test.lua:5: live full art is engine-masked at cast progress\nstack traceback:\n\t[C]: in function 'assert'\n\t...23-7722-ae2f-79d9d432a623\\fill-fix-unmasked-art-test.lua:5: in local 'check'\n\t...23-7722-ae2f-79d9d432a623\\fill-fix-unmasked-art-test.lua:349: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "case": "full-width-mask",
+      "rejected": true,
+      "exit": 1,
+      "output": "lua: ...7722-ae2f-79d9d432a623\\fill-fix-full-width-mask-test.lua:5: live full art is engine-masked at cast progress\nstack traceback:\n\t[C]: in function 'assert'\n\t...7722-ae2f-79d9d432a623\\fill-fix-full-width-mask-test.lua:5: in local 'check'\n\t...7722-ae2f-79d9d432a623\\fill-fix-full-width-mask-test.lua:349: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "case": "white-mask-edge",
+      "rejected": true,
+      "exit": 1,
+      "output": "lua: ...7722-ae2f-79d9d432a623\\fill-fix-white-mask-edge-test.lua:5: live mask is opaque only inside current cast progress\nstack traceback:\n\t[C]: in function 'assert'\n\t...7722-ae2f-79d9d432a623\\fill-fix-white-mask-edge-test.lua:5: in local 'check'\n\t...7722-ae2f-79d9d432a623\\fill-fix-white-mask-edge-test.lua:353: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "case": "bright-flare",
+      "rejected": true,
+      "exit": 1,
+      "output": "lua: ...23-7722-ae2f-79d9d432a623\\fill-fix-bright-flare-test.lua:5: live soft skill-up flare remains through completion hold/fade\nstack traceback:\n\t[C]: in function 'assert'\n\t...23-7722-ae2f-79d9d432a623\\fill-fix-bright-flare-test.lua:5: in local 'check'\n\t...23-7722-ae2f-79d9d432a623\\fill-fix-bright-flare-test.lua:372: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "case": "large-flare",
+      "rejected": true,
+      "exit": 1,
+      "output": "lua: ...123-7722-ae2f-79d9d432a623\\fill-fix-large-flare-test.lua:5: live profession flare has a slightly smaller footprint\nstack traceback:\n\t[C]: in function 'assert'\n\t...123-7722-ae2f-79d9d432a623\\fill-fix-large-flare-test.lua:5: in local 'check'\n\t...123-7722-ae2f-79d9d432a623\\fill-fix-large-flare-test.lua:442: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "case": "glow-under-fill",
+      "rejected": true,
+      "exit": 1,
+      "output": "lua: ...7722-ae2f-79d9d432a623\\fill-fix-glow-under-fill-test.lua:5: live flare draws above fill and below native text/shields\nstack traceback:\n\t[C]: in function 'assert'\n\t...7722-ae2f-79d9d432a623\\fill-fix-glow-under-fill-test.lua:5: in local 'check'\n\t...7722-ae2f-79d9d432a623\\fill-fix-glow-under-fill-test.lua:441: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "case": "early-glow-removal",
+      "rejected": true,
+      "exit": 1,
+      "output": "lua: ...2-ae2f-79d9d432a623\\fill-fix-early-glow-removal-test.lua:5: live soft skill-up flare remains through completion hold/fade\nstack traceback:\n\t[C]: in function 'assert'\n\t...2-ae2f-79d9d432a623\\fill-fix-early-glow-removal-test.lua:5: in local 'check'\n\t...2-ae2f-79d9d432a623\\fill-fix-early-glow-removal-test.lua:372: in main chunk\n\t[C]: in ?\n"
+    }
+  ],
+  "sources": [
+    {
+      "target": "forever",
+      "commit": "4cd0ab752a77164f654ccbca9d0c1fe8dafceebe",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleTextureBaseAPIDocumentation.lua",
+      "gitBlobSha1": "adc0caeaeba3c941e9c2d31c9fa644d102054edf",
+      "sha256": "e4ccf4dbc0458473f5f31f69986e7aa12171bfa7359a32f7b884b2edfd6bff00",
+      "verifiedAgainstPinnedTree": true,
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4cd0ab752a77164f654ccbca9d0c1fe8dafceebe/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleTextureBaseAPIDocumentation.lua"
+    },
+    {
+      "target": "forever",
+      "commit": "4cd0ab752a77164f654ccbca9d0c1fe8dafceebe",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleFrameAPIDocumentation.lua",
+      "gitBlobSha1": "07debf919e8b4d43087306d2eccfb8e18e8f2c82",
+      "sha256": "c00bc77ee27f8fd81ba8b8d1bfd85fbd0ad817b22457adbe5adca6876a1d604a",
+      "verifiedAgainstPinnedTree": true,
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4cd0ab752a77164f654ccbca9d0c1fe8dafceebe/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleFrameAPIDocumentation.lua"
+    },
+    {
+      "target": "forever",
+      "commit": "4cd0ab752a77164f654ccbca9d0c1fe8dafceebe",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleTextureAPIDocumentation.lua",
+      "gitBlobSha1": "4435c4d7bcab5374e9863d277165e3285fae326b",
+      "sha256": "453c789239e9432546367ccafef7836cac497856306233d948e70e1f803d3b13",
+      "verifiedAgainstPinnedTree": true,
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4cd0ab752a77164f654ccbca9d0c1fe8dafceebe/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleTextureAPIDocumentation.lua"
+    },
+    {
+      "target": "retail",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleTextureBaseAPIDocumentation.lua",
+      "gitBlobSha1": "adc0caeaeba3c941e9c2d31c9fa644d102054edf",
+      "sha256": "e4ccf4dbc0458473f5f31f69986e7aa12171bfa7359a32f7b884b2edfd6bff00",
+      "verifiedAgainstPinnedTree": true,
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleTextureBaseAPIDocumentation.lua"
+    },
+    {
+      "target": "retail",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleFrameAPIDocumentation.lua",
+      "gitBlobSha1": "f0951c3f8a2556ac881434d33b687d8b9671ca1a",
+      "sha256": "c6275c78b80e584083000b19dff052cbbb7e1065bdcd0db4cf430c584a5c9430",
+      "verifiedAgainstPinnedTree": true,
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleFrameAPIDocumentation.lua"
+    },
+    {
+      "target": "retail",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleTextureAPIDocumentation.lua",
+      "gitBlobSha1": "4435c4d7bcab5374e9863d277165e3285fae326b",
+      "sha256": "453c789239e9432546367ccafef7836cac497856306233d948e70e1f803d3b13",
+      "verifiedAgainstPinnedTree": true,
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleTextureAPIDocumentation.lua"
+    }
+  ],
+  "nativeCandidate": "NOT RUN;prior user-reproduction route retained. No input/focus/reload,settings/profiler write,manual sync or publication.",
+  "focusedProfessionChecks": 455,
+  "focusedOutput": "PASS tradeskill cast themes: 455 checks; native rendering/input/taint pending\nParticle Lua texture writes over 2s: native=300, fallback=6197 (mock call counts, not native FPS)\nValidated 116 fills against original base-school palette compositing\nPASS cast-bar school themes: 14397 checks across five client families (native rendering/taint unverified)\n",
+  "fullValidation": "docs/validation/tradeskill-cast-fill-fix-full-2026-11-10.json",
+  "fullResult": {
+    "passed": 304,
+    "failed": 0,
+    "syntaxFiles": 977,
+    "syntaxFailures": 0,
+    "allCurrentLuaMatchesManifest": true
+  },
+  "candidateSha256": {
+    "UnitFrames/FluxCastBarTradeskills.lua": "b10ea2c4fcabcb702623ce9f6a6dca9d1c3a2a1471ba9c82cb69732d9761ca69",
+    "tests/castbar_school_themes.lua": "fd935f85cce5c5d38d9301e530f041e1f19df82eb57e8d61002c713d984409d7"
+  },
+  "otherLuaXmlTocFilesBytePreserved": 1016,
+  "documentationValidation": {
+    "result": "PASS",
+    "classifiedSources": 1010,
+    "reachable": 608,
+    "settingsDefinitions": 427,
+    "savedRoots": 24,
+    "localLinks": 16302
+  },
+  "diffWhitespaceCheck": "PASS"
+}

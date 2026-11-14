@@ -166,11 +166,11 @@ local function watchers(branch, text, old)
         env.C_Timer = { After = function(_, fn) pending[#pending + 1] = fn end }
         pco.RefreshPrediction = function() end
         local bar = player.Power
-        local ghost = { shown = true, Show = function(self) self.shown = true end,
+        local ghost = { shown = true, alpha = 0, Show = function(self) self.shown = true end,
             Hide = function(self) self.shown = false end, SetStatusBarTexture = function() end,
             SetStatusBarColor = function() end, SetMinMaxValues = function() end,
             SetValue = function() ghostWrites = ghostWrites + 1 end }
-        bar.PowerGhost, bar._fluxCostMeter = ghost, { Hide = function(self) self.hidden = true end }
+        bar.PowerGhost, bar._fluxCostMeter = ghost, { alpha = 0, Hide = function(self) self.hidden = true end }
         bar.GetStatusBarColor = function() return 1, 1, 1 end
         bar.GetStatusBarTexture = function() return { GetWidth = function() return 50 end } end
         bar._fluxGhostPrimed, bar._fluxFeedbackGUID, bar._fluxPrevFillW = true, "guid-player", 50
@@ -178,11 +178,13 @@ local function watchers(branch, text, old)
         pco.AfterPowerApplied(bar, "player", 50, 100)
         check(#pending == 1 and ghostWrites == 0, "power update retains next-frame ghost commit boundary")
         bar.FeedbackFrame = { SecretLossAnim = { Stop = function() stops = stops + 1 end },
-            SecretBarAnim = { Stop = function() stops = stops + 1 end }, Hide = function() end }
+            SecretBarAnim = { Stop = function() stops = stops + 1 end }, Hide = function() end,
+            SetScript = function(self,key,fn) self[key] = fn end }
         pco.DisableForFrame(player)
         pending[1]()
-        check(ghostWrites == 0 and not ghost.shown and bar._fluxCostMeter.hidden,
-            "disable invalidates pending ghost commits and hides unused meters")
+        check(ghostWrites == 0 and ghost.shown and ghost.alpha == 0 and not bar._fluxCostMeter.hidden
+            and bar._fluxCostMeter.alpha == 0 and not bar.FeedbackFrame.OnUpdate,
+            "disable invalidates pending commits while alpha-zero prepared meters and parked driver stay inert")
         check(stops == 2 and not bar._fluxGhostPrimed, "disable stops secret animations and resets feedback priming")
         pco.Initialize(player)
         pco.AfterPowerApplied(bar, "player", 50, 100)
@@ -192,7 +194,8 @@ local function watchers(branch, text, old)
 end
 
 local shared = read("UnitFrames/FluxUnitFrames_Shared.lua")
-local sparkCode = slice(shared, "function UF.UpdateResourceSpark(", "local function EnsureResourceSpark(")
+local sparkCode = slice(shared, "local function PublicGeometryNumber(", "-- The addon owns these dimensions.")
+    .. slice(shared, "function UF.UpdateResourceSpark(", "local function EnsureResourceSpark(")
 local oldSpark = read("tests/fixtures/resource_spark_before.txt")
 local function spark(branch, text, old)
     local s = { atlasWrites = 0, anchorWrites = 0, scales = 0, width = 50, barWidth = 100, height = 24,
@@ -255,11 +258,13 @@ local function spark(branch, text, old)
         s.failAtlas = false; paint(); check(texture.atlas == "retry-spark", "failed atlas retries")
         s.height = 48; s.failScale = true; check(not pcall(paint), "failed scale propagates")
         s.failScale = false; paint(); check(texture.scale == 48 / 18, "failed scale retries")
-        local secret = setmetatable({ secret = true }, { __add = function(self) return self end,
-            __lt = function() error("secret comparison") end, __le = function() error("secret comparison") end })
+        local unsafe = 0
+        local function denied() unsafe = unsafe + 1; error("secret comparison/arithmetic") end
+        local secret = setmetatable({ secret = true }, { __add = denied, __lt = denied, __le = denied })
         local scaleWrites = s.scales; s.height = secret
         paint(); check(s.scales == scaleWrites, "secret height is never compared, cached or scaled")
         s.width = secret; paint(); check(not texture.shown, "secret width keeps guarded visibility behavior")
+        check(unsafe == 0, "secret comparison/arithmetic is never attempted inside pcall")
         s.height, s.width = 24, 40; paint(); check(texture.shown, "readable display resumes after secrets")
     end
     return writes
@@ -275,11 +280,11 @@ end
 local mutants = {
     { "watcher reuse", power, 'local watcher = frame.PowerCostWatcher', 'local watcher = nil', watchers, 'reapplying options reuses' },
     { "disabled callback", power, 'frame.PowerCostWatcher:SetScript("OnEvent", nil)', '-- omitted', watchers, 'disabled watcher is inert' },
-    { "disabled ghost", power, '        StopBarFeedback(bar)\n        bar._fluxGhostPrimed = nil', '        bar._fluxGhostPrimed = nil', watchers, 'disable invalidates pending ghost' },
+    { "disabled ghost", power, '        StopBarFeedback(bar)\n        bar._fluxGhostPrimed = nil', '        bar._fluxGhostPrimed = nil', watchers, 'disable stops secret animations' },
     { "spark atlas", sparkCode, 'if spark._fluxSparkAtlas ~= sparkInfo.atlas then', 'if true then', spark, 'unchanged spark retains' },
     { "spark fill", sparkCode, 'spark._fluxAnchorRelative ~= relative', 'false', spark, 'replacement status-bar fill' },
     { "spark scale", sparkCode, 'if spark._fluxSparkScale ~= scale then', 'if true then', spark, 'unchanged spark retains' },
-    { "secret height", sparkCode, 'and not ValueIsSecret(h)', '', spark, 'secret comparison' },
+    { "secret geometry", sparkCode, 'ValueIsSecret(value) or ', '', spark, 'secret comparison' },
 }
 for _, m in ipairs(mutants) do
     local ok, err = pcall(m[5], "forever", replace(m[2], m[3], m[4]))

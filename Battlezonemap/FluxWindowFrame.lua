@@ -226,6 +226,9 @@ function FluxWindowFrame:ApplyBottomLiftFromStatusBar()
         return
     end
     ApplyWindowFrameScreenAnchor()
+    if FluxMinimapButtons and FluxMinimapButtons.RequestRefresh then
+        FluxMinimapButtons:RequestRefresh()
+    end
 end
 
 --- Create or get the window frame
@@ -327,6 +330,9 @@ function FluxWindowFrame:SetSize(width, height)
     if FluxMinimap and FluxMinimap.UpdateQuestTrackerPosition then
         FluxMinimap:UpdateQuestTrackerPosition()
     end
+    if FluxMinimapButtons and FluxMinimapButtons.RequestRefresh then
+        FluxMinimapButtons:RequestRefresh()
+    end
 end
 
 --- Set the window position offset from bottom-right
@@ -338,6 +344,9 @@ function FluxWindowFrame:SetOffset(xOffset, yOffset)
 
     if windowFrame then
         ApplyWindowFrameScreenAnchor()
+    end
+    if FluxMinimapButtons and FluxMinimapButtons.RequestRefresh then
+        FluxMinimapButtons:RequestRefresh()
     end
 end
 
@@ -378,10 +387,10 @@ function FluxWindowFrame:SetClassColor(a, tintBackdrop)
     end
 end
 
---- Open AddonOptions on the FluxWindow tab (meter layout / tab settings)
+--- Open the Damage Meter settings and layout editor.
 local function ShowMeterLayoutMenu(anchor)
-    if FluxOptions and FluxOptions.OpenToFluxWindowTab then
-        FluxOptions:OpenToFluxWindowTab()
+    if FluxOptions and FluxOptions.OpenToDamageMeterTab then
+        FluxOptions:OpenToDamageMeterTab()
     end
 end
 
@@ -1427,7 +1436,7 @@ local function RegisterMeterTab()
                 FluxBlizzardMeter:Hide()
             end
             tab.content:Show()
-        end, "Damage/Healing Meters\nLeft-click: cycle layouts. Right-click: FluxWindow options.\nMiddle-click: reset all meter data (out of combat).")
+        end, "Damage/Healing Meters\nLeft-click: cycle layouts. Right-click: Damage Meter settings.\nMiddle-click: reset all meter data (out of combat).")
     end
 
     return tabs["Meter"] ~= nil

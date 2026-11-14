@@ -1,0 +1,14 @@
+{
+  "date": "2026-11-09",
+  "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\09\\01a1c03e-c615-7f02-a24a-3e5ed07300f1\\options-hud-checkpoint-20261109T165447Z",
+  "verified": true,
+  "sourceFiles": 2477,
+  "settingsMetadataEntries": 43,
+  "settingsBackup": "Read-only metadata only; no live/quiescent settings content backup claimed",
+  "settingsWrites": false,
+  "sha256": {
+    "source.zip": "632e3f078a17327149db59869d3687ef6b2122dbd8743ad9d3df3a1a2cfc131d",
+    "history.bundle": "b1454a905caa4e6a17d4a207b2de780a4d22b7c4d913280c6ae13d2c46218dd0"
+  },
+  "historyVerify": "C:/Users/mario/.codex/visualizations/2026/11/09/01a1c03e-c615-7f02-a24a-3e5ed07300f1/options-hud-checkpoint-20261109T165447Z/history.bundle is okay"
+}

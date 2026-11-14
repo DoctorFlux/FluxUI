@@ -1,0 +1,74 @@
+{
+  "dateUTC": "2026-11-14T11:51:08.933507+00:00",
+  "changeID": "ADDON-PUBLICATION-20261114",
+  "requirements": [
+    "PUB-20261114"
+  ],
+  "request": "Publish the full current addon on main;never add automated author,committer or co-author attribution",
+  "repository": "https://github.com/DoctorFlux/FluxUI",
+  "repositoryID": 1451123700,
+  "branch": "main",
+  "parent": "26f886e3ea5371b196ab235d2dace0c156002285",
+  "publicationIdentity": {
+    "author": "DoctorFlux <100806234+DoctorFlux@users.noreply.github.com>",
+    "committer": "DoctorFlux <100806234+DoctorFlux@users.noreply.github.com>",
+    "coAuthorTrailers": false,
+    "hooksPath": ".githooks",
+    "identityRegressionTests": 5,
+    "ancestorsCheckedBeforeCommit": 4
+  },
+  "sourceValidation": {
+    "evidence": {
+      "path": "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\docs\\reference\\verification.json",
+      "sha256": "919865d7f98941ae9b7c53a9416d3ec25d38bd7893b39c7259424168757ccbce"
+    },
+    "recordedPassingScripts": 379,
+    "freshScripts": 365,
+    "subsequentSealedRendererReplays": 52,
+    "unchangedHistoricalMeterThreat": 14,
+    "failed": 0,
+    "syntaxFiles": 1067,
+    "scope": "Incremental desktop publication record:365 scripts passed;52 auction/shared-grid dependents replayed after final concurrent UI edits with all source stable.14 unchanged meter/threat observations retained from their owner;not rerun. No new native secure VM/rendering/performance claim.",
+    "sourceManifestCurrent": true,
+    "rawSummary": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\publication-20261114T113100Z\\validation-summary.json",
+      "sha256": "87b2169173516fa525985b2ad3f29acee01d266d919e22b7a3d13e21ab369e2f"
+    }
+  },
+  "checkpoint": {
+    "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\publication-20261114T113100Z\\final-checkpoint\\checkpoint.json",
+    "sha256": "321caac984a99483141e76b2d42bbd903bc8a50d07655da23ed4e0370ee81b68",
+    "sourceFiles": 2794,
+    "settingsMetadata": 113,
+    "privateSettingsCopied": false,
+    "archives": {
+      "source-before.zip": {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\publication-20261114T113100Z\\final-checkpoint\\source-before.zip",
+        "sha256": "e2851204aab388e159a350946591b2c5c48ac22fdefe29b59ecc4f2cea076238"
+      },
+      "history-before.bundle": {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\publication-20261114T113100Z\\final-checkpoint\\history-before.bundle",
+        "sha256": "2d7de9a28f5982bb6f654328e650ac210c4b2a981d409819d55c1967bfe08c9f"
+      },
+      "index-before": {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\publication-20261114T113100Z\\final-checkpoint\\index-before",
+        "sha256": "effee083f6f7bd0e343d22f5a4f93f9ed7b9fa57147569a8049ae45c04dd97a6"
+      }
+    }
+  },
+  "preservation": "Current tracked and non-ignored files,including all completed parallel work and third-party licenses. Publication updates README/continuity and the stale commerce renderer regression;no runtime code/settings/client/profiler changes. No reset,branch,force push,tags or repository replacement.",
+  "commerceRegression": {
+    "rule": "Preserve original native-write ceilings while allowing a viewport to skip hidden rows;count materialized icons in the opaque forwarding check;permit cleanup wrappers only when the exact native setter error is rethrown.810 checks/10 models pass;native-state repair,reentry,transaction and stock semantics retained.",
+    "compiledHarmfulControlsRejected": 4,
+    "controls": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\publication-20261114T113100Z\\commerce-controls.json",
+      "sha256": "675714936d5fe6b6e7f8aedc9ad530b317bbeb98851d56e0a2b7df7298cae12d"
+    }
+  },
+  "contributorsBeforeUpload": [
+    "DoctorFlux"
+  ],
+  "githubLimitation": "GitHub has no contributor blacklist;all outgoing reachable commit metadata is enforced by the existing hooks and read-only workflow.",
+  "remoteReceipt": "Exact pushed SHA,tree,workflow/contributor readouts retained externally after upload;this in-tree record describes preparation and does not self-reference its own commit.",
+  "native": "No additional native acceptance in publication task;existing feature-specific gaps remain recorded"
+}

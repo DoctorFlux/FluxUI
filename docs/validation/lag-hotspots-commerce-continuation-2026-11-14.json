@@ -1,0 +1,360 @@
+{
+  "changeId": "LHO-COMMERCE-CONTINUATION-20261114",
+  "requirements": [
+    "LHO-06",
+    "LHO-07",
+    "LHO-09",
+    "LHO-10",
+    "LHO-11",
+    "LHO-12"
+  ],
+  "status": "Three source owners frozen and independently reviewed; combined continuation whole-suite result recorded separately",
+  "sourceHashes": {
+    "Inventory/Professions.lua": {
+      "before": "3788996a133adcbbfa2b0a8e111ee8e126d77a5ae32a547695f5fbbd951b3526",
+      "current": "e253aec1cf5e8d0665a89193ae8ca09d934959d17d225d828684d71c3f4247ad"
+    },
+    "Inventory/Restock/FluxRestock_Inv.lua": {
+      "before": "925d68b91c127ee7659e4706064a6aa312367073a88cc335c94acca80972f010",
+      "current": "9afb3fb492de1b36322218ac63650f113fb90480f3cfde352be9e9838c56df0f"
+    },
+    "Inventory/Restock/Vendor/BuyEmAll/FluxBuyEmAll_Compat.lua": {
+      "before": "3ec2c2a14bc8aa661a33e1afd20df665a5e6852f977e899530dcf9d34e995d6e",
+      "current": "7b3c1db712eaa7106ffc0ece75da9a2bc3d8a606a902d3cfd99644519e8d6dc5"
+    }
+  },
+  "testHashes": {
+    "tests/profession_catalogue_work.lua": "5220dc5901a337abe949e97266df06fb4dd5eab86b85da439d883bb70083fa44",
+    "tests/bulk_capacity_work.lua": "17e984a60d1aa432968bd59d0fcdd287b65e4d9f8db13854c265c5cd706bd2e0"
+  },
+  "summary": {
+    "scope": "Current continuation commerce audit and measured three-owner implementation. No child native input, transactions, material-consuming crafting, publication, manual sync, profiler change or external Syndicator edits.",
+    "sources": {
+      "Inventory/Professions.lua": {
+        "before": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\continuation\\commerce\\Professions-before.lua",
+        "candidate": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\continuation\\commerce\\Professions-preview.lua",
+        "beforeSHA256": "3788996a133adcbbfa2b0a8e111ee8e126d77a5ae32a547695f5fbbd951b3526",
+        "candidateSHA256": "e253aec1cf5e8d0665a89193ae8ca09d934959d17d225d828684d71c3f4247ad"
+      },
+      "Inventory/Restock/FluxRestock_Inv.lua": {
+        "before": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\continuation\\commerce\\FluxRestock_Inv-before.lua",
+        "candidate": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\continuation\\commerce\\FluxRestock_Inv-preview.lua",
+        "beforeSHA256": "925d68b91c127ee7659e4706064a6aa312367073a88cc335c94acca80972f010",
+        "candidateSHA256": "9afb3fb492de1b36322218ac63650f113fb90480f3cfde352be9e9838c56df0f"
+      },
+      "Inventory/Restock/Vendor/BuyEmAll/FluxBuyEmAll_Compat.lua": {
+        "before": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\continuation\\commerce\\FluxBuyEmAll_Compat-before.lua",
+        "candidate": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\continuation\\commerce\\FluxBuyEmAll_Compat-preview.lua",
+        "beforeSHA256": "3ec2c2a14bc8aa661a33e1afd20df665a5e6852f977e899530dcf9d34e995d6e",
+        "candidateSHA256": "7b3c1db712eaa7106ffc0ece75da9a2bc3d8a606a902d3cfd99644519e8d6dc5"
+      }
+    },
+    "tests": {
+      "tests/profession_catalogue_work.lua": "5220dc5901a337abe949e97266df06fb4dd5eab86b85da439d883bb70083fa44",
+      "tests/bulk_capacity_work.lua": "17e984a60d1aa432968bd59d0fcdd287b65e4d9f8db13854c265c5cd706bd2e0"
+    },
+    "previewEqualsInstalled": {
+      "Inventory/Professions.lua": true,
+      "Inventory/Restock/FluxRestock_Inv.lua": true,
+      "Inventory/Restock/Vendor/BuyEmAll/FluxBuyEmAll_Compat.lua": true
+    },
+    "candidateChecksPerSet": 770,
+    "models": {
+      "profession": 10,
+      "bulkSlotModels": 60
+    },
+    "pairs": 3,
+    "compiledHarmfulControls": 13,
+    "existingPreEditPreviewFocusPass": 15,
+    "installedCurrentFocusPass": 61,
+    "installedAllLuaStable": true,
+    "work": [
+      {
+        "scenario": "64 modern learned recipes; three real profession events",
+        "before": "192 distinct collector closures;384 copied merge records",
+        "candidate": "one collector function;zero copied merge records",
+        "retained": "192 collector calls,native recipe scans,9 craft invalidations,3 profession publications"
+      },
+      {
+        "scenario": "64 legacy learned recipes; three profession events",
+        "before": "192 copied merge records",
+        "candidate": "zero copied merge records",
+        "retained": "native scans,6 craft invalidations,3 publications;full catalogue output-query path"
+      },
+      {
+        "scenario": "20 modern output lookups in64 learned recipes/two aliases",
+        "before": "2560 alias ranks/full-catalogue records",
+        "candidate": "40 matching-alias ranks",
+        "retained": "all current recipe facts read each invocation;alias ranking,global revocation,matching order,quality outputs,current character/public override;no index"
+      },
+      {
+        "scenario": "200 occupied vendor capacity slots",
+        "before": "400 native info reads/400 normalized rows",
+        "candidate": "200 native info reads/200 normalized rows",
+        "retained": "same capacity3000 or750,stack20,bag-family eligibility,public override/error/reentry/fallback"
+      },
+      {
+        "scenario": "40 occupied/160 empty capacity slots",
+        "before": "240 info reads/80 normalized rows/160 link fallbacks",
+        "candidate": "200 info reads/40 normalized rows/160 link fallbacks",
+        "retained": "capacity3800,empty/cold native link sequence"
+      },
+      {
+        "scenario": "empty/cold-link/cold-info capacity slots",
+        "before": "200/400/400 native info reads",
+        "candidate": "200/400/400 native info reads",
+        "retained": "cold second read may recover count;native return arity/override calls unchanged"
+      }
+    ],
+    "desktopTimingVariation": {
+      "Retail": {
+        "before": {
+          "scan10Seconds": {
+            "median": 0.104,
+            "min": 0.103,
+            "max": 0.112
+          },
+          "query500Seconds": {
+            "median": 0.445,
+            "min": 0.437,
+            "max": 0.458
+          },
+          "scan3AllocatedKB_GCStopped": {
+            "median": 7819.969,
+            "min": 7819.969,
+            "max": 7819.969
+          },
+          "query50AllocatedKB_GCStopped": {
+            "median": 4756.348,
+            "min": 4756.348,
+            "max": 4756.348
+          }
+        },
+        "candidate": {
+          "scan10Seconds": {
+            "median": 0.081,
+            "min": 0.078,
+            "max": 0.084
+          },
+          "query500Seconds": {
+            "median": 0.131,
+            "min": 0.123,
+            "max": 0.136
+          },
+          "scan3AllocatedKB_GCStopped": {
+            "median": 6319.734,
+            "min": 6319.734,
+            "max": 6319.734
+          },
+          "query50AllocatedKB_GCStopped": {
+            "median": 28.174,
+            "min": 28.174,
+            "max": 28.174
+          }
+        }
+      },
+      "Forever": {
+        "before": {
+          "scan10Seconds": {
+            "median": 0.1,
+            "min": 0.086,
+            "max": 0.102
+          },
+          "query500Seconds": {
+            "median": 0.437,
+            "min": 0.429,
+            "max": 0.451
+          },
+          "scan3AllocatedKB_GCStopped": {
+            "median": 7819.523,
+            "min": 7819.523,
+            "max": 7819.523
+          },
+          "query50AllocatedKB_GCStopped": {
+            "median": 4756.348,
+            "min": 4756.348,
+            "max": 4756.348
+          }
+        },
+        "candidate": {
+          "scan10Seconds": {
+            "median": 0.077,
+            "min": 0.072,
+            "max": 0.084
+          },
+          "query500Seconds": {
+            "median": 0.124,
+            "min": 0.123,
+            "max": 0.132
+          },
+          "scan3AllocatedKB_GCStopped": {
+            "median": 6319.289,
+            "min": 6319.289,
+            "max": 6319.289
+          },
+          "query50AllocatedKB_GCStopped": {
+            "median": 28.174,
+            "min": 28.174,
+            "max": 28.174
+          }
+        }
+      },
+      "Era": {
+        "before": {
+          "scan10Seconds": {
+            "median": 0.025,
+            "min": 0.023,
+            "max": 0.025
+          },
+          "query500Seconds": {
+            "median": 0.214,
+            "min": 0.208,
+            "max": 0.215
+          },
+          "scan3AllocatedKB_GCStopped": {
+            "median": 1776.946,
+            "min": 1776.946,
+            "max": 1776.946
+          },
+          "query50AllocatedKB_GCStopped": {
+            "median": 6112.793,
+            "min": 6112.793,
+            "max": 6112.793
+          }
+        },
+        "candidate": {
+          "scan10Seconds": {
+            "median": 0.015,
+            "min": 0.014,
+            "max": 0.016
+          },
+          "query500Seconds": {
+            "median": 0.214,
+            "min": 0.209,
+            "max": 0.217
+          },
+          "scan3AllocatedKB_GCStopped": {
+            "median": 1132.415,
+            "min": 1132.415,
+            "max": 1132.415
+          },
+          "query50AllocatedKB_GCStopped": {
+            "median": 6110.84,
+            "min": 6110.84,
+            "max": 6110.84
+          }
+        }
+      }
+    },
+    "tradeoffs": [
+      "Selective modern output query makes two cheap recipe walks and ranks matching aliases only;it does not cache mutable recipe/native facts. Legacy and unknown identities use full catalogue fallback.",
+      "Warm persistence still visits inherited fields to prove a fresh record is complete. Any missing or retained reagent/custom fact uses the original merge policy. Every invalidation/publication remains.",
+      "Bulk warm snapshots add owned function identity checks. Empty and cold slots retain their reads;modeled timing includes this overhead and is separately recorded. Native cost must be measured.",
+      "GC-stopped allocation samples measure fixture allocations,not WoW retained heap,GC pauses or FPS."
+    ],
+    "remainingNativeWork": [
+      {
+        "workflow": "profession open/filter/material update/close",
+        "prerequisite": "User opens real learned profession;record client/build/recipe count/filter/context and quiet scene. Current client memory is earlier375 source until a root/user reload applies candidate. No material-consuming craft by this child.",
+        "existingCommands": [
+          "/fluxperf capture 30",
+          "/fluxperf last",
+          "/fluxinvdebug watch 15",
+          "/fluxinvdebug report",
+          "/fluxinvdebug listeners"
+        ],
+        "limit": "Aggregate FPS/frame gaps and existing named passes do not isolate direct profession-frame scan CPU;optional native profiling needs root/user preference preservation."
+      },
+      {
+        "workflow": "merchant restock/Junk open/close and bulk capacity popup",
+        "prerequisite": "User at a merchant with known warm dense/sparse/empty bags;opens ordinary shift popup without confirm. Record item stack/family/slots/metadata readiness and same visible list. No actual buy/sell/delete.",
+        "existingCommands": [
+          "/fluxperf watch 60 50",
+          "/fluxperf spikes",
+          "/fluxperf capture 30",
+          "/fluxperf last"
+        ],
+        "limit": "Do not use /buyemall confirm because it edits saved confirmation preference. Simulations establish transaction/quantity contracts,not actual native transactions or taint."
+      },
+      {
+        "workflow": "AH open/close/search/passive bags/scroll",
+        "prerequisite": "User at AH with existing targets;record modern/legacy,saved targets/tiers,window/viewport/scale,chosen row/search owner;no buys or upgrade acceptance. AH UI scale slice belongs to cast agent.",
+        "existingCommands": [
+          "/fluxah debug",
+          "/fluxperf capture 30",
+          "/fluxperf last"
+        ],
+        "limit": "Keep r27 shortage-only opening/completed search/independent upgrade choices intact. Existing /fluxah with no args toggles a real window;debug is read-only."
+      },
+      {
+        "workflow": "pending/craft settled readiness and mail/vendor stages",
+        "prerequisite": "User produces matching real receipt/known deficit or uses existing simulations. Keep duplicate STOP/delayed metadata/current count and idle lifecycle. Root already observed food spell receipt;not profession craft proof.",
+        "existingCommands": [
+          "/fluxah debug",
+          "/fluxinvdebug watch 15",
+          "/fluxinvdebug report",
+          "/fluxperf capture 30"
+        ],
+        "limit": "No new /run batch/probe or runtime instrumentation added. 120-scenario actual integration remains semantic work evidence only."
+      },
+      {
+        "workflow": "mail/inbox/OpenAll/attachments/send/openclose",
+        "prerequisite": "User at mailbox with ordinary known messages and attachment slots;root controls any allowed native action. Current root attachment change retains live capacity and QuickAttach safety.",
+        "existingCommands": [
+          "/fluxperf capture 30",
+          "/fluxperf last",
+          "/fluxinvdebug watch 15",
+          "/fluxinvdebug report"
+        ],
+        "limit": "No actual mail item action or send from this agent. Keep initial exact limit plus per-slot fresh capacity/cursor/combat/class/bound semantics."
+      }
+    ],
+    "otherFindings": [
+      "AH grid scales with all configured rows:1000 modeled rows create15021/15020 widget objects and twenty paints do20000 measurements/100140 text writes. Assigned to cast agent;original all-cell fixture contract requires care.",
+      "Vendor auto buy/sell,Junk,restock lists,pending driver,receipt stage/openclose and mail native timings need controlled real contexts. No additional proven safe owner edit found in these paths beyond sealed earlier slices and this continuation.",
+      "Selected AH offer A.Need after public A.FindRow is bounded fresh purchase readiness validation,retained intentionally. Cross-call output index,full profession notification suppression and broad container getter cache were rejected as unsafe."
+    ],
+    "requirementsReview": {
+      "LHO-01": "Cast agent owns remaining cast/channel/secure/native review;commerce changes no cast cadence.",
+      "LHO-02": "New bulk warm helper onlycapacity queries;all bag publication/live-zero/charges preserved. Provider agent owns remaining fanout.",
+      "LHO-03": "No external Syndicator file edits;new models includeboth fixture modes;native provider-off remains prerequisite.",
+      "LHO-04": "Provider bank ownership unchanged;native controlled bank lifecycle remains pending.",
+      "LHO-05": "Mail peer review550checks and live safety retained;root owns native/remaining mail.",
+      "LHO-06": "New133capacity checks plus prior181bulk lifecycle/262known callbacks;61currentcommerce scripts pass;actual buys/sales/deletes remain forbidden.",
+      "LHO-07": "r27 behavior preserved;selected-offer freshvalidation retained;AH grid scale handed to cast agent.",
+      "LHO-08": "Existing actual380check/120scenario integration remainsunchanged;idle/unrelated cast work bounded.",
+      "LHO-09": "New637profession checks preservepartial/cold/unlearn/alias/closed/nativequality/material facts;allinvalidations/publications retained;profession crafts simulatedonly.",
+      "LHO-10": "Newtests fivefamilies/twoproviders;unchangedlook/features/cadence/data/commands;nativepixels/controller separate.",
+      "LHO-11": "Rootfresh2792-filecheckpoint/history125settings metadata and375baseline gate passedbefore anynewruntime edits;exactthreeowner guard verified.",
+      "LHO-12": "Threealternating before/previewpairs+13compiledcontrols+15focus;installed61pass/all1065Luastable;root finalcombined runpending.",
+      "LHO-13": "Child sentno nativeinput;existingrootclient PID40032 observationnotfreshnativeacceptance;exactnative workloads/prerequisiteslisted."
+    }
+  },
+  "scope": "Production code replay with synthetic client facts and desktop Lua5.4.6. No native profession/vendor CPU, FPS, retained-heap, taint, pixels or input acceptance.",
+  "artifacts": {
+    "candidate-comparison.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\continuation\\commerce\\candidate-comparison.json",
+      "sha256": "ed45acbaab4efb6d9b6f2655dd5cd7d60e38d78810d0b65d4ddc34f594dedfb8"
+    },
+    "baseline-results.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\continuation\\commerce\\baseline-results.json",
+      "sha256": "d17ad1abbb582d9de8d9525060e144685ef33eef8fd55b5ea2546c70d95bade7"
+    },
+    "audit-summary.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\continuation\\commerce\\audit-summary.json",
+      "sha256": "8e6863a8f64e934d727d24b255c9350f1f221b74aa888a7f27860b26a757ce7e"
+    },
+    "bulk-timing-comparison.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\continuation\\commerce\\bulk-timing-comparison.json",
+      "sha256": "9f7607b1c17e31518181361e77a5d4a3abb013ca88415bf8c2368108f733c6e7"
+    },
+    "cast-peer-review.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\continuation\\commerce\\cast-peer-review.json",
+      "sha256": "b987ff03d297997a9b070f25be67049ed5ee68e1c9cdb22fb50453a266efa841"
+    },
+    "report-draft.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\continuation\\commerce\\report-draft.json",
+      "sha256": "666705fd37c6263a98e0fc898bec459ba54bb32a57b101f4940a077af99d51fd"
+    }
+  }
+}

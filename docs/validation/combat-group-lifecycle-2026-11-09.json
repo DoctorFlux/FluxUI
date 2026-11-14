@@ -1,0 +1,748 @@
+{
+  "changeID": "COMBAT-GROUP-LIFECYCLE-20261109",
+  "requirement": "REQ-RF-98;REQ-RF-83",
+  "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\06\\01a1b0ac-547f-7972-8df9-fa26882e0e03\\combat-roster-audit-20261109T154315Z\\checkpoint.json",
+  "verifiedSourceFiles": 2463,
+  "settingsMetadata": 43,
+  "sources": [
+    {
+      "client": "live",
+      "ref": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "version": "12.1.5 (70783)",
+      "path": "version.txt",
+      "blob": "61a71eb0d9c435ad6f9f9701ab4d9c072cd3237e",
+      "sha256": "4e532c8d3beb3231ae8195704b6de0a099a19742e02505f73f292f47fe9e080b",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/version.txt"
+    },
+    {
+      "client": "live",
+      "ref": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "version": "12.1.5 (70783)",
+      "path": "Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/Blizzard_RestrictedAddOnEnvironment.toc",
+      "blob": "5e819cfa94929adfc1fb516ef20862ebe4ec6b8c",
+      "sha256": "466a8c36a02435a892c30b6060cd6ec8ab7f473c254312e8950157deb14be5a3",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/Blizzard_RestrictedAddOnEnvironment.toc"
+    },
+    {
+      "client": "live",
+      "ref": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "version": "12.1.5 (70783)",
+      "path": "Interface/AddOns/Blizzard_FrameXML/Blizzard_FrameXML.toc",
+      "blob": "aa67725ec017dfad910963e2fe04380bf3d0a8e0",
+      "sha256": "f9ca1de04824bb5bd06439640ede516bbb7d2ff5fe7f9cdce45c50e99f1422c9",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_FrameXML/Blizzard_FrameXML.toc"
+    },
+    {
+      "client": "live",
+      "ref": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "version": "12.1.5 (70783)",
+      "path": "Interface/AddOns/Blizzard_FrameXML/SecureTemplates.xml",
+      "blob": "201329f44520050f05370445bcb7d9caadf4c85a",
+      "sha256": "32e3bd4db8498bb0d9bd9ff93f1e1d21141cf21ef0b192d333188b326202851b",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_FrameXML/SecureTemplates.xml"
+    },
+    {
+      "client": "live",
+      "ref": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "version": "12.1.5 (70783)",
+      "path": "Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureStateDriver.lua",
+      "blob": "4861b5fd4a3249c97f1a2fea45a4c13833d5117c",
+      "sha256": "bebd4a4b18e610233ff8f734df7b473df08fe25b1ce383b0c7883ae962a63029",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureStateDriver.lua"
+    },
+    {
+      "client": "live",
+      "ref": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "version": "12.1.5 (70783)",
+      "path": "Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureGroupHeaders.lua",
+      "blob": "191bd3de98c6f68af2ec1c4e48c2cc6c88459381",
+      "sha256": "22db9615ad4a8d619bd1e730b8c322a93d414a579aa67d64cfda002de2f0fecc",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureGroupHeaders.lua"
+    },
+    {
+      "client": "live",
+      "ref": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "version": "12.1.5 (70783)",
+      "path": "Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureHandlers.lua",
+      "blob": "b32476a72027855fda546118e513fa44770a3a94",
+      "sha256": "d8b691f2c7e0bee2673c06fe57e854b1d205814e305eae53b72be69d7f549548",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureHandlers.lua"
+    },
+    {
+      "client": "live",
+      "ref": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "version": "12.1.5 (70783)",
+      "path": "Interface/AddOns/Blizzard_FrameXML/SecureTemplates.lua",
+      "blob": "0b7ba234696b5f1c551e7d84375900e50c824cbb",
+      "sha256": "5fd1efcbfc20b4d426187f55dbee52542d37befd1ef52082db1f466f1049929a",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_FrameXML/SecureTemplates.lua"
+    },
+    {
+      "client": "forever",
+      "ref": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "version": "1.60.1 (70862)",
+      "path": "version.txt",
+      "blob": "e02268eacf9b586ec969cf13403a15b8dd136ae8",
+      "sha256": "40632cd2240c025fafc7bb8343593d2f8bde74c1196bc678cbdaeb807c9eb6c2",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/version.txt"
+    },
+    {
+      "client": "forever",
+      "ref": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "version": "1.60.1 (70862)",
+      "path": "Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/Blizzard_RestrictedAddOnEnvironment.toc",
+      "blob": "e21ab94e052007a99f9a4aeda0983014de4710ec",
+      "sha256": "dca5214d880754035fdae1e93b1e62a4093e3deb30619d4f4951ceec1d321bc8",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/Blizzard_RestrictedAddOnEnvironment.toc"
+    },
+    {
+      "client": "forever",
+      "ref": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "version": "1.60.1 (70862)",
+      "path": "Interface/AddOns/Blizzard_FrameXML/Blizzard_FrameXML.toc",
+      "blob": "0cbffc1dc02c651a73b6d644973854f771ae8576",
+      "sha256": "545e6f04b3fcb7825782762c186f167d14a6083040cb9fd2ee328bee015e8de6",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_FrameXML/Blizzard_FrameXML.toc"
+    },
+    {
+      "client": "forever",
+      "ref": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "version": "1.60.1 (70862)",
+      "path": "Interface/AddOns/Blizzard_FrameXML/SecureTemplates.xml",
+      "blob": "201329f44520050f05370445bcb7d9caadf4c85a",
+      "sha256": "32e3bd4db8498bb0d9bd9ff93f1e1d21141cf21ef0b192d333188b326202851b",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_FrameXML/SecureTemplates.xml"
+    },
+    {
+      "client": "forever",
+      "ref": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "version": "1.60.1 (70862)",
+      "path": "Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureStateDriver.lua",
+      "blob": "4861b5fd4a3249c97f1a2fea45a4c13833d5117c",
+      "sha256": "bebd4a4b18e610233ff8f734df7b473df08fe25b1ce383b0c7883ae962a63029",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureStateDriver.lua"
+    },
+    {
+      "client": "forever",
+      "ref": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "version": "1.60.1 (70862)",
+      "path": "Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureGroupHeaders.lua",
+      "blob": "191bd3de98c6f68af2ec1c4e48c2cc6c88459381",
+      "sha256": "22db9615ad4a8d619bd1e730b8c322a93d414a579aa67d64cfda002de2f0fecc",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureGroupHeaders.lua"
+    },
+    {
+      "client": "forever",
+      "ref": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "version": "1.60.1 (70862)",
+      "path": "Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureHandlers.lua",
+      "blob": "b32476a72027855fda546118e513fa44770a3a94",
+      "sha256": "d8b691f2c7e0bee2673c06fe57e854b1d205814e305eae53b72be69d7f549548",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureHandlers.lua"
+    },
+    {
+      "client": "forever",
+      "ref": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "version": "1.60.1 (70862)",
+      "path": "Interface/AddOns/Blizzard_FrameXML/SecureTemplates.lua",
+      "blob": "66f203e31a819f383ea3c6920be8d4f6556848eb",
+      "sha256": "b6e91f1d54f269a8bd66312b368e6fd7706028d366eee0167161ace9004cae23",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_FrameXML/SecureTemplates.lua"
+    },
+    {
+      "client": "classic",
+      "ref": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "version": "5.5.4 (70631)",
+      "path": "version.txt",
+      "blob": "6888c66e55b78c6b76bdda185480facc60d9b5e5",
+      "sha256": "bcb030fe2d2febd396332d886d804ef9b397335e88f0196edc5d8dbe54c1ba38",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/version.txt"
+    },
+    {
+      "client": "classic",
+      "ref": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "version": "5.5.4 (70631)",
+      "path": "Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/Blizzard_RestrictedAddOnEnvironment.toc",
+      "blob": "035458cedb8fe6e36bdfedd8e7e0480417421d5b",
+      "sha256": "cc787045c99b37bd0a12f5c15442f0dabcab5defbf3ed2e82d0ed0a6a7e92b24",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/Blizzard_RestrictedAddOnEnvironment.toc"
+    },
+    {
+      "client": "classic",
+      "ref": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "version": "5.5.4 (70631)",
+      "path": "Interface/AddOns/Blizzard_FrameXML/SecureTemplates.xml",
+      "blob": "201329f44520050f05370445bcb7d9caadf4c85a",
+      "sha256": "32e3bd4db8498bb0d9bd9ff93f1e1d21141cf21ef0b192d333188b326202851b",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_FrameXML/SecureTemplates.xml"
+    },
+    {
+      "client": "classic",
+      "ref": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "version": "5.5.4 (70631)",
+      "path": "Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureStateDriver.lua",
+      "blob": "4861b5fd4a3249c97f1a2fea45a4c13833d5117c",
+      "sha256": "bebd4a4b18e610233ff8f734df7b473df08fe25b1ce383b0c7883ae962a63029",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureStateDriver.lua"
+    },
+    {
+      "client": "classic",
+      "ref": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "version": "5.5.4 (70631)",
+      "path": "Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureGroupHeaders.lua",
+      "blob": "c753e1b06e1d42ef271cbb880ff19174e2904061",
+      "sha256": "15a1f337614364a3d323ac491094909aeae4d7b17930a6201130cc3043c11d62",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureGroupHeaders.lua"
+    },
+    {
+      "client": "classic",
+      "ref": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "version": "5.5.4 (70631)",
+      "path": "Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureHandlers.lua",
+      "blob": "51d283b3f13303723ef2eed20ae416118e63fbd7",
+      "sha256": "c15dbb6c760d46bcc459edb82af228d469d5755966bc60e92e459ac3b5b8affe",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureHandlers.lua"
+    },
+    {
+      "client": "classic",
+      "ref": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "version": "5.5.4 (70631)",
+      "path": "Interface/AddOns/Blizzard_FrameXML/SecureTemplates.lua",
+      "blob": "e35a52fa79f9cbc38452b6b529d8734ded0938ea",
+      "sha256": "8bc0c7f6cac0340a00bec729253a6768b1ff4baa7879b70a4fdb6f4f3b287fde",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_FrameXML/SecureTemplates.lua"
+    },
+    {
+      "client": "classic",
+      "ref": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "version": "5.5.4 (70631)",
+      "path": "Interface/AddOns/Blizzard_FrameXML/Blizzard_FrameXML_Mists.toc",
+      "blob": "40f552e3d7a93d4330d97b84c053d43d6359d46f",
+      "sha256": "6ea84cc86a6ad9e919478a0e5d48dba6f2066e4157d2c6c424fe029c0c972825",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_FrameXML/Blizzard_FrameXML_Mists.toc"
+    },
+    {
+      "client": "classic_era",
+      "ref": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "version": "1.15.9 (70576)",
+      "path": "version.txt",
+      "blob": "66bc5d3c31ec0d4ac300d1ba18ffd9490ac424d9",
+      "sha256": "5224861aa41c7bcfd9d48bdd8003eb769a8954c72e3e9682035aeff5bc236f29",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4192ac60067fc55566182291bc67c85dd9b6794d/version.txt"
+    },
+    {
+      "client": "classic_era",
+      "ref": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "version": "1.15.9 (70576)",
+      "path": "Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/Blizzard_RestrictedAddOnEnvironment.toc",
+      "blob": "035458cedb8fe6e36bdfedd8e7e0480417421d5b",
+      "sha256": "cc787045c99b37bd0a12f5c15442f0dabcab5defbf3ed2e82d0ed0a6a7e92b24",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/Blizzard_RestrictedAddOnEnvironment.toc"
+    },
+    {
+      "client": "classic_era",
+      "ref": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "version": "1.15.9 (70576)",
+      "path": "Interface/AddOns/Blizzard_FrameXML/SecureTemplates.xml",
+      "blob": "201329f44520050f05370445bcb7d9caadf4c85a",
+      "sha256": "32e3bd4db8498bb0d9bd9ff93f1e1d21141cf21ef0b192d333188b326202851b",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_FrameXML/SecureTemplates.xml"
+    },
+    {
+      "client": "classic_era",
+      "ref": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "version": "1.15.9 (70576)",
+      "path": "Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureStateDriver.lua",
+      "blob": "4861b5fd4a3249c97f1a2fea45a4c13833d5117c",
+      "sha256": "bebd4a4b18e610233ff8f734df7b473df08fe25b1ce383b0c7883ae962a63029",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureStateDriver.lua"
+    },
+    {
+      "client": "classic_era",
+      "ref": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "version": "1.15.9 (70576)",
+      "path": "Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureGroupHeaders.lua",
+      "blob": "c753e1b06e1d42ef271cbb880ff19174e2904061",
+      "sha256": "15a1f337614364a3d323ac491094909aeae4d7b17930a6201130cc3043c11d62",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureGroupHeaders.lua"
+    },
+    {
+      "client": "classic_era",
+      "ref": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "version": "1.15.9 (70576)",
+      "path": "Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureHandlers.lua",
+      "blob": "51d283b3f13303723ef2eed20ae416118e63fbd7",
+      "sha256": "c15dbb6c760d46bcc459edb82af228d469d5755966bc60e92e459ac3b5b8affe",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureHandlers.lua"
+    },
+    {
+      "client": "classic_era",
+      "ref": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "version": "1.15.9 (70576)",
+      "path": "Interface/AddOns/Blizzard_FrameXML/SecureTemplates.lua",
+      "blob": "31ea34c7dc3995bac10adcd2ce57b02f06db13e2",
+      "sha256": "1c3b956e03752ab9f3bffd62ff7b5b545d57de8d8026f242c69d843cdbe32400",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_FrameXML/SecureTemplates.lua"
+    },
+    {
+      "client": "classic_era",
+      "ref": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "version": "1.15.9 (70576)",
+      "path": "Interface/AddOns/Blizzard_FrameXML/Blizzard_FrameXML_Vanilla.toc",
+      "blob": "0e7ba8212a6f7991fc0cc122d032ab095724d36a",
+      "sha256": "455fede5476f77f437bd88cd8fa456423e2353ce9733b14061c5f33de37d8e60",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_FrameXML/Blizzard_FrameXML_Vanilla.toc"
+    },
+    {
+      "client": "classic_anniversary",
+      "ref": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "version": "2.5.6 (70577)",
+      "path": "version.txt",
+      "blob": "f81737db88bfda2cd085cc09b18ca8ce764efc42",
+      "sha256": "53498c451665c69194d1a41b9983916109b370b6a261bb833322ae871838bdb3",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/version.txt"
+    },
+    {
+      "client": "classic_anniversary",
+      "ref": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "version": "2.5.6 (70577)",
+      "path": "Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/Blizzard_RestrictedAddOnEnvironment.toc",
+      "blob": "bd24f3cd5c4191180e62a5a596b3fc64a7bb3e72",
+      "sha256": "b92c4730806fea1761b934b0643677a1189ce48dc43b4b07aa643e48431aff02",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/Blizzard_RestrictedAddOnEnvironment.toc"
+    },
+    {
+      "client": "classic_anniversary",
+      "ref": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "version": "2.5.6 (70577)",
+      "path": "Interface/AddOns/Blizzard_FrameXML/SecureTemplates.xml",
+      "blob": "3b31d70084a2d28f1f6472b4907f449835557368",
+      "sha256": "24b726a6298c5eaf9022fe9dc47a7836915bfa016da872fddb88f6aa55055803",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_FrameXML/SecureTemplates.xml"
+    },
+    {
+      "client": "classic_anniversary",
+      "ref": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "version": "2.5.6 (70577)",
+      "path": "Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureStateDriver.lua",
+      "blob": "8e210c10fe046a264cba54e04f7458d995f8ad6a",
+      "sha256": "e7eb9ea10a65127d92fef048305f02a60f56ed58ee30f9a8ce16a8e0209543db",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureStateDriver.lua"
+    },
+    {
+      "client": "classic_anniversary",
+      "ref": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "version": "2.5.6 (70577)",
+      "path": "Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureGroupHeaders.lua",
+      "blob": "607ecda673094bfc303535564e54cfcfb34706fe",
+      "sha256": "f61362e585d6215b2cb3869af7b90b64c4588b2c90a9d84a4f03e4d011bfddf3",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureGroupHeaders.lua"
+    },
+    {
+      "client": "classic_anniversary",
+      "ref": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "version": "2.5.6 (70577)",
+      "path": "Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureHandlers.lua",
+      "blob": "b5928ed7de5e5b0eea1852cb0d2b1edab66e281a",
+      "sha256": "c34baf4b5bb6c8cc62ff086bbcb68185e026a31161c73b25faa847d7452a0ddb",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureHandlers.lua"
+    },
+    {
+      "client": "classic_anniversary",
+      "ref": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "version": "2.5.6 (70577)",
+      "path": "Interface/AddOns/Blizzard_FrameXML/SecureTemplates.lua",
+      "blob": "ba180de8cf11512e45d0f184d8e060efdf3471f4",
+      "sha256": "45a0e3164c63070f265e22028a829717c262cabecad21a4d090d2b663c22addf",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_FrameXML/SecureTemplates.lua"
+    },
+    {
+      "client": "classic_anniversary",
+      "ref": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "version": "2.5.6 (70577)",
+      "path": "Interface/AddOns/Blizzard_FrameXML/Blizzard_FrameXML_TBC.toc",
+      "blob": "0152219a2f67e7d9d546f9c016f9f1f8e35ea50c",
+      "sha256": "5ae2a03471dda0d61a23b2390e1206d7c4fb14f2d46fb537c305c9c2694c11ed",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_FrameXML/Blizzard_FrameXML_TBC.toc"
+    },
+    {
+      "client": "classic",
+      "ref": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "version": "5.5.4 (70631)",
+      "path": "Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureGroupHeaders.xml",
+      "blob": "37276475efef4189982a0478081fe16c78fd1010",
+      "sha256": "198ff533d2739392eb7b30bc532c5737b2e54e67e338a27376e11d57822ca722",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureGroupHeaders.xml"
+    },
+    {
+      "client": "forever",
+      "ref": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "version": "1.60.1 (70862)",
+      "path": "Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureGroupHeaders.xml",
+      "blob": "506eb026a4333f9e0cef442c9885bf80c2e66a89",
+      "sha256": "50adf4d91d88d9aacad1e869a5ccc60f0f956c8b5befd2be91eeee70bd9de58c",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureGroupHeaders.xml"
+    },
+    {
+      "client": "classic_anniversary",
+      "ref": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "version": "2.5.6 (70577)",
+      "path": "Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureGroupHeaders.xml",
+      "blob": "ff149ea789e70d456f56d1cb795c01273f0a47f5",
+      "sha256": "0703ae765929dc404e7398709217abf19be0fc7a356965bf799e79439110487a",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureGroupHeaders.xml"
+    },
+    {
+      "client": "live",
+      "ref": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "version": "12.1.5 (70783)",
+      "path": "Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureGroupHeaders.xml",
+      "blob": "506eb026a4333f9e0cef442c9885bf80c2e66a89",
+      "sha256": "50adf4d91d88d9aacad1e869a5ccc60f0f956c8b5befd2be91eeee70bd9de58c",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureGroupHeaders.xml"
+    },
+    {
+      "client": "classic_era",
+      "ref": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "version": "1.15.9 (70576)",
+      "path": "Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureGroupHeaders.xml",
+      "blob": "37276475efef4189982a0478081fe16c78fd1010",
+      "sha256": "198ff533d2739392eb7b30bc532c5737b2e54e67e338a27376e11d57822ca722",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureGroupHeaders.xml"
+    },
+    {
+      "client": "forever",
+      "ref": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "version": "1.60.1 (70862)",
+      "path": "Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureHandlerTemplates.xml",
+      "blob": "1bba76f06b5c737f21c8817b4ed5e81eface2b3c",
+      "sha256": "3a6ddca5eef3533972f0d165a21c474d5221fb8f7d5e19d5456a5d302dfd2554",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureHandlerTemplates.xml"
+    },
+    {
+      "client": "classic_era",
+      "ref": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "version": "1.15.9 (70576)",
+      "path": "Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureHandlerTemplates.xml",
+      "blob": "1bba76f06b5c737f21c8817b4ed5e81eface2b3c",
+      "sha256": "3a6ddca5eef3533972f0d165a21c474d5221fb8f7d5e19d5456a5d302dfd2554",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureHandlerTemplates.xml"
+    },
+    {
+      "client": "classic_anniversary",
+      "ref": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "version": "2.5.6 (70577)",
+      "path": "Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureHandlerTemplates.xml",
+      "blob": "f275edf2500d7e77130eb465e86d130f28be79a7",
+      "sha256": "dc884aae3565aba8a7c298abb3cdb63fdb724e932dd4a1b3fd46b948b1ac2349",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureHandlerTemplates.xml"
+    },
+    {
+      "client": "live",
+      "ref": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "version": "12.1.5 (70783)",
+      "path": "Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureHandlerTemplates.xml",
+      "blob": "1bba76f06b5c737f21c8817b4ed5e81eface2b3c",
+      "sha256": "3a6ddca5eef3533972f0d165a21c474d5221fb8f7d5e19d5456a5d302dfd2554",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureHandlerTemplates.xml"
+    },
+    {
+      "client": "classic",
+      "ref": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "version": "5.5.4 (70631)",
+      "path": "Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureHandlerTemplates.xml",
+      "blob": "1bba76f06b5c737f21c8817b4ed5e81eface2b3c",
+      "sha256": "3a6ddca5eef3533972f0d165a21c474d5221fb8f7d5e19d5456a5d302dfd2554",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureHandlerTemplates.xml"
+    }
+  ],
+  "ownedHashes": {
+    "RaidFrame/FluxRaidSecure.lua": "84dc259c2030d1cbefe87ea44b152ad87cda40856f0694fde650866e3c3d846d",
+    "RaidFrame/FluxRaidLayout.lua": "7a0c9e845f0943bd7c98f0c2257dc5e576183487c55fd2de540c1c3fce50357e",
+    "RaidFrame/FluxRaidUnit.lua": "9e53a6408b10a457fabab605b836a1a8b0386cd80e67e01569b7e31245224b72",
+    "UnitFrames/FluxUnitFrames_Party.lua": "1b81cdc7f27d74951f5ddec6bf06cfc59fd54a7a33285bb19a50cf1e4ea4129b",
+    "Binding/Input/FluxMouseoverKeybind.lua": "c4568f1c907b50236a97f52f0029d7247b6d1ae916d986ed786295038f2b6f97",
+    "tests/raid_combat_roster_transitions.lua": "1533cb0dadfb474bf87eed8da07246bddcefbf03f1fa8f371b8a331f397bf226"
+  },
+  "runtimeChanged": false,
+  "replays": [
+    {
+      "label": "replay-1",
+      "exit": 0,
+      "output": "COMBAT_ROSTER|live|compact|transitions=180|newFrames=0\nCOMBAT_ROSTER|live|normal|transitions=180|newFrames=0\nCOMBAT_ROSTER|forever|compact|transitions=180|newFrames=0\nCOMBAT_ROSTER|forever|normal|transitions=180|newFrames=0\nCOMBAT_ROSTER|classic|compact|transitions=180|newFrames=0\nCOMBAT_ROSTER|classic|normal|transitions=180|newFrames=0\nCOMBAT_ROSTER|classic_era|compact|transitions=180|newFrames=0\nCOMBAT_ROSTER|classic_era|normal|transitions=180|newFrames=0\nCOMBAT_ROSTER|classic_anniversary|compact|transitions=180|newFrames=0\nCOMBAT_ROSTER|classic_anniversary|normal|transitions=180|newFrames=0\nCombat roster transitions: 247385 checks PASS; native secure VM/taint/timing acceptance pending\n"
+    },
+    {
+      "label": "replay-2",
+      "exit": 0,
+      "output": "COMBAT_ROSTER|live|compact|transitions=180|newFrames=0\nCOMBAT_ROSTER|live|normal|transitions=180|newFrames=0\nCOMBAT_ROSTER|forever|compact|transitions=180|newFrames=0\nCOMBAT_ROSTER|forever|normal|transitions=180|newFrames=0\nCOMBAT_ROSTER|classic|compact|transitions=180|newFrames=0\nCOMBAT_ROSTER|classic|normal|transitions=180|newFrames=0\nCOMBAT_ROSTER|classic_era|compact|transitions=180|newFrames=0\nCOMBAT_ROSTER|classic_era|normal|transitions=180|newFrames=0\nCOMBAT_ROSTER|classic_anniversary|compact|transitions=180|newFrames=0\nCOMBAT_ROSTER|classic_anniversary|normal|transitions=180|newFrames=0\nCombat roster transitions: 247385 checks PASS; native secure VM/taint/timing acceptance pending\n"
+    },
+    {
+      "label": "replay-3",
+      "exit": 0,
+      "output": "COMBAT_ROSTER|live|compact|transitions=180|newFrames=0\nCOMBAT_ROSTER|live|normal|transitions=180|newFrames=0\nCOMBAT_ROSTER|forever|compact|transitions=180|newFrames=0\nCOMBAT_ROSTER|forever|normal|transitions=180|newFrames=0\nCOMBAT_ROSTER|classic|compact|transitions=180|newFrames=0\nCOMBAT_ROSTER|classic|normal|transitions=180|newFrames=0\nCOMBAT_ROSTER|classic_era|compact|transitions=180|newFrames=0\nCOMBAT_ROSTER|classic_era|normal|transitions=180|newFrames=0\nCOMBAT_ROSTER|classic_anniversary|compact|transitions=180|newFrames=0\nCOMBAT_ROSTER|classic_anniversary|normal|transitions=180|newFrames=0\nCombat roster transitions: 247385 checks PASS; native secure VM/taint/timing acceptance pending\n"
+    }
+  ],
+  "negativeControls": [
+    {
+      "label": "control-missing-header-parent",
+      "exit": 1,
+      "output": "lua: tests/raid_combat_roster_transitions.lua:38: live:compact:1:2: hidden parent is revealed\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/raid_combat_roster_transitions.lua:38: in upvalue 'check'\n\ttests/raid_combat_roster_transitions.lua:97: in local 'snapshot'\n\ttests/raid_combat_roster_transitions.lua:171: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "label": "control-missing-party-parent",
+      "exit": 1,
+      "output": "COMBAT_ROSTER|live|compact|transitions=180|newFrames=0\nlua: tests/raid_combat_roster_transitions.lua:38: live:normal:1:2: hidden parent is revealed\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/raid_combat_roster_transitions.lua:38: in upvalue 'check'\n\ttests/raid_combat_roster_transitions.lua:97: in local 'snapshot'\n\ttests/raid_combat_roster_transitions.lua:171: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "label": "control-header-left-visible",
+      "exit": 1,
+      "output": "lua: tests/raid_combat_roster_transitions.lua:38: live:compact:1:5: native header visibility\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/raid_combat_roster_transitions.lua:38: in upvalue 'check'\n\ttests/raid_combat_roster_transitions.lua:106: in local 'snapshot'\n\ttests/raid_combat_roster_transitions.lua:171: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "label": "control-subgroup-layout-not-invalidated",
+      "exit": 1,
+      "output": "lua: tests/raid_combat_roster_transitions.lua:38: live:compact:1:7: empty groups do not retain visible chrome\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/raid_combat_roster_transitions.lua:38: in upvalue 'check'\n\ttests/raid_combat_roster_transitions.lua:115: in local 'snapshot'\n\ttests/raid_combat_roster_transitions.lua:171: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "label": "control-raid-not-prepared",
+      "exit": 1,
+      "output": "lua: tests/raid_combat_roster_transitions.lua:38: live:compact:1:6: native slot follows latest roster/group index\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/raid_combat_roster_transitions.lua:38: in upvalue 'check'\n\ttests/raid_combat_roster_transitions.lua:111: in local 'snapshot'\n\ttests/raid_combat_roster_transitions.lua:171: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "label": "control-normal-party-visible-in-raid",
+      "exit": 1,
+      "output": "COMBAT_ROSTER|live|compact|transitions=180|newFrames=0\nlua: tests/raid_combat_roster_transitions.lua:38: live:normal:1:6: normal member immediate existence\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/raid_combat_roster_transitions.lua:38: in upvalue 'check'\n\ttests/raid_combat_roster_transitions.lua:129: in local 'snapshot'\n\ttests/raid_combat_roster_transitions.lua:171: in main chunk\n\t[C]: in ?\n"
+    }
+  ],
+  "coverage": "1800 transitions/replay;247385 checks/replay;two party styles,five clients,four event orders,three repetitions. Actual native state manager event-to-update path included.",
+  "nativeAcceptance": "NOT RUN. No connected native execution tool. Desktop protected-operation model cannot certify native taint, pixel parity or exact join latency.",
+  "access": "No foreground/input, settings/profiler writes, manual synchronization or publication.",
+  "sourceContracts": [
+    {
+      "client": "live",
+      "contracts": {
+        "roster-event-wakes-driver": true,
+        "pet-event-wakes-driver": true,
+        "event-resets-next-update": true,
+        "native-visibility-resolves-shown-hidden": true,
+        "native-visible-header-reconciles-roster": true,
+        "raid-template-inherits-secure-group": true
+      }
+    },
+    {
+      "client": "forever",
+      "contracts": {
+        "roster-event-wakes-driver": true,
+        "pet-event-wakes-driver": true,
+        "event-resets-next-update": true,
+        "native-visibility-resolves-shown-hidden": true,
+        "native-visible-header-reconciles-roster": true,
+        "raid-template-inherits-secure-group": true
+      }
+    },
+    {
+      "client": "classic",
+      "contracts": {
+        "roster-event-wakes-driver": true,
+        "pet-event-wakes-driver": true,
+        "event-resets-next-update": true,
+        "native-visibility-resolves-shown-hidden": true,
+        "native-visible-header-reconciles-roster": true,
+        "raid-template-inherits-secure-group": true
+      }
+    },
+    {
+      "client": "classic_era",
+      "contracts": {
+        "roster-event-wakes-driver": true,
+        "pet-event-wakes-driver": true,
+        "event-resets-next-update": true,
+        "native-visibility-resolves-shown-hidden": true,
+        "native-visible-header-reconciles-roster": true,
+        "raid-template-inherits-secure-group": true
+      }
+    },
+    {
+      "client": "classic_anniversary",
+      "contracts": {
+        "roster-event-wakes-driver": true,
+        "pet-event-wakes-driver": true,
+        "event-resets-next-update": true,
+        "native-visibility-resolves-shown-hidden": true,
+        "native-visible-header-reconciles-roster": true,
+        "raid-template-inherits-secure-group": true
+      }
+    }
+  ],
+  "installedCopies": [
+    {
+      "client": "_retail_",
+      "path": "RaidFrame/FluxRaidSecure.lua",
+      "sha256": "84dc259c2030d1cbefe87ea44b152ad87cda40856f0694fde650866e3c3d846d",
+      "matches": true
+    },
+    {
+      "client": "_retail_",
+      "path": "RaidFrame/FluxRaidLayout.lua",
+      "sha256": "7a0c9e845f0943bd7c98f0c2257dc5e576183487c55fd2de540c1c3fce50357e",
+      "matches": true
+    },
+    {
+      "client": "_retail_",
+      "path": "RaidFrame/FluxRaidUnit.lua",
+      "sha256": "9e53a6408b10a457fabab605b836a1a8b0386cd80e67e01569b7e31245224b72",
+      "matches": true
+    },
+    {
+      "client": "_retail_",
+      "path": "UnitFrames/FluxUnitFrames_Party.lua",
+      "sha256": "1b81cdc7f27d74951f5ddec6bf06cfc59fd54a7a33285bb19a50cf1e4ea4129b",
+      "matches": true
+    },
+    {
+      "client": "_retail_",
+      "path": "Binding/Input/FluxMouseoverKeybind.lua",
+      "sha256": "c4568f1c907b50236a97f52f0029d7247b6d1ae916d986ed786295038f2b6f97",
+      "matches": true
+    },
+    {
+      "client": "_forever_",
+      "path": "RaidFrame/FluxRaidSecure.lua",
+      "sha256": "84dc259c2030d1cbefe87ea44b152ad87cda40856f0694fde650866e3c3d846d",
+      "matches": true
+    },
+    {
+      "client": "_forever_",
+      "path": "RaidFrame/FluxRaidLayout.lua",
+      "sha256": "7a0c9e845f0943bd7c98f0c2257dc5e576183487c55fd2de540c1c3fce50357e",
+      "matches": true
+    },
+    {
+      "client": "_forever_",
+      "path": "RaidFrame/FluxRaidUnit.lua",
+      "sha256": "9e53a6408b10a457fabab605b836a1a8b0386cd80e67e01569b7e31245224b72",
+      "matches": true
+    },
+    {
+      "client": "_forever_",
+      "path": "UnitFrames/FluxUnitFrames_Party.lua",
+      "sha256": "1b81cdc7f27d74951f5ddec6bf06cfc59fd54a7a33285bb19a50cf1e4ea4129b",
+      "matches": true
+    },
+    {
+      "client": "_forever_",
+      "path": "Binding/Input/FluxMouseoverKeybind.lua",
+      "sha256": "c4568f1c907b50236a97f52f0029d7247b6d1ae916d986ed786295038f2b6f97",
+      "matches": true
+    },
+    {
+      "client": "_classic_",
+      "path": "RaidFrame/FluxRaidSecure.lua",
+      "sha256": "84dc259c2030d1cbefe87ea44b152ad87cda40856f0694fde650866e3c3d846d",
+      "matches": true
+    },
+    {
+      "client": "_classic_",
+      "path": "RaidFrame/FluxRaidLayout.lua",
+      "sha256": "7a0c9e845f0943bd7c98f0c2257dc5e576183487c55fd2de540c1c3fce50357e",
+      "matches": true
+    },
+    {
+      "client": "_classic_",
+      "path": "RaidFrame/FluxRaidUnit.lua",
+      "sha256": "9e53a6408b10a457fabab605b836a1a8b0386cd80e67e01569b7e31245224b72",
+      "matches": true
+    },
+    {
+      "client": "_classic_",
+      "path": "UnitFrames/FluxUnitFrames_Party.lua",
+      "sha256": "1b81cdc7f27d74951f5ddec6bf06cfc59fd54a7a33285bb19a50cf1e4ea4129b",
+      "matches": true
+    },
+    {
+      "client": "_classic_",
+      "path": "Binding/Input/FluxMouseoverKeybind.lua",
+      "sha256": "c4568f1c907b50236a97f52f0029d7247b6d1ae916d986ed786295038f2b6f97",
+      "matches": true
+    },
+    {
+      "client": "_classic_era_",
+      "path": "RaidFrame/FluxRaidSecure.lua",
+      "sha256": "84dc259c2030d1cbefe87ea44b152ad87cda40856f0694fde650866e3c3d846d",
+      "matches": true
+    },
+    {
+      "client": "_classic_era_",
+      "path": "RaidFrame/FluxRaidLayout.lua",
+      "sha256": "7a0c9e845f0943bd7c98f0c2257dc5e576183487c55fd2de540c1c3fce50357e",
+      "matches": true
+    },
+    {
+      "client": "_classic_era_",
+      "path": "RaidFrame/FluxRaidUnit.lua",
+      "sha256": "9e53a6408b10a457fabab605b836a1a8b0386cd80e67e01569b7e31245224b72",
+      "matches": true
+    },
+    {
+      "client": "_classic_era_",
+      "path": "UnitFrames/FluxUnitFrames_Party.lua",
+      "sha256": "1b81cdc7f27d74951f5ddec6bf06cfc59fd54a7a33285bb19a50cf1e4ea4129b",
+      "matches": true
+    },
+    {
+      "client": "_classic_era_",
+      "path": "Binding/Input/FluxMouseoverKeybind.lua",
+      "sha256": "c4568f1c907b50236a97f52f0029d7247b6d1ae916d986ed786295038f2b6f97",
+      "matches": true
+    },
+    {
+      "client": "_anniversary_",
+      "path": "RaidFrame/FluxRaidSecure.lua",
+      "sha256": "84dc259c2030d1cbefe87ea44b152ad87cda40856f0694fde650866e3c3d846d",
+      "matches": true
+    },
+    {
+      "client": "_anniversary_",
+      "path": "RaidFrame/FluxRaidLayout.lua",
+      "sha256": "7a0c9e845f0943bd7c98f0c2257dc5e576183487c55fd2de540c1c3fce50357e",
+      "matches": true
+    },
+    {
+      "client": "_anniversary_",
+      "path": "RaidFrame/FluxRaidUnit.lua",
+      "sha256": "9e53a6408b10a457fabab605b836a1a8b0386cd80e67e01569b7e31245224b72",
+      "matches": true
+    },
+    {
+      "client": "_anniversary_",
+      "path": "UnitFrames/FluxUnitFrames_Party.lua",
+      "sha256": "1b81cdc7f27d74951f5ddec6bf06cfc59fd54a7a33285bb19a50cf1e4ea4129b",
+      "matches": true
+    },
+    {
+      "client": "_anniversary_",
+      "path": "Binding/Input/FluxMouseoverKeybind.lua",
+      "sha256": "c4568f1c907b50236a97f52f0029d7247b6d1ae916d986ed786295038f2b6f97",
+      "matches": true
+    }
+  ],
+  "fullValidation": {
+    "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\06\\01a1b0ac-547f-7972-8df9-fa26882e0e03\\combat-roster-audit-20261109T154315Z\\full.json",
+    "sha256": "db6f7c1e10dd8e07593ca76d328fed5f45fd46f628ae27666db24cd6eac9840c",
+    "pass": 274,
+    "fail": 0,
+    "syntaxFiles": 944,
+    "manifestMatches": true
+  },
+  "sourceGuard": {
+    "allCurrentLuaMatchesFullManifest": true,
+    "preexistingRuntimeMatchesCheckpoint": true,
+    "runtimeChanges": []
+  },
+  "documentationValidation": {
+    "referenceBuild": "PASS",
+    "validator": "PASS:977 classified sources;605reachable;425settings;24SavedVariables;15936links",
+    "log": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\06\\01a1b0ac-547f-7972-8df9-fa26882e0e03\\combat-roster-audit-20261109T154315Z\\docs-validation.log",
+    "finalLuaCorpusMatchesFull": true
+  }
+}

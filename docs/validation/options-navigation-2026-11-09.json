@@ -1,0 +1,128 @@
+{
+  "date": "2026-11-09",
+  "change_id": "OPTIONS-NAVIGATION-20261109",
+  "parent_change": "OPTIONS-REWORK-20261109",
+  "user_clarification": "Use same categories and setting locations as Naowh Forever; moves and reorganization explicitly authorized",
+  "reference": {
+    "path": "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\__AddonsForRef\\Naowth Forever\\NaowhForever\\Core\\Options\\Modules.lua",
+    "version": "1.2.19",
+    "rawSHA256": "6158e1a09faf1cf5a4b8cc61a03c35d9f86d42b6044d6d53dc928091a764ef4f",
+    "license": "Own source/art all rights reserved; design inspection only"
+  },
+  "ownedNormalizedSHA256": {
+    "AddonOptions/FluxOptions.lua": "d261943ff84df4515dfc443cede70e37d2578ad28068da120800fa0fe20e1810",
+    "AddonOptions/FluxOptionsCatalog.lua": "8add5c219a230d39eb9050beda91280d16a52c7e35a35a1579147440b1273a7d",
+    "AddonOptions/FluxOptionsNavigation.lua": "c1e8aecb9ba0967747c1e63ce90cbacf7defb56e3a7a3b2119a3ed066bcf2f62",
+    "AddonOptions/FluxOptionsRender.lua": "d891a227a481648c67d6cab1ace2acfdeb1ffb75e179c3307d7a94f8164553aa",
+    "AddonOptions/FluxOptionsShell.lua": "f9fedf1bcc909112f6b4c94ed4c6f469c598f9868a451f9ed3ef6dd968e6029f",
+    "AddonOptions/FluxOptionsWidgets.lua": "4c030354c09a5f8addaa3cdf3ea5a17b57ed561ff41b570bdda90e8a05151d32",
+    "AddonOptions/FluxOptionsSkin.lua": "3f22be01e5333caa5564f42745cd6c7a530994209be476522dba5da4b856a981",
+    "AddonOptions/FluxOptionsGameMenu.lua": "7265946dfae4b45b5a3417b15ff0772dd102619e14256db510ba70938c616e16",
+    "_FluxUI.toc": "f40a0ee261ba97aeeba9205c280a5cd0f2962c02e6a4dcd03b6ae166b5329aac",
+    "tests/options_navigation.lua": "1a4d151697d87066e582e60023fe729c2dc643c13f74555d5fc6b77a18f7aeee",
+    "tests/options_rework.lua": "c67919024e5394f7f1db09444a05005ffda2cabc7f754e265aead27b66e491bc"
+  },
+  "focused": {
+    "declarationChecks": 4908,
+    "shellLifecycleChecks": 421,
+    "mappedDeclarations": {
+      "live": 468,
+      "forever": 468,
+      "classic": 471,
+      "classic_era": 471,
+      "classic_anniversary": 471
+    },
+    "scope": "Real source builders in desktop models; not visible controls for one native character"
+  },
+  "mapping": "options-navigation-map-2026-11-09.csv",
+  "negativeControls": "options-navigation-controls-2026-11-09.json",
+  "fullReport": "options-navigation-full-2026-11-09.json",
+  "fidelitySources": [
+    "options-fidelity-sources-2026-11-09.json",
+    "options-scroll-sources-2026-11-09.json"
+  ],
+  "recovery": "options-fidelity-checkpoint-2026-11-09.json",
+  "sourceContext": "Original option objects/root/info paths; no source table or saved schema migrations; owner API for feature-local button visibility",
+  "routeCompatibility": "Original IDs redirected; action-bar internal helper opens Settings",
+  "nativeResults": "NOT RUN: selected Witchcraft route still absent and setup approval pending",
+  "gameInput": false,
+  "settingsWrites": false,
+  "profilerWrites": false,
+  "manualSync": false,
+  "publication": false,
+  "acceptedSidebar": "options-sidebar-reference-2026-11-09.json",
+  "referenceIcons": "Fitting catalog icons visible on every feature and fixed system row on all clients; user request supersedes interim hidden Forever icons",
+  "full": {
+    "pass": 272,
+    "fail": 0,
+    "syntaxFiles": 942,
+    "syntaxFailures": 0,
+    "currentCorpusDrift": []
+  },
+  "clientCopiesMatch": {
+    "_forever_": {
+      "AddonOptions/FluxOptions.lua": true,
+      "AddonOptions/FluxOptionsCatalog.lua": true,
+      "AddonOptions/FluxOptionsNavigation.lua": true,
+      "AddonOptions/FluxOptionsRender.lua": true,
+      "AddonOptions/FluxOptionsShell.lua": true,
+      "AddonOptions/FluxOptionsWidgets.lua": true,
+      "AddonOptions/FluxOptionsSkin.lua": true,
+      "AddonOptions/FluxOptionsGameMenu.lua": true,
+      "_FluxUI.toc": true
+    },
+    "_classic_": {
+      "AddonOptions/FluxOptions.lua": true,
+      "AddonOptions/FluxOptionsCatalog.lua": true,
+      "AddonOptions/FluxOptionsNavigation.lua": true,
+      "AddonOptions/FluxOptionsRender.lua": true,
+      "AddonOptions/FluxOptionsShell.lua": true,
+      "AddonOptions/FluxOptionsWidgets.lua": true,
+      "AddonOptions/FluxOptionsSkin.lua": true,
+      "AddonOptions/FluxOptionsGameMenu.lua": true,
+      "_FluxUI.toc": true
+    },
+    "_classic_era_": {
+      "AddonOptions/FluxOptions.lua": true,
+      "AddonOptions/FluxOptionsCatalog.lua": true,
+      "AddonOptions/FluxOptionsNavigation.lua": true,
+      "AddonOptions/FluxOptionsRender.lua": true,
+      "AddonOptions/FluxOptionsShell.lua": true,
+      "AddonOptions/FluxOptionsWidgets.lua": true,
+      "AddonOptions/FluxOptionsSkin.lua": true,
+      "AddonOptions/FluxOptionsGameMenu.lua": true,
+      "_FluxUI.toc": true
+    },
+    "_anniversary_": {
+      "AddonOptions/FluxOptions.lua": true,
+      "AddonOptions/FluxOptionsCatalog.lua": true,
+      "AddonOptions/FluxOptionsNavigation.lua": true,
+      "AddonOptions/FluxOptionsRender.lua": true,
+      "AddonOptions/FluxOptionsShell.lua": true,
+      "AddonOptions/FluxOptionsWidgets.lua": true,
+      "AddonOptions/FluxOptionsSkin.lua": true,
+      "AddonOptions/FluxOptionsGameMenu.lua": true,
+      "_FluxUI.toc": true
+    }
+  },
+  "nativeVisualObservation": {
+    "utc": "2026-11-09T13:45:34.045220+00:00",
+    "executable": "F:/World of Warcraft/_forever_/Wow.exe",
+    "pid": 49960,
+    "windowTitle": "World of Warcraft",
+    "windowHandle": 361306470,
+    "dimensions": [
+      1906,
+      1032
+    ],
+    "foreground": true,
+    "capture": "PrintWindow of verified window only; private PNG retained outside AddOns",
+    "observation": "Gameplay visible; options not open; no candidate sidebar comparison",
+    "foregroundOrInputControl": false,
+    "WitchcraftErrors": "NOT RUN; setup approval still pending",
+    "performanceMeasurement": false
+  },
+  "launcherCombatPolicy": "New convenience buttons for native collection/trinket configuration are disabled and guarded during combat; existing HUD owners unchanged",
+  "supersededBy": "options-sorting-2026-11-09.json",
+  "evidenceStatus": "Historical literal taxonomy; current placement CSV is maintained by latest sorting report"
+}

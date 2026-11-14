@@ -643,8 +643,6 @@ function Refresh.Attach(opts)
                 local Bridge = _G.FluxEBSConsumableBridge
                 if Bridge and Bridge.ResetFluxTooltipGap then
                     Bridge.ResetFluxTooltipGap(tip)
-                else
-                    tip._fluxEbsGapDone = nil
                 end
                 pcall(opts.showTooltipExtras, self, tip)
                 if FluxSafeGameTooltipShow then

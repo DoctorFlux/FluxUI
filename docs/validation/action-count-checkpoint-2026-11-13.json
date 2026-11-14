@@ -1,0 +1,18 @@
+{
+  "captured_utc": "20261113T142900Z",
+  "external_directory": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d54c-2b4f-7c41-a69e-20e54adacadb\\action-counts-20261113T142900Z",
+  "branch": "main",
+  "head": "26f886e3ea5371b196ab235d2dace0c156002285",
+  "hooks_path": ".githooks",
+  "source_files": 2712,
+  "zip_verified": true,
+  "bundle_verified": true,
+  "settings_metadata_count": 47,
+  "private_settings_copied": false,
+  "live_changed_during_capture": [],
+  "archives": {
+    "source.zip": "fd25b15bd4eddfcea652e807d385006d23765a82710bb0e522ec87dc8a3518fc",
+    "history.bundle": "c7e12c8f07949e93d4fc45410c645b9e09b7f4b8fdceb28a03e6223e6e2f104c",
+    "source-sha256.json": "79888a13d1dcede1f23582de743d2e0d7b45ffee499b21ef8961f09d1f37edf9"
+  }
+}

@@ -1,5 +1,38 @@
 local addonName, ns = ...
 
+-- English fallback catalog for the new vendor control. Locale overrides can
+-- supply these stable keys without changing the saved preference identity.
+ns.FluxOptionsLocale = ns.FluxOptionsLocale or {}
+local L = ns.FluxOptionsLocale
+local function AuctionUpgradeOption(kind, label, order)
+    return {
+        type = "toggle", width = "full", order = order,
+        name = function() return L[label] end,
+        desc = function() return L.AH_UPGRADE_OPTION_HELP end,
+        get = function()
+            local auction = _G.FluxAuctionRestock
+            if auction then return auction.IsUpgradeEnabled(kind) end
+            return kind ~= "bandage"
+        end,
+        set = function(_, value)
+            local auction = _G.FluxAuctionRestock
+            if auction then auction.SetUpgradeEnabled(kind, value) end
+        end,
+        disabled = function()
+            local auction = _G.FluxAuctionRestock
+            return auction and (auction.transaction ~= nil or auction.state == "quoting") or false
+        end,
+    }
+end
+L.AUTO_OPEN_VENDOR = L.AUTO_OPEN_VENDOR or "Auto open vendor"
+L.AUTO_OPEN_VENDOR_DESC = L.AUTO_OPEN_VENDOR_DESC or
+    "Instantly open the shop when gossip has exactly one available vendor choice and no quests. Hold Shift to keep the gossip open."
+L.AUTO_OPEN_BANK = L.AUTO_OPEN_BANK or "Auto open bank"
+L.AUTO_OPEN_BANK_DESC = L.AUTO_OPEN_BANK_DESC or
+    "Instantly open the bank when gossip has exactly one available bank choice and no quests. Hold Shift to keep the gossip open."
+L.GOSSIP_AUTO_OPEN_HELP = L.GOSSIP_AUTO_OPEN_HELP or
+    "Check to open this window now and automatically on future visits with one choice and no quests. Hold Shift when talking to the NPC to show this checkbox again."
+
 local function NotifyVendorSettingsChanged()
     local FV = _G.FluxVendorAuto
     if FV and FV.NotifyVendorSettingsChanged then
@@ -11,6 +44,72 @@ end
 
 _G.FluxOptionsToggleGridSections = {
     automation = {
+        {
+            key = "autoAuctionFollowup",
+            name = function() return L.AH_FOLLOWUP_AUTO or "Automate auction restock follow-up" end,
+            desc = function() return L.AH_FOLLOWUP_AUTO_HELP or "Collect this restock's mail, bank materials and vendor materials when their window opens. Auctions and crafting still require a click." end,
+            get = function()
+                local followup = _G.FluxAuctionRestock and FluxAuctionRestock.Followup
+                return followup and followup.IsAutoEnabled and followup.IsAutoEnabled() == true or false
+            end,
+            set = function(value)
+                local followup = _G.FluxAuctionRestock and FluxAuctionRestock.Followup
+                if followup and followup.SetAutoEnabled then followup.SetAutoEnabled(value == true) end
+            end,
+        },
+        {
+            key = "autoMailRestock",
+            name = function() return L.MAIL_RESTOCK_AUTO_OPTION or "Auto restock mail" end,
+            desc = function() return L.MAIL_RESTOCK_AUTO_HELP or "Automatically collect auction restock items when you visit a mailbox, respecting your mail limits." end,
+            get = function()
+                local mail = ns.Flux and ns.Flux.Mail
+                return mail and mail.GetSetting and mail.GetSetting("Restock", "AutoCollect") == true or false
+            end,
+            set = function(value)
+                local mail = ns.Flux and ns.Flux.Mail
+                if mail and mail.SetSetting then mail.SetSetting("Restock", "AutoCollect", value == true) end
+            end,
+        },
+        {
+            key = "autoOpenVendorGossip",
+            name = L.AUTO_OPEN_VENDOR,
+            desc = L.AUTO_OPEN_VENDOR_DESC,
+            hidden = function()
+                local FV = _G.FluxVendorAuto
+                return not (FV and FV.IsVendorGossipSupported and FV.IsVendorGossipSupported())
+            end,
+            get = function()
+                local FV = _G.FluxVendorAuto
+                local s = FV and FV.EnsureSettings and FV.EnsureSettings()
+                return s and s.autoOpenVendorGossip == true or false
+            end,
+            set = function(val)
+                local FV = _G.FluxVendorAuto
+                if not FV or not FV.EnsureSettings then return end
+                FV.EnsureSettings().autoOpenVendorGossip = val and true or false
+                if FV.RefreshVendorGossip then FV.RefreshVendorGossip() end
+            end,
+        },
+        {
+            key = "autoOpenBankGossip",
+            name = L.AUTO_OPEN_BANK,
+            desc = L.AUTO_OPEN_BANK_DESC,
+            hidden = function()
+                local FV = _G.FluxVendorAuto
+                return not (FV and FV.IsVendorGossipSupported and FV.IsVendorGossipSupported())
+            end,
+            get = function()
+                local FV = _G.FluxVendorAuto
+                local s = FV and FV.EnsureSettings and FV.EnsureSettings()
+                return s and s.autoOpenBankGossip == true or false
+            end,
+            set = function(val)
+                local FV = _G.FluxVendorAuto
+                if not FV or not FV.EnsureSettings then return end
+                FV.EnsureSettings().autoOpenBankGossip = val and true or false
+                if FV.RefreshVendorGossip then FV.RefreshVendorGossip() end
+            end,
+        },
         {
             key = "autoRepair",
             name = "Auto repair",
@@ -508,6 +607,24 @@ local function BuildVendorOptions()
         end,
     }
 
+    vendorArgs.keepWeakerHeader = { type = "header", order = 34,
+        name = function() return L.RESTOCK_KEEP_WEAKER_HEADER end }
+    for index, entry in ipairs({ { "bandage", "BANDAGE" }, { "healPotion", "HEAL" }, { "manaPotion", "MANA" } }) do
+        local kind, label = entry[1], entry[2]
+        vendorArgs["keepWeaker_" .. kind] = {
+            type = "toggle", order = 34 + index / 10, width = "full",
+            name = function() return L["RESTOCK_KEEP_WEAKER_" .. label] end,
+            desc = function() return L.RESTOCK_KEEP_WEAKER_HELP end,
+            get = function()
+                local tiers = _G.FluxRestockTiers
+                return not tiers or not tiers.IsCarriedUpgradeRequired or tiers.IsCarriedUpgradeRequired(kind)
+            end,
+            set = function(_, enabled)
+                local tiers = _G.FluxRestockTiers
+                if tiers and tiers.SetCarriedUpgradeRequired then tiers.SetCarriedUpgradeRequired(kind, enabled) end
+            end,
+        }
+    end
     return {
         name = "Inventory",
         type = "group",
@@ -536,6 +653,79 @@ local function BuildVendorOptions()
                         order = 1,
                         fontSize = "small",
                         width = "full",
+                    },
+                    auctionRestock = {
+                        type = "execute",
+                        name = function() return L.AH_OPEN or "Auction restock & prices" end,
+                        desc = function() return L.AH_OPEN_DESC or "Set maximum unit prices for auction restocking." end,
+                        order = 1.5,
+                        width = "full",
+                        func = function()
+                            local auction = _G.FluxAuctionRestock
+                            if auction and auction.Toggle then auction.Toggle() end
+                        end,
+                    },
+                    auctionCrafting = {
+                        type = "toggle",
+                        name = function() return L.AH_CRAFT_TOGGLE or "Prefer crafting materials" end,
+                        desc = function() return L.AH_CRAFT_TOGGLE_HELP or "Compare learned recipes with buying the finished item." end,
+                        order = 1.6,
+                        width = "full",
+                        get = function()
+                            local auction = _G.FluxAuctionRestock
+                            return auction and auction.PreferCrafting and auction.PreferCrafting() or false
+                        end,
+                        set = function(_, value)
+                            local auction = _G.FluxAuctionRestock
+                            if auction and auction.SetPreferCrafting then auction.SetPreferCrafting(value) end
+                        end,
+                    },
+                    auctionExcludeDiscolored = {
+                        type = "toggle", order = 1.65, width = "full",
+                        name = function() return L.AH_EXCLUDE_DISCOLORED end,
+                        desc = function() return L.AH_EXCLUDE_DISCOLORED_HELP end,
+                        get = function()
+                            local auction = _G.FluxAuctionRestock
+                            return not auction or auction.ExcludesDiscoloredHealing()
+                        end,
+                        set = function(_, enabled)
+                            local auction = _G.FluxAuctionRestock
+                            if auction then auction.SetExcludeDiscoloredHealing(enabled) end
+                        end,
+                    },
+                    auctionUpgradeHeal = AuctionUpgradeOption("healPotion", "AH_UPGRADE_HEAL_OPTION", 1.61),
+                    auctionUpgradeMana = AuctionUpgradeOption("manaPotion", "AH_UPGRADE_MANA_OPTION", 1.62),
+                    auctionUpgradeBandage = AuctionUpgradeOption("bandage", "AH_UPGRADE_BANDAGE_OPTION", 1.63),
+                    auctionUpgradeBlacklistAdd = {
+                        type = "input", order = 1.7, width = "full",
+                        name = function() return L.AH_UPGRADE_BLACKLIST_ADD end,
+                        desc = function() return L.AH_UPGRADE_BLACKLIST_ADD_HELP end,
+                        get = function() return "" end,
+                        validate = function(_, value)
+                            local auction = _G.FluxAuctionRestock
+                            return auction and auction.UpgradeItemID(value) and true or L.AH_UPGRADE_BLACKLIST_INVALID
+                        end,
+                        set = function(_, value)
+                            local auction = _G.FluxAuctionRestock
+                            if auction then auction.SetUpgradeBlacklisted(value, true) end
+                        end,
+                    },
+                    auctionUpgradeBlacklist = {
+                        type = "multiselect", order = 1.8, width = "full",
+                        name = function() return L.AH_UPGRADE_BLACKLIST_LIST end,
+                        desc = function() return L.AH_UPGRADE_BLACKLIST_LIST_HELP end,
+                        values = function()
+                            local auction = _G.FluxAuctionRestock
+                            return auction and auction.UpgradeBlacklistItems() or {}
+                        end,
+                        get = function(_, id)
+                            local auction = _G.FluxAuctionRestock
+                            return auction and auction.IsUpgradeBlacklisted(id) or false
+                        end,
+                        set = function(_, id, excluded)
+                            local auction = _G.FluxAuctionRestock
+                            if auction then auction.SetUpgradeBlacklisted(id, excluded) end
+                        end,
                     },
                     restockPanel = {
                         type = "description",

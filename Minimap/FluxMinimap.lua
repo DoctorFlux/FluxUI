@@ -225,6 +225,7 @@ FluxMinimap:SetScript("OnEvent", function(self, event, ...)
             self:RefreshInfoBarZoneFit()
         end
     elseif event == "PLAYER_REGEN_ENABLED" then
+        local reconcileButtons = #minimapPositionQueue > 0 or self.pendingEmbed or self.pendingRestore
         -- Process queued minimap positioning operations
         if #minimapPositionQueue > 0 then
             for _, queuedOp in ipairs(minimapPositionQueue) do
@@ -284,6 +285,14 @@ FluxMinimap:SetScript("OnEvent", function(self, event, ...)
         if self.pendingRestore then
             self.pendingRestore = nil
             self:RestoreToNormal()
+        end
+        if reconcileButtons and FluxMinimapButtons then
+            if embeddedState.isEmbedded and embeddedState.parentFrame and Minimap:IsShown() then
+                FluxMinimapButtons:PositionInWindow(embeddedState.parentFrame)
+            else
+                FluxMinimapButtons:OnEmbedStateChanged(false)
+            end
+            if FluxMinimapButtons.RequestRefresh then FluxMinimapButtons:RequestRefresh() end
         end
     elseif event == "UPDATE_INSTANCE_INFO" or event == "PLAYER_DIFFICULTY_CHANGED" or event == "INSTANCE_GROUP_SIZE_CHANGED" or event == "GROUP_ROSTER_UPDATE" or event == "MINIMAP_UPDATE_TRACKING" then
         -- Update instance difficulty and tracking when relevant events occur
@@ -601,7 +610,9 @@ function FluxMinimap:EnforcePosition()
     local inset = (FluxBorder and FluxBorder.CanUseAtlases and FluxBorder:CanUseAtlases()) and 4 or 2
     local topOffset = inset - 24
     
-    Minimap:SetPoint(CONFIG.Position[1], CONFIG.Position[2], CONFIG.Position[3], 0, topOffset)
+    local sideOffset = FluxMinimapButtons and FluxMinimapButtons.GetMinimapOffset
+        and FluxMinimapButtons:GetMinimapOffset() or 0
+    Minimap:SetPoint(CONFIG.Position[1], CONFIG.Position[2], CONFIG.Position[3], sideOffset, topOffset)
     Minimap:SetScale(CONFIG.Scale)
     
     -- Blizzard reads the cluster's height during protected action-bar layout.
@@ -1445,9 +1456,12 @@ function FluxMinimap:UpdateQuestTrackerPosition()
         availableHeight = math.max(300, screenHeight * 0.4)  -- ~40% of screen, min 300px
     end
 
+    local dockX = FluxMinimapButtons and FluxMinimapButtons.GetTrackerOffset
+        and FluxMinimapButtons:GetTrackerOffset() or 0
     local snap = questTracker._fluxDockSnap
     if questTracker.fluxInitialized and snap
         and snap.embedded == isMinimapMode
+        and (snap.dockX or 0) == dockX
         and math.abs((snap.height or 0) - availableHeight) < 0.5
         and snap.parent and questTracker:GetParent() == snap.parent then
         questTracker.fluxSettingPosition = false
@@ -1490,11 +1504,15 @@ function FluxMinimap:UpdateQuestTrackerPosition()
     -- unhooks the tracker for a frame on every Flux window tab click.
     local wantRel = isMinimapMode and UIParent or Minimap
     local wantRelPoint = isMinimapMode and "TOPRIGHT" or "BOTTOMRIGHT"
+    local anchorX = dockX
+    if anchorFrame.GetEffectiveScale and UIParent.GetEffectiveScale then
+        anchorX = dockX * UIParent:GetEffectiveScale() / anchorFrame:GetEffectiveScale()
+    end
     local needAnchor = true
     if anchorFrame.GetNumPoints and anchorFrame:GetNumPoints() == 1 then
         local point, rel, relPoint, x, y = anchorFrame:GetPoint(1)
         if point == "TOPRIGHT" and rel == wantRel and relPoint == wantRelPoint
-            and math.abs(x or 0) < 0.5 and math.abs(y or 0) < 0.5 then
+            and math.abs((x or 0) - anchorX) < 0.5 and math.abs(y or 0) < 0.5 then
             needAnchor = false
         end
     end
@@ -1504,9 +1522,9 @@ function FluxMinimap:UpdateQuestTrackerPosition()
             anchorFrame:SetClampedToScreen(true)
         end
         if s.SafeSetPoint then
-            s.SafeSetPoint(anchorFrame, "TOPRIGHT", wantRel, wantRelPoint, 0, 0)
+            s.SafeSetPoint(anchorFrame, "TOPRIGHT", wantRel, wantRelPoint, anchorX, 0)
         else
-            anchorFrame:SetPoint("TOPRIGHT", wantRel, wantRelPoint, 0, 0)
+            anchorFrame:SetPoint("TOPRIGHT", wantRel, wantRelPoint, anchorX, 0)
         end
     elseif anchorFrame.SetClampedToScreen then
         anchorFrame:SetClampedToScreen(true)
@@ -1611,6 +1629,7 @@ function FluxMinimap:UpdateQuestTrackerPosition()
     
     questTracker._fluxDockSnap = {
         embedded = isMinimapMode,
+        dockX = dockX,
         height = availableHeight,
         parent = questTracker:GetParent(),
     }
@@ -2193,6 +2212,7 @@ function FluxMinimap:EmbedInFrame(parentFrame)
     
     -- Already embedded in this parent
     if embeddedState.isEmbedded and embeddedState.parentFrame == parentFrame then
+        self:RefreshEmbeddedLayout()
         return true
     end
     
@@ -2239,8 +2259,7 @@ function FluxMinimap:EmbedInFrame(parentFrame)
     end
     
     -- Calculate minimap size (square, fit within available height)
-    local availableHeight = parentHeight - infoBarHeight + inset
-    local mapSize = math.min(parentWidth, availableHeight)  -- Keep it square
+    local mapSize = self:CalculateEmbeddedMapSize(parentWidth, parentHeight, inset)
     
     -- SAFE OPERATIONS (can be done during combat):
     -- SetSize, SetScale, SetFrameStrata, SetFrameLevel, Show() are all safe
@@ -2364,8 +2383,7 @@ function FluxMinimap:EmbedInFrame(parentFrame)
             if currentParentWidth and currentParentWidth > 0 and currentParentHeight and currentParentHeight > 0 then
                 local inset = (FluxBorder and FluxBorder.CanUseAtlases and FluxBorder:CanUseAtlases()) and 4 or 2
                 local infoBarHeight = 24
-                local availableHeight = currentParentHeight - infoBarHeight + inset
-                local newMapSize = math.min(currentParentWidth, availableHeight)
+                local newMapSize = self:CalculateEmbeddedMapSize(currentParentWidth, currentParentHeight, inset)
                 
                 -- Get current minimap size
                 local currentMapSize = Minimap:GetWidth()
@@ -2392,6 +2410,9 @@ function FluxMinimap:EmbedInFrame(parentFrame)
                         if FluxMinimap.InfoBar then
                             FluxMinimap.InfoBar:ClearAllPoints()
                             FluxMinimap.InfoBar:SetPoint("BOTTOMRIGHT", Minimap, "TOPRIGHT", 0, -inset)
+                        end
+                        if FluxMinimapButtons and FluxMinimapButtons.RefreshLayout then
+                            FluxMinimapButtons:RefreshLayout()
                         end
                     end
                 end
@@ -2435,6 +2456,46 @@ function FluxMinimap:EmbedInFrame(parentFrame)
     end
 
     return true
+end
+
+-- Window/count changes and the startup watcher use the same automatic map fit.
+function FluxMinimap:RefreshEmbeddedLayout()
+    if not embeddedState.isEmbedded or not embeddedState.parentFrame then return end
+    if InCombatLockdown() then
+        if Flux and Flux.Combat then
+            Flux.Combat.Defer("minimap.embedded.layout", function() self:RefreshEmbeddedLayout() end)
+        end
+        return
+    end
+    local parent = embeddedState.parentFrame
+    local width, height = parent:GetSize()
+    if not width or width <= 0 or not height or height <= 0 then return end
+    local inset = (FluxBorder and FluxBorder.CanUseAtlases and FluxBorder:CanUseAtlases()) and 4 or 2
+    local size = self:CalculateEmbeddedMapSize(width, height, inset)
+    local changed = math.abs(Minimap:GetWidth() - size) > 0.1
+    Minimap:SetSize(size, size)
+    Minimap:ClearAllPoints()
+    Minimap:SetPoint("TOPRIGHT", parent, "TOPRIGHT", 0, -24 + inset)
+    if self.InfoBar then
+        self.InfoBar:SetWidth(size)
+        self.InfoBar:ClearAllPoints()
+        self.InfoBar:SetPoint("BOTTOMRIGHT", Minimap, "TOPRIGHT", 0, -inset)
+        if self.RefreshInfoBarZoneFit then self:RefreshInfoBarZoneFit() end
+    end
+    if FluxMinimapButtons and FluxMinimapButtons.RefreshLayout then
+        FluxMinimapButtons:RefreshLayout()
+    end
+    if changed then
+        self:PositionIndicators()
+        if self.Refresh then self:Refresh() end
+    end
+end
+
+-- Keep the map square and leave a usable strip in narrow/tall hosts.
+function FluxMinimap:CalculateEmbeddedMapSize(width, height, inset)
+    local reserve = FluxMinimapButtons and FluxMinimapButtons.GetEmbeddedWidthReserve
+        and FluxMinimapButtons:GetEmbeddedWidthReserve(width, inset) or 0
+    return math.max(0, math.min(width - reserve, height - 24 + inset))
 end
 
 --- Restore the Minimap to its normal position (top-right corner)
@@ -2694,3 +2755,164 @@ if addonTable.Flux and addonTable.Flux.Module then
         end,
     })
 end
+
+-- BEGIN FLUX MINIMAP TRACKING
+-- Built into this already-loaded file so existing client TOC lists need no update.
+-- Behavior reference: ForeverMinimapTarget v1.0.1, Ashtar Senior (GPL-3.0-or-later).
+-- Independently implemented against native APIs; no reference source/art embedded.
+do
+local _, ns = ...
+local Flux = ns.Flux
+if not Flux.MinimapTracking then
+local Tracking = {}
+Flux.MinimapTracking = Tracking
+
+local keys = { "Target", "Focus" }
+local preferences
+local generation = 0
+local nativeEntries = {}
+
+local function Supported()
+    if C_GameRules and C_GameRules.IsGameRuleActive and Enum and Enum.GameRule
+        and Enum.GameRule.IngameTrackingDisabled ~= nil
+        and C_GameRules.IsGameRuleActive(Enum.GameRule.IngameTrackingDisabled) then
+        return false
+    end
+    local api = C_Minimap
+    local filters = Enum and Enum.MinimapTrackingFilter
+    return api and type(api.GetTrackingFilter) == "function"
+        and type(api.GetNumTrackingTypes) == "function"
+        and type(api.GetTrackingInfo) == "function"
+        and type(api.SetTracking) == "function"
+        and filters and (filters.Target ~= nil or filters.Focus ~= nil)
+        and Menu and type(Menu.ModifyMenu) == "function"
+        and ((C_CVar and type(C_CVar.GetCVarBool) == "function")
+            or type(GetCVarBool) == "function") and true or false
+end
+
+local function Delegated()
+    return Flux.AddOn.IsLoaded("ForeverMinimapTarget")
+end
+
+local function ShowAll()
+    local getter = C_CVar and C_CVar.GetCVarBool or GetCVarBool
+    return getter("minimapTrackingShowAll")
+end
+
+-- Indices change when tracking spells change; resolve the native filter each time.
+local function Find(key)
+    local id = Enum.MinimapTrackingFilter[key]
+    if id == nil then return end
+    for index = 1, C_Minimap.GetNumTrackingTypes() do
+        local filter = C_Minimap.GetTrackingFilter(index)
+        if filter and filter.filterID == id then
+            return index, C_Minimap.GetTrackingInfo(index), filter
+        end
+    end
+end
+
+local function Owns(key, filter)
+    if not filter or filter.spellID or nativeEntries[key] then return false end
+    -- Forever exposes its normal-menu policy. Respect a future native choice.
+    local optional = MinimapConstants and MinimapConstants.OPTIONAL_FILTERS
+    return not (optional and optional[filter.filterID])
+end
+
+function Tracking.IsActive(key)
+    if not Supported() then return false end
+    local _, info = Find(key)
+    return info ~= nil and info.active == true
+end
+
+function Tracking.SetActive(key, enabled)
+    if not preferences or not Supported() or Delegated() or ShowAll() then return end
+    if key ~= "Target" and key ~= "Focus" then return end
+    local index, info, filter = Find(key)
+    if not info or not Owns(key, filter) then return end
+    enabled = enabled == true
+    preferences[key] = enabled
+    if info.active ~= enabled then C_Minimap.SetTracking(index, enabled) end
+end
+
+local function Apply()
+    if not preferences or not Supported() or Delegated() or ShowAll() then return end
+    for _, key in ipairs(keys) do
+        local wanted = preferences[key]
+        if type(wanted) == "boolean" then
+            local index, info, filter = Find(key)
+            if info and Owns(key, filter) and info.active ~= wanted then
+                C_Minimap.SetTracking(index, wanted)
+            end
+        end
+    end
+end
+
+local function WorldEntered()
+    Apply()
+    generation = generation + 1
+    local ticket = generation
+    -- The engine can reset tracking after world entry. One bounded retry reads
+    -- current preferences; a newer transition invalidates an older callback.
+    Flux.Timer.After(3, function()
+        if ticket == generation then Apply() end
+    end)
+end
+
+local function Toggle(key)
+    Tracking.SetActive(key, not Tracking.IsActive(key))
+end
+
+-- Inspect the generated menu, including submenus, instead of duplicating native
+-- rows or assuming an enum declaration means a filter is actually available.
+local function CollectNative(description, indices)
+    for _, child in description:EnumerateElementDescriptions() do
+        local data = child:GetData()
+        if type(data) == "table" and type(data.index) == "number" then
+            indices[data.index] = true
+        end
+        CollectNative(child, indices)
+    end
+end
+
+local function ExtendMenu(_, root)
+    if not preferences or not Supported() or Delegated() or ShowAll() then return end
+    local indices = {}
+    CollectNative(root, indices)
+    local divided = false
+    for _, key in ipairs(keys) do
+        local index, info, filter = Find(key)
+        nativeEntries[key] = index and indices[index] or nil
+        if info and Owns(key, filter) then
+            if not divided then root:CreateDivider(); divided = true end
+            local row = root:CreateCheckbox(info.name, Tracking.IsActive, Toggle, key)
+            -- Use the client's localized tracking name and native menu textures.
+            row:AddInitializer(function(button)
+                local texture = button:AttachTexture()
+                texture:SetTexture(info.texture)
+                texture:SetSize(20, 20)
+                texture:SetPoint("RIGHT")
+                local label = button.fontString
+                label:SetPoint("RIGHT", texture, "LEFT", -4, 0)
+                return label:GetUnboundedStringWidth() + 64, 20
+            end)
+        end
+    end
+end
+
+Flux.AfterLogin(function()
+    if not Supported() or Delegated() then return end
+    local character = Flux.DB.GetChar()
+    if character.minimapTracking == nil then character.minimapTracking = {} end
+    -- Preserve unexpected saved data rather than replacing it.
+    if type(character.minimapTracking) ~= "table" then return end
+    preferences = character.minimapTracking
+    if preferences.Target == nil then preferences.Target = true end
+    Menu.ModifyMenu("MENU_MINIMAP_TRACKING", ExtendMenu)
+    Flux.Events.Register("PLAYER_ENTERING_WORLD", WorldEntered)
+    -- Also covers a mid-session load or a reload after the world-entry event.
+    WorldEntered()
+end)
+
+end -- one tracking owner per addon load
+end
+-- END FLUX MINIMAP TRACKING

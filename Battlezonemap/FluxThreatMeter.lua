@@ -6,6 +6,7 @@ FluxThreatMeter = Meter
 
 local pane, host, enabled, scale = nil, nil, false, 1
 local data, rows, offset, nextPoll, dirty = {}, {}, 0, 0, false
+local samplePool = {}
 local rowHeight, rowGap, headerHeight = 21, 1, 14
 local ranked = true
 local workActive = false
@@ -102,10 +103,14 @@ local function Collect()
             or (Present(sample.threatPct) and percent == nil) then ranked = false end
         local _, class = UnitClass(unit)
         if IsSecret(class) then class = nil end
-        data[#data + 1] = { unit = unit, name = UnitNameForRow(unit), class = class,
-            threatVal = sample.threatVal, threatPct = sample.threatPct,
-            isTanking = PlainBool(sample.isTanking), secret = sample.secret,
-            sort = percent or value or 0, order = #data + 1 }
+        local index = #data + 1
+        local row = samplePool[index]
+        if not row then row = {}; samplePool[index] = row end
+        row.unit, row.name, row.class = unit, UnitNameForRow(unit), class
+        row.threatVal, row.threatPct = sample.threatVal, sample.threatPct
+        row.isTanking, row.secret = PlainBool(sample.isTanking), sample.secret
+        row.sort, row.order = percent or value or 0, index
+        data[index] = row
     end
     if IsInRaid() then
         for i = 1, GetNumGroupMembers() do add("raid" .. i); add("raidpet" .. i) end
@@ -203,10 +208,17 @@ local function PaintRow(row, sample, index, pinned)
         StyleFont(row.Name, 14 / scale); StyleFont(row.Value, 14 / scale)
         row.presentationScale, row.bodyWidth = scale, nil
     end
-    row.Icon:SetTexture("Interface\\GLUES\\CHARACTERCREATE\\UI-CHARACTERCREATE-CLASSES")
     local coords = sample.class and CLASS_ICON_TCOORDS and CLASS_ICON_TCOORDS[sample.class]
-    if coords then row.Icon:SetTexCoord(unpack(coords))
-    else row.Icon:SetTexture("Interface\\Icons\\Ability_Druid_Cower"); row.Icon:SetTexCoord(0, 1, 0, 1) end
+    local x1, x2, y1, y2 = 0, 1, 0, 1
+    if coords then x1, x2, y1, y2 = unpack(coords) end
+    if not row.iconReady or row.iconClass ~= sample.class
+        or row.iconX1 ~= x1 or row.iconX2 ~= x2 or row.iconY1 ~= y1 or row.iconY2 ~= y2 then
+        row.Icon:SetTexture("Interface\\GLUES\\CHARACTERCREATE\\UI-CHARACTERCREATE-CLASSES")
+        if coords then row.Icon:SetTexCoord(x1, x2, y1, y2)
+        else row.Icon:SetTexture("Interface\\Icons\\Ability_Druid_Cower"); row.Icon:SetTexCoord(0, 1, 0, 1) end
+        row.iconClass, row.iconReady = sample.class, true
+        row.iconX1, row.iconX2, row.iconY1, row.iconY2 = x1, x2, y1, y2
+    end
     local threat = Shared()
     local value, percent = threat.AccessibleNumber(sample.threatVal), threat.AccessibleNumber(sample.threatPct)
     if sample.secret or (Present(sample.threatVal) and value == nil) or (Present(sample.threatPct) and percent == nil) then
@@ -230,12 +242,27 @@ local function PaintRow(row, sample, index, pinned)
         row.bodyWidth = width
     end
     local color = sample.class and RAID_CLASS_COLORS[sample.class]
-    row:SetStatusBarColor(color and color.r or .5, color and color.g or .5, color and color.b or .5)
+    local r, g, b = color and color.r or .5, color and color.g or .5, color and color.b or .5
+    if row.colorR ~= r or row.colorG ~= g or row.colorB ~= b then
+        row:SetStatusBarColor(r, g, b)
+        row.colorR, row.colorG, row.colorB = r, g, b
+    end
     threat.SetBarValue(row, sample.threatPct, sample.isTanking)
-    row.Value:SetTextColor(1, 1, 1, 1)
-    if IsPlayer(sample.unit) then row.Name:SetTextColor(0, 1, 0, 1)
-    else row.Name:SetTextColor(1, 1, 1, 1) end
-    row:SetAlpha(pinned and .5 or 1)
+    if not row.valueColorReady then
+        row.Value:SetTextColor(1, 1, 1, 1)
+        row.valueColorReady = true
+    end
+    local player = IsPlayer(sample.unit)
+    if row.namePlayer ~= player then
+        if player then row.Name:SetTextColor(0, 1, 0, 1)
+        else row.Name:SetTextColor(1, 1, 1, 1) end
+        row.namePlayer = player
+    end
+    local alpha = pinned and .5 or 1
+    if row.presentationAlpha ~= alpha then
+        row:SetAlpha(alpha)
+        row.presentationAlpha = alpha
+    end
     row:Show()
 end
 
@@ -257,6 +284,8 @@ end
 
 local function ClearRows()
     wipe(data); offset = 0
+    -- Retain only empty reusable tables across fights/visibility boundaries.
+    for i = 1, #samplePool do wipe(samplePool[i]) end
     for i = 1, #rows do rows[i]:Hide() end
 end
 

@@ -1,0 +1,7 @@
+{
+  "baseline_source": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d3b4-b7ec-7591-94d3-6d3b3097fb8a\\minimap-visibility-20261113T140244Z\\baseline\\Minimap\\FluxMinimapButtons.lua",
+  "test": "tests/minimap_extra_visibility.lua",
+  "exit": 1,
+  "output": "lua: tests/minimap_extra_visibility.lua:11: new preferences preserve default behavior\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/minimap_extra_visibility.lua:11: in upvalue 'check'\n\ttests/minimap_extra_visibility.lua:37: in local 'model'\n\ttests/minimap_extra_visibility.lua:148: in main chunk\n\t[C]: in ?\n",
+  "expected_failure": "new preferences preserve default behavior"
+}

@@ -1,0 +1,20 @@
+{
+  "sourceSnapshot": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\09\\01a1c03e-c615-7f02-a24a-3e5ed07300f1\\options-consolidation-before-20261109T141036Z",
+  "rawSHA256": {
+    "AddonOptions/FluxOptions.lua": "dcd2f46ecd36e7ae49ebcc440224d6c356224d9531e92928ad76fdbc3e194545",
+    "AddonOptions/FluxOptionsCatalog.lua": "90afda9d4b46431abb0ca94044e0b7a395606cf2a7478d27e70bb80b78f0bfc7",
+    "AddonOptions/FluxOptionsNavigation.lua": "c1e8aecb9ba0967747c1e63ce90cbacf7defb56e3a7a3b2119a3ed066bcf2f62",
+    "AddonOptions/FluxOptionsRender.lua": "d891a227a481648c67d6cab1ace2acfdeb1ffb75e179c3307d7a94f8164553aa",
+    "AddonOptions/FluxOptionsShell.lua": "80fda8d10361309604f80717a1868173cdd398029befc940ec9eef1281010510",
+    "AddonOptions/FluxOptionsWidgets.lua": "4c030354c09a5f8addaa3cdf3ea5a17b57ed561ff41b570bdda90e8a05151d32",
+    "AddonOptions/FluxOptionsSkin.lua": "3f22be01e5333caa5564f42745cd6c7a530994209be476522dba5da4b856a981",
+    "AddonOptions/FluxOptionsGameMenu.lua": "7265946dfae4b45b5a3417b15ff0772dd102619e14256db510ba70938c616e16",
+    "_FluxUI.toc": "f40a0ee261ba97aeeba9205c280a5cd0f2962c02e6a4dcd03b6ae166b5329aac",
+    "Battlezonemap/FluxWindowFrame.lua": "2fc3c03209cbac3d02bd1708230546c32babc0ac3786afcb117a745650025158",
+    "tests/options_rework.lua": "c3313b92ae64559c1a1cbb09a7c0f2c29d1a42c5a7be3f5357d4d529fb200a57",
+    "tests/options_navigation.lua": "86b78db51679845e2c1a8315c363e293781e022bd6f9bb93982cf7aba968f31f"
+  },
+  "existingSourceAndHistoryCheckpoint": "options-sorting-checkpoint-2026-11-09.json",
+  "checkpointArchiveHashesVerified": true,
+  "settings": "Prior read-only metadata available; no settings writes"
+}

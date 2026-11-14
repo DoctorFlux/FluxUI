@@ -620,6 +620,7 @@ local function CreateListButton(parent, index)
 
     row:RegisterForClicks("LeftButtonUp", "RightButtonUp")
     row:SetScript("OnClick", function(self, button)
+        if self.restockSource == "craftMaterial" then return end
         if self.tierKind then
             if button == "RightButton" and IsShiftKeyDown() then
                 FV = FV or _G.FluxVendorAuto

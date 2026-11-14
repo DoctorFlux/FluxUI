@@ -14,8 +14,9 @@ local started = false
 local mailboxOpen = false
 local pendingOutgoing
 local pendingFrame
-local lastByIndex, lastCount
+local lastByIndex, lastCount, lastCaptured
 local hasCompleted = false
+local predictedCounts
 local scanFrame
 local scan, scanAt, firstQueued
 local retryCount = 0
@@ -62,7 +63,7 @@ end
 
 local function DiscardProviderScan()
 	scan, scanAt, firstQueued = nil, nil, nil
-	lastByIndex, lastCount, hasCompleted = nil, nil, false
+	lastByIndex, lastCount, lastCaptured, hasCompleted = nil, nil, nil, false
 	retryCount = 0
 	if scanFrame then scanFrame:SetScript("OnUpdate", nil) end
 end
@@ -90,7 +91,63 @@ local function ApplyList(job)
 		char.mail = job.list
 		Store.MarkPending(Store.GetCurrentCharacterName(), "all")
 	end
-	lastByIndex, lastCount, hasCompleted = job.byIndex, #job.list, true
+	lastByIndex, lastCount, lastCaptured, hasCompleted = job.byIndex, #job.list, job.list, true
+	predictedCounts = {} -- an authoritative inbox replaces purchase predictions
+	return true
+end
+
+local function PredictedCounts(char)
+	if not predictedCounts then
+		predictedCounts = {}
+		for _, row in pairs(char and char.mail or {}) do
+			if row.auctionDelivery and type(row.itemID) == "number" then
+				predictedCounts[row.itemID] = (predictedCounts[row.itemID] or 0) + (row.itemCount or row.count or 0)
+			end
+		end
+	end
+	return predictedCounts
+end
+
+function Mail.GetPredictedCount(itemID)
+	if Store.UsesSyndicator() then return 0 end
+	local char = Store.GetCurrentCharacter()
+	if not char then return 0 end
+	return PredictedCounts(char)[itemID] or 0
+end
+
+-- A confirmed receipt publishes incoming mail immediately, without opening or
+-- scanning the inbox, loading item data, or writing an external provider's table.
+function Mail.RecordAuctionDelivery(itemID, quantity, link)
+	if Store.UsesSyndicator() then return false end
+	if issecretvalue and (issecretvalue(itemID) or issecretvalue(quantity)) then return false end
+	if type(itemID) ~= "number" or itemID <= 0 or itemID % 1 ~= 0
+		or type(quantity) ~= "number" or quantity <= 0 or quantity % 1 ~= 0 or quantity == math.huge then return false end
+	local char = Store.EnsureCurrentCharacter()
+	if not char or Store.UsesSyndicator() then return false end
+	local predicted = PredictedCounts(char)
+	char.mail = char.mail or {}
+	local snap = Inv.snapshots and Inv.snapshots.mail
+	if snap and (snap.generation or 0) == 0 then
+		snap.byIndex, snap.counts = {}, {}
+		for _, row in ipairs(char.mail) do
+			local id, n = tonumber(row.itemID), tonumber(row.itemCount or row.count)
+			if id and n then
+				snap.byIndex[#snap.byIndex + 1] = { itemID = id, count = n, link = row.itemLink or row.link }
+				snap.counts[id] = (snap.counts[id] or 0) + n
+			end
+		end
+	end
+	char.mail[#char.mail + 1] = { itemID = itemID, itemCount = quantity,
+		itemLink = link, expirationTime = (time and time() or 0) + MAIL_EXPIRY, auctionDelivery = true }
+	predicted[itemID] = (predicted[itemID] or 0) + quantity
+	if snap then
+		snap.byIndex[#snap.byIndex + 1] = { itemID = itemID, count = quantity, link = link }
+		snap.counts[itemID] = (snap.counts[itemID] or 0) + quantity
+		snap.generation = (snap.generation or 0) + 1
+	end
+	hasCompleted = false
+	Store.MarkPending(Store.GetCurrentCharacterName(), "all")
+	if Inv.Notify then Inv.Notify({ mail = true }) end
 	return true
 end
 
@@ -107,13 +164,23 @@ local function CaptureAttachment(into, mailIndex, attachIndex, expiration, job)
 	end
 	-- ID and quantity are sufficient for storage. Asking for item data here
 	-- caused auction mail to continually reload metadata and rescan the inbox.
-	into[#into + 1] = {
-		itemID = itemID,
-		itemCount = tonumber(count) or 1,
-		iconTexture = texture,
-		quality = quality,
-		expirationTime = expiration,
-	}
+	count = tonumber(count) or 1
+	local previous = job and job.previousCaptured and job.previousCaptured[#into + 1]
+	-- Capture rows are immutable after publication. Exact metadata equality can
+	-- reuse them while retaining fresh metadata when a later real change commits.
+	if previous and previous.itemID == itemID and previous.itemCount == count
+		and previous.iconTexture == texture and previous.quality == quality
+		and previous.expirationTime == expiration then
+		into[#into + 1] = previous
+	else
+		into[#into + 1] = {
+			itemID = itemID,
+			itemCount = count,
+			iconTexture = texture,
+			quality = quality,
+			expirationTime = expiration,
+		}
+	end
 	return into[#into]
 end
 
@@ -134,7 +201,7 @@ local function StepScan(self)
 	end
 	if Now() < scanAt then return end
 	if not scan then
-		scan = { list = {}, byIndex = {}, counts = {}, previous = lastByIndex,
+		scan = { list = {}, byIndex = {}, counts = {}, previous = lastByIndex, previousCaptured = lastCaptured,
 			changed = not hasCompleted, index = 1,
 			maxAttach = MaxReceiveSlots(), now = (time and time()) or 0 }
 		firstQueued = nil

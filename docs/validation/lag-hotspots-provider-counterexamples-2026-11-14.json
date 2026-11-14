@@ -1,0 +1,152 @@
+{
+  "capturedUtc": "2026-11-14T10:51:35.355608+00:00",
+  "status": "CAUSAL BASELINE; TWO UNRESOLVED COUNTEREXAMPLES",
+  "scenarioChecksPerRun": 38,
+  "baselineRepeats": 3,
+  "matchedIsolationPairsPerFault": 3,
+  "additionalIsolationControls": 3,
+  "scope": "Installed external Syndicator producer code + actual FluxUI consumers under synthetic native facts, frames, callback transport and clock; no native operation/CPU/FPS certification.",
+  "loadedFluxSources": {
+    "Core/Client.lua": "c4fa44c67eefa67642634532177a1faa18d3435765676cd12470e9fc2dc3bc92",
+    "Core/API/Container.lua": "640f0bbdd3ee004d84f65fd4b80c7ac3fc03271633da44d787ec79aaf2bb72e2",
+    "Core/API/Item.lua": "2be703fae6568d44910f237c95ccb398680ba33658eb57cdceb5491100b2dbb4",
+    "Core/Engine/Scheduler.lua": "a524afb69135af4e7aaefddfe7ab97527b5292380949f0786b6f1ffa94008d11",
+    "Inventory/Init.lua": "c6223eb05320ad38a40adceafc2200b57f210f35a9eee655b2ae42d35406366e",
+    "Inventory/Containers.lua": "9bdfc0cad6a5fff1b091f1c3ec02c7a4c7287ebfe298ff948294eb8d79a11d10",
+    "Inventory/Index.lua": "10e927b927f8276170eb8a410f1673e40bd26a25633040b505acde3901e0de89",
+    "Inventory/Store.lua": "dad969c1591dba31b587b5e5ce1a9e7fe815cb6b1174bea126fb2f6abdf68482",
+    "Inventory/Syndicator/Sync.lua": "80074a7574589f51db039534bfc47ac8dd232d77944b20934c9fc32ec0c57b80",
+    "Inventory/Builtin/Bags.lua": "a8ca6a5e62a9411b5db443521a5e207e4979d95c994684fd1b4f2aeb9426a4de",
+    "Inventory/Builtin/Bank.lua": "f6d39536fb5aecc9174f2b6d43ed4ec4d03bda180f1c30e5e9814218499d4983",
+    "Inventory/Builtin/Equip.lua": "c550d97014ac4745e6508cc345b37ebde7d57b5f7704ac335af23554f347cbf0",
+    "Inventory/Builtin/Mail.lua": "753670fb46be66a036eaef500367be39d863ea931a2e0cd867ed93f6b6b18bcd",
+    "Inventory/Builtin/Watch.lua": "277b1c21dfff274c0fa1af14a710fc1ac02d0592c56cdce492630f1a546a1b4a",
+    "Inventory/Syndicator/Adapter.lua": "8c8a1a52c61f8f95407480a27526e510908b06fcc16355441c0937fec37e6bda",
+    "Inventory/LegacyBridge.lua": "a133c12021ffd4ddaa8dd0e2a52d7e86ff8bd673b908cac257328d3496f4b7af"
+  },
+  "loadedExternalSources": {
+    "Core/Objects.lua": "5b66fe6e82cfc42eee4dc886614e1d1d2797234be63aa722355937ddbbbad053",
+    "Core/Constants.lua": "ca692b676c2e06aca81021c2d89502100e18641c482b923d61f4988cd9ddf83b",
+    "Core/Utilities.lua": "d13266ade02df377a4fe21510e41e1e04ed4962a685bba5ebd699d637d0cf962",
+    "API/Main.lua": "892f6607d05953dc22504b33fd8294b2908ca45f77157d3ef24767d8e76de393",
+    "Tracking/BagCache.lua": "c34a06b0d3a5d87c9ae319fd9212c4efb0603709ba2b5114bb7b9988195a9d8a",
+    "Tracking/MailCache.lua": "ced812943c2198e2835574f43ed0497f44043ec40741c6bbd75b15434d4c0316"
+  },
+  "externalVersion": "290",
+  "externalAll41FilesUnchanged": true,
+  "allAddonLuaUnchanged": true,
+  "addonLuaSourcesChecked": 1064,
+  "replaySHA256": "03d83ae270ea15101c319c9cf664e0b2bd747f8f09d8325da09b0924f7e8dfdb",
+  "findings": [
+    {
+      "id": "LHO-PRODUCER-BANK-01",
+      "source": "Tracking/BagCache.lua:DoSlot/FireBagChange",
+      "conditions": "Cold bank tab item; close before ITEM_DATA_LOAD_RESULT; GetContainerItemInfo no longer answers closed bank.",
+      "observed": "Provider empty placeholder becomes normalized removal, Flux bank count5->0 while synthetic actual stored quantity remains5.",
+      "controls": "Metadata completes before close or closed getter remains readable: final count5.",
+      "nativeConditionUnverified": "Current installed WoW closed-bank getter timing/cache behavior."
+    },
+    {
+      "id": "LHO-PRODUCER-MAIL-01",
+      "source": "Tracking/MailCache.lua:ScanMail/DoAttachment/FireMailChange",
+      "conditions": "Old cold attachment A at inbox1, warm B at inbox2. A is taken/removed; new scan publishes B1. Old A completion re-reads shifted inbox1 B and publishes old list containing B twice.",
+      "observed": "Real producer overwrites its newer record; Flux mail snapshot1->2 while native inbox quantity is1.",
+      "controls": "Metadata completes before shift, initial source is warm, or no index shift: final B1.",
+      "nativeConditionUnverified": "Actual server/ITEM_DATA_LOAD_RESULT/inbox-shift scheduling."
+    },
+    {
+      "id": "LHO-PRODUCER-MAIL-WORK",
+      "source": "Tracking/MailCache.lua:ScanMail",
+      "conditions": "100 warm messages with16 attachments each.",
+      "observed": "6501 selected mock native read calls in one provider OnUpdate:3200GetInboxItem+1600GetInboxItemLink+1600IsItemDataCached+100headers+1size.",
+      "ownership": "Cost belongs to external code, before Flux coalescer; external addon immutable under user instruction. Receiver-only optimization cannot eliminate these producer reads."
+    },
+    {
+      "id": "LHO-PRODUCER-METADATA-WORK",
+      "source": "Core/Utilities.lua:LoadItemData/itemFrame.OnUpdate",
+      "conditions": "One acquired item whose metadata never completes.",
+      "observed": "Actual utility continues0.4-second native load retries and pending cache state beyond10simulatedseconds; no callback publication.",
+      "ownership": "External private retry queue is outside allowed edits. Actual query counts retained pertrial, not native elapsed-time/FPS evidence."
+    }
+  ],
+  "APIAvailability": {
+    "publicProviderReady": true,
+    "publicBagPending": true,
+    "publicMailPending": false,
+    "mailGenerationInCallback": false,
+    "mailCallbackPayload": "character only",
+    "sourceOfAuthority": "API/Main.lua inspected whole; real getters loaded, API.GetCharacter returns live mutable record."
+  },
+  "actions": {
+    "runtimeEdits": false,
+    "externalProviderEdits": false,
+    "settingsReads": false,
+    "settingsWrites": false,
+    "clientInput": false,
+    "profilerWrites": false,
+    "publication": false
+  },
+  "changeId": "LHO-PROVIDER-COUNTEREXAMPLES-20261114",
+  "nativeStatus": "Two actual-source producer counterexamples under synthetic WoW facts. No native reproduction or runtime fix claimed. Empty mailbox observation is separate.",
+  "mailPolicy": "User requested in-game measurement first. Current mailbox is empty; no populated/cold timing or validation-delay approval follows. Mail runtime changes remain pending.",
+  "headerContract": "Pinned native MailFrame evidence across all five targets uses the eighth GetInboxHeaderInfo return as a numeric attachment count. Header cardinality checks cannot identify an equal-cardinality wrong-item replacement.",
+  "bankConstraints": [
+    "Existing Item.GetCount maps absent/error/opaque facts to zero; independent tri-state validation is required.",
+    "A native aggregate does not prove current slot locations.",
+    "Corrected totals need ownership across future provider deltas and serialization/provider-off restore.",
+    "Do not mutate the external provider, deduplicate legitimate mail or suppress every closed-bank callback."
+  ],
+  "mailPrototypeScope": "Existing bounded built-in reader prototype only; no production addon Lua edits. Modeled 100x16 attachment completion .396-.75s at144/60fps versus existing .2s bridge debounce. These are scheduling models, not native wall timings.",
+  "bankBoundary": {
+    "runs": 3,
+    "checksPerRun": 53,
+    "result": "A safe production remedy is not established. Scalar-only corrections do not repair the actual Index and provider-off Sync restore; numeric knownness does not prove native cache readiness.",
+    "nativeLimit": "The numeric-zero/physical-five branch is an unverified modeled condition. No native failure, impossibility result or all-client readiness claim follows.",
+    "sourcePreservation": "All1068 Lua files and41 external files were stable during the bounded probe; no provider runtime changes.",
+    "protocol": "A future read-only closed/open/closed raw-count calibration can use at most two cached ordinary IDs. It cannot alone certify the cold-close race, native cache readiness, reagent/account banks or all clients.",
+    "artifacts": {
+      "bank-authority-boundary.json": {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\continuation\\providers\\bank-authority-boundary.json",
+        "sha256": "a3db0a82cb0f2b9742713a5ac9246911039a299908d38439f4d166858a029999"
+      },
+      "bank-count-native-prerequisite.lua": {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\continuation\\providers\\bank-count-native-prerequisite.lua",
+        "sha256": "c62d14048210f9dd4e88745501d69bbdf05b2cd37590f80dbb6986d19ee648d2"
+      },
+      "bank-count-primary-sources.json": {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\continuation\\providers\\bank-count-primary-sources.json",
+        "sha256": "3640548f0785a3bf6d76ca8592d38fc8e9e22a94581f2d68fdca054f3457d77d"
+      }
+    }
+  },
+  "artifacts": {
+    "causal-baseline.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\continuation\\providers\\causal-baseline.json",
+      "sha256": "7bdd0b45ab5da682e82cdd96fc39e2ec890fd7bb8a48dae66324f2196bfb7f6a"
+    },
+    "producer_replay.lua": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\continuation\\providers\\producer_replay.lua",
+      "sha256": "03d83ae270ea15101c319c9cf664e0b2bd747f8f09d8325da09b0924f7e8dfdb"
+    },
+    "bridge-remedy-analysis.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\continuation\\providers\\bridge-remedy-analysis.json",
+      "sha256": "e56e1c6011859889da14aff75c29aa34a6b8362640b70ec8a81ae27648bf1d09"
+    },
+    "mail-authority-prototype.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\continuation\\providers\\mail-authority-prototype.json",
+      "sha256": "1d8cdaf9d27c64e4842e4c07bb0f553502be1d4d455462a49bd42b5f8e2102c5"
+    },
+    "mail_authority_prototype.lua": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\continuation\\providers\\mail_authority_prototype.lua",
+      "sha256": "3b1eb85cd72a88c81dab83917b645df620092fb342a1369d2b77a8c622a76717"
+    },
+    "mail-header-contract.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\continuation\\providers\\mail-header-contract.json",
+      "sha256": "67444bc72ef25f828ad41025db5397adc29109b9f0def63607f00b6d6b8dbdf4"
+    },
+    "mail-header-primary-sources.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\continuation\\providers\\mail-header-primary-sources.json",
+      "sha256": "33cd7ade96493203be8aef5f35fd917d07cb3139f93675f39a2ffbfc98fabc7f"
+    }
+  }
+}

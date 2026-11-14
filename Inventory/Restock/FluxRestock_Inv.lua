@@ -526,6 +526,31 @@ function RI.GetContainerItemLink(bag, slot)
     return nil
 end
 
+-- A same-call capacity snapshot may reuse a warm owned info result. Public
+-- getter overrides and cold links retain the original link-then-info sequence.
+local OwnedContainerItemInfo = RI.GetContainerItemInfo
+local OwnedContainerItemLink = RI.GetContainerItemLink
+function RI.GetContainerItemSnapshot(bag, slot)
+    if RI.GetContainerItemInfo ~= OwnedContainerItemInfo or RI.GetContainerItemLink ~= OwnedContainerItemLink then
+        local link = RI.GetContainerItemLink(bag, slot)
+        local info
+        if link then info = RI.GetContainerItemInfo(bag, slot) end
+        return link, info
+    end
+    local info = OwnedContainerItemInfo(bag, slot)
+    local link = info and (info.hyperlink or info.link)
+    if link then
+        if RI.GetContainerItemInfo ~= OwnedContainerItemInfo or RI.GetContainerItemLink ~= OwnedContainerItemLink then
+            info = RI.GetContainerItemInfo(bag, slot)
+        end
+        return link, info
+    end
+    local C = Container()
+    if C and C.GetItemLink then link = C.GetItemLink(bag, slot) end
+    if link then info = RI.GetContainerItemInfo(bag, slot) else info = nil end
+    return link, info
+end
+
 function RI.ItemExistsInInventory(itemID)
     itemID = tonumber(itemID)
     if not itemID then

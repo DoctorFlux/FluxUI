@@ -1,0 +1,91 @@
+{
+  "date": "2026-11-10",
+  "change": "MINIMAP-TRACKING-20261110",
+  "requirements": [
+    "REQ-MT-01",
+    "REQ-MT-02",
+    "REQ-MT-03",
+    "REQ-MT-04",
+    "REQ-MT-05",
+    "REQ-MT-06"
+  ],
+  "selectedTargets": [
+    "retail",
+    "forever",
+    "classic",
+    "classic_era",
+    "classic_anniversary"
+  ],
+  "reference": {
+    "path": "F:\\World of Warcraft\\_forever_\\Interface\\AddOns\\ForeverMinimapTarget",
+    "version": "v1.0.1",
+    "author": "Ashtar Senior",
+    "licenseDeclared": "GPL-3.0-or-later",
+    "access": "read-only; behavior reference; independent Flux implementation; no copied source/art/settings",
+    "sha256": {
+      "ForeverMinimapTarget.lua": "095cb006870cc322cea10ec32a18ae3c9821cf1771cf219801420d865fc8a773",
+      "ForeverMinimapTarget.toc": "49e0dcf479b0e9d271ef4cf004d8ad5220a3c740f157a0b1324a51ce6fb3cdfe",
+      "Icon.tga": "544a39a0d73c4cbdc051f00ad3d8747d7eb60e287c4f4a61b9b8014bc4a91e61"
+    }
+  },
+  "checkpoint": "docs/validation/minimap-tracking-checkpoint-2026-11-10.json",
+  "sources": "docs/validation/minimap-tracking-sources-2026-11-10.json",
+  "validation": {
+    "focusedChecks": 412,
+    "freshRuns": 3,
+    "harmfulControlsRejected": 8,
+    "nativeMenuGenerators": [
+      "Retail Mainline full OnLoad/menu",
+      "Forever Mainline full OnLoad/menu with Camelot constants"
+    ],
+    "fullScripts": 280,
+    "syntaxFiles": 952,
+    "fullFailures": 0,
+    "full": "docs/validation/minimap-tracking-full-2026-11-10.json",
+    "controls": "docs/validation/minimap-tracking-controls-2026-11-10.json"
+  },
+  "ownedSourceSHA256": {
+    "Minimap/FluxMinimapTracking.lua": "dfa11f735ad12acdcbf6a547d96b7743e120c1e2bc3a10b9c673f2fb4f44aad3",
+    "tests/minimap_tracking.lua": "074f69af108e92bbdd9db8cc8581794e40dfb711850cb78eae5975b531fc6ea9",
+    "_FluxUI.toc": "879492280af590edefa2b7786239e864b2d14991a20efe2f786cbc4cab6cef84"
+  },
+  "native": {
+    "runtimeBuild": "NOT CAPTURED",
+    "filterOperation": "NOT RUN",
+    "actualMarkers": "NOT RUN",
+    "rendering": "NOT RUN",
+    "combatTaint": "NOT RUN",
+    "controllerInput": "NOT RUN",
+    "persistence": "NOT RUN",
+    "frameTimesFPS": "NOT MEASURED"
+  },
+  "preferences": {
+    "root": "_FluxUI_CharSavedVars.minimapTracking",
+    "scope": "per character",
+    "TargetDefault": true,
+    "FocusDefault": "unmanaged until explicitly chosen",
+    "standalone": "delegate while ForeverMinimapTarget loaded; optional dependency enforces initial ordering",
+    "privateSettingsWrites": false
+  },
+  "resources": {
+    "newFrames": 0,
+    "newTickers": 0,
+    "newOnUpdate": 0,
+    "newGlobalHooks": 0,
+    "supportedClientSharedEvents": [
+      "PLAYER_ENTERING_WORLD"
+    ],
+    "supportedClientMenuModifiers": [
+      "MENU_MINIMAP_TRACKING"
+    ],
+    "managedTimer": "3-second retry per world transition; old generation invalidated; no repeating poll",
+    "unsupportedClient": "no subscriptions/timers/settings writes"
+  },
+  "choices": {
+    "design": "prior implement-directly choice retained",
+    "nativeTest": "prior user native reproduction retained; no game input",
+    "installation": "User confirms running Retail-to-other-client sync and explicitly requests Retail-only updates; no manual synchronization"
+  },
+  "publication": "not performed",
+  "pausedWork": "earlier party/raid native work remains paused"
+}

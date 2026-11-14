@@ -1,0 +1,259 @@
+{
+  "changeID": "WORLD-TOOLTIP-20261113",
+  "createdUTC": "2026-11-13T19:43:43.121487+00:00",
+  "checkpoint": {
+    "changeId": "WORLD-TOOLTIP-20261113",
+    "createdUTC": "2026-11-13T19:34:59.506466+00:00",
+    "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\world-tooltip-20261113T193451Z",
+    "verified": true,
+    "sourceFiles": 2750,
+    "settingsMetadataEntries": 129,
+    "settingsContentsCopied": false,
+    "settingsWrites": false,
+    "revision": "26f886e3ea5371b196ab235d2dace0c156002285",
+    "branch": "main",
+    "hooksPath": ".githooks",
+    "sha256": {
+      "source.zip": "074fb5c4e672a21cc357f3d7983c471fc9171426a071d0e8c7e80d5af82bc308",
+      "source-manifest.json": "85d32e5bb2ff80948eaad9f706fa566b0d961423a1b94ffbb39135238b812f2b",
+      "history.bundle": "118a5c04229a4f4815fb4342e7967d412eae8e010e62f23839b4ef2379359e72"
+    }
+  },
+  "scope": "Desktop source/ownership/content/lifecycle checks; native taint, secret VM, pixels, controller and CPU/FPS NOT RUN.",
+  "sourceIdentities": {
+    "Binding/Core/BindingTooltip.lua": {
+      "baselineSHA256": "8e9a3f9f7468f5ef8691ec2c8212b20d0b75e531a774bff8e6b97c3316e6c0de",
+      "candidateSHA256": "da387cd49260f8bbcf3ba60cd4cfcb0041bd878149799ebd776b485c112019c5",
+      "newFile": false
+    },
+    "Binding/UI/SpellbookBindingHooks.lua": {
+      "baselineSHA256": "d4c60b24af8349b5973d980113a53d509c17110aba31a6af9b0f85ddac6368a4",
+      "candidateSHA256": "7e53b1cfe28b7b7490207d42f3f0ffc2f0e4f527cf2031d49a3b4a6226ae596b",
+      "newFile": false
+    },
+    "Respec/FluxRespec_GearSetTooltip.lua": {
+      "baselineSHA256": "a156f176cc7ed84d418a83fb8758698cc9b33aed2bf34b9a0684e51fa0fdc197",
+      "candidateSHA256": "8e0872e4db536b4c0d756c5102751120be974674e1a9290fae762dcaf8d414da",
+      "newFile": false
+    },
+    "ExtraButtonSystem/Engine/ConsumableBind.lua": {
+      "baselineSHA256": "9a4989da299d0e0e509d1c04f65bf2afe3157ac1d9720c92b25923d1a59ce9b8",
+      "candidateSHA256": "7d7589030b7fd45b07798e523c45064fd7a7de7bd19a7d5a28214a63a5c69dc4",
+      "newFile": false
+    },
+    "ExtraButtonSystem/Shared/FluxEBSConsumableBridge.lua": {
+      "baselineSHA256": "9cf26af2d56f28508558e8279ce4e6ff552ac4d0594e030f91ae90acf8012f71",
+      "candidateSHA256": "49280b9085e86efc4e16b11bf9ff143d9abd3af5205a41b99cc437d56f97438c",
+      "newFile": false
+    },
+    "ExtraButtonSystem/Shared/FluxEBSButtonRefresh.lua": {
+      "baselineSHA256": "c459c840fd01c85ab2448c9072a65be60be9430cde8318d0f01b5c67ba5dba92",
+      "candidateSHA256": "249dc002e3e8850c4084f34536da09c44307191f99525e1928ca910c6e1106dd",
+      "newFile": false
+    },
+    "tests/spellbook_native_input.lua": {
+      "baselineSHA256": "197e850c3e567ffb1e802a4f1c3f08227de867aa32870f1b093c5b500fed4940",
+      "candidateSHA256": "002b018f50ab1adc7edd48807566ac9528ed39f93da206e0a96ba009def0b313",
+      "newFile": false
+    },
+    "tests/tooltip_bookkeeping.lua": {
+      "baselineSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidateSHA256": "4d502b3919c395299ac53a84635d7f2dd3f5addf932b898d1187d2c488114224",
+      "newFile": true
+    }
+  },
+  "baselineRejections": [
+    {
+      "label": "baseline-BindingTooltip",
+      "exit": 1,
+      "output": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe: tests/tooltip_bookkeeping.lua:26: native tooltip field written: _fluxBindingTipOwner\nstack traceback:\n\t[C]: in function 'error'\n\ttests/tooltip_bookkeeping.lua:26: in metamethod 'newindex'\n\tbinding-tooltip:711: in local 'fn'\n\ttests/tooltip_bookkeeping.lua:30: in field 'Fire'\n\ttests/tooltip_bookkeeping.lua:57: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "label": "baseline-FluxRespec_GearSetTooltip",
+      "exit": 1,
+      "output": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe: tests/tooltip_bookkeeping.lua:26: native tooltip field written: fluxGearSetProtectionDecorated\nstack traceback:\n\t[C]: in function 'error'\n\ttests/tooltip_bookkeeping.lua:26: in metamethod 'newindex'\n\tgear-tooltip:19: in local 'fn'\n\ttests/tooltip_bookkeeping.lua:30: in field 'Fire'\n\ttests/tooltip_bookkeeping.lua:92: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "label": "baseline-ConsumableBind",
+      "exit": 1,
+      "output": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe: tests/tooltip_bookkeeping.lua:26: native tooltip field written: _fluxEbsGapDone\nstack traceback:\n\t[C]: in function 'error'\n\ttests/tooltip_bookkeeping.lua:26: in metamethod 'newindex'\n\tconsumable-gap:4: in field 'ResetFluxTooltipGap'\n\ttests/tooltip_bookkeeping.lua:123: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "label": "baseline-FluxEBSConsumableBridge",
+      "exit": 1,
+      "output": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe: tests/tooltip_bookkeeping.lua:26: native tooltip field written: _fluxEbsGapDone\nstack traceback:\n\t[C]: in function 'error'\n\ttests/tooltip_bookkeeping.lua:26: in metamethod 'newindex'\n\tconsumable-gap:4: in field 'ResetFluxTooltipGap'\n\ttests/tooltip_bookkeeping.lua:123: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "label": "baseline-spellbook",
+      "exit": 1,
+      "output": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe: ...3-879b-be03642eb3fc\\controls\\baseline-spellbook-test.lua:65: native tooltip field written: __FluxBindingRightClickTip\nstack traceback:\n\t[C]: in function 'error'\n\t...3-879b-be03642eb3fc\\controls\\baseline-spellbook-test.lua:65: in metamethod 'newindex'\n\tSpellbookBindingHooks.lua:166: in upvalue 'AppendSpellbookBindingTip'\n\tSpellbookBindingHooks.lua:181: in local 'fn'\n\t...3-879b-be03642eb3fc\\controls\\baseline-spellbook-test.lua:83: in field 'Flush'\n\t...3-879b-be03642eb3fc\\controls\\baseline-spellbook-test.lua:101: in local 'exercise'\n\t...3-879b-be03642eb3fc\\controls\\baseline-spellbook-test.lua:127: in main chunk\n\t[C]: in ?\n"
+    }
+  ],
+  "mutationRejections": [
+    {
+      "label": "binding-clear-writes-native",
+      "exit": 1,
+      "output": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe: tests/tooltip_bookkeeping.lua:26: native tooltip field written: _fluxBindingTipOwner\nstack traceback:\n\t[C]: in function 'error'\n\ttests/tooltip_bookkeeping.lua:26: in metamethod 'newindex'\n\tbinding-tooltip:714: in local 'fn'\n\ttests/tooltip_bookkeeping.lua:30: in field 'Fire'\n\ttests/tooltip_bookkeeping.lua:57: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "label": "binding-dedup-disabled",
+      "exit": 1,
+      "output": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe: tests/tooltip_bookkeeping.lua:9: live: duplicate sync append suppressed\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/tooltip_bookkeeping.lua:9: in local 'check'\n\ttests/tooltip_bookkeeping.lua:61: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "label": "gear-clear-writes-native",
+      "exit": 1,
+      "output": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe: tests/tooltip_bookkeeping.lua:26: native tooltip field written: fluxGearSetProtectionDecorated\nstack traceback:\n\t[C]: in function 'error'\n\ttests/tooltip_bookkeeping.lua:26: in metamethod 'newindex'\n\tgear-tooltip:22: in local 'fn'\n\ttests/tooltip_bookkeeping.lua:30: in field 'Fire'\n\ttests/tooltip_bookkeeping.lua:92: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "label": "gear-warning-not-reset",
+      "exit": 1,
+      "output": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe: tests/tooltip_bookkeeping.lua:9: live: clear permits next protected sale warning\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/tooltip_bookkeeping.lua:9: in local 'check'\n\ttests/tooltip_bookkeeping.lua:96: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "label": "consumable-gap-not-reset",
+      "exit": 1,
+      "output": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe: tests/tooltip_bookkeeping.lua:9: live: explicit gap reset: ExtraButtonSystem/Engine/ConsumableBind.lua\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/tooltip_bookkeeping.lua:9: in local 'check'\n\ttests/tooltip_bookkeeping.lua:127: in main chunk\n\t[C]: in ?\n"
+    }
+  ],
+  "candidate": {
+    "label": "candidate",
+    "exit": 0,
+    "output": "tooltip_bookkeeping: 115 checks passed; native taint/secret VM NOT RUN\n"
+  },
+  "focused": [
+    {
+      "test": "tooltip_bookkeeping",
+      "exit": 0,
+      "output": "tooltip_bookkeeping: 115 checks passed; native taint/secret VM NOT RUN\n"
+    },
+    {
+      "test": "spellbook_native_input",
+      "exit": 0,
+      "output": "PASS spellbook native input: 66 checks across five client models; native taint unverified\n"
+    },
+    {
+      "test": "native_menu_input",
+      "exit": 0,
+      "output": "Native menu/input ownership: 121 checks; five client models; negative control passed\n"
+    },
+    {
+      "test": "unit_tooltip_ownership",
+      "exit": 0,
+      "output": "unit_tooltip_ownership: 290 checks passed (desktop ownership/lifecycle only)\n"
+    },
+    {
+      "test": "edit_mode_native_ownership",
+      "exit": 0,
+      "output": "Flux Edit Mode metadata captured; native spec event: true. /reload to save.\nFlux Edit Mode metadata captured; native spec event: true. /reload to save.\nFlux Edit Mode metadata captured; native spec event: true. /reload to save.\nFlux Edit Mode metadata captured; native spec event: true. /reload to save.\nEdit Mode resources live: base=18 overrides=0 nativeSpecUnregister=0 flags=0 saves=3 resets=5\nFlux Edit Mode metadata captured; native spec event: true. /reload to save.\nFlux Edit Mode metadata captured; native spec event: true. /reload to save.\nFlux Edit Mode metadata captured; native spec event: true. /reload to save.\nFlux Edit Mode metadata captured; native spec event: true. /reload to save.\nEdit Mode resources forever: base=18 overrides=0 nativeSpecUnregister=0 flags=0 saves=3 resets=5\nFlux Edit Mode metadata captured; native spec event: true. /reload to save.\nFlux Edit Mode metadata captured; native spec event: true. /reload to save.\nFlux Edit Mode metadata captured; native spec event: true. /reload to save.\nFlux Edit Mode metadata captured; native spec event: true. /reload to save.\nEdit Mode resources classic: base=18 overrides=0 nativeSpecUnregister=0 flags=0 saves=3 resets=5\nFlux Edit Mode metadata captured; native spec event: true. /reload to save.\nFlux Edit Mode metadata captured; native spec event: true. /reload to save.\nFlux Edit Mode metadata captured; native spec event: true. /reload to save.\nFlux Edit Mode metadata captured; native spec event: true. /reload to save.\nEdit Mode resources classic_era: base=18 overrides=0 nativeSpecUnregister=0 flags=0 saves=3 resets=5\nFlux Edit Mode metadata captured; native spec event: true. /reload to save.\nFlux Edit Mode metadata captured; native spec event: true. /reload to save.\nFlux Edit Mode metadata captured; native spec event: true. /reload to save.\nFlux Edit Mode metadata captured; native spec event: true. /reload to save.\nEdit Mode resources classic_anniversary: base=18 overrides=0 nativeSpecUnregister=0 flags=0 saves=3 resets=5\nEdit Mode native ownership: 295 checks; 0 failures; native protected execution/taint/pixels pending\n"
+    }
+  ],
+  "targets": {
+    "retail": {
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "sourceBuild": "12.1.5.70783"
+    },
+    "forever": {
+      "commit": "bebcb6bf309cf41b41bd74f8ca651e6a105b2676",
+      "sourceBuild": "1.60.1.70938"
+    },
+    "others": "Existing Era/Anniversary/Mists targets preserved; no target/API additions"
+  },
+  "upstreamSources": [
+    {
+      "path": "source-evidence\\retail\\Blizzard_GameTooltip_Mainline.toc",
+      "sha256": "9f95ca6e75ffc0f109f46225a823d4e265e215c0669eea29dfdd9b2310eddc4d",
+      "bytes": 292
+    },
+    {
+      "path": "source-evidence\\retail\\EventImplementation.lua",
+      "sha256": "9214dccc8bf5d74767c803769de1d790688456828e9db79d62c2562565813e85",
+      "bytes": 31226
+    },
+    {
+      "path": "source-evidence\\retail\\GameTooltip.lua",
+      "sha256": "5d3bf9efbd59c7f92844d97368a6750d5356fc444ea1c205c53da003ed097525",
+      "bytes": 34307
+    },
+    {
+      "path": "source-evidence\\retail\\GameTooltip.xml",
+      "sha256": "40f020e509c5414237edaa64db7957438799d34ceeb04b252306e217deb7ed7c",
+      "bytes": 11670
+    },
+    {
+      "path": "source-evidence\\retail\\TooltipDataHandler.lua",
+      "sha256": "05a86b963b518a589cfebf22dec825507a5b1f564f66eb64fd7caead919f0642",
+      "bytes": 19497
+    },
+    {
+      "path": "source-evidence\\retail\\TooltipDataRules.lua",
+      "sha256": "c87fbe81c668ce0d2d0fd80887f7124ba6e499abfab76d72aaf84354483138f3",
+      "bytes": 8204
+    },
+    {
+      "path": "source-evidence\\retail\\TooltipUtil.lua",
+      "sha256": "4825bac4057b4002e630ffa7a6104add204f1164c0910e73bfe7b84ea6b31ec8",
+      "bytes": 2396
+    },
+    {
+      "path": "source-evidence\\retail\\UnitDocumentation.lua",
+      "sha256": "034586d2e27cc2c74698a6a177d6bfdbcb05c3e8eac45cb471cbe8b99612d2fa",
+      "bytes": 117860
+    }
+  ],
+  "testRuntime": {
+    "version": "Lua 5.4.6",
+    "origin": "https://www.lua.org/ftp/lua-5.4.6.tar.gz",
+    "archiveSHA256": "7d5ea1b9cb6aa0b59ca3dde1c6adcb57ef83a1ba8e5432c0ecd06bf439b3ad88",
+    "luaSHA256": "ed7edea70015f3f9474a29ed3154f9c867f22b44c91fd9b557aadee8c7dc76c7",
+    "compiler": "Existing Visual Studio 2019 MSVC; build logs outside AddOns"
+  },
+  "nativeReport": "User 20:29:55 report; no running build, exact loaded source, originating write or addon taint attribution supplied. Candidate removes verified shared-tooltip bookkeeping writes; native resolution is not yet established.",
+  "resources": "Five private weak-key tables in four TOC-loaded owners;one additional table in retained bridge source. No new frame/hook/event/timer/ticker/poll. Existing callback/reset lifecycle retained.",
+  "preserved": "Tooltip text, native processors and global APIs, HUD anchors, native methods, existing input/controller owners and saved settings unchanged.",
+  "noClientOperation": true,
+  "fullValidation": {
+    "path": "docs/validation/world-tooltip-state-full-2026-11-13.json",
+    "passed": 353,
+    "failed": 0,
+    "syntaxFiles": 1041,
+    "syntaxFailures": []
+  },
+  "nativeAcceptance": "NOT RUN;reload out of combat;world units before/after binding/spellbook/protected-gear/consumable/unit/raid hovers and in combat. Preserve native text/color/health/HUD/dismissal/controller behavior.",
+  "finalSourceGuard": {
+    "completeLuaManifestVerified": 1041,
+    "ownedSourceHashesCurrent": true,
+    "upstreamHashesCurrent": true,
+    "newTrailingWhitespace": [],
+    "changedLuaXMLTOCSinceCheckpoint": [
+      "Binding/Core/BindingTooltip.lua",
+      "Binding/UI/SpellbookBindingHooks.lua",
+      "ExtraButtonSystem/Engine/ConsumableBind.lua",
+      "ExtraButtonSystem/Shared/FluxEBSButtonRefresh.lua",
+      "ExtraButtonSystem/Shared/FluxEBSConsumableBridge.lua",
+      "Respec/FluxRespec_GearSetTooltip.lua",
+      "tests/spellbook_native_input.lua",
+      "tests/tooltip_bookkeeping.lua"
+    ],
+    "outsideTaskChangesPreserved": [],
+    "branch": "main",
+    "hooksPath": ".githooks"
+  },
+  "documentationValidation": {
+    "command": "python docs/tools/validate_docs.py",
+    "result": "PASS",
+    "classifiedSources": 1074,
+    "reachableTOCXML": 623,
+    "settingDefinitions": 438,
+    "savedVariables": 24,
+    "localLinks": 17093,
+    "sourceInventoryEvidenceCurrent": true
+  },
+  "subsequentNativeReport": {
+    "times": "20:39:33/20:39:36",
+    "attribution": "Color error explicitly names _FluxUI execution taint;originating field and reload status unknown",
+    "nativeResolution": "UNRESOLVED",
+    "followupEvidence": "docs/validation/tooltip-visual-followup-2026-11-13.json",
+    "historicalManifest": "Captured before the follow-up changes;current manifest is in the follow-up evidence"
+  }
+}

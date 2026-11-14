@@ -293,7 +293,12 @@ for _, family in ipairs({ "forever", "retail" }) do
     s:set(0, 1, 5512, 0); s:set(0, 2, 22044, 1); s.uses[22044] = 3; s:bags()
     local gem = s:button("managem", false, "ExtraButtonSystem/CombatGrid/Buttons/ManaGem.lua")
     for _, n in ipairs({ 3, 2, 1, 0 }) do
-        s.uses[22044] = n; s:bags(); s:expect(gem, 22044, n, "real gem charge change")
+        s.uses[22044] = n; s:bags()
+        if n > 0 then s:expect(gem, 22044, n, "real gem charge change")
+        else
+            eq(gem.ItemId, nil, "empty OOC gem clears exhausted item")
+            eq(gem.PlaceholderTexture ~= nil, true, "empty OOC gem uses placeholder")
+        end
     end
     s.uses[22044] = 3; s:bags(); s:expect(gem, 22044, 3, "real gem refill")
 end

@@ -2329,6 +2329,86 @@ local function EnsureDispatcher()
 	local CHANNEL = (ov and ov.CHANNEL) or 2
 	local EMPOWER = (ov and ov.EMPOWER) or 3
 
+	local function DispatchCastEvent(event, unit, spellId, spellName, empowerComplete)
+		if event == "UNIT_SPELLCAST_START" then
+			if unit == "pet" then
+				OnStart(spellId, CAST, spellName, unit)
+			elseif SpellIsTargetingNow() then
+				OnReticle(spellId, spellName)
+				StartReticleWatch()
+			else
+				OnStart(spellId, CAST, spellName)
+			end
+		elseif event == "UNIT_SPELLCAST_EMPOWER_START" then
+			if unit == "pet" then
+				OnStart(spellId, EMPOWER, spellName, unit)
+			elseif SpellIsTargetingNow() then
+				OnReticle(spellId, spellName)
+				StartReticleWatch()
+			else
+				OnStart(spellId, EMPOWER, spellName)
+			end
+		elseif event == "UNIT_SPELLCAST_STOP" then
+			-- STOP is cancel only if still active. SUCCEEDED usually wins this race.
+			-- Do not treat STOP as interrupt (no PlayInterrupt).
+			-- Do not kill a live channel: SUCCEEDED is not the channel end.
+			local stopUnit = unit
+			local gen = GenOf(stopUnit)
+			local pending = CastList(stopUnit)
+			if pending and #pending > 0 and C_Timer and C_Timer.After then
+				C_Timer.After(0.05, function()
+					if gen ~= GenOf(stopUnit) then
+						return
+					end
+					if LiveFillKind(stopUnit) then
+						return
+					end
+					local castsNow = CastList(stopUnit)
+					if pending == castsNow or (#castsNow > 0) then
+						OnCancel(spellId, spellName, stopUnit)
+					end
+				end)
+			elseif pending and #pending > 0 then
+				if not LiveFillKind(stopUnit) then
+					OnCancel(spellId, spellName, stopUnit)
+				end
+			end
+		elseif event == "UNIT_SPELLCAST_EMPOWER_STOP" then
+			OnEmpowerStop(spellId, spellName, empowerComplete ~= false, unit)
+		elseif event == "UNIT_SPELLCAST_SUCCEEDED" then
+			OnSucceeded(spellId, spellName, unit)
+		elseif event == "UNIT_SPELLCAST_FAILED" then
+			OnCancel(spellId, spellName, unit)
+			OnReticleClear(unit)
+		elseif event == "UNIT_SPELLCAST_INTERRUPTED" then
+			OnInterrupt(spellId, spellName, unit)
+			OnReticleClear(unit)
+		elseif event == "UNIT_SPELLCAST_CHANNEL_START" then
+			-- CHANNEL_START always starts fill. Reticle stays on targeting events.
+			OnStart(spellId, CHANNEL, spellName, unit)
+		elseif event == "UNIT_SPELLCAST_CHANNEL_STOP" then
+			OnChannelStop(spellId, spellName, unit)
+		elseif event == "UNIT_SPELLCAST_RETICLE_TARGET" then
+			OnReticle(spellId, spellName, unit)
+			StartReticleWatch()
+		elseif event == "UNIT_SPELLCAST_RETICLE_CLEAR" then
+			if unit == "pet" then
+				OnReticleClear(unit)
+			elseif not SpellIsTargetingNow() then
+				OnReticleClear()
+				StopReticleWatch()
+				MaybeAdoptChannel()
+			end
+		elseif event == "CURRENT_SPELL_CAST_CHANGED" then
+			if unit ~= "pet" and SpellIsTargetingNow() then
+				OnReticle(spellId or lastSpell, spellName)
+				StartReticleWatch()
+			end
+			-- Not targeting: GCD / current-spell edges. Reticle teardown is
+			-- UNIT_SPELLCAST_RETICLE_CLEAR and the targeting ticker.
+		end
+	end
+
 	local f = CreateFrame("Frame")
 	f:SetScript("OnEvent", function(_, event, unit, ...)
 		if event == "UNIT_PET" then
@@ -2346,85 +2426,7 @@ local function EnsureDispatcher()
 		else
 			lastSpell = spellId or spellName
 		end
-		local ok, err = pcall(function()
-			if event == "UNIT_SPELLCAST_START" then
-				if unit == "pet" then
-					OnStart(spellId, CAST, spellName, unit)
-				elseif SpellIsTargetingNow() then
-					OnReticle(spellId, spellName)
-					StartReticleWatch()
-				else
-					OnStart(spellId, CAST, spellName)
-				end
-			elseif event == "UNIT_SPELLCAST_EMPOWER_START" then
-				if unit == "pet" then
-					OnStart(spellId, EMPOWER, spellName, unit)
-				elseif SpellIsTargetingNow() then
-					OnReticle(spellId, spellName)
-					StartReticleWatch()
-				else
-					OnStart(spellId, EMPOWER, spellName)
-				end
-			elseif event == "UNIT_SPELLCAST_STOP" then
-				-- STOP is cancel only if still active. SUCCEEDED usually wins this race.
-				-- Do not treat STOP as interrupt (no PlayInterrupt).
-				-- Do not kill a live channel: SUCCEEDED is not the channel end.
-				local stopUnit = unit
-				local gen = GenOf(stopUnit)
-				local pending = CastList(stopUnit)
-				if pending and #pending > 0 and C_Timer and C_Timer.After then
-					C_Timer.After(0.05, function()
-						if gen ~= GenOf(stopUnit) then
-							return
-						end
-						if LiveFillKind(stopUnit) then
-							return
-						end
-						local castsNow = CastList(stopUnit)
-						if pending == castsNow or (#castsNow > 0) then
-							OnCancel(spellId, spellName, stopUnit)
-						end
-					end)
-				elseif pending and #pending > 0 then
-					if not LiveFillKind(stopUnit) then
-						OnCancel(spellId, spellName, stopUnit)
-					end
-				end
-			elseif event == "UNIT_SPELLCAST_EMPOWER_STOP" then
-				OnEmpowerStop(spellId, spellName, empowerComplete ~= false, unit)
-			elseif event == "UNIT_SPELLCAST_SUCCEEDED" then
-				OnSucceeded(spellId, spellName, unit)
-			elseif event == "UNIT_SPELLCAST_FAILED" then
-				OnCancel(spellId, spellName, unit)
-				OnReticleClear(unit)
-			elseif event == "UNIT_SPELLCAST_INTERRUPTED" then
-				OnInterrupt(spellId, spellName, unit)
-				OnReticleClear(unit)
-			elseif event == "UNIT_SPELLCAST_CHANNEL_START" then
-				-- CHANNEL_START always starts fill. Reticle stays on targeting events.
-				OnStart(spellId, CHANNEL, spellName, unit)
-			elseif event == "UNIT_SPELLCAST_CHANNEL_STOP" then
-				OnChannelStop(spellId, spellName, unit)
-			elseif event == "UNIT_SPELLCAST_RETICLE_TARGET" then
-				OnReticle(spellId, spellName, unit)
-				StartReticleWatch()
-			elseif event == "UNIT_SPELLCAST_RETICLE_CLEAR" then
-				if unit == "pet" then
-					OnReticleClear(unit)
-				elseif not SpellIsTargetingNow() then
-					OnReticleClear()
-					StopReticleWatch()
-					MaybeAdoptChannel()
-				end
-			elseif event == "CURRENT_SPELL_CAST_CHANGED" then
-				if unit ~= "pet" and SpellIsTargetingNow() then
-					OnReticle(spellId or lastSpell, spellName)
-					StartReticleWatch()
-				end
-				-- Not targeting: GCD / current-spell edges. Reticle teardown is
-				-- UNIT_SPELLCAST_RETICLE_CLEAR and the targeting ticker.
-			end
-		end)
+		local ok, err = pcall(DispatchCastEvent, event, unit, spellId, spellName, empowerComplete)
 		if not ok and geterrorhandler then
 			geterrorhandler()(tostring(err))
 		end

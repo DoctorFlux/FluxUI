@@ -1,0 +1,58 @@
+{
+  "date": "2026-11-10",
+  "scope": "Desktop correctness; no native performance/taint/input claim",
+  "candidateSHA256": "61fcfdd7881711cde6576439ee6951a14d8cf8ebbceb3b55b3950f289b4e1f10",
+  "runs": [
+    {
+      "name": "candidate-1",
+      "exit": 0,
+      "output": "vendor_gossip: 321 checks PASS; native input/taint/rendering/server interaction NOT RUN\n"
+    },
+    {
+      "name": "candidate-2",
+      "exit": 0,
+      "output": "vendor_gossip: 321 checks PASS; native input/taint/rendering/server interaction NOT RUN\n"
+    },
+    {
+      "name": "candidate-3",
+      "exit": 0,
+      "output": "vendor_gossip: 321 checks PASS; native input/taint/rendering/server interaction NOT RUN\n"
+    },
+    {
+      "name": "multiple-options",
+      "exit": 1,
+      "rejected": true,
+      "output": "lua: tests/vendor_gossip.lua:4: forever: two vendor choices preserved\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/vendor_gossip.lua:4: in upvalue 'check'\n\ttests/vendor_gossip.lua:122: in local 'rejected'\n\ttests/vendor_gossip.lua:127: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "non-vendor",
+      "exit": 1,
+      "rejected": true,
+      "output": "lua: tests/vendor_gossip.lua:4: forever: gossip/bank/taxi/binder/trainer not selected even with an overridden vendor icon\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/vendor_gossip.lua:4: in upvalue 'check'\n\ttests/vendor_gossip.lua:122: in local 'rejected'\n\ttests/vendor_gossip.lua:132: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "quest-choices",
+      "exit": 1,
+      "rejected": true,
+      "output": "lua: tests/vendor_gossip.lua:4: forever: active quests preserved\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/vendor_gossip.lua:4: in upvalue 'check'\n\ttests/vendor_gossip.lua:122: in local 'rejected'\n\ttests/vendor_gossip.lua:125: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "ignore-shift",
+      "exit": 1,
+      "rejected": true,
+      "output": "lua: tests/vendor_gossip.lua:4: forever: Shift preserves gossip\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/vendor_gossip.lua:4: in upvalue 'check'\n\ttests/vendor_gossip.lua:122: in local 'rejected'\n\ttests/vendor_gossip.lua:124: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "wrong-index",
+      "exit": 1,
+      "rejected": true,
+      "output": "lua: tests/vendor_gossip.lua:4: select exact orderIndex synchronously\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/vendor_gossip.lua:4: in local 'check'\n\ttests/vendor_gossip.lua:112: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "duplicate-native-selection",
+      "exit": 1,
+      "rejected": true,
+      "output": "lua: tests/vendor_gossip.lua:4: exactly one selection with native handler in either event order\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/vendor_gossip.lua:4: in local 'check'\n\ttests/vendor_gossip.lua:157: in main chunk\n\t[C]: in ?\n"
+    }
+  ]
+}

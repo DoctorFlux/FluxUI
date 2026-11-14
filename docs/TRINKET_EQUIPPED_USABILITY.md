@@ -1,5 +1,67 @@
 # Equipped trinket tint correction — 31 October 2026
 
+## 13 November follow-up: intermittent dark faces and cooldown overlays
+
+Task `TRINKET-DARKENING-20261113` restores the accepted appearance directly;
+the existing direct-implementation and user-native-reproduction choices apply.
+There are no new controls, strings, settings or interaction designs.
+
+The integrated production-owner/painter/cooldown-cache fixture reproduces three
+stale-state paths: release restores a pre-press dark tint after usability has
+become ready; removing and re-equipping the same item leaves an empty-slot tint
+behind a cached white palette; slot cooldown refreshes and item-ID cooldown
+refreshes can disagree or bypass each other's timer cache.
+
+- `TD-01`: held presses keep the original shade and 0.62 factor while following
+  the painter's newest public usability/range color; release restores that color.
+- `TD-02`: changing equipped item identity, including empty slots, clears the
+  old press and uses the existing paint-cache invalidation service. Re-equipping
+  the same ready on-use item restores full color. Passive trinkets stay dim.
+- `TD-03`: equipped managed faces use the inventory slot's cooldown through the
+  same shared painter/cache on every refresh. Real use/shared/swap cooldowns stay
+  visible; ready slots clear old swipes. Ordinary items keep item-ID cooldowns.
+- `TD-04`: legacy cooldown widgets retain their direct fallback, recognize
+  `WCooldown`, and clear disabled timers even without the global helper.
+
+The secure `/use 13|14` actions, flyout, swap queue, bindings, layout, assets,
+saved roots and update cadence remain owned by their existing services. The
+change adds no frame, event, timer, hook or polling loop. Controller assessment:
+tint and swipe are decorative and add no focus or input target; existing
+activation/flyout routes remain. Actual gamepad reachability and native focus,
+paired press/release and combat operation remain untested.
+
+The external pre-edit source ZIP (2,627 actual files), complete Git bundle and
+seven Retail settings metadata entries were verified before runtime edits.
+Private values are outside AddOns; the client/profiler/settings were not changed.
+Exact checkpoint/candidate source hashes are in
+[evidence](validation/trinket-darkening-2026-11-13.json), with the recovery identity
+in [checkpoint](validation/trinket-darkening-checkpoint-2026-11-13.json).
+
+The focused integrated fixture passes 245 checks across five desktop client
+models. Exact checkpoint sources fail 55 assertions; five separate regressions
+are rejected. Existing 10-check usability and 1,563-check press fixtures pass.
+The wider run passes 321 scripts and 1,003 syntax files; its later focused test
+refresh is recorded explicitly in the report. These are desktop behavior checks,
+not native rendering, taint, secure input, FPS or memory measurements.
+
+Fresh Gethe source pins: Retail `297d7aaaa736f346b3e036f38ee088eaf7f8c07f`
+(12.1.5.70783), Forever `bebcb6bf309cf41b41bd74f8ca651e6a105b2676`
+(1.60.1.70938), Classic progression `e5d9b3a22c3f0f6f41ebac0e454f4969594261cf`
+(5.5.4.70631). The native PaperDoll path uses `GetInventoryItemCooldown` and
+the FrameXML cooldown helper clears disabled/zero timers. Loaded TOC paths,
+public color contracts and upstream blob identities appear in the
+[15 source records](validation/trinket-darkening-sources-2026-11-13.json).
+Existing Era/Anniversary compatibility is retained; no fresh source certification
+or native acceptance is claimed for those clients.
+
+Native acceptance is **NOT RUN**: no connected client execution tool is available.
+After `/reload`, verify both equipped slots while ready and during an actual use,
+shared or equipment-swap cooldown. Check usability changing while a key/mouse
+press is held, mouse/wheel release and hidden-menu cleanup, passive/empty faces,
+removal/re-equipping the same item, bag flyout, combat queue and controller input.
+Keep WoW in the background; input reproduction belongs to the user. No new native
+build, pixels, persistence, combat/taint, FPS or long-session memory result exists.
+
 ## 1 November follow-up: passive trinkets
 
 The user clarified that equipped trinkets without an on-use effect should be

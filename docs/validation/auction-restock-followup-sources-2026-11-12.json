@@ -1,0 +1,1642 @@
+{
+  "pins": {
+    "live": {
+      "sha": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "date": "2026-11-04T00:46:01Z"
+    },
+    "forever": {
+      "sha": "4cd0ab752a77164f654ccbca9d0c1fe8dafceebe",
+      "date": "2026-11-10T15:16:27Z"
+    },
+    "classic": {
+      "sha": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "date": "2026-10-27T14:16:09Z"
+    },
+    "classic_era": {
+      "sha": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "date": "2026-10-26T23:16:08Z"
+    },
+    "classic_anniversary": {
+      "sha": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "date": "2026-10-26T23:16:20Z"
+    }
+  },
+  "files": [
+    {
+      "target": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/AuctionHouseConstantsDocumentation.lua",
+      "gitBlob": "1ee85704d93e0ab8b336c36e792c76623b142ce3",
+      "sha256": "23b162903f187c41879fb60c16e7e88703b0dc488a3e7aefe873bf4f275eb531",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_APIDocumentationGenerated/AuctionHouseConstantsDocumentation.lua"
+    },
+    {
+      "target": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/AuctionHouseDocumentation.lua",
+      "gitBlob": "be435881532a9ebda13806aad5ef2b2feeeea34f",
+      "sha256": "88a03f9a1f999c7648cf89e9b66b04e83af904b09099f3a2f18d5b6ba66ab884",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_APIDocumentationGenerated/AuctionHouseDocumentation.lua"
+    },
+    {
+      "target": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_AuctionHouseUI/Blizzard_AuctionHouseUI.toc",
+      "gitBlob": "03ed6015c020c8403748e39843b932c17e47d492",
+      "sha256": "cf95dbcfc05fce4e64fd540fc95cf20137c99e3ca0fda06337a3122a48380a53",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_AuctionHouseUI/Blizzard_AuctionHouseUI.toc"
+    },
+    {
+      "target": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_AuctionHouseUI/Shared/Blizzard_AuctionHouseBuyDialog.lua",
+      "gitBlob": "ff9c6b40e5d9f4541c403f4b45dae948b93d81df",
+      "sha256": "ed52c8232644125be0ce903e4ff84543ba338b68f64532949f9365f534d05ca8",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_AuctionHouseUI/Shared/Blizzard_AuctionHouseBuyDialog.lua"
+    },
+    {
+      "target": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_AuctionHouseUI/Shared/Blizzard_AuctionHouseBuyDialog.xml",
+      "gitBlob": "84a2bb13003a009e4912ee2e7089e697f78ae1f8",
+      "sha256": "03f1aac20293e7629b203a153541495fe30eb26a7699b8b63f2df55fab1c5da2",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_AuctionHouseUI/Shared/Blizzard_AuctionHouseBuyDialog.xml"
+    },
+    {
+      "target": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_AuctionHouseUI/Shared/Blizzard_AuctionHouseCommoditiesBuyFrame.lua",
+      "gitBlob": "6f7613c5ea5f647522bb9dc57b092023bce372ce",
+      "sha256": "b304161dc1d0cc0dca49def6bf3326ad31b0ac13d59efea8632a94b5fd4b3f22",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_AuctionHouseUI/Shared/Blizzard_AuctionHouseCommoditiesBuyFrame.lua"
+    },
+    {
+      "target": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_AuctionHouseUI/Shared/Blizzard_AuctionHouseFrame.lua",
+      "gitBlob": "cfa7f3aef0f09b22ad535938112819587d68ed90",
+      "sha256": "0d5bd1d38fded8103e9288b4ef78efde653977e4e59f246f5391738dd1b3cf99",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_AuctionHouseUI/Shared/Blizzard_AuctionHouseFrame.lua"
+    },
+    {
+      "target": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_AuctionHouseUI/Shared/Blizzard_AuctionHouseFrame.xml",
+      "gitBlob": "c94cd1850bd5b4cc38e7d3315371e9df328431f2",
+      "sha256": "63e4cdfacf2382c94a2302013c03128a95d59d54737141f1a4f7d757010bfa65",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_AuctionHouseUI/Shared/Blizzard_AuctionHouseFrame.xml"
+    },
+    {
+      "target": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_AuctionHouseUI/Shared/Blizzard_AuctionHouseItemBuyFrame.lua",
+      "gitBlob": "9c28caf62bd94c670e32b48c515b712a5076a039",
+      "sha256": "b7ea85de7408367f22d766f695a9aecad14d70c21e7d3e02b644ea0dc652f0a9",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_AuctionHouseUI/Shared/Blizzard_AuctionHouseItemBuyFrame.lua"
+    },
+    {
+      "target": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_SharedXML/CommonUIPanelTemplates.xml",
+      "gitBlob": "e80b147fa703003843a45617025996a774a3cc7f",
+      "sha256": "295706f57fecc50c12b11a27df25556058220ddd2e92cfac4004ea4c2fae0eda",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_SharedXML/CommonUIPanelTemplates.xml"
+    },
+    {
+      "target": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_SharedXML/Shared/Button/CheckButtonTemplates.xml",
+      "gitBlob": "c6e6c07d8562c2095cd0ebcca2af63b75132db88",
+      "sha256": "004f99e99c06bb38674054a0f9147eb5bc49664e57fafdf038ce2f7e0e73f41e",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_SharedXML/Shared/Button/CheckButtonTemplates.xml"
+    },
+    {
+      "target": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_SharedXML/Shared/InputBox/InputBoxTemplates.xml",
+      "gitBlob": "0e03f5043aa9d1ee5e7c515be9f4006b965cdd6d",
+      "sha256": "84850646eeffb435d47a8eadcc62dd6c8fba109b2418cc730db5cbf9fda21a03",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_SharedXML/Shared/InputBox/InputBoxTemplates.xml"
+    },
+    {
+      "target": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_UIPanelTemplates/Mainline/UIPanelTemplates.xml",
+      "gitBlob": "e66e619ef3e3c6b0a80d8ace4ac96d549bc3c162",
+      "sha256": "5ea3c9dd37e269d9b5676294fd044d59700f3fecff7c9ba0c384d28ac6c6b180",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_UIPanelTemplates/Mainline/UIPanelTemplates.xml"
+    },
+    {
+      "target": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "version.txt",
+      "gitBlob": "61a71eb0d9c435ad6f9f9701ab4d9c072cd3237e",
+      "sha256": "4e532c8d3beb3231ae8195704b6de0a099a19742e02505f73f292f47fe9e080b",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/version.txt"
+    },
+    {
+      "target": "forever",
+      "commit": "4cd0ab752a77164f654ccbca9d0c1fe8dafceebe",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/AuctionHouseConstantsDocumentation.lua",
+      "gitBlob": "1ee85704d93e0ab8b336c36e792c76623b142ce3",
+      "sha256": "23b162903f187c41879fb60c16e7e88703b0dc488a3e7aefe873bf4f275eb531",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4cd0ab752a77164f654ccbca9d0c1fe8dafceebe/Interface/AddOns/Blizzard_APIDocumentationGenerated/AuctionHouseConstantsDocumentation.lua"
+    },
+    {
+      "target": "forever",
+      "commit": "4cd0ab752a77164f654ccbca9d0c1fe8dafceebe",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/AuctionHouseDocumentation.lua",
+      "gitBlob": "7892e4d561f9e8d0b9a62f677a9b43ada302e23f",
+      "sha256": "d970632b8175ef98c07cd7876debdef2a29ca023a32063787f7796795cea2372",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4cd0ab752a77164f654ccbca9d0c1fe8dafceebe/Interface/AddOns/Blizzard_APIDocumentationGenerated/AuctionHouseDocumentation.lua"
+    },
+    {
+      "target": "forever",
+      "commit": "4cd0ab752a77164f654ccbca9d0c1fe8dafceebe",
+      "path": "Interface/AddOns/Blizzard_AuctionHouseUI/Blizzard_AuctionHouseUI.toc",
+      "gitBlob": "3fd3d1ebc6c3257e921b0be71d3ce98e3a6911d8",
+      "sha256": "e3e62ee7b3c4d47d7092584b869bff1662f40bd85cb554188b9779037cf8d6c7",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4cd0ab752a77164f654ccbca9d0c1fe8dafceebe/Interface/AddOns/Blizzard_AuctionHouseUI/Blizzard_AuctionHouseUI.toc"
+    },
+    {
+      "target": "forever",
+      "commit": "4cd0ab752a77164f654ccbca9d0c1fe8dafceebe",
+      "path": "Interface/AddOns/Blizzard_AuctionHouseUI/Shared/Blizzard_AuctionHouseBuyDialog.lua",
+      "gitBlob": "ff9c6b40e5d9f4541c403f4b45dae948b93d81df",
+      "sha256": "ed52c8232644125be0ce903e4ff84543ba338b68f64532949f9365f534d05ca8",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4cd0ab752a77164f654ccbca9d0c1fe8dafceebe/Interface/AddOns/Blizzard_AuctionHouseUI/Shared/Blizzard_AuctionHouseBuyDialog.lua"
+    },
+    {
+      "target": "forever",
+      "commit": "4cd0ab752a77164f654ccbca9d0c1fe8dafceebe",
+      "path": "Interface/AddOns/Blizzard_AuctionHouseUI/Shared/Blizzard_AuctionHouseBuyDialog.xml",
+      "gitBlob": "84a2bb13003a009e4912ee2e7089e697f78ae1f8",
+      "sha256": "03f1aac20293e7629b203a153541495fe30eb26a7699b8b63f2df55fab1c5da2",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4cd0ab752a77164f654ccbca9d0c1fe8dafceebe/Interface/AddOns/Blizzard_AuctionHouseUI/Shared/Blizzard_AuctionHouseBuyDialog.xml"
+    },
+    {
+      "target": "forever",
+      "commit": "4cd0ab752a77164f654ccbca9d0c1fe8dafceebe",
+      "path": "Interface/AddOns/Blizzard_AuctionHouseUI/Shared/Blizzard_AuctionHouseCommoditiesBuyFrame.lua",
+      "gitBlob": "6f7613c5ea5f647522bb9dc57b092023bce372ce",
+      "sha256": "b304161dc1d0cc0dca49def6bf3326ad31b0ac13d59efea8632a94b5fd4b3f22",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4cd0ab752a77164f654ccbca9d0c1fe8dafceebe/Interface/AddOns/Blizzard_AuctionHouseUI/Shared/Blizzard_AuctionHouseCommoditiesBuyFrame.lua"
+    },
+    {
+      "target": "forever",
+      "commit": "4cd0ab752a77164f654ccbca9d0c1fe8dafceebe",
+      "path": "Interface/AddOns/Blizzard_AuctionHouseUI/Shared/Blizzard_AuctionHouseFrame.lua",
+      "gitBlob": "cfa7f3aef0f09b22ad535938112819587d68ed90",
+      "sha256": "0d5bd1d38fded8103e9288b4ef78efde653977e4e59f246f5391738dd1b3cf99",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4cd0ab752a77164f654ccbca9d0c1fe8dafceebe/Interface/AddOns/Blizzard_AuctionHouseUI/Shared/Blizzard_AuctionHouseFrame.lua"
+    },
+    {
+      "target": "forever",
+      "commit": "4cd0ab752a77164f654ccbca9d0c1fe8dafceebe",
+      "path": "Interface/AddOns/Blizzard_AuctionHouseUI/Shared/Blizzard_AuctionHouseFrame.xml",
+      "gitBlob": "c94cd1850bd5b4cc38e7d3315371e9df328431f2",
+      "sha256": "63e4cdfacf2382c94a2302013c03128a95d59d54737141f1a4f7d757010bfa65",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4cd0ab752a77164f654ccbca9d0c1fe8dafceebe/Interface/AddOns/Blizzard_AuctionHouseUI/Shared/Blizzard_AuctionHouseFrame.xml"
+    },
+    {
+      "target": "forever",
+      "commit": "4cd0ab752a77164f654ccbca9d0c1fe8dafceebe",
+      "path": "Interface/AddOns/Blizzard_AuctionHouseUI/Shared/Blizzard_AuctionHouseItemBuyFrame.lua",
+      "gitBlob": "9c28caf62bd94c670e32b48c515b712a5076a039",
+      "sha256": "b7ea85de7408367f22d766f695a9aecad14d70c21e7d3e02b644ea0dc652f0a9",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4cd0ab752a77164f654ccbca9d0c1fe8dafceebe/Interface/AddOns/Blizzard_AuctionHouseUI/Shared/Blizzard_AuctionHouseItemBuyFrame.lua"
+    },
+    {
+      "target": "forever",
+      "commit": "4cd0ab752a77164f654ccbca9d0c1fe8dafceebe",
+      "path": "Interface/AddOns/Blizzard_SharedXML/CommonUIPanelTemplates.xml",
+      "gitBlob": "e80b147fa703003843a45617025996a774a3cc7f",
+      "sha256": "295706f57fecc50c12b11a27df25556058220ddd2e92cfac4004ea4c2fae0eda",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4cd0ab752a77164f654ccbca9d0c1fe8dafceebe/Interface/AddOns/Blizzard_SharedXML/CommonUIPanelTemplates.xml"
+    },
+    {
+      "target": "forever",
+      "commit": "4cd0ab752a77164f654ccbca9d0c1fe8dafceebe",
+      "path": "Interface/AddOns/Blizzard_SharedXML/Shared/Button/CheckButtonTemplates.xml",
+      "gitBlob": "e9513264d51fd3cac88899b043d2fa4827d1232a",
+      "sha256": "a52e29e44750e81154ce423e1b16f1d2c8126ce893275c8d22070240d55eab4e",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4cd0ab752a77164f654ccbca9d0c1fe8dafceebe/Interface/AddOns/Blizzard_SharedXML/Shared/Button/CheckButtonTemplates.xml"
+    },
+    {
+      "target": "forever",
+      "commit": "4cd0ab752a77164f654ccbca9d0c1fe8dafceebe",
+      "path": "Interface/AddOns/Blizzard_SharedXML/Shared/InputBox/InputBoxTemplates.xml",
+      "gitBlob": "fa2ac455ad43f6d1d603d2fe201021abb86e6786",
+      "sha256": "672ce109eb952e26d05cd534f6f28b4e6a1850da098da57e626b4ae89898179f",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4cd0ab752a77164f654ccbca9d0c1fe8dafceebe/Interface/AddOns/Blizzard_SharedXML/Shared/InputBox/InputBoxTemplates.xml"
+    },
+    {
+      "target": "forever",
+      "commit": "4cd0ab752a77164f654ccbca9d0c1fe8dafceebe",
+      "path": "Interface/AddOns/Blizzard_UIPanelTemplates/Mainline/UIPanelTemplates.xml",
+      "gitBlob": "e66e619ef3e3c6b0a80d8ace4ac96d549bc3c162",
+      "sha256": "5ea3c9dd37e269d9b5676294fd044d59700f3fecff7c9ba0c384d28ac6c6b180",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4cd0ab752a77164f654ccbca9d0c1fe8dafceebe/Interface/AddOns/Blizzard_UIPanelTemplates/Mainline/UIPanelTemplates.xml"
+    },
+    {
+      "target": "forever",
+      "commit": "4cd0ab752a77164f654ccbca9d0c1fe8dafceebe",
+      "path": "version.txt",
+      "gitBlob": "5aae5d83fbb13b18885a3ac745bc004d10ea1409",
+      "sha256": "cda1e9ba5d7782fc757ed568df675acded1841ec72e8b76cc73124a7a0985a36",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4cd0ab752a77164f654ccbca9d0c1fe8dafceebe/version.txt"
+    },
+    {
+      "target": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/AuctionHouseConstantsDocumentation.lua",
+      "gitBlob": "48af907a9f88ab18f40860615bec6cc71faf5f8a",
+      "sha256": "794fb99fafd2339c93b788a6c435b705b08afa9e74f1cea892e499accf054434",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_APIDocumentationGenerated/AuctionHouseConstantsDocumentation.lua"
+    },
+    {
+      "target": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/AuctionHouseDocumentation.lua",
+      "gitBlob": "a7ddf737d2dfc469e97de7c156b28c715c401a0b",
+      "sha256": "6119e57039b55464a2e04d0b3c429977022a80f18f6e3fbbdfcf954dab0145e4",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_APIDocumentationGenerated/AuctionHouseDocumentation.lua"
+    },
+    {
+      "target": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_AuctionHouseUI/Blizzard_AuctionHouseUI_Classic.toc",
+      "gitBlob": "05c6b494b48fc16132a8289b10e305c37e3d6d2c",
+      "sha256": "8fa4291bce0e48e70e1ad4a128ebfd4a8822680fafe7c2ac2c974b3829d7cf0e",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_AuctionHouseUI/Blizzard_AuctionHouseUI_Classic.toc"
+    },
+    {
+      "target": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_AuctionHouseUI/Blizzard_AuctionHouseUI_Mainline.toc",
+      "gitBlob": "d5a4c241cd5b12ba91f763cac3672b96e7320beb",
+      "sha256": "e4bbfc2ca09631a47e5e803ba700fc4cb71f554f4f178d9cdd4b807e159067d9",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_AuctionHouseUI/Blizzard_AuctionHouseUI_Mainline.toc"
+    },
+    {
+      "target": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_AuctionHouseUI/Shared/Blizzard_AuctionHouseBuyDialog.lua",
+      "gitBlob": "ff9c6b40e5d9f4541c403f4b45dae948b93d81df",
+      "sha256": "ed52c8232644125be0ce903e4ff84543ba338b68f64532949f9365f534d05ca8",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_AuctionHouseUI/Shared/Blizzard_AuctionHouseBuyDialog.lua"
+    },
+    {
+      "target": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_AuctionHouseUI/Shared/Blizzard_AuctionHouseBuyDialog.xml",
+      "gitBlob": "84a2bb13003a009e4912ee2e7089e697f78ae1f8",
+      "sha256": "03f1aac20293e7629b203a153541495fe30eb26a7699b8b63f2df55fab1c5da2",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_AuctionHouseUI/Shared/Blizzard_AuctionHouseBuyDialog.xml"
+    },
+    {
+      "target": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_AuctionHouseUI/Shared/Blizzard_AuctionHouseCommoditiesBuyFrame.lua",
+      "gitBlob": "6f7613c5ea5f647522bb9dc57b092023bce372ce",
+      "sha256": "b304161dc1d0cc0dca49def6bf3326ad31b0ac13d59efea8632a94b5fd4b3f22",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_AuctionHouseUI/Shared/Blizzard_AuctionHouseCommoditiesBuyFrame.lua"
+    },
+    {
+      "target": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_AuctionHouseUI/Shared/Blizzard_AuctionHouseFrame.lua",
+      "gitBlob": "cfa7f3aef0f09b22ad535938112819587d68ed90",
+      "sha256": "0d5bd1d38fded8103e9288b4ef78efde653977e4e59f246f5391738dd1b3cf99",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_AuctionHouseUI/Shared/Blizzard_AuctionHouseFrame.lua"
+    },
+    {
+      "target": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_AuctionHouseUI/Shared/Blizzard_AuctionHouseFrame.xml",
+      "gitBlob": "c94cd1850bd5b4cc38e7d3315371e9df328431f2",
+      "sha256": "63e4cdfacf2382c94a2302013c03128a95d59d54737141f1a4f7d757010bfa65",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_AuctionHouseUI/Shared/Blizzard_AuctionHouseFrame.xml"
+    },
+    {
+      "target": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_AuctionHouseUI/Shared/Blizzard_AuctionHouseItemBuyFrame.lua",
+      "gitBlob": "9c28caf62bd94c670e32b48c515b712a5076a039",
+      "sha256": "b7ea85de7408367f22d766f695a9aecad14d70c21e7d3e02b644ea0dc652f0a9",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_AuctionHouseUI/Shared/Blizzard_AuctionHouseItemBuyFrame.lua"
+    },
+    {
+      "target": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_AuctionUI/Blizzard_AuctionUI_Classic.toc",
+      "gitBlob": "a272472007aac8888166d48652c9385a3337d580",
+      "sha256": "4aeb8134600922ba61a8b665e66180f5c494bba6e8a6c490a3d81f05199d6409",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_AuctionUI/Blizzard_AuctionUI_Classic.toc"
+    },
+    {
+      "target": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_AuctionUI/Classic/Blizzard_AuctionUI.lua",
+      "gitBlob": "dbae3f64af38d8c8055919bdfc91e04de1c82e40",
+      "sha256": "111cfce08328430882c5fdef031a2ceeabdf76c42469d9edf39107205a5d641e",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_AuctionUI/Classic/Blizzard_AuctionUI.lua"
+    },
+    {
+      "target": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_AuctionUI/Classic/Blizzard_AuctionUI.xml",
+      "gitBlob": "3cf9f57cd2334465d8066d9a88bf40547069b5ff",
+      "sha256": "216e7d28e2f481ee866376c584b19d1a73b22b4050d764fd3ac583a8c583e0e5",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_AuctionUI/Classic/Blizzard_AuctionUI.xml"
+    },
+    {
+      "target": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_SharedXML/CommonUIPanelTemplates.xml",
+      "gitBlob": "e80b147fa703003843a45617025996a774a3cc7f",
+      "sha256": "295706f57fecc50c12b11a27df25556058220ddd2e92cfac4004ea4c2fae0eda",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_SharedXML/CommonUIPanelTemplates.xml"
+    },
+    {
+      "target": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_SharedXML/Shared/Button/CheckButtonTemplates.xml",
+      "gitBlob": "c6e6c07d8562c2095cd0ebcca2af63b75132db88",
+      "sha256": "004f99e99c06bb38674054a0f9147eb5bc49664e57fafdf038ce2f7e0e73f41e",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_SharedXML/Shared/Button/CheckButtonTemplates.xml"
+    },
+    {
+      "target": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_SharedXML/Shared/InputBox/InputBoxTemplates.xml",
+      "gitBlob": "714368da8e3b607bf8f40d78144d2df2332d2bd8",
+      "sha256": "f44cb1cb2c277f98eb4791453efee7570d36dcc8d968a3b5c9dc4d167cfaa1be",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_SharedXML/Shared/InputBox/InputBoxTemplates.xml"
+    },
+    {
+      "target": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_UIPanelTemplates/Classic/UIPanelTemplates.xml",
+      "gitBlob": "49ff8d9b9f730789d7604de650f328f8cff69740",
+      "sha256": "13b5378194a80338406b607b9e328a43f0393e88abf7217ab59aca0e942be093",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_UIPanelTemplates/Classic/UIPanelTemplates.xml"
+    },
+    {
+      "target": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "version.txt",
+      "gitBlob": "6888c66e55b78c6b76bdda185480facc60d9b5e5",
+      "sha256": "bcb030fe2d2febd396332d886d804ef9b397335e88f0196edc5d8dbe54c1ba38",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/version.txt"
+    },
+    {
+      "target": "classic_era",
+      "commit": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/AuctionHouseConstantsDocumentation.lua",
+      "gitBlob": "48af907a9f88ab18f40860615bec6cc71faf5f8a",
+      "sha256": "794fb99fafd2339c93b788a6c435b705b08afa9e74f1cea892e499accf054434",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_APIDocumentationGenerated/AuctionHouseConstantsDocumentation.lua"
+    },
+    {
+      "target": "classic_era",
+      "commit": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/AuctionHouseDocumentation.lua",
+      "gitBlob": "a7ddf737d2dfc469e97de7c156b28c715c401a0b",
+      "sha256": "6119e57039b55464a2e04d0b3c429977022a80f18f6e3fbbdfcf954dab0145e4",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_APIDocumentationGenerated/AuctionHouseDocumentation.lua"
+    },
+    {
+      "target": "classic_era",
+      "commit": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "path": "Interface/AddOns/Blizzard_AuctionHouseUI/Blizzard_AuctionHouseUI_Classic.toc",
+      "gitBlob": "4d4e742a69f62ec34e11f325b75f18850281ea22",
+      "sha256": "ea55dda5e04647a978d9e53cd17f24dd87690961476f2355cd082d2f9dac6f4b",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_AuctionHouseUI/Blizzard_AuctionHouseUI_Classic.toc"
+    },
+    {
+      "target": "classic_era",
+      "commit": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "path": "Interface/AddOns/Blizzard_AuctionHouseUI/Blizzard_AuctionHouseUI_Mainline.toc",
+      "gitBlob": "d5a4c241cd5b12ba91f763cac3672b96e7320beb",
+      "sha256": "e4bbfc2ca09631a47e5e803ba700fc4cb71f554f4f178d9cdd4b807e159067d9",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_AuctionHouseUI/Blizzard_AuctionHouseUI_Mainline.toc"
+    },
+    {
+      "target": "classic_era",
+      "commit": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "path": "Interface/AddOns/Blizzard_AuctionHouseUI/Shared/Blizzard_AuctionHouseBuyDialog.lua",
+      "gitBlob": "ff9c6b40e5d9f4541c403f4b45dae948b93d81df",
+      "sha256": "ed52c8232644125be0ce903e4ff84543ba338b68f64532949f9365f534d05ca8",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_AuctionHouseUI/Shared/Blizzard_AuctionHouseBuyDialog.lua"
+    },
+    {
+      "target": "classic_era",
+      "commit": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "path": "Interface/AddOns/Blizzard_AuctionHouseUI/Shared/Blizzard_AuctionHouseBuyDialog.xml",
+      "gitBlob": "84a2bb13003a009e4912ee2e7089e697f78ae1f8",
+      "sha256": "03f1aac20293e7629b203a153541495fe30eb26a7699b8b63f2df55fab1c5da2",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_AuctionHouseUI/Shared/Blizzard_AuctionHouseBuyDialog.xml"
+    },
+    {
+      "target": "classic_era",
+      "commit": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "path": "Interface/AddOns/Blizzard_AuctionHouseUI/Shared/Blizzard_AuctionHouseCommoditiesBuyFrame.lua",
+      "gitBlob": "6f7613c5ea5f647522bb9dc57b092023bce372ce",
+      "sha256": "b304161dc1d0cc0dca49def6bf3326ad31b0ac13d59efea8632a94b5fd4b3f22",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_AuctionHouseUI/Shared/Blizzard_AuctionHouseCommoditiesBuyFrame.lua"
+    },
+    {
+      "target": "classic_era",
+      "commit": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "path": "Interface/AddOns/Blizzard_AuctionHouseUI/Shared/Blizzard_AuctionHouseFrame.lua",
+      "gitBlob": "cfa7f3aef0f09b22ad535938112819587d68ed90",
+      "sha256": "0d5bd1d38fded8103e9288b4ef78efde653977e4e59f246f5391738dd1b3cf99",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_AuctionHouseUI/Shared/Blizzard_AuctionHouseFrame.lua"
+    },
+    {
+      "target": "classic_era",
+      "commit": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "path": "Interface/AddOns/Blizzard_AuctionHouseUI/Shared/Blizzard_AuctionHouseFrame.xml",
+      "gitBlob": "c94cd1850bd5b4cc38e7d3315371e9df328431f2",
+      "sha256": "63e4cdfacf2382c94a2302013c03128a95d59d54737141f1a4f7d757010bfa65",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_AuctionHouseUI/Shared/Blizzard_AuctionHouseFrame.xml"
+    },
+    {
+      "target": "classic_era",
+      "commit": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "path": "Interface/AddOns/Blizzard_AuctionHouseUI/Shared/Blizzard_AuctionHouseItemBuyFrame.lua",
+      "gitBlob": "9c28caf62bd94c670e32b48c515b712a5076a039",
+      "sha256": "b7ea85de7408367f22d766f695a9aecad14d70c21e7d3e02b644ea0dc652f0a9",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_AuctionHouseUI/Shared/Blizzard_AuctionHouseItemBuyFrame.lua"
+    },
+    {
+      "target": "classic_era",
+      "commit": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "path": "Interface/AddOns/Blizzard_AuctionUI/Blizzard_AuctionUI_Classic.toc",
+      "gitBlob": "a272472007aac8888166d48652c9385a3337d580",
+      "sha256": "4aeb8134600922ba61a8b665e66180f5c494bba6e8a6c490a3d81f05199d6409",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_AuctionUI/Blizzard_AuctionUI_Classic.toc"
+    },
+    {
+      "target": "classic_era",
+      "commit": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "path": "Interface/AddOns/Blizzard_AuctionUI/Classic/Blizzard_AuctionUI.lua",
+      "gitBlob": "36f7ce7eb7bb48286a05ba6fc6f8369dc1d529ec",
+      "sha256": "23f376215690cdf37d384697ca594ee1d3140c8249cdb2af9d26a25f5a079514",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_AuctionUI/Classic/Blizzard_AuctionUI.lua"
+    },
+    {
+      "target": "classic_era",
+      "commit": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "path": "Interface/AddOns/Blizzard_AuctionUI/Classic/Blizzard_AuctionUI.xml",
+      "gitBlob": "3cf9f57cd2334465d8066d9a88bf40547069b5ff",
+      "sha256": "216e7d28e2f481ee866376c584b19d1a73b22b4050d764fd3ac583a8c583e0e5",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_AuctionUI/Classic/Blizzard_AuctionUI.xml"
+    },
+    {
+      "target": "classic_era",
+      "commit": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "path": "Interface/AddOns/Blizzard_SharedXML/CommonUIPanelTemplates.xml",
+      "gitBlob": "e80b147fa703003843a45617025996a774a3cc7f",
+      "sha256": "295706f57fecc50c12b11a27df25556058220ddd2e92cfac4004ea4c2fae0eda",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_SharedXML/CommonUIPanelTemplates.xml"
+    },
+    {
+      "target": "classic_era",
+      "commit": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "path": "Interface/AddOns/Blizzard_SharedXML/Shared/Button/CheckButtonTemplates.xml",
+      "gitBlob": "c6e6c07d8562c2095cd0ebcca2af63b75132db88",
+      "sha256": "004f99e99c06bb38674054a0f9147eb5bc49664e57fafdf038ce2f7e0e73f41e",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_SharedXML/Shared/Button/CheckButtonTemplates.xml"
+    },
+    {
+      "target": "classic_era",
+      "commit": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "path": "Interface/AddOns/Blizzard_SharedXML/Shared/InputBox/InputBoxTemplates.xml",
+      "gitBlob": "714368da8e3b607bf8f40d78144d2df2332d2bd8",
+      "sha256": "f44cb1cb2c277f98eb4791453efee7570d36dcc8d968a3b5c9dc4d167cfaa1be",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_SharedXML/Shared/InputBox/InputBoxTemplates.xml"
+    },
+    {
+      "target": "classic_era",
+      "commit": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "path": "Interface/AddOns/Blizzard_UIPanelTemplates/Classic/UIPanelTemplates.xml",
+      "gitBlob": "49ff8d9b9f730789d7604de650f328f8cff69740",
+      "sha256": "13b5378194a80338406b607b9e328a43f0393e88abf7217ab59aca0e942be093",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_UIPanelTemplates/Classic/UIPanelTemplates.xml"
+    },
+    {
+      "target": "classic_era",
+      "commit": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "path": "version.txt",
+      "gitBlob": "66bc5d3c31ec0d4ac300d1ba18ffd9490ac424d9",
+      "sha256": "5224861aa41c7bcfd9d48bdd8003eb769a8954c72e3e9682035aeff5bc236f29",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4192ac60067fc55566182291bc67c85dd9b6794d/version.txt"
+    },
+    {
+      "target": "classic_anniversary",
+      "commit": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/AuctionHouseConstantsDocumentation.lua",
+      "gitBlob": "48af907a9f88ab18f40860615bec6cc71faf5f8a",
+      "sha256": "794fb99fafd2339c93b788a6c435b705b08afa9e74f1cea892e499accf054434",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_APIDocumentationGenerated/AuctionHouseConstantsDocumentation.lua"
+    },
+    {
+      "target": "classic_anniversary",
+      "commit": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/AuctionHouseDocumentation.lua",
+      "gitBlob": "a7ddf737d2dfc469e97de7c156b28c715c401a0b",
+      "sha256": "6119e57039b55464a2e04d0b3c429977022a80f18f6e3fbbdfcf954dab0145e4",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_APIDocumentationGenerated/AuctionHouseDocumentation.lua"
+    },
+    {
+      "target": "classic_anniversary",
+      "commit": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "path": "Interface/AddOns/Blizzard_AuctionHouseUI/Blizzard_AuctionHouseUI_Classic.toc",
+      "gitBlob": "e5b3c42545188d74cd6e4c6722cce07f8bc94553",
+      "sha256": "a61bdffe8feaf19e0053c4d92a39e3d5436a3e629f28509a129745d33fe3e150",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_AuctionHouseUI/Blizzard_AuctionHouseUI_Classic.toc"
+    },
+    {
+      "target": "classic_anniversary",
+      "commit": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "path": "Interface/AddOns/Blizzard_AuctionHouseUI/Blizzard_AuctionHouseUI_Mainline.toc",
+      "gitBlob": "c3342f46c6b0f118968227235d8fdacd1f5840d6",
+      "sha256": "5b989b5284e21ddd13fa0da0f7c4a0e27dd922938387a49fd47193281379ab73",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_AuctionHouseUI/Blizzard_AuctionHouseUI_Mainline.toc"
+    },
+    {
+      "target": "classic_anniversary",
+      "commit": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "path": "Interface/AddOns/Blizzard_AuctionHouseUI/Shared/Blizzard_AuctionHouseBuyDialog.lua",
+      "gitBlob": "7640721c9d08679aab4fb2f6876f8d3e6f8e8a5e",
+      "sha256": "1d61312c9052f01afed88ef60a63be836dc85e567ddb6b8bc49bc9126025d74f",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_AuctionHouseUI/Shared/Blizzard_AuctionHouseBuyDialog.lua"
+    },
+    {
+      "target": "classic_anniversary",
+      "commit": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "path": "Interface/AddOns/Blizzard_AuctionHouseUI/Shared/Blizzard_AuctionHouseBuyDialog.xml",
+      "gitBlob": "0768fdbb2e7625786da07240a264d9b42297452d",
+      "sha256": "8bec5251a38d73f7894f6ad8dfcf8fe0afc841d5fdb70a0b9bbc9571dc37fa19",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_AuctionHouseUI/Shared/Blizzard_AuctionHouseBuyDialog.xml"
+    },
+    {
+      "target": "classic_anniversary",
+      "commit": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "path": "Interface/AddOns/Blizzard_AuctionHouseUI/Shared/Blizzard_AuctionHouseCommoditiesBuyFrame.lua",
+      "gitBlob": "031ce4fa86396368a895159fbeb9e2c764be9e83",
+      "sha256": "728928dfbec935b1239de1925f7d4a6e49982a6defc7e494184f0937b8221bfa",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_AuctionHouseUI/Shared/Blizzard_AuctionHouseCommoditiesBuyFrame.lua"
+    },
+    {
+      "target": "classic_anniversary",
+      "commit": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "path": "Interface/AddOns/Blizzard_AuctionHouseUI/Shared/Blizzard_AuctionHouseFrame.lua",
+      "gitBlob": "4f7674bc9a3f0d19ed146c6d0c45961d14289c50",
+      "sha256": "bb20b99049d055b692628e018e454999526aa0212d90edd12f2c4b282d64df40",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_AuctionHouseUI/Shared/Blizzard_AuctionHouseFrame.lua"
+    },
+    {
+      "target": "classic_anniversary",
+      "commit": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "path": "Interface/AddOns/Blizzard_AuctionHouseUI/Shared/Blizzard_AuctionHouseFrame.xml",
+      "gitBlob": "3f73c459449e6333b1f5b277b1258c4bede57848",
+      "sha256": "39a405dfaf506e8942f131a0ab5efd957aeb66676550b00bb7fb6a4a53fd298f",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_AuctionHouseUI/Shared/Blizzard_AuctionHouseFrame.xml"
+    },
+    {
+      "target": "classic_anniversary",
+      "commit": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "path": "Interface/AddOns/Blizzard_AuctionHouseUI/Shared/Blizzard_AuctionHouseItemBuyFrame.lua",
+      "gitBlob": "e8df2d38804bcecc97a3be107879b0583371dd85",
+      "sha256": "9da9a09a3bb90ab228e6abd69f7d671da586028f5bdde4bcaf73eebac917e0ef",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_AuctionHouseUI/Shared/Blizzard_AuctionHouseItemBuyFrame.lua"
+    },
+    {
+      "target": "classic_anniversary",
+      "commit": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "path": "Interface/AddOns/Blizzard_AuctionUI/Blizzard_AuctionUI_Classic.toc",
+      "gitBlob": "c50177c0b9b2288816b9997b24a29badd8d4e6d5",
+      "sha256": "655acbd01f123dbcc86970c2a79491f52fdf7082388f638b53ac9f8b05571497",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_AuctionUI/Blizzard_AuctionUI_Classic.toc"
+    },
+    {
+      "target": "classic_anniversary",
+      "commit": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "path": "Interface/AddOns/Blizzard_AuctionUI/Classic/Blizzard_AuctionUI.lua",
+      "gitBlob": "c07fa93d6f934ca467c3f9de17796212e19cfe9c",
+      "sha256": "ba3e41f600fb411ca69093bfa0048303ef319c6e8fc0b3ecb3e0e1bad69b262c",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_AuctionUI/Classic/Blizzard_AuctionUI.lua"
+    },
+    {
+      "target": "classic_anniversary",
+      "commit": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "path": "Interface/AddOns/Blizzard_AuctionUI/Classic/Blizzard_AuctionUI.xml",
+      "gitBlob": "25d73e0a4ced527bcd9c3587bde6b97cc891c3b8",
+      "sha256": "546024122d701a622e3fbbdd2bf840e82b658c8de5f23ccbbe7ab5f19e86cc38",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_AuctionUI/Classic/Blizzard_AuctionUI.xml"
+    },
+    {
+      "target": "classic_anniversary",
+      "commit": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "path": "Interface/AddOns/Blizzard_SharedXML/CommonUIPanelTemplates.xml",
+      "gitBlob": "62be58884fc10dd649a2d298f93ccb6b3123349b",
+      "sha256": "f6d83fa17a22dc4b8fe90e7fc3574cc16d370cd88993fb0941d7bc613c677f20",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_SharedXML/CommonUIPanelTemplates.xml"
+    },
+    {
+      "target": "classic_anniversary",
+      "commit": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "path": "Interface/AddOns/Blizzard_SharedXML/Shared/Button/CheckButtonTemplates.xml",
+      "gitBlob": "e8531a85082507d9d99679fdd913055e3e62bc9f",
+      "sha256": "7442bb8066e00631d692dc14f6556f52ca520ccc949569c9b2321299cdb081a9",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_SharedXML/Shared/Button/CheckButtonTemplates.xml"
+    },
+    {
+      "target": "classic_anniversary",
+      "commit": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "path": "Interface/AddOns/Blizzard_SharedXML/Shared/InputBox/InputBoxTemplates.xml",
+      "gitBlob": "5820ebce2ecfb4eeb2d12b9fd95d31056a586199",
+      "sha256": "88dd3f9f05a1a172fa0b98ffecc60ef064910ed5e028d32bfdbb9934f8cf7fc3",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_SharedXML/Shared/InputBox/InputBoxTemplates.xml"
+    },
+    {
+      "target": "classic_anniversary",
+      "commit": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "path": "Interface/AddOns/Blizzard_UIPanelTemplates/Classic/UIPanelTemplates.xml",
+      "gitBlob": "2992db7063a11bc8749242add6b7bff464c06528",
+      "sha256": "f1ef24f1005692dd754eb3c516e65c34956cf6332a2797d6a386891e295465ec",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_UIPanelTemplates/Classic/UIPanelTemplates.xml"
+    },
+    {
+      "target": "classic_anniversary",
+      "commit": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "path": "version.txt",
+      "gitBlob": "f81737db88bfda2cd085cc09b18ca8ce764efc42",
+      "sha256": "53498c451665c69194d1a41b9983916109b370b6a261bb833322ae871838bdb3",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/version.txt"
+    },
+    {
+      "target": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleEditBoxAPIDocumentation.lua",
+      "gitBlob": "9b82eccc3289f66a2deca9b7f6d62c835a239022",
+      "sha256": "aa932f643f66a880c6191043f7597b59d0c9f45df86f229c0322013d533a1aa8",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleEditBoxAPIDocumentation.lua"
+    },
+    {
+      "target": "forever",
+      "commit": "4cd0ab752a77164f654ccbca9d0c1fe8dafceebe",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleEditBoxAPIDocumentation.lua",
+      "gitBlob": "9b82eccc3289f66a2deca9b7f6d62c835a239022",
+      "sha256": "aa932f643f66a880c6191043f7597b59d0c9f45df86f229c0322013d533a1aa8",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4cd0ab752a77164f654ccbca9d0c1fe8dafceebe/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleEditBoxAPIDocumentation.lua"
+    },
+    {
+      "target": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleEditBoxAPIDocumentation.lua",
+      "gitBlob": "4fb1c606d03fb2753a239215379e3eec15bbe6eb",
+      "sha256": "244bb5ef9df27507abccbf6c07360864abe78e78788a99f0e93723ca0cd07c60",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleEditBoxAPIDocumentation.lua"
+    },
+    {
+      "target": "classic_era",
+      "commit": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleEditBoxAPIDocumentation.lua",
+      "gitBlob": "4fb1c606d03fb2753a239215379e3eec15bbe6eb",
+      "sha256": "244bb5ef9df27507abccbf6c07360864abe78e78788a99f0e93723ca0cd07c60",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleEditBoxAPIDocumentation.lua"
+    },
+    {
+      "target": "classic_anniversary",
+      "commit": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleEditBoxAPIDocumentation.lua",
+      "gitBlob": "4fb1c606d03fb2753a239215379e3eec15bbe6eb",
+      "sha256": "244bb5ef9df27507abccbf6c07360864abe78e78788a99f0e93723ca0cd07c60",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleEditBoxAPIDocumentation.lua"
+    },
+    {
+      "target": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/FrameScriptDocumentation.lua",
+      "gitBlob": "37a45d72e916329c17f393de7e586a1516205440",
+      "sha256": "945c09648a60fe90271ed5fc092608af85774fd24daa615d1410263593de7c2c",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_APIDocumentationGenerated/FrameScriptDocumentation.lua"
+    },
+    {
+      "target": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/RestrictedActionsConstantsDocumentation.lua",
+      "gitBlob": "020635e6da16d2f274daaed15e47c32e1ccfd007",
+      "sha256": "109b02f69af6f43a5762bd7123e982e0432fff2226ebf927855ba876791a6c32",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_APIDocumentationGenerated/RestrictedActionsConstantsDocumentation.lua"
+    },
+    {
+      "target": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/RestrictedActionsDocumentation.lua",
+      "gitBlob": "5acf5efde9c50029f03f3367201ee848075badf7",
+      "sha256": "3b22f5e0249d53d492432648c92295aabb4a3a211f50f7e617bd7eaca3676680",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_APIDocumentationGenerated/RestrictedActionsDocumentation.lua"
+    },
+    {
+      "target": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleButtonAPIDocumentation.lua",
+      "gitBlob": "1e2214ee5348144f5e76e63ab6de22c91b810708",
+      "sha256": "77d01584823f347dc819f2eff5771dfd63ef108afae251a7042657f06a52e16e",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleButtonAPIDocumentation.lua"
+    },
+    {
+      "target": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleFrameAPIDocumentation.lua",
+      "gitBlob": "f0951c3f8a2556ac881434d33b687d8b9671ca1a",
+      "sha256": "c6275c78b80e584083000b19dff052cbbb7e1065bdcd0db4cf430c584a5c9430",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleFrameAPIDocumentation.lua"
+    },
+    {
+      "target": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/TradeSkillUIDocumentation.lua",
+      "gitBlob": "88723be07b7cdc117e4d0381642a0f55770cf99b",
+      "sha256": "b1b886b0103d8293a390fdf15f139cf5dd657916574f02ef71e8ff32ae647118",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_APIDocumentationGenerated/TradeSkillUIDocumentation.lua"
+    },
+    {
+      "target": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/TradeSkillUITypesDocumentation.lua",
+      "gitBlob": "8bfb8bdbb810718b8c59a27d72d6dc15176f0625",
+      "sha256": "c1fcec130e314052873d0246311f1a554141b0cf5ace55ea849ad8c7275be29b",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_APIDocumentationGenerated/TradeSkillUITypesDocumentation.lua"
+    },
+    {
+      "target": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_AuctionHouseUI/Classic/Blizzard_AuctionHouseSharedTemplates.xml",
+      "gitBlob": "8b823edee5fd04c7265fd4f8f4a4a11ffab50591",
+      "sha256": "b2016e98caf3459a98c539fea4775b2ec81686e96e53d9eaf0039d68f9fd1cc8",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_AuctionHouseUI/Classic/Blizzard_AuctionHouseSharedTemplates.xml"
+    },
+    {
+      "target": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_AuctionHouseUI/Classic/Blizzard_AuctionHouseTab.xml",
+      "gitBlob": "ee91105d12b727ec915c5f4d1621c856254aef3b",
+      "sha256": "d49c982e18e1c76440e2a0ca69498771c2f1cd733b9bcd912f287c6037f57fcb",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_AuctionHouseUI/Classic/Blizzard_AuctionHouseTab.xml"
+    },
+    {
+      "target": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_AuctionHouseUI/Mainline/Blizzard_AuctionHouseSharedTemplates.xml",
+      "gitBlob": "0ecbdf5b0b4c456a137aae8088128b396ee67423",
+      "sha256": "2d9ab2a96a4a1bc00cd19eb01289705e7ae69287c9bc7b863328a977d2e5b54b",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_AuctionHouseUI/Mainline/Blizzard_AuctionHouseSharedTemplates.xml"
+    },
+    {
+      "target": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_AuctionHouseUI/Mainline/Blizzard_AuctionHouseTab.xml",
+      "gitBlob": "999d383cc6779d4d981becf4c95c537bbd15dc5a",
+      "sha256": "0898017356fba1cbfb084a4598046e22405b20be4b155ad731850fffe7343f9f",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_AuctionHouseUI/Mainline/Blizzard_AuctionHouseTab.xml"
+    },
+    {
+      "target": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_AuctionHouseUI/Shared/Blizzard_AuctionHouseCommoditiesBuyFrame.xml",
+      "gitBlob": "3f06704c6011d816d591bf8bb3d6f11126092585",
+      "sha256": "8abf087df2b6ded216e0e6ea4fa919a7b2a8cf50f11379c03b19baa4fc59ebd9",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_AuctionHouseUI/Shared/Blizzard_AuctionHouseCommoditiesBuyFrame.xml"
+    },
+    {
+      "target": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_AuctionHouseUI/Shared/Blizzard_AuctionHouseSharedTemplates.xml",
+      "gitBlob": "186ff7751f9bd98db8f457eeb01974fe5cfd5199",
+      "sha256": "e4b24cedb8ce07426acf85b1809f9a4b5daf4ab6e68d3b5c8a27bbc5a4a5d63c",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_AuctionHouseUI/Shared/Blizzard_AuctionHouseSharedTemplates.xml"
+    },
+    {
+      "target": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_AuctionHouseUI/Shared/Blizzard_AuctionHouseTab.lua",
+      "gitBlob": "e33c295916a0092ce0e8612de3f6659c07a3f381",
+      "sha256": "3408d7b1279e8626a282de3b0b3fd2369edd2afeced52736b40e16934a3c03c9",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_AuctionHouseUI/Shared/Blizzard_AuctionHouseTab.lua"
+    },
+    {
+      "target": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_SharedXML/Mainline/SharedUIPanelTemplates.lua",
+      "gitBlob": "3e0740c2408495aad1f7418a20e31eda7a997c9d",
+      "sha256": "a22710fabc83cf3cfb77eedf27b85ee95eb43274b647ad7a02502b58a8c6d7f0",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_SharedXML/Mainline/SharedUIPanelTemplates.lua"
+    },
+    {
+      "target": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_SharedXML/SecureUIPanelTemplates.lua",
+      "gitBlob": "64e6b5a43dfc5a5c969d3dc1eaa09f880fb51025",
+      "sha256": "070bb0cf39d3f7b27b6cfb4d688bd690e5f75e9ef4257dad657508a814f8596d",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_SharedXML/SecureUIPanelTemplates.lua"
+    },
+    {
+      "target": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_UIPanelTemplates/Mainline/UIPanelTemplates.lua",
+      "gitBlob": "c206a7078eab55051ea110467add45997c6546ba",
+      "sha256": "b2e6b89d76c3dc4ebc2ba3895a223753190f3c5ff58b2d06547812f6dd923a2e",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_UIPanelTemplates/Mainline/UIPanelTemplates.lua"
+    },
+    {
+      "target": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_UIPanelTemplates/Shared/UIPanelTemplatesShared.lua",
+      "gitBlob": "6ab1bb04eab94c881b2b58a939abdbefb0d703b1",
+      "sha256": "e45503a2d16012c6aa8bd2c9fbd5eda102f2690f6c3dd923091f28840ac83d5c",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_UIPanelTemplates/Shared/UIPanelTemplatesShared.lua"
+    },
+    {
+      "target": "forever",
+      "commit": "4cd0ab752a77164f654ccbca9d0c1fe8dafceebe",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/FrameScriptDocumentation.lua",
+      "gitBlob": "37a45d72e916329c17f393de7e586a1516205440",
+      "sha256": "945c09648a60fe90271ed5fc092608af85774fd24daa615d1410263593de7c2c",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4cd0ab752a77164f654ccbca9d0c1fe8dafceebe/Interface/AddOns/Blizzard_APIDocumentationGenerated/FrameScriptDocumentation.lua"
+    },
+    {
+      "target": "forever",
+      "commit": "4cd0ab752a77164f654ccbca9d0c1fe8dafceebe",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/RestrictedActionsConstantsDocumentation.lua",
+      "gitBlob": "020635e6da16d2f274daaed15e47c32e1ccfd007",
+      "sha256": "109b02f69af6f43a5762bd7123e982e0432fff2226ebf927855ba876791a6c32",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4cd0ab752a77164f654ccbca9d0c1fe8dafceebe/Interface/AddOns/Blizzard_APIDocumentationGenerated/RestrictedActionsConstantsDocumentation.lua"
+    },
+    {
+      "target": "forever",
+      "commit": "4cd0ab752a77164f654ccbca9d0c1fe8dafceebe",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/RestrictedActionsDocumentation.lua",
+      "gitBlob": "5acf5efde9c50029f03f3367201ee848075badf7",
+      "sha256": "3b22f5e0249d53d492432648c92295aabb4a3a211f50f7e617bd7eaca3676680",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4cd0ab752a77164f654ccbca9d0c1fe8dafceebe/Interface/AddOns/Blizzard_APIDocumentationGenerated/RestrictedActionsDocumentation.lua"
+    },
+    {
+      "target": "forever",
+      "commit": "4cd0ab752a77164f654ccbca9d0c1fe8dafceebe",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleButtonAPIDocumentation.lua",
+      "gitBlob": "1e2214ee5348144f5e76e63ab6de22c91b810708",
+      "sha256": "77d01584823f347dc819f2eff5771dfd63ef108afae251a7042657f06a52e16e",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4cd0ab752a77164f654ccbca9d0c1fe8dafceebe/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleButtonAPIDocumentation.lua"
+    },
+    {
+      "target": "forever",
+      "commit": "4cd0ab752a77164f654ccbca9d0c1fe8dafceebe",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleFrameAPIDocumentation.lua",
+      "gitBlob": "07debf919e8b4d43087306d2eccfb8e18e8f2c82",
+      "sha256": "c00bc77ee27f8fd81ba8b8d1bfd85fbd0ad817b22457adbe5adca6876a1d604a",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4cd0ab752a77164f654ccbca9d0c1fe8dafceebe/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleFrameAPIDocumentation.lua"
+    },
+    {
+      "target": "forever",
+      "commit": "4cd0ab752a77164f654ccbca9d0c1fe8dafceebe",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/TradeSkillUIDocumentation.lua",
+      "gitBlob": "794ebc9d94989cab9c8205bc63f6a14ed47f3bbb",
+      "sha256": "e3392e58403283ef5e307268ce51781ef25e7e0d955a199906b9b37278503fd2",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4cd0ab752a77164f654ccbca9d0c1fe8dafceebe/Interface/AddOns/Blizzard_APIDocumentationGenerated/TradeSkillUIDocumentation.lua"
+    },
+    {
+      "target": "forever",
+      "commit": "4cd0ab752a77164f654ccbca9d0c1fe8dafceebe",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/TradeSkillUITypesDocumentation.lua",
+      "gitBlob": "8bfb8bdbb810718b8c59a27d72d6dc15176f0625",
+      "sha256": "c1fcec130e314052873d0246311f1a554141b0cf5ace55ea849ad8c7275be29b",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4cd0ab752a77164f654ccbca9d0c1fe8dafceebe/Interface/AddOns/Blizzard_APIDocumentationGenerated/TradeSkillUITypesDocumentation.lua"
+    },
+    {
+      "target": "forever",
+      "commit": "4cd0ab752a77164f654ccbca9d0c1fe8dafceebe",
+      "path": "Interface/AddOns/Blizzard_AuctionHouseUI/Classic/Blizzard_AuctionHouseSharedTemplates.xml",
+      "gitBlob": "8b823edee5fd04c7265fd4f8f4a4a11ffab50591",
+      "sha256": "b2016e98caf3459a98c539fea4775b2ec81686e96e53d9eaf0039d68f9fd1cc8",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4cd0ab752a77164f654ccbca9d0c1fe8dafceebe/Interface/AddOns/Blizzard_AuctionHouseUI/Classic/Blizzard_AuctionHouseSharedTemplates.xml"
+    },
+    {
+      "target": "forever",
+      "commit": "4cd0ab752a77164f654ccbca9d0c1fe8dafceebe",
+      "path": "Interface/AddOns/Blizzard_AuctionHouseUI/Classic/Blizzard_AuctionHouseTab.xml",
+      "gitBlob": "ee91105d12b727ec915c5f4d1621c856254aef3b",
+      "sha256": "d49c982e18e1c76440e2a0ca69498771c2f1cd733b9bcd912f287c6037f57fcb",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4cd0ab752a77164f654ccbca9d0c1fe8dafceebe/Interface/AddOns/Blizzard_AuctionHouseUI/Classic/Blizzard_AuctionHouseTab.xml"
+    },
+    {
+      "target": "forever",
+      "commit": "4cd0ab752a77164f654ccbca9d0c1fe8dafceebe",
+      "path": "Interface/AddOns/Blizzard_AuctionHouseUI/Mainline/Blizzard_AuctionHouseSharedTemplates.xml",
+      "gitBlob": "0ecbdf5b0b4c456a137aae8088128b396ee67423",
+      "sha256": "2d9ab2a96a4a1bc00cd19eb01289705e7ae69287c9bc7b863328a977d2e5b54b",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4cd0ab752a77164f654ccbca9d0c1fe8dafceebe/Interface/AddOns/Blizzard_AuctionHouseUI/Mainline/Blizzard_AuctionHouseSharedTemplates.xml"
+    },
+    {
+      "target": "forever",
+      "commit": "4cd0ab752a77164f654ccbca9d0c1fe8dafceebe",
+      "path": "Interface/AddOns/Blizzard_AuctionHouseUI/Mainline/Blizzard_AuctionHouseTab.xml",
+      "gitBlob": "999d383cc6779d4d981becf4c95c537bbd15dc5a",
+      "sha256": "0898017356fba1cbfb084a4598046e22405b20be4b155ad731850fffe7343f9f",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4cd0ab752a77164f654ccbca9d0c1fe8dafceebe/Interface/AddOns/Blizzard_AuctionHouseUI/Mainline/Blizzard_AuctionHouseTab.xml"
+    },
+    {
+      "target": "forever",
+      "commit": "4cd0ab752a77164f654ccbca9d0c1fe8dafceebe",
+      "path": "Interface/AddOns/Blizzard_AuctionHouseUI/Shared/Blizzard_AuctionHouseCommoditiesBuyFrame.xml",
+      "gitBlob": "3f06704c6011d816d591bf8bb3d6f11126092585",
+      "sha256": "8abf087df2b6ded216e0e6ea4fa919a7b2a8cf50f11379c03b19baa4fc59ebd9",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4cd0ab752a77164f654ccbca9d0c1fe8dafceebe/Interface/AddOns/Blizzard_AuctionHouseUI/Shared/Blizzard_AuctionHouseCommoditiesBuyFrame.xml"
+    },
+    {
+      "target": "forever",
+      "commit": "4cd0ab752a77164f654ccbca9d0c1fe8dafceebe",
+      "path": "Interface/AddOns/Blizzard_AuctionHouseUI/Shared/Blizzard_AuctionHouseSharedTemplates.xml",
+      "gitBlob": "186ff7751f9bd98db8f457eeb01974fe5cfd5199",
+      "sha256": "e4b24cedb8ce07426acf85b1809f9a4b5daf4ab6e68d3b5c8a27bbc5a4a5d63c",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4cd0ab752a77164f654ccbca9d0c1fe8dafceebe/Interface/AddOns/Blizzard_AuctionHouseUI/Shared/Blizzard_AuctionHouseSharedTemplates.xml"
+    },
+    {
+      "target": "forever",
+      "commit": "4cd0ab752a77164f654ccbca9d0c1fe8dafceebe",
+      "path": "Interface/AddOns/Blizzard_AuctionHouseUI/Shared/Blizzard_AuctionHouseTab.lua",
+      "gitBlob": "e33c295916a0092ce0e8612de3f6659c07a3f381",
+      "sha256": "3408d7b1279e8626a282de3b0b3fd2369edd2afeced52736b40e16934a3c03c9",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4cd0ab752a77164f654ccbca9d0c1fe8dafceebe/Interface/AddOns/Blizzard_AuctionHouseUI/Shared/Blizzard_AuctionHouseTab.lua"
+    },
+    {
+      "target": "forever",
+      "commit": "4cd0ab752a77164f654ccbca9d0c1fe8dafceebe",
+      "path": "Interface/AddOns/Blizzard_SharedXML/Camelot/SharedUIPanelTemplates.lua",
+      "gitBlob": "b52fe4ca50169e0d862b20af13447ecd9ee3ddc1",
+      "sha256": "93ebd5f4ec733fe173784aa6067984f308121c80f59ddabfa68d6fc3701cc69a",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4cd0ab752a77164f654ccbca9d0c1fe8dafceebe/Interface/AddOns/Blizzard_SharedXML/Camelot/SharedUIPanelTemplates.lua"
+    },
+    {
+      "target": "forever",
+      "commit": "4cd0ab752a77164f654ccbca9d0c1fe8dafceebe",
+      "path": "Interface/AddOns/Blizzard_SharedXML/Mainline/SharedUIPanelTemplates.lua",
+      "gitBlob": "46328dd3b11741e7f389200a53c975e06a27d5ad",
+      "sha256": "12f9600965f41d0c0ace7b2270c7928f0f4d3229d634e881f1daaf5ef1f03e65",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4cd0ab752a77164f654ccbca9d0c1fe8dafceebe/Interface/AddOns/Blizzard_SharedXML/Mainline/SharedUIPanelTemplates.lua"
+    },
+    {
+      "target": "forever",
+      "commit": "4cd0ab752a77164f654ccbca9d0c1fe8dafceebe",
+      "path": "Interface/AddOns/Blizzard_SharedXML/SecureUIPanelTemplates.lua",
+      "gitBlob": "ea3a9d248a46e6cff9fad9484bcb59ebfe9a3635",
+      "sha256": "56a75519f2851e2cc0e65f0b2226d49759e9729470d998c5166e6300e4f787b2",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4cd0ab752a77164f654ccbca9d0c1fe8dafceebe/Interface/AddOns/Blizzard_SharedXML/SecureUIPanelTemplates.lua"
+    },
+    {
+      "target": "forever",
+      "commit": "4cd0ab752a77164f654ccbca9d0c1fe8dafceebe",
+      "path": "Interface/AddOns/Blizzard_UIPanelTemplates/Mainline/UIPanelTemplates.lua",
+      "gitBlob": "c206a7078eab55051ea110467add45997c6546ba",
+      "sha256": "b2e6b89d76c3dc4ebc2ba3895a223753190f3c5ff58b2d06547812f6dd923a2e",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4cd0ab752a77164f654ccbca9d0c1fe8dafceebe/Interface/AddOns/Blizzard_UIPanelTemplates/Mainline/UIPanelTemplates.lua"
+    },
+    {
+      "target": "forever",
+      "commit": "4cd0ab752a77164f654ccbca9d0c1fe8dafceebe",
+      "path": "Interface/AddOns/Blizzard_UIPanelTemplates/Shared/UIPanelTemplatesShared.lua",
+      "gitBlob": "6ab1bb04eab94c881b2b58a939abdbefb0d703b1",
+      "sha256": "e45503a2d16012c6aa8bd2c9fbd5eda102f2690f6c3dd923091f28840ac83d5c",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4cd0ab752a77164f654ccbca9d0c1fe8dafceebe/Interface/AddOns/Blizzard_UIPanelTemplates/Shared/UIPanelTemplatesShared.lua"
+    },
+    {
+      "target": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/FrameScriptDocumentation.lua",
+      "gitBlob": "de39a5a94a81691c01e1105244211bb968361130",
+      "sha256": "eebb27581046d43a3f9adc84f04e44d7e422c620954e4c28b79ca914b2cd30b3",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_APIDocumentationGenerated/FrameScriptDocumentation.lua"
+    },
+    {
+      "target": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/RestrictedActionsConstantsDocumentation.lua",
+      "gitBlob": "cb570513627a53bbf00961abbe524bc137ca3aa1",
+      "sha256": "59e155362c35cf8ea85384f5656cd6cbe26fe4f9b7aa21811a2fe22f66a3a335",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_APIDocumentationGenerated/RestrictedActionsConstantsDocumentation.lua"
+    },
+    {
+      "target": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/RestrictedActionsDocumentation.lua",
+      "gitBlob": "3491eac72574b1e5d94f74071a013fcffaf4b3e0",
+      "sha256": "db656d3743f4ed7f8876f7a215eb9b000a335bffd61d425dc4d6248ac8b5f264",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_APIDocumentationGenerated/RestrictedActionsDocumentation.lua"
+    },
+    {
+      "target": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleButtonAPIDocumentation.lua",
+      "gitBlob": "e2e459cfd6fb7071cd5ecb7a4125d18ea68b05e7",
+      "sha256": "ecda8ab6253687dfc53c15a79a8063da7206622c343a69336f1f14d48371a557",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleButtonAPIDocumentation.lua"
+    },
+    {
+      "target": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleFrameAPIDocumentation.lua",
+      "gitBlob": "a089a65c8ca55ee33693bf35359337812e174490",
+      "sha256": "6088af46a447e9a775a60b6d3acc429541951da8cfbf58e65adb98338d2a8298",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleFrameAPIDocumentation.lua"
+    },
+    {
+      "target": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/TradeSkillUIDocumentation.lua",
+      "gitBlob": "69a68e3138e0c1fae749431c96014cb935a96926",
+      "sha256": "7947e943bbd22b4360c3e07d985751d1c555e604c7b6076f1ba068789b6e2757",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_APIDocumentationGenerated/TradeSkillUIDocumentation.lua"
+    },
+    {
+      "target": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/TradeSkillUITypesDocumentation.lua",
+      "gitBlob": "7fc65df4dd1934a58ec4f77e4a60afc2a4fc6b66",
+      "sha256": "c6bc097bdd944986e70c86bbcf429bbe0d9df241496f1010d40ad7aba3109fe9",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_APIDocumentationGenerated/TradeSkillUITypesDocumentation.lua"
+    },
+    {
+      "target": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_AuctionHouseUI/Classic/Blizzard_AuctionHouseSharedTemplates.xml",
+      "gitBlob": "8b823edee5fd04c7265fd4f8f4a4a11ffab50591",
+      "sha256": "b2016e98caf3459a98c539fea4775b2ec81686e96e53d9eaf0039d68f9fd1cc8",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_AuctionHouseUI/Classic/Blizzard_AuctionHouseSharedTemplates.xml"
+    },
+    {
+      "target": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_AuctionHouseUI/Classic/Blizzard_AuctionHouseTab.xml",
+      "gitBlob": "ee91105d12b727ec915c5f4d1621c856254aef3b",
+      "sha256": "d49c982e18e1c76440e2a0ca69498771c2f1cd733b9bcd912f287c6037f57fcb",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_AuctionHouseUI/Classic/Blizzard_AuctionHouseTab.xml"
+    },
+    {
+      "target": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_AuctionHouseUI/Mainline/Blizzard_AuctionHouseSharedTemplates.xml",
+      "gitBlob": "0ecbdf5b0b4c456a137aae8088128b396ee67423",
+      "sha256": "2d9ab2a96a4a1bc00cd19eb01289705e7ae69287c9bc7b863328a977d2e5b54b",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_AuctionHouseUI/Mainline/Blizzard_AuctionHouseSharedTemplates.xml"
+    },
+    {
+      "target": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_AuctionHouseUI/Mainline/Blizzard_AuctionHouseTab.xml",
+      "gitBlob": "999d383cc6779d4d981becf4c95c537bbd15dc5a",
+      "sha256": "0898017356fba1cbfb084a4598046e22405b20be4b155ad731850fffe7343f9f",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_AuctionHouseUI/Mainline/Blizzard_AuctionHouseTab.xml"
+    },
+    {
+      "target": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_AuctionHouseUI/Shared/Blizzard_AuctionHouseCommoditiesBuyFrame.xml",
+      "gitBlob": "3f06704c6011d816d591bf8bb3d6f11126092585",
+      "sha256": "8abf087df2b6ded216e0e6ea4fa919a7b2a8cf50f11379c03b19baa4fc59ebd9",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_AuctionHouseUI/Shared/Blizzard_AuctionHouseCommoditiesBuyFrame.xml"
+    },
+    {
+      "target": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_AuctionHouseUI/Shared/Blizzard_AuctionHouseSharedTemplates.xml",
+      "gitBlob": "186ff7751f9bd98db8f457eeb01974fe5cfd5199",
+      "sha256": "e4b24cedb8ce07426acf85b1809f9a4b5daf4ab6e68d3b5c8a27bbc5a4a5d63c",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_AuctionHouseUI/Shared/Blizzard_AuctionHouseSharedTemplates.xml"
+    },
+    {
+      "target": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_AuctionHouseUI/Shared/Blizzard_AuctionHouseTab.lua",
+      "gitBlob": "e33c295916a0092ce0e8612de3f6659c07a3f381",
+      "sha256": "3408d7b1279e8626a282de3b0b3fd2369edd2afeced52736b40e16934a3c03c9",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_AuctionHouseUI/Shared/Blizzard_AuctionHouseTab.lua"
+    },
+    {
+      "target": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_AuctionUI/Classic/Blizzard_AuctionUITemplates.xml",
+      "gitBlob": "4f620db50e37f7a93bbbf5acb76fd3e83327538e",
+      "sha256": "fe3987ed02f06e7e8441bcb7249a78c6a7eee977f762ec8c0b69c9dc04ceec7a",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_AuctionUI/Classic/Blizzard_AuctionUITemplates.xml"
+    },
+    {
+      "target": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_SharedXML/Classic/SharedUIPanelTemplates.lua",
+      "gitBlob": "6a45f8b3a02c49db0a9b696982ef69e7630d4d31",
+      "sha256": "615fe41326d78b962dbba4bd0949f5167fbcc0e0ffa5a95eb4d9e4b66cde6321",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_SharedXML/Classic/SharedUIPanelTemplates.lua"
+    },
+    {
+      "target": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_SharedXML/SecureUIPanelTemplates.lua",
+      "gitBlob": "cdb19f31ab67b5e34f2cfcdf813f02e0dc160861",
+      "sha256": "f96b69b248cbed6260d8f4017f527aa5c86dc9cb0643ff988033b0fda749659e",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_SharedXML/SecureUIPanelTemplates.lua"
+    },
+    {
+      "target": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_TradeSkillUI/Mists/Blizzard_TradeSkillUI.lua",
+      "gitBlob": "25711c1f5b1874ae107726237221eea8c4f88938",
+      "sha256": "289359bb031c08b39cd1b551c559d40d2809940a2e8930ce743d4ff4fecb288f",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_TradeSkillUI/Mists/Blizzard_TradeSkillUI.lua"
+    },
+    {
+      "target": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_TradeSkillUI/Mists/Blizzard_TradeSkillUI.xml",
+      "gitBlob": "03e138cd12aef5f145f4ce72b928f883b79aea64",
+      "sha256": "aa09340b37c8b23b8d8e654d4fb298ac1e5a24633b60f619154d7fa906c04e78",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_TradeSkillUI/Mists/Blizzard_TradeSkillUI.xml"
+    },
+    {
+      "target": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_TradeSkillUI/TBC/Blizzard_TradeSkillUI.lua",
+      "gitBlob": "353e040b2a890aafe66f28a4b7c397cb70ff6429",
+      "sha256": "ebd160bcd9609fde320dccad76b4b550924a4e37e2cfeab46c0fcdf2a98cefd2",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_TradeSkillUI/TBC/Blizzard_TradeSkillUI.lua"
+    },
+    {
+      "target": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_TradeSkillUI/TBC/Blizzard_TradeSkillUI.xml",
+      "gitBlob": "3448147e59d7ec6d8dadf8dbeb0eb29869d29b5a",
+      "sha256": "ae1479b52fb335abf30ce770f02ab62797d3e20b61ae43c28d89b15d92373646",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_TradeSkillUI/TBC/Blizzard_TradeSkillUI.xml"
+    },
+    {
+      "target": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_TradeSkillUI/Vanilla/Blizzard_TradeSkillUI.lua",
+      "gitBlob": "9927bffdb6273bce703bd260708c6a4f59ddeb14",
+      "sha256": "413d52d2bc293a1133e69c277b1d356858ba6c856cb5f21665c55cddbe17d61d",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_TradeSkillUI/Vanilla/Blizzard_TradeSkillUI.lua"
+    },
+    {
+      "target": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_TradeSkillUI/Vanilla/Blizzard_TradeSkillUI.xml",
+      "gitBlob": "2bd93b0370d92f32d3bdfbf756df2c511e955b06",
+      "sha256": "54f71bac2970325b32735ef56a400554a0db98bdb3fb874df64dd1b93cb212e8",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_TradeSkillUI/Vanilla/Blizzard_TradeSkillUI.xml"
+    },
+    {
+      "target": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_TradeSkillUI/Wrath/Blizzard_TradeSkillUI.lua",
+      "gitBlob": "5058516a05dc2bee2ad08c63b23d5044e1d1a1b5",
+      "sha256": "3dd279e3cf922cb8be24b6d065586f7143037ef8dfb9036bac4e144cb3486db0",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_TradeSkillUI/Wrath/Blizzard_TradeSkillUI.lua"
+    },
+    {
+      "target": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_TradeSkillUI/Wrath/Blizzard_TradeSkillUI.xml",
+      "gitBlob": "017a1adae321319bfccd660449523ef9fd6e54bf",
+      "sha256": "168968e03edf153836a54d950499470c70e7246743010f5dcfec9f6ad1b31067",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_TradeSkillUI/Wrath/Blizzard_TradeSkillUI.xml"
+    },
+    {
+      "target": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_UIPanelTemplates/Classic/UIPanelTemplates.lua",
+      "gitBlob": "7b06dc68fa8c711d285cc19f9189682d993168a0",
+      "sha256": "0f55115e0da8af62fb1411381e9afed9062d2d0473d45924a5ff4cdbc77680b1",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_UIPanelTemplates/Classic/UIPanelTemplates.lua"
+    },
+    {
+      "target": "classic_era",
+      "commit": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/FrameScriptDocumentation.lua",
+      "gitBlob": "de39a5a94a81691c01e1105244211bb968361130",
+      "sha256": "eebb27581046d43a3f9adc84f04e44d7e422c620954e4c28b79ca914b2cd30b3",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_APIDocumentationGenerated/FrameScriptDocumentation.lua"
+    },
+    {
+      "target": "classic_era",
+      "commit": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/RestrictedActionsConstantsDocumentation.lua",
+      "gitBlob": "cb570513627a53bbf00961abbe524bc137ca3aa1",
+      "sha256": "59e155362c35cf8ea85384f5656cd6cbe26fe4f9b7aa21811a2fe22f66a3a335",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_APIDocumentationGenerated/RestrictedActionsConstantsDocumentation.lua"
+    },
+    {
+      "target": "classic_era",
+      "commit": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/RestrictedActionsDocumentation.lua",
+      "gitBlob": "3491eac72574b1e5d94f74071a013fcffaf4b3e0",
+      "sha256": "db656d3743f4ed7f8876f7a215eb9b000a335bffd61d425dc4d6248ac8b5f264",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_APIDocumentationGenerated/RestrictedActionsDocumentation.lua"
+    },
+    {
+      "target": "classic_era",
+      "commit": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleButtonAPIDocumentation.lua",
+      "gitBlob": "e2e459cfd6fb7071cd5ecb7a4125d18ea68b05e7",
+      "sha256": "ecda8ab6253687dfc53c15a79a8063da7206622c343a69336f1f14d48371a557",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleButtonAPIDocumentation.lua"
+    },
+    {
+      "target": "classic_era",
+      "commit": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleFrameAPIDocumentation.lua",
+      "gitBlob": "a089a65c8ca55ee33693bf35359337812e174490",
+      "sha256": "6088af46a447e9a775a60b6d3acc429541951da8cfbf58e65adb98338d2a8298",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleFrameAPIDocumentation.lua"
+    },
+    {
+      "target": "classic_era",
+      "commit": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/TradeSkillUIDocumentation.lua",
+      "gitBlob": "69a68e3138e0c1fae749431c96014cb935a96926",
+      "sha256": "7947e943bbd22b4360c3e07d985751d1c555e604c7b6076f1ba068789b6e2757",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_APIDocumentationGenerated/TradeSkillUIDocumentation.lua"
+    },
+    {
+      "target": "classic_era",
+      "commit": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/TradeSkillUITypesDocumentation.lua",
+      "gitBlob": "7fc65df4dd1934a58ec4f77e4a60afc2a4fc6b66",
+      "sha256": "c6bc097bdd944986e70c86bbcf429bbe0d9df241496f1010d40ad7aba3109fe9",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_APIDocumentationGenerated/TradeSkillUITypesDocumentation.lua"
+    },
+    {
+      "target": "classic_era",
+      "commit": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "path": "Interface/AddOns/Blizzard_AuctionHouseUI/Classic/Blizzard_AuctionHouseSharedTemplates.xml",
+      "gitBlob": "8b823edee5fd04c7265fd4f8f4a4a11ffab50591",
+      "sha256": "b2016e98caf3459a98c539fea4775b2ec81686e96e53d9eaf0039d68f9fd1cc8",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_AuctionHouseUI/Classic/Blizzard_AuctionHouseSharedTemplates.xml"
+    },
+    {
+      "target": "classic_era",
+      "commit": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "path": "Interface/AddOns/Blizzard_AuctionHouseUI/Classic/Blizzard_AuctionHouseTab.xml",
+      "gitBlob": "ee91105d12b727ec915c5f4d1621c856254aef3b",
+      "sha256": "d49c982e18e1c76440e2a0ca69498771c2f1cd733b9bcd912f287c6037f57fcb",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_AuctionHouseUI/Classic/Blizzard_AuctionHouseTab.xml"
+    },
+    {
+      "target": "classic_era",
+      "commit": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "path": "Interface/AddOns/Blizzard_AuctionHouseUI/Mainline/Blizzard_AuctionHouseSharedTemplates.xml",
+      "gitBlob": "0ecbdf5b0b4c456a137aae8088128b396ee67423",
+      "sha256": "2d9ab2a96a4a1bc00cd19eb01289705e7ae69287c9bc7b863328a977d2e5b54b",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_AuctionHouseUI/Mainline/Blizzard_AuctionHouseSharedTemplates.xml"
+    },
+    {
+      "target": "classic_era",
+      "commit": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "path": "Interface/AddOns/Blizzard_AuctionHouseUI/Mainline/Blizzard_AuctionHouseTab.xml",
+      "gitBlob": "999d383cc6779d4d981becf4c95c537bbd15dc5a",
+      "sha256": "0898017356fba1cbfb084a4598046e22405b20be4b155ad731850fffe7343f9f",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_AuctionHouseUI/Mainline/Blizzard_AuctionHouseTab.xml"
+    },
+    {
+      "target": "classic_era",
+      "commit": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "path": "Interface/AddOns/Blizzard_AuctionHouseUI/Shared/Blizzard_AuctionHouseCommoditiesBuyFrame.xml",
+      "gitBlob": "3f06704c6011d816d591bf8bb3d6f11126092585",
+      "sha256": "8abf087df2b6ded216e0e6ea4fa919a7b2a8cf50f11379c03b19baa4fc59ebd9",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_AuctionHouseUI/Shared/Blizzard_AuctionHouseCommoditiesBuyFrame.xml"
+    },
+    {
+      "target": "classic_era",
+      "commit": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "path": "Interface/AddOns/Blizzard_AuctionHouseUI/Shared/Blizzard_AuctionHouseSharedTemplates.xml",
+      "gitBlob": "186ff7751f9bd98db8f457eeb01974fe5cfd5199",
+      "sha256": "e4b24cedb8ce07426acf85b1809f9a4b5daf4ab6e68d3b5c8a27bbc5a4a5d63c",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_AuctionHouseUI/Shared/Blizzard_AuctionHouseSharedTemplates.xml"
+    },
+    {
+      "target": "classic_era",
+      "commit": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "path": "Interface/AddOns/Blizzard_AuctionHouseUI/Shared/Blizzard_AuctionHouseTab.lua",
+      "gitBlob": "e33c295916a0092ce0e8612de3f6659c07a3f381",
+      "sha256": "3408d7b1279e8626a282de3b0b3fd2369edd2afeced52736b40e16934a3c03c9",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_AuctionHouseUI/Shared/Blizzard_AuctionHouseTab.lua"
+    },
+    {
+      "target": "classic_era",
+      "commit": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "path": "Interface/AddOns/Blizzard_AuctionUI/Classic/Blizzard_AuctionUITemplates.xml",
+      "gitBlob": "4f620db50e37f7a93bbbf5acb76fd3e83327538e",
+      "sha256": "fe3987ed02f06e7e8441bcb7249a78c6a7eee977f762ec8c0b69c9dc04ceec7a",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_AuctionUI/Classic/Blizzard_AuctionUITemplates.xml"
+    },
+    {
+      "target": "classic_era",
+      "commit": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "path": "Interface/AddOns/Blizzard_SharedXML/Classic/SharedUIPanelTemplates.lua",
+      "gitBlob": "6a45f8b3a02c49db0a9b696982ef69e7630d4d31",
+      "sha256": "615fe41326d78b962dbba4bd0949f5167fbcc0e0ffa5a95eb4d9e4b66cde6321",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_SharedXML/Classic/SharedUIPanelTemplates.lua"
+    },
+    {
+      "target": "classic_era",
+      "commit": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "path": "Interface/AddOns/Blizzard_SharedXML/SecureUIPanelTemplates.lua",
+      "gitBlob": "cdb19f31ab67b5e34f2cfcdf813f02e0dc160861",
+      "sha256": "f96b69b248cbed6260d8f4017f527aa5c86dc9cb0643ff988033b0fda749659e",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_SharedXML/SecureUIPanelTemplates.lua"
+    },
+    {
+      "target": "classic_era",
+      "commit": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "path": "Interface/AddOns/Blizzard_TradeSkillUI/Mists/Blizzard_TradeSkillUI.lua",
+      "gitBlob": "21cd6966c4696eebbce6a018209f0f77908166ad",
+      "sha256": "452ab1a1023342b9a23ed8490d99ac08a9a6a6cbd9c1af02c35531e7d6ae53fc",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_TradeSkillUI/Mists/Blizzard_TradeSkillUI.lua"
+    },
+    {
+      "target": "classic_era",
+      "commit": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "path": "Interface/AddOns/Blizzard_TradeSkillUI/Mists/Blizzard_TradeSkillUI.xml",
+      "gitBlob": "f13f8fefbd400f3db047f1bd5b4a9e9624aefa6c",
+      "sha256": "ba53a4f15ee24fbc2fbb62a95cceb27b7b4c050006ba3b276cebad0dee25cc69",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_TradeSkillUI/Mists/Blizzard_TradeSkillUI.xml"
+    },
+    {
+      "target": "classic_era",
+      "commit": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "path": "Interface/AddOns/Blizzard_TradeSkillUI/TBC/Blizzard_TradeSkillUI.lua",
+      "gitBlob": "d81f9c9e9bfe4891f1939b34ae92cc2607007005",
+      "sha256": "fcfdd7f7042bf1a253cba94e98615c2a8d05ecb8c41dd64288a73958850d7879",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_TradeSkillUI/TBC/Blizzard_TradeSkillUI.lua"
+    },
+    {
+      "target": "classic_era",
+      "commit": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "path": "Interface/AddOns/Blizzard_TradeSkillUI/TBC/Blizzard_TradeSkillUI.xml",
+      "gitBlob": "e5003a9251423f8790b574505f7fe2f25a8d2336",
+      "sha256": "86d1ec6b236b65ee51621b33b5adaa4941f6d055f450113ee0c6228c80079503",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_TradeSkillUI/TBC/Blizzard_TradeSkillUI.xml"
+    },
+    {
+      "target": "classic_era",
+      "commit": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "path": "Interface/AddOns/Blizzard_TradeSkillUI/Vanilla/Blizzard_TradeSkillUI.lua",
+      "gitBlob": "5d60eb5532ac6a21e503ee513c03cbb2f03cd91c",
+      "sha256": "9e3d0142bbb3876786d6177f4efcb7afa0acb742777e3fabefa5a2ebe2d246ca",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_TradeSkillUI/Vanilla/Blizzard_TradeSkillUI.lua"
+    },
+    {
+      "target": "classic_era",
+      "commit": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "path": "Interface/AddOns/Blizzard_TradeSkillUI/Vanilla/Blizzard_TradeSkillUI.xml",
+      "gitBlob": "536ee20d3fb05d64f0a749c4904f8ecedda46afd",
+      "sha256": "890ee3ffe7c69b01b5592b06f3ae3eb52f35f7a8416954ba4217b418fc899608",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_TradeSkillUI/Vanilla/Blizzard_TradeSkillUI.xml"
+    },
+    {
+      "target": "classic_era",
+      "commit": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "path": "Interface/AddOns/Blizzard_TradeSkillUI/Wrath/Blizzard_TradeSkillUI.lua",
+      "gitBlob": "a6341c0c31844dae96b51b835dc776e434c1cb71",
+      "sha256": "6fd970a8caa0ea39f24610e4a5f6ae9cf2474cf3618e941f71582983d8216109",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_TradeSkillUI/Wrath/Blizzard_TradeSkillUI.lua"
+    },
+    {
+      "target": "classic_era",
+      "commit": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "path": "Interface/AddOns/Blizzard_TradeSkillUI/Wrath/Blizzard_TradeSkillUI.xml",
+      "gitBlob": "33be30a3bc0a97c5ca0bb6a2c4a3e5be703c6c6d",
+      "sha256": "b8ea810758db58d3248fdc2faf1c8ba6961d2caf551e1ae3721eb6b8a42446af",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_TradeSkillUI/Wrath/Blizzard_TradeSkillUI.xml"
+    },
+    {
+      "target": "classic_era",
+      "commit": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "path": "Interface/AddOns/Blizzard_UIPanelTemplates/Classic/UIPanelTemplates.lua",
+      "gitBlob": "7b06dc68fa8c711d285cc19f9189682d993168a0",
+      "sha256": "0f55115e0da8af62fb1411381e9afed9062d2d0473d45924a5ff4cdbc77680b1",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_UIPanelTemplates/Classic/UIPanelTemplates.lua"
+    },
+    {
+      "target": "classic_anniversary",
+      "commit": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/FrameScriptDocumentation.lua",
+      "gitBlob": "de39a5a94a81691c01e1105244211bb968361130",
+      "sha256": "eebb27581046d43a3f9adc84f04e44d7e422c620954e4c28b79ca914b2cd30b3",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_APIDocumentationGenerated/FrameScriptDocumentation.lua"
+    },
+    {
+      "target": "classic_anniversary",
+      "commit": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/RestrictedActionsConstantsDocumentation.lua",
+      "gitBlob": "cb570513627a53bbf00961abbe524bc137ca3aa1",
+      "sha256": "59e155362c35cf8ea85384f5656cd6cbe26fe4f9b7aa21811a2fe22f66a3a335",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_APIDocumentationGenerated/RestrictedActionsConstantsDocumentation.lua"
+    },
+    {
+      "target": "classic_anniversary",
+      "commit": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/RestrictedActionsDocumentation.lua",
+      "gitBlob": "3491eac72574b1e5d94f74071a013fcffaf4b3e0",
+      "sha256": "db656d3743f4ed7f8876f7a215eb9b000a335bffd61d425dc4d6248ac8b5f264",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_APIDocumentationGenerated/RestrictedActionsDocumentation.lua"
+    },
+    {
+      "target": "classic_anniversary",
+      "commit": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleButtonAPIDocumentation.lua",
+      "gitBlob": "e2e459cfd6fb7071cd5ecb7a4125d18ea68b05e7",
+      "sha256": "ecda8ab6253687dfc53c15a79a8063da7206622c343a69336f1f14d48371a557",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleButtonAPIDocumentation.lua"
+    },
+    {
+      "target": "classic_anniversary",
+      "commit": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleFrameAPIDocumentation.lua",
+      "gitBlob": "a089a65c8ca55ee33693bf35359337812e174490",
+      "sha256": "6088af46a447e9a775a60b6d3acc429541951da8cfbf58e65adb98338d2a8298",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleFrameAPIDocumentation.lua"
+    },
+    {
+      "target": "classic_anniversary",
+      "commit": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/TradeSkillUIDocumentation.lua",
+      "gitBlob": "69a68e3138e0c1fae749431c96014cb935a96926",
+      "sha256": "7947e943bbd22b4360c3e07d985751d1c555e604c7b6076f1ba068789b6e2757",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_APIDocumentationGenerated/TradeSkillUIDocumentation.lua"
+    },
+    {
+      "target": "classic_anniversary",
+      "commit": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/TradeSkillUITypesDocumentation.lua",
+      "gitBlob": "7fc65df4dd1934a58ec4f77e4a60afc2a4fc6b66",
+      "sha256": "c6bc097bdd944986e70c86bbcf429bbe0d9df241496f1010d40ad7aba3109fe9",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_APIDocumentationGenerated/TradeSkillUITypesDocumentation.lua"
+    },
+    {
+      "target": "classic_anniversary",
+      "commit": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "path": "Interface/AddOns/Blizzard_AuctionHouseUI/Classic/Blizzard_AuctionHouseSharedTemplates.xml",
+      "gitBlob": "637a39cf5a1f800055fcc700e121e636e73c8d57",
+      "sha256": "2b961e0cf1314e9be6d4388454f9dc602faf338d21054d0d70f28862b271b107",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_AuctionHouseUI/Classic/Blizzard_AuctionHouseSharedTemplates.xml"
+    },
+    {
+      "target": "classic_anniversary",
+      "commit": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "path": "Interface/AddOns/Blizzard_AuctionHouseUI/Classic/Blizzard_AuctionHouseTab.xml",
+      "gitBlob": "70f3865954cece2ea470b4d5f1a433e3b62d26b0",
+      "sha256": "91a96267f71fc0eff02942a82e740fa570b11b081238ac7237dae1e5cd07463a",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_AuctionHouseUI/Classic/Blizzard_AuctionHouseTab.xml"
+    },
+    {
+      "target": "classic_anniversary",
+      "commit": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "path": "Interface/AddOns/Blizzard_AuctionHouseUI/Mainline/Blizzard_AuctionHouseSharedTemplates.xml",
+      "gitBlob": "a297cf79fcebd45c5ccab5a61ff59c7ab546d121",
+      "sha256": "48427b2d2ebfd1653be0727244377810c62e85ed12adc18233b0da5d076aa513",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_AuctionHouseUI/Mainline/Blizzard_AuctionHouseSharedTemplates.xml"
+    },
+    {
+      "target": "classic_anniversary",
+      "commit": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "path": "Interface/AddOns/Blizzard_AuctionHouseUI/Mainline/Blizzard_AuctionHouseTab.xml",
+      "gitBlob": "557b4e6f6228f068d56959a808d4f36213f0442e",
+      "sha256": "d025be27a396499afb053ec51c69da61252be077f4a0d4834ef17398f7dfeb43",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_AuctionHouseUI/Mainline/Blizzard_AuctionHouseTab.xml"
+    },
+    {
+      "target": "classic_anniversary",
+      "commit": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "path": "Interface/AddOns/Blizzard_AuctionHouseUI/Shared/Blizzard_AuctionHouseCommoditiesBuyFrame.xml",
+      "gitBlob": "7edffd61f88ef78bf56b0a16036bb1aebd83a035",
+      "sha256": "b8f1dda9f6127f53515bebc4ae5d44eb6fb581a7b2930d0eb4e83cd90045cf0a",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_AuctionHouseUI/Shared/Blizzard_AuctionHouseCommoditiesBuyFrame.xml"
+    },
+    {
+      "target": "classic_anniversary",
+      "commit": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "path": "Interface/AddOns/Blizzard_AuctionHouseUI/Shared/Blizzard_AuctionHouseSharedTemplates.xml",
+      "gitBlob": "c906743c286167238402dbda23139cb2962f9117",
+      "sha256": "c36f6c9fefed35780168a47e21e06fe0db9debc370acd4c63011540b98497f72",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_AuctionHouseUI/Shared/Blizzard_AuctionHouseSharedTemplates.xml"
+    },
+    {
+      "target": "classic_anniversary",
+      "commit": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "path": "Interface/AddOns/Blizzard_AuctionHouseUI/Shared/Blizzard_AuctionHouseTab.lua",
+      "gitBlob": "59da606aadb858e2dacaf4af41d7ababddfd5fc4",
+      "sha256": "d9ca12f1b4cc9eda0506d6e9af566cc4dc155558c65784ba39227a378d9bebc3",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_AuctionHouseUI/Shared/Blizzard_AuctionHouseTab.lua"
+    },
+    {
+      "target": "classic_anniversary",
+      "commit": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "path": "Interface/AddOns/Blizzard_AuctionUI/Classic/Blizzard_AuctionUITemplates.xml",
+      "gitBlob": "ab33c8eb32704af77015bbf9be7d524d9f404a35",
+      "sha256": "e08dcbd12b889c35da75e0037f9a8701df652e52a47c94ffb49fa397cf25eb24",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_AuctionUI/Classic/Blizzard_AuctionUITemplates.xml"
+    },
+    {
+      "target": "classic_anniversary",
+      "commit": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "path": "Interface/AddOns/Blizzard_SharedXML/Classic/SharedUIPanelTemplates.lua",
+      "gitBlob": "26f9da9be52fa95aafea431d313b24aa13456af5",
+      "sha256": "8327c8b752ed3225626bcc370c9e16c626c57cf3ecb98759e9982fc52da148d7",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_SharedXML/Classic/SharedUIPanelTemplates.lua"
+    },
+    {
+      "target": "classic_anniversary",
+      "commit": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "path": "Interface/AddOns/Blizzard_SharedXML/SecureUIPanelTemplates.lua",
+      "gitBlob": "65d644c21c7462a24fcf5bd93e7e9d2dd6d90124",
+      "sha256": "4c602f0d3b8b42c6089e9812e8db469c66008074761790fc721df85fa6881374",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_SharedXML/SecureUIPanelTemplates.lua"
+    },
+    {
+      "target": "classic_anniversary",
+      "commit": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "path": "Interface/AddOns/Blizzard_TradeSkillUI/Mists/Blizzard_TradeSkillUI.lua",
+      "gitBlob": "d5618d2f371be1c65b42895031f5016eb4113a87",
+      "sha256": "840f939635f7b5050f72ec2c203f350622fe4b4c54019f093046edad6e7996bf",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_TradeSkillUI/Mists/Blizzard_TradeSkillUI.lua"
+    },
+    {
+      "target": "classic_anniversary",
+      "commit": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "path": "Interface/AddOns/Blizzard_TradeSkillUI/Mists/Blizzard_TradeSkillUI.xml",
+      "gitBlob": "9285511ba6afbec6677d465a90650948391a4c5b",
+      "sha256": "18b166ac893dd86233850dba15ed02258cde7f1659f6fdb60aaeb7e9dc7b1bfb",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_TradeSkillUI/Mists/Blizzard_TradeSkillUI.xml"
+    },
+    {
+      "target": "classic_anniversary",
+      "commit": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "path": "Interface/AddOns/Blizzard_TradeSkillUI/TBC/Blizzard_TradeSkillUI.lua",
+      "gitBlob": "e50cbcb76e14abd4f42b375cf580798830ba75fe",
+      "sha256": "a749a0957f61ed80c199acc1602458fce2dffeb9a4193fafc332fcb951e6c086",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_TradeSkillUI/TBC/Blizzard_TradeSkillUI.lua"
+    },
+    {
+      "target": "classic_anniversary",
+      "commit": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "path": "Interface/AddOns/Blizzard_TradeSkillUI/TBC/Blizzard_TradeSkillUI.xml",
+      "gitBlob": "647eb834bb428bf964daf97b5bddc845aee6ddcf",
+      "sha256": "d44b7d23c20d3824963600f8812d1dc5b9e17ae0d3f2793035ab8fc071070bb7",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_TradeSkillUI/TBC/Blizzard_TradeSkillUI.xml"
+    },
+    {
+      "target": "classic_anniversary",
+      "commit": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "path": "Interface/AddOns/Blizzard_TradeSkillUI/Vanilla/Blizzard_TradeSkillUI.lua",
+      "gitBlob": "bde7792d3563eed0507d3d3ab2bb1a768afd61dd",
+      "sha256": "895a842b9bd2e219e9e76d16a4bc048787290c50bf4900b28aa99af09a81887e",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_TradeSkillUI/Vanilla/Blizzard_TradeSkillUI.lua"
+    },
+    {
+      "target": "classic_anniversary",
+      "commit": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "path": "Interface/AddOns/Blizzard_TradeSkillUI/Vanilla/Blizzard_TradeSkillUI.xml",
+      "gitBlob": "128d777276d6427eca7a59325084a277ad21ea24",
+      "sha256": "2e8ab42f410760de5858eced187217a81cda2804dacbf614f17160b683cfa8a9",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_TradeSkillUI/Vanilla/Blizzard_TradeSkillUI.xml"
+    },
+    {
+      "target": "classic_anniversary",
+      "commit": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "path": "Interface/AddOns/Blizzard_TradeSkillUI/Wrath/Blizzard_TradeSkillUI.lua",
+      "gitBlob": "3ca0a1038faac387b7462006a20be4274d5e3d2e",
+      "sha256": "4966ee16664bffdb80a3a6b8cd93ed5089e70db6a7b16f9ba798fd9ae9d50f96",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_TradeSkillUI/Wrath/Blizzard_TradeSkillUI.lua"
+    },
+    {
+      "target": "classic_anniversary",
+      "commit": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "path": "Interface/AddOns/Blizzard_TradeSkillUI/Wrath/Blizzard_TradeSkillUI.xml",
+      "gitBlob": "6a84896cef815165832e829c9796a57276dcd773",
+      "sha256": "aebcab86f9a0d37f3193a11a0e42c114d892dba7579d010c295d27192d71ba82",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_TradeSkillUI/Wrath/Blizzard_TradeSkillUI.xml"
+    },
+    {
+      "target": "classic_anniversary",
+      "commit": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "path": "Interface/AddOns/Blizzard_UIPanelTemplates/Classic/UIPanelTemplates.lua",
+      "gitBlob": "2c5647560efbdd9f88121d660585b4d88c0222ee",
+      "sha256": "3698418ba76fcbbff0516f60989fd105c891fe8cede775eb399b051f6718e735",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_UIPanelTemplates/Classic/UIPanelTemplates.lua"
+    }
+  ]
+}

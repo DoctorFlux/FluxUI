@@ -1,0 +1,158 @@
+{
+  "change_id": "DEBUFF-FORBIDDEN-READ-20261109",
+  "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\09\\01a1c04a-6ed8-71d1-ab6f-fabaa447ebc2\\debuff-combat-20261109T124631Z",
+  "nativeReport": {
+    "time": "13:45:15",
+    "clientBuild": "Not supplied;do not infer",
+    "result": "FAIL previous candidate",
+    "operation": "GetVertexColor on registered native Texture",
+    "location": "UnitFrames/FluxUnitFrames_DebuffTint.lua:146"
+  },
+  "baseline_sha256": "53166b4ac1ca3b2b534f631c900d6ac9da3329298655c55a94946a025e50c8b5",
+  "candidate_sha256": "abee3277e58429709eb7b89200a0a23e0d40ced64fdbe3985c4904500cd2ea96",
+  "samples": [
+    {
+      "pair": 1,
+      "variant": "baseline",
+      "exit": 1,
+      "output": "lua: tests/friendly_debuff_tint.lua:111: Attempt to access forbidden object from code tainted by an AddOn\nstack traceback:\n\t[C]: in function 'error'\n\ttests/friendly_debuff_tint.lua:111: in upvalue 'readable'\n\ttests/friendly_debuff_tint.lua:141: in method 'GetVertexColor'\n\tactual-friendly-debuff-tint:146: in upvalue 'PaintNativeText'\n\tactual-friendly-debuff-tint:259: in upvalue 'Update'\n\tactual-friendly-debuff-tint:294: in local 'fn'\n\ttests/friendly_debuff_tint.lua:239: in upvalue 'flush'\n\ttests/friendly_debuff_tint.lua:240: in local 'refresh'\n\ttests/friendly_debuff_tint.lua:319: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "pair": 1,
+      "variant": "candidate",
+      "exit": 0,
+      "output": "Friendly debuff tint: 17030 checks PASS across five clients/current and legacy aura providers; native game checks pending\n"
+    },
+    {
+      "pair": 2,
+      "variant": "baseline",
+      "exit": 1,
+      "output": "lua: tests/friendly_debuff_tint.lua:111: Attempt to access forbidden object from code tainted by an AddOn\nstack traceback:\n\t[C]: in function 'error'\n\ttests/friendly_debuff_tint.lua:111: in upvalue 'readable'\n\ttests/friendly_debuff_tint.lua:141: in method 'GetVertexColor'\n\tactual-friendly-debuff-tint:146: in upvalue 'PaintNativeText'\n\tactual-friendly-debuff-tint:259: in upvalue 'Update'\n\tactual-friendly-debuff-tint:294: in local 'fn'\n\ttests/friendly_debuff_tint.lua:239: in upvalue 'flush'\n\ttests/friendly_debuff_tint.lua:240: in local 'refresh'\n\ttests/friendly_debuff_tint.lua:319: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "pair": 2,
+      "variant": "candidate",
+      "exit": 0,
+      "output": "Friendly debuff tint: 17030 checks PASS across five clients/current and legacy aura providers; native game checks pending\n"
+    },
+    {
+      "pair": 3,
+      "variant": "baseline",
+      "exit": 1,
+      "output": "lua: tests/friendly_debuff_tint.lua:111: Attempt to access forbidden object from code tainted by an AddOn\nstack traceback:\n\t[C]: in function 'error'\n\ttests/friendly_debuff_tint.lua:111: in upvalue 'readable'\n\ttests/friendly_debuff_tint.lua:141: in method 'GetVertexColor'\n\tactual-friendly-debuff-tint:146: in upvalue 'PaintNativeText'\n\tactual-friendly-debuff-tint:259: in upvalue 'Update'\n\tactual-friendly-debuff-tint:294: in local 'fn'\n\ttests/friendly_debuff_tint.lua:239: in upvalue 'flush'\n\ttests/friendly_debuff_tint.lua:240: in local 'refresh'\n\ttests/friendly_debuff_tint.lua:319: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "pair": 3,
+      "variant": "candidate",
+      "exit": 0,
+      "output": "Friendly debuff tint: 17030 checks PASS across five clients/current and legacy aura providers; native game checks pending\n"
+    },
+    {
+      "pair": 4,
+      "variant": "baseline",
+      "exit": 1,
+      "output": "lua: tests/friendly_debuff_tint.lua:111: Attempt to access forbidden object from code tainted by an AddOn\nstack traceback:\n\t[C]: in function 'error'\n\ttests/friendly_debuff_tint.lua:111: in upvalue 'readable'\n\ttests/friendly_debuff_tint.lua:141: in method 'GetVertexColor'\n\tactual-friendly-debuff-tint:146: in upvalue 'PaintNativeText'\n\tactual-friendly-debuff-tint:259: in upvalue 'Update'\n\tactual-friendly-debuff-tint:294: in local 'fn'\n\ttests/friendly_debuff_tint.lua:239: in upvalue 'flush'\n\ttests/friendly_debuff_tint.lua:240: in local 'refresh'\n\ttests/friendly_debuff_tint.lua:319: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "pair": 4,
+      "variant": "candidate",
+      "exit": 0,
+      "output": "Friendly debuff tint: 17030 checks PASS across five clients/current and legacy aura providers; native game checks pending\n"
+    },
+    {
+      "pair": 5,
+      "variant": "baseline",
+      "exit": 1,
+      "output": "lua: tests/friendly_debuff_tint.lua:111: Attempt to access forbidden object from code tainted by an AddOn\nstack traceback:\n\t[C]: in function 'error'\n\ttests/friendly_debuff_tint.lua:111: in upvalue 'readable'\n\ttests/friendly_debuff_tint.lua:141: in method 'GetVertexColor'\n\tactual-friendly-debuff-tint:146: in upvalue 'PaintNativeText'\n\tactual-friendly-debuff-tint:259: in upvalue 'Update'\n\tactual-friendly-debuff-tint:294: in local 'fn'\n\ttests/friendly_debuff_tint.lua:239: in upvalue 'flush'\n\ttests/friendly_debuff_tint.lua:240: in local 'refresh'\n\ttests/friendly_debuff_tint.lua:319: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "pair": 5,
+      "variant": "candidate",
+      "exit": 0,
+      "output": "Friendly debuff tint: 17030 checks PASS across five clients/current and legacy aura providers; native game checks pending\n"
+    }
+  ],
+  "negativeControls": [
+    {
+      "mutation": "portrait-layer-regression",
+      "exit": 1,
+      "output": "lua: tests/friendly_debuff_tint.lua:7: portrait tint inherits the border combat level\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/friendly_debuff_tint.lua:7: in local 'check'\n\ttests/friendly_debuff_tint.lua:274: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "mutation": "read-restricted-auras",
+      "exit": 1,
+      "output": "lua: tests/friendly_debuff_tint.lua:7: restricted data not queried\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/friendly_debuff_tint.lua:7: in local 'check'\n\ttests/friendly_debuff_tint.lua:321: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "mutation": "leave-stale-restricted-text",
+      "exit": 1,
+      "output": "lua: tests/friendly_debuff_tint.lua:7: exact normal text restored\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/friendly_debuff_tint.lua:7: in upvalue 'check'\n\ttests/friendly_debuff_tint.lua:263: in local 'restored'\n\ttests/friendly_debuff_tint.lua:320: in main chunk\n\t[C]: in ?\n"
+    }
+  ],
+  "copies": [
+    {
+      "client": "_retail_",
+      "matches": true
+    },
+    {
+      "client": "_forever_",
+      "matches": true
+    },
+    {
+      "client": "_classic_",
+      "matches": true
+    },
+    {
+      "client": "_classic_era_",
+      "matches": true
+    },
+    {
+      "client": "_anniversary_",
+      "matches": true
+    }
+  ],
+  "candidate": {
+    "UnitFrames/FluxUnitFrames_DebuffTint.lua": "abee3277e58429709eb7b89200a0a23e0d40ced64fdbe3985c4904500cd2ea96",
+    "tests/friendly_debuff_tint.lua": "e11e7ab9010e7c5816553fad900928733af5fe9055621b7c0da8b6a131badc95"
+  },
+  "scope": "Desktop forbidden-object regression only;new native confirmation pending;restricted numeric dispel colors remain unresolved",
+  "sourceContracts": [
+    {
+      "client": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_APIDocumentationGenerated/UnitAuraDocumentation.lua",
+      "sha256": "c2d022fe1355c2d4b55762e19a9930339572b423917196789496763870e248bf"
+    },
+    {
+      "client": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_APIDocumentationGenerated/SecretPredicatesDocumentation.lua",
+      "sha256": "546ecda1e19d34a45fc54ec4b1cff6f9faee4c3fe1f4bb6f9bb0d3a8a48e3aa6"
+    },
+    {
+      "client": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_APIDocumentationGenerated/AuraContainerUtilDocumentation.lua",
+      "sha256": "a87c322d2c43da359381d76fdda7f900e6980c5cf5115701d2ad70e1676f6380"
+    },
+    {
+      "client": "forever",
+      "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_APIDocumentationGenerated/UnitAuraDocumentation.lua",
+      "sha256": "4d58b2e5a7033c96b58aff395b6e49197acb2a1b110a648552e69e9cf8380358"
+    },
+    {
+      "client": "forever",
+      "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_APIDocumentationGenerated/SecretPredicatesDocumentation.lua",
+      "sha256": "e4a053e9960da00099f46de2cff25c69d4cb11d051f7c05685d06866ed389815"
+    },
+    {
+      "client": "forever",
+      "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_APIDocumentationGenerated/AuraContainerUtilDocumentation.lua",
+      "sha256": "a87c322d2c43da359381d76fdda7f900e6980c5cf5115701d2ad70e1676f6380"
+    }
+  ],
+  "sourceConclusion": "Native dispel Texture and text-content APIs do not supply a verified type-color binding for independent HP/resource FontStrings;direct aura color lookup requires unit-aura access;original restricted numeric-color requirement OPEN"
+}

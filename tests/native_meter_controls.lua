@@ -1,417 +1,377 @@
--- Production picker/backend routing with widget mocks. Optional arg3 replays
--- Blizzard's pinned DropdownButtonMixin:OpenMenu; no native secure VM claim.
+-- Actual picker/backend/tab routes with immutable, natively prepared menu caches.
+-- Caller/provenance model only: no native secure VM, taint, controller or pixel claim.
 local source = arg[1] or "Battlezonemap/FluxBlizzardMeter.lua"
 local layoutSource = arg[2] or "Battlezonemap/FluxMeterLayout.lua"
-local dropdownSource = arg[3]
-local menuSource = arg[4]
-local windowSource = arg[5] or "Battlezonemap/FluxWindowFrame.lua"
-local arguments = arg; arg = {source,"--harness"}
-local harness = assert(loadfile("tests/native_meter_ownership.lua"))(); arg = arguments
+local menuSource = arg[3] -- Optional externally pinned Blizzard_Menu/Menu.lua.
+local originalArgs = arg; arg = {source, "--harness"}
+local harness = assert(loadfile("tests/native_meter_ownership.lua"))(); arg = originalArgs
 local checks = 0
-local function check(value,label) checks = checks + 1; assert(value,label) end
-local nativeOpen
-local nativePick
-if dropdownSource then
-    local f = assert(io.open(dropdownSource)); local text = f:read("*a"); f:close()
-    local first = assert(text:find("function DropdownButtonMixin:OpenMenu()",1,true))
-    local last = assert(text:find("\nfunction ",first+1,true))
-    nativeOpen = text:sub(first,last-1)
+local function check(value, label) checks = checks + 1; assert(value, label) end
+local function read(path)
+    local f = assert(io.open(path)); local text = f:read("*a"); f:close(); return text
 end
-if menuSource then
-    local f=assert(io.open(menuSource));local text=f:read("*a");f:close()
-    local first=assert(text:find("\tlocal function SecureCallResponder(",1,true))
-    local last=assert(text:find("\nend\n\n--[[\nA single shared factory",first,true))
-    nativePick=text:sub(first,last-1)
-end
-local names = {"DamageDone","Dps","HealingDone","Hps","Absorbs","Interrupts","Dispels","DamageTaken","AvoidableDamageTaken","Deaths","EnemyDamageTaken"}
-for _,gamepad in ipairs({false,true}) do
-    local e,s = harness(gamepad)
-    for i,name in ipairs(names) do e.Enum.DamageMeterType[name] = i-1 end
-    e.C_DamageMeter = { IsDamageMeterAvailable = function() return s.available end }
-    e.C_AddOns = { IsAddOnLoaded = function(name) return name=="Details" and s.details end,
-        DoesAddOnExist = function(name) return name=="Blizzard_DamageMeter" end }
+local names = {"DamageDone", "Dps", "HealingDone", "Hps", "Absorbs", "Interrupts", "Dispels", "DamageTaken", "AvoidableDamageTaken", "Deaths", "EnemyDamageTaken"}
+for _, gamepad in ipairs({false, true}) do
+    local e, s = harness(gamepad)
+    for i, name in ipairs(names) do e.Enum.DamageMeterType[name] = i - 1 end
+    e.C_DamageMeter = {IsDamageMeterAvailable = function() return s.available end}
+    e.C_AddOns = {IsAddOnLoaded = function(name) return name == "Details" and s.details end,
+        DoesAddOnExist = function(name) return name == "Blizzard_DamageMeter" end}
     e._FluxUI_CharSavedVars = {}
-    e.FluxWindowFrame.GetFrame = function() return {Content=s.host} end
-    e.FluxWindowFrame.SwitchToTab = function(_,name) s.activeTab=name end
-    local notices,opened,picks = {},{},{}
-    e.MenuInputContext={MouseButton=1}
-    e.DAMAGE_METER_SHOW_NEW_WINDOW="New Window"
-    e.MenuUtil={GetElementText=function(description) return description.label end}
-    local after
-    local pickMethod
-    if nativePick then
-        e.MenuElementDescriptionProxyMixin={}
-        e.Proxies={ToPrivate=function() return {SendResponseToMenu=function() end} end}
-        e.securecallfunction=function(fn,...) return fn(...) end
-        assert(load("local Proxies=Proxies\n"..nativePick,"@pinned native Menu Pick","t",e))()
-        pickMethod=e.MenuElementDescriptionProxyMixin.Pick
+    e.FluxWindowFrame.GetFrame = function() return {Content = s.host} end
+    e.FluxWindowFrame.SwitchToTab = function(_, name) s.activeTab = name end
+    local counts = {generate = 0, open = 0, register = 0, dropdownPick = 0, pick = 0, writers = 0, cacheWrites = 0}
+    local trusted = setmetatable({}, {__mode = "k"})
+    local caches = setmetatable({}, {__mode = "k"})
+    local choices = setmetatable({}, {__mode = "k"})
+    local internals = setmetatable({}, {__mode = "k"})
+    local descriptionSnapshots = {}
+    local function trust(object, fields)
+        local values = trusted[object] or {}; for _, field in ipairs(fields) do values[field] = true end
+        trusted[object] = values; return object
     end
-    local function description(label,data,responder,children,radio,enabled)
-        local d={label=label,native=true,responder=responder}
-        function d:EnumerateElementDescriptions() return ipairs(children or {}) end
-        function d:GetData() return data end
-        function d:IsRadio() return radio end
-        function d:CanSelect() return not enabled or enabled() end
-        function d:HasResponder() return responder~=nil end
-        function d:GetDefaultResponse() end
-        function d:SetData() error("native menu data must not be replaced") end
-        function d:SetResponder() error("native menu responder must not be replaced") end
-        function d:Pick(context,button)
-            check(context==e.MenuInputContext.MouseButton,"direct row uses native mouse selection context")
-            picks[#picks+1]=self
-            if pickMethod then return pickMethod(self,context,button) end
-            if self:CanSelect() and responder then responder(self:GetData());return true end
+    e.issecurevariable = function(object, field)
+        return trusted[object] and trusted[object][field] == true or false, "test-writer"
+    end
+    local nativeResponder = false
+    local native, methodRefs = {}, {}
+    local function after(method, ...)
+        for _, fn in ipairs(s.hooks[s.dm] and s.hooks[s.dm][method] or {}) do fn(s.dm, ...) end
+    end
+    for _, method in ipairs({"SetSessionWindowDamageMeterType", "SetSessionWindowSessionID", "ShowNewSecondarySessionWindow"}) do
+        native[method] = s.dm[method]
+        s.dm[method] = function(self, ...)
+            if not nativeResponder then counts.writers = counts.writers + 1; error("addon private native setter: " .. method) end
+            return native[method](self, ...)
         end
-        return d
+        methodRefs[method] = s.dm[method]
     end
+    local function nativeChoice(method, ...)
+        nativeResponder = true
+        local result = s.dm[method](s.dm, ...); after(method, ...)
+        nativeResponder = false; return result
+    end
+    e.MenuInputContext = trust({MouseButton = 1}, {"MouseButton"})
+    e.DAMAGE_METER_SHOW_NEW_WINDOW = "New Window"
+    trust(e, {"DAMAGE_METER_SHOW_NEW_WINDOW"})
+    e.MenuUtil = trust({GetElementText = function(description) return internals[description].label end}, {"GetElementText"})
+    -- Blizzard's actual proxy classes are local tables used as metatables.
+    -- No global MenuElementDescriptionProxyMixin is supplied by this fixture.
+    local proxyMethods = {}
+    proxyMethods.__index = proxyMethods
+    function proxyMethods:EnumerateElementDescriptions() return ipairs(internals[self].children or {}) end
+    function proxyMethods:GetData() return self.data end
+    function proxyMethods:IsRadio() return internals[self].radio end
+    function proxyMethods:IsEnabled() return true end
+    function proxyMethods:GetDefaultResponse() return true end
+    function proxyMethods:HasResponder() return self.responder ~= nil end
+    function proxyMethods:CanSelect() local enabled = internals[self].enabled; return not enabled or enabled() end
+    function proxyMethods:Pick(context, button)
+        check(context == e.MenuInputContext.MouseButton and (button == "LeftButton" or button == "RightButton"),
+            "original proxy Pick receives the native input context and button")
+        check(trusted[self].data and trusted[self].responder, "only original trusted native data/responders reach Pick")
+        if not self:CanSelect() then return false end
+        counts.pick = counts.pick + 1; nativeResponder = true
+        self.responder(self.data)
+        nativeResponder = false; return true
+    end
+    proxyMethods.__newindex = function(t, key, value)
+        if key == "data" or key == "responder" then counts.cacheWrites = counts.cacheWrites + 1; error("native description write") end
+        rawset(t, key, value)
+    end
+    trust(proxyMethods, {"EnumerateElementDescriptions", "GetData", "IsRadio", "Pick", "CanSelect", "IsEnabled", "GetDefaultResponse", "HasResponder"})
+    if menuSource then
+        local text = read(menuSource):gsub("\r\n", "\n")
+        local chunk = "local MenuElementDescriptionProxyMixin,Proxies=...\n"
+        for _, method in ipairs({"CanSelect", "IsEnabled", "GetData", "HasResponder", "GetDefaultResponse"}) do
+            local start = assert(text:find("\tfunction MenuElementDescriptionProxyMixin:" .. method .. "(", 1, true))
+            local finish = assert(text:find("\n\tend", start, true)) + 4
+            chunk = chunk .. text:sub(start, finish) .. "\n"
+        end
+        local start = assert(text:find("\tlocal function SecureCallResponder(", 1, true))
+        local finish = assert(text:find("\nend\n\n--[[\nA single shared factory", start, true))
+        chunk = chunk .. text:sub(start, finish - 1) .. "\nreturn SecureCallResponder"
+        local private = {ToPrivate = function(_, proxy) return internals[proxy] end}
+        local nativeCallback = assert(load(chunk, "@pinned original native menu Pick", "t", e))(proxyMethods, private)
+        e.securecallfunction = function(fn, ...)
+            local previous = nativeResponder
+            if fn == nativeCallback then
+                local description, _, context, button = ...
+                check(context == e.MenuInputContext.MouseButton and (button == "LeftButton" or button == "RightButton"),
+                    "pinned Pick supplies original input context and button")
+                check(trusted[description].data and trusted[description].responder, "pinned Pick receives trusted native data/responder")
+                counts.pick = counts.pick + 1; nativeResponder = true
+            end
+            local result = fn(...); nativeResponder = previous; return result
+        end
+    end
+    local function description(label, data, responder, children, radio, enabled)
+        local d = {data = data, responder = responder, canSelect = enabled}
+        descriptionSnapshots[#descriptionSnapshots + 1] = {description = d, data = data, responder = responder,
+            sessionType = type(data) == "table" and data.type or nil, sessionID = type(data) == "table" and data.sessionID or nil}
+        internals[d] = {label = label, children = children, radio = radio, enabled = enabled, SendResponseToMenu = function() end}
+        setmetatable(d, proxyMethods)
+        return trust(d, {"data", "responder", "text", "isRadio", "isEnabled", "canSelect", "defaultResponse", "EnumerateElementDescriptions", "GetData", "IsRadio", "Pick", "CanSelect", "IsEnabled", "GetDefaultResponse", "HasResponder"})
+    end
+    local menus
+    menus = function(window)
+        choices[window] = {types = {}, sessions = {}}
+        for _, kind in ipairs({"type", "session", "settings"}) do
+            local categories = {}
+            if kind == "type" then
+                for _, category in ipairs({{"Damage", {0, 1, 7, 8, 10}}, {"Healing", {2, 3}}, {"Actions", {5, 6, 9}}}) do
+                    local children = {}
+                    for _, value in ipairs(category[2]) do
+                        local d = description(names[value + 1], value, function(data)
+                            s.dm:SetSessionWindowDamageMeterType(window, data); after("SetSessionWindowDamageMeterType", window, data)
+                        end, nil, true)
+                        choices[window].types[value] = d; children[#children + 1] = d
+                    end
+                    categories[#categories + 1] = description(category[1], nil, nil, children)
+                end
+            elseif kind == "session" then
+                for _, option in ipairs({{sessionID = 42}, {type = e.Enum.DamageMeterSessionType.Current}, {type = e.Enum.DamageMeterSessionType.Overall}}) do
+                    trust(option, {"type", "sessionID"})
+                    local d = description("Session", option, function(data)
+                        s.dm:SetSessionWindowSessionID(window, data.type, data.sessionID)
+                    end, nil, true)
+                    categories[#categories + 1] = d; choices[window].sessions[#choices[window].sessions + 1] = d
+                end
+            else
+                categories[1] = description("New Window", nil, function()
+                    s.dm:ShowNewSecondarySessionWindow(); menus(s.windows[#s.windows]); after("ShowNewSecondarySessionWindow")
+                end, nil, false, function() return #s.windows < 3 end)
+                choices[window].newWindow = categories[1]
+            end
+            local button = trust({}, {"menuDescription"})
+            caches[button] = description("root", nil, nil, categories)
+            setmetatable(button, {__index = function(_, key) if key == "menuDescription" then return caches[button] end end,
+                __newindex = function(t, key, value)
+                    if key == "menuDescription" then counts.cacheWrites = counts.cacheWrites + 1; error("native dropdown cache write") end
+                    rawset(t, key, value)
+                end})
+            function button:GenerateMenu() counts.generate = counts.generate + 1; error("addon generated native menu") end
+            function button:OpenMenu() counts.open = counts.open + 1; error("addon opened native dropdown") end
+            function button:RegisterMenu() counts.register = counts.register + 1; error("addon registered native menu") end
+            function button:Pick() counts.dropdownPick = counts.dropdownPick + 1; error("dropdown Pick rebuilds selection cache") end
+            function button:GetMenuDescription() error("native dropdown accessor must not be invoked") end
+            window[({type = "DamageMeterTypeDropdown", session = "SessionDropdown", settings = "SettingsDropdown"})[kind]] = button
+        end
+    end
+    for _, window in ipairs(s.windows) do menus(window) end
     local create = e.CreateFrame
-    function s.dm:CreateFontString() end -- Native capability for the setup action.
-    e.CreateFrame = function(kind,name,parent)
-        local f = create(kind,name,parent); f.parent=parent
+    function s.dm:CreateFontString() end
+    e.CreateFrame = function(kind, name, parent)
+        local f = create(kind, name, parent); f.parent = parent
         function f:EnableMouse() end
         function f:SetFrameLevel() end
         function f:SetBackdrop() end
         function f:SetBackdropColor() end
         function f:SetBackdropBorderColor() end
-        function f:SetWidth(value) self.width=value end
-        function f:SetHeight(value) self.height=value end
+        function f:SetWidth(value) self.width = value end
+        function f:SetHeight(value) self.height = value end
         function f:CreateTexture()
-            return {SetAllPoints=function() end,SetColorTexture=function() end,SetAlpha=function() end,Show=function() end,
-                SetSize=function() end,SetPoint=function() end,SetTexture=function() end,SetTexCoord=function() end,Hide=function() end}
+            return {SetAllPoints=function() end, SetColorTexture=function() end, SetAlpha=function() end,
+                SetSize=function() end, SetPoint=function() end, SetTexture=function() end, SetTexCoord=function() end,
+                Hide=function() end, Show=function() end}
         end
         function f:CreateFontString()
-            return {SetPoint=function() end,SetTextColor=function() end,SetWordWrap=function() end,SetJustifyH=function() end,
-                SetText=function(self,text) self.text=text end}
+            return {SetPoint=function() end, SetTextColor=function() end, SetWordWrap=function() end, SetJustifyH=function() end,
+                SetText=function(self, text) self.text = text end}
         end
-        if parent==s.dm then notices[#notices+1]=f end
         return f
     end
-    local function menus(window)
-        for _,kind in ipairs({"type","session","settings"}) do
-            local button={window=window,kind=kind}
-            function button:IsEnabled() return true end
-            function button:IsMenuOpen() return false end
-            function button:GenerateMenu()
-                local categories={}
-                if kind=="type" then
-                    for _,category in ipairs({{"Damage",{0,1,7,8,10}},{"Healing",{2,3}},{"Actions",{5,6,9}}}) do
-                        local children={}
-                        for _,value in ipairs(category[2]) do
-                            children[#children+1]=description(names[value+1],value,function(nativeData)
-                                s.dm:SetSessionWindowDamageMeterType(window,nativeData)
-                                after("SetSessionWindowDamageMeterType",window,nativeData)
-                            end,nil,true)
-                        end
-                        categories[#categories+1]=description(category[1],nil,nil,children)
-                    end
-                elseif kind=="settings" then
-                    categories[1]=description("New Window",nil,function()
-                        s.dm:ShowNewSecondarySessionWindow();menus(s.windows[#s.windows]);after("ShowNewSecondarySessionWindow")
-                    end,nil,false,function() return #s.windows<3 end)
-                elseif kind=="session" then
-                    for _,option in ipairs({{type=nil,sessionID=42},{type=e.Enum.DamageMeterSessionType.Current},
-                        {type=e.Enum.DamageMeterSessionType.Overall}}) do
-                        categories[#categories+1]=description("Session",option,function(nativeData)
-                            s.dm:SetSessionWindowSessionID(window,nativeData.type,nativeData.sessionID)
-                        end,nil,true)
-                    end
-                end
-                self.menuDescription=description("root",nil,nil,categories)
-            end
-            function button:GetMenuDescription() return self.menuDescription end
-            function button:OnMenuOpened() end
-            if nativeOpen then
-                e.DropdownButtonMixin={}
-                e.Menu={GetManager=function() return {OpenMenu=function(_,owner,description)
-                    check(description.native,"original dropdown generates native menu description")
-                    opened[#opened+1]=owner
-                    return {SetClosedCallback=function() end}
-                end} end}
-                assert(load(nativeOpen,"@pinned DropdownButton OpenMenu","t",e))()
-                button.OpenMenu=e.DropdownButtonMixin.OpenMenu
-            else
-                function button:OpenMenu() opened[#opened+1]=self end
-            end
-            window[({type="DamageMeterTypeDropdown",session="SessionDropdown",settings="SettingsDropdown"})[kind]]=button
-        end
-    end
-    for _,window in ipairs(s.windows) do menus(window) end
-    after=function(method,...)
-        for _,fn in ipairs(s.hooks[s.dm] and s.hooks[s.dm][method] or {}) do fn(s.dm,...) end
-    end
-    assert(loadfile(layoutSource,"t",e))()
-    local lib,meter=e.FluxMeterLayout,e.FluxBlizzardMeter
-    check(type(lib.GetPickerGroups)=="function" and type(lib.OpenNativeMenu)=="function"
-        and type(meter.OpenNativeMenu)=="function","Flux native controls must be available")
-    lib.ApplyBuiltin(1)
-    local lay=lib.GetWorkingLayout()
-    meter:Embed(s.host,lay); s.drain()
-    local groups=lib.GetPickerGroups("bottom",1)
-    local nativeTypes={}
-    for _,group in ipairs(groups) do for _,item in ipairs(group.items or {}) do
-        if item.nativeType~=nil then nativeTypes[item.nativeType]=true end
+    assert(loadfile(layoutSource, "t", e))()
+    local lib, meter = e.FluxMeterLayout, e.FluxBlizzardMeter
+    lib.ApplyBuiltin(1); check(meter:Embed(s.host, lib.GetWorkingLayout()), "startup geometry embeds"); s.drain()
+    check(counts.pick == 0 and s.typeCalls == 0 and s.sessionCalls == 0, "startup never applies native types or segment defaults")
+    local groups = lib.GetPickerGroups("bottom", 1)
+    local available = {}
+    for _, group in ipairs(groups) do for _, item in ipairs(group.items or {}) do
+        if item.nativeType ~= nil then available[item.nativeType] = true end
     end end
-    check(nativeTypes[0] and nativeTypes[6] and nativeTypes[7] and nativeTypes[10] and not nativeTypes[4],
-        "native picker lists native type rows and preserves native Absorbs omission")
-    for _,group in ipairs(groups) do for _,item in ipairs(group.items or {}) do
-        check(not item.slot or item.slot.kind~="blizzard","native enum request rows no longer masquerade as working type controls")
-    end end
-    -- Execute the production picker method and its actual OnClick closure too.
-    local file=assert(io.open(layoutSource)); local text=file:read("*a"); file:close()
-    local first=assert(text:find("    function f:RefreshPicker()",1,true))
-    local last=assert(text:find("\n    function f:",first+1,true))
-    local refresh=assert(load("local f={}\n"..text:sub(first,last-1).."\nreturn f.RefreshPicker","@production picker","t",e))()
-    local child=e.CreateFrame("Frame")
-    local editor={pickerChild=child,selectedRow="bottom",selectedIndex=1}
-    refresh(editor)
-    local function actionFor(label)
-        for _,action in ipairs(child._rows) do if action.label.text==label then return action end end
-    end
-    local direct=assert(actionFor("Dispels"))
-    local typeCalls,pickCount=s.typeCalls,#picks
-    direct.scripts.OnClick(direct,"LeftButton");s.drain()
-    check(s.windows[2].meterType==6 and s.typeCalls==typeCalls+1 and #picks==pickCount+3,
-        "actual Flux Dispels row selects native stored entry without a type-menu launcher")
-    check(lib.GetWorkingLayout().bottomSlots[1].damageMeterType==6,"direct type row updates the Flux layout label")
-    for _,pair in ipairs({{"Combat session...","session"},{"Window settings...","settings"}}) do
-        local action=actionFor(pair[1]);local kind=pair[2]
-        check(action and action.scripts.OnClick,"real editor creates clickable native menu action")
-        action.scripts.OnClick()
-        check(opened[#opened].window==s.windows[2] and opened[#opened].kind==kind,
-            "real picker OnClick dispatches the selected window's "..kind.." menu")
-    end
-    local types,sessions,windows=s.typeCalls,s.sessionCalls,#s.windows
-    for _,kind in ipairs({"type","session","settings"}) do
-        check(lib.OpenNativeMenu("bottom",1,kind),"Flux selected window opens native "..kind.." menu")
-        check(opened[#opened].window==s.windows[2] and opened[#opened].kind==kind,"menu belongs to selected Healing window")
-    end
-    check(s.typeCalls==types and s.sessionCalls==sessions and #s.windows==windows,"opening native controls never issues configuration calls")
-    check(not meter:OpenNativeMenu("bad",1,"type") and not meter:OpenNativeMenu("top",1,"bad"),"invalid menu/slot do not open another window's menu")
-    -- This is a modeled player choice in the native menu, not an addon writer.
-    s.dm:SetSessionWindowDamageMeterType(s.windows[2],6)
-    after("SetSessionWindowDamageMeterType",s.windows[2],6); s.drain()
-    check(lib.GetWorkingLayout().bottomSlots[1].damageMeterType==6 and not meter:GetLayoutStatus().configurationRequired,
-        "native Dispels selection updates the selected Flux slot without an old Healing setup cover")
-    check(s.windows[2].meterType==6 and s.typeCalls==types+1,"exactly the player action changed the native type")
+    for value = 0, 10 do check(available[value] == (value ~= 4 and true or nil), "cached catalog preserves type availability " .. value) end
+    local layoutText = read(layoutSource)
+    local first = assert(layoutText:find("    function f:RefreshPicker()", 1, true))
+    local last = assert(layoutText:find("\n    function f:", first + 1, true))
+    local refresh = assert(load("local f={}\n" .. layoutText:sub(first, last - 1) .. "\nreturn f.RefreshPicker", "@actual cached native picker", "t", e))()
+    local child = e.CreateFrame("Frame")
+    refresh({pickerChild = child, selectedRow = "bottom", selectedIndex = 1})
+    local direct
+    for _, row in ipairs(child._rows) do if row.label.text == "Dispels" then direct = row end end
+    check(direct and direct.scripts.OnClick, "actual editor exposes direct Dispels action")
+    direct.scripts.OnClick(direct, "LeftButton"); s.drain()
+    check(s.windows[2].meterType == 6 and lib.GetWorkingLayout().bottomSlots[1].damageMeterType == 6,
+        "actual editor changes the native window and matching layout label")
+    check(not meter:GetLayoutStatus().configurationRequired and not meter:GetLayoutStatus().perFightSetupRequired,
+        "type choice resolves covers and defaults both displayed windows to Current")
     lib.SaveWorkingOverActive()
-    check(e._FluxUI_CharSavedVars.fluxWindowBlizzardMeterLayouts[1].bottomSlots[1].damageMeterType==6,
-        "existing Save control persists native type choice in a custom layout")
-    for value=0,10 do
-        check(lib.OpenNativeMenu("bottom",1,"type"),"native type-menu dispatch is stable across all enum-response cases")
-        local window=opened[#opened].window
-        s.dm:SetSessionWindowDamageMeterType(window,value)
-        after("SetSessionWindowDamageMeterType",window,value); s.drain()
-        check(lib.GetWorkingLayout().bottomSlots[1].damageMeterType==(value==4 and 3 or value),
-            "native responses are adopted; unavailable legacy Absorbs requests normalize in the working copy")
+    check(e._FluxUI_CharSavedVars.fluxWindowBlizzardMeterLayouts[1].bottomSlots[1].damageMeterType == 6, "existing Save persists direct native choice")
+    for _, kind in ipairs({"type", "session", "settings"}) do
+        local ok, reason = lib.OpenNativeMenu("bottom", 1, kind)
+        check(not ok and type(reason) == "string", "native dropdown opening remains a physical native control: " .. kind)
     end
-    local stale=lib.GetWorkingLayout()
-    lib.SetSlot("bottom",1,{kind="blizzard",damageMeterType=7})
-    lib.OnNativeMeterTypeChanged(stale,"bottom",1,5,10)
-    check(lib.GetWorkingLayout().bottomSlots[1].damageMeterType==7,"stale native menu cannot replace a newer Flux slot request")
-    lib.ApplyBuiltin(2)
-    lib.OnNativeMeterTypeChanged(stale,"top",1,5,0)
-    check(lib.GetWorkingLayout().topSlots[1].damageMeterType==0,"stale menu cannot edit a newly selected layout")
-    -- One explicit setup click uses the native New Window entry and type entry.
-    s.dm:SetSessionWindowDamageMeterType(s.windows[2],2)
-    after("SetSessionWindowDamageMeterType",s.windows[2],2); s.drain()
-    lib.ApplyBuiltin(3); lay=lib.GetWorkingLayout()
-    meter:Embed(s.host,lay); s.drain()
-    local missing
-    for _,notice in ipairs(notices) do if notice:IsShown() and notice.menuKind=="settings" then missing=notice end end
-    check(missing and missing.scripts.OnClick,"missing native window is an actionable button")
-    check(lib.OpenNativeMenu("top",1,"session") and opened[#opened].kind=="settings",
-        "an uncreated slot opens New Window settings instead of another native window's session menu")
-    local beforeCreate=#picks
-    missing.scripts.OnClick(missing);s.drain()
-    check(#s.windows==3 and s.windows[3].meterType==5 and #picks==beforeCreate+3,
-        "one setup click creates the third native pane and selects Interrupts/Current through original menu entries")
-    s.windows[3].meterType=6;meter:RefreshEmbeddedLayout()
-    local setup
-    for _,notice in ipairs(notices) do
-        if notice:IsShown() and notice.menuRow=="top" and notice.menuColumn==1 then setup=notice end
+    local target = s.windows[2]
+    for _, case in ipairs({{target.DamageMeterTypeDropdown, "menuDescription"}, {choices[target].types[5], "data"},
+        {choices[target].types[5], "responder"}, {choices[target].types[5], "Pick"}, {proxyMethods, "Pick"},
+        {choices[target].types[5], "GetData"}, {proxyMethods, "EnumerateElementDescriptions"}, {e.MenuInputContext, "MouseButton"}}) do
+        trusted[case[1]][case[2]] = false
+        local picks = counts.pick
+        local ok, reason = meter:SelectNativeType("bottom", 1, 5)
+        check(not ok and type(reason) == "string" and counts.pick == picks and target.meterType == 6,
+            "tainted " .. case[2] .. " cannot select native configuration")
+        trusted[case[1]][case[2]] = true
     end
-    check(setup and setup.menuKind=="type","existing mismatched native pane offers its requested type action")
-    setup.scripts.OnClick(setup);s.drain()
-    check(s.windows[3].meterType==5 and #s.windows==3,"setup type action reuses the existing window")
-    check(lay.topSlots[1].damageMeterType==5,"native type response is adopted by its actual row and column")
-    check(lib.OpenNativeMenu("top",2,"type") and opened[#opened].window==s.windows[1],
-        "second-column action targets its own native window")
-    s.dm:SetSessionWindowDamageMeterType(s.windows[1],8)
-    after("SetSessionWindowDamageMeterType",s.windows[1],8); s.drain()
-    local columns=lib.GetWorkingLayout().topSlots
-    check(columns[2].damageMeterType==8 and columns[1].damageMeterType==5,
-        "native type choice changes the selected column without editing its neighbor")
-    local mapped=meter:GetLayoutStatus()
-    check(not mapped.configurationRequired and mapped.sessionChoices[1].damageMeterType==5
-        and mapped.sessionChoices[2].damageMeterType==8,
-        "docked native windows agree with both edited columns")
-    -- Owned Threat remains separate; a four-pane layout cannot become four native windows.
-    e.FluxThreatMeter={IsAvailable=function() return true end}
-    lib.ApplyBuiltin(8)
-    groups=lib.GetPickerGroups("top",1)
-    local nativeActions=0
-    for _,group in ipairs(groups) do for _,item in ipairs(group.items or {}) do
-        if item.nativeMenu or (item.slot and item.slot.kind=="blizzard") then nativeActions=nativeActions+1 end
-    end end
-    check(nativeActions==0,"owned Threat cannot be configured through another native meter or replaced with a fourth native window")
-    local threatFrame=e.CreateFrame("Frame",nil,s.host)
-    e.FluxThreatMeter={IsAvailable=function() return true end,GetFrame=function() return threatFrame end,
-        Embed=function() return threatFrame end,RefreshLayout=function() end,
-        Show=function() threatFrame:Show() end,Hide=function() threatFrame:Hide() end,Cleanup=function() threatFrame:Hide() end}
-    lib.ApplyBuiltin(10)
-    local split=lib.GetWorkingLayout()
-    check(split.topSlots[1].kind=="plugin" and split.topSlots[2].damageMeterType==0
-        and split.bottomSlots[1].damageMeterType==5 and split.bottomSlots[2].damageMeterType==2,
-        "new layout is Threat/Damage over Interrupts/Healing")
-    check(lib.CommitUserLayout() and not meter:GetLayoutStatus().configurationRequired,
-        "one layout choice applies all native types without a second setup click")
-    lib.ApplyBuiltin(8)
-    check(lib.CommitUserLayout() and not meter:GetLayoutStatus().configurationRequired,
-        "switching Interrupts layout to Dispels layout applies native Dispels immediately")
-    for id=1,lib.GetBuiltinCount() do
-        for i,window in ipairs(s.windows) do
-            window.sessionType=i==3 and e.Enum.DamageMeterSessionType.Current or e.Enum.DamageMeterSessionType.Overall
-            window.sessionID=i>1 and 42 or nil
+    local cache = caches[target.DamageMeterTypeDropdown]; caches[target.DamageMeterTypeDropdown] = nil
+    local picks = counts.pick
+    check(not meter:SelectNativeType("bottom", 1, 5) and counts.pick == picks, "missing native cache is not regenerated")
+    caches[target.DamageMeterTypeDropdown] = cache
+    local security = e.issecurevariable; e.issecurevariable = nil
+    check(not meter:SelectNativeType("bottom", 1, 5) and counts.pick == picks, "missing provenance API cannot dispatch")
+    e.issecurevariable = security
+    check(not meter:SelectNativeType("bottom", 1, 4) and counts.pick == picks, "unavailable Absorbs never dispatches or creates a window")
+    nativeChoice("SetSessionWindowSessionID", s.windows[1], e.Enum.DamageMeterSessionType.Overall, nil)
+    local currentData = choices[s.windows[1]].sessions[2].data
+    for _, key in ipairs({"type", "sessionID"}) do
+        trusted[currentData][key] = false
+        picks = counts.pick
+        check(not meter:ApplyCurrentSegments() and counts.pick == picks and s.windows[1].sessionType == 0,
+            "tainted Current data field " .. key .. " cannot select a native segment")
+        trusted[currentData][key] = true
+    end
+    check(meter:ApplyCurrentSegments(), "clean original Current metadata remains selectable after provenance failures")
+    -- A tainted settings label must not misroute New Window to Reset's responder.
+    lib.ApplyBuiltin(3); meter:Embed(s.host, lib.GetWorkingLayout()); s.drain()
+    local settingsRoots, settingsChildren = {}, {}
+    for _, window in ipairs(s.windows) do
+        local root = caches[window.SettingsDropdown]
+        settingsRoots[#settingsRoots + 1] = root; settingsChildren[root] = internals[root].children
+    end
+    local resets = 0
+    local falseNewWindow = description("New Window", nil, function() resets = resets + 1 end)
+    trusted[falseNewWindow].text = false
+    for _, root in ipairs(settingsRoots) do internals[root].children = {falseNewWindow} end
+    local windows = #s.windows
+    check(not meter:ApplyRequestedTypes() and resets == 0 and #s.windows == windows,
+        "tainted New Window label cannot select a relabelled Reset responder")
+    for _, root in ipairs(settingsRoots) do internals[root].children = settingsChildren[root] end
+    trusted[e].DAMAGE_METER_SHOW_NEW_WINDOW = false
+    check(not meter:ApplyRequestedTypes() and resets == 0 and #s.windows == windows,
+        "tainted native New Window text constant cannot authorize creation")
+    trusted[e].DAMAGE_METER_SHOW_NEW_WINDOW = true
+    lib.ApplyBuiltin(3); check(lib.CommitUserLayout(), "one preset creates and configures the third native window"); s.drain()
+    check(#s.windows == 3 and not meter:GetLayoutStatus().configurationRequired, "new native window resolves requested types without manual setup")
+    local threatFrame = e.CreateFrame("Frame", nil, s.host)
+    e.FluxThreatMeter = {IsAvailable = function() return true end, GetFrame = function() return threatFrame end,
+        Embed = function() return threatFrame end, RefreshLayout = function() end,
+        Show = function() threatFrame:Show() end, Hide = function() threatFrame:Hide() end, Cleanup = function() threatFrame:Hide() end}
+    for id = 1, lib.GetBuiltinCount() do
+        for i, window in ipairs(s.windows) do
+            window.sessionType = i == 3 and e.Enum.DamageMeterSessionType.Current or e.Enum.DamageMeterSessionType.Overall
+            window.sessionID = i > 1 and 42 or nil
         end
         lib.ApplyBuiltin(id)
-        local beforeSession=s.sessionCalls
-        check(lib.CommitUserLayout() and not meter:GetLayoutStatus().configurationRequired,
-            "every offered native preset applies all native windows in one user action")
-        local status=meter:GetLayoutStatus()
-        check(not status.perFightSetupRequired and s.sessionCalls==beforeSession+status.visibleNativePanes,
-            "each layout defaults every displayed native pane to Current, including unchanged types and historical selections")
-        for _,window in ipairs(s.windows) do
-            if window:IsShown() then check(window.sessionType==e.Enum.DamageMeterSessionType.Current and window.sessionID==nil,
-                "Current selection uses the native entry's nil historical ID") end
-        end
+        local before = s.sessionCalls
+        check(lib.CommitUserLayout(), "production preset applies requested types: " .. id); s.drain()
+        local status = meter:GetLayoutStatus()
+        check(not status.configurationRequired and not status.perFightSetupRequired, "every preset has matching types and Current: " .. id)
+        check(s.sessionCalls == before + status.visibleNativePanes, "every displayed pane receives canonical Current: " .. id)
+        for _, pane in ipairs(status.sessionChoices) do check(pane.selection == "Current", "Current entry replaces historical selection") end
+        for _, window in ipairs(s.windows) do if window:IsShown() then check(window.sessionID == nil, "canonical Current clears historical ID") end end
     end
-    s.dm:SetSessionWindowSessionID(s.windows[1],e.Enum.DamageMeterSessionType.Overall,nil)
-    local manualSessions=s.sessionCalls
-    meter:RefreshEmbeddedLayout()
-    check(s.windows[1].sessionType==e.Enum.DamageMeterSessionType.Overall and s.sessionCalls==manualSessions,
-        "geometry refresh preserves a later manual Overall choice")
-    check(lib.CommitUserLayout() and s.windows[1].sessionType==e.Enum.DamageMeterSessionType.Current
-        and s.sessionCalls==manualSessions+1,"reselecting the same layout restores Current on its manually overridden pane")
-    manualSessions=s.sessionCalls
-    check(lib.CommitUserLayout() and s.sessionCalls==manualSessions,"already-Current panes do not receive repeated native selections")
-    check(#s.windows==3 and threatFrame~=s.windows[1] and threatFrame~=s.windows[2] and threatFrame~=s.windows[3],
-        "all ten layouts preserve three native windows plus the separate Threat frame")
-    -- Exercise the actual FluxWindow cycle/setter/tab OnClick code, not just the
-    -- editor's CommitUserLayout helper. These used to re-embed geometry only.
-    local file=assert(io.open(windowSource));local windowText=file:read("*a");file:close()
-    local first=assert(windowText:find("local function GetMeterPresetCount()",1,true))
-    local last=assert(windowText:find("\n--- Save tab state",first,true))
-    local setterStart=assert(windowText:find("function FluxWindowFrame:SetMeterPresetIndex(",1,true))
-    local setterEnd=assert(windowText:find("\nend",setterStart,true))+4
-    local clickStart=assert(windowText:find('    tab.button:SetScript("OnClick", function(self, button)',1,true))
-    local clickEnd=assert(windowText:find("\n    -- Mouseover effects",clickStart,true))
-    local prefix=[[
+    check(#s.windows == 3 and threatFrame ~= s.windows[1] and threatFrame ~= s.windows[2] and threatFrame ~= s.windows[3],
+        "ten presets retain three native windows and independent owned Threat")
+    lib.ApplyBuiltin(1); check(lib.CommitUserLayout(), "prepare two-pane layout")
+    nativeChoice("SetSessionWindowSessionID", s.windows[1], e.Enum.DamageMeterSessionType.Overall, nil)
+    local sessions, types = s.sessionCalls, s.typeCalls
+    for _ = 1, 50 do meter:RefreshEmbeddedLayout() end
+    meter:Hide(); meter:Show(); s.drain()
+    check(s.sessionCalls == sessions and s.typeCalls == types and s.windows[1].sessionType == 0,
+        "geometry and ordinary show preserve later manual Overall selection")
+    check(lib.CommitUserLayout() and s.sessionCalls == sessions + 1 and s.windows[1].sessionType == 1,
+        "reselecting same layout defaults the overridden pane to Current")
+    sessions = s.sessionCalls
+    check(lib.CommitUserLayout() and s.sessionCalls == sessions, "already-Current panes skip redundant selection")
+    local windowText = read("Battlezonemap/FluxWindowFrame.lua")
+    first = assert(windowText:find("local function GetMeterPresetCount()", 1, true))
+    last = assert(windowText:find("\n--- Save tab state", first, true))
+    local setterStart = assert(windowText:find("function FluxWindowFrame:SetMeterPresetIndex(", 1, true))
+    local setterEnd = assert(windowText:find("\nend", setterStart, true)) + 4
+    local clickStart = assert(windowText:find('    tab.button:SetScript("OnClick", function(self, button)', 1, true))
+    local clickEnd = assert(windowText:find("\n    -- Mouseover effects", clickStart, true))
+    local prefix = [[
 local activeTab="Meter"
 local name="Meter"
 local click
 local tab={button={SetScript=function(_,_,fn)click=fn end}}
 local ResolveMeterSystem=function()return FluxMeterLayout.GetMeterBackend()=="Blizzard" and "BlizzardMeter" or "Details" end
 ]]
-    local suffix=[[
-return click,function(value)activeTab=value end
-]]
-    local click,setActive=assert(load(prefix..windowText:sub(first,last-1).."\n"..windowText:sub(setterStart,setterEnd)
-        .."\n"..windowText:sub(clickStart,clickEnd-1).."\n"..suffix,"@actual FluxWindow meter click routes","t",e))()
-    lib.ApplyBuiltin(5);check(lib.CommitUserLayout(),"prepare native HPS before actual tab cycle")
-    for _,window in ipairs(s.windows)do window.sessionType=0;window.sessionID=nil end
-    click({},"LeftButton");s.drain()
-    local cycled=meter:GetLayoutStatus()
-    check(lib.GetActiveLayoutId()=="builtin:6" and not cycled.configurationRequired and not cycled.perFightSetupRequired
-        and cycled.sessionChoices[1].damageMeterType==7,
-        "actual active Meter-tab click changes HPS to Damage Taken and Current without a pane click")
-    e.FluxWindowFrame:SetMeterPresetIndex(8,true);s.drain()
-    check(lib.GetActiveLayoutId()=="builtin:8" and not meter:GetLayoutStatus().configurationRequired,
-        "actual FluxWindow preset setter applies Dispels layout completely")
-    local beforePlan=#picks
-    e.FluxWindowFrame:SetMeterPresetIndex(10,false)
-    check(#picks==beforePlan,"planning-only preset setter leaves native configuration alone")
-    s.activeTab="Map";setActive("Map");meter:Hide()
-    click({},"LeftButton");s.drain()
-    check(s.activeTab=="Meter" and not meter:GetLayoutStatus().configurationRequired and not meter:GetLayoutStatus().perFightSetupRequired,
-        "actual inactive Meter-tab click applies the requested layout and Current immediately")
-    s.activeTab="Map";setActive("Map");meter:Hide();lib.ApplyBuiltin(6)
-    check(lib.CommitUserLayout() and s.activeTab=="Meter" and not meter:GetLayoutStatus().configurationRequired
-        and meter:GetLayoutStatus().sessionChoices[1].damageMeterType==7,
-        "FluxUI options choice while Map is active switches to Meter and applies the new layout, not a stale snapshot")
-    s.combat=true;local blocked=#picks
-    click({},"LeftButton")
-    check(#picks==blocked,"actual Meter-tab OnClick does no native work in combat")
-    s.combat=false
-    -- Only a queued explicit choice may apply after delayed native readiness.
-    meter:Cleanup();e.DamageMeter=nil;s.activeTab="Map"
-    lib.ApplyBuiltin(5);check(lib.CommitUserLayout(),"explicit layout request queues while native UI is unavailable")
-    lib.ApplyBuiltin(6);local waitingPicks=#picks
-    check(lib.CommitUserLayout() and #picks==waitingPicks,"latest waiting layout supersedes the older choice without native work")
-    s.windows[1].meterType=0;s.windows[2].meterType=2;s.windows[3].meterType=3
-    for _,window in ipairs(s.windows)do window.sessionType=0;window.sessionID=nil end
-    e.DamageMeter=s.dm
-    meter:Embed(s.host,lib.GetWorkingLayout());s.drain()
-    check(not meter:GetLayoutStatus().configurationRequired and not meter:GetLayoutStatus().perFightSetupRequired
-        and meter:GetLayoutStatus().sessionChoices[1].damageMeterType==7,
-        "existing readiness embed consumes the latest explicit choice and selects native type/Current")
-    s.windows[1].sessionType=0;local once=s.sessionCalls
-    meter:Embed(s.host,lib.GetWorkingLayout());s.drain()
-    check(s.sessionCalls==once and s.windows[1].sessionType==0,"readiness intent is consumed once; ordinary embeds do not force Current")
-    for _,cancel in ipairs({"Hide","Cleanup"})do
-        e.DamageMeter=nil;lib.ApplyBuiltin(6);lib.CommitUserLayout();meter[cancel](meter)
-        e.DamageMeter=s.dm;s.windows[1].meterType=0;s.windows[2].meterType=2;s.windows[3].meterType=3
-        local canceled=#picks
-        meter:Embed(s.host,lib.GetWorkingLayout());s.drain()
-        check(#picks==canceled and meter:GetLayoutStatus().configurationRequired,
-            "leaving or cleaning up cancels the delayed native apply intent")
+    local route = prefix .. windowText:sub(first, last - 1) .. "\n" .. windowText:sub(setterStart, setterEnd)
+        .. "\n" .. windowText:sub(clickStart, clickEnd - 1) .. "\nreturn click,function(value)activeTab=value end"
+    local click, setActive = assert(load(route, "@actual native tab routes", "t", e))()
+    lib.ApplyBuiltin(5); check(lib.CommitUserLayout(), "prepare HPS before cycle")
+    click({}, "LeftButton"); s.drain()
+    local status = meter:GetLayoutStatus()
+    check(lib.GetActiveLayoutId() == "builtin:6" and not status.configurationRequired and not status.perFightSetupRequired
+        and status.sessionChoices[1].damageMeterType == 7, "actual tab cycle changes HPS to Damage Taken immediately")
+    e.FluxWindowFrame:SetMeterPresetIndex(8, true); s.drain()
+    check(lib.GetActiveLayoutId() == "builtin:8" and not meter:GetLayoutStatus().configurationRequired, "actual setter applies Dispels without setup cover")
+    picks = counts.pick; e.FluxWindowFrame:SetMeterPresetIndex(10, false)
+    check(counts.pick == picks, "planning-only setter does not select native configuration")
+    s.activeTab = "Map"; setActive("Map"); meter:Hide()
+    click({}, "LeftButton"); s.drain()
+    check(s.activeTab == "Meter" and not meter:GetLayoutStatus().configurationRequired, "inactive tab entry applies its current layout")
+    s.activeTab = "Map"; meter:Hide(); lib.ApplyBuiltin(6)
+    check(lib.CommitUserLayout() and s.activeTab == "Meter" and meter:GetLayoutStatus().sessionChoices[1].damageMeterType == 7,
+        "options on Map switch to Meter before applying latest request")
+    s.combat = true; picks = counts.pick; sessions = s.sessionCalls
+    click({}, "LeftButton")
+    check(not meter:ApplyRequestedTypes() and not meter:ApplyCurrentSegments() and counts.pick == picks and s.sessionCalls == sessions,
+        "tab, type and segment application stay blocked in combat")
+    s.combat = false
+    meter:Cleanup(); e.DamageMeter = nil; s.activeTab = "Map"
+    lib.ApplyBuiltin(5); check(lib.CommitUserLayout(), "explicit choice queues while native UI unavailable")
+    lib.ApplyBuiltin(6); picks = counts.pick
+    check(lib.CommitUserLayout() and counts.pick == picks, "latest delayed choice wins without premature selection")
+    for i, window in ipairs(s.windows) do window.meterType = ({0, 2, 3})[i]; window.sessionType = 0; window.sessionID = nil end
+    e.DamageMeter = s.dm; meter:Embed(s.host, lib.GetWorkingLayout()); s.drain()
+    status = meter:GetLayoutStatus()
+    check(not status.configurationRequired and not status.perFightSetupRequired and status.sessionChoices[1].damageMeterType == 7,
+        "existing readiness retry consumes latest explicit type and Current request")
+    s.windows[1].sessionType = 0; sessions = s.sessionCalls
+    meter:Embed(s.host, lib.GetWorkingLayout()); s.drain()
+    check(s.sessionCalls == sessions and s.windows[1].sessionType == 0, "delayed intent consumes once; later embed preserves manual segment")
+    for _, cancel in ipairs({"Hide", "Cleanup"}) do
+        e.DamageMeter = nil; lib.ApplyBuiltin(6); lib.CommitUserLayout(); meter[cancel](meter)
+        e.DamageMeter = s.dm
+        for i, window in ipairs(s.windows) do window.meterType = ({0, 2, 3})[i] end
+        picks = counts.pick; meter:Embed(s.host, lib.GetWorkingLayout()); s.drain()
+        check(counts.pick == picks and meter:GetLayoutStatus().configurationRequired, cancel .. " cancels stale delayed selection")
     end
-    check(lib.CommitUserLayout(),"restore explicit layout after cancellation cases")
-    local quiet,commits,preset=0,0,11
-    local detailsEnv=setmetatable({}, {__index=e})
-    detailsEnv.FluxWindowFrame={}
-    detailsEnv.FluxMeterLayout={GetMeterBackend=function()return "Details" end,GetBuiltinCount=function()return 11 end,
-        GetActiveLayoutId=function()return "builtin:"..preset end,ApplyBuiltin=function(id)preset=id end,
-        ReembedQuiet=function()quiet=quiet+1 end,CommitUserLayout=function()commits=commits+1 end}
-    local detailsClick=assert(load(prefix..windowText:sub(first,last-1).."\n"..windowText:sub(setterStart,setterEnd)
-        .."\n"..windowText:sub(clickStart,clickEnd-1).."\n"..suffix,"@actual Details meter choice route","t",detailsEnv))()
-    detailsClick({},"LeftButton")
-    check(preset==1 and quiet==1 and commits==0,"Details tab cycle retains its immediate quiet re-embed and eleven-preset wrap")
-    detailsEnv.FluxWindowFrame:SetMeterPresetIndex(3,true)
-    check(preset==3 and quiet==2 and commits==0,"Details preset setter retains its original re-embed path")
-    for _,group in ipairs(lib.BuildCatalog()) do for _,item in ipairs(group.items or {}) do
-        check(not item.slot or item.slot.damageMeterType~=4,"catalog does not advertise Absorbs")
-    end end
-    check(not lib.GetBuiltinLabels()[5]:find("Absorbs",1,true) and not lib.SetSlot("top",2,{kind="blizzard",damageMeterType=4}),
-        "presets and slot controls reject unavailable Absorbs")
-    e.FluxThreatMeter=nil
-    lib.ApplyBuiltin(3); meter:Embed(s.host,lib.GetWorkingLayout()); s.drain()
-    -- Combat, Details takeover, and cleanup cannot dispatch stale controls.
-    local before=#opened
-    s.combat=true
-    check(not lib.OpenNativeMenu("top",1,"type") and #opened==before,"combat blocks editor/native menu dispatch")
-    local beforeSessions=s.sessionCalls
-    check(not meter:ApplyCurrentSegments() and s.sessionCalls==beforeSessions,"Current default never writes during combat")
-    s.windows[3].meterType=7
-    after("SetSessionWindowDamageMeterType",s.windows[3],7)
-    s.combat=false; s.event("PLAYER_REGEN_ENABLED"); s.drain()
-    check(lib.GetWorkingLayout().topSlots[1].damageMeterType==7,"native type choice survives deferred combat layout repair")
-    s.details=true; e.Details={}
-    check(not meter:OpenNativeMenu("top",1,"settings") and #opened==before,"Details takeover disables native menu actions")
-    check(not meter:ApplyCurrentSegments() and s.sessionCalls==beforeSessions,"Details takeover disables Current selection")
-    s.details=false; e.Details=nil; meter:Cleanup()
-    check(not meter:OpenNativeMenu("top",1,"settings"),"cleanup retires native menu bridge")
-    check(not meter:ApplyCurrentSegments() and s.sessionCalls==beforeSessions,"cleanup retires Current selection")
-    check(s.nativeMethodsIntact(),"native meter and entry methods remain unchanged")
-    -- Legacy unavailable types normalize only in the working copy. Serialization
-    -- of untouched saved custom layouts retains the original request until Save.
-    e._FluxUI_CharSavedVars.fluxWindowBlizzardMeterLayouts={{id="user:legacy",name="Legacy",topSlots={{kind="blizzard",damageMeterType=0}},
-        bottomSlots={{kind="blizzard",damageMeterType=4}}}}
-    e._FluxUI_CharSavedVars.fluxWindowBlizzardMeterActiveLayoutId="user:legacy"
-    assert(loadfile(layoutSource,"t",e))()
-    lib=e.FluxMeterLayout
-    check(lib.GetWorkingLayout().bottomSlots[1].damageMeterType==3,"legacy Absorbs working layout becomes supported HPS")
-    lib.ReembedQuiet()
-    check(e._FluxUI_CharSavedVars.fluxWindowBlizzardMeterLayouts[1].bottomSlots[1].damageMeterType==4,
-        "working repair does not overwrite an untouched serialized custom layout")
+    check(lib.CommitUserLayout(), "restore explicit layout after cancellation")
+    local quiet, commits, preset = 0, 0, 11
+    local de = setmetatable({FluxWindowFrame = {}}, {__index = e})
+    de.FluxMeterLayout = {GetMeterBackend = function() return "Details" end, GetBuiltinCount = function() return 11 end,
+        GetActiveLayoutId = function() return "builtin:" .. preset end, ApplyBuiltin = function(id) preset = id end,
+        ReembedQuiet = function() quiet = quiet + 1 end, CommitUserLayout = function() commits = commits + 1 end}
+    local detailsClick = assert(load(route, "@actual Details routes", "t", de))()
+    detailsClick({}, "LeftButton")
+    check(preset == 1 and quiet == 1 and commits == 0, "Details cycle keeps quiet re-embed and eleven-preset wrap")
+    de.FluxWindowFrame:SetMeterPresetIndex(3, true)
+    check(preset == 3 and quiet == 2 and commits == 0, "Details setter keeps original re-embed route")
+    s.details = true; e.Details = {}; picks = counts.pick
+    check(not meter:ApplyRequestedTypes() and not meter:ApplyCurrentSegments() and counts.pick == picks, "Details takeover retires native selection")
+    s.details = false; e.Details = nil; meter:Cleanup()
+    check(not meter:ApplyRequestedTypes() and not meter:ApplyCurrentSegments(), "cleanup retires stale native selection")
+    for name, fn in pairs(methodRefs) do check(s.dm[name] == fn, "native method identity remains unchanged: " .. name) end
+    local unchanged = true
+    for _, snapshot in ipairs(descriptionSnapshots) do
+        local data = snapshot.data
+        unchanged = unchanged and snapshot.description.data == data and snapshot.description.responder == snapshot.responder
+        if type(data) == "table" then unchanged = unchanged and data.type == snapshot.sessionType and data.sessionID == snapshot.sessionID end
+    end
+    check(unchanged, "all original native descriptions, responder identities and session metadata remain unchanged")
+    check(counts.generate == 0 and counts.open == 0 and counts.register == 0 and counts.dropdownPick == 0
+        and counts.writers == 0 and counts.cacheWrites == 0, "all routes avoid native cache writes/generation/opening and private setters")
 end
-print(string.format("native meter controls: %d checks; native input/taint/pixels pending; pinned dropdown=%s",checks,tostring(dropdownSource~=nil)))
+print("native_meter_controls: " .. checks .. " checks passed; pinned Pick=" .. tostring(menuSource ~= nil) .. "; native taint/controller/pixels pending")

@@ -28,8 +28,10 @@ function M:PositionBuffFrames()
     if Blocked() then self._pending = true; return end
     local minimap = _G.FluxMinimap
     local width = minimap and minimap.GetNormalWidth and minimap:GetNormalWidth() or 190
-    -- EnforcePosition docks the normal minimap at screen x=0.
-    local x = -(width + GAP)
+    local buttons = _G.FluxMinimapButtons
+    local offset = buttons and buttons.GetMinimapOffset and buttons:GetMinimapOffset() or 0
+    -- Beside-map buttons reserve the same horizontal space for map and auras.
+    local x = -(width + GAP) + offset
     -- Screen anchors, independent of Minimap and its embedded parent/size.
     -- Preserve Blizzard's 15px horizontal and 145px vertical row separation.
     Place(_G.BuffFrame, x, TOP)

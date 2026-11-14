@@ -1,5 +1,13 @@
 # Shared APIs, refresh services and button feedback
 
+14 November casting/inventory lag: Cast/VFX protected callbacks reuse stateless functions while native queries, errors, private timers and paint cadence remain. [Comparisons and limits](LAG_HOTSPOT_OPTIMIZATION.md).
+
+13 November world-cursor tooltip ownership: binding hints/owners, protected-gear decoration and consumable separator bookkeeping live in private weak-key tables. Clear/hide callbacks preserve Blizzard's shared tooltip Lua fields; existing text, HUD positioning and refresh/input owners remain. [Source comparison, regressions and native limits](SECRET_TOOLTIP_METER_ERRORS.md#world-cursor-follow-up-at-202955).
+
+10 November passive pass 3: Checked spell, last-number/coercion and aura-payload helpers reuse functions; existing lookup/access/error policy remains. [Before/after and native limits](PASSIVE_PERFORMANCE_PASS3.md).
+
+10 November passive pass 2: Range/protected helpers reuse function objects with unchanged cache, access and query behavior. [Before/after evidence and native limits](PASSIVE_PERFORMANCE_PASS2.md).
+
 <!-- STRESS-FIXES-20261107 -->
 7 November applied stress fixes: Events preserve listener delivery during removal; Scheduler retains nested FIFO callbacks and older paused structural batches, invalidates stale timers, and budgets inventory at 8 callbacks per scheduled flush. Combat RegenDefer budgets 16 distinct jobs per frame with combat reentry pause. Sustained mouseover can no longer starve shared range sweeps indefinitely. [Evidence](../Stress%20test%20doc/applied-fixes/README.md). Native taint/pixels/performance acceptance remains pending.
 <!-- /STRESS-FIXES-20261107 -->

@@ -104,6 +104,16 @@ for _, family in ipairs({ "forever", "live", "era", "anniversary", "mists" }) do
             check(not fj.IsJunk(710001) and not fj.IsJunkForDisplay(710001), label .. " low item level cannot junk the only carried tier")
             check(not fj.IsFiltered(710001), label .. " direct automatic-rule query also protects current best")
             check(p.GetTierRestockThreshold(kind) == 1000, label .. " purchase threshold retained independently")
+            check(tiers.IsCarriedUpgradeRequired(kind), label .. " global carried-replacement protection defaults on")
+            check(tiers.SetCarriedUpgradeRequired(kind, false), label .. " per-kind global safety can be changed")
+            recompute()
+            check(tiers.GetJunkReferenceTier(kind) >= 1000, label .. " opt-out restores remembered/vendor tier comparisons")
+            check(fj.IsJunk(710001) and fj.IsJunkForDisplay(710001), label .. " explicit opt-out permits ordinary automatic rules without a carried upgrade")
+            for _, other in ipairs(kinds) do
+                if other ~= kind then check(tiers.IsCarriedUpgradeRequired(other), label .. " opt-out preserves " .. other .. " protection") end
+            end
+            tiers.SetCarriedUpgradeRequired(kind, true); recompute()
+            check(not fj.IsJunk(710001) and not fj.IsJunkForDisplay(710001), label .. " re-enabling protects immediately despite a warmed junk verdict")
             local initialWalks, initialQueries = walks, liveQueries
             for _ = 1, 100 do fj.IsJunk(710001); fj.IsJunkForDisplay(710001) end
             check(walks == initialWalks, label .. " repeated overlays/verdicts add no bag walks")

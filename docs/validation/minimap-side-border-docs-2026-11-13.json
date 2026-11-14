@@ -1,0 +1,246 @@
+{
+  "captured_utc": "2026-11-13T14:54:45.298016+00:00",
+  "command": "python docs/tools/validate_docs.py",
+  "exit": 1,
+  "output": "Documentation validation FAILED:\n- Stale source inventory: Inventory/Restock/Auction/FluxAuctionRestockCraft.lua\n- Stale source inventory: Inventory/Restock/Auction/FluxAuctionRestockFollowup.lua\n- Stale source inventory: Inventory/Restock/Auction/FluxAuctionRestockFollowupUI.lua\n- Stale source inventory: tests/auction_restock_followup.lua\n- Stale source inventory: tests/auction_restock_price_policy.lua\n- Stale source inventory: tests/auction_restock_vendor_routes.lua\n- Stale source inventory: tests/auction_restock_workflow.lua\n- Stale generated view: reference/interfaces.md\n- Recorded verification predates current source: Inventory/Restock/Auction/FluxAuctionRestock.lua\n- Recorded verification predates current source: Inventory/Restock/Auction/FluxAuctionRestockCraft.lua\n- Recorded verification predates current source: Inventory/Restock/Auction/FluxAuctionRestockFollowup.lua\n- Recorded verification predates current source: Inventory/Restock/Auction/FluxAuctionRestockFollowupUI.lua\n- Recorded verification predates current source: Inventory/Restock/Auction/FluxAuctionRestockUI.lua\n- Recorded verification predates current source: tests/auction_restock_followup.lua\n- Recorded verification predates current source: tests/auction_restock_followup_automation.lua\n- Recorded verification predates current source: tests/auction_restock_vendor_routes.lua\n- Recorded verification predates current source: tests/auction_restock_workflow.lua\n17 issue(s); checker made no edits.\n",
+  "generator": {
+    "first_attempt": "OSError22 writing inventory;exact reason not established",
+    "retry": "PASS:1067 sources;623 reachable;438 settings;583 defaults"
+  },
+  "task_links": {
+    "passed": 57,
+    "errors": [],
+    "links": [
+      {
+        "from": "docs/MINIMAP_EXTRA_LAYOUT.md",
+        "to": "validation/minimap-side-border-checkpoint-2026-11-13.json"
+      },
+      {
+        "from": "docs/MINIMAP_EXTRA_LAYOUT.md",
+        "to": "validation/minimap-side-border-sources-2026-11-13.json"
+      },
+      {
+        "from": "docs/MINIMAP_EXTRA_LAYOUT.md",
+        "to": "validation/minimap-side-border-2026-11-13.json"
+      },
+      {
+        "from": "docs/MINIMAP_EXTRA_LAYOUT.md",
+        "to": "validation/minimap-dynamic-checkpoint-2026-11-13.json"
+      },
+      {
+        "from": "docs/MINIMAP_EXTRA_LAYOUT.md",
+        "to": "validation/minimap-dynamic-sources-2026-11-13.json"
+      },
+      {
+        "from": "docs/MINIMAP_EXTRA_LAYOUT.md",
+        "to": "validation/minimap-dynamic-2026-11-13.json"
+      },
+      {
+        "from": "docs/MINIMAP_EXTRA_LAYOUT.md",
+        "to": "validation/minimap-visibility-sources-2026-11-13.json"
+      },
+      {
+        "from": "docs/MINIMAP_EXTRA_LAYOUT.md",
+        "to": "validation/minimap-visibility-checkpoint-2026-11-13.json"
+      },
+      {
+        "from": "docs/MINIMAP_EXTRA_LAYOUT.md",
+        "to": "validation/minimap-visibility-2026-11-13.json"
+      },
+      {
+        "from": "docs/MINIMAP_EXTRA_LAYOUT.md",
+        "to": "validation/minimap-auto-embedded-checkpoint-2026-11-13.json"
+      },
+      {
+        "from": "docs/MINIMAP_EXTRA_LAYOUT.md",
+        "to": "validation/minimap-auto-layout-2026-11-13.json"
+      },
+      {
+        "from": "docs/MINIMAP_EXTRA_LAYOUT.md",
+        "to": "validation/minimap-auto-layout-controls-2026-11-13.json"
+      },
+      {
+        "from": "docs/MINIMAP_EXTRA_LAYOUT.md",
+        "to": "validation/minimap-side-combat-checkpoint-2026-11-13.json"
+      },
+      {
+        "from": "docs/MINIMAP_EXTRA_LAYOUT.md",
+        "to": "validation/minimap-side-combat-2026-11-13.json"
+      },
+      {
+        "from": "docs/MINIMAP_EXTRA_LAYOUT.md",
+        "to": "validation/minimap-scale-basis-checkpoint-2026-11-13.json"
+      },
+      {
+        "from": "docs/MINIMAP_EXTRA_LAYOUT.md",
+        "to": "validation/minimap-scale-basis-2026-11-13.json"
+      },
+      {
+        "from": "docs/MINIMAP_EXTRA_LAYOUT.md",
+        "to": "validation/minimap-side-aura-checkpoint-2026-11-13.json"
+      },
+      {
+        "from": "docs/MINIMAP_EXTRA_LAYOUT.md",
+        "to": "validation/minimap-side-aura-2026-11-13.json"
+      },
+      {
+        "from": "docs/MINIMAP_EXTRA_LAYOUT.md",
+        "to": "validation/minimap-layout-sources-2026-11-13.json"
+      },
+      {
+        "from": "docs/MINIMAP_EXTRA_LAYOUT.md",
+        "to": "validation/minimap-layout-checkpoint-2026-11-13.json"
+      },
+      {
+        "from": "docs/MINIMAP_EXTRA_LAYOUT.md",
+        "to": "validation/minimap-extra-layout-controls-2026-11-13.json"
+      },
+      {
+        "from": "docs/MINIMAP_EXTRA_LAYOUT.md",
+        "to": "validation/minimap-layout-full-2026-11-13.json"
+      },
+      {
+        "from": "docs/MINIMAP_EXTRA_LAYOUT.md",
+        "to": "validation/minimap-layout-source-guard-2026-11-13.json"
+      },
+      {
+        "from": "docs/MINIMAP_EXTRA_LAYOUT.md",
+        "to": "validation/minimap-layout-docs-2026-11-13.json"
+      },
+      {
+        "from": "docs/18-minimap-and-trackers.md",
+        "to": "MINIMAP_TARGET_FOCUS.md"
+      },
+      {
+        "from": "docs/18-minimap-and-trackers.md",
+        "to": "../Minimap/FluxMinimap.lua"
+      },
+      {
+        "from": "docs/18-minimap-and-trackers.md",
+        "to": "MINIMAP_NATIVE_INDICATORS.md"
+      },
+      {
+        "from": "docs/18-minimap-and-trackers.md",
+        "to": "MINIMAP_MAIL_LIFECYCLE.md"
+      },
+      {
+        "from": "docs/18-minimap-and-trackers.md",
+        "to": "03-midnight-constraints.md"
+      },
+      {
+        "from": "docs/18-minimap-and-trackers.md",
+        "to": "MINIMAP_EXTRA_LAYOUT.md#screen-side-border-and-minimap-clock-layering"
+      },
+      {
+        "from": "docs/18-minimap-and-trackers.md",
+        "to": "MINIMAP_EXTRA_LAYOUT.md#dynamic-minimum-and-automatic-frame-movement"
+      },
+      {
+        "from": "docs/18-minimap-and-trackers.md",
+        "to": "../Minimap/FluxMinimapButtons.lua"
+      },
+      {
+        "from": "docs/18-minimap-and-trackers.md",
+        "to": "MINIMAP_EXTRA_LAYOUT.md"
+      },
+      {
+        "from": "docs/18-minimap-and-trackers.md",
+        "to": "12-extra-button-system.md"
+      },
+      {
+        "from": "docs/18-minimap-and-trackers.md",
+        "to": "OBJECTIVE_TRACKER_TOP.md"
+      },
+      {
+        "from": "docs/18-minimap-and-trackers.md",
+        "to": "../Minimap/FluxObjectiveTrackerScroll.lua"
+      },
+      {
+        "from": "docs/18-minimap-and-trackers.md",
+        "to": "../tests/objective_tracker_scroll.lua"
+      },
+      {
+        "from": "docs/18-minimap-and-trackers.md",
+        "to": "../Minimap/_tmp_trackercombatsmoke.lua"
+      },
+      {
+        "from": "docs/18-minimap-and-trackers.md",
+        "to": "../Minimap/FluxQuestie.lua"
+      },
+      {
+        "from": "docs/18-minimap-and-trackers.md",
+        "to": "10-flux-window.md"
+      },
+      {
+        "from": "docs/18-minimap-and-trackers.md",
+        "to": "../Minimap/_tmp_questiesmoke.lua"
+      },
+      {
+        "from": "docs/18-minimap-and-trackers.md",
+        "to": "../Minimap/FluxBuffDebuffFrames.lua"
+      },
+      {
+        "from": "docs/18-minimap-and-trackers.md",
+        "to": "26-options-map.md"
+      },
+      {
+        "from": "docs/18-minimap-and-trackers.md",
+        "to": "31-commands-and-bindings.md"
+      },
+      {
+        "from": "docs/18-minimap-and-trackers.md",
+        "to": "41-verification.md#current-compatibility-scenarios"
+      },
+      {
+        "from": "docs/STATUS.md",
+        "to": "MINIMAP_EXTRA_LAYOUT.md#screen-side-border-and-minimap-clock-layering"
+      },
+      {
+        "from": "docs/STATUS.md",
+        "to": "validation/minimap-side-border-2026-11-13.json"
+      },
+      {
+        "from": "docs/DECISIONS.md",
+        "to": "MINIMAP_EXTRA_LAYOUT.md#screen-side-border-and-minimap-clock-layering"
+      },
+      {
+        "from": "docs/DECISIONS.md",
+        "to": "validation/minimap-side-border-2026-11-13.json"
+      },
+      {
+        "from": "docs/WORK_LOG.md",
+        "to": "MINIMAP_EXTRA_LAYOUT.md#screen-side-border-and-minimap-clock-layering"
+      },
+      {
+        "from": "docs/WORK_LOG.md",
+        "to": "validation/minimap-side-border-2026-11-13.json"
+      },
+      {
+        "from": "NEXT_SESSION.md",
+        "to": "docs/MINIMAP_EXTRA_LAYOUT.md#screen-side-border-and-minimap-clock-layering"
+      },
+      {
+        "from": "NEXT_SESSION.md",
+        "to": "docs/validation/minimap-side-border-2026-11-13.json"
+      },
+      {
+        "from": "docs/CLIENT_VALIDATION.md",
+        "to": "MINIMAP_EXTRA_LAYOUT.md#screen-side-border-and-minimap-clock-layering"
+      },
+      {
+        "from": "docs/CLIENT_VALIDATION.md",
+        "to": "validation/minimap-side-border-2026-11-13.json"
+      },
+      {
+        "from": "docs/PERFORMANCE_PROTOCOL.md",
+        "to": "MINIMAP_EXTRA_LAYOUT.md#screen-side-border-and-minimap-clock-layering"
+      },
+      {
+        "from": "docs/PERFORMANCE_PROTOCOL.md",
+        "to": "validation/minimap-side-border-2026-11-13.json"
+      }
+    ]
+  },
+  "task_diff_whitespace": "PASS",
+  "global_issue_scope": "17 stale source/view/verification entries for concurrent auction work;no task-owned issue"
+}

@@ -1,5 +1,31 @@
 # Repository publication
 
+14 November `ADDON-PUBLICATION-20261114`: the user requested publication of the
+full current addon snapshot to DoctorFlux/FluxUI on main, including completed
+auction, consumable, UI/options and casting/inventory work. Preserve all newer
+source and licenses. This task updates documentation, the stale commerce renderer
+regression and Git state. The regression permits fewer hidden-row writes while
+retaining native repair, opacity, reentry and exact-error propagation checks;
+addon runtime code, settings and client/profiler state remain under their owners.
+
+Both author and committer must be DoctorFlux
+`<100806234+DoctorFlux@users.noreply.github.com>`, with no co-author trailers.
+The existing identity hooks remain active. Five identity regressions and all four
+prior reachable commits passed; GitHub's pre-upload contributor API lists only
+DoctorFlux. Check the new main history and contributor/workflow state after push.
+GitHub has no contributor blacklist; enforce publication metadata at each upload.
+
+Current source evidence: 365 fresh desktop scripts passed; 52 auction/shared-grid
+dependents were replayed after the last concurrent UI edits, with all Lua stable.
+The index retains 14 unchanged meter/threat observations from their owner instead
+of rerunning them. All 1067 syntax hashes match current files; 379 passing
+observations are recorded. The adapted commerce test rejects four compiled
+harmful controls. Existing native
+acceptance gaps remain; publishing establishes no new native/performance result.
+External source/history/index checkpoint: 2794 files and
+113 settings metadata entries; no private settings copied.
+No branch/reset/force push/tag/repository replacement. [Publication record](validation/addon-publication-2026-11-14.json).
+
 Replacement completed on 9 November 2026: old repository ID `1416752820` was
 deleted; new ID `1451123700` uses the same address and main only. Snapshot root
 `be90cdcc2f14e9cf5067618cc1bae157718015ad` contains 2,344 files, has no parents,

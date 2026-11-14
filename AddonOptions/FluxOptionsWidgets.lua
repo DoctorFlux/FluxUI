@@ -33,15 +33,19 @@ function W.Accent()
     return 0.9, 0.75, 0.3
 end
 
-function W.OnAccent(fn)
+function W.OnAccent(fn, owner)
     if type(fn) == "function" then
-        accentListeners[#accentListeners + 1] = fn
+        accentListeners[owner or fn] = fn
     end
 end
 
+function W.ReleaseAccent(owner)
+    accentListeners[owner] = nil
+end
+
 function W.RefreshAccent()
-    for i = 1, #accentListeners do
-        pcall(accentListeners[i])
+    for _, fn in pairs(accentListeners) do
+        pcall(fn)
     end
 end
 
@@ -129,29 +133,39 @@ function W.PaintStripe(row, index)
         return
     end
     if index % 2 == 0 then
-        Solid(row.bg, 0.11, 0.13, 0.15, 0.9)
+        Solid(row.bg, 0.18, 0.16, 0.12, 0.38)
     else
-        Solid(row.bg, 0.07, 0.08, 0.10, 0.9)
+        Solid(row.bg, 0.08, 0.07, 0.06, 0.28)
     end
 end
 
 function W.CreateHeader(parent)
-    local row = CreateFrame("Frame", nil, parent)
-    row:SetHeight(28)
+    local row = CreateFrame("Button", nil, parent)
+    row:SetHeight(38)
     local text = row:CreateFontString(nil, "OVERLAY", "GameFontNormal")
-    text:SetPoint("LEFT", 4, 0)
-    text:SetPoint("RIGHT", -4, 0)
+    text:SetPoint("LEFT", 30, 0)
+    text:SetPoint("RIGHT", -12, 0)
     text:SetJustifyH("LEFT")
     text:SetJustifyV("MIDDLE")
     local line = row:CreateTexture(nil, "ARTWORK")
     line:SetHeight(1)
     line:SetPoint("BOTTOMLEFT", 4, 2)
     line:SetPoint("BOTTOMRIGHT", -4, 2)
-    Solid(line, 1, 1, 1, 0.12)
+    Solid(line, 0.65, 0.52, 0.30, 0.55)
+    local shade = row:CreateTexture(nil, "BACKGROUND")
+    shade:SetAllPoints()
+    Solid(shade, 0.28, 0.22, 0.12, 0.65)
+    local sign = row:CreateFontString(nil, "OVERLAY", "GameFontNormalLarge")
+    sign:SetPoint("LEFT", 12, 0)
+    sign:SetText("-")
+    row.SetExpanded = function(_, expanded) sign:SetText(expanded and "-" or "+") end
+    row:SetHighlightTexture("Interface\\QuestFrame\\UI-QuestTitleHighlight", "ADD")
     row.text = text
     row.SetLabel = function(_, value)
         text:SetText(value or "")
     end
+    local skin = ns.FluxOptionsSkin
+    if skin and skin.StyleHeader then skin.StyleHeader(row, shade, sign) end
     return row
 end
 
@@ -188,6 +202,26 @@ function W.CreateDescription(parent)
     return row
 end
 
+function W.CreateSectionCard(parent)
+    local card = BackdropFrame(nil, parent)
+    card:SetFrameLevel(parent:GetFrameLevel())
+    W.ApplyBackdrop(card, 0.04, 0.035, 0.025, 0.65, 0.40, 0.32, 0.20, 0.65)
+    card:Hide()
+    return card
+end
+
+function W.CreateEmpty(parent)
+    local frame = CreateFrame("Frame", nil, parent)
+    frame:SetSize(440, 64)
+    frame:SetPoint("TOPLEFT", 12, -12)
+    local text = frame:CreateFontString(nil, "OVERLAY", "GameFontDisableSmall")
+    text:SetAllPoints()
+    text:SetJustifyH("LEFT")
+    text:SetText("No matching settings on this page. Choose another result in the sidebar or clear the search.")
+    frame:Hide()
+    return frame
+end
+
 local function AttachTooltip(frame, getTitle, getBody)
     frame:SetScript("OnEnter", function(self)
         local title = getTitle and getTitle() or nil
@@ -209,30 +243,18 @@ function W.CreateToggle(parent)
     label:SetWordWrap(false)
     label:SetPoint("LEFT", 12, 0)
 
-    local btn = CreateFrame("Button", nil, row)
-    btn:SetSize(40, 20)
+    local btn = CreateFrame("CheckButton", nil, row, "UICheckButtonTemplate")
+    btn:SetSize(26, 26)
     btn:SetPoint("RIGHT", -12, 0)
-    local track = btn:CreateTexture(nil, "BACKGROUND")
-    track:SetAllPoints()
-    local knob = btn:CreateTexture(nil, "ARTWORK")
-    knob:SetSize(16, 16)
-    Solid(knob, 0.92, 0.92, 0.92, 1)
+    if btn.text then btn.text:Hide() end
 
     local value = false
     local disabled = false
     local onChange
 
     local function Paint()
-        local r, g, b = W.Accent()
-        if value then
-            Solid(track, r, g, b, disabled and 0.35 or 0.85)
-            knob:ClearAllPoints()
-            knob:SetPoint("RIGHT", btn, "RIGHT", -2, 0)
-        else
-            Solid(track, 0.27, 0.27, 0.27, disabled and 0.4 or 0.7)
-            knob:ClearAllPoints()
-            knob:SetPoint("LEFT", btn, "LEFT", 2, 0)
-        end
+        btn:SetChecked(value)
+        btn:SetEnabled(not disabled)
         label:SetAlpha(disabled and 0.4 or 1)
     end
 
@@ -275,7 +297,7 @@ function W.CreateToggle(parent)
         onChange = fn
     end
     row.RefreshAccent = Paint
-    W.OnAccent(Paint)
+    W.OnAccent(Paint, row)
     Paint()
     return row
 end
@@ -507,7 +529,7 @@ function W.CreateDropdown(parent)
         onChange = fn
     end
     row.RefreshAccent = Display
-    W.OnAccent(Display)
+    W.OnAccent(Display, row)
     Display()
     return row
 end
@@ -535,7 +557,9 @@ function W.CreateSlider(parent)
     label:SetWordWrap(false)
     label:SetPoint("LEFT", 12, 0)
 
-    local slider = CreateFrame("Slider", nil, row)
+    local skin = ns.FluxOptionsSkin
+    local native = skin and skin.IsForever()
+    local slider = CreateFrame("Slider", nil, row, native and "MinimalSliderTemplate" or nil)
     slider:SetOrientation("HORIZONTAL")
     slider:SetSize(150, 16)
     slider:SetPoint("RIGHT", -12, 0)
@@ -543,21 +567,26 @@ function W.CreateSlider(parent)
         slider:SetObeyStepOnDrag(true)
     end
 
-    local track = slider:CreateTexture(nil, "BACKGROUND")
-    track:SetHeight(4)
-    track:SetPoint("LEFT", slider, "LEFT", 0, 0)
-    track:SetPoint("RIGHT", slider, "RIGHT", 0, 0)
-    Solid(track, 1, 1, 1, 0.16)
+    local track = native and slider.Middle or slider:CreateTexture(nil, "BACKGROUND")
+    if not native then
+        track:SetHeight(4)
+        track:SetPoint("LEFT", slider, "LEFT", 0, 0)
+        track:SetPoint("RIGHT", slider, "RIGHT", 0, 0)
+        Solid(track, 1, 1, 1, 0.16)
+    end
 
     local fill = slider:CreateTexture(nil, "ARTWORK")
     fill:SetHeight(4)
     fill:SetPoint("LEFT", track, "LEFT", 0, 0)
     slider.fill = fill
+    if native then fill:Hide() end
 
-    local thumb = slider:CreateTexture(nil, "OVERLAY")
-    thumb:SetSize(14, 14)
-    Solid(thumb, 0.95, 0.95, 0.95, 1)
-    slider:SetThumbTexture(thumb)
+    if not native then
+        local thumb = slider:CreateTexture(nil, "OVERLAY")
+        thumb:SetTexture("Interface\\Buttons\\UI-SliderBar-Button-Horizontal")
+        thumb:SetSize(24, 24)
+        slider:SetThumbTexture(thumb)
+    end
 
     local valueText = row:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
     valueText:SetPoint("RIGHT", slider, "LEFT", -8, 0)
@@ -583,6 +612,7 @@ function W.CreateSlider(parent)
         valueText:SetText(FormatNumber(v, stepV, isPercent))
         label:SetAlpha(disabled and 0.4 or 1)
         valueText:SetAlpha(disabled and 0.4 or 0.85)
+        if native then slider:SetAlpha(disabled and 0.4 or 1) end
     end
 
     slider:SetScript("OnValueChanged", function(_, value)
@@ -647,7 +677,7 @@ function W.CreateSlider(parent)
         onCommit = fn
     end
     row.RefreshAccent = PaintFill
-    W.OnAccent(PaintFill)
+    W.OnAccent(PaintFill, row)
     row.Configure(0, 1, 0.1, false)
     return row
 end
@@ -925,7 +955,7 @@ function W.CreateMoreButton(parent)
     row.SetOnClick = function(_, fn)
         row._onClick = fn
     end
-    W.OnAccent(Paint)
+    W.OnAccent(Paint, row)
     row.SetOpen(false)
     return row
 end
@@ -965,6 +995,8 @@ function W.CreateScroll(parent)
     local track = bar:CreateTexture(nil, "BACKGROUND")
     track:SetAllPoints()
     Solid(track, 1, 1, 1, 0.06)
+    local skin = ns.FluxOptionsSkin
+    if skin and skin.StyleScrollBar and skin.StyleScrollBar(bar, thumb) then track:Hide() end
 
     local function ApplyScroll(value)
         local maxScroll = select(2, bar:GetMinMaxValues())

@@ -1,0 +1,14 @@
+{
+  "baselineExistingLuaUnchanged": 950,
+  "TOCOnlyTaskInsertions": true,
+  "currentFullManifestMatched": 952,
+  "completeSuitePass": 280,
+  "completeSuiteFail": 0,
+  "newLua": [
+    "Minimap/FluxMinimapTracking.lua",
+    "tests/minimap_tracking.lua"
+  ],
+  "manualCrossClientWrites": false,
+  "privateSettingsWrites": false,
+  "nativeAcceptance": "NOT RUN"
+}

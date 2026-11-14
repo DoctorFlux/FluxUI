@@ -144,6 +144,8 @@ local function MigrateLegacyStores()
 end
 
 local function ApplyDefaults(t)
+    t.autoOpenVendorGossip = (t.autoOpenVendorGossip == true)
+    t.autoOpenBankGossip = (t.autoOpenBankGossip == true)
     t.autoRepair = (t.autoRepair == true)
     t.autoRestock = (t.autoRestock == true)
     t.autoSellGray = (t.autoSellGray == true)

@@ -1,0 +1,18 @@
+{
+  "date": "2026-11-09",
+  "change_id": "CRAFT-TIER-FALLBACK-20261109",
+  "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\09\\01a1c064-0f54-7a21-ba96-442ba666bb6c\\craft-tier-20261109T130129Z",
+  "head": "26f886e3ea5371b196ab235d2dace0c156002285",
+  "sourceFiles": 2417,
+  "verified": true,
+  "settingsMetadataFiles": 116,
+  "settingsScope": "Read-only metadata; no live settings backup or write",
+  "archives": {
+    "source.zip": "abdd775d191c601716f23d5202abf369d8c626c592da89bcc6f63468306ca594",
+    "history.bundle": "6d353e79f96a3642cfcddf858245f97640dcd07c2ed8e4c3c91c1c5a6f946ee3"
+  },
+  "baseline": {
+    "Inventory/Craft.lua": "56d8b5371cab76b44f146bc3e2315991c64a5e6bf2aae2599dec1bcbe13f6170",
+    "tests/consumable_craft_visibility.lua": "07f25322b04880e0c823b4e6ca03ced11b487e0c11e536bf607d111daf02eded"
+  }
+}

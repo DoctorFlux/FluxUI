@@ -1,0 +1,755 @@
+{
+  "changeId": "COUNT-SOURCE-RECONCILIATION-20261111",
+  "requirements": [
+    "CGLC-14",
+    "CGLC-15",
+    "CGLC-16",
+    "CGLC-17",
+    "CGLC-18"
+  ],
+  "branch": "main",
+  "trigger": "User screenshot again reports positive faces despite empty water/gem/healing/bandage inventory; includes food, mana potions and other assigned item buttons. Prior native fix is not accepted as complete.",
+  "checkpoint": {
+    "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c65e-a3d3-7840-a32a-09fda47a48df\\count-source-reconciliation\\checkpoint-20261110T230220Z",
+    "capturedAtUTC": "2026-11-10T23:02:31.214188+00:00",
+    "head": "26f886e3ea5371b196ab235d2dace0c156002285",
+    "files": 2580,
+    "verified": true,
+    "sourceZipSha256": "d50bfd17c23d708ae7a3e02d78f8279a704ef566a01ba08ac5d30047a4b95689",
+    "historyBundleSha256": "e3c2b830067c95c12e26348b3a94f846ef3b429d1d193b7b5046a8625fd4c1d9",
+    "settingsMetadataEntries": 55,
+    "privateSettingsCopied": false,
+    "quiescentSettingsBackup": false,
+    "settingsScope": "Metadata only across five installed clients; no private settings paths/content in repository receipt"
+  },
+  "runtimeFiles": [
+    "Core/API/Item.lua",
+    "Inventory/Init.lua",
+    "Inventory/FluxConsumableBest/Init.lua",
+    "Inventory/FluxConsumableBest/FluxConsumableBest.lua"
+  ],
+  "sourceIdentities": {
+    "Core/API/Item.lua": {
+      "beforeSha256LF": "03969d6d61cf492bdb187aec1a4715601f9f5817790c493e92274eb8aacdd9e4",
+      "afterSha256LF": "2be703fae6568d44910f237c95ccb398680ba33658eb57cdceb5491100b2dbb4"
+    },
+    "Inventory/Init.lua": {
+      "beforeSha256LF": "fd0eb8f1b5b0352249c1fe0ac801e26a775e610a21de2bdcf3441758a85926ab",
+      "afterSha256LF": "ba561a05db2a870e205e368f9505c6c82b790913dbec3feef2007e24aba27b37"
+    },
+    "Inventory/FluxConsumableBest/Init.lua": {
+      "beforeSha256LF": "a253302ba007354071201157a3d777c1c30a2352b953f4b1c450c166dd6ca9f6",
+      "afterSha256LF": "24ec2905c39b15000e76c0e2a6d6780d46ef8e6a4337ae801aa092a9f48ff920"
+    },
+    "Inventory/FluxConsumableBest/FluxConsumableBest.lua": {
+      "beforeSha256LF": "32d1724d2786844b70a1ed564c3fd967ed9f807591caa77a32686dcfba3c8797",
+      "afterSha256LF": "cb60b0d33c60f7210b205a3d3f4afebf118f8e7afd2ec4e06ff3787c4942901a"
+    }
+  },
+  "testHashesLF": {
+    "tests/consumable_hold_reconciliation.lua": "ae94178933f41a81f9dc3577ebdea6f1c7f46b4049a8a6b18bd914fd990ce716",
+    "tests/item_count_zero_authority.lua": "aa1bd523c5c2ac9ad0a645a5c2bcfaf4f7aa9d8f1007a00a23adc4762bd8aa9e"
+  },
+  "sourceGuard": {
+    "scope": "All preexisting Lua/XML/TOC files versus exact external source checkpoint; CRLF normalized to LF",
+    "changed": [
+      "Core/API/Item.lua",
+      "Inventory/FluxConsumableBest/FluxConsumableBest.lua",
+      "Inventory/FluxConsumableBest/Init.lua",
+      "Inventory/Init.lua"
+    ],
+    "newLuaFiles": [
+      "tests/consumable_hold_reconciliation.lua",
+      "tests/item_count_zero_authority.lua"
+    ],
+    "unrelatedSourcePreserved": true
+  },
+  "comparison": {
+    "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c65e-a3d3-7840-a32a-09fda47a48df\\count-source-reconciliation\\checkpoint-20261110T230220Z",
+    "pairs": [
+      {
+        "label": "zero-pair1-before",
+        "kind": "zero",
+        "exit": 1,
+        "metrics": {
+          "checks": 245,
+          "failures": 150,
+          "zeroLegacyReads": 100
+        }
+      },
+      {
+        "label": "zero-pair1-after",
+        "kind": "zero",
+        "exit": 0,
+        "metrics": {
+          "checks": 245,
+          "failures": 0,
+          "zeroLegacyReads": 0
+        }
+      },
+      {
+        "label": "holds-pair1-before",
+        "kind": "holds",
+        "exit": 1,
+        "metrics": {
+          "checks": 2104,
+          "failures": 583
+        }
+      },
+      {
+        "label": "holds-pair1-after",
+        "kind": "holds",
+        "exit": 0,
+        "metrics": {
+          "checks": 2104,
+          "failures": 0
+        }
+      },
+      {
+        "label": "zero-pair2-after",
+        "kind": "zero",
+        "exit": 0,
+        "metrics": {
+          "checks": 245,
+          "failures": 0,
+          "zeroLegacyReads": 0
+        }
+      },
+      {
+        "label": "zero-pair2-before",
+        "kind": "zero",
+        "exit": 1,
+        "metrics": {
+          "checks": 245,
+          "failures": 150,
+          "zeroLegacyReads": 100
+        }
+      },
+      {
+        "label": "holds-pair2-after",
+        "kind": "holds",
+        "exit": 0,
+        "metrics": {
+          "checks": 2104,
+          "failures": 0
+        }
+      },
+      {
+        "label": "holds-pair2-before",
+        "kind": "holds",
+        "exit": 1,
+        "metrics": {
+          "checks": 2104,
+          "failures": 583
+        }
+      },
+      {
+        "label": "zero-pair3-before",
+        "kind": "zero",
+        "exit": 1,
+        "metrics": {
+          "checks": 245,
+          "failures": 150,
+          "zeroLegacyReads": 100
+        }
+      },
+      {
+        "label": "zero-pair3-after",
+        "kind": "zero",
+        "exit": 0,
+        "metrics": {
+          "checks": 245,
+          "failures": 0,
+          "zeroLegacyReads": 0
+        }
+      },
+      {
+        "label": "holds-pair3-before",
+        "kind": "holds",
+        "exit": 1,
+        "metrics": {
+          "checks": 2104,
+          "failures": 583
+        }
+      },
+      {
+        "label": "holds-pair3-after",
+        "kind": "holds",
+        "exit": 0,
+        "metrics": {
+          "checks": 2104,
+          "failures": 0
+        }
+      }
+    ],
+    "controls": [
+      {
+        "label": "control-drop-valid-zero",
+        "kind": "zero",
+        "exit": 1,
+        "metrics": {
+          "checks": 245,
+          "failures": 150,
+          "zeroLegacyReads": 100
+        }
+      },
+      {
+        "label": "control-remove-legacy-error-fallback",
+        "kind": "zero",
+        "exit": 1,
+        "metrics": {
+          "checks": 245,
+          "failures": 25,
+          "zeroLegacyReads": 0
+        }
+      },
+      {
+        "label": "control-break-bank-compatibility",
+        "kind": "zero",
+        "exit": 1,
+        "metrics": {
+          "checks": 245,
+          "failures": 10,
+          "zeroLegacyReads": 0
+        }
+      },
+      {
+        "label": "control-do-not-release-world-hold",
+        "kind": "holds",
+        "exit": 1,
+        "metrics": {
+          "checks": 2104,
+          "failures": 500
+        }
+      },
+      {
+        "label": "control-miss-login-owner-signal",
+        "kind": "holds",
+        "exit": 1,
+        "metrics": {
+          "checks": 2104,
+          "failures": 20
+        }
+      },
+      {
+        "label": "control-omit-count-recovery",
+        "kind": "holds",
+        "exit": 1,
+        "metrics": {
+          "checks": 2104,
+          "failures": 80
+        }
+      },
+      {
+        "label": "control-release-before-world-entry",
+        "kind": "holds",
+        "exit": 1,
+        "metrics": {
+          "checks": 2104,
+          "failures": 480
+        }
+      },
+      {
+        "label": "control-expose-opaque-diagnostic",
+        "kind": "holds",
+        "exit": 1,
+        "metrics": {}
+      }
+    ],
+    "sourceHashes": {
+      "Core/API/Item.lua": "2be703fae6568d44910f237c95ccb398680ba33658eb57cdceb5491100b2dbb4",
+      "Inventory/Init.lua": "ba561a05db2a870e205e368f9505c6c82b790913dbec3feef2007e24aba27b37",
+      "Inventory/FluxConsumableBest/Init.lua": "24ec2905c39b15000e76c0e2a6d6780d46ef8e6a4337ae801aa092a9f48ff920",
+      "Inventory/FluxConsumableBest/FluxConsumableBest.lua": "cb60b0d33c60f7210b205a3d3f4afebf118f8e7afd2ec4e06ff3787c4942901a"
+    },
+    "scope": "Actual production modules in desktop replays; no native event ordering, symptom acceptance, rendering, permissions or FPS claim."
+  },
+  "comparisonReceipt": {
+    "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c65e-a3d3-7840-a32a-09fda47a48df\\count-source-reconciliation\\verified-replay\\comparison.json",
+    "sha256": "57818cef8b7d3a10ac5c1bd07f789957ffca606dba54f7b362f01db064e64e67",
+    "repeatedPairsPerWorkstream": 3,
+    "allEightControlsRejected": true,
+    "preliminaryReplays": "Retained externally; final strengthened replay includes Best-only world owner and real long-loading-window controls"
+  },
+  "sources": {
+    "live": {
+      "version": "12.1.5.70783",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "verifiedRecords": [
+        {
+          "path": "version.txt",
+          "bytes": 13,
+          "sha256": "4e532c8d3beb3231ae8195704b6de0a099a19742e02505f73f292f47fe9e080b",
+          "gitBlob": "61a71eb0d9c435ad6f9f9701ab4d9c072cd3237e",
+          "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/version.txt"
+        },
+        {
+          "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/ItemDocumentation.lua",
+          "bytes": 43163,
+          "sha256": "56970512d088ad07f3a143bd5959789ced40546ad4f6992ee0824509fdcc10fb",
+          "gitBlob": "4955484268741dfe40991520d6c04edffb6d8d75",
+          "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_APIDocumentationGenerated/ItemDocumentation.lua"
+        },
+        {
+          "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/ContainerDocumentation.lua",
+          "bytes": 19085,
+          "sha256": "dd3e4741d45720384f814d3f78ce975dab3951458ae894e728ed3aedc8ae56b3",
+          "gitBlob": "d8ccac7e60f0a575d5ca27fda9b6900a92f1c709",
+          "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_APIDocumentationGenerated/ContainerDocumentation.lua"
+        },
+        {
+          "path": "Interface/AddOns/Blizzard_ActionBar/Shared/ActionButton.lua",
+          "bytes": 62267,
+          "sha256": "54fb5625a5e8aa343cbbc0be805b23e2b3b329011e792448e6b732a4bebd8cba",
+          "gitBlob": "34ce1b2f5ef3c4eb679da7e8b02b1222ea122db1",
+          "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_ActionBar/Shared/ActionButton.lua"
+        },
+        {
+          "path": "Interface/AddOns/Blizzard_ActionBar/Blizzard_ActionBar.toc",
+          "bytes": 2823,
+          "sha256": "be2742875abf7461b047090bc77baf5ee793191be20b4840583f2d371fcc3a97",
+          "gitBlob": "3f63d114fcc74c5d4b27efa2c6f88628dd2bd1fc",
+          "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_ActionBar/Blizzard_ActionBar.toc"
+        }
+      ],
+      "unavailablePaths": [
+        {
+          "path": "Interface/AddOns/Blizzard_ActionBar/Mainline/ActionButton.lua",
+          "error": "HTTP Error 404: Not Found"
+        }
+      ],
+      "native": "NOT RUN"
+    },
+    "forever": {
+      "version": "1.60.1.70888",
+      "commit": "4cd0ab752a77164f654ccbca9d0c1fe8dafceebe",
+      "verifiedRecords": [
+        {
+          "path": "version.txt",
+          "bytes": 13,
+          "sha256": "cda1e9ba5d7782fc757ed568df675acded1841ec72e8b76cc73124a7a0985a36",
+          "gitBlob": "5aae5d83fbb13b18885a3ac745bc004d10ea1409",
+          "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/4cd0ab752a77164f654ccbca9d0c1fe8dafceebe/version.txt"
+        },
+        {
+          "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/ItemDocumentation.lua",
+          "bytes": 44454,
+          "sha256": "59c5dd2f70757cdb9bc4511cb0fafe6287bbfb51d58a7389097dcbb485785af0",
+          "gitBlob": "2ca379d4976dc3254c1bf24c4754a60f684740e5",
+          "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/4cd0ab752a77164f654ccbca9d0c1fe8dafceebe/Interface/AddOns/Blizzard_APIDocumentationGenerated/ItemDocumentation.lua"
+        },
+        {
+          "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/ContainerDocumentation.lua",
+          "bytes": 19085,
+          "sha256": "dd3e4741d45720384f814d3f78ce975dab3951458ae894e728ed3aedc8ae56b3",
+          "gitBlob": "d8ccac7e60f0a575d5ca27fda9b6900a92f1c709",
+          "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/4cd0ab752a77164f654ccbca9d0c1fe8dafceebe/Interface/AddOns/Blizzard_APIDocumentationGenerated/ContainerDocumentation.lua"
+        },
+        {
+          "path": "Interface/AddOns/Blizzard_ActionBar/Shared/ActionButton.lua",
+          "bytes": 64879,
+          "sha256": "cc0053c747b6af20db8e31e0b59838dc2a4da6638ec7b49c8f91ca81d4c1114e",
+          "gitBlob": "ade2b56a266cc44f7b727c77818fa237fab585d5",
+          "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/4cd0ab752a77164f654ccbca9d0c1fe8dafceebe/Interface/AddOns/Blizzard_ActionBar/Shared/ActionButton.lua"
+        },
+        {
+          "path": "Interface/AddOns/Blizzard_ActionBar/Blizzard_ActionBar.toc",
+          "bytes": 2552,
+          "sha256": "8788866b0d683bc7038034bd0bc198d67f2a612bd677a79fcb29ae719fa66fac",
+          "gitBlob": "5f95586c9cc81a02e8e059711c3b28d8df9ea1e8",
+          "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/4cd0ab752a77164f654ccbca9d0c1fe8dafceebe/Interface/AddOns/Blizzard_ActionBar/Blizzard_ActionBar.toc"
+        }
+      ],
+      "unavailablePaths": [
+        {
+          "path": "Interface/AddOns/Blizzard_ActionBar/Mainline/ActionButton.lua",
+          "error": "HTTP Error 404: Not Found"
+        }
+      ],
+      "native": "NOT RUN"
+    },
+    "classic": {
+      "version": "5.5.4.70631",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "verifiedRecords": [
+        {
+          "path": "version.txt",
+          "bytes": 12,
+          "sha256": "bcb030fe2d2febd396332d886d804ef9b397335e88f0196edc5d8dbe54c1ba38",
+          "gitBlob": "6888c66e55b78c6b76bdda185480facc60d9b5e5",
+          "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/version.txt"
+        },
+        {
+          "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/ItemDocumentation.lua",
+          "bytes": 26349,
+          "sha256": "56a6938bd9ac19b252e751eac3e621f5bd89c391a2d1d56656e1ce558b5aacc3",
+          "gitBlob": "77ab90302128427bab0926b6b012c7c1a21836b5",
+          "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_APIDocumentationGenerated/ItemDocumentation.lua"
+        },
+        {
+          "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/ContainerDocumentation.lua",
+          "bytes": 15269,
+          "sha256": "633dfcab41f333ba2d691a1d8472786e2a13440cd82034e792bdc91e320a1ef4",
+          "gitBlob": "bdf5586ff128f3394d4a7f50b696f8601a36a210",
+          "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_APIDocumentationGenerated/ContainerDocumentation.lua"
+        },
+        {
+          "path": "Interface/AddOns/Blizzard_ActionBar/Shared/ActionButton.lua",
+          "bytes": 60549,
+          "sha256": "743d91b87f7535576240d5584e93318d0d69ce7afd4576baa5b71a14d45e4b42",
+          "gitBlob": "1d6bcdfda44143959d2bd657ebae8e13c8d9d3a9",
+          "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_ActionBar/Shared/ActionButton.lua"
+        }
+      ],
+      "unavailablePaths": [
+        {
+          "path": "Interface/AddOns/Blizzard_ActionBar/Mainline/ActionButton.lua",
+          "error": "HTTP Error 404: Not Found"
+        },
+        {
+          "path": "Interface/AddOns/Blizzard_ActionBar/Blizzard_ActionBar.toc",
+          "error": "HTTP Error 404: Not Found"
+        }
+      ],
+      "native": "NOT RUN"
+    },
+    "classic_era": {
+      "version": "1.15.9.70576",
+      "commit": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "verifiedRecords": [
+        {
+          "path": "version.txt",
+          "bytes": 13,
+          "sha256": "5224861aa41c7bcfd9d48bdd8003eb769a8954c72e3e9682035aeff5bc236f29",
+          "gitBlob": "66bc5d3c31ec0d4ac300d1ba18ffd9490ac424d9",
+          "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/4192ac60067fc55566182291bc67c85dd9b6794d/version.txt"
+        },
+        {
+          "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/ItemDocumentation.lua",
+          "bytes": 26349,
+          "sha256": "56a6938bd9ac19b252e751eac3e621f5bd89c391a2d1d56656e1ce558b5aacc3",
+          "gitBlob": "77ab90302128427bab0926b6b012c7c1a21836b5",
+          "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_APIDocumentationGenerated/ItemDocumentation.lua"
+        },
+        {
+          "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/ContainerDocumentation.lua",
+          "bytes": 15269,
+          "sha256": "633dfcab41f333ba2d691a1d8472786e2a13440cd82034e792bdc91e320a1ef4",
+          "gitBlob": "bdf5586ff128f3394d4a7f50b696f8601a36a210",
+          "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_APIDocumentationGenerated/ContainerDocumentation.lua"
+        },
+        {
+          "path": "Interface/AddOns/Blizzard_ActionBar/Shared/ActionButton.lua",
+          "bytes": 60549,
+          "sha256": "743d91b87f7535576240d5584e93318d0d69ce7afd4576baa5b71a14d45e4b42",
+          "gitBlob": "1d6bcdfda44143959d2bd657ebae8e13c8d9d3a9",
+          "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_ActionBar/Shared/ActionButton.lua"
+        }
+      ],
+      "unavailablePaths": [
+        {
+          "path": "Interface/AddOns/Blizzard_ActionBar/Mainline/ActionButton.lua",
+          "error": "HTTP Error 404: Not Found"
+        },
+        {
+          "path": "Interface/AddOns/Blizzard_ActionBar/Blizzard_ActionBar.toc",
+          "error": "HTTP Error 404: Not Found"
+        }
+      ],
+      "native": "NOT RUN"
+    },
+    "classic_anniversary": {
+      "version": "2.5.6.70577",
+      "commit": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "verifiedRecords": [
+        {
+          "path": "version.txt",
+          "bytes": 12,
+          "sha256": "53498c451665c69194d1a41b9983916109b370b6a261bb833322ae871838bdb3",
+          "gitBlob": "f81737db88bfda2cd085cc09b18ca8ce764efc42",
+          "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/version.txt"
+        },
+        {
+          "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/ItemDocumentation.lua",
+          "bytes": 26349,
+          "sha256": "56a6938bd9ac19b252e751eac3e621f5bd89c391a2d1d56656e1ce558b5aacc3",
+          "gitBlob": "77ab90302128427bab0926b6b012c7c1a21836b5",
+          "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_APIDocumentationGenerated/ItemDocumentation.lua"
+        },
+        {
+          "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/ContainerDocumentation.lua",
+          "bytes": 15269,
+          "sha256": "633dfcab41f333ba2d691a1d8472786e2a13440cd82034e792bdc91e320a1ef4",
+          "gitBlob": "bdf5586ff128f3394d4a7f50b696f8601a36a210",
+          "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_APIDocumentationGenerated/ContainerDocumentation.lua"
+        },
+        {
+          "path": "Interface/AddOns/Blizzard_ActionBar/Shared/ActionButton.lua",
+          "bytes": 62460,
+          "sha256": "9b8c7d5e2f3a77d15c601fcdb4145853ef80ed58a56767c20b60082acec7d96a",
+          "gitBlob": "7cade90eea5465dbb34b5b9c5faffb940ce8ae6f",
+          "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_ActionBar/Shared/ActionButton.lua"
+        }
+      ],
+      "unavailablePaths": [
+        {
+          "path": "Interface/AddOns/Blizzard_ActionBar/Mainline/ActionButton.lua",
+          "error": "HTTP Error 404: Not Found"
+        },
+        {
+          "path": "Interface/AddOns/Blizzard_ActionBar/Blizzard_ActionBar.toc",
+          "error": "HTTP Error 404: Not Found"
+        }
+      ],
+      "native": "NOT RUN"
+    }
+  },
+  "fullValidation": {
+    "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c65e-a3d3-7840-a32a-09fda47a48df\\count-source-reconciliation\\full-verified.json",
+    "sha256": "7b45632040e7573f27e7c604033a4cf68aa96eec76fc7f8cd1861e0dca88a18f",
+    "scripts": 306,
+    "failures": 0,
+    "syntaxFiles": 979,
+    "syntaxFailures": 0,
+    "all979SourceManifestEntriesMatch": true,
+    "normalization": "CRLF to LF; all other bytes preserved",
+    "runtime": "Lua 5.4.6  Copyright (C) 1994-2023 Lua.org, PUC-Rio",
+    "scope": "Desktop Lua mocks/source checks only; native secure VM, real secret values, rendering and client performance unverified."
+  },
+  "priorRegressions": {
+    "liveCounts": 2175,
+    "useEvents": 1219,
+    "depletionTransitions": 672,
+    "consumableSmoke": 1473,
+    "parkedPaintChecks": 340,
+    "parkedPaintSamples": 95,
+    "parkedPaintTraceHash": 723962797,
+    "syndicatorChecks": 400,
+    "indexChecks": 99237,
+    "scope": "Included in full current-source run; no native performance inference"
+  },
+  "native": {
+    "status": "FAILED in subsequent native capture: reliable inventory and zero food sources;open loading latch retains1",
+    "userScreenshot": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c65e-a3d3-7840-a32a-09fda47a48df\\count-source-reconciliation\\user-screenshot.png",
+      "sha256": "bdc744a10318b3852b805b8b038c78c9abd996ee530b30d43817b063a823b8c7",
+      "scope": "Prior intermittent symptom only"
+    },
+    "userHealthySample": {
+      "raw": "CG syndicator true false false 368001.112 0; GEM unbound",
+      "source": "syndicator",
+      "reliable": true,
+      "softHold": false,
+      "loadOpen": false,
+      "portalHoldUntil": 0,
+      "problemPresent": false,
+      "inference": "Does not identify native cause or validate a candidate"
+    },
+    "failingStateRawAPIs": "Not captured",
+    "healthyFoodWaterAPIQuestion": {
+      "userReply": "there is nothing",
+      "result": "No output rows",
+      "scope": "Healthy-state probe only; it exposed no selected food/water item ID, so no raw API comparison is available. It does not establish zero ownership, API agreement or intermittent-failure acceptance.",
+      "moduleOwnershipVerified": "FluxNCFood and FluxNCWater use Module.Button through FluxEBSButtonRefresh.Attach; module names are correct.",
+      "runtimeChangeFromReply": false
+    },
+    "nextCapture": "After reload, if wrong faces return run /fluxinv buttons while wrong before another reload; compare physical slots, snapshot, raw modern/legacy and visible state",
+    "clientCoverage": "Desktop five-client models and both providers only; native all-five/provider matrix pending",
+    "permissionsPixelsInputFPSMemory": "NOT RUN",
+    "subsequentNativeFailure": "docs/validation/consumable-load-end-2026-11-11.json"
+  },
+  "diagnostic": {
+    "command": "/fluxinv buttons",
+    "schema": "COUNTS/1",
+    "sevenKnownKinds": true,
+    "additionalItemFacesLimit": 12,
+    "physicalScan": "Once per explicit invocation; carried bags only",
+    "secretText": "Redacted before tostring or numeric conversion",
+    "settingsOrActionsWritten": false
+  },
+  "drivers": {
+    "newFrames": 0,
+    "newEvents": 0,
+    "newTickers": 0,
+    "newTimers": 0,
+    "newHooks": 0,
+    "newBackgroundScans": 0,
+    "existingPortalTimer": "Publishes inventory bags/recovery instead of only Best identity recompute",
+    "countAPIWork": "100 successful carried-zero queries remove 100 redundant deprecated global reads; modern queries retained",
+    "nativeTimingClaim": false
+  },
+  "clientCopies": {
+    "scope": "Read-only hashes;user continuous sync;no manual propagation or native execution",
+    "copies": [
+      {
+        "client": "_retail_",
+        "file": "Core/API/Item.lua",
+        "exists": true,
+        "sameBytes": true,
+        "sha256": "2be703fae6568d44910f237c95ccb398680ba33658eb57cdceb5491100b2dbb4"
+      },
+      {
+        "client": "_retail_",
+        "file": "Inventory/Init.lua",
+        "exists": true,
+        "sameBytes": true,
+        "sha256": "ba561a05db2a870e205e368f9505c6c82b790913dbec3feef2007e24aba27b37"
+      },
+      {
+        "client": "_retail_",
+        "file": "Inventory/FluxConsumableBest/Init.lua",
+        "exists": true,
+        "sameBytes": true,
+        "sha256": "24ec2905c39b15000e76c0e2a6d6780d46ef8e6a4337ae801aa092a9f48ff920"
+      },
+      {
+        "client": "_retail_",
+        "file": "Inventory/FluxConsumableBest/FluxConsumableBest.lua",
+        "exists": true,
+        "sameBytes": true,
+        "sha256": "a7def5ca3845b0aaaded8807c5a5ad9dfd7c9c108ae9bfffa6c77bce490f0367"
+      },
+      {
+        "client": "_forever_",
+        "file": "Core/API/Item.lua",
+        "exists": true,
+        "sameBytes": true,
+        "sha256": "2be703fae6568d44910f237c95ccb398680ba33658eb57cdceb5491100b2dbb4"
+      },
+      {
+        "client": "_forever_",
+        "file": "Inventory/Init.lua",
+        "exists": true,
+        "sameBytes": true,
+        "sha256": "ba561a05db2a870e205e368f9505c6c82b790913dbec3feef2007e24aba27b37"
+      },
+      {
+        "client": "_forever_",
+        "file": "Inventory/FluxConsumableBest/Init.lua",
+        "exists": true,
+        "sameBytes": true,
+        "sha256": "24ec2905c39b15000e76c0e2a6d6780d46ef8e6a4337ae801aa092a9f48ff920"
+      },
+      {
+        "client": "_forever_",
+        "file": "Inventory/FluxConsumableBest/FluxConsumableBest.lua",
+        "exists": true,
+        "sameBytes": true,
+        "sha256": "a7def5ca3845b0aaaded8807c5a5ad9dfd7c9c108ae9bfffa6c77bce490f0367"
+      },
+      {
+        "client": "_classic_",
+        "file": "Core/API/Item.lua",
+        "exists": true,
+        "sameBytes": true,
+        "sha256": "2be703fae6568d44910f237c95ccb398680ba33658eb57cdceb5491100b2dbb4"
+      },
+      {
+        "client": "_classic_",
+        "file": "Inventory/Init.lua",
+        "exists": true,
+        "sameBytes": true,
+        "sha256": "ba561a05db2a870e205e368f9505c6c82b790913dbec3feef2007e24aba27b37"
+      },
+      {
+        "client": "_classic_",
+        "file": "Inventory/FluxConsumableBest/Init.lua",
+        "exists": true,
+        "sameBytes": true,
+        "sha256": "24ec2905c39b15000e76c0e2a6d6780d46ef8e6a4337ae801aa092a9f48ff920"
+      },
+      {
+        "client": "_classic_",
+        "file": "Inventory/FluxConsumableBest/FluxConsumableBest.lua",
+        "exists": true,
+        "sameBytes": true,
+        "sha256": "a7def5ca3845b0aaaded8807c5a5ad9dfd7c9c108ae9bfffa6c77bce490f0367"
+      },
+      {
+        "client": "_classic_era_",
+        "file": "Core/API/Item.lua",
+        "exists": true,
+        "sameBytes": true,
+        "sha256": "2be703fae6568d44910f237c95ccb398680ba33658eb57cdceb5491100b2dbb4"
+      },
+      {
+        "client": "_classic_era_",
+        "file": "Inventory/Init.lua",
+        "exists": true,
+        "sameBytes": true,
+        "sha256": "ba561a05db2a870e205e368f9505c6c82b790913dbec3feef2007e24aba27b37"
+      },
+      {
+        "client": "_classic_era_",
+        "file": "Inventory/FluxConsumableBest/Init.lua",
+        "exists": true,
+        "sameBytes": true,
+        "sha256": "24ec2905c39b15000e76c0e2a6d6780d46ef8e6a4337ae801aa092a9f48ff920"
+      },
+      {
+        "client": "_classic_era_",
+        "file": "Inventory/FluxConsumableBest/FluxConsumableBest.lua",
+        "exists": true,
+        "sameBytes": true,
+        "sha256": "a7def5ca3845b0aaaded8807c5a5ad9dfd7c9c108ae9bfffa6c77bce490f0367"
+      },
+      {
+        "client": "_anniversary_",
+        "file": "Core/API/Item.lua",
+        "exists": true,
+        "sameBytes": true,
+        "sha256": "2be703fae6568d44910f237c95ccb398680ba33658eb57cdceb5491100b2dbb4"
+      },
+      {
+        "client": "_anniversary_",
+        "file": "Inventory/Init.lua",
+        "exists": true,
+        "sameBytes": true,
+        "sha256": "ba561a05db2a870e205e368f9505c6c82b790913dbec3feef2007e24aba27b37"
+      },
+      {
+        "client": "_anniversary_",
+        "file": "Inventory/FluxConsumableBest/Init.lua",
+        "exists": true,
+        "sameBytes": true,
+        "sha256": "24ec2905c39b15000e76c0e2a6d6780d46ef8e6a4337ae801aa092a9f48ff920"
+      },
+      {
+        "client": "_anniversary_",
+        "file": "Inventory/FluxConsumableBest/FluxConsumableBest.lua",
+        "exists": true,
+        "sameBytes": true,
+        "sha256": "a7def5ca3845b0aaaded8807c5a5ad9dfd7c9c108ae9bfffa6c77bce490f0367"
+      }
+    ]
+  },
+  "actions": {
+    "foregroundInput": false,
+    "settingsOrProfilerWrites": false,
+    "manualPropagation": false,
+    "commitOrPublication": false,
+    "syncedCopies": "20 of20 runtime bytes match through existing user continuous sync"
+  },
+  "documentationValidation": {
+    "status": "PASS",
+    "command": "python docs/tools/build_reference.py; python docs/tools/validate_docs.py",
+    "output": "PASS: 1012 classified sources; 608 TOC/XML reachable; 427 setting definitions; 24 SavedVariables; 16321 local links. Source inventory/evidence current. No files written.",
+    "rawEvidence": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c65e-a3d3-7840-a32a-09fda47a48df\\count-source-reconciliation\\documentation-validation.txt",
+    "classifiedSources": 1012,
+    "reachable": 608,
+    "settings": 427,
+    "savedRoots": 24,
+    "links": 16321,
+    "scope": "Current source inventory/evidence and local links; not native execution"
+  },
+  "finalGuard": {
+    "atUTC": "2026-11-10T23:43:21.528294+00:00",
+    "currentFullManifest": true,
+    "onlyFourRuntimeOwnersChangedSinceCheckpoint": true,
+    "scopedDiffCheck": "PASS",
+    "twentyInstalledCopiesMatchBytes": true,
+    "branch": "main",
+    "hooksPath": ".githooks",
+    "published": false
+  }
+}

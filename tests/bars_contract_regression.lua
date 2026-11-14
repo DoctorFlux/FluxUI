@@ -20,7 +20,7 @@ local originals = {}
 local function module(path, env, flux, replacements)
     originals[path] = originals[path] or read(path)
     local source = replacements and replacements[path] or originals[path]
-    return assert(load(source, "@" .. root .. path, "t", env))("_FluxUI", { Flux = flux })
+    return assert(load(source, "@" .. root .. path, "t", env))("_FluxUI", { Flux = flux, UnitFrames = env.unitFrames })
 end
 local function environment(client)
     local classic = client:find("classic", 1, true) ~= nil
@@ -153,10 +153,12 @@ local function raidCase(client, replacements)
     end }
     env.FluxRaidState = { frameArray = {}, mtmaHeader = {} }
     local tooltipCalls, anchors = 0, 0
-    env.GameTooltip = { SetUnit = function(_, token)
+    local tooltip = { SetUnit = function(_, token)
         assert(type(token) == "string" and token ~= "", "SetUnit received missing token")
         tooltipCalls = tooltipCalls + 1; return env.tooltipSuccess
-    end, Show = function() end }
+    end, Show = function() end, IsForbidden = function() return false end }
+    env.GameTooltip = { SetUnit = function() error("raid tooltip reused native world-cursor state") end }
+    env.unitFrames = { GetUnitTooltip = function() return tooltip end }
     env.GameTooltip_SetDefaultAnchor = function() anchors = anchors + 1 end
     module("RaidFrame/FluxRaidUnit.lua", env, flux, replacements)
     local button = { mouseOverHighlight = env.CreateFrame("Texture") }
@@ -407,7 +409,7 @@ run()
 local productionChecks = checks
 local mutations = {
     { "Bars/State.lua", 'self:GetAttribute("flux-native-click") ~= 1', "false", "wrap-client hold gate", "wrap clients retain hold" },
-    { "RaidFrame/FluxRaidUnit.lua", 'if type(unit) ~= "string" or unit == "" then\n        self.UpdateTooltip',
+    { "RaidFrame/FluxRaidUnit.lua", 'if IsSecret(unit) or type(unit) ~= "string" or unit == "" then\n        self.UpdateTooltip',
         'if false then\n        self.UpdateTooltip', "raid token guard", "SetUnit received missing token" },
     { "RaidFrame/FluxRaidUnit.lua", 'alphaApplied = pcall(wrap.SetAlphaFromBoolean, wrap, ex, 1, 0)',
         'alphaApplied = pcall(wrap.SetAlphaFromBoolean, wrap, ex, 1, 0)\n            return', "native alpha early return", "invisible mini disables mouse" },

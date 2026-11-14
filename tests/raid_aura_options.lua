@@ -30,8 +30,21 @@ end
 e.FluxRaidPreview = { RefreshFromOptions = function() preview = preview + 1 end }
 local scoped = part(read("AddonOptions/FluxOptions.lua"), "local function CopyRaidFramesFields", "function FluxOptions:RefreshRaidFramesAfterProfileChange()")
 assert(load(scoped, "@actual-raid-scope-and-reset", "t", e))()
-assert(loadfile(root .. "AddonOptions/FluxOptionsRaidFrame.lua", "t", e))("_FluxUI", ns)
+assert(loadfile(os.getenv("FLUX_RAID_OPTIONS_SOURCE") or (root .. "AddonOptions/FluxOptionsRaidFrame.lua"), "t", e))("_FluxUI", ns)
 local tab = ns.FluxOptionsBuildPartyRaidTab()
+local roster=tab.args.previewGroup.args.rosterSize
+check(roster.values["5"]==nil and roster.sorting[1]=="10" and roster.values["40"]=="40","raid preview choices start at ten")
+local savedRosterScope=e.FluxOptions.db.char.raidFramesSettingsScope
+for _,scope in ipairs({"account","character"})do
+    e.FluxOptions.db.char.raidFramesSettingsScope=scope
+    local db=e.FluxOptions:GetRaidFrameDB();local saved=db.previewRosterSize;db.previewRosterSize=5
+    check(roster.get()=="10"and db.previewRosterSize==5,"reading minimum does not rewrite saved party preview size")
+    for _,case in ipairs({{5,10},{7,10},{17,15},{99,40},{"invalid",40}})do
+        roster.set(nil,case[1]);check(db.previewRosterSize==case[2],"raid preview setter clamps in selected scope")
+    end
+    db.previewRosterSize=saved
+end
+e.FluxOptions.db.char.raidFramesSettingsScope=savedRosterScope
 check(tab.args.useBlizzardDefaultSizes == nil, "native size baselines require no mode toggle")
 for _, key in ipairs(sizeKeys) do
     check(not tab.args[key].disabled and tab.args[key].get() == (key == "memberWidthScale" and 1.1 or 1),
@@ -266,4 +279,19 @@ for _, target in ipairs({ "account", "character" }) do
     check(e.FluxRaidVisuals.FRAME_WIDTH == 69 and e.FluxRaidVisuals.FRAME_HEIGHT == 42 and e.FluxRaidVisuals.POWER_BAR_HEIGHT == 8,
         "full reset applies screenshot-relative outer and resource dimensions")
 end
+-- Exercise the real session entry points: raid >=10, explicit party stays5.
+local previewSource=read(os.getenv("FLUX_RAID_PREVIEW_SOURCE") or "RaidFrame/FluxRaidPreview.lua")
+local previewDB={previewRosterSize=5};local combat=false;local shown={}
+local pe=setmetatable({FluxRaidPreview={},FluxOptions={GetRaidFrameDB=function()return previewDB end},
+    InCombatLockdown=function()return combat end,print=function()end},{__index=_G});pe._G=pe
+pe.FluxRaidPreview_RefreshLayout=function()shown[#shown+1]=previewDB.previewRosterSize end
+local prelude="local max,min,floor=math.max,math.min,math.floor\nlocal previewSessionVisible=false\nlocal previewContainer={Hide=function()end}\nlocal ns={}\nlocal function EnsureContainer()end\n"
+local visible=assert(load(prelude..part(previewSource,"function FluxRaidPreview.Show(","function FluxRaidPreview.RefreshFromOptions()").."\nreturn function()return previewSessionVisible end","@actual raid/party preview entry points","t",pe))()
+pe.FluxRaidPreview.Show();check(visible()and shown[#shown]==10 and not pe.FluxRaidPreview.IsPartyShown(),"raid Show promotes old five-member requests to ten")
+pe.FluxRaidPreview.Toggle();check(not visible(),"raid preview toggles off")
+pe.FluxRaidPreview.ToggleParty();check(visible()and shown[#shown]==5 and pe.FluxRaidPreview.IsPartyShown(),"explicit party preview keeps five members")
+pe.FluxRaidPreview.Toggle();check(visible()and shown[#shown]==10 and not pe.FluxRaidPreview.IsPartyShown(),"raid toggle switches active party preview to ten-member raid")
+pe.FluxRaidPreview.Hide();previewDB.previewRosterSize=5;combat=true;pe.FluxRaidPreview.Show()
+check(not visible()and previewDB.previewRosterSize==5,"combat guard prevents preview entry and saved-size changes")
+combat=false;previewDB.previewRosterSize=40;pe.FluxRaidPreview.Show();check(shown[#shown]==40,"valid raid preview size stays unchanged")
 print("Raid aura options/preview: " .. checks .. " checks; actual scopes/resets and synthetic native-relative widgets; desktop only")

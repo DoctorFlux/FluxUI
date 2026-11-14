@@ -323,16 +323,46 @@ local function ParseFlatComboExplicit(text, healthAxis, manaAxis)
 end
 
 local function ParseGenericFlatAmounts(text, healthAxis, manaAxis)
-    for amount, unit in text:gmatch("(%d[%d,%.]*)%s*(health|mana)") do
-        local n = SanitizeTooltipNumber(amount)
-        if n and n > 0 then
-            if unit == "health" then
-                MergeAxis(healthAxis, "flat", n, 0, false, 0, n)
-            else
-                MergeAxis(manaAxis, "flat", n, 0, false, 0, n)
-            end
+    -- Lua patterns have no alternation. Read each restore axis separately;
+    -- the upper end of "N to M health/mana" is the existing tier convention.
+    -- This also avoids the broad digit fallback mixing health, mana and level.
+    for _, unit in ipairs({ "health", "mana" }) do
+        local axis = unit == "health" and healthAxis or manaAxis
+        for amount in text:gmatch("(%d[%d,%.]*)%s*" .. unit .. "%f[%A]") do
+            local n = SanitizeTooltipNumber(amount)
+            if n and n > 0 then MergeAxis(axis, "flat", n, 0, false, 0, n) end
         end
     end
+end
+
+local POTION_RANGE_SEPARATORS = { "%s+to%s+", "%s*%-%s*", "%s*–%s*", "%s*—%s*" }
+local POTION_RANGE_SUFFIXES = { health = { "health", "mana%s+and%s+health" }, mana = { "mana", "health%s+and%s+mana" } }
+local function PotionMinimum(text, unit, axis, pool)
+    local maximum = axis.effective or 0
+    if maximum <= 0 then return 0 end
+    local percent = axis.mode and axis.mode:find("percent", 1, true)
+    local factor = percent and pool / 100 or 1
+    if axis.perSecond then factor = factor * (axis.durationSec or 0) end
+    local amount = "(%d[%d,%.]*)"
+    local minimum = maximum
+    -- Match this resource/effect only; level, cooldown and the other resource's
+    -- digits cannot supply its floor. Keep the ordinary parser's upper axes.
+    for line in text:gmatch("[^\n]+") do
+        for _, suffix in ipairs(POTION_RANGE_SUFFIXES[unit]) do
+            local ending = (percent and "%s*%%[%a%s']-" or "%s*") .. suffix .. "%f[%A]"
+            for _, separator in ipairs(POTION_RANGE_SEPARATORS) do
+                for a, b in line:gmatch(amount .. separator .. amount .. ending) do
+                    local low, high = SanitizeTooltipNumber(a), SanitizeTooltipNumber(b)
+                    if low and high and math.abs(math.max(low, high) * factor - maximum) < 0.001 then
+                        minimum = math.min(minimum, math.min(low, high) * factor)
+                    end
+                end
+            end
+            local upper = line:match("up%s+to%s+" .. amount .. ending)
+            if upper and math.abs((SanitizeTooltipNumber(upper) or 0) * factor - maximum) < 0.001 then minimum = 0 end
+        end
+    end
+    return minimum
 end
 
 local function ParseBandageDamage(text, healthAxis)
@@ -748,6 +778,14 @@ function C.ParseFoodWaterRestore(text, itemLink, itemName)
     local nameFromLink = type(itemLink) == "string" and itemLink:match("%[(.-)%]")
     local name = itemName or nameFromLink
     local lname = name and name:lower() or ""
+    local subclassID
+    local itemID = type(itemLink) == "string" and tonumber(itemLink:match("item:(%d+)"))
+    do
+        local IC = _G.FluxItemClass
+        local st = itemID and IC and IC.GetStatic and IC.GetStatic(itemID)
+        subclassID = st and (st.subClassID or st.subclassID)
+    end
+    if subclassID == SUBCLASS_BANDAGE then isBandage = true end
     if lname:find("conjured", 1, true) or text:find("conjured", 1, true) then
         isConjured = true
     end
@@ -776,14 +814,6 @@ function C.ParseFoodWaterRestore(text, itemLink, itemName)
         ParseLineFlatAxis(line, "mana", manaAxis)
     end
 
-    local subclassID = nil
-    local itemID = type(itemLink) == "string" and tonumber(itemLink:match("item:(%d+)"))
-    do
-        local IC = _G.FluxItemClass
-        local st = itemID and IC and IC.GetStatic and IC.GetStatic(itemID)
-        subclassID = st and (st.subClassID or st.subclassID)
-    end
-
     -- Combat consumes still need digit fallback when "N health/mana" is split.
     -- Instant "Use: Restores Mana." + required-level digits must not invent water.
     if AllowRestoreFallbackNumbers(text, name, subclassID, itemID) then
@@ -794,9 +824,19 @@ function C.ParseFoodWaterRestore(text, itemLink, itemName)
         or LooksLikeScroll(name, text, subclassID)
     local isFoodWater = not exclude and IsFoodWaterTooltip(text, name, subclassID)
 
+    local minimumH, minimumM = healthAxis.effective or 0, manaAxis.effective or 0
+    local isPotion = subclassID == SUBCLASS_POTION or LooksLikePotion(name, text, subclassID)
+    if isPotion then
+        minimumH = PotionMinimum(text, "health", healthAxis, maxH)
+        minimumM = PotionMinimum(text, "mana", manaAxis, maxM)
+    end
+
     return {
         effectiveH = healthAxis.effective or 0,
         effectiveM = manaAxis.effective or 0,
+        minimumH = minimumH,
+        minimumM = minimumM,
+        isPotion = isPotion and true or false,
         health = healthAxis,
         mana = manaAxis,
         isFoodWater = isFoodWater,
@@ -920,6 +960,7 @@ local function KindFromParsed(itemID, itemName, text, parsed, st)
         local heal = h > 0 and h or 1
         return {
             kind = "bandage", health = heal, mana = 0, effective = heal,
+            restoreKnown = h > 0,
             isPercent = false, isConjured = parsed.isConjured == true or parsed.conjured == true,
             wellFed = false, bandage = true,
         }
@@ -937,8 +978,24 @@ local function KindFromParsed(itemID, itemName, text, parsed, st)
         local tooltipMana = PotionTooltipMana(text)
         local conjured = parsed.isConjured == true or parsed.conjured == true
         local function FinishPot(kind, health, mana, effective, namedOnly)
+            local upperH, upperM = health, mana
+            if not namedOnly then
+                if parsed.minimumH == nil or parsed.minimumM == nil then return nil end
+                health, mana = parsed.minimumH, parsed.minimumM
+                effective = kind == "manaPotion" and mana or health
+            end
+            local axis = kind == "manaPotion" and parsed.mana or parsed.health
+            local pool = kind == "manaPotion" and GetMaxMana() or GetMaxHealth()
+            local pct = not namedOnly and type(axis) == "table" and axis.mode == "percent" and pool > 0
+                and effective / pool * 100 or nil
             return {
                 kind = kind, health = health, mana = mana, effective = effective,
+                healthMax = upperH, manaMax = upperM,
+                restoreMin = not namedOnly and effective or nil,
+                restoreMax = not namedOnly and (kind == "manaPotion" and upperM or upperH) or nil,
+                restoreBasis = not namedOnly and "minimum" or nil,
+                restorePct = pct,
+                restoreKnown = not namedOnly,
                 isPercent = (not namedOnly) and isPercent and true or false,
                 isConjured = conjured,
                 wellFed = false,
@@ -1097,8 +1154,10 @@ function C.Classify(itemID, itemLink, tooltipText, itemName)
             local parsed = {
                 effectiveH = restore.health or 0,
                 effectiveM = restore.mana or 0,
-                health = restore.health or 0,
-                mana = restore.mana or 0,
+                minimumH = restore.minimumH,
+                minimumM = restore.minimumM,
+                health = restore.healthAxis or restore.health or 0,
+                mana = restore.manaAxis or restore.mana or 0,
                 isFoodWater = restore.isFoodWater == true,
                 isConjured = restore.conjured == true,
                 isBandage = restore.bandage == true,
@@ -1108,7 +1167,7 @@ function C.Classify(itemID, itemLink, tooltipText, itemName)
                 bandage = restore.bandage == true,
                 subclassID = st and (st.subClassID or st.subclassID),
             }
-            local result = KindFromParsed(itemID, itemName, (itemName or ""):lower(), parsed, st)
+            local result = KindFromParsed(itemID, itemName, (restore.tooltipText or itemName or ""):lower(), parsed, st)
             if result then
                 classifyCache[itemID] = result
                 return result
@@ -1182,7 +1241,9 @@ function C.Classify(itemID, itemLink, tooltipText, itemName)
             pendingRetries[itemID] = retries + 1
         end
         classifyCache[itemID] = { _pending = true }
-        if IC and IC.RequestLoad then
+        -- A duplicate metadata reply clears this retry evidence. Once metadata
+        -- is loaded, retry the tooltip without requesting the same item again.
+        if not loaded and IC and IC.RequestLoad then
             IC.RequestLoad(itemID)
         end
         return nil
@@ -1231,6 +1292,7 @@ function C.Classify(itemID, itemLink, tooltipText, itemName)
             isConjured = false,
             wellFed = false,
             bandage = true,
+            restoreKnown = false,
         }
         classifyCache[itemID] = band
         return band
@@ -1242,17 +1304,17 @@ function C.Classify(itemID, itemLink, tooltipText, itemName)
             local pot
             if healNamed and not manaNamed then
                 pot = {
-                    kind = "healPotion", health = 1, mana = 0, effective = 1,
+                    kind = "healPotion", health = 1, mana = 0, effective = 1, restoreKnown = false,
                     isPercent = false, isConjured = false, wellFed = false,
                 }
             elseif manaNamed and not healNamed then
                 pot = {
-                    kind = "manaPotion", health = 0, mana = 1, effective = 1,
+                    kind = "manaPotion", health = 0, mana = 1, effective = 1, restoreKnown = false,
                     isPercent = false, isConjured = false, wellFed = false,
                 }
             elseif healNamed and manaNamed then
                 pot = {
-                    kind = "healPotion", health = 1, mana = 0, effective = 1,
+                    kind = "healPotion", health = 1, mana = 0, effective = 1, restoreKnown = false,
                     isPercent = false, isConjured = false, wellFed = false,
                 }
             end

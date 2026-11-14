@@ -1,0 +1,47 @@
+{
+  "changeId": "MINIMAP-SCALE-BASIS-20261113",
+  "scope": "Actual checkpoint/current Lua module geometry;native pixels/taint/FPS not run",
+  "sourceSHA256": "3de42882f769e90c594dd82888fefca59a1ed9e2ccef9aad3d8c1497c764f8f2",
+  "baselineCheckpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d3b4-b7ec-7591-94d3-6d3b3097fb8a\\minimap-scale-basis-20261113T083834Z",
+  "matchedRuns": 3,
+  "oldPercentagesCompared": [
+    25,
+    50,
+    85,
+    100,
+    150,
+    170
+  ],
+  "newDefaultEqualsOld85": true,
+  "legacyGeometryPreservedWithinRange": true,
+  "outsideNewMaximum": "Legacy above170old is capped at new200/effective1.7;original record kept until edited",
+  "externalLogs": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d3b4-b7ec-7591-94d3-6d3b3097fb8a\\minimap-scale-basis-20261113T083834Z\\normalization-regressions",
+  "results": [
+    "Actual checkpoint comparison: 9408 geometry fields identical;new100==old85 and legacy25\u00e2\u20ac\u201c170 preserved",
+    "Actual checkpoint comparison: 9408 geometry fields identical;new100==old85 and legacy25\u00e2\u20ac\u201c170 preserved",
+    "Actual checkpoint comparison: 9408 geometry fields identical;new100==old85 and legacy25\u00e2\u20ac\u201c170 preserved"
+  ],
+  "harmfulControlsRejected": 4,
+  "harmfulControls": [
+    {
+      "name": "wrong-new-default",
+      "exitCode": 1,
+      "summary": "lua: tests/minimap_extra_layout.lua:5: new default uses old85percent standard button size: 44.0 / 37.4"
+    },
+    {
+      "name": "repeat-conversion",
+      "exitCode": 1,
+      "summary": "lua: tests/minimap_extra_layout.lua:5: whole side-grid frame scale: 0.25 / 0.085"
+    },
+    {
+      "name": "round-converted-percent",
+      "exitCode": 1,
+      "summary": "lua: tests/minimap_extra_layout.lua:5: side size remains bounded"
+    },
+    {
+      "name": "missing-write-version",
+      "exitCode": 1,
+      "summary": "lua: tests/minimap_extra_layout.lua:5: whole side-grid frame scale: 0.25 / 0.085"
+    }
+  ]
+}

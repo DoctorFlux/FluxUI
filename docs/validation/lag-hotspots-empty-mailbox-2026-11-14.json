@@ -1,0 +1,99 @@
+{
+  "date": "2026-11-14",
+  "scope": "Existing open empty mailbox on Forever; read-only getter timing and passive native addon-profiler observation",
+  "pid": 40032,
+  "hwnd": 7995860,
+  "executable": "F:/World of Warcraft/_forever_/Wow.exe",
+  "client": "Forever 1.60.1 (70938), interface 16001",
+  "source": "syndicator",
+  "mailboxShown": true,
+  "inboxCount": 0,
+  "inboxTotal": 0,
+  "fluxSnapshotItemTotal": 0,
+  "fluxReliable": true,
+  "nativeMailCommandPending": false,
+  "receiveAttachmentSlots": 16,
+  "scriptProfile": 0,
+  "nativeAddOnProfilerEnabled": true,
+  "hardwareAndFullAddonListCaptured": false,
+  "loadedRuntimeSourceIdentityCertified": false,
+  "getInboxNumItems": {
+    "callsPerTrial": 1000,
+    "elapsedMilliseconds": [
+      0.041800007224083,
+      0.040500000119209,
+      0.0397999988269806
+    ],
+    "includes": "Lua loop, timer subtraction and native getter; one compact output after the three trials",
+    "excludes": "Header, attachment, item metadata, provider scan, Flux publication, notification and populated-inbox latency"
+  },
+  "passiveObservation": {
+    "startGetTime": 72520.969,
+    "endGetTime": 72533.891,
+    "durationSeconds": 12.922,
+    "thresholdMilliseconds": [
+      1,
+      5,
+      10,
+      50,
+      100,
+      500,
+      1000
+    ],
+    "startCounters": [
+      347518,
+      27710,
+      12927,
+      966,
+      273,
+      24,
+      11
+    ],
+    "endCounters": [
+      347748,
+      27710,
+      12927,
+      966,
+      273,
+      24,
+      11
+    ],
+    "deltas": [
+      230,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "counterRule": "Nested native metric counters for _FluxUI in the same existing process/session; never summed. No reset or reload.",
+    "control": "No gameplay or mail operations requested during the observation. Existing crowded city scene, bags and mailbox open; desktop app focus changed between non-WoW apps. Other addons and user activity are uncontrolled.",
+    "notEstablished": [
+      "Matched before/after improvement",
+      "FPS gain",
+      "Populated attachment processing",
+      "Cold metadata completion",
+      "Native all-client parity",
+      "Mail fallback latency policy"
+    ]
+  },
+  "safety": {
+    "mailTakenSentReturnedDeleted": false,
+    "itemsBoughtSoldDeletedMoved": false,
+    "foregroundActivationOrSystemWideInputOrClipboardControl": false,
+    "targetedBackgroundWindowMessages": true,
+    "profilerOrFPSPreferencesChanged": false,
+    "savedDiagnosticRootsChanged": false,
+    "temporaryGlobalProbeInstalled": false,
+    "note": "The helper only posted the listed /run read-only commands to the exact verified background WoW window. foregroundUnchanged=false in the timing submission reflects desktop focus switching between background apps; target guards passed at every command boundary."
+  },
+  "evidence": [
+    "native-mail-empty-read-submission.json",
+    "native-mail-readback-submission.json",
+    "native-mail-empty-timing-submission.json",
+    "empty-mailbox-timing-readback.png",
+    "empty-mailbox-native-timing.png"
+  ],
+  "decision": "User requested in-game measurement before accepting a mail fallback delay. Empty inbox establishes only the stated fixed-cost and existing snapshot observations. The populated/cold-mail latency decision remains pending; no mail runtime fix was applied."
+}

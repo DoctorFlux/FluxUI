@@ -1,5 +1,7 @@
 # Action bars
 
+13 November action counts: the existing synchronous Bars inventory listener now admits light bag publications at the instant count tier. Validated SPELL_UPDATE_USES refreshes count/usability through existing scheduler lanes, without macro/layout work. [Requirements, comparison and666 focused checks](ACTION_COUNT_REFRESH.md).
+
 <!-- STRESS-FIXES-20261107 -->
 7 November applied stress fixes: Quiet-grid, cast/badge and bling alpha readers avoid secret comparisons and handle denied getters with feature-specific public-write or retained-state policies. Native secure driver/watch globals retain their identities; Forever adapters are selected locally by Flux callers. [Evidence](../Stress%20test%20doc/applied-fixes/README.md). Native taint/pixels/performance acceptance remains pending.
 <!-- /STRESS-FIXES-20261107 -->

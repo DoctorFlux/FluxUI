@@ -1,0 +1,338 @@
+{
+  "dateUTC": "2026-11-14T08:04:41.663257+00:00",
+  "localDate": "2026-11-14",
+  "timezone": "Europe/Copenhagen",
+  "checkpoints": [
+    {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\auction-restock\\tab-crafting-followup\\restock-inline-upgrades-20261114T063938Z\\checkpoint.json",
+      "sha256": "de692fad4a558c9b24acbd90426f6fe96b62b062724ea3a80fb80dd206b27454",
+      "sourceFiles": 2772,
+      "accessibleSettingsMetadata": 129,
+      "privateSettingsCopied": false,
+      "archives": {
+        "source-before.zip": {
+          "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\auction-restock\\tab-crafting-followup\\restock-inline-upgrades-20261114T063938Z\\source-before.zip",
+          "sha256": "0546ad5d17f8f71812643f32fd771167b5fc37bd4e2bc5f89c3518db820d23e6"
+        },
+        "history-before.bundle": {
+          "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\auction-restock\\tab-crafting-followup\\restock-inline-upgrades-20261114T063938Z\\history-before.bundle",
+          "sha256": "0f956615b8b5199bde87b036c301d5ed61f068370ceb211fd0bc8e4413ecbf9a"
+        }
+      }
+    },
+    {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\auction-restock\\tab-crafting-followup\\restock-shared-blacklist-20261114T072300Z\\checkpoint.json",
+      "sha256": "ec1f8a4c03238eb3bc615d3b37b4090f32ed1908c3990f1684c0d966ffe99e10",
+      "sourceFiles": 2773,
+      "accessibleSettingsMetadata": 129,
+      "privateSettingsCopied": false,
+      "archives": {
+        "source-before.zip": {
+          "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\auction-restock\\tab-crafting-followup\\restock-shared-blacklist-20261114T072300Z\\source-before.zip",
+          "sha256": "f716f4118c62275495aa4a6c367acb979f1a8e4c413e06cd02f9f7498bf4d25d"
+        },
+        "history-before.bundle": {
+          "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\auction-restock\\tab-crafting-followup\\restock-shared-blacklist-20261114T072300Z\\history-before.bundle",
+          "sha256": "1d0d0944319ecf8a64ab85fb11fc0de9d10701fa14bd2741782cebc4084b5a8f"
+        }
+      }
+    }
+  ],
+  "fullSuite": {
+    "pass": 365,
+    "fail": 0,
+    "syntaxFiles": 1053,
+    "syntaxFailures": 0,
+    "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\auction-restock\\tab-crafting-followup\\restock-shared-blacklist-20261114T072300Z\\full.json",
+    "sha256": "7c8e7f41a483544c13aa76f505f3c3f661cedd64a59f45ec06b017cdf703342f",
+    "scope": "Desktop Lua mocks/source checks only; native secure VM, real secret values, rendering and client performance unverified.",
+    "sourceGuard": {
+      "normalizedLuaFiles": 1053,
+      "unexpectedChanges": [],
+      "normalization": "CRLF to LF only; exact saved full-run manifest"
+    }
+  },
+  "branch": "main",
+  "hooksPath": ".githooks",
+  "publication": "No commit or push",
+  "native": {
+    "client": "Forever",
+    "lastEstablishedBuild": "1.60.1.70938",
+    "processID": 40032,
+    "window": 7995860,
+    "foregroundChanged": false,
+    "globalInput": false,
+    "clipboard": false,
+    "profilerPreferencesChanged": false,
+    "observed": "Recovered Threat pane and meter skin visible after a reload; existing healing potion button uses permitted red potion.",
+    "excludedProbe": "Two-phase window-targeted chat command produced no diagnostic output while the player moved; not acceptance; further input stopped.",
+    "pending": [
+      "Options EnsureFrame/show with recovered Skin",
+      "Inline multi-item native layout and actions",
+      "Bandage and potion accepted native upgrades",
+      "Real buys/receipts",
+      "Controller navigation",
+      "Other clients",
+      "Taint and protected VM certification",
+      "Native CPU/memory/FPS"
+    ],
+    "actions": "No purchase or upgrade choice submitted by agent; user activity left alone; no reload sent by agent",
+    "windowEvidence": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\auction-restock\\tab-crafting-followup\\restock-shared-blacklist-20261114T072300Z\\forever-window.json",
+      "sha256": "14f835f1f95a1035a917095fbdd9da825616b35ea3268f58df416621eccacdfe"
+    },
+    "inputEvidence": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\auction-restock\\tab-crafting-followup\\restock-shared-blacklist-20261114T072300Z\\verified-input.jsonl",
+      "sha256": "ad19f4d51e6fec67235cc9ce588378e64e1ca80c9c7d8ec4daaec61909e2bfcc"
+    }
+  },
+  "installedCopies": {
+    "utc": "2026-11-14T07:59:04.899789+00:00",
+    "scope": "Read-only; automatic sync retained; no manual copy",
+    "clients": [
+      {
+        "client": "_retail_",
+        "files": 91,
+        "match": true,
+        "mismatches": []
+      },
+      {
+        "client": "_forever_",
+        "files": 91,
+        "match": true,
+        "mismatches": []
+      },
+      {
+        "client": "_classic_",
+        "files": 91,
+        "match": true,
+        "mismatches": []
+      },
+      {
+        "client": "_classic_era_",
+        "files": 91,
+        "match": true,
+        "mismatches": []
+      },
+      {
+        "client": "_anniversary_",
+        "files": 91,
+        "match": true,
+        "mismatches": []
+      }
+    ]
+  },
+  "changeID": "FLUX-SOURCE-RECOVERY-20261114",
+  "reportedErrors": [
+    "08:41:34 QuickJoinToastButton transitive SetPoint dependency",
+    "08:51:04 FluxOptionsShell EnsureFrame nil Skin; meter/threat presentation gone"
+  ],
+  "finding": "Unrequested replacements at approximately 08:32 Copenhagen removed verified source fixes and 45 TOC load entries. Writer not established; user reports no other writer known. Observed existing sync copies Retail outward; not evidence it caused replacement.",
+  "restored": {
+    "wholeLuaFiles": 79,
+    "partiallyMergedLuaFiles": 4,
+    "toc": true,
+    "loadEntries": 45,
+    "baseline": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\auction-restock\\tab-crafting-followup\\restock-shared-blacklist-20261114T072300Z\\source-before.zip",
+      "sha256": "f716f4118c62275495aa4a6c367acb979f1a8e4c413e06cd02f9f7498bf4d25d"
+    },
+    "retainedNewWork": "Inline upgrades and new shared exclusions retained; no checkout/reset or saved settings restore",
+    "beforeVersions": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\auction-restock\\tab-crafting-followup\\restock-shared-blacklist-20261114T072300Z\\drift-current.zip",
+      "sha256": "9a3aa9d090ec5a9095ebb1ebc7564c421ab3ddfca2fc3378a35342423f172f6c"
+    },
+    "wholeFileRecovery": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\auction-restock\\tab-crafting-followup\\restock-shared-blacklist-20261114T072300Z\\recovery-applied.json",
+      "sha256": "4fa3b7db9660e2c7c2210a154fec0860c0888f9a13904a61a60bed93f6e8f23e"
+    },
+    "tocRecovery": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\auction-restock\\tab-crafting-followup\\restock-shared-blacklist-20261114T072300Z\\toc-recovery.json",
+      "sha256": "92e076368c729f4f11d27b0a46b08b5ee0a01fd5eb588a3fe5cfe0b99ea415a3"
+    }
+  },
+  "initialPostRecoverySuite": {
+    "pass": 363,
+    "fail": 2,
+    "failures": [
+      "tests/idle_tiers.lua",
+      "tests/vendor_tier_work.lua"
+    ],
+    "evidence": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\auction-restock\\tab-crafting-followup\\restock-shared-blacklist-20261114T072300Z\\initial-full.json",
+      "sha256": "0429b1c2a1d0a43bb1035d0dea8af524ecaaab00d9a54b2cf1d9a2e768c17f53"
+    },
+    "resolution": "Restored remaining verified tier scan order; retained shared exclusion gate; reran all checks"
+  },
+  "chat": {
+    "scope": "Transitive anchor dependency model; native pixels/taint separate",
+    "baselineSHA256": "f5501a07123b14c68f19e80290bc35628b183dc683255ae7187379a0ee49a58b",
+    "candidateSHA256": "3ba1e90d9f756a8815b434065b8915f0d3afe0e91687f6b93b3bb3ddaa324c22",
+    "trials": [
+      {
+        "reported": {
+          "exit": 1,
+          "raw": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\auction-restock\\tab-crafting-followup\\restock-shared-blacklist-20261114T072300Z\\chat-0-reported.txt",
+          "sha256": "fb6fdaa87bb4d27bf9fab78ea784eb0ac614da5078b3cc7d3bf863b1162a3bc4",
+          "tail": [
+            "ALIGN_METRIC classic_left shared_tab_reads=203 layout_points=900 new_frames=0",
+            "ALIGN_METRIC classic_right shared_tab_reads=203 layout_points=900 new_frames=0",
+            "ALIGN_METRIC forever_left shared_tab_reads=103 layout_points=900 new_frames=0",
+            "ALIGN_METRIC forever_right shared_tab_reads=103 layout_points=900 new_frames=0",
+            "Chat column reference alignment: 190 checks, 0 failures"
+          ]
+        },
+        "recovered": {
+          "exit": 0,
+          "raw": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\auction-restock\\tab-crafting-followup\\restock-shared-blacklist-20261114T072300Z\\chat-0-recovered.txt",
+          "sha256": "725b32bad99dea6c6a2ec678a1ca41d987a56abe1222b665c95ac94c3a9df08c",
+          "tail": [
+            "ALIGN_METRIC classic_left shared_tab_reads=203 layout_points=900 new_frames=0",
+            "ALIGN_METRIC classic_right shared_tab_reads=203 layout_points=900 new_frames=0",
+            "ALIGN_METRIC forever_left shared_tab_reads=103 layout_points=900 new_frames=0",
+            "ALIGN_METRIC forever_right shared_tab_reads=103 layout_points=900 new_frames=0",
+            "Chat column reference alignment: 190 checks, 0 failures"
+          ]
+        }
+      },
+      {
+        "reported": {
+          "exit": 1,
+          "raw": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\auction-restock\\tab-crafting-followup\\restock-shared-blacklist-20261114T072300Z\\chat-1-reported.txt",
+          "sha256": "fb6fdaa87bb4d27bf9fab78ea784eb0ac614da5078b3cc7d3bf863b1162a3bc4",
+          "tail": [
+            "ALIGN_METRIC classic_left shared_tab_reads=203 layout_points=900 new_frames=0",
+            "ALIGN_METRIC classic_right shared_tab_reads=203 layout_points=900 new_frames=0",
+            "ALIGN_METRIC forever_left shared_tab_reads=103 layout_points=900 new_frames=0",
+            "ALIGN_METRIC forever_right shared_tab_reads=103 layout_points=900 new_frames=0",
+            "Chat column reference alignment: 190 checks, 0 failures"
+          ]
+        },
+        "recovered": {
+          "exit": 0,
+          "raw": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\auction-restock\\tab-crafting-followup\\restock-shared-blacklist-20261114T072300Z\\chat-1-recovered.txt",
+          "sha256": "725b32bad99dea6c6a2ec678a1ca41d987a56abe1222b665c95ac94c3a9df08c",
+          "tail": [
+            "ALIGN_METRIC classic_left shared_tab_reads=203 layout_points=900 new_frames=0",
+            "ALIGN_METRIC classic_right shared_tab_reads=203 layout_points=900 new_frames=0",
+            "ALIGN_METRIC forever_left shared_tab_reads=103 layout_points=900 new_frames=0",
+            "ALIGN_METRIC forever_right shared_tab_reads=103 layout_points=900 new_frames=0",
+            "Chat column reference alignment: 190 checks, 0 failures"
+          ]
+        }
+      },
+      {
+        "reported": {
+          "exit": 1,
+          "raw": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\auction-restock\\tab-crafting-followup\\restock-shared-blacklist-20261114T072300Z\\chat-2-reported.txt",
+          "sha256": "fb6fdaa87bb4d27bf9fab78ea784eb0ac614da5078b3cc7d3bf863b1162a3bc4",
+          "tail": [
+            "ALIGN_METRIC classic_left shared_tab_reads=203 layout_points=900 new_frames=0",
+            "ALIGN_METRIC classic_right shared_tab_reads=203 layout_points=900 new_frames=0",
+            "ALIGN_METRIC forever_left shared_tab_reads=103 layout_points=900 new_frames=0",
+            "ALIGN_METRIC forever_right shared_tab_reads=103 layout_points=900 new_frames=0",
+            "Chat column reference alignment: 190 checks, 0 failures"
+          ]
+        },
+        "recovered": {
+          "exit": 0,
+          "raw": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\auction-restock\\tab-crafting-followup\\restock-shared-blacklist-20261114T072300Z\\chat-2-recovered.txt",
+          "sha256": "725b32bad99dea6c6a2ec678a1ca41d987a56abe1222b665c95ac94c3a9df08c",
+          "tail": [
+            "ALIGN_METRIC classic_left shared_tab_reads=203 layout_points=900 new_frames=0",
+            "ALIGN_METRIC classic_right shared_tab_reads=203 layout_points=900 new_frames=0",
+            "ALIGN_METRIC forever_left shared_tab_reads=103 layout_points=900 new_frames=0",
+            "ALIGN_METRIC forever_right shared_tab_reads=103 layout_points=900 new_frames=0",
+            "Chat column reference alignment: 190 checks, 0 failures"
+          ]
+        }
+      }
+    ],
+    "evidence": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\12\\01a1cf21-878c-7ce1-9715-68986a154712\\auction-restock\\tab-crafting-followup\\restock-shared-blacklist-20261114T072300Z\\chat-results.json",
+      "sha256": "04cff92dcb7071ece451671d605402d681214fd37ab1cfc96a8d10c23e1e98d8"
+    }
+  },
+  "tocSHA256": "b3e08dd1c5c116bf2a23372d22c83f573ce6627628103331657cc03ed48ae521",
+  "candidateRawHashes": {
+    "AddonOptions/AceGUIWidget-FluxRestockPanel.lua": "a21217b48b11f3866df64ed19bcbaf0f3922821bb32fad7af3e0b11ca7978baf",
+    "AddonOptions/AceGUIWidget-FluxSpellBookSlotsPanel.lua": "af47feda5c3ecc3e983409f9875eeec24834663653e7fbff187c10a2f79a8f0d",
+    "AddonOptions/FluxOptionsActionBars_Bar.lua": "05da5c0d66c53c56180942ca18c0708105bb2fd9d521ed35e48106eb8576f93a",
+    "AddonOptions/FluxOptionsBattlezone.lua": "5f9f3d2ec1640c493f47edb07729819edc089293858a0054589d24245815ac91",
+    "AddonOptions/FluxOptionsNameplates.lua": "0bac4f3a5b59693f873f2be5f07dbe74d0c0ece19f95b7c702bbcd769aac67f2",
+    "AddonOptions/FluxOptionsWidgets.lua": "4c030354c09a5f8addaa3cdf3ea5a17b57ed561ff41b570bdda90e8a05151d32",
+    "Bars/SpellRank.lua": "01c566f23be68779d8d7ff9eb5630951349c5eb9320ec5f9f1287e6a3ce2927f",
+    "Bars/State.lua": "99b9b5b5476824bc370ea0050402e582cebd8ca74152e6bf8544f6f9aaae25be",
+    "Battlezonemap/FluxBattlefieldMapPinRouter.lua": "74d9d550fd12f2998be46fcbbaaf68eeecb98421459dd30b8defdb25e7c79d0a",
+    "Battlezonemap/FluxBlizzardMeter.lua": "b706d05a1dd7ba369a1f57d2adf59384e998ba7716d59546ea109ebbe4193c6e",
+    "Battlezonemap/FluxMeterLayout.lua": "1db37f8911d5f29f15ed891b69196774351425d8033d0cf231af21c1dd5ca020",
+    "Battlezonemap/FluxWindowFrame.lua": "20339070ad0a324d6937e6b83daf65af555778c5fa5e7a7c4bd0c64f39ffce15",
+    "Binding/Core/ChordMap.lua": "c8ab8523f18fcf2bc3c80c057134df970ec6e2268cb713e5fbf80db8f535c813",
+    "Binding/Core/Conditions.lua": "6403b5c3e587b542b40b69a11ac57b859a22d0180a3b65e33fd2ee3c258cc661",
+    "Core/_tmp_coresmoke.lua": "9f0fb6964971dc878197a0f35d719e75be3ce12684f40eeb09b937eb58087432",
+    "Core/API/Item.lua": "2be703fae6568d44910f237c95ccb398680ba33658eb57cdceb5491100b2dbb4",
+    "Core/API/Secrets.lua": "493d25ef4dcf4d9475b77eb194eb82a304867de8211c6990237855392753b030",
+    "Core/API/Spell.lua": "982cd45001e5ead092a0851093575dea33f7e138345adf2935c96c086e259317",
+    "Core/ButtonFX/Cast.lua": "5e8a085c46c23e5ac297095188ad816fac5052118e392f5cab5add4ad51319e2",
+    "Core/ButtonFX/Charges.lua": "004502522b4e4d1c692dff1293ee0a77daae5778446e047867565455e2ace134",
+    "Core/ButtonFX/Overlay.lua": "f202fe1179311fc998f81dd9d2c7c7775bb210564894dbe4e681fe91c9ecb30d",
+    "Core/Engine/MouseoverCast.lua": "47632336a61f354b9c878b01a19d3b2c2375d4b925abacc9d07db38646e93586",
+    "Core/Flux.lua": "6181f8d55f4d2193558df860f1ac212cdd21341705f0f650fbb8c8a691d67fa9",
+    "ExtraButtonSystem/CombatGrid/Buttons/ManaGem.lua": "e77af2c17e8cb792822f5593820cdeb2c23a2f655e6b76b63d2ede0b58cf4be5",
+    "ExtraButtonSystem/Engine/Action.lua": "05f4db93f2d81ee8cbfaf0aee772218c49a96cdd6b6268b10532db4118b9fffc",
+    "ExtraButtonSystem/Engine/Style.lua": "0cc2decc08090e6fbbeb32cf2b299ab4752ae27235832423ccd6aa8f55602e66",
+    "ExtraButtonSystem/Engine/Usability.lua": "3fce31bc520e3ed24af59e3e26271c4a55c0d557db1d72996f886b3becc696f0",
+    "ExtraButtonSystem/Flyout/FluxFlyoutFavorites.lua": "d6691f83881ba81af3e7ef8d2700cb7ecc7021d4244ba52eef744b03a49cfc64",
+    "ExtraButtonSystem/Flyout/FluxFlyoutGenerators.lua": "6f26325b1dd0d6497a5c828cc8318f45d6d1a3ee431c77107e6e30979295f5d0",
+    "ExtraButtonSystem/FlyoutEngine/Def.lua": "8e3d1b5594f168db63ff14b48b840a1a79d68a83f5ddabecdb5170eb204d9c24",
+    "ExtraButtonSystem/FlyoutEngine/Secure.lua": "f609e12142160b088812e61c327ac86f2e24524872f9da5005f839a8e528b370",
+    "ExtraButtonSystem/Init.lua": "fa7e2334fa9d0595d4c9db208c66d4fa792781a0f3ac42e74249a52f621f3dc6",
+    "ExtraButtonSystem/Layout.lua": "06ea068ba997a81cef3bf68cdda51b498dfb45f7b7b527a88b301926d0524f9d",
+    "ExtraButtonSystem/NonCombatGrid/Buttons/ConsumablesConfig.lua": "694a0badbb554bc637f2eea3fb752f1e76965a99e8f4644adef49112134d160b",
+    "ExtraButtonSystem/NonCombatGrid/Buttons/Food.lua": "842edde076d64f5a96f73ebfa48327ac614d91695d98ca550fc5070489c4872b",
+    "ExtraButtonSystem/NonCombatGrid/Buttons/Mount.lua": "3baccb916f2ef49330508d3715a8777cd1a3792613747ebabd2c14be44f61f46",
+    "ExtraButtonSystem/NonCombatGrid/Buttons/MountCollection.lua": "f4e945c4499f3d134775273acd78a61d55ab8ab79c0a302f02426ede4a61cac2",
+    "ExtraButtonSystem/NonCombatGrid/Buttons/MountItems.lua": "769cd51db2c54fad2b97b9d7e744720d56d02e13712aa52f6352499f26120a2e",
+    "ExtraButtonSystem/NonCombatGrid/FluxSmartMountConfig.lua": "c9c599746034074657e1cfaeda24ddcf87959cd924be91c2000a8156651cf6a4",
+    "ExtraButtonSystem/NonCombatGrid/Grid.lua": "c77a19abbe02794c95b644c0ab83dfc8906f77910c59e50a39700fe2cc385676",
+    "ExtraButtonSystem/NonCombatGrid/GridInit.lua": "f6ed9d293f4aad3c9bf9d8767c6e708679101bf73b1e1529a7cb00f931186af4",
+    "ExtraButtonSystem/NonCombatGrid/UtilitySlots/Assign.lua": "a1a706068cb335050e314e092fa8ff07d7ae0dd9e88f4e6dbcf6a51dbe3f1a12",
+    "ExtraButtonSystem/Shared/FluxConsumablesGridUI.lua": "a444bc60318885cdd833f72f39dab26a56c561e475839e1692e4b37c4ea9c28f",
+    "ExtraButtonSystem/Shared/FluxEBSConsumableBridge.lua": "49280b9085e86efc4e16b11bf9ff143d9abd3af5205a41b99cc437d56f97438c",
+    "ExtraButtonSystem/TrinketMenu/FluxTrinketMenu.lua": "9a5ce2455b05fcc4f602d9854ff7c3e7763e5304d42330c1601bcd35da8041c0",
+    "Inventory/Builtin/FluxClassicCombinedBag.lua": "8da75582c1196c7b4c538118b83d15ab39356d08eb4423828f7ba3990908c59b",
+    "Inventory/FluxConsumableBest/Scan.lua": "44e1d5a6b61e2a09d9aa1d1c69ed33aeaf18acb9e63795d146b59bef9cf8cd34",
+    "Inventory/FluxConsumableClassify.lua": "7c90fe85deecca2dd9a8dedd52406d490456be42898de7d3ba822243b4e9c565",
+    "Inventory/FluxItemClass.lua": "fc6a585b34e37c3614761aca4a1e47880782e509f678747e5d3b9f5413c382ec",
+    "Inventory/Init.lua": "c6223eb05320ad38a40adceafc2200b57f210f35a9eee655b2ae42d35406366e",
+    "Inventory/Restock/Bank/FluxBankRestock.lua": "d6b136fb39d76b8c5e2e6a6b13e88ec287d72b847ba8982fad686f5d8ac62837",
+    "Inventory/Restock/Bank/FluxBankRestockButton.lua": "b684b61a0b874efea3555953dfd408a9bbad3abd03deb2d51fd6ecc8f73de7b8",
+    "Inventory/Restock/Core/FluxRestockList.lua": "a42f81e22f88ebfd735d9ab055f0e0bc9dd88639cf30c48788859aaae0ea6de2",
+    "Inventory/Restock/Core/FluxRestockSettings.lua": "1acf3b02f873288fef2b1cd8664f992ad9ac5be1586a0295f62ad992db1d3336",
+    "Inventory/Restock/Core/Tiers/FluxRestockTiers_Inferior.lua": "ed8f0b5676921be4680bc72a8a85250e52f964e2f2394c02d87cb0f1bc92ecb0",
+    "Inventory/Restock/Core/Tiers/FluxRestockTiers_Init.lua": "cc55373ffcbac25ea2bba2b310b284b4639ff69223df8a00e3a71a4689137c97",
+    "Inventory/Restock/Core/Tiers/FluxRestockTiers_Settings.lua": "c5625c825fc85e74abf30d3ee44448b73e9dd9bc5c761c60cfdfad6e73a83965",
+    "Inventory/Restock/Core/Tiers/FluxRestockTiers_Vendor.lua": "f4bcdd2eb4fee3b0ad9dbf4bb4ce692686cd525acecb2f24cc38d722e971911e",
+    "Inventory/Restock/Junk/FluxJunk.lua": "b70e6121aa5a44a176613bbbf3a6445a1885b3332fd4424289c3edd48bacde8c",
+    "Inventory/Restock/Junk/FluxSellJunk.lua": "02614249d5063181bf592014ebdb3dfe68fd2c02fee881f7a458e433cd605f9a",
+    "Inventory/Restock/Vendor/FluxVendorAutoMerchantUI.lua": "69bed000cc42717614e22abab5ccc394990605a32b55a6b3039a78c68ca4740c",
+    "Inventory/Restock/Vendor/FluxVendorBuy.lua": "3e0b50e0f12b17714a37038501e01340582dc488ac840e2af3b9f9ba9c4343e7",
+    "Inventory/Restock/Vendor/FluxVendorRestockPanel.lua": "0d0d7edb53147f2962a605bee21136017e174c4ee8778cd6f0b323b129e2ad1a",
+    "MicroMenu/_tmp_micromenusmoke.lua": "da28196c346a626167c329c65f25be71337b3666e209104d5e4003dbf185db73",
+    "MicroMenu/FluxBagMicroButton.lua": "c2f695e67c25188af3bc47e5c35548155f60fc9c939f867c7443071c132d4884",
+    "MicroMenu/FluxCombinedBagHeader.lua": "3b21d5882ec78c7591a86f0f2dcb92b5ae28c9b0994c4f8ccdff1262af835223",
+    "MicroMenu/FluxLFGMicroButton.lua": "cd21005dbdf95e59abae41d75eed111c0cfd01dff6db5a66e6310b65fd65065a",
+    "Other/FluxChatColumnMicros.lua": "daa47b18396b6a293e610f0e9a78bd38c57ef77b48fc644f5b58a767f875a2f0",
+    "Other/FluxChatFrame.lua": "3ba1e90d9f756a8815b434065b8915f0d3afe0e91687f6b93b3bb3ddaa324c22",
+    "Other/FluxTradeFoodWater.lua": "db1cc1b737942ae38905d9663c453ef008f0538e9319a336c6de272657c179f0",
+    "Other/FluxVehicleSeats.lua": "12bbd63adfdffc520a646be83ea9a36a888cf36d3029ce9bde3892270149c06d",
+    "Respec/FluxRespec_Apply.lua": "3e983fd91063aa14f9bdf1d85c86efd8853e0bfd083e9b536265d20087b236b2",
+    "Respec/FluxRespec_Equipment.lua": "a23ff25de69275db2895b72453f763ff9705bf8bb00d2f92ff2a42dbf7cd4d45",
+    "Respec/FluxRespec_PresetBundle.lua": "9e7f4b94f46c56cd76f82e5368dddecffbf1307a14b31b7aac15db6b42d39e13",
+    "Salvage/FluxSalvage_Overlay.lua": "467978adfa81aecfb6e14e5f1edf7c4fdd55a8e8c57b07ae62a42ea5ff8ba9b6",
+    "UnitFrames/FluxHealthLossOverlay.lua": "cb8731379edb3f010b4b6c602974e96bf98ef767bb84528faf611a7fcf88defc",
+    "UnitFrames/FluxPowerCostOverlay.lua": "0588e5562bc4a20f46af746e2b3bccb2e3f4c93a7ee5502d03e5b0e304eaf727",
+    "UnitFrames/FluxUnitFrames_Focus.lua": "8468017146219705e8500a88db42ce04cc49e73c7364f344b674a912567e2901",
+    "WindowMover/Catalog.lua": "14c94b599aa08cdb075c16b284f24da2f153a77d6483e6f4b55a2b858614a5fb"
+  }
+}

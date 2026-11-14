@@ -1,0 +1,7 @@
+{
+  "captured_utc": "2026-11-13T14:35:18.124341+00:00",
+  "command": "python docs/tools/validate_docs.py",
+  "exit": 1,
+  "output": "Documentation validation FAILED:\n- Stale source inventory: ExtraButtonSystem/Engine/Watch.lua\n- Stale source inventory: tests/action_count_refresh.lua\n- Stale generated view: 30-source-coverage.md\n- Recorded verification predates current source: ExtraButtonSystem/Engine/Watch.lua\n- Missing heading 14-unit-frames.md:991: PARTY_DEBUFF_VISIBILITY.md#blizzards-dispellable-only-checkbox--13-november-2026\n- Broken link ACTION_COUNT_REFRESH.md:61: validation/action-count-refresh-2026-11-13.json\n- Missing heading CLIENT_VALIDATION.md:104: PARTY_DEBUFF_VISIBILITY.md#blizzards-dispellable-only-checkbox--13-november-2026\n- Missing heading DECISIONS.md:104: PARTY_DEBUFF_VISIBILITY.md#blizzards-dispellable-only-checkbox--13-november-2026\n- Missing heading STATUS.md:107: PARTY_DEBUFF_VISIBILITY.md#blizzards-dispellable-only-checkbox--13-november-2026\n- Missing heading WORK_LOG.md:107: PARTY_DEBUFF_VISIBILITY.md#blizzards-dispellable-only-checkbox--13-november-2026\n10 issue(s); checker made no edits.\n",
+  "generator": "1063 sources;623 reachable;437 settings;583 literal defaults"
+}

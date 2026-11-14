@@ -1,5 +1,7 @@
 # Micromenu, bag controls and addon buttons
 
+10 November passive pass 2: Addon-button scans retain cadence and linear snapshots with fewer temporary functions/pattern matches. [Before/after evidence and native limits](PASSIVE_PERFORMANCE_PASS2.md).
+
 <!-- STRESS-FIXES-20261107 -->
 7 November applied stress fixes: The character-button watcher is parented to the owned button so hidden controls stop receiving OnUpdate. Visible per-frame native-state observation remains to preserve native press/release/keybind/close behavior without unsafe hooks. [Evidence](../Stress%20test%20doc/applied-fixes/README.md). Native taint/pixels/performance acceptance remains pending.
 <!-- /STRESS-FIXES-20261107 -->

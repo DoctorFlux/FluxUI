@@ -1,5 +1,77 @@
 # Party and raid frames
 
+13 November SECRET-UI-20261113 supersedes earlier automatic native meter
+selection claims: Blizzard controls own types/window creation/Current; Flux
+keeps saved layout requests with explicit setup feedback. Unit/pet/raid/preview
+hover state is isolated from the world-cursor tooltip. Reload/native retest
+required. [Fix, capability limit and evidence](SECRET_TOOLTIP_METER_ERRORS.md).
+
+10 November passive pass 3: Dirty flags recycle only after paints, with separate reentrant buffers and unchanged rebind/paint cadence. [Before/after and native limits](PASSIVE_PERFORMANCE_PASS3.md).
+
+10 November party debuff visibility (PARTY-DEBUFF-VISIBILITY-20261110; PDV-01–05):
+enemy target/focus tint is revoked immediately; friendly tint remains. Player-style
+party icons have rectangular type borders. Both party styles get a Salvage-style
+type-colored glow only for native/readable dispellable auras, with an atlas fallback.
+18,618 tint / 408 visibility / 11,410 aura checks PASS; two focused runs and six
+new controls. Full 298 scripts / 970 syntax PASS; current manifest matches.
+Native pixels/combat animation/taint/input/FPS NOT RUN. Three runtime
+owners only; concurrent inventory edits preserved. External 2,551-file history/source
+checkpoint and 61 settings metadata entries verified. No input, settings/profiler
+write, manual sync or publication; direct/user reproduction route retained.
+[Requirements, sources and acceptance](PARTY_DEBUFF_VISIBILITY.md).
+
+10 November passive pass 2: Prediction returns scalar severity values; native/legacy queries and indicator sinks are unchanged. [Before/after evidence and native limits](PASSIVE_PERFORMANCE_PASS2.md).
+
+10 November combat-invite power partition correction (POWER-PARTITION-COMBAT-JOIN-20261110;
+PWRJOIN-01–06): native user trace exposed protected SetHeight/Show in ordinary
+post-reveal painting. Shared partition now defers structural geometry before all
+text-anchor/prediction/layout mutations; native reveal and value paints continue.
+Absent prepared slots retain unknown resource capability so combat joins have a
+ready power bar. Existing queue coalesces per frame; Party retains its regen owner.
+675 focused checks/15 cases across five clients; three exact-baseline pairs;
+eight harmful controls rejected; full 288 scripts / 960 syntax PASS. Documentation
+validator PASS: 993 sources / 607 reachable / 16,131 local links. 44 pinned
+source records / 31 blobs verified. Only one runtime file changed; earlier 23
+performance owners unchanged. External 2,536-file/history checkpoint; settings
+metadata only. No native retest/pixels/taint/FPS claim, input/focus, settings/profiler
+write, manual sync or publication. Prior mocks omitted protected child permissions.
+[Cause, correction and native limits](POWER_PARTITION_COMBAT_JOIN.md).
+
+9 November preview minimum: Raid Frames offers10–40 members in steps of5;
+generic raid preview Show/Toggle normalizes legacy5 only when explicitly opened.
+The separate party preview stays5 and both use the original raid scope/store.
+Combat Show still exits before size changes. [Current source and checks](OPTIONS_REWORK.md).
+
+9 November all-client combat roster audit (COMBAT-GROUP-LIFECYCLE-20261109;
+REQ-RF-98/83): checked current Blizzard secure header, visibility and event-manager
+code across Retail, Forever, progression, Era and Anniversary. No new runtime
+gap found. New regression executes the full native event-to-next-update manager
+plus four callback orders:247385 checks over1800 transitions per run;three repeated
+passes;six harmful controls rejected;50 exact source blobs and30 contracts.
+Both party styles, solo/group/raid conversions, full/sparse/empty raids, subgroup
+moves, MT changes, hidden parents, pets/targets and leave cleanup are covered.
+Full274 scripts/944 syntax PASS; all current Lua matches the manifest and existing
+runtime matches the external2463-source/history checkpoint.43 settings metadata
+entries read-only;25 installed runtime copies match. No runtime change, game input,
+settings/profiler write, manual sync or publication. Native taint/input/pixels/
+latency acceptance remains NOT RUN. Preparation must complete before combat;
+prepared roster changes do not wait for combat exit. [Mechanism, sources and
+acceptance](COMBAT_GROUP_LIFECYCLE.md).
+
+9 November steady party performance (PARTY-STEADY-PERFORMANCE-20261109;
+REQ-RF-97): bar/prediction traffic now uses the existing shared painters without
+full chrome/font/cast-cover rebuilds. Pet prediction is corrected, UNIT_PET is
+owner-scoped, unchanged power text anchors are reused, and cold appearance events
+refresh metadata immediately. Features, settings, range cadence and secure
+roster/binding drivers remain. Five matched pairs/model remove936 full chrome,
+800 pet style and3280 power-anchor operations in the replay; actual native lag
+and FPS remain unmeasured.305 focused,1035 party and163 roster checks PASS;
+full273 scripts/943 syntax PASS.51 exact upstream blobs across all five clients;
+external2456-source/history checkpoint and43 read-only settings metadata entries.
+All five installed copies match through existing sync. No game input, settings/
+profiler writes, manual sync or publication. Prior manual testing route retained;
+native latency/pixels/taint acceptance still pending. [Details and evidence](PARTY_STEADY_PERFORMANCE.md).
+
 8 November combat numeric-color capability audit
 (COMBAT-NUMERIC-TINT-CAPABILITY-20261108; REQ-RF-96): user again requests actual
 HP/resource values and percent to match the native border during combat on
@@ -1015,3 +1087,9 @@ no foreground control, game/WTF/profiler write, manual sync, branch or push.
 | ID | Requirement | Acceptance |
 |---|---|---|
 | REQ-RF-85 | Keep original focus aura width; fit more per row without target-strip expansion |1011 geometry/packing checks; supersedes only the width extension in REQ-RF-82; native appearance pending |
+
+
+9 November native follow-up: conservative public geometry for full-resource pulses;
+permission-gated vendor checkbox input configuration; old debuff reader absent.
+Native preview stress and cleanup completed; combat roster/merchant acceptance
+remain pending. [Exact scope and evidence](FOREVER_NATIVE_PERFORMANCE.md).

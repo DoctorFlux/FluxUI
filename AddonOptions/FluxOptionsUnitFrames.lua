@@ -156,40 +156,32 @@ local function HasFocusUnit()
     return FLUX_API and FLUX_API.hasFocusUnit
 end
 
---- Portrait/side threat bars: always | group | never (legacy threatBarGroupOnly maps to always/group).
-local function GetThreatBarVisibility()
-    local d = GetDB()
-    local v = d.threatBarVisibility
-    if v == "always" or v == "group" or v == "never" then
-        return v
-    end
-    if d.threatBarGroupOnly == false then
-        return "always"
-    end
-    return "group"
-end
-
-local function SetThreatBarVisibility(v)
-    if v ~= "always" and v ~= "group" and v ~= "never" then
-        v = "group"
-    end
-    local d = GetDB()
-    d.threatBarVisibility = v
-    -- Keep legacy boolean in sync for older readers.
-    d.threatBarGroupOnly = (v == "group")
-    if FluxUnitFrames_ApplyThreatBarOptionsFromDB then
-        FluxUnitFrames_ApplyThreatBarOptionsFromDB()
-    end
-end
-
-local THREAT_BAR_VISIBILITY_VALUES = {
-    always = "Always",
-    group = "In group or raid only",
-    never = "Never",
+-- English fallback catalog for this shared control; locale overrides retain saved IDs.
+ns.FluxOptionsText = ns.FluxOptionsText or {}
+local text = ns.FluxOptionsText
+text.threatWarningVisibility = text.threatWarningVisibility or "Threat warning visibility"
+text.threatWarningVisibilityDesc = text.threatWarningVisibilityDesc or
+    "Shared by nameplate threat warnings and all target/focus threat bar positions. Always includes solo play. In raid is raid-only. In party includes parties and raids. Off hides these warnings. Uses the Unit Frame settings scope."
+text.threatWarningVisibilityValues = text.threatWarningVisibilityValues or {
+    always = "Always", raid = "In raid", group = "In party", never = "Off",
 }
 
-local THREAT_BAR_VISIBILITY_DESC =
-    "When target/focus portrait and side threat bars are allowed. Always = solo and grouped. In group or raid only = party/raid. Never = hide those threat bars. The between-chrome threat strip stays reserved unless Never is selected."
+-- Both options pages use the same callbacks and the existing scoped saved key.
+function ns.FluxOptionsThreatVisibilityOption(order)
+    return {
+        type = "select", name = text.threatWarningVisibility, desc = text.threatWarningVisibilityDesc,
+        order = order, width = "full", values = text.threatWarningVisibilityValues,
+        sorting = { "always", "raid", "group", "never" },
+        get = function()
+            local api = ns.Flux and ns.Flux.Threat
+            return api and api.GetVisibilityMode and api.GetVisibilityMode() or "group"
+        end,
+        set = function(_, value)
+            local api = ns.Flux and ns.Flux.Threat
+            if api and api.SetVisibilityMode then api.SetVisibilityMode(value) end
+        end,
+    }
+end
 
 local HEALTH_TEXT_VALUES = {
     both = "Current and percent",
@@ -1029,21 +1021,7 @@ local function BuildUnitFrameOptions()
                         AfterFeatureChange()
                     end,
                 },
-                threatBarVisibility = {
-                    type = "select",
-                    name = "Threat bar visibility",
-                    desc = THREAT_BAR_VISIBILITY_DESC,
-                    order = 27,
-                    width = "full",
-                    values = THREAT_BAR_VISIBILITY_VALUES,
-                    sorting = { "always", "group", "never" },
-                    get = function()
-                        return GetThreatBarVisibility()
-                    end,
-                    set = function(_, v)
-                        SetThreatBarVisibility(v)
-                    end,
-                },
+                threatBarVisibility = ns.FluxOptionsThreatVisibilityOption(27),
                 showNumericThreat = {
                     type = "toggle",
                     name = "Show threat percentage",
@@ -1495,21 +1473,7 @@ local function BuildUnitFrameOptions()
                     name = "Threat",
                     order = 10,
                 },
-                targetThreatBarVisibility = {
-                    type = "select",
-                    name = "Threat bar visibility",
-                    desc = THREAT_BAR_VISIBILITY_DESC,
-                    order = 10.5,
-                    width = "full",
-                    values = THREAT_BAR_VISIBILITY_VALUES,
-                    sorting = { "always", "group", "never" },
-                    get = function()
-                        return GetThreatBarVisibility()
-                    end,
-                    set = function(_, v)
-                        SetThreatBarVisibility(v)
-                    end,
-                },
+                targetThreatBarVisibility = ns.FluxOptionsThreatVisibilityOption(10.5),
                 targetThreatBarPosition = {
                     type = "select",
                     name = "Threat bar position",
@@ -1915,21 +1879,7 @@ local function BuildUnitFrameOptions()
                     name = "Threat",
                     order = 10,
                 },
-                focusThreatBarVisibility = {
-                    type = "select",
-                    name = "Threat bar visibility",
-                    desc = THREAT_BAR_VISIBILITY_DESC,
-                    order = 10.5,
-                    width = "full",
-                    values = THREAT_BAR_VISIBILITY_VALUES,
-                    sorting = { "always", "group", "never" },
-                    get = function()
-                        return GetThreatBarVisibility()
-                    end,
-                    set = function(_, v)
-                        SetThreatBarVisibility(v)
-                    end,
-                },
+                focusThreatBarVisibility = ns.FluxOptionsThreatVisibilityOption(10.5),
                 focusThreatBarPosition = {
                     type = "select",
                     name = "Threat bar position",

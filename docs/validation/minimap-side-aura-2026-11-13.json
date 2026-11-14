@@ -1,0 +1,56 @@
+{
+  "changeId": "MINIMAP-SIDE-AURA-20261113",
+  "capturedUTC": "2026-11-13T07:42:52.773831+00:00",
+  "requirements": "docs/MINIMAP_EXTRA_LAYOUT.md#follow-up-screen-side-resizing-and-aura-placement",
+  "featureIds": [
+    "REQ-MBL-10",
+    "REQ-MBL-11"
+  ],
+  "implemented": true,
+  "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d3b4-b7ec-7591-94d3-6d3b3097fb8a\\minimap-side-aura-20261113T073724Z",
+  "baseRevision": "26f886e3ea5371b196ab235d2dace0c156002285",
+  "branch": "main",
+  "settingsMetadataEntries": 69,
+  "settingsWrites": false,
+  "scope": "Existing five client families, character settings, sideScale25\u2013100 and default100 retained; no new control",
+  "sourceHashes": {
+    "Minimap/FluxMinimapButtons.lua": "0682a68111af98010461ea38202a6d4ec535545a3b767e956c55522b337ab2e7",
+    "Minimap/FluxBuffDebuffFrames.lua": "ceb65d5458f378a7a45a87af3a3cffa3ddd06d68f783f13eca6be7c1927a8191"
+  },
+  "hashNormalization": "CRLF to LF;all other bytes retained",
+  "desktop": {
+    "resizeChecks": 3415,
+    "auraChecks": 1855,
+    "focusedChecks": 5270,
+    "candidateRepeats": 3,
+    "baselineRejected": true,
+    "harmfulControlsRejected": 5,
+    "controlsReport": "docs/validation/minimap-side-aura-controls-2026-11-13.json",
+    "fullSuite": "PASS",
+    "scripts": 322,
+    "failures": 0,
+    "syntaxFiles": 1004,
+    "syntaxFailures": 0,
+    "fullSuiteReport": "docs/validation/minimap-side-aura-full-2026-11-13.json",
+    "currentFullSuiteVerified": true
+  },
+  "sources": "docs/validation/minimap-side-aura-sources-2026-11-13.json",
+  "native": {
+    "visuals": "NOT RUN",
+    "input": "NOT RUN",
+    "taint": "NOT RUN",
+    "controller": "NOT RUN",
+    "persistence": "NOT RUN",
+    "FPS": "NOT RUN",
+    "memory": "NOT RUN"
+  },
+  "runtimeOwnership": "Two existing runtime owners;one existing test extended;one new test;0new frames/events/timers/tickers/hooks/polling. Existing aura placement invoked from shared layout, before hidden return. Native aura content/styling/updater ownership unchanged.",
+  "preferences": "Existing direct implementation and user-managed native reproduction retained;existing English fallback and controller paths;no new visible text/bindings or CVar changes",
+  "clientActions": "No client foreground/input/clipboard, profiler/private settings writes, manual sync, commit or publication",
+  "sourceGuard": "docs/validation/minimap-side-aura-source-guard-2026-11-13.json",
+  "documentationValidation": {
+    "result": "PASS",
+    "report": "docs/validation/minimap-side-aura-docs-2026-11-13.json",
+    "scope": "1037 classified sources;617 reachable;437 setting definitions;24SavedVariables;16684local links;source inventory/evidence current"
+  }
+}

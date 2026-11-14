@@ -1,0 +1,187 @@
+{
+  "date": "2026-11-09",
+  "change_id": "OPTIONS-SORTING-20261109",
+  "updated_utc": "2026-11-09T14:21:14.150200+00:00",
+  "supersedes": "options-navigation-2026-11-09.json literal taxonomy; earlier intermediate seven Action Bars tabs",
+  "goal_clarifications": [
+    "Action Bars > Extra Buttons: one original group for consumables, Trinket Menu, travel buttons, visibility and utility slots",
+    "Swing Timer and flight paths remain Unit Frames > Player",
+    "Loot & Items has its own sidebar page",
+    "Bindings and Keybindings are separate",
+    "Meter tab right-click opens Quality of Life > Damage Meter",
+    "Loot & Items has Loot, Vendor & Junk and Restock tabs; both restock switches sit beside targets/editor"
+  ],
+  "requirements": "REQ-OPT-01 through17; docs/OPTIONS_REWORK.md",
+  "currentNavigation": {
+    "Quality of Life": [
+      "Interface",
+      "Combat",
+      "Status Bars",
+      "Damage Meter"
+    ],
+    "Combat": [
+      "Unit Frames"
+    ],
+    "Utilities": [
+      "Action Bars",
+      "Bindings",
+      "Keybindings",
+      "Loot & Items",
+      "Professions"
+    ],
+    "Action Bars": [
+      "Bars",
+      "Extra Buttons",
+      "Stance Order"
+    ],
+    "fixedFooter": [
+      "Settings",
+      "Profiles",
+      "Patch Notes",
+      "Credits"
+    ],
+    "Loot & Items": [
+      "Loot",
+      "Vendor & Junk",
+      "Restock"
+    ]
+  },
+  "ownedNormalizedSHA256": {
+    "AddonOptions/FluxOptions.lua": "911e3527d683d302b5388eb9bd3b359736b245ab78537b821bbb5748c33371e7",
+    "AddonOptions/FluxOptionsCatalog.lua": "5c1980ea3d50d2ae8411a69a92b89ad3309e532412cc8f89649db29e50b9ed8b",
+    "AddonOptions/FluxOptionsNavigation.lua": "e845d5cff87fc88340327fadcfc96d7b71b6a9dc948b4c7e9984a8fe2c197024",
+    "AddonOptions/FluxOptionsRender.lua": "d891a227a481648c67d6cab1ace2acfdeb1ffb75e179c3307d7a94f8164553aa",
+    "AddonOptions/FluxOptionsShell.lua": "80fda8d10361309604f80717a1868173cdd398029befc940ec9eef1281010510",
+    "AddonOptions/FluxOptionsWidgets.lua": "4c030354c09a5f8addaa3cdf3ea5a17b57ed561ff41b570bdda90e8a05151d32",
+    "AddonOptions/FluxOptionsSkin.lua": "3f22be01e5333caa5564f42745cd6c7a530994209be476522dba5da4b856a981",
+    "AddonOptions/FluxOptionsGameMenu.lua": "7265946dfae4b45b5a3417b15ff0772dd102619e14256db510ba70938c616e16",
+    "_FluxUI.toc": "f40a0ee261ba97aeeba9205c280a5cd0f2962c02e6a4dcd03b6ae166b5329aac",
+    "Battlezonemap/FluxWindowFrame.lua": "406c3b0c2ff6d9bafc5aa94b895e7f8d812a03a45da50c1476d9847eeef132c3",
+    "tests/options_navigation.lua": "4e0f2b0d8192a902352e245a42d10a14e8007136bbf36ccc7e22dca630031600",
+    "tests/options_rework.lua": "a706c092c40da44c961225d7fa9f0d38bce6b9f41af0ebd6e837ac6857f9ca53"
+  },
+  "sourceIdentityNormalization": "CRLF to LF; all other bytes retained",
+  "focused": {
+    "actualBuilderMappingChecks": 5158,
+    "completeShellChecks": 391,
+    "nativeMeterControlModelChecks": 412,
+    "windowRuntimeChecks": 36,
+    "scope": "Five desktop client models; actual source declarations and production right-click-to-shell route; no native secure VM or rendering"
+  },
+  "mapping": "options-navigation-map-2026-11-09.csv",
+  "negativeControls": "options-sorting-controls-2026-11-09.json",
+  "fullReport": "options-sorting-full-2026-11-09.json",
+  "full": {
+    "pass": 272,
+    "fail": 0,
+    "syntaxFiles": 942,
+    "syntaxFailures": 0,
+    "currentCorpusDrift": []
+  },
+  "acceptedSidebar": "options-sidebar-reference-2026-11-09.json",
+  "clientSources": [
+    "options-source-pins-2026-11-09.json",
+    "options-fidelity-sources-2026-11-09.json",
+    "options-scroll-sources-2026-11-09.json"
+  ],
+  "reference": {
+    "path": "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\__AddonsForRef\\Naowth Forever\\NaowhForever\\Core\\Options\\Modules.lua",
+    "version": "1.2.19",
+    "rawSHA256": "6158e1a09faf1cf5a4b8cc61a03c35d9f86d42b6044d6d53dc928091a764ef4f",
+    "license": "Own source/art all rights reserved; design inspection only"
+  },
+  "sourceAndHistoryCheckpoint": "options-sorting-checkpoint-2026-11-09.json",
+  "immediateBeforeSnapshot": "options-consolidation-checkpoint-2026-11-09.json",
+  "sourceContext": "Original option objects, roots, handlers, info paths, data scopes and saved schemas retained; source generations invalidate composed views; original extra-button custom widget once",
+  "intentionalFix": {
+    "trigger": "Right-click Flux Window Meter tab after moving its editor",
+    "before": "OpenToFluxWindowTab routes general Flux Window settings to Quality of Life > Interface",
+    "after": "Dedicated OpenToDamageMeterTab selects Quality of Life > Damage Meter",
+    "regression": "Actual production OnClick, forwarding method and helper execute through complete shell across five models; restoring old destination is rejected"
+  },
+  "clientCopiesMatch": {
+    "_forever_": {
+      "AddonOptions/FluxOptions.lua": true,
+      "AddonOptions/FluxOptionsCatalog.lua": true,
+      "AddonOptions/FluxOptionsNavigation.lua": true,
+      "AddonOptions/FluxOptionsRender.lua": true,
+      "AddonOptions/FluxOptionsShell.lua": true,
+      "AddonOptions/FluxOptionsWidgets.lua": true,
+      "AddonOptions/FluxOptionsSkin.lua": true,
+      "AddonOptions/FluxOptionsGameMenu.lua": true,
+      "_FluxUI.toc": true,
+      "Battlezonemap/FluxWindowFrame.lua": true
+    },
+    "_classic_": {
+      "AddonOptions/FluxOptions.lua": true,
+      "AddonOptions/FluxOptionsCatalog.lua": true,
+      "AddonOptions/FluxOptionsNavigation.lua": true,
+      "AddonOptions/FluxOptionsRender.lua": true,
+      "AddonOptions/FluxOptionsShell.lua": true,
+      "AddonOptions/FluxOptionsWidgets.lua": true,
+      "AddonOptions/FluxOptionsSkin.lua": true,
+      "AddonOptions/FluxOptionsGameMenu.lua": true,
+      "_FluxUI.toc": true,
+      "Battlezonemap/FluxWindowFrame.lua": true
+    },
+    "_classic_era_": {
+      "AddonOptions/FluxOptions.lua": true,
+      "AddonOptions/FluxOptionsCatalog.lua": true,
+      "AddonOptions/FluxOptionsNavigation.lua": true,
+      "AddonOptions/FluxOptionsRender.lua": true,
+      "AddonOptions/FluxOptionsShell.lua": true,
+      "AddonOptions/FluxOptionsWidgets.lua": true,
+      "AddonOptions/FluxOptionsSkin.lua": true,
+      "AddonOptions/FluxOptionsGameMenu.lua": true,
+      "_FluxUI.toc": true,
+      "Battlezonemap/FluxWindowFrame.lua": true
+    },
+    "_anniversary_": {
+      "AddonOptions/FluxOptions.lua": true,
+      "AddonOptions/FluxOptionsCatalog.lua": true,
+      "AddonOptions/FluxOptionsNavigation.lua": true,
+      "AddonOptions/FluxOptionsRender.lua": true,
+      "AddonOptions/FluxOptionsShell.lua": true,
+      "AddonOptions/FluxOptionsWidgets.lua": true,
+      "AddonOptions/FluxOptionsSkin.lua": true,
+      "AddonOptions/FluxOptionsGameMenu.lua": true,
+      "_FluxUI.toc": true,
+      "Battlezonemap/FluxWindowFrame.lua": true
+    }
+  },
+  "manualSync": false,
+  "nativeVisualObservation": {
+    "utc": "2026-11-09T13:45:34.045220+00:00",
+    "executable": "F:/World of Warcraft/_forever_/Wow.exe",
+    "pid": 49960,
+    "windowTitle": "World of Warcraft",
+    "windowHandle": 361306470,
+    "dimensions": [
+      1906,
+      1032
+    ],
+    "foreground": true,
+    "capture": "PrintWindow of verified window only; private PNG retained outside AddOns",
+    "observation": "Gameplay visible; options not open; no candidate sidebar comparison",
+    "foregroundOrInputControl": false,
+    "WitchcraftErrors": "NOT RUN; setup approval still pending",
+    "performanceMeasurement": false,
+    "scope": "Earlier read-only observation predates final sorting; no candidate options visible and no currently loaded source identity inferred"
+  },
+  "nativeAcceptance": "NOT RUN: Witchcraft selected but not installed/connected; prior setup approval request unanswered. No candidate native visual/input/persistence/taint/performance pass.",
+  "resourceChanges": "No additional recurring work for sorting or Meter accessor. Prior section/empty/footer frames and native decorative art remain; no new SavedVariables root.",
+  "gameInput": false,
+  "settingsWrites": false,
+  "profilerWrites": false,
+  "publication": false,
+  "lootTabsBeforeSnapshot": "options-loot-tabs-checkpoint-2026-11-09.json",
+  "documentation": {
+    "command": "python docs/tools/build_reference.py; python docs/tools/validate_docs.py",
+    "exit": 0,
+    "result": "PASS: 975 classified sources; 605 TOC/XML reachable; 425 setting definitions; 24 SavedVariables; 15887 local links. Source inventory/evidence current. No files written."
+  },
+  "diffWhitespaceCheck": "PASS",
+  "readinessAudit": "options-native-readiness-2026-11-09.json",
+  "supersededBy": "options-unitframes-2026-11-09.json",
+  "evidenceStatus": "Historical sorting snapshot; current placement CSV is maintained by Unit Frames report"
+}

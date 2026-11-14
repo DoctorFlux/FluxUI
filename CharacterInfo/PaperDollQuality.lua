@@ -14,6 +14,28 @@ end
 
 local ICON_BORDER_TEXTURE = [[Interface\Common\WhiteIconFrame]]
 local MIN_QUALITY = LE_ITEM_QUALITY_COMMON or 1
+local SLOT_NAMES = {
+    "CharacterHeadSlot",
+    "CharacterNeckSlot",
+    "CharacterShoulderSlot",
+    "CharacterBackSlot",
+    "CharacterChestSlot",
+    "CharacterShirtSlot",
+    "CharacterTabardSlot",
+    "CharacterWristSlot",
+    "CharacterHandsSlot",
+    "CharacterWaistSlot",
+    "CharacterLegsSlot",
+    "CharacterFeetSlot",
+    "CharacterFinger0Slot",
+    "CharacterFinger1Slot",
+    "CharacterTrinket0Slot",
+    "CharacterTrinket1Slot",
+    "CharacterMainHandSlot",
+    "CharacterSecondaryHandSlot",
+    "CharacterRangedSlot",
+    "CharacterAmmoSlot",
+}
 
 local function GetSlotItemQuality(unit, slot)
     if type(GetInventoryItemQuality) == "function" then
@@ -83,15 +105,15 @@ local function ApplySlotQualityBorder(button)
     button.IconBorder:Hide()
 end
 
+local function RefreshButton(button)
+    if button and type(button.GetID) == "function" and button.IconBorder then
+        ApplySlotQualityBorder(button)
+    end
+end
+
 local function RefreshAllPaperDollSlots()
     if type(PaperDollItemSlotButton_Update) ~= "function" then
         return
-    end
-
-    local function RefreshButton(button)
-        if button and type(button.GetID) == "function" and button.IconBorder then
-            ApplySlotQualityBorder(button)
-        end
     end
 
     local paperDollItems = _G.PaperDollItemsFrame
@@ -108,31 +130,8 @@ local function RefreshAllPaperDollSlots()
         end
     end
 
-    local slotNames = {
-        "CharacterHeadSlot",
-        "CharacterNeckSlot",
-        "CharacterShoulderSlot",
-        "CharacterBackSlot",
-        "CharacterChestSlot",
-        "CharacterShirtSlot",
-        "CharacterTabardSlot",
-        "CharacterWristSlot",
-        "CharacterHandsSlot",
-        "CharacterWaistSlot",
-        "CharacterLegsSlot",
-        "CharacterFeetSlot",
-        "CharacterFinger0Slot",
-        "CharacterFinger1Slot",
-        "CharacterTrinket0Slot",
-        "CharacterTrinket1Slot",
-        "CharacterMainHandSlot",
-        "CharacterSecondaryHandSlot",
-        "CharacterRangedSlot",
-        "CharacterAmmoSlot",
-    }
-
-    for i = 1, #slotNames do
-        RefreshButton(_G[slotNames[i]])
+    for i = 1, #SLOT_NAMES do
+        RefreshButton(_G[SLOT_NAMES[i]])
     end
 end
 

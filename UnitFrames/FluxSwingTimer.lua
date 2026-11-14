@@ -67,6 +67,11 @@ local function IsSecret(value)
     return false
 end
 
+local function PublicStyleNumber(value)
+    return not IsSecret(value) and (not API or not API.CanAccessValue or API.CanAccessValue(value))
+        and type(value) == "number"
+end
+
 local function KeepLastNumber(value, last, fallback)
     if API and API.KeepLastNumber then
         return API.KeepLastNumber(value, last, fallback)
@@ -167,6 +172,8 @@ local SWING_FADE_DURATION = 1.0    -- match FluxCastBar CastStop fade
 -- A new owner write retires that fade, including zero-elapsed repaint races.
 local swingAlpha = 0
 local swingFadeInfo
+local swingAlphaApplied
+local swingAlphaWriteRevision = 0
 
 local function SetSwingAlpha(alpha)
     if swingFadeOut then
@@ -176,7 +183,17 @@ local function SetSwingAlpha(alpha)
         swingFadeInfo = nil
     end
     swingAlpha = alpha
-    if swingFrame then swingFrame:SetAlpha(alpha) end
+    if swingFrame then
+        local readable = PublicStyleNumber(alpha)
+        if not readable or swingAlphaApplied ~= alpha then
+            swingAlphaWriteRevision = swingAlphaWriteRevision + 1
+            local revision = swingAlphaWriteRevision
+            swingAlphaApplied = nil
+            swingFrame:SetAlpha(alpha)
+            if readable and swingAlphaWriteRevision == revision then swingAlphaApplied = alpha
+            else swingAlphaApplied = nil end
+        end
+    end
 end
 
 local function CurrentSwingAlpha()
@@ -978,12 +995,15 @@ end
 local function SyncSwingFrameLevel()
     if not swingFrame or not castBar then return end
     local cl = castBar:GetFrameLevel() or 0
+    local level
     if castBar.casting or castBar.channeling or castBar.preInterrupt
         or (castBar.holdTime and castBar.holdTime > 0) or castBar.fadeOut then
-        swingFrame:SetFrameLevel(math.max(0, cl - 1))
+        level = math.max(0, cl - 1)
     else
-        swingFrame:SetFrameLevel(cl + 1)
+        level = cl + 1
     end
+    local ok, current = pcall(swingFrame.GetFrameLevel, swingFrame)
+    if not ok or not PublicStyleNumber(current) or current ~= level then swingFrame:SetFrameLevel(level) end
 end
 
 local function ClearRangedSwingLinger()
@@ -1070,6 +1090,21 @@ local function NativeOORTextColor()
     return 1, 0.1, 0.1
 end
 
+local function SetSwingTextColor(font, r, g, b)
+    if not font then return end
+    local readable = PublicStyleNumber(r) and PublicStyleNumber(g) and PublicStyleNumber(b)
+    if readable and font._fluxSwingColorValid and font._fluxSwingR == r
+        and font._fluxSwingG == g and font._fluxSwingB == b then return end
+    local revision = (font._fluxSwingColorRevision or 0) + 1
+    font._fluxSwingColorRevision = revision
+    font._fluxSwingColorValid = nil
+    font:SetTextColor(r, g, b)
+    if readable and font._fluxSwingColorRevision == revision then
+        font._fluxSwingR, font._fluxSwingG, font._fluxSwingB = r, g, b
+        font._fluxSwingColorValid = true
+    else font._fluxSwingColorValid = nil end
+end
+
 local function ApplyNativeRangePresentation()
     if not UseNativePlayerSwing() or not swingFrame then
         return
@@ -1083,8 +1118,8 @@ local function ApplyNativeRangePresentation()
     if oor then
         r, g, b = NativeOORTextColor()
     end
-    if swingText then swingText:SetTextColor(r, g, b) end
-    if swingTime then swingTime:SetTextColor(r, g, b) end
+    SetSwingTextColor(swingText, r, g, b)
+    SetSwingTextColor(swingTime, r, g, b)
 end
 
 local function SetNativeShownOutOfRange(isOutOfRange)
@@ -1193,6 +1228,10 @@ local function StartSwingFadeOut()
     local startAlpha = CurrentSwingAlpha()
     UIFrameFadeRemoveFrame(swingFrame)
     swingFadeOut = true
+    -- FrameUtil now owns native alpha until completion/cancellation. A later
+    -- owner write must repaint even if it matches the value before this fade.
+    swingAlphaWriteRevision = swingAlphaWriteRevision + 1
+    swingAlphaApplied = nil
     UIFrameFadeOut(swingFrame, SWING_FADE_DURATION, startAlpha, 0)
     -- This is the public record just created by our call above, not alpha
     -- recovered from the native frame. FrameUtil only advances its fadeTimer.
@@ -1364,6 +1403,21 @@ local function UpdateIcon()
     end
 end
 
+local function SetSwingLabel(label)
+    if not swingText then return end
+    local readable = not IsSecret(label) and type(label) == "string"
+        and (not API or not API.CanAccessValue or API.CanAccessValue(label))
+    if not readable or swingText._fluxSwingLabel ~= label then
+        local revision = (swingText._fluxSwingLabelRevision or 0) + 1
+        swingText._fluxSwingLabelRevision = revision
+        swingText._fluxSwingLabel = nil
+        swingText:SetText(label)
+        if readable and swingText._fluxSwingLabelRevision == revision then swingText._fluxSwingLabel = label
+        else swingText._fluxSwingLabel = nil end
+    end
+    swingText:Show()
+end
+
 --- Melee swing ready (no next swing yet): empty fill at 0, not full bar.
 local function PaintMeleeReadyEmptyAtZero()
     if not mainBar then return end
@@ -1382,7 +1436,7 @@ local function PaintMeleeReadyEmptyAtZero()
         offBar._fluxLastSwingValue = 0
     end
     HideMeleeSparks()
-    if swingText then swingText:SetText("Attack"); swingText:Show() end
+    SetSwingLabel("Attack")
     if swingTime then swingTime:SetText(""); swingTime:Show() end
 end
 
@@ -1414,7 +1468,7 @@ local function PaintMeleeActiveBars()
         offSparkFrame.spark:Hide()
     end
 
-    if swingText then swingText:SetText("Attack"); swingText:Show() end
+    SetSwingLabel("Attack")
     if swingTime then
         local t = hasOffhand and math.max(mainTimer, offTimer) or mainTimer
         if not IsSecret(t) and t > 0.05 then
@@ -1611,7 +1665,7 @@ local function SwingTimer_OnUpdate(self, elapsed)
             UpdateRangedWSTVisuals(speed, 0, true)
         end
         local rngLabel = select(1, GetRangedSwingLabelAndSpellID())
-        if swingText then swingText:SetText(rngLabel); swingText:Show() end
+        SetSwingLabel(rngLabel)
         if swingTime then swingTime:SetText(""); swingTime:Show() end
         HideMeleeSparks()
         StartSwingFadeOut()
@@ -1649,7 +1703,7 @@ local function SwingTimer_OnUpdate(self, elapsed)
                 if swingTime then swingTime:SetText(""); swingTime:Show() end
             end
             local rngLabel = select(1, GetRangedSwingLabelAndSpellID())
-            if swingText then swingText:SetText(rngLabel); swingText:Show() end
+            SetSwingLabel(rngLabel)
             HideMeleeSparks()
         else
             PaintMeleeActiveBars()
@@ -1707,7 +1761,7 @@ local function SwingTimer_OnUpdate(self, elapsed)
                 if speed <= 0 then speed = 1 end
                 UpdateRangedWSTVisuals(speed, 0, true)
                 local rngLabel = select(1, GetRangedSwingLabelAndSpellID())
-                if swingText then swingText:SetText(rngLabel); swingText:Show() end
+                SetSwingLabel(rngLabel)
                 if swingTime then swingTime:SetText(""); swingTime:Show() end
                 HideMeleeSparks()
             else
@@ -1726,7 +1780,7 @@ local function SwingTimer_OnUpdate(self, elapsed)
                 elseif offSparkFrame and offSparkFrame.spark then
                     offSparkFrame.spark:Hide()
                 end
-                if swingText then swingText:SetText("Attack"); swingText:Show() end
+                SetSwingLabel("Attack")
                 if swingTime then swingTime:SetText(""); swingTime:Show() end
             end
             StartSwingFadeOut()
@@ -1739,7 +1793,7 @@ local function SwingTimer_OnUpdate(self, elapsed)
             if speed <= 0 then speed = 1 end
             UpdateRangedWSTVisuals(speed, 0, true)
             local rngLabel = select(1, GetRangedSwingLabelAndSpellID())
-            if swingText then swingText:SetText(rngLabel); swingText:Show() end
+            SetSwingLabel(rngLabel)
             if swingTime then swingTime:SetText(""); swingTime:Show() end
             HideMeleeSparks()
         else
@@ -1758,7 +1812,7 @@ local function SwingTimer_OnUpdate(self, elapsed)
             elseif offSparkFrame and offSparkFrame.spark then
                 offSparkFrame.spark:Hide()
             end
-            if swingText then swingText:SetText("Attack"); swingText:Show() end
+            SetSwingLabel("Attack")
             if swingTime then swingTime:SetText(""); swingTime:Show() end
         end
         return

@@ -1,5 +1,13 @@
 # Native mailbox and auction reference — 5 November 2026
 
+13 November workflow follow-up: [AHR-57–64](AUCTION_RESTOCK.md#integrated-restock-workflow-13-november-2026)
+rechecks MAIL_FAILED/native-command/OpenAll timer contracts at the current five
+pinned source identities in [workflow evidence](validation/auction-workflow-2026-11-13.json).
+Forever now uses bebcb6bf309cf41b41bd74f8ca651e6a105b2676 for this source check;
+the older70790 observations below remain historical. Complete empty inbox proof
+clears collection HUD; partial loaded subsets cannot clear inaccessible mail.
+No native behavior/performance observation is added by these source checks.
+
 The current [rework matrix](MAIL_AUCTION_REWORK.md) separates all requested flows,
 desktop fixes and pending native checks. The loaded-state observations below
 belong to the earlier approved session; later probes observed an unloaded state

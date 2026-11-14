@@ -1,0 +1,66 @@
+{
+  "scope": "Current sidebar hierarchy and production shell controls on desktop engine primitives; not native pixels/input",
+  "candidate": "5832 real-builder checks and876 complete-shell checks PASS",
+  "negativeControls": [
+    {
+      "control": "single-category-button",
+      "test": "tests/options_navigation.lua",
+      "exit": 1,
+      "firstFailure": "lua: tests/options_navigation.lua:5: live: Unit Frame expands its sections in the sidebar instead of a category button"
+    },
+    {
+      "control": "plural-header",
+      "test": "tests/options_navigation.lua",
+      "exit": 1,
+      "firstFailure": "lua: tests/options_navigation.lua:5: live: Unit Frame is a sidebar header like Combat"
+    },
+    {
+      "control": "horizontal-frame-tabs",
+      "test": "tests/options_rework.lua",
+      "exit": 1,
+      "firstFailure": "lua: tests/options_rework.lua:11: live: child click opens its section without horizontal tabs"
+    },
+    {
+      "control": "all-child-rows-selected",
+      "test": "tests/options_rework.lua",
+      "exit": 1,
+      "firstFailure": "lua: tests/options_rework.lua:11: live: only clicked frame row is selected"
+    },
+    {
+      "control": "whole-category-search-results",
+      "test": "tests/options_rework.lua",
+      "exit": 1,
+      "firstFailure": "lua: tests/options_rework.lua:11: live: section-name search filters individual frame rows"
+    },
+    {
+      "control": "unavailable-child-visible",
+      "test": "tests/options_rework.lua",
+      "exit": 1,
+      "firstFailure": "lua: tests/options_rework.lua:11: live: unavailable source sections are hidden from the sidebar too"
+    },
+    {
+      "control": "all-clicks-open-general",
+      "test": "tests/options_rework.lua",
+      "exit": 1,
+      "firstFailure": "lua: tests/options_rework.lua:11: live: child click opens its section without horizontal tabs"
+    },
+    {
+      "control": "sidebar-cannot-scroll",
+      "test": "tests/options_rework.lua",
+      "exit": 1,
+      "firstFailure": "lua: tests/options_rework.lua:11: live: expanded frame header supports small-window sidebar scrolling"
+    },
+    {
+      "control": "selected-row-offscreen",
+      "test": "tests/options_rework.lua",
+      "exit": 1,
+      "firstFailure": "lua: tests/options_rework.lua:11: live: resize and direct links keep the selected sidebar child in view"
+    }
+  ],
+  "candidateNormalizedSHA256": {
+    "AddonOptions/FluxOptionsCatalog.lua": "f47cc16b54cd9380f7279d6fe4f17ea2884b2370432be6a52c6f8558975a6cf6",
+    "AddonOptions/FluxOptionsShell.lua": "259b0b09d327287a089d9c8b3e80b0d1a84558cf2dcb701a47dc5537272aaebe",
+    "tests/options_navigation.lua": "07edefe047facf15a32afbc4ddbe2cdc966a8c5fae158e42ba2a81a15af1ece0",
+    "tests/options_rework.lua": "b903d471bb00112b5b1af7ebd01fb91ed2389569af7ae80804fcf1cb53ea90fc"
+  }
+}
